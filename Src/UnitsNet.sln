@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Pcl", "UnitsNet\Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.net35", "UnitsNet\UnitsNet.net35.csproj", "{62E7F8AB-01ED-455A-8CE2-86F020D429B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.sl4", "UnitsNet\UnitsNet.sl4.csproj", "{5624386A-803F-4C86-AB18-9840DFF46DD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{62E7F8AB-01ED-455A-8CE2-86F020D429B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62E7F8AB-01ED-455A-8CE2-86F020D429B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E7F8AB-01ED-455A-8CE2-86F020D429B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5624386A-803F-4C86-AB18-9840DFF46DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5624386A-803F-4C86-AB18-9840DFF46DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5624386A-803F-4C86-AB18-9840DFF46DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5624386A-803F-4C86-AB18-9840DFF46DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
