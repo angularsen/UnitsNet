@@ -6,8 +6,8 @@
         <title>Units.NET</title>
         <authors>Andreas Larsen</authors>
         <owners>Initial Force AS</owners>
-        <licenseUrl>https://github.com/InitialForce/SIUnits/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/InitialForce/SIUnits</projectUrl>
+        <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<summary>Simplifies working with units of measurement.</summary>
         <description>Data structures and methods to convert values between units, parse values and units from text or get textual representations.</description>
