@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62E7F8AB-01ED-455A-8CE2-86F020D429B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnitsNet</RootNamespace>
+    <AssemblyName>UnitsNet.net35</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\UnitsNet\EnumUtils.cs">
+      <Link>EnumUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiDistance.cs">
+      <Link>SiDistance.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiDistance2d.cs">
+      <Link>SiDistance2d.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiForce.cs">
+      <Link>SiForce.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiMass.cs">
+      <Link>SiMass.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiPressure.cs">
+      <Link>SiPressure.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiTorque.cs">
+      <Link>SiTorque.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiUnit.cs">
+      <Link>SiUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiUnits.cs">
+      <Link>SiUnits.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiUnitsHelper.cs">
+      <Link>SiUnitsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiUnitSystem.cs">
+      <Link>SiUnitSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiValue.cs">
+      <Link>SiValue.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\SiVoltage.cs">
+      <Link>SiVoltage.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\UnitConverter.cs">
+      <Link>UnitConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\Vector2.cs">
+      <Link>Vector2.cs</Link>
+    </Compile>
+    <Compile Include="..\UnitsNet\Vector3.cs">
+      <Link>Vector3.cs</Link>
+    </Compile>
+    <Compile Include="EnumUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiDistance.cs" />
+    <Compile Include="SiDistance2d.cs" />
+    <Compile Include="SiForce.cs" />
+    <Compile Include="SiMass.cs" />
+    <Compile Include="SiPressure.cs" />
+    <Compile Include="SiTorque.cs" />
+    <Compile Include="SiUnit.cs" />
+    <Compile Include="SiUnits.cs" />
+    <Compile Include="SiUnitsHelper.cs" />
+    <Compile Include="SiUnitSystem.cs" />
+    <Compile Include="SiValue.cs" />
+    <Compile Include="SiVoltage.cs" />
+    <Compile Include="UnitConverter.cs" />
+    <Compile Include="Vector2.cs" />
+    <Compile Include="Vector3.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -26,11 +26,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("UnitsNet.Pcl")]
+[assembly: AssemblyTitle("UnitsNet")]
 [assembly: AssemblyDescription("Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Initial Force AS")]
-[assembly: AssemblyProduct("UnitsNet.Pcl")]
+[assembly: AssemblyProduct("UnitsNet")]
 [assembly: AssemblyCopyright("Copyright © 2007-2013 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("en-US")]
