@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Units.Net</id>
+        <version>1.0.0.0</version>
+        <title>Units.NET</title>
+        <authors>Andreas Larsen</authors>
+        <owners>Initial Force AS</owners>
+        <licenseUrl>https://github.com/InitialForce/SIUnits/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/InitialForce/SIUnits</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>Simplifies working with units of measurement.</summary>
+        <description>Data structures and methods to convert values between units, parse values and units from text or get textual representations.</description>
+        <releaseNotes>First release.</releaseNotes>
+        <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
+        <language>en-US</language>
+        <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
+    </metadata>
+    <files>
+        <file src="bin\UnitsNet.Pcl.dll" target="lib\portable-win+net45+sl40+wp\UnitsNet.Pcl.dll" />
+    </files>
+</package>
