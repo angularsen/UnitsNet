@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.net35", "UnitsNet\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.sl4", "UnitsNet\UnitsNet.sl4.csproj", "{5624386A-803F-4C86-AB18-9840DFF46DD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.winrt45", "UnitsNet\UnitsNet.winrt45.csproj", "{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.netcore45", "UnitsNet\UnitsNet.netcore45.csproj", "{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

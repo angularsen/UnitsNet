@@ -17,7 +17,9 @@
         <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
     </metadata>
     <files>
-        <file src="bin\UnitsNet.Pcl.dll" target="lib\portable-win+net45+sl40+wp\UnitsNet.Pcl.dll" />
+        <file src="bin\UnitsNet.pcl.dll" target="lib\portable-win+net40+sl40+wp+Xbox40\UnitsNet.pcl.dll" />
         <file src="bin\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
+        <file src="bin\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
+        <file src="bin\UnitsNet.netcore45\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
     </files>
 </package>
