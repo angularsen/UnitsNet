@@ -27,33 +27,48 @@ namespace UnitsNet
 {
     /// <summary>
     /// </summary>
-    /// <remarks>Silverlight does not support Enum enumeration.</remarks>
+    /// <remarks>WinRT does not support Enum enumeration.</remarks>
     public static class EnumUtils
     {
         public static T[] GetEnumValues<T>()
         {
-            Type type = typeof (T);
+#if NETFX_CORE
+            return GetEnumValuesWinRT<T>();
+#else
+            Type type = typeof(T);
             if (!type.IsEnum)
                 throw new ArgumentException("Type '" + type.Name + "' is not an enum");
 
             return (
                        from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
                        where field.IsLiteral
-                       select (T) field.GetValue(null)
+                       select (T)field.GetValue(null)
                    ).ToArray();
+#endif
         }
 
-        public static string[] GetEnumStrings<T>()
+        private static T[] GetEnumValuesWinRT<T>()
         {
-            Type type = typeof (T);
-            if (!type.IsEnum)
-                throw new ArgumentException("Type '" + type.Name + "' is not an enum");
+#if NETFX_CORE
+            // using System.Reflection;
+            var values = typeof (T)
+                .GetRuntimeProperties()
+                .Select(c => (T) c.GetValue(null));
 
-            return (
-                       from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
-                       where field.IsLiteral
-                       select field.Name
-                   ).ToArray();
+            return values.ToArray(); 
+#else
+            throw new NotImplementedException();
+#endif
         }
+
+        //public static string[] GetEnumNames<T>()
+        //{
+        //    // using System.Reflection;
+        //    var names = typeof (T)
+        //        .GetRuntimeProperties()
+        //        .Select(c => c.Name);
+
+        //    return names.ToArray();
+        //}
     }
 }
