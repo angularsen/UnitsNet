@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.sl4", "UnitsNet\Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.netcore45", "UnitsNet\UnitsNet.netcore45.csproj", "{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4DC016EB-1ED1-4EAA-8537-E47278281BDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests.net35", "..\Tests\UnitsNet.Tests.net35.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,8 +71,21 @@ Global
 		{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}.Release|x64.Build.0 = Release|x64
 		{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}.Release|x86.ActiveCfg = Release|x86
 		{C1279AA1-A0E4-4066-AAFB-B48F011AFBA0}.Release|x86.Build.0 = Release|x86
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D74103A-9393-42E8-83A8-9E01F806E29D} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
 	EndGlobalSection
 EndGlobal

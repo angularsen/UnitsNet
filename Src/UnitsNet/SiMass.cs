@@ -39,6 +39,21 @@ namespace UnitsNet
             Kilograms = kilograms;
         }
 
+        public double Hectograms
+        {
+            get { return Kilograms*10; }
+        }
+
+        public double Centigrams
+        {
+            get { return Kilograms*100; }
+        }
+
+        public double Milligrams
+        {
+            get { return Kilograms*1000; }
+        }
+
         #region Static 
 
         public static SiMass FromKilograms(double kilograms)
