@@ -41,10 +41,34 @@ namespace UnitsNet
             Newtons = newtons;
         }
 
+        public double Kilonewtons
+        {
+            get { return Newtons*1E3; }
+        }
+
+        public double Dyne
+        {
+            get { return Newtons*1E5; }
+        }
+
         public double KilogramForce
         {
             get { return Newtons/Gravity; }
-            //set { Newtons = value * SiUnits.Gravity; }
+        }
+
+        public double KiloPonds
+        {
+            get { return KilogramForce; }
+        }
+
+        public double PoundForce 
+        {
+            get { return 0.22481*Newtons; }
+        }
+
+        public double Poundal
+        {
+            get { return 7.2330*Newtons; }
         }
 
         #region Static 
@@ -54,11 +78,40 @@ namespace UnitsNet
             get { return new SiForce(); }
         }
 
-        public static SiForce FromKilograms(double kilograms)
+        public static SiForce FromDyne(double dyn)
         {
-            return new SiForce(Gravity*kilograms);
+            return new SiForce(dyn*1E-5);
         }
 
+        public static SiForce FromPoundal(double pdl)
+        {
+            return new SiForce(0.138255*pdl);
+        }
+
+        public static SiForce FromPoundForce(double lbf)
+        {
+            return new SiForce(4.448222*lbf);
+        }
+
+        public static SiForce FromKilogramForce(double kgf)
+        {
+            return new SiForce(Gravity*kgf);
+        }
+
+        public static SiForce FromKiloPonds(double kp)
+        {
+            return FromKilogramForce(kp);
+        }
+
+        public static SiForce FromNewtons(double newtons)
+        {
+            return new SiForce(newtons);
+        }
+
+        public static SiForce FromKilonewtons(double kN)
+        {
+            return new SiForce(kN/1E3);
+        }
         public static SiForce FromPressureByArea(SiPressure p, SiDistance2d area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;
@@ -66,9 +119,9 @@ namespace UnitsNet
             return new SiForce(newtons);
         }
 
-        public static SiForce FromNewtons(double newtons)
+        public static SiForce FromMassAcceleration(SiMass mass, double metersPerSecondSquare)
         {
-            return new SiForce(newtons);
+            return new SiForce(mass.Kilograms*metersPerSecondSquare);
         }
 
         #endregion
