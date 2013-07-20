@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void KilogramEqualsKilogramForce()
         {
-            var mass = SiMass.FromKilograms(1);
+            var mass = Mass.FromKilograms(1);
             var force = Force.FromKilogramForce(mass.Kilograms);
             Assert.AreEqual(mass.Kilograms, force.KilogramForce);
         }

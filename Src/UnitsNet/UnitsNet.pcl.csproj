@@ -38,9 +38,9 @@
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Force.cs" />
     <Compile Include="Length.cs" />
+    <Compile Include="Mass.cs" />
     <Compile Include="Position2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiMass.cs" />
     <Compile Include="SiPressure.cs" />
     <Compile Include="SiTorque.cs" />
     <Compile Include="SiUnit.cs" />

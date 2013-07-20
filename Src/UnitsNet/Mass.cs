@@ -25,16 +25,16 @@ using System.Globalization;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A class for representing mass, according to the International System of Units (SI).
+    ///     A class for representing mass.
     /// </summary>
-    public class SiMass : IComparable, IComparable<SiMass>
+    public class Mass : IComparable, IComparable<Mass>
     {
         /// <summary>
         ///     Returns a kilogram representation of the mass instance.
         /// </summary>
         public readonly double Kilograms;
 
-        private SiMass(double kilograms)
+        private Mass(double kilograms)
         {
             Kilograms = kilograms;
         }
@@ -86,54 +86,54 @@ namespace UnitsNet
 
         #region Static 
 
-        public static SiMass FromMegatonnes(double megatonnes)
+        public static Mass FromMegatonnes(double megatonnes)
         {
-            return new SiMass(megatonnes*1E9);
+            return new Mass(megatonnes*1E9);
         }
 
-        public static SiMass FromKilotonnes(double kt)
+        public static Mass FromKilotonnes(double kt)
         {
-            return new SiMass(kt*1E6);
+            return new Mass(kt*1E6);
         }
 
-        public static SiMass FromTonnes(double t)
+        public static Mass FromTonnes(double t)
         {
-            return new SiMass(t*1E3);
+            return new Mass(t*1E3);
         }
 
-        public static SiMass FromKilograms(double kilograms)
+        public static Mass FromKilograms(double kilograms)
         {
-            return new SiMass(kilograms);
+            return new Mass(kilograms);
         }
 
-        public static SiMass FromHectograms(double value)
+        public static Mass FromHectograms(double value)
         {
-            return new SiMass(value*1E-1);
+            return new Mass(value*1E-1);
         }
 
-        public static SiMass FromDecagrams(double value)
+        public static Mass FromDecagrams(double value)
         {
-            return new SiMass(value*1E-2);
+            return new Mass(value*1E-2);
         }
 
-        public static SiMass FromGrams(double value)
+        public static Mass FromGrams(double value)
         {
-            return new SiMass(value*1E-3);
+            return new Mass(value*1E-3);
         }
 
-        public static SiMass FromDecigrams(double value)
+        public static Mass FromDecigrams(double value)
         {
-            return new SiMass(value*1E-4);
+            return new Mass(value*1E-4);
         }
 
-        public static SiMass FromCentigrams(double value)
+        public static Mass FromCentigrams(double value)
         {
-            return new SiMass(value*1E-5);
+            return new Mass(value*1E-5);
         }
 
-        public static SiMass FromMilligrams(double value)
+        public static Mass FromMilligrams(double value)
         {
-            return new SiMass(value*1E-6);
+            return new Mass(value*1E-6);
         }
 
         #endregion
@@ -146,29 +146,29 @@ namespace UnitsNet
         /// </summary>
         /// <param name="right">The SIMass to negativize.</param>
         /// <returns></returns>
-        public static SiMass operator -(SiMass right)
+        public static Mass operator -(Mass right)
         {
-            return new SiMass(-right.Kilograms);
+            return new Mass(-right.Kilograms);
         }
 
-        public static SiMass operator +(SiMass left, SiMass right)
+        public static Mass operator +(Mass left, Mass right)
         {
-            return new SiMass(left.Kilograms + right.Kilograms);
+            return new Mass(left.Kilograms + right.Kilograms);
         }
 
-        public static SiMass operator -(SiMass left, SiMass right)
+        public static Mass operator -(Mass left, Mass right)
         {
-            return new SiMass(left.Kilograms - right.Kilograms);
+            return new Mass(left.Kilograms - right.Kilograms);
         }
 
-        public static SiMass operator *(double left, SiMass right)
+        public static Mass operator *(double left, Mass right)
         {
-            return new SiMass(left*right.Kilograms);
+            return new Mass(left*right.Kilograms);
         }
 
-        public static SiMass operator /(SiMass left, double right)
+        public static Mass operator /(Mass left, double right)
         {
-            return new SiMass(left.Kilograms/right);
+            return new Mass(left.Kilograms/right);
         }
 
         #region Equality / IComparable
@@ -178,31 +178,31 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiMass)) throw new ArgumentException("Expected type SiMass.", "obj");
-            return CompareTo((SiMass) obj);
+            if (!(obj is Mass)) throw new ArgumentException("Expected type Mass.", "obj");
+            return CompareTo((Mass) obj);
         }
 
-        public int CompareTo(SiMass other)
+        public int CompareTo(Mass other)
         {
             return Kilograms.CompareTo(other.Kilograms);
         }
 
-        public static bool operator <=(SiMass left, SiMass right)
+        public static bool operator <=(Mass left, Mass right)
         {
             return left.Kilograms <= right.Kilograms;
         }
 
-        public static bool operator >=(SiMass left, SiMass right)
+        public static bool operator >=(Mass left, Mass right)
         {
             return left.Kilograms >= right.Kilograms;
         }
 
-        public static bool operator <(SiMass left, SiMass right)
+        public static bool operator <(Mass left, Mass right)
         {
             return left.Kilograms < right.Kilograms;
         }
 
-        public static bool operator >(SiMass left, SiMass right)
+        public static bool operator >(Mass left, Mass right)
         {
             return left.Kilograms > right.Kilograms;
         }

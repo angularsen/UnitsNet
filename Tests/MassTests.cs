@@ -8,7 +8,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void KilogramToMassUnits()
         { 
-            SiMass oneKg = SiMass.FromKilograms(1);
+            Mass oneKg = Mass.FromKilograms(1);
 
             Assert.AreEqual(1E-9, oneKg.Megatonnes);
             Assert.AreEqual(1E-6, oneKg.Kilotonnes);
@@ -25,17 +25,17 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void MassUnitsRoundTrip()
         {
-            SiMass oneKg = SiMass.FromKilograms(1);
-            Assert.AreEqual(1, SiMass.FromMegatonnes(oneKg.Megatonnes).Kilograms);
-            Assert.AreEqual(1, SiMass.FromKilotonnes(oneKg.Kilotonnes).Kilograms);
-            Assert.AreEqual(1, SiMass.FromTonnes(oneKg.Tonnes).Kilograms);
-            Assert.AreEqual(1, SiMass.FromKilograms(oneKg.Kilograms).Kilograms);
-            Assert.AreEqual(1, SiMass.FromHectograms(oneKg.Hectograms).Kilograms);
-            Assert.AreEqual(1, SiMass.FromDecagrams(oneKg.Decagrams).Kilograms);
-            Assert.AreEqual(1, SiMass.FromGrams(oneKg.Grams).Kilograms); 
-            Assert.AreEqual(1, SiMass.FromDecigrams(oneKg.Decigrams).Kilograms); 
-            Assert.AreEqual(1, SiMass.FromCentigrams(oneKg.Centigrams).Kilograms); 
-            Assert.AreEqual(1, SiMass.FromMilligrams(oneKg.Milligrams).Kilograms); 
+            Mass oneKg = Mass.FromKilograms(1);
+            Assert.AreEqual(1, Mass.FromMegatonnes(oneKg.Megatonnes).Kilograms);
+            Assert.AreEqual(1, Mass.FromKilotonnes(oneKg.Kilotonnes).Kilograms);
+            Assert.AreEqual(1, Mass.FromTonnes(oneKg.Tonnes).Kilograms);
+            Assert.AreEqual(1, Mass.FromKilograms(oneKg.Kilograms).Kilograms);
+            Assert.AreEqual(1, Mass.FromHectograms(oneKg.Hectograms).Kilograms);
+            Assert.AreEqual(1, Mass.FromDecagrams(oneKg.Decagrams).Kilograms);
+            Assert.AreEqual(1, Mass.FromGrams(oneKg.Grams).Kilograms); 
+            Assert.AreEqual(1, Mass.FromDecigrams(oneKg.Decigrams).Kilograms); 
+            Assert.AreEqual(1, Mass.FromCentigrams(oneKg.Centigrams).Kilograms); 
+            Assert.AreEqual(1, Mass.FromMilligrams(oneKg.Milligrams).Kilograms); 
         }
     }
 }
