@@ -41,7 +41,7 @@ namespace UnitsNet
             Newtons = newtons;
         }
 
-        public double Kilograms
+        public double KilogramForce
         {
             get { return Newtons/Gravity; }
             //set { Newtons = value * SiUnits.Gravity; }
