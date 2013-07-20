@@ -25,6 +25,7 @@ namespace UnitsNet
 {
     /// <summary>
     ///     A class for representing distance, according to the International System of Units (SI)
+    /// TODO Rename to Length.
     /// </summary>
     public struct SiDistance : IComparable, IComparable<SiDistance>
     {
@@ -40,20 +41,57 @@ namespace UnitsNet
 
         #region Unit Properties
 
-        /// <summary>
-        ///     Return the centimeter representation of the distance.
-        /// </summary>
-        public double Centimeters
+	/// <summary>
+	/// Distance in kilometers.
+	/// </summary>
+        public double Kilometers
         {
-            get { return Meters*100; }
+            get { return Meters*1E-3; }
+        }
+
+	/// <summary>
+	/// Distance in kilometers.
+	/// </summary>
+        public double Yards
+        {
+            get { return Meters/0.9144; }
+        }
+
+        public double Decimeters
+        {
+            get { return Meters*1E1; }
         }
 
         /// <summary>
-        ///     Return the millimeter representation of the distance.
+        ///     Distance in centimeters.
+        /// </summary>
+        public double Centimeters
+        {
+            get { return Meters*1E2; }
+        }
+
+        /// <summary>
+        ///     Distance in millimeters.
         /// </summary>
         public double Millimeters
         {
-            get { return Meters*1000; }
+            get { return Meters*1E3; }
+        }
+
+        /// <summary>
+        /// Distance in micrometers.
+        /// </summary>
+        public double Micrometers
+        {
+            get { return Meters*1E6; }
+        }
+
+        /// <summary>
+        /// Distance in nanometers.
+        /// </summary>
+        public double Nanometers
+        {
+            get { return Meters*1E9; }
         }
 
         #endregion
@@ -65,7 +103,7 @@ namespace UnitsNet
         /// </summary>
         public static SiDistance Max
         {
-            get { return FromMillimeters(double.MaxValue); }
+            get { return new SiDistance(double.MaxValue); }
         }
 
         /// <summary>
@@ -73,27 +111,52 @@ namespace UnitsNet
         /// </summary>
         public static SiDistance Min
         {
-            get { return FromMillimeters(double.MinValue); }
+            get { return new SiDistance(double.MinValue); }
         }
 
         public static SiDistance Zero
         {
-            get { return new SiDistance(0); }
+            get { return new SiDistance(); }
         }
 
-        public static SiDistance FromMeters(double meters)
+        public static SiDistance FromKilometers(double km)
         {
-            return new SiDistance(meters);
+            return new SiDistance(km*1E3);
         }
 
-        public static SiDistance FromCentimeters(double centimeters)
+        public static SiDistance FromMeters(double m)
         {
-            return FromMeters(centimeters/100);
+            return new SiDistance(m);
         }
 
-        public static SiDistance FromMillimeters(double millimeters)
+        public static SiDistance FromYards(double yds)
         {
-            return FromMeters(millimeters/1000);
+            return new SiDistance(yds*0.9144);
+        }
+
+        public static SiDistance FromDecimeters(double dm)
+        {
+            return new SiDistance(dm*1E-1);
+        } 
+
+        public static SiDistance FromCentimeters(double cm)
+        {
+            return FromMeters(cm*1E-2);
+        }
+
+        public static SiDistance FromMillimeters(double mm)
+        {
+            return FromMeters(mm*1E-3);
+        }
+
+        public static SiDistance FromMicrometers(double um)
+        {
+            return FromMeters(um*1E-6);
+        }
+
+        public static SiDistance FromNanometers(double nm)
+        {
+            return FromMeters(nm*1E-9);
         }
 
         #endregion
@@ -193,6 +256,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return Meters + " m";
-        }
+        } 
     }
 }
