@@ -44,12 +44,12 @@ namespace UnitsNet
             get { return Kilograms*10; }
         }
 
-        public double Centigrams
+        public double Decigrams
         {
             get { return Kilograms*100; }
         }
 
-        public double Milligrams
+        public double Grams
         {
             get { return Kilograms*1000; }
         }
@@ -138,6 +138,21 @@ namespace UnitsNet
         {
             return Kilograms.ToString("#0.0") + " " +
                    SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(SiUnit.Kilogram);
+        }
+
+        public static SiMass FromHectograms(double value)
+        {
+            return new SiMass(value / 10);
+        }
+
+        public static SiMass FromDecigrams(double value)
+        {
+            return new SiMass(value / 100);
+        }
+
+        public static SiMass FromGrams(double value)
+        {
+            return new SiMass(value / 1000);
         }
     }
 }

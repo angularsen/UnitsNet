@@ -19,14 +19,22 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
-        public void ConvertingBetweenMassUnits()
+        public void ConvertingFromKilogram()
         {
             var mass = SiMass.FromKilograms(1);
             Assert.AreEqual(1, mass.Kilograms);
             Assert.AreEqual(10, mass.Hectograms);
-            Assert.AreEqual(100, mass.Centigrams);
-            Assert.AreEqual(1000, mass.Milligrams);
+            Assert.AreEqual(100, mass.Decigrams);
+            Assert.AreEqual(1000, mass.Grams); 
+        }
 
+        [Test]
+        public void ConvertingToKilogram()
+        {
+            SiMass oneKg = SiMass.FromKilograms(1);
+            Assert.AreEqual(1, SiMass.FromHectograms(oneKg.Hectograms).Kilograms);
+            Assert.AreEqual(1, SiMass.FromDecigrams(oneKg.Decigrams).Kilograms);
+            Assert.AreEqual(1, SiMass.FromGrams(oneKg.Grams).Kilograms); 
         }
     }
 }
