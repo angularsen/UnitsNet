@@ -3,7 +3,7 @@
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
-    public class DistanceTests
+    public class LengthTests
     {
         private const double Delta = 1E-5;
 

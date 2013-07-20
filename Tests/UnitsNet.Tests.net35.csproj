@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Distance2dTests.cs" />
-    <Compile Include="DistanceTests.cs" />
+    <Compile Include="Position2DTests.cs" />
+    <Compile Include="LengthTests.cs" />
     <Compile Include="ForceTests.cs" />
     <Compile Include="MassTests.cs" />
     <Compile Include="UnitConversionTests.cs" />
