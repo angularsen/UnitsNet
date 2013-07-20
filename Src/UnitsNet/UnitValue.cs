@@ -26,12 +26,12 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing a double-precision value with an associated SI unit.
     /// </summary>
-    public class SiValue
+    public class UnitValue
     {
         public readonly SiUnit Unit;
         public readonly double Value;
 
-        public SiValue(double value, SiUnit unit)
+        public UnitValue(double value, SiUnit unit)
         {
             Value = value;
             Unit = unit;
@@ -75,7 +75,7 @@ namespace UnitsNet
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.GetType() == typeof (SiValue) && Equals(other);
+            return other.GetType() == typeof (UnitValue) && Equals(other);
         }
 
         public override int GetHashCode()

@@ -68,9 +68,9 @@
     <Compile Include="SiUnits.cs" />
     <Compile Include="SiUnitsHelper.cs" />
     <Compile Include="SiUnitSystem.cs" />
-    <Compile Include="SiValue.cs" />
     <Compile Include="SiVoltage.cs" />
     <Compile Include="UnitConverter.cs" />
+    <Compile Include="UnitValue.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
   </ItemGroup>
