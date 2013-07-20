@@ -40,6 +40,13 @@ namespace UnitsNet
 
         private static readonly IEqualityComparer<Vector3> XyzComparerInstance = new XyzEqualityComparer();
 
+        public Vector3(double xyz) : this()
+        {
+            X = xyz;
+            Y = xyz;
+            Z = xyz;
+        }
+
         public static IEqualityComparer<Vector3> XyzComparer
         {
             get { return XyzComparerInstance; }

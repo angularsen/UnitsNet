@@ -41,20 +41,45 @@ namespace UnitsNet
 
         #region Unit Properties
 
-	/// <summary>
-	/// Distance in kilometers.
-	/// </summary>
+        /// <summary>
+        /// Distance in miles.
+        /// </summary>
+        public double Miles
+        {
+            get { return Meters*0.000621371; }
+        }
+
+        /// <summary>
+        /// Distance in yards.
+        /// </summary>
+        public double Yards
+        {
+            get { return Meters*1.09361; }
+        }
+
+        /// <summary>
+        /// Distance in feet.
+        /// </summary>
+        public double Feet
+        {
+            get { return Meters*3.28084; }
+        }
+
+        /// <summary>
+        /// Distance in inches.
+        /// </summary>
+        public double Inches
+        {
+            get { return Meters * 39.3701; }
+        }
+
+
+        /// <summary>
+        /// Distance in kilometers.
+        /// </summary>
         public double Kilometers
         {
             get { return Meters*1E-3; }
-        }
-
-	/// <summary>
-	/// Distance in kilometers.
-	/// </summary>
-        public double Yards
-        {
-            get { return Meters/0.9144; }
         }
 
         public double Decimeters
@@ -124,14 +149,29 @@ namespace UnitsNet
             return new SiDistance(km*1E3);
         }
 
-        public static SiDistance FromMeters(double m)
+        public static SiDistance FromMiles(double m)
         {
-            return new SiDistance(m);
+            return new SiDistance(m*1609.34);
         }
 
         public static SiDistance FromYards(double yds)
         {
             return new SiDistance(yds*0.9144);
+        }
+
+        public static SiDistance FromFeet(double ft)
+        {
+            return new SiDistance(ft*0.3048);
+        }
+
+        public static SiDistance FromInches(double @in)
+        {
+            return new SiDistance(@in*0.0254);
+        }
+
+        public static SiDistance FromMeters(double m)
+        {
+            return new SiDistance(m);
         }
 
         public static SiDistance FromDecimeters(double dm)

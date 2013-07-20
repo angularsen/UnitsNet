@@ -34,6 +34,12 @@ namespace UnitsNet
             Y = y;
         }
 
+        public Vector2(double xy) : this()
+        {
+            X = xy;
+            Y = xy;
+        }
+
         #region Equality
 
         private static readonly IEqualityComparer<Vector2> XyComparerInstance = new XyEqualityComparer();
