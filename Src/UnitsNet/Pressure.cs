@@ -25,9 +25,9 @@ using System.Globalization;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A class for representing force, according to the International System of Units (SI).
+    ///     A class for representing force.
     /// </summary>
-    public struct SiPressure : IComparable, IComparable<SiPressure>
+    public struct Pressure : IComparable, IComparable<Pressure>
     {
         private const double KpaToPaRatio = 1000;
         private const double NscToPaRatio = 0.0001;
@@ -38,11 +38,11 @@ namespace UnitsNet
         private const double PsiToPaRatio = 145.04E-6;
 
         /// <summary>
-        ///     Returns a kilogram representation of the force instance.
+        ///     Pressure in pascal.
         /// </summary>
         public readonly double Pascals;
 
-        public SiPressure(double pascals) : this()
+        public Pressure(double pascals) : this()
         {
             Pascals = pascals;
         }
@@ -52,92 +52,85 @@ namespace UnitsNet
         public double KiloPascals
         {
             get { return KpaToPaRatio*Pascals; }
-            //set { Pascals = value / KpaToPaRatio; }
         }
 
         public double NewtonsPerSquareCentimeter
         {
             get { return NscToPaRatio*Pascals; }
-            //set { Pascals = value / NscToPaRatio; }
         }
 
         public double Bars
         {
             get { return BarToPaRatio*Pascals; }
-            //set { Pascals = value / BarToPaRatio; }
         }
 
         public double TechnicalAtmosphere
         {
             get { return TaToPaRatio*Pascals; }
-            //set { Pascals = value / TaToPaRatio; }
         }
 
         public double Atmosphere
         {
             get { return AtmToPaRatio*Pascals; }
-            //set { Pascals = value / AtmToPaRatio; }
         }
 
         public double Torr
         {
             get { return TorrToPaRatio*Pascals; }
-            //set { Pascals = value / TorrToPaRatio; }
         }
 
         public double Psi
         {
             get { return PsiToPaRatio*Pascals; }
-            //set { Pascals = value / PsiToPaRatio; }
         }
 
         #endregion
 
         #region Static 
 
-        public static SiPressure Zero
+        public static Pressure Zero
         {
-            get { return new SiPressure(0); }
+            get { return new Pressure(0); }
         }
 
-        public static SiPressure FromPascals(double pascals)
+        public static Pressure FromPascals(double pascals)
         {
-            return new SiPressure(pascals);
+            return new Pressure(pascals);
         }
 
-        public static SiPressure FromKiloPascals(double kpa)
+        public static Pressure FromKiloPascals(double kpa)
         {
-            return new SiPressure(KpaToPaRatio*kpa);
+            return new Pressure(KpaToPaRatio*kpa);
         }
 
-        public static SiPressure FromNewtonsPerSquareCentimeter(double nsc)
+        public static Pressure FromNewtonsPerSquareCentimeter(double nsc)
         {
-            return new SiPressure(NscToPaRatio*nsc);
+            return new Pressure(NscToPaRatio*nsc);
         }
 
-        public static SiPressure FromBars(double bars)
+        public static Pressure FromBars(double bars)
         {
-            return new SiPressure(BarToPaRatio*bars);
+            return new Pressure(BarToPaRatio*bars);
         }
 
-        public static SiPressure FromTechnicalAtmosphere(double ta)
+        public static Pressure FromTechnicalAtmosphere(double ta)
         {
-            return new SiPressure(TaToPaRatio*ta);
+            return new Pressure(TaToPaRatio*ta);
         }
 
-        public static SiPressure FromAtmosphere(double atm)
+        public static Pressure FromAtmosphere(double atm)
         {
-            return new SiPressure(AtmToPaRatio*atm);
+            return new Pressure(AtmToPaRatio*atm);
         }
 
-        public static SiPressure FromTorr(double torr)
+        public static Pressure FromTorr(double torr)
         {
-            return new SiPressure(TorrToPaRatio*torr);
+            return new Pressure(TorrToPaRatio*torr);
         }
 
-        public static SiPressure FromPsi(double psi)
+        public static Pressure FromPsi(double psi)
         {
-            return new SiPressure(PsiToPaRatio*psi);
+            return new Pressure(PsiToPaRatio*psi);
         }
 
         #endregion
@@ -150,29 +143,29 @@ namespace UnitsNet
         /// </summary>
         /// <param name="right">The SIPressure to negativize.</param>
         /// <returns></returns>
-        public static SiPressure operator -(SiPressure right)
+        public static Pressure operator -(Pressure right)
         {
-            return new SiPressure(-right.Pascals);
+            return new Pressure(-right.Pascals);
         }
 
-        public static SiPressure operator +(SiPressure left, SiPressure right)
+        public static Pressure operator +(Pressure left, Pressure right)
         {
-            return new SiPressure(left.Pascals + right.Pascals);
+            return new Pressure(left.Pascals + right.Pascals);
         }
 
-        public static SiPressure operator -(SiPressure left, SiPressure right)
+        public static Pressure operator -(Pressure left, Pressure right)
         {
-            return new SiPressure(left.Pascals - right.Pascals);
+            return new Pressure(left.Pascals - right.Pascals);
         }
 
-        public static SiPressure operator *(double left, SiPressure right)
+        public static Pressure operator *(double left, Pressure right)
         {
-            return new SiPressure(left*right.Pascals);
+            return new Pressure(left*right.Pascals);
         }
 
-        public static SiPressure operator /(SiPressure left, double right)
+        public static Pressure operator /(Pressure left, double right)
         {
-            return new SiPressure(left.Pascals/right);
+            return new Pressure(left.Pascals/right);
         }
 
         #endregion
@@ -182,31 +175,31 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiPressure)) throw new ArgumentException("Expected type SiPressure.", "obj");
-            return CompareTo((SiPressure) obj);
+            if (!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", "obj");
+            return CompareTo((Pressure) obj);
         }
 
-        public int CompareTo(SiPressure other)
+        public int CompareTo(Pressure other)
         {
             return Pascals.CompareTo(other.Pascals);
         }
 
-        public static bool operator <=(SiPressure left, SiPressure right)
+        public static bool operator <=(Pressure left, Pressure right)
         {
             return left.Pascals <= right.Pascals;
         }
 
-        public static bool operator >=(SiPressure left, SiPressure right)
+        public static bool operator >=(Pressure left, Pressure right)
         {
             return left.Pascals >= right.Pascals;
         }
 
-        public static bool operator <(SiPressure left, SiPressure right)
+        public static bool operator <(Pressure left, Pressure right)
         {
             return left.Pascals < right.Pascals;
         }
 
-        public static bool operator >(SiPressure left, SiPressure right)
+        public static bool operator >(Pressure left, Pressure right)
         {
             return left.Pascals > right.Pascals;
         }

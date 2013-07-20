@@ -100,8 +100,8 @@
     <Compile Include="Length.cs" />
     <Compile Include="Mass.cs" />
     <Compile Include="Position2D.cs" />
+    <Compile Include="Pressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiPressure.cs" />
     <Compile Include="SiTorque.cs" />
     <Compile Include="SiUnit.cs" />
     <Compile Include="SiUnits.cs" />
