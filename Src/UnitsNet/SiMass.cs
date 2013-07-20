@@ -59,7 +59,7 @@ namespace UnitsNet
             get { return Kilograms*1E1; }
         }
 
-        public double Decigrams
+        public double Decagrams
         {
             get { return Kilograms*1E2; }
         }
@@ -67,6 +67,11 @@ namespace UnitsNet
         public double Grams
         {
             get { return Kilograms*1E3; }
+        }
+
+        public double Decigrams
+        {
+            get { return Kilograms*1E4; }
         }
 
         public double Centigrams
@@ -106,7 +111,7 @@ namespace UnitsNet
             return new SiMass(value*1E-1);
         }
 
-        public static SiMass FromDecigrams(double value)
+        public static SiMass FromDecagrams(double value)
         {
             return new SiMass(value*1E-2);
         }
@@ -114,6 +119,11 @@ namespace UnitsNet
         public static SiMass FromGrams(double value)
         {
             return new SiMass(value*1E-3);
+        }
+
+        public static SiMass FromDecigrams(double value)
+        {
+            return new SiMass(value*1E-4);
         }
 
         public static SiMass FromCentigrams(double value)
