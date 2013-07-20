@@ -28,7 +28,7 @@ namespace UnitsNet
     ///     Enumeration for all the SI units implemented.
     ///     This is used for converting between values in the same unit domain such as distance, electricity etc.
     /// </summary>
-    public static class SiUnitsHelper
+    public static class UnitsHelper
     {
         public const double Gravity = 9.80665;
 

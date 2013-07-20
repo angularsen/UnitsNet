@@ -66,7 +66,7 @@
     <Compile Include="Torque.cs" />
     <Compile Include="SiUnit.cs" />
     <Compile Include="SiUnits.cs" />
-    <Compile Include="SiUnitsHelper.cs" />
+    <Compile Include="UnitsHelper.cs" />
     <Compile Include="SiUnitSystem.cs" />
     <Compile Include="SiVoltage.cs" />
     <Compile Include="UnitConverter.cs" />
