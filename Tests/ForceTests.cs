@@ -11,6 +11,7 @@ namespace UnitsNet.Tests.net35
         { 
             SiForce oneNewton = SiForce.FromNewtons(1);
 
+            Assert.AreEqual(1E-3, oneNewton.Kilonewtons);
             Assert.AreEqual(1, oneNewton.Newtons);
             Assert.AreEqual(1E5, oneNewton.Dyne);
             Assert.AreEqual(0.10197, oneNewton.KilogramForce, Delta);

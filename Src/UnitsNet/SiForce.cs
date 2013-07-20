@@ -43,7 +43,7 @@ namespace UnitsNet
 
         public double Kilonewtons
         {
-            get { return Newtons*1E3; }
+            get { return Newtons*1E-3; }
         }
 
         public double Dyne
@@ -110,7 +110,7 @@ namespace UnitsNet
 
         public static SiForce FromKilonewtons(double kN)
         {
-            return new SiForce(kN/1E3);
+            return new SiForce(kN*1E3);
         }
         public static SiForce FromPressureByArea(SiPressure p, SiDistance2d area)
         {
