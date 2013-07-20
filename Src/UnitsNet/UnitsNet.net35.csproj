@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Length.cs" />
     <Compile Include="Position2D.cs" />
@@ -49,7 +50,6 @@
     <Compile Include="UnitsHelper.cs" />
     <Compile Include="UnitSystem.cs" />
     <Compile Include="UnitValue.cs" />
-    <Compile Include="SiVoltage.cs" />
     <Compile Include="Torque.cs" />
     <Compile Include="UnitConverter.cs" />
     <Compile Include="Vector2.cs" />

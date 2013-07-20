@@ -27,14 +27,14 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing electrical tension in SI units.
     /// </summary>
-    public class SiVoltage : IComparable, IComparable<SiVoltage>
+    public class ElectricPotential : IComparable, IComparable<ElectricPotential>
     {
         /// <summary>
         ///     Returns a volt representation of the voltage instance.
         /// </summary>
         public readonly double Volts;
 
-        public SiVoltage(double volts)
+        public ElectricPotential(double volts)
         {
             Volts = volts;
         }
@@ -46,38 +46,38 @@ namespace UnitsNet
 
         #region Static
 
-        public static SiVoltage FromVolts(double volts)
+        public static ElectricPotential FromVolts(double volts)
         {
-            return new SiVoltage(volts);
+            return new ElectricPotential(volts);
         }
 
         #endregion
 
         #region Arithmetic operators
 
-        public static SiVoltage operator -(SiVoltage right)
+        public static ElectricPotential operator -(ElectricPotential right)
         {
-            return new SiVoltage(-right.Volts);
+            return new ElectricPotential(-right.Volts);
         }
 
-        public static SiVoltage operator +(SiVoltage left, SiVoltage right)
+        public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
         {
-            return new SiVoltage(left.Volts + right.Volts);
+            return new ElectricPotential(left.Volts + right.Volts);
         }
 
-        public static SiVoltage operator -(SiVoltage left, SiVoltage right)
+        public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
         {
-            return new SiVoltage(left.Volts - right.Volts);
+            return new ElectricPotential(left.Volts - right.Volts);
         }
 
-        public static SiVoltage operator *(double left, SiVoltage right)
+        public static ElectricPotential operator *(double left, ElectricPotential right)
         {
-            return new SiVoltage(left*right.Volts);
+            return new ElectricPotential(left*right.Volts);
         }
 
-        public static SiVoltage operator /(SiVoltage left, double right)
+        public static ElectricPotential operator /(ElectricPotential left, double right)
         {
-            return new SiVoltage(left.Volts/right);
+            return new ElectricPotential(left.Volts/right);
         }
 
         #endregion
@@ -87,31 +87,31 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiVoltage)) throw new ArgumentException("Expected type SiVoltage.", "obj");
-            return CompareTo((SiVoltage) obj);
+            if (!(obj is ElectricPotential)) throw new ArgumentException("Expected type ElectricPotential.", "obj");
+            return CompareTo((ElectricPotential) obj);
         }
 
-        public int CompareTo(SiVoltage other)
+        public int CompareTo(ElectricPotential other)
         {
             return Volts.CompareTo(other.Volts);
         }
 
-        public static bool operator <=(SiVoltage left, SiVoltage right)
+        public static bool operator <=(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts <= right.Volts;
         }
 
-        public static bool operator >=(SiVoltage left, SiVoltage right)
+        public static bool operator >=(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts >= right.Volts;
         }
 
-        public static bool operator <(SiVoltage left, SiVoltage right)
+        public static bool operator <(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts < right.Volts;
         }
 
-        public static bool operator >(SiVoltage left, SiVoltage right)
+        public static bool operator >(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts > right.Volts;
         }
