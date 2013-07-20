@@ -2,6 +2,7 @@
 
 namespace UnitsNet.Tests.net35
 {
+    [TestFixture]
     public class ForceTests
     {
         private const double Delta = 1E-5;
