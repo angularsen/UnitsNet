@@ -25,7 +25,7 @@ using System.Globalization;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A class for representing force, according to the International System of Units (SI).
+    ///     A class for representing force.
     /// </summary>
     public struct Force : IComparable, IComparable<Force>
     {
@@ -119,7 +119,7 @@ namespace UnitsNet
             return new Force(newtons);
         }
 
-        public static Force FromMassAcceleration(SiMass mass, double metersPerSecondSquare)
+        public static Force FromMassAcceleration(Mass mass, double metersPerSecondSquare)
         {
             return new Force(mass.Kilograms*metersPerSecondSquare);
         }
