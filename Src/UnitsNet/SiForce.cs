@@ -112,7 +112,7 @@ namespace UnitsNet
         {
             return new SiForce(kN*1E3);
         }
-        public static SiForce FromPressureByArea(SiPressure p, SiDistance2d area)
+        public static SiForce FromPressureByArea(SiPressure p, Position2D area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;
             double newtons = p.Pascals*metersSquared;

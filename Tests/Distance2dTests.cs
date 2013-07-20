@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void MetersToDistanceUnits()
         {
-            SiDistance2d meter = SiDistance2d.FromMeters(1,1);
+            Position2D meter = Position2D.FromMeters(1,1);
 
             Assert.AreEqual(new Vector2(1), meter.Meters);
             Assert.AreEqual(new Vector2(1E2), meter.Centimeters);
@@ -49,8 +49,8 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void VectorLength()
         {
-            var v = new SiDistance2d(3, 4);
-            Assert.AreEqual(5, v.Distance.Meters);
+            var v = new Position2D(3, 4);
+            Assert.AreEqual(5, v.Length.Meters);
         }
     }
 }

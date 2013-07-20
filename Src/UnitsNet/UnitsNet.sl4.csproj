@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Length.cs" />
+    <Compile Include="Position2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiDistance2d.cs" />
     <Compile Include="SiForce.cs" />
     <Compile Include="SiMass.cs" />
     <Compile Include="SiPressure.cs" />

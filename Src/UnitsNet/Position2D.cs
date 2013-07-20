@@ -26,10 +26,9 @@ using System.Globalization;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A class for representing distance in two dimensions,
-    ///     according to the International System of Units (SI)
+    ///     A class for representing position in two dimensions.
     /// </summary>
-    public struct SiDistance2d
+    public struct Position2D
     {
         private const NumberStyles NumberStyle = NumberStyles.Float;
         private static readonly CultureInfo Culture = new CultureInfo("en-us");
@@ -42,18 +41,18 @@ namespace UnitsNet
         /// <summary>
         ///     Creates an instance based on X and Y in implicitly defined SI units.
         /// </summary>
-        public SiDistance2d(double xMeters, double yMeters)
+        public Position2D(double xMeters, double yMeters)
         {
             Meters = new Vector2(xMeters, yMeters);
         }
 
-        public SiDistance2d(Length x, Length y) : this(x.Meters, y.Meters)
+        public Position2D(Length x, Length y) : this(x.Meters, y.Meters)
         {
         }
 
         #region Static
 
-        public static Length GetDistance(SiDistance2d a, SiDistance2d b)
+        public static Length GetDistance(Position2D a, Position2D b)
         {
             Vector2 d = (a - b).Meters;
             return Length.FromMeters(Math.Sqrt(d.X*d.X + d.Y*d.Y));
@@ -63,7 +62,7 @@ namespace UnitsNet
 
         #region Public properties
 
-        public Length Distance
+        public Length Length
         {
             get
             {
@@ -143,71 +142,71 @@ namespace UnitsNet
 
         #region Static methods
 
-        public static SiDistance2d Zero
+        public static Position2D Zero
         {
-            get { return new SiDistance2d(); }
+            get { return new Position2D(); }
         }
 
-        public static SiDistance2d FromMeters(double xMeters, double yMeters)
+        public static Position2D FromMeters(double xMeters, double yMeters)
         {
-            return new SiDistance2d(xMeters, yMeters);
+            return new Position2D(xMeters, yMeters);
         }
 
-        public static SiDistance2d FromCentimeters(double xCentimeters, double yCentimeters)
+        public static Position2D FromCentimeters(double xCentimeters, double yCentimeters)
         {
-            return new SiDistance2d(xCentimeters*1E-2, yCentimeters*1E-2);
+            return new Position2D(xCentimeters*1E-2, yCentimeters*1E-2);
         }
 
-        public static SiDistance2d FromMillimeters(double xMillimeters, double yMillimeters)
+        public static Position2D FromMillimeters(double xMillimeters, double yMillimeters)
         {
-            return new SiDistance2d(xMillimeters*1E-3, yMillimeters*1E-3);
+            return new Position2D(xMillimeters*1E-3, yMillimeters*1E-3);
         }
 
         #endregion
 
         #region Arithmetic operators
 
-        public static SiDistance2d operator -(SiDistance2d right)
+        public static Position2D operator -(Position2D right)
         {
             return FromMeters(-right.X.Meters, -right.Y.Meters);
         }
 
-        public static SiDistance2d operator +(SiDistance2d left, SiDistance2d right)
+        public static Position2D operator +(Position2D left, Position2D right)
         {
             double x = left.X.Meters + right.X.Meters;
             double y = left.Y.Meters + right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static SiDistance2d operator -(SiDistance2d left, SiDistance2d right)
+        public static Position2D operator -(Position2D left, Position2D right)
         {
             double x = left.X.Meters - right.X.Meters;
             double y = left.Y.Meters - right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static SiDistance2d operator *(double left, SiDistance2d right)
+        public static Position2D operator *(double left, Position2D right)
         {
             double x = left*right.X.Meters;
             double y = left*right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static SiDistance2d operator *(SiDistance2d left, SiDistance2d right)
+        public static Position2D operator *(Position2D left, Position2D right)
         {
             double x = left.X.Meters*right.X.Meters;
             double y = left.Y.Meters*right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static SiDistance2d operator /(SiDistance2d left, double right)
+        public static Position2D operator /(Position2D left, double right)
         {
             double x = left.X.Meters/right;
             double y = left.Y.Meters/right;
             return FromMeters(x, y);
         }
 
-        public static SiDistance2d operator /(SiDistance2d left, SiDistance2d right)
+        public static Position2D operator /(Position2D left, Position2D right)
         {
             double x = left.X.Meters/right.X.Meters;
             double y = left.Y.Meters/right.Y.Meters;
@@ -223,7 +222,7 @@ namespace UnitsNet
             return String.Format(Culture, "{0},{1}", X.Meters, Y.Meters);
         }
 
-        public static SiDistance2d Parse(string text)
+        public static Position2D Parse(string text)
         {
             string[] values = text.Split(',');
             if (values.Length != 2) throw new ArgumentException();
@@ -232,10 +231,10 @@ namespace UnitsNet
             double yMeters = 0;
             double.TryParse(values[0], NumberStyle, Culture, out xMeters);
             double.TryParse(values[1], NumberStyle, Culture, out yMeters);
-            return new SiDistance2d(xMeters, yMeters);
+            return new Position2D(xMeters, yMeters);
         }
 
-        public Length DistanceTo(SiDistance2d other)
+        public Length DistanceTo(Position2D other)
         {
             double dx = X.Meters - other.X.Meters;
             double dy = Y.Meters - other.Y.Meters;
@@ -248,14 +247,14 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<SiDistance2d> MetersComparerInstance = new MetersEqualityComparer();
+        private static readonly IEqualityComparer<Position2D> MetersComparerInstance = new MetersEqualityComparer();
 
-        public static IEqualityComparer<SiDistance2d> MetersComparer
+        public static IEqualityComparer<Position2D> MetersComparer
         {
             get { return MetersComparerInstance; }
         }
 
-        public bool Equals(SiDistance2d other)
+        public bool Equals(Position2D other)
         {
             return Meters.Equals(other.Meters);
         }
@@ -263,7 +262,7 @@ namespace UnitsNet
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is SiDistance2d && Equals((SiDistance2d) obj);
+            return obj is Position2D && Equals((Position2D) obj);
         }
 
         public override int GetHashCode()
@@ -271,24 +270,24 @@ namespace UnitsNet
             return Meters.GetHashCode();
         }
 
-        public static bool operator !=(SiDistance2d left, SiDistance2d right)
+        public static bool operator !=(Position2D left, Position2D right)
         {
             return left.Meters != right.Meters;
         }
 
-        public static bool operator ==(SiDistance2d left, SiDistance2d right)
+        public static bool operator ==(Position2D left, Position2D right)
         {
             return left.Meters == right.Meters;
         }
 
-        private sealed class MetersEqualityComparer : IEqualityComparer<SiDistance2d>
+        private sealed class MetersEqualityComparer : IEqualityComparer<Position2D>
         {
-            public bool Equals(SiDistance2d x, SiDistance2d y)
+            public bool Equals(Position2D x, Position2D y)
             {
                 return x.Meters.Equals(y.Meters);
             }
 
-            public int GetHashCode(SiDistance2d obj)
+            public int GetHashCode(Position2D obj)
             {
                 return obj.Meters.GetHashCode();
             }
