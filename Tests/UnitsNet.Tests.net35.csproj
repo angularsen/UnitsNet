@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Position2DTests.cs" />
+    <Compile Include="Length2dTests.cs" />
     <Compile Include="LengthTests.cs" />
     <Compile Include="ForceTests.cs" />
     <Compile Include="MassTests.cs" />

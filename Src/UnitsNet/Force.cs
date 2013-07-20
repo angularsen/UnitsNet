@@ -112,7 +112,7 @@ namespace UnitsNet
         {
             return new Force(kN*1E3);
         }
-        public static Force FromPressureByArea(Pressure p, Position2D area)
+        public static Force FromPressureByArea(Pressure p, Length2d area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;
             double newtons = p.Pascals*metersSquared;

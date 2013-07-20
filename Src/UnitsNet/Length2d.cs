@@ -28,7 +28,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing position in two dimensions.
     /// </summary>
-    public struct Position2D
+    public struct Length2d
     {
         private const NumberStyles NumberStyle = NumberStyles.Float;
         private static readonly CultureInfo Culture = new CultureInfo("en-us");
@@ -41,18 +41,18 @@ namespace UnitsNet
         /// <summary>
         ///     Creates an instance based on X and Y in implicitly defined SI units.
         /// </summary>
-        public Position2D(double xMeters, double yMeters)
+        public Length2d(double xMeters, double yMeters)
         {
             Meters = new Vector2(xMeters, yMeters);
         }
 
-        public Position2D(Length x, Length y) : this(x.Meters, y.Meters)
+        public Length2d(Length x, Length y) : this(x.Meters, y.Meters)
         {
         }
 
         #region Static
 
-        public static Length GetDistance(Position2D a, Position2D b)
+        public static Length GetDistance(Length2d a, Length2d b)
         {
             Vector2 d = (a - b).Meters;
             return Length.FromMeters(Math.Sqrt(d.X*d.X + d.Y*d.Y));
@@ -142,71 +142,71 @@ namespace UnitsNet
 
         #region Static methods
 
-        public static Position2D Zero
+        public static Length2d Zero
         {
-            get { return new Position2D(); }
+            get { return new Length2d(); }
         }
 
-        public static Position2D FromMeters(double xMeters, double yMeters)
+        public static Length2d FromMeters(double xMeters, double yMeters)
         {
-            return new Position2D(xMeters, yMeters);
+            return new Length2d(xMeters, yMeters);
         }
 
-        public static Position2D FromCentimeters(double xCentimeters, double yCentimeters)
+        public static Length2d FromCentimeters(double xCentimeters, double yCentimeters)
         {
-            return new Position2D(xCentimeters*1E-2, yCentimeters*1E-2);
+            return new Length2d(xCentimeters*1E-2, yCentimeters*1E-2);
         }
 
-        public static Position2D FromMillimeters(double xMillimeters, double yMillimeters)
+        public static Length2d FromMillimeters(double xMillimeters, double yMillimeters)
         {
-            return new Position2D(xMillimeters*1E-3, yMillimeters*1E-3);
+            return new Length2d(xMillimeters*1E-3, yMillimeters*1E-3);
         }
 
         #endregion
 
         #region Arithmetic operators
 
-        public static Position2D operator -(Position2D right)
+        public static Length2d operator -(Length2d right)
         {
             return FromMeters(-right.X.Meters, -right.Y.Meters);
         }
 
-        public static Position2D operator +(Position2D left, Position2D right)
+        public static Length2d operator +(Length2d left, Length2d right)
         {
             double x = left.X.Meters + right.X.Meters;
             double y = left.Y.Meters + right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static Position2D operator -(Position2D left, Position2D right)
+        public static Length2d operator -(Length2d left, Length2d right)
         {
             double x = left.X.Meters - right.X.Meters;
             double y = left.Y.Meters - right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static Position2D operator *(double left, Position2D right)
+        public static Length2d operator *(double left, Length2d right)
         {
             double x = left*right.X.Meters;
             double y = left*right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static Position2D operator *(Position2D left, Position2D right)
+        public static Length2d operator *(Length2d left, Length2d right)
         {
             double x = left.X.Meters*right.X.Meters;
             double y = left.Y.Meters*right.Y.Meters;
             return FromMeters(x, y);
         }
 
-        public static Position2D operator /(Position2D left, double right)
+        public static Length2d operator /(Length2d left, double right)
         {
             double x = left.X.Meters/right;
             double y = left.Y.Meters/right;
             return FromMeters(x, y);
         }
 
-        public static Position2D operator /(Position2D left, Position2D right)
+        public static Length2d operator /(Length2d left, Length2d right)
         {
             double x = left.X.Meters/right.X.Meters;
             double y = left.Y.Meters/right.Y.Meters;
@@ -222,7 +222,7 @@ namespace UnitsNet
             return String.Format(Culture, "{0},{1}", X.Meters, Y.Meters);
         }
 
-        public static Position2D Parse(string text)
+        public static Length2d Parse(string text)
         {
             string[] values = text.Split(',');
             if (values.Length != 2) throw new ArgumentException();
@@ -231,10 +231,10 @@ namespace UnitsNet
             double yMeters = 0;
             double.TryParse(values[0], NumberStyle, Culture, out xMeters);
             double.TryParse(values[1], NumberStyle, Culture, out yMeters);
-            return new Position2D(xMeters, yMeters);
+            return new Length2d(xMeters, yMeters);
         }
 
-        public Length DistanceTo(Position2D other)
+        public Length DistanceTo(Length2d other)
         {
             double dx = X.Meters - other.X.Meters;
             double dy = Y.Meters - other.Y.Meters;
@@ -247,14 +247,14 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Position2D> MetersComparerInstance = new MetersEqualityComparer();
+        private static readonly IEqualityComparer<Length2d> MetersComparerInstance = new MetersEqualityComparer();
 
-        public static IEqualityComparer<Position2D> MetersComparer
+        public static IEqualityComparer<Length2d> MetersComparer
         {
             get { return MetersComparerInstance; }
         }
 
-        public bool Equals(Position2D other)
+        public bool Equals(Length2d other)
         {
             return Meters.Equals(other.Meters);
         }
@@ -262,7 +262,7 @@ namespace UnitsNet
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is Position2D && Equals((Position2D) obj);
+            return obj is Length2d && Equals((Length2d) obj);
         }
 
         public override int GetHashCode()
@@ -270,24 +270,24 @@ namespace UnitsNet
             return Meters.GetHashCode();
         }
 
-        public static bool operator !=(Position2D left, Position2D right)
+        public static bool operator !=(Length2d left, Length2d right)
         {
             return left.Meters != right.Meters;
         }
 
-        public static bool operator ==(Position2D left, Position2D right)
+        public static bool operator ==(Length2d left, Length2d right)
         {
             return left.Meters == right.Meters;
         }
 
-        private sealed class MetersEqualityComparer : IEqualityComparer<Position2D>
+        private sealed class MetersEqualityComparer : IEqualityComparer<Length2d>
         {
-            public bool Equals(Position2D x, Position2D y)
+            public bool Equals(Length2d x, Length2d y)
             {
                 return x.Meters.Equals(y.Meters);
             }
 
-            public int GetHashCode(Position2D obj)
+            public int GetHashCode(Length2d obj)
             {
                 return obj.Meters.GetHashCode();
             }

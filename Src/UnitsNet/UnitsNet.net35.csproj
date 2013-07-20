@@ -41,7 +41,7 @@
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Length.cs" />
-    <Compile Include="Position2D.cs" />
+    <Compile Include="Length2d.cs" />
     <Compile Include="Force.cs" />
     <Compile Include="Mass.cs" />
     <Compile Include="Pressure.cs" />
