@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumUtils.cs" />
-    <Compile Include="SiDistance.cs" />
+    <Compile Include="Length.cs" />
     <Compile Include="SiDistance2d.cs" />
     <Compile Include="SiForce.cs" />
     <Compile Include="SiMass.cs" />

@@ -37,20 +37,20 @@ namespace UnitsNet
         /// <returns>The converted value</returns>
         public static double ConvertDistanceFromSIToImperial(double value, SiUnit from, ImperialUnitTypes to)
         {
-            SiDistance distance;
+            Length distance;
 
             switch (from)
             {
                 case SiUnit.Meter:
-                    distance = SiDistance.FromMeters(value);
+                    distance = Length.FromMeters(value);
                     break;
 
                 case SiUnit.Centimeter:
-                    distance = SiDistance.FromCentimeters(value);
+                    distance = Length.FromCentimeters(value);
                     break;
 
                 case SiUnit.Millimeter:
-                    distance = SiDistance.FromMillimeters(value);
+                    distance = Length.FromMillimeters(value);
                     break;
 
                 default:

@@ -36,15 +36,15 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DistanceUnitsRoundTrip()
         {
-            SiDistance meter = SiDistance.FromMeters(1);
+            Length meter = Length.FromMeters(1);
 
-            Assert.AreEqual(1, SiDistance.FromKilometers(meter.Kilometers).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMeters(meter.Meters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromDecimeters(meter.Decimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromCentimeters(meter.Centimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMillimeters(meter.Millimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMicrometers(meter.Micrometers).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromNanometers(meter.Nanometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, Delta);
         }
         [Test]
         public void VectorLength()

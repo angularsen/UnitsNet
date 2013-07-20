@@ -24,59 +24,42 @@ using System;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A class for representing distance, according to the International System of Units (SI)
-    /// TODO Rename to Length.
+    ///     A class for representing units of length.
     /// </summary>
-    public struct SiDistance : IComparable, IComparable<SiDistance>
+    public struct Length : IComparable, IComparable<Length>
     {
         public readonly double Meters;
 
         /// <summary>
         ///     Enforce static methods for creation.
         /// </summary>
-        private SiDistance(double meters) : this()
+        private Length(double meters) : this()
         {
             Meters = meters;
         }
 
         #region Unit Properties
 
-        /// <summary>
-        /// Distance in miles.
-        /// </summary>
         public double Miles
         {
             get { return Meters*0.000621371; }
         }
 
-        /// <summary>
-        /// Distance in yards.
-        /// </summary>
         public double Yards
         {
             get { return Meters*1.09361; }
         }
 
-        /// <summary>
-        /// Distance in feet.
-        /// </summary>
         public double Feet
         {
             get { return Meters*3.28084; }
         }
 
-        /// <summary>
-        /// Distance in inches.
-        /// </summary>
         public double Inches
         {
             get { return Meters * 39.3701; }
         }
 
-
-        /// <summary>
-        /// Distance in kilometers.
-        /// </summary>
         public double Kilometers
         {
             get { return Meters*1E-3; }
@@ -87,33 +70,21 @@ namespace UnitsNet
             get { return Meters*1E1; }
         }
 
-        /// <summary>
-        ///     Distance in centimeters.
-        /// </summary>
         public double Centimeters
         {
             get { return Meters*1E2; }
         }
 
-        /// <summary>
-        ///     Distance in millimeters.
-        /// </summary>
         public double Millimeters
         {
             get { return Meters*1E3; }
         }
 
-        /// <summary>
-        /// Distance in micrometers.
-        /// </summary>
         public double Micrometers
         {
             get { return Meters*1E6; }
         }
 
-        /// <summary>
-        /// Distance in nanometers.
-        /// </summary>
         public double Nanometers
         {
             get { return Meters*1E9; }
@@ -126,75 +97,75 @@ namespace UnitsNet
         /// <summary>
         ///     The maximum representable distance in meters.
         /// </summary>
-        public static SiDistance Max
+        public static Length Max
         {
-            get { return new SiDistance(double.MaxValue); }
+            get { return new Length(double.MaxValue); }
         }
 
         /// <summary>
         ///     The smallest representable distance in meters.
         /// </summary>
-        public static SiDistance Min
+        public static Length Min
         {
-            get { return new SiDistance(double.MinValue); }
+            get { return new Length(double.MinValue); }
         }
 
-        public static SiDistance Zero
+        public static Length Zero
         {
-            get { return new SiDistance(); }
+            get { return new Length(); }
         }
 
-        public static SiDistance FromKilometers(double km)
+        public static Length FromKilometers(double km)
         {
-            return new SiDistance(km*1E3);
+            return new Length(km*1E3);
         }
 
-        public static SiDistance FromMiles(double m)
+        public static Length FromMiles(double m)
         {
-            return new SiDistance(m*1609.34);
+            return new Length(m*1609.34);
         }
 
-        public static SiDistance FromYards(double yds)
+        public static Length FromYards(double yds)
         {
-            return new SiDistance(yds*0.9144);
+            return new Length(yds*0.9144);
         }
 
-        public static SiDistance FromFeet(double ft)
+        public static Length FromFeet(double ft)
         {
-            return new SiDistance(ft*0.3048);
+            return new Length(ft*0.3048);
         }
 
-        public static SiDistance FromInches(double @in)
+        public static Length FromInches(double @in)
         {
-            return new SiDistance(@in*0.0254);
+            return new Length(@in*0.0254);
         }
 
-        public static SiDistance FromMeters(double m)
+        public static Length FromMeters(double m)
         {
-            return new SiDistance(m);
+            return new Length(m);
         }
 
-        public static SiDistance FromDecimeters(double dm)
+        public static Length FromDecimeters(double dm)
         {
-            return new SiDistance(dm*1E-1);
+            return new Length(dm*1E-1);
         } 
 
-        public static SiDistance FromCentimeters(double cm)
+        public static Length FromCentimeters(double cm)
         {
             return FromMeters(cm*1E-2);
         }
 
-        public static SiDistance FromMillimeters(double mm)
+        public static Length FromMillimeters(double mm)
         {
             return FromMeters(mm*1E-3);
         }
 
-        public static SiDistance FromMicrometers(double um)
+        public static Length FromMicrometers(double um)
         {
             return FromMeters(um*1E-6);
         }
 
-        public static SiDistance FromNanometers(double nm)
+        public static Length FromNanometers(double nm)
         {
             return FromMeters(nm*1E-9);
         }
@@ -203,27 +174,27 @@ namespace UnitsNet
 
         #region Arithmetic operators
 
-        public static SiDistance operator -(SiDistance right)
+        public static Length operator -(Length right)
         {
             return FromMeters(-right.Meters);
         }
 
-        public static SiDistance operator +(SiDistance left, SiDistance right)
+        public static Length operator +(Length left, Length right)
         {
             return FromMeters(left.Meters + right.Meters);
         }
 
-        public static SiDistance operator -(SiDistance left, SiDistance right)
+        public static Length operator -(Length left, Length right)
         {
             return FromMeters(left.Meters - right.Meters);
         }
 
-        public static SiDistance operator *(double left, SiDistance right)
+        public static Length operator *(double left, Length right)
         {
             return FromMeters(left*right.Meters);
         }
 
-        public static SiDistance operator /(SiDistance left, double right)
+        public static Length operator /(Length left, double right)
         {
             return FromMeters(left.Meters/right);
         }
@@ -232,32 +203,32 @@ namespace UnitsNet
 
         #region Comparable operators
 
-        public static bool operator <=(SiDistance left, SiDistance right)
+        public static bool operator <=(Length left, Length right)
         {
             return left.Meters <= right.Meters;
         }
 
-        public static bool operator >=(SiDistance left, SiDistance right)
+        public static bool operator >=(Length left, Length right)
         {
             return left.Meters >= right.Meters;
         }
 
-        public static bool operator <(SiDistance left, SiDistance right)
+        public static bool operator <(Length left, Length right)
         {
             return left.Meters < right.Meters;
         }
 
-        public static bool operator >(SiDistance left, SiDistance right)
+        public static bool operator >(Length left, Length right)
         {
             return left.Meters > right.Meters;
         }
 
-        public static bool operator !=(SiDistance left, SiDistance right)
+        public static bool operator !=(Length left, Length right)
         {
             return left.Meters != right.Meters;
         }
 
-        public static bool operator ==(SiDistance left, SiDistance right)
+        public static bool operator ==(Length left, Length right)
         {
             return left.Meters == right.Meters;
         }
@@ -269,21 +240,21 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiDistance)) throw new ArgumentException("Expected type SiDistance.", "obj");
-            return CompareTo((SiDistance) obj);
+            if (!(obj is Length)) throw new ArgumentException("Expected type Length.", "obj");
+            return CompareTo((Length) obj);
         }
 
-        public int CompareTo(SiDistance other)
+        public int CompareTo(Length other)
         {
             return Meters.CompareTo(other.Meters);
         }
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is SiDistance))
+            if (obj == null || !(obj is Length))
                 return false;
 
-            return Meters.CompareTo(((SiDistance) obj).Meters) == 0;
+            return Meters.CompareTo(((Length) obj).Meters) == 0;
         }
 
         public override int GetHashCode()

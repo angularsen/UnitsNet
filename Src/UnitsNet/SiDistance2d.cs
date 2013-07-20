@@ -47,40 +47,40 @@ namespace UnitsNet
             Meters = new Vector2(xMeters, yMeters);
         }
 
-        public SiDistance2d(SiDistance x, SiDistance y) : this(x.Meters, y.Meters)
+        public SiDistance2d(Length x, Length y) : this(x.Meters, y.Meters)
         {
         }
 
         #region Static
 
-        public static SiDistance GetDistance(SiDistance2d a, SiDistance2d b)
+        public static Length GetDistance(SiDistance2d a, SiDistance2d b)
         {
             Vector2 d = (a - b).Meters;
-            return SiDistance.FromMeters(Math.Sqrt(d.X*d.X + d.Y*d.Y));
+            return Length.FromMeters(Math.Sqrt(d.X*d.X + d.Y*d.Y));
         }
 
         #endregion
 
         #region Public properties
 
-        public SiDistance Distance
+        public Length Distance
         {
             get
             {
                 double x = Meters.X;
                 double y = Meters.Y;
-                return SiDistance.FromMeters(Math.Sqrt(x*x + y*y));
+                return Length.FromMeters(Math.Sqrt(x*x + y*y));
             }
         }
 
-        public SiDistance X
+        public Length X
         {
-            get { return SiDistance.FromMeters(Meters.X); }
+            get { return Length.FromMeters(Meters.X); }
         }
 
-        public SiDistance Y
+        public Length Y
         {
-            get { return SiDistance.FromMeters(Meters.Y); }
+            get { return Length.FromMeters(Meters.Y); }
         }
 
         public Vector2 Miles
@@ -235,13 +235,13 @@ namespace UnitsNet
             return new SiDistance2d(xMeters, yMeters);
         }
 
-        public SiDistance DistanceTo(SiDistance2d other)
+        public Length DistanceTo(SiDistance2d other)
         {
             double dx = X.Meters - other.X.Meters;
             double dy = Y.Meters - other.Y.Meters;
             double distance = Math.Sqrt(dx*dx + dy*dy);
 
-            return SiDistance.FromMeters(distance);
+            return Length.FromMeters(distance);
         }
 
         #endregion

@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void MetersToDistanceUnits()
         {
-            SiDistance meter = SiDistance.FromMeters(1);
+            Length meter = Length.FromMeters(1);
 
             Assert.AreEqual(1E-3, meter.Kilometers);
             Assert.AreEqual(1, meter.Meters);
@@ -29,20 +29,20 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DistanceUnitsRoundTrip()
         {
-            SiDistance meter = SiDistance.FromMeters(1);
+            Length meter = Length.FromMeters(1);
 
-            Assert.AreEqual(1, SiDistance.FromKilometers(meter.Kilometers).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMeters(meter.Meters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromDecimeters(meter.Decimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromCentimeters(meter.Centimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMillimeters(meter.Millimeters).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromMicrometers(meter.Micrometers).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromNanometers(meter.Nanometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, Delta);
+            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, Delta);
 
-            Assert.AreEqual(1, SiDistance.FromMiles(meter.Miles).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromYards(meter.Yards).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromFeet(meter.Feet).Meters, Delta);
-            Assert.AreEqual(1, SiDistance.FromInches(meter.Inches).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMiles(meter.Miles).Meters, Delta);
+            Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, Delta);
+            Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, Delta);
+            Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, Delta);
         }
     }
 }
