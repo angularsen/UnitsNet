@@ -212,7 +212,7 @@ namespace UnitsNet
         public override string ToString()
         {
             return Kilograms.ToString("#0.0") + " " +
-                   SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(SiUnit.Kilogram);
+                   SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Kilogram);
         }
     }
 }

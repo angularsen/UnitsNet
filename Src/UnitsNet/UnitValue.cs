@@ -28,10 +28,10 @@ namespace UnitsNet
     /// </summary>
     public class UnitValue
     {
-        public readonly SiUnit Unit;
+        public readonly Unit Unit;
         public readonly double Value;
 
-        public UnitValue(double value, SiUnit unit)
+        public UnitValue(double value, Unit unit)
         {
             Value = value;
             Unit = unit;

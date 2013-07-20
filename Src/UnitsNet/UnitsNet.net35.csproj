@@ -44,9 +44,9 @@
     <Compile Include="Force.cs" />
     <Compile Include="Mass.cs" />
     <Compile Include="Pressure.cs" />
-    <Compile Include="SiUnit.cs" />
     <Compile Include="SiUnits.cs" />
     <Compile Include="SiUnitSystem.cs" />
+    <Compile Include="Unit.cs" />
     <Compile Include="UnitsHelper.cs" />
     <Compile Include="UnitValue.cs" />
     <Compile Include="SiVoltage.cs" />

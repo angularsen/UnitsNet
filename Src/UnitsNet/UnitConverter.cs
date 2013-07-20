@@ -35,21 +35,21 @@ namespace UnitsNet
         /// <param name="to">A ImperialUnitDistance type</param>
         /// <param name="value">The value to convert</param>
         /// <returns>The converted value</returns>
-        public static double ConvertDistanceFromSIToImperial(double value, SiUnit from, ImperialUnitTypes to)
+        public static double ConvertDistanceFromSIToImperial(double value, Unit from, ImperialUnitTypes to)
         {
             Length distance;
 
             switch (from)
             {
-                case SiUnit.Meter:
+                case Unit.Meter:
                     distance = Length.FromMeters(value);
                     break;
 
-                case SiUnit.Centimeter:
+                case Unit.Centimeter:
                     distance = Length.FromCentimeters(value);
                     break;
 
-                case SiUnit.Millimeter:
+                case Unit.Millimeter:
                     distance = Length.FromMillimeters(value);
                     break;
 

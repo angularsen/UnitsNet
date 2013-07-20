@@ -21,7 +21,7 @@
 
 namespace UnitsNet
 {
-    public enum SiUnit
+    public enum Unit
     {
         Undefined = 0,
 

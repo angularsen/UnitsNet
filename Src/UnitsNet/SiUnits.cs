@@ -30,25 +30,25 @@ namespace UnitsNet
 //        public const double Gravity = 9.80665;
 
 //        /// <summary>
-//        /// Returns a SiUnit based on the string representation for that unit.
+//        /// Returns a Unit based on the string representation for that unit.
 //        /// Example: Parse("kg"); or Parse("Kilogram");
 //        /// </summary>
 //        /// <param name="unitText"></param>
 //        /// <returns></returns>
-//        public static SiUnit Parse(string unitText)
+//        public static Unit Parse(string unitText)
 //        {
 //            const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;
 
 //            if (String.IsNullOrEmpty(unitText)) 
-//                throw new ArgumentException("Invalid unit description. Should for instance be kg or Kilogram to represent SiUnit.Kilogram type.");
+//                throw new ArgumentException("Invalid unit description. Should for instance be kg or Kilogram to represent Unit.Kilogram type.");
 
 //            // Iterate over all the unit types and look for matching names or abbreviations
-//            foreach (SiUnit unitType in Enum.GetValues(typeof(SiUnit)))
+//            foreach (Unit unitType in Enum.GetValues(typeof(Unit)))
 //                if (unitText.Equals(GetAbbreviation(unitType), ignoreCase) ||
 //                    unitText.Equals(GetName(unitType), ignoreCase))
 //                    return unitType;
 
-//            return SiUnit.Undefined;
+//            return Unit.Undefined;
 //        }
 
 //        /// <summary>
@@ -56,7 +56,7 @@ namespace UnitsNet
 //        /// </summary>
 //        /// <param name="d"></param>
 //        /// <returns></returns>
-//        public static string GetAbbreviation(SiUnit d)
+//        public static string GetAbbreviation(Unit d)
 //        {
 //            try
 //            {
@@ -73,7 +73,7 @@ namespace UnitsNet
 //        /// </summary>
 //        /// <param name="d"></param>
 //        /// <returns></returns>
-//        public static string GetName(SiUnit d)
+//        public static string GetName(Unit d)
 //        {
 //            return d.ToString();
 //        }
@@ -84,9 +84,9 @@ namespace UnitsNet
 //        /// <param name="value"></param>
 //        /// <param name="fromUnit"></param>
 //        /// <returns></returns>
-//        public static double ToMeter(double value, SiUnit fromUnit)
+//        public static double ToMeter(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Meter;
+//            const Unit toUnit = Unit.Meter;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -96,10 +96,10 @@ namespace UnitsNet
 //                case toUnit:
 //                    return value;
 
-//                case SiUnit.Centimeter:
+//                case Unit.Centimeter:
 //                    return value/100.0;
 
-//                case SiUnit.Millimeter:
+//                case Unit.Millimeter:
 //                    return value/1000;
 
 //                default:
@@ -114,9 +114,9 @@ namespace UnitsNet
 //        /// <param name="value"></param>
 //        /// <param name="fromUnit"></param>
 //        /// <returns></returns>
-//        public static double ToCentimeter(double value, SiUnit fromUnit)
+//        public static double ToCentimeter(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Centimeter;
+//            const Unit toUnit = Unit.Centimeter;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -126,10 +126,10 @@ namespace UnitsNet
 //                case toUnit:
 //                    return value;
 
-//                case SiUnit.Meter:
+//                case Unit.Meter:
 //                    return value * 100.0;
 
-//                case SiUnit.Millimeter:
+//                case Unit.Millimeter:
 //                    return value / 10;
 
 //                default:
@@ -144,9 +144,9 @@ namespace UnitsNet
 //        /// <param name="value"></param>
 //        /// <param name="fromUnit"></param>
 //        /// <returns></returns>
-//        public static double ToMillimeter(double value, SiUnit fromUnit)
+//        public static double ToMillimeter(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Millimeter;
+//            const Unit toUnit = Unit.Millimeter;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -156,10 +156,10 @@ namespace UnitsNet
 //                case toUnit:
 //                    return value;
 
-//                case SiUnit.Meter:
+//                case Unit.Meter:
 //                    return value * 1000.0;
 
-//                case SiUnit.Centimeter:
+//                case Unit.Centimeter:
 //                    return value * 10;
 
 //                default:
@@ -175,7 +175,7 @@ namespace UnitsNet
 //        /// <param name="unitA"></param>
 //        /// <param name="unitB"></param>
 //        /// <returns></returns>
-//        public static bool IsCompatible(SiUnit unitA, SiUnit unitB)
+//        public static bool IsCompatible(Unit unitA, Unit unitB)
 //        {
 //            // Force and mass are compatible because they are tied together by the gravitational constant 
 //            // when considering vertical force. Not a good design but it works.
@@ -188,14 +188,14 @@ namespace UnitsNet
 //                    IsTorque(unitA) && IsTorque(unitB));
 //        }
 
-//        private static bool IsTorque(SiUnit type)
+//        private static bool IsTorque(Unit type)
 //        {
-//            return (type == SiUnit.Newtonmeter);
+//            return (type == Unit.Newtonmeter);
 //        }
 
-//        private static bool IsVoltage(SiUnit type)
+//        private static bool IsVoltage(Unit type)
 //        {
-//            return (type == SiUnit.Volt);
+//            return (type == Unit.Volt);
 //        }
 
 
@@ -207,7 +207,7 @@ namespace UnitsNet
 //        /// <param name="fromUnit"></param>
 //        /// <param name="toUnit"></param>
 //        /// <returns></returns>
-//        public static double ToUnit(double value, SiUnit fromUnit, SiUnit toUnit)
+//        public static double ToUnit(double value, Unit fromUnit, Unit toUnit)
 //        {
 //            if (fromUnit == toUnit)
 //                return value;
@@ -218,33 +218,33 @@ namespace UnitsNet
 //            // new type as argument.
 //            switch (toUnit)
 //            {
-//                case SiUnit.KiloNewton:
+//                case Unit.KiloNewton:
 //                    return ToKiloNewton(value, fromUnit);
 
-//                case SiUnit.Kilogram:
+//                case Unit.Kilogram:
 //                    return ToKilogram(value, fromUnit);
 
-//                case SiUnit.Newton:
+//                case Unit.Newton:
 //                    return ToNewton(value, fromUnit);
 
-//                case SiUnit.Meter:
+//                case Unit.Meter:
 //                    return ToMeter(value, fromUnit);
 
-//                case SiUnit.Centimeter:
+//                case Unit.Centimeter:
 //                    return ToCentimeter(value, fromUnit);
 
-//                case SiUnit.Millimeter:
+//                case Unit.Millimeter:
 //                    return ToMillimeter(value, fromUnit);
 
-//                case SiUnit.Volt:
+//                case Unit.Volt:
 //                    return ToVolt(value, fromUnit);
 
-//                case SiUnit.Newtonmeter:
+//                case Unit.Newtonmeter:
 //                    return ToNewtonmeter(value, fromUnit);
 
-//                case SiUnit.Undefined:
-//                case SiUnit.Error:
-//                case SiUnit.Generic:
+//                case Unit.Undefined:
+//                case Unit.Error:
+//                case Unit.Generic:
 //                    throw new Exception("Can't convert to generic and undefined units.");
 
 //                default:
@@ -252,9 +252,9 @@ namespace UnitsNet
 //            }
 //        }
 
-//        public static double ToNewtonmeter(double value, SiUnit fromUnit)
+//        public static double ToNewtonmeter(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Newtonmeter;
+//            const Unit toUnit = Unit.Newtonmeter;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -270,9 +270,9 @@ namespace UnitsNet
 //        }
 
 
-//        public static double ToKilogram(double value, SiUnit fromUnit)
+//        public static double ToKilogram(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Kilogram;
+//            const Unit toUnit = Unit.Kilogram;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -282,11 +282,11 @@ namespace UnitsNet
 //                case toUnit:
 //                    return value;
 
-//                case SiUnit.Newton:
+//                case Unit.Newton:
 //                    return value / Gravity;
 
-//                case SiUnit.KiloNewton:
-//                    return ToKilogram(ToNewton(value, fromUnit), SiUnit.Newton);
+//                case Unit.KiloNewton:
+//                    return ToKilogram(ToNewton(value, fromUnit), Unit.Newton);
 
 //                default:
 //                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
@@ -294,9 +294,9 @@ namespace UnitsNet
 //        }
 
 
-//        public static double ToVolt(double value, SiUnit fromUnit)
+//        public static double ToVolt(double value, Unit fromUnit)
 //        {
-//            const SiUnit toUnit = SiUnit.Volt;
+//            const Unit toUnit = Unit.Volt;
 
 ////            if (!IsCompatible(fromUnit, toUnit))
 ////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
@@ -312,20 +312,20 @@ namespace UnitsNet
 //        }
 
 
-//        public static double ToNewton(double value, SiUnit oldUnit)
+//        public static double ToNewton(double value, Unit oldUnit)
 //        {
 //            switch (oldUnit)
 //            {
-//                case SiUnit.Generic:
+//                case Unit.Generic:
 //                    throw new Exception("Can't convert from a generic unit, there are no reference values to convert from");
 
-//                case SiUnit.Kilogram:
+//                case Unit.Kilogram:
 //                    return value * Gravity;
 
-//                case SiUnit.Newton:
+//                case Unit.Newton:
 //                    return value; // Already in newtons
 
-//                case SiUnit.KiloNewton:
+//                case Unit.KiloNewton:
 //                    return value * 1000;
 
 //                default:
@@ -341,21 +341,21 @@ namespace UnitsNet
 //        /// <param name="oldUnit"></param>
 //        /// <returns></returns>
 //        // ReSharper disable UnusedPrivateMember
-//        private static double ToKiloNewton(double value, SiUnit oldUnit)
+//        private static double ToKiloNewton(double value, Unit oldUnit)
 //            // ReSharper restore UnusedPrivateMember
 //        {
 //            switch (oldUnit)
 //            {
-//                case SiUnit.Generic:
+//                case Unit.Generic:
 //                    throw new Exception("Can't convert from a generic unit, there are no reference values to convert from");
 
-//                case SiUnit.Kilogram:
-//                    return ToKilogram(ToNewton(value, oldUnit), SiUnit.Newton);
+//                case Unit.Kilogram:
+//                    return ToKilogram(ToNewton(value, oldUnit), Unit.Newton);
 
-//                case SiUnit.Newton:
+//                case Unit.Newton:
 //                    return value / 1000.0;
 
-//                case SiUnit.KiloNewton:
+//                case Unit.KiloNewton:
 //                    return value; // Already in kilonewtons
 
 //                default:
@@ -365,17 +365,17 @@ namespace UnitsNet
 //        }
 
 
-//        public static bool IsMass(SiUnit type)
+//        public static bool IsMass(Unit type)
 //        {
-//            return (type == SiUnit.Kilogram);
+//            return (type == Unit.Kilogram);
 //        }
 
-//        public static bool IsForce(SiUnit u)
+//        public static bool IsForce(Unit u)
 //        {
 //            switch (u)
 //            {
-//                case SiUnit.Newton:
-//                case SiUnit.KiloNewton:
+//                case Unit.Newton:
+//                case Unit.KiloNewton:
 //                    return true;
 //            }
 
@@ -383,13 +383,13 @@ namespace UnitsNet
 //        }
 
 
-//        public static bool IsDistance(SiUnit u)
+//        public static bool IsDistance(Unit u)
 //        {
 //            switch (u)
 //            {
-//                case SiUnit.Meter:
-//                case SiUnit.Centimeter:
-//                case SiUnit.Millimeter:
+//                case Unit.Meter:
+//                case Unit.Centimeter:
+//                case Unit.Millimeter:
 //                    return true;
 //            }
 

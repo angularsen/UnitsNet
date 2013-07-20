@@ -28,11 +28,11 @@ namespace UnitsNet
 {
     public class SiUnitSystem
     {
-        public static readonly SiUnit[] Masses;
-        public static readonly SiUnit[] CookingUnits;
-        public static readonly SiUnit[] Volumes;
-        public static readonly SiUnit[] Forces;
-        public static readonly SiUnit[] Distances;
+        public static readonly Unit[] Masses;
+        public static readonly Unit[] CookingUnits;
+        public static readonly Unit[] Volumes;
+        public static readonly Unit[] Forces;
+        public static readonly Unit[] Distances;
         private static readonly Dictionary<CultureInfo, SiUnitSystem> CultureToInstance;
 
         #region Static
@@ -45,15 +45,15 @@ namespace UnitsNet
         static SiUnitSystem()
         {
             CultureToInstance = new Dictionary<CultureInfo, SiUnitSystem>();
-            Masses = new[] {SiUnit.Kilogram, SiUnit.Hectogram, SiUnit.Gram, SiUnit.Milligram};
-            Forces = new[] {SiUnit.KiloNewton, SiUnit.Newton};
-            Distances = new[] {SiUnit.Meter, SiUnit.Centimeter, SiUnit.Millimeter};
-            Volumes = new[] {SiUnit.Liter, SiUnit.Centiliter, SiUnit.Deciliter, SiUnit.Milliliter};
+            Masses = new[] {Unit.Kilogram, Unit.Hectogram, Unit.Gram, Unit.Milligram};
+            Forces = new[] {Unit.KiloNewton, Unit.Newton};
+            Distances = new[] {Unit.Meter, Unit.Centimeter, Unit.Millimeter};
+            Volumes = new[] {Unit.Liter, Unit.Centiliter, Unit.Deciliter, Unit.Milliliter};
             CookingUnits = new[]
                 {
-                    SiUnit.Tablespoon, SiUnit.Teaspoon, SiUnit.Piece, SiUnit.Kilogram, SiUnit.Hectogram, SiUnit.Gram,
-                    SiUnit.Milligram, SiUnit.Liter, SiUnit.Centiliter, SiUnit.Deciliter, SiUnit.Centiliter,
-                    SiUnit.Milliliter, SiUnit.Meter, SiUnit.Centimeter, SiUnit.Millimeter,
+                    Unit.Tablespoon, Unit.Teaspoon, Unit.Piece, Unit.Kilogram, Unit.Hectogram, Unit.Gram,
+                    Unit.Milligram, Unit.Liter, Unit.Centiliter, Unit.Deciliter, Unit.Centiliter,
+                    Unit.Milliliter, Unit.Meter, Unit.Centimeter, Unit.Millimeter,
                 };
         }
 
@@ -65,8 +65,8 @@ namespace UnitsNet
         private SiUnitSystem(CultureInfo cultureInfo = null)
         {
             //_cultureInfo = cultureInfo;
-            _unitToAbbrevs = new Dictionary<SiUnit, List<string>>();
-            _abbrevsToUnit = new Dictionary<string, SiUnit>();
+            _unitToAbbrevs = new Dictionary<Unit, List<string>>();
+            _abbrevsToUnit = new Dictionary<string, Unit>();
 
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo("en-US");
@@ -106,7 +106,7 @@ namespace UnitsNet
         /// <param name="fromUnit"></param>
         /// <param name="toUnit"></param>
         /// <returns></returns>
-        public static decimal ToUnit(decimal value, SiUnit fromUnit, SiUnit toUnit)
+        public static decimal ToUnit(decimal value, Unit fromUnit, Unit toUnit)
         {
             if (fromUnit == toUnit)
                 return value;
@@ -121,31 +121,31 @@ namespace UnitsNet
             // new type as argument.
             switch (toUnit)
             {
-                case SiUnit.Kilogram:
+                case Unit.Kilogram:
                     return ToKilogram(value, fromUnit);
 
-                case SiUnit.Hectogram:
+                case Unit.Hectogram:
                     return ToHectogram(value, fromUnit);
 
-                case SiUnit.Gram:
+                case Unit.Gram:
                     return ToGram(value, fromUnit);
 
-                case SiUnit.Milligram:
+                case Unit.Milligram:
                     return ToMilligram(value, fromUnit);
 
-                case SiUnit.Liter:
+                case Unit.Liter:
                     return ToLiter(value, fromUnit);
 
-                case SiUnit.Deciliter:
+                case Unit.Deciliter:
                     return ToDeciliter(value, fromUnit);
 
-                case SiUnit.Centiliter:
+                case Unit.Centiliter:
                     return ToCentiliter(value, fromUnit);
 
-                case SiUnit.Milliliter:
+                case Unit.Milliliter:
                     return ToMilliliter(value, fromUnit);
 
-                case SiUnit.Undefined:
+                case Unit.Undefined:
                     throw new Exception("Can't convert to generic and undefined units.");
 
                 default:
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// <param name="fromUnit"></param>
         /// <param name="toUnit"></param>
         /// <returns></returns>
-        public static double ToUnit(double value, SiUnit fromUnit, SiUnit toUnit)
+        public static double ToUnit(double value, Unit fromUnit, Unit toUnit)
         {
             if (fromUnit == toUnit)
                 return value;
@@ -177,31 +177,31 @@ namespace UnitsNet
             // new type as argument.
             switch (toUnit)
             {
-                case SiUnit.Kilogram:
+                case Unit.Kilogram:
                     return ToKilogram(value, fromUnit);
 
-                case SiUnit.Hectogram:
+                case Unit.Hectogram:
                     return ToHectogram(value, fromUnit);
 
-                case SiUnit.Gram:
+                case Unit.Gram:
                     return ToGram(value, fromUnit);
 
-                case SiUnit.Milligram:
+                case Unit.Milligram:
                     return ToMilligram(value, fromUnit);
 
-                case SiUnit.Liter:
+                case Unit.Liter:
                     return ToLiter(value, fromUnit);
 
-                case SiUnit.Deciliter:
+                case Unit.Deciliter:
                     return ToDeciliter(value, fromUnit);
 
-                case SiUnit.Centiliter:
+                case Unit.Centiliter:
                     return ToCentiliter(value, fromUnit);
 
-                case SiUnit.Milliliter:
+                case Unit.Milliliter:
                     return ToMilliliter(value, fromUnit);
 
-                case SiUnit.Undefined:
+                case Unit.Undefined:
                     throw new Exception("Can't convert to generic and undefined units.");
 
                 default:
@@ -210,247 +210,247 @@ namespace UnitsNet
             }
         }
 
-        private static double ToKilogram(double value, SiUnit fromUnit)
+        private static double ToKilogram(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Kilogram;
+            const Unit toUnit = Unit.Kilogram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value/10;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value/1000;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/1000000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToKilogram(decimal value, SiUnit fromUnit)
+        private static decimal ToKilogram(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Kilogram;
+            const Unit toUnit = Unit.Kilogram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value/10;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value/1000;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/1000000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToHectogram(double value, SiUnit fromUnit)
+        private static double ToHectogram(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Hectogram;
+            const Unit toUnit = Unit.Hectogram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*10;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value/100;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/100000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToHectogram(decimal value, SiUnit fromUnit)
+        private static decimal ToHectogram(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Hectogram;
+            const Unit toUnit = Unit.Hectogram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*10;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value/100;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/100000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToGram(double value, SiUnit fromUnit)
+        private static double ToGram(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Gram;
+            const Unit toUnit = Unit.Gram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*1000;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value*100;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToGram(decimal value, SiUnit fromUnit)
+        private static decimal ToGram(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Gram;
+            const Unit toUnit = Unit.Gram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*1000;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value*100;
-            if (fromUnit == SiUnit.Milligram)
+            if (fromUnit == Unit.Milligram)
                 return value/1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToMilligram(double value, SiUnit fromUnit)
+        private static double ToMilligram(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Milligram;
+            const Unit toUnit = Unit.Milligram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*1000000;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value*100000;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value*1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToMilligram(decimal value, SiUnit fromUnit)
+        private static decimal ToMilligram(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Milligram;
+            const Unit toUnit = Unit.Milligram;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Kilogram)
+            if (fromUnit == Unit.Kilogram)
                 return value*1000000;
-            if (fromUnit == SiUnit.Hectogram)
+            if (fromUnit == Unit.Hectogram)
                 return value*100000;
-            if (fromUnit == SiUnit.Gram)
+            if (fromUnit == Unit.Gram)
                 return value*1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToLiter(double value, SiUnit fromUnit)
+        private static double ToLiter(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Liter;
+            const Unit toUnit = Unit.Liter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value/10;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value/100;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToLiter(decimal value, SiUnit fromUnit)
+        private static decimal ToLiter(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Liter;
+            const Unit toUnit = Unit.Liter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value/10;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value/100;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/1000;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToDeciliter(double value, SiUnit fromUnit)
+        private static double ToDeciliter(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Deciliter;
+            const Unit toUnit = Unit.Deciliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*10;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value/10;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/100;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToDeciliter(decimal value, SiUnit fromUnit)
+        private static decimal ToDeciliter(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Deciliter;
+            const Unit toUnit = Unit.Deciliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*10;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value/10;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/100;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToCentiliter(double value, SiUnit fromUnit)
+        private static double ToCentiliter(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Centiliter;
+            const Unit toUnit = Unit.Centiliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*100;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value*10;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/10;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToCentiliter(decimal value, SiUnit fromUnit)
+        private static decimal ToCentiliter(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Centiliter;
+            const Unit toUnit = Unit.Centiliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*100;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value*10;
-            if (fromUnit == SiUnit.Milliliter)
+            if (fromUnit == Unit.Milliliter)
                 return value/10;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static double ToMilliliter(double value, SiUnit fromUnit)
+        private static double ToMilliliter(double value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Milliliter;
+            const Unit toUnit = Unit.Milliliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*1000;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value*100;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value*10;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        private static decimal ToMilliliter(decimal value, SiUnit fromUnit)
+        private static decimal ToMilliliter(decimal value, Unit fromUnit)
         {
-            const SiUnit toUnit = SiUnit.Milliliter;
+            const Unit toUnit = Unit.Milliliter;
             if (fromUnit == toUnit)
                 return value;
-            if (fromUnit == SiUnit.Liter)
+            if (fromUnit == Unit.Liter)
                 return value*1000;
-            if (fromUnit == SiUnit.Deciliter)
+            if (fromUnit == Unit.Deciliter)
                 return value*100;
-            if (fromUnit == SiUnit.Centiliter)
+            if (fromUnit == Unit.Centiliter)
                 return value*10;
 
             throw new ArgumentException(String.Format("Incompatible: {0} and {1}.", fromUnit, toUnit));
         }
 
-        public static bool IsCompatible(SiUnit a, SiUnit b)
+        public static bool IsCompatible(Unit a, Unit b)
         {
             if (a == b) return true;
             if (IsMass(a) && IsMass(b)) return true;
@@ -461,7 +461,7 @@ namespace UnitsNet
             return false;
         }
 
-        public static bool IsGreater(SiUnit left, SiUnit right)
+        public static bool IsGreater(Unit left, Unit right)
         {
             if (!IsCompatible(left, right))
                 throw new ArgumentException(string.Format("Incompatible units: {0} and {1}", left, right));
@@ -470,27 +470,27 @@ namespace UnitsNet
             return ((int) left < (int) right);
         }
 
-        public static bool IsMass(SiUnit unit)
+        public static bool IsMass(Unit unit)
         {
             return Masses.Contains(unit);
         }
 
-        public static bool IsForce(SiUnit unit)
+        public static bool IsForce(Unit unit)
         {
             return Forces.Contains(unit);
         }
 
-        public static bool IsDistance(SiUnit unit)
+        public static bool IsDistance(Unit unit)
         {
             return Distances.Contains(unit);
         }
 
-        public static bool IsVolume(SiUnit unit)
+        public static bool IsVolume(Unit unit)
         {
             return Volumes.Contains(unit);
         }
 
-        public static bool IsCookingUnit(SiUnit unit)
+        public static bool IsCookingUnit(Unit unit)
         {
             return CookingUnits.Contains(unit);
         }
@@ -499,26 +499,26 @@ namespace UnitsNet
 
         #region Public methods
 
-        public static SiUnit Parse(string unitAbbreviation, CultureInfo culture)
+        public static Unit Parse(string unitAbbreviation, CultureInfo culture)
         {
             return Create(culture).Parse(unitAbbreviation);
         }
 
-        public SiUnit Parse(string unitAbbreviation)
+        public Unit Parse(string unitAbbreviation)
         {
-            SiUnit result;
+            Unit result;
             if (_abbrevsToUnit.TryGetValue(unitAbbreviation, out result))
                 return result;
 
-            return SiUnit.Undefined;
+            return Unit.Undefined;
         }
 
-        public static string GetDefaultAbbreviation(SiUnit unit, CultureInfo culture)
+        public static string GetDefaultAbbreviation(Unit unit, CultureInfo culture)
         {
             return Create(culture).GetDefaultAbbreviation(unit);
         }
 
-        public string GetDefaultAbbreviation(SiUnit unit)
+        public string GetDefaultAbbreviation(Unit unit)
         {
             // Return the first (most commonly used) abbreviation for this unit)
             return _unitToAbbrevs[unit].First();
@@ -533,10 +533,10 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(SiUnit.Tablespoon, "T", "T.", "tbsp", "tbsp.", "tbs", "tbs.");
+            MapUnitToAbbreviation(Unit.Tablespoon, "T", "T.", "tbsp", "tbsp.", "tbs", "tbs.");
             // For units with multiple abbreviations, the first one denotes the most common one
-            MapUnitToAbbreviation(SiUnit.Teaspoon, "tsp", "tsp.", "t", "t.");
-            MapUnitToAbbreviation(SiUnit.Piece, "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
+            MapUnitToAbbreviation(Unit.Teaspoon, "tsp", "tsp.", "t", "t.");
+            MapUnitToAbbreviation(Unit.Piece, "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
         }
 
         private void CreateNorwegianBokmaal()
@@ -544,48 +544,48 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(SiUnit.Tablespoon, "ss", "ss.");
-            MapUnitToAbbreviation(SiUnit.Teaspoon, "ts", "ts.");
-            MapUnitToAbbreviation(SiUnit.Piece, "stk", "stk.");
+            MapUnitToAbbreviation(Unit.Tablespoon, "ss", "ss.");
+            MapUnitToAbbreviation(Unit.Teaspoon, "ts", "ts.");
+            MapUnitToAbbreviation(Unit.Piece, "stk", "stk.");
         }
 
         private void CreateCultureInvariants()
         {
             // For correct abbreviations, see: http://lamar.colostate.edu/~hillger/correct.htm
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
-            MapUnitToAbbreviation(SiUnit.Undefined, "(no unit)");
+            MapUnitToAbbreviation(Unit.Undefined, "(no unit)");
 
             // Masses
-            MapUnitToAbbreviation(SiUnit.Kilogram, "kg");
-            MapUnitToAbbreviation(SiUnit.Hectogram, "hg");
-            MapUnitToAbbreviation(SiUnit.Gram, "g");
-            MapUnitToAbbreviation(SiUnit.Milligram, "mg");
+            MapUnitToAbbreviation(Unit.Kilogram, "kg");
+            MapUnitToAbbreviation(Unit.Hectogram, "hg");
+            MapUnitToAbbreviation(Unit.Gram, "g");
+            MapUnitToAbbreviation(Unit.Milligram, "mg");
 
             // Forces
-            MapUnitToAbbreviation(SiUnit.KiloNewton, "kN");
-            MapUnitToAbbreviation(SiUnit.Newton, "N");
+            MapUnitToAbbreviation(Unit.KiloNewton, "kN");
+            MapUnitToAbbreviation(Unit.Newton, "N");
 
             // Torque
-            MapUnitToAbbreviation(SiUnit.Newtonmeter, "Nm");
+            MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
 
             // Distances
-            MapUnitToAbbreviation(SiUnit.Meter, "m");
-            MapUnitToAbbreviation(SiUnit.Centimeter, "cm");
-            MapUnitToAbbreviation(SiUnit.Millimeter, "mm");
+            MapUnitToAbbreviation(Unit.Meter, "m");
+            MapUnitToAbbreviation(Unit.Centimeter, "cm");
+            MapUnitToAbbreviation(Unit.Millimeter, "mm");
 
             // Volumes
-            MapUnitToAbbreviation(SiUnit.Liter, "l", "L");
-            MapUnitToAbbreviation(SiUnit.Deciliter, "dl", "dL");
-            MapUnitToAbbreviation(SiUnit.Centiliter, "cl", "cL");
-            MapUnitToAbbreviation(SiUnit.Milliliter, "ml", "mL");
+            MapUnitToAbbreviation(Unit.Liter, "l", "L");
+            MapUnitToAbbreviation(Unit.Deciliter, "dl", "dL");
+            MapUnitToAbbreviation(Unit.Centiliter, "cl", "cL");
+            MapUnitToAbbreviation(Unit.Milliliter, "ml", "mL");
 
             // Other units
-            MapUnitToAbbreviation(SiUnit.Volt, "V");
-            MapUnitToAbbreviation(SiUnit.Percent, "%");
-            MapUnitToAbbreviation(SiUnit.Second, "s");
+            MapUnitToAbbreviation(Unit.Volt, "V");
+            MapUnitToAbbreviation(Unit.Percent, "%");
+            MapUnitToAbbreviation(Unit.Second, "s");
         }
 
-        private void MapUnitToAbbreviation(SiUnit unit, params string[] abbreviations)
+        private void MapUnitToAbbreviation(Unit unit, params string[] abbreviations)
         {
             if (abbreviations == null)
                 throw new ArgumentNullException("abbreviations");
@@ -608,15 +608,15 @@ namespace UnitsNet
 
         #endregion
 
-        private readonly Dictionary<string, SiUnit> _abbrevsToUnit;
-        private readonly Dictionary<SiUnit, List<string>> _unitToAbbrevs;
+        private readonly Dictionary<string, Unit> _abbrevsToUnit;
+        private readonly Dictionary<Unit, List<string>> _unitToAbbrevs;
 
-        public bool TryParse(string unitAbbreviation, out SiUnit unit)
+        public bool TryParse(string unitAbbreviation, out Unit unit)
         {
             return _abbrevsToUnit.TryGetValue(unitAbbreviation, out unit);
         }
 
-        public string[] GetAllAbbreviations(SiUnit unit)
+        public string[] GetAllAbbreviations(Unit unit)
         {
             return _unitToAbbrevs[unit].ToArray();
         }

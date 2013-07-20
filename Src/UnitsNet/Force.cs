@@ -193,7 +193,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Newtons + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(SiUnit.Newton);
+            return Newtons + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Newton);
         }
     }
 }

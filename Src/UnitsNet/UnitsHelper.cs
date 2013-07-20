@@ -37,7 +37,7 @@ namespace UnitsNet
         ///     Example: Parse("kg"); or Parse("Kilogram");
         /// </summary>
         /// <returns>true if parse was successful</returns>
-        public static bool TryParse(string unitText, out SiUnit result, SiUnit fallback, CultureInfo culture = null)
+        public static bool TryParse(string unitText, out Unit result, Unit fallback, CultureInfo culture = null)
         {
             if (String.IsNullOrEmpty(unitText))
                 throw new ArgumentException(
@@ -47,7 +47,7 @@ namespace UnitsNet
 
 
             // Iterate over all the unit types and look for matching names or abbreviations
-            foreach (SiUnit unitType in EnumUtils.GetEnumValues<SiUnit>())
+            foreach (Unit unitType in EnumUtils.GetEnumValues<Unit>())
             {
                 if (
                     unitText.Equals(SiUnitSystem.Create(culture).GetDefaultAbbreviation(unitType), invariantIgnoreCase) ||

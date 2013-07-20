@@ -208,7 +208,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Pascals + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(SiUnit.Pascal);
+            return Pascals + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Pascal);
         }
     }
 }
