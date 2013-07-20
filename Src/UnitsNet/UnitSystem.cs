@@ -26,14 +26,14 @@ using System.Linq;
 
 namespace UnitsNet
 {
-    public class SiUnitSystem
+    public class UnitSystem
     {
         public static readonly Unit[] Masses;
         public static readonly Unit[] CookingUnits;
         public static readonly Unit[] Volumes;
         public static readonly Unit[] Forces;
         public static readonly Unit[] Distances;
-        private static readonly Dictionary<CultureInfo, SiUnitSystem> CultureToInstance;
+        private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
 
         #region Static
 
@@ -42,9 +42,9 @@ namespace UnitsNet
         /// </summary>
         public readonly CultureInfo Culture;
 
-        static SiUnitSystem()
+        static UnitSystem()
         {
-            CultureToInstance = new Dictionary<CultureInfo, SiUnitSystem>();
+            CultureToInstance = new Dictionary<CultureInfo, UnitSystem>();
             Masses = new[] {Unit.Kilogram, Unit.Hectogram, Unit.Gram, Unit.Milligram};
             Forces = new[] {Unit.KiloNewton, Unit.Newton};
             Distances = new[] {Unit.Meter, Unit.Centimeter, Unit.Millimeter};
@@ -62,7 +62,7 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
-        private SiUnitSystem(CultureInfo cultureInfo = null)
+        private UnitSystem(CultureInfo cultureInfo = null)
         {
             //_cultureInfo = cultureInfo;
             _unitToAbbrevs = new Dictionary<Unit, List<string>>();
@@ -87,13 +87,13 @@ namespace UnitsNet
         /// </summary>
         /// <param name="cultureInfo"></param>
         /// <returns></returns>
-        public static SiUnitSystem Create(CultureInfo cultureInfo)
+        public static UnitSystem Create(CultureInfo cultureInfo)
         {
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
 
             if (!CultureToInstance.ContainsKey(cultureInfo))
-                CultureToInstance[cultureInfo] = new SiUnitSystem(cultureInfo);
+                CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);
 
             return CultureToInstance[cultureInfo];
         }

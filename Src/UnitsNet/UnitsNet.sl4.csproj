@@ -67,7 +67,7 @@
     <Compile Include="Unit.cs" />
     <Compile Include="SiUnits.cs" />
     <Compile Include="UnitsHelper.cs" />
-    <Compile Include="SiUnitSystem.cs" />
+    <Compile Include="UnitSystem.cs" />
     <Compile Include="SiVoltage.cs" />
     <Compile Include="UnitConverter.cs" />
     <Compile Include="UnitValue.cs" />

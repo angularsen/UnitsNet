@@ -50,7 +50,7 @@ namespace UnitsNet
             foreach (Unit unitType in EnumUtils.GetEnumValues<Unit>())
             {
                 if (
-                    unitText.Equals(SiUnitSystem.Create(culture).GetDefaultAbbreviation(unitType), invariantIgnoreCase) ||
+                    unitText.Equals(UnitSystem.Create(culture).GetDefaultAbbreviation(unitType), invariantIgnoreCase) ||
                     unitText.Equals(unitType.ToString(), invariantIgnoreCase))
                 {
                     result = unitType;
@@ -71,7 +71,7 @@ namespace UnitsNet
         //{
         //    try
         //    {
-        //        return SiUnitSystem.Get(CultureInfo.CurrentCulture).GetDefaultAbbreviation(d); //StringEnum.GetStringValue(d).Split();
+        //        return UnitSystem.Get(CultureInfo.CurrentCulture).GetDefaultAbbreviation(d); //StringEnum.GetStringValue(d).Split();
         //    }
         //    catch (Exception e)
         //    {

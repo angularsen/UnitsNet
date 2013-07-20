@@ -90,7 +90,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Value + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit);
+            return Value + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit);
         }
     }
 }

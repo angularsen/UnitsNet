@@ -41,7 +41,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Volts + " " + SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Volt);
+            return Volts + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Volt);
         }
 
         #region Static
