@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing force, according to the International System of Units (SI).
     /// </summary>
-    public struct SiForce : IComparable, IComparable<SiForce>
+    public struct Force : IComparable, IComparable<Force>
     {
         private const double Gravity = 9.80665002864;
 
@@ -36,7 +36,7 @@ namespace UnitsNet
         /// </summary>
         public readonly double Newtons;
 
-        private SiForce(double newtons) : this()
+        private Force(double newtons) : this()
         {
             Newtons = newtons;
         }
@@ -73,84 +73,84 @@ namespace UnitsNet
 
         #region Static 
 
-        public static SiForce Zero
+        public static Force Zero
         {
-            get { return new SiForce(); }
+            get { return new Force(); }
         }
 
-        public static SiForce FromDyne(double dyn)
+        public static Force FromDyne(double dyn)
         {
-            return new SiForce(dyn*1E-5);
+            return new Force(dyn*1E-5);
         }
 
-        public static SiForce FromPoundal(double pdl)
+        public static Force FromPoundal(double pdl)
         {
-            return new SiForce(0.138255*pdl);
+            return new Force(0.138255*pdl);
         }
 
-        public static SiForce FromPoundForce(double lbf)
+        public static Force FromPoundForce(double lbf)
         {
-            return new SiForce(4.448222*lbf);
+            return new Force(4.448222*lbf);
         }
 
-        public static SiForce FromKilogramForce(double kgf)
+        public static Force FromKilogramForce(double kgf)
         {
-            return new SiForce(Gravity*kgf);
+            return new Force(Gravity*kgf);
         }
 
-        public static SiForce FromKiloPonds(double kp)
+        public static Force FromKiloPonds(double kp)
         {
             return FromKilogramForce(kp);
         }
 
-        public static SiForce FromNewtons(double newtons)
+        public static Force FromNewtons(double newtons)
         {
-            return new SiForce(newtons);
+            return new Force(newtons);
         }
 
-        public static SiForce FromKilonewtons(double kN)
+        public static Force FromKilonewtons(double kN)
         {
-            return new SiForce(kN*1E3);
+            return new Force(kN*1E3);
         }
-        public static SiForce FromPressureByArea(SiPressure p, Position2D area)
+        public static Force FromPressureByArea(SiPressure p, Position2D area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;
             double newtons = p.Pascals*metersSquared;
-            return new SiForce(newtons);
+            return new Force(newtons);
         }
 
-        public static SiForce FromMassAcceleration(SiMass mass, double metersPerSecondSquare)
+        public static Force FromMassAcceleration(SiMass mass, double metersPerSecondSquare)
         {
-            return new SiForce(mass.Kilograms*metersPerSecondSquare);
+            return new Force(mass.Kilograms*metersPerSecondSquare);
         }
 
         #endregion
 
         #region Arithmetic operators
 
-        public static SiForce operator -(SiForce right)
+        public static Force operator -(Force right)
         {
-            return new SiForce(-right.Newtons);
+            return new Force(-right.Newtons);
         }
 
-        public static SiForce operator +(SiForce left, SiForce right)
+        public static Force operator +(Force left, Force right)
         {
-            return new SiForce(left.Newtons + right.Newtons);
+            return new Force(left.Newtons + right.Newtons);
         }
 
-        public static SiForce operator -(SiForce left, SiForce right)
+        public static Force operator -(Force left, Force right)
         {
-            return new SiForce(left.Newtons - right.Newtons);
+            return new Force(left.Newtons - right.Newtons);
         }
 
-        public static SiForce operator *(double left, SiForce right)
+        public static Force operator *(double left, Force right)
         {
-            return new SiForce(left*right.Newtons);
+            return new Force(left*right.Newtons);
         }
 
-        public static SiForce operator /(SiForce left, double right)
+        public static Force operator /(Force left, double right)
         {
-            return new SiForce(left.Newtons/right);
+            return new Force(left.Newtons/right);
         }
 
         #endregion
@@ -160,31 +160,31 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiForce)) throw new ArgumentException("Expected type SiForce.", "obj");
-            return CompareTo((SiForce) obj);
+            if (!(obj is Force)) throw new ArgumentException("Expected type Force.", "obj");
+            return CompareTo((Force) obj);
         }
 
-        public int CompareTo(SiForce other)
+        public int CompareTo(Force other)
         {
             return Newtons.CompareTo(other.Newtons);
         }
 
-        public static bool operator <=(SiForce left, SiForce right)
+        public static bool operator <=(Force left, Force right)
         {
             return left.Newtons <= right.Newtons;
         }
 
-        public static bool operator >=(SiForce left, SiForce right)
+        public static bool operator >=(Force left, Force right)
         {
             return left.Newtons >= right.Newtons;
         }
 
-        public static bool operator <(SiForce left, SiForce right)
+        public static bool operator <(Force left, Force right)
         {
             return left.Newtons < right.Newtons;
         }
 
-        public static bool operator >(SiForce left, SiForce right)
+        public static bool operator >(Force left, Force right)
         {
             return left.Newtons > right.Newtons;
         }

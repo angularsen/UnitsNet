@@ -41,7 +41,7 @@
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Length.cs" />
     <Compile Include="Position2D.cs" />
-    <Compile Include="SiForce.cs" />
+    <Compile Include="Force.cs" />
     <Compile Include="SiMass.cs" />
     <Compile Include="SiPressure.cs" />
     <Compile Include="SiTorque.cs" />

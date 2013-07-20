@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void NewtonToForceUnits()
         { 
-            SiForce oneNewton = SiForce.FromNewtons(1);
+            Force oneNewton = Force.FromNewtons(1);
 
             Assert.AreEqual(1E-3, oneNewton.Kilonewtons);
             Assert.AreEqual(1, oneNewton.Newtons);
@@ -24,15 +24,15 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void ForceUnitsRoundTrip()
         {
-            SiForce oneNewton = SiForce.FromNewtons(1);
+            Force oneNewton = Force.FromNewtons(1);
 
-            Assert.AreEqual(1, SiForce.FromNewtons(oneNewton.Newtons).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromKilonewtons(oneNewton.Kilonewtons).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromKilogramForce(oneNewton.KilogramForce).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromDyne(oneNewton.Dyne).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromKiloPonds(oneNewton.KiloPonds).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromPoundForce(oneNewton.PoundForce).Newtons, Delta);
-            Assert.AreEqual(1, SiForce.FromPoundal(oneNewton.Poundal).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromNewtons(oneNewton.Newtons).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromKilonewtons(oneNewton.Kilonewtons).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromKilogramForce(oneNewton.KilogramForce).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromDyne(oneNewton.Dyne).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromKiloPonds(oneNewton.KiloPonds).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromPoundForce(oneNewton.PoundForce).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromPoundal(oneNewton.Poundal).Newtons, Delta);
         }
     }
 }
