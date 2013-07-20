@@ -39,26 +39,91 @@ namespace UnitsNet
             Kilograms = kilograms;
         }
 
+        public double Megatonnes
+        {
+            get { return Kilograms*1E-9; }
+        }
+
+        public double Kilotonnes
+        {
+            get { return Kilograms*1E-6; }
+        }
+
+        public double Tonnes
+        {
+            get { return Kilograms*1E-3; }
+        }
+
         public double Hectograms
         {
-            get { return Kilograms*10; }
+            get { return Kilograms*1E1; }
         }
 
         public double Decigrams
         {
-            get { return Kilograms*100; }
+            get { return Kilograms*1E2; }
         }
 
         public double Grams
         {
-            get { return Kilograms*1000; }
+            get { return Kilograms*1E3; }
+        }
+
+        public double Centigrams
+        {
+            get { return Kilograms*1E5; }
+        }
+
+        public double Milligrams
+        {
+            get { return Kilograms*1E6; }
         }
 
         #region Static 
 
+        public static SiMass FromMegatonnes(double megatonnes)
+        {
+            return new SiMass(megatonnes*1E9);
+        }
+
+        public static SiMass FromKilotonnes(double kt)
+        {
+            return new SiMass(kt*1E6);
+        }
+
+        public static SiMass FromTonnes(double t)
+        {
+            return new SiMass(t*1E3);
+        }
+
         public static SiMass FromKilograms(double kilograms)
         {
             return new SiMass(kilograms);
+        }
+
+        public static SiMass FromHectograms(double value)
+        {
+            return new SiMass(value*1E-1);
+        }
+
+        public static SiMass FromDecigrams(double value)
+        {
+            return new SiMass(value*1E-2);
+        }
+
+        public static SiMass FromGrams(double value)
+        {
+            return new SiMass(value*1E-3);
+        }
+
+        public static SiMass FromCentigrams(double value)
+        {
+            return new SiMass(value*1E-5);
+        }
+
+        public static SiMass FromMilligrams(double value)
+        {
+            return new SiMass(value*1E-6);
         }
 
         #endregion
@@ -96,9 +161,9 @@ namespace UnitsNet
             return new SiMass(left.Kilograms/right);
         }
 
-        #endregion
-
         #region Equality / IComparable
+
+        #endregion
 
         public int CompareTo(object obj)
         {
@@ -138,21 +203,6 @@ namespace UnitsNet
         {
             return Kilograms.ToString("#0.0") + " " +
                    SiUnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(SiUnit.Kilogram);
-        }
-
-        public static SiMass FromHectograms(double value)
-        {
-            return new SiMass(value / 10);
-        }
-
-        public static SiMass FromDecigrams(double value)
-        {
-            return new SiMass(value / 100);
-        }
-
-        public static SiMass FromGrams(double value)
-        {
-            return new SiMass(value / 1000);
         }
     }
 }
