@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Data structures and methods to convert values between units, parse values and units from text or get textual representations.</description>
         <summary>Simplifies working with units of measurement.</summary>
-        <releaseNotes>First release.</releaseNotes>
+        <releaseNotes></releaseNotes>
         <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
         <language>en-US</language>
         <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
