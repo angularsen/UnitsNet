@@ -28,11 +28,6 @@ namespace UnitsNet
 {
     public class UnitSystem
     {
-        public static readonly Unit[] Masses;
-        public static readonly Unit[] CookingUnits;
-        public static readonly Unit[] Volumes;
-        public static readonly Unit[] Forces;
-        public static readonly Unit[] Distances;
         private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
 
         #region Static
@@ -45,16 +40,6 @@ namespace UnitsNet
         static UnitSystem()
         {
             CultureToInstance = new Dictionary<CultureInfo, UnitSystem>();
-            Masses = new[] {Unit.Kilogram, Unit.Hectogram, Unit.Gram, Unit.Milligram};
-            Forces = new[] {Unit.KiloNewton, Unit.Newton};
-            Distances = new[] {Unit.Meter, Unit.Centimeter, Unit.Millimeter};
-            Volumes = new[] {Unit.Liter, Unit.Centiliter, Unit.Deciliter, Unit.Milliliter};
-            CookingUnits = new[]
-                {
-                    Unit.Tablespoon, Unit.Teaspoon, Unit.Piece, Unit.Kilogram, Unit.Hectogram, Unit.Gram,
-                    Unit.Milligram, Unit.Liter, Unit.Centiliter, Unit.Deciliter, Unit.Centiliter,
-                    Unit.Milliliter, Unit.Meter, Unit.Centimeter, Unit.Millimeter,
-                };
         }
 
         /// <summary>
