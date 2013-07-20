@@ -63,7 +63,7 @@
     <Compile Include="Position2D.cs" />
     <Compile Include="Pressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiTorque.cs" />
+    <Compile Include="Torque.cs" />
     <Compile Include="SiUnit.cs" />
     <Compile Include="SiUnits.cs" />
     <Compile Include="SiUnitsHelper.cs" />

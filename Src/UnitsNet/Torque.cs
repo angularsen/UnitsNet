@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing torque, according to the International System of Units (SI).
     /// </summary>
-    public class SiTorque : IComparable, IComparable<SiTorque>
+    public class Torque : IComparable, IComparable<Torque>
     {
         /// <summary>
         ///     Returns a newtonmeter representation of the torque.
@@ -35,7 +35,7 @@ namespace UnitsNet
         public readonly double Newtonmeters;
 
 
-        private SiTorque(double newtonmeters)
+        private Torque(double newtonmeters)
         {
             Newtonmeters = newtonmeters;
         }
@@ -48,9 +48,9 @@ namespace UnitsNet
 
         #region Static
 
-        public static SiTorque FromNewtonmeters(double newtonmeters)
+        public static Torque FromNewtonmeters(double newtonmeters)
         {
-            return new SiTorque(newtonmeters);
+            return new Torque(newtonmeters);
         }
 
         #endregion
@@ -63,29 +63,29 @@ namespace UnitsNet
         /// </summary>
         /// <param name="right">The SITorque to negativize.</param>
         /// <returns></returns>
-        public static SiTorque operator -(SiTorque right)
+        public static Torque operator -(Torque right)
         {
-            return new SiTorque(-right.Newtonmeters);
+            return new Torque(-right.Newtonmeters);
         }
 
-        public static SiTorque operator +(SiTorque left, SiTorque right)
+        public static Torque operator +(Torque left, Torque right)
         {
-            return new SiTorque(left.Newtonmeters + right.Newtonmeters);
+            return new Torque(left.Newtonmeters + right.Newtonmeters);
         }
 
-        public static SiTorque operator -(SiTorque left, SiTorque right)
+        public static Torque operator -(Torque left, Torque right)
         {
-            return new SiTorque(left.Newtonmeters - right.Newtonmeters);
+            return new Torque(left.Newtonmeters - right.Newtonmeters);
         }
 
-        public static SiTorque operator *(double left, SiTorque right)
+        public static Torque operator *(double left, Torque right)
         {
-            return new SiTorque(left*right.Newtonmeters);
+            return new Torque(left*right.Newtonmeters);
         }
 
-        public static SiTorque operator /(SiTorque left, double right)
+        public static Torque operator /(Torque left, double right)
         {
-            return new SiTorque(left.Newtonmeters/right);
+            return new Torque(left.Newtonmeters/right);
         }
 
         #endregion
@@ -95,31 +95,31 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is SiTorque)) throw new ArgumentException("Expected type SiTorque.", "obj");
-            return CompareTo((SiTorque) obj);
+            if (!(obj is Torque)) throw new ArgumentException("Expected type Torque.", "obj");
+            return CompareTo((Torque) obj);
         }
 
-        public int CompareTo(SiTorque other)
+        public int CompareTo(Torque other)
         {
             return Newtonmeters.CompareTo(other.Newtonmeters);
         }
 
-        public static bool operator <=(SiTorque left, SiTorque right)
+        public static bool operator <=(Torque left, Torque right)
         {
             return left.Newtonmeters <= right.Newtonmeters;
         }
 
-        public static bool operator >=(SiTorque left, SiTorque right)
+        public static bool operator >=(Torque left, Torque right)
         {
             return left.Newtonmeters >= right.Newtonmeters;
         }
 
-        public static bool operator <(SiTorque left, SiTorque right)
+        public static bool operator <(Torque left, Torque right)
         {
             return left.Newtonmeters < right.Newtonmeters;
         }
 
-        public static bool operator >(SiTorque left, SiTorque right)
+        public static bool operator >(Torque left, Torque right)
         {
             return left.Newtonmeters > right.Newtonmeters;
         }

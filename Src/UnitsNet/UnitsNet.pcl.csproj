@@ -42,13 +42,13 @@
     <Compile Include="Position2D.cs" />
     <Compile Include="Pressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiTorque.cs" />
     <Compile Include="SiUnit.cs" />
     <Compile Include="SiUnits.cs" />
     <Compile Include="SiUnitsHelper.cs" />
     <Compile Include="SiUnitSystem.cs" />
     <Compile Include="SiValue.cs" />
     <Compile Include="SiVoltage.cs" />
+    <Compile Include="Torque.cs" />
     <Compile Include="UnitConverter.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
