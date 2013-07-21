@@ -17,30 +17,38 @@ Features
 Explicit Representation and Conversion of Units
 -----------------------------------------------
 ```C#
-// Stop postfixing your variables and method names with the unit.
+// Stop postfixing your variables and method names with the unit...
 double weightKg = GetPersonWeightInKg();
 double weightGrams = weightKg * 1000;
-double weightTonnes = weightKg * 1000;
+double weightTonnes = weightKg / 1000;
 
-// Start using an explicit representation for the measurement and explicitly convert to the unit of choice - when you need it.
+// ...and start using an explicit representation for the measurement then 
+// explicitly convert to the unit of choice - when you need it.
 Mass weight = GetPersonWeight();
 double weightGrams = weight.Grams;
 double weightTonnes = weight.Tonnes;
 
-// Weight and mass are often, mistakenly, used as the same thing. Explicit representation helps avoid this confusion.
-Mass weight = GetPersonWeight();
-double weightNewtons = weight.Newtons; // No such thing
-
-// Convert between compatible units of measurement.
+// Convert between compatible units of measurement...
 Force scaleMeasurement = Force.FromNewtons(850);
 Mass personWeight = Mass.FromGravitationalForce(scaleMeasurement);
 double weightKg = personWeight.Kilograms;
 
-// Convert between units of measurement.
-double cm = Length.FromMeters(1).Centimeters; // 100
+// ...while avoiding confusing conversions, such as between weight and mass.
+Mass weight = GetPersonWeight();
+double weightNewtons = weight.Newtons; // No such thing.
 
-// Convert between metric and imperial units.
-double yards = Length.FromMeters(1).Yards; // 1.09361
+// Some popular conversions.
+Length meter = Length.FromMeters(1);
+double cm = meter.Centimeters; // 100
+double yards = meter.Yards; // 1.09361
+double feet = meter.Feet; // 3.28084
+double inches = meter.Inches; // 39.3701
+
+Pressure p = Pressure.FromPascal(1);
+double kpa = p.KiloPascals; // 1000
+double bar = p.Bars; // 1E-5
+double atm = p.Atmosphere; // 9.8692E-6
+double psi = p.Psi; // 145.04E-6
 ```
 
 UnitValue Representation and Conversion
