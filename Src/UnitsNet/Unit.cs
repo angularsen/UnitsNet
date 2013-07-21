@@ -31,6 +31,8 @@ namespace UnitsNet
         Decimeter,
         Centimeter,
         Millimeter,
+        Micrometer,
+        Nanometer,
 
         // Length (imperial)
         Mile,

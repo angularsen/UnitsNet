@@ -312,6 +312,10 @@ namespace UnitsNet
                     return l.Centimeters;
                 case Unit.Millimeter:
                     return l.Millimeters;
+                case Unit.Micrometer:
+                    return l.Micrometers;
+                case Unit.Nanometer:
+                    return l.Nanometers;
 
                 case Unit.Mile:
                     return l.Miles;
@@ -323,8 +327,8 @@ namespace UnitsNet
                     return l.Inches;
                 default:
                     throw new Exception(
-                        string.Format("Conversion from length to unit [{0}] is either not valid or not yet implemented.", toUnit));
-
+                        string.Format(
+                            "Conversion from length to unit [{0}] is either not valid or not yet implemented.", toUnit));
             }
         }
 
