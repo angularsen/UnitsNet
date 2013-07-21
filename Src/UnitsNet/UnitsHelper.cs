@@ -33,7 +33,7 @@ namespace UnitsNet
         public const double Gravity = 9.80665;
 
         /// <summary>
-        ///     Returns a SIUnit based on the string representation for that unit.
+        ///     Returns a Unit based on the string representation for that unit.
         ///     Example: Parse("kg"); or Parse("Kilogram");
         /// </summary>
         /// <returns>true if parse was successful</returns>
@@ -41,7 +41,7 @@ namespace UnitsNet
         {
             if (String.IsNullOrEmpty(unitText))
                 throw new ArgumentException(
-                    "Invalid unit description. Should for instance be kg or Kilogram to represent SIUnit.Kilogram type.");
+                    "Invalid unit description. Should for instance be kg or Kilogram to represent Unit.Kilogram type.");
 
             const StringComparison invariantIgnoreCase = StringComparison.OrdinalIgnoreCase;
 
@@ -61,340 +61,430 @@ namespace UnitsNet
             result = fallback;
             return false;
         }
-
-        ///// <summary>
-        ///// Returns the abbreviation string for this unit type, such as "kg" for kilogram.
-        ///// </summary>
-        ///// <param name="d"></param>
-        ///// <returns></returns>
-        //public static string GetDefaultAbbreviation(SIUnit d)
-        //{
-        //    try
-        //    {
-        //        return UnitSystem.Get(CultureInfo.CurrentCulture).GetDefaultAbbreviation(d); //StringEnum.GetStringValue(d).Split();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Could not get unit string for unit [" + d + "]. " + e);
-        //    }
-        //}
-
-//        /// <summary>
-//        /// A method for easier converting a metric distance value to meters.
-//        /// </summary>
-//        /// <param name="value"></param>
-//        /// <param name="fromUnit"></param>
-//        /// <returns></returns>
-//        public static double ToMeter(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Meter;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                case SIUnit.Centimeter:
-//                    return value/100.0;
-
-//                case SIUnit.Millimeter:
-//                    return value/1000;
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-
-//        /// <summary>
-//        /// A method for easier converting a metric distance value to meters.
-//        /// </summary>
-//        /// <param name="value"></param>
-//        /// <param name="fromUnit"></param>
-//        /// <returns></returns>
-//        public static double ToCentimeter(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Centimeter;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                case SIUnit.Meter:
-//                    return value * 100.0;
-
-//                case SIUnit.Millimeter:
-//                    return value / 10;
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-
-//        /// <summary>
-//        /// A method for easier converting a metric distance value to meters.
-//        /// </summary>
-//        /// <param name="value"></param>
-//        /// <param name="fromUnit"></param>
-//        /// <returns></returns>
-//        public static double ToMillimeter(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Millimeter;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                case SIUnit.Meter:
-//                    return value * 1000.0;
-
-//                case SIUnit.Centimeter:
-//                    return value * 10;
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-//        /// <summary>
-//        /// Returns whether the two unit types are in the same unit domain, in other words if they can be
-//        /// converted between.
-//        /// Kilograms and Meters are for instance not compatible, while Meters and Centimeters are.
-//        /// </summary>
-//        /// <param name="unitA"></param>
-//        /// <param name="unitB"></param>
-//        /// <returns></returns>
-//        public static bool IsCompatible(SIUnit unitA, SIUnit unitB)
-//        {
-//            // Force and mass are compatible because they are tied together by the gravitational constant 
-//            // when considering vertical force. Not a good design but it works.
-//            return (IsForce(unitA) && IsForce(unitB) ||
-//                    IsForce(unitA) && IsMass(unitB) ||
-//                    IsDistance(unitA) && IsDistance(unitB) ||
-//                    IsMass(unitA) && IsMass(unitB) ||
-//                    IsMass(unitA) && IsForce(unitB) ||
-//                    IsVoltage(unitA) && IsVoltage(unitB) ||
-//                    IsTorque(unitA) && IsTorque(unitB));
-//        }
-
-//        private static bool IsTorque(SIUnit type)
-//        {
-//            return (type == SIUnit.Newtonmeter);
-//        }
-
-//        private static bool IsVoltage(SIUnit type)
-//        {
-//            return (type == SIUnit.Volt);
-//        }
-
-
-//        /// <summary>
-//        /// A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
-//        /// such as converting from milimeters to meters.
-//        /// </summary>
-//        /// <param name="value"></param>
-//        /// <param name="fromUnit"></param>
-//        /// <param name="toUnit"></param>
-//        /// <returns></returns>
-//        public static double ToUnit(double value, SIUnit fromUnit, SIUnit toUnit)
-//        {
-//            if (fromUnit == toUnit)
-//                return value;
-
-//            // Earlier reflection was used here for more elegant code, but reflections is dead slow 
-//            // and the switch is not too much to maintain since the unit types don't change too often.
-//            // An exception is thrown if a new unit is added but not implemented and this method is called with the 
-//            // new type as argument.
-//            switch (toUnit)
-//            {
-//                case SIUnit.KiloNewton:
-//                    return ToKiloNewton(value, fromUnit);
-
-//                case SIUnit.Kilogram:
-//                    return ToKilogram(value, fromUnit);
-
-//                case SIUnit.Newton:
-//                    return ToNewton(value, fromUnit);
-
-//                case SIUnit.Meter:
-//                    return ToMeter(value, fromUnit);
-
-//                case SIUnit.Centimeter:
-//                    return ToCentimeter(value, fromUnit);
-
-//                case SIUnit.Millimeter:
-//                    return ToMillimeter(value, fromUnit);
-
-//                case SIUnit.Volt:
-//                    return ToVolt(value, fromUnit);
-
-//                case SIUnit.Newtonmeter:
-//                    return ToNewtonmeter(value, fromUnit);
-
-//                case SIUnit.Undefined:
-//                case SIUnit.Error:
-//                case SIUnit.Generic:
-//                    throw new Exception("Can't convert to generic and undefined units.");
-
-//                default:
-//                    throw new ArgumentException("Could not find conversion method for " + GetName(toUnit) + ", it may not be implemented yet.");
-//            }
-//        }
-
-//        public static double ToNewtonmeter(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Newtonmeter;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-
-//        public static double ToKilogram(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Kilogram;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                case SIUnit.Newton:
-//                    return value / Gravity;
-
-//                case SIUnit.KiloNewton:
-//                    return ToKilogram(ToNewton(value, fromUnit), SIUnit.Newton);
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-
-//        public static double ToVolt(double value, SIUnit fromUnit)
-//        {
-//            const SIUnit toUnit = SIUnit.Volt;
-
-////            if (!IsCompatible(fromUnit, toUnit))
-////                throw new ArgumentException(String.Format("Can't convert from unit domain {0} to {1}.", fromUnit, toUnit), "fromUnit");
-
-//            switch (fromUnit)
-//            {
-//                case toUnit:
-//                    return value;
-
-//                default:
-//                    throw new ArgumentException(String.Format("Conversion between {0} and {1} is not implemented", GetName(fromUnit), GetName(toUnit)));
-//            }
-//        }
-
-
-//        public static double ToNewton(double value, SIUnit oldUnit)
-//        {
-//            switch (oldUnit)
-//            {
-//                case SIUnit.Generic:
-//                    throw new Exception("Can't convert from a generic unit, there are no reference values to convert from");
-
-//                case SIUnit.Kilogram:
-//                    return value * Gravity;
-
-//                case SIUnit.Newton:
-//                    return value; // Already in newtons
-
-//                case SIUnit.KiloNewton:
-//                    return value * 1000;
-
-//                default:
-//                    throw new Exception("The unit you are trying to convert from [" + GetName(oldUnit) +
-//                                        "], has not been implemented.");
-//            }
-//        }
-
-//        /// <summary>
-//        /// Do not delete this. It is used via reflection by the ToUnit() method.
-//        /// </summary>
-//        /// <param name="value"></param>
-//        /// <param name="oldUnit"></param>
-//        /// <returns></returns>
-//        // ReSharper disable UnusedPrivateMember
-//        private static double ToKiloNewton(double value, SIUnit oldUnit)
-//            // ReSharper restore UnusedPrivateMember
-//        {
-//            switch (oldUnit)
-//            {
-//                case SIUnit.Generic:
-//                    throw new Exception("Can't convert from a generic unit, there are no reference values to convert from");
-
-//                case SIUnit.Kilogram:
-//                    return ToKilogram(ToNewton(value, oldUnit), SIUnit.Newton);
-
-//                case SIUnit.Newton:
-//                    return value / 1000.0;
-
-//                case SIUnit.KiloNewton:
-//                    return value; // Already in kilonewtons
-
-//                default:
-//                    throw new Exception("The unit you are trying to convert from [" + GetName(oldUnit) +
-//                                        "], has not been implemented.");
-//            }
-//        }
-
-
-//        public static bool IsMass(SIUnit type)
-//        {
-//            return (type == SIUnit.Kilogram);
-//        }
-
-//        public static bool IsForce(SIUnit u)
-//        {
-//            switch (u)
-//            {
-//                case SIUnit.Newton:
-//                case SIUnit.KiloNewton:
-//                    return true;
-//            }
-
-//            return false;
-//        }
-
-
-//        public static bool IsDistance(SIUnit u)
-//        {
-//            switch (u)
-//            {
-//                case SIUnit.Meter:
-//                case SIUnit.Centimeter:
-//                case SIUnit.Millimeter:
-//                    return true;
-//            }
-
-//            return false;
-//        }
+ 
+        /// <summary>
+        /// A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
+        /// such as converting from milimeters to meters.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="fromUnit"></param>
+        /// <param name="toUnit"></param>
+        /// <returns></returns>
+        public static double Convert(double value, Unit fromUnit, Unit toUnit)
+        {
+            if (fromUnit == toUnit)
+                return value;
+
+            double newValue;
+            if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return newValue;
+
+            throw new Exception(
+                string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
+                              fromUnit, toUnit));
+        }
+
+        private static bool TryConvertTime(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Year365Days:
+                    newValue = Convert(TimeSpan.FromDays(365*value), toUnit);
+                    return true;
+                case Unit.Month30Days:
+                    newValue = Convert(TimeSpan.FromDays(30*value), toUnit);
+                    return true;
+                case Unit.Week:
+                    newValue = Convert(TimeSpan.FromDays(7*value), toUnit);
+                    return true;
+                case Unit.Day:
+                    newValue = Convert(TimeSpan.FromDays(value), toUnit);
+                    return true;
+                case Unit.Hour:
+                    newValue = Convert(TimeSpan.FromHours(value), toUnit);
+                    return true;
+                case Unit.Minute:
+                    newValue = Convert(TimeSpan.FromMinutes(value), toUnit);
+                    return true;
+                case Unit.Second:
+                    newValue = Convert(TimeSpan.FromSeconds(value), toUnit);
+                    return true;
+                case Unit.Millisecond:
+                    newValue = Convert(TimeSpan.FromMilliseconds(value), toUnit);
+                    return true;
+                case Unit.Microsecond:
+                    newValue = Convert(TimeSpan.FromTicks(System.Convert.ToInt64(value*10)), toUnit);
+                    return true;
+                case Unit.Nanosecond:
+                    newValue = Convert(TimeSpan.FromSeconds(System.Convert.ToInt64(value/100)), toUnit);
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvertTorque(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Newtonmeter:
+                    newValue = Convert(Torque.FromNewtonmeters(value), toUnit);
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvertForce(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Kilonewton:
+                    newValue = Convert(Force.FromKilonewtons(value), toUnit);
+                    return true;
+                case Unit.Newton:
+                    newValue = Convert(Force.FromNewtons(value), toUnit);
+                    return true;
+                case Unit.KilogramForce:
+                    newValue = Convert(Force.FromKilogramForce(value), toUnit);
+                    return true;
+                case Unit.Dyn:
+                    newValue = Convert(Force.FromDyne(value), toUnit);
+                    return true;
+                case Unit.KiloPond:
+                    newValue = Convert(Force.FromKiloPonds(value), toUnit);
+                    return true;
+                case Unit.PoundForce:
+                    newValue = Convert(Force.FromPoundForce(value), toUnit);
+                    return true;
+                case Unit.Poundal:
+                    newValue = Convert(Force.FromPoundal(value), toUnit);
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+            
+        }
+
+        private static bool TryConvertPressure(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Pascal:
+                    newValue = Convert(Pressure.FromPascals(value), toUnit);
+                    return true;
+                case Unit.KiloPascal:
+                    newValue = Convert(Pressure.FromKiloPascals(value), toUnit);
+                    return true;
+                case Unit.Psi:
+                    newValue = Convert(Pressure.FromPsi(value), toUnit);
+                    return true;
+                case Unit.NewtonPerSquareCentimeter:
+                    newValue = Convert(Pressure.FromNewtonsPerSquareCentimeter(value), toUnit);
+                    return true;
+                case Unit.NewtonPerSquareMillimeter:
+                    newValue = Convert(Pressure.FromNewtonsPerSquareMillimeter(value), toUnit);
+                    return true;
+                case Unit.NewtonPerSquareMeter:
+                    newValue = Convert(Pressure.FromNewtonsPerSquareMeter(value), toUnit);
+                    return true;
+                case Unit.Bar:
+                    newValue = Convert(Pressure.FromBars(value), toUnit);
+                    return true;
+                case Unit.TechnicalAtmosphere:
+                    newValue = Convert(Pressure.FromTechnicalAtmosphere(value), toUnit);
+                    return true;
+                case Unit.Atmosphere:
+                    newValue = Convert(Pressure.FromAtmosphere(value), toUnit);
+                    return true;
+                case Unit.Torr:
+                    newValue = Convert(Pressure.FromTorr(value), toUnit);
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false; 
+            }
+        }
+
+        private static bool TryConvertLength(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Kilometer:
+                    newValue = Convert(Length.FromKilometers(value), toUnit);
+                    return true;
+                case Unit.Meter:
+                    newValue = Convert(Length.FromMeters(value), toUnit);
+                    return true;
+                case Unit.Decimeter:
+                    newValue = Convert(Length.FromDecimeters(value), toUnit);
+                    return true;
+                case Unit.Centimeter:
+                    newValue = Convert(Length.FromCentimeters(value), toUnit);
+                    return true;
+                case Unit.Millimeter:
+                    newValue = Convert(Length.FromMillimeters(value), toUnit);
+                    return true;
+
+                case Unit.Mile:
+                    newValue = Convert(Length.FromMiles(value), toUnit);
+                    return true;
+                case Unit.Yard:
+                    newValue = Convert(Length.FromYards(value), toUnit);
+                    return true;
+                case Unit.Foot:
+                    newValue = Convert(Length.FromFeet(value), toUnit);
+                    return true;
+                case Unit.Inch:
+                    newValue = Convert(Length.FromInches(value), toUnit);
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false; 
+            }
+        }
+
+        private static bool TryConvertMass(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Megatonne:
+                    newValue = Convert(Mass.FromMegatonnes(value), toUnit);
+                    return true;
+                case Unit.Kilotonne:
+                    newValue = Convert(Mass.FromKilotonnes(value), toUnit);
+                    return true;
+                case Unit.Tonne:
+                    newValue = Convert(Mass.FromTonnes(value), toUnit);
+                    return true;
+                case Unit.Kilogram:
+                    newValue = Convert(Mass.FromKilograms(value), toUnit);
+                    return true;
+                case Unit.Hectogram:
+                    newValue = Convert(Mass.FromHectograms(value), toUnit);
+                    return true;
+                case Unit.Decagram:
+                    newValue = Convert(Mass.FromDecagrams(value), toUnit);
+                    return true;
+                case Unit.Gram:
+                    newValue = Convert(Mass.FromGrams(value), toUnit);
+                    return true;
+                case Unit.Decigram:
+                    newValue = Convert(Mass.FromDecigrams(value), toUnit);
+                    return true;
+                case Unit.Centigram:
+                    newValue = Convert(Mass.FromCentigrams(value), toUnit);
+                    return true;
+                case Unit.Milligram:
+                    newValue = Convert(Mass.FromMilligrams(value), toUnit);
+                    return true;
+                    //case Unit.Microgram:
+                    //case Unit.Nanogram:
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        public static double Convert(Length l, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Kilometer:
+                    return l.Kilometers;
+                case Unit.Meter:
+                    return l.Meters;
+                case Unit.Decimeter:
+                    return l.Decimeters;
+                case Unit.Centimeter:
+                    return l.Centimeters;
+                case Unit.Millimeter:
+                    return l.Millimeters;
+
+                case Unit.Mile:
+                    return l.Miles;
+                case Unit.Yard:
+                    return l.Yards;
+                case Unit.Foot:
+                    return l.Feet;
+                case Unit.Inch:
+                    return l.Inches;
+                default:
+                    throw new Exception(
+                        string.Format("Conversion from length to unit [{0}] is either not valid or not yet implemented.", toUnit));
+
+            }
+        }
+
+        private static double Convert(Mass m, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Megatonne:
+                    return m.Megatonnes;
+                case Unit.Kilotonne:
+                    return m.Kilotonnes;
+                case Unit.Tonne:
+                    return m.Tonnes;
+                case Unit.Kilogram:
+                    return m.Kilograms;
+                case Unit.Hectogram:
+                    return m.Hectograms;
+                case Unit.Decagram:
+                    return m.Decagrams;
+                case Unit.Gram:
+                    return m.Grams;
+                case Unit.Decigram:
+                    return m.Decigrams;
+                case Unit.Centigram:
+                    return m.Centigrams;
+                case Unit.Milligram:
+                    return m.Milligrams;
+                    //case Unit.Microgram:
+                    //             return m.Micrograms;
+                    //case Unit.Nanogram:
+                    //             return m.Nanograms;
+                default:
+                    throw new Exception(
+                        string.Format("Conversion from mass to unit [{0}] is either not valid or not yet implemented.", toUnit));
+            }
+        }
+
+        public static double Convert(Pressure p, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Pascal:
+                    return p.Pascals;
+                case Unit.KiloPascal:
+                    return p.KiloPascals;
+                case Unit.Psi:
+                    return p.Psi;
+                case Unit.NewtonPerSquareCentimeter:
+                    return p.NewtonsPerSquareCentimeter;
+                case Unit.NewtonPerSquareMillimeter:
+                    return p.NewtonsPerSquareMeter;
+                case Unit.NewtonPerSquareMeter:
+                    return p.NewtonsPerSquareMillimeter;
+                case Unit.Bar:
+                    return p.Bars;
+                case Unit.TechnicalAtmosphere:
+                    return p.TechnicalAtmosphere;
+                case Unit.Atmosphere:
+                    return p.Atmosphere;
+                case Unit.Torr:
+                    return p.Torr;
+
+                default:
+                    throw new Exception(
+                        string.Format(
+                            "Conversion from pressure to unit [{0}] is either not valid or not yet implemented.", toUnit));
+            }
+        }
+
+        public static double Convert(Force f, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Kilonewton:
+                    return f.Kilonewtons;
+                case Unit.Newton:
+                    return f.Newtons;
+                case Unit.KilogramForce:
+                    return f.KilogramForce;
+                case Unit.Dyn:
+                    return f.Dyne;
+                case Unit.KiloPond:
+                    return f.KiloPonds;
+                case Unit.PoundForce:
+                    return f.PoundForce;
+                case Unit.Poundal:
+                    return f.Poundal;
+
+                default:
+                    throw new Exception(
+                        string.Format(
+                            "Conversion from force to unit [{0}] is either not valid or not yet implemented.", toUnit));
+            }
+        }
+       // public static double Convert(Volume v, Unit toUnit)
+       // {
+       //     switch (toUnit)
+       //     {
+       //case Unit.CubicMeter:
+       //             retunr
+       //case Unit.CubicDecimeter:
+       //case Unit.CubicCentimeter:
+       //case Unit.CubicMillimeter:
+       //case Unit.Liter:
+       //case Unit.Deciliter:
+       //case Unit.Centiliter:
+       //case Unit.Milliliter:
+       ////case Unit.Gallon:
+
+       //         default:
+       //             throw new Exception(
+       //                 string.Format(
+       //                     "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
+       //     }
+       // }
+
+        public static double Convert(Torque t, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Newtonmeter:
+                    return t.Newtonmeters;
+
+                default:
+                    throw new Exception(
+                        string.Format(
+                            "Conversion from torque to unit [{0}] is either not valid or not yet implemented.", toUnit));
+            }
+        }
+
+        public static double Convert(TimeSpan t, Unit toUnit)
+        {
+            switch (toUnit)
+            {
+                case Unit.Year365Days:
+                    return t.TotalDays/365;
+                case Unit.Month30Days:
+                    return t.TotalDays/30;
+                case Unit.Week:
+                    return t.TotalDays/7;
+                case Unit.Day:
+                    return t.TotalDays;
+                case Unit.Hour:
+                    return t.TotalHours;
+                case Unit.Minute:
+                    return t.TotalMinutes;
+                case Unit.Second:
+                    return t.TotalSeconds;
+                case Unit.Millisecond:
+                    return t.TotalMilliseconds;
+                case Unit.Microsecond:
+                    return t.Ticks/10.0;
+                case Unit.Nanosecond:
+                    return t.Ticks*100;
+
+                default:
+                    throw new Exception(
+                        string.Format(
+                            "Conversion from time to unit [{0}] is either not valid or not yet implemented.", toUnit));
+            }
+        } 
     }
 }

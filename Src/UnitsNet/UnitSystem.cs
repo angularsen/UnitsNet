@@ -150,7 +150,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Milligram, "mg");
 
             // Forces
-            MapUnitToAbbreviation(Unit.KiloNewton, "kN");
+            MapUnitToAbbreviation(Unit.Kilonewton, "kN");
             MapUnitToAbbreviation(Unit.Newton, "N");
 
             // Torque
