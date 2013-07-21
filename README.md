@@ -6,7 +6,7 @@ Data structures and methods that make life working with units just a little bit 
 What Is It?
 ===========
 
-Everyone has written their share of trivial conversions between meters and centimeters, or less trivial conversions, like Pascal and PSI, where most mortals need a quick Google to find that magic constant.
+Everyone has written their share of trivial conversions between meters and centimeters, or less trivial conversions like Pascal and PSI where most mortals need a quick Google to find that magic constant.
 
 Stop littering your code with unnecessary calculations. With Units.NET you have all the common units and conversions available. It is light-weight, unit tested and open source.
 
@@ -14,17 +14,35 @@ Stop littering your code with unnecessary calculations. With Units.NET you have 
 Features
 ========
 
-* Structs for most standard units of measurement, such as Length, Position, Mass, Force and Pressure. See full list here.
-* Convert between units of same measurement: Length.FromMeters(1).Centimeters = 100
-* Convert between metric and imperial units: Length.FromMeters(1).Yards = 1.09361
-* Helper methods to construct measurements: Force.FromPressureByArea(Pressure p, Length2d area)
-* Parse and get culture-specific unit abbreviations
+* Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
+* Has most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
 
+Convert Between Units of Measurement
+------------------------------------
 ```C#
+// Convert between units of measurement.
+Length.FromMeters(1).Centimeters == 100
 
+// Convert between metric and imperial units.
+Length.FromMeters(1).Yards == 1.09361
+```
+
+Helper Methods to Construct Measurements
+----------------------------------------
+```C#
+var f = Force.FromPressureByArea(Pressure p, Length2d area);
+var f = Force.FromMassAcceleration(Mass mass, double metersPerSecondSquared);
+```
+
+Parse and Get Culture-Specific Abbreviations
+-------------------------------------------------
+```C#
   var us = new CultureInfo("en-US");
   var norwegian = new CultureInfo("nb-NO");
+  
   Unit.Tablespoon == UnitSystem.Create(us).Parse("tbsp")
-  Unit.Tablespoon == UnitSystem.Create(norwegian).Parse("ss")
+  Unit.Tablespoon == UnitSystem.Create(norwegian).Parse("ss")  
+
   "T" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, us)
+  "ss" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, norwegian)
 ```
