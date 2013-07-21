@@ -20,13 +20,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
     /// <summary>
-    ///     Enumeration for all the SI units implemented.
-    ///     This is used for converting between values in the same unit domain such as distance, electricity etc.
+    ///     Class for dynamically converting between units.
     /// </summary>
     public static class UnitConverter
     {
