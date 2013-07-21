@@ -14,14 +14,43 @@ Features
 * Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
 * Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
 
-Convert Between Units of Measurement
-------------------------------------
+Explicit Representation and Conversion of Units
+-----------------------------------------------
 ```C#
+// Stop postfixing your variables and method names with the unit.
+double weightKg = GetPersonWeightInKg();
+double weightGrams = weightKg * 1000;
+double weightTonnes = weightKg * 1000;
+
+// Start using an explicit representation for the measurement and explicitly convert to the unit of choice - when you need it.
+Mass weight = GetPersonWeight();
+double weightGrams = weight.Grams;
+double weightTonnes = weight.Tonnes;
+
+// Weight and mass are often, mistakenly, used as the same thing. Explicit representation helps avoid this confusion.
+Mass weight = GetPersonWeight();
+double weightNewtons = weight.Newtons; // No such thing
+
+// Convert between compatible units of measurement.
+Force scaleMeasurement = Force.FromNewtons(850);
+Mass personWeight = Mass.FromGravitationalForce(scaleMeasurement);
+double weightKg = personWeight.Kilograms;
+
 // Convert between units of measurement.
-Length.FromMeters(1).Centimeters == 100
+double cm = Length.FromMeters(1).Centimeters; // 100
 
 // Convert between metric and imperial units.
-Length.FromMeters(1).Yards == 1.09361
+double yards = Length.FromMeters(1).Yards; // 1.09361
+```
+
+UnitValue Representation and Conversion
+--------------------------------------
+```C#
+UnitValue val = GetUnknownValueAndUnit();
+
+// Returns false if conversion was not possible.
+double cm;
+val.TryConvert(LengthUnit.Centimeter, out cm);
 ```
 
 Helper Methods to Construct Measurements
