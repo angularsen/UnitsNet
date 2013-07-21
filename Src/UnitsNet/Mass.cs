@@ -136,6 +136,11 @@ namespace UnitsNet
             return new Mass(value*1E-6);
         }
 
+	public static Mass FromGravitationalForce(Force f)
+	{
+	    return new Mass(f.KilogramForce);
+	}
+
         #endregion
 
         #region Arithmetic operators
