@@ -9,7 +9,7 @@
         <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Data structures and methods to convert values between units, parse values and units from text or get textual representations.</description>
+        <description>Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports PCL.</description>
         <summary>Simplifies working with units of measurement.</summary>
         <releaseNotes>Added more unit conversions and fixed some bugs.</releaseNotes>
         <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
