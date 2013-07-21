@@ -13,16 +13,16 @@ namespace UnitsNet.Tests.net35
             Pressure pa = Pressure.FromPascals(1);
 
             // Source: http://en.wikipedia.org/wiki/Pressure
-            Assert.AreEqual(9.8692E-6, pa.Atmosphere);
+            Assert.AreEqual(9.8692*1E-6, pa.Atmosphere);
             Assert.AreEqual(1E-5, pa.Bars, Delta);
             Assert.AreEqual(1E-3, pa.KiloPascals);
             Assert.AreEqual(1E-4, pa.NewtonsPerSquareCentimeter, Delta);
             Assert.AreEqual(1, pa.NewtonsPerSquareMeter, Delta);
             Assert.AreEqual(1E-6, pa.NewtonsPerSquareMillimeter, Delta);
             Assert.AreEqual(1, pa.Pascals);
-            Assert.AreEqual(1.450377E-4, pa.Psi, Delta);
-            Assert.AreEqual(1.0197E-5, pa.TechnicalAtmosphere, Delta);
-            Assert.AreEqual(7.5006E-3, pa.Torr, Delta);
+            Assert.AreEqual(1.450377*1E-4, pa.Psi, Delta);
+            Assert.AreEqual(1.0197*1E-5, pa.TechnicalAtmosphere, Delta);
+            Assert.AreEqual(7.5006*1E-3, pa.Torr, Delta);
         }
 
         [Test]
