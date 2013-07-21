@@ -176,22 +176,6 @@ namespace UnitsNet
             return new Mass(left.Kilograms/right);
         }
 
-        #region Equality / IComparable
-
-        #endregion
-
-        public int CompareTo(object obj)
-        {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Mass)) throw new ArgumentException("Expected type Mass.", "obj");
-            return CompareTo((Mass) obj);
-        }
-
-        public int CompareTo(Mass other)
-        {
-            return Kilograms.CompareTo(other.Kilograms);
-        }
-
         public static bool operator <=(Mass left, Mass right)
         {
             return left.Kilograms <= right.Kilograms;
@@ -210,6 +194,22 @@ namespace UnitsNet
         public static bool operator >(Mass left, Mass right)
         {
             return left.Kilograms > right.Kilograms;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (!(obj is Mass)) throw new ArgumentException("Expected type Mass.", "obj");
+            return CompareTo((Mass) obj);
+        }
+
+        public int CompareTo(Mass other)
+        {
+            return Kilograms.CompareTo(other.Kilograms);
         }
 
         #endregion
