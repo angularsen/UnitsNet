@@ -69,7 +69,6 @@
     <Compile Include="UnitsHelper.cs" />
     <Compile Include="UnitSystem.cs" />
     <Compile Include="ElectricPotential.cs" />
-    <Compile Include="UnitConverter.cs" />
     <Compile Include="UnitValue.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />

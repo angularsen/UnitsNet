@@ -51,7 +51,6 @@
     <Compile Include="UnitSystem.cs" />
     <Compile Include="UnitValue.cs" />
     <Compile Include="Torque.cs" />
-    <Compile Include="UnitConverter.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
   </ItemGroup>
