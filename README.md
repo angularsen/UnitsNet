@@ -12,7 +12,7 @@ Features
 ========
 
 * Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
-* Has most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
+* Enumeration and conversion between most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
 
 Convert Between Units of Measurement
 ------------------------------------
