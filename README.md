@@ -3,9 +3,6 @@ Units.NET
 
 Data structures and methods that make life working with units just a little bit better.
 
-What Is It?
-===========
-
 Everyone has written their share of trivial conversions between meters and centimeters, or less trivial conversions like Pascal and PSI where most mortals need a quick Google to find that magic constant.
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units and conversions. It is light-weight, unit tested and open source.
