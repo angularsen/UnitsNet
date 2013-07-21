@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DynamicConversionThrowsOnIncompatibleUnits()
         {
-            Assert.Throws<Exception>(() => UnitsHelper.Convert(1, Unit.Meter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
         }
     }
 }
