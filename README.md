@@ -99,6 +99,7 @@ Work In Progress
 ================
 
 * Not all conversions are unit tested yet.
+* Parsing and getting textual representations are not fully functional.
 * Document all the data structures, units and conversions.
 
 Want To Contribute?
