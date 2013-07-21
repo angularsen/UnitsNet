@@ -46,6 +46,7 @@
     <Compile Include="LengthTests.cs" />
     <Compile Include="ForceTests.cs" />
     <Compile Include="MassTests.cs" />
+    <Compile Include="PressureTests.cs" />
     <Compile Include="UnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

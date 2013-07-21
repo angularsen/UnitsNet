@@ -30,7 +30,9 @@ namespace UnitsNet
     public struct Pressure : IComparable, IComparable<Pressure>
     {
         private const double KpaToPaRatio = 1000;
-        private const double NscToPaRatio = 0.0001;
+        private const double Nm2ToPaRatio = 1;
+        private const double Ncm2ToPaRatio = 1E-4;
+        private const double Nmm2ToPaRatio = 1E-6;
         private const double BarToPaRatio = 1E-5;
         private const double TaToPaRatio = 10.197E-6;
         private const double AtmToPaRatio = 9.8692E-6;
@@ -54,9 +56,19 @@ namespace UnitsNet
             get { return KpaToPaRatio*Pascals; }
         }
 
+        public double NewtonsPerSquareMeter
+        {
+            get { return Nm2ToPaRatio * Pascals; }
+        }
+
         public double NewtonsPerSquareCentimeter
         {
-            get { return NscToPaRatio*Pascals; }
+            get { return Ncm2ToPaRatio*Pascals; }
+        }
+
+        public double NewtonsPerSquareMillimeter
+        {
+            get { return Nmm2ToPaRatio*Pascals; }
         }
 
         public double Bars
@@ -105,7 +117,17 @@ namespace UnitsNet
 
         public static Pressure FromNewtonsPerSquareCentimeter(double nsc)
         {
-            return new Pressure(NscToPaRatio*nsc);
+            return new Pressure(Ncm2ToPaRatio*nsc);
+        }
+
+        public static Pressure FromNewtonsPerSquareMeter(double nm2)
+        {
+            return new Pressure(Nm2ToPaRatio*nm2); 
+        }
+
+        public static Pressure FromNewtonsPerSquareMillimeter(double nmm2)
+        {
+            return new Pressure(Nmm2ToPaRatio*nmm2); 
         }
 
         public static Pressure FromBars(double bars)
@@ -209,6 +231,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return Pascals + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Pascal);
-        }
+        } 
     }
 }
