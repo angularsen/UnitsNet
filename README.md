@@ -45,10 +45,18 @@ double feet = meter.Feet; // 3.28084
 double inches = meter.Inches; // 39.3701
 
 Pressure p = Pressure.FromPascal(1);
-double kpa = p.KiloPascals; // 1 × 10-3
+double kpa = p.KiloPascals; // 1000
 double bar = p.Bars; // 1 × 10-5
 double atm = p.Atmosphere; // 9.86923267 × 10-6
 double psi = p.Psi; // 1.45037738 × 10-4
+```
+
+Dynamic Conversions
+-------------------
+```C#
+double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
+double mi = UnitConverter.Convert(1, Unit.Kilometer, Unit.Mile); // 0.621371
+double yds = UnitConverter.Convert(1, Unit.Meter, Unit.Yard); // 1.09361
 ```
 
 UnitValue Representation and Conversion
