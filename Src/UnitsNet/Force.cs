@@ -119,9 +119,9 @@ namespace UnitsNet
             return new Force(newtons);
         }
 
-        public static Force FromMassAcceleration(Mass mass, double metersPerSecondSquare)
+        public static Force FromMassAcceleration(Mass mass, double metersPerSecondSquared)
         {
-            return new Force(mass.Kilograms*metersPerSecondSquare);
+            return new Force(mass.Kilograms*metersPerSecondSquared);
         }
 
         #endregion
