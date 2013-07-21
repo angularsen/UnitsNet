@@ -3,7 +3,7 @@ Units.NET
 
 Data structures and methods that make life working with units just a little bit better.
 
-Everyone has written their share of trivial conversions between meters and centimeters, or less obvious conversions to units like Pascal and PSI where most mortals need a quick Google to find that magic constant.
+Everyone have written their share of trivial conversions between meters and centimeters, or less obvious conversions to units like Pascal and PSI where most mortals need a quick Google to find that magic constant.
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
 
@@ -12,16 +12,53 @@ Features
 ========
 
 * Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
-* Has most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
+* Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
 
-Convert Between Units of Measurement
-------------------------------------
+Explicit Representation and Conversion of Units
+-----------------------------------------------
 ```C#
-// Convert between units of measurement.
-Length.FromMeters(1).Centimeters == 100
+// Stop postfixing your variables and method names with the unit...
+double weightKg = GetPersonWeightInKg();
+double weightGrams = weightKg * 1000;
+double weightTonnes = weightKg / 1000;
 
-// Convert between metric and imperial units.
-Length.FromMeters(1).Yards == 1.09361
+// ...and start using an explicit representation for the measurement then 
+// explicitly convert to the unit of choice - when you need it.
+Mass weight = GetPersonWeight();
+double weightGrams = weight.Grams;
+double weightTonnes = weight.Tonnes;
+
+// Convert between compatible units of measurement...
+Force scaleMeasurement = Force.FromNewtons(850);
+Mass personWeight = Mass.FromGravitationalForce(scaleMeasurement);
+double weightKg = personWeight.Kilograms;
+
+// ...while avoiding confusing conversions, such as between weight and mass.
+Mass weight = GetPersonWeight();
+double weightNewtons = weight.Newtons; // No such thing.
+
+// Some popular conversions.
+Length meter = Length.FromMeters(1);
+double cm = meter.Centimeters; // 100
+double yards = meter.Yards; // 1.09361
+double feet = meter.Feet; // 3.28084
+double inches = meter.Inches; // 39.3701
+
+Pressure p = Pressure.FromPascal(1);
+double kpa = p.KiloPascals; // 1E-3
+double bar = p.Bars; // 1E5
+double atm = p.Atmosphere; // 1.01325E5
+double psi = p.Psi; // 6.8948E3
+```
+
+UnitValue Representation and Conversion
+--------------------------------------
+```C#
+UnitValue val = GetUnknownValueAndUnit();
+
+// Returns false if conversion was not possible.
+double cm;
+val.TryConvert(LengthUnit.Centimeter, out cm);
 ```
 
 Helper Methods to Construct Measurements
@@ -48,14 +85,17 @@ What It Is Not
 ==============
 
 * It is not an equation solver. 
-* It does not dynamically figure out the units after a calculation.
+* It does not figure out the units after a calculation.
 
 Work In Progress
 ================
 
-* Write tests for all conversions.
-* Example code.
+* Not all conversions are unit tested yet.
+* Document all the data structures, units and conversions.
 
 Want To Contribute?
 ===================
-I will try my best to consider all pull requests.
+* The documentation could need some help.
+* Add new units and conversions. Make sure to add unit tests for it.
+
+Just send a pull request and I will try my best to get it in.
