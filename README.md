@@ -85,14 +85,17 @@ What It Is Not
 ==============
 
 * It is not an equation solver. 
-* It does not dynamically figure out the units after a calculation.
+* It does not figure out the units after a calculation.
 
 Work In Progress
 ================
 
-* Write tests for all conversions.
-* Example code.
+* Not all conversions are unit tested yet.
+* Document all the data structures, units and conversions.
 
 Want To Contribute?
 ===================
-I will try my best to consider all pull requests.
+* The documentation could need some help.
+* Add new units and conversions. Make sure to add unit tests for it.
+
+Just send a pull request and I will try my best to get it in.
