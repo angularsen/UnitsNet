@@ -30,8 +30,6 @@ namespace UnitsNet
     /// </summary>
     public static class UnitConverter
     {
-        public const double Gravity = 9.80665;
-
         /// <summary>
         /// A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
         /// such as converting from milimeters to meters.
