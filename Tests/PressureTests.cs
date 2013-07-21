@@ -13,7 +13,7 @@ namespace UnitsNet.Tests.net35
             Pressure pa = Pressure.FromPascals(1);
 
             // Source: http://en.wikipedia.org/wiki/Pressure
-            Assert.AreEqual(9.8692*1E-6, pa.Atmosphere);
+            Assert.AreEqual(9.8692*1E-6, pa.Atmosphere, Delta);
             Assert.AreEqual(1E-5, pa.Bars, Delta);
             Assert.AreEqual(1E-3, pa.KiloPascals);
             Assert.AreEqual(1E-4, pa.NewtonsPerSquareCentimeter, Delta);
@@ -28,18 +28,18 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void PressureUnitsRoundTrip()
         {
-            Pressure oneNewton = Pressure.FromPascals(1);
+            Pressure pa = Pressure.FromPascals(1);
 
-            Assert.AreEqual(1, Pressure.FromAtmosphere(oneNewton.Atmosphere).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromBars(oneNewton.Bars).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromKiloPascals(oneNewton.KiloPascals).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareCentimeter(oneNewton.NewtonsPerSquareCentimeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMeter(oneNewton.NewtonsPerSquareMeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMillimeter(oneNewton.NewtonsPerSquareMillimeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromPascals(oneNewton.Pascals).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromPsi(oneNewton.Psi).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromTechnicalAtmosphere(oneNewton.TechnicalAtmosphere).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromTorr(oneNewton.Torr).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromAtmosphere(pa.Atmosphere).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromBars(pa.Bars).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromKiloPascals(pa.KiloPascals).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareCentimeter(pa.NewtonsPerSquareCentimeter).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMeter(pa.NewtonsPerSquareMeter).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMillimeter(pa.NewtonsPerSquareMillimeter).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromPascals(pa.Pascals).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromPsi(pa.Psi).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromTechnicalAtmosphere(pa.TechnicalAtmosphere).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromTorr(pa.Torr).Pascals, Delta);
         }
     }
 }

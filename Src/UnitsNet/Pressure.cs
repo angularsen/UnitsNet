@@ -31,13 +31,13 @@ namespace UnitsNet
     {
         private const double KpaToPaRatio = 1000;
         private const double Nm2ToPaRatio = 1;
-        private const double Ncm2ToPaRatio = 1E-4;
-        private const double Nmm2ToPaRatio = 1E-6;
-        private const double BarToPaRatio = 1E-5;
-        private const double TaToPaRatio = 10.197E-6;
-        private const double AtmToPaRatio = 9.8692E-6;
-        private const double TorrToPaRatio = 7.5006E-3;
-        private const double PsiToPaRatio = 145.04E-6;
+        private const double Ncm2ToPaRatio = 1E+4;
+        private const double Nmm2ToPaRatio = 1E+6;
+        private const double BarToPaRatio = 1E+5;
+        private const double TaToPaRatio = 9.80680592331*1E4;
+        private const double AtmToPaRatio = 101325;
+        private const double TorrToPaRatio = 1.3332266752*1E2;
+        private const double PsiToPaRatio = 6.89464975179*1E3;
 
         /// <summary>
         ///     Pressure in pascal.
@@ -53,47 +53,47 @@ namespace UnitsNet
 
         public double KiloPascals
         {
-            get { return KpaToPaRatio*Pascals; }
+            get { return Pascals/KpaToPaRatio; }
         }
 
         public double NewtonsPerSquareMeter
         {
-            get { return Nm2ToPaRatio*Pascals; }
+            get { return Pascals/Nm2ToPaRatio; }
         }
 
         public double NewtonsPerSquareCentimeter
         {
-            get { return Ncm2ToPaRatio*Pascals; }
+            get { return Pascals/Ncm2ToPaRatio; }
         }
 
         public double NewtonsPerSquareMillimeter
         {
-            get { return Nmm2ToPaRatio*Pascals; }
+            get { return Pascals/Nmm2ToPaRatio; }
         }
 
         public double Bars
         {
-            get { return BarToPaRatio*Pascals; }
+            get { return Pascals/BarToPaRatio; }
         }
 
         public double TechnicalAtmosphere
         {
-            get { return TaToPaRatio*Pascals; }
+            get { return Pascals/TaToPaRatio; }
         }
 
         public double Atmosphere
         {
-            get { return AtmToPaRatio*Pascals; }
+            get { return Pascals/AtmToPaRatio; }
         }
 
         public double Torr
         {
-            get { return TorrToPaRatio*Pascals; }
+            get { return Pascals/TorrToPaRatio; }
         }
 
         public double Psi
         {
-            get { return PsiToPaRatio*Pascals; }
+            get { return Pascals/PsiToPaRatio; }
         }
 
         #endregion
