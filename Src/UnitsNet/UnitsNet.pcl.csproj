@@ -46,6 +46,7 @@
     <Compile Include="SiUnits.cs" />
     <Compile Include="Torque.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="UnitParser.cs" />
     <Compile Include="UnitsHelper.cs" />
     <Compile Include="UnitSystem.cs" />
     <Compile Include="UnitValue.cs" />
