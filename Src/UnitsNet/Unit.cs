@@ -64,7 +64,7 @@ namespace UnitsNet
         Bar,
         TechnicalAtmosphere,
         Atmosphere,
-        Torr, 
+        Torr,
 
         // Force
         Kilonewton,
@@ -87,10 +87,10 @@ namespace UnitsNet
         Centiliter,
         Milliliter,
         //Gallon,
-        
+
         // Torque
         Newtonmeter,
-        
+
         // Generic / Other
         Piece,
         Percent,
@@ -100,11 +100,12 @@ namespace UnitsNet
 
         // Time
         /// <summary>
-        /// Do not use for accurate calculations. Does not take calendar into account and simply represents a year of 365 days.
+        ///     Do not use for accurate calculations. Does not take calendar into account and simply represents a year of 365 days.
         /// </summary>
         Year365Days,
+
         /// <summary>
-        /// Do not use for accurate calculations. Does not take calendar into account and simply represents a month of 30 days.
+        ///     Do not use for accurate calculations. Does not take calendar into account and simply represents a month of 30 days.
         /// </summary>
         Month30Days,
         Week,
@@ -120,6 +121,7 @@ namespace UnitsNet
         Tablespoon,
         Teaspoon,
     }
+
     //public enum LengthUnit
     //{ 
     //    Kilometer,

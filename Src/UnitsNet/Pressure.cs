@@ -58,7 +58,7 @@ namespace UnitsNet
 
         public double NewtonsPerSquareMeter
         {
-            get { return Nm2ToPaRatio * Pascals; }
+            get { return Nm2ToPaRatio*Pascals; }
         }
 
         public double NewtonsPerSquareCentimeter
@@ -122,12 +122,12 @@ namespace UnitsNet
 
         public static Pressure FromNewtonsPerSquareMeter(double nm2)
         {
-            return new Pressure(Nm2ToPaRatio*nm2); 
+            return new Pressure(Nm2ToPaRatio*nm2);
         }
 
         public static Pressure FromNewtonsPerSquareMillimeter(double nmm2)
         {
-            return new Pressure(Nmm2ToPaRatio*nmm2); 
+            return new Pressure(Nmm2ToPaRatio*nmm2);
         }
 
         public static Pressure FromBars(double bars)
@@ -231,6 +231,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return Pascals + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Pascal);
-        } 
+        }
     }
 }

@@ -29,8 +29,8 @@ namespace UnitsNet
     public static class UnitConverter
     {
         /// <summary>
-        /// A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
-        /// such as converting from milimeters to meters.
+        ///     A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
+        ///     such as converting from milimeters to meters.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="fromUnit"></param>
@@ -139,7 +139,6 @@ namespace UnitsNet
                     newValue = 0;
                     return false;
             }
-            
         }
 
         private static bool TryConvertPressure(double value, Unit fromUnit, Unit toUnit, out double newValue)
@@ -179,7 +178,7 @@ namespace UnitsNet
 
                 default:
                     newValue = 0;
-                    return false; 
+                    return false;
             }
         }
 
@@ -218,7 +217,7 @@ namespace UnitsNet
 
                 default:
                     newValue = 0;
-                    return false; 
+                    return false;
             }
         }
 
@@ -328,7 +327,8 @@ namespace UnitsNet
                     //             return m.Nanograms;
                 default:
                     throw new Exception(
-                        string.Format("Conversion from mass to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                        string.Format("Conversion from mass to unit [{0}] is either not valid or not yet implemented.",
+                                      toUnit));
             }
         }
 
@@ -389,27 +389,28 @@ namespace UnitsNet
                             "Conversion from force to unit [{0}] is either not valid or not yet implemented.", toUnit));
             }
         }
-       // public static double Convert(Volume v, Unit toUnit)
-       // {
-       //     switch (toUnit)
-       //     {
-       //case Unit.CubicMeter:
-       //             retunr
-       //case Unit.CubicDecimeter:
-       //case Unit.CubicCentimeter:
-       //case Unit.CubicMillimeter:
-       //case Unit.Liter:
-       //case Unit.Deciliter:
-       //case Unit.Centiliter:
-       //case Unit.Milliliter:
-       ////case Unit.Gallon:
 
-       //         default:
-       //             throw new Exception(
-       //                 string.Format(
-       //                     "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
-       //     }
-       // }
+        // public static double Convert(Volume v, Unit toUnit)
+        // {
+        //     switch (toUnit)
+        //     {
+        //case Unit.CubicMeter:
+        //             retunr
+        //case Unit.CubicDecimeter:
+        //case Unit.CubicCentimeter:
+        //case Unit.CubicMillimeter:
+        //case Unit.Liter:
+        //case Unit.Deciliter:
+        //case Unit.Centiliter:
+        //case Unit.Milliliter:
+        ////case Unit.Gallon:
+
+        //         default:
+        //             throw new Exception(
+        //                 string.Format(
+        //                     "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
+        //     }
+        // }
 
         public static double Convert(Torque t, Unit toUnit)
         {
@@ -455,6 +456,6 @@ namespace UnitsNet
                         string.Format(
                             "Conversion from time to unit [{0}] is either not valid or not yet implemented.", toUnit));
             }
-        } 
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace UnitsNet
 
         public double Inches
         {
-            get { return Meters * 39.3701; }
+            get { return Meters*39.3701; }
         }
 
         public double Kilometers
@@ -148,7 +148,7 @@ namespace UnitsNet
         public static Length FromDecimeters(double dm)
         {
             return new Length(dm*1E-1);
-        } 
+        }
 
         public static Length FromCentimeters(double cm)
         {
@@ -267,6 +267,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return Meters + " m";
-        } 
+        }
     }
 }

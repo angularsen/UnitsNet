@@ -85,12 +85,12 @@ namespace UnitsNet
         public Vector2 Miles
         {
             get { return new Vector2(X.Miles, Y.Miles); }
-        } 
+        }
 
         public Vector2 Yards
         {
             get { return new Vector2(X.Yards, Y.Yards); }
-        } 
+        }
 
         public Vector2 Feet
         {
@@ -105,12 +105,12 @@ namespace UnitsNet
         public Vector2 Kilometers
         {
             get { return new Vector2(X.Kilometers, Y.Kilometers); }
-        } 
+        }
 
         public Vector2 Decimeters
         {
             get { return new Vector2(X.Decimeters, Y.Decimeters); }
-        } 
+        }
 
         /// <summary>
         ///     Returns a point represented in centimeters.
@@ -131,12 +131,12 @@ namespace UnitsNet
         public Vector2 Micrometers
         {
             get { return new Vector2(X.Micrometers, Y.Micrometers); }
-        } 
+        }
 
         public Vector2 Nanometers
         {
             get { return new Vector2(X.Nanometers, Y.Nanometers); }
-        } 
+        }
 
         #endregion
 
