@@ -11,8 +11,8 @@ Stop littering your code with unnecessary calculations. Units.NET gives you all 
 Features
 ========
 
-* Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
-* Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
+* Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/ "Data structures").
+* Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/Unit.cs "Unit.cs").
 
 Explicit Representation and Conversion of Units
 -----------------------------------------------
@@ -51,17 +51,15 @@ double atm = p.Atmosphere; // 9.86923267 × 10-6
 double psi = p.Psi; // 1.45037738 × 10-4
 ```
 
-Dynamic Conversions
--------------------
+Dynamic Conversion
+------------------
 ```C#
+// Explicitly
 double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
 double mi = UnitConverter.Convert(1, Unit.Kilometer, Unit.Mile); // 0.621371
 double yds = UnitConverter.Convert(1, Unit.Meter, Unit.Yard); // 1.09361
-```
 
-UnitValue Representation and Conversion
---------------------------------------
-```C#
+// Or implicitly.
 UnitValue val = GetUnknownValueAndUnit();
 
 // Returns false if conversion was not possible.
@@ -97,14 +95,16 @@ What It Is Not
 
 Work In Progress
 ================
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing.
 
+* Add more units.
 * Not all conversions are unit tested yet.
-* Parsing and getting textual representations are not fully functional.
+* Parsing and getting textual representations not complete.
 * Document all the data structures, units and conversions.
 
 Want To Contribute?
 ===================
-* The documentation could need some help.
-* Add new units and conversions. Make sure to add unit tests for it.
-
 Just send a pull request and I will try my best to get it in.
+For things to do, please see Work In Progress.
+
+[Contact me](https://github.com/anjdreas) if you have any questions.
