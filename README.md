@@ -11,8 +11,8 @@ Stop littering your code with unnecessary calculations. Units.NET gives you all 
 Features
 ========
 
-* Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](http://TODO "TODO").
-* Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](http://TODO "TODO").
+* Structs for most standard units of measurement, such as Length, Mass, Force and Pressure. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/ "Data structures").
+* Enumeration of and conversion between most standard units in the metric and imperial systems. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/Unit.cs "Unit.cs").
 
 Explicit Representation and Conversion of Units
 -----------------------------------------------
