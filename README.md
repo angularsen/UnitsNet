@@ -107,4 +107,4 @@ Want To Contribute?
 Just send a pull request and I will try my best to get it in.
 For things to do, please see Work In Progress.
 
-Contact me if you have any questions.
+[Contact me](https://github.com/anjdreas) if you have any questions.
