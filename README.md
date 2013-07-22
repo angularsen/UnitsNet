@@ -8,8 +8,8 @@ Everyone have written their share of trivial conversions between meters and cent
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
 
 
-Intalling
-=========
+Install
+=======
 To install Units.NET, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/ "NuGet site").
 
 ![Install-Package UnitsNet](Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
