@@ -119,8 +119,7 @@ This project is still early and many units and conversions are not yet covered. 
 
 Want To Contribute?
 ===================
-Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
-
+Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).<br>
 For other things to do, see Work In Progress.
 
 
