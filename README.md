@@ -95,14 +95,16 @@ What It Is Not
 
 Work In Progress
 ================
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing.
 
+* Add more units.
 * Not all conversions are unit tested yet.
-* Parsing and getting textual representations are not fully functional.
+* Parsing and getting textual representations not complete.
 * Document all the data structures, units and conversions.
 
 Want To Contribute?
 ===================
-* The documentation could need some help.
-* Add new units and conversions. Make sure to add unit tests for it.
-
 Just send a pull request and I will try my best to get it in.
+For things to do, please see Work In Progress.
+
+Contact me if you have any questions.
