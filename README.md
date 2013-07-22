@@ -29,7 +29,7 @@ Features
 * Parse abbreviations to unit.
 * Get abbreviations for units in different cultures.
 
-Static Representation and Explicit Conversion of Units
+Static Representation and Explicit Conversion
 -----------------------------------------------
 ```C#
 // Stop postfixing your variables and method names with the unit...
