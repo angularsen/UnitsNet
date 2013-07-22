@@ -54,14 +54,12 @@ double psi = p.Psi; // 1.45037738 × 10-4
 Dynamic Conversions
 -------------------
 ```C#
+// Explicitly
 double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
 double mi = UnitConverter.Convert(1, Unit.Kilometer, Unit.Mile); // 0.621371
 double yds = UnitConverter.Convert(1, Unit.Meter, Unit.Yard); // 1.09361
-```
 
-UnitValue Representation and Conversion
---------------------------------------
-```C#
+// Or implicitly.
 UnitValue val = GetUnknownValueAndUnit();
 
 // Returns false if conversion was not possible.
