@@ -51,8 +51,8 @@ double atm = p.Atmosphere; // 9.86923267 × 10-6
 double psi = p.Psi; // 1.45037738 × 10-4
 ```
 
-Dynamic Conversions
--------------------
+Dynamic Conversion
+------------------
 ```C#
 // Explicitly
 double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
