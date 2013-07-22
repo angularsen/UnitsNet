@@ -14,6 +14,10 @@ To install Units.NET, run the following command in the [Package Manager Console]
 
 ![Install-Package UnitsNet](Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
+* .NET 3.5 Client
+* Silverlight 4
+* WinRT / .NET Core 4.5
+* Portable Class Library (.NET 4.0 + Silverlight 4 + Windows Phone 7 + Xbox 360)
 
 Features
 ========
