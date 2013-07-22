@@ -67,7 +67,7 @@ double cm;
 val.TryConvert(LengthUnit.Centimeter, out cm);
 ```
 
-Helper Methods to Construct Measurements
+Construct Measurements
 ----------------------------------------
 ```C#
 var f = Force.FromPressureByArea(Pressure p, Length2d area);
