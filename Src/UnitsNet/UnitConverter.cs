@@ -54,6 +54,33 @@ namespace UnitsNet
                               fromUnit, toUnit));
         }
 
+        /// <summary>
+        ///     A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
+        ///     such as converting from milimeters to meters.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="fromUnit"></param>
+        /// <param name="toUnit"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        public static bool TryConvert(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            if (fromUnit == toUnit)
+            {
+                newValue = value;
+                return true;
+            }
+
+            if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return true;
+
+            return false;
+        }
+
         private static bool TryConvertTime(double value, Unit fromUnit, Unit toUnit, out double newValue)
         {
             switch (fromUnit)
