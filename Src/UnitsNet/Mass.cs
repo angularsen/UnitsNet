@@ -39,6 +39,16 @@ namespace UnitsNet
             Kilograms = kilograms;
         }
 
+        public double ShortTons
+        {
+            get { return Kilograms*907.18474; }
+        }
+
+        public double LongTons
+        {
+            get { return Kilograms*1016.0469088; }
+        }
+
         public double Megatonnes
         {
             get { return Kilograms*1E-9; }
@@ -139,6 +149,16 @@ namespace UnitsNet
         public static Mass FromGravitationalForce(Force f)
         {
             return new Mass(f.KilogramForce);
+        }
+
+        public static Mass FromLongTons(double value)
+        {
+            return new Mass(value*0.000984207);
+        }
+
+        public static Mass FromShortTons(double value)
+        {
+            return new Mass(value*0.00110231);
         }
 
         #endregion

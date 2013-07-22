@@ -257,6 +257,14 @@ namespace UnitsNet
                     return true;
                     //case Unit.Microgram:
                     //case Unit.Nanogram:
+
+                case Unit.ShortTon:
+                    newValue = Convert(Mass.FromShortTons(value), toUnit);
+                    return true;
+                case Unit.LongTon:
+                    newValue = Convert(Mass.FromLongTons(value), toUnit);
+                    return true;
+
                 default:
                     newValue = 0;
                     return false;
@@ -325,6 +333,12 @@ namespace UnitsNet
                     //             return m.Micrograms;
                     //case Unit.Nanogram:
                     //             return m.Nanograms;
+
+                case Unit.ShortTon:
+                    return m.ShortTons;
+                case Unit.LongTon:
+                    return m.LongTons;
+
                 default:
                     throw new Exception(
                         string.Format("Conversion from mass to unit [{0}] is either not valid or not yet implemented.",

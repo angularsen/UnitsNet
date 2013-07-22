@@ -54,6 +54,10 @@ namespace UnitsNet
         //Microgram,
         //Nanogram,
 
+        // Mass (imperial)
+        ShortTon,
+        LongTon,
+
         // Pressure
         Pascal,
         KiloPascal,
