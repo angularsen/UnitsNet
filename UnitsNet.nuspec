@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>UnitsNet</id>
-        <version>1.3.0</version>
+        <version>1.4.0</version>
         <title>Units.NET</title>
         <authors>Andreas Larsen</authors>
         <owners>Initial Force AS</owners>
@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports PCL.</description>
         <summary>Simplifies working with units of measurement.</summary>
-        <releaseNotes>Added more unit conversions and fixed some bugs. Added dynamic conversions in UnitConverter class.</releaseNotes>
+        <releaseNotes>Added ShortTon and LongTon mass units. Added TryConvert methods to UnitConverter and UnitValue classes.</releaseNotes>
         <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
         <language>en-US</language>
         <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
