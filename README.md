@@ -25,11 +25,11 @@ Features
 
 * Immutable structs for units of measurement, such as Length, Mass, Force and Pressure. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/ "Data structures").
 * Convert between most popular units in the metric and imperial systems. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/Unit.cs "Unit.cs").
-* Choice between explicit (struct) or dynamic (UnitValue) representation of unit of measurement.
+* Choose between static (struct) or dynamic (UnitValue) representation of unit of measurement.
 * Parse abbreviations to unit.
 * Get abbreviations for units in different cultures.
 
-Explicit Representation and Conversion of Units
+Static Representation and Explicit Conversion of Units
 -----------------------------------------------
 ```C#
 // Stop postfixing your variables and method names with the unit...
@@ -37,7 +37,7 @@ double weightKg = GetPersonWeightInKg();
 double weightGrams = weightKg * 1000;
 double weightTonnes = weightKg / 1000;
 
-// ...and start using an explicit representation for the measurement then 
+// ...and start using a static representation for the measurement then 
 // explicitly convert to the unit of choice - when you need it.
 Mass weight = GetPersonWeight();
 double weightGrams = weight.Grams;
@@ -66,7 +66,7 @@ double atm = p.Atmosphere; // 9.86923267 × 10-6
 double psi = p.Psi; // 1.45037738 × 10-4
 ```
 
-Dynamic Conversion
+Dynamic Representation and Conversion
 ------------------
 ```C#
 // Explicitly
@@ -74,7 +74,7 @@ double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
 double mi = UnitConverter.Convert(1, Unit.Kilometer, Unit.Mile); // 0.621371
 double yds = UnitConverter.Convert(1, Unit.Meter, Unit.Yard); // 1.09361
 
-// Or implicitly.
+// Or dynamically.
 UnitValue val = GetUnknownValueAndUnit();
 
 // Returns false if conversion was not possible.
