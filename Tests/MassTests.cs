@@ -23,8 +23,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E5, oneKg.Centigrams);
             Assert.AreEqual(1E6, oneKg.Milligrams);
 
-            Assert.AreEqual(907.18474, oneKg.ShortTons, Delta);
-            Assert.AreEqual(1016.0469088, oneKg.LongTons, Delta);
+            Assert.AreEqual(0.00110231, oneKg.ShortTons, Delta);
+            Assert.AreEqual(0.000984207, oneKg.LongTons, Delta);
         }
 
         [Test]

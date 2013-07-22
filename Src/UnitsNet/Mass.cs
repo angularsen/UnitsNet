@@ -29,6 +29,9 @@ namespace UnitsNet
     /// </summary>
     public class Mass : IComparable, IComparable<Mass>
     {
+        private const double ShortTonToKilogramsRatio = 907.18474;
+        private const double LongTonToKilogramRatio = 1016.0469088;
+
         /// <summary>
         ///     Returns a kilogram representation of the mass instance.
         /// </summary>
@@ -39,14 +42,22 @@ namespace UnitsNet
             Kilograms = kilograms;
         }
 
+        /// <summary>
+        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         public double ShortTons
         {
-            get { return Kilograms*907.18474; }
+            get { return Kilograms/ShortTonToKilogramsRatio; }
         }
 
+        /// <summary>
+        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         public double LongTons
         {
-            get { return Kilograms*1016.0469088; }
+            get { return Kilograms/LongTonToKilogramRatio; }
         }
 
         public double Megatonnes
@@ -151,14 +162,22 @@ namespace UnitsNet
             return new Mass(f.KilogramForce);
         }
 
+        /// <summary>
+        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         public static Mass FromLongTons(double value)
         {
-            return new Mass(value*0.000984207);
+            return new Mass(value*LongTonToKilogramRatio);
         }
 
+        /// <summary>
+        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         public static Mass FromShortTons(double value)
         {
-            return new Mass(value*0.00110231);
+            return new Mass(value*ShortTonToKilogramsRatio);
         }
 
         #endregion
