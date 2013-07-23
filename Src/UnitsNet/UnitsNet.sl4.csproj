@@ -73,6 +73,7 @@
     <Compile Include="UnitValue.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
+    <Compile Include="Volume.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
