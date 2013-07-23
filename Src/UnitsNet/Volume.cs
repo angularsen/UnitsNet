@@ -28,6 +28,16 @@ namespace UnitsNet
     /// </summary>
     public struct Volume : IComparable, IComparable<Volume>
     {
+        private const double CubicKilometersToCubicMetersRatio = 1E9;
+        private const double CubicDecimetersToCubicMetersRatio = 1E-3; 
+        private const double CubicCentimetersToCubicMetersRatio = 1E-6;
+        private const double CubicMilimetersToCubicMetersRatio = 1E-9; 
+        private const double HectolitersToCubicMetersRatio = 1E-1; 
+        private const double LitersToCubicMetersRatio = 1E-3; 
+        private const double DecilitersToCubicMetersRatio = 1E-4; 
+        private const double CentilitersToCubicMetersRatio = 1E-5;
+        private const double MililitersToCubicMetersRatio = 1E-6;
+
         public readonly double CubicMeters;
 
         /// <summary>
@@ -43,47 +53,47 @@ namespace UnitsNet
 
         public double CubicKilometers
         {
-            get { return CubicMeters * 1E-9; }
+            get { return CubicMeters / CubicKilometersToCubicMetersRatio; }
         }
 
         public double CubicDecimeters
         {
-            get { return CubicMeters * 1E3; }
+            get { return CubicMeters / CubicDecimetersToCubicMetersRatio; }
         }
 
         public double CubicCentimeters
         {
-            get { return CubicMeters * 1E6; }
+            get { return CubicMeters / CubicCentimetersToCubicMetersRatio; }
         }
 
         public double CubicMilimeters
         {
-            get { return CubicMeters * 1E9; }
+            get { return CubicMeters / CubicMilimetersToCubicMetersRatio; }
         }
 
         public double Hectoliters
         {
-            get { return CubicMeters * 1E1; }
+            get { return CubicMeters / HectolitersToCubicMetersRatio; }
         }
 
         public double Liters
         {
-            get { return CubicMeters * 1E3; }
+            get { return CubicMeters / LitersToCubicMetersRatio; }
         }
 
         public double Deciliters
         {
-            get { return CubicMeters * 1E4; }
+            get { return CubicMeters / DecilitersToCubicMetersRatio; }
         }
 
         public double Centiliters
         {
-            get { return CubicMeters * 1E5; }
+            get { return CubicMeters / CentilitersToCubicMetersRatio; }
         }
 
         public double Mililiters
         {
-            get { return CubicMeters * 1E6; }
+            get { return CubicMeters / MililitersToCubicMetersRatio; }
         }
 
         #endregion
@@ -113,7 +123,7 @@ namespace UnitsNet
 
         public static Volume FromCubicKilometers(double cubicKilometers)
         {
-            return new Volume(cubicKilometers * 1E9);
+            return new Volume(cubicKilometers * CubicKilometersToCubicMetersRatio);
         }
 
         public static Volume FromCubicMeters(double cubicMeters)
@@ -123,49 +133,49 @@ namespace UnitsNet
 
         public static Volume FromCubicDecimeters(double cubicDecimeters)
         {
-            return new Volume(cubicDecimeters * 1E-3);
+            return new Volume(cubicDecimeters * CubicDecimetersToCubicMetersRatio);
         }
 
         public static Volume FromCubicCentimeters(double cubicCentimeters)
         {
-            return new Volume(cubicCentimeters * 1E-6);
+            return new Volume(cubicCentimeters * CubicCentimetersToCubicMetersRatio);
         }
 
         public static Volume FromCubicMilimeters(double cubicMilimeters)
         {
-            return new Volume(cubicMilimeters * 1E-9);
+            return new Volume(cubicMilimeters * CubicMilimetersToCubicMetersRatio);
         }
 
         public static Volume FromHectoliters(double hectoliters)
         {
-            return new Volume(hectoliters * 1E-1);
+            return new Volume(hectoliters * HectolitersToCubicMetersRatio);
         }
 
         public static Volume FromLiters(double liters)
         {
-            return new Volume(liters * 1E-3);
+            return new Volume(liters * LitersToCubicMetersRatio);
         }
 
         public static Volume FromDeciliters(double deciliters)
         {
-            return new Volume(deciliters * 1E-4);
+            return new Volume(deciliters * DecilitersToCubicMetersRatio);
         }
 
         public static Volume FromCentiliters(double centiliters)
         {
-            return new Volume(centiliters * 1E-5);
+            return new Volume(centiliters * CentilitersToCubicMetersRatio);
         }
 
         public static Volume FromMililiters(double mililiters)
         {
-            return new Volume(mililiters * 1E-6);
+            return new Volume(mililiters * MililitersToCubicMetersRatio);
         }
 
         #endregion
 
         #region Arithmetic operators
 
-        public static Volume  operator -(Volume  right)
+        public static Volume operator -(Volume right)
         {
             return FromCubicMeters(-right.CubicMeters);
         }

@@ -20,17 +20,17 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void CubicMetersToVolumeUnits()
         {
-            Assert.AreEqual(1E-9, cubicMeter.CubicKilometers);
-            Assert.AreEqual(1, cubicMeter.CubicMeters);
-            Assert.AreEqual(1E3, cubicMeter.CubicDecimeters);
-            Assert.AreEqual(1E6, cubicMeter.CubicCentimeters);
-            Assert.AreEqual(1E9, cubicMeter.CubicMilimeters);
+            Assert.AreEqual(1E-9, cubicMeter.CubicKilometers, Delta);
+            Assert.AreEqual(1, cubicMeter.CubicMeters, Delta);
+            Assert.AreEqual(1E3, cubicMeter.CubicDecimeters, Delta);
+            Assert.AreEqual(1E6, cubicMeter.CubicCentimeters, Delta);
+            Assert.AreEqual(1E9, cubicMeter.CubicMilimeters, Delta);
 
-            Assert.AreEqual(1E1, cubicMeter.Hectoliters);
-            Assert.AreEqual(1E3, cubicMeter.Liters);
-            Assert.AreEqual(1E4, cubicMeter.Deciliters);
-            Assert.AreEqual(1E5, cubicMeter.Centiliters);
-            Assert.AreEqual(1E6, cubicMeter.Mililiters);
+            Assert.AreEqual(1E1, cubicMeter.Hectoliters, Delta);
+            Assert.AreEqual(1E3, cubicMeter.Liters, Delta);
+            Assert.AreEqual(1E4, cubicMeter.Deciliters, Delta);
+            Assert.AreEqual(1E5, cubicMeter.Centiliters, Delta);
+            Assert.AreEqual(1E6, cubicMeter.Mililiters, Delta);
         }
 
         [Test]
