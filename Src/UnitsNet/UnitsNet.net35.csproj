@@ -54,6 +54,7 @@
     <Compile Include="UnitConverter.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
+    <Compile Include="Volume.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
