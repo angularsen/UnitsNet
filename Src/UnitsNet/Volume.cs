@@ -91,7 +91,7 @@ namespace UnitsNet
         #region Static
 
         /// <summary>
-        ///     The maximum representable volume in meters.
+        ///     The maximum representable volume in cubic meters.
         /// </summary>
         public static Volume Max
         {
@@ -99,7 +99,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The smallest representable volume in meters.
+        ///     The smallest representable volume in cubic meters.
         /// </summary>
         public static Volume Min
         {
