@@ -214,6 +214,16 @@ namespace UnitsNet
             return left.CubicMeters > right.CubicMeters;
         }
 
+        public static bool operator ==(Volume left, Volume right)
+        {
+            return left.CubicMeters == right.CubicMeters;
+        }
+
+        public static bool operator !=(Volume left, Volume right)
+        {
+            return !(left.CubicMeters == right.CubicMeters);
+        }
+
         #endregion
 
         #region Equality / IComparable

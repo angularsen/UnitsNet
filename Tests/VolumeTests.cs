@@ -9,12 +9,14 @@ namespace UnitsNet.Tests.net35
         private const double Delta = 1E-5;
         private Volume cubicMeter;
         private Volume liter;
+        private Volume otherLiter;
 
         [SetUp]
         public void Setup()
         {
             cubicMeter = Volume.FromCubicMeters(1);
             liter = Volume.FromLiters(1);
+            otherLiter = Volume.FromLiters(1);
         }
 
         [Test]
@@ -73,6 +75,12 @@ namespace UnitsNet.Tests.net35
             Assert.IsTrue(cubicMeter >= liter);
             Assert.IsFalse(liter >= cubicMeter);
             Assert.IsTrue(liter >= Volume.FromLiters(1));
+
+            Assert.IsTrue(liter == otherLiter);
+            Assert.IsFalse(liter == cubicMeter);
+
+            Assert.IsTrue(liter != cubicMeter);
+            Assert.IsFalse(liter != otherLiter);
         }
 
         [Test]
