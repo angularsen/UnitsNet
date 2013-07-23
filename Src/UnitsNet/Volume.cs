@@ -28,62 +28,62 @@ namespace UnitsNet
     /// </summary>
     public struct Volume : IComparable, IComparable<Volume>
     {
-        public readonly double Meters;
+        public readonly double CubicMeters;
 
         /// <summary>
         ///     Enforce static methods for creation.
         /// </summary>
-        private Volume(double meters)
+        private Volume(double cubicMeters)
             : this()
         {
-            Meters = meters;
+            CubicMeters = cubicMeters;
         }
 
         #region Unit Properties
 
-        public double Kilometers
+        public double CubicKilometers
         {
-            get { return Meters * 1E-9; }
+            get { return CubicMeters * 1E-9; }
         }
 
-        public double Decimeters
+        public double CubicDecimeters
         {
-            get { return Meters * 1E3; }
+            get { return CubicMeters * 1E3; }
         }
 
-        public double Centimeters
+        public double CubicCentimeters
         {
-            get { return Meters * 1E6; }
+            get { return CubicMeters * 1E6; }
         }
 
-        public double Milimeters
+        public double CubicMilimeters
         {
-            get { return Meters * 1E9; }
+            get { return CubicMeters * 1E9; }
         }
 
         public double Hectoliters
         {
-            get { return Meters * 1E1; }
+            get { return CubicMeters * 1E1; }
         }
 
         public double Liters
         {
-            get { return Meters * 1E3; }
+            get { return CubicMeters * 1E3; }
         }
 
         public double Deciliters
         {
-            get { return Meters * 1E4; }
+            get { return CubicMeters * 1E4; }
         }
 
         public double Centiliters
         {
-            get { return Meters * 1E5; }
+            get { return CubicMeters * 1E5; }
         }
 
         public double Mililiters
         {
-            get { return Meters * 1E6; }
+            get { return CubicMeters * 1E6; }
         }
 
         #endregion
@@ -111,54 +111,54 @@ namespace UnitsNet
             get { return new Volume(); }
         }
 
-        public static Volume FromKilometers(double km)
+        public static Volume FromCubicKilometers(double cubicKilometers)
         {
-            return new Volume(km * 1E9);
+            return new Volume(cubicKilometers * 1E9);
         }
 
-        public static Volume FromMeters(double m)
+        public static Volume FromCubicMeters(double cubicMeters)
         {
-            return new Volume(m);
+            return new Volume(cubicMeters);
         }
 
-        public static Volume FromDecimeters(double dm)
+        public static Volume FromCubicDecimeters(double cubicDecimeters)
         {
-            return new Volume(dm * 1E-3);
+            return new Volume(cubicDecimeters * 1E-3);
         }
 
-        public static Volume FromCentimeters(double cm)
+        public static Volume FromCubicCentimeters(double cubicCentimeters)
         {
-            return new Volume(cm * 1E-6);
+            return new Volume(cubicCentimeters * 1E-6);
         }
 
-        public static Volume FromMilimeters(double mm)
+        public static Volume FromCubicMilimeters(double cubicMilimeters)
         {
-            return new Volume(mm * 1E-9);
+            return new Volume(cubicMilimeters * 1E-9);
         }
 
-        public static Volume FromHectoliters(double hl)
+        public static Volume FromHectoliters(double hectoliters)
         {
-            return new Volume(hl * 1E-1);
+            return new Volume(hectoliters * 1E-1);
         }
 
-        public static Volume FromLiters(double l)
+        public static Volume FromLiters(double liters)
         {
-            return new Volume(l * 1E-3);
+            return new Volume(liters * 1E-3);
         }
 
-        public static Volume FromDeciliters(double dl)
+        public static Volume FromDeciliters(double deciliters)
         {
-            return new Volume(dl * 1E-4);
+            return new Volume(deciliters * 1E-4);
         }
 
-        public static Volume FromCentiliters(double cl)
+        public static Volume FromCentiliters(double centiliters)
         {
-            return new Volume(cl * 1E-5);
+            return new Volume(centiliters * 1E-5);
         }
 
-        public static Volume FromMililiters(double ml)
+        public static Volume FromMililiters(double mililiters)
         {
-            return new Volume(ml * 1E-6);
+            return new Volume(mililiters * 1E-6);
         }
 
         #endregion
@@ -167,17 +167,17 @@ namespace UnitsNet
 
         public static Volume  operator -(Volume  right)
         {
-            return FromMeters(-right.Meters);
+            return FromCubicMeters(-right.CubicMeters);
         }
 
         public static Volume operator -(Volume left, Volume right)
         {
-            return FromMeters(left.Meters - right.Meters);
+            return FromCubicMeters(left.CubicMeters - right.CubicMeters);
         }
 
         public static Volume operator +(Volume left, Volume right)
         {
-            return FromMeters(left.Meters + right.Meters);
+            return FromCubicMeters(left.CubicMeters + right.CubicMeters);
         }
 
         #endregion
@@ -186,22 +186,22 @@ namespace UnitsNet
 
         public static bool operator <=(Volume left, Volume right)
         {
-            return left.Meters <= right.Meters;
+            return left.CubicMeters <= right.CubicMeters;
         }
 
         public static bool operator >=(Volume left, Volume right)
         {
-            return left.Meters >= right.Meters;
+            return left.CubicMeters >= right.CubicMeters;
         }
 
         public static bool operator <(Volume left, Volume right)
         {
-            return left.Meters < right.Meters;
+            return left.CubicMeters < right.CubicMeters;
         }
 
         public static bool operator >(Volume left, Volume right)
         {
-            return left.Meters > right.Meters;
+            return left.CubicMeters > right.CubicMeters;
         }
 
         #endregion
@@ -217,7 +217,7 @@ namespace UnitsNet
 
         public int CompareTo(Volume other)
         {
-            return Meters.CompareTo(other.Meters);
+            return CubicMeters.CompareTo(other.CubicMeters);
         }
 
         public override bool Equals(object obj)
@@ -227,7 +227,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return Meters.CompareTo(((Volume)obj).Meters) == 0;
+            return CubicMeters.CompareTo(((Volume)obj).CubicMeters) == 0;
         }
 
         public override int GetHashCode()
@@ -239,7 +239,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Meters + " m3";
+            return CubicMeters + " m3";
         }
     }
 }

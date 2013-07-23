@@ -13,18 +13,18 @@ namespace UnitsNet.Tests.net35
         [SetUp]
         public void Setup()
         {
-            cubicMeter = Volume.FromMeters(1);
+            cubicMeter = Volume.FromCubicMeters(1);
             liter = Volume.FromLiters(1);
         }
 
         [Test]
         public void CubicMetersToVolumeUnits()
         {
-            Assert.AreEqual(1E-9, cubicMeter.Kilometers);
-            Assert.AreEqual(1, cubicMeter.Meters);
-            Assert.AreEqual(1E3, cubicMeter.Decimeters);
-            Assert.AreEqual(1E6, cubicMeter.Centimeters);
-            Assert.AreEqual(1E9, cubicMeter.Milimeters);
+            Assert.AreEqual(1E-9, cubicMeter.CubicKilometers);
+            Assert.AreEqual(1, cubicMeter.CubicMeters);
+            Assert.AreEqual(1E3, cubicMeter.CubicDecimeters);
+            Assert.AreEqual(1E6, cubicMeter.CubicCentimeters);
+            Assert.AreEqual(1E9, cubicMeter.CubicMilimeters);
 
             Assert.AreEqual(1E1, cubicMeter.Hectoliters);
             Assert.AreEqual(1E3, cubicMeter.Liters);
@@ -36,25 +36,25 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void VolumeUnitsRoundTrip()
         {
-            Assert.AreEqual(1, Volume.FromKilometers(cubicMeter.Kilometers).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromMeters(cubicMeter.Meters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromDecimeters(cubicMeter.Decimeters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromCentimeters(cubicMeter.Centimeters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromMilimeters(cubicMeter.Milimeters).Meters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicKilometers(cubicMeter.CubicKilometers).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicMeters(cubicMeter.CubicMeters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicDecimeters(cubicMeter.CubicDecimeters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicCentimeters(cubicMeter.CubicCentimeters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicMilimeters(cubicMeter.CubicMilimeters).CubicMeters, Delta);
 
-            Assert.AreEqual(1, Volume.FromHectoliters(cubicMeter.Hectoliters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromLiters(cubicMeter.Liters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromDeciliters(cubicMeter.Deciliters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromCentiliters(cubicMeter.Centiliters).Meters, Delta);
-            Assert.AreEqual(1, Volume.FromMililiters(cubicMeter.Mililiters).Meters, Delta);
+            Assert.AreEqual(1, Volume.FromHectoliters(cubicMeter.Hectoliters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromLiters(cubicMeter.Liters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromDeciliters(cubicMeter.Deciliters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCentiliters(cubicMeter.Centiliters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromMililiters(cubicMeter.Mililiters).CubicMeters, Delta);
         }
 
         [Test]
         public void ArithmeticOperatorsRoundtrip()
         {
-            Assert.AreEqual(Volume.FromLiters(-1000).Meters, (-cubicMeter).Meters, Delta);
-            Assert.AreEqual(Volume.FromLiters(1000 - 1).Meters, (cubicMeter - liter).Meters, Delta);
-            Assert.AreEqual(Volume.FromLiters(1000 + 1).Meters, (cubicMeter + liter).Meters, Delta);
+            Assert.AreEqual(Volume.FromLiters(-1000).CubicMeters, (-cubicMeter).CubicMeters, Delta);
+            Assert.AreEqual(Volume.FromLiters(1000 - 1).CubicMeters, (cubicMeter - liter).CubicMeters, Delta);
+            Assert.AreEqual(Volume.FromLiters(1000 + 1).CubicMeters, (cubicMeter + liter).CubicMeters, Delta);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void EqualsIsImplemented()
         {
-            Assert.IsTrue(cubicMeter.Equals(Volume.FromMeters(1)));
+            Assert.IsTrue(cubicMeter.Equals(Volume.FromCubicMeters(1)));
             Assert.IsTrue(cubicMeter.Equals(cubicMeter));
             Assert.IsFalse(cubicMeter.Equals(liter));
         }
