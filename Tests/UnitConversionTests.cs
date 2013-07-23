@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
@@ -8,11 +9,25 @@ namespace UnitsNet.Tests.net35
         private const double Delta = 1E-5;
 
         [Test]
-        public void KilogramEqualsKilogramForce()
+        public void KilogramToKilogramForce()
         {
             var mass = Mass.FromKilograms(1);
             var force = Force.FromKilogramForce(mass.Kilograms);
             Assert.AreEqual(mass.Kilograms, force.KilogramForce);
+        }
+
+        [Test]
+        public void KilogramForceToKilogram()
+        {
+            var force = Force.FromKilogramForce(1);
+            var mass = Mass.FromGravitationalForce(force);
+            Assert.AreEqual(mass.Kilograms, force.KilogramForce);
+        }
+
+        [Test]
+        public void DynamicConversionThrowsOnIncompatibleUnits()
+        {
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
         }
     }
 }

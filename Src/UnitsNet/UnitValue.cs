@@ -37,6 +37,11 @@ namespace UnitsNet
             Unit = unit;
         }
 
+        public bool TryConvert(Unit toUnit, out double newValue)
+        {
+            return UnitConverter.TryConvert(this.Value, this.Unit, toUnit, out newValue);
+        }
+
         #region Equality
 
 //        public static bool operator ==(SIValue left, SIValue right)

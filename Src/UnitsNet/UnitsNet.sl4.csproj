@@ -65,11 +65,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Torque.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="SiUnits.cs" />
-    <Compile Include="UnitsHelper.cs" />
+    <Compile Include="UnitConverter.cs" />
+    <Compile Include="UnitParser.cs" />
     <Compile Include="UnitSystem.cs" />
     <Compile Include="ElectricPotential.cs" />
-    <Compile Include="UnitConverter.cs" />
     <Compile Include="UnitValue.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />

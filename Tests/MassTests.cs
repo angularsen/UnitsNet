@@ -4,7 +4,9 @@ namespace UnitsNet.Tests.net35
 {
     [TestFixture]
     public class MassTests
-    { 
+    {
+        private const double Delta = 1E-5;
+
         [Test]
         public void KilogramToMassUnits()
         { 
@@ -20,6 +22,9 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E4, oneKg.Decigrams);
             Assert.AreEqual(1E5, oneKg.Centigrams);
             Assert.AreEqual(1E6, oneKg.Milligrams);
+
+            Assert.AreEqual(0.00110231, oneKg.ShortTons, Delta);
+            Assert.AreEqual(0.000984207, oneKg.LongTons, Delta);
         }
 
         [Test]
@@ -35,7 +40,10 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Mass.FromGrams(oneKg.Grams).Kilograms); 
             Assert.AreEqual(1, Mass.FromDecigrams(oneKg.Decigrams).Kilograms); 
             Assert.AreEqual(1, Mass.FromCentigrams(oneKg.Centigrams).Kilograms); 
-            Assert.AreEqual(1, Mass.FromMilligrams(oneKg.Milligrams).Kilograms); 
+            Assert.AreEqual(1, Mass.FromMilligrams(oneKg.Milligrams).Kilograms);
+            
+            Assert.AreEqual(1, Mass.FromShortTons(oneKg.ShortTons).Kilograms, Delta);
+            Assert.AreEqual(1, Mass.FromLongTons(oneKg.LongTons).Kilograms, Delta);
         }
     }
 }

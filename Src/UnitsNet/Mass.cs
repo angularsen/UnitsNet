@@ -29,6 +29,9 @@ namespace UnitsNet
     /// </summary>
     public class Mass : IComparable, IComparable<Mass>
     {
+        private const double ShortTonToKilogramsRatio = 907.18474;
+        private const double LongTonToKilogramRatio = 1016.0469088;
+
         /// <summary>
         ///     Returns a kilogram representation of the mass instance.
         /// </summary>
@@ -37,6 +40,24 @@ namespace UnitsNet
         private Mass(double kilograms)
         {
             Kilograms = kilograms;
+        }
+
+        /// <summary>
+        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
+        public double ShortTons
+        {
+            get { return Kilograms/ShortTonToKilogramsRatio; }
+        }
+
+        /// <summary>
+        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
+        public double LongTons
+        {
+            get { return Kilograms/LongTonToKilogramRatio; }
         }
 
         public double Megatonnes
@@ -136,6 +157,29 @@ namespace UnitsNet
             return new Mass(value*1E-6);
         }
 
+        public static Mass FromGravitationalForce(Force f)
+        {
+            return new Mass(f.KilogramForce);
+        }
+
+        /// <summary>
+        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
+        public static Mass FromLongTons(double value)
+        {
+            return new Mass(value*LongTonToKilogramRatio);
+        }
+
+        /// <summary>
+        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
+        public static Mass FromShortTons(double value)
+        {
+            return new Mass(value*ShortTonToKilogramsRatio);
+        }
+
         #endregion
 
         #region Arithmetic operators
@@ -171,22 +215,6 @@ namespace UnitsNet
             return new Mass(left.Kilograms/right);
         }
 
-        #region Equality / IComparable
-
-        #endregion
-
-        public int CompareTo(object obj)
-        {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Mass)) throw new ArgumentException("Expected type Mass.", "obj");
-            return CompareTo((Mass) obj);
-        }
-
-        public int CompareTo(Mass other)
-        {
-            return Kilograms.CompareTo(other.Kilograms);
-        }
-
         public static bool operator <=(Mass left, Mass right)
         {
             return left.Kilograms <= right.Kilograms;
@@ -205,6 +233,22 @@ namespace UnitsNet
         public static bool operator >(Mass left, Mass right)
         {
             return left.Kilograms > right.Kilograms;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (!(obj is Mass)) throw new ArgumentException("Expected type Mass.", "obj");
+            return CompareTo((Mass) obj);
+        }
+
+        public int CompareTo(Mass other)
+        {
+            return Kilograms.CompareTo(other.Kilograms);
         }
 
         #endregion

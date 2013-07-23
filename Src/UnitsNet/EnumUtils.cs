@@ -35,14 +35,14 @@ namespace UnitsNet
 #if NETFX_CORE
             return GetEnumValuesWinRT<T>();
 #else
-            Type type = typeof(T);
+            Type type = typeof (T);
             if (!type.IsEnum)
                 throw new ArgumentException("Type '" + type.Name + "' is not an enum");
 
             return (
                        from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
                        where field.IsLiteral
-                       select (T)field.GetValue(null)
+                       select (T) field.GetValue(null)
                    ).ToArray();
 #endif
         }
@@ -50,7 +50,7 @@ namespace UnitsNet
         private static T[] GetEnumValuesWinRT<T>()
         {
 #if NETFX_CORE
-            // using System.Reflection;
+    // using System.Reflection;
             var values = typeof (T)
                 .GetRuntimeProperties()
                 .Select(c => (T) c.GetValue(null));

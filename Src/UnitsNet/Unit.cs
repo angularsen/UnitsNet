@@ -25,25 +25,71 @@ namespace UnitsNet
     {
         Undefined = 0,
 
-        // Masses
-        Kilogram,
-        Hectogram,
-        Gram,
-        Milligram,
-
-        // Forces
-        KiloNewton,
-        Newton,
-
-        // Torque
-        Newtonmeter,
-
-        // Distances
+        // Length
+        Kilometer,
         Meter,
+        Decimeter,
         Centimeter,
         Millimeter,
+        Micrometer,
+        Nanometer,
 
-        // Volumes
+        // Length (imperial)
+        Mile,
+        Yard,
+        Foot,
+        Inch,
+
+        // Mass
+        Megatonne,
+        Kilotonne,
+        Tonne,
+        Kilogram,
+        Hectogram,
+        Decagram,
+        Gram,
+        Decigram,
+        Centigram,
+        Milligram,
+        //Microgram,
+        //Nanogram,
+
+        // Mass (imperial)
+        /// <summary>
+        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
+        ShortTon,
+        /// <summary>
+        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
+        LongTon,
+
+        // Pressure
+        Pascal,
+        KiloPascal,
+        Psi,
+        NewtonPerSquareCentimeter,
+        NewtonPerSquareMillimeter,
+        NewtonPerSquareMeter,
+        Bar,
+        TechnicalAtmosphere,
+        Atmosphere,
+        Torr,
+
+        // Force
+        Kilonewton,
+        Newton,
+        KilogramForce,
+        Dyn,
+
+        // Force (imperial/other)
+        KiloPond,
+        PoundForce,
+        Poundal,
+
+        // Volume
         CubicKilometer,
         CubicMeter,
         CubicDecimeter,
@@ -54,32 +100,123 @@ namespace UnitsNet
         Deciliter,
         Centiliter,
         Milliliter,
+        //Gallon,
 
-        // Pressure
-        Pascal,
-        KiloPascal,
-        Psi,
-        NewtonPerSquareCentimeter,
-        Bar,
-        TechnicalAtmosphere,
-        Atmosphere,
-        Torr,
+        // Torque
+        Newtonmeter,
 
-        // Generic and cooking units
+        // Generic / Other
+        Piece,
+        Percent,
+
+        // Electric potential
+        Volt,
+
+        // Time
+        /// <summary>
+        ///     Do not use for accurate calculations. Does not take calendar into account and simply represents a year of 365 days.
+        /// </summary>
+        Year365Days,
+
+        /// <summary>
+        ///     Do not use for accurate calculations. Does not take calendar into account and simply represents a month of 30 days.
+        /// </summary>
+        Month30Days,
+        Week,
+        Day,
+        Hour,
+        Minute,
+        Second,
+        Millisecond,
+        Microsecond,
+        Nanosecond,
+
+        // Cooking units
         Tablespoon,
         Teaspoon,
-        Piece,
-
-        // Other units
-        Volt,
-        Percent,
-        Second,
     }
 
-    public enum ImperialUnitTypes
-    {
-        Undefined,
-        Feet,
-        Inch,
-    }
+    //public enum LengthUnit
+    //{ 
+    //    Kilometer,
+    //    Meter,
+    //    Decimeter,
+    //    Centimeter,
+    //    Millimeter,
+
+    //    Mile,
+    //    Yard,
+    //    Foot,
+    //    Inch,
+    //}
+
+    //public enum MassUnit
+    //{
+    //    Megatonne,
+    //    Kilotonne,
+    //    Tonne,
+    //    Kilogram,
+    //    Hectogram,
+    //    Decagram,
+    //    Gram,
+    //    Decigram,
+    //    Centigram,
+    //    Milligram,
+    //    Microgram,
+    //    Nanogram,
+    //}
+
+    //public enum PressureUnit
+    //{
+    //    Pascal,
+    //    KiloPascal,
+    //    Psi,
+    //    NewtonPerSquareCentimeter,
+    //    NewtonPerSquareMillimeter,
+    //    NewtonPerSquareMeter,
+    //    Bar,
+    //    TechnicalAtmosphere,
+    //    Atmosphere,
+    //    Torr, 
+    //}
+
+    //public enum ForceUnit
+    //{
+    //    Kilonewton,
+    //    Newton,
+    //    KilogramForce,
+    //    Dyn,
+
+    //    KiloPond,
+    //    PoundForce,
+    //    Poundal,
+    //}
+
+    //public enum VolumeUnit
+    //{
+    //    Liter,
+    //    Deciliter,
+    //    Centiliter,
+    //    Milliliter,
+
+    //    //Gallon,
+
+    //}
+
+    //public enum TorqueUnit
+    //{
+    //    Newtonmeter,
+    //}
+
+    //public enum GenericUnit
+    //{
+    //    Piece,
+    //    Percent,
+    //}
+
+    //public enum CookingUnit
+    //{ 
+    //    Tablespoon,
+    //    Teaspoon,
+    //} 
 }
