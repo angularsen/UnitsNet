@@ -44,6 +44,12 @@ namespace UnitsNet
         Millimeter,
 
         // Volumes
+        CubicKilometer,
+        CubicMeter,
+        CubicDecimeter,
+        CubicCentimeter,
+        CubicMilimeter,
+        Hectoliter,
         Liter,
         Deciliter,
         Centiliter,
