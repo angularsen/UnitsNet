@@ -272,7 +272,7 @@ namespace UnitsNet
 
         public bool Equals(Length other)
         {
-            return other.Kilometers == Kilometers;
+            return other.Meters == Meters;
         }
 
         public override int GetHashCode()
