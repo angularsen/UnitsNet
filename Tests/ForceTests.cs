@@ -39,11 +39,14 @@ namespace UnitsNet.Tests.net35
         {
             Force newton = Force.FromNewtons(1);
             Assert.AreEqual(-1, -newton.Newtons, Delta);
+            Assert.AreEqual(1, (Force.FromNewtons(2) - newton).Newtons, Delta);
             Assert.AreEqual(2, (newton + newton).Newtons, Delta);
             Assert.AreEqual(1, (Force.FromNewtons(2) - newton).Newtons, Delta);
+            Assert.AreEqual(10, (newton*Force.FromNewtons(10)).Newtons, Delta);
             Assert.AreEqual(10, (newton*10).Newtons, Delta);
             Assert.AreEqual(10, (10*newton).Newtons, Delta);
             Assert.AreEqual(2, (Force.FromNewtons(10)/5).Newtons, Delta);
+            Assert.AreEqual(2, (Force.FromNewtons(10)/Force.FromNewtons(5)).Newtons, Delta);
         }
 
         [Test]
@@ -58,6 +61,13 @@ namespace UnitsNet.Tests.net35
             Assert.True(twoNewtons >= oneNewton);
             Assert.True(oneNewton == oneNewton);
             Assert.True(oneNewton != twoNewtons);
+
+            Assert.False(oneNewton > twoNewtons);
+            Assert.False(oneNewton >= twoNewtons);
+            Assert.False(twoNewtons < oneNewton);
+            Assert.False(twoNewtons <= oneNewton);
+            Assert.False(oneNewton == twoNewtons);
+            Assert.False(oneNewton != oneNewton);
         }
 
         [Test]
