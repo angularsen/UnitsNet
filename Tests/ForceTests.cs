@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
-        public void ComparisonAndEqualityOperators()
+        public void ComparisonOperators()
         {
             Force oneNewton = Force.FromNewtons(1);
             Force twoNewtons = Force.FromNewtons(2);
@@ -59,15 +59,11 @@ namespace UnitsNet.Tests.net35
             Assert.True(oneNewton <= twoNewtons);
             Assert.True(twoNewtons > oneNewton);
             Assert.True(twoNewtons >= oneNewton);
-            Assert.True(oneNewton == oneNewton);
-            Assert.True(oneNewton != twoNewtons);
 
             Assert.False(oneNewton > twoNewtons);
             Assert.False(oneNewton >= twoNewtons);
             Assert.False(twoNewtons < oneNewton);
             Assert.False(twoNewtons <= oneNewton);
-            Assert.False(oneNewton == twoNewtons);
-            Assert.False(oneNewton != oneNewton);
         }
 
         [Test]
@@ -93,6 +89,19 @@ namespace UnitsNet.Tests.net35
         { 
             Force newton = Force.FromNewtons(1);
             newton.CompareTo(null);
+        }
+
+        [Test]
+        public void EqualityOperators()
+        {
+            Force a = Force.FromNewtons(1);
+            Force b = Force.FromNewtons(2);
+
+            Assert.True(a == a); 
+            Assert.True(a != b);
+
+            Assert.False(a == b);
+            Assert.False(a != a);
         }
 
         [Test]
