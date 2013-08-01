@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing torque, according to the International System of Units (SI).
     /// </summary>
-    public class Torque : IComparable, IComparable<Torque>
+    public struct Torque : IComparable, IComparable<Torque>
     {
         /// <summary>
         ///     Returns a newtonmeter representation of the torque.
