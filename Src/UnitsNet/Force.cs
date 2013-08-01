@@ -149,6 +149,11 @@ namespace UnitsNet
             return new Force(left*right.Newtons);
         }
 
+        public static Force operator *(Force left, double right)
+        {
+            return new Force(left.Newtons*right);
+        }
+
         public static Force operator /(Force left, double right)
         {
             return new Force(left.Newtons/right);
@@ -188,6 +193,31 @@ namespace UnitsNet
         public static bool operator >(Force left, Force right)
         {
             return left.Newtons > right.Newtons;
+        }
+
+        public static bool operator ==(Force left, Force right)
+        {
+            return left.Newtons == right.Newtons;
+        }
+
+        public static bool operator !=(Force left, Force right)
+        {
+            return left.Newtons != right.Newtons;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return Newtons.Equals(((Force) obj).Newtons);
+        }
+
+        public override int GetHashCode()
+        {
+            return Newtons.GetHashCode();
         }
 
         #endregion
