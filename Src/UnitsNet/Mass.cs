@@ -107,6 +107,28 @@ namespace UnitsNet
 
         #region Static 
 
+        /// <summary>
+        ///     The maximum representable distance in kilograms.
+        /// </summary>
+        public static Mass Max
+        {
+            get { return new Mass(double.MaxValue); }
+        }
+
+        /// <summary>
+        ///     The smallest representable distance in kilograms.
+        /// </summary>
+        public static Mass Min
+        {
+            get { return new Mass(double.MinValue); }
+        }
+
+        public static Mass Zero
+        {
+            get { return new Mass(); }
+        }
+
+
         public static Mass FromMegatonnes(double megatonnes)
         {
             return new Mass(megatonnes*1E9);
@@ -205,15 +227,34 @@ namespace UnitsNet
             return new Mass(left.Kilograms - right.Kilograms);
         }
 
+        public static Mass operator *(Mass left, double right)
+        {
+            return new Mass(left.Kilograms*right);
+        }
+
         public static Mass operator *(double left, Mass right)
         {
             return new Mass(left*right.Kilograms);
+        }
+
+        public static Mass operator *(Mass left, Mass right)
+        {
+            return new Mass(left.Kilograms*right.Kilograms);
+        }
+
+        public static Mass operator /(Mass left, Mass right)
+        {
+            return new Mass(left.Kilograms/right.Kilograms);
         }
 
         public static Mass operator /(Mass left, double right)
         {
             return new Mass(left.Kilograms/right);
         }
+
+        #endregion
+
+        #region Comparison / Equality Operators
 
         public static bool operator <=(Mass left, Mass right)
         {
@@ -235,6 +276,16 @@ namespace UnitsNet
             return left.Kilograms > right.Kilograms;
         }
 
+        public static bool operator !=(Mass left, Mass right)
+        {
+            return left.Kilograms != right.Kilograms;
+        }
+
+        public static bool operator ==(Mass left, Mass right)
+        {
+            return left.Kilograms == right.Kilograms;
+        }
+
         #endregion
 
         #region Equality / IComparable
@@ -249,6 +300,22 @@ namespace UnitsNet
         public int CompareTo(Mass other)
         {
             return Kilograms.CompareTo(other.Kilograms);
+        }
+
+        public bool Equals(Mass other)
+        {
+            return Kilograms.Equals(other.Kilograms);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Mass && ((Mass) obj).Kilograms.Equals(Kilograms);
+        }
+
+        public override int GetHashCode()
+        {
+            return Kilograms.GetHashCode();
         }
 
         #endregion
