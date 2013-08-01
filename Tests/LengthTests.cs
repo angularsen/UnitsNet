@@ -63,5 +63,96 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(39.3701, UnitConverter.Convert(1, Unit.Meter, Unit.Inch), Delta);
         }
 
+        [Test]
+        public void ArithmeticOperators()
+        {
+            Length v = Length.FromMeters(1);
+            Assert.AreEqual(-1, -v.Meters, Delta);
+            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, Delta);
+            Assert.AreEqual(2, (v + v).Meters, Delta);
+            Assert.AreEqual(10, (v*10).Meters, Delta);
+            Assert.AreEqual(10, (10*v).Meters, Delta);
+            Assert.AreEqual(2, (Length.FromMeters(2)*v).Meters, Delta);
+            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, Delta);
+            Assert.AreEqual(2, (Length.FromMeters(10)/Length.FromMeters(5)).Meters, Delta);
+        }
+
+        [Test]
+        public void ComparisonOperators()
+        {
+            Length oneMeter = Length.FromMeters(1);
+            Length twoMeters = Length.FromMeters(2);
+
+            Assert.True(oneMeter < twoMeters);
+            Assert.True(oneMeter <= twoMeters);
+            Assert.True(twoMeters > oneMeter);
+            Assert.True(twoMeters >= oneMeter);
+
+            Assert.False(oneMeter > twoMeters);
+            Assert.False(oneMeter >= twoMeters);
+            Assert.False(twoMeters < oneMeter);
+            Assert.False(twoMeters <= oneMeter);
+        }
+
+        [Test]
+        public void CompareToIsImplemented()
+        {
+            Length meter = Length.FromMeters(1);
+            Assert.AreEqual(0, meter.CompareTo(meter));
+            Assert.Greater(meter.CompareTo(Length.Zero), 0);
+            Assert.Less(Length.Zero.CompareTo(meter), 0);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CompareToThrowsOnTypeMismatch()
+        {
+            Length meter = Length.FromMeters(1);
+            meter.CompareTo(new object());
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CompareToThrowsOnNull()
+        { 
+            Length meter = Length.FromMeters(1);
+            meter.CompareTo(null);
+        }
+
+
+        [Test]
+        public void EqualityOperators()
+        {
+            Length a = Length.FromMeters(1);
+            Length b = Length.FromMeters(2);
+
+            Assert.True(a == a); 
+            Assert.True(a != b);
+
+            Assert.False(a == b);
+            Assert.False(a != a);
+        }
+
+        [Test]
+        public void EqualsIsImplemented()
+        {
+            Length v = Length.FromMeters(1);
+            Assert.IsTrue(v.Equals(Length.FromMeters(1)));
+            Assert.IsFalse(v.Equals(Length.Zero));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnTypeMismatch()
+        {
+            Length meter = Length.FromMeters(1);
+            Assert.IsFalse(meter.Equals(new object()));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnNull()
+        {
+            Length meter = Length.FromMeters(1);
+            Assert.IsFalse(meter.Equals(null));
+        }
     }
 }
