@@ -259,6 +259,22 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Pressure && ((Pressure) obj).Pascals.Equals(Pascals);
+        }
+
+        public bool Equals(Pressure other)
+        {
+            return other.Pascals == Pascals;
+        }
+
+        public override int GetHashCode()
+        {
+            return Pascals.GetHashCode();
+        }
+
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
