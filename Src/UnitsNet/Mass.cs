@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing mass.
     /// </summary>
-    public class Mass : IComparable, IComparable<Mass>
+    public struct Mass : IComparable, IComparable<Mass>
     {
         private const double ShortTonToKilogramsRatio = 907.18474;
         private const double LongTonToKilogramRatio = 1016.0469088;
