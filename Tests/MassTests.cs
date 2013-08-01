@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
@@ -44,6 +45,98 @@ namespace UnitsNet.Tests.net35
             
             Assert.AreEqual(1, Mass.FromShortTons(oneKg.ShortTons).Kilograms, Delta);
             Assert.AreEqual(1, Mass.FromLongTons(oneKg.LongTons).Kilograms, Delta);
+        }
+
+        [Test]
+        public void ArithmeticOperators()
+        {
+            Mass v = Mass.FromKilograms(1);
+            Assert.AreEqual(-1, -v.Kilograms, Delta);
+            Assert.AreEqual(2, (Mass.FromKilograms(3)-v).Kilograms, Delta);
+            Assert.AreEqual(2, (v + v).Kilograms, Delta);
+            Assert.AreEqual(10, (v*10).Kilograms, Delta);
+            Assert.AreEqual(10, (10*v).Kilograms, Delta);
+            Assert.AreEqual(2, (Mass.FromKilograms(2)*v).Kilograms, Delta);
+            Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, Delta);
+            Assert.AreEqual(2, (Mass.FromKilograms(10)/Mass.FromKilograms(5)).Kilograms, Delta);
+        }
+
+        [Test]
+        public void ComparisonOperators()
+        {
+            Mass oneMeter = Mass.FromKilograms(1);
+            Mass twoMeters = Mass.FromKilograms(2);
+
+            Assert.True(oneMeter < twoMeters);
+            Assert.True(oneMeter <= twoMeters);
+            Assert.True(twoMeters > oneMeter);
+            Assert.True(twoMeters >= oneMeter);
+
+            Assert.False(oneMeter > twoMeters);
+            Assert.False(oneMeter >= twoMeters);
+            Assert.False(twoMeters < oneMeter);
+            Assert.False(twoMeters <= oneMeter);
+        }
+
+        [Test]
+        public void CompareToIsImplemented()
+        {
+            Mass meter = Mass.FromKilograms(1);
+            Assert.AreEqual(0, meter.CompareTo(meter));
+            Assert.Greater(meter.CompareTo(Mass.Zero), 0);
+            Assert.Less(Mass.Zero.CompareTo(meter), 0);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CompareToThrowsOnTypeMismatch()
+        {
+            Mass meter = Mass.FromKilograms(1);
+            meter.CompareTo(new object());
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CompareToThrowsOnNull()
+        { 
+            Mass meter = Mass.FromKilograms(1);
+            meter.CompareTo(null);
+        }
+
+
+        [Test]
+        public void EqualityOperators()
+        {
+            Mass a = Mass.FromKilograms(1);
+            Mass b = Mass.FromKilograms(2);
+
+            Assert.True(a == a); 
+            Assert.True(a != b);
+
+            Assert.False(a == b);
+            Assert.False(a != a);
+        }
+
+        [Test]
+        public void EqualsIsImplemented()
+        {
+            Mass v = Mass.FromKilograms(1);
+            Assert.IsTrue(v.Equals(Mass.FromKilograms(1)));
+            Assert.IsFalse(v.Equals(Mass.Zero));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnTypeMismatch()
+        {
+            Mass meter = Mass.FromKilograms(1);
+            Assert.IsFalse(meter.Equals(new object()));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnNull()
+        {
+            Mass meter = Mass.FromKilograms(1);
+            Assert.IsFalse(meter.Equals(null));
         }
     }
 }
