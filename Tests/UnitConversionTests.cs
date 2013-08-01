@@ -22,12 +22,6 @@ namespace UnitsNet.Tests.net35
             var force = Force.FromKilogramForce(1);
             var mass = Mass.FromGravitationalForce(force);
             Assert.AreEqual(mass.Kilograms, force.KilogramForce);
-        }
-
-        [Test]
-        public void DynamicConversionThrowsOnIncompatibleUnits()
-        {
-            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
-        }
+        } 
     }
 }

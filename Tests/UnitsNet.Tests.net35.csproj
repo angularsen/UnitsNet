@@ -51,6 +51,7 @@
     <Compile Include="PressureTests.cs" />
     <Compile Include="UnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
