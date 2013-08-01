@@ -192,6 +192,13 @@ namespace UnitsNet
             return FromMeters(x, y);
         }
 
+        public static Length2d operator *(Length2d left, double right)
+        {
+            double x = left.X.Meters*right;
+            double y = left.Y.Meters*right;
+            return FromMeters(x, y);
+        }
+
         public static Length2d operator *(Length2d left, Length2d right)
         {
             double x = left.X.Meters*right.X.Meters;
