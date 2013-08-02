@@ -194,14 +194,29 @@ namespace UnitsNet
             return FromMeters(left*right.Meters);
         }
 
+        public static Length operator *(Length left, double right)
+        {
+            return FromMeters(left.Meters*right);
+        }
+
+        public static Length operator *(Length left, Length right)
+        {
+            return FromMeters(left.Meters*right.Meters);
+        }
+
         public static Length operator /(Length left, double right)
         {
             return FromMeters(left.Meters/right);
         }
 
+        public static Length operator /(Length left, Length right)
+        {
+            return FromMeters(left.Meters/right.Meters);
+        }
+
         #endregion
 
-        #region Comparable operators
+        #region Comparison / Equality Operators
 
         public static bool operator <=(Length left, Length right)
         {
@@ -251,10 +266,13 @@ namespace UnitsNet
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is Length))
-                return false;
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Length && ((Length) obj).Meters.Equals(Meters);
+        }
 
-            return Meters.CompareTo(((Length) obj).Meters) == 0;
+        public bool Equals(Length other)
+        {
+            return other.Meters == Meters;
         }
 
         public override int GetHashCode()

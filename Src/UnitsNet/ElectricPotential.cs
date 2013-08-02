@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing electrical tension in SI units.
     /// </summary>
-    public class ElectricPotential : IComparable, IComparable<ElectricPotential>
+    public struct ElectricPotential : IComparable, IComparable<ElectricPotential>
     {
         /// <summary>
         ///     Returns a volt representation of the voltage instance.

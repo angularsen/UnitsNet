@@ -100,6 +100,22 @@ namespace UnitsNet
 
         #region Static 
 
+        /// <summary>
+        ///     The maximum representable distance in pascals.
+        /// </summary>
+        public static Pressure Max
+        {
+            get { return new Pressure(double.MaxValue); }
+        }
+
+        /// <summary>
+        ///     The smallest representable distance in pascals.
+        /// </summary>
+        public static Pressure Min
+        {
+            get { return new Pressure(double.MinValue); }
+        }
+
         public static Pressure Zero
         {
             get { return new Pressure(0); }
@@ -180,9 +196,19 @@ namespace UnitsNet
             return new Pressure(left.Pascals - right.Pascals);
         }
 
+        public static Pressure operator *(Pressure left, double right)
+        {
+            return new Pressure(left.Pascals*right);
+        }
+
         public static Pressure operator *(double left, Pressure right)
         {
             return new Pressure(left*right.Pascals);
+        }
+
+        public static Pressure operator *(Pressure left, Pressure right)
+        {
+            return new Pressure(left.Pascals*right.Pascals);
         }
 
         public static Pressure operator /(Pressure left, double right)
@@ -190,21 +216,14 @@ namespace UnitsNet
             return new Pressure(left.Pascals/right);
         }
 
+        public static Pressure operator /(Pressure left, Pressure right)
+        {
+            return new Pressure(left.Pascals/right.Pascals);
+        }
+
         #endregion
 
-        #region Equality / IComparable
-
-        public int CompareTo(object obj)
-        {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", "obj");
-            return CompareTo((Pressure) obj);
-        }
-
-        public int CompareTo(Pressure other)
-        {
-            return Pascals.CompareTo(other.Pascals);
-        }
+        #region Comparison / Equality Operators
 
         public static bool operator <=(Pressure left, Pressure right)
         {
@@ -224,6 +243,48 @@ namespace UnitsNet
         public static bool operator >(Pressure left, Pressure right)
         {
             return left.Pascals > right.Pascals;
+        }
+
+        public static bool operator !=(Pressure left, Pressure right)
+        {
+            return left.Pascals != right.Pascals;
+        }
+
+        public static bool operator ==(Pressure left, Pressure right)
+        {
+            return left.Pascals == right.Pascals;
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Pressure && ((Pressure) obj).Pascals.Equals(Pascals);
+        }
+
+        public bool Equals(Pressure other)
+        {
+            return other.Pascals == Pascals;
+        }
+
+        public override int GetHashCode()
+        {
+            return Pascals.GetHashCode();
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", "obj");
+            return CompareTo((Pressure) obj);
+        }
+
+        public int CompareTo(Pressure other)
+        {
+            return Pascals.CompareTo(other.Pascals);
         }
 
         #endregion

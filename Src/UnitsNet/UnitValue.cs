@@ -26,7 +26,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing a double-precision value with an associated SI unit.
     /// </summary>
-    public class UnitValue
+    public struct UnitValue
     {
         public readonly Unit Unit;
         public readonly double Value;

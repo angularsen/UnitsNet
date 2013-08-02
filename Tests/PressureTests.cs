@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
@@ -40,6 +41,98 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Pressure.FromPsi(pa.Psi).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromTechnicalAtmosphere(pa.TechnicalAtmosphere).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromTorr(pa.Torr).Pascals, Delta);
+        }
+
+        [Test]
+        public void ArithmeticOperators()
+        {
+            Pressure v = Pressure.FromPascals(1);
+            Assert.AreEqual(-1, -v.Pascals, Delta);
+            Assert.AreEqual(2, (Pressure.FromPascals(3)-v).Pascals, Delta);
+            Assert.AreEqual(2, (v + v).Pascals, Delta);
+            Assert.AreEqual(10, (v*10).Pascals, Delta);
+            Assert.AreEqual(10, (10*v).Pascals, Delta);
+            Assert.AreEqual(2, (Pressure.FromPascals(2)*v).Pascals, Delta);
+            Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, Delta);
+            Assert.AreEqual(2, (Pressure.FromPascals(10)/Pressure.FromPascals(5)).Pascals, Delta);
+        }
+
+        [Test]
+        public void ComparisonOperators()
+        {
+            Pressure oneMeter = Pressure.FromPascals(1);
+            Pressure twoMeters = Pressure.FromPascals(2);
+
+            Assert.True(oneMeter < twoMeters);
+            Assert.True(oneMeter <= twoMeters);
+            Assert.True(twoMeters > oneMeter);
+            Assert.True(twoMeters >= oneMeter);
+
+            Assert.False(oneMeter > twoMeters);
+            Assert.False(oneMeter >= twoMeters);
+            Assert.False(twoMeters < oneMeter);
+            Assert.False(twoMeters <= oneMeter);
+        }
+
+        [Test]
+        public void CompareToIsImplemented()
+        {
+            Pressure meter = Pressure.FromPascals(1);
+            Assert.AreEqual(0, meter.CompareTo(meter));
+            Assert.Greater(meter.CompareTo(Pressure.Zero), 0);
+            Assert.Less(Pressure.Zero.CompareTo(meter), 0);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CompareToThrowsOnTypeMismatch()
+        {
+            Pressure meter = Pressure.FromPascals(1);
+            meter.CompareTo(new object());
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CompareToThrowsOnNull()
+        { 
+            Pressure meter = Pressure.FromPascals(1);
+            meter.CompareTo(null);
+        }
+
+
+        [Test]
+        public void EqualityOperators()
+        {
+            Pressure a = Pressure.FromPascals(1);
+            Pressure b = Pressure.FromPascals(2);
+
+            Assert.True(a == a); 
+            Assert.True(a != b);
+
+            Assert.False(a == b);
+            Assert.False(a != a);
+        }
+
+        [Test]
+        public void EqualsIsImplemented()
+        {
+            Pressure v = Pressure.FromPascals(1);
+            Assert.IsTrue(v.Equals(Pressure.FromPascals(1)));
+            Assert.IsFalse(v.Equals(Pressure.Zero));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnTypeMismatch()
+        {
+            Pressure meter = Pressure.FromPascals(1);
+            Assert.IsFalse(meter.Equals(new object()));
+        }
+
+        [Test]
+        public void EqualsReturnsFalseOnNull()
+        {
+            Pressure meter = Pressure.FromPascals(1);
+            Assert.IsFalse(meter.Equals(null));
         }
     }
 }
