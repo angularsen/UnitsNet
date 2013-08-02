@@ -39,7 +39,12 @@ namespace UnitsNet
 
         public bool TryConvert(Unit toUnit, out double newValue)
         {
-            return UnitConverter.TryConvert(this.Value, this.Unit, toUnit, out newValue);
+            return UnitConverter.TryConvert(Value, Unit, toUnit, out newValue);
+        }
+
+        public override string ToString()
+        {
+            return Value + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit);
         }
 
         #region Equality
@@ -92,10 +97,5 @@ namespace UnitsNet
         }
 
         #endregion
-
-        public override string ToString()
-        {
-            return Value + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit);
-        }
     }
 }

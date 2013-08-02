@@ -43,7 +43,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         public double ShortTons
@@ -52,7 +52,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        ///     Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         public double LongTons
@@ -185,7 +185,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
+        ///     Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         public static Mass FromLongTons(double value)
@@ -194,7 +194,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton. 
+        ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         public static Mass FromShortTons(double value)

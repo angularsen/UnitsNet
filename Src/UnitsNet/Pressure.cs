@@ -259,6 +259,18 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
+        public int CompareTo(object obj)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", "obj");
+            return CompareTo((Pressure) obj);
+        }
+
+        public int CompareTo(Pressure other)
+        {
+            return Pascals.CompareTo(other.Pascals);
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -273,18 +285,6 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             return Pascals.GetHashCode();
-        }
-
-        public int CompareTo(object obj)
-        {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", "obj");
-            return CompareTo((Pressure) obj);
-        }
-
-        public int CompareTo(Pressure other)
-        {
-            return Pascals.CompareTo(other.Pascals);
         }
 
         #endregion
