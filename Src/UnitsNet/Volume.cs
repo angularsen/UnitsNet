@@ -66,7 +66,7 @@ namespace UnitsNet
             get { return CubicMeters / CubicCentimetersToCubicMetersRatio; }
         }
 
-        public double CubicMilimeters
+        public double CubicMillimeters
         {
             get { return CubicMeters / CubicMilimetersToCubicMetersRatio; }
         }

@@ -343,7 +343,7 @@ namespace UnitsNet
                     newValue = volume.CubicCentimeters;
                     return true;
                 case Unit.CubicMillimeter:
-                    newValue = volume.CubicMilimeters;
+                    newValue = volume.CubicMillimeters;
                     return true;
                 case Unit.Hectoliter:
                     newValue = volume.Hectoliters;
