@@ -30,7 +30,7 @@ namespace UnitsNet
     {
         /// <summary>
         ///     A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
-        ///     such as converting from milimeters to meters.
+        ///     such as converting from millimeters to meters.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="fromUnit"></param>
@@ -57,7 +57,7 @@ namespace UnitsNet
 
         /// <summary>
         ///     A general method for converting a value in a given metric unit domain to the respective value in a compatible unit domain,
-        ///     such as converting from milimeters to meters.
+        ///     such as converting from millimeters to meters.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="fromUnit"></param>
@@ -358,7 +358,7 @@ namespace UnitsNet
                     newValue = volume.Centiliters;
                     return true;
                 case Unit.Milliliter:
-                    newValue = volume.Mililiters;
+                    newValue = volume.Milliliters;
                     return true;
 
                 default:

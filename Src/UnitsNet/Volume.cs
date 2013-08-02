@@ -36,7 +36,7 @@ namespace UnitsNet
         private const double LitersToCubicMetersRatio = 1E-3; 
         private const double DecilitersToCubicMetersRatio = 1E-4; 
         private const double CentilitersToCubicMetersRatio = 1E-5;
-        private const double MililitersToCubicMetersRatio = 1E-6;
+        private const double MillilitersToCubicMetersRatio = 1E-6;
 
         public readonly double CubicMeters;
 
@@ -91,9 +91,9 @@ namespace UnitsNet
             get { return CubicMeters / CentilitersToCubicMetersRatio; }
         }
 
-        public double Mililiters
+        public double Milliliters
         {
-            get { return CubicMeters / MililitersToCubicMetersRatio; }
+            get { return CubicMeters / MillilitersToCubicMetersRatio; }
         }
 
         #endregion
@@ -166,9 +166,9 @@ namespace UnitsNet
             return new Volume(centiliters * CentilitersToCubicMetersRatio);
         }
 
-        public static Volume FromMililiters(double mililiters)
+        public static Volume FromMililiters(double milliliters)
         {
-            return new Volume(mililiters * MililitersToCubicMetersRatio);
+            return new Volume(milliliters * MillilitersToCubicMetersRatio);
         }
 
         #endregion
