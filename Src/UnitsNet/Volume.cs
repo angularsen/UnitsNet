@@ -31,7 +31,7 @@ namespace UnitsNet
         private const double CubicKilometersToCubicMetersRatio = 1E9;
         private const double CubicDecimetersToCubicMetersRatio = 1E-3; 
         private const double CubicCentimetersToCubicMetersRatio = 1E-6;
-        private const double CubicMilimetersToCubicMetersRatio = 1E-9; 
+        private const double CubicMillimetersToCubicMetersRatio = 1E-9; 
         private const double HectolitersToCubicMetersRatio = 1E-1; 
         private const double LitersToCubicMetersRatio = 1E-3; 
         private const double DecilitersToCubicMetersRatio = 1E-4; 
@@ -68,7 +68,7 @@ namespace UnitsNet
 
         public double CubicMillimeters
         {
-            get { return CubicMeters / CubicMilimetersToCubicMetersRatio; }
+            get { return CubicMeters / CubicMillimetersToCubicMetersRatio; }
         }
 
         public double Hectoliters
@@ -143,7 +143,7 @@ namespace UnitsNet
 
         public static Volume FromCubicMillimeters(double cubicMilimeters)
         {
-            return new Volume(cubicMilimeters * CubicMilimetersToCubicMetersRatio);
+            return new Volume(cubicMilimeters * CubicMillimetersToCubicMetersRatio);
         }
 
         public static Volume FromHectoliters(double hectoliters)
