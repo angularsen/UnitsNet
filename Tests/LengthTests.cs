@@ -55,9 +55,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(2, (v + v).Meters, Delta);
             Assert.AreEqual(10, (v*10).Meters, Delta);
             Assert.AreEqual(10, (10*v).Meters, Delta);
-            Assert.AreEqual(2, (Length.FromMeters(2)*v).Meters, Delta);
             Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, Delta);
-            Assert.AreEqual(2, (Length.FromMeters(10)/Length.FromMeters(5)).Meters, Delta);
+            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), Delta);
         }
 
         [Test]

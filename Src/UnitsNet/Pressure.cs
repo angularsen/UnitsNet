@@ -206,19 +206,14 @@ namespace UnitsNet
             return new Pressure(left*right.Pascals);
         }
 
-        public static Pressure operator *(Pressure left, Pressure right)
-        {
-            return new Pressure(left.Pascals*right.Pascals);
-        }
-
         public static Pressure operator /(Pressure left, double right)
         {
             return new Pressure(left.Pascals/right);
         }
 
-        public static Pressure operator /(Pressure left, Pressure right)
+        public static double operator /(Pressure left, Pressure right)
         {
-            return new Pressure(left.Pascals/right.Pascals);
+            return left.Pascals/right.Pascals;
         }
 
         #endregion

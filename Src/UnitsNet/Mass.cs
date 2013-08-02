@@ -237,14 +237,9 @@ namespace UnitsNet
             return new Mass(left*right.Kilograms);
         }
 
-        public static Mass operator *(Mass left, Mass right)
+        public static double operator /(Mass left, Mass right)
         {
-            return new Mass(left.Kilograms*right.Kilograms);
-        }
-
-        public static Mass operator /(Mass left, Mass right)
-        {
-            return new Mass(left.Kilograms/right.Kilograms);
+            return left.Kilograms/right.Kilograms;
         }
 
         public static Mass operator /(Mass left, double right)

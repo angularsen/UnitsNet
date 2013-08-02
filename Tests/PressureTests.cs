@@ -52,9 +52,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(2, (v + v).Pascals, Delta);
             Assert.AreEqual(10, (v*10).Pascals, Delta);
             Assert.AreEqual(10, (10*v).Pascals, Delta);
-            Assert.AreEqual(2, (Pressure.FromPascals(2)*v).Pascals, Delta);
             Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, Delta);
-            Assert.AreEqual(2, (Pressure.FromPascals(10)/Pressure.FromPascals(5)).Pascals, Delta);
+            Assert.AreEqual(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), Delta);
         }
 
         [Test]

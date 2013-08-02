@@ -144,11 +144,6 @@ namespace UnitsNet
             return new Force(left.Newtons - right.Newtons);
         }
 
-        public static Force operator *(Force left, Force right)
-        {
-            return new Force(left.Newtons*right.Newtons);
-        }
-
         public static Force operator *(double left, Force right)
         {
             return new Force(left*right.Newtons);
@@ -164,9 +159,9 @@ namespace UnitsNet
             return new Force(left.Newtons/right);
         }
 
-        public static Force operator /(Force left, Force right)
+        public static double operator /(Force left, Force right)
         {
-            return new Force(left.Newtons/right.Newtons);
+            return left.Newtons/right.Newtons;
         }
 
         #endregion

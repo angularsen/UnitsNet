@@ -199,19 +199,14 @@ namespace UnitsNet
             return FromMeters(left.Meters*right);
         }
 
-        public static Length operator *(Length left, Length right)
-        {
-            return FromMeters(left.Meters*right.Meters);
-        }
-
         public static Length operator /(Length left, double right)
         {
             return FromMeters(left.Meters/right);
         }
 
-        public static Length operator /(Length left, Length right)
+        public static double operator /(Length left, Length right)
         {
-            return FromMeters(left.Meters/right.Meters);
+            return left.Meters/right.Meters;
         }
 
         #endregion

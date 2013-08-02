@@ -213,11 +213,11 @@ namespace UnitsNet
             return FromMeters(x, y);
         }
 
-        public static Length2d operator /(Length2d left, Length2d right)
+        public static Vector2 operator /(Length2d left, Length2d right)
         {
             double x = left.X.Meters/right.X.Meters;
             double y = left.Y.Meters/right.Y.Meters;
-            return FromMeters(x, y);
+            return new Vector2(x, y);
         }
 
         #endregion

@@ -56,9 +56,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(2, (v + v).Kilograms, Delta);
             Assert.AreEqual(10, (v*10).Kilograms, Delta);
             Assert.AreEqual(10, (10*v).Kilograms, Delta);
-            Assert.AreEqual(2, (Mass.FromKilograms(2)*v).Kilograms, Delta);
             Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, Delta);
-            Assert.AreEqual(2, (Mass.FromKilograms(10)/Mass.FromKilograms(5)).Kilograms, Delta);
+            Assert.AreEqual(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), Delta);
         }
 
         [Test]

@@ -73,8 +73,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(4, (Length2d.FromMeters(2, 2)*v).Meters.Y, Delta);
             Assert.AreEqual(2, (Length2d.FromMeters(10, 20)/5).Meters.X, Delta);
             Assert.AreEqual(4, (Length2d.FromMeters(10, 20)/5).Meters.Y, Delta);
-            Assert.AreEqual(2, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).Meters.X, Delta);
-            Assert.AreEqual(4, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).Meters.Y, Delta);
+            Assert.AreEqual(2, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).X, Delta);
+            Assert.AreEqual(4, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).Y, Delta);
         }
 
         [Test]
