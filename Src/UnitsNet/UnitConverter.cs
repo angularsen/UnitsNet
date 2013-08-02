@@ -282,7 +282,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Length l, Unit toUnit, out double newValue)
+        private static bool TryConvert(Length l, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -326,7 +326,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Volume volume, Unit toUnit, out double newValue)
+        private static bool TryConvert(Volume volume, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -368,7 +368,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Mass m, Unit toUnit, out double newValue)
+        private static bool TryConvert(Mass m, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -422,7 +422,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Pressure p, Unit toUnit, out double newValue)
+        private static bool TryConvert(Pressure p, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -463,7 +463,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Force f, Unit toUnit, out double newValue)
+        private static bool TryConvert(Force f, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -495,7 +495,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(Torque t, Unit toUnit, out double newValue)
+        private static bool TryConvert(Torque t, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -509,7 +509,7 @@ namespace UnitsNet
             }
         }
 
-        public static bool TryConvert(TimeSpan t, Unit toUnit, out double newValue)
+        private static bool TryConvert(TimeSpan t, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
