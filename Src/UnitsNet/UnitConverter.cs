@@ -225,7 +225,7 @@ namespace UnitsNet
                     return TryConvert(Volume.FromCubicDecimeters(value), toUnit, out newValue);
                 case Unit.CubicCentimeter:
                     return TryConvert(Volume.FromCubicCentimeters(value), toUnit, out newValue);
-                case Unit.CubicMilimeter:
+                case Unit.CubicMillimeter:
                     return TryConvert(Volume.FromCubicMilimeters(value), toUnit, out newValue);
                 case Unit.Hectoliter:
                     return TryConvert(Volume.FromHectoliters(value), toUnit, out newValue);
@@ -342,7 +342,7 @@ namespace UnitsNet
                 case Unit.CubicCentimeter:
                     newValue = volume.CubicCentimeters;
                     return true;
-                case Unit.CubicMilimeter:
+                case Unit.CubicMillimeter:
                     newValue = volume.CubicMilimeters;
                     return true;
                 case Unit.Hectoliter:

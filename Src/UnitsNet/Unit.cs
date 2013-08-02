@@ -94,7 +94,7 @@ namespace UnitsNet
         CubicMeter,
         CubicDecimeter,
         CubicCentimeter,
-        CubicMilimeter,
+        CubicMillimeter,
         Hectoliter,
         Liter,
         Deciliter,
