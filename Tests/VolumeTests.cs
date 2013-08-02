@@ -42,7 +42,7 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Volume.FromCubicMeters(cubicMeter.CubicMeters).CubicMeters, Delta);
             Assert.AreEqual(1, Volume.FromCubicDecimeters(cubicMeter.CubicDecimeters).CubicMeters, Delta);
             Assert.AreEqual(1, Volume.FromCubicCentimeters(cubicMeter.CubicCentimeters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicMilimeters(cubicMeter.CubicMilimeters).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicMillimeters(cubicMeter.CubicMilimeters).CubicMeters, Delta);
 
             Assert.AreEqual(1, Volume.FromHectoliters(cubicMeter.Hectoliters).CubicMeters, Delta);
             Assert.AreEqual(1, Volume.FromLiters(cubicMeter.Liters).CubicMeters, Delta);
