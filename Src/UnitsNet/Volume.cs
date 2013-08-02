@@ -180,14 +180,34 @@ namespace UnitsNet
             return FromCubicMeters(-right.CubicMeters);
         }
 
+        public static Volume operator +(Volume left, Volume right)
+        {
+            return FromCubicMeters(left.CubicMeters + right.CubicMeters);
+        }
+
         public static Volume operator -(Volume left, Volume right)
         {
             return FromCubicMeters(left.CubicMeters - right.CubicMeters);
         }
 
-        public static Volume operator +(Volume left, Volume right)
+        public static Volume operator *(double left, Volume right)
         {
-            return FromCubicMeters(left.CubicMeters + right.CubicMeters);
+            return FromCubicMeters(left*right.CubicMeters);
+        }
+
+        public static Volume operator *(Volume left, double right)
+        {
+            return FromCubicMeters(left.CubicMeters*right);
+        }
+
+        public static Volume operator /(Volume left, double right)
+        {
+            return FromCubicMeters(left.CubicMeters/right);
+        }
+
+        public static double operator /(Volume left, Volume right)
+        {
+            return left.CubicMeters/right.CubicMeters;
         }
 
         #endregion
