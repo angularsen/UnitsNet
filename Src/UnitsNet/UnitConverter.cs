@@ -236,7 +236,7 @@ namespace UnitsNet
                 case Unit.Centiliter:
                     return TryConvert(Volume.FromCentiliters(value), toUnit, out newValue);
                 case Unit.Milliliter:
-                    return TryConvert(Volume.FromMililiters(value), toUnit, out newValue);
+                    return TryConvert(Volume.FromMilliliters(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;

@@ -166,7 +166,7 @@ namespace UnitsNet
             return new Volume(centiliters * CentilitersToCubicMetersRatio);
         }
 
-        public static Volume FromMililiters(double milliliters)
+        public static Volume FromMilliliters(double milliliters)
         {
             return new Volume(milliliters * MillilitersToCubicMetersRatio);
         }
