@@ -88,35 +88,25 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Year365Days:
-                    newValue = Convert(TimeSpan.FromDays(365*value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromDays(365*value), toUnit, out newValue);
                 case Unit.Month30Days:
-                    newValue = Convert(TimeSpan.FromDays(30*value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromDays(30*value), toUnit, out newValue);
                 case Unit.Week:
-                    newValue = Convert(TimeSpan.FromDays(7*value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromDays(7*value), toUnit, out newValue);
                 case Unit.Day:
-                    newValue = Convert(TimeSpan.FromDays(value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromDays(value), toUnit, out newValue);
                 case Unit.Hour:
-                    newValue = Convert(TimeSpan.FromHours(value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromHours(value), toUnit, out newValue);
                 case Unit.Minute:
-                    newValue = Convert(TimeSpan.FromMinutes(value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromMinutes(value), toUnit, out newValue);
                 case Unit.Second:
-                    newValue = Convert(TimeSpan.FromSeconds(value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromSeconds(value), toUnit, out newValue);
                 case Unit.Millisecond:
-                    newValue = Convert(TimeSpan.FromMilliseconds(value), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromMilliseconds(value), toUnit, out newValue);
                 case Unit.Microsecond:
-                    newValue = Convert(TimeSpan.FromTicks(System.Convert.ToInt64(value*10)), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromTicks(System.Convert.ToInt64(value*10)), toUnit, out newValue);
                 case Unit.Nanosecond:
-                    newValue = Convert(TimeSpan.FromSeconds(System.Convert.ToInt64(value/100)), toUnit);
-                    return true;
+                    return TryConvert(TimeSpan.FromSeconds(System.Convert.ToInt64(value/100)), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -129,8 +119,7 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Newtonmeter:
-                    newValue = Convert(Torque.FromNewtonmeters(value), toUnit);
-                    return true;
+                    return TryConvert(Torque.FromNewtonmeters(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -143,26 +132,19 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Kilonewton:
-                    newValue = Convert(Force.FromKilonewtons(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromKilonewtons(value), toUnit, out newValue);
                 case Unit.Newton:
-                    newValue = Convert(Force.FromNewtons(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromNewtons(value), toUnit, out newValue);
                 case Unit.KilogramForce:
-                    newValue = Convert(Force.FromKilogramForce(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromKilogramForce(value), toUnit, out newValue);
                 case Unit.Dyn:
-                    newValue = Convert(Force.FromDyne(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromDyne(value), toUnit, out newValue);
                 case Unit.KiloPond:
-                    newValue = Convert(Force.FromKiloPonds(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromKiloPonds(value), toUnit, out newValue);
                 case Unit.PoundForce:
-                    newValue = Convert(Force.FromPoundForce(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromPoundForce(value), toUnit, out newValue);
                 case Unit.Poundal:
-                    newValue = Convert(Force.FromPoundal(value), toUnit);
-                    return true;
+                    return TryConvert(Force.FromPoundal(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -175,35 +157,25 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Pascal:
-                    newValue = Convert(Pressure.FromPascals(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromPascals(value), toUnit, out newValue);
                 case Unit.KiloPascal:
-                    newValue = Convert(Pressure.FromKiloPascals(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromKiloPascals(value), toUnit, out newValue);
                 case Unit.Psi:
-                    newValue = Convert(Pressure.FromPsi(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromPsi(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareCentimeter:
-                    newValue = Convert(Pressure.FromNewtonsPerSquareCentimeter(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromNewtonsPerSquareCentimeter(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareMillimeter:
-                    newValue = Convert(Pressure.FromNewtonsPerSquareMillimeter(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromNewtonsPerSquareMillimeter(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareMeter:
-                    newValue = Convert(Pressure.FromNewtonsPerSquareMeter(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromNewtonsPerSquareMeter(value), toUnit, out newValue);
                 case Unit.Bar:
-                    newValue = Convert(Pressure.FromBars(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromBars(value), toUnit, out newValue);
                 case Unit.TechnicalAtmosphere:
-                    newValue = Convert(Pressure.FromTechnicalAtmosphere(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromTechnicalAtmosphere(value), toUnit, out newValue);
                 case Unit.Atmosphere:
-                    newValue = Convert(Pressure.FromAtmosphere(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromAtmosphere(value), toUnit, out newValue);
                 case Unit.Torr:
-                    newValue = Convert(Pressure.FromTorr(value), toUnit);
-                    return true;
+                    return TryConvert(Pressure.FromTorr(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -216,33 +188,24 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Kilometer:
-                    newValue = Convert(Length.FromKilometers(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromKilometers(value), toUnit, out newValue);
                 case Unit.Meter:
-                    newValue = Convert(Length.FromMeters(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromMeters(value), toUnit, out newValue);
                 case Unit.Decimeter:
-                    newValue = Convert(Length.FromDecimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromDecimeters(value), toUnit, out newValue);
                 case Unit.Centimeter:
-                    newValue = Convert(Length.FromCentimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromCentimeters(value), toUnit, out newValue);
                 case Unit.Millimeter:
-                    newValue = Convert(Length.FromMillimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromMillimeters(value), toUnit, out newValue);
 
                 case Unit.Mile:
-                    newValue = Convert(Length.FromMiles(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromMiles(value), toUnit, out newValue);
                 case Unit.Yard:
-                    newValue = Convert(Length.FromYards(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromYards(value), toUnit, out newValue);
                 case Unit.Foot:
-                    newValue = Convert(Length.FromFeet(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromFeet(value), toUnit, out newValue);
                 case Unit.Inch:
-                    newValue = Convert(Length.FromInches(value), toUnit);
-                    return true;
+                    return TryConvert(Length.FromInches(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -255,35 +218,25 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.CubicKilometer:
-                    newValue = Convert(Volume.FromCubicKilometers(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCubicKilometers(value), toUnit, out newValue);
                 case Unit.CubicMeter:
-                    newValue = Convert(Volume.FromCubicMeters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCubicMeters(value), toUnit, out newValue);
                 case Unit.CubicDecimeter:
-                    newValue = Convert(Volume.FromCubicDecimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCubicDecimeters(value), toUnit, out newValue);
                 case Unit.CubicCentimeter:
-                    newValue = Convert(Volume.FromCubicCentimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCubicCentimeters(value), toUnit, out newValue);
                 case Unit.CubicMilimeter:
-                    newValue = Convert(Volume.FromCubicMilimeters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCubicMilimeters(value), toUnit, out newValue);
                 case Unit.Hectoliter:
-                    newValue = Convert(Volume.FromHectoliters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromHectoliters(value), toUnit, out newValue);
                 case Unit.Liter:
-                    newValue = Convert(Volume.FromLiters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromLiters(value), toUnit, out newValue);
                 case Unit.Deciliter:
-                    newValue = Convert(Volume.FromDeciliters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromDeciliters(value), toUnit, out newValue);
                 case Unit.Centiliter:
-                    newValue = Convert(Volume.FromCentiliters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromCentiliters(value), toUnit, out newValue);
                 case Unit.Milliliter:
-                    newValue = Convert(Volume.FromMililiters(value), toUnit);
-                    return true;
+                    return TryConvert(Volume.FromMililiters(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -296,44 +249,32 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.Megatonne:
-                    newValue = Convert(Mass.FromMegatonnes(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromMegatonnes(value), toUnit, out newValue);
                 case Unit.Kilotonne:
-                    newValue = Convert(Mass.FromKilotonnes(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromKilotonnes(value), toUnit, out newValue);
                 case Unit.Tonne:
-                    newValue = Convert(Mass.FromTonnes(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromTonnes(value), toUnit, out newValue);
                 case Unit.Kilogram:
-                    newValue = Convert(Mass.FromKilograms(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromKilograms(value), toUnit, out newValue);
                 case Unit.Hectogram:
-                    newValue = Convert(Mass.FromHectograms(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromHectograms(value), toUnit, out newValue);
                 case Unit.Decagram:
-                    newValue = Convert(Mass.FromDecagrams(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromDecagrams(value), toUnit, out newValue);
                 case Unit.Gram:
-                    newValue = Convert(Mass.FromGrams(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromGrams(value), toUnit, out newValue);
                 case Unit.Decigram:
-                    newValue = Convert(Mass.FromDecigrams(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromDecigrams(value), toUnit, out newValue);
                 case Unit.Centigram:
-                    newValue = Convert(Mass.FromCentigrams(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromCentigrams(value), toUnit, out newValue);
                 case Unit.Milligram:
-                    newValue = Convert(Mass.FromMilligrams(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromMilligrams(value), toUnit, out newValue);
                     //case Unit.Microgram:
                     //case Unit.Nanogram:
 
                 case Unit.ShortTon:
-                    newValue = Convert(Mass.FromShortTons(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromShortTons(value), toUnit, out newValue);
                 case Unit.LongTon:
-                    newValue = Convert(Mass.FromLongTons(value), toUnit);
-                    return true;
+                    return TryConvert(Mass.FromLongTons(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -341,64 +282,84 @@ namespace UnitsNet
             }
         }
 
-        public static double Convert(Length l, Unit toUnit)
+        public static bool TryConvert(Length l, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Kilometer:
-                    return l.Kilometers;
+                    newValue = l.Kilometers;
+                    return true;
                 case Unit.Meter:
-                    return l.Meters;
+                    newValue = l.Meters;
+                    return true;
                 case Unit.Decimeter:
-                    return l.Decimeters;
+                    newValue = l.Decimeters;
+                    return true;
                 case Unit.Centimeter:
-                    return l.Centimeters;
+                    newValue = l.Centimeters;
+                    return true;
                 case Unit.Millimeter:
-                    return l.Millimeters;
+                    newValue = l.Millimeters;
+                    return true;
                 case Unit.Micrometer:
-                    return l.Micrometers;
+                    newValue = l.Micrometers;
+                    return true;
                 case Unit.Nanometer:
-                    return l.Nanometers;
+                    newValue = l.Nanometers;
+                    return true;
 
                 case Unit.Mile:
-                    return l.Miles;
+                    newValue = l.Miles;
+                    return true;
                 case Unit.Yard:
-                    return l.Yards;
+                    newValue = l.Yards;
+                    return true;
                 case Unit.Foot:
-                    return l.Feet;
+                    newValue = l.Feet;
+                    return true;
                 case Unit.Inch:
-                    return l.Inches;
+                    newValue = l.Inches;
+                    return true;
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from length to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
-        public static double Convert(Volume volume, Unit toUnit)
+        public static bool TryConvert(Volume volume, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.CubicKilometer:
-                    return volume.CubicKilometers;
+                    newValue = volume.CubicKilometers;
+                    return true;
                 case Unit.CubicMeter:
-                    return volume.CubicMeters;
+                    newValue = volume.CubicMeters;
+                    return true;
                 case Unit.CubicDecimeter:
-                    return volume.CubicDecimeters;
+                    newValue = volume.CubicDecimeters;
+                    return true;
                 case Unit.CubicCentimeter:
-                    return volume.CubicCentimeters;
+                    newValue = volume.CubicCentimeters;
+                    return true;
                 case Unit.CubicMilimeter:
-                    return volume.CubicMilimeters;
+                    newValue = volume.CubicMilimeters;
+                    return true;
                 case Unit.Hectoliter:
-                    return volume.Hectoliters;
+                    newValue = volume.Hectoliters;
+                    return true;
                 case Unit.Liter:
-                    return volume.Liters;
+                    newValue = volume.Liters;
+                    return true;
                 case Unit.Deciliter:
-                    return volume.Deciliters;
+                    newValue = volume.Deciliters;
+                    return true;
                 case Unit.Centiliter:
-                    return volume.Centiliters;
+                    newValue = volume.Centiliters;
+                    return true;
                 case Unit.Milliliter:
-                    return volume.Mililiters;
+                    newValue = volume.Mililiters;
+                    return true;
 
                 default:
                     throw new Exception(
@@ -407,148 +368,185 @@ namespace UnitsNet
             }
         }
 
-        private static double Convert(Mass m, Unit toUnit)
+        public static bool TryConvert(Mass m, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Megatonne:
-                    return m.Megatonnes;
+                    newValue = m.Megatonnes;
+                    return true;
                 case Unit.Kilotonne:
-                    return m.Kilotonnes;
+                    newValue = m.Kilotonnes;
+                    return true;
                 case Unit.Tonne:
-                    return m.Tonnes;
+                    newValue = m.Tonnes;
+                    return true;
                 case Unit.Kilogram:
-                    return m.Kilograms;
+                    newValue = m.Kilograms;
+                    return true;
                 case Unit.Hectogram:
-                    return m.Hectograms;
+                    newValue = m.Hectograms;
+                    return true;
                 case Unit.Decagram:
-                    return m.Decagrams;
+                    newValue = m.Decagrams;
+                    return true;
                 case Unit.Gram:
-                    return m.Grams;
+                    newValue = m.Grams;
+                    return true;
                 case Unit.Decigram:
-                    return m.Decigrams;
+                    newValue = m.Decigrams;
+                    return true;
                 case Unit.Centigram:
-                    return m.Centigrams;
+                    newValue = m.Centigrams;
+                    return true;
                 case Unit.Milligram:
-                    return m.Milligrams;
+                    newValue = m.Milligrams;
+                    return true;
                     //case Unit.Microgram:
-                    //             return m.Micrograms;
+                    //             newValue = m.Micrograms;
+                    //return true;
                     //case Unit.Nanogram:
-                    //             return m.Nanograms;
+                    //             newValue = m.Nanograms;
+                    //return true;
 
                 case Unit.ShortTon:
-                    return m.ShortTons;
+                    newValue = m.ShortTons;
+                    return true;
                 case Unit.LongTon:
-                    return m.LongTons;
+                    newValue = m.LongTons;
+                    return true;
 
                 default:
-                    throw new Exception(
-                        string.Format("Conversion from mass to unit [{0}] is either not valid or not yet implemented.",
-                                      toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
-        public static double Convert(Pressure p, Unit toUnit)
+        public static bool TryConvert(Pressure p, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Pascal:
-                    return p.Pascals;
+                    newValue = p.Pascals;
+                    return true;
                 case Unit.KiloPascal:
-                    return p.KiloPascals;
+                    newValue = p.KiloPascals;
+                    return true;
                 case Unit.Psi:
-                    return p.Psi;
+                    newValue = p.Psi;
+                    return true;
                 case Unit.NewtonPerSquareCentimeter:
-                    return p.NewtonsPerSquareCentimeter;
+                    newValue = p.NewtonsPerSquareCentimeter;
+                    return true;
                 case Unit.NewtonPerSquareMillimeter:
-                    return p.NewtonsPerSquareMeter;
+                    newValue = p.NewtonsPerSquareMeter;
+                    return true;
                 case Unit.NewtonPerSquareMeter:
-                    return p.NewtonsPerSquareMillimeter;
+                    newValue = p.NewtonsPerSquareMillimeter;
+                    return true;
                 case Unit.Bar:
-                    return p.Bars;
+                    newValue = p.Bars;
+                    return true;
                 case Unit.TechnicalAtmosphere:
-                    return p.TechnicalAtmosphere;
+                    newValue = p.TechnicalAtmosphere;
+                    return true;
                 case Unit.Atmosphere:
-                    return p.Atmosphere;
+                    newValue = p.Atmosphere;
+                    return true;
                 case Unit.Torr:
-                    return p.Torr;
+                    newValue = p.Torr;
+                    return true;
 
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from pressure to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
-        public static double Convert(Force f, Unit toUnit)
+        public static bool TryConvert(Force f, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Kilonewton:
-                    return f.Kilonewtons;
+                    newValue = f.Kilonewtons;
+                    return true;
                 case Unit.Newton:
-                    return f.Newtons;
+                    newValue = f.Newtons;
+                    return true;
                 case Unit.KilogramForce:
-                    return f.KilogramForce;
+                    newValue = f.KilogramForce;
+                    return true;
                 case Unit.Dyn:
-                    return f.Dyne;
+                    newValue = f.Dyne;
+                    return true;
                 case Unit.KiloPond:
-                    return f.KiloPonds;
+                    newValue = f.KiloPonds;
+                    return true;
                 case Unit.PoundForce:
-                    return f.PoundForce;
+                    newValue = f.PoundForce;
+                    return true;
                 case Unit.Poundal:
-                    return f.Poundal;
+                    newValue = f.Poundal;
+                    return true;
 
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from force to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
-        public static double Convert(Torque t, Unit toUnit)
+        public static bool TryConvert(Torque t, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Newtonmeter:
-                    return t.Newtonmeters;
+                    newValue = t.Newtonmeters;
+                    return true;
 
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from torque to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
-        public static double Convert(TimeSpan t, Unit toUnit)
+        public static bool TryConvert(TimeSpan t, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
                 case Unit.Year365Days:
-                    return t.TotalDays/365;
+                    newValue = t.TotalDays/365;
+                    return true;
                 case Unit.Month30Days:
-                    return t.TotalDays/30;
+                    newValue = t.TotalDays/30;
+                    return true;
                 case Unit.Week:
-                    return t.TotalDays/7;
+                    newValue = t.TotalDays/7;
+                    return true;
                 case Unit.Day:
-                    return t.TotalDays;
+                    newValue = t.TotalDays;
+                    return true;
                 case Unit.Hour:
-                    return t.TotalHours;
+                    newValue = t.TotalHours;
+                    return true;
                 case Unit.Minute:
-                    return t.TotalMinutes;
+                    newValue = t.TotalMinutes;
+                    return true;
                 case Unit.Second:
-                    return t.TotalSeconds;
+                    newValue = t.TotalSeconds;
+                    return true;
                 case Unit.Millisecond:
-                    return t.TotalMilliseconds;
+                    newValue = t.TotalMilliseconds;
+                    return true;
                 case Unit.Microsecond:
-                    return t.Ticks/10.0;
+                    newValue = t.Ticks/10.0;
+                    return true;
                 case Unit.Nanosecond:
-                    return t.Ticks*100;
+                    newValue = t.Ticks*100;
+                    return true;
 
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from time to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
     }
