@@ -52,6 +52,7 @@
     <Compile Include="UnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitConverterTests.cs" />
+    <Compile Include="UnitValueTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
