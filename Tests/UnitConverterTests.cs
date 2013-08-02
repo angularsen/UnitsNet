@@ -32,5 +32,12 @@ namespace UnitsNet.Tests.net35
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
         }
+
+        [Test]
+        public void TryConvertReturnsFalseOnIncompatibleUnits()
+        {
+            double newValue;
+            Assert.False(UnitConverter.TryConvert(1, Unit.Meter, Unit.Second, out newValue));
+        }
     }
 }
