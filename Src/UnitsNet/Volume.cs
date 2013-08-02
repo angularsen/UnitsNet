@@ -141,9 +141,9 @@ namespace UnitsNet
             return new Volume(cubicCentimeters * CubicCentimetersToCubicMetersRatio);
         }
 
-        public static Volume FromCubicMillimeters(double cubicMilimeters)
+        public static Volume FromCubicMillimeters(double cubicMillimeters)
         {
-            return new Volume(cubicMilimeters * CubicMillimetersToCubicMetersRatio);
+            return new Volume(cubicMillimeters * CubicMillimetersToCubicMetersRatio);
         }
 
         public static Volume FromHectoliters(double hectoliters)
