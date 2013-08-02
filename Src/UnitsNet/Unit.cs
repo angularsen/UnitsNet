@@ -90,10 +90,12 @@ namespace UnitsNet
         Poundal,
 
         // Volume
+        CubicKilometer,
         CubicMeter,
         CubicDecimeter,
         CubicCentimeter,
-        CubicMillimeter,
+        CubicMilimeter,
+        Hectoliter,
         Liter,
         Deciliter,
         Centiliter,

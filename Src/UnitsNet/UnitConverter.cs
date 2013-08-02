@@ -43,6 +43,7 @@ namespace UnitsNet
 
             double newValue;
             if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertVolume(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return newValue;
@@ -72,6 +73,7 @@ namespace UnitsNet
             }
 
             if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertVolume(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return true;
@@ -211,6 +213,37 @@ namespace UnitsNet
             }
         }
 
+        private static bool TryConvertVolume(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.CubicKilometer:
+                    return TryConvert(Volume.FromCubicKilometers(value), toUnit, out newValue);
+                case Unit.CubicMeter:
+                    return TryConvert(Volume.FromCubicMeters(value), toUnit, out newValue);
+                case Unit.CubicDecimeter:
+                    return TryConvert(Volume.FromCubicDecimeters(value), toUnit, out newValue);
+                case Unit.CubicCentimeter:
+                    return TryConvert(Volume.FromCubicCentimeters(value), toUnit, out newValue);
+                case Unit.CubicMilimeter:
+                    return TryConvert(Volume.FromCubicMilimeters(value), toUnit, out newValue);
+                case Unit.Hectoliter:
+                    return TryConvert(Volume.FromHectoliters(value), toUnit, out newValue);
+                case Unit.Liter:
+                    return TryConvert(Volume.FromLiters(value), toUnit, out newValue);
+                case Unit.Deciliter:
+                    return TryConvert(Volume.FromDeciliters(value), toUnit, out newValue);
+                case Unit.Centiliter:
+                    return TryConvert(Volume.FromCentiliters(value), toUnit, out newValue);
+                case Unit.Milliliter:
+                    return TryConvert(Volume.FromMililiters(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
         private static bool TryConvertMass(double value, Unit fromUnit, Unit toUnit, out double newValue)
         {
             switch (fromUnit)
@@ -290,6 +323,48 @@ namespace UnitsNet
                 default:
                     newValue = 0;
                     return false;
+            }
+        }
+
+        public static bool TryConvert(Volume volume, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.CubicKilometer:
+                    newValue = volume.CubicKilometers;
+                    return true;
+                case Unit.CubicMeter:
+                    newValue = volume.CubicMeters;
+                    return true;
+                case Unit.CubicDecimeter:
+                    newValue = volume.CubicDecimeters;
+                    return true;
+                case Unit.CubicCentimeter:
+                    newValue = volume.CubicCentimeters;
+                    return true;
+                case Unit.CubicMilimeter:
+                    newValue = volume.CubicMilimeters;
+                    return true;
+                case Unit.Hectoliter:
+                    newValue = volume.Hectoliters;
+                    return true;
+                case Unit.Liter:
+                    newValue = volume.Liters;
+                    return true;
+                case Unit.Deciliter:
+                    newValue = volume.Deciliters;
+                    return true;
+                case Unit.Centiliter:
+                    newValue = volume.Centiliters;
+                    return true;
+                case Unit.Milliliter:
+                    newValue = volume.Mililiters;
+                    return true;
+
+                default:
+                    throw new Exception(
+                        string.Format(
+                            "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
             }
         }
 
@@ -419,28 +494,6 @@ namespace UnitsNet
                     return false;
             }
         }
-
-        // public static double TryConvert(Volume v, Unit toUnit)
-        // {
-        //     switch (toUnit)
-        //     {
-        //case Unit.CubicMeter:
-        //             retunr
-        //case Unit.CubicDecimeter:
-        //case Unit.CubicCentimeter:
-        //case Unit.CubicMillimeter:
-        //case Unit.Liter:
-        //case Unit.Deciliter:
-        //case Unit.Centiliter:
-        //case Unit.Milliliter:
-        ////case Unit.Gallon:
-
-        //         default:
-        //             throw new Exception(
-        //                 string.Format(
-        //                     "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
-        //     }
-        // }
 
         public static bool TryConvert(Torque t, Unit toUnit, out double newValue)
         {

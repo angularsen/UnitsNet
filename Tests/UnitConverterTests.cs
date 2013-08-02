@@ -8,7 +8,7 @@ namespace UnitsNet.Tests.net35
     {
         private const double Delta = 1E-5;
 
-        // TODO Test Force, Length2d, Mass, Pressure and Volume units.
+        // TODO Test Force, Length2d, Mass, Pressure units.
 
         [Test]
         public void MeterToLengthUnits()
@@ -25,6 +25,21 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1.09361, UnitConverter.Convert(1, Unit.Meter, Unit.Yard), Delta);
             Assert.AreEqual(3.28084, UnitConverter.Convert(1, Unit.Meter, Unit.Foot), Delta);
             Assert.AreEqual(39.3701, UnitConverter.Convert(1, Unit.Meter, Unit.Inch), Delta);
+        }
+
+        [Test]
+        public void CubicMeterToVolumeUnits()
+        {
+            Assert.AreEqual(1E-9, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicKilometer), Delta);
+            Assert.AreEqual(1E0, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicMeter), Delta);
+            Assert.AreEqual(1E3, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicDecimeter), Delta);
+            Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicCentimeter), Delta);
+            Assert.AreEqual(1E9, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicMilimeter), Delta);
+            Assert.AreEqual(1E1, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Hectoliter), Delta);
+            Assert.AreEqual(1E3, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Liter), Delta);
+            Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Deciliter), Delta);
+            Assert.AreEqual(1E5, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Centiliter), Delta);
+            Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Milliliter), Delta);
         }
 
         [Test]
