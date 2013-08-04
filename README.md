@@ -34,14 +34,12 @@ Static Representation and Explicit Conversion
 ```C#
 // Stop postfixing your variables and method names with the unit...
 double weightKg = GetPersonWeightInKg();
-double weightGrams = weightKg * 1000;
-double weightTonnes = weightKg / 1000;
+UpdatePersonWeightInGrams(weightKg * 1000);
 
 // ...and start using a static representation for the measurement then 
 // explicitly convert to the unit of choice - when you need it.
 Mass weight = GetPersonWeight();
-double weightGrams = weight.Grams;
-double weightTonnes = weight.Tonnes;
+UpdatePersonWeightInGrams(weight.Grams);
 
 // Convert between compatible units of measurement...
 Force scaleMeasurement = Force.FromNewtons(850);
