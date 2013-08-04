@@ -52,7 +52,18 @@ namespace UnitsNet.Tests.net35
         public void TryConvertReturnsFalseOnIncompatibleUnits()
         {
             double newValue;
+
+            // Assert from-unit cases. One for each class of unit.
             Assert.False(UnitConverter.TryConvert(1, Unit.Meter, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Pascal, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Second, out newValue));
+
+            // Assert to-unit cases. One for each class of unit.
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Meter, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Pascal, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Kilogram, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeter, out newValue));
         }
     }
 }
