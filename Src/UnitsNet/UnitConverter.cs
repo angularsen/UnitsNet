@@ -362,9 +362,8 @@ namespace UnitsNet
                     return true;
 
                 default:
-                    throw new Exception(
-                        string.Format(
-                            "Conversion from volume to unit [{0}] is either not valid or not yet implemented.", toUnit));
+                    newValue = 0;
+                    return false;
             }
         }
 
