@@ -60,10 +60,10 @@ double feet = meter.Feet; // 3.28084
 double inches = meter.Inches; // 39.3701
 
 Pressure p = Pressure.FromPascal(1);
-double kpa = p.KiloPascals; // 1000
-double bar = p.Bars; // 1 × 10-5
-double atm = p.Atmosphere; // 9.86923267 × 10-6
-double psi = p.Psi; // 1.45037738 × 10-4
+double kpa = p.KiloPascals; // 1×10-3
+double bar = p.Bars; // 1×10-5
+double atm = p.Atmosphere; // 9.86923267×10-6
+double psi = p.Psi; // 1.45037738×10-4
 ```
 
 Dynamic Representation and Conversion
