@@ -9,7 +9,7 @@
         <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports PCL.</description>
+        <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
         <summary>Simplifies working with units of measurement.</summary>
         <releaseNotes>Added ShortTon and LongTon mass units. Added TryConvert methods to UnitConverter and UnitValue classes.</releaseNotes>
         <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
