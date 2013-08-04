@@ -5,7 +5,7 @@ Data structures and methods in C# .NET that make life working with units just a 
 
 Everyone have written their share of trivial conversions between meters and centimeters, or less obvious conversions to units like Pascal and PSI where most mortals need a quick Google to find that magic constant.
 
-Stop littering your code with unnecessary calculations. Units.NET gives you all the common units and conversions. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
+Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
 
 
 Install
@@ -34,14 +34,12 @@ Static Representation and Explicit Conversion
 ```C#
 // Stop postfixing your variables and method names with the unit...
 double weightKg = GetPersonWeightInKg();
-double weightGrams = weightKg * 1000;
-double weightTonnes = weightKg / 1000;
+UpdatePersonWeightInGrams(weightKg * 1000);
 
 // ...and start using a static representation for the measurement then 
 // explicitly convert to the unit of choice - when you need it.
 Mass weight = GetPersonWeight();
-double weightGrams = weight.Grams;
-double weightTonnes = weight.Tonnes;
+UpdatePersonWeightInGrams(weight.Grams);
 
 // Convert between compatible units of measurement...
 Force scaleMeasurement = Force.FromNewtons(850);
@@ -60,10 +58,10 @@ double feet = meter.Feet; // 3.28084
 double inches = meter.Inches; // 39.3701
 
 Pressure p = Pressure.FromPascal(1);
-double kpa = p.KiloPascals; // 1000
-double bar = p.Bars; // 1 × 10-5
-double atm = p.Atmosphere; // 9.86923267 × 10-6
-double psi = p.Psi; // 1.45037738 × 10-4
+double kpa = p.KiloPascals; // 1×10-3
+double bar = p.Bars; // 1×10-5
+double atm = p.Atmosphere; // 9.86923267×10-6
+double psi = p.Psi; // 1.45037738×10-4
 ```
 
 Dynamic Representation and Conversion
