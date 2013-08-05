@@ -95,6 +95,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area.cs" />
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Force.cs" />
