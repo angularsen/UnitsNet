@@ -33,8 +33,8 @@ using System.Resources;
 [assembly: AssemblyProduct("UnitsNet")]
 [assembly: AssemblyCopyright("Copyright © 2007-2013 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("en-US")]
-[assembly: NeutralResourcesLanguage("en")]
+[assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("")]
 
 // Version information for an assembly consists of the following four values:
 //
