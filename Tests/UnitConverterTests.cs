@@ -46,6 +46,9 @@ namespace UnitsNet.Tests.net35
         public void ThrowsOnIncompatibleUnits()
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Pascal, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Kilogram, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.CubicMeter, Unit.Second));
         }
 
         [Test]
