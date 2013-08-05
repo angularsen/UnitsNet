@@ -229,18 +229,6 @@ namespace UnitsNet
             return String.Format(Culture, "{0},{1}", X.Meters, Y.Meters);
         }
 
-        public static Length2d Parse(string text)
-        {
-            string[] values = text.Split(',');
-            if (values.Length != 2) throw new ArgumentException();
-
-            double xMeters = 0;
-            double yMeters = 0;
-            double.TryParse(values[0], NumberStyle, Culture, out xMeters);
-            double.TryParse(values[1], NumberStyle, Culture, out yMeters);
-            return new Length2d(xMeters, yMeters);
-        }
-
         public Length DistanceTo(Length2d other)
         {
             double dx = X.Meters - other.X.Meters;
