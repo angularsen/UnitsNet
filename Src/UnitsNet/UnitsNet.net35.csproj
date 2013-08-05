@@ -45,6 +45,7 @@
     <Compile Include="Force.cs" />
     <Compile Include="Mass.cs" />
     <Compile Include="Pressure.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UnitParser.cs" />
     <Compile Include="UnitConverter.cs" />
