@@ -279,7 +279,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return CubicMeters + " m3";
+            return CubicMeters + " m³";
         }
     }
 }
