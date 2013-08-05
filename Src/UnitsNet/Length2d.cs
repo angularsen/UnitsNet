@@ -30,8 +30,7 @@ namespace UnitsNet
     /// </summary>
     public struct Length2d
     {
-        private const NumberStyles NumberStyle = NumberStyles.Float;
-        private static readonly CultureInfo Culture = new CultureInfo("en-us");
+        private static readonly CultureInfo Culture = new CultureInfo("en-US");
 
         /// <summary>
         ///     Returns a point represented in meters.
@@ -226,7 +225,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format(Culture, "{0},{1}", X.Meters, Y.Meters);
+            return String.Format(Culture, "({0}, {1}) m", X.Meters, Y.Meters);
         }
 
         public Length DistanceTo(Length2d other)
