@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
@@ -13,9 +8,11 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void TryConvertReturnsFalseOnIncompatibleUnits()
         {
-            var val = new UnitValue(1, Unit.Meter);
             double newValue;
-            Assert.False(val.TryConvert(Unit.Second, out newValue));
+            Assert.False(new UnitValue(1, Unit.Meter).TryConvert(Unit.Second, out newValue));
+            Assert.False(new UnitValue(1, Unit.Kilogram).TryConvert(Unit.Second, out newValue));
+            Assert.False(new UnitValue(1, Unit.Pascal).TryConvert(Unit.Second, out newValue));
+            Assert.False(new UnitValue(1, Unit.CubicMeter).TryConvert(Unit.Second, out newValue));
         }
     }
 }
