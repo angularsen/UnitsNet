@@ -43,6 +43,16 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
+        public void SquareMeterToAreaUnits()
+        {
+            Assert.AreEqual(1E-6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareKilometer), Delta);
+            Assert.AreEqual(1E0, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMeter), Delta);
+            Assert.AreEqual(1E2, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareDecimeter), Delta);
+            Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareCentimeter), Delta);
+            Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMillimeter), Delta);
+        }
+
+        [Test]
         public void ThrowsOnIncompatibleUnits()
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));

@@ -90,6 +90,13 @@ namespace UnitsNet
         PoundForce,
         Poundal,
 
+        // Area
+        SquareKilometer,
+        SquareMeter,
+        SquareDecimeter,
+        SquareCentimeter,
+        SquareMillimeter,
+
         // Volume
         CubicKilometer,
         CubicMeter,
