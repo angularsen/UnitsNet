@@ -1,7 +1,11 @@
 #-------------------------------------------------------------------------------
 # Description: Sets the AssemblyVersion and AssemblyFileVersion of 
 #              AssemblyInfo.cs files.
-# Author: Luis Rocha
+#			   Sets the <version></version> element of UnitsNet.nuspec file.
+#
+# Based on original work by Luis Rocha from: http://www.luisrocha.net/2009/11/setting-assembly-version-with-windows.html
+#
+# Author: Andreas Larsen
 # Version: 1.0
 #-------------------------------------------------------------------------------
 
