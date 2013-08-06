@@ -18,15 +18,6 @@ function Help {
 	"   [VersionNumber]     The version number to set, for example: 1.1.9301.0"
 	"                       If not provided, a version number will be generated.`n"
 }
-
-#-------------------------------------------------------------------------------
-# Generate a version number.
-# Note: customize this function to generate it using your version schema.
-#-------------------------------------------------------------------------------
-function Generate-VersionNumber {
-	$today = Get-Date
-	return "1.0." + ( ($today.year - 2000) * 1000 + $today.DayOfYear )+ ".0"
-}
  
 #-------------------------------------------------------------------------------
 # Update version numbers of AssemblyInfo.cs
