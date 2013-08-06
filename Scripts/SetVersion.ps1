@@ -67,6 +67,28 @@ function Update-NuspecFiles ([string] $version) {
 }
 
 #-------------------------------------------------------------------------------
+# Update <releaseNotes> element in UnitsNet.nuspec
+#-------------------------------------------------------------------------------
+function Update-NuspecFileReleaseNotes ([string] $releaseInfo) {
+	$nugetReleaseNotesPattern = '<releaseNotes>.*?</releaseNotes>';
+	$nugetReleaseNotes = '<releaseNotes>'+$releaseInfo+'</releaseNotes>';
+	
+	Get-ChildItem ..\ -r | Where { $_.PSChildName -match "^UnitsNet\.nuspec$"} | ForEach-Object {
+		$filename = $_.Directory.ToString() + '\' + $_.Name
+		$filename + ' -> ' + $releaseInfo
+		
+		# If you are using a source control that requires to check-out files before 
+		# modifying them, make sure to check-out the file here.
+		# For example, TFS will require the following command:
+		# tf checkout $filename
+	
+		(Get-Content $filename -Encoding UTF8) | ForEach-Object {
+			% {$_ -replace $nugetReleaseNotesPattern, $nugetReleaseNotes }
+		} | Set-Content $filename -Encoding UTF8
+	}
+}
+
+#-------------------------------------------------------------------------------
 # Parse arguments.
 #-------------------------------------------------------------------------------
 $version = $args[0]
@@ -80,7 +102,9 @@ while ($version -notmatch "[0-9]+(\.([0-9]+|\*)){1,3}") {
 	}
 }
 
+$releaseNotes = Read-Host 'Enter release notes for .nuspec file'
+
 Update-AssemblyInfoFiles $version
 Update-NuspecFiles $version
-
+Update-NuspecFileReleaseNotes $releaseNotes
 
