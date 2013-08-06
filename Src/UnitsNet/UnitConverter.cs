@@ -43,6 +43,7 @@ namespace UnitsNet
 
             double newValue;
             if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertArea(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertVolume(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return newValue;
@@ -213,6 +214,27 @@ namespace UnitsNet
             }
         }
 
+        private static bool TryConvertArea(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.SquareKilometer:
+                    return TryConvert(Area.FromSquareKilometers(value), toUnit, out newValue);
+                case Unit.SquareMeter:
+                    return TryConvert(Area.FromSquareMeters(value), toUnit, out newValue);
+                case Unit.SquareDecimeter:
+                    return TryConvert(Area.FromSquareDecimeters(value), toUnit, out newValue);
+                case Unit.SquareCentimeter:
+                    return TryConvert(Area.FromSquareCentimeters(value), toUnit, out newValue);
+                case Unit.SquareMillimeter:
+                    return TryConvert(Area.FromSquareMillimeters(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
         private static bool TryConvertVolume(double value, Unit fromUnit, Unit toUnit, out double newValue)
         {
             switch (fromUnit)
@@ -320,6 +342,32 @@ namespace UnitsNet
                 case Unit.Inch:
                     newValue = l.Inches;
                     return true;
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvert(Area volume, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.SquareKilometer:
+                    newValue = volume.SquareKilometers;
+                    return true;
+                case Unit.SquareMeter:
+                    newValue = volume.SquareMeters;
+                    return true;
+                case Unit.SquareDecimeter:
+                    newValue = volume.SquareDecimeters;
+                    return true;
+                case Unit.SquareCentimeter:
+                    newValue = volume.SquareCentimeters;
+                    return true;
+                case Unit.SquareMillimeter:
+                    newValue = volume.SquareMillimeters;
+                    return true;
+
                 default:
                     newValue = 0;
                     return false;
