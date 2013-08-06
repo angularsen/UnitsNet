@@ -2,7 +2,7 @@
 
 namespace UnitsNet
 {
-    public struct Area
+    public struct Area : IComparable, IComparable<Area>
     {
         private const double SquareKilometersToSquareMetersRatio = 1E6;
         private const double SquareDecimetersToSquareMetersRatio = 1E-2;
@@ -20,22 +20,22 @@ namespace UnitsNet
 
         public double SquareKilometers
         {
-            get { return SquareMeters/SquareKilometersToSquareMetersRatio; }
+            get { return SquareMeters / SquareKilometersToSquareMetersRatio; }
         }
 
         public double SquareDecimeters
         {
-            get { return SquareMeters/SquareDecimetersToSquareMetersRatio; }
+            get { return SquareMeters / SquareDecimetersToSquareMetersRatio; }
         }
 
         public double SquareCentimeters
         {
-            get { return SquareMeters/SquareCentimetersToSquareMetersRatio; }
+            get { return SquareMeters / SquareCentimetersToSquareMetersRatio; }
         }
 
         public double SquareMillimeters
         {
-            get { return SquareMeters/SquareMillimetersToSquareMetersRatio; }
+            get { return SquareMeters / SquareMillimetersToSquareMetersRatio; }
         }
 
         #endregion
@@ -65,7 +65,7 @@ namespace UnitsNet
 
         public static Area FromSquareKilometers(double squareKilometers)
         {
-            return new Area(squareKilometers*SquareKilometersToSquareMetersRatio);
+            return new Area(squareKilometers * SquareKilometersToSquareMetersRatio);
         }
 
         public static Area FromSquareMeters(double squareMeters)
@@ -75,17 +75,17 @@ namespace UnitsNet
 
         public static Area FromSquareDecimeters(double squareDecimeters)
         {
-            return new Area(squareDecimeters*SquareDecimetersToSquareMetersRatio);
+            return new Area(squareDecimeters * SquareDecimetersToSquareMetersRatio);
         }
 
         public static Area FromSquareCentimeters(double squareCentimeters)
         {
-            return new Area(squareCentimeters*SquareCentimetersToSquareMetersRatio);
+            return new Area(squareCentimeters * SquareCentimetersToSquareMetersRatio);
         }
 
         public static Area FromSquareMillimeters(double squareMillimeters)
         {
-            return new Area(squareMillimeters*SquareMillimetersToSquareMetersRatio);
+            return new Area(squareMillimeters * SquareMillimetersToSquareMetersRatio);
         }
 
         #endregion
@@ -109,22 +109,22 @@ namespace UnitsNet
 
         public static Area operator *(double left, Area right)
         {
-            return FromSquareMeters(left*right.SquareMeters);
+            return FromSquareMeters(left * right.SquareMeters);
         }
 
         public static Area operator *(Area left, double right)
         {
-            return FromSquareMeters(left.SquareMeters*right);
+            return FromSquareMeters(left.SquareMeters * right);
         }
 
         public static Area operator /(Area left, double right)
         {
-            return FromSquareMeters(left.SquareMeters/right);
+            return FromSquareMeters(left.SquareMeters / right);
         }
 
         public static double operator /(Area left, Area right)
         {
-            return left.SquareMeters/right.SquareMeters;
+            return left.SquareMeters / right.SquareMeters;
         }
 
         #endregion
@@ -169,7 +169,7 @@ namespace UnitsNet
         {
             if (obj == null) throw new ArgumentNullException("obj");
             if (!(obj is Area)) throw new ArgumentException("Expected type Area.", "obj");
-            return CompareTo((Area) obj);
+            return CompareTo((Area)obj);
         }
 
         public int CompareTo(Area other)
@@ -184,7 +184,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return SquareMeters.CompareTo(((Area) obj).SquareMeters) == 0;
+            return SquareMeters.CompareTo(((Area)obj).SquareMeters) == 0;
         }
 
         public override int GetHashCode()
