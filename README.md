@@ -77,7 +77,7 @@ UnitValue val = GetUnknownValueAndUnit();
 
 // Returns false if conversion was not possible.
 double cm;
-val.TryConvert(LengthUnit.Centimeter, out cm);
+val.TryConvert(Unit.Centimeter, out cm);
 ```
 
 Helper Methods to Construct Measurements
