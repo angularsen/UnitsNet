@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>UnitsNet</id>
-        <version>1.5.0</version>
-        <title>Units.NET</title>
-        <authors>Andreas Larsen</authors>
-        <owners>Initial Force AS</owners>
-        <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
-        <summary>Simplifies working with units of measurement.</summary>
-        <releaseNotes>Added ShortTon and LongTon mass units. Added TryConvert methods to UnitConverter and UnitValue classes.</releaseNotes>
-        <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
-        <language>en-US</language>
-        <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
-    </metadata>
-    <files>
-        <file src="bin\UnitsNet.pcl.dll" target="lib\portable-win+net40+sl40+wp+Xbox40\UnitsNet.pcl.dll" />
-        <file src="bin\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
-        <file src="bin\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
-        <file src="bin\UnitsNet.netcore45\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
-    </files>
+  <metadata>
+    <id>UnitsNet</id>
+    <version>1.6.0</version>
+    <title>Units.NET</title>
+    <authors>Andreas Larsen</authors>
+    <owners>Initial Force AS</owners>
+    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
+    <summary>Simplifies working with units of measurement.</summary>
+    <releaseNotes>Added area units. Fixed bug where exception was thrown instead of returning false for TryConvert to volume units.</releaseNotes>
+    <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
+    <language>en-US</language>
+    <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
+  </metadata>
+  <files>
+    <file src="bin\UnitsNet.pcl.dll" target="lib\portable-win+net40+sl40+wp+Xbox40\UnitsNet.pcl.dll" />
+    <file src="bin\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
+    <file src="bin\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
+    <file src="bin\UnitsNet.netcore45\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
+  </files>
 </package>
