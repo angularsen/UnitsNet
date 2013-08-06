@@ -88,23 +88,37 @@ function Update-NuspecFileReleaseNotes ([string] $releaseInfo) {
 	}
 }
 
+function BumpVersion([string] $currentVersion) {
+	$versionParts = $currentVersion.split(".")
+	$minor = [Int]($versionParts[1]) + 1
+
+	$versionPattern = "(\d)\.(\d)\.(\d)"
+	$versionReplacePattern = '$1.'+$minor+'.$3'
+
+	$version = $currentVersion -replace $versionPattern, $versionReplacePattern
+	return $version;
+}
+
 #-------------------------------------------------------------------------------
 # Parse arguments.
 #-------------------------------------------------------------------------------
-$version = $args[0]
-while ($version -notmatch "[0-9]+(\.([0-9]+|\*)){1,3}") {
-	if ($version -eq '/?') {
-		Help
-	}
-	else {
-		"About to update the version of nuget package .nuspec and AssemblyInfo.cs files."
-		$version = Read-Host 'Enter new version'
-	}
-}
+#$version = $args[0]
+
+$NuSpecFilePath = "..\UnitsNet.nuspec"
+[ xml ]$nuspecXml = Get-Content -Path $NuSpecFilePath
+
+$currentVersion = $nuspecXml.package.metadata.version
+$newVersion = BumpVersion($currentVersion)
+
+$nuspecXml.package.metadata.version = $newVersion
+$nuspecXml.Save($NuSpecFilePath)
+
+"Current version: " + $currentVersion
+"New version: " + $newVersion
 
 $releaseNotes = Read-Host 'Enter release notes for .nuspec file'
 
-Update-AssemblyInfoFiles $version
-Update-NuspecFiles $version
+Update-AssemblyInfoFiles $newVersion
+Update-NuspecFiles $newVersion
 Update-NuspecFileReleaseNotes $releaseNotes
 
