@@ -1,9 +1,9 @@
 Units.NET
 ========
 
-Data structures and methods in C# .NET that make life working with units of measurement just a little bit better.
+Data structures and conversions that make life working with units of measurement in .NET just a little bit better.
 
-Everyone have written their share of trivial conversions between meters and centimeters, or less obvious conversions to units like Pascal and PSI where most mortals need a quick Google to find that magic constant.
+Everyone have written their share of trivial conversions, or less obvious conversions where you need a quick Google to find that magic constant.
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
 
