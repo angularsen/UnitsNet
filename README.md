@@ -1,7 +1,7 @@
 Units.NET
 ========
 
-Data structures and methods in C# .NET that make life working with units just a little bit better.
+Data structures and methods in C# .NET that make life working with units of measurement just a little bit better.
 
 Everyone have written their share of trivial conversions between meters and centimeters, or less obvious conversions to units like Pascal and PSI where most mortals need a quick Google to find that magic constant.
 
