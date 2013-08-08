@@ -61,6 +61,11 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E2, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareDecimeter), Delta);
             Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareCentimeter), Delta);
             Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMillimeter), Delta);
+
+            Assert.AreEqual(3.86102*1E-7, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMile), Delta);
+            Assert.AreEqual(1.19599, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareYard), Delta);
+            Assert.AreEqual(10.76391, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareFoot), Delta);
+            Assert.AreEqual(1550.003100, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareInch), Delta);
         }
 
         [Test]
