@@ -114,7 +114,16 @@ namespace UnitsNet
         Deciliter,
         Centiliter,
         Milliliter,
-        //Gallon,
+
+        // Volume US/Imperial
+        CubicMile,
+        CubicYard,
+        CubicFoot,
+        CubicInch,
+        UsGallon,
+        UsOunce,
+        ImperialGallon,
+        ImperialOunce,
 
         // Torque
         Newtonmeter,

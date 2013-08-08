@@ -32,11 +32,22 @@ namespace UnitsNet
         private const double CubicDecimetersToCubicMetersRatio = 1E-3;
         private const double CubicCentimetersToCubicMetersRatio = 1E-6;
         private const double CubicMillimetersToCubicMetersRatio = 1E-9;
+
         private const double HectolitersToCubicMetersRatio = 1E-1;
         private const double LitersToCubicMetersRatio = 1E-3;
         private const double DecilitersToCubicMetersRatio = 1E-4;
         private const double CentilitersToCubicMetersRatio = 1E-5;
         private const double MillilitersToCubicMetersRatio = 1E-6;
+
+        private const double CubicMilesToCubicMetersRatio = 4.16818183 * 1E9;
+        private const double CubicYardsToCubicMetersRatio = 0.764554858;
+        private const double CubicFeetToCubicMetersRatio = 0.0283168;
+        private const double CubicInchesToCubicMetersRatio = 1.6387e-5;
+
+        private const double UsGallonToCubicMeterRatio = 0.00378541;
+        private const double UsOunceToCubicMeterRatio = 2.957352956253760505068307980135e-5;
+        private const double ImperialGallonToCubicMeterRatio = 0.00454609000000181429905810072407;
+        private const double ImperialOunceToCubicMeterRatio = 2.8413062499962901241875439064617e-5;
 
         public readonly double CubicMeters;
 
@@ -94,6 +105,46 @@ namespace UnitsNet
         public double Milliliters
         {
             get { return CubicMeters/MillilitersToCubicMetersRatio; }
+        }
+
+        public double CubicMiles
+        {
+            get { return CubicMeters/CubicMilesToCubicMetersRatio; }
+        }
+
+        public double CubicYards
+        {
+            get { return CubicMeters/CubicYardsToCubicMetersRatio; }
+        }
+
+        public double CubicFeet
+        {
+            get { return CubicMeters/CubicFeetToCubicMetersRatio; }
+        }
+
+        public double CubicInches
+        {
+            get { return CubicMeters/CubicInchesToCubicMetersRatio; }
+        }
+
+        public double UsGallons
+        {
+            get { return CubicMeters/UsGallonToCubicMeterRatio; }
+        }
+
+        public double UsOunces
+        {
+            get { return CubicMeters/UsOunceToCubicMeterRatio; }
+            }
+
+        public double ImperialGallons
+        {
+            get { return CubicMeters/ImperialGallonToCubicMeterRatio; }
+        }
+
+        public double ImperialOunces
+        {
+            get { return CubicMeters/ImperialOunceToCubicMeterRatio; }
         }
 
         #endregion
@@ -169,6 +220,46 @@ namespace UnitsNet
         public static Volume FromMilliliters(double milliliters)
         {
             return new Volume(milliliters*MillilitersToCubicMetersRatio);
+        }
+
+        public static Volume FromCubicMiles(double cubicMiles)
+        {
+            return new Volume(cubicMiles*CubicMilesToCubicMetersRatio);
+        }
+
+        public static Volume FromCubicYards(double cubicYards)
+        {
+            return new Volume(cubicYards*CubicYardsToCubicMetersRatio);
+        }
+
+        public static Volume FromCubicFeet(double cubicFeet)
+        {
+            return new Volume(cubicFeet*CubicFeetToCubicMetersRatio);
+        }
+
+        public static Volume FromCubicInches(double cubicInches)
+        {
+            return new Volume(cubicInches*CubicInchesToCubicMetersRatio);
+        }
+
+        public static Volume FromUsGallons(double usGallons)
+        {
+            return new Volume(usGallons*UsGallonToCubicMeterRatio);
+        }
+
+        public static Volume FromUsOunces(double usOunces)
+        {
+            return new Volume(usOunces*UsOunceToCubicMeterRatio);
+        }
+
+        public static Volume FromImperialGallons(double imperialGallons)
+        {
+            return new Volume(imperialGallons*ImperialGallonToCubicMeterRatio);
+        }
+
+        public static Volume FromImperialOunces(double imperialOunces)
+        {
+            return new Volume(imperialOunces*ImperialOunceToCubicMeterRatio);
         }
 
         #endregion

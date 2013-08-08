@@ -258,6 +258,7 @@ namespace UnitsNet
                     return TryConvert(Volume.FromCubicCentimeters(value), toUnit, out newValue);
                 case Unit.CubicMillimeter:
                     return TryConvert(Volume.FromCubicMillimeters(value), toUnit, out newValue);
+
                 case Unit.Hectoliter:
                     return TryConvert(Volume.FromHectoliters(value), toUnit, out newValue);
                 case Unit.Liter:
@@ -268,6 +269,24 @@ namespace UnitsNet
                     return TryConvert(Volume.FromCentiliters(value), toUnit, out newValue);
                 case Unit.Milliliter:
                     return TryConvert(Volume.FromMilliliters(value), toUnit, out newValue);
+
+                case Unit.CubicMile:
+                    return TryConvert(Volume.FromCubicMiles(value), toUnit, out newValue);
+                case Unit.CubicYard:
+                    return TryConvert(Volume.FromCubicYards(value), toUnit, out newValue);
+                case Unit.CubicFoot:
+                    return TryConvert(Volume.FromCubicFeet(value), toUnit, out newValue);
+                case Unit.CubicInch:
+                    return TryConvert(Volume.FromCubicInches(value), toUnit, out newValue);
+
+                case Unit.UsGallon:
+                    return TryConvert(Volume.FromUsGallons(value), toUnit, out newValue);
+                case Unit.UsOunce:
+                    return TryConvert(Volume.FromUsOunces(value), toUnit, out newValue);
+                case Unit.ImperialGallon:
+                    return TryConvert(Volume.FromImperialGallons(value), toUnit, out newValue);
+                case Unit.ImperialOunce:
+                    return TryConvert(Volume.FromImperialOunces(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -415,6 +434,7 @@ namespace UnitsNet
                 case Unit.CubicMillimeter:
                     newValue = volume.CubicMillimeters;
                     return true;
+
                 case Unit.Hectoliter:
                     newValue = volume.Hectoliters;
                     return true;
@@ -429,6 +449,32 @@ namespace UnitsNet
                     return true;
                 case Unit.Milliliter:
                     newValue = volume.Milliliters;
+                    return true;
+
+                case Unit.CubicMile:
+                    newValue = volume.CubicMiles;
+                    return true; 
+                case Unit.CubicYard:
+                    newValue = volume.CubicYards;
+                    return true; 
+                case Unit.CubicFoot:
+                    newValue = volume.CubicFeet;
+                    return true; 
+                case Unit.CubicInch:
+                    newValue = volume.CubicInches;
+                    return true; 
+
+                case Unit.UsGallon:
+                    newValue = volume.UsGallons;
+                    return true; 
+                case Unit.UsOunce:
+                    newValue = volume.UsOunces;
+                    return true; 
+                case Unit.ImperialGallon:
+                    newValue = volume.ImperialGallons;
+                    return true; 
+                case Unit.ImperialOunce:
+                    newValue = volume.ImperialOunces;
                     return true;
 
                 default:

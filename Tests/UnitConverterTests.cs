@@ -35,11 +35,22 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E3, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicDecimeter), Delta);
             Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicCentimeter), Delta);
             Assert.AreEqual(1E9, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicMillimeter), Delta);
+
             Assert.AreEqual(1E1, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Hectoliter), Delta);
             Assert.AreEqual(1E3, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Liter), Delta);
             Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Deciliter), Delta);
             Assert.AreEqual(1E5, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Centiliter), Delta);
             Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.CubicMeter, Unit.Milliliter), Delta);
+ 
+            Assert.AreEqual(3.86102*1E-7, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicMile), Delta);
+            Assert.AreEqual(1.30795062, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicYard), Delta);
+            Assert.AreEqual(35.31472, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicFoot), Delta);
+            Assert.AreEqual(61023.98242, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicInch), Delta);
+
+            Assert.AreEqual(264.17217, UnitConverter.Convert(1, Unit.CubicMeter, Unit.UsGallon), Delta);
+            Assert.AreEqual(33814.02270, UnitConverter.Convert(1, Unit.CubicMeter, Unit.UsOunce), Delta);
+            Assert.AreEqual(219.96924, UnitConverter.Convert(1, Unit.CubicMeter, Unit.ImperialGallon), Delta);
+            Assert.AreEqual(35195.07972, UnitConverter.Convert(1, Unit.CubicMeter, Unit.ImperialOunce), Delta);
         }
 
         [Test]

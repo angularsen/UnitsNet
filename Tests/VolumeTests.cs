@@ -23,6 +23,16 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E4, _cubicMeter.Deciliters, Delta);
             Assert.AreEqual(1E5, _cubicMeter.Centiliters, Delta);
             Assert.AreEqual(1E6, _cubicMeter.Milliliters, Delta);
+
+            Assert.AreEqual(3.86102*1E-7, _cubicMeter.CubicMiles, Delta);
+            Assert.AreEqual(1.30795062, _cubicMeter.CubicYards, Delta);
+            Assert.AreEqual(35.31472, _cubicMeter.CubicFeet, Delta);
+            Assert.AreEqual(61023.98242, _cubicMeter.CubicInches, Delta);
+            
+            Assert.AreEqual(264.17217, _cubicMeter.UsGallons, Delta);
+            Assert.AreEqual(33814.02270, _cubicMeter.UsOunces, Delta);
+            Assert.AreEqual(219.96924, _cubicMeter.ImperialGallons, Delta);
+            Assert.AreEqual(35195.07972, _cubicMeter.ImperialOunces, Delta);
         }
 
         [Test]
@@ -39,6 +49,16 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Volume.FromDeciliters(_cubicMeter.Deciliters).CubicMeters, Delta);
             Assert.AreEqual(1, Volume.FromCentiliters(_cubicMeter.Centiliters).CubicMeters, Delta);
             Assert.AreEqual(1, Volume.FromMilliliters(_cubicMeter.Milliliters).CubicMeters, Delta);
+
+            Assert.AreEqual(1, Volume.FromCubicMiles(_cubicMeter.CubicMiles).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicYards(_cubicMeter.CubicYards).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicFeet(_cubicMeter.CubicFeet).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromCubicMiles(_cubicMeter.CubicMiles).CubicMeters, Delta);
+
+            Assert.AreEqual(1, Volume.FromUsGallons(_cubicMeter.UsGallons).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromUsOunces(_cubicMeter.UsOunces).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromImperialGallons(_cubicMeter.ImperialGallons).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.FromImperialOunces(_cubicMeter.ImperialOunces).CubicMeters, Delta);
         }
 
         [Test]
