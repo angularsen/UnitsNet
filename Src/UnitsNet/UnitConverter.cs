@@ -229,6 +229,15 @@ namespace UnitsNet
                 case Unit.SquareMillimeter:
                     return TryConvert(Area.FromSquareMillimeters(value), toUnit, out newValue);
 
+                case Unit.SquareMile:
+                    return TryConvert(Area.FromSquareMiles(value), toUnit, out newValue);
+                case Unit.SquareYard:
+                    return TryConvert(Area.FromSquareYards(value), toUnit, out newValue);
+                case Unit.SquareFoot:
+                    return TryConvert(Area.FromSquareFeet(value), toUnit, out newValue);
+                case Unit.SquareInch:
+                    return TryConvert(Area.FromSquareInches(value), toUnit, out newValue);
+
                 default:
                     newValue = 0;
                     return false;
@@ -366,6 +375,19 @@ namespace UnitsNet
                     return true;
                 case Unit.SquareMillimeter:
                     newValue = volume.SquareMillimeters;
+                    return true;
+
+                case Unit.SquareMile:
+                    newValue = volume.SquareMiles;
+                    return true;
+                case Unit.SquareYard:
+                    newValue = volume.SquareYards;
+                    return true;
+                case Unit.SquareFoot:
+                    newValue = volume.SquareFeet;
+                    return true;
+                case Unit.SquareInch:
+                    newValue = volume.SquareInches;
                     return true;
 
                 default:

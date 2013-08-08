@@ -17,6 +17,11 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E2, _squareMeter.SquareDecimeters, Delta);
             Assert.AreEqual(1E4, _squareMeter.SquareCentimeters, Delta);
             Assert.AreEqual(1E6, _squareMeter.SquareMillimeters, Delta);
+
+            Assert.AreEqual(3.86102*1E-7, _squareMeter.SquareMiles, Delta);
+            Assert.AreEqual(1.19599, _squareMeter.SquareYards, Delta);
+            Assert.AreEqual(10.76391, _squareMeter.SquareFeet, Delta);
+            Assert.AreEqual(1550.003100, _squareMeter.SquareInches, Delta);
         }
 
         [Test]
@@ -27,6 +32,11 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Area.FromSquareDecimeters(_squareMeter.SquareDecimeters).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareCentimeters(_squareMeter.SquareCentimeters).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareMillimeters(_squareMeter.SquareMillimeters).SquareMeters, Delta);
+
+            Assert.AreEqual(1, Area.FromSquareMiles(_squareMeter.SquareMiles).SquareMeters, Delta);
+            Assert.AreEqual(1, Area.FromSquareYards(_squareMeter.SquareYards).SquareMeters, Delta);
+            Assert.AreEqual(1, Area.FromSquareFeet(_squareMeter.SquareFeet).SquareMeters, Delta);
+            Assert.AreEqual(1, Area.FromSquareInches(_squareMeter.SquareInches).SquareMeters, Delta);
         }
 
         [Test]

@@ -8,6 +8,10 @@ namespace UnitsNet
         private const double SquareDecimetersToSquareMetersRatio = 1E-2;
         private const double SquareCentimetersToSquareMetersRatio = 1E-4;
         private const double SquareMillimetersToSquareMetersRatio = 1E-6;
+        private const double SquareMilesToSquareMetersRatio = 2.59*1E+6;
+        private const double SquareYardsToSquareMetersRatio = 0.836127;
+        private const double SquareFeetToSquareMetersRatio = 0.092903;
+        private const double SquareInchesToSquareMetersRatio = 0.00064516;
 
         public readonly double SquareMeters;
 
@@ -37,6 +41,27 @@ namespace UnitsNet
         {
             get { return SquareMeters / SquareMillimetersToSquareMetersRatio; }
         }
+
+        public double SquareMiles
+        {
+            get { return SquareMeters / SquareMilesToSquareMetersRatio; }
+        }
+
+        public double SquareYards
+        {
+            get { return SquareMeters / SquareYardsToSquareMetersRatio; }
+        }
+
+        public double SquareFeet
+        {
+            get { return SquareMeters / SquareFeetToSquareMetersRatio; }
+        }
+
+        public double SquareInches
+        {
+            get { return SquareMeters / SquareInchesToSquareMetersRatio; }
+        }
+
 
         #endregion
 
@@ -86,6 +111,26 @@ namespace UnitsNet
         public static Area FromSquareMillimeters(double squareMillimeters)
         {
             return new Area(squareMillimeters * SquareMillimetersToSquareMetersRatio);
+        }
+
+        public static Area FromSquareMiles(double sqmi)
+        {
+            return new Area(sqmi * SquareMilesToSquareMetersRatio);
+        }
+
+        public static Area FromSquareYards(double yds)
+        {
+            return new Area(yds * SquareYardsToSquareMetersRatio);
+        }
+
+        public static Area FromSquareFeet(double ft)
+        {
+            return new Area(ft * SquareFeetToSquareMetersRatio);
+        }
+
+        public static Area FromSquareInches(double inches)
+        {
+            return new Area(inches * SquareInchesToSquareMetersRatio);
         }
 
         #endregion

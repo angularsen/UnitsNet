@@ -97,6 +97,12 @@ namespace UnitsNet
         SquareCentimeter,
         SquareMillimeter,
 
+	// Area Imperial
+        SquareMile,
+        SquareYard,
+        SquareFoot,
+        SquareInch,
+
         // Volume
         CubicKilometer,
         CubicMeter,
