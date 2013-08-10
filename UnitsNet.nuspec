@@ -14,7 +14,7 @@
     <releaseNotes>Added imperial and US units for volume and area.</releaseNotes>
     <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
     <language>en-US</language>
-    <tags>unit units si metric imperial abbreviation abbreviations convert parse</tags>
+    <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
   </metadata>
   <files>
     <file src="bin\UnitsNet.pcl.dll" target="lib\portable-win+net40+sl40+wp+Xbox40\UnitsNet.pcl.dll" />
