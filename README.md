@@ -10,7 +10,7 @@ Install
 =======
 To install Units.NET, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/ "NuGet site") for the complete relase history.
 
-![Install-Package UnitsNet](Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
 * .NET 3.5 Client
