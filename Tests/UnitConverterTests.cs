@@ -28,6 +28,21 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
+        public void SquareMeterToAreaUnits()
+        {
+            Assert.AreEqual(1E-6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareKilometer), Delta);
+            Assert.AreEqual(1E0, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMeter), Delta);
+            Assert.AreEqual(1E2, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareDecimeter), Delta);
+            Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareCentimeter), Delta);
+            Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMillimeter), Delta);
+
+            Assert.AreEqual(3.86102*1E-7, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMile), Delta);
+            Assert.AreEqual(1.19599, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareYard), Delta);
+            Assert.AreEqual(10.76391, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareFoot), Delta);
+            Assert.AreEqual(1550.003100, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareInch), Delta);
+        }
+
+        [Test]
         public void CubicMeterToVolumeUnits()
         {
             Assert.AreEqual(1E-9, UnitConverter.Convert(1, Unit.CubicMeter, Unit.CubicKilometer), Delta);
@@ -51,21 +66,6 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(33814.02270, UnitConverter.Convert(1, Unit.CubicMeter, Unit.UsOunce), Delta);
             Assert.AreEqual(219.96924, UnitConverter.Convert(1, Unit.CubicMeter, Unit.ImperialGallon), Delta);
             Assert.AreEqual(35195.07972, UnitConverter.Convert(1, Unit.CubicMeter, Unit.ImperialOunce), Delta);
-        }
-
-        [Test]
-        public void SquareMeterToAreaUnits()
-        {
-            Assert.AreEqual(1E-6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareKilometer), Delta);
-            Assert.AreEqual(1E0, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMeter), Delta);
-            Assert.AreEqual(1E2, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareDecimeter), Delta);
-            Assert.AreEqual(1E4, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareCentimeter), Delta);
-            Assert.AreEqual(1E6, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMillimeter), Delta);
-
-            Assert.AreEqual(3.86102*1E-7, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareMile), Delta);
-            Assert.AreEqual(1.19599, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareYard), Delta);
-            Assert.AreEqual(10.76391, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareFoot), Delta);
-            Assert.AreEqual(1550.003100, UnitConverter.Convert(1, Unit.SquareMeter, Unit.SquareInch), Delta);
         }
 
         [Test]
