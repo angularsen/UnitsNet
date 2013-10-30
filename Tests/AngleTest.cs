@@ -19,6 +19,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void AngleUnitsRoundTrip()
         {
+            Assert.AreEqual(90, Angle.FromDegrees(_degrees90.Degrees).Degrees, Delta);
             Assert.AreEqual(90, Angle.FromRadians(_degrees90.Radians).Degrees, Delta);
             Assert.AreEqual(90, Angle.FromGradians(_degrees90.Gradians).Degrees, Delta);
         }
@@ -47,6 +48,11 @@ namespace UnitsNet.Tests.net35
             Assert.True(degrees180 > degrees90);
             Assert.True(degrees180 >= degrees90);
 
+// ReSharper disable EqualExpressionComparison
+            Assert.True(degrees90 <= degrees90);
+            Assert.True(degrees90 >= degrees90);
+// ReSharper restore EqualExpressionComparison
+
             Assert.False(degrees90 > degrees180);
             Assert.False(degrees90 >= degrees180);
             Assert.False(degrees180 < degrees90);
@@ -57,6 +63,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToIsImplemented()
         {
             Angle degree = Angle.FromDegrees(1);
+
             Assert.AreEqual(0, degree.CompareTo(degree));
             Assert.Greater(degree.CompareTo(Angle.Zero), 0);
             Assert.Less(Angle.Zero.CompareTo(degree), 0);
@@ -67,6 +74,8 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Angle angle = Angle.FromDegrees(90);
+
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             angle.CompareTo(new object());
         }
 
@@ -75,6 +84,8 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         {
             Angle angle = Angle.FromDegrees(90);
+
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             angle.CompareTo(null);
         }
 
@@ -85,11 +96,13 @@ namespace UnitsNet.Tests.net35
             Angle a = Angle.FromDegrees(90);
             Angle b = Angle.FromDegrees(180);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]
