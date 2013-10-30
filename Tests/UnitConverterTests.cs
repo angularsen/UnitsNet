@@ -69,6 +69,14 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
+        public void DegreesToAngleUnits()
+        {
+            Assert.AreEqual(90, UnitConverter.Convert(90, Unit.Degree, Unit.Degree), Delta);
+            Assert.AreEqual(Math.PI / 2, UnitConverter.Convert(90, Unit.Degree, Unit.Radian), Delta);
+            Assert.AreEqual(100, UnitConverter.Convert(90, Unit.Degree, Unit.Gradian), Delta);
+        }
+
+        [Test]
         public void ThrowsOnIncompatibleUnits()
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
