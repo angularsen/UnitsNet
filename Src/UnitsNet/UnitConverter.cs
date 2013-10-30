@@ -592,10 +592,10 @@ namespace UnitsNet
                     newValue = p.NewtonsPerSquareCentimeter;
                     return true;
                 case Unit.NewtonPerSquareMillimeter:
-                    newValue = p.NewtonsPerSquareMeter;
+                    newValue = p.NewtonsPerSquareMillimeter;
                     return true;
                 case Unit.NewtonPerSquareMeter:
-                    newValue = p.NewtonsPerSquareMillimeter;
+                    newValue = p.NewtonsPerSquareMeter;
                     return true;
                 case Unit.Bar:
                     newValue = p.Bars;
