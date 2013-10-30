@@ -105,6 +105,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Volume meter = Volume.FromCubicMeters(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(new object());
         }
 
@@ -113,6 +114,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         { 
             Volume meter = Volume.FromCubicMeters(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(null);
         }
 
@@ -123,11 +125,13 @@ namespace UnitsNet.Tests.net35
             Volume a = Volume.FromCubicMeters(1);
             Volume b = Volume.FromCubicMeters(2);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]

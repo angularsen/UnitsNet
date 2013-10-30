@@ -1,12 +1,11 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
     public class UnitConversionTests
     {
-        private const double Delta = 1E-5;
+        //private const double Delta = 1E-5;
 
         [Test]
         public void KilogramToKilogramForce()

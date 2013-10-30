@@ -87,6 +87,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Pressure meter = Pressure.FromPascals(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(new object());
         }
 
@@ -95,6 +96,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         { 
             Pressure meter = Pressure.FromPascals(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(null);
         }
 
@@ -105,11 +107,13 @@ namespace UnitsNet.Tests.net35
             Pressure a = Pressure.FromPascals(1);
             Pressure b = Pressure.FromPascals(2);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]

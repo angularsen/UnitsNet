@@ -91,6 +91,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Mass meter = Mass.FromKilograms(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(new object());
         }
 
@@ -99,6 +100,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         { 
             Mass meter = Mass.FromKilograms(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(null);
         }
 
@@ -109,11 +111,13 @@ namespace UnitsNet.Tests.net35
             Mass a = Mass.FromKilograms(1);
             Mass b = Mass.FromKilograms(2);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]

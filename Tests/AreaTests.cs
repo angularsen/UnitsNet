@@ -83,6 +83,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Area meter = Area.FromSquareMeters(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(new object());
         }
 
@@ -91,6 +92,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         { 
             Area meter = Area.FromSquareMeters(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             meter.CompareTo(null);
         }
 
@@ -101,11 +103,13 @@ namespace UnitsNet.Tests.net35
             Area a = Area.FromSquareMeters(1);
             Area b = Area.FromSquareMeters(2);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]

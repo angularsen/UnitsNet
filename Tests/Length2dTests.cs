@@ -3,6 +3,7 @@
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
+// ReSharper disable once InconsistentNaming
     public class Length2dTests
     {
         private const double Delta = 1E-5;
@@ -83,11 +84,13 @@ namespace UnitsNet.Tests.net35
             Length2d a = Length2d.FromMeters(1, 2);
             Length2d b = Length2d.FromMeters(2, 1);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]

@@ -79,6 +79,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnTypeMismatch()
         {
             Force newton = Force.FromNewtons(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             newton.CompareTo(new object());
         }
 
@@ -87,6 +88,7 @@ namespace UnitsNet.Tests.net35
         public void CompareToThrowsOnNull()
         { 
             Force newton = Force.FromNewtons(1);
+// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             newton.CompareTo(null);
         }
 
@@ -96,11 +98,13 @@ namespace UnitsNet.Tests.net35
             Force a = Force.FromNewtons(1);
             Force b = Force.FromNewtons(2);
 
+// ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
+// ReSharper restore EqualExpressionComparison
         }
 
         [Test]
