@@ -158,7 +158,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Degrees + " °";
+            return Degrees + "°";
         }
     }
 }
