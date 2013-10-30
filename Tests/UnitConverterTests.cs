@@ -94,6 +94,7 @@ namespace UnitsNet.Tests.net35
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Meter, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Pascal, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Kilogram, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeter, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Degree, out newValue));
         }
 
