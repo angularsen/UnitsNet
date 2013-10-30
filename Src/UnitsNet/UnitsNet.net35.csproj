@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs" />
     <Compile Include="Area.cs" />
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />

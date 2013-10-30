@@ -35,6 +35,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs" />
     <Compile Include="Area.cs" />
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
