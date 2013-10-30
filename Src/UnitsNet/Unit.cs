@@ -103,6 +103,11 @@ namespace UnitsNet
         SquareFoot,
         SquareInch,
 
+        // Angle
+        Degree,
+        Radian,
+        Gradian,
+
         // Volume
         CubicKilometer,
         CubicMeter,

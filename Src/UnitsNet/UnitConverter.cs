@@ -44,6 +44,7 @@ namespace UnitsNet
             double newValue;
             if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertArea(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertAngle(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertVolume(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return newValue;
@@ -74,6 +75,8 @@ namespace UnitsNet
             }
 
             if (TryConvertLength(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertArea(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertAngle(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertVolume(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertPressure(value, fromUnit, toUnit, out newValue)) return true;
@@ -238,6 +241,22 @@ namespace UnitsNet
                 case Unit.SquareInch:
                     return TryConvert(Area.FromSquareInches(value), toUnit, out newValue);
 
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvertAngle(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Degree:
+                    return TryConvert(Angle.FromDegrees(value), toUnit, out newValue);
+                case Unit.Radian:
+                    return TryConvert(Angle.FromRadians(value), toUnit, out newValue);
+                case Unit.Gradian:
+                    return TryConvert(Angle.FromGradians(value), toUnit, out newValue);
                 default:
                     newValue = 0;
                     return false;
@@ -409,6 +428,25 @@ namespace UnitsNet
                     newValue = volume.SquareInches;
                     return true;
 
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvert(Angle angle, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.Degree:
+                    newValue = angle.Degrees;
+                    return true;
+                case Unit.Radian:
+                    newValue = angle.Radians;
+                    return true;
+                case Unit.Gradian:
+                    newValue = angle.Gradians;
+                    return true;
                 default:
                     newValue = 0;
                     return false;
