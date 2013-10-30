@@ -75,6 +75,7 @@ namespace UnitsNet.Tests.net35
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Pascal, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Kilogram, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.CubicMeter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Degree, Unit.Second));
         }
 
         [Test]
@@ -87,12 +88,13 @@ namespace UnitsNet.Tests.net35
             Assert.False(UnitConverter.TryConvert(1, Unit.Pascal, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Degree, Unit.Second, out newValue));
 
             // Assert to-unit cases. One for each class of unit.
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Meter, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Pascal, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Kilogram, out newValue));
-            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeter, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Degree, out newValue));
         }
     }
 }
