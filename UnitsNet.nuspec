@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
     <title>Units.NET</title>
     <authors>Andreas Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>Added imperial and US units for volume and area.</releaseNotes>
+    <releaseNotes>Added angle unit of measurements. Added several missing test cases. Fixed bug when dynamically converting to NewtonPerSquareCentimeter and NewtonPerSquareMillimeter using UnitConverter.Convert()/TryConvert().</releaseNotes>
     <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
     <language>en-US</language>
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
