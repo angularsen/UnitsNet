@@ -77,6 +77,34 @@ namespace UnitsNet.Tests.net35
         }
 
         [Test]
+        public void NewtonToForceUnits()
+        { 
+            Assert.AreEqual(1E-3, UnitConverter.Convert(1, Unit.Newton, Unit.Kilonewton), Delta);
+            Assert.AreEqual(1, UnitConverter.Convert(1, Unit.Newton, Unit.Newton), Delta);
+            Assert.AreEqual(1E5, UnitConverter.Convert(1, Unit.Newton, Unit.Dyn), Delta);
+            Assert.AreEqual(0.10197, UnitConverter.Convert(1, Unit.Newton, Unit.KilogramForce), Delta);
+            Assert.AreEqual(0.10197, UnitConverter.Convert(1, Unit.Newton, Unit.KiloPond), Delta);
+            Assert.AreEqual(0.22481, UnitConverter.Convert(1, Unit.Newton, Unit.PoundForce), Delta);
+            Assert.AreEqual(7.2330, UnitConverter.Convert(1, Unit.Newton, Unit.Poundal), Delta);
+        }
+
+        [Test]
+        public void PascalToPressureUnits()
+        { 
+            // Source: http://en.wikipedia.org/wiki/Pressure
+            Assert.AreEqual(9.8692*1E-6, UnitConverter.Convert(1, Unit.Pascal, Unit.Atmosphere), Delta);
+            Assert.AreEqual(1E-5, UnitConverter.Convert(1, Unit.Pascal, Unit.Bar), Delta);
+            Assert.AreEqual(1E-3, UnitConverter.Convert(1, Unit.Pascal, Unit.KiloPascal), Delta);
+            Assert.AreEqual(1E-4, UnitConverter.Convert(1, Unit.Pascal, Unit.NewtonPerSquareCentimeter), Delta);
+            Assert.AreEqual(1E-6, UnitConverter.Convert(1, Unit.Pascal, Unit.NewtonPerSquareMillimeter), Delta);
+            Assert.AreEqual(1, UnitConverter.Convert(1, Unit.Pascal, Unit.NewtonPerSquareMeter), Delta);
+            Assert.AreEqual(1, UnitConverter.Convert(1, Unit.Pascal, Unit.Pascal), Delta);
+            Assert.AreEqual(1.450377*1E-4, UnitConverter.Convert(1, Unit.Pascal, Unit.Psi), Delta);
+            Assert.AreEqual(1.0197*1E-5, UnitConverter.Convert(1, Unit.Pascal, Unit.TechnicalAtmosphere), Delta);
+            Assert.AreEqual(7.5006*1E-3, UnitConverter.Convert(1, Unit.Pascal, Unit.Torr), Delta);
+        }
+
+        [Test]
         public void ThrowsOnIncompatibleUnits()
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
