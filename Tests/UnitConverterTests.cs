@@ -72,9 +72,11 @@ namespace UnitsNet.Tests.net35
         public void ThrowsOnIncompatibleUnits()
         {
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Meter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.SquareMeter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.CubicMeter, Unit.Second));
+            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Newton, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Pascal, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Kilogram, Unit.Second));
-            Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.CubicMeter, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Degree, Unit.Second));
         }
 
@@ -85,16 +87,20 @@ namespace UnitsNet.Tests.net35
 
             // Assert from-unit cases. One for each class of unit.
             Assert.False(UnitConverter.TryConvert(1, Unit.Meter, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.SquareMeter, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Second, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Newton, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Pascal, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Second, out newValue));
-            Assert.False(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Degree, Unit.Second, out newValue));
 
             // Assert to-unit cases. One for each class of unit.
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Meter, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.SquareMeter, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeter, out newValue));
+            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Newton, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Pascal, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Kilogram, out newValue));
-            Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeter, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Degree, out newValue));
         }
 
@@ -105,16 +111,20 @@ namespace UnitsNet.Tests.net35
 
             // Assert from-unit cases. One for each class of unit.
             Assert.True(UnitConverter.TryConvert(1, Unit.Meter, Unit.Centimeter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.SquareMeter, Unit.SquareCentimeter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Liter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.Newton, Unit.KilogramForce, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Pascal, Unit.KiloPascal, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Gram, out newValue));
-            Assert.True(UnitConverter.TryConvert(1, Unit.CubicMeter, Unit.Liter, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Degree, Unit.Radian, out newValue));
 
             // Assert to-unit cases. One for each class of unit.
             Assert.True(UnitConverter.TryConvert(1, Unit.Centimeter, Unit.Meter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.SquareCentimeter, Unit.SquareMeter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.Liter, Unit.CubicMeter, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.KilogramForce, Unit.Newton, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.KiloPascal, Unit.Pascal, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Gram, Unit.Kilogram, out newValue));
-            Assert.True(UnitConverter.TryConvert(1, Unit.Liter, Unit.CubicMeter, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Radian, Unit.Degree, out newValue));
         }
     }
