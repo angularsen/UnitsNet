@@ -6,7 +6,7 @@ cd ..
 SET BUILD_BASE_DIR=%CD%\Build\ForNuget
 SET BUILD_DIR=%BUILD_BASE_DIR%\bin
 SET PackageName=UnitsNet
-SET NuGetExe=%CD%\Tools\NuGet\NuGet.exe
+SET NuGetExe=%CD%\Src\.nuget\NuGet.exe
 
 REM ECHO BUILD_DIR=%BUILD_DIR%
 
