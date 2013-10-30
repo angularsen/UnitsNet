@@ -18,8 +18,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1E-5, pa.Bars, Delta);
             Assert.AreEqual(1E-3, pa.KiloPascals);
             Assert.AreEqual(1E-4, pa.NewtonsPerSquareCentimeter, Delta);
-            Assert.AreEqual(1, pa.NewtonsPerSquareMeter, Delta);
             Assert.AreEqual(1E-6, pa.NewtonsPerSquareMillimeter, Delta);
+            Assert.AreEqual(1, pa.NewtonsPerSquareMeter, Delta);
             Assert.AreEqual(1, pa.Pascals);
             Assert.AreEqual(1.450377*1E-4, pa.Psi, Delta);
             Assert.AreEqual(1.0197*1E-5, pa.TechnicalAtmosphere, Delta);
