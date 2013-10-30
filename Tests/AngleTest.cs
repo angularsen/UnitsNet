@@ -12,7 +12,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DegreesToAngleUnits()
         {
-            Assert.AreEqual(90, _degrees90.Radians, Delta);
+            Assert.AreEqual(90, _degrees90.Degrees, Delta);
             Assert.AreEqual(Math.PI / 2, _degrees90.Radians, Delta);
             Assert.AreEqual(100, _degrees90.Gradians, Delta);
         }
