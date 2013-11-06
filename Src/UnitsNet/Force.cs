@@ -68,7 +68,7 @@ namespace UnitsNet
 
         public double Poundal
         {
-            get { return 7.2330*Newtons; }
+            get { return 7.23301 * Newtons; }
         }
 
         #region Static 
@@ -85,7 +85,7 @@ namespace UnitsNet
 
         public static Force FromPoundal(double pdl)
         {
-            return new Force(0.138255*pdl);
+            return new Force(0.13825502798973041652092282466083*pdl);
         }
 
         public static Force FromPoundForce(double lbf)

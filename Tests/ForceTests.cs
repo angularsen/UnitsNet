@@ -18,7 +18,7 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(0.10197, newton.KilogramForce, Delta);
             Assert.AreEqual(0.10197, newton.KiloPonds, Delta);
             Assert.AreEqual(0.22481, newton.PoundForce, Delta);
-            Assert.AreEqual(7.2330, newton.Poundal, Delta);
+            Assert.AreEqual(7.23301, newton.Poundal, Delta);
         }
 
         [Test]
