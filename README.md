@@ -88,21 +88,44 @@ var f = Force.FromMassAcceleration(Mass mass, double metersPerSecondSquared);
 Parse and Get Culture-Specific Abbreviations
 -------------------------------------------------
 ```C#
-  var us = new CultureInfo("en-US");
-  var norwegian = new CultureInfo("nb-NO");
+var us = new CultureInfo("en-US");
+var norwegian = new CultureInfo("nb-NO");
   
-  Unit.Tablespoon == UnitSystem.Create(us).Parse("tbsp")
-  Unit.Tablespoon == UnitSystem.Create(norwegian).Parse("ss")  
+Unit.Tablespoon == UnitSystem.Create(us).Parse("tbsp");
+Unit.Tablespoon == UnitSystem.Create(norwegian).Parse("ss");
 
-  "T" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, us)
-  "ss" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, norwegian)
+"T" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, us);
+"ss" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, norwegian);
 ```
+
+Precision
+=========
+A base unit is chosen for all classes of units, which is represented by a double value (64-bit), and all conversions go via this unit.
+This means there will always be a small error in both representing other units than the base unit as well as converting between units.
+
+In the unit tests I accept an error less than 1E-5 for all units I've added so far. In many usecases this is sufficient, but for some usecases this is definitely not OK and something you need to be aware of.
+For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision).
+
 
 What It Is Not
 ==============
 
 * It is not an equation solver. 
 * It does not figure out the units after a calculation.
+
+Frequently Asked Questions
+==========================
+Q: Why is the conversion not perfectly accurate? 
+As an example, when converting 1 PoundForce (lbF) to KilogramForce (kgF) I expected the result to be 0.45359237 and instead I got​0.45359240790780886 using the following for the conversion:
+
+```C# 
+double kg = UnitConverter.Convert(1, Unit.PoundForce, Unit.KilogramForce);
+```
+
+A: There are a few concerns here.
+* For several unit conversions there is no one perfect answer. Some units depend on constants such as the standard gravity, where different precisions are used in different contexts. Other constants depend on the environment, such as the temperature or altitude.
+* By design, Units.NET was not intended for high-accuracy conversions but rather convenience and simplicity. I am open to suggestions for improvements. If you want to know more, see the [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision) article.
+
 
 Work In Progress
 ================
