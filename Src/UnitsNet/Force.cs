@@ -63,7 +63,7 @@ namespace UnitsNet
 
         public double PoundForce
         {
-            get { return 0.22481*Newtons; }
+            get { return 0.224808943 * Newtons; }
         }
 
         public double Poundal
@@ -90,7 +90,7 @@ namespace UnitsNet
 
         public static Force FromPoundForce(double lbf)
         {
-            return new Force(4.448222*lbf);
+            return new Force(4.4482216172334389740002469563677*lbf);
         }
 
         public static Force FromKilogramForce(double kgf)
