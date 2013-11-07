@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.8.0</version>
+    <version>1.9.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,7 +11,22 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>Added angle unit of measurements. Added several missing test cases. Fixed bug when dynamically converting to NewtonPerSquareCentimeter and NewtonPerSquareMillimeter using UnitConverter.Convert()/TryConvert().</releaseNotes>
+    <releaseNotes>v1.9: Improved precision of PoundForce unit (thanks Jim Selikoff).
+	
+v1.8: Added angle units of measurement (thanks @gpetrou). Added tests and fixed bug in NewtonPerSquareCentimeter and NewtonPerSquareMillimeter.
+
+v1.7: Added imperial and US units for volume and area.
+
+v1.6: Added area units. Fixed exception in TryConvert for volume units.
+
+v1.5: Added volume units of measurement (thanks @vitasimek). Added missing operator overloads.
+
+v1.4: Added ShortTon and LongTon mass units (thanks Cameron MacFarland). Added TryConvert methods.
+
+v1.3: Added pressure units. Added dynamic conversion via UnitConverter and UnitValue
+
+v1.2: Added force, torque, pressure, mass, voltage, length and length2d units of measurement.
+</releaseNotes>
     <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
     <language>en-US</language>
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
