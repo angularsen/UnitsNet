@@ -67,12 +67,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Create a unit system for parsing and presenting numbers, units and abbreviations.
-        ///     If null is passed then <see cref="CultureInfo.CurrentUICulture" /> will be used.
+        /// Create a unit system for parsing and presenting numbers, units and abbreviations.
         /// </summary>
-        /// <param name="cultureInfo"></param>
+        /// <param name="cultureInfo">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
         /// <returns></returns>
-        public static UnitSystem Create(CultureInfo cultureInfo)
+        public static UnitSystem Create(CultureInfo cultureInfo = null)
         {
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
