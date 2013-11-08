@@ -30,6 +30,7 @@ namespace UnitsNet
     public struct Pressure : IComparable, IComparable<Pressure>
     {
         private const double KpaToPaRatio = 1000;
+		private const double MpaToPaRatio = 1000000;
         private const double Nm2ToPaRatio = 1;
         private const double Ncm2ToPaRatio = 1E+4;
         private const double Nmm2ToPaRatio = 1E+6;
@@ -55,6 +56,11 @@ namespace UnitsNet
         {
             get { return Pascals/KpaToPaRatio; }
         }
+
+		public double MegaPascals
+		{
+			get { return Pascals / MpaToPaRatio; }
+		}
 
         public double NewtonsPerSquareMeter
         {
@@ -130,6 +136,11 @@ namespace UnitsNet
         {
             return new Pressure(KpaToPaRatio*kpa);
         }
+
+		public static Pressure FromMegaPascals(double kpa)
+		{
+			return new Pressure(MpaToPaRatio * kpa);
+		}
 
         public static Pressure FromNewtonsPerSquareCentimeter(double nsc)
         {

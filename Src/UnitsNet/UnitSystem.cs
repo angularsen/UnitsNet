@@ -62,8 +62,10 @@ namespace UnitsNet
                 CreateUsEnglish();
             else if (cultureInfo.Name == "nb-NO")
                 CreateNorwegianBokmaal();
+			else if (cultureInfo.Name == "ru-RU")
+				CreateRussian();
             else
-                throw new ArgumentException("Expected only Norwegian Bokmål, US English and invariant cultures.");
+                throw new ArgumentException("Expected only Russian, Norwegian Bokmål, US English and invariant cultures.");
         }
 
         /// <summary>
@@ -136,6 +138,56 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Teaspoon, "ts", "ts.");
             MapUnitToAbbreviation(Unit.Piece, "stk", "stk.");
         }
+
+		private void CreateRussian()
+		{
+			// Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
+			MapUnitToAbbreviation(Unit.Undefined, "(нет ед.изм.)");
+
+			// Masses
+			MapUnitToAbbreviation(Unit.Kilogram, "кг");
+			MapUnitToAbbreviation(Unit.Gram, "г");
+			MapUnitToAbbreviation(Unit.Milligram, "мг");
+
+			// Forces
+			MapUnitToAbbreviation(Unit.Kilonewton, "кН");
+			MapUnitToAbbreviation(Unit.Newton, "Н");
+
+			// Torque
+			MapUnitToAbbreviation(Unit.Newtonmeter, "Нм");
+
+			// Distances
+			MapUnitToAbbreviation(Unit.Meter, "м");
+			MapUnitToAbbreviation(Unit.Centimeter, "см");
+			MapUnitToAbbreviation(Unit.Millimeter, "мм");
+
+			// Volumes
+			MapUnitToAbbreviation(Unit.Liter, "л");
+			MapUnitToAbbreviation(Unit.Milliliter, "мл");
+
+			// Other units
+			MapUnitToAbbreviation(Unit.Volt, "В");
+			MapUnitToAbbreviation(Unit.Percent, "%");
+
+			// Pressures
+			MapUnitToAbbreviation(Unit.Pascal, "Па");
+			MapUnitToAbbreviation(Unit.KiloPascal, "кПа");
+			MapUnitToAbbreviation(Unit.MegaPascal, "МПа");
+			MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "кгс/см²");
+
+			// Times
+			MapUnitToAbbreviation(Unit.Nanosecond, "нс");
+			MapUnitToAbbreviation(Unit.Microsecond, "мкс");
+			MapUnitToAbbreviation(Unit.Millisecond, "мс");
+			MapUnitToAbbreviation(Unit.Second, "с");
+			MapUnitToAbbreviation(Unit.Minute, "м");
+			MapUnitToAbbreviation(Unit.Hour, "ч");
+			MapUnitToAbbreviation(Unit.Day, "д");
+
+			// Flow
+			MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
+			MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
+		}
 
         private void CreateCultureInvariants()
         {
