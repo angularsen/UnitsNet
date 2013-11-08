@@ -227,6 +227,20 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Volt, "V");
             MapUnitToAbbreviation(Unit.Percent, "%");
             MapUnitToAbbreviation(Unit.Second, "s");
+
+			// Pressures
+			MapUnitToAbbreviation(Unit.Pascal, "Pa");
+			MapUnitToAbbreviation(Unit.KiloPascal, "kPa");
+			MapUnitToAbbreviation(Unit.MegaPascal, "MPa");
+			MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "kgf/cm²");
+
+			// Flow
+			MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
+			MapUnitToAbbreviation(Unit.CubicMeterPerHour, "m³/h");
+
+			// Revolution
+			MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "r/s");
+			MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "r/min");
         }
 
         private void MapUnitToAbbreviation(Unit unit, params string[] abbreviations)
