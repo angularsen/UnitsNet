@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AngleTest.cs" />
+    <Compile Include="AngleTests.cs" />
     <Compile Include="AreaTests.cs" />
     <Compile Include="VolumeTests.cs" />
     <Compile Include="Length2dTests.cs" />
