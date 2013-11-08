@@ -167,7 +167,11 @@ namespace UnitsNet
 
 		// Flow
 		CubicMeterPerSecond,
-		CubicMeterPerHour
+		CubicMeterPerHour,
+
+		// Revolution
+		RevolutionsPerSecond,
+		RevolutionsPerMinute,
     }
 
     //public enum LengthUnit

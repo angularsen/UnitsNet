@@ -180,13 +180,17 @@ namespace UnitsNet
 			MapUnitToAbbreviation(Unit.Microsecond, "мкс");
 			MapUnitToAbbreviation(Unit.Millisecond, "мс");
 			MapUnitToAbbreviation(Unit.Second, "с");
-			MapUnitToAbbreviation(Unit.Minute, "м");
+			MapUnitToAbbreviation(Unit.Minute, "мин");
 			MapUnitToAbbreviation(Unit.Hour, "ч");
 			MapUnitToAbbreviation(Unit.Day, "д");
 
 			// Flow
 			MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
 			MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
+
+			// Revolution
+			MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "об/с");
+			MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "об/мин");
 		}
 
         private void CreateCultureInvariants()

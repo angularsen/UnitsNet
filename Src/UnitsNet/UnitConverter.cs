@@ -52,6 +52,7 @@ namespace UnitsNet
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return newValue;
 			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return newValue;
+			if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return newValue;
 
             throw new Exception(
                 string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
@@ -85,6 +86,7 @@ namespace UnitsNet
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return true;
 			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return true;
+			if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return true;
 
             return false;
         }
@@ -370,7 +372,22 @@ namespace UnitsNet
 			}
 		}
 
-        private static bool TryConvert(Length l, Unit toUnit, out double newValue)
+		private static bool TryConvertRevolutions(double value, Unit fromUnit, Unit toUnit, out double newValue)
+		{
+			switch (fromUnit)
+			{
+				case Unit.RevolutionsPerSecond:
+					return TryConvert(Revolution.FromRevolutionsPerSecond(value), toUnit, out newValue);
+				case Unit.RevolutionsPerMinute:
+					return TryConvert(Revolution.FromRevolutionsPerMinute(value), toUnit, out newValue);
+
+				default:
+					newValue = 0;
+					return false;
+			}
+		}
+
+		private static bool TryConvert(Length l, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -734,6 +751,23 @@ namespace UnitsNet
 					return true;
 				case Unit.CubicMeterPerHour:
 					newValue = p.CubicMeterPerHour;
+					return true;
+
+				default:
+					newValue = 0;
+					return false;
+			}
+		}
+
+		private static bool TryConvert(Revolution p, Unit toUnit, out double newValue)
+		{
+			switch (toUnit)
+			{
+				case Unit.RevolutionsPerSecond:
+					newValue = p.RevolutionsPerSecond;
+					return true;
+				case Unit.RevolutionsPerMinute:
+					newValue = p.RevolutionsPerMinute;
 					return true;
 
 				default:
