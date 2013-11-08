@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
@@ -317,8 +316,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Kilograms.ToString("#0.0") + " " +
-                   UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Kilogram);
+            return string.Format("≈{0:0.##} {1}", Kilograms, UnitSystem.Create().GetDefaultAbbreviation(Unit.Kilogram));
         }
     }
 }

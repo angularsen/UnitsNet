@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
@@ -41,7 +40,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Volts + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Volt);
+            return string.Format("≈{0:0.##} {1}", Volts, UnitSystem.Create().GetDefaultAbbreviation(Unit.Volt));
         }
 
         #region Static

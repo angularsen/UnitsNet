@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
@@ -286,7 +285,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Pascals + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Pascal);
+            return string.Format("≈{0:0.##} {1}", Pascals, UnitSystem.Create().GetDefaultAbbreviation(Unit.Pascal));
         }
     }
 }

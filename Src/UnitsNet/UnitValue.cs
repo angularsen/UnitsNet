@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System.Globalization;
-
 namespace UnitsNet
 {
     /// <summary>
@@ -44,7 +42,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Value + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit);
+            return string.Format("≈{0:0.##} {1}", Value, UnitSystem.Create().GetDefaultAbbreviation(Unit));
         }
 
         #region Equality

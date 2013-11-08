@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
@@ -229,7 +228,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Newtons + " " + UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Newton);
+            return string.Format("≈{0:0.##} {1}", Newtons, UnitSystem.Create().GetDefaultAbbreviation(Unit.Newton));
         }
     }
 }

@@ -241,7 +241,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return SquareMeters + " m²";
+            return string.Format("{0:0.##} {1}", SquareMeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.SquareMeter));
         }
     }
 }

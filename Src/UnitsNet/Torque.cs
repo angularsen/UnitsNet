@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 
 namespace UnitsNet
 {
@@ -42,8 +41,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Newtonmeters.ToString("#0.0") + " " +
-                   UnitSystem.Create(CultureInfo.CurrentCulture).GetDefaultAbbreviation(Unit.Newtonmeter);
+            return string.Format("≈{0:0.##} {1}", Newtonmeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Newtonmeter));
         }
 
         #region Static

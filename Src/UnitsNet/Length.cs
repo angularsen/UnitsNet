@@ -1,4 +1,4 @@
-// Copyright � 2007 by Initial Force AS.  All rights reserved.
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -279,7 +279,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return Meters + " m";
+            return string.Format("≈{0:0.##} {1}", Meters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Meter));
         }
     }
 }

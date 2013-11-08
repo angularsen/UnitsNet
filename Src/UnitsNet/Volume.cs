@@ -370,7 +370,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return CubicMeters + " m³";
+            return string.Format("≈{0:0.##} {1}", CubicMeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.CubicMeter));
         }
     }
 }
