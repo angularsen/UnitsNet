@@ -42,6 +42,7 @@
     <Compile Include="Area.cs" />
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
+    <Compile Include="Flow.cs" />
     <Compile Include="Length.cs" />
     <Compile Include="Length2d.cs" />
     <Compile Include="Force.cs" />

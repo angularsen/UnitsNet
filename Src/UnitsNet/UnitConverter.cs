@@ -51,6 +51,7 @@ namespace UnitsNet
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return newValue;
+			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return newValue;
 
             throw new Exception(
                 string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
@@ -83,6 +84,7 @@ namespace UnitsNet
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return true;
+			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return true;
 
             return false;
         }
@@ -164,6 +166,8 @@ namespace UnitsNet
                     return TryConvert(Pressure.FromPascals(value), toUnit, out newValue);
                 case Unit.KiloPascal:
                     return TryConvert(Pressure.FromKiloPascals(value), toUnit, out newValue);
+				case Unit.MegaPascal:
+					return TryConvert(Pressure.FromMegaPascals(value), toUnit, out newValue);
                 case Unit.Psi:
                     return TryConvert(Pressure.FromPsi(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareCentimeter:
@@ -350,6 +354,21 @@ namespace UnitsNet
                     return false;
             }
         }
+
+		private static bool TryConvertFlow(double value, Unit fromUnit, Unit toUnit, out double newValue)
+		{
+			switch (fromUnit)
+			{
+				case Unit.CubicMeterPerSecond:
+					return TryConvert(Flow.FromCubicMeterPerSecond(value), toUnit, out newValue);
+				case Unit.CubicMeterPerHour:
+					return TryConvert(Flow.FromCubicMeterPerHour(value), toUnit, out newValue);
+
+				default:
+					newValue = 0;
+					return false;
+			}
+		}
 
         private static bool TryConvert(Length l, Unit toUnit, out double newValue)
         {
@@ -585,6 +604,9 @@ namespace UnitsNet
                 case Unit.KiloPascal:
                     newValue = p.KiloPascals;
                     return true;
+				case Unit.MegaPascal:
+					newValue = p.MegaPascals;
+					return true;
                 case Unit.Psi:
                     newValue = p.Psi;
                     return true;
@@ -702,5 +724,22 @@ namespace UnitsNet
                     return false;
             }
         }
+
+		private static bool TryConvert(Flow p, Unit toUnit, out double newValue)
+		{
+			switch (toUnit)
+			{
+				case Unit.CubicMeterPerSecond:
+					newValue = p.CubicMeterPerSecond;
+					return true;
+				case Unit.CubicMeterPerHour:
+					newValue = p.CubicMeterPerHour;
+					return true;
+
+				default:
+					newValue = 0;
+					return false;
+			}
+		}
     }
 }
