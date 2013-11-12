@@ -90,6 +90,16 @@ namespace UnitsNet
             get { return Meters*1E9; }
         }
 
+        public double Microinch
+        {
+            get { return Meters * 39370078.7; }
+        }
+
+        public double Mil
+        {
+            get { return Meters * 39370.0787; }
+        }
+       
         #endregion
 
         #region Static
@@ -168,6 +178,16 @@ namespace UnitsNet
         public static Length FromNanometers(double nm)
         {
             return FromMeters(nm*1E-9);
+        }
+
+        public static Length FromMicroinches(double mi)
+        {
+            return FromMeters(mi / 39370078.7);
+        }
+
+        public static Length FromMils(double m)
+        {
+            return FromMeters(m / 39370.0787);
         }
 
         #endregion
