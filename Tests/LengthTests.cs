@@ -25,8 +25,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1.09361, meter.Yards, Delta);
             Assert.AreEqual(3.28084, meter.Feet, Delta);
             Assert.AreEqual(39.3701, meter.Inches, Delta);
-            Assert.AreEqual(39370078.74015748, meter.Microinch, Delta);
-            Assert.AreEqual(39370.07874015, meter.Mil, Delta);
+            Assert.AreEqual(39370078.74015748, meter.Microinches, Delta);
+            Assert.AreEqual(39370.07874015, meter.Mils, Delta);
         }
 
         [Test]
@@ -46,8 +46,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, Delta);
             Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, Delta);
             Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMicroinches(meter.Microinch).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMils(meter.Mil).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMicroinches(meter.Microinches).Meters, Delta);
+            Assert.AreEqual(1, Length.FromMils(meter.Mils).Meters, Delta);
         }
 
         [Test]

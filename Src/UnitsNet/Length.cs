@@ -30,7 +30,7 @@ namespace UnitsNet
     {
         public readonly double Meters;
         private const double MilsToMetersRatio = 2.54E-5;
-        private const double MicroInchToMeterRatio = 2.54E-8;
+        private const double MicroinchToMeterRatio = 2.54E-8;
 
         /// <summary>
         ///     Enforce static methods for creation.
@@ -92,12 +92,12 @@ namespace UnitsNet
             get { return Meters*1E9; }
         }
 
-        public double Microinch
+        public double Microinches
         {
-            get { return Meters / MicroInchToMeterRatio; }
+            get { return Meters / MicroinchToMeterRatio; }
         }
 
-        public double Mil
+        public double Mils
         {
             get { return Meters / MilsToMetersRatio; }
         }
@@ -184,7 +184,7 @@ namespace UnitsNet
 
         public static Length FromMicroinches(double mi)
         {
-            return FromMeters(mi * MicroInchToMeterRatio);
+            return FromMeters(mi * MicroinchToMeterRatio);
         }
 
         public static Length FromMils(double mils)
