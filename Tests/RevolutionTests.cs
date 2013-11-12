@@ -11,30 +11,30 @@ namespace UnitsNet.Tests.net35
 		[Test]
 		public void CubicMeterPerSecondToRevolutionUnits()
 		{
-			Revolution cms = Revolution.FromRevolutionsPerSecond(1);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
 
-			Assert.AreEqual(60.0, cms.RevolutionsPerMinute, Delta);
-			Assert.AreEqual(1, cms.RevolutionsPerSecond);
+			Assert.AreEqual(60.0, rps.RevolutionsPerMinute, Delta);
+			Assert.AreEqual(1, rps.RevolutionsPerSecond);
 		}
 
 		[Test]
 		public void RevolutionUnitsRoundTrip()
 		{
-			Revolution cms = Revolution.FromRevolutionsPerSecond(1);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
 
-			Assert.AreEqual(1, Revolution.FromRevolutionsPerSecond(cms.RevolutionsPerSecond).RevolutionsPerSecond, Delta);
-			Assert.AreEqual(1, Revolution.FromRevolutionsPerMinute(cms.RevolutionsPerMinute).RevolutionsPerSecond, Delta);
+			Assert.AreEqual(1, Revolution.FromRevolutionsPerSecond(rps.RevolutionsPerSecond).RevolutionsPerSecond, Delta);
+			Assert.AreEqual(1, Revolution.FromRevolutionsPerMinute(rps.RevolutionsPerMinute).RevolutionsPerSecond, Delta);
 		}
 
 		[Test]
 		public void ArithmeticOperators()
 		{
-			Revolution v = Revolution.FromRevolutionsPerSecond(1);
-			Assert.AreEqual(-1, -v.RevolutionsPerSecond, Delta);
-			Assert.AreEqual(2, (Revolution.FromRevolutionsPerSecond(3) - v).RevolutionsPerSecond, Delta);
-			Assert.AreEqual(2, (v + v).RevolutionsPerSecond, Delta);
-			Assert.AreEqual(10, (v * 10).RevolutionsPerSecond, Delta);
-			Assert.AreEqual(10, (10 * v).RevolutionsPerSecond, Delta);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+			Assert.AreEqual(-1, -rps.RevolutionsPerSecond, Delta);
+			Assert.AreEqual(2, (Revolution.FromRevolutionsPerSecond(3) - rps).RevolutionsPerSecond, Delta);
+			Assert.AreEqual(2, (rps + rps).RevolutionsPerSecond, Delta);
+			Assert.AreEqual(10, (rps * 10).RevolutionsPerSecond, Delta);
+			Assert.AreEqual(10, (10 * rps).RevolutionsPerSecond, Delta);
 			Assert.AreEqual(2, (Revolution.FromRevolutionsPerSecond(10) / 5).RevolutionsPerSecond, Delta);
 			Assert.AreEqual(2, Revolution.FromRevolutionsPerSecond(10) / Revolution.FromRevolutionsPerSecond(5), Delta);
 		}
@@ -42,45 +42,45 @@ namespace UnitsNet.Tests.net35
 		[Test]
 		public void ComparisonOperators()
 		{
-			Revolution oneMeter = Revolution.FromRevolutionsPerSecond(1);
-			Revolution twoMeters = Revolution.FromRevolutionsPerSecond(2);
+			Revolution oneRps = Revolution.FromRevolutionsPerSecond(1);
+			Revolution twoRps = Revolution.FromRevolutionsPerSecond(2);
 
-			Assert.True(oneMeter < twoMeters);
-			Assert.True(oneMeter <= twoMeters);
-			Assert.True(twoMeters > oneMeter);
-			Assert.True(twoMeters >= oneMeter);
+			Assert.True(oneRps < twoRps);
+			Assert.True(oneRps <= twoRps);
+			Assert.True(twoRps > oneRps);
+			Assert.True(twoRps >= oneRps);
 
-			Assert.False(oneMeter > twoMeters);
-			Assert.False(oneMeter >= twoMeters);
-			Assert.False(twoMeters < oneMeter);
-			Assert.False(twoMeters <= oneMeter);
+			Assert.False(oneRps > twoRps);
+			Assert.False(oneRps >= twoRps);
+			Assert.False(twoRps < oneRps);
+			Assert.False(twoRps <= oneRps);
 		}
 
 		[Test]
 		public void CompareToIsImplemented()
 		{
-			Revolution meter = Revolution.FromRevolutionsPerSecond(1);
-			Assert.AreEqual(0, meter.CompareTo(meter));
-			Assert.Greater(meter.CompareTo(Revolution.Zero), 0);
-			Assert.Less(Revolution.Zero.CompareTo(meter), 0);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+			Assert.AreEqual(0, rps.CompareTo(rps));
+			Assert.Greater(rps.CompareTo(Revolution.Zero), 0);
+			Assert.Less(Revolution.Zero.CompareTo(rps), 0);
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
 		public void CompareToThrowsOnTypeMismatch()
 		{
-			Revolution meter = Revolution.FromRevolutionsPerSecond(1);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			meter.CompareTo(new object());
+			rps.CompareTo(new object());
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void CompareToThrowsOnNull()
 		{
-			Revolution meter = Revolution.FromRevolutionsPerSecond(1);
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			meter.CompareTo(null);
+			rps.CompareTo(null);
 		}
 
 
@@ -102,23 +102,23 @@ namespace UnitsNet.Tests.net35
 		[Test]
 		public void EqualsIsImplemented()
 		{
-			Revolution v = Revolution.FromRevolutionsPerSecond(1);
-			Assert.IsTrue(v.Equals(Revolution.FromRevolutionsPerSecond(1)));
-			Assert.IsFalse(v.Equals(Revolution.Zero));
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+			Assert.IsTrue(rps.Equals(Revolution.FromRevolutionsPerSecond(1)));
+			Assert.IsFalse(rps.Equals(Revolution.Zero));
 		}
 
 		[Test]
 		public void EqualsReturnsFalseOnTypeMismatch()
 		{
-			Revolution meter = Revolution.FromRevolutionsPerSecond(1);
-			Assert.IsFalse(meter.Equals(new object()));
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+			Assert.IsFalse(rps.Equals(new object()));
 		}
 
 		[Test]
 		public void EqualsReturnsFalseOnNull()
 		{
-			Revolution meter = Revolution.FromRevolutionsPerSecond(1);
-			Assert.IsFalse(meter.Equals(null));
+			Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+			Assert.IsFalse(rps.Equals(null));
 		}
 	}
 }
