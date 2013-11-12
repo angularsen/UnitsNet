@@ -178,6 +178,8 @@ namespace UnitsNet
                     return TryConvert(Pressure.FromNewtonsPerSquareMillimeter(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareMeter:
                     return TryConvert(Pressure.FromNewtonsPerSquareMeter(value), toUnit, out newValue);
+                case Unit.KilogramForcePerSquareCentimeter:
+                    return TryConvert(Pressure.FromKilogramForcePerSquareCentimeter(value), toUnit, out newValue);
                 case Unit.Bar:
                     return TryConvert(Pressure.FromBars(value), toUnit, out newValue);
                 case Unit.TechnicalAtmosphere:
