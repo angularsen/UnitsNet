@@ -35,6 +35,8 @@ namespace UnitsNet
         Nanometer,
 
         // Length (imperial)
+        Microinch,
+        Mil,
         Mile,
         Yard,
         Foot,
