@@ -30,6 +30,7 @@ namespace UnitsNet
     public struct Pressure : IComparable, IComparable<Pressure>
     {
         private const double KpaToPaRatio = 1000;
+		private const double MpaToPaRatio = 1000000;
         private const double Nm2ToPaRatio = 1;
         private const double Ncm2ToPaRatio = 1E+4;
         private const double Nmm2ToPaRatio = 1E+6;
@@ -38,6 +39,7 @@ namespace UnitsNet
         private const double AtmToPaRatio = 101325;
         private const double TorrToPaRatio = 1.3332266752*1E2;
         private const double PsiToPaRatio = 6.89464975179*1E3;
+		private const double KFSCToPaRatio = 98066.5;
 
         /// <summary>
         ///     Pressure in pascal.
@@ -55,6 +57,16 @@ namespace UnitsNet
         {
             get { return Pascals/KpaToPaRatio; }
         }
+
+		public double MegaPascals
+		{
+			get { return Pascals / MpaToPaRatio; }
+		}
+
+	    public double KilogramForcePerSquareCentimeter
+	    {
+			get { return Pascals / KFSCToPaRatio; }
+	    }
 
         public double NewtonsPerSquareMeter
         {
@@ -130,6 +142,16 @@ namespace UnitsNet
         {
             return new Pressure(KpaToPaRatio*kpa);
         }
+
+		public static Pressure FromMegaPascals(double mpa)
+		{
+			return new Pressure(MpaToPaRatio * mpa);
+		}
+
+		public static Pressure FromKilogramForcePerSquareCentimeter(double kfsc)
+		{
+			return new Pressure(KFSCToPaRatio * kfsc);
+		}
 
         public static Pressure FromNewtonsPerSquareCentimeter(double nsc)
         {

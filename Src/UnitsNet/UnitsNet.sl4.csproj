@@ -58,7 +58,9 @@
   <ItemGroup>
     <Compile Include="Angle.cs" />
     <Compile Include="Area.cs" />
+	<Compile Include="Revolution.cs" />
     <Compile Include="EnumUtils.cs" />
+	<Compile Include="Flow.cs" />
     <Compile Include="Force.cs" />
     <Compile Include="Length.cs" />
     <Compile Include="Length2d.cs" />

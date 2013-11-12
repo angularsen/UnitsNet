@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitsNet.Tests.net35</RootNamespace>
     <AssemblyName>UnitsNet.Tests.net35</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\Src\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="AngleTest.cs" />
     <Compile Include="AreaTests.cs" />
+    <Compile Include="FlowTests.cs" />
+    <Compile Include="RevolutionTests.cs" />
     <Compile Include="VolumeTests.cs" />
     <Compile Include="Length2dTests.cs" />
     <Compile Include="LengthTests.cs" />
