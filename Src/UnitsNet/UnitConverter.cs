@@ -168,8 +168,8 @@ namespace UnitsNet
                     return TryConvert(Pressure.FromPascals(value), toUnit, out newValue);
                 case Unit.KiloPascal:
                     return TryConvert(Pressure.FromKiloPascals(value), toUnit, out newValue);
-				case Unit.MegaPascal:
-					return TryConvert(Pressure.FromMegaPascals(value), toUnit, out newValue);
+                case Unit.MegaPascal:
+                    return TryConvert(Pressure.FromMegaPascals(value), toUnit, out newValue);
                 case Unit.Psi:
                     return TryConvert(Pressure.FromPsi(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareCentimeter:
