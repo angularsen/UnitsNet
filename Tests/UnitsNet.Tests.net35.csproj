@@ -48,6 +48,7 @@
     <Compile Include="AreaTests.cs" />
     <Compile Include="FlowTests.cs" />
     <Compile Include="RevolutionTests.cs" />
+    <Compile Include="UnitSystemTests.cs" />
     <Compile Include="VolumeTests.cs" />
     <Compile Include="Length2dTests.cs" />
     <Compile Include="LengthTests.cs" />

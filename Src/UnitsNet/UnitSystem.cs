@@ -312,7 +312,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Milliliter, "ml");
 
             // Torque
-            MapUnitToAbbreviation(Unit.Newtonmeter, "N·m");
+            MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
 
             // Generic / Other
             MapUnitToAbbreviation(Unit.Piece, "piece");
