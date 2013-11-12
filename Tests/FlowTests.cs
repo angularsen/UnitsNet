@@ -59,28 +59,28 @@ namespace UnitsNet.Tests.net35
 		[Test]
 		public void CompareToIsImplemented()
 		{
-			Flow meter = Flow.FromCubicMeterPerSecond(1);
-			Assert.AreEqual(0, meter.CompareTo(meter));
-			Assert.Greater(meter.CompareTo(Flow.Zero), 0);
-			Assert.Less(Flow.Zero.CompareTo(meter), 0);
+			Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+			Assert.AreEqual(0, oneCmps.CompareTo(oneCmps));
+			Assert.Greater(oneCmps.CompareTo(Flow.Zero), 0);
+			Assert.Less(Flow.Zero.CompareTo(oneCmps), 0);
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
 		public void CompareToThrowsOnTypeMismatch()
 		{
-			Flow meter = Flow.FromCubicMeterPerSecond(1);
+			Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			meter.CompareTo(new object());
+			oneCmps.CompareTo(new object());
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void CompareToThrowsOnNull()
 		{
-			Flow meter = Flow.FromCubicMeterPerSecond(1);
+			Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			meter.CompareTo(null);
+			oneCmps.CompareTo(null);
 		}
 
 
@@ -110,15 +110,15 @@ namespace UnitsNet.Tests.net35
 		[Test]
 		public void EqualsReturnsFalseOnTypeMismatch()
 		{
-			Flow meter = Flow.FromCubicMeterPerSecond(1);
-			Assert.IsFalse(meter.Equals(new object()));
+			Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+			Assert.IsFalse(oneCmps.Equals(new object()));
 		}
 
 		[Test]
 		public void EqualsReturnsFalseOnNull()
 		{
-			Flow meter = Flow.FromCubicMeterPerSecond(1);
-			Assert.IsFalse(meter.Equals(null));
+			Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+			Assert.IsFalse(oneCmps.Equals(null));
 		}
 	}
 }
