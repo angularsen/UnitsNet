@@ -16,6 +16,8 @@ namespace UnitsNet.Tests.net35
             Assert.False(new UnitValue(1, Unit.Pascal).TryConvert(Unit.Second, out newValue));
             Assert.False(new UnitValue(1, Unit.Kilogram).TryConvert(Unit.Second, out newValue));
             Assert.False(new UnitValue(1, Unit.Degree).TryConvert(Unit.Second, out newValue));
+			Assert.False(new UnitValue(1, Unit.CubicMeterPerSecond).TryConvert(Unit.Second, out newValue));
+			Assert.False(new UnitValue(1, Unit.RevolutionsPerSecond).TryConvert(Unit.Second, out newValue));
         }
     }
 }

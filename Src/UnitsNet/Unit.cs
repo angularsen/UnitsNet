@@ -70,14 +70,16 @@ namespace UnitsNet
         // Pressure
         Pascal,
         KiloPascal,
+		MegaPascal,
         Psi,
         NewtonPerSquareCentimeter,
         NewtonPerSquareMillimeter,
         NewtonPerSquareMeter,
-        Bar,
+		Bar,
         TechnicalAtmosphere,
         Atmosphere,
         Torr,
+		KilogramForcePerSquareCentimeter,
 
         // Force
         Kilonewton,
@@ -162,6 +164,14 @@ namespace UnitsNet
         // Cooking units
         Tablespoon,
         Teaspoon,
+
+		// Flow
+		CubicMeterPerSecond,
+		CubicMeterPerHour,
+
+		// Revolution
+		RevolutionsPerSecond,
+		RevolutionsPerMinute,
     }
 
     //public enum LengthUnit
