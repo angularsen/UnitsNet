@@ -17,8 +17,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(9.8692*1E-6, pa.Atmosphere, Delta);
             Assert.AreEqual(1E-5, pa.Bars, Delta);
             Assert.AreEqual(1E-3, pa.KiloPascals);
-			Assert.AreEqual(1E-6, pa.MegaPascals);
-	        Assert.AreEqual(1/98066.5, pa.KilogramForcePerSquareCentimeter);
+            Assert.AreEqual(1E-6, pa.MegaPascals);
+            Assert.AreEqual(1/98066.5, pa.KilogramForcePerSquareCentimeter);
             Assert.AreEqual(1E-4, pa.NewtonsPerSquareCentimeter, Delta);
             Assert.AreEqual(1E-6, pa.NewtonsPerSquareMillimeter, Delta);
             Assert.AreEqual(1, pa.NewtonsPerSquareMeter, Delta);
@@ -36,8 +36,8 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1, Pressure.FromAtmosphere(pa.Atmosphere).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromBars(pa.Bars).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromKiloPascals(pa.KiloPascals).Pascals, Delta);
-			Assert.AreEqual(1, Pressure.FromMegaPascals(pa.MegaPascals).Pascals, Delta);
-			Assert.AreEqual(1, Pressure.FromKilogramForcePerSquareCentimeter(pa.KilogramForcePerSquareCentimeter).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromMegaPascals(pa.MegaPascals).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.FromKilogramForcePerSquareCentimeter(pa.KilogramForcePerSquareCentimeter).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromNewtonsPerSquareCentimeter(pa.NewtonsPerSquareCentimeter).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMeter(pa.NewtonsPerSquareMeter).Pascals, Delta);
             Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMillimeter(pa.NewtonsPerSquareMillimeter).Pascals, Delta);

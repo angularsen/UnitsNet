@@ -51,8 +51,8 @@ namespace UnitsNet
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return newValue;
-			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return newValue;
-			if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return newValue;
 
             throw new Exception(
                 string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
@@ -85,8 +85,8 @@ namespace UnitsNet
             if (TryConvertForce(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return true;
-			if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return true;
-			if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return true;
 
             return false;
         }
@@ -363,37 +363,37 @@ namespace UnitsNet
             }
         }
 
-		private static bool TryConvertFlow(double value, Unit fromUnit, Unit toUnit, out double newValue)
-		{
-			switch (fromUnit)
-			{
-				case Unit.CubicMeterPerSecond:
-					return TryConvert(Flow.FromCubicMeterPerSecond(value), toUnit, out newValue);
-				case Unit.CubicMeterPerHour:
-					return TryConvert(Flow.FromCubicMeterPerHour(value), toUnit, out newValue);
+        private static bool TryConvertFlow(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.CubicMeterPerSecond:
+                    return TryConvert(Flow.FromCubicMeterPerSecond(value), toUnit, out newValue);
+                case Unit.CubicMeterPerHour:
+                    return TryConvert(Flow.FromCubicMeterPerHour(value), toUnit, out newValue);
 
-				default:
-					newValue = 0;
-					return false;
-			}
-		}
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
 
-		private static bool TryConvertRevolutions(double value, Unit fromUnit, Unit toUnit, out double newValue)
-		{
-			switch (fromUnit)
-			{
-				case Unit.RevolutionsPerSecond:
-					return TryConvert(Revolution.FromRevolutionsPerSecond(value), toUnit, out newValue);
-				case Unit.RevolutionsPerMinute:
-					return TryConvert(Revolution.FromRevolutionsPerMinute(value), toUnit, out newValue);
+        private static bool TryConvertRevolutions(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.RevolutionsPerSecond:
+                    return TryConvert(Revolution.FromRevolutionsPerSecond(value), toUnit, out newValue);
+                case Unit.RevolutionsPerMinute:
+                    return TryConvert(Revolution.FromRevolutionsPerMinute(value), toUnit, out newValue);
 
-				default:
-					newValue = 0;
-					return false;
-			}
-		}
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
 
-		private static bool TryConvert(Length l, Unit toUnit, out double newValue)
+        private static bool TryConvert(Length l, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
@@ -627,12 +627,12 @@ namespace UnitsNet
                 case Unit.KiloPascal:
                     newValue = p.KiloPascals;
                     return true;
-				case Unit.MegaPascal:
-					newValue = p.MegaPascals;
-					return true;
-				case Unit.KilogramForcePerSquareCentimeter:
-					newValue = p.KilogramForcePerSquareCentimeter;
-					return true;
+                case Unit.MegaPascal:
+                    newValue = p.MegaPascals;
+                    return true;
+                case Unit.KilogramForcePerSquareCentimeter:
+                    newValue = p.KilogramForcePerSquareCentimeter;
+                    return true;
                 case Unit.Psi:
                     newValue = p.Psi;
                     return true;
@@ -751,38 +751,38 @@ namespace UnitsNet
             }
         }
 
-		private static bool TryConvert(Flow p, Unit toUnit, out double newValue)
-		{
-			switch (toUnit)
-			{
-				case Unit.CubicMeterPerSecond:
-					newValue = p.CubicMeterPerSecond;
-					return true;
-				case Unit.CubicMeterPerHour:
-					newValue = p.CubicMeterPerHour;
-					return true;
+        private static bool TryConvert(Flow p, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.CubicMeterPerSecond:
+                    newValue = p.CubicMeterPerSecond;
+                    return true;
+                case Unit.CubicMeterPerHour:
+                    newValue = p.CubicMeterPerHour;
+                    return true;
 
-				default:
-					newValue = 0;
-					return false;
-			}
-		}
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
 
-		private static bool TryConvert(Revolution p, Unit toUnit, out double newValue)
-		{
-			switch (toUnit)
-			{
-				case Unit.RevolutionsPerSecond:
-					newValue = p.RevolutionsPerSecond;
-					return true;
-				case Unit.RevolutionsPerMinute:
-					newValue = p.RevolutionsPerMinute;
-					return true;
+        private static bool TryConvert(Revolution p, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.RevolutionsPerSecond:
+                    newValue = p.RevolutionsPerSecond;
+                    return true;
+                case Unit.RevolutionsPerMinute:
+                    newValue = p.RevolutionsPerMinute;
+                    return true;
 
-				default:
-					newValue = 0;
-					return false;
-			}
-		}
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
     }
 }
