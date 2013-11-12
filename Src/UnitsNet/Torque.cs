@@ -41,7 +41,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", Newtonmeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Newtonmeter));
+            return string.Format("{0:0.##} {1}", Newtonmeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Newtonmeter));
         }
 
         #region Static

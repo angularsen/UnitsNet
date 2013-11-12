@@ -144,7 +144,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", CubicMeterPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.CubicMeterPerSecond));
+            return string.Format("{0:0.##} {1}", CubicMeterPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.CubicMeterPerSecond));
         }
     }
 }

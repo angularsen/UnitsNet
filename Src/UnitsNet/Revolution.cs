@@ -144,7 +144,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", RevolutionsPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.RevolutionsPerSecond));
+            return string.Format("{0:0.##} {1}", RevolutionsPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.RevolutionsPerSecond));
         }
     }
 }

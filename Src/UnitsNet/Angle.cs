@@ -158,7 +158,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", Degrees, UnitSystem.Create().GetDefaultAbbreviation(Unit.Degree));
+            return string.Format("{0:0.##} {1}", Degrees, UnitSystem.Create().GetDefaultAbbreviation(Unit.Degree));
         }
     }
 }

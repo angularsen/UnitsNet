@@ -42,7 +42,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", Value, UnitSystem.Create().GetDefaultAbbreviation(Unit));
+            return string.Format("{0:0.##} {1}", Value, UnitSystem.Create().GetDefaultAbbreviation(Unit));
         }
 
         #region Equality

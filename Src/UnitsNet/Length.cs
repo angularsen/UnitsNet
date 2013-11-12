@@ -301,7 +301,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", Meters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Meter));
+            return string.Format("{0:0.##} {1}", Meters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Meter));
         }
     }
 }

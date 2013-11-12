@@ -40,7 +40,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("≈{0:0.##} {1}", Volts, UnitSystem.Create().GetDefaultAbbreviation(Unit.Volt));
+            return string.Format("{0:0.##} {1}", Volts, UnitSystem.Create().GetDefaultAbbreviation(Unit.Volt));
         }
 
         #region Static
