@@ -28,6 +28,7 @@ namespace UnitsNet
     /// </summary>
     public struct Length : IComparable, IComparable<Length>
     {
+        private const double MilsToMetersRatio = 2.54E-5;
         public readonly double Meters;
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace UnitsNet
 
         public double Mil
         {
-            get { return Meters * 39370.0787; }
+            get { return Meters / MilsToMetersRatio; }
         }
        
         #endregion
@@ -185,9 +186,9 @@ namespace UnitsNet
             return FromMeters(mi / 39370078.7);
         }
 
-        public static Length FromMils(double m)
+        public static Length FromMils(double mils)
         {
-            return FromMeters(m / 39370.0787);
+            return FromMeters(mils*MilsToMetersRatio);
         }
 
         #endregion
