@@ -218,6 +218,10 @@ namespace UnitsNet
                     return TryConvert(Length.FromFeet(value), toUnit, out newValue);
                 case Unit.Inch:
                     return TryConvert(Length.FromInches(value), toUnit, out newValue);
+               case Unit.Mil:
+                    return TryConvert(Length.FromMils(value), toUnit, out newValue);
+               case Unit.Microinch:
+                    return TryConvert(Length.FromMicroinches(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
