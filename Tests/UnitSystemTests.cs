@@ -52,7 +52,30 @@ namespace UnitsNet.Tests.net35
             
             Assert.IsEmpty(unitsMissingAbbreviations,
                 "Units missing abbreviations: " + string.Join(", ", unitsMissingAbbreviations));
-        } 
+        }
+
+        [Test]
+        public void ToStringRoundsToTwoDecimals()
+        {
+            var originalCulture = Thread.CurrentThread.CurrentUICulture;
+            try
+            {
+                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+                // CurrentUICulture affects localization, in this case for the abbreviation.
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+                Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
+                Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
+                Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
+                Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = originalCulture;
+            }
+        }
 
         [Test]
         public void AllUnitsImplementToStringForInvariantCulture()
