@@ -39,6 +39,7 @@ namespace UnitsNet
         private const double AtmToPaRatio = 101325;
         private const double TorrToPaRatio = 1.3332266752*1E2;
         private const double PsiToPaRatio = 6.89464975179*1E3;
+		private const double KFSCToPaRatio = 98066.5;
 
         /// <summary>
         ///     Pressure in pascal.
@@ -61,6 +62,11 @@ namespace UnitsNet
 		{
 			get { return Pascals / MpaToPaRatio; }
 		}
+
+	    public double KilogramForcePerSquareCentimeter
+	    {
+			get { return Pascals / KFSCToPaRatio; }
+	    }
 
         public double NewtonsPerSquareMeter
         {
@@ -137,9 +143,14 @@ namespace UnitsNet
             return new Pressure(KpaToPaRatio*kpa);
         }
 
-		public static Pressure FromMegaPascals(double kpa)
+		public static Pressure FromMegaPascals(double mpa)
 		{
-			return new Pressure(MpaToPaRatio * kpa);
+			return new Pressure(MpaToPaRatio * mpa);
+		}
+
+		public static Pressure FromKilogramForcePerSquareCentimeter(double kfsc)
+		{
+			return new Pressure(KFSCToPaRatio * kfsc);
 		}
 
         public static Pressure FromNewtonsPerSquareCentimeter(double nsc)

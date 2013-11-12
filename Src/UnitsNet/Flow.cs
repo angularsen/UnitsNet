@@ -8,6 +8,9 @@ namespace UnitsNet
 	/// </summary>
 	public struct Flow : IComparable, IComparable<Flow>
 	{
+		private const double SecondToMinuteRatio = 60;
+		private const double SecondToHourRatio = 3600;
+
 		public readonly double CubicMeterPerSecond;
 
 		private Flow(double cubicMeterPerSecond)
@@ -18,7 +21,7 @@ namespace UnitsNet
 
 		public double CubicMeterPerHour
 		{
-			get { return CubicMeterPerSecond / 3600; }
+			get { return CubicMeterPerSecond / SecondToHourRatio; }
 		}
 
 		#region Static
@@ -28,14 +31,14 @@ namespace UnitsNet
 			get { return new Flow(); }
 		}
 
-		public static Flow FromCubicMeterPerHour(double cmph)
+		public static Flow FromCubicMeterPerHour(double cmh)
 		{
-			return new Flow(cmph * 3600);
+			return new Flow(cmh * SecondToHourRatio);
 		}
 
-		public static Flow FromCubicMeterPerSecond(double cubicMeterPerSecond)
+		public static Flow FromCubicMeterPerSecond(double cms)
 		{
-			return new Flow(cubicMeterPerSecond);
+			return new Flow(cms);
 		}
 
 		#endregion

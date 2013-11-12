@@ -102,7 +102,16 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1.450377*1E-4, UnitConverter.Convert(1, Unit.Pascal, Unit.Psi), Delta);
             Assert.AreEqual(1.0197*1E-5, UnitConverter.Convert(1, Unit.Pascal, Unit.TechnicalAtmosphere), Delta);
             Assert.AreEqual(7.5006*1E-3, UnitConverter.Convert(1, Unit.Pascal, Unit.Torr), Delta);
+			Assert.AreEqual(1E-6, UnitConverter.Convert(1, Unit.Pascal, Unit.MegaPascal), Delta);
+	        Assert.AreEqual(1/98066.5, UnitConverter.Convert(1, Unit.Pascal, Unit.KilogramForcePerSquareCentimeter), Delta);
         }
+
+		[Test]
+		public void CubicMeterPerSecondToFlowUnits()
+		{
+			Assert.AreEqual(1, UnitConverter.Convert(1, Unit.CubicMeterPerSecond, Unit.CubicMeterPerSecond), Delta);
+			Assert.AreEqual(1/3600.0, UnitConverter.Convert(1, Unit.CubicMeterPerSecond, Unit.CubicMeterPerHour), Delta);
+		}
 
         [Test]
         public void ThrowsOnIncompatibleUnits()
@@ -114,6 +123,8 @@ namespace UnitsNet.Tests.net35
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Pascal, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Kilogram, Unit.Second));
             Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.Degree, Unit.Second));
+			Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.CubicMeterPerSecond, Unit.Second));
+			Assert.Throws<Exception>(() => UnitConverter.Convert(1, Unit.RevolutionsPerSecond, Unit.Second));
         }
 
         [Test]
@@ -129,6 +140,8 @@ namespace UnitsNet.Tests.net35
             Assert.False(UnitConverter.TryConvert(1, Unit.Pascal, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Second, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Degree, Unit.Second, out newValue));
+			Assert.False(UnitConverter.TryConvert(1, Unit.CubicMeterPerSecond, Unit.Second, out newValue));
+			Assert.False(UnitConverter.TryConvert(1, Unit.RevolutionsPerSecond, Unit.Second, out newValue));
 
             // Assert to-unit cases. One for each class of unit.
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Meter, out newValue));
@@ -138,6 +151,8 @@ namespace UnitsNet.Tests.net35
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Pascal, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Kilogram, out newValue));
             Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.Degree, out newValue));
+			Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.CubicMeterPerSecond, out newValue));
+			Assert.False(UnitConverter.TryConvert(1, Unit.Second, Unit.RevolutionsPerSecond, out newValue));
         }
 
         [Test]
@@ -153,6 +168,8 @@ namespace UnitsNet.Tests.net35
             Assert.True(UnitConverter.TryConvert(1, Unit.Pascal, Unit.KiloPascal, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Kilogram, Unit.Gram, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Degree, Unit.Radian, out newValue));
+			Assert.True(UnitConverter.TryConvert(1, Unit.CubicMeterPerSecond, Unit.CubicMeterPerHour, out newValue));
+			Assert.True(UnitConverter.TryConvert(1, Unit.RevolutionsPerSecond, Unit.RevolutionsPerMinute, out newValue));
 
             // Assert to-unit cases. One for each class of unit.
             Assert.True(UnitConverter.TryConvert(1, Unit.Centimeter, Unit.Meter, out newValue));
@@ -161,7 +178,8 @@ namespace UnitsNet.Tests.net35
             Assert.True(UnitConverter.TryConvert(1, Unit.KilogramForce, Unit.Newton, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.KiloPascal, Unit.Pascal, out newValue));
             Assert.True(UnitConverter.TryConvert(1, Unit.Gram, Unit.Kilogram, out newValue));
-            Assert.True(UnitConverter.TryConvert(1, Unit.Radian, Unit.Degree, out newValue));
+            Assert.True(UnitConverter.TryConvert(1, Unit.CubicMeterPerHour, Unit.CubicMeterPerSecond, out newValue));
+			Assert.True(UnitConverter.TryConvert(1, Unit.RevolutionsPerMinute, Unit.RevolutionsPerSecond, out newValue));
         }
     }
 }

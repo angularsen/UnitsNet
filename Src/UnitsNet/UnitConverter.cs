@@ -624,6 +624,9 @@ namespace UnitsNet
 				case Unit.MegaPascal:
 					newValue = p.MegaPascals;
 					return true;
+				case Unit.KilogramForcePerSquareCentimeter:
+					newValue = p.KilogramForcePerSquareCentimeter;
+					return true;
                 case Unit.Psi:
                     newValue = p.Psi;
                     return true;

@@ -144,36 +144,80 @@ namespace UnitsNet
 			// Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
 			MapUnitToAbbreviation(Unit.Undefined, "(нет ед.изм.)");
 
-			// Masses
-			MapUnitToAbbreviation(Unit.Kilogram, "кг");
-			MapUnitToAbbreviation(Unit.Gram, "г");
-			MapUnitToAbbreviation(Unit.Milligram, "мг");
-
-			// Forces
-			MapUnitToAbbreviation(Unit.Kilonewton, "кН");
-			MapUnitToAbbreviation(Unit.Newton, "Н");
-
-			// Torque
-			MapUnitToAbbreviation(Unit.Newtonmeter, "Нм");
-
-			// Distances
+			// Length
+			MapUnitToAbbreviation(Unit.Kilometer, "км");
 			MapUnitToAbbreviation(Unit.Meter, "м");
+			MapUnitToAbbreviation(Unit.Decimeter, "дм");
 			MapUnitToAbbreviation(Unit.Centimeter, "см");
 			MapUnitToAbbreviation(Unit.Millimeter, "мм");
+			MapUnitToAbbreviation(Unit.Micrometer, "мкм");
+			MapUnitToAbbreviation(Unit.Nanometer, "нм");
 
-			// Volumes
-			MapUnitToAbbreviation(Unit.Liter, "л");
-			MapUnitToAbbreviation(Unit.Milliliter, "мл");
-
-			// Other units
-			MapUnitToAbbreviation(Unit.Volt, "В");
-			MapUnitToAbbreviation(Unit.Percent, "%");
+			// Masses
+			MapUnitToAbbreviation(Unit.Megatonne, "Мт");
+			MapUnitToAbbreviation(Unit.Kilotonne, "кт");
+			MapUnitToAbbreviation(Unit.Tonne, "т");
+			MapUnitToAbbreviation(Unit.Kilogram, "кг");
+			MapUnitToAbbreviation(Unit.Hectogram, "гг");
+			MapUnitToAbbreviation(Unit.Decagram, "даг");
+			MapUnitToAbbreviation(Unit.Gram, "г");
+			MapUnitToAbbreviation(Unit.Decigram, "дг");
+			MapUnitToAbbreviation(Unit.Centigram, "сг");
+			MapUnitToAbbreviation(Unit.Milligram, "мг");
 
 			// Pressures
 			MapUnitToAbbreviation(Unit.Pascal, "Па");
 			MapUnitToAbbreviation(Unit.KiloPascal, "кПа");
 			MapUnitToAbbreviation(Unit.MegaPascal, "МПа");
 			MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "кгс/см²");
+			MapUnitToAbbreviation(Unit.Psi, "psi");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "Н/см²");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "Н/мм²");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "Н/м²");
+			MapUnitToAbbreviation(Unit.Bar, "бар");
+			MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "ат");
+			MapUnitToAbbreviation(Unit.Atmosphere, "атм");
+			MapUnitToAbbreviation(Unit.Torr, "торр");
+
+			// Forces
+			MapUnitToAbbreviation(Unit.Kilonewton, "кН");
+			MapUnitToAbbreviation(Unit.Newton, "Н");
+			MapUnitToAbbreviation(Unit.KilogramForce, "кгс");
+			MapUnitToAbbreviation(Unit.Dyn, "дин");
+
+			// Area
+			MapUnitToAbbreviation(Unit.SquareKilometer, "км²");
+			MapUnitToAbbreviation(Unit.SquareMeter, "м²");
+			MapUnitToAbbreviation(Unit.SquareDecimeter, "дм²");
+			MapUnitToAbbreviation(Unit.SquareCentimeter, "см²");
+			MapUnitToAbbreviation(Unit.SquareMillimeter, "мм²");
+
+			// Angle
+			MapUnitToAbbreviation(Unit.Degree, "°");
+			MapUnitToAbbreviation(Unit.Radian, "рад");
+			MapUnitToAbbreviation(Unit.Gradian, "g");
+
+			// Volumes
+			MapUnitToAbbreviation(Unit.CubicKilometer, "км³");
+			MapUnitToAbbreviation(Unit.CubicMeter, "м³");
+			MapUnitToAbbreviation(Unit.CubicDecimeter, "дм³");
+			MapUnitToAbbreviation(Unit.CubicCentimeter, "см³");
+			MapUnitToAbbreviation(Unit.CubicMillimeter, "мм³");
+			MapUnitToAbbreviation(Unit.Hectoliter, "гл");
+			MapUnitToAbbreviation(Unit.Liter, "л");
+			MapUnitToAbbreviation(Unit.Deciliter, "дл");
+			MapUnitToAbbreviation(Unit.Centiliter, "сл");
+			MapUnitToAbbreviation(Unit.Milliliter, "мл");
+
+			// Torque
+			MapUnitToAbbreviation(Unit.Newtonmeter, "Н·м");
+
+			// Generic / Other
+			MapUnitToAbbreviation(Unit.Piece, "штук");
+			MapUnitToAbbreviation(Unit.Percent, "%");
+
+			// Electric potential
+			MapUnitToAbbreviation(Unit.Volt, "В");
 
 			// Times
 			MapUnitToAbbreviation(Unit.Nanosecond, "нс");
@@ -184,6 +228,10 @@ namespace UnitsNet
 			MapUnitToAbbreviation(Unit.Hour, "ч");
 			MapUnitToAbbreviation(Unit.Day, "д");
 
+			// Cooking units
+			MapUnitToAbbreviation(Unit.Tablespoon, "столовая ложка");
+			MapUnitToAbbreviation(Unit.Teaspoon, "чайная ложка");
+				
 			// Flow
 			MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
 			MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
@@ -199,40 +247,94 @@ namespace UnitsNet
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
             MapUnitToAbbreviation(Unit.Undefined, "(no unit)");
 
-            // Masses
-            MapUnitToAbbreviation(Unit.Kilogram, "kg");
-            MapUnitToAbbreviation(Unit.Hectogram, "hg");
-            MapUnitToAbbreviation(Unit.Gram, "g");
-            MapUnitToAbbreviation(Unit.Milligram, "mg");
+			// Length
+			MapUnitToAbbreviation(Unit.Kilometer, "km");
+			MapUnitToAbbreviation(Unit.Meter, "m");
+			MapUnitToAbbreviation(Unit.Decimeter, "dm");
+			MapUnitToAbbreviation(Unit.Centimeter, "cm");
+			MapUnitToAbbreviation(Unit.Millimeter, "mm");
+			MapUnitToAbbreviation(Unit.Micrometer, "μm");
+			MapUnitToAbbreviation(Unit.Nanometer, "nm");
 
-            // Forces
-            MapUnitToAbbreviation(Unit.Kilonewton, "kN");
-            MapUnitToAbbreviation(Unit.Newton, "N");
-
-            // Torque
-            MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
-
-            // Distances
-            MapUnitToAbbreviation(Unit.Meter, "m");
-            MapUnitToAbbreviation(Unit.Centimeter, "cm");
-            MapUnitToAbbreviation(Unit.Millimeter, "mm");
-
-            // Volumes
-            MapUnitToAbbreviation(Unit.Liter, "l", "L");
-            MapUnitToAbbreviation(Unit.Deciliter, "dl", "dL");
-            MapUnitToAbbreviation(Unit.Centiliter, "cl", "cL");
-            MapUnitToAbbreviation(Unit.Milliliter, "ml", "mL");
-
-            // Other units
-            MapUnitToAbbreviation(Unit.Volt, "V");
-            MapUnitToAbbreviation(Unit.Percent, "%");
-            MapUnitToAbbreviation(Unit.Second, "s");
+			// Masses
+			MapUnitToAbbreviation(Unit.Megatonne, "Mt");
+			MapUnitToAbbreviation(Unit.Kilotonne, "kt");
+			MapUnitToAbbreviation(Unit.Tonne, "t");
+			MapUnitToAbbreviation(Unit.Kilogram, "kg");
+			MapUnitToAbbreviation(Unit.Hectogram, "hg");
+			MapUnitToAbbreviation(Unit.Decagram, "dag");
+			MapUnitToAbbreviation(Unit.Gram, "g");
+			MapUnitToAbbreviation(Unit.Decigram, "dg");
+			MapUnitToAbbreviation(Unit.Centigram, "cg");
+			MapUnitToAbbreviation(Unit.Milligram, "mg");
 
 			// Pressures
 			MapUnitToAbbreviation(Unit.Pascal, "Pa");
 			MapUnitToAbbreviation(Unit.KiloPascal, "kPa");
 			MapUnitToAbbreviation(Unit.MegaPascal, "MPa");
 			MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "kgf/cm²");
+			MapUnitToAbbreviation(Unit.Psi, "psi");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "N/cm²");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "N/mm²");
+			MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "N/m²");
+			MapUnitToAbbreviation(Unit.Bar, "bar");
+			MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "at");
+			MapUnitToAbbreviation(Unit.Atmosphere, "atm");
+			MapUnitToAbbreviation(Unit.Torr, "Torr");
+
+			// Forces
+			MapUnitToAbbreviation(Unit.Kilonewton, "kN");
+			MapUnitToAbbreviation(Unit.Newton, "N");
+			MapUnitToAbbreviation(Unit.KilogramForce, "kgf");
+			MapUnitToAbbreviation(Unit.Dyn, "dyn");
+
+			// Area
+			MapUnitToAbbreviation(Unit.SquareKilometer, "km²");
+			MapUnitToAbbreviation(Unit.SquareMeter, "m²");
+			MapUnitToAbbreviation(Unit.SquareDecimeter, "dm²");
+			MapUnitToAbbreviation(Unit.SquareCentimeter, "cm²");
+			MapUnitToAbbreviation(Unit.SquareMillimeter, "mm²");
+
+			// Angle
+			MapUnitToAbbreviation(Unit.Degree, "°");
+			MapUnitToAbbreviation(Unit.Radian, "rad");
+			MapUnitToAbbreviation(Unit.Gradian, "g");
+
+			// Volumes
+			MapUnitToAbbreviation(Unit.CubicKilometer, "km³");
+			MapUnitToAbbreviation(Unit.CubicMeter, "m³");
+			MapUnitToAbbreviation(Unit.CubicDecimeter, "dm³");
+			MapUnitToAbbreviation(Unit.CubicCentimeter, "cm³");
+			MapUnitToAbbreviation(Unit.CubicMillimeter, "mm³");
+			MapUnitToAbbreviation(Unit.Hectoliter, "hl");
+			MapUnitToAbbreviation(Unit.Liter, "l");
+			MapUnitToAbbreviation(Unit.Deciliter, "dl");
+			MapUnitToAbbreviation(Unit.Centiliter, "cl");
+			MapUnitToAbbreviation(Unit.Milliliter, "ml");
+
+			// Torque
+			MapUnitToAbbreviation(Unit.Newtonmeter, "N·m");
+
+			// Generic / Other
+			MapUnitToAbbreviation(Unit.Piece, "piece");
+			MapUnitToAbbreviation(Unit.Percent, "%");
+
+			// Electric potential
+			MapUnitToAbbreviation(Unit.Volt, "V");
+
+			// Times
+			MapUnitToAbbreviation(Unit.Nanosecond, "ns");
+			MapUnitToAbbreviation(Unit.Microsecond, "μs");
+			MapUnitToAbbreviation(Unit.Millisecond, "ms");
+			MapUnitToAbbreviation(Unit.Second, "s");
+			MapUnitToAbbreviation(Unit.Minute, "min");
+			MapUnitToAbbreviation(Unit.Hour, "h");
+			MapUnitToAbbreviation(Unit.Day, "d");
+			MapUnitToAbbreviation(Unit.Week, "week");
+			
+			// Cooking units
+			MapUnitToAbbreviation(Unit.Tablespoon, "tbsp.");
+			MapUnitToAbbreviation(Unit.Teaspoon, "tsp.");
 
 			// Flow
 			MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
