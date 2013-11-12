@@ -28,8 +28,9 @@ namespace UnitsNet
     /// </summary>
     public struct Length : IComparable, IComparable<Length>
     {
-        private const double MilsToMetersRatio = 2.54E-5;
         public readonly double Meters;
+        private const double MilsToMetersRatio = 2.54E-5;
+        private const double MicroInchToMeterRatio = 2.54E-8;
 
         /// <summary>
         ///     Enforce static methods for creation.
@@ -93,7 +94,7 @@ namespace UnitsNet
 
         public double Microinch
         {
-            get { return Meters * 39370078.7; }
+            get { return Meters / MicroInchToMeterRatio; }
         }
 
         public double Mil
@@ -183,7 +184,7 @@ namespace UnitsNet
 
         public static Length FromMicroinches(double mi)
         {
-            return FromMeters(mi / 39370078.7);
+            return FromMeters(mi * MicroInchToMeterRatio);
         }
 
         public static Length FromMils(double mils)

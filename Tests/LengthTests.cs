@@ -25,7 +25,7 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1.09361, meter.Yards, Delta);
             Assert.AreEqual(3.28084, meter.Feet, Delta);
             Assert.AreEqual(39.3701, meter.Inches, Delta);
-            Assert.AreEqual(39370078.7, meter.Microinch, Delta);
+            Assert.AreEqual(39370078.74015748, meter.Microinch, Delta);
             Assert.AreEqual(39370.07874015, meter.Mil, Delta);
         }
 
