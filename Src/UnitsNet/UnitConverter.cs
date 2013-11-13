@@ -383,9 +383,9 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.RevolutionsPerSecond:
-                    return TryConvert(Revolution.FromRevolutionsPerSecond(value), toUnit, out newValue);
+                    return TryConvert(RotationalSpeed.FromRevolutionsPerSecond(value), toUnit, out newValue);
                 case Unit.RevolutionsPerMinute:
-                    return TryConvert(Revolution.FromRevolutionsPerMinute(value), toUnit, out newValue);
+                    return TryConvert(RotationalSpeed.FromRevolutionsPerMinute(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -768,7 +768,7 @@ namespace UnitsNet
             }
         }
 
-        private static bool TryConvert(Revolution p, Unit toUnit, out double newValue)
+        private static bool TryConvert(RotationalSpeed p, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {

@@ -11,7 +11,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void CubicMeterPerSecondToRevolutionUnits()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
 
             Assert.AreEqual(60.0, rps.RevolutionsPerMinute, Delta);
             Assert.AreEqual(1, rps.RevolutionsPerSecond);
@@ -20,30 +20,30 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void RevolutionUnitsRoundTrip()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
 
-            Assert.AreEqual(1, Revolution.FromRevolutionsPerSecond(rps.RevolutionsPerSecond).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(1, Revolution.FromRevolutionsPerMinute(rps.RevolutionsPerMinute).RevolutionsPerSecond, Delta);
+            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerSecond(rps.RevolutionsPerSecond).RevolutionsPerSecond, Delta);
+            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerMinute(rps.RevolutionsPerMinute).RevolutionsPerSecond, Delta);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             Assert.AreEqual(-1, -rps.RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, (Revolution.FromRevolutionsPerSecond(3) - rps).RevolutionsPerSecond, Delta);
+            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(3) - rps).RevolutionsPerSecond, Delta);
             Assert.AreEqual(2, (rps + rps).RevolutionsPerSecond, Delta);
             Assert.AreEqual(10, (rps * 10).RevolutionsPerSecond, Delta);
             Assert.AreEqual(10, (10 * rps).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, (Revolution.FromRevolutionsPerSecond(10) / 5).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, Revolution.FromRevolutionsPerSecond(10) / Revolution.FromRevolutionsPerSecond(5), Delta);
+            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(10) / 5).RevolutionsPerSecond, Delta);
+            Assert.AreEqual(2, RotationalSpeed.FromRevolutionsPerSecond(10) / RotationalSpeed.FromRevolutionsPerSecond(5), Delta);
         }
 
         [Test]
         public void ComparisonOperators()
         {
-            Revolution oneRps = Revolution.FromRevolutionsPerSecond(1);
-            Revolution twoRps = Revolution.FromRevolutionsPerSecond(2);
+            RotationalSpeed oneRps = RotationalSpeed.FromRevolutionsPerSecond(1);
+            RotationalSpeed twoRps = RotationalSpeed.FromRevolutionsPerSecond(2);
 
             Assert.True(oneRps < twoRps);
             Assert.True(oneRps <= twoRps);
@@ -59,17 +59,17 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void CompareToIsImplemented()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             Assert.AreEqual(0, rps.CompareTo(rps));
-            Assert.Greater(rps.CompareTo(Revolution.Zero), 0);
-            Assert.Less(Revolution.Zero.CompareTo(rps), 0);
+            Assert.Greater(rps.CompareTo(RotationalSpeed.Zero), 0);
+            Assert.Less(RotationalSpeed.Zero.CompareTo(rps), 0);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             rps.CompareTo(new object());
         }
@@ -78,7 +78,7 @@ namespace UnitsNet.Tests.net35
         [ExpectedException(typeof(ArgumentNullException))]
         public void CompareToThrowsOnNull()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             rps.CompareTo(null);
         }
@@ -87,8 +87,8 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void EqualityOperators()
         {
-            Revolution a = Revolution.FromRevolutionsPerSecond(1);
-            Revolution b = Revolution.FromRevolutionsPerSecond(2);
+            RotationalSpeed a = RotationalSpeed.FromRevolutionsPerSecond(1);
+            RotationalSpeed b = RotationalSpeed.FromRevolutionsPerSecond(2);
 
             // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -102,22 +102,22 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void EqualsIsImplemented()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
-            Assert.IsTrue(rps.Equals(Revolution.FromRevolutionsPerSecond(1)));
-            Assert.IsFalse(rps.Equals(Revolution.Zero));
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
+            Assert.IsTrue(rps.Equals(RotationalSpeed.FromRevolutionsPerSecond(1)));
+            Assert.IsFalse(rps.Equals(RotationalSpeed.Zero));
         }
 
         [Test]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             Assert.IsFalse(rps.Equals(new object()));
         }
 
         [Test]
         public void EqualsReturnsFalseOnNull()
         {
-            Revolution rps = Revolution.FromRevolutionsPerSecond(1);
+            RotationalSpeed rps = RotationalSpeed.FromRevolutionsPerSecond(1);
             Assert.IsFalse(rps.Equals(null));
         }
     }
