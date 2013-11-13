@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="Angle.cs" />
     <Compile Include="Area.cs" />
-    <Compile Include="Revolution.cs" />
+    <Compile Include="RotationalSpeed.cs" />
     <Compile Include="ElectricPotential.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Flow.cs" />

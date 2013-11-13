@@ -171,7 +171,7 @@ namespace UnitsNet
         CubicMeterPerSecond,
         CubicMeterPerHour,
 
-        // Revolution
+        // RotationalSpeed
         RevolutionsPerSecond,
         RevolutionsPerMinute,
     }

@@ -235,7 +235,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
             MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
 
-            // Revolution
+            // Rotational speed
             MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "об/с");
             MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "об/мин");
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
             MapUnitToAbbreviation(Unit.CubicMeterPerHour, "m³/h");
 
-            // Revolution
+            // Rotational speed
             MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "r/s");
             MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "r/min");
         }
