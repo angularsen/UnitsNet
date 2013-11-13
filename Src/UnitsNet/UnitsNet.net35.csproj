@@ -38,28 +38,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Angle.cs" />
-    <Compile Include="Area.cs" />
-    <Compile Include="Revolution.cs" />
-    <Compile Include="ElectricPotential.cs" />
-    <Compile Include="EnumUtils.cs" />
-    <Compile Include="Flow.cs" />
-    <Compile Include="Length.cs" />
-    <Compile Include="Length2d.cs" />
-    <Compile Include="Force.cs" />
-    <Compile Include="Mass.cs" />
-    <Compile Include="Pressure.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="UnitParser.cs" />
-    <Compile Include="UnitConverter.cs" />
-    <Compile Include="UnitSystem.cs" />
-    <Compile Include="UnitValue.cs" />
-    <Compile Include="Torque.cs" />
-    <Compile Include="Vector2.cs" />
-    <Compile Include="Vector3.cs" />
-    <Compile Include="Volume.cs" />
-  </ItemGroup>
+    <Compile Include="*.cs" />
+  </ItemGroup>  
+  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
