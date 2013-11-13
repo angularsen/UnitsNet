@@ -51,7 +51,7 @@ namespace UnitsNet.Tests.net35
             }
             
             Assert.IsEmpty(unitsMissingAbbreviations,
-                "Units missing abbreviations: " + string.Join(", ", unitsMissingAbbreviations));
+                "Units missing abbreviations: " + string.Join(", ", unitsMissingAbbreviations.Select(u => u.ToString()).ToArray()));
         }
 
         [Test]
