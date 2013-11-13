@@ -52,7 +52,7 @@ namespace UnitsNet
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return newValue;
-            if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertRotationalSpeed(value, fromUnit, toUnit, out newValue)) return newValue;
 
             throw new Exception(
                 string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
@@ -86,7 +86,7 @@ namespace UnitsNet
             if (TryConvertTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertTime(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFlow(value, fromUnit, toUnit, out newValue)) return true;
-            if (TryConvertRevolutions(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertRotationalSpeed(value, fromUnit, toUnit, out newValue)) return true;
 
             return false;
         }
@@ -378,14 +378,14 @@ namespace UnitsNet
             }
         }
 
-        private static bool TryConvertRevolutions(double value, Unit fromUnit, Unit toUnit, out double newValue)
+		private static bool TryConvertRotationalSpeed(double value, Unit fromUnit, Unit toUnit, out double newValue)
         {
             switch (fromUnit)
             {
                 case Unit.RevolutionsPerSecond:
-                    return TryConvert(Revolution.FromRevolutionsPerSecond(value), toUnit, out newValue);
+                    return TryConvert(RotationalSpeed.FromRevolutionsPerSecond(value), toUnit, out newValue);
                 case Unit.RevolutionsPerMinute:
-                    return TryConvert(Revolution.FromRevolutionsPerMinute(value), toUnit, out newValue);
+                    return TryConvert(RotationalSpeed.FromRevolutionsPerMinute(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -768,7 +768,7 @@ namespace UnitsNet
             }
         }
 
-        private static bool TryConvert(Revolution p, Unit toUnit, out double newValue)
+        private static bool TryConvert(RotationalSpeed p, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
