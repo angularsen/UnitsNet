@@ -152,6 +152,14 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Micrometer, "мкм");
             MapUnitToAbbreviation(Unit.Nanometer, "нм");
 
+			// Length (imperial)
+            MapUnitToAbbreviation(Unit.Microinch, "микродюйм");
+			MapUnitToAbbreviation(Unit.Mil, "мил");
+            MapUnitToAbbreviation(Unit.Mile, "миля");
+            MapUnitToAbbreviation(Unit.Yard, "ярд");
+            MapUnitToAbbreviation(Unit.Foot, "фут");
+            MapUnitToAbbreviation(Unit.Inch, "дюйм", "\"");
+
             // Masses
             MapUnitToAbbreviation(Unit.Megatonne, "Мт");
             MapUnitToAbbreviation(Unit.Kilotonne, "кт");
@@ -163,6 +171,10 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Decigram, "дг");
             MapUnitToAbbreviation(Unit.Centigram, "сг");
             MapUnitToAbbreviation(Unit.Milligram, "мг");
+
+			// Mass (imperial)
+			MapUnitToAbbreviation(Unit.ShortTon, "тонна малая");
+			MapUnitToAbbreviation(Unit.LongTon, "тонна большая");
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Па");
@@ -184,12 +196,23 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.KilogramForce, "кгс");
             MapUnitToAbbreviation(Unit.Dyn, "дин");
 
+			// Force (imperial/other)
+			MapUnitToAbbreviation(Unit.KiloPond, "кгс");
+			MapUnitToAbbreviation(Unit.PoundForce, "фунт-сила");
+			MapUnitToAbbreviation(Unit.Poundal, "паундаль");
+
             // Area
             MapUnitToAbbreviation(Unit.SquareKilometer, "км²");
             MapUnitToAbbreviation(Unit.SquareMeter, "м²");
             MapUnitToAbbreviation(Unit.SquareDecimeter, "дм²");
             MapUnitToAbbreviation(Unit.SquareCentimeter, "см²");
             MapUnitToAbbreviation(Unit.SquareMillimeter, "мм²");
+
+			// Area Imperial
+			MapUnitToAbbreviation(Unit.SquareMile, "миля²");
+			MapUnitToAbbreviation(Unit.SquareYard, "ярд²");
+			MapUnitToAbbreviation(Unit.SquareFoot, "фут²");
+			MapUnitToAbbreviation(Unit.SquareInch, "дюйм²");
 
             // Angle
             MapUnitToAbbreviation(Unit.Degree, "°");
@@ -207,6 +230,16 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Deciliter, "дл");
             MapUnitToAbbreviation(Unit.Centiliter, "сл");
             MapUnitToAbbreviation(Unit.Milliliter, "мл");
+
+			// Volume US/Imperial
+			MapUnitToAbbreviation(Unit.CubicMile, "миля³");
+			MapUnitToAbbreviation(Unit.CubicYard, "ярд³");
+			MapUnitToAbbreviation(Unit.CubicFoot, "фут³");
+			MapUnitToAbbreviation(Unit.CubicInch, "дюйм³");
+			MapUnitToAbbreviation(Unit.UsGallon, "Американский галлон");
+			MapUnitToAbbreviation(Unit.UsOunce, "Американская унция");
+			MapUnitToAbbreviation(Unit.ImperialGallon, "Английский галлон");
+			MapUnitToAbbreviation(Unit.ImperialOunce, "Английская унция");
 
             // Torque
             MapUnitToAbbreviation(Unit.Newtonmeter, "Н·м");
@@ -226,6 +259,9 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Minute, "мин");
             MapUnitToAbbreviation(Unit.Hour, "ч");
             MapUnitToAbbreviation(Unit.Day, "д");
+			MapUnitToAbbreviation(Unit.Week, "мин");
+			MapUnitToAbbreviation(Unit.Month30Days, "месяц");
+			MapUnitToAbbreviation(Unit.Year365Days, "год");
 
             // Cooking units
             MapUnitToAbbreviation(Unit.Tablespoon, "столовая ложка");
@@ -255,6 +291,14 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Micrometer, "μm");
             MapUnitToAbbreviation(Unit.Nanometer, "nm");
 
+			// Length (imperial)
+			MapUnitToAbbreviation(Unit.Microinch, "μin");
+			MapUnitToAbbreviation(Unit.Mil, "mil");
+			MapUnitToAbbreviation(Unit.Mile, "mi");
+			MapUnitToAbbreviation(Unit.Yard, "yd");
+			MapUnitToAbbreviation(Unit.Foot, "ft");
+			MapUnitToAbbreviation(Unit.Inch, "in");
+
             // Masses
             MapUnitToAbbreviation(Unit.Megatonne, "Mt");
             MapUnitToAbbreviation(Unit.Kilotonne, "kt");
@@ -266,6 +310,10 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Decigram, "dg");
             MapUnitToAbbreviation(Unit.Centigram, "cg");
             MapUnitToAbbreviation(Unit.Milligram, "mg");
+
+			// Mass (imperial)
+			MapUnitToAbbreviation(Unit.ShortTon, "short tn");
+			MapUnitToAbbreviation(Unit.LongTon, "long tn");
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Pa");
@@ -287,12 +335,23 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.KilogramForce, "kgf");
             MapUnitToAbbreviation(Unit.Dyn, "dyn");
 
+			// Force (imperial/other)
+			MapUnitToAbbreviation(Unit.KiloPond, "kp");
+			MapUnitToAbbreviation(Unit.PoundForce, "lbf");
+			MapUnitToAbbreviation(Unit.Poundal, "pdl");
+
             // Area
             MapUnitToAbbreviation(Unit.SquareKilometer, "km²");
             MapUnitToAbbreviation(Unit.SquareMeter, "m²");
             MapUnitToAbbreviation(Unit.SquareDecimeter, "dm²");
             MapUnitToAbbreviation(Unit.SquareCentimeter, "cm²");
             MapUnitToAbbreviation(Unit.SquareMillimeter, "mm²");
+
+			// Area Imperial
+			MapUnitToAbbreviation(Unit.SquareMile, "mi²");
+			MapUnitToAbbreviation(Unit.SquareYard, "yd²");
+			MapUnitToAbbreviation(Unit.SquareFoot, "ft²");
+			MapUnitToAbbreviation(Unit.SquareInch, "in²");
 
             // Angle
             MapUnitToAbbreviation(Unit.Degree, "°");
@@ -310,6 +369,16 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Deciliter, "dl");
             MapUnitToAbbreviation(Unit.Centiliter, "cl");
             MapUnitToAbbreviation(Unit.Milliliter, "ml");
+
+			// Volume US/Imperial
+			MapUnitToAbbreviation(Unit.CubicMile, "mi³");
+			MapUnitToAbbreviation(Unit.CubicYard, "yd³");
+			MapUnitToAbbreviation(Unit.CubicFoot, "ft³");
+			MapUnitToAbbreviation(Unit.CubicInch, "in³");
+			MapUnitToAbbreviation(Unit.UsGallon, "gal (U.S.)");
+			MapUnitToAbbreviation(Unit.UsOunce, "oz (U.S.)");
+			MapUnitToAbbreviation(Unit.ImperialGallon, "gal (imp.)");
+			MapUnitToAbbreviation(Unit.ImperialOunce, "oz (imp.)");
 
             // Torque
             MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
@@ -330,6 +399,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Hour, "h");
             MapUnitToAbbreviation(Unit.Day, "d");
             MapUnitToAbbreviation(Unit.Week, "week");
+			MapUnitToAbbreviation(Unit.Month30Days, "month");
+			MapUnitToAbbreviation(Unit.Year365Days, "year");
             
             // Cooking units
             MapUnitToAbbreviation(Unit.Tablespoon, "tbsp.");
