@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.9.0</version>
+    <version>1.10.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,9 +11,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v1.9: Improved precision of PoundForce unit (thanks Jim Selikoff).
-	
-v1.8: Added angle units of measurement (thanks @gpetrou). Added tests and fixed bug in NewtonPerSquareCentimeter and NewtonPerSquareMillimeter.
+    <releaseNotes>v1.10: Added missing localization to units for US English and Russian cultures (thanks George Zhuikov).
+Added RotationalSpeed and Flow unit classes (thanks George Zhuikov).
+Added mils and microinches length units (thanks Georgios).
+Refactored to generate unit classes with T4 templates, a lot less work to add new units.
+
+v1.9: Improved precision of PoundForce unit (thanks Jim Selikoff).
+
+v1.8: Added angle units of measurement (thanks Georgios). Added tests and fixed bug in NewtonPerSquareCentimeter and NewtonPerSquareMillimeter.
 
 v1.7: Added imperial and US units for volume and area.
 
