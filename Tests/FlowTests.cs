@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
@@ -9,41 +12,41 @@ namespace UnitsNet.Tests.net35
         private const double Delta = 1E-5;
 
         [Test]
-        public void CubicMeterPerSecondToFlowUnits()
+        public void CubicMetersPerSecondToFlowUnits()
         {
-            Flow cms = Flow.FromCubicMeterPerSecond(1);
+            Flow cms = Flow.FromCubicMetersPerSecond(1);
 
-            Assert.AreEqual(1/3600.0, cms.CubicMeterPerHour, Delta);
-            Assert.AreEqual(1, cms.CubicMeterPerSecond);
+            Assert.AreEqual(1/3600.0, cms.CubicMetersPerHour, Delta);
+            Assert.AreEqual(1, cms.CubicMetersPerSecond);
         }
 
         [Test]
         public void FlowUnitsRoundTrip()
         {
-            Flow cms = Flow.FromCubicMeterPerSecond(1);
+            Flow cms = Flow.FromCubicMetersPerSecond(1);
 
-            Assert.AreEqual(1, Flow.FromCubicMeterPerSecond(cms.CubicMeterPerSecond).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(1, Flow.FromCubicMeterPerHour(cms.CubicMeterPerHour).CubicMeterPerSecond, Delta);
+            Assert.AreEqual(1, Flow.FromCubicMetersPerSecond(cms.CubicMetersPerSecond).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(1, Flow.FromCubicMetersPerHour(cms.CubicMetersPerHour).CubicMetersPerSecond, Delta);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
-            Flow v = Flow.FromCubicMeterPerSecond(1);
-            Assert.AreEqual(-1, -v.CubicMeterPerSecond, Delta);
-            Assert.AreEqual(2, (Flow.FromCubicMeterPerSecond(3) - v).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(2, (v + v).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(10, (v * 10).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(10, (10 * v).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(2, (Flow.FromCubicMeterPerSecond(10) / 5).CubicMeterPerSecond, Delta);
-            Assert.AreEqual(2, Flow.FromCubicMeterPerSecond(10) / Flow.FromCubicMeterPerSecond(5), Delta);
+            Flow v = Flow.FromCubicMetersPerSecond(1);
+            Assert.AreEqual(-1, -v.CubicMetersPerSecond, Delta);
+            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(3) - v).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(2, (v + v).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(10, (v * 10).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(10, (10 * v).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(10) / 5).CubicMetersPerSecond, Delta);
+            Assert.AreEqual(2, Flow.FromCubicMetersPerSecond(10) / Flow.FromCubicMetersPerSecond(5), Delta);
         }
 
         [Test]
         public void ComparisonOperators()
         {
-            Flow oneMeter = Flow.FromCubicMeterPerSecond(1);
-            Flow twoMeters = Flow.FromCubicMeterPerSecond(2);
+            Flow oneMeter = Flow.FromCubicMetersPerSecond(1);
+            Flow twoMeters = Flow.FromCubicMetersPerSecond(2);
 
             Assert.True(oneMeter < twoMeters);
             Assert.True(oneMeter <= twoMeters);
@@ -59,7 +62,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void CompareToIsImplemented()
         {
-            Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+            Flow oneCmps = Flow.FromCubicMetersPerSecond(1);
             Assert.AreEqual(0, oneCmps.CompareTo(oneCmps));
             Assert.Greater(oneCmps.CompareTo(Flow.Zero), 0);
             Assert.Less(Flow.Zero.CompareTo(oneCmps), 0);
@@ -69,7 +72,7 @@ namespace UnitsNet.Tests.net35
         [ExpectedException(typeof(ArgumentException))]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+            Flow oneCmps = Flow.FromCubicMetersPerSecond(1);
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             oneCmps.CompareTo(new object());
         }
@@ -78,7 +81,7 @@ namespace UnitsNet.Tests.net35
         [ExpectedException(typeof(ArgumentNullException))]
         public void CompareToThrowsOnNull()
         {
-            Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+            Flow oneCmps = Flow.FromCubicMetersPerSecond(1);
             // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             oneCmps.CompareTo(null);
         }
@@ -87,8 +90,8 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void EqualityOperators()
         {
-            Flow a = Flow.FromCubicMeterPerSecond(1);
-            Flow b = Flow.FromCubicMeterPerSecond(2);
+            Flow a = Flow.FromCubicMetersPerSecond(1);
+            Flow b = Flow.FromCubicMetersPerSecond(2);
 
             // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -102,22 +105,22 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void EqualsIsImplemented()
         {
-            Flow v = Flow.FromCubicMeterPerSecond(1);
-            Assert.IsTrue(v.Equals(Flow.FromCubicMeterPerSecond(1)));
+            Flow v = Flow.FromCubicMetersPerSecond(1);
+            Assert.IsTrue(v.Equals(Flow.FromCubicMetersPerSecond(1)));
             Assert.IsFalse(v.Equals(Flow.Zero));
         }
 
         [Test]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+            Flow oneCmps = Flow.FromCubicMetersPerSecond(1);
             Assert.IsFalse(oneCmps.Equals(new object()));
         }
 
         [Test]
         public void EqualsReturnsFalseOnNull()
         {
-            Flow oneCmps = Flow.FromCubicMeterPerSecond(1);
+            Flow oneCmps = Flow.FromCubicMetersPerSecond(1);
             Assert.IsFalse(oneCmps.Equals(null));
         }
     }

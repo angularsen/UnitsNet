@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35

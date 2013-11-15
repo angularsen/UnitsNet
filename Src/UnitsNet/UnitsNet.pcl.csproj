@@ -40,7 +40,14 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="*.cs" />
+    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
+    <None Include="**\__GenerateUnitClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <Compile Include="**\*.generated.cs">
+      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+    </Compile>
+    <None Include="**\*.ttinclude" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -98,7 +98,14 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="*.cs" />
+    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
+    <None Include="**\__GenerateUnitClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <Compile Include="**\*.generated.cs">
+      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+    </Compile>
+    <None Include="**\*.ttinclude" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

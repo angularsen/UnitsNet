@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
@@ -13,18 +16,18 @@ namespace UnitsNet.Tests.net35
         {
             Length meter = Length.FromMeters(1);
 
-            Assert.AreEqual(1E-3, meter.Kilometers);
-            Assert.AreEqual(1, meter.Meters);
-            Assert.AreEqual(1E1, meter.Decimeters);
-            Assert.AreEqual(1E2, meter.Centimeters);
-            Assert.AreEqual(1E3, meter.Millimeters);
-            Assert.AreEqual(1E6, meter.Micrometers);
-            Assert.AreEqual(1E9, meter.Nanometers);
+            Assert.AreEqual(1E-3, meter.Kilometers, Delta);
+            Assert.AreEqual(1, meter.Meters, Delta);
+            Assert.AreEqual(1E1, meter.Decimeters, Delta);
+            Assert.AreEqual(1E2, meter.Centimeters, Delta);
+            Assert.AreEqual(1E3, meter.Millimeters, Delta);
+            Assert.AreEqual(1E6, meter.Micrometers, Delta);
+            Assert.AreEqual(1E9, meter.Nanometers, Delta);
 
             Assert.AreEqual(0.000621371, meter.Miles, Delta);
             Assert.AreEqual(1.09361, meter.Yards, Delta);
             Assert.AreEqual(3.28084, meter.Feet, Delta);
-            Assert.AreEqual(39.3701, meter.Inches, Delta);
+            Assert.AreEqual(39.37007874, meter.Inches, Delta);
             Assert.AreEqual(39370078.74015748, meter.Microinches, Delta);
             Assert.AreEqual(39370.07874015, meter.Mils, Delta);
         }

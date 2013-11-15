@@ -88,7 +88,7 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
                 Assert.AreEqual("1 m²", Area.FromSquareMeters(1).ToString());
                 Assert.AreEqual("1 V", ElectricPotential.FromVolts(1).ToString());
-                Assert.AreEqual("1 m³/s", Flow.FromCubicMeterPerSecond(1).ToString());
+                Assert.AreEqual("1 m³/s", Flow.FromCubicMetersPerSecond(1).ToString());
                 Assert.AreEqual("1 N", Force.FromNewtons(1).ToString());
                 Assert.AreEqual("1 m", Length.FromMeters(1).ToString());
                 Assert.AreEqual("1 kg", Mass.FromKilograms(1).ToString());
@@ -114,7 +114,7 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
                 Assert.AreEqual("1 m²", Area.FromSquareMeters(1).ToString());
                 Assert.AreEqual("1 V", ElectricPotential.FromVolts(1).ToString());
-                Assert.AreEqual("1 m³/s", Flow.FromCubicMeterPerSecond(1).ToString());
+                Assert.AreEqual("1 m³/s", Flow.FromCubicMetersPerSecond(1).ToString());
                 Assert.AreEqual("1 N", Force.FromNewtons(1).ToString());
                 Assert.AreEqual("1 m", Length.FromMeters(1).ToString());
                 Assert.AreEqual("1 kg", Mass.FromKilograms(1).ToString());
@@ -141,7 +141,7 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
                 Assert.AreEqual("1 м²", Area.FromSquareMeters(1).ToString());
                 Assert.AreEqual("1 В", ElectricPotential.FromVolts(1).ToString());
-                Assert.AreEqual("1 м³/с", Flow.FromCubicMeterPerSecond(1).ToString());
+                Assert.AreEqual("1 м³/с", Flow.FromCubicMetersPerSecond(1).ToString());
                 Assert.AreEqual("1 Н", Force.FromNewtons(1).ToString());
                 Assert.AreEqual("1 м", Length.FromMeters(1).ToString());
                 Assert.AreEqual("1 кг", Mass.FromKilograms(1).ToString());

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
@@ -12,13 +15,13 @@ namespace UnitsNet.Tests.net35
         public void NewtonToForceUnits()
         { 
             Force newton = Force.FromNewtons(1);
-            Assert.AreEqual(1E-3, newton.Kilonewtons);
-            Assert.AreEqual(1, newton.Newtons);
-            Assert.AreEqual(1E5, newton.Dyne);
-            Assert.AreEqual(0.10197, newton.KilogramForce, Delta);
+            Assert.AreEqual(1E-3, newton.Kilonewtons, Delta);
+            Assert.AreEqual(1, newton.Newtons, Delta);
+            Assert.AreEqual(1E5, newton.Dyne, Delta);
+            Assert.AreEqual(0.10197, newton.KilogramsForce, Delta);
             Assert.AreEqual(0.10197, newton.KiloPonds, Delta);
-            Assert.AreEqual(0.22481, newton.PoundForce, Delta);
-            Assert.AreEqual(7.23301, newton.Poundal, Delta);
+            Assert.AreEqual(0.22481, newton.PoundForces, Delta);
+            Assert.AreEqual(7.23301, newton.Poundals, Delta);
         }
 
         [Test]
@@ -27,11 +30,11 @@ namespace UnitsNet.Tests.net35
             Force newton = Force.FromNewtons(1);
             Assert.AreEqual(1, Force.FromNewtons(newton.Newtons).Newtons, Delta);
             Assert.AreEqual(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromKilogramForce(newton.KilogramForce).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, Delta);
             Assert.AreEqual(1, Force.FromDyne(newton.Dyne).Newtons, Delta);
             Assert.AreEqual(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromPoundForce(newton.PoundForce).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromPoundal(newton.Poundal).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromPoundForces(newton.PoundForces).Newtons, Delta);
+            Assert.AreEqual(1, Force.FromPoundals(newton.Poundals).Newtons, Delta);
         }
 
         [Test]

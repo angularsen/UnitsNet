@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
@@ -13,16 +16,16 @@ namespace UnitsNet.Tests.net35
         {
             Length2d meter = Length2d.FromMeters(1,1);
 
-            Assert.AreEqual(new Vector2(1), meter.Meters);
-            Assert.AreEqual(new Vector2(1E2), meter.Centimeters);
-            Assert.AreEqual(new Vector2(1E3), meter.Millimeters);
-            Assert.AreEqual(new Vector2(1E-3), meter.Kilometers);
-            Assert.AreEqual(new Vector2(1), meter.Meters);
-            Assert.AreEqual(new Vector2(1E1), meter.Decimeters);
-            Assert.AreEqual(new Vector2(1E2), meter.Centimeters);
-            Assert.AreEqual(new Vector2(1E3), meter.Millimeters);
-            Assert.AreEqual(new Vector2(1E6), meter.Micrometers);
-            Assert.AreEqual(new Vector2(1E9), meter.Nanometers);
+            AssertAreEqual(new Vector2(1), meter.Meters, Delta);
+            AssertAreEqual(new Vector2(1E2), meter.Centimeters, Delta);
+            AssertAreEqual(new Vector2(1E3), meter.Millimeters, Delta);
+            AssertAreEqual(new Vector2(1E-3), meter.Kilometers, Delta);
+            AssertAreEqual(new Vector2(1), meter.Meters, Delta);
+            AssertAreEqual(new Vector2(1E1), meter.Decimeters, Delta);
+            AssertAreEqual(new Vector2(1E2), meter.Centimeters, Delta);
+            AssertAreEqual(new Vector2(1E3), meter.Millimeters, Delta);
+            AssertAreEqual(new Vector2(1E6), meter.Micrometers, Delta); 
+            AssertAreEqual(new Vector2(1E9), meter.Nanometers, Delta);
 
             Assert.AreEqual(0.000621371, meter.Miles.X, Delta);
             Assert.AreEqual(0.000621371, meter.Miles.Y, Delta);
@@ -30,8 +33,14 @@ namespace UnitsNet.Tests.net35
             Assert.AreEqual(1.09361, meter.Yards.Y, Delta);
             Assert.AreEqual(3.28084, meter.Feet.X, Delta);
             Assert.AreEqual(3.28084, meter.Feet.Y, Delta);
-            Assert.AreEqual(39.3701, meter.Inches.X, Delta);
-            Assert.AreEqual(39.3701, meter.Inches.Y, Delta);
+            Assert.AreEqual(39.37007874, meter.Inches.X, Delta);
+            Assert.AreEqual(39.37007874, meter.Inches.Y, Delta);
+        }
+
+        private void AssertAreEqual(Vector2 expected, Vector2 actual, double delta)
+        { 
+            Assert.AreEqual(expected.X, actual.X, Delta);
+            Assert.AreEqual(expected.Y, actual.Y, Delta);
         }
 
         [Test]

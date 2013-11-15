@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <OutputPath>..\..\build\bin\$(Platform)_$(Configuration)\</OutputPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,10 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="*.cs" />
-  </ItemGroup>  
-  
+    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="**\__GenerateUnitClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <Compile Include="**\*.generated.cs">
+      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+    </Compile>
+    <None Include="**\*.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

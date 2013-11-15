@@ -61,7 +61,14 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="*.cs" />
+    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
+    <None Include="**\__GenerateUnitClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <Compile Include="**\*.generated.cs">
+      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+    </Compile>
+    <None Include="**\*.ttinclude" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

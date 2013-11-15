@@ -11,16 +11,16 @@ namespace UnitsNet.Tests.net35
         public void KilogramToKilogramForce()
         {
             var mass = Mass.FromKilograms(1);
-            var force = Force.FromKilogramForce(mass.Kilograms);
-            Assert.AreEqual(mass.Kilograms, force.KilogramForce);
+            var force = Force.FromKilogramsForce(mass.Kilograms);
+            Assert.AreEqual(mass.Kilograms, force.KilogramsForce);
         }
 
         [Test]
         public void KilogramForceToKilogram()
         {
-            var force = Force.FromKilogramForce(1);
+            var force = Force.FromKilogramsForce(1);
             var mass = Mass.FromGravitationalForce(force);
-            Assert.AreEqual(mass.Kilograms, force.KilogramForce);
+            Assert.AreEqual(mass.Kilograms, force.KilogramsForce);
         } 
     }
 }

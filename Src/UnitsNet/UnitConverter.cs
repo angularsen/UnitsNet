@@ -144,15 +144,15 @@ namespace UnitsNet
                 case Unit.Newton:
                     return TryConvert(Force.FromNewtons(value), toUnit, out newValue);
                 case Unit.KilogramForce:
-                    return TryConvert(Force.FromKilogramForce(value), toUnit, out newValue);
+                    return TryConvert(Force.FromKilogramsForce(value), toUnit, out newValue);
                 case Unit.Dyn:
                     return TryConvert(Force.FromDyne(value), toUnit, out newValue);
                 case Unit.KiloPond:
                     return TryConvert(Force.FromKiloPonds(value), toUnit, out newValue);
                 case Unit.PoundForce:
-                    return TryConvert(Force.FromPoundForce(value), toUnit, out newValue);
+                    return TryConvert(Force.FromPoundForces(value), toUnit, out newValue);
                 case Unit.Poundal:
-                    return TryConvert(Force.FromPoundal(value), toUnit, out newValue);
+                    return TryConvert(Force.FromPoundals(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -166,10 +166,10 @@ namespace UnitsNet
             {
                 case Unit.Pascal:
                     return TryConvert(Pressure.FromPascals(value), toUnit, out newValue);
-                case Unit.KiloPascal:
-                    return TryConvert(Pressure.FromKiloPascals(value), toUnit, out newValue);
-                case Unit.MegaPascal:
-                    return TryConvert(Pressure.FromMegaPascals(value), toUnit, out newValue);
+                case Unit.Kilopascal:
+                    return TryConvert(Pressure.FromKilopascals(value), toUnit, out newValue);
+                case Unit.Megapascal:
+                    return TryConvert(Pressure.FromMegapascals(value), toUnit, out newValue);
                 case Unit.Psi:
                     return TryConvert(Pressure.FromPsi(value), toUnit, out newValue);
                 case Unit.NewtonPerSquareCentimeter:
@@ -183,11 +183,11 @@ namespace UnitsNet
                 case Unit.Bar:
                     return TryConvert(Pressure.FromBars(value), toUnit, out newValue);
                 case Unit.TechnicalAtmosphere:
-                    return TryConvert(Pressure.FromTechnicalAtmosphere(value), toUnit, out newValue);
+                    return TryConvert(Pressure.FromTechnicalAtmospheres(value), toUnit, out newValue);
                 case Unit.Atmosphere:
-                    return TryConvert(Pressure.FromAtmosphere(value), toUnit, out newValue);
+                    return TryConvert(Pressure.FromAtmospheres(value), toUnit, out newValue);
                 case Unit.Torr:
-                    return TryConvert(Pressure.FromTorr(value), toUnit, out newValue);
+                    return TryConvert(Pressure.FromTorrs(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -368,9 +368,9 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case Unit.CubicMeterPerSecond:
-                    return TryConvert(Flow.FromCubicMeterPerSecond(value), toUnit, out newValue);
+                    return TryConvert(Flow.FromCubicMetersPerSecond(value), toUnit, out newValue);
                 case Unit.CubicMeterPerHour:
-                    return TryConvert(Flow.FromCubicMeterPerHour(value), toUnit, out newValue);
+                    return TryConvert(Flow.FromCubicMetersPerHour(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -382,9 +382,9 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case Unit.RevolutionsPerSecond:
+                case Unit.RevolutionPerSecond:
                     return TryConvert(RotationalSpeed.FromRevolutionsPerSecond(value), toUnit, out newValue);
-                case Unit.RevolutionsPerMinute:
+                case Unit.RevolutionPerMinute:
                     return TryConvert(RotationalSpeed.FromRevolutionsPerMinute(value), toUnit, out newValue);
 
                 default:
@@ -624,11 +624,11 @@ namespace UnitsNet
                 case Unit.Pascal:
                     newValue = p.Pascals;
                     return true;
-                case Unit.KiloPascal:
-                    newValue = p.KiloPascals;
+                case Unit.Kilopascal:
+                    newValue = p.Kilopascals;
                     return true;
-                case Unit.MegaPascal:
-                    newValue = p.MegaPascals;
+                case Unit.Megapascal:
+                    newValue = p.Megapascals;
                     return true;
                 case Unit.KilogramForcePerSquareCentimeter:
                     newValue = p.KilogramForcePerSquareCentimeter;
@@ -649,13 +649,13 @@ namespace UnitsNet
                     newValue = p.Bars;
                     return true;
                 case Unit.TechnicalAtmosphere:
-                    newValue = p.TechnicalAtmosphere;
+                    newValue = p.TechnicalAtmospheres;
                     return true;
                 case Unit.Atmosphere:
-                    newValue = p.Atmosphere;
+                    newValue = p.Atmospheres;
                     return true;
                 case Unit.Torr:
-                    newValue = p.Torr;
+                    newValue = p.Torrs;
                     return true;
 
                 default:
@@ -675,7 +675,7 @@ namespace UnitsNet
                     newValue = f.Newtons;
                     return true;
                 case Unit.KilogramForce:
-                    newValue = f.KilogramForce;
+                    newValue = f.KilogramsForce;
                     return true;
                 case Unit.Dyn:
                     newValue = f.Dyne;
@@ -684,10 +684,10 @@ namespace UnitsNet
                     newValue = f.KiloPonds;
                     return true;
                 case Unit.PoundForce:
-                    newValue = f.PoundForce;
+                    newValue = f.PoundForces;
                     return true;
                 case Unit.Poundal:
-                    newValue = f.Poundal;
+                    newValue = f.Poundals;
                     return true;
 
                 default:
@@ -756,10 +756,10 @@ namespace UnitsNet
             switch (toUnit)
             {
                 case Unit.CubicMeterPerSecond:
-                    newValue = p.CubicMeterPerSecond;
+                    newValue = p.CubicMetersPerSecond;
                     return true;
                 case Unit.CubicMeterPerHour:
-                    newValue = p.CubicMeterPerHour;
+                    newValue = p.CubicMetersPerHour;
                     return true;
 
                 default:
@@ -772,10 +772,10 @@ namespace UnitsNet
         {
             switch (toUnit)
             {
-                case Unit.RevolutionsPerSecond:
+                case Unit.RevolutionPerSecond:
                     newValue = p.RevolutionsPerSecond;
                     return true;
-                case Unit.RevolutionsPerMinute:
+                case Unit.RevolutionPerMinute:
                     newValue = p.RevolutionsPerMinute;
                     return true;
 

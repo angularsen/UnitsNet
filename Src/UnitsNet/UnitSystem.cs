@@ -178,8 +178,8 @@ namespace UnitsNet
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Па");
-            MapUnitToAbbreviation(Unit.KiloPascal, "кПа");
-            MapUnitToAbbreviation(Unit.MegaPascal, "МПа");
+            MapUnitToAbbreviation(Unit.Kilopascal, "кПа");
+            MapUnitToAbbreviation(Unit.Megapascal, "МПа");
             MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "кгс/см²");
             MapUnitToAbbreviation(Unit.Psi, "psi");
             MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "Н/см²");
@@ -272,8 +272,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
 
             // RotationalSpeed
-            MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "об/с");
-            MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "об/мин");
+            MapUnitToAbbreviation(Unit.RevolutionPerSecond, "об/с");
+            MapUnitToAbbreviation(Unit.RevolutionPerMinute, "об/мин");
         }
 
         private void CreateCultureInvariants()
@@ -317,8 +317,8 @@ namespace UnitsNet
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Pa");
-            MapUnitToAbbreviation(Unit.KiloPascal, "kPa");
-            MapUnitToAbbreviation(Unit.MegaPascal, "MPa");
+            MapUnitToAbbreviation(Unit.Kilopascal, "kPa");
+            MapUnitToAbbreviation(Unit.Megapascal, "MPa");
             MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "kgf/cm²");
             MapUnitToAbbreviation(Unit.Psi, "psi");
             MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "N/cm²");
@@ -411,8 +411,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.CubicMeterPerHour, "m³/h");
 
             // RotationalSpeed
-            MapUnitToAbbreviation(Unit.RevolutionsPerSecond, "r/s");
-            MapUnitToAbbreviation(Unit.RevolutionsPerMinute, "r/min");
+            MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
+            MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
         }
 
         private void MapUnitToAbbreviation(Unit unit, params string[] abbreviations)
