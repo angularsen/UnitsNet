@@ -46,8 +46,14 @@
     <None Include="**\__GenerateUnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <Compile Include="**\*.generated.cs">
+    <Compile Include="**\*.generated.cs" Exclude="**\UnitConverter.generated.cs">
       <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+    </Compile>
+    <None Include="Generated\__GenerateUnitConverter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <Compile Include="Generated\UnitConverter.generated.cs">
+      <DependentUpon>__GenerateUnitConverter.tt</DependentUpon>
     </Compile>
     <None Include="**\*.ttinclude" />
   </ItemGroup>
