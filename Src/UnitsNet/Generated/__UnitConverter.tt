@@ -8,23 +8,14 @@
 <#@ import namespace="UnitsNet" #>
 <#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="MultipleOutputHelper.ttinclude" once="true"#>
+<#@ include file="Shared.ttinclude" once="true"#>
 <# // Disable output of this file, note this causes a build warning #>
 <#@ output extension="/" #>
 <#//@ output extension=".cs" #> 
 <#
-    List<Type> unitAttributeTypes = FindDerivedTypes(typeof(Unit).Assembly, typeof (UnitAttribute)).ToList();
-        
-    // "LengthAttribute" => "Length"
-    List<string> unitClassNames = unitAttributeTypes.Select(attr => attr.Name.Replace("Attribute", String.Empty)).ToList();
-
-    Dictionary<Unit, UnitAttribute> unitToAttribute =
-        Enum.GetValues(typeof (Unit))
-            .Cast<Unit>()
-            .Select(u => new {unit = u, attr = u.GetAttribute<UnitAttribute>()})
-            .Where(item => item.attr != null)
-            .ToDictionary(u => u.unit, u => u.attr);
-
-    //List<Unit> units = unitToAttribute.Keys.ToList();
+    List<Type> unitAttributeTypes = GetUnitAttributeTypes(); 
+    List<string> unitClassNames = GetUnitClassNames(); 
+    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
 
     var m = Manager.Create(Host, GenerationEnvironment);
     using (m.StartNewFile("UnitConverter.generated.cs"))
@@ -252,35 +243,7 @@ namespace UnitsNet
     }
 
     m.Process(split: true);
-#>
-<#+ 
-    private string GetUnitPluralName(Dictionary<Unit, UnitAttribute> unitToAttribute, Unit unit)
-    {
-// Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
-        UnitAttribute att = unitToAttribute[unit];
+#> <#+
 
-        string baseUnitPluralName = (att != null && !string.IsNullOrWhiteSpace(att.PluralName))
-            ? att.PluralName
-            : unit + "s";
-        return baseUnitPluralName;
-    }
-
-    private IEnumerable<Type> FindDerivedTypes(Assembly assembly, Type baseType)
-    {
-        return assembly.GetTypes().Where(t => t != baseType &&
-                                              baseType.IsAssignableFrom(t));
-    }
-
-    private List<Unit> GetUnitsOfUnitClass(string unitClassName, IEnumerable<Type> unitAttributeTypes, Dictionary<Unit, UnitAttribute> unitToAttribute)
-    {
-        Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
-        List<Unit> unitsOfUnitClass =
-            unitToAttribute
-                .Where(pair => pair.Value.GetType() == unitClassAttributeType)
-                .Select(pair => pair.Key)
-                .ToList();
-        
-    return unitsOfUnitClass;
-    }
 
 #>

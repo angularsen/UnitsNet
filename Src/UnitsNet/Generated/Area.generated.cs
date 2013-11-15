@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Area : IComparable, IComparable<Area>
     {
         /// <summary>
-        /// Base unit of Area in squaremeters.
+        /// Base unit of Area.
         /// </summary>
         public readonly double SquareMeters;
 

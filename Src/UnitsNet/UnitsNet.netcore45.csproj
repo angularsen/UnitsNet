@@ -101,13 +101,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
-    <None Include="**\__GenerateUnitClasses.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <Compile Include="**\*.generated.cs">
-      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generated\*.generated.cs" Exclude="Generated\UnitConverter.generated.cs">
     </Compile>
-    <None Include="**\*.ttinclude" />
+    <Compile Include="Generated\UnitConverter.generated.cs">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

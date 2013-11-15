@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Flow : IComparable, IComparable<Flow>
     {
         /// <summary>
-        /// Base unit of Flow in cubicmeterspersecond.
+        /// Base unit of Flow.
         /// </summary>
         public readonly double CubicMetersPerSecond;
 

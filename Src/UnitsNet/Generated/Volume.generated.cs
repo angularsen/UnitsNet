@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Volume : IComparable, IComparable<Volume>
     {
         /// <summary>
-        /// Base unit of Volume in cubicmeters.
+        /// Base unit of Volume.
         /// </summary>
         public readonly double CubicMeters;
 

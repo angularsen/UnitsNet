@@ -7,30 +7,14 @@
 <#@ import namespace="UnitsNet" #>
 <#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="MultipleOutputHelper.ttinclude" once="true"#>
+<#@ include file="Shared.ttinclude" once="true"#>
 <#+
 
-    private string GetUnitPluralName(Dictionary<Unit, UnitAttribute> unitToAttribute, Unit unit)
-    {
-// Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
-        UnitAttribute att = unitToAttribute[unit];
-
-        string baseUnitPluralName = (att != null && !string.IsNullOrWhiteSpace(att.PluralName))
-            ? att.PluralName
-            : unit + "s";
-        return baseUnitPluralName;
-    }
-
-    private void GenerateUnitClass<TUnitAttribute>(Manager manager, string className, string classDescription, Unit baseUnit)
-        where TUnitAttribute : UnitAttribute
+    private void GenerateUnitClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit, string xmlDocSummary)
     {
         using (manager.StartNewFile(className+".generated.cs"))
         {
-            Dictionary<Unit, UnitAttribute> unitToAttribute =
-                Enum.GetValues(typeof (Unit))
-                    .Cast<Unit>()
-                    .Select(u => new {unit = u, attr = u.GetAttribute<TUnitAttribute>()})
-                    .Where(item => item.attr != null)
-                    .ToDictionary(u => u.unit, u => (UnitAttribute) u.attr);
+            Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary(unitAttributeType);
 
             Unit[] orderedClassUnits = unitToAttribute
                 .Keys
@@ -72,12 +56,12 @@ using System;
 namespace UnitsNet
 {
     /// <summary>
-    /// <#=classDescription #>
+    /// <#=xmlDocSummary #>
     /// </summary>
     public partial struct <#=className #> : IComparable, IComparable<<#=className #>>
     {
         /// <summary>
-        /// Base unit of <#=className #> in <#=baseUnitPluralName.ToLowerInvariant() #>.
+        /// Base unit of <#=className #>.
         /// </summary>
         public readonly double <#=baseUnitPluralName #>;
 

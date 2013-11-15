@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Angle : IComparable, IComparable<Angle>
     {
         /// <summary>
-        /// Base unit of Angle in degrees.
+        /// Base unit of Angle.
         /// </summary>
         public readonly double Degrees;
 

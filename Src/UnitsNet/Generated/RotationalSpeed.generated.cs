@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct RotationalSpeed : IComparable, IComparable<RotationalSpeed>
     {
         /// <summary>
-        /// Base unit of RotationalSpeed in revolutionspersecond.
+        /// Base unit of RotationalSpeed.
         /// </summary>
         public readonly double RevolutionsPerSecond;
 

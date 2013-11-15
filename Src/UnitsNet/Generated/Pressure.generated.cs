@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Pressure : IComparable, IComparable<Pressure>
     {
         /// <summary>
-        /// Base unit of Pressure in pascals.
+        /// Base unit of Pressure.
         /// </summary>
         public readonly double Pascals;
 

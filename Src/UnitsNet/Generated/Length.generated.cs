@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Length : IComparable, IComparable<Length>
     {
         /// <summary>
-        /// Base unit of Length in meters.
+        /// Base unit of Length.
         /// </summary>
         public readonly double Meters;
 

@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Force : IComparable, IComparable<Force>
     {
         /// <summary>
-        /// Base unit of Force in newtons.
+        /// Base unit of Force.
         /// </summary>
         public readonly double Newtons;
 

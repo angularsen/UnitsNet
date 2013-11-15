@@ -43,13 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
-    <None Include="**\__GenerateUnitClasses.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <Compile Include="**\*.generated.cs">
-      <DependentUpon>__GenerateUnitClasses.tt</DependentUpon>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generated\*.generated.cs" Exclude="Generated\UnitConverter.generated.cs">
     </Compile>
-    <None Include="**\*.ttinclude" />
+    <Compile Include="Generated\UnitConverter.generated.cs">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

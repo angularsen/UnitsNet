@@ -1,0 +1,93 @@
+﻿<# // Load types in current assembly. #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="UnitsNet" #>
+<#@ import namespace="UnitsNet.Extensions" #>
+<#+
+
+    private Dictionary<Unit, TUnitAttribute> GetUnitToAttributeDictionary<TUnitAttribute>()
+        where TUnitAttribute : UnitAttribute
+    {
+        return Enum.GetValues(typeof (Unit))
+            .Cast<Unit>()
+            .Select(u => new {unit = u, attr = u.GetAttribute<TUnitAttribute>()})
+            .Where(item => item.attr != null)
+            .ToDictionary(u => u.unit, u => u.attr);
+    }
+
+    private Dictionary<Unit, UnitAttribute> GetUnitToAttributeDictionary(Type unitAttribute)
+    {
+        return Enum.GetValues(typeof (Unit))
+            .Cast<Unit>()
+            .Select(u => new {unit = u, attr = u.GetAttribute<UnitAttribute>(unitAttribute)})
+            .Where(item => item.attr != null)
+            .ToDictionary(u => u.unit, u => u.attr);
+    }
+
+    private string GetUnitPluralName<TUnitAttribute>(Dictionary<Unit, TUnitAttribute> unitToAttribute, Unit unit)
+        where TUnitAttribute : UnitAttribute
+    {
+        // Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
+        TUnitAttribute att;
+        if (!unitToAttribute.TryGetValue(unit, out att))
+        {
+            return String.Format("UNIT_ENUM_VALUE__{0}__HAS_NO_UNIT_ATTRIBUTE_SET_FOR_THIS_UNIT_CLASS", unit);
+        }
+
+	// Default to plural with "s" postfix if no PluralName is explicitly set.
+        string baseUnitPluralName = (att != null && !string.IsNullOrWhiteSpace(att.PluralName))
+            ? att.PluralName
+            : unit + "s";
+        return baseUnitPluralName;
+    }
+
+    private static string GetUnitPluralName(Type unitAttributeType, Dictionary<Unit, Attribute> unitToAttribute, Unit unit)
+    {
+        // Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
+        var att = (UnitAttribute)unitToAttribute[unit];
+
+        string baseUnitPluralName = (att != null && !string.IsNullOrWhiteSpace(att.PluralName))
+            ? att.PluralName
+            : unit + "s";
+        return baseUnitPluralName;
+    }
+
+    /// <summary>
+    /// Returns a list of <see cref="Unit"/> values for a unit class by the class name.
+    /// This is resolved by looking at the <see cref="UnitAttribute"/> attributes the enum values are tagged with.
+    /// For example, a <param name="unitClassName"/> of "Length" will match all <see cref="Unit"/> values tagged with
+    /// <see cref="LengthAttribute"/>.
+    /// </summary>
+    private List<Unit> GetUnitsOfUnitClass(string unitClassName, IEnumerable<Type> unitAttributeTypes, Dictionary<Unit, UnitAttribute> unitToAttribute)
+    {
+        Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
+        List<Unit> unitsOfUnitClass =
+            unitToAttribute
+                .Where(pair => pair.Value.GetType() == unitClassAttributeType)
+                .Select(pair => pair.Key)
+                .ToList();
+        
+    return unitsOfUnitClass;
+    }
+
+    private static IEnumerable<Type> FindDerivedTypes(Assembly assembly, Type baseType)
+    {
+        return assembly.GetTypes().Where(t => t != baseType &&
+                                              baseType.IsAssignableFrom(t));
+    }
+
+    private static List<Type> GetUnitAttributeTypes()
+    {
+        return FindDerivedTypes(typeof (Unit).Assembly, typeof (UnitAttribute)).ToList();
+    }
+
+    private static List<string> GetUnitClassNames()
+    {
+        // "LengthAttribute" => "Length"
+        return GetUnitAttributeTypes().Select(attr => attr.Name.Replace("Attribute", String.Empty)).ToList();
+    }
+
+#>

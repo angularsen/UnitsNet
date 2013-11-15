@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Torque : IComparable, IComparable<Torque>
     {
         /// <summary>
-        /// Base unit of Torque in newtonmeters.
+        /// Base unit of Torque.
         /// </summary>
         public readonly double Newtonmeters;
 

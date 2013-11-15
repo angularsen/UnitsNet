@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct Mass : IComparable, IComparable<Mass>
     {
         /// <summary>
-        /// Base unit of Mass in kilograms.
+        /// Base unit of Mass.
         /// </summary>
         public readonly double Kilograms;
 

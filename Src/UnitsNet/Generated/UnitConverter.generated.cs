@@ -42,13 +42,13 @@ namespace UnitsNet
                 return value;
 
             double newValue;
-            if (TryConvertFromLength(value, fromUnit, toUnit, out newValue)) return newValue;
-            if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromAngle(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromArea(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromElectricPotential(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromFlow(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromForce(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertFromLength(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return newValue;
@@ -75,13 +75,13 @@ namespace UnitsNet
                 return true;
             }
  
-            if (TryConvertFromLength(value, fromUnit, toUnit, out newValue)) return true;
-            if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromAngle(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromArea(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromElectricPotential(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromFlow(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromForce(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertFromLength(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return true;
@@ -92,92 +92,6 @@ namespace UnitsNet
 
         #region Private
 
-        /// <summary>
-        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvertFromLength(double value, Unit fromUnit, Unit toUnit, out double newValue)
-        {
-            switch (fromUnit)
-            {
-                case Unit.Kilometer:
-                    return TryConvert(Length.FromKilometers(value), toUnit, out newValue);
-                case Unit.Meter:
-                    return TryConvert(Length.FromMeters(value), toUnit, out newValue);
-                case Unit.Decimeter:
-                    return TryConvert(Length.FromDecimeters(value), toUnit, out newValue);
-                case Unit.Centimeter:
-                    return TryConvert(Length.FromCentimeters(value), toUnit, out newValue);
-                case Unit.Millimeter:
-                    return TryConvert(Length.FromMillimeters(value), toUnit, out newValue);
-                case Unit.Micrometer:
-                    return TryConvert(Length.FromMicrometers(value), toUnit, out newValue);
-                case Unit.Nanometer:
-                    return TryConvert(Length.FromNanometers(value), toUnit, out newValue);
-                case Unit.Mile:
-                    return TryConvert(Length.FromMiles(value), toUnit, out newValue);
-                case Unit.Yard:
-                    return TryConvert(Length.FromYards(value), toUnit, out newValue);
-                case Unit.Foot:
-                    return TryConvert(Length.FromFeet(value), toUnit, out newValue);
-                case Unit.Inch:
-                    return TryConvert(Length.FromInches(value), toUnit, out newValue);
-                case Unit.Mil:
-                    return TryConvert(Length.FromMils(value), toUnit, out newValue);
-                case Unit.Microinch:
-                    return TryConvert(Length.FromMicroinches(value), toUnit, out newValue);
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
-        /// <summary>
-        /// Try to dynamically convert from Mass to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvertFromMass(double value, Unit fromUnit, Unit toUnit, out double newValue)
-        {
-            switch (fromUnit)
-            {
-                case Unit.Megatonne:
-                    return TryConvert(Mass.FromMegatonnes(value), toUnit, out newValue);
-                case Unit.Kilotonne:
-                    return TryConvert(Mass.FromKilotonnes(value), toUnit, out newValue);
-                case Unit.Tonne:
-                    return TryConvert(Mass.FromTonnes(value), toUnit, out newValue);
-                case Unit.Kilogram:
-                    return TryConvert(Mass.FromKilograms(value), toUnit, out newValue);
-                case Unit.Hectogram:
-                    return TryConvert(Mass.FromHectograms(value), toUnit, out newValue);
-                case Unit.Decagram:
-                    return TryConvert(Mass.FromDecagrams(value), toUnit, out newValue);
-                case Unit.Gram:
-                    return TryConvert(Mass.FromGrams(value), toUnit, out newValue);
-                case Unit.Decigram:
-                    return TryConvert(Mass.FromDecigrams(value), toUnit, out newValue);
-                case Unit.Centigram:
-                    return TryConvert(Mass.FromCentigrams(value), toUnit, out newValue);
-                case Unit.Milligram:
-                    return TryConvert(Mass.FromMilligrams(value), toUnit, out newValue);
-                case Unit.ShortTon:
-                    return TryConvert(Mass.FromShortTons(value), toUnit, out newValue);
-                case Unit.LongTon:
-                    return TryConvert(Mass.FromLongTons(value), toUnit, out newValue);
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
         /// <summary>
         /// Try to dynamically convert from Angle to <paramref name="toUnit"/>.
         /// </summary>
@@ -306,6 +220,92 @@ namespace UnitsNet
                     return TryConvert(Force.FromPoundForces(value), toUnit, out newValue);
                 case Unit.Poundal:
                     return TryConvert(Force.FromPoundals(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+        /// <summary>
+        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvertFromLength(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Kilometer:
+                    return TryConvert(Length.FromKilometers(value), toUnit, out newValue);
+                case Unit.Meter:
+                    return TryConvert(Length.FromMeters(value), toUnit, out newValue);
+                case Unit.Decimeter:
+                    return TryConvert(Length.FromDecimeters(value), toUnit, out newValue);
+                case Unit.Centimeter:
+                    return TryConvert(Length.FromCentimeters(value), toUnit, out newValue);
+                case Unit.Millimeter:
+                    return TryConvert(Length.FromMillimeters(value), toUnit, out newValue);
+                case Unit.Micrometer:
+                    return TryConvert(Length.FromMicrometers(value), toUnit, out newValue);
+                case Unit.Nanometer:
+                    return TryConvert(Length.FromNanometers(value), toUnit, out newValue);
+                case Unit.Mile:
+                    return TryConvert(Length.FromMiles(value), toUnit, out newValue);
+                case Unit.Yard:
+                    return TryConvert(Length.FromYards(value), toUnit, out newValue);
+                case Unit.Foot:
+                    return TryConvert(Length.FromFeet(value), toUnit, out newValue);
+                case Unit.Inch:
+                    return TryConvert(Length.FromInches(value), toUnit, out newValue);
+                case Unit.Mil:
+                    return TryConvert(Length.FromMils(value), toUnit, out newValue);
+                case Unit.Microinch:
+                    return TryConvert(Length.FromMicroinches(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+        /// <summary>
+        /// Try to dynamically convert from Mass to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvertFromMass(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Megatonne:
+                    return TryConvert(Mass.FromMegatonnes(value), toUnit, out newValue);
+                case Unit.Kilotonne:
+                    return TryConvert(Mass.FromKilotonnes(value), toUnit, out newValue);
+                case Unit.Tonne:
+                    return TryConvert(Mass.FromTonnes(value), toUnit, out newValue);
+                case Unit.Kilogram:
+                    return TryConvert(Mass.FromKilograms(value), toUnit, out newValue);
+                case Unit.Hectogram:
+                    return TryConvert(Mass.FromHectograms(value), toUnit, out newValue);
+                case Unit.Decagram:
+                    return TryConvert(Mass.FromDecagrams(value), toUnit, out newValue);
+                case Unit.Gram:
+                    return TryConvert(Mass.FromGrams(value), toUnit, out newValue);
+                case Unit.Decigram:
+                    return TryConvert(Mass.FromDecigrams(value), toUnit, out newValue);
+                case Unit.Centigram:
+                    return TryConvert(Mass.FromCentigrams(value), toUnit, out newValue);
+                case Unit.Milligram:
+                    return TryConvert(Mass.FromMilligrams(value), toUnit, out newValue);
+                case Unit.ShortTon:
+                    return TryConvert(Mass.FromShortTons(value), toUnit, out newValue);
+                case Unit.LongTon:
+                    return TryConvert(Mass.FromLongTons(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -444,117 +444,6 @@ namespace UnitsNet
                     return TryConvert(Volume.FromUsOunces(value), toUnit, out newValue);
                 case Unit.ImperialOunce:
                     return TryConvert(Volume.FromImperialOunces(value), toUnit, out newValue);
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvert(Length value, Unit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case Unit.Kilometer:
-                    newValue = value.Kilometers;
-                    return true;
-                case Unit.Meter:
-                    newValue = value.Meters;
-                    return true;
-                case Unit.Decimeter:
-                    newValue = value.Decimeters;
-                    return true;
-                case Unit.Centimeter:
-                    newValue = value.Centimeters;
-                    return true;
-                case Unit.Millimeter:
-                    newValue = value.Millimeters;
-                    return true;
-                case Unit.Micrometer:
-                    newValue = value.Micrometers;
-                    return true;
-                case Unit.Nanometer:
-                    newValue = value.Nanometers;
-                    return true;
-                case Unit.Mile:
-                    newValue = value.Miles;
-                    return true;
-                case Unit.Yard:
-                    newValue = value.Yards;
-                    return true;
-                case Unit.Foot:
-                    newValue = value.Feet;
-                    return true;
-                case Unit.Inch:
-                    newValue = value.Inches;
-                    return true;
-                case Unit.Mil:
-                    newValue = value.Mils;
-                    return true;
-                case Unit.Microinch:
-                    newValue = value.Microinches;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// Try to dynamically convert from Mass to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvert(Mass value, Unit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case Unit.Megatonne:
-                    newValue = value.Megatonnes;
-                    return true;
-                case Unit.Kilotonne:
-                    newValue = value.Kilotonnes;
-                    return true;
-                case Unit.Tonne:
-                    newValue = value.Tonnes;
-                    return true;
-                case Unit.Kilogram:
-                    newValue = value.Kilograms;
-                    return true;
-                case Unit.Hectogram:
-                    newValue = value.Hectograms;
-                    return true;
-                case Unit.Decagram:
-                    newValue = value.Decagrams;
-                    return true;
-                case Unit.Gram:
-                    newValue = value.Grams;
-                    return true;
-                case Unit.Decigram:
-                    newValue = value.Decigrams;
-                    return true;
-                case Unit.Centigram:
-                    newValue = value.Centigrams;
-                    return true;
-                case Unit.Milligram:
-                    newValue = value.Milligrams;
-                    return true;
-                case Unit.ShortTon:
-                    newValue = value.ShortTons;
-                    return true;
-                case Unit.LongTon:
-                    newValue = value.LongTons;
-                    return true;
 
                 default:
                     newValue = 0;
@@ -710,6 +599,117 @@ namespace UnitsNet
                     return true;
                 case Unit.Poundal:
                     newValue = value.Poundals;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvert(Length value, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.Kilometer:
+                    newValue = value.Kilometers;
+                    return true;
+                case Unit.Meter:
+                    newValue = value.Meters;
+                    return true;
+                case Unit.Decimeter:
+                    newValue = value.Decimeters;
+                    return true;
+                case Unit.Centimeter:
+                    newValue = value.Centimeters;
+                    return true;
+                case Unit.Millimeter:
+                    newValue = value.Millimeters;
+                    return true;
+                case Unit.Micrometer:
+                    newValue = value.Micrometers;
+                    return true;
+                case Unit.Nanometer:
+                    newValue = value.Nanometers;
+                    return true;
+                case Unit.Mile:
+                    newValue = value.Miles;
+                    return true;
+                case Unit.Yard:
+                    newValue = value.Yards;
+                    return true;
+                case Unit.Foot:
+                    newValue = value.Feet;
+                    return true;
+                case Unit.Inch:
+                    newValue = value.Inches;
+                    return true;
+                case Unit.Mil:
+                    newValue = value.Mils;
+                    return true;
+                case Unit.Microinch:
+                    newValue = value.Microinches;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Try to dynamically convert from Mass to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvert(Mass value, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.Megatonne:
+                    newValue = value.Megatonnes;
+                    return true;
+                case Unit.Kilotonne:
+                    newValue = value.Kilotonnes;
+                    return true;
+                case Unit.Tonne:
+                    newValue = value.Tonnes;
+                    return true;
+                case Unit.Kilogram:
+                    newValue = value.Kilograms;
+                    return true;
+                case Unit.Hectogram:
+                    newValue = value.Hectograms;
+                    return true;
+                case Unit.Decagram:
+                    newValue = value.Decagrams;
+                    return true;
+                case Unit.Gram:
+                    newValue = value.Grams;
+                    return true;
+                case Unit.Decigram:
+                    newValue = value.Decigrams;
+                    return true;
+                case Unit.Centigram:
+                    newValue = value.Centigrams;
+                    return true;
+                case Unit.Milligram:
+                    newValue = value.Milligrams;
+                    return true;
+                case Unit.ShortTon:
+                    newValue = value.ShortTons;
+                    return true;
+                case Unit.LongTon:
+                    newValue = value.LongTons;
                     return true;
 
                 default:

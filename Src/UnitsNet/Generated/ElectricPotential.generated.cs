@@ -30,7 +30,7 @@ namespace UnitsNet
     public partial struct ElectricPotential : IComparable, IComparable<ElectricPotential>
     {
         /// <summary>
-        /// Base unit of ElectricPotential in volts.
+        /// Base unit of ElectricPotential.
         /// </summary>
         public readonly double Volts;
 
