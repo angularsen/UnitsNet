@@ -12,7 +12,7 @@
 
     private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit)
     {
-        using (manager.StartNewFile(className+"TestBase.generated.cs"))
+        using (manager.StartNewFile(className+"TestsBase.generated.cs"))
         {
             Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary(unitAttributeType);
 

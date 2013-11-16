@@ -47,37 +47,37 @@
     <Compile Include="AngleTests.cs" />
     <Compile Include="AreaTests.cs" />
     <Compile Include="FlowTests.cs" />
-    <Compile Include="Generated\AngleTestBase.generated.cs">
+    <Compile Include="Generated\AngleTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\AreaTestBase.generated.cs">
+    <Compile Include="Generated\AreaTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ElectricPotentialTestBase.generated.cs">
+    <Compile Include="Generated\ElectricPotentialTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\FlowTestBase.generated.cs">
+    <Compile Include="Generated\FlowTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ForceTestBase.generated.cs">
+    <Compile Include="Generated\ForceTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\LengthTestBase.generated.cs">
+    <Compile Include="Generated\LengthTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\MassTestBase.generated.cs">
+    <Compile Include="Generated\MassTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\PressureTestBase.generated.cs">
+    <Compile Include="Generated\PressureTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\RotationalSpeedTestBase.generated.cs">
+    <Compile Include="Generated\RotationalSpeedTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TorqueTestBase.generated.cs">
+    <Compile Include="Generated\TorqueTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\VolumeTestBase.generated.cs">
+    <Compile Include="Generated\VolumeTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="RevolutionTests.cs" />
