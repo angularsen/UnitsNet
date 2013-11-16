@@ -3,7 +3,7 @@
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
-    public class UnitConversionTests
+    public class InterUnitConversionTests
     {
         //private const double Delta = 1E-5;
 

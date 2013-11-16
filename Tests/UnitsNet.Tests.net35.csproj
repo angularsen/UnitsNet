@@ -88,7 +88,7 @@
     <Compile Include="UnitClassTests\ForceTests.cs" />
     <Compile Include="UnitClassTests\MassTests.cs" />
     <Compile Include="UnitClassTests\PressureTests.cs" />
-    <Compile Include="UnitConversionTests.cs" />
+    <Compile Include="InterUnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitConverterTests.cs" />
     <Compile Include="UnitValueTests.cs" />
