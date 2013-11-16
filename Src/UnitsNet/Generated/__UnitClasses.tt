@@ -5,8 +5,10 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="MultipleOutputHelper.ttinclude" once="true"#>
 <#@ include file="UnitClass.ttinclude" once="true"#>
+<# 
+// This causes a duplicate definition error because UnitClass.ttinclude also includes it: 
+// @ include file="MultipleOutputHelper.ttinclude" once="true" #>
 <# // Disable output of this file, note this causes a build warning #>
 <#@ output extension="/" #>
 <#//@ output extension=".cs" #> 

@@ -7,7 +7,7 @@
 <#@ import namespace="UnitsNet" #>
 <#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="MultipleOutputHelper.ttinclude" once="true"#>
-<#@ include file="Shared.ttinclude" once="true"#>
+<#@ include file="Shared.ttinclude" once="true" #>
 <#+
 
     private void GenerateUnitClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit, string xmlDocSummary)
