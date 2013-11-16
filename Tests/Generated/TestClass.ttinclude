@@ -54,6 +54,9 @@
 using System;
 using NUnit.Framework;
 
+// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Tests
 {
