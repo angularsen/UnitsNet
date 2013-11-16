@@ -110,9 +110,9 @@ namespace UnitsNet
         [Area(0.00064516, "SquareInches")] SquareInch,
 
         // Metric
-        [Angle(Math.PI / 180.0)] Radian,
+        [Angle(180 / Math.PI)] Radian,
         [Angle(1)] Degree, // Base unit
-        [Angle(1 / 0.9)] Gradian,
+        [Angle(0.9)] Gradian,
 
         // Metric
         [Volume(1e9)] CubicKilometer,

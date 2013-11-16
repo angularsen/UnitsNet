@@ -43,12 +43,12 @@ namespace UnitsNet
 
         public double Gradians
         {
-            get { return Degrees/1.11111111111111; }
+            get { return Degrees/0.9; }
         }
 
         public double Radians
         {
-            get { return Degrees/0.0174532925199433; }
+            get { return Degrees/57.2957795130823; }
         }
 
         #endregion
@@ -67,12 +67,12 @@ namespace UnitsNet
 
         public static Angle FromGradians(double gradians)
         {
-            return new Angle(gradians*1.11111111111111);
+            return new Angle(gradians*0.9);
         }
 
         public static Angle FromRadians(double radians)
         {
-            return new Angle(radians*0.0174532925199433);
+            return new Angle(radians*57.2957795130823);
         }
 
         #endregion

@@ -60,12 +60,12 @@ namespace UnitsNet.Tests.net35
 
         protected override double DecilitersInOneCubicMeter
         {
-            get { return 1E5; }
+            get { return 1E4; }
         }
 
         protected override double HectolitersInOneCubicMeter
         {
-            get { return 1E4; }
+            get { return 1E1; }
         }
 
         protected override double ImperialGallonsInOneCubicMeter
