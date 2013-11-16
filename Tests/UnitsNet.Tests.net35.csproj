@@ -80,7 +80,7 @@
     <Compile Include="Generated\VolumeTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="RevolutionTests.cs" />
+    <Compile Include="RotationalSpeedTests.cs" />
     <Compile Include="UnitSystemTests.cs" />
     <Compile Include="VolumeTests.cs" />
     <Compile Include="Length2dTests.cs" />
