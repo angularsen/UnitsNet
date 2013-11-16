@@ -3,7 +3,6 @@
 #pragma warning disable 1718
 
 using NUnit.Framework;
-using System;
 
 namespace UnitsNet.Tests.net35
 {

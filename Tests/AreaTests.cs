@@ -1,140 +1,56 @@
 ﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
 
-using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
-    public class AreaTests
+    public class AreaTests : AreaTestsBase
     {
-        private const double Delta = 1E-5;
-        private readonly Area _squareMeter = Area.FromSquareMeters(1);
-
-        [Test]
-        public void SquareMetersToAreaUnits()
+        protected override double SquareCentimetersInOneSquareMeter
         {
-            Assert.AreEqual(1E-6, _squareMeter.SquareKilometers, Delta);
-            Assert.AreEqual(1, _squareMeter.SquareMeters, Delta);
-            Assert.AreEqual(1E2, _squareMeter.SquareDecimeters, Delta);
-            Assert.AreEqual(1E4, _squareMeter.SquareCentimeters, Delta);
-            Assert.AreEqual(1E6, _squareMeter.SquareMillimeters, Delta);
-
-            Assert.AreEqual(3.86102*1E-7, _squareMeter.SquareMiles, Delta);
-            Assert.AreEqual(1.19599, _squareMeter.SquareYards, Delta);
-            Assert.AreEqual(10.76391, _squareMeter.SquareFeet, Delta);
-            Assert.AreEqual(1550.003100, _squareMeter.SquareInches, Delta);
+            get { return 1E4; }
         }
 
-        [Test]
-        public void AreaUnitsRoundTrip()
+        protected override double SquareDecimetersInOneSquareMeter
         {
-            Assert.AreEqual(1, Area.FromSquareKilometers(_squareMeter.SquareKilometers).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareMeters(_squareMeter.SquareMeters).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareDecimeters(_squareMeter.SquareDecimeters).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareCentimeters(_squareMeter.SquareCentimeters).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareMillimeters(_squareMeter.SquareMillimeters).SquareMeters, Delta);
-
-            Assert.AreEqual(1, Area.FromSquareMiles(_squareMeter.SquareMiles).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareYards(_squareMeter.SquareYards).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareFeet(_squareMeter.SquareFeet).SquareMeters, Delta);
-            Assert.AreEqual(1, Area.FromSquareInches(_squareMeter.SquareInches).SquareMeters, Delta);
+            get { return 1E2; }
         }
 
-        [Test]
-        public void ArithmeticOperatorsRoundtrip()
+        protected override double SquareFeetInOneSquareMeter
         {
-            Area v = Area.FromSquareCentimeters(1);
-            Assert.AreEqual(-1, -v.SquareCentimeters, Delta);
-            Assert.AreEqual(2, (Area.FromSquareCentimeters(3)-v).SquareCentimeters, Delta);
-            Assert.AreEqual(2, (v + v).SquareCentimeters, Delta);
-            Assert.AreEqual(10, (v*10).SquareCentimeters, Delta);
-            Assert.AreEqual(10, (10*v).SquareCentimeters, Delta);
-            Assert.AreEqual(2, (Area.FromSquareCentimeters(10)/5).SquareCentimeters, Delta);
-            Assert.AreEqual(2, Area.FromSquareCentimeters(10)/Area.FromSquareCentimeters(5), Delta);
+            get { return 10.76391; }
         }
 
-        [Test]
-        public void ComparisonOperators()
+        protected override double SquareInchesInOneSquareMeter
         {
-            Area oneSquareMeter = Area.FromSquareMeters(1);
-            Area twoSquareMeters = Area.FromSquareMeters(2);
-
-            Assert.True(oneSquareMeter < twoSquareMeters);
-            Assert.True(oneSquareMeter <= twoSquareMeters);
-            Assert.True(twoSquareMeters > oneSquareMeter);
-            Assert.True(twoSquareMeters >= oneSquareMeter);
-
-            Assert.False(oneSquareMeter > twoSquareMeters);
-            Assert.False(oneSquareMeter >= twoSquareMeters);
-            Assert.False(twoSquareMeters < oneSquareMeter);
-            Assert.False(twoSquareMeters <= oneSquareMeter);
+            get { return 1550.003100; }
         }
 
-        [Test]
-        public void CompareToIsImplemented()
+        protected override double SquareKilometersInOneSquareMeter
         {
-            Area meter = Area.FromSquareMeters(1);
-            Assert.AreEqual(0, meter.CompareTo(meter));
-            Assert.Greater(meter.CompareTo(Area.Zero), 0);
-            Assert.Less(Area.Zero.CompareTo(meter), 0);
+            get { return 1E-6; }
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CompareToThrowsOnTypeMismatch()
+        protected override double SquareMetersInOneSquareMeter
         {
-            Area meter = Area.FromSquareMeters(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(new object());
+            get { return 1; }
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void CompareToThrowsOnNull()
-        { 
-            Area meter = Area.FromSquareMeters(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(null);
+        protected override double SquareMilesInOneSquareMeter
+        {
+            get { return 3.86102*1E-7; }
         }
 
-
-        [Test]
-        public void EqualityOperators()
+        protected override double SquareMillimetersInOneSquareMeter
         {
-            Area a = Area.FromSquareMeters(1);
-            Area b = Area.FromSquareMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a); 
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
+            get { return 1E6; }
         }
 
-        [Test]
-        public void EqualsIsImplemented()
+        protected override double SquareYardsInOneSquareMeter
         {
-            Area v = Area.FromSquareMeters(1);
-            Assert.IsTrue(v.Equals(Area.FromSquareMeters(1)));
-            Assert.IsFalse(v.Equals(Area.Zero));
-        }
-
-        [Test]
-        public void EqualsReturnsFalseOnTypeMismatch()
-        {
-            Area meter = Area.FromSquareMeters(1);
-            Assert.IsFalse(meter.Equals(new object()));
-        }
-
-        [Test]
-        public void EqualsReturnsFalseOnNull()
-        {
-            Area meter = Area.FromSquareMeters(1);
-            Assert.IsFalse(meter.Equals(null));
+            get { return 1.19599; }
         }
     }
 }

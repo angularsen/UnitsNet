@@ -1,148 +1,71 @@
 ﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
 
-using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
-    public class PressureTests
+    public class PressureTests : PressureTestsBase
     {
-        private const double Delta = 1E-5;
-
-        [Test]
-        public void PascalToPressureUnits()
-        { 
-            Pressure pa = Pressure.FromPascals(1);
-
-            // Source: http://en.wikipedia.org/wiki/Pressure
-            Assert.AreEqual(9.8692*1E-6, pa.Atmospheres, Delta);
-            Assert.AreEqual(1E-5, pa.Bars, Delta);
-            Assert.AreEqual(1E-3, pa.Kilopascals);
-            Assert.AreEqual(1E-6, pa.Megapascals);
-            Assert.AreEqual(1/98066.5, pa.KilogramForcePerSquareCentimeter);
-            Assert.AreEqual(1E-4, pa.NewtonsPerSquareCentimeter, Delta);
-            Assert.AreEqual(1E-6, pa.NewtonsPerSquareMillimeter, Delta);
-            Assert.AreEqual(1, pa.NewtonsPerSquareMeter, Delta);
-            Assert.AreEqual(1, pa.Pascals);
-            Assert.AreEqual(1.450377*1E-4, pa.Psi, Delta);
-            Assert.AreEqual(1.0197*1E-5, pa.TechnicalAtmospheres, Delta);
-            Assert.AreEqual(7.5006*1E-3, pa.Torrs, Delta);
-        }
-
-        [Test]
-        public void PressureUnitsRoundTrip()
+        protected override double AtmospheresInOnePascal
         {
-            Pressure pa = Pressure.FromPascals(1);
-
-            Assert.AreEqual(1, Pressure.FromAtmospheres(pa.Atmospheres).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromBars(pa.Bars).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromKilopascals(pa.Kilopascals).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromMegapascals(pa.Megapascals).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromKilogramForcePerSquareCentimeter(pa.KilogramForcePerSquareCentimeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareCentimeter(pa.NewtonsPerSquareCentimeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMeter(pa.NewtonsPerSquareMeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMillimeter(pa.NewtonsPerSquareMillimeter).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromPascals(pa.Pascals).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromPsi(pa.Psi).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromTechnicalAtmospheres(pa.TechnicalAtmospheres).Pascals, Delta);
-            Assert.AreEqual(1, Pressure.FromTorrs(pa.Torrs).Pascals, Delta);
+            get { return 9.8692*1E-6; }
         }
 
-        [Test]
-        public void ArithmeticOperators()
+        protected override double BarsInOnePascal
         {
-            Pressure v = Pressure.FromPascals(1);
-            Assert.AreEqual(-1, -v.Pascals, Delta);
-            Assert.AreEqual(2, (Pressure.FromPascals(3)-v).Pascals, Delta);
-            Assert.AreEqual(2, (v + v).Pascals, Delta);
-            Assert.AreEqual(10, (v*10).Pascals, Delta);
-            Assert.AreEqual(10, (10*v).Pascals, Delta);
-            Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, Delta);
-            Assert.AreEqual(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), Delta);
+            get { return 1E-5; }
         }
 
-        [Test]
-        public void ComparisonOperators()
+        protected override double KilogramForcePerSquareCentimeterInOnePascal
         {
-            Pressure oneMeter = Pressure.FromPascals(1);
-            Pressure twoMeters = Pressure.FromPascals(2);
-
-            Assert.True(oneMeter < twoMeters);
-            Assert.True(oneMeter <= twoMeters);
-            Assert.True(twoMeters > oneMeter);
-            Assert.True(twoMeters >= oneMeter);
-
-            Assert.False(oneMeter > twoMeters);
-            Assert.False(oneMeter >= twoMeters);
-            Assert.False(twoMeters < oneMeter);
-            Assert.False(twoMeters <= oneMeter);
+            get { return 1/98066.5; }
         }
 
-        [Test]
-        public void CompareToIsImplemented()
+        protected override double KilopascalsInOnePascal
         {
-            Pressure meter = Pressure.FromPascals(1);
-            Assert.AreEqual(0, meter.CompareTo(meter));
-            Assert.Greater(meter.CompareTo(Pressure.Zero), 0);
-            Assert.Less(Pressure.Zero.CompareTo(meter), 0);
+            get { return 1E-3; }
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CompareToThrowsOnTypeMismatch()
+        protected override double MegapascalsInOnePascal
         {
-            Pressure meter = Pressure.FromPascals(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(new object());
+            get { return 1E-6; }
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void CompareToThrowsOnNull()
-        { 
-            Pressure meter = Pressure.FromPascals(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(null);
-        }
-
-
-        [Test]
-        public void EqualityOperators()
+        protected override double NewtonsPerSquareCentimeterInOnePascal
         {
-            Pressure a = Pressure.FromPascals(1);
-            Pressure b = Pressure.FromPascals(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a); 
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
+            get { return 1E-4; }
         }
 
-        [Test]
-        public void EqualsIsImplemented()
+        protected override double NewtonsPerSquareMeterInOnePascal
         {
-            Pressure v = Pressure.FromPascals(1);
-            Assert.IsTrue(v.Equals(Pressure.FromPascals(1)));
-            Assert.IsFalse(v.Equals(Pressure.Zero));
+            get { return 1; }
         }
 
-        [Test]
-        public void EqualsReturnsFalseOnTypeMismatch()
+        protected override double NewtonsPerSquareMillimeterInOnePascal
         {
-            Pressure meter = Pressure.FromPascals(1);
-            Assert.IsFalse(meter.Equals(new object()));
+            get { return 1E-6; }
         }
 
-        [Test]
-        public void EqualsReturnsFalseOnNull()
+        protected override double PascalsInOnePascal
         {
-            Pressure meter = Pressure.FromPascals(1);
-            Assert.IsFalse(meter.Equals(null));
+            get { return 1; }
+        }
+
+        protected override double PsiInOnePascal
+        {
+            get { return 1.450377*1E-4; }
+        }
+
+        protected override double TechnicalAtmospheresInOnePascal
+        {
+            get { return 1.0197*1E-5; }
+        }
+
+        protected override double TorrsInOnePascal
+        {
+            get { return 7.5006*1E-3; }
         }
     }
 }
