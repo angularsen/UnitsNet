@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class AngleTestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
         protected abstract double DegreesInOneDegree { get; }
         protected abstract double GradiansInOneDegree { get; }

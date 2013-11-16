@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class RotationalSpeedTestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
         protected abstract double RevolutionsPerMinuteInOneRevolutionPerSecond { get; }
         protected abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }

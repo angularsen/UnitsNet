@@ -65,7 +65,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class <#=className#>TestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
 <#+
             foreach (Unit unit in orderedClassUnits)

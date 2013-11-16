@@ -10,11 +10,6 @@ namespace UnitsNet.Tests.net35
     [TestFixture]
     public class LengthTests : LengthTestsBase
     {
-        protected override double Delta
-        {
-            get { return 1E-5; }
-        }
-
         protected override double CentimetersInOneMeter
         {
             get { return 100; }

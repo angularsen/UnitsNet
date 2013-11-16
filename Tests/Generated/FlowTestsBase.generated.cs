@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class FlowTestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
         protected abstract double CubicMetersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerSecondInOneCubicMeterPerSecond { get; }

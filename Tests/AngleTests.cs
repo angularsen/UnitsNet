@@ -9,11 +9,6 @@ namespace UnitsNet.Tests.net35
     [TestFixture]
     public class AngleTests : AngleTestsBase
     {
-        protected override double Delta
-        {
-            get { return 1E-5; }
-        }
-
         protected override double DegreesInOneDegree
         {
             get { return 1; }

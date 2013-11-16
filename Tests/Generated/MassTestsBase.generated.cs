@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class MassTestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
         protected abstract double CentigramsInOneKilogram { get; }
         protected abstract double DecagramsInOneKilogram { get; }

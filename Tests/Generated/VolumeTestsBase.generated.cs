@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
     /// </summary>
     public abstract partial class VolumeTestsBase
     {
-        protected abstract double Delta { get; }
+        protected virtual double Delta { get { return 1E-5; } }
 
         protected abstract double CentilitersInOneCubicMeter { get; }
         protected abstract double CubicCentimetersInOneCubicMeter { get; }
