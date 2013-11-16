@@ -32,25 +32,25 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneNewtonInDyne { get; }
-        protected abstract double OneNewtonInKilogramsForce { get; }
-        protected abstract double OneNewtonInKilonewtons { get; }
-        protected abstract double OneNewtonInKiloPonds { get; }
-        protected abstract double OneNewtonInNewtons { get; }
-        protected abstract double OneNewtonInPoundals { get; }
-        protected abstract double OneNewtonInPoundForces { get; }
+        protected abstract double DyneInOneNewton { get; }
+        protected abstract double KilogramsForceInOneNewton { get; }
+        protected abstract double KilonewtonsInOneNewton { get; }
+        protected abstract double KiloPondsInOneNewton { get; }
+        protected abstract double NewtonsInOneNewton { get; }
+        protected abstract double PoundalsInOneNewton { get; }
+        protected abstract double PoundForcesInOneNewton { get; }
 
         [Test]
         public void NewtonToForceUnits()
         {
             Force newton = Force.FromNewtons(1);
-            Assert.AreEqual(OneNewtonInDyne, newton.Dyne, Delta);
-            Assert.AreEqual(OneNewtonInKilogramsForce, newton.KilogramsForce, Delta);
-            Assert.AreEqual(OneNewtonInKilonewtons, newton.Kilonewtons, Delta);
-            Assert.AreEqual(OneNewtonInKiloPonds, newton.KiloPonds, Delta);
-            Assert.AreEqual(OneNewtonInNewtons, newton.Newtons, Delta);
-            Assert.AreEqual(OneNewtonInPoundals, newton.Poundals, Delta);
-            Assert.AreEqual(OneNewtonInPoundForces, newton.PoundForces, Delta);
+            Assert.AreEqual(DyneInOneNewton, newton.Dyne, Delta);
+            Assert.AreEqual(KilogramsForceInOneNewton, newton.KilogramsForce, Delta);
+            Assert.AreEqual(KilonewtonsInOneNewton, newton.Kilonewtons, Delta);
+            Assert.AreEqual(KiloPondsInOneNewton, newton.KiloPonds, Delta);
+            Assert.AreEqual(NewtonsInOneNewton, newton.Newtons, Delta);
+            Assert.AreEqual(PoundalsInOneNewton, newton.Poundals, Delta);
+            Assert.AreEqual(PoundForcesInOneNewton, newton.PoundForces, Delta);
         }
 
         [Test]

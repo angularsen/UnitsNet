@@ -32,35 +32,35 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OnePascalInAtmospheres { get; }
-        protected abstract double OnePascalInBars { get; }
-        protected abstract double OnePascalInKilogramForcePerSquareCentimeter { get; }
-        protected abstract double OnePascalInKilopascals { get; }
-        protected abstract double OnePascalInMegapascals { get; }
-        protected abstract double OnePascalInNewtonsPerSquareCentimeter { get; }
-        protected abstract double OnePascalInNewtonsPerSquareMeter { get; }
-        protected abstract double OnePascalInNewtonsPerSquareMillimeter { get; }
-        protected abstract double OnePascalInPascals { get; }
-        protected abstract double OnePascalInPsi { get; }
-        protected abstract double OnePascalInTechnicalAtmospheres { get; }
-        protected abstract double OnePascalInTorrs { get; }
+        protected abstract double AtmospheresInOnePascal { get; }
+        protected abstract double BarsInOnePascal { get; }
+        protected abstract double KilogramForcePerSquareCentimeterInOnePascal { get; }
+        protected abstract double KilopascalsInOnePascal { get; }
+        protected abstract double MegapascalsInOnePascal { get; }
+        protected abstract double NewtonsPerSquareCentimeterInOnePascal { get; }
+        protected abstract double NewtonsPerSquareMeterInOnePascal { get; }
+        protected abstract double NewtonsPerSquareMillimeterInOnePascal { get; }
+        protected abstract double PascalsInOnePascal { get; }
+        protected abstract double PsiInOnePascal { get; }
+        protected abstract double TechnicalAtmospheresInOnePascal { get; }
+        protected abstract double TorrsInOnePascal { get; }
 
         [Test]
         public void PascalToPressureUnits()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.AreEqual(OnePascalInAtmospheres, pascal.Atmospheres, Delta);
-            Assert.AreEqual(OnePascalInBars, pascal.Bars, Delta);
-            Assert.AreEqual(OnePascalInKilogramForcePerSquareCentimeter, pascal.KilogramForcePerSquareCentimeter, Delta);
-            Assert.AreEqual(OnePascalInKilopascals, pascal.Kilopascals, Delta);
-            Assert.AreEqual(OnePascalInMegapascals, pascal.Megapascals, Delta);
-            Assert.AreEqual(OnePascalInNewtonsPerSquareCentimeter, pascal.NewtonsPerSquareCentimeter, Delta);
-            Assert.AreEqual(OnePascalInNewtonsPerSquareMeter, pascal.NewtonsPerSquareMeter, Delta);
-            Assert.AreEqual(OnePascalInNewtonsPerSquareMillimeter, pascal.NewtonsPerSquareMillimeter, Delta);
-            Assert.AreEqual(OnePascalInPascals, pascal.Pascals, Delta);
-            Assert.AreEqual(OnePascalInPsi, pascal.Psi, Delta);
-            Assert.AreEqual(OnePascalInTechnicalAtmospheres, pascal.TechnicalAtmospheres, Delta);
-            Assert.AreEqual(OnePascalInTorrs, pascal.Torrs, Delta);
+            Assert.AreEqual(AtmospheresInOnePascal, pascal.Atmospheres, Delta);
+            Assert.AreEqual(BarsInOnePascal, pascal.Bars, Delta);
+            Assert.AreEqual(KilogramForcePerSquareCentimeterInOnePascal, pascal.KilogramForcePerSquareCentimeter, Delta);
+            Assert.AreEqual(KilopascalsInOnePascal, pascal.Kilopascals, Delta);
+            Assert.AreEqual(MegapascalsInOnePascal, pascal.Megapascals, Delta);
+            Assert.AreEqual(NewtonsPerSquareCentimeterInOnePascal, pascal.NewtonsPerSquareCentimeter, Delta);
+            Assert.AreEqual(NewtonsPerSquareMeterInOnePascal, pascal.NewtonsPerSquareMeter, Delta);
+            Assert.AreEqual(NewtonsPerSquareMillimeterInOnePascal, pascal.NewtonsPerSquareMillimeter, Delta);
+            Assert.AreEqual(PascalsInOnePascal, pascal.Pascals, Delta);
+            Assert.AreEqual(PsiInOnePascal, pascal.Psi, Delta);
+            Assert.AreEqual(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, Delta);
+            Assert.AreEqual(TorrsInOnePascal, pascal.Torrs, Delta);
         }
 
         [Test]

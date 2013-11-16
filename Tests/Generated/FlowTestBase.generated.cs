@@ -32,15 +32,15 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneCubicMeterPerSecondInCubicMetersPerHour { get; }
-        protected abstract double OneCubicMeterPerSecondInCubicMetersPerSecond { get; }
+        protected abstract double CubicMetersPerHourInOneCubicMeterPerSecond { get; }
+        protected abstract double CubicMetersPerSecondInOneCubicMeterPerSecond { get; }
 
         [Test]
         public void CubicMeterPerSecondToFlowUnits()
         {
             Flow cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
-            Assert.AreEqual(OneCubicMeterPerSecondInCubicMetersPerHour, cubicmeterpersecond.CubicMetersPerHour, Delta);
-            Assert.AreEqual(OneCubicMeterPerSecondInCubicMetersPerSecond, cubicmeterpersecond.CubicMetersPerSecond, Delta);
+            Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerHour, Delta);
+            Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerSecond, Delta);
         }
 
         [Test]

@@ -32,17 +32,17 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneDegreeInDegrees { get; }
-        protected abstract double OneDegreeInGradians { get; }
-        protected abstract double OneDegreeInRadians { get; }
+        protected abstract double DegreesInOneDegree { get; }
+        protected abstract double GradiansInOneDegree { get; }
+        protected abstract double RadiansInOneDegree { get; }
 
         [Test]
         public void DegreeToAngleUnits()
         {
             Angle degree = Angle.FromDegrees(1);
-            Assert.AreEqual(OneDegreeInDegrees, degree.Degrees, Delta);
-            Assert.AreEqual(OneDegreeInGradians, degree.Gradians, Delta);
-            Assert.AreEqual(OneDegreeInRadians, degree.Radians, Delta);
+            Assert.AreEqual(DegreesInOneDegree, degree.Degrees, Delta);
+            Assert.AreEqual(GradiansInOneDegree, degree.Gradians, Delta);
+            Assert.AreEqual(RadiansInOneDegree, degree.Radians, Delta);
         }
 
         [Test]

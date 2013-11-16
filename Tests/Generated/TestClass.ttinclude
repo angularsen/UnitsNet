@@ -73,7 +73,7 @@ namespace UnitsNet.Tests
         protected abstract double OneMeterInKilometers { get; }
         */
 #>
-        protected abstract double One<#=baseUnit.ToString()#>In<#=unitPluralName#> { get; }
+        protected abstract double <#=unitPluralName#>InOne<#=baseUnit.ToString()#> { get; }
 <#+         }
 #>
 
@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(OneMeterInKilometers, meter.Kilometers, Delta);
         */
 #>
-            Assert.AreEqual(One<#=baseUnit.ToString()#>In<#=unitPluralName#>, <#=baseUnitVariableName#>.<#=unitPluralName#>, Delta);
+            Assert.AreEqual(<#=unitPluralName#>InOne<#=baseUnit.ToString()#>, <#=baseUnitVariableName#>.<#=unitPluralName#>, Delta);
 <#+         }
 #>
         }

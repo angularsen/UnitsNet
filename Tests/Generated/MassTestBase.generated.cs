@@ -32,35 +32,35 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneKilogramInCentigrams { get; }
-        protected abstract double OneKilogramInDecagrams { get; }
-        protected abstract double OneKilogramInDecigrams { get; }
-        protected abstract double OneKilogramInGrams { get; }
-        protected abstract double OneKilogramInHectograms { get; }
-        protected abstract double OneKilogramInKilograms { get; }
-        protected abstract double OneKilogramInKilotonnes { get; }
-        protected abstract double OneKilogramInLongTons { get; }
-        protected abstract double OneKilogramInMegatonnes { get; }
-        protected abstract double OneKilogramInMilligrams { get; }
-        protected abstract double OneKilogramInShortTons { get; }
-        protected abstract double OneKilogramInTonnes { get; }
+        protected abstract double CentigramsInOneKilogram { get; }
+        protected abstract double DecagramsInOneKilogram { get; }
+        protected abstract double DecigramsInOneKilogram { get; }
+        protected abstract double GramsInOneKilogram { get; }
+        protected abstract double HectogramsInOneKilogram { get; }
+        protected abstract double KilogramsInOneKilogram { get; }
+        protected abstract double KilotonnesInOneKilogram { get; }
+        protected abstract double LongTonsInOneKilogram { get; }
+        protected abstract double MegatonnesInOneKilogram { get; }
+        protected abstract double MilligramsInOneKilogram { get; }
+        protected abstract double ShortTonsInOneKilogram { get; }
+        protected abstract double TonnesInOneKilogram { get; }
 
         [Test]
         public void KilogramToMassUnits()
         {
             Mass kilogram = Mass.FromKilograms(1);
-            Assert.AreEqual(OneKilogramInCentigrams, kilogram.Centigrams, Delta);
-            Assert.AreEqual(OneKilogramInDecagrams, kilogram.Decagrams, Delta);
-            Assert.AreEqual(OneKilogramInDecigrams, kilogram.Decigrams, Delta);
-            Assert.AreEqual(OneKilogramInGrams, kilogram.Grams, Delta);
-            Assert.AreEqual(OneKilogramInHectograms, kilogram.Hectograms, Delta);
-            Assert.AreEqual(OneKilogramInKilograms, kilogram.Kilograms, Delta);
-            Assert.AreEqual(OneKilogramInKilotonnes, kilogram.Kilotonnes, Delta);
-            Assert.AreEqual(OneKilogramInLongTons, kilogram.LongTons, Delta);
-            Assert.AreEqual(OneKilogramInMegatonnes, kilogram.Megatonnes, Delta);
-            Assert.AreEqual(OneKilogramInMilligrams, kilogram.Milligrams, Delta);
-            Assert.AreEqual(OneKilogramInShortTons, kilogram.ShortTons, Delta);
-            Assert.AreEqual(OneKilogramInTonnes, kilogram.Tonnes, Delta);
+            Assert.AreEqual(CentigramsInOneKilogram, kilogram.Centigrams, Delta);
+            Assert.AreEqual(DecagramsInOneKilogram, kilogram.Decagrams, Delta);
+            Assert.AreEqual(DecigramsInOneKilogram, kilogram.Decigrams, Delta);
+            Assert.AreEqual(GramsInOneKilogram, kilogram.Grams, Delta);
+            Assert.AreEqual(HectogramsInOneKilogram, kilogram.Hectograms, Delta);
+            Assert.AreEqual(KilogramsInOneKilogram, kilogram.Kilograms, Delta);
+            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.Kilotonnes, Delta);
+            Assert.AreEqual(LongTonsInOneKilogram, kilogram.LongTons, Delta);
+            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.Megatonnes, Delta);
+            Assert.AreEqual(MilligramsInOneKilogram, kilogram.Milligrams, Delta);
+            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, Delta);
+            Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, Delta);
         }
 
         [Test]

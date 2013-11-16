@@ -32,15 +32,15 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneRevolutionPerSecondInRevolutionsPerMinute { get; }
-        protected abstract double OneRevolutionPerSecondInRevolutionsPerSecond { get; }
+        protected abstract double RevolutionsPerMinuteInOneRevolutionPerSecond { get; }
+        protected abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }
 
         [Test]
         public void RevolutionPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
-            Assert.AreEqual(OneRevolutionPerSecondInRevolutionsPerMinute, revolutionpersecond.RevolutionsPerMinute, Delta);
-            Assert.AreEqual(OneRevolutionPerSecondInRevolutionsPerSecond, revolutionpersecond.RevolutionsPerSecond, Delta);
+            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerMinute, Delta);
+            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerSecond, Delta);
         }
 
         [Test]

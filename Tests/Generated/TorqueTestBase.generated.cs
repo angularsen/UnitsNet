@@ -32,13 +32,13 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneNewtonmeterInNewtonmeters { get; }
+        protected abstract double NewtonmetersInOneNewtonmeter { get; }
 
         [Test]
         public void NewtonmeterToTorqueUnits()
         {
             Torque newtonmeter = Torque.FromNewtonmeters(1);
-            Assert.AreEqual(OneNewtonmeterInNewtonmeters, newtonmeter.Newtonmeters, Delta);
+            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.Newtonmeters, Delta);
         }
 
         [Test]

@@ -32,47 +32,47 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneCubicMeterInCentiliters { get; }
-        protected abstract double OneCubicMeterInCubicCentimeters { get; }
-        protected abstract double OneCubicMeterInCubicDecimeters { get; }
-        protected abstract double OneCubicMeterInCubicFeet { get; }
-        protected abstract double OneCubicMeterInCubicInches { get; }
-        protected abstract double OneCubicMeterInCubicKilometers { get; }
-        protected abstract double OneCubicMeterInCubicMeters { get; }
-        protected abstract double OneCubicMeterInCubicMiles { get; }
-        protected abstract double OneCubicMeterInCubicMillimeters { get; }
-        protected abstract double OneCubicMeterInCubicYards { get; }
-        protected abstract double OneCubicMeterInDeciliters { get; }
-        protected abstract double OneCubicMeterInHectoliters { get; }
-        protected abstract double OneCubicMeterInImperialGallons { get; }
-        protected abstract double OneCubicMeterInImperialOunces { get; }
-        protected abstract double OneCubicMeterInLiters { get; }
-        protected abstract double OneCubicMeterInMilliliters { get; }
-        protected abstract double OneCubicMeterInUsGallons { get; }
-        protected abstract double OneCubicMeterInUsOunces { get; }
+        protected abstract double CentilitersInOneCubicMeter { get; }
+        protected abstract double CubicCentimetersInOneCubicMeter { get; }
+        protected abstract double CubicDecimetersInOneCubicMeter { get; }
+        protected abstract double CubicFeetInOneCubicMeter { get; }
+        protected abstract double CubicInchesInOneCubicMeter { get; }
+        protected abstract double CubicKilometersInOneCubicMeter { get; }
+        protected abstract double CubicMetersInOneCubicMeter { get; }
+        protected abstract double CubicMilesInOneCubicMeter { get; }
+        protected abstract double CubicMillimetersInOneCubicMeter { get; }
+        protected abstract double CubicYardsInOneCubicMeter { get; }
+        protected abstract double DecilitersInOneCubicMeter { get; }
+        protected abstract double HectolitersInOneCubicMeter { get; }
+        protected abstract double ImperialGallonsInOneCubicMeter { get; }
+        protected abstract double ImperialOuncesInOneCubicMeter { get; }
+        protected abstract double LitersInOneCubicMeter { get; }
+        protected abstract double MillilitersInOneCubicMeter { get; }
+        protected abstract double UsGallonsInOneCubicMeter { get; }
+        protected abstract double UsOuncesInOneCubicMeter { get; }
 
         [Test]
         public void CubicMeterToVolumeUnits()
         {
             Volume cubicmeter = Volume.FromCubicMeters(1);
-            Assert.AreEqual(OneCubicMeterInCentiliters, cubicmeter.Centiliters, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicCentimeters, cubicmeter.CubicCentimeters, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicDecimeters, cubicmeter.CubicDecimeters, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicFeet, cubicmeter.CubicFeet, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicInches, cubicmeter.CubicInches, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicKilometers, cubicmeter.CubicKilometers, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicMeters, cubicmeter.CubicMeters, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicMiles, cubicmeter.CubicMiles, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicMillimeters, cubicmeter.CubicMillimeters, Delta);
-            Assert.AreEqual(OneCubicMeterInCubicYards, cubicmeter.CubicYards, Delta);
-            Assert.AreEqual(OneCubicMeterInDeciliters, cubicmeter.Deciliters, Delta);
-            Assert.AreEqual(OneCubicMeterInHectoliters, cubicmeter.Hectoliters, Delta);
-            Assert.AreEqual(OneCubicMeterInImperialGallons, cubicmeter.ImperialGallons, Delta);
-            Assert.AreEqual(OneCubicMeterInImperialOunces, cubicmeter.ImperialOunces, Delta);
-            Assert.AreEqual(OneCubicMeterInLiters, cubicmeter.Liters, Delta);
-            Assert.AreEqual(OneCubicMeterInMilliliters, cubicmeter.Milliliters, Delta);
-            Assert.AreEqual(OneCubicMeterInUsGallons, cubicmeter.UsGallons, Delta);
-            Assert.AreEqual(OneCubicMeterInUsOunces, cubicmeter.UsOunces, Delta);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.Centiliters, Delta);
+            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.CubicCentimeters, Delta);
+            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.CubicDecimeters, Delta);
+            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.CubicFeet, Delta);
+            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.CubicInches, Delta);
+            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.CubicKilometers, Delta);
+            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.CubicMeters, Delta);
+            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.CubicMiles, Delta);
+            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.CubicMillimeters, Delta);
+            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, Delta);
+            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.Deciliters, Delta);
+            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, Delta);
+            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, Delta);
+            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, Delta);
+            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.Liters, Delta);
+            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Milliliters, Delta);
+            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, Delta);
+            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.UsOunces, Delta);
         }
 
         [Test]

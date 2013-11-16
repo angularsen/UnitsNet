@@ -32,29 +32,29 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneSquareMeterInSquareCentimeters { get; }
-        protected abstract double OneSquareMeterInSquareDecimeters { get; }
-        protected abstract double OneSquareMeterInSquareFeet { get; }
-        protected abstract double OneSquareMeterInSquareInches { get; }
-        protected abstract double OneSquareMeterInSquareKilometers { get; }
-        protected abstract double OneSquareMeterInSquareMeters { get; }
-        protected abstract double OneSquareMeterInSquareMiles { get; }
-        protected abstract double OneSquareMeterInSquareMillimeters { get; }
-        protected abstract double OneSquareMeterInSquareYards { get; }
+        protected abstract double SquareCentimetersInOneSquareMeter { get; }
+        protected abstract double SquareDecimetersInOneSquareMeter { get; }
+        protected abstract double SquareFeetInOneSquareMeter { get; }
+        protected abstract double SquareInchesInOneSquareMeter { get; }
+        protected abstract double SquareKilometersInOneSquareMeter { get; }
+        protected abstract double SquareMetersInOneSquareMeter { get; }
+        protected abstract double SquareMilesInOneSquareMeter { get; }
+        protected abstract double SquareMillimetersInOneSquareMeter { get; }
+        protected abstract double SquareYardsInOneSquareMeter { get; }
 
         [Test]
         public void SquareMeterToAreaUnits()
         {
             Area squaremeter = Area.FromSquareMeters(1);
-            Assert.AreEqual(OneSquareMeterInSquareCentimeters, squaremeter.SquareCentimeters, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareDecimeters, squaremeter.SquareDecimeters, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareFeet, squaremeter.SquareFeet, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareInches, squaremeter.SquareInches, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareKilometers, squaremeter.SquareKilometers, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareMeters, squaremeter.SquareMeters, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareMiles, squaremeter.SquareMiles, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareMillimeters, squaremeter.SquareMillimeters, Delta);
-            Assert.AreEqual(OneSquareMeterInSquareYards, squaremeter.SquareYards, Delta);
+            Assert.AreEqual(SquareCentimetersInOneSquareMeter, squaremeter.SquareCentimeters, Delta);
+            Assert.AreEqual(SquareDecimetersInOneSquareMeter, squaremeter.SquareDecimeters, Delta);
+            Assert.AreEqual(SquareFeetInOneSquareMeter, squaremeter.SquareFeet, Delta);
+            Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.SquareInches, Delta);
+            Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.SquareKilometers, Delta);
+            Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.SquareMeters, Delta);
+            Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.SquareMiles, Delta);
+            Assert.AreEqual(SquareMillimetersInOneSquareMeter, squaremeter.SquareMillimeters, Delta);
+            Assert.AreEqual(SquareYardsInOneSquareMeter, squaremeter.SquareYards, Delta);
         }
 
         [Test]

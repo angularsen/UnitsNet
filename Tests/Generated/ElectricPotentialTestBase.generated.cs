@@ -32,13 +32,13 @@ namespace UnitsNet.Tests
     {
         protected abstract double Delta { get; }
 
-        protected abstract double OneVoltInVolts { get; }
+        protected abstract double VoltsInOneVolt { get; }
 
         [Test]
         public void VoltToElectricPotentialUnits()
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
-            Assert.AreEqual(OneVoltInVolts, volt.Volts, Delta);
+            Assert.AreEqual(VoltsInOneVolt, volt.Volts, Delta);
         }
 
         [Test]
