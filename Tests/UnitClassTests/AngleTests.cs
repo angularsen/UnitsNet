@@ -4,7 +4,7 @@
 using System;
 using NUnit.Framework;
 
-namespace UnitsNet.Tests.net35
+namespace UnitsNet.Tests.net35.UnitClassTests
 {
     [TestFixture]
     public class AngleTests : AngleTestsBase

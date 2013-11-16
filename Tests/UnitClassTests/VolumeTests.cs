@@ -3,7 +3,7 @@
 
 using NUnit.Framework;
 
-namespace UnitsNet.Tests.net35
+namespace UnitsNet.Tests.net35.UnitClassTests
 {
     [TestFixture]
     public class VolumeTests : VolumeTestsBase
