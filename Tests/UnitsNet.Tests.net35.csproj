@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AngleTests.cs" />
-    <Compile Include="AreaTests.cs" />
-    <Compile Include="FlowTests.cs" />
+    <Compile Include="UnitClassTests\AngleTests.cs" />
+    <Compile Include="UnitClassTests\AreaTests.cs" />
+    <Compile Include="UnitClassTests\FlowTests.cs" />
     <Compile Include="Generated\AngleTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
@@ -80,14 +80,14 @@
     <Compile Include="Generated\VolumeTestsBase.generated.cs">
       <DependentUpon>__TestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="RotationalSpeedTests.cs" />
+    <Compile Include="UnitClassTests\RotationalSpeedTests.cs" />
     <Compile Include="UnitSystemTests.cs" />
-    <Compile Include="VolumeTests.cs" />
-    <Compile Include="Length2dTests.cs" />
-    <Compile Include="LengthTests.cs" />
-    <Compile Include="ForceTests.cs" />
-    <Compile Include="MassTests.cs" />
-    <Compile Include="PressureTests.cs" />
+    <Compile Include="UnitClassTests\VolumeTests.cs" />
+    <Compile Include="UnitClassTests\Length2dTests.cs" />
+    <Compile Include="UnitClassTests\LengthTests.cs" />
+    <Compile Include="UnitClassTests\ForceTests.cs" />
+    <Compile Include="UnitClassTests\MassTests.cs" />
+    <Compile Include="UnitClassTests\PressureTests.cs" />
     <Compile Include="UnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitConverterTests.cs" />
