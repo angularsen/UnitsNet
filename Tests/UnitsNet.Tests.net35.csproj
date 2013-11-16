@@ -47,6 +47,39 @@
     <Compile Include="AngleTests.cs" />
     <Compile Include="AreaTests.cs" />
     <Compile Include="FlowTests.cs" />
+    <Compile Include="Generated\AngleTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\AreaTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\ElectricPotentialTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\FlowTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\ForceTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\LengthTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\MassTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\PressureTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\RotationalSpeedTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\TorqueTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\VolumeTestBase.generated.cs">
+      <DependentUpon>__TestClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="RevolutionTests.cs" />
     <Compile Include="UnitSystemTests.cs" />
     <Compile Include="VolumeTests.cs" />
@@ -61,6 +94,16 @@
     <Compile Include="UnitValueTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Src\UnitsNet\Generated\MultipleOutputHelper.ttinclude">
+      <Link>Generated\MultipleOutputHelper.ttinclude</Link>
+    </None>
+    <None Include="..\Src\UnitsNet\Generated\Shared.ttinclude">
+      <Link>Generated\Shared.ttinclude</Link>
+    </None>
+    <None Include="Generated\TestClass.ttinclude" />
+    <None Include="Generated\__TestClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +111,10 @@
       <Project>{62E7F8AB-01ED-455A-8CE2-86F020D429B0}</Project>
       <Name>UnitsNet.net35</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

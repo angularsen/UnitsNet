@@ -1,5 +1,5 @@
-﻿<# // Load types in current assembly. #>
-<#@ assembly name="$(TargetPath)" #>
+﻿<#@ assembly name="$(TargetDir)..\..\..\build\bin\AnyCPU_Debug\UnitsNet.net35.dll" #>
+<#//@ assembly name="UnitsNet.net35.dll" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
