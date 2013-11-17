@@ -40,20 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
+    <Compile Include="**\*.cs" Exclude="**\*.g.cs; obj\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Generated\__UnitClasses.tt">
+    <None Include="**\UnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <Compile Include="Generated\*.generated.cs" Exclude="Generated\UnitConverter.generated.cs">
-      <DependentUpon>__UnitClasses.tt</DependentUpon>
+    <Compile Include="**\*Unit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
-    <None Include="Generated\__UnitConverter.tt">
+    <None Include="**\UnitConverter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <Compile Include="Generated\UnitConverter.generated.cs">
-      <DependentUpon>__UnitConverter.tt</DependentUpon>
+    <Compile Include="**\UnitConverter.g.cs">
+      <DependentUpon>UnitConverter.tt</DependentUpon>
     </Compile>
     <None Include="**\*.ttinclude" />
   </ItemGroup>

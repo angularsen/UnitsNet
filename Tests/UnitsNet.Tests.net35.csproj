@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MoreLinq">
+      <HintPath>..\Src\packages\morelinq.1.0.16006\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Src\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -44,65 +47,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitClassTests\AngleTests.cs" />
-    <Compile Include="UnitClassTests\AreaTests.cs" />
-    <Compile Include="UnitClassTests\FlowTests.cs" />
-    <Compile Include="Generated\AngleTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\UnitConverterTests.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitConverterTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\AreaTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\UnitValueTests.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitValueTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ElectricPotentialTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Custom Code\AngleTests.cs" />
+    <Compile Include="Custom Code\AreaTests.cs" />
+    <Compile Include="Custom Code\ElectricPotentialTests.cs" />
+    <Compile Include="Custom Code\FlowTests.cs" />
+    <Compile Include="Generated Code\AngleTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\FlowTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\AreaTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ForceTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\ElectricPotentialTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\LengthTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\FlowTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\MassTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\ForceTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\PressureTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\LengthTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\RotationalSpeedTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\MassTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TorqueTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\PressureTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\VolumeTestsBase.generated.cs">
-      <DependentUpon>__TestClasses.tt</DependentUpon>
+    <Compile Include="Generated Code\RotationalSpeedTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="UnitClassTests\RotationalSpeedTests.cs" />
+    <Compile Include="Generated Code\TorqueTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\VolumeTestsBase.generated.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Code\RotationalSpeedTests.cs" />
+    <Compile Include="Custom Code\TorqueTests.cs" />
     <Compile Include="UnitSystemTests.cs" />
-    <Compile Include="UnitClassTests\VolumeTests.cs" />
-    <Compile Include="UnitClassTests\Length2dTests.cs" />
-    <Compile Include="UnitClassTests\LengthTests.cs" />
-    <Compile Include="UnitClassTests\ForceTests.cs" />
-    <Compile Include="UnitClassTests\MassTests.cs" />
-    <Compile Include="UnitClassTests\PressureTests.cs" />
+    <Compile Include="Custom Code\VolumeTests.cs" />
+    <Compile Include="Custom Code\Length2dTests.cs" />
+    <Compile Include="Custom Code\LengthTests.cs" />
+    <Compile Include="Custom Code\ForceTests.cs" />
+    <Compile Include="Custom Code\MassTests.cs" />
+    <Compile Include="Custom Code\PressureTests.cs" />
     <Compile Include="InterUnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitConverterTests.cs" />
-    <Compile Include="UnitValueTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Src\UnitsNet\Generated\MultipleOutputHelper.ttinclude">
-      <Link>Generated\MultipleOutputHelper.ttinclude</Link>
+    <None Include="..\Src\UnitsNet\Generated Code\Includes\MultipleOutputHelper.ttinclude">
+      <Link>Generated Code\Includes\MultipleOutputHelper.ttinclude</Link>
     </None>
-    <None Include="..\Src\UnitsNet\Generated\Shared.ttinclude">
-      <Link>Generated\Shared.ttinclude</Link>
+    <None Include="..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude">
+      <Link>Generated Code\Includes\Shared.ttinclude</Link>
     </None>
-    <None Include="Generated\TestClass.ttinclude" />
-    <None Include="Generated\__TestClasses.tt">
+    <None Include="Generated Code\Includes\UnitTestClass.ttinclude" />
+    <None Include="Generated Code\Includes\UnitConverterTests.ttinclude" />
+    <None Include="Generated Code\Includes\UnitValueTests.ttinclude" />
+    <None Include="Generated Code\UnitTestClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Generated Code\UnitConverterTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitConverterTests.g.cs</LastGenOutput>
+    </None>
+    <None Include="Generated Code\UnitValueTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitValueTests.g.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -112,7 +135,6 @@
       <Name>UnitsNet.net35</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

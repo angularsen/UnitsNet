@@ -1,0 +1,12 @@
+﻿<#@ template debug="True" language="C#" hostspecific="True" #>
+<#@ assembly name="$(TargetDir)UnitsNet.net35.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="UnitsNet" #>
+<#@ include file="Includes\UnitConverterTests.ttinclude" once="true" #>
+<#@ output extension=".g.cs" #>
+<#
+    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
+    GenerateUnitConverterTests(unitToAttribute);
+#><#+ #>

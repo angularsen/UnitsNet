@@ -1,0 +1,95 @@
+﻿<#@ assembly name="$(TargetDir)UnitsNet.net35.dll" #>
+<#@ assembly name="$(SolutionDir)packages\morelinq.1.0.16006\lib\net35\MoreLinq.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="UnitsNet" #>
+<#@ import namespace="MoreLinq" #>
+<#@ include file="$(SolutionDir)\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #><#+
+    
+    private void GenerateUnitConverterTests(Dictionary<Unit, UnitAttribute> unitToAttribute)
+    {
+#>
+// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/SIUnits
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using NUnit.Framework;
+using UnitsNet.Tests.net35.UnitClassTests;
+
+// ReSharper disable once CheckNamespace
+namespace UnitsNet.Tests.net35
+{
+    [TestFixture]
+    public class UnitConverterTests
+    {
+        private const double Delta = 1E-5;
+
+<#+
+PushIndent("            ");
+foreach (UnitAttribute unitAttribute in unitToAttribute.Values.DistinctBy(attr => attr.GetType()))
+{
+    WriteUnitClassTest(unitToAttribute, unitAttribute);
+}
+PopIndent();
+#>
+    }
+} 
+
+<#+
+    }
+
+    private void WriteUnitClassTest(Dictionary<Unit, UnitAttribute> unitToAttribute, UnitAttribute unitAttribute)
+    {
+        /*  Example:
+        [Test]
+        public void MeterToLengthUnits()
+        {
+            var t = new LengthTests();
+            Assert.AreEqual(t.KilometersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Kilometer), Delta);
+            Assert.AreEqual(t.MetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Meter), Delta);
+            Assert.AreEqual(t.DecimetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Decimeter), Delta);
+            ... and so on
+        }
+        */
+        string unitClassName = unitAttribute.GetType().Name.Replace("Attribute", String.Empty);
+        WriteLine("[Test]");
+        WriteLine("public void {0}To{1}Units()", unitAttribute.BaseUnit, unitClassName);
+        WriteLine("{");
+        PushIndent("    ");
+        WriteLine("var t = new {0}Tests();", unitClassName);
+
+        IEnumerable<Unit> unitsForUnitClass =
+            unitToAttribute.Where(pair => pair.Value.GetType() == unitAttribute.GetType()).Select(pair => pair.Key);
+
+        foreach (Unit unit in unitsForUnitClass)
+        {
+            string unitPluralName = GetUnitPluralName(unitToAttribute, unit);
+            string baseUnitName = unitAttribute.BaseUnit.ToString();
+            string unitName = unit.ToString();
+            WriteLine("Assert.AreEqual(t.{0}InOne{1}, UnitConverter.Convert(1, Unit.{1}, Unit.{2}), Delta);",
+                unitPluralName, baseUnitName, unitName);
+        }
+        PopIndent();
+        WriteLine("}");
+    }
+
+#>

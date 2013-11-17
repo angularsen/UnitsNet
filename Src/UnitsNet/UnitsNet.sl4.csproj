@@ -63,13 +63,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="**\*.generated.cs; obj\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Generated\*.generated.cs" Exclude="Generated\UnitConverter.generated.cs">
-    </Compile>
-    <Compile Include="Generated\UnitConverter.generated.cs">
-    </Compile>
+    <Compile Include="**\*.cs" Exclude="obj\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
