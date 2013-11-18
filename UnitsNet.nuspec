@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,7 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v1.10: Added missing localization to units for US English and Russian cultures (thanks George Zhuikov).
+    <releaseNotes>v1.11: Fixed bugs in Flow and RotationalSpeed units after refactoring to T4 templates (thanks George Zhuikov).
+Added Temperature units.
+
+v1.10: Added missing localization to units for US English and Russian cultures (thanks George Zhuikov).
 Added RotationalSpeed and Flow unit classes (thanks George Zhuikov).
 Added mils and microinches length units (thanks Georgios).
 Refactored to generate unit classes with T4 templates, a lot less work to add new units.
