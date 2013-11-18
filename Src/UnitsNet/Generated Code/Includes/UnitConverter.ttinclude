@@ -1,5 +1,4 @@
-﻿<#@ template debug="True" language="C#" hostspecific="True" #>
-<# // Load types in current assembly. #>
+﻿<# // Load types in current assembly. #>
 <#@ assembly name="$(TargetPath)" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
@@ -8,18 +7,23 @@
 <#@ import namespace="UnitsNet" #>
 <#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Extensions" #>
-<#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
-<#@ include file="Includes\Shared.ttinclude" once="true"#>
-<# // Disable output of this file, note this causes a build warning #>
-<#@ output extension="/" #>
-<#//@ output extension=".cs" #> 
-<#
-    List<Type> unitAttributeTypes = GetUnitAttributeTypes(); 
-    List<string> unitClassNames = GetUnitClassNamesFromUnitAttributeImplementations(); 
+
+<#/* Uncomment below for intellisense/ReSharper support, 
+but this will give an error when trying to run __Regenerate.tt template 
+since they are included multiple times and once="true" does not
+seem to work as it should. */#>
+
+<#//@ include file="MultipleOutputHelper.ttinclude" once="true"#>
+<#//@ include file="Shared.ttinclude" once="true"#><#+
+
+private void GenerateUnitConverter(Manager m)
+{
+
+    List<Type> unitAttributeTypes = GetUnitAttributeTypes();
+    List<string> unitClassNames = GetUnitClassNamesFromUnitAttributeImplementations();
     Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
 
-    var m = Manager.Create(Host, GenerationEnvironment);
-    using (m.StartNewFile("UnitConverter.g.cs"))
+    using (m.StartNewFile(@"UnitConverter.g.cs"))
     {
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -66,10 +70,10 @@ namespace UnitsNet
                 return value;
 
             double newValue;
-<#      foreach (string unitName in unitClassNames) #>
-<#      { #>
-            if (TryConvertFrom<#=unitName#>(value, fromUnit, toUnit, out newValue)) return newValue;
-<#      }#>
+<#+      foreach (string unitName in unitClassNames) #>
+<#+      { #>
+            if (TryConvertFrom<#=unitName #>(value, fromUnit, toUnit, out newValue)) return newValue;
+<#+ } #>
 
             throw new Exception(
                 string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
@@ -92,67 +96,69 @@ namespace UnitsNet
                 return true;
             }
  
-<#      foreach (string unitName in unitClassNames) #>
-<#      { #>
-            if (TryConvertFrom<#=unitName#>(value, fromUnit, toUnit, out newValue)) return true;
-<#      }#>
+<#+      foreach (string unitName in unitClassNames) #>
+<#+      { #>
+            if (TryConvertFrom<#=unitName #>(value, fromUnit, toUnit, out newValue)) return true;
+<#+ } #>
 
             return false;
         }
 
         #region Private
 
-<#      foreach (string unitClassName in unitClassNames) #>
-<#      { #>
-<#     List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes, unitToAttribute); #>
-<##>
+<#+      foreach (string unitClassName in unitClassNames) #>
+<#+      { #>
+<#+          List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes,
+    unitToAttribute); #>
+
         /// <summary>
-        /// Try to dynamically convert from <#=unitClassName#> to <paramref name="toUnit"/>.
+        /// Try to dynamically convert from <#=unitClassName #> to <paramref name="toUnit"/>.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
         /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvertFrom<#=unitClassName#>(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        private static bool TryConvertFrom<#=unitClassName #>(double value, Unit fromUnit, Unit toUnit, out double newValue)
         {
             switch (fromUnit)
             {
-<#foreach (Unit unit in unitsOfUnitClass)#>
-<#{#>
-<#    string pluralUnitName = GetUnitPluralName(unitToAttribute, unit);#>
-                case Unit.<#=unit.ToString()#>:
-                    return TryConvert(<#=unitClassName #>.From<#=pluralUnitName#>(value), toUnit, out newValue);
-<# } #>
+<#+         foreach (Unit unit in unitsOfUnitClass) #>
+<#+         { #>
+<#+             string pluralUnitName = GetUnitPluralName(unitToAttribute, unit); #>
+                case Unit.<#=unit.ToString() #>:
+                    return TryConvert(<#=unitClassName #>.From<#=pluralUnitName #>(value), toUnit, out newValue);
+<#+ } #>
 
                 default:
                     newValue = 0;
                     return false;
             }
         }
-<#      }#>
+<#+ } #>
 
-<# foreach (string unitClassName in unitClassNames) #>
-<# { #>
-<#     List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes, unitToAttribute); #>
-<##>
+<#+ foreach (string unitClassName in unitClassNames) #>
+<#+ { #>
+<#+     List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes,
+    unitToAttribute); #>
+
         /// <summary>
-        /// Try to dynamically convert from <#=unitClassName#> to <paramref name="toUnit"/>.
+        /// Try to dynamically convert from <#=unitClassName #> to <paramref name="toUnit"/>.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
         /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        private static bool TryConvert(<#=unitClassName#> value, Unit toUnit, out double newValue)
+        private static bool TryConvert(<#=unitClassName #> value, Unit toUnit, out double newValue)
         {
             switch (toUnit)
             {
-<#foreach (Unit unit in unitsOfUnitClass)#>
-<#{#>
-                case Unit.<#=unit.ToString()#>:
-                    newValue = value.<#=GetUnitPluralName(unitToAttribute, unit)#>;
+<#+         foreach (Unit unit in unitsOfUnitClass) #>
+<#+         { #>
+                case Unit.<#=unit.ToString() #>:
+                    newValue = value.<#=GetUnitPluralName(unitToAttribute, unit) #>;
                     return true;
-<# } #>
+<#+ } #>
 
                 default:
                     newValue = 0;
@@ -160,7 +166,7 @@ namespace UnitsNet
             }
         }
 
-<#      }#> 
+<#+ } #> 
         #endregion
 
         #region Not implemented as unit class yet, no UnitAttribute for these
@@ -240,11 +246,9 @@ namespace UnitsNet
         #endregion
     }
 }
-<#
-    }
 
-    m.Process(split: true);
-#> <#+
-
+<#+
+    }  // using (m.StartNewFile(@"..\UnitConverter.g.cs"))
+} // private void GenerateUnitConverter(Manager m) 
 
 #>

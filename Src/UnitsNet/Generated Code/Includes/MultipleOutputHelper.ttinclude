@@ -154,7 +154,7 @@ class Manager {
             projectSyncAction = (IEnumerable<String> keepFileNames) => ProjectSync(templateProjectItem, keepFileNames);
         }
 
-        private static void ProjectSync(EnvDTE.ProjectItem templateProjectItem, IEnumerable<String> keepFileNames) {
+        private void ProjectSync(EnvDTE.ProjectItem templateProjectItem, IEnumerable<String> keepFileNames) {
             var keepFileNameSet = new HashSet<String>(keepFileNames);
             var projectFiles = new Dictionary<String, EnvDTE.ProjectItem>();
             var originalFilePrefix = Path.GetFileNameWithoutExtension(templateProjectItem.get_FileNames(0)) + ".";
@@ -169,7 +169,18 @@ class Manager {
             // Add missing files to the project
             foreach(String fileName in keepFileNameSet)
                 if (!projectFiles.ContainsKey(fileName))
-                    templateProjectItem.ProjectItems.AddFromFile(fileName);
+                {
+					// Remove any "..\" in path when outputting to parent folder by getting full path.
+					// Source: http://stackoverflow.com/a/4796339/134761
+                    string fileNameFullPath = Path.GetFullPath(new Uri(fileName).LocalPath);
+					
+					// Output as item in same folder as template file.
+                    templateProjectItem.Collection.AddFromFile(fileNameFullPath);
+
+					// Output as nested item under template file
+                    //templateProjectItem.ProjectItems.AddFromFile(fileNameFullPath);
+                }
+					
         }
 
         private void CheckoutFileIfRequired(String fileName) {

@@ -1,0 +1,28 @@
+﻿<# // Load types in current assembly. #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ include file="UnitClass.ttinclude" once="true"#>
+
+<#/* Uncomment below for intellisense/ReSharper support, 
+but this will give an error when trying to run __Regenerate.tt template 
+since they are included multiple times from .ttinclude files and once="true" does not
+seem to work as it should. */#>
+
+<#//@ include file="MultipleOutputHelper.ttinclude" once="true"#>
+<#//@ include file="Shared.ttinclude" once="true"#><#+
+
+    private void GenerateUnitClasses(Manager m)
+    {
+        List<UnitAttribute> unitAttributes = GetUnitAttributeImplementations();
+
+        foreach (UnitAttribute attr in unitAttributes)
+        {
+            Type unitAttributeType = attr.GetType();
+            string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
+            GenerateUnitClass(unitAttributeType, m, unitClassName, attr.BaseUnit, attr.XmlDocSummary);
+        }
+
+    }
+
+#>
+<#+
+#>
