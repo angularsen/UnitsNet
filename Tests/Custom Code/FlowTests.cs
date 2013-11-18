@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.net35.UnitClassTests
     {
         public override double CubicMetersPerHourInOneCubicMeterPerSecond
         {
-            get { return 1/3600.0; }
+            get { return 1*3600.0; }
         }
 
         public override double CubicMetersPerSecondInOneCubicMeterPerSecond

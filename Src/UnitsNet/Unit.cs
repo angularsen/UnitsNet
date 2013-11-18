@@ -171,7 +171,7 @@ namespace UnitsNet
 
         // Metric
         [Flow(1, "CubicMetersPerSecond")] CubicMeterPerSecond,
-        [Flow(3600, "CubicMetersPerHour")] CubicMeterPerHour,
+        [Flow(1.0/3600, "CubicMetersPerHour")] CubicMeterPerHour,
 
         // Metric
         [RotationalSpeed(1, "RevolutionsPerSecond")] RevolutionPerSecond,
