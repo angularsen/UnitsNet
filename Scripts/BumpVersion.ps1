@@ -92,7 +92,7 @@ function BumpVersion([string] $currentVersion) {
 	$versionParts = $currentVersion.split(".")
 	$minor = [Int]($versionParts[1]) + 1
 
-	$versionPattern = "(\d)\.(\d)\.(\d)"
+	$versionPattern = "(\d+)\.(\d+)\.(\d+)"
 	$versionReplacePattern = '$1.'+$minor+'.$3'
 
 	$version = $currentVersion -replace $versionPattern, $versionReplacePattern
