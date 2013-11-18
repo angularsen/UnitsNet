@@ -96,6 +96,7 @@
     <None Include="Generated Code\Includes\UnitValueTests.ttinclude" />
     <None Include="Generated Code\UnitTestClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitTestClasses.txt</LastGenOutput>
     </None>
     <None Include="Generated Code\UnitConverterTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -115,6 +116,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Generated Code\UnitTestClasses.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
