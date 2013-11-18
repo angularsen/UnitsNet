@@ -176,6 +176,6 @@ namespace UnitsNet
 
         // Metric
         [RotationalSpeed(1, "RevolutionsPerSecond")] RevolutionPerSecond,
-        [RotationalSpeed(60, "RevolutionsPerMinute")] RevolutionPerMinute,
+        [RotationalSpeed(1.0/60, "RevolutionsPerMinute")] RevolutionPerMinute,
     } 
  }
