@@ -47,17 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generated Code\AngleTestsBase.generated.cs" />
-    <Compile Include="Generated Code\AreaTestsBase.generated.cs" />
-    <Compile Include="Generated Code\ElectricPotentialTestsBase.generated.cs" />
-    <Compile Include="Generated Code\FlowTestsBase.generated.cs" />
-    <Compile Include="Generated Code\ForceTestsBase.generated.cs" />
-    <Compile Include="Generated Code\LengthTestsBase.generated.cs" />
-    <Compile Include="Generated Code\MassTestsBase.generated.cs" />
-    <Compile Include="Generated Code\PressureTestsBase.generated.cs" />
-    <Compile Include="Generated Code\RotationalSpeedTestsBase.generated.cs" />
-    <Compile Include="Generated Code\TorqueTestsBase.generated.cs" />
-    <Compile Include="Generated Code\VolumeTestsBase.generated.cs" />
+    <Compile Include="Generated Code\AngleTestsBase.g.cs" />
+    <Compile Include="Generated Code\AreaTestsBase.g.cs" />
+    <Compile Include="Generated Code\ElectricPotentialTestsBase.g.cs" />
+    <Compile Include="Generated Code\FlowTestsBase.g.cs" />
+    <Compile Include="Generated Code\ForceTestsBase.g.cs" />
+    <Compile Include="Generated Code\LengthTestsBase.g.cs" />
+    <Compile Include="Generated Code\MassTestsBase.g.cs" />
+    <Compile Include="Generated Code\PressureTestsBase.g.cs" />
+    <Compile Include="Generated Code\RotationalSpeedTestsBase.g.cs" />
+    <Compile Include="Generated Code\TorqueTestsBase.g.cs" />
+    <Compile Include="Generated Code\VolumeTestsBase.g.cs" />
     <Compile Include="Generated Code\UnitConverterTests.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
