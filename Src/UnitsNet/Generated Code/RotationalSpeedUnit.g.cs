@@ -43,7 +43,7 @@ namespace UnitsNet
 
         public double RevolutionsPerMinute
         {
-            get { return RevolutionsPerSecond/60; }
+            get { return RevolutionsPerSecond/0.0166666666666667; }
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace UnitsNet
         
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
         {
-            return new RotationalSpeed(revolutionsperminute*60);
+            return new RotationalSpeed(revolutionsperminute*0.0166666666666667);
         }
 
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)

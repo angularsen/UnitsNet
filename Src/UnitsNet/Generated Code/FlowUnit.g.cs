@@ -43,7 +43,7 @@ namespace UnitsNet
 
         public double CubicMetersPerHour
         {
-            get { return CubicMetersPerSecond/3600; }
+            get { return CubicMetersPerSecond/0.000277777777777778; }
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace UnitsNet
         
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
         {
-            return new Flow(cubicmetersperhour*3600);
+            return new Flow(cubicmetersperhour*0.000277777777777778);
         }
 
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
