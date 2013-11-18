@@ -1,11 +1,6 @@
-﻿<#@ assembly name="$(TargetDir)UnitsNet.net35.dll" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
+﻿<#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="UnitsNet" #>
-<#@ import namespace="UnitsNet.Attributes" #>
-<#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="..\..\..\Src\UnitsNet\Generated Code\Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#@ include file="..\..\..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #><#+
 
@@ -206,6 +201,6 @@ namespace UnitsNet.Tests
     }
 }
 <#+
-        }
-    }
+        } // using (manager.StartNewFile(className+"TestsBase.generated.cs"))
+    } // private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit) 
 #>
