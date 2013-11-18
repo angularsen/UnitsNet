@@ -41,9 +41,13 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get RotationalSpeed in RevolutionsPerMinute.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in RevolutionsPerMinute and y is value in base unit RevolutionsPerSecond.</remarks>
         public double RevolutionsPerMinute
         {
-            get { return RevolutionsPerSecond/0.0166666666666667; }
+            get { return (RevolutionsPerSecond - (0)) / 0.0166666666666667; }
         }
 
         #endregion
@@ -55,14 +59,22 @@ namespace UnitsNet
             get { return new RotationalSpeed(); }
         }
         
+        /// <summary>
+        /// Get RotationalSpeed from RevolutionsPerMinute.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in RevolutionsPerMinute and y is value in base unit RevolutionsPerSecond.</remarks>
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
         {
-            return new RotationalSpeed(revolutionsperminute*0.0166666666666667);
+            return new RotationalSpeed(0.0166666666666667 * revolutionsperminute + 0);
         }
 
+        /// <summary>
+        /// Get RotationalSpeed from RevolutionsPerSecond.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in RevolutionsPerSecond and y is value in base unit RevolutionsPerSecond.</remarks>
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
         {
-            return new RotationalSpeed(revolutionspersecond*1);
+            return new RotationalSpeed(1 * revolutionspersecond + 0);
         }
 
         #endregion

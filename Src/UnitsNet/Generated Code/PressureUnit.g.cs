@@ -41,59 +41,103 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Pressure in Atmospheres.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Atmospheres and y is value in base unit Pascals.</remarks>
         public double Atmospheres
         {
-            get { return Pascals/101325; }
+            get { return (Pascals - (0)) / 101325; }
         }
 
+        /// <summary>
+        /// Get Pressure in Bars.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Bars and y is value in base unit Pascals.</remarks>
         public double Bars
         {
-            get { return Pascals/100000; }
+            get { return (Pascals - (0)) / 100000; }
         }
 
+        /// <summary>
+        /// Get Pressure in KilogramForcePerSquareCentimeter.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in KilogramForcePerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public double KilogramForcePerSquareCentimeter
         {
-            get { return Pascals/98066.5; }
+            get { return (Pascals - (0)) / 98066.5; }
         }
 
+        /// <summary>
+        /// Get Pressure in Kilopascals.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Kilopascals and y is value in base unit Pascals.</remarks>
         public double Kilopascals
         {
-            get { return Pascals/1000; }
+            get { return (Pascals - (0)) / 1000; }
         }
 
+        /// <summary>
+        /// Get Pressure in Megapascals.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Megapascals and y is value in base unit Pascals.</remarks>
         public double Megapascals
         {
-            get { return Pascals/1000000; }
+            get { return (Pascals - (0)) / 1000000; }
         }
 
+        /// <summary>
+        /// Get Pressure in NewtonsPerSquareCentimeter.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareCentimeter
         {
-            get { return Pascals/10000; }
+            get { return (Pascals - (0)) / 10000; }
         }
 
+        /// <summary>
+        /// Get Pressure in NewtonsPerSquareMeter.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareMeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareMeter
         {
-            get { return Pascals/1; }
+            get { return (Pascals - (0)) / 1; }
         }
 
+        /// <summary>
+        /// Get Pressure in NewtonsPerSquareMillimeter.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareMillimeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareMillimeter
         {
-            get { return Pascals/1000000; }
+            get { return (Pascals - (0)) / 1000000; }
         }
 
+        /// <summary>
+        /// Get Pressure in Psi.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Psi and y is value in base unit Pascals.</remarks>
         public double Psi
         {
-            get { return Pascals/6894.64975179; }
+            get { return (Pascals - (0)) / 6894.64975179; }
         }
 
+        /// <summary>
+        /// Get Pressure in TechnicalAtmospheres.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in TechnicalAtmospheres and y is value in base unit Pascals.</remarks>
         public double TechnicalAtmospheres
         {
-            get { return Pascals/98068.0592331; }
+            get { return (Pascals - (0)) / 98068.0592331; }
         }
 
+        /// <summary>
+        /// Get Pressure in Torrs.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Torrs and y is value in base unit Pascals.</remarks>
         public double Torrs
         {
-            get { return Pascals/133.32266752; }
+            get { return (Pascals - (0)) / 133.32266752; }
         }
 
         #endregion
@@ -105,64 +149,112 @@ namespace UnitsNet
             get { return new Pressure(); }
         }
         
+        /// <summary>
+        /// Get Pressure from Atmospheres.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Atmospheres and y is value in base unit Pascals.</remarks>
         public static Pressure FromAtmospheres(double atmospheres)
         {
-            return new Pressure(atmospheres*101325);
+            return new Pressure(101325 * atmospheres + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Bars.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Bars and y is value in base unit Pascals.</remarks>
         public static Pressure FromBars(double bars)
         {
-            return new Pressure(bars*100000);
+            return new Pressure(100000 * bars + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from KilogramForcePerSquareCentimeter.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in KilogramForcePerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromKilogramForcePerSquareCentimeter(double kilogramforcepersquarecentimeter)
         {
-            return new Pressure(kilogramforcepersquarecentimeter*98066.5);
+            return new Pressure(98066.5 * kilogramforcepersquarecentimeter + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Kilopascals.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Kilopascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromKilopascals(double kilopascals)
         {
-            return new Pressure(kilopascals*1000);
+            return new Pressure(1000 * kilopascals + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Megapascals.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Megapascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromMegapascals(double megapascals)
         {
-            return new Pressure(megapascals*1000000);
+            return new Pressure(1000000 * megapascals + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from NewtonsPerSquareCentimeter.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareCentimeter(double newtonspersquarecentimeter)
         {
-            return new Pressure(newtonspersquarecentimeter*10000);
+            return new Pressure(10000 * newtonspersquarecentimeter + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from NewtonsPerSquareMeter.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareMeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareMeter(double newtonspersquaremeter)
         {
-            return new Pressure(newtonspersquaremeter*1);
+            return new Pressure(1 * newtonspersquaremeter + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from NewtonsPerSquareMillimeter.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareMillimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareMillimeter(double newtonspersquaremillimeter)
         {
-            return new Pressure(newtonspersquaremillimeter*1000000);
+            return new Pressure(1000000 * newtonspersquaremillimeter + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Pascals.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Pascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromPascals(double pascals)
         {
-            return new Pressure(pascals*1);
+            return new Pressure(1 * pascals + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Psi.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Psi and y is value in base unit Pascals.</remarks>
         public static Pressure FromPsi(double psi)
         {
-            return new Pressure(psi*6894.64975179);
+            return new Pressure(6894.64975179 * psi + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from TechnicalAtmospheres.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in TechnicalAtmospheres and y is value in base unit Pascals.</remarks>
         public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
         {
-            return new Pressure(technicalatmospheres*98068.0592331);
+            return new Pressure(98068.0592331 * technicalatmospheres + 0);
         }
 
+        /// <summary>
+        /// Get Pressure from Torrs.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Torrs and y is value in base unit Pascals.</remarks>
         public static Pressure FromTorrs(double torrs)
         {
-            return new Pressure(torrs*133.32266752);
+            return new Pressure(133.32266752 * torrs + 0);
         }
 
         #endregion

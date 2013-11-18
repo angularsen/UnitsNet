@@ -41,64 +41,112 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Length in Centimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Centimeters and y is value in base unit Meters.</remarks>
         public double Centimeters
         {
-            get { return Meters/0.01; }
+            get { return (Meters - (0)) / 0.01; }
         }
 
+        /// <summary>
+        /// Get Length in Decimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Decimeters and y is value in base unit Meters.</remarks>
         public double Decimeters
         {
-            get { return Meters/0.1; }
+            get { return (Meters - (0)) / 0.1; }
         }
 
+        /// <summary>
+        /// Get Length in Feet.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Feet and y is value in base unit Meters.</remarks>
         public double Feet
         {
-            get { return Meters/0.3048; }
+            get { return (Meters - (0)) / 0.3048; }
         }
 
+        /// <summary>
+        /// Get Length in Inches.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Inches and y is value in base unit Meters.</remarks>
         public double Inches
         {
-            get { return Meters/0.0254; }
+            get { return (Meters - (0)) / 0.0254; }
         }
 
+        /// <summary>
+        /// Get Length in Kilometers.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Kilometers and y is value in base unit Meters.</remarks>
         public double Kilometers
         {
-            get { return Meters/1000; }
+            get { return (Meters - (0)) / 1000; }
         }
 
+        /// <summary>
+        /// Get Length in Microinches.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Microinches and y is value in base unit Meters.</remarks>
         public double Microinches
         {
-            get { return Meters/2.54E-08; }
+            get { return (Meters - (0)) / 2.54E-08; }
         }
 
+        /// <summary>
+        /// Get Length in Micrometers.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Micrometers and y is value in base unit Meters.</remarks>
         public double Micrometers
         {
-            get { return Meters/1E-06; }
+            get { return (Meters - (0)) / 1E-06; }
         }
 
+        /// <summary>
+        /// Get Length in Mils.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Mils and y is value in base unit Meters.</remarks>
         public double Mils
         {
-            get { return Meters/2.54E-05; }
+            get { return (Meters - (0)) / 2.54E-05; }
         }
 
+        /// <summary>
+        /// Get Length in Miles.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Miles and y is value in base unit Meters.</remarks>
         public double Miles
         {
-            get { return Meters/1609.34; }
+            get { return (Meters - (0)) / 1609.34; }
         }
 
+        /// <summary>
+        /// Get Length in Millimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Millimeters and y is value in base unit Meters.</remarks>
         public double Millimeters
         {
-            get { return Meters/0.001; }
+            get { return (Meters - (0)) / 0.001; }
         }
 
+        /// <summary>
+        /// Get Length in Nanometers.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Nanometers and y is value in base unit Meters.</remarks>
         public double Nanometers
         {
-            get { return Meters/1E-09; }
+            get { return (Meters - (0)) / 1E-09; }
         }
 
+        /// <summary>
+        /// Get Length in Yards.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Yards and y is value in base unit Meters.</remarks>
         public double Yards
         {
-            get { return Meters/0.9144; }
+            get { return (Meters - (0)) / 0.9144; }
         }
 
         #endregion
@@ -110,69 +158,121 @@ namespace UnitsNet
             get { return new Length(); }
         }
         
+        /// <summary>
+        /// Get Length from Centimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Centimeters and y is value in base unit Meters.</remarks>
         public static Length FromCentimeters(double centimeters)
         {
-            return new Length(centimeters*0.01);
+            return new Length(0.01 * centimeters + 0);
         }
 
+        /// <summary>
+        /// Get Length from Decimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Decimeters and y is value in base unit Meters.</remarks>
         public static Length FromDecimeters(double decimeters)
         {
-            return new Length(decimeters*0.1);
+            return new Length(0.1 * decimeters + 0);
         }
 
+        /// <summary>
+        /// Get Length from Feet.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Feet and y is value in base unit Meters.</remarks>
         public static Length FromFeet(double feet)
         {
-            return new Length(feet*0.3048);
+            return new Length(0.3048 * feet + 0);
         }
 
+        /// <summary>
+        /// Get Length from Inches.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Inches and y is value in base unit Meters.</remarks>
         public static Length FromInches(double inches)
         {
-            return new Length(inches*0.0254);
+            return new Length(0.0254 * inches + 0);
         }
 
+        /// <summary>
+        /// Get Length from Kilometers.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Kilometers and y is value in base unit Meters.</remarks>
         public static Length FromKilometers(double kilometers)
         {
-            return new Length(kilometers*1000);
+            return new Length(1000 * kilometers + 0);
         }
 
+        /// <summary>
+        /// Get Length from Meters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Meters and y is value in base unit Meters.</remarks>
         public static Length FromMeters(double meters)
         {
-            return new Length(meters*1);
+            return new Length(1 * meters + 0);
         }
 
+        /// <summary>
+        /// Get Length from Microinches.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Microinches and y is value in base unit Meters.</remarks>
         public static Length FromMicroinches(double microinches)
         {
-            return new Length(microinches*2.54E-08);
+            return new Length(2.54E-08 * microinches + 0);
         }
 
+        /// <summary>
+        /// Get Length from Micrometers.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Micrometers and y is value in base unit Meters.</remarks>
         public static Length FromMicrometers(double micrometers)
         {
-            return new Length(micrometers*1E-06);
+            return new Length(1E-06 * micrometers + 0);
         }
 
+        /// <summary>
+        /// Get Length from Mils.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Mils and y is value in base unit Meters.</remarks>
         public static Length FromMils(double mils)
         {
-            return new Length(mils*2.54E-05);
+            return new Length(2.54E-05 * mils + 0);
         }
 
+        /// <summary>
+        /// Get Length from Miles.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Miles and y is value in base unit Meters.</remarks>
         public static Length FromMiles(double miles)
         {
-            return new Length(miles*1609.34);
+            return new Length(1609.34 * miles + 0);
         }
 
+        /// <summary>
+        /// Get Length from Millimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Millimeters and y is value in base unit Meters.</remarks>
         public static Length FromMillimeters(double millimeters)
         {
-            return new Length(millimeters*0.001);
+            return new Length(0.001 * millimeters + 0);
         }
 
+        /// <summary>
+        /// Get Length from Nanometers.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Nanometers and y is value in base unit Meters.</remarks>
         public static Length FromNanometers(double nanometers)
         {
-            return new Length(nanometers*1E-09);
+            return new Length(1E-09 * nanometers + 0);
         }
 
+        /// <summary>
+        /// Get Length from Yards.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Yards and y is value in base unit Meters.</remarks>
         public static Length FromYards(double yards)
         {
-            return new Length(yards*0.9144);
+            return new Length(0.9144 * yards + 0);
         }
 
         #endregion

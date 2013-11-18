@@ -165,6 +165,19 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual(t.RevolutionsPerSecondInOneRevolutionPerSecond, UnitConverter.Convert(1, Unit.RevolutionPerSecond, Unit.RevolutionPerSecond), Delta);
                 Assert.AreEqual(t.RevolutionsPerMinuteInOneRevolutionPerSecond, UnitConverter.Convert(1, Unit.RevolutionPerSecond, Unit.RevolutionPerMinute), Delta);
             }
+            [Test]
+            public void KelvinToTemperatureUnits()
+            {
+                var t = new TemperatureTests();
+                Assert.AreEqual(t.DegreesCelsiusInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeCelsius), Delta);
+                Assert.AreEqual(t.DegreesDelisleInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeDelisle), Delta);
+                Assert.AreEqual(t.DegreesFahrenheitInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeFahrenheit), Delta);
+                Assert.AreEqual(t.KelvinsInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.Kelvin), Delta);
+                Assert.AreEqual(t.DegreesNewtonInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeNewton), Delta);
+                Assert.AreEqual(t.DegreesRankineInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeRankine), Delta);
+                Assert.AreEqual(t.DegreesReaumurInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeReaumur), Delta);
+                Assert.AreEqual(t.DegreesRoemerInOneKelvin, UnitConverter.Convert(1, Unit.Kelvin, Unit.DegreeRoemer), Delta);
+            }
     }
 } 
 

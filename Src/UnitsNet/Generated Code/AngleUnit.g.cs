@@ -41,14 +41,22 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Angle in Gradians.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Gradians and y is value in base unit Degrees.</remarks>
         public double Gradians
         {
-            get { return Degrees/0.9; }
+            get { return (Degrees - (0)) / 0.9; }
         }
 
+        /// <summary>
+        /// Get Angle in Radians.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Radians and y is value in base unit Degrees.</remarks>
         public double Radians
         {
-            get { return Degrees/57.2957795130823; }
+            get { return (Degrees - (0)) / 57.2957795130823; }
         }
 
         #endregion
@@ -60,19 +68,31 @@ namespace UnitsNet
             get { return new Angle(); }
         }
         
+        /// <summary>
+        /// Get Angle from Degrees.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Degrees and y is value in base unit Degrees.</remarks>
         public static Angle FromDegrees(double degrees)
         {
-            return new Angle(degrees*1);
+            return new Angle(1 * degrees + 0);
         }
 
+        /// <summary>
+        /// Get Angle from Gradians.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Gradians and y is value in base unit Degrees.</remarks>
         public static Angle FromGradians(double gradians)
         {
-            return new Angle(gradians*0.9);
+            return new Angle(0.9 * gradians + 0);
         }
 
+        /// <summary>
+        /// Get Angle from Radians.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Radians and y is value in base unit Degrees.</remarks>
         public static Angle FromRadians(double radians)
         {
-            return new Angle(radians*57.2957795130823);
+            return new Angle(57.2957795130823 * radians + 0);
         }
 
         #endregion

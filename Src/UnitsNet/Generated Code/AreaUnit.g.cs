@@ -41,44 +41,76 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Area in SquareCentimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareCentimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareCentimeters
         {
-            get { return SquareMeters/0.0001; }
+            get { return (SquareMeters - (0)) / 0.0001; }
         }
 
+        /// <summary>
+        /// Get Area in SquareDecimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareDecimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareDecimeters
         {
-            get { return SquareMeters/0.01; }
+            get { return (SquareMeters - (0)) / 0.01; }
         }
 
+        /// <summary>
+        /// Get Area in SquareFeet.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareFeet and y is value in base unit SquareMeters.</remarks>
         public double SquareFeet
         {
-            get { return SquareMeters/0.092903; }
+            get { return (SquareMeters - (0)) / 0.092903; }
         }
 
+        /// <summary>
+        /// Get Area in SquareInches.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareInches and y is value in base unit SquareMeters.</remarks>
         public double SquareInches
         {
-            get { return SquareMeters/0.00064516; }
+            get { return (SquareMeters - (0)) / 0.00064516; }
         }
 
+        /// <summary>
+        /// Get Area in SquareKilometers.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
         public double SquareKilometers
         {
-            get { return SquareMeters/1000000; }
+            get { return (SquareMeters - (0)) / 1000000; }
         }
 
+        /// <summary>
+        /// Get Area in SquareMiles.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareMiles and y is value in base unit SquareMeters.</remarks>
         public double SquareMiles
         {
-            get { return SquareMeters/2590000; }
+            get { return (SquareMeters - (0)) / 2590000; }
         }
 
+        /// <summary>
+        /// Get Area in SquareMillimeters.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareMillimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareMillimeters
         {
-            get { return SquareMeters/1E-06; }
+            get { return (SquareMeters - (0)) / 1E-06; }
         }
 
+        /// <summary>
+        /// Get Area in SquareYards.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareYards and y is value in base unit SquareMeters.</remarks>
         public double SquareYards
         {
-            get { return SquareMeters/0.836127; }
+            get { return (SquareMeters - (0)) / 0.836127; }
         }
 
         #endregion
@@ -90,49 +122,85 @@ namespace UnitsNet
             get { return new Area(); }
         }
         
+        /// <summary>
+        /// Get Area from SquareCentimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareCentimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareCentimeters(double squarecentimeters)
         {
-            return new Area(squarecentimeters*0.0001);
+            return new Area(0.0001 * squarecentimeters + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareDecimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareDecimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareDecimeters(double squaredecimeters)
         {
-            return new Area(squaredecimeters*0.01);
+            return new Area(0.01 * squaredecimeters + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareFeet.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareFeet and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareFeet(double squarefeet)
         {
-            return new Area(squarefeet*0.092903);
+            return new Area(0.092903 * squarefeet + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareInches.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareInches and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareInches(double squareinches)
         {
-            return new Area(squareinches*0.00064516);
+            return new Area(0.00064516 * squareinches + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareKilometers.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareKilometers(double squarekilometers)
         {
-            return new Area(squarekilometers*1000000);
+            return new Area(1000000 * squarekilometers + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareMeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareMeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMeters(double squaremeters)
         {
-            return new Area(squaremeters*1);
+            return new Area(1 * squaremeters + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareMiles.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareMiles and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMiles(double squaremiles)
         {
-            return new Area(squaremiles*2590000);
+            return new Area(2590000 * squaremiles + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareMillimeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareMillimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMillimeters(double squaremillimeters)
         {
-            return new Area(squaremillimeters*1E-06);
+            return new Area(1E-06 * squaremillimeters + 0);
         }
 
+        /// <summary>
+        /// Get Area from SquareYards.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareYards and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareYards(double squareyards)
         {
-            return new Area(squareyards*0.836127);
+            return new Area(0.836127 * squareyards + 0);
         }
 
         #endregion

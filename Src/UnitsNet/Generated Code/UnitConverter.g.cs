@@ -51,6 +51,7 @@ namespace UnitsNet
             if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertFromTemperature(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromVolume(value, fromUnit, toUnit, out newValue)) return newValue;
 
@@ -84,6 +85,7 @@ namespace UnitsNet
             if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertFromTemperature(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromVolume(value, fromUnit, toUnit, out newValue)) return true;
 
@@ -379,6 +381,41 @@ namespace UnitsNet
                     return TryConvert(RotationalSpeed.FromRevolutionsPerSecond(value), toUnit, out newValue);
                 case Unit.RevolutionPerMinute:
                     return TryConvert(RotationalSpeed.FromRevolutionsPerMinute(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Try to dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvertFromTemperature(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.DegreeCelsius:
+                    return TryConvert(Temperature.FromDegreesCelsius(value), toUnit, out newValue);
+                case Unit.DegreeDelisle:
+                    return TryConvert(Temperature.FromDegreesDelisle(value), toUnit, out newValue);
+                case Unit.DegreeFahrenheit:
+                    return TryConvert(Temperature.FromDegreesFahrenheit(value), toUnit, out newValue);
+                case Unit.Kelvin:
+                    return TryConvert(Temperature.FromKelvins(value), toUnit, out newValue);
+                case Unit.DegreeNewton:
+                    return TryConvert(Temperature.FromDegreesNewton(value), toUnit, out newValue);
+                case Unit.DegreeRankine:
+                    return TryConvert(Temperature.FromDegreesRankine(value), toUnit, out newValue);
+                case Unit.DegreeReaumur:
+                    return TryConvert(Temperature.FromDegreesReaumur(value), toUnit, out newValue);
+                case Unit.DegreeRoemer:
+                    return TryConvert(Temperature.FromDegreesRoemer(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -807,6 +844,49 @@ namespace UnitsNet
                     return true;
                 case Unit.RevolutionPerMinute:
                     newValue = value.RevolutionsPerMinute;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Try to dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvert(Temperature value, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.DegreeCelsius:
+                    newValue = value.DegreesCelsius;
+                    return true;
+                case Unit.DegreeDelisle:
+                    newValue = value.DegreesDelisle;
+                    return true;
+                case Unit.DegreeFahrenheit:
+                    newValue = value.DegreesFahrenheit;
+                    return true;
+                case Unit.Kelvin:
+                    newValue = value.Kelvins;
+                    return true;
+                case Unit.DegreeNewton:
+                    newValue = value.DegreesNewton;
+                    return true;
+                case Unit.DegreeRankine:
+                    newValue = value.DegreesRankine;
+                    return true;
+                case Unit.DegreeReaumur:
+                    newValue = value.DegreesReaumur;
+                    return true;
+                case Unit.DegreeRoemer:
+                    newValue = value.DegreesRoemer;
                     return true;
 
                 default:

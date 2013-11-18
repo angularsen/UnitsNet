@@ -177,5 +177,14 @@ namespace UnitsNet
         // Metric
         [RotationalSpeed(1, "RevolutionsPerSecond")] RevolutionPerSecond,
         [RotationalSpeed(1.0/60, "RevolutionsPerMinute")] RevolutionPerMinute,
+
+        [Temperature(slope: 1, offset: 273.15, pluralName: "DegreesCelsius")] DegreeCelsius,
+        [Temperature(slope: -2d/3, offset: 373.15, pluralName: "DegreesDelisle")] DegreeDelisle,
+        [Temperature(slope: 5d/9, offset: 459.67*5d/9, pluralName: "DegreesFahrenheit")] DegreeFahrenheit,
+        [Temperature(1)] Kelvin, // Base unit
+        [Temperature(slope: 100d/33, offset: 273.15, pluralName: "DegreesNewton")] DegreeNewton,
+        [Temperature(slope: 5d/9, offset: 0, pluralName: "DegreesRankine")] DegreeRankine,
+        [Temperature(slope: 5d/4, offset: 273.15, pluralName: "DegreesReaumur")] DegreeReaumur,
+        [Temperature(slope: 40d/21, offset: 273.15-7.5*40d/21, pluralName: "DegreesRoemer")] DegreeRoemer,
     } 
  }

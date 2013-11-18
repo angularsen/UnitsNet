@@ -41,59 +41,103 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Mass in Centigrams.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Centigrams and y is value in base unit Kilograms.</remarks>
         public double Centigrams
         {
-            get { return Kilograms/1E-05; }
+            get { return (Kilograms - (0)) / 1E-05; }
         }
 
+        /// <summary>
+        /// Get Mass in Decagrams.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Decagrams and y is value in base unit Kilograms.</remarks>
         public double Decagrams
         {
-            get { return Kilograms/0.01; }
+            get { return (Kilograms - (0)) / 0.01; }
         }
 
+        /// <summary>
+        /// Get Mass in Decigrams.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Decigrams and y is value in base unit Kilograms.</remarks>
         public double Decigrams
         {
-            get { return Kilograms/0.0001; }
+            get { return (Kilograms - (0)) / 0.0001; }
         }
 
+        /// <summary>
+        /// Get Mass in Grams.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Grams and y is value in base unit Kilograms.</remarks>
         public double Grams
         {
-            get { return Kilograms/0.001; }
+            get { return (Kilograms - (0)) / 0.001; }
         }
 
+        /// <summary>
+        /// Get Mass in Hectograms.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Hectograms and y is value in base unit Kilograms.</remarks>
         public double Hectograms
         {
-            get { return Kilograms/0.1; }
+            get { return (Kilograms - (0)) / 0.1; }
         }
 
+        /// <summary>
+        /// Get Mass in Kilotonnes.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Kilotonnes and y is value in base unit Kilograms.</remarks>
         public double Kilotonnes
         {
-            get { return Kilograms/1000000; }
+            get { return (Kilograms - (0)) / 1000000; }
         }
 
+        /// <summary>
+        /// Get Mass in LongTons.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in LongTons and y is value in base unit Kilograms.</remarks>
         public double LongTons
         {
-            get { return Kilograms/1016.0469088; }
+            get { return (Kilograms - (0)) / 1016.0469088; }
         }
 
+        /// <summary>
+        /// Get Mass in Megatonnes.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Megatonnes and y is value in base unit Kilograms.</remarks>
         public double Megatonnes
         {
-            get { return Kilograms/1000000000; }
+            get { return (Kilograms - (0)) / 1000000000; }
         }
 
+        /// <summary>
+        /// Get Mass in Milligrams.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Milligrams and y is value in base unit Kilograms.</remarks>
         public double Milligrams
         {
-            get { return Kilograms/1E-06; }
+            get { return (Kilograms - (0)) / 1E-06; }
         }
 
+        /// <summary>
+        /// Get Mass in ShortTons.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in ShortTons and y is value in base unit Kilograms.</remarks>
         public double ShortTons
         {
-            get { return Kilograms/907.18474; }
+            get { return (Kilograms - (0)) / 907.18474; }
         }
 
+        /// <summary>
+        /// Get Mass in Tonnes.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Tonnes and y is value in base unit Kilograms.</remarks>
         public double Tonnes
         {
-            get { return Kilograms/1000; }
+            get { return (Kilograms - (0)) / 1000; }
         }
 
         #endregion
@@ -105,64 +149,112 @@ namespace UnitsNet
             get { return new Mass(); }
         }
         
+        /// <summary>
+        /// Get Mass from Centigrams.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Centigrams and y is value in base unit Kilograms.</remarks>
         public static Mass FromCentigrams(double centigrams)
         {
-            return new Mass(centigrams*1E-05);
+            return new Mass(1E-05 * centigrams + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Decagrams.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Decagrams and y is value in base unit Kilograms.</remarks>
         public static Mass FromDecagrams(double decagrams)
         {
-            return new Mass(decagrams*0.01);
+            return new Mass(0.01 * decagrams + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Decigrams.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Decigrams and y is value in base unit Kilograms.</remarks>
         public static Mass FromDecigrams(double decigrams)
         {
-            return new Mass(decigrams*0.0001);
+            return new Mass(0.0001 * decigrams + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Grams.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Grams and y is value in base unit Kilograms.</remarks>
         public static Mass FromGrams(double grams)
         {
-            return new Mass(grams*0.001);
+            return new Mass(0.001 * grams + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Hectograms.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Hectograms and y is value in base unit Kilograms.</remarks>
         public static Mass FromHectograms(double hectograms)
         {
-            return new Mass(hectograms*0.1);
+            return new Mass(0.1 * hectograms + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Kilograms.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Kilograms and y is value in base unit Kilograms.</remarks>
         public static Mass FromKilograms(double kilograms)
         {
-            return new Mass(kilograms*1);
+            return new Mass(1 * kilograms + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Kilotonnes.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Kilotonnes and y is value in base unit Kilograms.</remarks>
         public static Mass FromKilotonnes(double kilotonnes)
         {
-            return new Mass(kilotonnes*1000000);
+            return new Mass(1000000 * kilotonnes + 0);
         }
 
+        /// <summary>
+        /// Get Mass from LongTons.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in LongTons and y is value in base unit Kilograms.</remarks>
         public static Mass FromLongTons(double longtons)
         {
-            return new Mass(longtons*1016.0469088);
+            return new Mass(1016.0469088 * longtons + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Megatonnes.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Megatonnes and y is value in base unit Kilograms.</remarks>
         public static Mass FromMegatonnes(double megatonnes)
         {
-            return new Mass(megatonnes*1000000000);
+            return new Mass(1000000000 * megatonnes + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Milligrams.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Milligrams and y is value in base unit Kilograms.</remarks>
         public static Mass FromMilligrams(double milligrams)
         {
-            return new Mass(milligrams*1E-06);
+            return new Mass(1E-06 * milligrams + 0);
         }
 
+        /// <summary>
+        /// Get Mass from ShortTons.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in ShortTons and y is value in base unit Kilograms.</remarks>
         public static Mass FromShortTons(double shorttons)
         {
-            return new Mass(shorttons*907.18474);
+            return new Mass(907.18474 * shorttons + 0);
         }
 
+        /// <summary>
+        /// Get Mass from Tonnes.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Tonnes and y is value in base unit Kilograms.</remarks>
         public static Mass FromTonnes(double tonnes)
         {
-            return new Mass(tonnes*1000);
+            return new Mass(1000 * tonnes + 0);
         }
 
         #endregion

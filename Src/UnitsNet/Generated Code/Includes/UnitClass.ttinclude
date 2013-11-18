@@ -81,18 +81,24 @@ namespace UnitsNet
     foreach (Unit unit in orderedClassUnitsExceptBaseUnit)
     {
         string propertyName = GetUnitPluralName(unitToAttribute, unit);
-        double unitToBaseRatio = unitToAttribute[unit].Ratio;
+
+         // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.         // a: 1000         // b: 0         // y: base unit value in meters         // x: unit value in kilometers         // new Length(2000).Kilometers => (y - b) / a = (2000 - 0) / 1000 = 2km         // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
+        LinearFunction linearFunc = unitToAttribute[unit].LinearMappingFromBaseUnit;
         /*
         Example:
         public double Kilonewtons
         {
-            get { return Newtons*1E-3; }
+            get { return (Newtons - 0) / 1E3; }
         }
         */
 #>
+        /// <summary>
+        /// Get <#=className#> in <#=propertyName#>.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in <#=propertyName#> and y is value in base unit <#=baseUnitPluralName#>.</remarks>
         public double <#=propertyName #>
         {
-            get { return <#=baseUnitPluralName #>/<#=unitToBaseRatio #>; }
+            get { return (<#=baseUnitPluralName#> - (<#=linearFunc.b#>)) / <#=linearFunc.a#>; }
         }
 
 <#+
@@ -113,18 +119,30 @@ namespace UnitsNet
             {
                 string methodNamePostfix = GetUnitPluralName(unitToAttribute, unit);
                 string valueParamName = methodNamePostfix.ToLowerInvariant();
-                double unitToBaseRatio = unitToAttribute[unit].Ratio;
+
+                // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.
+                // a: 1000
+                // b: 0
+                // y: base unit value in meters
+                // x: unit value in kilometers
+                // new Length(2000).Kilometers => (y - b) / a = (2000 - 0) / 1000 = 2km
+                // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
+                LinearFunction linearFunc = unitToAttribute[unit].LinearMappingFromBaseUnit;
                 /*
         Example:
         public static Force FromKilonewtons(double kilonewtons)
         {
-            return new Force(kilonewtons*1000);
+            return new Force(1E3 * kilonewtons + 0);
         }
         */
 #>
+        /// <summary>
+        /// Get <#=className#> from <#=methodNamePostfix#>.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in <#=methodNamePostfix#> and y is value in base unit <#=baseUnitPluralName#>.</remarks>
         public static <#=className #> From<#=methodNamePostfix #>(double <#=valueParamName #>)
         {
-            return new <#=className #>(<#=valueParamName #>*<#=unitToBaseRatio #>);
+            return new <#=className #>(<#=linearFunc.a#> * <#=valueParamName#> + <#=linearFunc.b#>);
         }
 
 <#+

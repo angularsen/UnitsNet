@@ -413,6 +413,16 @@ namespace UnitsNet
             // RotationalSpeed
             MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
             MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
+
+	    // Temperature
+            MapUnitToAbbreviation(Unit.Kelvin, "K");
+            MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
+            MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
+            MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
+            MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
+            MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
+            MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
+            MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
         }
 
         private void MapUnitToAbbreviation(Unit unit, params string[] abbreviations)

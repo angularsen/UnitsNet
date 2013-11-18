@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom Code\TemperatureTests.cs" />
     <Compile Include="Generated Code\AngleTestsBase.g.cs" />
     <Compile Include="Generated Code\AreaTestsBase.g.cs" />
     <Compile Include="Generated Code\ElectricPotentialTestsBase.g.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Generated Code\MassTestsBase.g.cs" />
     <Compile Include="Generated Code\PressureTestsBase.g.cs" />
     <Compile Include="Generated Code\RotationalSpeedTestsBase.g.cs" />
+    <Compile Include="Generated Code\TemperatureTestsBase.g.cs" />
     <Compile Include="Generated Code\TorqueTestsBase.g.cs" />
     <Compile Include="Generated Code\VolumeTestsBase.g.cs" />
     <Compile Include="Generated Code\UnitConverterTests.g.cs">

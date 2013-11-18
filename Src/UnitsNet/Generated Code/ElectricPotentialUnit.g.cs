@@ -50,9 +50,13 @@ namespace UnitsNet
             get { return new ElectricPotential(); }
         }
         
+        /// <summary>
+        /// Get ElectricPotential from Volts.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Volts and y is value in base unit Volts.</remarks>
         public static ElectricPotential FromVolts(double volts)
         {
-            return new ElectricPotential(volts*1);
+            return new ElectricPotential(1 * volts + 0);
         }
 
         #endregion

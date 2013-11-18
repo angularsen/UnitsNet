@@ -55,6 +55,7 @@
     <Compile Include="Generated Code\MassUnit.g.cs" />
     <Compile Include="Generated Code\PressureUnit.g.cs" />
     <Compile Include="Generated Code\RotationalSpeedUnit.g.cs" />
+    <Compile Include="Generated Code\TemperatureUnit.g.cs" />
     <Compile Include="Generated Code\TorqueUnit.g.cs" />
     <Compile Include="Generated Code\UnitConverter.g.cs" />
     <Compile Include="Generated Code\VolumeUnit.g.cs" />

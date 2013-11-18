@@ -41,34 +41,58 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Force in Dyne.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Dyne and y is value in base unit Newtons.</remarks>
         public double Dyne
         {
-            get { return Newtons/1E-05; }
+            get { return (Newtons - (0)) / 1E-05; }
         }
 
+        /// <summary>
+        /// Get Force in KilogramsForce.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in KilogramsForce and y is value in base unit Newtons.</remarks>
         public double KilogramsForce
         {
-            get { return Newtons/9.80665002864; }
+            get { return (Newtons - (0)) / 9.80665002864; }
         }
 
+        /// <summary>
+        /// Get Force in Kilonewtons.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Kilonewtons and y is value in base unit Newtons.</remarks>
         public double Kilonewtons
         {
-            get { return Newtons/1000; }
+            get { return (Newtons - (0)) / 1000; }
         }
 
+        /// <summary>
+        /// Get Force in KiloPonds.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in KiloPonds and y is value in base unit Newtons.</remarks>
         public double KiloPonds
         {
-            get { return Newtons/9.80665002864; }
+            get { return (Newtons - (0)) / 9.80665002864; }
         }
 
+        /// <summary>
+        /// Get Force in Poundals.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Poundals and y is value in base unit Newtons.</remarks>
         public double Poundals
         {
-            get { return Newtons/0.13825502798973; }
+            get { return (Newtons - (0)) / 0.13825502798973; }
         }
 
+        /// <summary>
+        /// Get Force in PoundForces.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in PoundForces and y is value in base unit Newtons.</remarks>
         public double PoundForces
         {
-            get { return Newtons/4.44822161526051; }
+            get { return (Newtons - (0)) / 4.44822161526051; }
         }
 
         #endregion
@@ -80,39 +104,67 @@ namespace UnitsNet
             get { return new Force(); }
         }
         
+        /// <summary>
+        /// Get Force from Dyne.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Dyne and y is value in base unit Newtons.</remarks>
         public static Force FromDyne(double dyne)
         {
-            return new Force(dyne*1E-05);
+            return new Force(1E-05 * dyne + 0);
         }
 
+        /// <summary>
+        /// Get Force from KilogramsForce.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in KilogramsForce and y is value in base unit Newtons.</remarks>
         public static Force FromKilogramsForce(double kilogramsforce)
         {
-            return new Force(kilogramsforce*9.80665002864);
+            return new Force(9.80665002864 * kilogramsforce + 0);
         }
 
+        /// <summary>
+        /// Get Force from Kilonewtons.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Kilonewtons and y is value in base unit Newtons.</remarks>
         public static Force FromKilonewtons(double kilonewtons)
         {
-            return new Force(kilonewtons*1000);
+            return new Force(1000 * kilonewtons + 0);
         }
 
+        /// <summary>
+        /// Get Force from KiloPonds.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in KiloPonds and y is value in base unit Newtons.</remarks>
         public static Force FromKiloPonds(double kiloponds)
         {
-            return new Force(kiloponds*9.80665002864);
+            return new Force(9.80665002864 * kiloponds + 0);
         }
 
+        /// <summary>
+        /// Get Force from Newtons.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Newtons and y is value in base unit Newtons.</remarks>
         public static Force FromNewtons(double newtons)
         {
-            return new Force(newtons*1);
+            return new Force(1 * newtons + 0);
         }
 
+        /// <summary>
+        /// Get Force from Poundals.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Poundals and y is value in base unit Newtons.</remarks>
         public static Force FromPoundals(double poundals)
         {
-            return new Force(poundals*0.13825502798973);
+            return new Force(0.13825502798973 * poundals + 0);
         }
 
+        /// <summary>
+        /// Get Force from PoundForces.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in PoundForces and y is value in base unit Newtons.</remarks>
         public static Force FromPoundForces(double poundforces)
         {
-            return new Force(poundforces*4.44822161526051);
+            return new Force(4.44822161526051 * poundforces + 0);
         }
 
         #endregion

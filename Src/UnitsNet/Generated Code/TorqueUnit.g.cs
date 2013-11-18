@@ -50,9 +50,13 @@ namespace UnitsNet
             get { return new Torque(); }
         }
         
+        /// <summary>
+        /// Get Torque from Newtonmeters.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Newtonmeters and y is value in base unit Newtonmeters.</remarks>
         public static Torque FromNewtonmeters(double newtonmeters)
         {
-            return new Torque(newtonmeters*1);
+            return new Torque(1 * newtonmeters + 0);
         }
 
         #endregion

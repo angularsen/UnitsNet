@@ -41,9 +41,13 @@ namespace UnitsNet
 
         #region Unit Properties
 
+        /// <summary>
+        /// Get Flow in CubicMetersPerHour.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in CubicMetersPerHour and y is value in base unit CubicMetersPerSecond.</remarks>
         public double CubicMetersPerHour
         {
-            get { return CubicMetersPerSecond/0.000277777777777778; }
+            get { return (CubicMetersPerSecond - (0)) / 0.000277777777777778; }
         }
 
         #endregion
@@ -55,14 +59,22 @@ namespace UnitsNet
             get { return new Flow(); }
         }
         
+        /// <summary>
+        /// Get Flow from CubicMetersPerHour.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in CubicMetersPerHour and y is value in base unit CubicMetersPerSecond.</remarks>
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
         {
-            return new Flow(cubicmetersperhour*0.000277777777777778);
+            return new Flow(0.000277777777777778 * cubicmetersperhour + 0);
         }
 
+        /// <summary>
+        /// Get Flow from CubicMetersPerSecond.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in CubicMetersPerSecond and y is value in base unit CubicMetersPerSecond.</remarks>
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
         {
-            return new Flow(cubicmeterspersecond*1);
+            return new Flow(1 * cubicmeterspersecond + 0);
         }
 
         #endregion
