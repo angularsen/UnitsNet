@@ -18,15 +18,31 @@
     private static UnitAttribute GetUnitAttributeFromUnitClassName(string unitClassName)
     {
         // Derived UnitAttributes are typically named LengthAttribute, MassAttribute etc.
-        const string attributeNamespace = "UnitsNet";
+        const string attributeNamespace = "UnitsNet.Attributes";
         string unitAttributeFullName = String.Format("{0}.{1}Attribute", attributeNamespace, unitClassName);
         Type unitAttributeType = typeof (Unit).Assembly.GetType(unitAttributeFullName);
         if (unitAttributeType == null)
             return null;
 
         // Example ctor: public AngleAttribute(double ratio, string pluralName = null)
-        var attr = (UnitAttribute) Activator.CreateInstance(unitAttributeType, new object[] {0.0, null});
+        //var attr = (UnitAttribute) Activator.CreateInstance(unitAttributeType, new object[] {0.0, null});
+
+        ConstructorInfo simplestCtor = unitAttributeType.GetConstructors().OrderBy(ctor => ctor.GetParameters().Length).First();
+        object[] parameters = simplestCtor.GetParameters().Select(p => GetDefault(p.ParameterType)).ToArray();
+        if (parameters.Length == 0)
+            throw new Exception("Ctor with no params found for type: " + unitAttributeType);
+
+        var attr = (UnitAttribute)simplestCtor.Invoke(parameters);
         return attr;
+    }
+
+    private static object GetDefault(Type type)
+    {
+        if (type.IsValueType)
+        {
+            return Activator.CreateInstance(type);
+        }
+        return null;
     }
 
     private Dictionary<Unit, TUnitAttribute> GetUnitToAttributeDictionary<TUnitAttribute>()
