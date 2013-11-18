@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Attributes;
 
 namespace UnitsNet
 {

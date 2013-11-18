@@ -21,19 +21,8 @@
 
 using System;
 
-namespace UnitsNet
+namespace UnitsNet.Attributes
 {
-    //[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    //public class FooAttribute : UnitAttribute
-    //{
-    //    public override Unit BaseUnit { get { return Unit.Meter; } }
-    //    public override string XmlDocSummary { get { return "Foo description"; } }
-
-    //    public FooAttribute(double ratio, string pluralName = (string)null) : base(pluralName, ratio)
-    //    {
-    //    }
-    //}
-
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class AngleAttribute : UnitAttribute
     {
@@ -143,39 +132,6 @@ namespace UnitsNet
         public override string XmlDocSummary { get { return "Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces."; } }
         public VolumeAttribute(double ratio, string pluralName = (string)null) : base(pluralName, ratio)
         {
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public abstract class UnitAttribute : Attribute
-    {
-        /// <summary>
-        ///     Base unit of unit class. This is the unit that unit classes store their value as internally.
-        ///     Conversions between two units go via the base unit to simplify defining the constants, requiring only N constants
-        ///     instead of N².
-        /// </summary>
-        public abstract Unit BaseUnit { get; }
-
-        /// <summary>
-        ///     Name of unit in plural form. Will be used as property name such as Force.FromNewtonmeters().
-        /// </summary>
-        public readonly string PluralName;
-
-        /// <summary>
-        ///     Ratio of unit to base unit. For example, <see cref="Unit.Kilometer" /> is 1000:1 of the base unit
-        ///     <see cref="Unit.Meter" />.
-        /// </summary>
-        public readonly double Ratio;
-
-        /// <summary>
-        ///     XML doc summary for unit class. Will be inserted when generating the class from T4 template.
-        /// </summary>
-        public abstract string XmlDocSummary { get; }
-
-        public UnitAttribute(string pluralName, double ratio)
-        {
-            Ratio = ratio;
-            PluralName = pluralName;
         }
     }
 }

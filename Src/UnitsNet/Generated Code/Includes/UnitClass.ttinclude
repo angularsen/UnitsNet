@@ -5,6 +5,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet" #>
+<#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="MultipleOutputHelper.ttinclude" once="true"#>
 <#@ include file="Shared.ttinclude" once="true" #>

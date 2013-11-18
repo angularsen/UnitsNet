@@ -6,6 +6,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="UnitsNet" #>
+<#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Extensions" #><#+
 
     /// <summary>

@@ -6,6 +6,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet" #>
+<#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Extensions" #>
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#@ include file="Includes\Shared.ttinclude" once="true"#>
