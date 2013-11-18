@@ -6,7 +6,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet" #>
 <#@ import namespace="MoreLinq" #>
-<#@ include file="$(SolutionDir)\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #><#+
+<#@ include file="..\..\..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #><#+
     
     private void GenerateUnitConverterTests(Dictionary<Unit, UnitAttribute> unitToAttribute)
     {
