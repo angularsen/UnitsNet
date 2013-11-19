@@ -274,6 +274,16 @@ namespace UnitsNet
             // RotationalSpeed
             MapUnitToAbbreviation(Unit.RevolutionPerSecond, "об/с");
             MapUnitToAbbreviation(Unit.RevolutionPerMinute, "об/мин");
+
+            // Temperature
+            MapUnitToAbbreviation(Unit.Kelvin, "K");
+            MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
+            MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
+            MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
+            MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
+            MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
+            MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
+            MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
         }
 
         private void CreateCultureInvariants()
