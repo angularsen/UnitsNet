@@ -127,20 +127,10 @@ A: There are a few concerns here.
 * By design, Units.NET was not intended for high-accuracy conversions but rather convenience and simplicity. I am open to suggestions for improvements. If you want to know more, see the [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision) article.
 
 
-Work In Progress
-================
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing.
-
-* Add more units.
-* Not all conversions are unit tested yet.
-* Parsing and getting textual representations not complete.
-* Document all the data structures, units and conversions.
-
 Want To Contribute?
 ===================
-Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit) 
-and [Adding a New Class of Units](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Class-of-Units).<br>
-For other things to do, see Work In Progress.
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask](https://github.com/InitialForce/UnitsNet/issues) for it by creating an issue.
 
+Before adding new units, please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit). Other than that, we could always use more/better tests and documentation.
 
 [Contact me](https://github.com/anjdreas) if you have any questions.
