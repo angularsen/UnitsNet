@@ -46,19 +46,45 @@
     <Compile Include="Custom Code\Force.extra.cs" />
     <Compile Include="Custom Code\Mass.extra.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Generated Code\AngleUnit.g.cs" />
-    <Compile Include="Generated Code\AreaUnit.g.cs" />
-    <Compile Include="Generated Code\ElectricPotentialUnit.g.cs" />
-    <Compile Include="Generated Code\FlowUnit.g.cs" />
-    <Compile Include="Generated Code\ForceUnit.g.cs" />
-    <Compile Include="Generated Code\LengthUnit.g.cs" />
-    <Compile Include="Generated Code\MassUnit.g.cs" />
-    <Compile Include="Generated Code\PressureUnit.g.cs" />
-    <Compile Include="Generated Code\RotationalSpeedUnit.g.cs" />
-    <Compile Include="Generated Code\TemperatureUnit.g.cs" />
-    <Compile Include="Generated Code\TorqueUnit.g.cs" />
-    <Compile Include="Generated Code\UnitConverter.g.cs" />
-    <Compile Include="Generated Code\VolumeUnit.g.cs" />
+    <Compile Include="Generated Code\AngleUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\AreaUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\ElectricPotentialUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\FlowUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\ForceUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\LengthUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\MassUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\PressureUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\RotationalSpeedUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\TemperatureUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\TorqueUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\UnitConverter.g.cs">
+      <DependentUpon>__Regenerate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\VolumeUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="Length2d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />
@@ -72,14 +98,10 @@
   <ItemGroup>
     <None Include="**\__Regenerate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>__Regenerate.txt</LastGenOutput>
     </None>
-    <Content Include="**\__Regenerate.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>__Regenerate.tt</DependentUpon>
-    </Content>
-    <None Include="**\*.ttinclude" />
+    <None Include="Generated Code\Includes\MultipleOutputHelper.ttinclude" />
+    <None Include="Generated Code\Includes\Shared.ttinclude" />
+    <None Include="Generated Code\Includes\UnitConverter.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
