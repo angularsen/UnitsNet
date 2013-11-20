@@ -311,6 +311,10 @@ namespace UnitsNet
                     return TryConvert(Mass.FromCentigrams(value), toUnit, out newValue);
                 case Unit.Milligram:
                     return TryConvert(Mass.FromMilligrams(value), toUnit, out newValue);
+                case Unit.Microgram:
+                    return TryConvert(Mass.FromMicrograms(value), toUnit, out newValue);
+                case Unit.Nanogram:
+                    return TryConvert(Mass.FromNanograms(value), toUnit, out newValue);
                 case Unit.ShortTon:
                     return TryConvert(Mass.FromShortTons(value), toUnit, out newValue);
                 case Unit.LongTon:
@@ -758,6 +762,12 @@ namespace UnitsNet
                     return true;
                 case Unit.Milligram:
                     newValue = value.Milligrams;
+                    return true;
+                case Unit.Microgram:
+                    newValue = value.Micrograms;
+                    return true;
+                case Unit.Nanogram:
+                    newValue = value.Nanograms;
                     return true;
                 case Unit.ShortTon:
                     newValue = value.ShortTons;

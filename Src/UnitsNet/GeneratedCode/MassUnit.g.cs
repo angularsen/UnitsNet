@@ -114,12 +114,30 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Mass in Micrograms.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Micrograms and y is value in base unit Kilograms.</remarks>
+        public double Micrograms
+        {
+            get { return (Kilograms - (0)) / 1E-09; }
+        }
+
+        /// <summary>
         /// Get Mass in Milligrams.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Milligrams and y is value in base unit Kilograms.</remarks>
         public double Milligrams
         {
             get { return (Kilograms - (0)) / 1E-06; }
+        }
+
+        /// <summary>
+        /// Get Mass in Nanograms.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Nanograms and y is value in base unit Kilograms.</remarks>
+        public double Nanograms
+        {
+            get { return (Kilograms - (0)) / 1E-12; }
         }
 
         /// <summary>
@@ -231,12 +249,30 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Mass from Micrograms.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Micrograms and y is value in base unit Kilograms.</remarks>
+        public static Mass FromMicrograms(double micrograms)
+        {
+            return new Mass(1E-09 * micrograms + 0);
+        }
+
+        /// <summary>
         /// Get Mass from Milligrams.
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Milligrams and y is value in base unit Kilograms.</remarks>
         public static Mass FromMilligrams(double milligrams)
         {
             return new Mass(1E-06 * milligrams + 0);
+        }
+
+        /// <summary>
+        /// Get Mass from Nanograms.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Nanograms and y is value in base unit Kilograms.</remarks>
+        public static Mass FromNanograms(double nanograms)
+        {
+            return new Mass(1E-12 * nanograms + 0);
         }
 
         /// <summary>

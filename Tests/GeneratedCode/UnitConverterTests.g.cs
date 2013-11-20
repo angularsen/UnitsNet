@@ -62,6 +62,8 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual(t.DecigramsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.Decigram), Delta);
                 Assert.AreEqual(t.CentigramsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.Centigram), Delta);
                 Assert.AreEqual(t.MilligramsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.Milligram), Delta);
+                Assert.AreEqual(t.MicrogramsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.Microgram), Delta);
+                Assert.AreEqual(t.NanogramsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.Nanogram), Delta);
                 Assert.AreEqual(t.ShortTonsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.ShortTon), Delta);
                 Assert.AreEqual(t.LongTonsInOneKilogram, UnitConverter.Convert(1, Unit.Kilogram, Unit.LongTon), Delta);
             }

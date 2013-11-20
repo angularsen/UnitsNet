@@ -53,9 +53,19 @@ namespace UnitsNet.Tests.net35.UnitClassTests
             get { return 1E-6; }
         }
 
+        public override double MicrogramsInOneKilogram
+        {
+            get { return 1E9; }
+        }
+
         public override double MilligramsInOneKilogram
         {
             get { return 1E6; }
+        }
+
+        public override double NanogramsInOneKilogram
+        {
+            get { return 1E12; }
         }
 
         public override double ShortTonsInOneKilogram

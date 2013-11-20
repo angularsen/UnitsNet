@@ -56,8 +56,8 @@ namespace UnitsNet
         [Mass(1e-4)] Decigram,
         [Mass(1e-5)] Centigram,
         [Mass(1e-6)] Milligram,
-        //[Mass(1e-9)] Microgram,
-        //[Mass(1e-12)] Nanogram,
+        [Mass(1e-9)] Microgram,
+        [Mass(1e-12)] Nanogram,
 
         // US, imperial and other
         /// <summary>
