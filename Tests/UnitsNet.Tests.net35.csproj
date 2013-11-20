@@ -111,12 +111,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Src\UnitsNet\Generated Code\Includes\MultipleOutputHelper.ttinclude">
-      <Link>Generated Code\Includes\MultipleOutputHelper.ttinclude</Link>
-    </None>
-    <None Include="..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude">
-      <Link>Generated Code\Includes\Shared.ttinclude</Link>
-    </None>
     <None Include="GeneratedCode\Includes\UnitTestClass.ttinclude" />
     <None Include="GeneratedCode\Includes\UnitConverterTests.ttinclude" />
     <None Include="GeneratedCode\Includes\UnitValueTests.ttinclude" />
