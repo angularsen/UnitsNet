@@ -74,7 +74,7 @@
             return String.Format("UNIT_ENUM_VALUE__{0}__HAS_NO_UNIT_ATTRIBUTE_SET_FOR_THIS_UNIT_CLASS", unit);
         }
 
-	// Default to plural with "s" postfix if no PluralName is explicitly set.
+    // Default to plural with "s" postfix if no PluralName is explicitly set.
         string baseUnitPluralName = (att != null && !string.IsNullOrWhiteSpace(att.PluralName))
             ? att.PluralName
             : unit + "s";
