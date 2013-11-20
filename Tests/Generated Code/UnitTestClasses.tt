@@ -1,6 +1,6 @@
 ﻿<#@ template debug="True" language="C#" hostspecific="True" #>
 <#@ include file="Includes\UnitTestClass.ttinclude" once="true"#>
-<#@ output extension=".txt" #> 
+<#@ output extension="/" #> 
 <# 
     
     var m = Manager.Create(Host, GenerationEnvironment);
