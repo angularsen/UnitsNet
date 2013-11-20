@@ -48,18 +48,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Custom Code\TemperatureTests.cs" />
-    <Compile Include="Generated Code\AngleTestsBase.g.cs" />
-    <Compile Include="Generated Code\AreaTestsBase.g.cs" />
-    <Compile Include="Generated Code\ElectricPotentialTestsBase.g.cs" />
-    <Compile Include="Generated Code\FlowTestsBase.g.cs" />
-    <Compile Include="Generated Code\ForceTestsBase.g.cs" />
-    <Compile Include="Generated Code\LengthTestsBase.g.cs" />
-    <Compile Include="Generated Code\MassTestsBase.g.cs" />
-    <Compile Include="Generated Code\PressureTestsBase.g.cs" />
-    <Compile Include="Generated Code\RotationalSpeedTestsBase.g.cs" />
-    <Compile Include="Generated Code\TemperatureTestsBase.g.cs" />
-    <Compile Include="Generated Code\TorqueTestsBase.g.cs" />
-    <Compile Include="Generated Code\VolumeTestsBase.g.cs" />
+    <Compile Include="Generated Code\AngleTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\AreaTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\ElectricPotentialTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\FlowTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\ForceTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\LengthTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\MassTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\PressureTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\RotationalSpeedTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\TemperatureTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\TorqueTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated Code\VolumeTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generated Code\UnitConverterTests.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
