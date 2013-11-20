@@ -80,7 +80,9 @@
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated Code\UnitConverter.g.cs">
-      <DependentUpon>__Regenerate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitConverter.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated Code\VolumeUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
@@ -96,12 +98,15 @@
     <Compile Include="Vector3.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="**\__Regenerate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
     <None Include="Generated Code\Includes\MultipleOutputHelper.ttinclude" />
     <None Include="Generated Code\Includes\Shared.ttinclude" />
-    <None Include="Generated Code\Includes\UnitConverter.ttinclude" />
+    <None Include="Generated Code\UnitClasses.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Generated Code\UnitConverter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitConverter.g.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

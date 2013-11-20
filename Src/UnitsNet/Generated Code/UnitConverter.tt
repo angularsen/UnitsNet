@@ -1,30 +1,19 @@
-﻿<# // Load types in current assembly. #>
+﻿<#@ template debug="true" language="C#" hostspecific="true" #>
 <#@ assembly name="$(TargetPath)" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="UnitsNet" #>
-<#@ import namespace="UnitsNet.Attributes" #>
-<#@ import namespace="UnitsNet.Extensions" #>
+<#@ include file="Includes\Shared.ttinclude" once="true"#>
+<#@ output extension=".g.cs" #>
+<#
 
-<#/* Uncomment below for intellisense/ReSharper support, 
-but this will give an error when trying to run __Regenerate.tt template 
-since they are included multiple times and once="true" does not
-seem to work as it should. */#>
+    GenerateUnitConverter();
 
-<#//@ include file="MultipleOutputHelper.ttinclude" once="true"#>
-<#//@ include file="Shared.ttinclude" once="true"#><#+
+#><#+ 
 
-private void GenerateUnitConverter(Manager m)
-{
-
+private void GenerateUnitConverter()
+{ 
     List<Type> unitAttributeTypes = GetUnitAttributeTypes();
     List<string> unitClassNames = GetUnitClassNamesFromUnitAttributeImplementations();
     Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
 
-    using (m.StartNewFile(@"UnitConverter.g.cs"))
-    {
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
@@ -248,7 +237,6 @@ namespace UnitsNet
 }
 
 <#+
-    }  // using (m.StartNewFile(@"..\UnitConverter.g.cs"))
 } // private void GenerateUnitConverter(Manager m) 
 
 #>
