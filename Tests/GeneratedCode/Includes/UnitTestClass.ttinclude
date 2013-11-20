@@ -1,8 +1,8 @@
 ﻿<#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="..\..\..\Src\UnitsNet\Generated Code\Includes\MultipleOutputHelper.ttinclude" once="true"#>
-<#@ include file="..\..\..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #><#+
+<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#>
+<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\Shared.ttinclude" once="true" #><#+
 
     private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit)
     {

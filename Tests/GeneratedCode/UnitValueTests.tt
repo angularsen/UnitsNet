@@ -1,5 +1,5 @@
 ﻿<#@ template debug="True" language="C#" hostspecific="True" #>
-<#@ include file="..\..\Src\UnitsNet\Generated Code\Includes\Shared.ttinclude" once="true" #>
+<#@ include file="..\..\Src\UnitsNet\GeneratedCode\Includes\Shared.ttinclude" once="true" #>
 <#@ include file="Includes\UnitValueTests.ttinclude" once="true" #>
 <#@ output extension=".g.cs" #>
 <#
