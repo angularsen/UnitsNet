@@ -170,17 +170,17 @@ class Manager {
             foreach(String fileName in keepFileNameSet)
                 if (!projectFiles.ContainsKey(fileName))
                 {
-					// Remove any "..\" in path when outputting to parent folder by getting full path.
-					// Source: http://stackoverflow.com/a/4796339/134761
+                    // Remove any "..\" in path when outputting to parent folder by getting full path.
+                    // Source: http://stackoverflow.com/a/4796339/134761
                     string fileNameFullPath = Path.GetFullPath(new Uri(fileName).LocalPath);
-					
-					// Output as item in same folder as template file.
+                    
+                    // Output as item in same folder as template file.
                     templateProjectItem.Collection.AddFromFile(fileNameFullPath);
 
-					// Output as nested item under template file
+                    // Output as nested item under template file
                     //templateProjectItem.ProjectItems.AddFromFile(fileNameFullPath);
                 }
-					
+                    
         }
 
         private void CheckoutFileIfRequired(String fileName) {
