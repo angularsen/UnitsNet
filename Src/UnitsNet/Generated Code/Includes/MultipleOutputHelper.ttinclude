@@ -175,10 +175,10 @@ class Manager {
                     string fileNameFullPath = Path.GetFullPath(new Uri(fileName).LocalPath);
                     
                     // Output as item in same folder as template file.
-                    templateProjectItem.Collection.AddFromFile(fileNameFullPath);
+                    //templateProjectItem.Collection.AddFromFile(fileNameFullPath);
 
                     // Output as nested item under template file
-                    //templateProjectItem.ProjectItems.AddFromFile(fileNameFullPath);
+                    templateProjectItem.ProjectItems.AddFromFile(fileNameFullPath);
                 }
                     
         }
