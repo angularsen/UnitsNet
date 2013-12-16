@@ -57,7 +57,8 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void ToStringRoundsToTwoDecimals()
         {
-            var originalCulture = Thread.CurrentThread.CurrentUICulture;
+            var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+            var currentCulture = Thread.CurrentThread.CurrentCulture;
             try
             {
                 // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
@@ -73,7 +74,8 @@ namespace UnitsNet.Tests.net35
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = originalCulture;
+                Thread.CurrentThread.CurrentUICulture = currentUiCulture;
+                Thread.CurrentThread.CurrentCulture = currentCulture;
             }
         }
 
