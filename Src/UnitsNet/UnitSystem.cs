@@ -122,10 +122,9 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "T", "T.", "tbsp", "tbsp.", "tbs", "tbs.");
-            // For units with multiple abbreviations, the first one denotes the most common one
-            MapUnitToAbbreviation(Unit.Teaspoon, "tsp", "tsp.", "t", "t.");
-            MapUnitToAbbreviation(Unit.Piece, "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
+            MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon");
+            MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon");
+            MapUnitToAbbreviation(Unit.Piece, "piece", "pieces", "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
         }
 
         private void CreateNorwegianBokmaal()
@@ -133,9 +132,9 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "ss", "ss.");
+            MapUnitToAbbreviation(Unit.Tablespoon, "ss", "ss.", "SS", "SS.");
             MapUnitToAbbreviation(Unit.Teaspoon, "ts", "ts.");
-            MapUnitToAbbreviation(Unit.Piece, "stk", "stk.");
+            MapUnitToAbbreviation(Unit.Piece, "stk", "stk.", "x");
         }
 
         private void CreateRussian()
@@ -417,8 +416,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Year365Days, "year");
             
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "tbsp.");
-            MapUnitToAbbreviation(Unit.Teaspoon, "tsp.");
+            MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.");
+            MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.");
 
             // Flow
             MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
@@ -428,7 +427,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
             MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
 
-	    // Temperature
+            // Temperature
             MapUnitToAbbreviation(Unit.Kelvin, "K");
             MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
             MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
@@ -450,13 +449,13 @@ namespace UnitsNet
                 existingAbbreviations = _unitToAbbrevs[unit] = new List<string>();
             }
 
+            // Update any existing abbreviations so that the latest abbreviations 
+            // take precedence in GetDefaultAbbreviation().
+            _unitToAbbrevs[unit] = abbreviations.Concat(existingAbbreviations).Distinct().ToList();
             foreach (string abbreviation in abbreviations)
             {
-                if (existingAbbreviations.Contains(abbreviation))
-                    continue;
-
-                existingAbbreviations.Add(abbreviation);
-                _abbrevsToUnit[abbreviation] = unit;
+                if (!_abbrevsToUnit.ContainsKey(abbreviation))
+                    _abbrevsToUnit[abbreviation] = unit;
             }
         }
 

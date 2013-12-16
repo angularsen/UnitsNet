@@ -160,5 +160,29 @@ namespace UnitsNet.Tests.net35
                 Thread.CurrentThread.CurrentUICulture = originalCulture;
             }
         }
+
+        [Test]
+        public void DefaultFoodUnitAbbreviationsForNorwegian()
+        {
+            UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("nb-NO"));
+            Assert.AreEqual("ss", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
+            Assert.AreEqual("ts", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+        }
+
+        [Test]
+        public void DefaultFoodUnitAbbreviationsForInvariant()
+        {
+            UnitSystem unitSystem = UnitSystem.Create(CultureInfo.InvariantCulture);
+            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
+            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+        }
+        
+        [Test]
+        public void DefaultFoodUnitAbbreviationsForUsEnglish()
+        {
+            UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("en-US"));
+            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
+            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+        }
     }
 }
