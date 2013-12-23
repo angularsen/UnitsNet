@@ -171,6 +171,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Decigram, "дг");
             MapUnitToAbbreviation(Unit.Centigram, "сг");
             MapUnitToAbbreviation(Unit.Milligram, "мг");
+            MapUnitToAbbreviation(Unit.Microgram, "мкг");
+            MapUnitToAbbreviation(Unit.Nanogram, "нг");
 
             // Mass (imperial)
             MapUnitToAbbreviation(Unit.ShortTon, "тонна малая");
@@ -320,6 +322,8 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Decigram, "dg");
             MapUnitToAbbreviation(Unit.Centigram, "cg");
             MapUnitToAbbreviation(Unit.Milligram, "mg");
+            MapUnitToAbbreviation(Unit.Microgram, "µg");
+            MapUnitToAbbreviation(Unit.Nanogram, "ng");
 
             // Mass (imperial)
             MapUnitToAbbreviation(Unit.ShortTon, "short tn");
