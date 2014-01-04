@@ -26,20 +26,20 @@ namespace UnitsNet
     {
         public static Force FromPressureByArea(Pressure p, Length2d area)
         {
-            double metersSquared = area.Meters.X * area.Meters.Y;
-            double newtons = p.Pascals * metersSquared;
+            double metersSquared = area.Meters.X*area.Meters.Y;
+            double newtons = p.Pascals*metersSquared;
             return new Force(newtons);
         }
 
         public static Force FromPressureByArea(Pressure p, Area area)
         {
-            double newtons = p.Pascals * area.SquareMeters;
+            double newtons = p.Pascals*area.SquareMeters;
             return new Force(newtons);
         }
 
         public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
         {
-            return new Force(mass.Kilograms * metersPerSecondSquared);
+            return new Force(mass.Kilograms*metersPerSecondSquared);
         }
     }
 }
