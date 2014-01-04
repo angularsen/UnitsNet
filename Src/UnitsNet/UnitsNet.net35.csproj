@@ -73,6 +73,9 @@
     <Compile Include="GeneratedCode\RotationalSpeedUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedCode\SpeedUnit.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedCode\TemperatureUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>

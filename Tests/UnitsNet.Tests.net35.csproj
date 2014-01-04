@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCode\SpeedTests.cs" />
     <Compile Include="CustomCode\TemperatureTests.cs" />
     <Compile Include="GeneratedCode\AngleTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
@@ -73,6 +74,9 @@
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\RotationalSpeedTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedCode\SpeedTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\TemperatureTestsBase.g.cs">

@@ -427,6 +427,13 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
             MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
 
+            // Speed
+            MapUnitToAbbreviation(Unit.FootPerSecond, "ft/s");
+            MapUnitToAbbreviation(Unit.KilometerPerHour, "km/h");
+            MapUnitToAbbreviation(Unit.Knot, "kt", "kn", "knot", "knots");
+            MapUnitToAbbreviation(Unit.MeterPerSecond, "m/s");
+            MapUnitToAbbreviation(Unit.MilePerHour, "mph");
+
             // Temperature
             MapUnitToAbbreviation(Unit.Kelvin, "K");
             MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");

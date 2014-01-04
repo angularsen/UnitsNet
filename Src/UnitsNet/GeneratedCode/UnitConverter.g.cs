@@ -51,6 +51,7 @@ namespace UnitsNet
             if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return newValue;
+            if (TryConvertFromSpeed(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromTemperature(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return newValue;
             if (TryConvertFromVolume(value, fromUnit, toUnit, out newValue)) return newValue;
@@ -85,6 +86,7 @@ namespace UnitsNet
             if (TryConvertFromMass(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromPressure(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromRotationalSpeed(value, fromUnit, toUnit, out newValue)) return true;
+            if (TryConvertFromSpeed(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromTemperature(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromTorque(value, fromUnit, toUnit, out newValue)) return true;
             if (TryConvertFromVolume(value, fromUnit, toUnit, out newValue)) return true;
@@ -385,6 +387,35 @@ namespace UnitsNet
                     return TryConvert(RotationalSpeed.FromRevolutionsPerSecond(value), toUnit, out newValue);
                 case Unit.RevolutionPerMinute:
                     return TryConvert(RotationalSpeed.FromRevolutionsPerMinute(value), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Try to dynamically convert from Speed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvertFromSpeed(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.FootPerSecond:
+                    return TryConvert(Speed.FromFeetPerSecond(value), toUnit, out newValue);
+                case Unit.KilometerPerHour:
+                    return TryConvert(Speed.FromKilometersPerHour(value), toUnit, out newValue);
+                case Unit.Knot:
+                    return TryConvert(Speed.FromKnots(value), toUnit, out newValue);
+                case Unit.MeterPerSecond:
+                    return TryConvert(Speed.FromMetersPerSecond(value), toUnit, out newValue);
+                case Unit.MilePerHour:
+                    return TryConvert(Speed.FromMilesPerHour(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -854,6 +885,40 @@ namespace UnitsNet
                     return true;
                 case Unit.RevolutionPerMinute:
                     newValue = value.RevolutionsPerMinute;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Try to dynamically convert from Speed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvert(Speed value, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.FootPerSecond:
+                    newValue = value.FeetPerSecond;
+                    return true;
+                case Unit.KilometerPerHour:
+                    newValue = value.KilometersPerHour;
+                    return true;
+                case Unit.Knot:
+                    newValue = value.Knots;
+                    return true;
+                case Unit.MeterPerSecond:
+                    newValue = value.MetersPerSecond;
+                    return true;
+                case Unit.MilePerHour:
+                    newValue = value.MilesPerHour;
                     return true;
 
                 default:

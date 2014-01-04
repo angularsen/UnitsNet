@@ -178,6 +178,13 @@ namespace UnitsNet
         [RotationalSpeed(1, "RevolutionsPerSecond")] RevolutionPerSecond,
         [RotationalSpeed(1.0/60, "RevolutionsPerMinute")] RevolutionPerMinute,
 
+        // Sources: http://en.wikipedia.org/wiki/Speed 
+        [Speed(0.3048, "FeetPerSecond")] FootPerSecond,
+        [Speed(1d / 3.6, "KilometersPerHour")] KilometerPerHour,
+        [Speed(0.514444)] Knot,
+        [Speed(1, "MetersPerSecond")] MeterPerSecond, // Base unit.
+        [Speed(0.44704, "MilesPerHour")] MilePerHour,
+
         [Temperature(slope: 1, offset: 273.15, pluralName: "DegreesCelsius")] DegreeCelsius,
         [Temperature(slope: -2d/3, offset: 373.15, pluralName: "DegreesDelisle")] DegreeDelisle,
         [Temperature(slope: 5d/9, offset: 459.67*5d/9, pluralName: "DegreesFahrenheit")] DegreeFahrenheit,
