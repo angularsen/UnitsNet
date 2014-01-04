@@ -1,4 +1,4 @@
-﻿namespace UnitsNet.Tests.net35.UnitClassTests
+﻿namespace UnitsNet.Tests.net35.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {

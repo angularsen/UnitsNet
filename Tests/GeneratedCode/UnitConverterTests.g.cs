@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using NUnit.Framework;
-using UnitsNet.Tests.net35.UnitClassTests;
+using UnitsNet.Tests.net35.CustomCode;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Tests.net35
