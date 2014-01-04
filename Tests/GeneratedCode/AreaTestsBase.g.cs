@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Area.
     /// </summary>
+    [TestFixture]
     public abstract partial class AreaTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

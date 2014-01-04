@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Angle.
     /// </summary>
+    [TestFixture]
     public abstract partial class AngleTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

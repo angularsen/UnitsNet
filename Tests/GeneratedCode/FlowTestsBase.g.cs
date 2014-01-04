@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Flow.
     /// </summary>
+    [TestFixture]
     public abstract partial class FlowTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

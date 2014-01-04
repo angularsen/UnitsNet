@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of ElectricPotential.
     /// </summary>
+    [TestFixture]
     public abstract partial class ElectricPotentialTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Torque.
     /// </summary>
+    [TestFixture]
     public abstract partial class TorqueTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

@@ -168,6 +168,16 @@ namespace UnitsNet.Tests.net35
                 Assert.AreEqual(t.RevolutionsPerMinuteInOneRevolutionPerSecond, UnitConverter.Convert(1, Unit.RevolutionPerSecond, Unit.RevolutionPerMinute), Delta);
             }
             [Test]
+            public void MeterPerSecondToSpeedUnits()
+            {
+                var t = new SpeedTests();
+                Assert.AreEqual(t.FeetPerSecondInOneMeterPerSecond, UnitConverter.Convert(1, Unit.MeterPerSecond, Unit.FootPerSecond), Delta);
+                Assert.AreEqual(t.KilometersPerHourInOneMeterPerSecond, UnitConverter.Convert(1, Unit.MeterPerSecond, Unit.KilometerPerHour), Delta);
+                Assert.AreEqual(t.KnotsInOneMeterPerSecond, UnitConverter.Convert(1, Unit.MeterPerSecond, Unit.Knot), Delta);
+                Assert.AreEqual(t.MetersPerSecondInOneMeterPerSecond, UnitConverter.Convert(1, Unit.MeterPerSecond, Unit.MeterPerSecond), Delta);
+                Assert.AreEqual(t.MilesPerHourInOneMeterPerSecond, UnitConverter.Convert(1, Unit.MeterPerSecond, Unit.MilePerHour), Delta);
+            }
+            [Test]
             public void KelvinToTemperatureUnits()
             {
                 var t = new TemperatureTests();

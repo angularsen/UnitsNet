@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Force.
     /// </summary>
+    [TestFixture]
     public abstract partial class ForceTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

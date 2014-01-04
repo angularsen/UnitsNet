@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
-
 namespace UnitsNet.Tests.net35.UnitClassTests
 {
     public class SpeedTests : SpeedTestsBase

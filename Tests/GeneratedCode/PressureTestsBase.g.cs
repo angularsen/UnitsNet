@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Pressure.
     /// </summary>
+    [TestFixture]
     public abstract partial class PressureTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

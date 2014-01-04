@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Mass.
     /// </summary>
+    [TestFixture]
     public abstract partial class MassTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

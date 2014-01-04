@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Volume.
     /// </summary>
+    [TestFixture]
     public abstract partial class VolumeTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

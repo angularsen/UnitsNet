@@ -42,6 +42,7 @@ namespace UnitsNet.Tests.net35
             Assert.False(new UnitValue(1, Unit.Volt).TryConvert(Unit.Second, out newValue));
             Assert.False(new UnitValue(1, Unit.CubicMeterPerSecond).TryConvert(Unit.Second, out newValue));
             Assert.False(new UnitValue(1, Unit.RevolutionPerSecond).TryConvert(Unit.Second, out newValue));
+            Assert.False(new UnitValue(1, Unit.MeterPerSecond).TryConvert(Unit.Second, out newValue));
             Assert.False(new UnitValue(1, Unit.Kelvin).TryConvert(Unit.Second, out newValue));
         }
     }

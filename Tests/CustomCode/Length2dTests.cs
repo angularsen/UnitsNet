@@ -5,8 +5,8 @@ using NUnit.Framework;
 
 namespace UnitsNet.Tests.net35.UnitClassTests
 {
-    [TestFixture]
 // ReSharper disable once InconsistentNaming
+    [TestFixture]
     public class Length2dTests
     {
         private const double Delta = 1E-5;

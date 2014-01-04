@@ -31,6 +31,7 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Length.
     /// </summary>
+    [TestFixture]
     public abstract partial class LengthTestsBase
     {
         protected virtual double Delta { get { return 1E-5; } }

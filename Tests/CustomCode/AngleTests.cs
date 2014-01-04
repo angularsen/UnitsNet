@@ -1,12 +1,7 @@
-﻿// Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
-#pragma warning disable 1718
-
-using System;
-using NUnit.Framework;
+﻿using System;
 
 namespace UnitsNet.Tests.net35.UnitClassTests
 {
-    [TestFixture]
     public class AngleTests : AngleTestsBase
     {
         public override double DegreesInOneDegree
