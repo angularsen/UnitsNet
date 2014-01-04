@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.11.0</version>
+    <version>1.12.0-beta</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,29 +11,31 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v1.11: Fixed bugs in Flow and RotationalSpeed units after refactoring to T4 templates (thanks George Zhuikov).
-Added Temperature units.
+    <releaseNotes>v1.12: Add speed units (km/h, m/s, ft/s, knots, mph). Add mass units (microgram, nanogram).
+	
+v1.11: Fix bugs in Flow and RotationalSpeed units after refactoring to T4 templates (thanks George Zhuikov).
+Add Temperature units.
 
-v1.10: Added missing localization to units for US English and Russian cultures (thanks George Zhuikov).
-Added RotationalSpeed and Flow unit classes (thanks George Zhuikov).
-Added mils and microinches length units (thanks Georgios).
-Refactored to generate unit classes with T4 templates, a lot less work to add new units.
+v1.10: Add missing localization to units for US English and Russian cultures (thanks George Zhuikov).
+Add RotationalSpeed and Flow unit classes (thanks George Zhuikov).
+Add mils and microinches length units (thanks Georgios).
+Refactor to generate unit classes with T4 templates, a lot less work to add new units.
 
-v1.9: Improved precision of PoundForce unit (thanks Jim Selikoff).
+v1.9: Improve precision of PoundForce unit (thanks Jim Selikoff).
 
-v1.8: Added angle units of measurement (thanks Georgios). Added tests and fixed bug in NewtonPerSquareCentimeter and NewtonPerSquareMillimeter.
+v1.8: Add angle units of measurement (thanks Georgios). Add tests and fix bug in NewtonPerSquareCentimeter and NewtonPerSquareMillimeter.
 
-v1.7: Added imperial and US units for volume and area.
+v1.7: Add imperial and US units for volume and area.
 
-v1.6: Added area units. Fixed exception in TryConvert for volume units.
+v1.6: Add area units. Fix exception in TryConvert for volume units.
 
-v1.5: Added volume units of measurement (thanks @vitasimek). Added missing operator overloads.
+v1.5: Add volume units of measurement (thanks @vitasimek). Add missing operator overloads.
 
-v1.4: Added ShortTon and LongTon mass units (thanks Cameron MacFarland). Added TryConvert methods.
+v1.4: Add ShortTon and LongTon mass units (thanks Cameron MacFarland). Add TryConvert methods.
 
-v1.3: Added pressure units. Added dynamic conversion via UnitConverter and UnitValue
+v1.3: Add pressure units. Add dynamic conversion via UnitConverter and UnitValue
 
-v1.2: Added force, torque, pressure, mass, voltage, length and length2d units of measurement.
+v1.2: Add force, torque, pressure, mass, voltage, length and length2d units of measurement.
 </releaseNotes>
     <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
     <language>en-US</language>
