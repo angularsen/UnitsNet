@@ -67,6 +67,11 @@ namespace UnitsNet
         [Mass(907.18474)] ShortTon,
 
         /// <summary>
+        ///     The pound or pound-mass (abbreviations: lb, lbm, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.
+        /// </summary>
+        [Mass(0.45359237)] Pound,
+
+        /// <summary>
         ///     Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
