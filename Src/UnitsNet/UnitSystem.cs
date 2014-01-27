@@ -320,9 +320,12 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.Decigram, "dg");
             MapUnitToAbbreviation(Unit.Centigram, "cg");
             MapUnitToAbbreviation(Unit.Milligram, "mg");
+            MapUnitToAbbreviation(Unit.Microgram, "µg");
+            MapUnitToAbbreviation(Unit.Nanogram, "ng");
 
             // Mass (imperial)
             MapUnitToAbbreviation(Unit.ShortTon, "short tn");
+            MapUnitToAbbreviation(Unit.Pound, "lb");
             MapUnitToAbbreviation(Unit.LongTon, "long tn");
 
             // Pressures
