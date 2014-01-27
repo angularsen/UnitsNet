@@ -70,7 +70,7 @@ namespace UnitsNet.Tests.net35.UnitClassTests
 
         public override double PoundsInOneKilogram
         {
-            get { return 0.45359237; }
+            get { return 2.2046226218487757d; }
         }
 
         public override double ShortTonsInOneKilogram
