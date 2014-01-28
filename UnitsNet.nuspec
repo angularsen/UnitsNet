@@ -42,9 +42,9 @@ v1.2: Add force, torque, pressure, mass, voltage, length and length2d units of m
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
   </metadata>
   <files>
-    <file src="bin\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
-    <file src="bin\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
-    <file src="bin\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
-    <file src="bin\UnitsNet.netcore45\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
   </files>
 </package>
