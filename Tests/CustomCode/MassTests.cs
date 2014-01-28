@@ -83,6 +83,11 @@ namespace UnitsNet.Tests.net35.CustomCode
             get { return 1E12; }
         }
 
+        public override double PoundsInOneKilogram
+        {
+            get { return 2.2046226218487757d; }
+        }
+
         public override double ShortTonsInOneKilogram
         {
             get { return 0.00110231; }

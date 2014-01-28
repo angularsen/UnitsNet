@@ -319,6 +319,8 @@ namespace UnitsNet
                     return TryConvert(Mass.FromNanograms(value), toUnit, out newValue);
                 case Unit.ShortTon:
                     return TryConvert(Mass.FromShortTons(value), toUnit, out newValue);
+                case Unit.Pound:
+                    return TryConvert(Mass.FromPounds(value), toUnit, out newValue);
                 case Unit.LongTon:
                     return TryConvert(Mass.FromLongTons(value), toUnit, out newValue);
 
@@ -802,6 +804,9 @@ namespace UnitsNet
                     return true;
                 case Unit.ShortTon:
                     newValue = value.ShortTons;
+                    return true;
+                case Unit.Pound:
+                    newValue = value.Pounds;
                     return true;
                 case Unit.LongTon:
                     newValue = value.LongTons;
