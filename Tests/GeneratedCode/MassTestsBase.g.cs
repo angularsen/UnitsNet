@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
         public abstract double MicrogramsInOneKilogram { get; }
         public abstract double MilligramsInOneKilogram { get; }
         public abstract double NanogramsInOneKilogram { get; }
+        public abstract double PoundsInOneKilogram { get; }
         public abstract double ShortTonsInOneKilogram { get; }
         public abstract double TonnesInOneKilogram { get; }
 
@@ -66,6 +67,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Micrograms, Delta);
             Assert.AreEqual(MilligramsInOneKilogram, kilogram.Milligrams, Delta);
             Assert.AreEqual(NanogramsInOneKilogram, kilogram.Nanograms, Delta);
+            Assert.AreEqual(PoundsInOneKilogram, kilogram.Pounds, Delta);
             Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, Delta);
             Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, Delta);
         }
@@ -86,6 +88,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, Delta);
             Assert.AreEqual(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, Delta);
             Assert.AreEqual(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, Delta);
+            Assert.AreEqual(1, Mass.FromPounds(kilogram.Pounds).Kilograms, Delta);
             Assert.AreEqual(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, Delta);
             Assert.AreEqual(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, Delta);
         }

@@ -323,6 +323,7 @@ namespace UnitsNet
 
             // Mass (imperial)
             MapUnitToAbbreviation(Unit.ShortTon, "short tn");
+            MapUnitToAbbreviation(Unit.Pound, "lb");
             MapUnitToAbbreviation(Unit.LongTon, "long tn");
 
             // Pressures
