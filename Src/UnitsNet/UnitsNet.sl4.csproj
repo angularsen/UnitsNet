@@ -17,7 +17,7 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <OutputPath>..\..\build\bin\$(Platform)_$(Configuration)\</OutputPath>
+    <OutputPath>..\..\Build\bin\$(Platform)_$(Configuration)\</OutputPath>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
