@@ -1,4 +1,4 @@
-[![Build Status](http://anj.no:8501/UnitsNet_Base)](http://anj.no:8501/UnitsNet_Base/status.png)
+[![Build Status](http://anj.no:8501/UnitsNet_Base/status.png)](http://anj.no:8500/viewType.html?buildTypeId=UnitsNet_Base "Build Status")
 Units.NET
 ========
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
