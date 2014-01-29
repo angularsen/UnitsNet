@@ -1,5 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status?id=yx8690rtkhk2g1fs)](https://ci.appveyor.com/project/initialforce-unitsnet)
-
 Units.NET
 ========
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
