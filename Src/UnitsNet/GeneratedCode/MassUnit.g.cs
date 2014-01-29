@@ -141,6 +141,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Mass in Pounds.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in Pounds and y is value in base unit Kilograms.</remarks>
+        public double Pounds
+        {
+            get { return (Kilograms - (0)) / 0.45359237; }
+        }
+
+        /// <summary>
         /// Get Mass in ShortTons.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in ShortTons and y is value in base unit Kilograms.</remarks>
@@ -273,6 +282,15 @@ namespace UnitsNet
         public static Mass FromNanograms(double nanograms)
         {
             return new Mass(1E-12 * nanograms + 0);
+        }
+
+        /// <summary>
+        /// Get Mass from Pounds.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in Pounds and y is value in base unit Kilograms.</remarks>
+        public static Mass FromPounds(double pounds)
+        {
+            return new Mass(0.45359237 * pounds + 0);
         }
 
         /// <summary>
