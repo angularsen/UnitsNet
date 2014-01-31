@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.12.0-beta</version>
+    <version>1.13</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,8 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v1.12: Add speed units (km/h, m/s, ft/s, knots, mph). Add mass units (microgram, nanogram).
-	
+    <releaseNotes>v1.13: Add mass unit (pound) (thanks @strvmarv). 
+
+v1.12: Add speed units (km/h, m/s, ft/s, knots, mph). Add mass units (microgram, nanogram).
+
 v1.11: Fix bugs in Flow and RotationalSpeed units after refactoring to T4 templates (thanks George Zhuikov).
 Add Temperature units.
 
