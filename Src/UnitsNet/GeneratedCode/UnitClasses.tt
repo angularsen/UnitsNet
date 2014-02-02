@@ -4,7 +4,7 @@
 <#@ output extension="/" #>
 
 <#/* Uncomment below for intellisense/ReSharper support, 
-but this will give an error when trying to run __Regenerate.tt template 
+but this will give an error when trying to run the template 
 since they are included multiple times from .ttinclude files and once="true" does not
 seem to work as it should. */#>
 
