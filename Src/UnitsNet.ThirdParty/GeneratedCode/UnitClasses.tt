@@ -6,42 +6,30 @@
 <#@ import namespace="UnitsNet.ThirdParty.Attributes" #>
 <#@ import namespace="UnitsNet.ThirdParty.GeneratedCode" #>
 <#@ output extension="/" #>
-
-<#/* Uncomment below for intellisense/ReSharper support, 
-but this will give an error when trying to run the template 
-since they are included multiple times from .ttinclude files and once="true" does not
-seem to work as it should. */#> 
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#
     var m = Manager.Create(Host, GenerationEnvironment);
     GenerateUnitClasses<ThirdPartyUnitAttribute, FooUnit>(m);
     m.Process(split: true);
-#><#+
+#><#+ 
+    private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute
+    {
+        Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
+            TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>();
 
-private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute
+        List<IUnitAttribute<TUnit>> unitAttributes = unitToAttribute.Values.Distinct().ToList();
+        foreach (var attr in unitAttributes)
         {
-            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
-                TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>();
-
-        //List<IUnitAttribute<TUnit>> unitAttributes = TemplateUtils.GetUnitAttributeTypes<ThirdPartyUnitAttribute, TUnit>();
-
-            List<IUnitAttribute<TUnit>> unitAttributes = unitToAttribute.Values.Distinct().ToList();
-            foreach (var attr in unitAttributes)
-            {
-                Type unitAttributeType = attr.GetType();
-                string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
-                GenerateUnitClass<TBaseUnitAttribute, TUnit>(unitToAttribute, m, unitClassName, attr.BaseUnit,
-                    attr.XmlDocSummary);
-            }
+            Type unitAttributeType = attr.GetType();
+            string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
+            GenerateUnitClass(unitToAttribute, m, unitClassName, attr.BaseUnit, attr.XmlDocSummary);
         }
+    }
 
-    private void GenerateUnitClass<TBaseUnitAttribute, TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute, Manager manager, string className, TUnit baseUnit, string xmlDocSummary) where TBaseUnitAttribute : Attribute
+    private void GenerateUnitClass<TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute, Manager manager, string className, TUnit baseUnit, string xmlDocSummary)
     {
         using (manager.StartNewFile(className + "Unit.g.cs"))
         {
-            //Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
-             //   TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(unitAttributeType);
-
             TUnit[] orderedClassUnits = unitToAttribute
                 .Keys
                 .OrderBy(unit => unit.ToString())

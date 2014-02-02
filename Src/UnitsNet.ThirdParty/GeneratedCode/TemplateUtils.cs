@@ -89,7 +89,7 @@ namespace UnitsNet.ThirdParty.GeneratedCode
         //    return attributes;
         //}  
         
-        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute, TUnit>()where TBaseUnitAttribute : Attribute
+        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute, TUnit>() where TBaseUnitAttribute : Attribute
         {
             return FindDerivedTypes(typeof (TBaseUnitAttribute).Assembly, typeof (TBaseUnitAttribute)).ToList();
         }
@@ -142,26 +142,26 @@ namespace UnitsNet.ThirdParty.GeneratedCode
         //    return GetUnitToAttributeDictionary<TUnit>(typeof(TUnit));
         //}
 
-        ///// <summary>
-        /////     Returns a list of <see cref="TUnit" /> values for a unit class by the class name.
-        /////     This is resolved by looking at the <see cref="IUnitAttribute{TUnit}" /> attributes the enum values are tagged with.
-        /////     For example, a
-        /////     <param name="unitClassName" />
-        /////     of "Length" will match all <see cref="TUnit" /> values tagged with
-        /////     <see cref="LengthAttribute" />.
-        ///// </summary>
-        //private static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
-        //    Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute)
-        //{
-        //    Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
-        //    List<TUnit> unitsOfUnitClass =
-        //        unitToAttribute
-        //            .Where(pair => pair.Value.GetType() == unitClassAttributeType)
-        //            .Select(pair => pair.Key)
-        //            .ToList();
+        /// <summary>
+        ///     Returns a list of <see cref="TUnit" /> values for a unit class by the class name.
+        ///     This is resolved by looking at the <see cref="IUnitAttribute{TUnit}" /> attributes the enum values are tagged with.
+        ///     For example, a
+        ///     <param name="unitClassName" />
+        ///     of "Length" will match all <see cref="TUnit" /> values tagged with
+        ///     <see cref="LengthAttribute" />.
+        /// </summary>
+        public static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
+            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute)
+        {
+            Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
+            List<TUnit> unitsOfUnitClass =
+                unitToAttribute
+                    .Where(pair => pair.Value.GetType() == unitClassAttributeType)
+                    .Select(pair => pair.Key)
+                    .ToList();
 
-        //    return unitsOfUnitClass;
-        //}
+            return unitsOfUnitClass;
+        }
 
         //public static List<string> GetUnitClassNamesFromUnitAttributeImplementations<TBaseUnitAttribute>() where TBaseUnitAttribute : Attribute
         //{
