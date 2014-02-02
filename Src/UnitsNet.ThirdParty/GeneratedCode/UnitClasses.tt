@@ -11,34 +11,36 @@
 but this will give an error when trying to run the template 
 since they are included multiple times from .ttinclude files and once="true" does not
 seem to work as it should. */#> 
-<#/*@ include file="Includes\Shared.ttinclude" once="true"*/#>
-
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#
     var m = Manager.Create(Host, GenerationEnvironment);
-    GenerateUnitClasses<FooUnit>(m);
+    GenerateUnitClasses<ThirdPartyUnitAttribute, FooUnit>(m);
     m.Process(split: true);
 #><#+
 
-    private void GenerateUnitClasses<TUnit>(Manager m)
-    {
-        List<IUnitAttribute<TUnit>> unitAttributes = TemplateUtils.GetUnitAttributeImplementations<TUnit>();
-
-        foreach (var attr in unitAttributes)
+private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute
         {
-            Type unitAttributeType = attr.GetType();
-            string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
-            GenerateUnitClass(unitAttributeType, m, unitClassName, attr.BaseUnit, attr.XmlDocSummary);
-        }
-    }
+            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
+                TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>();
 
-    private void GenerateUnitClass<TUnit>(Type unitAttributeType, Manager manager, string className, TUnit baseUnit,
-        string xmlDocSummary)
+        //List<IUnitAttribute<TUnit>> unitAttributes = TemplateUtils.GetUnitAttributeTypes<ThirdPartyUnitAttribute, TUnit>();
+
+            List<IUnitAttribute<TUnit>> unitAttributes = unitToAttribute.Values.Distinct().ToList();
+            foreach (var attr in unitAttributes)
+            {
+                Type unitAttributeType = attr.GetType();
+                string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
+                GenerateUnitClass<TBaseUnitAttribute, TUnit>(unitToAttribute, m, unitClassName, attr.BaseUnit,
+                    attr.XmlDocSummary);
+            }
+        }
+
+    private void GenerateUnitClass<TBaseUnitAttribute, TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute, Manager manager, string className, TUnit baseUnit, string xmlDocSummary) where TBaseUnitAttribute : Attribute
     {
         using (manager.StartNewFile(className + "Unit.g.cs"))
         {
-            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
-                TemplateUtils.GetUnitToAttributeDictionary<TUnit>(unitAttributeType);
+            //Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
+             //   TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(unitAttributeType);
 
             TUnit[] orderedClassUnits = unitToAttribute
                 .Keys
@@ -170,8 +172,11 @@ namespace UnitsNet.ThirdParty
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in <#=methodNamePostfix#> and y is value in base unit <#=baseUnitPluralName#>.</remarks>
         public static <#=className #> From<#=methodNamePostfix #>(double <#=valueParamName #>)
-        {
+        {<#+ if (linearFunc.b == 0) {#> 
+            return new <#=className #>(<#=linearFunc.a#> * <#=valueParamName#>);
+<#+} else {#>            
             return new <#=className #>(<#=linearFunc.a#> * <#=valueParamName#> + <#=linearFunc.b#>);
+<#+}#>
         }
 
 <#+

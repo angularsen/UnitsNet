@@ -55,11 +55,12 @@ namespace UnitsNet.ThirdParty.GeneratedCode
         //        .ToDictionary(u => u.unit, u => u.attr);
         //}
 
-        public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TUnit>(Type unitAttribute)
+        public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>() //Type unitAttribute) 
+            where TBaseUnitAttribute : Attribute
         {
             return Enum.GetValues(typeof(TUnit))
                 .Cast<TUnit>()
-                .Select(u => new { unit = u, attr = (u as Enum).GetAttribute<ThirdPartyUnitAttribute>(unitAttribute) as IUnitAttribute<TUnit>})
+                .Select(u => new { unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>() as IUnitAttribute<TUnit>})
                 .Where(item => item.attr != null)
                 .ToDictionary(u => u.unit, u => u.attr);
         }
@@ -71,7 +72,7 @@ namespace UnitsNet.ThirdParty.GeneratedCode
             IUnitAttribute<TUnit> att;
             if (!unitToAttribute.TryGetValue(unit, out att))
             {
-                return String.Format("UNIT_ENUM_VALUE__{0}__HAS_NO_UNIT_ATTRIBUTE_SET_FOR_THIS_UNIT_CLASS", unit);
+                return String.Format("NO_UNIT_ATTRIBUTE_SET_FOR_ENUM_VALUE__{0}", unit);
             }
 
             // Default to plural with "s" postfix if no PluralName is explicitly set.
@@ -81,98 +82,97 @@ namespace UnitsNet.ThirdParty.GeneratedCode
             return baseUnitPluralName;
         }
 
-        public static List<IUnitAttribute<TUnit>> GetUnitAttributeImplementations<TUnit>()
-        {
-            List<string> classNames = GetUnitClassNamesFromUnitAttributeImplementations<TUnit>();
-            List<IUnitAttribute<TUnit>> attributes = classNames.Select(GetUnitAttributeFromUnitClassName<TUnit>)
-                .Where(attr => attr != null)
-                .ToList();
+        //public static List<IUnitAttribute<TUnit>> GetUnitAttributes<TBaseUnitAttribute, TUnit>() where TBaseUnitAttribute : Attribute
+        //{
 
-            return attributes;
+        //    List<IUnitAttribute<TUnit>> attributes = GetUnitAttributeTypes<TBaseUnitAttribute, TUnit>().ToList();
+        //    return attributes;
+        //}  
+        
+        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute, TUnit>()where TBaseUnitAttribute : Attribute
+        {
+            return FindDerivedTypes(typeof (TBaseUnitAttribute).Assembly, typeof (TBaseUnitAttribute)).ToList();
         }
+
+
 
         #region Private
 
-        /// <summary>
-        ///     <see cref="IUnitAttribute{TUnit}.BaseUnit" /> and <see cref="IUnitAttribute{TUnit}.XmlDocSummary" /> are often
-        ///     needed
-        ///     when generating classes. To obtain we need to construct an instance of the attribute, as these are not static/const
-        ///     for the reason of forcing derived implementations to implement them with abstract modifier in
-        ///     <see cref="IUnitAttribute{TUnit}" />
-        ///     base class.
-        /// </summary>
-        private static IUnitAttribute<TUnit> GetUnitAttributeFromUnitClassName<TUnit>(string unitClassName)
-        {
-            // Derived UnitAttributes are typically named LengthAttribute, MassAttribute etc.
-            const string attributeNamespace = "UnitsNet.ThirdParty.Attributes";
-            string unitAttributeFullName = String.Format("{0}.{1}Attribute", attributeNamespace, unitClassName);
-            Type unitAttributeType = typeof (TUnit).Assembly.GetType(unitAttributeFullName);
-            if (unitAttributeType == null)
-                return null;
+        ///// <summary>
+        /////     <see cref="IUnitAttribute{TUnit}.BaseUnit" /> and <see cref="IUnitAttribute{TUnit}.XmlDocSummary" /> are often
+        /////     needed
+        /////     when generating classes. To obtain we need to construct an instance of the attribute, as these are not static/const
+        /////     for the reason of forcing derived implementations to implement them with abstract modifier in
+        /////     <see cref="IUnitAttribute{TUnit}" />
+        /////     base class.
+        ///// </summary>
+        //private static IUnitAttribute<TUnit> GetUnitAttributeFromUnitClassName<TUnit>(string unitClassName)
+        //{
+        //    // Derived UnitAttributes are typically named LengthAttribute, MassAttribute etc.
+        //    const string attributeNamespace = "UnitsNet.ThirdParty.Attributes";
+        //    string unitAttributeFullName = String.Format("{0}.{1}Attribute", attributeNamespace, unitClassName);
+        //    Type unitAttributeType = typeof(TUnit).Assembly.GetType(unitAttributeFullName);
+        //    if (unitAttributeType == null)
+        //        return null;
 
-            // Example ctor: public AngleAttribute(double ratio, string pluralName = null)
-            //var attr = (IUnitAttribute<TUnit>) Activator.CreateInstance(unitAttributeType, new object[] {0.0, null});
+        //    // Example ctor: public AngleAttribute(double ratio, string pluralName = null)
+        //    //var attr = (IUnitAttribute<TUnit>) Activator.CreateInstance(unitAttributeType, new object[] {0.0, null});
 
-            ConstructorInfo simplestCtor =
-                unitAttributeType.GetConstructors().OrderBy(ctor => ctor.GetParameters().Length).First();
-            object[] parameters = simplestCtor.GetParameters().Select(p => GetDefault(p.ParameterType)).ToArray();
-            if (parameters.Length == 0)
-                throw new Exception("Ctor with no params found for type: " + unitAttributeType);
+        //    ConstructorInfo simplestCtor =
+        //        unitAttributeType.GetConstructors().OrderBy(ctor => ctor.GetParameters().Length).First();
+        //    object[] parameters = simplestCtor.GetParameters().Select(p => GetDefault(p.ParameterType)).ToArray();
+        //    if (parameters.Length == 0)
+        //        throw new Exception("Ctor with no params found for type: " + unitAttributeType);
 
-            var attr = (IUnitAttribute<TUnit>) simplestCtor.Invoke(parameters);
-            return attr;
-        }
+        //    var attr = (IUnitAttribute<TUnit>)simplestCtor.Invoke(parameters);
+        //    return attr;
+        //}
 
-        private static object GetDefault(Type type)
-        {
-            if (type.IsValueType)
-            {
-                return Activator.CreateInstance(type);
-            }
-            return null;
-        }
+        //private static object GetDefault(Type type)
+        //{
+        //    if (type.IsValueType)
+        //    {
+        //        return Activator.CreateInstance(type);
+        //    }
+        //    return null;
+        //}
 
         //private static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TUnit>()
         //{
         //    return GetUnitToAttributeDictionary<TUnit>(typeof(TUnit));
         //}
 
-        /// <summary>
-        ///     Returns a list of <see cref="TUnit" /> values for a unit class by the class name.
-        ///     This is resolved by looking at the <see cref="IUnitAttribute{TUnit}" /> attributes the enum values are tagged with.
-        ///     For example, a
-        ///     <param name="unitClassName" />
-        ///     of "Length" will match all <see cref="TUnit" /> values tagged with
-        ///     <see cref="LengthAttribute" />.
-        /// </summary>
-        private static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
-            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute)
-        {
-            Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
-            List<TUnit> unitsOfUnitClass =
-                unitToAttribute
-                    .Where(pair => pair.Value.GetType() == unitClassAttributeType)
-                    .Select(pair => pair.Key)
-                    .ToList();
+        ///// <summary>
+        /////     Returns a list of <see cref="TUnit" /> values for a unit class by the class name.
+        /////     This is resolved by looking at the <see cref="IUnitAttribute{TUnit}" /> attributes the enum values are tagged with.
+        /////     For example, a
+        /////     <param name="unitClassName" />
+        /////     of "Length" will match all <see cref="TUnit" /> values tagged with
+        /////     <see cref="LengthAttribute" />.
+        ///// </summary>
+        //private static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
+        //    Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute)
+        //{
+        //    Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
+        //    List<TUnit> unitsOfUnitClass =
+        //        unitToAttribute
+        //            .Where(pair => pair.Value.GetType() == unitClassAttributeType)
+        //            .Select(pair => pair.Key)
+        //            .ToList();
 
-            return unitsOfUnitClass;
-        }
+        //    return unitsOfUnitClass;
+        //}
 
-        private static IEnumerable<Type> FindDerivedTypes(Assembly assembly, Type baseType)
+        //public static List<string> GetUnitClassNamesFromUnitAttributeImplementations<TBaseUnitAttribute>() where TBaseUnitAttribute : Attribute
+        //{
+        //    // "LengthAttribute" => "Length"
+        //    return GetUnitAttributeTypes<TBaseUnitAttribute>().Select(attr => attr.GetType().Name.Replace("Attribute", String.Empty)).ToList();
+        //}
+
+              private static IEnumerable<Type> FindDerivedTypes(Assembly assembly, Type baseType)
         {
             return assembly.GetTypes().Where(t => t != baseType &&
                                                   baseType.IsAssignableFrom(t));
-        }
-
-        private static List<Type> GetUnitAttributeTypes<TUnit>()
-        {
-            return FindDerivedTypes(typeof (TUnit).Assembly, typeof (IUnitAttribute<TUnit>)).ToList();
-        }
-
-        private static List<string> GetUnitClassNamesFromUnitAttributeImplementations<TUnit>()
-        {
-            // "LengthAttribute" => "Length"
-            return GetUnitAttributeTypes<TUnit>().Select(attr => attr.Name.Replace("Attribute", String.Empty)).ToList();
         }
 
         #endregion

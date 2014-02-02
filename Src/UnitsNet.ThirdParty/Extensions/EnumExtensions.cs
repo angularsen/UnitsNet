@@ -49,25 +49,25 @@ namespace UnitsNet.ThirdParty.Extensions
                 .SingleOrDefault();
         }
 
-        public static TAttribute GetAttribute<TAttribute>(this Enum value, Type attributeType) where TAttribute : Attribute
-        {
-            // Below code not compatible with WinRT.
-            var type = value.GetType();
-            var name = Enum.GetName(type, value);
-#if NETFX_CORE
-            return type.GetRuntimeField(name) // I prefer to get attributes this way
-#else
-            return type.GetField(name) // I prefer to get attributes this way
-#endif
-                .GetCustomAttributes(false)
-                .Where(type2 => type2.GetType()
-#if NETFX_CORE
-                    .GetTypeInfo().IsAssignableFrom(attributeType.GetTypeInfo()))
-#else
-                    .IsAssignableFrom(attributeType))
-#endif
-                .Select(type2 => (TAttribute)type2)
-                .SingleOrDefault();
-        }
+//        public static TAttribute GetAttribute<TAttribute>(this Enum value, Type attributeType) where TAttribute : Attribute
+//        {
+//            // Below code not compatible with WinRT.
+//            var type = value.GetType();
+//            var name = Enum.GetName(type, value);
+//#if NETFX_CORE
+//            return type.GetRuntimeField(name) // I prefer to get attributes this way
+//#else
+//            return type.GetField(name) // I prefer to get attributes this way
+//#endif
+//                .GetCustomAttributes(false)
+//                .Where(type2 => type2.GetType()
+//#if NETFX_CORE
+//                    .GetTypeInfo().IsAssignableFrom(attributeType.GetTypeInfo()))
+//#else
+//                    .IsAssignableFrom(attributeType))
+//#endif
+//                .Select(type2 => (TAttribute)type2)
+//                .SingleOrDefault();
+//        }
     }
 }

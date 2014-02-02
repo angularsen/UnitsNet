@@ -1,18 +1,20 @@
 ﻿<#@ template debug="true" language="C#" hostspecific="true" #>
 <#@ assembly name="$(TargetPath)" #>
-<#@ include file="Includes\Shared.ttinclude" once="true"#>
+<#@ import namespace="System" #>
+<#@ import namespace="UnitsNet.ThirdParty" #>
+<#@ import namespace="UnitsNet.ThirdParty.GeneratedCode" #>
 <#@ output extension=".g.cs" #>
 <#
 
-    GenerateUnitConverter();
+    GenerateUnitConverter<FooUnit>();
 
 #><#+ 
 
-private void GenerateUnitConverter()
+private void GenerateUnitConverter<TUnit>()
 { 
-    List<Type> unitAttributeTypes = GetUnitAttributeTypes();
-    List<string> unitClassNames = GetUnitClassNamesFromUnitAttributeImplementations();
-    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
+    List<Type> unitAttributeTypes = TemplateUtils.GetUnitAttributeTypes<TUnit>();
+    List<string> unitClassNames = TemplateUtils.GetUnitClassNamesFromUnitAttributeImplementations<TUnit>();
+    Dictionary<Unit, UnitAttribute> unitToAttribute = TemplateUtils.GetUnitToAttributeDictionary<TUnit>();
 
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -97,8 +99,7 @@ namespace UnitsNet
 
 <#+      foreach (string unitClassName in unitClassNames) #>
 <#+      { #>
-<#+          List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes,
-    unitToAttribute); #>
+<#+          List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes, unitToAttribute); #>
 
         /// <summary>
         /// Try to dynamically convert from <#=unitClassName #> to <paramref name="toUnit"/>.

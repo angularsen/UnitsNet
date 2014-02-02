@@ -83,8 +83,8 @@ namespace UnitsNet.ThirdParty
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Bars and y is value in base unit Bars.</remarks>
         public static Foo FromBars(double bars)
-        {
-            return new Foo(1 * bars + 0);
+        { 
+            return new Foo(1 * bars);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace UnitsNet.ThirdParty
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in BarPlusOnes and y is value in base unit Bars.</remarks>
         public static Foo FromBarPlusOnes(double barplusones)
-        {
+        {            
             return new Foo(1 * barplusones + 1);
         }
 
@@ -101,8 +101,8 @@ namespace UnitsNet.ThirdParty
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in BarsTripled and y is value in base unit Bars.</remarks>
         public static Foo FromBarsTripled(double barstripled)
-        {
-            return new Foo(3 * barstripled + 0);
+        { 
+            return new Foo(3 * barstripled);
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace UnitsNet.ThirdParty
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in TwiceThanBars and y is value in base unit Bars.</remarks>
         public static Foo FromTwiceThanBars(double twicethanbars)
-        {
-            return new Foo(2 * twicethanbars + 0);
+        { 
+            return new Foo(2 * twicethanbars);
         }
 
         #endregion
