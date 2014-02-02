@@ -1,0 +1,242 @@
+﻿<#@ template debug="true" language="C#" hostspecific="true" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ include file="Includes\Shared.ttinclude" once="true"#>
+<#@ output extension=".g.cs" #>
+<#
+
+    GenerateUnitConverter();
+
+#><#+ 
+
+private void GenerateUnitConverter()
+{ 
+    List<Type> unitAttributeTypes = GetUnitAttributeTypes();
+    List<string> unitClassNames = GetUnitClassNamesFromUnitAttributeImplementations();
+    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
+
+#>
+// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/SIUnits
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
+
+namespace UnitsNet
+{
+    /// <summary>
+    /// Dynamically convert between compatible units only known at runtime.
+    /// </summary>
+    public static class UnitConverter
+    {
+        /// <summary>
+        /// Dynamically convert between two compatible units only known at runtime, such as converting from millimeters to meters.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit.</returns> 
+        /// <exception cref="Exception">If the two units are not compatible.</exception>
+        public static double Convert(double value, Unit fromUnit, Unit toUnit)
+        {
+            if (fromUnit == toUnit)
+                return value;
+
+            double newValue;
+<#+      foreach (string unitName in unitClassNames) #>
+<#+      { #>
+            if (TryConvertFrom<#=unitName #>(value, fromUnit, toUnit, out newValue)) return newValue;
+<#+ } #>
+
+            throw new Exception(
+                string.Format("Conversion from unit [{0}] to [{1}] is either not valid or not yet implemented.",
+                              fromUnit, toUnit));
+        }
+
+        /// <summary>
+        /// Dynamically convert between two compatible units only known at runtime, such as converting from millimeters to meters.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public static bool TryConvert(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            if (fromUnit == toUnit)
+            {
+                newValue = value;
+                return true;
+            }
+ 
+<#+      foreach (string unitName in unitClassNames) #>
+<#+      { #>
+            if (TryConvertFrom<#=unitName #>(value, fromUnit, toUnit, out newValue)) return true;
+<#+ } #>
+
+            return false;
+        }
+
+        #region Private
+
+<#+      foreach (string unitClassName in unitClassNames) #>
+<#+      { #>
+<#+          List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes,
+    unitToAttribute); #>
+
+        /// <summary>
+        /// Try to dynamically convert from <#=unitClassName #> to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvertFrom<#=unitClassName #>(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+<#+         foreach (Unit unit in unitsOfUnitClass) #>
+<#+         { #>
+<#+             string pluralUnitName = GetUnitPluralName(unitToAttribute, unit); #>
+                case Unit.<#=unit.ToString() #>:
+                    return TryConvert(<#=unitClassName #>.From<#=pluralUnitName #>(value), toUnit, out newValue);
+<#+ } #>
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+<#+ } #>
+
+<#+ foreach (string unitClassName in unitClassNames) #>
+<#+ { #>
+<#+     List<Unit> unitsOfUnitClass = GetUnitsOfUnitClass(unitClassName, unitAttributeTypes,
+    unitToAttribute); #>
+
+        /// <summary>
+        /// Try to dynamically convert from <#=unitClassName #> to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        private static bool TryConvert(<#=unitClassName #> value, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+<#+         foreach (Unit unit in unitsOfUnitClass) #>
+<#+         { #>
+                case Unit.<#=unit.ToString() #>:
+                    newValue = value.<#=GetUnitPluralName(unitToAttribute, unit) #>;
+                    return true;
+<#+ } #>
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+<#+ } #> 
+        #endregion
+
+        #region Not implemented as unit class yet, no UnitAttribute for these
+
+        private static bool TryConvertTime(double value, Unit fromUnit, Unit toUnit, out double newValue)
+        {
+            switch (fromUnit)
+            {
+                case Unit.Year365Days:
+                    return TryConvert(TimeSpan.FromDays(365*value), toUnit, out newValue);
+                case Unit.Month30Days:
+                    return TryConvert(TimeSpan.FromDays(30*value), toUnit, out newValue);
+                case Unit.Week:
+                    return TryConvert(TimeSpan.FromDays(7*value), toUnit, out newValue);
+                case Unit.Day:
+                    return TryConvert(TimeSpan.FromDays(value), toUnit, out newValue);
+                case Unit.Hour:
+                    return TryConvert(TimeSpan.FromHours(value), toUnit, out newValue);
+                case Unit.Minute:
+                    return TryConvert(TimeSpan.FromMinutes(value), toUnit, out newValue);
+                case Unit.Second:
+                    return TryConvert(TimeSpan.FromSeconds(value), toUnit, out newValue);
+                case Unit.Millisecond:
+                    return TryConvert(TimeSpan.FromMilliseconds(value), toUnit, out newValue);
+                case Unit.Microsecond:
+                    return TryConvert(TimeSpan.FromTicks(System.Convert.ToInt64(value*10)), toUnit, out newValue);
+                case Unit.Nanosecond:
+                    return TryConvert(TimeSpan.FromSeconds(System.Convert.ToInt64(value/100)), toUnit, out newValue);
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        private static bool TryConvert(TimeSpan t, Unit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case Unit.Year365Days:
+                    newValue = t.TotalDays/365;
+                    return true;
+                case Unit.Month30Days:
+                    newValue = t.TotalDays/30;
+                    return true;
+                case Unit.Week:
+                    newValue = t.TotalDays/7;
+                    return true;
+                case Unit.Day:
+                    newValue = t.TotalDays;
+                    return true;
+                case Unit.Hour:
+                    newValue = t.TotalHours;
+                    return true;
+                case Unit.Minute:
+                    newValue = t.TotalMinutes;
+                    return true;
+                case Unit.Second:
+                    newValue = t.TotalSeconds;
+                    return true;
+                case Unit.Millisecond:
+                    newValue = t.TotalMilliseconds;
+                    return true;
+                case Unit.Microsecond:
+                    newValue = t.Ticks/10.0;
+                    return true;
+                case Unit.Nanosecond:
+                    newValue = t.Ticks*100;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        #endregion
+    }
+}
+
+<#+
+} // private void GenerateUnitConverter(Manager m) 
+
+#>
