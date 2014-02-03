@@ -21,6 +21,7 @@
 
 using NUnit.Framework;
 using UnitsNet.Tests.net35.CustomCode;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Tests.net35
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests.net35
             public void MeterToLengthUnits()
             {
                 var t = new LengthTests();
-                Assert.AreEqual(t.KilometersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Kilometer), Delta);
+                Assert.AreEqual(t.KilometersInOneMeter, Length.From(1, LengthUnit.Meter).Convert(LengthUnit.Kilometer), Delta);
                 Assert.AreEqual(t.MetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Meter), Delta);
                 Assert.AreEqual(t.DecimetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Decimeter), Delta);
                 Assert.AreEqual(t.CentimetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Centimeter), Delta);
