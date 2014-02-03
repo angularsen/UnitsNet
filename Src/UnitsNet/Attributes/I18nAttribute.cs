@@ -1,20 +1,21 @@
 using System;
+using System.Globalization;
 
 namespace UnitsNet.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class I18nAttribute : Attribute
     {
-        private readonly Cultures _culture;
+        private readonly CultureInfo _culture;
         private readonly string[] _abbreviations;
 
-        public I18nAttribute(Cultures culture, params string[] abbreviations)
+        public I18nAttribute(string culture, params string[] abbreviations)
         {
-            _culture = culture;
+            _culture = CultureInfo.GetCultureInfo(culture);
             _abbreviations = abbreviations;
         }
 
-        public Cultures Culture
+        public CultureInfo Culture
         {
             get { return _culture; }
         }

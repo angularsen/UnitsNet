@@ -31,23 +31,23 @@ namespace UnitsNet.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public abstract class UnitAttribute : Attribute
     {
-        /// <summary>
-        ///     Base unit of unit class. This is the unit that unit classes store their value as internally.
-        ///     Conversions between two units go via the base unit to simplify defining the constants, requiring only N constants
-        ///     instead of N².
-        /// </summary>
-        public abstract Unit BaseUnit { get; }
+        ///// <summary>
+        /////     Base unit of unit class. This is the unit that unit classes store their value as internally.
+        /////     Conversions between two units go via the base unit to simplify defining the constants, requiring only N constants
+        /////     instead of N².
+        ///// </summary>
+        //public abstract Unit BaseUnit { get; }
 
         /// <summary>
         ///     Name of unit in plural form. Will be used as property name such as Force.FromNewtonmeters().
         /// </summary>
-        public readonly string PluralName;
+        public string PluralName { get; private set; }
 
         /// <summary>
         ///     Ratio of unit to base unit. For example, <see cref="Unit.Kilometer" /> is 1000:1 of the base unit
         ///     <see cref="Unit.Meter" />.
         /// </summary>
-        public readonly LinearFunction LinearMappingFromBaseUnit;
+        public LinearFunction LinearFunction { get; private set; }
 
         /// <summary>
         ///     XML doc summary for unit class. Will be inserted when generating the class from T4 template.
@@ -65,7 +65,7 @@ namespace UnitsNet.Attributes
             // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
             double a = slope;
             double b = offset;
-            LinearMappingFromBaseUnit = new LinearFunction(a, b);
+            LinearFunction = new LinearFunction(a, b);
             PluralName = pluralName;
         }
     }

@@ -26,69 +26,69 @@ namespace UnitsNet
 {
     public enum LengthUnit
     {
-        [I18n(Cultures.UsEnglish, "km")]
-        [I18n(Cultures.Russian, "км")]
+        [I18n("en-US", "km")]
+        [I18n("ru-RU", "км")]
         [Length(1e3)]
         Kilometer,
 
-        [I18n(Cultures.UsEnglish, "m")]
-        [I18n(Cultures.Russian, "м")]
+        [I18n("en-US", "m")]
+        [I18n("ru-RU", "м")]
         [Length(1)]
         Meter, // Base unit
 
-        [I18n(Cultures.UsEnglish, "dm")]
-        [I18n(Cultures.Russian, "дм")]
+        [I18n("en-US", "dm")]
+        [I18n("ru-RU", "дм")]
         [Length(1e-1)]
         Decimeter,
 
-        [I18n(Cultures.UsEnglish, "cm")]
-        [I18n(Cultures.Russian, "см")]
+        [I18n("en-US", "cm")]
+        [I18n("ru-RU", "см")]
         [Length(1e-2)]
         Centimeter,
 
-        [I18n(Cultures.UsEnglish, "mm")]
-        [I18n(Cultures.Russian, "мм")]
+        [I18n("en-US", "mm")]
+        [I18n("ru-RU", "мм")]
         [Length(1e-3)]
         Millimeter,
 
-        [I18n(Cultures.UsEnglish, "μm")]
-        [I18n(Cultures.Russian, "мкм")]
+        [I18n("en-US", "μm")]
+        [I18n("ru-RU", "мкм")]
         [Length(1e-6)]
         Micrometer,
 
-        [I18n(Cultures.UsEnglish, "nm")]
-        [I18n(Cultures.Russian, "нм")]
+        [I18n("en-US", "nm")]
+        [I18n("ru-RU", "нм")]
         [Length(1e-9)]
         Nanometer,
 
         // US, imperial and other
-        [I18n(Cultures.UsEnglish, "mi")]
-        [I18n(Cultures.Russian, "миля")]
+        [I18n("en-US", "mi")]
+        [I18n("ru-RU", "миля")]
         [Length(1609.34)]
         Mile,
 
-        [I18n(Cultures.UsEnglish, "yd")]
-        [I18n(Cultures.Russian, "ярд")]
+        [I18n("en-US", "yd")]
+        [I18n("ru-RU", "ярд")]
         [Length(0.9144)]
         Yard,
 
-        [I18n(Cultures.UsEnglish, "ft")]
-        [I18n(Cultures.Russian, "фут")]
+        [I18n("en-US", "ft")]
+        [I18n("ru-RU", "фут")]
         [Length(0.3048, "Feet")]
         Foot,
 
-        [I18n(Cultures.UsEnglish, "in")]
-        [I18n(Cultures.Russian, "дюйм")]
+        [I18n("en-US", "in")]
+        [I18n("ru-RU", "дюйм")]
         [Length(2.54e-2, "Inches")]
         Inch,
 
-        [I18n(Cultures.UsEnglish, "mil")]
-        [I18n(Cultures.Russian, "мил")]
+        [I18n("en-US", "mil")]
+        [I18n("ru-RU", "мил")]
         [Length(2.54e-5)]
         Mil,
 
-        [I18n(Cultures.UsEnglish, "μin")]
-        [I18n(Cultures.Russian, "микродюйм")]
+        [I18n("en-US", "μin")]
+        [I18n("ru-RU", "микродюйм")]
         [Length(2.54e-8, "Microinches")]
         Microinch,
     }
@@ -98,111 +98,177 @@ namespace UnitsNet
         Undefined = 0,
 
         // Metric
-        [Mass(1e9)] Megatonne,
-        [Mass(1e6)] Kilotonne,
-        [Mass(1e3)] Tonne,
-        [Mass(1)] Kilogram, // Base unit
-        [Mass(1e-1)] Hectogram,
-        [Mass(1e-2)] Decagram,
-        [Mass(1e-3)] Gram,
-        [Mass(1e-4)] Decigram,
-        [Mass(1e-5)] Centigram,
-        [Mass(1e-6)] Milligram,
-        [Mass(1e-9)] Microgram,
-        [Mass(1e-12)] Nanogram,
+        [Mass(1e9)]
+        Megatonne,
+        [Mass(1e6)]
+        Kilotonne,
+        [Mass(1e3)]
+        Tonne,
+        [Mass(1)]
+        Kilogram, // Base unit
+        [Mass(1e-1)]
+        Hectogram,
+        [Mass(1e-2)]
+        Decagram,
+        [Mass(1e-3)]
+        Gram,
+        [Mass(1e-4)]
+        Decigram,
+        [Mass(1e-5)]
+        Centigram,
+        [Mass(1e-6)]
+        Milligram,
+        [Mass(1e-9)]
+        Microgram,
+        [Mass(1e-12)]
+        Nanogram,
 
         // US, imperial and other
         /// <summary>
         ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
-        [Mass(907.18474)] ShortTon,
+        [Mass(907.18474)]
+        ShortTon,
 
         /// <summary>
         ///     The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.
         /// </summary>
-        [Mass(0.45359237)] Pound,
+        [Mass(0.45359237)]
+        Pound,
 
         /// <summary>
         ///     Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
-        [Mass(1016.0469088)] LongTon,
+        [Mass(1016.0469088)]
+        LongTon,
 
         // Pressure
-        [Pressure(1e6, "NewtonsPerSquareMillimeter")] NewtonPerSquareMillimeter,
-        [Pressure(1e4, "NewtonsPerSquareCentimeter")] NewtonPerSquareCentimeter,
-        [Pressure(1, "NewtonsPerSquareMeter")] NewtonPerSquareMeter,
-        [Pressure(9.80665*1e4, "KilogramForcePerSquareCentimeter")] KilogramForcePerSquareCentimeter,
-        [Pressure(1.01325*1e5)] Atmosphere,
-        [Pressure(9.80680592331*1e4)] TechnicalAtmosphere,
-        [Pressure(6.89464975179*1e3, "Psi")] Psi,
-        [Pressure(1.3332266752*1e2)] Torr,
-        [Pressure(1e5)] Bar,
-        [Pressure(1e6)] Megapascal,
-        [Pressure(1e3)] Kilopascal,
-        [Pressure(1)] Pascal, // Base unit
+        [Pressure(1e6, "NewtonsPerSquareMillimeter")]
+        NewtonPerSquareMillimeter,
+        [Pressure(1e4, "NewtonsPerSquareCentimeter")]
+        NewtonPerSquareCentimeter,
+        [Pressure(1, "NewtonsPerSquareMeter")]
+        NewtonPerSquareMeter,
+        [Pressure(9.80665 * 1e4, "KilogramForcePerSquareCentimeter")]
+        KilogramForcePerSquareCentimeter,
+        [Pressure(1.01325 * 1e5)]
+        Atmosphere,
+        [Pressure(9.80680592331 * 1e4)]
+        TechnicalAtmosphere,
+        [Pressure(6.89464975179 * 1e3, "Psi")]
+        Psi,
+        [Pressure(1.3332266752 * 1e2)]
+        Torr,
+        [Pressure(1e5)]
+        Bar,
+        [Pressure(1e6)]
+        Megapascal,
+        [Pressure(1e3)]
+        Kilopascal,
+        [Pressure(1)]
+        Pascal, // Base unit
 
         // Metric
-        [Force(1e3)] Kilonewton,
-        [Force(Constants.Gravity, "KilogramsForce")] KilogramForce,
-        [Force(1)] Newton, // Base unit
-        [Force(1e-5, "Dyne")] Dyn,
+        [Force(1e3)]
+        Kilonewton,
+        [Force(Constants.Gravity, "KilogramsForce")]
+        KilogramForce,
+        [Force(1)]
+        Newton, // Base unit
+        [Force(1e-5, "Dyne")]
+        Dyn,
 
         // US, imperial and other
-        [Force(Constants.Gravity)] KiloPond,
-        [Force(4.4482216152605095551842641431421)] PoundForce,
-        [Force(0.13825502798973041652092282466083)] Poundal,
+        [Force(Constants.Gravity)]
+        KiloPond,
+        [Force(4.4482216152605095551842641431421)]
+        PoundForce,
+        [Force(0.13825502798973041652092282466083)]
+        Poundal,
 
         // Metric
-        [Area(1e6)] SquareKilometer,
-        [Area(1)] SquareMeter, // Base unit
-        [Area(1e-2)] SquareDecimeter,
-        [Area(1e-4)] SquareCentimeter,
-        [Area(1e-6)] SquareMillimeter,
+        [Area(1e6)]
+        SquareKilometer,
+        [Area(1)]
+        SquareMeter, // Base unit
+        [Area(1e-2)]
+        SquareDecimeter,
+        [Area(1e-4)]
+        SquareCentimeter,
+        [Area(1e-6)]
+        SquareMillimeter,
 
         // US, imperial and other
-        [Area(2.59*1e6)] SquareMile,
-        [Area(0.836127)] SquareYard,
-        [Area(0.092903, "SquareFeet")] SquareFoot,
-        [Area(0.00064516, "SquareInches")] SquareInch,
+        [Area(2.59 * 1e6)]
+        SquareMile,
+        [Area(0.836127)]
+        SquareYard,
+        [Area(0.092903, "SquareFeet")]
+        SquareFoot,
+        [Area(0.00064516, "SquareInches")]
+        SquareInch,
 
         // Metric
-        [Angle(180 / Math.PI)] Radian,
-        [Angle(1)] Degree, // Base unit
-        [Angle(0.9)] Gradian,
+        [Angle(180 / Math.PI)]
+        Radian,
+        [Angle(1)]
+        Degree, // Base unit
+        [Angle(0.9)]
+        Gradian,
 
         // Metric
-        [Volume(1e9)] CubicKilometer,
-        [Volume(1)] CubicMeter,
-        [Volume(1e-3)] CubicDecimeter,
-        [Volume(1e-6)] CubicCentimeter,
-        [Volume(1e-9)] CubicMillimeter,
-        [Volume(1e-1)] Hectoliter,
-        [Volume(1e-3)] Liter,
-        [Volume(1e-4)] Deciliter,
-        [Volume(1e-5)] Centiliter,
-        [Volume(1e-6)] Milliliter,
+        [Volume(1e9)]
+        CubicKilometer,
+        [Volume(1)]
+        CubicMeter,
+        [Volume(1e-3)]
+        CubicDecimeter,
+        [Volume(1e-6)]
+        CubicCentimeter,
+        [Volume(1e-9)]
+        CubicMillimeter,
+        [Volume(1e-1)]
+        Hectoliter,
+        [Volume(1e-3)]
+        Liter,
+        [Volume(1e-4)]
+        Deciliter,
+        [Volume(1e-5)]
+        Centiliter,
+        [Volume(1e-6)]
+        Milliliter,
 
         // US, imperial and other
-        [Volume(4.16818183*1e9)] CubicMile,
-        [Volume(0.764554858)] CubicYard,
-        [Volume(0.0283168, "CubicFeet")]CubicFoot,
-        [Volume(1.6387*1e-5, "CubicInches")] CubicInch,
-        [Volume(0.00454609000000181429905810072407)] ImperialGallon,
-        [Volume(0.00378541)] UsGallon,
-        [Volume(2.957352956253760505068307980135*1e-5)] UsOunce,
-        [Volume(2.8413062499962901241875439064617e-5)] ImperialOunce,
+        [Volume(4.16818183 * 1e9)]
+        CubicMile,
+        [Volume(0.764554858)]
+        CubicYard,
+        [Volume(0.0283168, "CubicFeet")]
+        CubicFoot,
+        [Volume(1.6387 * 1e-5, "CubicInches")]
+        CubicInch,
+        [Volume(0.00454609000000181429905810072407)]
+        ImperialGallon,
+        [Volume(0.00378541)]
+        UsGallon,
+        [Volume(2.957352956253760505068307980135 * 1e-5)]
+        UsOunce,
+        [Volume(2.8413062499962901241875439064617e-5)]
+        ImperialOunce,
 
         // Metric
-        [Torque(1)] Newtonmeter,
+        [Torque(1)]
+        Newtonmeter,
 
         // Generic / Other
         Piece,
         Percent,
 
         // Electric potential
-        [ElectricPotential(1)] Volt,
+        [ElectricPotential(1)]
+        Volt,
 
         // Time
         /// <summary>
@@ -228,27 +294,44 @@ namespace UnitsNet
         Teaspoon,
 
         // Metric
-        [Flow(1, "CubicMetersPerSecond")] CubicMeterPerSecond,
-        [Flow(1.0/3600, "CubicMetersPerHour")] CubicMeterPerHour,
+        [Flow(1, "CubicMetersPerSecond")]
+        CubicMeterPerSecond,
+        [Flow(1.0 / 3600, "CubicMetersPerHour")]
+        CubicMeterPerHour,
 
         // Metric
-        [RotationalSpeed(1, "RevolutionsPerSecond")] RevolutionPerSecond,
-        [RotationalSpeed(1.0/60, "RevolutionsPerMinute")] RevolutionPerMinute,
+        [RotationalSpeed(1, "RevolutionsPerSecond")]
+        RevolutionPerSecond,
+        [RotationalSpeed(1.0 / 60, "RevolutionsPerMinute")]
+        RevolutionPerMinute,
 
         // Sources: http://en.wikipedia.org/wiki/Speed 
-        [Speed(0.3048, "FeetPerSecond")] FootPerSecond,
-        [Speed(1d / 3.6, "KilometersPerHour")] KilometerPerHour,
-        [Speed(0.514444)] Knot,
-        [Speed(1, "MetersPerSecond")] MeterPerSecond, // Base unit.
-        [Speed(0.44704, "MilesPerHour")] MilePerHour,
+        [Speed(0.3048, "FeetPerSecond")]
+        FootPerSecond,
+        [Speed(1d / 3.6, "KilometersPerHour")]
+        KilometerPerHour,
+        [Speed(0.514444)]
+        Knot,
+        [Speed(1, "MetersPerSecond")]
+        MeterPerSecond, // Base unit.
+        [Speed(0.44704, "MilesPerHour")]
+        MilePerHour,
 
-        [Temperature(slope: 1, offset: 273.15, pluralName: "DegreesCelsius")] DegreeCelsius,
-        [Temperature(slope: -2d/3, offset: 373.15, pluralName: "DegreesDelisle")] DegreeDelisle,
-        [Temperature(slope: 5d/9, offset: 459.67*5d/9, pluralName: "DegreesFahrenheit")] DegreeFahrenheit,
-        [Temperature(1)] Kelvin, // Base unit
-        [Temperature(slope: 100d/33, offset: 273.15, pluralName: "DegreesNewton")] DegreeNewton,
-        [Temperature(slope: 5d/9, offset: 0, pluralName: "DegreesRankine")] DegreeRankine,
-        [Temperature(slope: 5d/4, offset: 273.15, pluralName: "DegreesReaumur")] DegreeReaumur,
-        [Temperature(slope: 40d/21, offset: 273.15-7.5*40d/21, pluralName: "DegreesRoemer")] DegreeRoemer,
-    } 
- }
+        [Temperature(slope: 1, offset: 273.15, pluralName: "DegreesCelsius")]
+        DegreeCelsius,
+        [Temperature(slope: -2d / 3, offset: 373.15, pluralName: "DegreesDelisle")]
+        DegreeDelisle,
+        [Temperature(slope: 5d / 9, offset: 459.67 * 5d / 9, pluralName: "DegreesFahrenheit")]
+        DegreeFahrenheit,
+        [Temperature(1)]
+        Kelvin, // Base unit
+        [Temperature(slope: 100d / 33, offset: 273.15, pluralName: "DegreesNewton")]
+        DegreeNewton,
+        [Temperature(slope: 5d / 9, offset: 0, pluralName: "DegreesRankine")]
+        DegreeRankine,
+        [Temperature(slope: 5d / 4, offset: 273.15, pluralName: "DegreesReaumur")]
+        DegreeReaumur,
+        [Temperature(slope: 40d / 21, offset: 273.15 - 7.5 * 40d / 21, pluralName: "DegreesRoemer")]
+        DegreeRoemer,
+    }
+}

@@ -23,6 +23,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using UnitsNet.Attributes;
+using UnitsNet.GeneratedCode;
 
 namespace UnitsNet
 {
@@ -49,23 +52,33 @@ namespace UnitsNet
         /// <param name="cultureInfo"></param>
         private UnitSystem(CultureInfo cultureInfo = null)
         {
-            //_cultureInfo = cultureInfo;
-            _unitToAbbrevs = new Dictionary<Unit, List<string>>();
-            _abbrevsToUnit = new Dictionary<string, Unit>();
+            _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
+            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
 
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo("en-US");
 
             Culture = cultureInfo;
 
-            if (cultureInfo.Name == "en-US" || Equals(cultureInfo, CultureInfo.InvariantCulture))
-                CreateUsEnglish();
-            else if (cultureInfo.Name == "nb-NO")
-                CreateNorwegianBokmaal();
-            else if (cultureInfo.Name == "ru-RU")
-                CreateRussian();
-            else
-                throw new ArgumentException("Expected only Russian, Norwegian Bokmål, US English and invariant cultures.");
+            IEnumerable<Type> unitTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
+            foreach (Type unitType in unitTypes)
+            {
+                Dictionary<int, I18nAttribute[]> dict =
+                    TemplateUtils.GetUnitToI18nAttributesDictionaryForUnitType(unitType);
+
+                foreach (KeyValuePair<int, I18nAttribute[]> pair in dict)
+                {
+                    // Fall back to US English if localization attribute is not found for this culture.
+                    I18nAttribute[] i18NAttributes = pair.Value;
+                    I18nAttribute attr = i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
+                                         i18NAttributes.First(a => a.Culture.Name == "en-US");
+
+                    if (attr == null)
+                        continue;
+
+                    MapUnitToAbbreviation(unitType, pair.Key, attr.Abbreviations);
+                }
+            } 
         }
 
         /// <summary>
@@ -73,7 +86,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="cultureInfo">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
         /// <returns></returns>
-        public static UnitSystem Create(CultureInfo cultureInfo = null)
+        public static UnitSystem Create(CultureInfo cultureInfo = null) 
         {
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
@@ -88,29 +101,38 @@ namespace UnitsNet
 
         #region Public methods
 
-        public static Unit Parse(string unitAbbreviation, CultureInfo culture)
+        public static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
-            return Create(culture).Parse(unitAbbreviation);
+            return Create(culture).Parse<TUnit>(unitAbbreviation);
         }
 
-        public Unit Parse(string unitAbbreviation)
+        public TUnit Parse<TUnit>(string unitAbbreviation)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
-            Unit result;
-            if (_abbrevsToUnit.TryGetValue(unitAbbreviation, out result))
-                return result;
+            Type unitType = typeof (TUnit);
+            Dictionary<string, int> abbrevToUnitValue;
+            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
 
-            return Unit.Undefined;
+            int unitValue;
+            TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
+                ? (TUnit) (object) unitValue
+                : default(TUnit);
+
+            return result;
         }
 
-        public static string GetDefaultAbbreviation(Unit unit, CultureInfo culture)
+        public static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
             return Create(culture).GetDefaultAbbreviation(unit);
         }
 
-        public string GetDefaultAbbreviation(Unit unit)
+        public string GetDefaultAbbreviation<TUnit>(TUnit unit)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
-            // Return the first (most commonly used) abbreviation for this unit)
-            return _unitToAbbrevs[unit].First();
+            return GetAllAbbreviations(unit).First();
         }
 
         #endregion
@@ -142,22 +164,22 @@ namespace UnitsNet
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
             MapUnitToAbbreviation(Unit.Undefined, "(нет ед.изм.)");
 
-            // Length
-            MapUnitToAbbreviation(Unit.Kilometer, "км");
-            MapUnitToAbbreviation(Unit.Meter, "м");
-            MapUnitToAbbreviation(Unit.Decimeter, "дм");
-            MapUnitToAbbreviation(Unit.Centimeter, "см");
-            MapUnitToAbbreviation(Unit.Millimeter, "мм");
-            MapUnitToAbbreviation(Unit.Micrometer, "мкм");
-            MapUnitToAbbreviation(Unit.Nanometer, "нм");
+            //// Length
+            //MapUnitToAbbreviation(Unit.Kilometer, "км");
+            //MapUnitToAbbreviation(Unit.Meter, "м");
+            //MapUnitToAbbreviation(Unit.Decimeter, "дм");
+            //MapUnitToAbbreviation(Unit.Centimeter, "см");
+            //MapUnitToAbbreviation(Unit.Millimeter, "мм");
+            //MapUnitToAbbreviation(Unit.Micrometer, "мкм");
+            //MapUnitToAbbreviation(Unit.Nanometer, "нм");
 
-            // Length (imperial)
-            MapUnitToAbbreviation(Unit.Microinch, "микродюйм");
-            MapUnitToAbbreviation(Unit.Mil, "мил");
-            MapUnitToAbbreviation(Unit.Mile, "миля");
-            MapUnitToAbbreviation(Unit.Yard, "ярд");
-            MapUnitToAbbreviation(Unit.Foot, "фут");
-            MapUnitToAbbreviation(Unit.Inch, "дюйм", "\"");
+            //// Length (imperial)
+            //MapUnitToAbbreviation(Unit.Microinch, "микродюйм");
+            //MapUnitToAbbreviation(Unit.Mil, "мил");
+            //MapUnitToAbbreviation(Unit.Mile, "миля");
+            //MapUnitToAbbreviation(Unit.Yard, "ярд");
+            //MapUnitToAbbreviation(Unit.Foot, "фут");
+            //MapUnitToAbbreviation(Unit.Inch, "дюйм", "\"");
 
             // Masses
             MapUnitToAbbreviation(Unit.Megatonne, "Мт");
@@ -293,22 +315,22 @@ namespace UnitsNet
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
             MapUnitToAbbreviation(Unit.Undefined, "(no unit)");
 
-            // Length
-            MapUnitToAbbreviation(Unit.Kilometer, "km");
-            MapUnitToAbbreviation(Unit.Meter, "m");
-            MapUnitToAbbreviation(Unit.Decimeter, "dm");
-            MapUnitToAbbreviation(Unit.Centimeter, "cm");
-            MapUnitToAbbreviation(Unit.Millimeter, "mm");
-            MapUnitToAbbreviation(Unit.Micrometer, "μm");
-            MapUnitToAbbreviation(Unit.Nanometer, "nm");
+            //// Length
+            //MapUnitToAbbreviation(Unit.Kilometer, "km");
+            //MapUnitToAbbreviation(Unit.Meter, "m");
+            //MapUnitToAbbreviation(Unit.Decimeter, "dm");
+            //MapUnitToAbbreviation(Unit.Centimeter, "cm");
+            //MapUnitToAbbreviation(Unit.Millimeter, "mm");
+            //MapUnitToAbbreviation(Unit.Micrometer, "μm");
+            //MapUnitToAbbreviation(Unit.Nanometer, "nm");
 
-            // Length (imperial)
-            MapUnitToAbbreviation(Unit.Microinch, "μin");
-            MapUnitToAbbreviation(Unit.Mil, "mil");
-            MapUnitToAbbreviation(Unit.Mile, "mi");
-            MapUnitToAbbreviation(Unit.Yard, "yd");
-            MapUnitToAbbreviation(Unit.Foot, "ft");
-            MapUnitToAbbreviation(Unit.Inch, "in");
+            //// Length (imperial)
+            //MapUnitToAbbreviation(Unit.Microinch, "μin");
+            //MapUnitToAbbreviation(Unit.Mil, "mil");
+            //MapUnitToAbbreviation(Unit.Mile, "mi");
+            //MapUnitToAbbreviation(Unit.Yard, "yd");
+            //MapUnitToAbbreviation(Unit.Foot, "ft");
+            //MapUnitToAbbreviation(Unit.Inch, "in");
 
             // Masses
             MapUnitToAbbreviation(Unit.Megatonne, "Mt");
@@ -446,40 +468,89 @@ namespace UnitsNet
             MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
         }
 
-        private void MapUnitToAbbreviation(Unit unit, params string[] abbreviations)
+        private void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+        {
+            // Assuming TUnit is an enum, this conversion is safe. Not possible to cleanly enforce this today.
+            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
+            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
+            int unitValue = Convert.ToInt32(unit);
+            Type unitType = typeof (TUnit);
+            MapUnitToAbbreviation(unitType, unitValue, abbreviations);
+        }
+
+        private void MapUnitToAbbreviation(Type unitType, int unitValue, params string[] abbreviations)
         {
             if (abbreviations == null)
                 throw new ArgumentNullException("abbreviations");
 
+            Dictionary<int, List<string>> unitValueToAbbrev = _unitTypeToUnitValueToAbbrevs[unitType] ??
+                                    (_unitTypeToUnitValueToAbbrevs[unitType] = new Dictionary<int, List<string>>());
+
             List<string> existingAbbreviations;
-            if (!_unitToAbbrevs.TryGetValue(unit, out existingAbbreviations))
+            if (!unitValueToAbbrev.TryGetValue(unitValue, out existingAbbreviations))
             {
-                existingAbbreviations = _unitToAbbrevs[unit] = new List<string>();
+                existingAbbreviations = unitValueToAbbrev[unitValue] = new List<string>();
             }
 
             // Update any existing abbreviations so that the latest abbreviations 
             // take precedence in GetDefaultAbbreviation().
-            _unitToAbbrevs[unit] = abbreviations.Concat(existingAbbreviations).Distinct().ToList();
+            unitValueToAbbrev[unitValue] = abbreviations.Concat(existingAbbreviations).Distinct().ToList();
             foreach (string abbreviation in abbreviations)
             {
-                if (!_abbrevsToUnit.ContainsKey(abbreviation))
-                    _abbrevsToUnit[abbreviation] = unit;
+                Dictionary<string, int> abbrevToUnitValue = _unitTypeToAbbrevToUnitValue[unitType] ??
+                                                            (_unitTypeToAbbrevToUnitValue[unitType] =
+                                                                new Dictionary<string, int>());
+
+                if (!abbrevToUnitValue.ContainsKey(abbreviation))
+                    abbrevToUnitValue[abbreviation] = unitValue;
             }
         }
 
         #endregion
 
-        private readonly Dictionary<string, Unit> _abbrevsToUnit;
-        private readonly Dictionary<Unit, List<string>> _unitToAbbrevs;
+        private readonly Dictionary<Type, Dictionary<string, int>> _unitTypeToAbbrevToUnitValue;
+        /// <summary>
+        /// Example: "LengthUnit.Meter" to ["m"]
+        /// </summary>
+        private readonly Dictionary<Type, Dictionary<int, List<string>>> _unitTypeToUnitValueToAbbrevs;
 
-        public bool TryParse(string unitAbbreviation, out Unit unit)
+        public bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
-            return _abbrevsToUnit.TryGetValue(unitAbbreviation, out unit);
+            Type unitType = typeof (TUnit);
+
+            Dictionary<string, int> abbrevToUnitValue;
+            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+
+            int unitValue;
+            if (!abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
+            {
+                unit = default(TUnit);
+                return false;
+            }
+
+            unit = (TUnit) (object) unitValue;
+            return true;
         }
 
-        public string[] GetAllAbbreviations(Unit unit)
+        public string[] GetAllAbbreviations<TUnit>(TUnit unit)
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
-            return _unitToAbbrevs[unit].ToArray();
+            Type unitType = typeof (TUnit);
+            int unitValue = Convert.ToInt32(unit);
+
+            Dictionary<int, List<string>> unitValueToAbbrevs;
+            if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+
+            List<string> abbrevs;
+            if (!unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+
+            // Return the first (most commonly used) abbreviation for this unit)
+            return abbrevs.ToArray();
         }
     }
 }

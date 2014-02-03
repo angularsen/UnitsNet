@@ -49,6 +49,10 @@
     <Compile Include="CustomCode\Force.extra.cs" />
     <Compile Include="CustomCode\Mass.extra.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\UnitSystemExtensions.cs" />
+    <Compile Include="GeneratedCode\Length.g.cs">
+    <Compile Include="GeneratedCode\TemplateUtils.cs" />
+    <Compile Include="GeneratedCode\UnitClasses.g.cs">
     <Compile Include="GeneratedCode\AngleUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
@@ -108,6 +112,7 @@
     <None Include="GeneratedCode\Includes\Shared.ttinclude" />
     <None Include="GeneratedCode\UnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitClasses.g.cs</LastGenOutput>
     </None>
     <None Include="GeneratedCode\UnitConverter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
