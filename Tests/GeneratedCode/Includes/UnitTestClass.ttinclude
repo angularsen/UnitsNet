@@ -1,22 +1,22 @@
-﻿<#@ import namespace="System.Linq" #>
+﻿<#@ assembly name="$(TargetDir)UnitsNet.net35.dll" #>
+<#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#>
-<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\Shared.ttinclude" once="true" #><#+
+<#@ import namespace="UnitsNet.Units" #>
+<#@ import namespace="UnitsNet.Attributes" #>
+<#@ import namespace="UnitsNet.GeneratedCode" #>
+<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#><#+
 
-    private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit)
+    private void GenerateTestClass(Manager manager, string className, string baseUnitName, string baseUnitPluralName, IList<UnitInfo> orderedClassUnits)
     {
         using (manager.StartNewFile(className+"TestsBase.g.cs"))
         {
-            Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary(unitAttributeType);
-
-            Unit[] orderedClassUnits = unitToAttribute
+            /*object[] orderedClassUnits = unitToAttribute
                 .Keys
                 .OrderBy(unit => unit.ToString())
-                .ToArray();
+                .ToArray();*/
 
-            string baseUnitPluralName = GetUnitPluralName(unitToAttribute, baseUnit);
-            string baseUnitVariableName = baseUnit.ToString().ToLowerInvariant();
+            string baseUnitVariableName = baseUnitName.ToLowerInvariant();
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
@@ -57,32 +57,31 @@ namespace UnitsNet.Tests
         protected virtual double Delta { get { return 1E-5; } }
 
 <#+
-            foreach (Unit unit in orderedClassUnits)
+            foreach (UnitInfo unit in orderedClassUnits)
             {
-                string unitPluralName = GetUnitPluralName(unitToAttribute, unit);
-                /*
-        Example:
-        protected abstract double OneMeterInKilometers { get; }
-        */
+                string unitPluralName = unit.PluralName;
+
+        // Example:
+        // protected abstract double OneMeterInKilometers { get; } 
 #>
-        public abstract double <#=unitPluralName#>InOne<#=baseUnit.ToString()#> { get; }
+        public abstract double <#=unitPluralName#>InOne<#=baseUnitName#> { get; }
 <#+         }
 #>
 
         [Test]
-        public void <#=baseUnit.ToString()#>To<#=className#>Units()
+        public void <#=baseUnitName#>To<#=className#>Units()
         {
             <#=className#> <#=baseUnitVariableName#> = <#=className#>.From<#=baseUnitPluralName#>(1);
 <#+
-            foreach (Unit unit in orderedClassUnits)
+            foreach (UnitInfo unit in orderedClassUnits)
             {
-                string unitPluralName = GetUnitPluralName(unitToAttribute, unit);
+                string unitPluralName = unit.PluralName;
                 /*
         Example:
             Assert.AreEqual(OneMeterInKilometers, meter.Kilometers, Delta);
         */
 #>
-            Assert.AreEqual(<#=unitPluralName#>InOne<#=baseUnit.ToString()#>, <#=baseUnitVariableName#>.<#=unitPluralName#>, Delta);
+            Assert.AreEqual(<#=unitPluralName#>InOne<#=baseUnitName#>, <#=baseUnitVariableName#>.<#=unitPluralName#>, Delta);
 <#+         }
 #>
         }
@@ -92,9 +91,9 @@ namespace UnitsNet.Tests
         {
             <#=className#> <#=baseUnitVariableName#> = <#=className#>.From<#=baseUnitPluralName#>(1); 
 <#+
-            foreach (Unit unit in orderedClassUnits)
+            foreach (UnitInfo unit in orderedClassUnits)
             {
-                string unitPluralName = GetUnitPluralName(unitToAttribute, unit);
+                string unitPluralName = unit.PluralName;
                 /*
         Example:
             Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
@@ -121,18 +120,18 @@ namespace UnitsNet.Tests
         [Test]
         public void ComparisonOperators()
         {
-            <#=className#> one<#=baseUnit.ToString()#> = <#=className#>.From<#=baseUnitPluralName#>(1);
+            <#=className#> one<#=baseUnitName#> = <#=className#>.From<#=baseUnitPluralName#>(1);
             <#=className#> two<#=baseUnitPluralName#> = <#=className#>.From<#=baseUnitPluralName#>(2);
 
-            Assert.True(one<#=baseUnit.ToString()#> < two<#=baseUnitPluralName#>);
-            Assert.True(one<#=baseUnit.ToString()#> <= two<#=baseUnitPluralName#>);
-            Assert.True(two<#=baseUnitPluralName#> > one<#=baseUnit.ToString()#>);
-            Assert.True(two<#=baseUnitPluralName#> >= one<#=baseUnit.ToString()#>);
+            Assert.True(one<#=baseUnitName#> < two<#=baseUnitPluralName#>);
+            Assert.True(one<#=baseUnitName#> <= two<#=baseUnitPluralName#>);
+            Assert.True(two<#=baseUnitPluralName#> > one<#=baseUnitName#>);
+            Assert.True(two<#=baseUnitPluralName#> >= one<#=baseUnitName#>);
 
-            Assert.False(one<#=baseUnit.ToString()#> > two<#=baseUnitPluralName#>);
-            Assert.False(one<#=baseUnit.ToString()#> >= two<#=baseUnitPluralName#>);
-            Assert.False(two<#=baseUnitPluralName#> < one<#=baseUnit.ToString()#>);
-            Assert.False(two<#=baseUnitPluralName#> <= one<#=baseUnit.ToString()#>);
+            Assert.False(one<#=baseUnitName#> > two<#=baseUnitPluralName#>);
+            Assert.False(one<#=baseUnitName#> >= two<#=baseUnitPluralName#>);
+            Assert.False(two<#=baseUnitPluralName#> < one<#=baseUnitName#>);
+            Assert.False(two<#=baseUnitPluralName#> <= one<#=baseUnitName#>);
         }
 
         [Test]
@@ -203,5 +202,5 @@ namespace UnitsNet.Tests
 }
 <#+
         } // using (manager.StartNewFile(className+"TestsBase.generated.cs"))
-    } // private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, Unit baseUnit) 
+    } // private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, TUnit baseUnit) 
 #>

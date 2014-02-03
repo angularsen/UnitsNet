@@ -42,6 +42,49 @@ namespace UnitsNet.GeneratedCode
                 .ToDictionary(u => u.unit, u => u.attr);
         }
 
+        /// <summary>
+        /// Returns a dictionary of enum type to unit 
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public static Dictionary<Type, UnitEnumValueInfo[]> GetUnitEnumValueInfoPerUnitType(Assembly assembly)
+        {
+            // Do not match on namespace, it might break too easily on refactoring.
+            IEnumerable<Type> unitEnumTypes = assembly.GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
+            return unitEnumTypes.Select(
+                enumType =>
+                    new
+                    {
+                        EnumType = enumType,
+                        EnumValues =
+                            Enum.GetValues(enumType)
+                                .Cast<Enum>()
+                                .Select(enumValue => new UnitEnumValueInfo(enumValue.GetAttribute<IUnitAttribute>(), enumValue.GetType(), enumValue))
+                    })
+                .Where(item => item.EnumValues.Any())
+                .ToDictionary(item => item.EnumType, item => item.EnumValues.ToArray());
+        }
+
+        /// <summary>
+        /// Get dictionary of unit values to unit attributes, where unit attributes inherit <paramref name="unitAttributeIsOfType"/>.
+        /// </summary>
+        /// <typeparam name="TBaseUnitAttribute"></typeparam>
+        /// <typeparam name="TUnit"></typeparam>
+        /// <param name="unitAttributeIsOfType"></param>
+        /// <returns></returns>
+        public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(Type unitAttributeIsOfType)
+            where TBaseUnitAttribute : Attribute
+            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+        {
+
+            return Enum.GetValues(typeof (TUnit))
+                .Cast<TUnit>()
+                .Select(
+                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>(unitAttributeIsOfType) as IUnitAttribute<TUnit>})
+                .Where(item => item.attr != null)
+                .ToDictionary(u => u.unit, u => u.attr);
+        }
+
         public static Dictionary<TUnit, I18nAttribute[]> GetUnitToI18nAttributesDictionaryForUnitType<TUnit>()
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
@@ -87,8 +130,7 @@ namespace UnitsNet.GeneratedCode
             return baseUnitPluralName;
         }
 
-        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute, TUnit>() where TBaseUnitAttribute : Attribute
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute>() where TBaseUnitAttribute : Attribute
         {
             return FindDerivedTypes(typeof (TBaseUnitAttribute).Assembly, typeof (TBaseUnitAttribute)).ToList();
         }
@@ -126,4 +168,33 @@ namespace UnitsNet.GeneratedCode
 
         #endregion 
     }
+
+    public class UnitEnumValueInfo
+    {
+        public readonly IUnitAttribute UnitAttribute;
+        public readonly Type UnitEnumType;
+        public readonly Enum Value;
+
+        public UnitEnumValueInfo(IUnitAttribute unitAttribute, Type unitEnumType, Enum value)
+        {
+            UnitAttribute = unitAttribute;
+            UnitEnumType = unitEnumType;
+            Value = value;
+        }
+    }
+
+    public class UnitInfo
+    {
+        public readonly string SingularName;
+        public readonly string PluralName;
+        public readonly LinearFunction LinearFunction;
+
+        public UnitInfo(string singularName, string pluralName, LinearFunction linearFunction)
+        {
+            SingularName = singularName;
+            PluralName = pluralName ?? singularName + "s";
+            LinearFunction = linearFunction;
+        } 
+    }
+
 }

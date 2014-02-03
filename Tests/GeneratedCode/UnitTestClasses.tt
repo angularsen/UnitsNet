@@ -5,13 +5,37 @@
     
     var m = Manager.Create(Host, GenerationEnvironment);
 
-    List<UnitAttribute> unitAttributes = GetUnitAttributeImplementations();
+    Dictionary<Type, UnitEnumValueInfo[]> dict = TemplateUtils.GetUnitEnumValueInfoPerUnitType(Assembly.GetAssembly(typeof (LengthUnit)));
 
-    foreach (UnitAttribute attr in unitAttributes)
+    foreach (KeyValuePair<Type, UnitEnumValueInfo[]> pair in dict)
     {
-        Type unitAttributeType = attr.GetType();
-        string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
-        GenerateTestClass(unitAttributeType, m, unitClassName, attr.BaseUnit);
+        Type unitEnumType = pair.Key;
+        List<UnitEnumValueInfo> enumValues = pair.Value.Where(val => val.UnitAttribute != null).ToList();
+
+        // Ignore enums that do not specify any unit attributes, such as OtherUnit.
+        if (!enumValues.Any())
+            continue;
+
+        UnitEnumValueInfo baseUnit =
+            enumValues.FirstOrDefault(val => val.Value.ToString() == val.UnitAttribute.BaseUnitName);
+
+        if (baseUnit == null)
+            throw new InvalidOperationException(
+                "At least one unit attribute is defined for the values of this enum, but none of them matched the base unit. Did you forget to specify a base unit in the unit attribute?");
+
+        string baseUnitName = baseUnit.Value.ToString();
+        string baseUnitPluralName = baseUnit.UnitAttribute.PluralName ?? baseUnitName + "s";
+
+        IOrderedEnumerable<UnitInfo> orderedClassUnits =
+            enumValues.Select(
+                val =>
+                    new UnitInfo(val.Value.ToString(), val.UnitAttribute.PluralName, val.UnitAttribute.LinearFunction))
+                .OrderBy(val => val.SingularName);
+
+        // LengthUnit enum type => Length unit class
+        string unitClassName = unitEnumType.Name.Replace("Unit", string.Empty);
+
+        GenerateTestClass(m, unitClassName, baseUnitName, baseUnitPluralName, orderedClassUnits.ToList());
     }
     
     m.Process(split: true);

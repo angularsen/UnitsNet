@@ -34,13 +34,13 @@ namespace UnitsNet.Extensions
     public static class EnumExtensions
     {
         public static TAttribute GetAttribute<TAttribute>(this Enum value)
-            where TAttribute : Attribute
+            //where TAttribute : Attribute
         {
             return GetAttributes<TAttribute>(value).FirstOrDefault();
         }
 
         public static TAttribute[] GetAttributes<TAttribute>(this Enum value)
-            where TAttribute : Attribute
+            //where TAttribute : Attribute
         {
             // Below code not compatible with WinRT.
             var type = value.GetType();
