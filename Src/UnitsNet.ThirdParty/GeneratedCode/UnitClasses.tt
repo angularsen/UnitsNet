@@ -22,8 +22,8 @@
         foreach (var attr in unitAttributes)
         {
             Type unitAttributeType = attr.GetType();
-            string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
-            GenerateUnitClass(unitToAttribute, m, unitClassName, attr.BaseUnit, attr.XmlDocSummary);
+            string className = unitAttributeType.Name.Replace("Attribute", string.Empty);
+            GenerateUnitClass(unitToAttribute, m, className, attr.BaseUnit, attr.XmlDocSummary);
         }
     }
 
@@ -42,7 +42,9 @@
                     .OrderBy(unit => unit.ToString())
                     .ToArray();
 
-            string baseUnitPluralName = TemplateUtils.GetUnitPluralName(unitToAttribute, baseUnit); 
+            string baseUnitPluralName = TemplateUtils.GetUnitPluralName(unitToAttribute, baseUnit);
+            List<Type> unitAttributeTypes = unitToAttribute.Values.Select(attr => attr.GetType()).ToList();
+            string unitEnumName = typeof (TUnit).Name;
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
@@ -171,6 +173,27 @@ namespace UnitsNet.ThirdParty
 <#+
             }
 #>
+        /// <summary>
+        /// Try to dynamically convert from <#=className #> to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns><#=className#> unit value.</returns> 
+        public static <#=className#> From(double value, <#=unitEnumName#> fromUnit)
+        {
+            switch (fromUnit)
+            {
+<#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
+<#+         { #>
+<#+             string pluralUnitName = TemplateUtils.GetUnitPluralName(unitToAttribute, unit); #>
+                case <#=unitEnumName#>.<#=unit.ToString() #>:
+                    return From<#=pluralUnitName #>(value);
+<#+         } #>
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -272,6 +295,48 @@ namespace UnitsNet.ThirdParty
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from <#=className #> to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(<#=unitEnumName#> toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+<#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
+<#+         { #>
+                case <#=unitEnumName#>.<#=unit.ToString() #>:
+                    newValue = <#=TemplateUtils.GetUnitPluralName(unitToAttribute, unit) #>;
+                    return true;
+<#+         } #>
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from <#=className #> to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(<#=unitEnumName#> toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
@@ -280,8 +345,8 @@ namespace UnitsNet.ThirdParty
     }
 } 
 <#+
-        }
-    }
+        } // using
+    } // GenerateUnitClass()
 #>
 <#+
 #>

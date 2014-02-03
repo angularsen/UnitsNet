@@ -114,6 +114,27 @@ namespace UnitsNet.ThirdParty
             return new Foo(2 * twicethanfoos);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Foo to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Foo unit value.</returns> 
+        public static Foo From(double value, FooUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case FooUnit.FooPlus2:
+                    return FromFooPlusTwos(value);
+                case FooUnit.FooQuadrupled:
+                    return FromFoosQuadrupled(value);
+                case FooUnit.TwiceThanFoo:
+                    return FromTwiceThanFoos(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -212,6 +233,51 @@ namespace UnitsNet.ThirdParty
         public override int GetHashCode()
         {
             return Foos.GetHashCode();
+        }
+
+        #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Foo to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(FooUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case FooUnit.FooPlus2:
+                    newValue = FooPlusTwos;
+                    return true;
+                case FooUnit.FooQuadrupled:
+                    newValue = FoosQuadrupled;
+                    return true;
+                case FooUnit.TwiceThanFoo:
+                    newValue = TwiceThanFoos;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Foo to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(FooUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
         }
 
         #endregion

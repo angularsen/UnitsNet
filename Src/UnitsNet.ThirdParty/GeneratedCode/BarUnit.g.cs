@@ -114,6 +114,27 @@ namespace UnitsNet.ThirdParty
             return new Bar(2 * twicethanbars);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Bar to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Bar unit value.</returns> 
+        public static Bar From(double value, BarUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case BarUnit.BarPlus1:
+                    return FromBarPlusOnes(value);
+                case BarUnit.BarTripled:
+                    return FromBarsTripled(value);
+                case BarUnit.TwiceThanBar:
+                    return FromTwiceThanBars(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -212,6 +233,51 @@ namespace UnitsNet.ThirdParty
         public override int GetHashCode()
         {
             return Bars.GetHashCode();
+        }
+
+        #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Bar to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(BarUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case BarUnit.BarPlus1:
+                    newValue = BarPlusOnes;
+                    return true;
+                case BarUnit.BarTripled:
+                    newValue = BarsTripled;
+                    return true;
+                case BarUnit.TwiceThanBar:
+                    newValue = TwiceThanBars;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Bar to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(BarUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
         }
 
         #endregion

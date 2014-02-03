@@ -50,11 +50,6 @@
     </Compile>
     <Compile Include="GeneratedCode\TemplateUtils.cs" />
     <Compile Include="Units.cs" />
-    <Compile Include="GeneratedCode\UnitConverter.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnitConverter.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,10 +61,6 @@
     <None Include="GeneratedCode\Includes\MultipleOutputHelper.ttinclude" />
     <None Include="GeneratedCode\UnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Include="GeneratedCode\UnitConverter.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UnitConverter.g.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
