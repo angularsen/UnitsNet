@@ -121,7 +121,6 @@
   <ItemGroup>
     <None Include="GeneratedCode\Includes\UnitTestClass.ttinclude" />
     <None Include="GeneratedCode\Includes\UnitConverterTests.ttinclude" />
-    <None Include="GeneratedCode\Includes\UnitValueTests.ttinclude" />
     <None Include="GeneratedCode\UnitConverterTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UnitConverterTests.g.cs</LastGenOutput>
