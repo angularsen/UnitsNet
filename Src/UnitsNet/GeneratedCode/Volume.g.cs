@@ -388,6 +388,8 @@ namespace UnitsNet
                     return FromCubicInches(value);
                 case VolumeUnit.CubicKilometer:
                     return FromCubicKilometers(value);
+                case VolumeUnit.CubicMeter:
+                    return FromCubicMeters(value);
                 case VolumeUnit.CubicMile:
                     return FromCubicMiles(value);
                 case VolumeUnit.CubicMillimeter:
@@ -546,6 +548,9 @@ namespace UnitsNet
                     return true;
                 case VolumeUnit.CubicKilometer:
                     newValue = CubicKilometers;
+                    return true;
+                case VolumeUnit.CubicMeter:
+                    newValue = CubicMeters;
                     return true;
                 case VolumeUnit.CubicMile:
                     newValue = CubicMiles;

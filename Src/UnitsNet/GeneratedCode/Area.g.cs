@@ -224,6 +224,8 @@ namespace UnitsNet
                     return FromSquareInches(value);
                 case AreaUnit.SquareKilometer:
                     return FromSquareKilometers(value);
+                case AreaUnit.SquareMeter:
+                    return FromSquareMeters(value);
                 case AreaUnit.SquareMile:
                     return FromSquareMiles(value);
                 case AreaUnit.SquareMillimeter:
@@ -363,6 +365,9 @@ namespace UnitsNet
                     return true;
                 case AreaUnit.SquareKilometer:
                     newValue = SquareKilometers;
+                    return true;
+                case AreaUnit.SquareMeter:
+                    newValue = SquareMeters;
                     return true;
                 case AreaUnit.SquareMile:
                     newValue = SquareMiles;

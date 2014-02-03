@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="CustomCode\AngleTests.cs" />
     <Compile Include="CustomCode\AreaTests.cs" />
+    <Compile Include="CustomCode\DurationTests.cs" />
     <Compile Include="CustomCode\ElectricPotentialTests.cs" />
     <Compile Include="CustomCode\FlowTests.cs" />
     <Compile Include="CustomCode\ForceTests.cs" />
@@ -100,6 +101,11 @@
     <Compile Include="GeneratedCode\TorqueTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedCode\UnitConverterTests.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitConverterTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedCode\UnitTestClasses.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,6 +122,10 @@
     <None Include="GeneratedCode\Includes\UnitTestClass.ttinclude" />
     <None Include="GeneratedCode\Includes\UnitConverterTests.ttinclude" />
     <None Include="GeneratedCode\Includes\UnitValueTests.ttinclude" />
+    <None Include="GeneratedCode\UnitConverterTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitConverterTests.g.cs</LastGenOutput>
+    </None>
     <None Include="GeneratedCode\UnitTestClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UnitTestClasses.g.cs</LastGenOutput>

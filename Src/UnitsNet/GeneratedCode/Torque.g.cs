@@ -70,6 +70,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case TorqueUnit.Newtonmeter:
+                    return FromNewtonmeters(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -189,6 +191,9 @@ namespace UnitsNet
         {
             switch (toUnit)
             {
+                case TorqueUnit.Newtonmeter:
+                    newValue = Newtonmeters;
+                    return true;
 
                 default:
                     newValue = 0;

@@ -189,7 +189,7 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-<#+         foreach (UnitInfo unit in orderedClassUnitsExceptBaseUnit) #>
+<#+         foreach (UnitInfo unit in orderedClassUnits) #>
 <#+         { 
                 string pluralUnitName = unit.PluralName;
 #>
@@ -315,7 +315,7 @@ namespace UnitsNet
         {
             switch (toUnit)
             {
-<#+         foreach (UnitInfo unit in orderedClassUnitsExceptBaseUnit) #>
+<#+         foreach (UnitInfo unit in orderedClassUnits) #>
 <#+         { #>
                 case <#=unitEnumName#>.<#=unit.SingularName#>:
                     newValue = <#=unit.PluralName#>;

@@ -90,6 +90,8 @@ namespace UnitsNet
             {
                 case RotationalSpeedUnit.RevolutionPerMinute:
                     return FromRevolutionsPerMinute(value);
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    return FromRevolutionsPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -211,6 +213,9 @@ namespace UnitsNet
             {
                 case RotationalSpeedUnit.RevolutionPerMinute:
                     newValue = RevolutionsPerMinute;
+                    return true;
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    newValue = RevolutionsPerSecond;
                     return true;
 
                 default:

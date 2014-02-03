@@ -210,6 +210,8 @@ namespace UnitsNet
                     return FromDegreesReaumur(value);
                 case TemperatureUnit.DegreeRoemer:
                     return FromDegreesRoemer(value);
+                case TemperatureUnit.Kelvin:
+                    return FromKelvins(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -349,6 +351,9 @@ namespace UnitsNet
                     return true;
                 case TemperatureUnit.DegreeRoemer:
                     newValue = DegreesRoemer;
+                    return true;
+                case TemperatureUnit.Kelvin:
+                    newValue = Kelvins;
                     return true;
 
                 default:

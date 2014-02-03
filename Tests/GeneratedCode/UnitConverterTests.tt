@@ -2,9 +2,11 @@
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
 <#@ include file="Includes\UnitConverterTests.ttinclude" once="true" #>
 <#@ output extension=".g.cs" #>
 <#
-    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
-    GenerateUnitConverterTests(unitToAttribute);
+    var assembly = Assembly.GetAssembly(typeof (LengthUnit));
+    List<UnitClassInfo> infos = TemplateUtils.GetUnitClasses(assembly).ToList();
+    GenerateUnitConverterTests(infos);
 #><#+ #>

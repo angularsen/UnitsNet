@@ -332,6 +332,8 @@ namespace UnitsNet
                     return FromGrams(value);
                 case MassUnit.Hectogram:
                     return FromHectograms(value);
+                case MassUnit.Kilogram:
+                    return FromKilograms(value);
                 case MassUnit.Kilotonne:
                     return FromKilotonnes(value);
                 case MassUnit.LongTon:
@@ -483,6 +485,9 @@ namespace UnitsNet
                     return true;
                 case MassUnit.Hectogram:
                     newValue = Hectograms;
+                    return true;
+                case MassUnit.Kilogram:
+                    newValue = Kilograms;
                     return true;
                 case MassUnit.Kilotonne:
                     newValue = Kilotonnes;

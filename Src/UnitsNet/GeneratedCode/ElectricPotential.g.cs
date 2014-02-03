@@ -70,6 +70,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ElectricPotentialUnit.Volt:
+                    return FromVolts(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -189,6 +191,9 @@ namespace UnitsNet
         {
             switch (toUnit)
             {
+                case ElectricPotentialUnit.Volt:
+                    newValue = Volts;
+                    return true;
 
                 default:
                     newValue = 0;

@@ -246,6 +246,8 @@ namespace UnitsNet
                     return FromMonth30Dayss(value);
                 case DurationUnit.Nanosecond:
                     return FromNanoseconds(value);
+                case DurationUnit.Second:
+                    return FromSeconds(value);
                 case DurationUnit.Week:
                     return FromWeeks(value);
                 case DurationUnit.Year365Days:
@@ -389,6 +391,9 @@ namespace UnitsNet
                     return true;
                 case DurationUnit.Nanosecond:
                     newValue = Nanoseconds;
+                    return true;
+                case DurationUnit.Second:
+                    newValue = Seconds;
                     return true;
                 case DurationUnit.Week:
                     newValue = Weeks;

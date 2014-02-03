@@ -148,6 +148,8 @@ namespace UnitsNet
                     return FromKilometersPerHour(value);
                 case SpeedUnit.Knot:
                     return FromKnots(value);
+                case SpeedUnit.MeterPerSecond:
+                    return FromMetersPerSecond(value);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(value);
 
@@ -277,6 +279,9 @@ namespace UnitsNet
                     return true;
                 case SpeedUnit.Knot:
                     newValue = Knots;
+                    return true;
+                case SpeedUnit.MeterPerSecond:
+                    newValue = MetersPerSecond;
                     return true;
                 case SpeedUnit.MilePerHour:
                     newValue = MilesPerHour;

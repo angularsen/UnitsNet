@@ -284,6 +284,8 @@ namespace UnitsNet
                     return FromNewtonsPerSquareMeter(value);
                 case PressureUnit.NewtonPerSquareMillimeter:
                     return FromNewtonsPerSquareMillimeter(value);
+                case PressureUnit.Pascal:
+                    return FromPascals(value);
                 case PressureUnit.Psi:
                     return FromPsi(value);
                 case PressureUnit.TechnicalAtmosphere:
@@ -432,6 +434,9 @@ namespace UnitsNet
                     return true;
                 case PressureUnit.NewtonPerSquareMillimeter:
                     newValue = NewtonsPerSquareMillimeter;
+                    return true;
+                case PressureUnit.Pascal:
+                    newValue = Pascals;
                     return true;
                 case PressureUnit.Psi:
                     newValue = Psi;

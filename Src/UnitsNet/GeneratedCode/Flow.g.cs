@@ -90,6 +90,8 @@ namespace UnitsNet
             {
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value);
+                case FlowUnit.CubicMeterPerSecond:
+                    return FromCubicMetersPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -211,6 +213,9 @@ namespace UnitsNet
             {
                 case FlowUnit.CubicMeterPerHour:
                     newValue = CubicMetersPerHour;
+                    return true;
+                case FlowUnit.CubicMeterPerSecond:
+                    newValue = CubicMetersPerSecond;
                     return true;
 
                 default:

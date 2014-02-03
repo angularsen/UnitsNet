@@ -106,6 +106,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case AngleUnit.Degree:
+                    return FromDegrees(value);
                 case AngleUnit.Gradian:
                     return FromGradians(value);
                 case AngleUnit.Radian:
@@ -229,6 +231,9 @@ namespace UnitsNet
         {
             switch (toUnit)
             {
+                case AngleUnit.Degree:
+                    newValue = Degrees;
+                    return true;
                 case AngleUnit.Gradian:
                     newValue = Gradians;
                     return true;

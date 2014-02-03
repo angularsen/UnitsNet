@@ -296,6 +296,8 @@ namespace UnitsNet
                     return FromInches(value);
                 case LengthUnit.Kilometer:
                     return FromKilometers(value);
+                case LengthUnit.Meter:
+                    return FromMeters(value);
                 case LengthUnit.Microinch:
                     return FromMicroinches(value);
                 case LengthUnit.Micrometer:
@@ -443,6 +445,9 @@ namespace UnitsNet
                     return true;
                 case LengthUnit.Kilometer:
                     newValue = Kilometers;
+                    return true;
+                case LengthUnit.Meter:
+                    newValue = Meters;
                     return true;
                 case LengthUnit.Microinch:
                     newValue = Microinches;

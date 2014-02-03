@@ -186,6 +186,8 @@ namespace UnitsNet
                     return FromKilonewtons(value);
                 case ForceUnit.KiloPond:
                     return FromKiloPonds(value);
+                case ForceUnit.Newton:
+                    return FromNewtons(value);
                 case ForceUnit.Poundal:
                     return FromPoundals(value);
                 case ForceUnit.PoundForce:
@@ -320,6 +322,9 @@ namespace UnitsNet
                     return true;
                 case ForceUnit.KiloPond:
                     newValue = KiloPonds;
+                    return true;
+                case ForceUnit.Newton:
+                    newValue = Newtons;
                     return true;
                 case ForceUnit.Poundal:
                     newValue = Poundals;
