@@ -103,13 +103,13 @@ namespace UnitsNet
         #region Public methods
 
         public static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return Create(culture).Parse<TUnit>(unitAbbreviation);
         }
 
         public TUnit Parse<TUnit>(string unitAbbreviation)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Type unitType = typeof (TUnit);
             Dictionary<string, int> abbrevToUnitValue;
@@ -125,13 +125,13 @@ namespace UnitsNet
         }
 
         public static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return Create(culture).GetDefaultAbbreviation(unit);
         }
 
         public string GetDefaultAbbreviation<TUnit>(TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetAllAbbreviations(unit).First();
         }
@@ -470,7 +470,7 @@ namespace UnitsNet
         }
 
         private void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             // Assuming TUnit is an enum, this conversion is safe. Not possible to cleanly enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -523,7 +523,7 @@ namespace UnitsNet
         private readonly Dictionary<Type, Dictionary<int, List<string>>> _unitTypeToUnitValueToAbbrevs;
 
         public bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Type unitType = typeof (TUnit);
 
@@ -543,7 +543,7 @@ namespace UnitsNet
         }
 
         public string[] GetAllAbbreviations<TUnit>(TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Type unitType = typeof (TUnit);
             int unitValue = Convert.ToInt32(unit);

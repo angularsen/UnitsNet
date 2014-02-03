@@ -32,7 +32,7 @@ namespace UnitsNet.Attributes
 
         public I18nAttribute(string culture, params string[] abbreviations)
         {
-            _culture = CultureInfo.GetCultureInfo(culture);
+            _culture = new CultureInfo(culture);
             _abbreviations = abbreviations;
         }
 

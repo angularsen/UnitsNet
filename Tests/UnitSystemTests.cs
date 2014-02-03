@@ -79,7 +79,7 @@ namespace UnitsNet.Tests.net35
         }
         
         private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             UnitSystem unitSystem = UnitSystem.Create(new CultureInfo(cultureName));
 
