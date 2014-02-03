@@ -74,14 +74,14 @@ namespace UnitsNet.GeneratedCode
         }
 
 
-        public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>()
+        public static Dictionary<TUnit, IUnitAttribute> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>()
             where TBaseUnitAttribute : Attribute
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
             return Enum.GetValues(typeof (TUnit))
                 .Cast<TUnit>()
                 .Select(
-                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>() as IUnitAttribute<TUnit>})
+                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>() as IUnitAttribute})
                 .Where(item => item.attr != null)
                 .ToDictionary(u => u.unit, u => u.attr);
         }
@@ -116,7 +116,7 @@ namespace UnitsNet.GeneratedCode
         /// <typeparam name="TUnit"></typeparam>
         /// <param name="unitAttributeIsOfType"></param>
         /// <returns></returns>
-        public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(Type unitAttributeIsOfType)
+        public static Dictionary<TUnit, IUnitAttribute> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(Type unitAttributeIsOfType)
             where TBaseUnitAttribute : Attribute
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
@@ -124,7 +124,7 @@ namespace UnitsNet.GeneratedCode
             return Enum.GetValues(typeof (TUnit))
                 .Cast<TUnit>()
                 .Select(
-                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>(unitAttributeIsOfType) as IUnitAttribute<TUnit>})
+                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>(unitAttributeIsOfType) as IUnitAttribute})
                 .Where(item => item.attr != null)
                 .ToDictionary(u => u.unit, u => u.attr);
         }
@@ -156,12 +156,12 @@ namespace UnitsNet.GeneratedCode
             return (u as Enum).GetAttributes<I18nAttribute>();
         }
 
-        public static string GetUnitPluralName<TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute,
+        public static string GetUnitPluralName<TUnit>(Dictionary<TUnit, IUnitAttribute> unitToAttribute,
             TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
             // Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
-            IUnitAttribute<TUnit> att;
+            IUnitAttribute att;
             if (!unitToAttribute.TryGetValue(unit, out att))
             {
                 return String.Format("NO_UNIT_ATTRIBUTE_SET_FOR_ENUM_VALUE__{0}", unit);
@@ -188,7 +188,7 @@ namespace UnitsNet.GeneratedCode
         ///     <see cref="LengthAttribute" />.
         /// </summary>
         public static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
-            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute)
+            Dictionary<TUnit, IUnitAttribute> unitToAttribute)
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
         {
             Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));

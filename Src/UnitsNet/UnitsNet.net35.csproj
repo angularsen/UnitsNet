@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Attributes.cs" />
-    <Compile Include="Attributes\Cultures.cs" />
     <Compile Include="Attributes\I18nAttribute.cs" />
     <Compile Include="Attributes\IUnitAttribute.cs" />
     <Compile Include="Attributes\UnitAttribute.cs" />

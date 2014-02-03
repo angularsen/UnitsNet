@@ -1,4 +1,24 @@
-﻿
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
 namespace UnitsNet.Attributes
 {
     public interface IUnitAttribute
@@ -14,20 +34,13 @@ namespace UnitsNet.Attributes
         string XmlDocSummary { get; }
 
         /// <summary>
-        /// Linear function y = ax + b, where x is base unit.
+        ///     Linear function y = ax + b, where x is base unit.
         /// </summary>
         LinearFunction LinearFunction { get; }
 
+        /// <summary>
+        ///     Name of base unit for this unit enum, defined in unit attribute.
+        /// </summary>
         string BaseUnitName { get; }
-    }
-
-    public interface IUnitAttribute<out TUnit> : IUnitAttribute
-    {
-        ///// <summary>
-        /////     Base unit of unit class. This is the unit that unit classes store their value as internally.
-        /////     Conversions between two units go via the base unit to simplify defining the constants, requiring only N constants
-        /////     instead of N².
-        ///// </summary>
-        //TUnit BaseUnit { get; }
     }
 }

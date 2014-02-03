@@ -26,7 +26,7 @@ namespace UnitsNet.Attributes
 {
     // TODO Add IsDefault and use that to look up BaseUnit
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class AngleAttribute : UnitAttribute, IUnitAttribute<AngleUnit>
+    public class AngleAttribute : UnitAttribute, IUnitAttribute
     {
         public AngleUnit BaseUnit { get { return AngleUnit.Degree; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -38,7 +38,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class AreaAttribute : UnitAttribute, IUnitAttribute<AreaUnit>
+    public class AreaAttribute : UnitAttribute, IUnitAttribute
     {
         public AreaUnit BaseUnit { get { return AreaUnit.SquareMeter; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -49,7 +49,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DurationAttribute : UnitAttribute, IUnitAttribute<DurationUnit>
+    public class DurationAttribute : UnitAttribute, IUnitAttribute
     {
         public DurationUnit BaseUnit { get { return DurationUnit.Second; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -60,7 +60,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class ElectricPotentialAttribute : UnitAttribute, IUnitAttribute<ElectricPotentialUnit>
+    public class ElectricPotentialAttribute : UnitAttribute, IUnitAttribute
     {
         public ElectricPotentialUnit BaseUnit { get { return ElectricPotentialUnit.Volt; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -71,7 +71,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class FlowAttribute : UnitAttribute, IUnitAttribute<FlowUnit>
+    public class FlowAttribute : UnitAttribute, IUnitAttribute
     {
         public FlowUnit BaseUnit { get { return FlowUnit.CubicMeterPerSecond; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -82,7 +82,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class ForceAttribute : UnitAttribute, IUnitAttribute<ForceUnit>
+    public class ForceAttribute : UnitAttribute, IUnitAttribute
     {
         public ForceUnit BaseUnit { get { return ForceUnit.Newton; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -93,7 +93,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class LengthAttribute : UnitAttribute, IUnitAttribute<LengthUnit>
+    public class LengthAttribute : UnitAttribute, IUnitAttribute
     {
         public LengthUnit BaseUnit { get { return LengthUnit.Meter; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -104,7 +104,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class MassAttribute : UnitAttribute, IUnitAttribute<MassUnit>
+    public class MassAttribute : UnitAttribute, IUnitAttribute
     {
         public MassUnit BaseUnit { get { return MassUnit.Kilogram; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -115,7 +115,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class PressureAttribute : UnitAttribute, IUnitAttribute<PressureUnit>
+    public class PressureAttribute : UnitAttribute, IUnitAttribute
     {
         public PressureUnit BaseUnit { get { return PressureUnit.Pascal; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -126,7 +126,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class RotationalSpeedAttribute : UnitAttribute, IUnitAttribute<RotationalSpeedUnit>
+    public class RotationalSpeedAttribute : UnitAttribute, IUnitAttribute
     {
         public RotationalSpeedUnit BaseUnit { get { return RotationalSpeedUnit.RevolutionPerSecond; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -138,7 +138,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class SpeedAttribute : UnitAttribute, IUnitAttribute<SpeedUnit>
+    public class SpeedAttribute : UnitAttribute, IUnitAttribute
     {
         public SpeedUnit BaseUnit { get { return SpeedUnit.MeterPerSecond; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -150,7 +150,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class TemperatureAttribute : UnitAttribute, IUnitAttribute<TemperatureUnit>
+    public class TemperatureAttribute : UnitAttribute, IUnitAttribute
     {
         public TemperatureUnit BaseUnit { get { return TemperatureUnit.Kelvin; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -171,7 +171,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class TorqueAttribute : UnitAttribute, IUnitAttribute<TorqueUnit>
+    public class TorqueAttribute : UnitAttribute, IUnitAttribute
     {
         public TorqueUnit BaseUnit { get { return TorqueUnit.Newtonmeter; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
@@ -182,7 +182,7 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class VolumeAttribute : UnitAttribute, IUnitAttribute<VolumeUnit>
+    public class VolumeAttribute : UnitAttribute, IUnitAttribute
     {
         public VolumeUnit BaseUnit { get { return VolumeUnit.CubicMeter; } }
         public string BaseUnitName { get { return BaseUnit.ToString(); }}
