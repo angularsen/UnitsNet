@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             SquareMeters = squaremeters;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Area in SquareCentimeters.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareCentimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareCentimeters
-        {
-            get { return (SquareMeters - (0)) / 0.0001; }
+        { 
+            get { return SquareMeters / 0.0001; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareDecimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareDecimeters
-        {
-            get { return (SquareMeters - (0)) / 0.01; }
+        { 
+            get { return SquareMeters / 0.01; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareFeet and y is value in base unit SquareMeters.</remarks>
         public double SquareFeet
-        {
-            get { return (SquareMeters - (0)) / 0.092903; }
+        { 
+            get { return SquareMeters / 0.092903; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareInches and y is value in base unit SquareMeters.</remarks>
         public double SquareInches
-        {
-            get { return (SquareMeters - (0)) / 0.00064516; }
+        { 
+            get { return SquareMeters / 0.00064516; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
         public double SquareKilometers
-        {
-            get { return (SquareMeters - (0)) / 1000000; }
+        { 
+            get { return SquareMeters / 1000000; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareMiles and y is value in base unit SquareMeters.</remarks>
         public double SquareMiles
-        {
-            get { return (SquareMeters - (0)) / 2590000; }
+        { 
+            get { return SquareMeters / 2590000; }
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareMillimeters and y is value in base unit SquareMeters.</remarks>
         public double SquareMillimeters
-        {
-            get { return (SquareMeters - (0)) / 1E-06; }
+        { 
+            get { return SquareMeters / 1E-06; }
         }
 
         /// <summary>
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareYards and y is value in base unit SquareMeters.</remarks>
         public double SquareYards
-        {
-            get { return (SquareMeters - (0)) / 0.836127; }
+        { 
+            get { return SquareMeters / 0.836127; }
         }
 
         #endregion
@@ -127,8 +128,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareCentimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareCentimeters(double squarecentimeters)
-        {
-            return new Area(0.0001 * squarecentimeters + 0);
+        { 
+            return new Area(0.0001 * squarecentimeters);
         }
 
         /// <summary>
@@ -136,8 +137,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareDecimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareDecimeters(double squaredecimeters)
-        {
-            return new Area(0.01 * squaredecimeters + 0);
+        { 
+            return new Area(0.01 * squaredecimeters);
         }
 
         /// <summary>
@@ -145,8 +146,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareFeet and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareFeet(double squarefeet)
-        {
-            return new Area(0.092903 * squarefeet + 0);
+        { 
+            return new Area(0.092903 * squarefeet);
         }
 
         /// <summary>
@@ -154,8 +155,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareInches and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareInches(double squareinches)
-        {
-            return new Area(0.00064516 * squareinches + 0);
+        { 
+            return new Area(0.00064516 * squareinches);
         }
 
         /// <summary>
@@ -163,8 +164,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareKilometers(double squarekilometers)
-        {
-            return new Area(1000000 * squarekilometers + 0);
+        { 
+            return new Area(1000000 * squarekilometers);
         }
 
         /// <summary>
@@ -172,8 +173,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareMeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMeters(double squaremeters)
-        {
-            return new Area(1 * squaremeters + 0);
+        { 
+            return new Area(1 * squaremeters);
         }
 
         /// <summary>
@@ -181,8 +182,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareMiles and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMiles(double squaremiles)
-        {
-            return new Area(2590000 * squaremiles + 0);
+        { 
+            return new Area(2590000 * squaremiles);
         }
 
         /// <summary>
@@ -190,8 +191,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareMillimeters and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareMillimeters(double squaremillimeters)
-        {
-            return new Area(1E-06 * squaremillimeters + 0);
+        { 
+            return new Area(1E-06 * squaremillimeters);
         }
 
         /// <summary>
@@ -199,10 +200,43 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareYards and y is value in base unit SquareMeters.</remarks>
         public static Area FromSquareYards(double squareyards)
-        {
-            return new Area(0.836127 * squareyards + 0);
+        { 
+            return new Area(0.836127 * squareyards);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Area to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Area unit value.</returns> 
+        public static Area From(double value, AreaUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case AreaUnit.SquareCentimeter:
+                    return FromSquareCentimeters(value);
+                case AreaUnit.SquareDecimeter:
+                    return FromSquareDecimeters(value);
+                case AreaUnit.SquareFoot:
+                    return FromSquareFeet(value);
+                case AreaUnit.SquareInch:
+                    return FromSquareInches(value);
+                case AreaUnit.SquareKilometer:
+                    return FromSquareKilometers(value);
+                case AreaUnit.SquareMeter:
+                    return FromSquareMeters(value);
+                case AreaUnit.SquareMile:
+                    return FromSquareMiles(value);
+                case AreaUnit.SquareMillimeter:
+                    return FromSquareMillimeters(value);
+                case AreaUnit.SquareYard:
+                    return FromSquareYards(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -304,10 +338,73 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Area to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(AreaUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case AreaUnit.SquareCentimeter:
+                    newValue = SquareCentimeters;
+                    return true;
+                case AreaUnit.SquareDecimeter:
+                    newValue = SquareDecimeters;
+                    return true;
+                case AreaUnit.SquareFoot:
+                    newValue = SquareFeet;
+                    return true;
+                case AreaUnit.SquareInch:
+                    newValue = SquareInches;
+                    return true;
+                case AreaUnit.SquareKilometer:
+                    newValue = SquareKilometers;
+                    return true;
+                case AreaUnit.SquareMeter:
+                    newValue = SquareMeters;
+                    return true;
+                case AreaUnit.SquareMile:
+                    newValue = SquareMiles;
+                    return true;
+                case AreaUnit.SquareMillimeter:
+                    newValue = SquareMillimeters;
+                    return true;
+                case AreaUnit.SquareYard:
+                    newValue = SquareYards;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Area to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(AreaUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", SquareMeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.SquareMeter));
+            return string.Format("{0:0.##} {1}", SquareMeters, UnitSystem.Create().GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
     }
 } 

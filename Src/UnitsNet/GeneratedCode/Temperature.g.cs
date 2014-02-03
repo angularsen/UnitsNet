@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             Kelvins = kelvins;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Temperature in DegreesCelsius.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesCelsius and y is value in base unit Kelvins.</remarks>
         public double DegreesCelsius
-        {
-            get { return (Kelvins - (273.15)) / 1; }
+        {            
+            get { return (Kelvins - 273.15) / 1; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesDelisle and y is value in base unit Kelvins.</remarks>
         public double DegreesDelisle
-        {
-            get { return (Kelvins - (373.15)) / -0.666666666666667; }
+        {            
+            get { return (Kelvins - 373.15) / -0.666666666666667; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesFahrenheit and y is value in base unit Kelvins.</remarks>
         public double DegreesFahrenheit
-        {
-            get { return (Kelvins - (255.372222222222)) / 0.555555555555556; }
+        {            
+            get { return (Kelvins - 255.372222222222) / 0.555555555555556; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesNewton and y is value in base unit Kelvins.</remarks>
         public double DegreesNewton
-        {
-            get { return (Kelvins - (273.15)) / 3.03030303030303; }
+        {            
+            get { return (Kelvins - 273.15) / 3.03030303030303; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesRankine and y is value in base unit Kelvins.</remarks>
         public double DegreesRankine
-        {
-            get { return (Kelvins - (0)) / 0.555555555555556; }
+        { 
+            get { return Kelvins / 0.555555555555556; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesReaumur and y is value in base unit Kelvins.</remarks>
         public double DegreesReaumur
-        {
-            get { return (Kelvins - (273.15)) / 1.25; }
+        {            
+            get { return (Kelvins - 273.15) / 1.25; }
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in DegreesRoemer and y is value in base unit Kelvins.</remarks>
         public double DegreesRoemer
-        {
-            get { return (Kelvins - (258.864285714286)) / 1.9047619047619; }
+        {            
+            get { return (Kelvins - 258.864285714286) / 1.9047619047619; }
         }
 
         #endregion
@@ -118,7 +119,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesCelsius and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesCelsius(double degreescelsius)
-        {
+        {            
             return new Temperature(1 * degreescelsius + 273.15);
         }
 
@@ -127,7 +128,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesDelisle and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesDelisle(double degreesdelisle)
-        {
+        {            
             return new Temperature(-0.666666666666667 * degreesdelisle + 373.15);
         }
 
@@ -136,7 +137,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesFahrenheit and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
-        {
+        {            
             return new Temperature(0.555555555555556 * degreesfahrenheit + 255.372222222222);
         }
 
@@ -145,7 +146,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesNewton and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesNewton(double degreesnewton)
-        {
+        {            
             return new Temperature(3.03030303030303 * degreesnewton + 273.15);
         }
 
@@ -154,8 +155,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesRankine and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesRankine(double degreesrankine)
-        {
-            return new Temperature(0.555555555555556 * degreesrankine + 0);
+        { 
+            return new Temperature(0.555555555555556 * degreesrankine);
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesReaumur and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesReaumur(double degreesreaumur)
-        {
+        {            
             return new Temperature(1.25 * degreesreaumur + 273.15);
         }
 
@@ -172,7 +173,7 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in DegreesRoemer and y is value in base unit Kelvins.</remarks>
         public static Temperature FromDegreesRoemer(double degreesroemer)
-        {
+        {            
             return new Temperature(1.9047619047619 * degreesroemer + 258.864285714286);
         }
 
@@ -181,10 +182,41 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Kelvins and y is value in base unit Kelvins.</remarks>
         public static Temperature FromKelvins(double kelvins)
-        {
-            return new Temperature(1 * kelvins + 0);
+        { 
+            return new Temperature(1 * kelvins);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Temperature unit value.</returns> 
+        public static Temperature From(double value, TemperatureUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case TemperatureUnit.DegreeCelsius:
+                    return FromDegreesCelsius(value);
+                case TemperatureUnit.DegreeDelisle:
+                    return FromDegreesDelisle(value);
+                case TemperatureUnit.DegreeFahrenheit:
+                    return FromDegreesFahrenheit(value);
+                case TemperatureUnit.DegreeNewton:
+                    return FromDegreesNewton(value);
+                case TemperatureUnit.DegreeRankine:
+                    return FromDegreesRankine(value);
+                case TemperatureUnit.DegreeReaumur:
+                    return FromDegreesReaumur(value);
+                case TemperatureUnit.DegreeRoemer:
+                    return FromDegreesRoemer(value);
+                case TemperatureUnit.Kelvin:
+                    return FromKelvins(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -286,10 +318,70 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(TemperatureUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case TemperatureUnit.DegreeCelsius:
+                    newValue = DegreesCelsius;
+                    return true;
+                case TemperatureUnit.DegreeDelisle:
+                    newValue = DegreesDelisle;
+                    return true;
+                case TemperatureUnit.DegreeFahrenheit:
+                    newValue = DegreesFahrenheit;
+                    return true;
+                case TemperatureUnit.DegreeNewton:
+                    newValue = DegreesNewton;
+                    return true;
+                case TemperatureUnit.DegreeRankine:
+                    newValue = DegreesRankine;
+                    return true;
+                case TemperatureUnit.DegreeReaumur:
+                    newValue = DegreesReaumur;
+                    return true;
+                case TemperatureUnit.DegreeRoemer:
+                    newValue = DegreesRoemer;
+                    return true;
+                case TemperatureUnit.Kelvin:
+                    newValue = Kelvins;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(TemperatureUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Kelvins, UnitSystem.Create().GetDefaultAbbreviation(Unit.Kelvin));
+            return string.Format("{0:0.##} {1}", Kelvins, UnitSystem.Create().GetDefaultAbbreviation(TemperatureUnit.Kelvin));
         }
     }
 } 

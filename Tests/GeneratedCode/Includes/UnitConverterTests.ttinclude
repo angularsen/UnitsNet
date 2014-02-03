@@ -1,14 +1,13 @@
 ﻿<#@ assembly name="$(TargetDir)UnitsNet.net35.dll" #>
-<#@ assembly name="$(SolutionDir)packages\morelinq.1.0.16006\lib\net35\MoreLinq.dll" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet" #>
-<#@ import namespace="MoreLinq" #>
-<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\Shared.ttinclude" once="true" #><#+
+<#@ import namespace="UnitsNet.Templating" #>
+<#@ import namespace="UnitsNet.Units" #><#+
     
-    private void GenerateUnitConverterTests(Dictionary<Unit, UnitAttribute> unitToAttribute)
+    private void GenerateUnitConverterTests(ICollection<UnitClassInfo> unitClassInfos)
     {
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -33,6 +32,7 @@
 // THE SOFTWARE.
 
 using NUnit.Framework;
+using UnitsNet.Units;
 using UnitsNet.Tests.net35.CustomCode;
 
 // ReSharper disable once CheckNamespace
@@ -45,9 +45,9 @@ namespace UnitsNet.Tests.net35
 
 <#+
 PushIndent("            ");
-foreach (UnitAttribute unitAttribute in unitToAttribute.Values.DistinctBy(attr => attr.GetType()))
+foreach (UnitClassInfo unitClassInfo in unitClassInfos)
 {
-    WriteUnitClassTest(unitToAttribute, unitAttribute);
+    WriteUnitClassTest(unitClassInfo);
 }
 PopIndent();
 #>
@@ -57,36 +57,35 @@ PopIndent();
 <#+
     }
 
-    private void WriteUnitClassTest(Dictionary<Unit, UnitAttribute> unitToAttribute, UnitAttribute unitAttribute)
+    private void WriteUnitClassTest(UnitClassInfo info)
     {
         /*  Example:
         [Test]
         public void MeterToLengthUnits()
         {
             var t = new LengthTests();
+            Assert.AreEqual(t.DegreesInOneDegree, Angle.From(1, AngleUnit.Degree).Convert(AngleUnit.Degree), Delta);
+
             Assert.AreEqual(t.KilometersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Kilometer), Delta);
             Assert.AreEqual(t.MetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Meter), Delta);
             Assert.AreEqual(t.DecimetersInOneMeter, UnitConverter.Convert(1, Unit.Meter, Unit.Decimeter), Delta);
             ... and so on
         }
         */
-        string unitClassName = unitAttribute.GetType().Name.Replace("Attribute", String.Empty);
+        string unitClassName = info.UnitClassName;
         WriteLine("[Test]");
-        WriteLine("public void {0}To{1}Units()", unitAttribute.BaseUnit, unitClassName);
+        WriteLine("public void {0}To{1}Units()", info.BaseUnitName, unitClassName);
         WriteLine("{");
         PushIndent("    ");
         WriteLine("var t = new {0}Tests();", unitClassName);
 
-        IEnumerable<Unit> unitsForUnitClass =
-            unitToAttribute.Where(pair => pair.Value.GetType() == unitAttribute.GetType()).Select(pair => pair.Key);
-
-        foreach (Unit unit in unitsForUnitClass)
+        foreach (UnitInfo unit in info.OrderedUnits)
         {
-            string unitPluralName = GetUnitPluralName(unitToAttribute, unit);
-            string baseUnitName = unitAttribute.BaseUnit.ToString();
-            string unitName = unit.ToString();
-            WriteLine("Assert.AreEqual(t.{0}InOne{1}, UnitConverter.Convert(1, Unit.{1}, Unit.{2}), Delta);",
-                unitPluralName, baseUnitName, unitName);
+            string unitPluralName = unit.PluralName;
+            string baseUnitName = info.BaseUnitName;
+            string unitName = unit.SingularName;
+            WriteLine("Assert.AreEqual(t.{0}InOne{1}, {3}.From(1, {4}.{1}).Convert({4}.{2}), Delta);",
+                unitPluralName, baseUnitName, unitName, unitClassName, info.UnitEnumTypeName);
         }
         PopIndent();
         WriteLine("}");

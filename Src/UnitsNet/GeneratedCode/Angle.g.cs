@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             Degrees = degrees;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Angle in Gradians.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Gradians and y is value in base unit Degrees.</remarks>
         public double Gradians
-        {
-            get { return (Degrees - (0)) / 0.9; }
+        { 
+            get { return Degrees / 0.9; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Radians and y is value in base unit Degrees.</remarks>
         public double Radians
-        {
-            get { return (Degrees - (0)) / 57.2957795130823; }
+        { 
+            get { return Degrees / 57.2957795130823; }
         }
 
         #endregion
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Degrees and y is value in base unit Degrees.</remarks>
         public static Angle FromDegrees(double degrees)
-        {
-            return new Angle(1 * degrees + 0);
+        { 
+            return new Angle(1 * degrees);
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Gradians and y is value in base unit Degrees.</remarks>
         public static Angle FromGradians(double gradians)
-        {
-            return new Angle(0.9 * gradians + 0);
+        { 
+            return new Angle(0.9 * gradians);
         }
 
         /// <summary>
@@ -91,10 +92,31 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Radians and y is value in base unit Degrees.</remarks>
         public static Angle FromRadians(double radians)
-        {
-            return new Angle(57.2957795130823 * radians + 0);
+        { 
+            return new Angle(57.2957795130823 * radians);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Angle to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Angle unit value.</returns> 
+        public static Angle From(double value, AngleUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case AngleUnit.Degree:
+                    return FromDegrees(value);
+                case AngleUnit.Gradian:
+                    return FromGradians(value);
+                case AngleUnit.Radian:
+                    return FromRadians(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -196,10 +218,55 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Angle to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(AngleUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case AngleUnit.Degree:
+                    newValue = Degrees;
+                    return true;
+                case AngleUnit.Gradian:
+                    newValue = Gradians;
+                    return true;
+                case AngleUnit.Radian:
+                    newValue = Radians;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Angle to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(AngleUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Degrees, UnitSystem.Create().GetDefaultAbbreviation(Unit.Degree));
+            return string.Format("{0:0.##} {1}", Degrees, UnitSystem.Create().GetDefaultAbbreviation(AngleUnit.Degree));
         }
     }
 } 

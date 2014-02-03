@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             Newtons = newtons;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Force in Dyne.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Dyne and y is value in base unit Newtons.</remarks>
         public double Dyne
-        {
-            get { return (Newtons - (0)) / 1E-05; }
+        { 
+            get { return Newtons / 1E-05; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in KilogramsForce and y is value in base unit Newtons.</remarks>
         public double KilogramsForce
-        {
-            get { return (Newtons - (0)) / 9.80665002864; }
+        { 
+            get { return Newtons / 9.80665002864; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Kilonewtons and y is value in base unit Newtons.</remarks>
         public double Kilonewtons
-        {
-            get { return (Newtons - (0)) / 1000; }
+        { 
+            get { return Newtons / 1000; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in KiloPonds and y is value in base unit Newtons.</remarks>
         public double KiloPonds
-        {
-            get { return (Newtons - (0)) / 9.80665002864; }
+        { 
+            get { return Newtons / 9.80665002864; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Poundals and y is value in base unit Newtons.</remarks>
         public double Poundals
-        {
-            get { return (Newtons - (0)) / 0.13825502798973; }
+        { 
+            get { return Newtons / 0.13825502798973; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in PoundForces and y is value in base unit Newtons.</remarks>
         public double PoundForces
-        {
-            get { return (Newtons - (0)) / 4.44822161526051; }
+        { 
+            get { return Newtons / 4.44822161526051; }
         }
 
         #endregion
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Dyne and y is value in base unit Newtons.</remarks>
         public static Force FromDyne(double dyne)
-        {
-            return new Force(1E-05 * dyne + 0);
+        { 
+            return new Force(1E-05 * dyne);
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in KilogramsForce and y is value in base unit Newtons.</remarks>
         public static Force FromKilogramsForce(double kilogramsforce)
-        {
-            return new Force(9.80665002864 * kilogramsforce + 0);
+        { 
+            return new Force(9.80665002864 * kilogramsforce);
         }
 
         /// <summary>
@@ -127,8 +128,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Kilonewtons and y is value in base unit Newtons.</remarks>
         public static Force FromKilonewtons(double kilonewtons)
-        {
-            return new Force(1000 * kilonewtons + 0);
+        { 
+            return new Force(1000 * kilonewtons);
         }
 
         /// <summary>
@@ -136,8 +137,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in KiloPonds and y is value in base unit Newtons.</remarks>
         public static Force FromKiloPonds(double kiloponds)
-        {
-            return new Force(9.80665002864 * kiloponds + 0);
+        { 
+            return new Force(9.80665002864 * kiloponds);
         }
 
         /// <summary>
@@ -145,8 +146,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Newtons and y is value in base unit Newtons.</remarks>
         public static Force FromNewtons(double newtons)
-        {
-            return new Force(1 * newtons + 0);
+        { 
+            return new Force(1 * newtons);
         }
 
         /// <summary>
@@ -154,8 +155,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Poundals and y is value in base unit Newtons.</remarks>
         public static Force FromPoundals(double poundals)
-        {
-            return new Force(0.13825502798973 * poundals + 0);
+        { 
+            return new Force(0.13825502798973 * poundals);
         }
 
         /// <summary>
@@ -163,10 +164,39 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in PoundForces and y is value in base unit Newtons.</remarks>
         public static Force FromPoundForces(double poundforces)
-        {
-            return new Force(4.44822161526051 * poundforces + 0);
+        { 
+            return new Force(4.44822161526051 * poundforces);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Force to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Force unit value.</returns> 
+        public static Force From(double value, ForceUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case ForceUnit.Dyn:
+                    return FromDyne(value);
+                case ForceUnit.KilogramForce:
+                    return FromKilogramsForce(value);
+                case ForceUnit.Kilonewton:
+                    return FromKilonewtons(value);
+                case ForceUnit.KiloPond:
+                    return FromKiloPonds(value);
+                case ForceUnit.Newton:
+                    return FromNewtons(value);
+                case ForceUnit.Poundal:
+                    return FromPoundals(value);
+                case ForceUnit.PoundForce:
+                    return FromPoundForces(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -268,10 +298,67 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Force to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(ForceUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case ForceUnit.Dyn:
+                    newValue = Dyne;
+                    return true;
+                case ForceUnit.KilogramForce:
+                    newValue = KilogramsForce;
+                    return true;
+                case ForceUnit.Kilonewton:
+                    newValue = Kilonewtons;
+                    return true;
+                case ForceUnit.KiloPond:
+                    newValue = KiloPonds;
+                    return true;
+                case ForceUnit.Newton:
+                    newValue = Newtons;
+                    return true;
+                case ForceUnit.Poundal:
+                    newValue = Poundals;
+                    return true;
+                case ForceUnit.PoundForce:
+                    newValue = PoundForces;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Force to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(ForceUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Newtons, UnitSystem.Create().GetDefaultAbbreviation(Unit.Newton));
+            return string.Format("{0:0.##} {1}", Newtons, UnitSystem.Create().GetDefaultAbbreviation(ForceUnit.Newton));
         }
     }
 } 

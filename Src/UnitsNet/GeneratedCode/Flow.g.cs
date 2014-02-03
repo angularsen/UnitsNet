@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             CubicMetersPerSecond = cubicmeterspersecond;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Flow in CubicMetersPerHour.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicMetersPerHour and y is value in base unit CubicMetersPerSecond.</remarks>
         public double CubicMetersPerHour
-        {
-            get { return (CubicMetersPerSecond - (0)) / 0.000277777777777778; }
+        { 
+            get { return CubicMetersPerSecond / 0.000277777777777778; }
         }
 
         #endregion
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicMetersPerHour and y is value in base unit CubicMetersPerSecond.</remarks>
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
-        {
-            return new Flow(0.000277777777777778 * cubicmetersperhour + 0);
+        { 
+            return new Flow(0.000277777777777778 * cubicmetersperhour);
         }
 
         /// <summary>
@@ -73,10 +74,29 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicMetersPerSecond and y is value in base unit CubicMetersPerSecond.</remarks>
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
-        {
-            return new Flow(1 * cubicmeterspersecond + 0);
+        { 
+            return new Flow(1 * cubicmeterspersecond);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Flow to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Flow unit value.</returns> 
+        public static Flow From(double value, FlowUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case FlowUnit.CubicMeterPerHour:
+                    return FromCubicMetersPerHour(value);
+                case FlowUnit.CubicMeterPerSecond:
+                    return FromCubicMetersPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -178,10 +198,52 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Flow to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(FlowUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case FlowUnit.CubicMeterPerHour:
+                    newValue = CubicMetersPerHour;
+                    return true;
+                case FlowUnit.CubicMeterPerSecond:
+                    newValue = CubicMetersPerSecond;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Flow to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(FlowUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", CubicMetersPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.CubicMeterPerSecond));
+            return string.Format("{0:0.##} {1}", CubicMetersPerSecond, UnitSystem.Create().GetDefaultAbbreviation(FlowUnit.CubicMeterPerSecond));
         }
     }
 } 

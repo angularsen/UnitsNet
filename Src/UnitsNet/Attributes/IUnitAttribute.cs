@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,36 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.Attributes;
-
-namespace UnitsNet
+namespace UnitsNet.Attributes
 {
-    public enum OtherUnit
+    public interface IUnitAttribute
     {
-        [I18n("en-US", "(undefined)")]
-        [I18n("ru-RU", "(нет ед.изм.)")]
-        [I18n("nb-NO", "(ingen)")]
-        Undefined = 0,
+        /// <summary>
+        ///     Name of unit in plural form. Will be used as property and method names, such as Force.FromNewtonmeters().
+        /// </summary>
+        string PluralName { get; }
 
-        // Generic / Other
-        [I18n("en-US", "piece", "pieces", "pcs", "pcs.", "pc", "pc.", "pce", "pce.")]
-        [I18n("ru-RU", "штук")] 
-        [I18n("nb-NO", "stk", "stk.", "x")]
-        Piece,
+        /// <summary>
+        ///     XML doc summary for unit class. Will be inserted when generating the class from T4 template.
+        /// </summary>
+        string XmlDocSummary { get; }
 
-        [I18n("en-US", "%")]
-        Percent,
+        /// <summary>
+        ///     Linear function y = ax + b, where x is base unit.
+        /// </summary>
+        LinearFunction LinearFunction { get; }
 
-        // Cooking units
-        // TODO Move to volume?
-        [I18n("en-US", "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon")]
-        [I18n("ru-RU", "столовая ложка")] 
-        [I18n("nb-NO", "ss", "ss.", "SS", "SS.")] 
-        Tablespoon,
-
-        [I18n("en-US", "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon")]
-        [I18n("ru-RU", "чайная ложка")] 
-        [I18n("nb-NO", "ts", "ts.")]
-        Teaspoon,
+        /// <summary>
+        ///     Name of base unit for this unit enum, defined in unit attribute.
+        /// </summary>
+        string BaseUnitName { get; }
     }
 }

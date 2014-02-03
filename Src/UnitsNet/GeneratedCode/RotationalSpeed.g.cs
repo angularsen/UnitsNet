@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             RevolutionsPerSecond = revolutionspersecond;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get RotationalSpeed in RevolutionsPerMinute.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in RevolutionsPerMinute and y is value in base unit RevolutionsPerSecond.</remarks>
         public double RevolutionsPerMinute
-        {
-            get { return (RevolutionsPerSecond - (0)) / 0.0166666666666667; }
+        { 
+            get { return RevolutionsPerSecond / 0.0166666666666667; }
         }
 
         #endregion
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in RevolutionsPerMinute and y is value in base unit RevolutionsPerSecond.</remarks>
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
-        {
-            return new RotationalSpeed(0.0166666666666667 * revolutionsperminute + 0);
+        { 
+            return new RotationalSpeed(0.0166666666666667 * revolutionsperminute);
         }
 
         /// <summary>
@@ -73,10 +74,29 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in RevolutionsPerSecond and y is value in base unit RevolutionsPerSecond.</remarks>
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
-        {
-            return new RotationalSpeed(1 * revolutionspersecond + 0);
+        { 
+            return new RotationalSpeed(1 * revolutionspersecond);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from RotationalSpeed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>RotationalSpeed unit value.</returns> 
+        public static RotationalSpeed From(double value, RotationalSpeedUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case RotationalSpeedUnit.RevolutionPerMinute:
+                    return FromRevolutionsPerMinute(value);
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    return FromRevolutionsPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -178,10 +198,52 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from RotationalSpeed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(RotationalSpeedUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case RotationalSpeedUnit.RevolutionPerMinute:
+                    newValue = RevolutionsPerMinute;
+                    return true;
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    newValue = RevolutionsPerSecond;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from RotationalSpeed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(RotationalSpeedUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", RevolutionsPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.RevolutionPerSecond));
+            return string.Format("{0:0.##} {1}", RevolutionsPerSecond, UnitSystem.Create().GetDefaultAbbreviation(RotationalSpeedUnit.RevolutionPerSecond));
         }
     }
 } 

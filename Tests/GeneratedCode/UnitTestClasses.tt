@@ -1,18 +1,17 @@
 ﻿<#@ template debug="True" language="C#" hostspecific="True" #>
 <#@ include file="Includes\UnitTestClass.ttinclude" once="true"#>
-<#@ output extension="/" #> 
+<#@ output extension=".g.cs" #> 
 <# 
-    
+    var assembly = Assembly.GetAssembly(typeof (LengthUnit));
+    IEnumerable<UnitClassInfo> infos = TemplateUtils.GetUnitClasses(assembly);
+
     var m = Manager.Create(Host, GenerationEnvironment);
-
-    List<UnitAttribute> unitAttributes = GetUnitAttributeImplementations();
-
-    foreach (UnitAttribute attr in unitAttributes)
+    foreach (UnitClassInfo info in infos)
     {
-        Type unitAttributeType = attr.GetType();
-        string unitClassName = unitAttributeType.Name.Replace("Attribute", string.Empty);
-        GenerateTestClass(unitAttributeType, m, unitClassName, attr.BaseUnit);
+        GenerateTestClass(m, info.UnitClassName, info.BaseUnitName, info.BaseUnitPluralName, info.OrderedUnits);
     }
     
     m.Process(split: true);
+#><#+
+
 #>

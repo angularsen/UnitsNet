@@ -25,20 +25,65 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using UnitsNet.Units;
+using UnitsNet.Utils;
 
 namespace UnitsNet.Tests.net35
 {
     [TestFixture]
     public class UnitSystemTests
     {
+        //public IEnumerable<TUnit[]> TestCases<TUnit>()
+        //    where TUnit : /*Enum constraint hack*/ struct, IConvertible
+        //{
+        //    yield return EnumUtils.GetEnumValues<AngleUnit>();
+        //    //yield return new Tester<int> { Expectation = "23tnI" };
+        //    //yield return new Tester<List<string>> { Expectation = "1`tsiL" };
+        //}
+
+        //[TestCaseSource("TestCases")]
         [Test]
-        public void AllUnitAbbreviationsImplemented([Values("", "en-US", "nb-NO", "ru-RU")]string cultureName)
+        public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")]string cultureName)
         {
-            IEnumerable<Unit> unitValues = Enum.GetValues(typeof (Unit)).Cast<Unit>();
+            var unitValuesMissingAbbreviations = new List<object>()
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
+            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()));
+
+            // We want to flag if any localizations are missing, but not break the build
+            // or flag an error for pull requests. For now they are not considered 
+            // critical and it is cumbersome to have a third person review the pull request
+            // and add in any translations before merging it in.
+            if (unitValuesMissingAbbreviations.Any())
+            {
+                string message = "Units missing abbreviations: " +
+                                 string.Join(", ",
+                                     unitValuesMissingAbbreviations.Select(
+                                         unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
+
+                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
+            }
+            //Assert.IsEmpty(unitsMissingAbbreviations, message);
+        }
+        
+        private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+        {
             UnitSystem unitSystem = UnitSystem.Create(new CultureInfo(cultureName));
 
-            var unitsMissingAbbreviations = new List<Unit>();
-            foreach (Unit unit in unitValues)
+            var unitsMissingAbbreviations = new List<TUnit>();
+            foreach (TUnit unit in unitValues)
             {
                 try
                 {
@@ -50,17 +95,7 @@ namespace UnitsNet.Tests.net35
                 }
             }
 
-            // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered 
-            // critical and it is cumbersome to have a third person review the pull request
-            // and add in any translations before merging it in.
-            if (unitsMissingAbbreviations.Any())
-            {
-                string message = "Units missing abbreviations: " +
-                                 string.Join(", ", unitsMissingAbbreviations.Select(u => u.ToString()).ToArray());
-                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
-            }
-            //Assert.IsEmpty(unitsMissingAbbreviations, message);
+            return unitsMissingAbbreviations.Cast<object>();
         }
 
         [Test]
@@ -174,24 +209,24 @@ namespace UnitsNet.Tests.net35
         public void DefaultFoodUnitAbbreviationsForNorwegian()
         {
             UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("nb-NO"));
-            Assert.AreEqual("ss", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
-            Assert.AreEqual("ts", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+            Assert.AreEqual("ss", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
+            Assert.AreEqual("ts", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }
 
         [Test]
         public void DefaultFoodUnitAbbreviationsForInvariant()
         {
             UnitSystem unitSystem = UnitSystem.Create(CultureInfo.InvariantCulture);
-            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
-            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
+            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }
         
         [Test]
         public void DefaultFoodUnitAbbreviationsForUsEnglish()
         {
             UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("en-US"));
-            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(Unit.Tablespoon));
-            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(Unit.Teaspoon));
+            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
+            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }
     }
 }

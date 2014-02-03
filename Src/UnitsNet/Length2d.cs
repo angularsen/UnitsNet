@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -222,7 +223,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Meter));
+            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters, UnitSystem.Create().GetDefaultAbbreviation(LengthUnit.Meter));
         }
 
         public Length DistanceTo(Length2d other)
