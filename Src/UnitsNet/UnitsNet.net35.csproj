@@ -97,6 +97,7 @@
     <Compile Include="GeneratedCode\VolumeUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="LengthUnit.cs" />
     <Compile Include="Length2d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />
