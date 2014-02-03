@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             MetersPerSecond = meterspersecond;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Speed in FeetPerSecond.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in FeetPerSecond and y is value in base unit MetersPerSecond.</remarks>
         public double FeetPerSecond
-        {
-            get { return (MetersPerSecond - (0)) / 0.3048; }
+        { 
+            get { return MetersPerSecond / 0.3048; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in KilometersPerHour and y is value in base unit MetersPerSecond.</remarks>
         public double KilometersPerHour
-        {
-            get { return (MetersPerSecond - (0)) / 0.277777777777778; }
+        { 
+            get { return MetersPerSecond / 0.277777777777778; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Knots and y is value in base unit MetersPerSecond.</remarks>
         public double Knots
-        {
-            get { return (MetersPerSecond - (0)) / 0.514444; }
+        { 
+            get { return MetersPerSecond / 0.514444; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in MilesPerHour and y is value in base unit MetersPerSecond.</remarks>
         public double MilesPerHour
-        {
-            get { return (MetersPerSecond - (0)) / 0.44704; }
+        { 
+            get { return MetersPerSecond / 0.44704; }
         }
 
         #endregion
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in FeetPerSecond and y is value in base unit MetersPerSecond.</remarks>
         public static Speed FromFeetPerSecond(double feetpersecond)
-        {
-            return new Speed(0.3048 * feetpersecond + 0);
+        { 
+            return new Speed(0.3048 * feetpersecond);
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in KilometersPerHour and y is value in base unit MetersPerSecond.</remarks>
         public static Speed FromKilometersPerHour(double kilometersperhour)
-        {
-            return new Speed(0.277777777777778 * kilometersperhour + 0);
+        { 
+            return new Speed(0.277777777777778 * kilometersperhour);
         }
 
         /// <summary>
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Knots and y is value in base unit MetersPerSecond.</remarks>
         public static Speed FromKnots(double knots)
-        {
-            return new Speed(0.514444 * knots + 0);
+        { 
+            return new Speed(0.514444 * knots);
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in MetersPerSecond and y is value in base unit MetersPerSecond.</remarks>
         public static Speed FromMetersPerSecond(double meterspersecond)
-        {
-            return new Speed(1 * meterspersecond + 0);
+        { 
+            return new Speed(1 * meterspersecond);
         }
 
         /// <summary>
@@ -127,10 +128,33 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in MilesPerHour and y is value in base unit MetersPerSecond.</remarks>
         public static Speed FromMilesPerHour(double milesperhour)
-        {
-            return new Speed(0.44704 * milesperhour + 0);
+        { 
+            return new Speed(0.44704 * milesperhour);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Speed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Speed unit value.</returns> 
+        public static Speed From(double value, SpeedUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case SpeedUnit.FootPerSecond:
+                    return FromFeetPerSecond(value);
+                case SpeedUnit.KilometerPerHour:
+                    return FromKilometersPerHour(value);
+                case SpeedUnit.Knot:
+                    return FromKnots(value);
+                case SpeedUnit.MilePerHour:
+                    return FromMilesPerHour(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -232,10 +256,58 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Speed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(SpeedUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case SpeedUnit.FootPerSecond:
+                    newValue = FeetPerSecond;
+                    return true;
+                case SpeedUnit.KilometerPerHour:
+                    newValue = KilometersPerHour;
+                    return true;
+                case SpeedUnit.Knot:
+                    newValue = Knots;
+                    return true;
+                case SpeedUnit.MilePerHour:
+                    newValue = MilesPerHour;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Speed to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(SpeedUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", MetersPerSecond, UnitSystem.Create().GetDefaultAbbreviation(Unit.MeterPerSecond));
+            return string.Format("{0:0.##} {1}", MetersPerSecond, UnitSystem.Create().GetDefaultAbbreviation(SpeedUnit.MeterPerSecond));
         }
     }
 } 

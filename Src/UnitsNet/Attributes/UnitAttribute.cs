@@ -31,13 +31,6 @@ namespace UnitsNet.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public abstract class UnitAttribute : Attribute
     {
-        ///// <summary>
-        /////     Base unit of unit class. This is the unit that unit classes store their value as internally.
-        /////     Conversions between two units go via the base unit to simplify defining the constants, requiring only N constants
-        /////     instead of N².
-        ///// </summary>
-        //public abstract Unit BaseUnit { get; }
-
         /// <summary>
         ///     Name of unit in plural form. Will be used as property name such as Force.FromNewtonmeters().
         /// </summary>
@@ -49,12 +42,7 @@ namespace UnitsNet.Attributes
         /// </summary>
         public LinearFunction LinearFunction { get; private set; }
 
-        /// <summary>
-        ///     XML doc summary for unit class. Will be inserted when generating the class from T4 template.
-        /// </summary>
-        public abstract string XmlDocSummary { get; }
-
-        public UnitAttribute(string pluralName, double slope, double offset)
+        protected UnitAttribute(string pluralName, double slope, double offset)
         {
             // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.
             // a: 1000

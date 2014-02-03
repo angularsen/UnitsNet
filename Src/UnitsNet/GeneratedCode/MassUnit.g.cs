@@ -19,9 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.Extensions;
-using System;
 using UnitsNet.Units;
+using System;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet

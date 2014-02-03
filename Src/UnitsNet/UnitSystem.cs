@@ -144,9 +144,9 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon");
-            MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon");
-            MapUnitToAbbreviation(Unit.Piece, "piece", "pieces", "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
+            //MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon");
+            //MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon");
+            //MapUnitToAbbreviation(Unit.Piece, "piece", "pieces", "pcs", "pcs.", "pc", "pc.", "pce", "pce.");
         }
 
         private void CreateNorwegianBokmaal()
@@ -154,15 +154,15 @@ namespace UnitsNet
             CreateCultureInvariants();
 
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "ss", "ss.", "SS", "SS.");
-            MapUnitToAbbreviation(Unit.Teaspoon, "ts", "ts.");
-            MapUnitToAbbreviation(Unit.Piece, "stk", "stk.", "x");
+            //MapUnitToAbbreviation(Unit.Tablespoon, "ss", "ss.", "SS", "SS.");
+            //MapUnitToAbbreviation(Unit.Teaspoon, "ts", "ts.");
+            //MapUnitToAbbreviation(Unit.Piece, "stk", "stk.", "x");
         }
 
         private void CreateRussian()
         {
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
-            MapUnitToAbbreviation(Unit.Undefined, "(нет ед.изм.)");
+            //MapUnitToAbbreviation(Unit.Undefined, "(нет ед.изм.)");
 
             //// Length
             //MapUnitToAbbreviation(Unit.Kilometer, "км");
@@ -200,120 +200,120 @@ namespace UnitsNet
             //MapUnitToAbbreviation(Unit.LongTon, "тонна большая");
 
             // Pressures
-            MapUnitToAbbreviation(Unit.Pascal, "Па");
-            MapUnitToAbbreviation(Unit.Kilopascal, "кПа");
-            MapUnitToAbbreviation(Unit.Megapascal, "МПа");
-            MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "кгс/см²");
-            MapUnitToAbbreviation(Unit.Psi, "psi");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "Н/см²");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "Н/мм²");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "Н/м²");
-            MapUnitToAbbreviation(Unit.Bar, "бар");
-            MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "ат");
-            MapUnitToAbbreviation(Unit.Atmosphere, "атм");
-            MapUnitToAbbreviation(Unit.Torr, "торр");
+            //MapUnitToAbbreviation(Unit.Pascal, "Па");
+            //MapUnitToAbbreviation(Unit.Kilopascal, "кПа");
+            //MapUnitToAbbreviation(Unit.Megapascal, "МПа");
+            //MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "кгс/см²");
+            //MapUnitToAbbreviation(Unit.Psi, "psi");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "Н/см²");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "Н/мм²");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "Н/м²");
+            //MapUnitToAbbreviation(Unit.Bar, "бар");
+            //MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "ат");
+            //MapUnitToAbbreviation(Unit.Atmosphere, "атм");
+            //MapUnitToAbbreviation(Unit.Torr, "торр");
 
             // Forces
-            MapUnitToAbbreviation(Unit.Kilonewton, "кН");
-            MapUnitToAbbreviation(Unit.Newton, "Н");
-            MapUnitToAbbreviation(Unit.KilogramForce, "кгс");
-            MapUnitToAbbreviation(Unit.Dyn, "дин");
+            //MapUnitToAbbreviation(Unit.Kilonewton, "кН");
+            //MapUnitToAbbreviation(Unit.Newton, "Н");
+            //MapUnitToAbbreviation(Unit.KilogramForce, "кгс");
+            //MapUnitToAbbreviation(Unit.Dyn, "дин");
 
-            // Force (imperial/other)
-            MapUnitToAbbreviation(Unit.KiloPond, "кгс");
-            MapUnitToAbbreviation(Unit.PoundForce, "фунт-сила");
-            MapUnitToAbbreviation(Unit.Poundal, "паундаль");
+            //// Force (imperial/other)
+            //MapUnitToAbbreviation(Unit.KiloPond, "кгс");
+            //MapUnitToAbbreviation(Unit.PoundForce, "фунт-сила");
+            //MapUnitToAbbreviation(Unit.Poundal, "паундаль");
 
             // Area
-            MapUnitToAbbreviation(Unit.SquareKilometer, "км²");
-            MapUnitToAbbreviation(Unit.SquareMeter, "м²");
-            MapUnitToAbbreviation(Unit.SquareDecimeter, "дм²");
-            MapUnitToAbbreviation(Unit.SquareCentimeter, "см²");
-            MapUnitToAbbreviation(Unit.SquareMillimeter, "мм²");
+            //MapUnitToAbbreviation(Unit.SquareKilometer, "км²");
+            //MapUnitToAbbreviation(Unit.SquareMeter, "м²");
+            //MapUnitToAbbreviation(Unit.SquareDecimeter, "дм²");
+            //MapUnitToAbbreviation(Unit.SquareCentimeter, "см²");
+            //MapUnitToAbbreviation(Unit.SquareMillimeter, "мм²");
 
-            // Area Imperial
-            MapUnitToAbbreviation(Unit.SquareMile, "миля²");
-            MapUnitToAbbreviation(Unit.SquareYard, "ярд²");
-            MapUnitToAbbreviation(Unit.SquareFoot, "фут²");
-            MapUnitToAbbreviation(Unit.SquareInch, "дюйм²");
+            //// Area Imperial
+            //MapUnitToAbbreviation(Unit.SquareMile, "миля²");
+            //MapUnitToAbbreviation(Unit.SquareYard, "ярд²");
+            //MapUnitToAbbreviation(Unit.SquareFoot, "фут²");
+            //MapUnitToAbbreviation(Unit.SquareInch, "дюйм²");
 
             // Angle
-            MapUnitToAbbreviation(Unit.Degree, "°");
-            MapUnitToAbbreviation(Unit.Radian, "рад");
-            MapUnitToAbbreviation(Unit.Gradian, "g");
+            //MapUnitToAbbreviation(Unit.Degree, "°");
+            //MapUnitToAbbreviation(Unit.Radian, "рад");
+            //MapUnitToAbbreviation(Unit.Gradian, "g");
 
             // Volumes
-            MapUnitToAbbreviation(Unit.CubicKilometer, "км³");
-            MapUnitToAbbreviation(Unit.CubicMeter, "м³");
-            MapUnitToAbbreviation(Unit.CubicDecimeter, "дм³");
-            MapUnitToAbbreviation(Unit.CubicCentimeter, "см³");
-            MapUnitToAbbreviation(Unit.CubicMillimeter, "мм³");
-            MapUnitToAbbreviation(Unit.Hectoliter, "гл");
-            MapUnitToAbbreviation(Unit.Liter, "л");
-            MapUnitToAbbreviation(Unit.Deciliter, "дл");
-            MapUnitToAbbreviation(Unit.Centiliter, "сл");
-            MapUnitToAbbreviation(Unit.Milliliter, "мл");
+            //MapUnitToAbbreviation(Unit.CubicKilometer, "км³");
+            //MapUnitToAbbreviation(Unit.CubicMeter, "м³");
+            //MapUnitToAbbreviation(Unit.CubicDecimeter, "дм³");
+            //MapUnitToAbbreviation(Unit.CubicCentimeter, "см³");
+            //MapUnitToAbbreviation(Unit.CubicMillimeter, "мм³");
+            //MapUnitToAbbreviation(Unit.Hectoliter, "гл");
+            //MapUnitToAbbreviation(Unit.Liter, "л");
+            //MapUnitToAbbreviation(Unit.Deciliter, "дл");
+            //MapUnitToAbbreviation(Unit.Centiliter, "сл");
+            //MapUnitToAbbreviation(Unit.Milliliter, "мл");
 
-            // Volume US/Imperial
-            MapUnitToAbbreviation(Unit.CubicMile, "миля³");
-            MapUnitToAbbreviation(Unit.CubicYard, "ярд³");
-            MapUnitToAbbreviation(Unit.CubicFoot, "фут³");
-            MapUnitToAbbreviation(Unit.CubicInch, "дюйм³");
-            MapUnitToAbbreviation(Unit.UsGallon, "Американский галлон");
-            MapUnitToAbbreviation(Unit.UsOunce, "Американская унция");
-            MapUnitToAbbreviation(Unit.ImperialGallon, "Английский галлон");
-            MapUnitToAbbreviation(Unit.ImperialOunce, "Английская унция");
+            //// Volume US/Imperial
+            //MapUnitToAbbreviation(Unit.CubicMile, "миля³");
+            //MapUnitToAbbreviation(Unit.CubicYard, "ярд³");
+            //MapUnitToAbbreviation(Unit.CubicFoot, "фут³");
+            //MapUnitToAbbreviation(Unit.CubicInch, "дюйм³");
+            //MapUnitToAbbreviation(Unit.UsGallon, "Американский галлон");
+            //MapUnitToAbbreviation(Unit.UsOunce, "Американская унция");
+            //MapUnitToAbbreviation(Unit.ImperialGallon, "Английский галлон");
+            //MapUnitToAbbreviation(Unit.ImperialOunce, "Английская унция");
 
             // Torque
-            MapUnitToAbbreviation(Unit.Newtonmeter, "Н·м");
+            //MapUnitToAbbreviation(Unit.Newtonmeter, "Н·м");
 
             // Generic / Other
-            MapUnitToAbbreviation(Unit.Piece, "штук");
-            MapUnitToAbbreviation(Unit.Percent, "%");
+            //MapUnitToAbbreviation(Unit.Piece, "штук");
+            //MapUnitToAbbreviation(Unit.Percent, "%");
 
             // Electric potential
-            MapUnitToAbbreviation(Unit.Volt, "В");
+            //MapUnitToAbbreviation(Unit.Volt, "В");
 
-            // Times
-            MapUnitToAbbreviation(Unit.Nanosecond, "нс");
-            MapUnitToAbbreviation(Unit.Microsecond, "мкс");
-            MapUnitToAbbreviation(Unit.Millisecond, "мс");
-            MapUnitToAbbreviation(Unit.Second, "с");
-            MapUnitToAbbreviation(Unit.Minute, "мин");
-            MapUnitToAbbreviation(Unit.Hour, "ч");
-            MapUnitToAbbreviation(Unit.Day, "д");
-            MapUnitToAbbreviation(Unit.Week, "мин");
-            MapUnitToAbbreviation(Unit.Month30Days, "месяц");
-            MapUnitToAbbreviation(Unit.Year365Days, "год");
+            // Time
+            //MapUnitToAbbreviation(Unit.Nanosecond, "нс");
+            //MapUnitToAbbreviation(Unit.Microsecond, "мкс");
+            //MapUnitToAbbreviation(Unit.Millisecond, "мс");
+            //MapUnitToAbbreviation(Unit.Second, "с");
+            //MapUnitToAbbreviation(Unit.Minute, "мин");
+            //MapUnitToAbbreviation(Unit.Hour, "ч");
+            //MapUnitToAbbreviation(Unit.Day, "д");
+            //MapUnitToAbbreviation(Unit.Week, "мин");
+            //MapUnitToAbbreviation(Unit.Month30Days, "месяц");
+            //MapUnitToAbbreviation(Unit.Year365Days, "год");
 
             // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "столовая ложка");
-            MapUnitToAbbreviation(Unit.Teaspoon, "чайная ложка");
+            //MapUnitToAbbreviation(Unit.Tablespoon, "столовая ложка");
+            //MapUnitToAbbreviation(Unit.Teaspoon, "чайная ложка");
                 
             // Flow
-            MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
-            MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
+            //MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "м³/с");
+            //MapUnitToAbbreviation(Unit.CubicMeterPerHour, "м³/ч");
 
             // RotationalSpeed
-            MapUnitToAbbreviation(Unit.RevolutionPerSecond, "об/с");
-            MapUnitToAbbreviation(Unit.RevolutionPerMinute, "об/мин");
+            //MapUnitToAbbreviation(Unit.RevolutionPerSecond, "об/с");
+            //MapUnitToAbbreviation(Unit.RevolutionPerMinute, "об/мин");
 
             // Temperature
-            MapUnitToAbbreviation(Unit.Kelvin, "K");
-            MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
-            MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
-            MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
-            MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
-            MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
-            MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
-            MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
+            //MapUnitToAbbreviation(Unit.Kelvin, "K");
+            //MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
+            //MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
+            //MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
+            //MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
+            //MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
+            //MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
+            //MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
         }
 
         private void CreateCultureInvariants()
         {
             // For correct abbreviations, see: http://lamar.colostate.edu/~hillger/correct.htm
             // Note: For units with multiple abbreviations, the first one is used in GetDefaultAbbreviation().
-            MapUnitToAbbreviation(Unit.Undefined, "(no unit)");
+            //MapUnitToAbbreviation(Unit.Undefined, "(no unit)");
 
             //// Length
             //MapUnitToAbbreviation(Unit.Kilometer, "km");
@@ -352,120 +352,120 @@ namespace UnitsNet
             //MapUnitToAbbreviation(Unit.LongTon, "long tn");
 
             // Pressures
-            MapUnitToAbbreviation(Unit.Pascal, "Pa");
-            MapUnitToAbbreviation(Unit.Kilopascal, "kPa");
-            MapUnitToAbbreviation(Unit.Megapascal, "MPa");
-            MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "kgf/cm²");
-            MapUnitToAbbreviation(Unit.Psi, "psi");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "N/cm²");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "N/mm²");
-            MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "N/m²");
-            MapUnitToAbbreviation(Unit.Bar, "bar");
-            MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "at");
-            MapUnitToAbbreviation(Unit.Atmosphere, "atm");
-            MapUnitToAbbreviation(Unit.Torr, "Torr");
+            //MapUnitToAbbreviation(Unit.Pascal, "Pa");
+            //MapUnitToAbbreviation(Unit.Kilopascal, "kPa");
+            //MapUnitToAbbreviation(Unit.Megapascal, "MPa");
+            //MapUnitToAbbreviation(Unit.KilogramForcePerSquareCentimeter, "kgf/cm²");
+            //MapUnitToAbbreviation(Unit.Psi, "psi");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareCentimeter, "N/cm²");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareMillimeter, "N/mm²");
+            //MapUnitToAbbreviation(Unit.NewtonPerSquareMeter, "N/m²");
+            //MapUnitToAbbreviation(Unit.Bar, "bar");
+            //MapUnitToAbbreviation(Unit.TechnicalAtmosphere, "at");
+            //MapUnitToAbbreviation(Unit.Atmosphere, "atm");
+            //MapUnitToAbbreviation(Unit.Torr, "Torr");
 
             // Forces
-            MapUnitToAbbreviation(Unit.Kilonewton, "kN");
-            MapUnitToAbbreviation(Unit.Newton, "N");
-            MapUnitToAbbreviation(Unit.KilogramForce, "kgf");
-            MapUnitToAbbreviation(Unit.Dyn, "dyn");
+            //MapUnitToAbbreviation(Unit.Kilonewton, "kN");
+            //MapUnitToAbbreviation(Unit.Newton, "N");
+            //MapUnitToAbbreviation(Unit.KilogramForce, "kgf");
+            //MapUnitToAbbreviation(Unit.Dyn, "dyn");
 
-            // Force (imperial/other)
-            MapUnitToAbbreviation(Unit.KiloPond, "kp");
-            MapUnitToAbbreviation(Unit.PoundForce, "lbf");
-            MapUnitToAbbreviation(Unit.Poundal, "pdl");
+            //// Force (imperial/other)
+            //MapUnitToAbbreviation(Unit.KiloPond, "kp");
+            //MapUnitToAbbreviation(Unit.PoundForce, "lbf");
+            //MapUnitToAbbreviation(Unit.Poundal, "pdl");
 
             // Area
-            MapUnitToAbbreviation(Unit.SquareKilometer, "km²");
-            MapUnitToAbbreviation(Unit.SquareMeter, "m²");
-            MapUnitToAbbreviation(Unit.SquareDecimeter, "dm²");
-            MapUnitToAbbreviation(Unit.SquareCentimeter, "cm²");
-            MapUnitToAbbreviation(Unit.SquareMillimeter, "mm²");
+            //MapUnitToAbbreviation(Unit.SquareKilometer, "km²");
+            //MapUnitToAbbreviation(Unit.SquareMeter, "m²");
+            //MapUnitToAbbreviation(Unit.SquareDecimeter, "dm²");
+            //MapUnitToAbbreviation(Unit.SquareCentimeter, "cm²");
+            //MapUnitToAbbreviation(Unit.SquareMillimeter, "mm²");
 
-            // Area Imperial
-            MapUnitToAbbreviation(Unit.SquareMile, "mi²");
-            MapUnitToAbbreviation(Unit.SquareYard, "yd²");
-            MapUnitToAbbreviation(Unit.SquareFoot, "ft²");
-            MapUnitToAbbreviation(Unit.SquareInch, "in²");
+            //// Area Imperial
+            //MapUnitToAbbreviation(Unit.SquareMile, "mi²");
+            //MapUnitToAbbreviation(Unit.SquareYard, "yd²");
+            //MapUnitToAbbreviation(Unit.SquareFoot, "ft²");
+            //MapUnitToAbbreviation(Unit.SquareInch, "in²");
 
             // Angle
-            MapUnitToAbbreviation(Unit.Degree, "°");
-            MapUnitToAbbreviation(Unit.Radian, "rad");
-            MapUnitToAbbreviation(Unit.Gradian, "g");
+            //MapUnitToAbbreviation(Unit.Degree, "°");
+            //MapUnitToAbbreviation(Unit.Radian, "rad");
+            //MapUnitToAbbreviation(Unit.Gradian, "g");
 
-            // Volumes
-            MapUnitToAbbreviation(Unit.CubicKilometer, "km³");
-            MapUnitToAbbreviation(Unit.CubicMeter, "m³");
-            MapUnitToAbbreviation(Unit.CubicDecimeter, "dm³");
-            MapUnitToAbbreviation(Unit.CubicCentimeter, "cm³");
-            MapUnitToAbbreviation(Unit.CubicMillimeter, "mm³");
-            MapUnitToAbbreviation(Unit.Hectoliter, "hl");
-            MapUnitToAbbreviation(Unit.Liter, "l");
-            MapUnitToAbbreviation(Unit.Deciliter, "dl");
-            MapUnitToAbbreviation(Unit.Centiliter, "cl");
-            MapUnitToAbbreviation(Unit.Milliliter, "ml");
+            //// Volumes
+            //MapUnitToAbbreviation(Unit.CubicKilometer, "km³");
+            //MapUnitToAbbreviation(Unit.CubicMeter, "m³");
+            //MapUnitToAbbreviation(Unit.CubicDecimeter, "dm³");
+            //MapUnitToAbbreviation(Unit.CubicCentimeter, "cm³");
+            //MapUnitToAbbreviation(Unit.CubicMillimeter, "mm³");
+            //MapUnitToAbbreviation(Unit.Hectoliter, "hl");
+            //MapUnitToAbbreviation(Unit.Liter, "l");
+            //MapUnitToAbbreviation(Unit.Deciliter, "dl");
+            //MapUnitToAbbreviation(Unit.Centiliter, "cl");
+            //MapUnitToAbbreviation(Unit.Milliliter, "ml");
 
-            // Volume US/Imperial
-            MapUnitToAbbreviation(Unit.CubicMile, "mi³");
-            MapUnitToAbbreviation(Unit.CubicYard, "yd³");
-            MapUnitToAbbreviation(Unit.CubicFoot, "ft³");
-            MapUnitToAbbreviation(Unit.CubicInch, "in³");
-            MapUnitToAbbreviation(Unit.UsGallon, "gal (U.S.)");
-            MapUnitToAbbreviation(Unit.UsOunce, "oz (U.S.)");
-            MapUnitToAbbreviation(Unit.ImperialGallon, "gal (imp.)");
-            MapUnitToAbbreviation(Unit.ImperialOunce, "oz (imp.)");
+            //// Volume US/Imperial
+            //MapUnitToAbbreviation(Unit.CubicMile, "mi³");
+            //MapUnitToAbbreviation(Unit.CubicYard, "yd³");
+            //MapUnitToAbbreviation(Unit.CubicFoot, "ft³");
+            //MapUnitToAbbreviation(Unit.CubicInch, "in³");
+            //MapUnitToAbbreviation(Unit.UsGallon, "gal (U.S.)");
+            //MapUnitToAbbreviation(Unit.UsOunce, "oz (U.S.)");
+            //MapUnitToAbbreviation(Unit.ImperialGallon, "gal (imp.)");
+            //MapUnitToAbbreviation(Unit.ImperialOunce, "oz (imp.)");
 
-            // Torque
-            MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
+            //// Torque
+            //MapUnitToAbbreviation(Unit.Newtonmeter, "Nm");
 
-            // Generic / Other
-            MapUnitToAbbreviation(Unit.Piece, "piece");
-            MapUnitToAbbreviation(Unit.Percent, "%");
+            //// Generic / Other
+            //MapUnitToAbbreviation(Unit.Piece, "piece");
+            //MapUnitToAbbreviation(Unit.Percent, "%");
 
-            // Electric potential
-            MapUnitToAbbreviation(Unit.Volt, "V");
+            //// Electric potential
+            //MapUnitToAbbreviation(Unit.Volt, "V");
 
-            // Times
-            MapUnitToAbbreviation(Unit.Nanosecond, "ns");
-            MapUnitToAbbreviation(Unit.Microsecond, "μs");
-            MapUnitToAbbreviation(Unit.Millisecond, "ms");
-            MapUnitToAbbreviation(Unit.Second, "s");
-            MapUnitToAbbreviation(Unit.Minute, "min");
-            MapUnitToAbbreviation(Unit.Hour, "h");
-            MapUnitToAbbreviation(Unit.Day, "d");
-            MapUnitToAbbreviation(Unit.Week, "week");
-            MapUnitToAbbreviation(Unit.Month30Days, "month");
-            MapUnitToAbbreviation(Unit.Year365Days, "year");
+            //// Times
+            //MapUnitToAbbreviation(Unit.Nanosecond, "ns");
+            //MapUnitToAbbreviation(Unit.Microsecond, "μs");
+            //MapUnitToAbbreviation(Unit.Millisecond, "ms");
+            //MapUnitToAbbreviation(Unit.Second, "s");
+            //MapUnitToAbbreviation(Unit.Minute, "min");
+            //MapUnitToAbbreviation(Unit.Hour, "h");
+            //MapUnitToAbbreviation(Unit.Day, "d");
+            //MapUnitToAbbreviation(Unit.Week, "week");
+            //MapUnitToAbbreviation(Unit.Month30Days, "month");
+            //MapUnitToAbbreviation(Unit.Year365Days, "year");
             
-            // Cooking units
-            MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.");
-            MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.");
+            //// Cooking units
+            //MapUnitToAbbreviation(Unit.Tablespoon, "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.");
+            //MapUnitToAbbreviation(Unit.Teaspoon, "tsp","t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.");
 
             // Flow
-            MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
-            MapUnitToAbbreviation(Unit.CubicMeterPerHour, "m³/h");
+            //MapUnitToAbbreviation(Unit.CubicMeterPerSecond, "m³/s");
+            //MapUnitToAbbreviation(Unit.CubicMeterPerHour, "m³/h");
 
-            // RotationalSpeed
-            MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
-            MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
+            //// RotationalSpeed
+            //MapUnitToAbbreviation(Unit.RevolutionPerSecond, "r/s");
+            //MapUnitToAbbreviation(Unit.RevolutionPerMinute, "r/min");
 
-            // Speed
-            MapUnitToAbbreviation(Unit.FootPerSecond, "ft/s");
-            MapUnitToAbbreviation(Unit.KilometerPerHour, "km/h");
-            MapUnitToAbbreviation(Unit.Knot, "kt", "kn", "knot", "knots");
-            MapUnitToAbbreviation(Unit.MeterPerSecond, "m/s");
-            MapUnitToAbbreviation(Unit.MilePerHour, "mph");
+            //// Speed
+            //MapUnitToAbbreviation(Unit.FootPerSecond, "ft/s");
+            //MapUnitToAbbreviation(Unit.KilometerPerHour, "km/h");
+            //MapUnitToAbbreviation(Unit.Knot, "kt", "kn", "knot", "knots");
+            //MapUnitToAbbreviation(Unit.MeterPerSecond, "m/s");
+            //MapUnitToAbbreviation(Unit.MilePerHour, "mph");
 
-            // Temperature
-            MapUnitToAbbreviation(Unit.Kelvin, "K");
-            MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
-            MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
-            MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
-            MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
-            MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
-            MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
-            MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
+            //// Temperature
+            //MapUnitToAbbreviation(Unit.Kelvin, "K");
+            //MapUnitToAbbreviation(Unit.DegreeCelsius, "°C");
+            //MapUnitToAbbreviation(Unit.DegreeDelisle, "°De");
+            //MapUnitToAbbreviation(Unit.DegreeFahrenheit, "°F");
+            //MapUnitToAbbreviation(Unit.DegreeNewton, "°N");
+            //MapUnitToAbbreviation(Unit.DegreeRankine, "°R");
+            //MapUnitToAbbreviation(Unit.DegreeReaumur, "°Ré");
+            //MapUnitToAbbreviation(Unit.DegreeRoemer, "°Rø");
         }
 
         private void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)

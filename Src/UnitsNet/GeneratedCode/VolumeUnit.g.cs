@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             CubicMeters = cubicmeters;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Volume in Centiliters.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Centiliters and y is value in base unit CubicMeters.</remarks>
         public double Centiliters
-        {
-            get { return (CubicMeters - (0)) / 1E-05; }
+        { 
+            get { return CubicMeters / 1E-05; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicCentimeters and y is value in base unit CubicMeters.</remarks>
         public double CubicCentimeters
-        {
-            get { return (CubicMeters - (0)) / 1E-06; }
+        { 
+            get { return CubicMeters / 1E-06; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicDecimeters and y is value in base unit CubicMeters.</remarks>
         public double CubicDecimeters
-        {
-            get { return (CubicMeters - (0)) / 0.001; }
+        { 
+            get { return CubicMeters / 0.001; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicFeet and y is value in base unit CubicMeters.</remarks>
         public double CubicFeet
-        {
-            get { return (CubicMeters - (0)) / 0.0283168; }
+        { 
+            get { return CubicMeters / 0.0283168; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicInches and y is value in base unit CubicMeters.</remarks>
         public double CubicInches
-        {
-            get { return (CubicMeters - (0)) / 1.6387E-05; }
+        { 
+            get { return CubicMeters / 1.6387E-05; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicKilometers and y is value in base unit CubicMeters.</remarks>
         public double CubicKilometers
-        {
-            get { return (CubicMeters - (0)) / 1000000000; }
+        { 
+            get { return CubicMeters / 1000000000; }
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicMiles and y is value in base unit CubicMeters.</remarks>
         public double CubicMiles
-        {
-            get { return (CubicMeters - (0)) / 4168181830; }
+        { 
+            get { return CubicMeters / 4168181830; }
         }
 
         /// <summary>
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicMillimeters and y is value in base unit CubicMeters.</remarks>
         public double CubicMillimeters
-        {
-            get { return (CubicMeters - (0)) / 1E-09; }
+        { 
+            get { return CubicMeters / 1E-09; }
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in CubicYards and y is value in base unit CubicMeters.</remarks>
         public double CubicYards
-        {
-            get { return (CubicMeters - (0)) / 0.764554858; }
+        { 
+            get { return CubicMeters / 0.764554858; }
         }
 
         /// <summary>
@@ -127,8 +128,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Deciliters and y is value in base unit CubicMeters.</remarks>
         public double Deciliters
-        {
-            get { return (CubicMeters - (0)) / 0.0001; }
+        { 
+            get { return CubicMeters / 0.0001; }
         }
 
         /// <summary>
@@ -136,8 +137,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Hectoliters and y is value in base unit CubicMeters.</remarks>
         public double Hectoliters
-        {
-            get { return (CubicMeters - (0)) / 0.1; }
+        { 
+            get { return CubicMeters / 0.1; }
         }
 
         /// <summary>
@@ -145,8 +146,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in ImperialGallons and y is value in base unit CubicMeters.</remarks>
         public double ImperialGallons
-        {
-            get { return (CubicMeters - (0)) / 0.00454609000000181; }
+        { 
+            get { return CubicMeters / 0.00454609000000181; }
         }
 
         /// <summary>
@@ -154,8 +155,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in ImperialOunces and y is value in base unit CubicMeters.</remarks>
         public double ImperialOunces
-        {
-            get { return (CubicMeters - (0)) / 2.84130624999629E-05; }
+        { 
+            get { return CubicMeters / 2.84130624999629E-05; }
         }
 
         /// <summary>
@@ -163,8 +164,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Liters and y is value in base unit CubicMeters.</remarks>
         public double Liters
-        {
-            get { return (CubicMeters - (0)) / 0.001; }
+        { 
+            get { return CubicMeters / 0.001; }
         }
 
         /// <summary>
@@ -172,8 +173,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Milliliters and y is value in base unit CubicMeters.</remarks>
         public double Milliliters
-        {
-            get { return (CubicMeters - (0)) / 1E-06; }
+        { 
+            get { return CubicMeters / 1E-06; }
         }
 
         /// <summary>
@@ -181,8 +182,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in UsGallons and y is value in base unit CubicMeters.</remarks>
         public double UsGallons
-        {
-            get { return (CubicMeters - (0)) / 0.00378541; }
+        { 
+            get { return CubicMeters / 0.00378541; }
         }
 
         /// <summary>
@@ -190,8 +191,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in UsOunces and y is value in base unit CubicMeters.</remarks>
         public double UsOunces
-        {
-            get { return (CubicMeters - (0)) / 2.95735295625376E-05; }
+        { 
+            get { return CubicMeters / 2.95735295625376E-05; }
         }
 
         #endregion
@@ -208,8 +209,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Centiliters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCentiliters(double centiliters)
-        {
-            return new Volume(1E-05 * centiliters + 0);
+        { 
+            return new Volume(1E-05 * centiliters);
         }
 
         /// <summary>
@@ -217,8 +218,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicCentimeters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicCentimeters(double cubiccentimeters)
-        {
-            return new Volume(1E-06 * cubiccentimeters + 0);
+        { 
+            return new Volume(1E-06 * cubiccentimeters);
         }
 
         /// <summary>
@@ -226,8 +227,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicDecimeters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicDecimeters(double cubicdecimeters)
-        {
-            return new Volume(0.001 * cubicdecimeters + 0);
+        { 
+            return new Volume(0.001 * cubicdecimeters);
         }
 
         /// <summary>
@@ -235,8 +236,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicFeet and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicFeet(double cubicfeet)
-        {
-            return new Volume(0.0283168 * cubicfeet + 0);
+        { 
+            return new Volume(0.0283168 * cubicfeet);
         }
 
         /// <summary>
@@ -244,8 +245,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicInches and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicInches(double cubicinches)
-        {
-            return new Volume(1.6387E-05 * cubicinches + 0);
+        { 
+            return new Volume(1.6387E-05 * cubicinches);
         }
 
         /// <summary>
@@ -253,8 +254,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicKilometers and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicKilometers(double cubickilometers)
-        {
-            return new Volume(1000000000 * cubickilometers + 0);
+        { 
+            return new Volume(1000000000 * cubickilometers);
         }
 
         /// <summary>
@@ -262,8 +263,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicMeters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicMeters(double cubicmeters)
-        {
-            return new Volume(1 * cubicmeters + 0);
+        { 
+            return new Volume(1 * cubicmeters);
         }
 
         /// <summary>
@@ -271,8 +272,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicMiles and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicMiles(double cubicmiles)
-        {
-            return new Volume(4168181830 * cubicmiles + 0);
+        { 
+            return new Volume(4168181830 * cubicmiles);
         }
 
         /// <summary>
@@ -280,8 +281,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicMillimeters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicMillimeters(double cubicmillimeters)
-        {
-            return new Volume(1E-09 * cubicmillimeters + 0);
+        { 
+            return new Volume(1E-09 * cubicmillimeters);
         }
 
         /// <summary>
@@ -289,8 +290,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in CubicYards and y is value in base unit CubicMeters.</remarks>
         public static Volume FromCubicYards(double cubicyards)
-        {
-            return new Volume(0.764554858 * cubicyards + 0);
+        { 
+            return new Volume(0.764554858 * cubicyards);
         }
 
         /// <summary>
@@ -298,8 +299,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Deciliters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromDeciliters(double deciliters)
-        {
-            return new Volume(0.0001 * deciliters + 0);
+        { 
+            return new Volume(0.0001 * deciliters);
         }
 
         /// <summary>
@@ -307,8 +308,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Hectoliters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromHectoliters(double hectoliters)
-        {
-            return new Volume(0.1 * hectoliters + 0);
+        { 
+            return new Volume(0.1 * hectoliters);
         }
 
         /// <summary>
@@ -316,8 +317,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in ImperialGallons and y is value in base unit CubicMeters.</remarks>
         public static Volume FromImperialGallons(double imperialgallons)
-        {
-            return new Volume(0.00454609000000181 * imperialgallons + 0);
+        { 
+            return new Volume(0.00454609000000181 * imperialgallons);
         }
 
         /// <summary>
@@ -325,8 +326,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in ImperialOunces and y is value in base unit CubicMeters.</remarks>
         public static Volume FromImperialOunces(double imperialounces)
-        {
-            return new Volume(2.84130624999629E-05 * imperialounces + 0);
+        { 
+            return new Volume(2.84130624999629E-05 * imperialounces);
         }
 
         /// <summary>
@@ -334,8 +335,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Liters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromLiters(double liters)
-        {
-            return new Volume(0.001 * liters + 0);
+        { 
+            return new Volume(0.001 * liters);
         }
 
         /// <summary>
@@ -343,8 +344,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Milliliters and y is value in base unit CubicMeters.</remarks>
         public static Volume FromMilliliters(double milliliters)
-        {
-            return new Volume(1E-06 * milliliters + 0);
+        { 
+            return new Volume(1E-06 * milliliters);
         }
 
         /// <summary>
@@ -352,8 +353,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in UsGallons and y is value in base unit CubicMeters.</remarks>
         public static Volume FromUsGallons(double usgallons)
-        {
-            return new Volume(0.00378541 * usgallons + 0);
+        { 
+            return new Volume(0.00378541 * usgallons);
         }
 
         /// <summary>
@@ -361,10 +362,59 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in UsOunces and y is value in base unit CubicMeters.</remarks>
         public static Volume FromUsOunces(double usounces)
-        {
-            return new Volume(2.95735295625376E-05 * usounces + 0);
+        { 
+            return new Volume(2.95735295625376E-05 * usounces);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Volume to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Volume unit value.</returns> 
+        public static Volume From(double value, VolumeUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case VolumeUnit.Centiliter:
+                    return FromCentiliters(value);
+                case VolumeUnit.CubicCentimeter:
+                    return FromCubicCentimeters(value);
+                case VolumeUnit.CubicDecimeter:
+                    return FromCubicDecimeters(value);
+                case VolumeUnit.CubicFoot:
+                    return FromCubicFeet(value);
+                case VolumeUnit.CubicInch:
+                    return FromCubicInches(value);
+                case VolumeUnit.CubicKilometer:
+                    return FromCubicKilometers(value);
+                case VolumeUnit.CubicMile:
+                    return FromCubicMiles(value);
+                case VolumeUnit.CubicMillimeter:
+                    return FromCubicMillimeters(value);
+                case VolumeUnit.CubicYard:
+                    return FromCubicYards(value);
+                case VolumeUnit.Deciliter:
+                    return FromDeciliters(value);
+                case VolumeUnit.Hectoliter:
+                    return FromHectoliters(value);
+                case VolumeUnit.ImperialGallon:
+                    return FromImperialGallons(value);
+                case VolumeUnit.ImperialOunce:
+                    return FromImperialOunces(value);
+                case VolumeUnit.Liter:
+                    return FromLiters(value);
+                case VolumeUnit.Milliliter:
+                    return FromMilliliters(value);
+                case VolumeUnit.UsGallon:
+                    return FromUsGallons(value);
+                case VolumeUnit.UsOunce:
+                    return FromUsOunces(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -466,10 +516,97 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Volume to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(VolumeUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case VolumeUnit.Centiliter:
+                    newValue = Centiliters;
+                    return true;
+                case VolumeUnit.CubicCentimeter:
+                    newValue = CubicCentimeters;
+                    return true;
+                case VolumeUnit.CubicDecimeter:
+                    newValue = CubicDecimeters;
+                    return true;
+                case VolumeUnit.CubicFoot:
+                    newValue = CubicFeet;
+                    return true;
+                case VolumeUnit.CubicInch:
+                    newValue = CubicInches;
+                    return true;
+                case VolumeUnit.CubicKilometer:
+                    newValue = CubicKilometers;
+                    return true;
+                case VolumeUnit.CubicMile:
+                    newValue = CubicMiles;
+                    return true;
+                case VolumeUnit.CubicMillimeter:
+                    newValue = CubicMillimeters;
+                    return true;
+                case VolumeUnit.CubicYard:
+                    newValue = CubicYards;
+                    return true;
+                case VolumeUnit.Deciliter:
+                    newValue = Deciliters;
+                    return true;
+                case VolumeUnit.Hectoliter:
+                    newValue = Hectoliters;
+                    return true;
+                case VolumeUnit.ImperialGallon:
+                    newValue = ImperialGallons;
+                    return true;
+                case VolumeUnit.ImperialOunce:
+                    newValue = ImperialOunces;
+                    return true;
+                case VolumeUnit.Liter:
+                    newValue = Liters;
+                    return true;
+                case VolumeUnit.Milliliter:
+                    newValue = Milliliters;
+                    return true;
+                case VolumeUnit.UsGallon:
+                    newValue = UsGallons;
+                    return true;
+                case VolumeUnit.UsOunce:
+                    newValue = UsOunces;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Volume to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(VolumeUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", CubicMeters, UnitSystem.Create().GetDefaultAbbreviation(Unit.CubicMeter));
+            return string.Format("{0:0.##} {1}", CubicMeters, UnitSystem.Create().GetDefaultAbbreviation(VolumeUnit.CubicMeter));
         }
     }
 } 

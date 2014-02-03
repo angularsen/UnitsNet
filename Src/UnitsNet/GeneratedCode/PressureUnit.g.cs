@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             Pascals = pascals;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Pressure in Atmospheres.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Atmospheres and y is value in base unit Pascals.</remarks>
         public double Atmospheres
-        {
-            get { return (Pascals - (0)) / 101325; }
+        { 
+            get { return Pascals / 101325; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Bars and y is value in base unit Pascals.</remarks>
         public double Bars
-        {
-            get { return (Pascals - (0)) / 100000; }
+        { 
+            get { return Pascals / 100000; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in KilogramForcePerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public double KilogramForcePerSquareCentimeter
-        {
-            get { return (Pascals - (0)) / 98066.5; }
+        { 
+            get { return Pascals / 98066.5; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Kilopascals and y is value in base unit Pascals.</remarks>
         public double Kilopascals
-        {
-            get { return (Pascals - (0)) / 1000; }
+        { 
+            get { return Pascals / 1000; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Megapascals and y is value in base unit Pascals.</remarks>
         public double Megapascals
-        {
-            get { return (Pascals - (0)) / 1000000; }
+        { 
+            get { return Pascals / 1000000; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareCentimeter
-        {
-            get { return (Pascals - (0)) / 10000; }
+        { 
+            get { return Pascals / 10000; }
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareMeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareMeter
-        {
-            get { return (Pascals - (0)) / 1; }
+        { 
+            get { return Pascals / 1; }
         }
 
         /// <summary>
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in NewtonsPerSquareMillimeter and y is value in base unit Pascals.</remarks>
         public double NewtonsPerSquareMillimeter
-        {
-            get { return (Pascals - (0)) / 1000000; }
+        { 
+            get { return Pascals / 1000000; }
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Psi and y is value in base unit Pascals.</remarks>
         public double Psi
-        {
-            get { return (Pascals - (0)) / 6894.64975179; }
+        { 
+            get { return Pascals / 6894.64975179; }
         }
 
         /// <summary>
@@ -127,8 +128,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in TechnicalAtmospheres and y is value in base unit Pascals.</remarks>
         public double TechnicalAtmospheres
-        {
-            get { return (Pascals - (0)) / 98068.0592331; }
+        { 
+            get { return Pascals / 98068.0592331; }
         }
 
         /// <summary>
@@ -136,8 +137,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Torrs and y is value in base unit Pascals.</remarks>
         public double Torrs
-        {
-            get { return (Pascals - (0)) / 133.32266752; }
+        { 
+            get { return Pascals / 133.32266752; }
         }
 
         #endregion
@@ -154,8 +155,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Atmospheres and y is value in base unit Pascals.</remarks>
         public static Pressure FromAtmospheres(double atmospheres)
-        {
-            return new Pressure(101325 * atmospheres + 0);
+        { 
+            return new Pressure(101325 * atmospheres);
         }
 
         /// <summary>
@@ -163,8 +164,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Bars and y is value in base unit Pascals.</remarks>
         public static Pressure FromBars(double bars)
-        {
-            return new Pressure(100000 * bars + 0);
+        { 
+            return new Pressure(100000 * bars);
         }
 
         /// <summary>
@@ -172,8 +173,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in KilogramForcePerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromKilogramForcePerSquareCentimeter(double kilogramforcepersquarecentimeter)
-        {
-            return new Pressure(98066.5 * kilogramforcepersquarecentimeter + 0);
+        { 
+            return new Pressure(98066.5 * kilogramforcepersquarecentimeter);
         }
 
         /// <summary>
@@ -181,8 +182,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Kilopascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromKilopascals(double kilopascals)
-        {
-            return new Pressure(1000 * kilopascals + 0);
+        { 
+            return new Pressure(1000 * kilopascals);
         }
 
         /// <summary>
@@ -190,8 +191,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Megapascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromMegapascals(double megapascals)
-        {
-            return new Pressure(1000000 * megapascals + 0);
+        { 
+            return new Pressure(1000000 * megapascals);
         }
 
         /// <summary>
@@ -199,8 +200,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareCentimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareCentimeter(double newtonspersquarecentimeter)
-        {
-            return new Pressure(10000 * newtonspersquarecentimeter + 0);
+        { 
+            return new Pressure(10000 * newtonspersquarecentimeter);
         }
 
         /// <summary>
@@ -208,8 +209,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareMeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareMeter(double newtonspersquaremeter)
-        {
-            return new Pressure(1 * newtonspersquaremeter + 0);
+        { 
+            return new Pressure(1 * newtonspersquaremeter);
         }
 
         /// <summary>
@@ -217,8 +218,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in NewtonsPerSquareMillimeter and y is value in base unit Pascals.</remarks>
         public static Pressure FromNewtonsPerSquareMillimeter(double newtonspersquaremillimeter)
-        {
-            return new Pressure(1000000 * newtonspersquaremillimeter + 0);
+        { 
+            return new Pressure(1000000 * newtonspersquaremillimeter);
         }
 
         /// <summary>
@@ -226,8 +227,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Pascals and y is value in base unit Pascals.</remarks>
         public static Pressure FromPascals(double pascals)
-        {
-            return new Pressure(1 * pascals + 0);
+        { 
+            return new Pressure(1 * pascals);
         }
 
         /// <summary>
@@ -235,8 +236,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Psi and y is value in base unit Pascals.</remarks>
         public static Pressure FromPsi(double psi)
-        {
-            return new Pressure(6894.64975179 * psi + 0);
+        { 
+            return new Pressure(6894.64975179 * psi);
         }
 
         /// <summary>
@@ -244,8 +245,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in TechnicalAtmospheres and y is value in base unit Pascals.</remarks>
         public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
-        {
-            return new Pressure(98068.0592331 * technicalatmospheres + 0);
+        { 
+            return new Pressure(98068.0592331 * technicalatmospheres);
         }
 
         /// <summary>
@@ -253,10 +254,47 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Torrs and y is value in base unit Pascals.</remarks>
         public static Pressure FromTorrs(double torrs)
-        {
-            return new Pressure(133.32266752 * torrs + 0);
+        { 
+            return new Pressure(133.32266752 * torrs);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Pressure to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Pressure unit value.</returns> 
+        public static Pressure From(double value, PressureUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case PressureUnit.Atmosphere:
+                    return FromAtmospheres(value);
+                case PressureUnit.Bar:
+                    return FromBars(value);
+                case PressureUnit.KilogramForcePerSquareCentimeter:
+                    return FromKilogramForcePerSquareCentimeter(value);
+                case PressureUnit.Kilopascal:
+                    return FromKilopascals(value);
+                case PressureUnit.Megapascal:
+                    return FromMegapascals(value);
+                case PressureUnit.NewtonPerSquareCentimeter:
+                    return FromNewtonsPerSquareCentimeter(value);
+                case PressureUnit.NewtonPerSquareMeter:
+                    return FromNewtonsPerSquareMeter(value);
+                case PressureUnit.NewtonPerSquareMillimeter:
+                    return FromNewtonsPerSquareMillimeter(value);
+                case PressureUnit.Psi:
+                    return FromPsi(value);
+                case PressureUnit.TechnicalAtmosphere:
+                    return FromTechnicalAtmospheres(value);
+                case PressureUnit.Torr:
+                    return FromTorrs(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -358,10 +396,79 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Pressure to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(PressureUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case PressureUnit.Atmosphere:
+                    newValue = Atmospheres;
+                    return true;
+                case PressureUnit.Bar:
+                    newValue = Bars;
+                    return true;
+                case PressureUnit.KilogramForcePerSquareCentimeter:
+                    newValue = KilogramForcePerSquareCentimeter;
+                    return true;
+                case PressureUnit.Kilopascal:
+                    newValue = Kilopascals;
+                    return true;
+                case PressureUnit.Megapascal:
+                    newValue = Megapascals;
+                    return true;
+                case PressureUnit.NewtonPerSquareCentimeter:
+                    newValue = NewtonsPerSquareCentimeter;
+                    return true;
+                case PressureUnit.NewtonPerSquareMeter:
+                    newValue = NewtonsPerSquareMeter;
+                    return true;
+                case PressureUnit.NewtonPerSquareMillimeter:
+                    newValue = NewtonsPerSquareMillimeter;
+                    return true;
+                case PressureUnit.Psi:
+                    newValue = Psi;
+                    return true;
+                case PressureUnit.TechnicalAtmosphere:
+                    newValue = TechnicalAtmospheres;
+                    return true;
+                case PressureUnit.Torr:
+                    newValue = Torrs;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Pressure to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(PressureUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Pascals, UnitSystem.Create().GetDefaultAbbreviation(Unit.Pascal));
+            return string.Format("{0:0.##} {1}", Pascals, UnitSystem.Create().GetDefaultAbbreviation(PressureUnit.Pascal));
         }
     }
 } 

@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,7 +40,7 @@ namespace UnitsNet
             Volts = volts;
         }
 
-        #region Unit Properties
+        #region Properties
 
         #endregion
 
@@ -55,10 +56,25 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Volts and y is value in base unit Volts.</remarks>
         public static ElectricPotential FromVolts(double volts)
-        {
-            return new ElectricPotential(1 * volts + 0);
+        { 
+            return new ElectricPotential(1 * volts);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from ElectricPotential to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricPotential unit value.</returns> 
+        public static ElectricPotential From(double value, ElectricPotentialUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -160,10 +176,46 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from ElectricPotential to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(ElectricPotentialUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from ElectricPotential to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(ElectricPotentialUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Volts, UnitSystem.Create().GetDefaultAbbreviation(Unit.Volt));
+            return string.Format("{0:0.##} {1}", Volts, UnitSystem.Create().GetDefaultAbbreviation(ElectricPotentialUnit.Volt));
         }
     }
 } 

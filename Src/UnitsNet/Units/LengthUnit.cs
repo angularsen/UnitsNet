@@ -4,6 +4,8 @@ namespace UnitsNet.Units
 {
     public enum LengthUnit
     {
+        Undefined = 0,
+
         [I18n("en-US", "km")]
         [I18n("ru-RU", "км")]
         [Length(1e3)]

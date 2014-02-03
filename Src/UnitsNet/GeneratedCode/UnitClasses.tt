@@ -1,14 +1,26 @@
 ﻿<#@ template debug="true" language="C#" hostspecific="true" #>
 <#@ assembly name="$(TargetPath)" #>
-<#@ import namespace="UnitsNet" #>
+<#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.GeneratedCode" #>
 <#@ output extension=".g.cs" #>
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#
     var m = Manager.Create(Host, GenerationEnvironment);
+    GenerateUnitClasses<UnitAttribute, AngleUnit>(m);
+    GenerateUnitClasses<UnitAttribute, AreaUnit>(m);
+    GenerateUnitClasses<UnitAttribute, DurationUnit>(m);
+    GenerateUnitClasses<UnitAttribute, ElectricPotentialUnit>(m);
+    GenerateUnitClasses<UnitAttribute, FlowUnit>(m);
+    GenerateUnitClasses<UnitAttribute, ForceUnit>(m);
     GenerateUnitClasses<UnitAttribute, LengthUnit>(m);
     GenerateUnitClasses<UnitAttribute, MassUnit>(m);
+    GenerateUnitClasses<UnitAttribute, PressureUnit>(m);
+    GenerateUnitClasses<UnitAttribute, RotationalSpeedUnit>(m);
+    GenerateUnitClasses<UnitAttribute, SpeedUnit>(m);
+    GenerateUnitClasses<UnitAttribute, TemperatureUnit>(m);
+    GenerateUnitClasses<UnitAttribute, TorqueUnit>(m);
+    GenerateUnitClasses<UnitAttribute, VolumeUnit>(m);
     m.Process(split: true);
 #><#+ 
     private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute 
@@ -67,7 +79,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.Extensions;
+using UnitsNet.Units;
 using System;
 
 // ReSharper disable once CheckNamespace
