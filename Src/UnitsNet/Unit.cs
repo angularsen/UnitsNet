@@ -1,4 +1,4 @@
-// Copyright � 2007 by Initial Force AS.  All rights reserved.
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,26 +24,78 @@ using UnitsNet.Attributes;
 
 namespace UnitsNet
 {
+    public enum LengthUnit
+    {
+        [I18n(Cultures.UsEnglish, "km")]
+        [I18n(Cultures.Russian, "км")]
+        [Length(1e3)]
+        Kilometer,
+
+        [I18n(Cultures.UsEnglish, "m")]
+        [I18n(Cultures.Russian, "м")]
+        [Length(1)]
+        Meter, // Base unit
+
+        [I18n(Cultures.UsEnglish, "dm")]
+        [I18n(Cultures.Russian, "дм")]
+        [Length(1e-1)]
+        Decimeter,
+
+        [I18n(Cultures.UsEnglish, "cm")]
+        [I18n(Cultures.Russian, "см")]
+        [Length(1e-2)]
+        Centimeter,
+
+        [I18n(Cultures.UsEnglish, "mm")]
+        [I18n(Cultures.Russian, "мм")]
+        [Length(1e-3)]
+        Millimeter,
+
+        [I18n(Cultures.UsEnglish, "μm")]
+        [I18n(Cultures.Russian, "мкм")]
+        [Length(1e-6)]
+        Micrometer,
+
+        [I18n(Cultures.UsEnglish, "nm")]
+        [I18n(Cultures.Russian, "нм")]
+        [Length(1e-9)]
+        Nanometer,
+
+        // US, imperial and other
+        [I18n(Cultures.UsEnglish, "mi")]
+        [I18n(Cultures.Russian, "миля")]
+        [Length(1609.34)]
+        Mile,
+
+        [I18n(Cultures.UsEnglish, "yd")]
+        [I18n(Cultures.Russian, "ярд")]
+        [Length(0.9144)]
+        Yard,
+
+        [I18n(Cultures.UsEnglish, "ft")]
+        [I18n(Cultures.Russian, "фут")]
+        [Length(0.3048, "Feet")]
+        Foot,
+
+        [I18n(Cultures.UsEnglish, "in")]
+        [I18n(Cultures.Russian, "дюйм")]
+        [Length(2.54e-2, "Inches")]
+        Inch,
+
+        [I18n(Cultures.UsEnglish, "mil")]
+        [I18n(Cultures.Russian, "мил")]
+        [Length(2.54e-5)]
+        Mil,
+
+        [I18n(Cultures.UsEnglish, "μin")]
+        [I18n(Cultures.Russian, "микродюйм")]
+        [Length(2.54e-8, "Microinches")]
+        Microinch,
+    }
+
     public enum Unit
     {
         Undefined = 0,
- 
-        // Metric 
-        [Length(1e3)] Kilometer,
-        [Length(1)] Meter, // Base unit
-        [Length(1e-1)] Decimeter,
-        [Length(1e-2)] Centimeter,
-        [Length(1e-3)] Millimeter,
-        [Length(1e-6)] Micrometer,
-        [Length(1e-9)] Nanometer,
-
-        // US, imperial and other
-        [Length(1609.34)] Mile,
-        [Length(0.9144)] Yard,
-        [Length(0.3048, "Feet")] Foot,
-        [Length(2.54e-2, "Inches")] Inch,
-        [Length(2.54e-5)] Mil,
-        [Length(2.54e-8, "Microinches")] Microinch,
 
         // Metric
         [Mass(1e9)] Megatonne,
@@ -61,7 +113,7 @@ namespace UnitsNet
 
         // US, imperial and other
         /// <summary>
-        ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States � known there simply as the ton.
+        ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         [Mass(907.18474)] ShortTon,
