@@ -30,6 +30,50 @@ namespace UnitsNet.GeneratedCode
 {
     public static class TemplateUtils
     {
+        public static IEnumerable<UnitClassInfo> GetUnitClasses(Assembly assemblyContainingUnitEnums)
+        {
+            Dictionary<Type, UnitEnumValueInfo[]> dict =
+                GetUnitEnumValueInfoPerUnitType(assemblyContainingUnitEnums);
+
+            var unitsInfo = new List<UnitClassInfo>();
+            foreach (KeyValuePair<Type, UnitEnumValueInfo[]> pair in dict)
+            {
+                Type unitEnumType = pair.Key;
+                List<UnitEnumValueInfo> enumValues = pair.Value.Where(val => val.UnitAttribute != null).ToList();
+
+                // Ignore enums that do not specify any unit attributes, such as OtherUnit.
+                if (!enumValues.Any())
+                    continue;
+
+                UnitEnumValueInfo baseUnit =
+                    enumValues.FirstOrDefault(val => val.Value.ToString() == val.UnitAttribute.BaseUnitName);
+
+                if (baseUnit == null)
+                    throw new InvalidOperationException(
+                        "At least one unit attribute is defined for the values of this enum, but none of them matched the base unit. Did you forget to specify a base unit in the unit attribute?");
+
+                string baseUnitName = baseUnit.Value.ToString();
+                string baseUnitPluralName = baseUnit.UnitAttribute.PluralName ?? baseUnitName + "s";
+
+                IOrderedEnumerable<UnitInfo> orderedClassUnits =
+                    enumValues.Select(
+                        val =>
+                            new UnitInfo(val.Value.ToString(), val.UnitAttribute.PluralName,
+                                val.UnitAttribute.LinearFunction))
+                        .OrderBy(val => val.SingularName);
+
+                // LengthUnit enum type => Length unit class
+                string unitClassName = unitEnumType.Name.Replace("Unit", string.Empty);
+
+                unitsInfo.Add(new UnitClassInfo(unitClassName, baseUnit.UnitAttribute.XmlDocSummary, unitEnumType.Name,
+                    baseUnitName,
+                    baseUnitPluralName, orderedClassUnits.ToList()));
+            }
+
+            return unitsInfo;
+        }
+
+
         public static Dictionary<TUnit, IUnitAttribute<TUnit>> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>()
             where TBaseUnitAttribute : Attribute
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
@@ -195,6 +239,26 @@ namespace UnitsNet.GeneratedCode
             PluralName = pluralName ?? singularName + "s";
             LinearFunction = linearFunction;
         } 
+    }
+
+    public class UnitClassInfo
+    {
+        public readonly string UnitClassName;
+        public readonly string UnitClassXmlDoc; 
+        public readonly string UnitEnumTypeName; 
+        public readonly string BaseUnitName;
+        public readonly string BaseUnitPluralName;
+        public readonly ICollection<UnitInfo> OrderedUnits;
+
+        public UnitClassInfo(string unitClassName, string unitClassXmlDoc, string unitEnumTypeName, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedUnits)
+        {
+            UnitClassName = unitClassName;
+            UnitClassXmlDoc = unitClassXmlDoc;
+            UnitEnumTypeName = unitEnumTypeName;
+            BaseUnitName = baseUnitName;
+            BaseUnitPluralName = baseUnitPluralName;
+            OrderedUnits = orderedUnits;
+        }
     }
 
 }

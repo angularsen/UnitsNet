@@ -7,7 +7,7 @@
 <#@ import namespace="UnitsNet.GeneratedCode" #>
 <#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#><#+
 
-    private void GenerateTestClass(Manager manager, string className, string baseUnitName, string baseUnitPluralName, IList<UnitInfo> orderedClassUnits)
+    private void GenerateTestClass(Manager manager, string className, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedClassUnits)
     {
         using (manager.StartNewFile(className+"TestsBase.g.cs"))
         {

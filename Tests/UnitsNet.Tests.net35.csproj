@@ -100,6 +100,11 @@
     <Compile Include="GeneratedCode\TorqueTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedCode\UnitTestClasses.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedCode\VolumeTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
@@ -113,6 +118,7 @@
     <None Include="GeneratedCode\Includes\UnitValueTests.ttinclude" />
     <None Include="GeneratedCode\UnitTestClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitTestClasses.g.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
