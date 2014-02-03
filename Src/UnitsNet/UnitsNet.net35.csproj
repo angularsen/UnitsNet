@@ -74,6 +74,8 @@
     <Compile Include="GeneratedCode\MassUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedCode\TemplateUtils.cs" />
+    <Compile Include="GeneratedCode\UnitClasses.g.cs">
     <Compile Include="GeneratedCode\PressureUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
@@ -98,6 +100,7 @@
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="LengthUnit.cs" />
+    <Compile Include="MassUnit.cs" />
     <Compile Include="Length2d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />

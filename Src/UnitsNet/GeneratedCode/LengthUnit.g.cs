@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Extensions;
 using System;
 
 // ReSharper disable once CheckNamespace
@@ -39,15 +40,15 @@ namespace UnitsNet
             Meters = meters;
         }
 
-        #region Unit Properties
+        #region Properties
 
         /// <summary>
         /// Get Length in Centimeters.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Centimeters and y is value in base unit Meters.</remarks>
         public double Centimeters
-        {
-            get { return (Meters - (0)) / 0.01; }
+        { 
+            get { return Meters / 0.01; }
         }
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Decimeters and y is value in base unit Meters.</remarks>
         public double Decimeters
-        {
-            get { return (Meters - (0)) / 0.1; }
+        { 
+            get { return Meters / 0.1; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Feet and y is value in base unit Meters.</remarks>
         public double Feet
-        {
-            get { return (Meters - (0)) / 0.3048; }
+        { 
+            get { return Meters / 0.3048; }
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Inches and y is value in base unit Meters.</remarks>
         public double Inches
-        {
-            get { return (Meters - (0)) / 0.0254; }
+        { 
+            get { return Meters / 0.0254; }
         }
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Kilometers and y is value in base unit Meters.</remarks>
         public double Kilometers
-        {
-            get { return (Meters - (0)) / 1000; }
+        { 
+            get { return Meters / 1000; }
         }
 
         /// <summary>
@@ -91,8 +92,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Microinches and y is value in base unit Meters.</remarks>
         public double Microinches
-        {
-            get { return (Meters - (0)) / 2.54E-08; }
+        { 
+            get { return Meters / 2.54E-08; }
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Micrometers and y is value in base unit Meters.</remarks>
         public double Micrometers
-        {
-            get { return (Meters - (0)) / 1E-06; }
+        { 
+            get { return Meters / 1E-06; }
         }
 
         /// <summary>
@@ -109,8 +110,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Mils and y is value in base unit Meters.</remarks>
         public double Mils
-        {
-            get { return (Meters - (0)) / 2.54E-05; }
+        { 
+            get { return Meters / 2.54E-05; }
         }
 
         /// <summary>
@@ -118,8 +119,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Miles and y is value in base unit Meters.</remarks>
         public double Miles
-        {
-            get { return (Meters - (0)) / 1609.34; }
+        { 
+            get { return Meters / 1609.34; }
         }
 
         /// <summary>
@@ -127,8 +128,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Millimeters and y is value in base unit Meters.</remarks>
         public double Millimeters
-        {
-            get { return (Meters - (0)) / 0.001; }
+        { 
+            get { return Meters / 0.001; }
         }
 
         /// <summary>
@@ -136,8 +137,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Nanometers and y is value in base unit Meters.</remarks>
         public double Nanometers
-        {
-            get { return (Meters - (0)) / 1E-09; }
+        { 
+            get { return Meters / 1E-09; }
         }
 
         /// <summary>
@@ -145,8 +146,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Yards and y is value in base unit Meters.</remarks>
         public double Yards
-        {
-            get { return (Meters - (0)) / 0.9144; }
+        { 
+            get { return Meters / 0.9144; }
         }
 
         #endregion
@@ -163,8 +164,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Centimeters and y is value in base unit Meters.</remarks>
         public static Length FromCentimeters(double centimeters)
-        {
-            return new Length(0.01 * centimeters + 0);
+        { 
+            return new Length(0.01 * centimeters);
         }
 
         /// <summary>
@@ -172,8 +173,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Decimeters and y is value in base unit Meters.</remarks>
         public static Length FromDecimeters(double decimeters)
-        {
-            return new Length(0.1 * decimeters + 0);
+        { 
+            return new Length(0.1 * decimeters);
         }
 
         /// <summary>
@@ -181,8 +182,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Feet and y is value in base unit Meters.</remarks>
         public static Length FromFeet(double feet)
-        {
-            return new Length(0.3048 * feet + 0);
+        { 
+            return new Length(0.3048 * feet);
         }
 
         /// <summary>
@@ -190,8 +191,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Inches and y is value in base unit Meters.</remarks>
         public static Length FromInches(double inches)
-        {
-            return new Length(0.0254 * inches + 0);
+        { 
+            return new Length(0.0254 * inches);
         }
 
         /// <summary>
@@ -199,8 +200,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Kilometers and y is value in base unit Meters.</remarks>
         public static Length FromKilometers(double kilometers)
-        {
-            return new Length(1000 * kilometers + 0);
+        { 
+            return new Length(1000 * kilometers);
         }
 
         /// <summary>
@@ -208,8 +209,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Meters and y is value in base unit Meters.</remarks>
         public static Length FromMeters(double meters)
-        {
-            return new Length(1 * meters + 0);
+        { 
+            return new Length(1 * meters);
         }
 
         /// <summary>
@@ -217,8 +218,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Microinches and y is value in base unit Meters.</remarks>
         public static Length FromMicroinches(double microinches)
-        {
-            return new Length(2.54E-08 * microinches + 0);
+        { 
+            return new Length(2.54E-08 * microinches);
         }
 
         /// <summary>
@@ -226,8 +227,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Micrometers and y is value in base unit Meters.</remarks>
         public static Length FromMicrometers(double micrometers)
-        {
-            return new Length(1E-06 * micrometers + 0);
+        { 
+            return new Length(1E-06 * micrometers);
         }
 
         /// <summary>
@@ -235,8 +236,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Mils and y is value in base unit Meters.</remarks>
         public static Length FromMils(double mils)
-        {
-            return new Length(2.54E-05 * mils + 0);
+        { 
+            return new Length(2.54E-05 * mils);
         }
 
         /// <summary>
@@ -244,8 +245,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Miles and y is value in base unit Meters.</remarks>
         public static Length FromMiles(double miles)
-        {
-            return new Length(1609.34 * miles + 0);
+        { 
+            return new Length(1609.34 * miles);
         }
 
         /// <summary>
@@ -253,8 +254,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Millimeters and y is value in base unit Meters.</remarks>
         public static Length FromMillimeters(double millimeters)
-        {
-            return new Length(0.001 * millimeters + 0);
+        { 
+            return new Length(0.001 * millimeters);
         }
 
         /// <summary>
@@ -262,8 +263,8 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Nanometers and y is value in base unit Meters.</remarks>
         public static Length FromNanometers(double nanometers)
-        {
-            return new Length(1E-09 * nanometers + 0);
+        { 
+            return new Length(1E-09 * nanometers);
         }
 
         /// <summary>
@@ -271,10 +272,49 @@ namespace UnitsNet
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Yards and y is value in base unit Meters.</remarks>
         public static Length FromYards(double yards)
-        {
-            return new Length(0.9144 * yards + 0);
+        { 
+            return new Length(0.9144 * yards);
         }
 
+        /// <summary>
+        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Length unit value.</returns> 
+        public static Length From(double value, LengthUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case LengthUnit.Centimeter:
+                    return FromCentimeters(value);
+                case LengthUnit.Decimeter:
+                    return FromDecimeters(value);
+                case LengthUnit.Foot:
+                    return FromFeet(value);
+                case LengthUnit.Inch:
+                    return FromInches(value);
+                case LengthUnit.Kilometer:
+                    return FromKilometers(value);
+                case LengthUnit.Microinch:
+                    return FromMicroinches(value);
+                case LengthUnit.Micrometer:
+                    return FromMicrometers(value);
+                case LengthUnit.Mil:
+                    return FromMils(value);
+                case LengthUnit.Mile:
+                    return FromMiles(value);
+                case LengthUnit.Millimeter:
+                    return FromMillimeters(value);
+                case LengthUnit.Nanometer:
+                    return FromNanometers(value);
+                case LengthUnit.Yard:
+                    return FromYards(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
         #endregion
 
         #region Arithmetic Operators
@@ -376,10 +416,82 @@ namespace UnitsNet
         }
 
         #endregion
+        
+        #region Conversion
+ 
+        /// <summary>
+        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
+        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
+        public bool TryConvert(LengthUnit toUnit, out double newValue)
+        {
+            switch (toUnit)
+            {
+                case LengthUnit.Centimeter:
+                    newValue = Centimeters;
+                    return true;
+                case LengthUnit.Decimeter:
+                    newValue = Decimeters;
+                    return true;
+                case LengthUnit.Foot:
+                    newValue = Feet;
+                    return true;
+                case LengthUnit.Inch:
+                    newValue = Inches;
+                    return true;
+                case LengthUnit.Kilometer:
+                    newValue = Kilometers;
+                    return true;
+                case LengthUnit.Microinch:
+                    newValue = Microinches;
+                    return true;
+                case LengthUnit.Micrometer:
+                    newValue = Micrometers;
+                    return true;
+                case LengthUnit.Mil:
+                    newValue = Mils;
+                    return true;
+                case LengthUnit.Mile:
+                    newValue = Miles;
+                    return true;
+                case LengthUnit.Millimeter:
+                    newValue = Millimeters;
+                    return true;
+                case LengthUnit.Nanometer:
+                    newValue = Nanometers;
+                    return true;
+                case LengthUnit.Yard:
+                    newValue = Yards;
+                    return true;
+
+                default:
+                    newValue = 0;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Dynamically convert from Length to <paramref name="toUnit"/>.
+        /// </summary>
+        /// <param name="toUnit">Compatible unit to convert to.</param>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns> 
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double Convert(LengthUnit toUnit)
+        {
+            double newValue;
+            if (!TryConvert(toUnit, out newValue))
+                throw new NotImplementedException("toUnit: " + toUnit);
+
+            return newValue;
+        }
+
+        #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Meters, UnitSystem.Create().GetDefaultAbbreviation(Unit.Meter));
+            return string.Format("{0:0.##} {1}", Meters, UnitSystem.Create().GetDefaultAbbreviation(LengthUnit.Meter));
         }
     }
 } 

@@ -28,52 +28,7 @@ namespace UnitsNet
     {
         Undefined = 0,
 
-        // Metric
-        [Mass(1e9)]
-        Megatonne,
-        [Mass(1e6)]
-        Kilotonne,
-        [Mass(1e3)]
-        Tonne,
-        [Mass(1)]
-        Kilogram, // Base unit
-        [Mass(1e-1)]
-        Hectogram,
-        [Mass(1e-2)]
-        Decagram,
-        [Mass(1e-3)]
-        Gram,
-        [Mass(1e-4)]
-        Decigram,
-        [Mass(1e-5)]
-        Centigram,
-        [Mass(1e-6)]
-        Milligram,
-        [Mass(1e-9)]
-        Microgram,
-        [Mass(1e-12)]
-        Nanogram,
-
-        // US, imperial and other
-        /// <summary>
-        ///     The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.
-        /// </summary>
-        /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
-        [Mass(907.18474)]
-        ShortTon,
-
-        /// <summary>
-        ///     The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.
-        /// </summary>
-        [Mass(0.45359237)]
-        Pound,
-
-        /// <summary>
-        ///     Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the "ton" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.
-        /// </summary>
-        /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
-        [Mass(1016.0469088)]
-        LongTon,
+        
 
         // Pressure
         [Pressure(1e6, "NewtonsPerSquareMillimeter")]

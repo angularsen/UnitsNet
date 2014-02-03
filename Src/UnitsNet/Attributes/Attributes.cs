@@ -85,9 +85,9 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class MassAttribute : UnitAttribute
+    public class MassAttribute : UnitAttribute, IUnitAttribute<MassUnit>
     {
-        public Unit BaseUnit { get { return Unit.Kilogram; } }
+        public MassUnit BaseUnit { get { return MassUnit.Kilogram; } }
         public override string XmlDocSummary { get { return "In physics, mass (from Greek μᾶζα \"barley cake, lump [of dough]\") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg)."; } }
         public MassAttribute(double slope, string pluralName = (string)null) : base(pluralName, slope, offset: 0)
         {

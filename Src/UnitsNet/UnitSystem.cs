@@ -182,22 +182,22 @@ namespace UnitsNet
             //MapUnitToAbbreviation(Unit.Inch, "дюйм", "\"");
 
             // Masses
-            MapUnitToAbbreviation(Unit.Megatonne, "Мт");
-            MapUnitToAbbreviation(Unit.Kilotonne, "кт");
-            MapUnitToAbbreviation(Unit.Tonne, "т");
-            MapUnitToAbbreviation(Unit.Kilogram, "кг");
-            MapUnitToAbbreviation(Unit.Hectogram, "гг");
-            MapUnitToAbbreviation(Unit.Decagram, "даг");
-            MapUnitToAbbreviation(Unit.Gram, "г");
-            MapUnitToAbbreviation(Unit.Decigram, "дг");
-            MapUnitToAbbreviation(Unit.Centigram, "сг");
-            MapUnitToAbbreviation(Unit.Milligram, "мг");
-            MapUnitToAbbreviation(Unit.Microgram, "мкг");
-            MapUnitToAbbreviation(Unit.Nanogram, "нг");
+            //MapUnitToAbbreviation(Unit.Megatonne, "Мт");
+            //MapUnitToAbbreviation(Unit.Kilotonne, "кт");
+            //MapUnitToAbbreviation(Unit.Tonne, "т");
+            //MapUnitToAbbreviation(Unit.Kilogram, "кг");
+            //MapUnitToAbbreviation(Unit.Hectogram, "гг");
+            //MapUnitToAbbreviation(Unit.Decagram, "даг");
+            //MapUnitToAbbreviation(Unit.Gram, "г");
+            //MapUnitToAbbreviation(Unit.Decigram, "дг");
+            //MapUnitToAbbreviation(Unit.Centigram, "сг");
+            //MapUnitToAbbreviation(Unit.Milligram, "мг");
+            //MapUnitToAbbreviation(Unit.Microgram, "мкг");
+            //MapUnitToAbbreviation(Unit.Nanogram, "нг");
 
-            // Mass (imperial)
-            MapUnitToAbbreviation(Unit.ShortTon, "тонна малая");
-            MapUnitToAbbreviation(Unit.LongTon, "тонна большая");
+            //// Mass (imperial)
+            //MapUnitToAbbreviation(Unit.ShortTon, "тонна малая");
+            //MapUnitToAbbreviation(Unit.LongTon, "тонна большая");
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Па");
@@ -333,23 +333,23 @@ namespace UnitsNet
             //MapUnitToAbbreviation(Unit.Inch, "in");
 
             // Masses
-            MapUnitToAbbreviation(Unit.Megatonne, "Mt");
-            MapUnitToAbbreviation(Unit.Kilotonne, "kt");
-            MapUnitToAbbreviation(Unit.Tonne, "t");
-            MapUnitToAbbreviation(Unit.Kilogram, "kg");
-            MapUnitToAbbreviation(Unit.Hectogram, "hg");
-            MapUnitToAbbreviation(Unit.Decagram, "dag");
-            MapUnitToAbbreviation(Unit.Gram, "g");
-            MapUnitToAbbreviation(Unit.Decigram, "dg");
-            MapUnitToAbbreviation(Unit.Centigram, "cg");
-            MapUnitToAbbreviation(Unit.Milligram, "mg");
-            MapUnitToAbbreviation(Unit.Microgram, "µg");
-            MapUnitToAbbreviation(Unit.Nanogram, "ng");
+            //MapUnitToAbbreviation(Unit.Megatonne, "Mt");
+            //MapUnitToAbbreviation(Unit.Kilotonne, "kt");
+            //MapUnitToAbbreviation(Unit.Tonne, "t");
+            //MapUnitToAbbreviation(Unit.Kilogram, "kg");
+            //MapUnitToAbbreviation(Unit.Hectogram, "hg");
+            //MapUnitToAbbreviation(Unit.Decagram, "dag");
+            //MapUnitToAbbreviation(Unit.Gram, "g");
+            //MapUnitToAbbreviation(Unit.Decigram, "dg");
+            //MapUnitToAbbreviation(Unit.Centigram, "cg");
+            //MapUnitToAbbreviation(Unit.Milligram, "mg");
+            //MapUnitToAbbreviation(Unit.Microgram, "µg");
+            //MapUnitToAbbreviation(Unit.Nanogram, "ng");
 
             // Mass (imperial)
-            MapUnitToAbbreviation(Unit.ShortTon, "short tn");
-            MapUnitToAbbreviation(Unit.Pound, "lb");
-            MapUnitToAbbreviation(Unit.LongTon, "long tn");
+            //MapUnitToAbbreviation(Unit.ShortTon, "short tn");
+            //MapUnitToAbbreviation(Unit.Pound, "lb");
+            //MapUnitToAbbreviation(Unit.LongTon, "long tn");
 
             // Pressures
             MapUnitToAbbreviation(Unit.Pascal, "Pa");

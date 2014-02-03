@@ -8,6 +8,7 @@
 <#
     var m = Manager.Create(Host, GenerationEnvironment);
     GenerateUnitClasses<UnitAttribute, LengthUnit>(m);
+    GenerateUnitClasses<UnitAttribute, MassUnit>(m);
     m.Process(split: true);
 #><#+ 
     private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute 
@@ -28,7 +29,7 @@
     private void GenerateUnitClass<TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute, Manager manager, string className, TUnit baseUnit, string xmlDocSummary)
             where TUnit : /*Enum constraint hack*/ struct, IConvertible
     {
-        using (manager.StartNewFile(className + ".g.cs"))
+        using (manager.StartNewFile(className + "Unit.g.cs"))
         {
             TUnit[] orderedClassUnits = unitToAttribute
                 .Keys
