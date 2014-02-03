@@ -44,7 +44,6 @@
     <Compile Include="GeneratedCode\BarUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedCode\DELETEME.cs" />
     <Compile Include="GeneratedCode\FooUnit.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
