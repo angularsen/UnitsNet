@@ -85,7 +85,7 @@
     <Compile Include="GeneratedCode\Temperature.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedCode\TemplateUtils.cs" />
+    <Compile Include="Templating\TemplateUtils.cs" />
     <Compile Include="GeneratedCode\Torque.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>

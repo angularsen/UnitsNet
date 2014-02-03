@@ -26,7 +26,7 @@ using System.Reflection;
 using UnitsNet.Attributes;
 using UnitsNet.Extensions;
 
-namespace UnitsNet.GeneratedCode
+namespace UnitsNet.Templating
 {
     public static class TemplateUtils
     {

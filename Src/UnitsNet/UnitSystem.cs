@@ -25,7 +25,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.Attributes;
-using UnitsNet.GeneratedCode;
+using UnitsNet.Templating;
 
 namespace UnitsNet
 {

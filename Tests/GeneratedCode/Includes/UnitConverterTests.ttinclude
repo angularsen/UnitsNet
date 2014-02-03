@@ -4,7 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet" #>
-<#@ import namespace="UnitsNet.GeneratedCode" #><#@ import namespace="UnitsNet.Units" #><#+
+<#@ import namespace="UnitsNet.Templating" #>
+<#@ import namespace="UnitsNet.Units" #><#+
     
     private void GenerateUnitConverterTests(ICollection<UnitClassInfo> unitClassInfos)
     {

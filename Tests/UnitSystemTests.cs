@@ -25,7 +25,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
-using UnitsNet.GeneratedCode;
 using UnitsNet.Units;
 using UnitsNet.Utils;
 

@@ -2,7 +2,7 @@
 <#@ assembly name="$(TargetPath)" #>
 <#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
-<#@ import namespace="UnitsNet.GeneratedCode" #>
+<#@ import namespace="UnitsNet.Templating" #>
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
 <#@ output extension=".g.cs" #>
 <#

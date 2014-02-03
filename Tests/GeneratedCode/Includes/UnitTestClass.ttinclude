@@ -4,7 +4,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
-<#@ import namespace="UnitsNet.GeneratedCode" #>
+<#@ import namespace="UnitsNet.Templating" #>
 <#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#><#+
 
     private void GenerateTestClass(Manager manager, string className, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedClassUnits)
