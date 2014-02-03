@@ -1,6 +1,6 @@
 ﻿using UnitsNet.Attributes;
 
-namespace UnitsNet
+namespace UnitsNet.Units
 {
     public enum LengthUnit
     {

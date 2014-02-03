@@ -21,6 +21,7 @@
 
 using UnitsNet.Extensions;
 using System;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
