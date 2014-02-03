@@ -1,5 +1,6 @@
 ﻿<#@ template debug="true" language="C#" hostspecific="true" #>
 <#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="System.Globalization" #>
 <#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.GeneratedCode" #>
@@ -45,17 +46,16 @@
         {
             TUnit[] orderedClassUnits = unitToAttribute
                 .Keys
-                .OrderBy(unit => unit.ToString())
+                .OrderBy(unit => unit.ToString(CultureInfo.InvariantCulture))
                 .ToArray();
 
             TUnit[] orderedClassUnitsExceptBaseUnit =
                 orderedClassUnits
                     .Except(new[] {baseUnit})
-                    .OrderBy(unit => unit.ToString())
+                    .OrderBy(unit => unit.ToString(CultureInfo.InvariantCulture))
                     .ToArray();
 
             string baseUnitPluralName = TemplateUtils.GetUnitPluralName(unitToAttribute, baseUnit);
-            List<Type> unitAttributeTypes = unitToAttribute.Values.Select(attr => attr.GetType()).ToList();
             string unitEnumName = typeof (TUnit).Name;
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -198,7 +198,7 @@ namespace UnitsNet
 <#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
 <#+         { #>
 <#+             string pluralUnitName = TemplateUtils.GetUnitPluralName(unitToAttribute, unit); #>
-                case <#=unitEnumName#>.<#=unit.ToString() #>:
+                case <#=unitEnumName#>.<#=unit.ToString(CultureInfo.InvariantCulture) #>:
                     return From<#=pluralUnitName #>(value);
 <#+         } #>
 
@@ -322,7 +322,7 @@ namespace UnitsNet
             {
 <#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
 <#+         { #>
-                case <#=unitEnumName#>.<#=unit.ToString() #>:
+                case <#=unitEnumName#>.<#=unit.ToString(CultureInfo.InvariantCulture) #>:
                     newValue = <#=TemplateUtils.GetUnitPluralName(unitToAttribute, unit) #>;
                     return true;
 <#+         } #>
