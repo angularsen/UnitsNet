@@ -25,6 +25,9 @@ namespace UnitsNet
 {
     public enum OtherUnit
     {
+        [I18n("en-US", "(undefined)")]
+        [I18n("ru-RU", "(нет ед.изм.)")]
+        [I18n("nb-NO", "(ingen)")]
         Undefined = 0,
 
         // Generic / Other

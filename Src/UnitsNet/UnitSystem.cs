@@ -52,13 +52,13 @@ namespace UnitsNet
         /// <param name="cultureInfo"></param>
         private UnitSystem(CultureInfo cultureInfo = null)
         {
-            _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
-            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
-
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo("en-US");
 
             Culture = cultureInfo;
+
+            _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
+            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
 
             IEnumerable<Type> unitTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
             foreach (Type unitType in unitTypes)
@@ -70,8 +70,9 @@ namespace UnitsNet
                 {
                     // Fall back to US English if localization attribute is not found for this culture.
                     I18nAttribute[] i18NAttributes = pair.Value;
-                    I18nAttribute attr = i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
-                                         i18NAttributes.First(a => a.Culture.Name == "en-US");
+                    I18nAttribute attr =
+                        i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
+                        i18NAttributes.FirstOrDefault(a => a.Culture.Name == "en-US");
 
                     if (attr == null)
                         continue;
@@ -484,8 +485,11 @@ namespace UnitsNet
             if (abbreviations == null)
                 throw new ArgumentNullException("abbreviations");
 
-            Dictionary<int, List<string>> unitValueToAbbrev = _unitTypeToUnitValueToAbbrevs[unitType] ??
-                                    (_unitTypeToUnitValueToAbbrevs[unitType] = new Dictionary<int, List<string>>());
+            Dictionary<int, List<string>> unitValueToAbbrev;
+            if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrev))
+            {
+                unitValueToAbbrev = _unitTypeToUnitValueToAbbrevs[unitType] = new Dictionary<int, List<string>>();
+            }
 
             List<string> existingAbbreviations;
             if (!unitValueToAbbrev.TryGetValue(unitValue, out existingAbbreviations))
@@ -498,9 +502,12 @@ namespace UnitsNet
             unitValueToAbbrev[unitValue] = abbreviations.Concat(existingAbbreviations).Distinct().ToList();
             foreach (string abbreviation in abbreviations)
             {
-                Dictionary<string, int> abbrevToUnitValue = _unitTypeToAbbrevToUnitValue[unitType] ??
-                                                            (_unitTypeToAbbrevToUnitValue[unitType] =
-                                                                new Dictionary<string, int>());
+                Dictionary<string, int> abbrevToUnitValue;
+                if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
+                {
+                    abbrevToUnitValue = _unitTypeToAbbrevToUnitValue[unitType] =
+                        new Dictionary<string, int>();
+                }
 
                 if (!abbrevToUnitValue.ContainsKey(abbreviation))
                     abbrevToUnitValue[abbreviation] = unitValue;
