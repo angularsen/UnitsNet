@@ -33,40 +33,40 @@ namespace UnitsNet.ThirdParty
         /// <summary>
         /// Base unit of Foo.
         /// </summary>
-        public readonly double Bars;
+        public readonly double Foos;
 
-        public Foo(double bars) : this()
+        public Foo(double foos) : this()
         {
-            Bars = bars;
+            Foos = foos;
         }
 
         #region Properties
 
         /// <summary>
-        /// Get Foo in BarPlusOnes.
+        /// Get Foo in FooPlusTwos.
         /// </summary>
-        /// <remarks>Example: x = (y - b) / a where x is value in BarPlusOnes and y is value in base unit Bars.</remarks>
-        public double BarPlusOnes
+        /// <remarks>Example: x = (y - b) / a where x is value in FooPlusTwos and y is value in base unit Foos.</remarks>
+        public double FooPlusTwos
         {            
-            get { return (Bars - 1) / 1; }
+            get { return (Foos - 2) / 1; }
         }
 
         /// <summary>
-        /// Get Foo in BarsTripled.
+        /// Get Foo in FoosQuadrupled.
         /// </summary>
-        /// <remarks>Example: x = (y - b) / a where x is value in BarsTripled and y is value in base unit Bars.</remarks>
-        public double BarsTripled
+        /// <remarks>Example: x = (y - b) / a where x is value in FoosQuadrupled and y is value in base unit Foos.</remarks>
+        public double FoosQuadrupled
         { 
-            get { return Bars / 3; }
+            get { return Foos / 4; }
         }
 
         /// <summary>
-        /// Get Foo in TwiceThanBars.
+        /// Get Foo in TwiceThanFoos.
         /// </summary>
-        /// <remarks>Example: x = (y - b) / a where x is value in TwiceThanBars and y is value in base unit Bars.</remarks>
-        public double TwiceThanBars
+        /// <remarks>Example: x = (y - b) / a where x is value in TwiceThanFoos and y is value in base unit Foos.</remarks>
+        public double TwiceThanFoos
         { 
-            get { return Bars / 2; }
+            get { return Foos / 2; }
         }
 
         #endregion
@@ -79,39 +79,39 @@ namespace UnitsNet.ThirdParty
         }
         
         /// <summary>
-        /// Get Foo from Bars.
+        /// Get Foo from Foos.
         /// </summary>
-        /// <remarks>Example: y = ax + b where x is value in Bars and y is value in base unit Bars.</remarks>
-        public static Foo FromBars(double bars)
+        /// <remarks>Example: y = ax + b where x is value in Foos and y is value in base unit Foos.</remarks>
+        public static Foo FromFoos(double foos)
         { 
-            return new Foo(1 * bars);
+            return new Foo(1 * foos);
         }
 
         /// <summary>
-        /// Get Foo from BarPlusOnes.
+        /// Get Foo from FooPlusTwos.
         /// </summary>
-        /// <remarks>Example: y = ax + b where x is value in BarPlusOnes and y is value in base unit Bars.</remarks>
-        public static Foo FromBarPlusOnes(double barplusones)
+        /// <remarks>Example: y = ax + b where x is value in FooPlusTwos and y is value in base unit Foos.</remarks>
+        public static Foo FromFooPlusTwos(double fooplustwos)
         {            
-            return new Foo(1 * barplusones + 1);
+            return new Foo(1 * fooplustwos + 2);
         }
 
         /// <summary>
-        /// Get Foo from BarsTripled.
+        /// Get Foo from FoosQuadrupled.
         /// </summary>
-        /// <remarks>Example: y = ax + b where x is value in BarsTripled and y is value in base unit Bars.</remarks>
-        public static Foo FromBarsTripled(double barstripled)
+        /// <remarks>Example: y = ax + b where x is value in FoosQuadrupled and y is value in base unit Foos.</remarks>
+        public static Foo FromFoosQuadrupled(double foosquadrupled)
         { 
-            return new Foo(3 * barstripled);
+            return new Foo(4 * foosquadrupled);
         }
 
         /// <summary>
-        /// Get Foo from TwiceThanBars.
+        /// Get Foo from TwiceThanFoos.
         /// </summary>
-        /// <remarks>Example: y = ax + b where x is value in TwiceThanBars and y is value in base unit Bars.</remarks>
-        public static Foo FromTwiceThanBars(double twicethanbars)
+        /// <remarks>Example: y = ax + b where x is value in TwiceThanFoos and y is value in base unit Foos.</remarks>
+        public static Foo FromTwiceThanFoos(double twicethanfoos)
         { 
-            return new Foo(2 * twicethanbars);
+            return new Foo(2 * twicethanfoos);
         }
 
         #endregion
@@ -120,37 +120,37 @@ namespace UnitsNet.ThirdParty
 
         public static Foo operator -(Foo right)
         {
-            return new Foo(-right.Bars);
+            return new Foo(-right.Foos);
         }
 
         public static Foo operator +(Foo left, Foo right)
         {
-            return new Foo(left.Bars + right.Bars);
+            return new Foo(left.Foos + right.Foos);
         }
 
         public static Foo operator -(Foo left, Foo right)
         {
-            return new Foo(left.Bars - right.Bars);
+            return new Foo(left.Foos - right.Foos);
         }
 
         public static Foo operator *(double left, Foo right)
         {
-            return new Foo(left*right.Bars);
+            return new Foo(left*right.Foos);
         }
 
         public static Foo operator *(Foo left, double right)
         {
-            return new Foo(left.Bars*right);
+            return new Foo(left.Foos*right);
         }
 
         public static Foo operator /(Foo left, double right)
         {
-            return new Foo(left.Bars/right);
+            return new Foo(left.Foos/right);
         }
 
         public static double operator /(Foo left, Foo right)
         {
-            return left.Bars/right.Bars;
+            return left.Foos/right.Foos;
         }
 
         #endregion
@@ -166,37 +166,37 @@ namespace UnitsNet.ThirdParty
 
         public int CompareTo(Foo other)
         {
-            return Bars.CompareTo(other.Bars);
+            return Foos.CompareTo(other.Foos);
         }
 
         public static bool operator <=(Foo left, Foo right)
         {
-            return left.Bars <= right.Bars;
+            return left.Foos <= right.Foos;
         }
 
         public static bool operator >=(Foo left, Foo right)
         {
-            return left.Bars >= right.Bars;
+            return left.Foos >= right.Foos;
         }
 
         public static bool operator <(Foo left, Foo right)
         {
-            return left.Bars < right.Bars;
+            return left.Foos < right.Foos;
         }
 
         public static bool operator >(Foo left, Foo right)
         {
-            return left.Bars > right.Bars;
+            return left.Foos > right.Foos;
         }
 
         public static bool operator ==(Foo left, Foo right)
         {
-            return left.Bars == right.Bars;
+            return left.Foos == right.Foos;
         }
 
         public static bool operator !=(Foo left, Foo right)
         {
-            return left.Bars != right.Bars;
+            return left.Foos != right.Foos;
         }
 
         public override bool Equals(object obj)
@@ -206,19 +206,19 @@ namespace UnitsNet.ThirdParty
                 return false;
             }
 
-            return Bars.Equals(((Foo) obj).Bars);
+            return Foos.Equals(((Foo) obj).Foos);
         }
 
         public override int GetHashCode()
         {
-            return Bars.GetHashCode();
+            return Foos.GetHashCode();
         }
 
         #endregion
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Bars, UnitSystem.Create().GetDefaultAbbreviation(FooUnit.Bar));
+            return string.Format("{0:0.##} {1}", Foos, UnitSystem.Create().GetDefaultAbbreviation(FooUnit.Foo));
         }
     }
 } 

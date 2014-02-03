@@ -23,13 +23,21 @@ using UnitsNet.ThirdParty.Attributes;
 
 namespace UnitsNet.ThirdParty
 {
-    public enum FooUnit
+    public enum BarUnit
     {
         Undefined = 0,
  
-        [Foo(slope: 1)] Bar,
-        [Foo(slope: 2)] TwiceThanBar,
-        [Foo(slope: 1, constant: 1, pluralName: "BarPlusOnes")] BarPlus1,
-        [Foo(slope: 3, pluralName: "BarsTripled")] BarTripled,
-    } 
+        [Bar(slope: 1)] Bar,
+        [Bar(slope: 2)] TwiceThanBar,
+        [Bar(slope: 1, constant: 1, pluralName: "BarPlusOnes")] BarPlus1,
+        [Bar(slope: 3, pluralName: "BarsTripled")] BarTripled,
+    }
+
+    public enum FooUnit
+    {
+        [Foo(slope: 1)] Foo,
+        [Foo(slope: 2)] TwiceThanFoo,
+        [Foo(slope: 1, constant: 2, pluralName: "FooPlusTwos")] FooPlus2,
+        [Foo(slope: 4, pluralName: "FoosQuadrupled")] FooQuadrupled,
+    }
 }

@@ -9,18 +9,19 @@
 <#@ output extension=".g.cs" #>
 <# 
     GenerateUnitConverter<ThirdPartyUnitAttribute, FooUnit>(); 
+    //GenerateUnitConverter<ThirdPartyUnitAttribute, BarUnit>(); 
 #><#+ 
 
 private void GenerateUnitConverter<TBaseUnitAttribute, TUnit>() where TBaseUnitAttribute : Attribute
 { 
-            Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
-                TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(); 
+    Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
+    TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(); 
 
-                var unitAttributes = unitToAttribute.Values.Distinct().ToList();
-                List<string> unitClassNames = unitAttributes.Select(attr => attr.GetType().Name.Replace("Attribute", "")).ToList();
-                List<Type> unitAttributeTypes = unitAttributes.Select(attr => attr.GetType()).ToList();
+    var unitAttributes = unitToAttribute.Values.Distinct().ToList();
+    List<string> unitClassNames = unitAttributes.Select(attr => attr.GetType().Name.Replace("Attribute", "")).ToList();
+    List<Type> unitAttributeTypes = unitAttributes.Select(attr => attr.GetType()).ToList();
 
-                string unitEnumName = typeof(TUnit).Name;
+    string unitEnumName = typeof(TUnit).Name;
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits

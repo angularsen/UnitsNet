@@ -86,14 +86,14 @@ namespace UnitsNet.ThirdParty
         {
             switch (fromUnit)
             {
-                case FooUnit.Bar:
-                    return TryConvert(Foo.FromBars(value), toUnit, out newValue);
-                case FooUnit.TwiceThanBar:
-                    return TryConvert(Foo.FromTwiceThanBars(value), toUnit, out newValue);
-                case FooUnit.BarPlus1:
-                    return TryConvert(Foo.FromBarPlusOnes(value), toUnit, out newValue);
-                case FooUnit.BarTripled:
-                    return TryConvert(Foo.FromBarsTripled(value), toUnit, out newValue);
+                case FooUnit.Foo:
+                    return TryConvert(Foo.FromFoos(value), toUnit, out newValue);
+                case FooUnit.TwiceThanFoo:
+                    return TryConvert(Foo.FromTwiceThanFoos(value), toUnit, out newValue);
+                case FooUnit.FooPlus2:
+                    return TryConvert(Foo.FromFooPlusTwos(value), toUnit, out newValue);
+                case FooUnit.FooQuadrupled:
+                    return TryConvert(Foo.FromFoosQuadrupled(value), toUnit, out newValue);
 
                 default:
                     newValue = 0;
@@ -112,17 +112,17 @@ namespace UnitsNet.ThirdParty
         {
             switch (toUnit)
             {
-                case FooUnit.Bar:
-                    newValue = value.Bars;
+                case FooUnit.Foo:
+                    newValue = value.Foos;
                     return true;
-                case FooUnit.TwiceThanBar:
-                    newValue = value.TwiceThanBars;
+                case FooUnit.TwiceThanFoo:
+                    newValue = value.TwiceThanFoos;
                     return true;
-                case FooUnit.BarPlus1:
-                    newValue = value.BarPlusOnes;
+                case FooUnit.FooPlus2:
+                    newValue = value.FooPlusTwos;
                     return true;
-                case FooUnit.BarTripled:
-                    newValue = value.BarsTripled;
+                case FooUnit.FooQuadrupled:
+                    newValue = value.FoosQuadrupled;
                     return true;
 
                 default:

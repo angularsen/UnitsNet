@@ -29,9 +29,21 @@ namespace UnitsNet.ThirdParty.Extensions
         {
             switch (unit)
             {
-                    // TODO
-                //case FooUnit.Bar:
-                //    return "sng";
+                // TODO
+                //case FooUnit.Foo:
+                //    return "foo unit";
+                default:
+                    throw new NotImplementedException("Unit: " + unit);
+
+            }
+        }
+        public static string GetDefaultAbbreviation(this UnitSystem unitSystem, BarUnit unit)
+        {
+            switch (unit)
+            {
+                // TODO
+                //case BarUnit.Bar:
+                //    return "bar unit";
                 default:
                     throw new NotImplementedException("Unit: " + unit);
 

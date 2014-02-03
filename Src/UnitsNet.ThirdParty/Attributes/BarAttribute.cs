@@ -24,7 +24,7 @@ using System;
 namespace UnitsNet.ThirdParty.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class FooAttribute : ThirdPartyUnitAttribute, IUnitAttribute<FooUnit> 
+    public class BarAttribute : ThirdPartyUnitAttribute, IUnitAttribute<BarUnit> 
     {
         /// <summary>
         /// Defines a polynomial function by the coefficients of increasing 'n'.
@@ -33,14 +33,14 @@ namespace UnitsNet.ThirdParty.Attributes
         /// <param name="constant">Constant 'b' of function y = ax + b, where x is base unit.</param>
         /// <param name="pluralName">Name of unit in pluralt. If null, appends 's' to the name of the unit.</param>
         /// <param name="slope">Slope 'a' of function y = ax + b, where x is base unit.</param>
-        public FooAttribute(double slope, double constant = 0, string pluralName = (string)null)
+        public BarAttribute(double slope, double constant = 0, string pluralName = (string)null)
             : base(slope, constant, pluralName)
         {
         }
 
-        public FooUnit BaseUnit
+        public BarUnit BaseUnit
         {
-            get { return FooUnit.Bar; }
+            get { return BarUnit.Bar; }
         }
 
         public string XmlDocSummary
