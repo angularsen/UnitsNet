@@ -30,10 +30,13 @@ namespace UnitsNet.Templating
 {
     public static class TemplateUtils
     {
-        public static IEnumerable<UnitClassInfo> GetUnitClasses(Assembly assemblyContainingUnitEnums)
-        {
+        public static IEnumerable<UnitClassInfo> GetUnitClasses(params Assembly[] assembliesToSearchForUnits)
+        { 
+            if (assembliesToSearchForUnits == null || assembliesToSearchForUnits.Length == 0)
+                throw new ArgumentException("Specify at least one assembly.", "assembliesToSearchForUnits");
+
             Dictionary<Type, UnitEnumValueInfo[]> dict =
-                GetUnitEnumValueInfoPerUnitType(assemblyContainingUnitEnums);
+                GetUnitEnumValueInfoPerUnitType(assembliesToSearchForUnits);
 
             var unitsInfo = new List<UnitClassInfo>();
             foreach (KeyValuePair<Type, UnitEnumValueInfo[]> pair in dict)
@@ -65,36 +68,29 @@ namespace UnitsNet.Templating
                 // LengthUnit enum type => Length unit class
                 string unitClassName = unitEnumType.Name.Replace("Unit", string.Empty);
 
-                unitsInfo.Add(new UnitClassInfo(unitClassName, baseUnit.UnitAttribute.XmlDocSummary, unitEnumType.Name,
+                unitsInfo.Add(new UnitClassInfo(unitClassName, baseUnit.UnitAttribute.XmlDocSummary,
                     baseUnitName,
-                    baseUnitPluralName, orderedClassUnits.ToList()));
+                    baseUnitPluralName, orderedClassUnits.ToList(), unitEnumType));
             }
 
             return unitsInfo;
         }
 
-
-        public static Dictionary<TUnit, IUnitAttribute> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>()
-            where TBaseUnitAttribute : Attribute
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-            return Enum.GetValues(typeof (TUnit))
-                .Cast<TUnit>()
-                .Select(
-                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>() as IUnitAttribute})
-                .Where(item => item.attr != null)
-                .ToDictionary(u => u.unit, u => u.attr);
-        }
-
         /// <summary>
         /// Returns a dictionary of enum type to unit 
         /// </summary>
-        /// <param name="assembly"></param>
-        /// <returns></returns>
-        public static Dictionary<Type, UnitEnumValueInfo[]> GetUnitEnumValueInfoPerUnitType(Assembly assembly)
+        /// <param name="assemblies">Assemblies to search for unit enum types tagged with attributes of type <see cref="IUnitAttribute"/>.</param>
+        /// <returns>Dictionary mapping enum type to an array of info structures describing the unit enum value, mapping function, base unit, unit plural name etc.</returns>
+        private static Dictionary<Type, UnitEnumValueInfo[]> GetUnitEnumValueInfoPerUnitType(params Assembly[] assemblies)
         {
+            if (assemblies == null || assemblies.Length == 0)
+                throw new ArgumentException("At least one assembly must be specified.", "assemblies");
+
             // Do not match on namespace, it might break too easily on refactoring.
-            IEnumerable<Type> unitEnumTypes = assembly.GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
+            // TODO Only match enums tagged with an attribute of type IUnitAttribute
+            IEnumerable<Type> unitEnumTypes =
+                assemblies.SelectMany(ass => ass.GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit")));
+
             return unitEnumTypes.Select(
                 enumType =>
                     new
@@ -109,38 +105,8 @@ namespace UnitsNet.Templating
                 .ToDictionary(item => item.EnumType, item => item.EnumValues.ToArray());
         }
 
-        /// <summary>
-        /// Get dictionary of unit values to unit attributes, where unit attributes inherit <paramref name="unitAttributeIsOfType"/>.
-        /// </summary>
-        /// <typeparam name="TBaseUnitAttribute"></typeparam>
-        /// <typeparam name="TUnit"></typeparam>
-        /// <param name="unitAttributeIsOfType"></param>
-        /// <returns></returns>
-        public static Dictionary<TUnit, IUnitAttribute> GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>(Type unitAttributeIsOfType)
-            where TBaseUnitAttribute : Attribute
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-
-            return Enum.GetValues(typeof (TUnit))
-                .Cast<TUnit>()
-                .Select(
-                    u => new {unit = u, attr = (u as Enum).GetAttribute<TBaseUnitAttribute>(unitAttributeIsOfType) as IUnitAttribute})
-                .Where(item => item.attr != null)
-                .ToDictionary(u => u.unit, u => u.attr);
-        }
-
-        public static Dictionary<TUnit, I18nAttribute[]> GetUnitToI18nAttributesDictionaryForUnitType<TUnit>()
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-            return Enum.GetValues(typeof (TUnit))
-                .Cast<TUnit>()
-                .Select(
-                    u => new {unit = u, attrs = (u as Enum).GetAttributes<I18nAttribute>()})
-                .Where(item => item.attrs != null)
-                .ToDictionary(u => u.unit, u => u.attrs);
-        }
-
-        public static Dictionary<int, I18nAttribute[]> GetUnitToI18nAttributesDictionaryForUnitType(Type unitType)
+// ReSharper disable once InconsistentNaming
+        public static Dictionary<int, I18nAttribute[]> GetI18nAttributesByUnitEnumValue(Type unitType)
         {
             return Enum.GetValues(unitType)
                 .Cast<object>()
@@ -150,115 +116,8 @@ namespace UnitsNet.Templating
                 .ToDictionary(u => u.unit, u => u.attrs);
         }
 
-        public static I18nAttribute[] GetI18nAttributesForUnit<TUnit>(TUnit u)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-            return (u as Enum).GetAttributes<I18nAttribute>();
-        }
-
-        public static string GetUnitPluralName<TUnit>(Dictionary<TUnit, IUnitAttribute> unitToAttribute,
-            TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-            // Use attribute value if it has a valid value, otherwise append 's' to the enum value name to get plural form (works for 90%).
-            IUnitAttribute att;
-            if (!unitToAttribute.TryGetValue(unit, out att))
-            {
-                return String.Format("NO_UNIT_ATTRIBUTE_SET_FOR_ENUM_VALUE__{0}", unit);
-            }
-
-            // Default to plural with "s" postfix if no PluralName is explicitly set.
-            string baseUnitPluralName = (att != null && !string.IsNullOrEmpty(att.PluralName))
-                ? att.PluralName
-                : unit + "s";
-            return baseUnitPluralName;
-        }
-
-        public static List<Type> GetUnitAttributeTypes<TBaseUnitAttribute>() where TBaseUnitAttribute : Attribute
-        {
-            return FindDerivedTypes(typeof (TBaseUnitAttribute).Assembly, typeof (TBaseUnitAttribute)).ToList();
-        }
-
-        /// <summary>
-        ///     Returns a list of <see cref="TUnit" /> values for a unit class by the class name.
-        ///     This is resolved by looking at the <see cref="IUnitAttribute{TUnit}" /> attributes the enum values are tagged with.
-        ///     For example, a
-        ///     <param name="unitClassName" />
-        ///     of "Length" will match all <see cref="TUnit" /> values tagged with
-        ///     <see cref="LengthAttribute" />.
-        /// </summary>
-        public static List<TUnit> GetUnitsOfUnitClass<TUnit>(string unitClassName, IEnumerable<Type> unitAttributeTypes,
-            Dictionary<TUnit, IUnitAttribute> unitToAttribute)
-            where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        {
-            Type unitClassAttributeType = unitAttributeTypes.First(type => type.Name.StartsWith(unitClassName));
-            List<TUnit> unitsOfUnitClass =
-                unitToAttribute
-                    .Where(pair => pair.Value.GetType() == unitClassAttributeType)
-                    .Select(pair => pair.Key)
-                    .ToList();
-
-            return unitsOfUnitClass;
-        }
-
-
         #region Private
-
-        private static IEnumerable<Type> FindDerivedTypes(Assembly assembly, Type baseType)
-        {
-            return assembly.GetTypes().Where(t => t != baseType &&
-                                                  baseType.IsAssignableFrom(t));
-        }
 
         #endregion 
     }
-
-    public class UnitEnumValueInfo
-    {
-        public readonly IUnitAttribute UnitAttribute;
-        public readonly Type UnitEnumType;
-        public readonly Enum Value;
-
-        public UnitEnumValueInfo(IUnitAttribute unitAttribute, Type unitEnumType, Enum value)
-        {
-            UnitAttribute = unitAttribute;
-            UnitEnumType = unitEnumType;
-            Value = value;
-        }
-    }
-
-    public class UnitInfo
-    {
-        public readonly string SingularName;
-        public readonly string PluralName;
-        public readonly LinearFunction LinearFunction;
-
-        public UnitInfo(string singularName, string pluralName, LinearFunction linearFunction)
-        {
-            SingularName = singularName;
-            PluralName = pluralName ?? singularName + "s";
-            LinearFunction = linearFunction;
-        } 
-    }
-
-    public class UnitClassInfo
-    {
-        public readonly string UnitClassName;
-        public readonly string UnitClassXmlDoc; 
-        public readonly string UnitEnumTypeName; 
-        public readonly string BaseUnitName;
-        public readonly string BaseUnitPluralName;
-        public readonly ICollection<UnitInfo> OrderedUnits;
-
-        public UnitClassInfo(string unitClassName, string unitClassXmlDoc, string unitEnumTypeName, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedUnits)
-        {
-            UnitClassName = unitClassName;
-            UnitClassXmlDoc = unitClassXmlDoc;
-            UnitEnumTypeName = unitEnumTypeName;
-            BaseUnitName = baseUnitName;
-            BaseUnitPluralName = baseUnitPluralName;
-            OrderedUnits = orderedUnits;
-        }
-    }
-
 }

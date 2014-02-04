@@ -85,7 +85,7 @@ PopIndent();
             string baseUnitName = info.BaseUnitName;
             string unitName = unit.SingularName;
             WriteLine("Assert.AreEqual(t.{0}InOne{1}, {3}.From(1, {4}.{1}).Convert({4}.{2}), Delta);",
-                unitPluralName, baseUnitName, unitName, unitClassName, info.UnitEnumTypeName);
+                unitPluralName, baseUnitName, unitName, unitClassName, info.UnitEnumType.Name);
         }
         PopIndent();
         WriteLine("}");

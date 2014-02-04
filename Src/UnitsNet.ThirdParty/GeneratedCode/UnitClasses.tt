@@ -13,7 +13,7 @@
     var m = Manager.Create(Host, GenerationEnvironment);
     foreach (UnitClassInfo info in infos)
     {
-        GenerateUnitClass(m, info.UnitClassName, info.UnitClassXmlDoc, info.BaseUnitName, info.BaseUnitPluralName, info.UnitEnumTypeName, info.OrderedUnits);
+        GenerateUnitClass(m, info.UnitClassName, info.UnitClassXmlDoc, info.BaseUnitName, info.BaseUnitPluralName, info.UnitEnumType.Name, info.OrderedUnits);
     }
     
     m.Process(split: true);

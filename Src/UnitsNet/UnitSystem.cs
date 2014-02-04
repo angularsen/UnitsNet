@@ -50,25 +50,31 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
-        private UnitSystem(CultureInfo cultureInfo = null)
+        /// <param name="externalAssemblies">Optional external assemblies with unit enum types tagged with attributes of type <see cref="IUnitAttribute"/> and <see cref="I18nAttribute"/>.</param>
+        private UnitSystem(CultureInfo cultureInfo = null, params Assembly[] externalAssemblies)
         {
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo("en-US");
 
-            Culture = cultureInfo;
+            if (externalAssemblies == null || externalAssemblies.Length == 0)
+                externalAssemblies = new[] {Assembly.GetCallingAssembly()};
 
+            var assemblies = new[] {Assembly.GetExecutingAssembly()}.Concat(externalAssemblies).ToArray();
+
+            Culture = cultureInfo;
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
 
-            IEnumerable<Type> unitTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
-            foreach (Type unitType in unitTypes)
+            IEnumerable<UnitClassInfo> unitClassInfos = TemplateUtils.GetUnitClasses(assemblies);
+            foreach (UnitClassInfo unitClassInfo in unitClassInfos)
             {
-                Dictionary<int, I18nAttribute[]> dict =
-                    TemplateUtils.GetUnitToI18nAttributesDictionaryForUnitType(unitType);
+                Dictionary<int, I18nAttribute[]> attributesByValue =
+                    TemplateUtils.GetI18nAttributesByUnitEnumValue(unitClassInfo.UnitEnumType);
 
-                foreach (KeyValuePair<int, I18nAttribute[]> pair in dict)
+                foreach (KeyValuePair<int, I18nAttribute[]> pair in attributesByValue)
                 {
                     // Fall back to US English if localization attribute is not found for this culture.
+                    int unitEnumValue = pair.Key;
                     I18nAttribute[] i18NAttributes = pair.Value;
                     I18nAttribute attr =
                         i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
@@ -77,7 +83,7 @@ namespace UnitsNet
                     if (attr == null)
                         continue;
 
-                    MapUnitToAbbreviation(unitType, pair.Key, attr.Abbreviations);
+                    MapUnitToAbbreviation(unitClassInfo.UnitEnumType, unitEnumValue, attr.Abbreviations);
                 }
             } 
         }
