@@ -59,17 +59,17 @@ namespace UnitsNet
             if (externalAssemblies == null || externalAssemblies.Length == 0)
                 externalAssemblies = new[] {Assembly.GetCallingAssembly()};
 
-            var assemblies = new[] {Assembly.GetExecutingAssembly()}.Concat(externalAssemblies).ToArray();
+            var assemblies = new[] {Assembly.GetExecutingAssembly()}.Concat(externalAssemblies).Distinct().ToArray();
 
             Culture = cultureInfo;
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
 
-            IEnumerable<UnitClassInfo> unitClassInfos = TemplateUtils.GetUnitClasses(assemblies);
-            foreach (UnitClassInfo unitClassInfo in unitClassInfos)
+            IEnumerable<Type> unitEnumTypes = TemplateUtils.GetUnitEnumTypes(assemblies);
+            foreach (Type unitEnumType in unitEnumTypes)
             {
                 Dictionary<int, I18nAttribute[]> attributesByValue =
-                    TemplateUtils.GetI18nAttributesByUnitEnumValue(unitClassInfo.UnitEnumType);
+                    TemplateUtils.GetI18nAttributesByUnitEnumValue(unitEnumType);
 
                 foreach (KeyValuePair<int, I18nAttribute[]> pair in attributesByValue)
                 {
@@ -78,12 +78,12 @@ namespace UnitsNet
                     I18nAttribute[] i18NAttributes = pair.Value;
                     I18nAttribute attr =
                         i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
-                        i18NAttributes.FirstOrDefault(a => a.Culture.Name == "en-US");
+                        i18NAttributes.FirstOrDefault(a => a.Culture.Name.Equals("en-US", StringComparison.OrdinalIgnoreCase));
 
                     if (attr == null)
                         continue;
 
-                    MapUnitToAbbreviation(unitClassInfo.UnitEnumType, unitEnumValue, attr.Abbreviations);
+                    MapUnitToAbbreviation(unitEnumType, unitEnumValue, attr.Abbreviations);
                 }
             } 
         }
@@ -120,7 +120,7 @@ namespace UnitsNet
             Type unitType = typeof (TUnit);
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             int unitValue;
             TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
@@ -535,7 +535,7 @@ namespace UnitsNet
 
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             int unitValue;
             if (!abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
@@ -556,11 +556,11 @@ namespace UnitsNet
 
             Dictionary<int, List<string>> unitValueToAbbrevs;
             if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             List<string> abbrevs;
             if (!unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}.{1}] for culture [{2}].", unitType, unitValue, Culture.EnglishName));
 
             // Return the first (most commonly used) abbreviation for this unit)
             return abbrevs.ToArray();

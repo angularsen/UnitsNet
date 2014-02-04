@@ -88,8 +88,7 @@ namespace UnitsNet.Templating
 
             // Do not match on namespace, it might break too easily on refactoring.
             // TODO Only match enums tagged with an attribute of type IUnitAttribute
-            IEnumerable<Type> unitEnumTypes =
-                assemblies.SelectMany(ass => ass.GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit")));
+            IEnumerable<Type> unitEnumTypes = GetUnitEnumTypes(assemblies);
 
             return unitEnumTypes.Select(
                 enumType =>
@@ -105,7 +104,18 @@ namespace UnitsNet.Templating
                 .ToDictionary(item => item.EnumType, item => item.EnumValues.ToArray());
         }
 
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
+        public static IEnumerable<Type> GetUnitEnumTypes(params Assembly[] assemblies)
+        {
+            if (assemblies == null || assemblies.Length == 0)
+                throw new ArgumentException("Specify at least one assembly.", "assemblies");
+
+            return assemblies
+                .Distinct()
+                .SelectMany(ass => ass.GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit")));
+        }
+
+        // ReSharper disable once InconsistentNaming
         public static Dictionary<int, I18nAttribute[]> GetI18nAttributesByUnitEnumValue(Type unitType)
         {
             return Enum.GetValues(unitType)
