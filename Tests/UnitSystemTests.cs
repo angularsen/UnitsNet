@@ -80,7 +80,7 @@ namespace UnitsNet.Tests.net35
         private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            UnitSystem unitSystem = UnitSystem.Create(new CultureInfo(cultureName));
+            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
 
             var unitsMissingAbbreviations = new List<TUnit>();
             foreach (TUnit unit in unitValues)
@@ -208,7 +208,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DefaultFoodUnitAbbreviationsForNorwegian()
         {
-            UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("nb-NO"));
+            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo("nb-NO"));
             Assert.AreEqual("ss", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
             Assert.AreEqual("ts", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DefaultFoodUnitAbbreviationsForInvariant()
         {
-            UnitSystem unitSystem = UnitSystem.Create(CultureInfo.InvariantCulture);
+            UnitSystem unitSystem = UnitSystem.GetCached(CultureInfo.InvariantCulture);
             Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
             Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }
@@ -224,7 +224,7 @@ namespace UnitsNet.Tests.net35
         [Test]
         public void DefaultFoodUnitAbbreviationsForUsEnglish()
         {
-            UnitSystem unitSystem = UnitSystem.Create(new CultureInfo("en-US"));
+            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo("en-US"));
             Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
             Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
         }

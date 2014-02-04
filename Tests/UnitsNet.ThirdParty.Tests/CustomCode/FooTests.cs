@@ -19,35 +19,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using UnitsNet.Attributes;
-using UnitsNet.ThirdParty.Units;
 
-namespace UnitsNet.ThirdParty.Attributes
+namespace UnitsNet.ThirdParty.Tests.CustomCode
 {
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class FooAttribute : UnitAttribute, IUnitAttribute
+    public class FooTests : FooTestsBase
     {
-        /// <summary>
-        ///     Defines a polynomial function by the coefficients of increasing 'n'.
-        ///     Example: [5, 0, 4, 0, 3] would represent the function 5 + 0*x + 4*x² + 0*x³ + 3*x⁴ = 3x⁴+4x²+5
-        /// </summary>
-        /// <param name="constant">Constant 'b' of function y = ax + b, where x is base unit.</param>
-        /// <param name="pluralName">Name of unit in pluralt. If null, appends 's' to the name of the unit.</param>
-        /// <param name="slope">Slope 'a' of function y = ax + b, where x is base unit.</param>
-        public FooAttribute(double slope, double constant = 0, string pluralName = (string) null)
-            : base(pluralName, slope, constant)
+        public override double FoosInOneFoo
         {
+            get { return 1; }
         }
 
-        public string XmlDocSummary
+        public override double FooPlusTwosInOneFoo
         {
-            get { return "Example unit to illustrate adding third party units to Units.NET."; }
+            get { return 1 - 2; }
         }
 
-        public string BaseUnitName
+        public override double FoosQuadrupledInOneFoo
         {
-            get { return FooUnit.Foo.ToString(); }
+            get { return 1d/4; }
+        }
+
+        public override double TwiceThanFoosInOneFoo
+        {
+            get { return 0.5; }
         }
     }
 }

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.ThirdParty.Units;
 
 namespace UnitsNet.ThirdParty.Extensions
 {

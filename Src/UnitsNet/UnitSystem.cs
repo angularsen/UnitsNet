@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -32,6 +33,59 @@ namespace UnitsNet
     public class UnitSystem
     {
         private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
+        private static readonly List<Assembly> AssembliesList;
+        private static readonly object ExternalAssembliesSync = new object();
+
+        /// <summary>
+        /// Per-unit-type dictionary of enum values by abbreviation. This is the inverse of <see cref="_unitTypeToUnitValueToAbbrevs"/>.
+        /// </summary>
+        private readonly Dictionary<Type, Dictionary<string, int>> _unitTypeToAbbrevToUnitValue;
+
+        /// <summary>
+        /// Per-unit-type dictionary of abbreviations by enum value. This is the inverse of <see cref="_unitTypeToAbbrevToUnitValue"/>.
+        /// </summary>
+        private readonly Dictionary<Type, Dictionary<int, List<string>>> _unitTypeToUnitValueToAbbrevs;
+
+        /// <summary>
+        ///     Create a SI system for parsing and generating strings of the specified culture.
+        ///     If null is specified, the default English US culture will be used.
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <param name="assemblies">Optional external assemblies with unit enum types tagged with attributes of type <see cref="IUnitAttribute"/> and <see cref="I18nAttribute"/>.</param>
+        public UnitSystem(CultureInfo cultureInfo, params Assembly[] assemblies)
+        {
+            if (cultureInfo == null)
+                cultureInfo = new CultureInfo("en-US");
+
+            if (assemblies == null || assemblies.Length == 0)
+                assemblies = new[] {Assembly.GetExecutingAssembly()};
+ 
+            Culture = cultureInfo;
+            _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
+            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
+
+            IEnumerable<Type> unitEnumTypes = TemplateUtils.GetUnitEnumTypes(assemblies);
+            foreach (Type unitEnumType in unitEnumTypes)
+            {
+                Dictionary<int, I18nAttribute[]> attributesByValue =
+                    TemplateUtils.GetI18nAttributesByUnitEnumValue(unitEnumType);
+
+                foreach (KeyValuePair<int, I18nAttribute[]> pair in attributesByValue)
+                {
+                    // Fall back to US English if localization attribute is not found for this culture.
+                    int unitEnumValue = pair.Key;
+                    I18nAttribute[] i18NAttributes = pair.Value;
+                    I18nAttribute attr =
+                        i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
+                        i18NAttributes.FirstOrDefault(a => a.Culture.Name.Equals("en-US", StringComparison.OrdinalIgnoreCase));
+
+                    if (attr == null)
+                        continue;
+
+                    MapUnitToAbbreviation(unitEnumType, unitEnumValue, attr.Abbreviations);
+                }
+            } 
+        }
 
         #region Static
 
@@ -40,60 +94,85 @@ namespace UnitsNet
         /// </summary>
         public readonly CultureInfo Culture;
 
+
         static UnitSystem()
         {
             CultureToInstance = new Dictionary<CultureInfo, UnitSystem>();
+            AssembliesList = new List<Assembly> {Assembly.GetExecutingAssembly()};
         }
 
         /// <summary>
-        ///     Create a SI system for parsing and generating strings of the specified culture.
-        ///     If null is specified, the default English US culture will be used.
+        /// List of assemblies to search for units.
         /// </summary>
-        /// <param name="cultureInfo"></param>
-        private UnitSystem(CultureInfo cultureInfo = null)
+        public static ReadOnlyCollection<Assembly> Assemblies
         {
-            if (cultureInfo == null)
-                cultureInfo = new CultureInfo("en-US");
-
-            Culture = cultureInfo;
-
-            _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
-            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
-
-            IEnumerable<Type> unitTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsEnum && t.Name.EndsWith("Unit"));
-            foreach (Type unitType in unitTypes)
+            get
             {
-                Dictionary<int, I18nAttribute[]> dict =
-                    TemplateUtils.GetUnitToI18nAttributesDictionaryForUnitType(unitType);
-
-                foreach (KeyValuePair<int, I18nAttribute[]> pair in dict)
+                lock (ExternalAssembliesSync)
                 {
-                    // Fall back to US English if localization attribute is not found for this culture.
-                    I18nAttribute[] i18NAttributes = pair.Value;
-                    I18nAttribute attr =
-                        i18NAttributes.FirstOrDefault(a => a.Culture.Equals(cultureInfo)) ??
-                        i18NAttributes.FirstOrDefault(a => a.Culture.Name == "en-US");
-
-                    if (attr == null)
-                        continue;
-
-                    MapUnitToAbbreviation(unitType, pair.Key, attr.Abbreviations);
+                    return new ReadOnlyCollection<Assembly>(AssembliesList);
                 }
-            } 
+            }
         }
 
         /// <summary>
-        /// Create a unit system for parsing and presenting numbers, units and abbreviations.
+        /// Include third party units by adding an external assembly that contains unit enum types tagged with attributes
+        /// of types <see cref="IUnitAttribute"/> and <see cref="I18nAttribute"/>.
+        /// Must be done before calling <see cref="GetCached"/> the first time, as the instance is cached.
+        /// </summary>
+        /// <param name="assembly"></param>
+        public static void AddAssembly(Assembly assembly)
+        {
+            lock (ExternalAssembliesSync)
+            {
+                if (!AssembliesList.Contains(assembly))
+                    AssembliesList.Add(assembly);
+            }
+        }
+
+        /// <summary>
+        /// Remove an assembly to exclude units defined in that assembly.
+        /// Must be done before calling <see cref="GetCached"/> the first time, as the instance is cached.
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public static bool RemoveAssembly(Assembly assembly)
+        {
+            lock (ExternalAssembliesSync)
+            {
+                return AssembliesList.Remove(assembly);
+            }
+        }
+
+        public static void ClearCache()
+        {
+            lock (ExternalAssembliesSync)
+            {
+                CultureToInstance.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Get or create a unit system for parsing and presenting numbers, units and abbreviations.
+        /// Creating can be a little expensive, so it will use a static cache.
+        /// To always create, use the constructor.
         /// </summary>
         /// <param name="cultureInfo">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
+        /// <param name="externalAssemblies">External assemblies to look for </param>
         /// <returns></returns>
-        public static UnitSystem Create(CultureInfo cultureInfo = null) 
+        public static UnitSystem GetCached(CultureInfo cultureInfo = null, params Assembly[] externalAssemblies) 
         {
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
 
+            var allAssemblies = new Assembly[0]
+                .Concat(Assemblies)
+                .Concat(externalAssemblies)
+                .Distinct()
+                .ToArray();
+
             if (!CultureToInstance.ContainsKey(cultureInfo))
-                CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);
+                CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo, allAssemblies);
 
             return CultureToInstance[cultureInfo];
         }
@@ -105,7 +184,7 @@ namespace UnitsNet
         public static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            return Create(culture).Parse<TUnit>(unitAbbreviation);
+            return GetCached(culture).Parse<TUnit>(unitAbbreviation);
         }
 
         public TUnit Parse<TUnit>(string unitAbbreviation)
@@ -114,7 +193,7 @@ namespace UnitsNet
             Type unitType = typeof (TUnit);
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             int unitValue;
             TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
@@ -127,7 +206,7 @@ namespace UnitsNet
         public static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            return Create(culture).GetDefaultAbbreviation(unit);
+            return GetCached(culture).GetDefaultAbbreviation(unit);
         }
 
         public string GetDefaultAbbreviation<TUnit>(TUnit unit)
@@ -516,12 +595,6 @@ namespace UnitsNet
 
         #endregion
 
-        private readonly Dictionary<Type, Dictionary<string, int>> _unitTypeToAbbrevToUnitValue;
-        /// <summary>
-        /// Example: "LengthUnit.Meter" to ["m"]
-        /// </summary>
-        private readonly Dictionary<Type, Dictionary<int, List<string>>> _unitTypeToUnitValueToAbbrevs;
-
         public bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
@@ -529,7 +602,7 @@ namespace UnitsNet
 
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             int unitValue;
             if (!abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
@@ -550,11 +623,11 @@ namespace UnitsNet
 
             Dictionary<int, List<string>> unitValueToAbbrevs;
             if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture.EnglishName));
 
             List<string> abbrevs;
             if (!unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
-                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}].", unitType));
+                throw new NotImplementedException(string.Format("No abbreviations defined for unit type [{0}.{1}] for culture [{2}].", unitType, unitValue, Culture.EnglishName));
 
             // Return the first (most commonly used) abbreviation for this unit)
             return abbrevs.ToArray();

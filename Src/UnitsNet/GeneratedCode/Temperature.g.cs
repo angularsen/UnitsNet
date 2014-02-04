@@ -19,8 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.Units;
 using System;
+using System.Globalization;
+using System.Linq;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -217,6 +219,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+
+        /// <summary>
+        /// Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(TemperatureUnit unit, CultureInfo culture = null)
+        {
+            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+        }
+
         #endregion
 
         #region Arithmetic Operators
@@ -379,9 +393,42 @@ namespace UnitsNet
 
         #endregion
 
+        /// <summary>
+        /// Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(TemperatureUnit unit, CultureInfo culture = null)
+        {
+            return ToString(unit, culture, "{0:0.##} {1}");
+        }
+
+        /// <summary>
+        /// Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(TemperatureUnit unit, CultureInfo culture, string format, params object[] args)
+        {
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+            var finalArgs = new object[] {Convert(unit), abbreviation}
+                .Concat(args)
+                .ToArray();
+
+            return string.Format(culture, format, finalArgs);
+        }
+
+        /// <summary>
+        /// Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Kelvins, UnitSystem.Create().GetDefaultAbbreviation(TemperatureUnit.Kelvin));
+            return ToString(TemperatureUnit.Kelvin);
         }
     }
 } 
