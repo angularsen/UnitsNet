@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,25 +19,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.ThirdParty.Attributes;
 
-namespace UnitsNet.ThirdParty.Units
+namespace UnitsNet.ThirdParty.Tests.CustomCode
 {
-    public enum BarUnit
+    internal class BarTests : BarTestsBase
     {
-        Undefined = 0, 
-        [Bar(slope: 1)] Bar,
-        [Bar(slope: 2)] TwiceThanBar,
-        [Bar(slope: 1, constant: 1, pluralName: "BarPlusOnes")] BarPlus1,
-        [Bar(slope: 3, pluralName: "BarsTripled")] BarTripled,
-    }
+        public override double BarsInOneBar
+        {
+            get { return 1; }
+        }
 
-    public enum FooUnit
-    {
-        Undefined = 0,
-        [Foo(slope: 1)] Foo,
-        [Foo(slope: 2)] TwiceThanFoo,
-        [Foo(slope: 1, constant: 2, pluralName: "FooPlusTwos")] FooPlus2,
-        [Foo(slope: 4, pluralName: "FoosQuadrupled")] FooQuadrupled,
+        public override double BarPlusOnesInOneBar
+        {
+            get { return 0; }
+        }
+
+        public override double BarsTripledInOneBar
+        {
+            get { return 1d/3; }
+        }
+
+        public override double TwiceThanBarsInOneBar
+        {
+            get { return 0.5; }
+        }
     }
 }

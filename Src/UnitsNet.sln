@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.ThirdParty", "UnitsNet.ThirdParty\UnitsNet.ThirdParty.csproj", "{E9E56973-6A75-4CCB-9FA4-8C6549F1D183}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.ThirdParty.Tests", "..\Tests\UnitsNet.ThirdParty.Tests\UnitsNet.ThirdParty.Tests.csproj", "{C6DCE953-CA09-4090-AAA2-83CD91E51768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,16 @@ Global
 		{E9E56973-6A75-4CCB-9FA4-8C6549F1D183}.Release|ARM.ActiveCfg = Release|Any CPU
 		{E9E56973-6A75-4CCB-9FA4-8C6549F1D183}.Release|x64.ActiveCfg = Release|Any CPU
 		{E9E56973-6A75-4CCB-9FA4-8C6549F1D183}.Release|x86.ActiveCfg = Release|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Release|x64.ActiveCfg = Release|Any CPU
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,5 +93,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6D74103A-9393-42E8-83A8-9E01F806E29D} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
 		{E9E56973-6A75-4CCB-9FA4-8C6549F1D183} = {05063B04-4FDD-4B84-9AC9-1961CA7F8C80}
+		{C6DCE953-CA09-4090-AAA2-83CD91E51768} = {05063B04-4FDD-4B84-9AC9-1961CA7F8C80}
 	EndGlobalSection
 EndGlobal

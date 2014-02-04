@@ -1,14 +1,17 @@
 ﻿<#@ template debug="True" language="C#" hostspecific="True" #>
 <#@ include file="Includes\UnitTestClass.ttinclude" once="true"#>
+<#@ import namespace="UnitsNet.ThirdParty.Units" #>
 <#@ output extension=".txt" #> 
 <# 
-    var assembly = Assembly.GetAssembly(typeof (LengthUnit));
+    var assembly = Assembly.GetAssembly(typeof (FooUnit));
     IEnumerable<UnitClassInfo> infos = TemplateUtils.GetUnitClasses(assembly);
 
     var m = Manager.Create(Host, GenerationEnvironment);
     foreach (UnitClassInfo info in infos)
     {
-        GenerateTestClass(m, info.UnitClassName, info.BaseUnitName, info.BaseUnitPluralName, info.OrderedUnits);
+        m.StartNewFile(info.UnitClassName + "TestsBase.g.cs");
+        GenerateTestClass(info);
+        m.EndBlock();
     }
     
     m.Process(split: true);
