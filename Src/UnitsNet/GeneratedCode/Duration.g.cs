@@ -447,7 +447,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public string ToString(DurationUnit unit, CultureInfo culture = null)
         {
-            return ToString(culture, unit, "{0:0.##} {1}", Seconds);
+            return ToString(unit, culture, "{0:0.##} {1}");
         }
 
         /// <summary>
@@ -458,10 +458,10 @@ namespace UnitsNet
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        public string ToString(CultureInfo culture, DurationUnit unit, string format, params object[] args)
+        public string ToString(DurationUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.Create(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Seconds, abbreviation}
+            var finalArgs = new object[] {Convert(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

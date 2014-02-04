@@ -44,6 +44,7 @@ namespace UnitsNet.ThirdParty.Units
     public enum FooUnit
     {
         Undefined = 0,
+
         [I18n("en-US", "foo")]
         [Foo(slope: 1)] Foo,
 
