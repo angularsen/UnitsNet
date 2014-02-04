@@ -19,8 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.Units;
 using System;
+using System.Globalization;
+using System.Linq;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -117,6 +119,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+
+        /// <summary>
+        /// Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(AngleUnit unit, CultureInfo culture = null)
+        {
+            return UnitSystem.Create(culture).GetDefaultAbbreviation(unit);
+        }
+
         #endregion
 
         #region Arithmetic Operators
@@ -264,9 +278,42 @@ namespace UnitsNet
 
         #endregion
 
+        /// <summary>
+        /// Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(AngleUnit unit, CultureInfo culture = null)
+        {
+            return ToString(culture, unit, "{0:0.##} {1}", Degrees);
+        }
+
+        /// <summary>
+        /// Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(CultureInfo culture, AngleUnit unit, string format, params object[] args)
+        {
+            string abbreviation = UnitSystem.Create(culture).GetDefaultAbbreviation(unit);
+            var finalArgs = new object[] {Degrees, abbreviation}
+                .Concat(args)
+                .ToArray();
+
+            return string.Format(culture, format, finalArgs);
+        }
+
+        /// <summary>
+        /// Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Degrees, UnitSystem.Create().GetDefaultAbbreviation(AngleUnit.Degree));
+            return ToString(AngleUnit.Degree);
         }
     }
 } 
