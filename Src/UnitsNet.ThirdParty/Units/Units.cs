@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Attributes;
 using UnitsNet.ThirdParty.Attributes;
 
 namespace UnitsNet.ThirdParty.Units
@@ -26,18 +27,33 @@ namespace UnitsNet.ThirdParty.Units
     public enum BarUnit
     {
         Undefined = 0, 
+
+        [I18n("en-US", "bar")]
         [Bar(slope: 1)] Bar,
+
+        [I18n("en-US", "2xbar")]
         [Bar(slope: 2)] TwiceThanBar,
+
+        [I18n("en-US", "bar+1")]
         [Bar(slope: 1, constant: 1, pluralName: "BarPlusOnes")] BarPlus1,
+
+        [I18n("en-US", "3xbar")]
         [Bar(slope: 3, pluralName: "BarsTripled")] BarTripled,
     }
 
     public enum FooUnit
     {
         Undefined = 0,
+        [I18n("en-US", "foo")]
         [Foo(slope: 1)] Foo,
+
+        [I18n("en-US", "2xfoo")]
         [Foo(slope: 2)] TwiceThanFoo,
+
+        [I18n("en-US", "foo+2")]
         [Foo(slope: 1, constant: 2, pluralName: "FooPlusTwos")] FooPlus2,
+
+        [I18n("en-US", "4xfoo")]
         [Foo(slope: 4, pluralName: "FoosQuadrupled")] FooQuadrupled,
     }
 }
