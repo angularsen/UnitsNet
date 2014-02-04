@@ -19,11 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.ThirdParty.Extensions;
 using System;
+using UnitsNet.ThirdParty.Units;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet.ThirdParty
+namespace UnitsNet
 {
     /// <summary>
     /// Example unit to illustrate adding third party units to Units.NET.
@@ -124,6 +124,8 @@ namespace UnitsNet.ThirdParty
         {
             switch (fromUnit)
             {
+                case BarUnit.Bar:
+                    return FromBars(value);
                 case BarUnit.BarPlus1:
                     return FromBarPlusOnes(value);
                 case BarUnit.BarTripled:
@@ -249,6 +251,9 @@ namespace UnitsNet.ThirdParty
         {
             switch (toUnit)
             {
+                case BarUnit.Bar:
+                    newValue = Bars;
+                    return true;
                 case BarUnit.BarPlus1:
                     newValue = BarPlusOnes;
                     return true;

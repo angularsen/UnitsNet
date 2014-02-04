@@ -21,7 +21,7 @@
 
 using UnitsNet.ThirdParty.Attributes;
 
-namespace UnitsNet.ThirdParty
+namespace UnitsNet.ThirdParty.Units
 {
     public enum BarUnit
     {

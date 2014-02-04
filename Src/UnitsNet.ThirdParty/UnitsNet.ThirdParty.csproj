@@ -37,34 +37,38 @@
   <ItemGroup>
     <Compile Include="Attributes\BarAttribute.cs" />
     <Compile Include="Attributes\FooAttribute.cs" />
-    <Compile Include="Attributes\IUnitAttribute.cs" />
-    <Compile Include="Attributes\ThirdPartyUnitAttribute.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\UnitSystemExtensions.cs" />
-    <Compile Include="GeneratedCode\BarUnit.g.cs">
+    <Compile Include="GeneratedCode\Bar.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedCode\FooUnit.g.cs">
+    <Compile Include="GeneratedCode\Foo.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedCode\TemplateUtils.cs" />
-    <Compile Include="Units.cs" />
+    <Compile Include="GeneratedCode\UnitClasses.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="UnitsNet.pcl">
-      <HintPath>..\packages\UnitsNet.1.13.0.15\lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll</HintPath>
-    </Reference>
+    <Compile Include="Units\Units.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GeneratedCode\Includes\MultipleOutputHelper.ttinclude" />
     <None Include="GeneratedCode\UnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitClasses.g.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UnitsNet\UnitsNet.pcl.csproj">
+      <Project>{52c647a6-a05a-4cbd-a18a-9f1d260800f8}</Project>
+      <Name>UnitsNet.pcl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

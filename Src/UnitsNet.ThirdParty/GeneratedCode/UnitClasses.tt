@@ -2,49 +2,31 @@
 <#@ assembly name="$(TargetPath)" #>
 <#@ assembly name="$(TargetDir)UnitsNet.pcl.dll" #>
 <#@ import namespace="UnitsNet.Attributes" #>
-<#@ import namespace="UnitsNet.ThirdParty" #>
-<#@ import namespace="UnitsNet.ThirdParty.Attributes" #>
-<#@ import namespace="UnitsNet.ThirdParty.GeneratedCode" #>
-<#@ output extension="/" #>
+<#@ import namespace="UnitsNet.Templating" #>
+<#@ import namespace="UnitsNet.ThirdParty.Units" #>
 <#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
+<#@ output extension=".g.cs" #>
 <#
+    var assembly = Assembly.GetAssembly(typeof (FooUnit));
+    IEnumerable<UnitClassInfo> infos = TemplateUtils.GetUnitClasses(assembly);
+
     var m = Manager.Create(Host, GenerationEnvironment);
-    GenerateUnitClasses<ThirdPartyUnitAttribute, FooUnit>(m);
-    GenerateUnitClasses<ThirdPartyUnitAttribute, BarUnit>(m);
-    m.Process(split: true);
-#><#+ 
-    private void GenerateUnitClasses<TBaseUnitAttribute, TUnit>(Manager m) where TBaseUnitAttribute : Attribute
+    foreach (UnitClassInfo info in infos)
     {
-        Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute =
-            TemplateUtils.GetUnitToAttributeDictionary<TBaseUnitAttribute, TUnit>();
-
-        List<IUnitAttribute<TUnit>> unitAttributes = unitToAttribute.Values.Distinct().ToList();
-        foreach (var attr in unitAttributes)
-        {
-            Type unitAttributeType = attr.GetType();
-            string className = unitAttributeType.Name.Replace("Attribute", string.Empty);
-            GenerateUnitClass(unitToAttribute, m, className, attr.BaseUnit, attr.XmlDocSummary);
-        }
+        GenerateUnitClass(m, info.UnitClassName, info.UnitClassXmlDoc, info.BaseUnitName, info.BaseUnitPluralName, info.UnitEnumTypeName, info.OrderedUnits);
     }
+    
+    m.Process(split: true);
 
-    private void GenerateUnitClass<TUnit>(Dictionary<TUnit, IUnitAttribute<TUnit>> unitToAttribute, Manager manager, string className, TUnit baseUnit, string xmlDocSummary)
+#><#+ 
+    private void GenerateUnitClass(Manager manager, string className, string xmlDocSummary, string baseUnitName, string baseUnitPluralName, string unitEnumName, ICollection<UnitInfo> orderedClassUnits)
     {
-        using (manager.StartNewFile(className + "Unit.g.cs"))
-        {
-            TUnit[] orderedClassUnits = unitToAttribute
-                .Keys
-                .OrderBy(unit => unit.ToString())
-                .ToArray();
-
-            TUnit[] orderedClassUnitsExceptBaseUnit =
+        using (manager.StartNewFile(className + ".g.cs"))
+        { 
+        List<UnitInfo> orderedClassUnitsExceptBaseUnit =
                 orderedClassUnits
-                    .Except(new[] {baseUnit})
-                    .OrderBy(unit => unit.ToString())
-                    .ToArray();
-
-            string baseUnitPluralName = TemplateUtils.GetUnitPluralName(unitToAttribute, baseUnit);
-            List<Type> unitAttributeTypes = unitToAttribute.Values.Select(attr => attr.GetType()).ToList();
-            string unitEnumName = typeof (TUnit).Name;
+                    .Where(val => val.SingularName != baseUnitName)
+                    .ToList(); 
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
@@ -67,11 +49,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnitsNet.ThirdParty.Extensions;
 using System;
+using UnitsNet.ThirdParty.Units;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet.ThirdParty
+namespace UnitsNet
 {
     /// <summary>
     /// <#=xmlDocSummary #>
@@ -91,25 +73,24 @@ namespace UnitsNet.ThirdParty
         #region Properties
 
 <#+
-    foreach (TUnit unit in orderedClassUnitsExceptBaseUnit)
+    foreach (UnitInfo unit in orderedClassUnitsExceptBaseUnit)
     {
-        string propertyName = TemplateUtils.GetUnitPluralName(unitToAttribute, unit);
-
-         // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.
-         // a: 1000
-         // b: 0
-         // y: base unit value in meters
-         // x: unit value in kilometers
-         // new Length(2000).Kilometers => (y - b) / a = (2000 - 0) / 1000 = 2km
-         // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
-        LinearFunction linearFunc = unitToAttribute[unit].LinearFunction;
-        /*
-        Example:
-        public double Kilonewtons
-        {
-            get { return (Newtons - 0) / 1E3; }
-        }
-        */
+        string propertyName = unit.PluralName;
+        LinearFunction linearFunc = unit.LinearFunction;
+        // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.
+        // a: 1000
+        // b: 0
+        // y: base unit value in meters
+        // x: unit value in kilometers
+        // new Length(2000).Kilometers => (y - b) / a = (2000 - 0) / 1000 = 2km
+        // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
+        //
+        // Example:
+        // public double Kilonewtons
+        // {
+        //     get { return (Newtons - 0) / 1E3; }
+        // }
+        
 #>
         /// <summary>
         /// Get <#=className#> in <#=propertyName#>.
@@ -137,11 +118,11 @@ namespace UnitsNet.ThirdParty
         
 <#+
             // First unit is the base unit and already a public field, so skip making a property for it.
-            foreach (TUnit unit in orderedClassUnits)
+            foreach (UnitInfo unit in orderedClassUnits)
             {
-                string methodNamePostfix = TemplateUtils.GetUnitPluralName(unitToAttribute, unit);
+                string methodNamePostfix = unit.PluralName;
                 string valueParamName = methodNamePostfix.ToLowerInvariant();
-
+                LinearFunction linearFunc = unit.LinearFunction; 
                 // Example: Kilometer has slope 1000, meaning for every kilometer the base unit increases with 1000 meters.
                 // a: 1000
                 // b: 0
@@ -149,14 +130,12 @@ namespace UnitsNet.ThirdParty
                 // x: unit value in kilometers
                 // new Length(2000).Kilometers => (y - b) / a = (2000 - 0) / 1000 = 2km
                 // Length.FromKilometers(2) => y = ax + b = 1000*2 + 0 = 2000m
-                LinearFunction linearFunc = unitToAttribute[unit].LinearFunction;
-                /*
-        Example:
-        public static Force FromKilonewtons(double kilonewtons)
-        {
-            return new Force(1E3 * kilonewtons + 0);
-        }
-        */
+                //
+                // Example:
+                // public static Force FromKilonewtons(double kilonewtons)
+                // {
+                //     return new Force(1E3 * kilonewtons + 0);
+                // }
 #>
         /// <summary>
         /// Get <#=className#> from <#=methodNamePostfix#>.
@@ -179,14 +158,15 @@ namespace UnitsNet.ThirdParty
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns><#=className#> unit value.</returns> 
-        public static <#=className#> From(double value, <#=unitEnumName#> fromUnit)
+        public static <#=className#> From(double value, <#= unitEnumName#> fromUnit)
         {
             switch (fromUnit)
             {
-<#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
-<#+         { #>
-<#+             string pluralUnitName = TemplateUtils.GetUnitPluralName(unitToAttribute, unit); #>
-                case <#=unitEnumName#>.<#=unit.ToString() #>:
+<#+         foreach (UnitInfo unit in orderedClassUnits) #>
+<#+         { 
+                string pluralUnitName = unit.PluralName;
+#>
+                case <#=unitEnumName#>.<#=unit.SingularName#>:
                     return From<#=pluralUnitName #>(value);
 <#+         } #>
 
@@ -308,10 +288,10 @@ namespace UnitsNet.ThirdParty
         {
             switch (toUnit)
             {
-<#+         foreach (TUnit unit in orderedClassUnitsExceptBaseUnit) #>
+<#+         foreach (UnitInfo unit in orderedClassUnits) #>
 <#+         { #>
-                case <#=unitEnumName#>.<#=unit.ToString() #>:
-                    newValue = <#=TemplateUtils.GetUnitPluralName(unitToAttribute, unit) #>;
+                case <#=unitEnumName#>.<#=unit.SingularName#>:
+                    newValue = <#=unit.PluralName#>;
                     return true;
 <#+         } #>
 
@@ -340,7 +320,7 @@ namespace UnitsNet.ThirdParty
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", <#=baseUnitPluralName #>, UnitSystem.Create().GetDefaultAbbreviation(<#=typeof(TUnit).Name#>.<#=baseUnit #>));
+            return string.Format("{0:0.##} {1}", <#=baseUnitPluralName #>, UnitSystem.Create().GetDefaultAbbreviation(<#=unitEnumName#>.<#=baseUnitName#>));
         }
     }
 } 
