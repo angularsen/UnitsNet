@@ -289,7 +289,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", Foos, UnitSystem.Create().GetDefaultAbbreviation(FooUnit.Foo));
+            return string.Format("{0:0.##} {1}", Foos, UnitSystem.GetCached().GetDefaultAbbreviation(FooUnit.Foo));
         }
     }
 } 

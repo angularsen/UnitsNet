@@ -428,7 +428,7 @@ namespace UnitsNet
         /// <returns>Unit abbreviation string.</returns>
         public static string GetAbbreviation(VolumeUnit unit, CultureInfo culture = null)
         {
-            return UnitSystem.Create(culture).GetDefaultAbbreviation(unit);
+            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -644,7 +644,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public string ToString(VolumeUnit unit, CultureInfo culture, string format, params object[] args)
         {
-            string abbreviation = UnitSystem.Create(culture).GetDefaultAbbreviation(unit);
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
             var finalArgs = new object[] {Convert(unit), abbreviation}
                 .Concat(args)
                 .ToArray();

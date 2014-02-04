@@ -320,7 +320,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("{0:0.##} {1}", <#=baseUnitPluralName #>, UnitSystem.Create().GetDefaultAbbreviation(<#=unitEnumName#>.<#=baseUnitName#>));
+            return string.Format("{0:0.##} {1}", <#=baseUnitPluralName #>, UnitSystem.GetCached().GetDefaultAbbreviation(<#=unitEnumName#>.<#=baseUnitName#>));
         }
     }
 } 
