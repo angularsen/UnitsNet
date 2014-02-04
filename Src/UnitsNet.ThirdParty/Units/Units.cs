@@ -29,15 +29,19 @@ namespace UnitsNet.ThirdParty.Units
         Undefined = 0, 
 
         [I18n("en-US", "bar")]
+        [I18n("ru-RU", "bzz")]
         [Bar(slope: 1)] Bar,
 
         [I18n("en-US", "2xbar")]
+        [I18n("ru-RU", "2xbzz")]
         [Bar(slope: 2)] TwiceThanBar,
 
         [I18n("en-US", "bar+1")]
+        [I18n("ru-RU", "bzz+1")]
         [Bar(slope: 1, constant: 1, pluralName: "BarPlusOnes")] BarPlus1,
 
         [I18n("en-US", "3xbar")]
+        [I18n("ru-RU", "3xbzz")]
         [Bar(slope: 3, pluralName: "BarsTripled")] BarTripled,
     }
 
@@ -46,15 +50,19 @@ namespace UnitsNet.ThirdParty.Units
         Undefined = 0,
 
         [I18n("en-US", "foo")]
+        [I18n("ru-RU", "føø")]
         [Foo(slope: 1)] Foo,
 
         [I18n("en-US", "2xfoo")]
+        [I18n("ru-RU", "2xføø")]
         [Foo(slope: 2)] TwiceThanFoo,
 
         [I18n("en-US", "foo+2")]
+        [I18n("ru-RU", "føø+2")]
         [Foo(slope: 1, constant: 2, pluralName: "FooPlusTwos")] FooPlus2,
 
         [I18n("en-US", "4xfoo")]
+        [I18n("ru-RU", "4xføø")]
         [Foo(slope: 4, pluralName: "FoosQuadrupled")] FooQuadrupled,
     }
 }
