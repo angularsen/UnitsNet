@@ -6,7 +6,7 @@
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
-    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/develop/LICENSE</licenseUrl>
     <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
