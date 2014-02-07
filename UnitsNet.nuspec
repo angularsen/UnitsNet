@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v2.0: Add support for external units. 
+    <releaseNotes>v2.0: Add support for external units.
 
 Breaking changes: UnitConverter and UnitValue removed. Unit enum broken into separate unit enums per unit class.
 
