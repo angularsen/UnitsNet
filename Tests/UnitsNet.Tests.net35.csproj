@@ -124,6 +124,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UnitTestClasses.txt</LastGenOutput>
     </None>
+    <None Include="MultipleOutputHelper.ttinclude" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

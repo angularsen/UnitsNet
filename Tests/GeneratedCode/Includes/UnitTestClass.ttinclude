@@ -5,18 +5,11 @@
 <#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Templating" #>
-<#@ include file="..\..\..\Src\UnitsNet\GeneratedCode\Includes\MultipleOutputHelper.ttinclude" once="true"#><#+
+<#@ include file="..\..\MultipleOutputHelper.ttinclude" once="true"#><#+
 
-    private void GenerateTestClass(Manager manager, string className, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedClassUnits)
+    private void GenerateTestClass(string className, string baseUnitName, string baseUnitPluralName, ICollection<UnitInfo> orderedClassUnits)
     {
-        using (manager.StartNewFile(className+"TestsBase.g.cs"))
-        {
-            /*object[] orderedClassUnits = unitToAttribute
-                .Keys
-                .OrderBy(unit => unit.ToString())
-                .ToArray();*/
-
-            string baseUnitVariableName = baseUnitName.ToLowerInvariant();
+        string baseUnitVariableName = baseUnitName.ToLowerInvariant();
 #>
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/SIUnits
@@ -201,6 +194,5 @@ namespace UnitsNet.Tests
     }
 }
 <#+
-        } // using (manager.StartNewFile(className+"TestsBase.generated.cs"))
     } // private void GenerateTestClass(Type unitAttributeType, Manager manager, string className, TUnit baseUnit) 
 #>

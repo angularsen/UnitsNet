@@ -8,7 +8,9 @@
     var m = Manager.Create(Host, GenerationEnvironment);
     foreach (UnitClassInfo info in infos)
     {
-        GenerateTestClass(m, info.UnitClassName, info.BaseUnitName, info.BaseUnitPluralName, info.OrderedUnits);
+        m.StartNewFile(info.UnitClassName + "TestsBase.g.cs");
+        GenerateTestClass(info.UnitClassName, info.BaseUnitName, info.BaseUnitPluralName, info.OrderedUnits);
+        m.EndBlock();
     }
     
     m.Process(split: true);
