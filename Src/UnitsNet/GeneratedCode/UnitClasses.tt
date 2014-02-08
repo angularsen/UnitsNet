@@ -3,7 +3,7 @@
 <#@ import namespace="UnitsNet.Units" #>
 <#@ import namespace="UnitsNet.Attributes" #>
 <#@ import namespace="UnitsNet.Templating" #>
-<#@ include file="Includes\MultipleOutputHelper.ttinclude" once="true"#>
+<#@ include file="..\MultipleOutputHelper.ttinclude" once="true"#>
 <#@ output extension=".g.cs" #>
 <#
     var assembly = Assembly.GetAssembly(typeof (LengthUnit));
@@ -12,7 +12,9 @@
     var m = Manager.Create(Host, GenerationEnvironment);
     foreach (UnitClassInfo info in infos)
     {
+        m.StartNewFile(info.UnitClassName + ".g.cs");
         GenerateUnitClass(m, info.UnitClassName, info.UnitClassXmlDoc, info.BaseUnitName, info.BaseUnitPluralName, info.UnitEnumType.Name, info.OrderedUnits);
+        m.EndBlock();
     }
     
     m.Process(split: true);
@@ -20,8 +22,7 @@
 #><#+ 
     private void GenerateUnitClass(Manager manager, string className, string xmlDocSummary, string baseUnitName, string baseUnitPluralName, string unitEnumName, ICollection<UnitInfo> orderedClassUnits)
     {
-        using (manager.StartNewFile(className + ".g.cs"))
-        { 
+         
         List<UnitInfo> orderedClassUnitsExceptBaseUnit =
                 orderedClassUnits
                     .Where(val => val.SingularName != baseUnitName)
@@ -371,7 +372,6 @@ namespace UnitsNet
     }
 } 
 <#+
-        } // using
     } // GenerateUnitClass()
 #>
 <#+

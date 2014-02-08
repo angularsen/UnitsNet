@@ -123,7 +123,7 @@
     <Compile Include="Vector3.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GeneratedCode\Includes\MultipleOutputHelper.ttinclude" />
+    <None Include="MultipleOutputHelper.ttinclude" />
     <None Include="GeneratedCode\UnitClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UnitClasses.g.cs</LastGenOutput>
