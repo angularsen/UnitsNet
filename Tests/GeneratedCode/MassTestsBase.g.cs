@@ -96,24 +96,24 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var kilogram = Mass.FromKilograms(1);
-            Assert.AreEqual(CentigramsInOneKilogram, kilogram.Convert(MassUnit.Centigram), Delta);
-            Assert.AreEqual(DecagramsInOneKilogram, kilogram.Convert(MassUnit.Decagram), Delta);
-            Assert.AreEqual(DecigramsInOneKilogram, kilogram.Convert(MassUnit.Decigram), Delta);
-            Assert.AreEqual(GramsInOneKilogram, kilogram.Convert(MassUnit.Gram), Delta);
-            Assert.AreEqual(HectogramsInOneKilogram, kilogram.Convert(MassUnit.Hectogram), Delta);
-            Assert.AreEqual(KilogramsInOneKilogram, kilogram.Convert(MassUnit.Kilogram), Delta);
-            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.Convert(MassUnit.Kilotonne), Delta);
-            Assert.AreEqual(LongTonsInOneKilogram, kilogram.Convert(MassUnit.LongTon), Delta);
-            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.Convert(MassUnit.Megatonne), Delta);
-            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Convert(MassUnit.Microgram), Delta);
-            Assert.AreEqual(MilligramsInOneKilogram, kilogram.Convert(MassUnit.Milligram), Delta);
-            Assert.AreEqual(NanogramsInOneKilogram, kilogram.Convert(MassUnit.Nanogram), Delta);
-            Assert.AreEqual(PoundsInOneKilogram, kilogram.Convert(MassUnit.Pound), Delta);
-            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.Convert(MassUnit.ShortTon), Delta);
-            Assert.AreEqual(TonnesInOneKilogram, kilogram.Convert(MassUnit.Tonne), Delta);
+            Assert.AreEqual(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), Delta);
+            Assert.AreEqual(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), Delta);
+            Assert.AreEqual(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), Delta);
+            Assert.AreEqual(GramsInOneKilogram, kilogram.As(MassUnit.Gram), Delta);
+            Assert.AreEqual(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), Delta);
+            Assert.AreEqual(KilogramsInOneKilogram, kilogram.As(MassUnit.Kilogram), Delta);
+            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.As(MassUnit.Kilotonne), Delta);
+            Assert.AreEqual(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), Delta);
+            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), Delta);
+            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), Delta);
+            Assert.AreEqual(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), Delta);
+            Assert.AreEqual(NanogramsInOneKilogram, kilogram.As(MassUnit.Nanogram), Delta);
+            Assert.AreEqual(PoundsInOneKilogram, kilogram.As(MassUnit.Pound), Delta);
+            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.As(MassUnit.ShortTon), Delta);
+            Assert.AreEqual(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), Delta);
         }
 
         [Test]

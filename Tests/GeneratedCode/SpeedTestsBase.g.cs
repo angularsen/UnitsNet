@@ -66,14 +66,14 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var meterpersecond = Speed.FromMetersPerSecond(1);
-            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.FootPerSecond), Delta);
-            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.KilometerPerHour), Delta);
-            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.Knot), Delta);
-            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.MeterPerSecond), Delta);
-            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.MilePerHour), Delta);
+            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.FootPerSecond), Delta);
+            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.KilometerPerHour), Delta);
+            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.As(SpeedUnit.Knot), Delta);
+            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MeterPerSecond), Delta);
+            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MilePerHour), Delta);
         }
 
         [Test]

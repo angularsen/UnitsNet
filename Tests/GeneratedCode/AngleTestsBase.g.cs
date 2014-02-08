@@ -60,12 +60,12 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var degree = Angle.FromDegrees(1);
-            Assert.AreEqual(DegreesInOneDegree, degree.Convert(AngleUnit.Degree), Delta);
-            Assert.AreEqual(GradiansInOneDegree, degree.Convert(AngleUnit.Gradian), Delta);
-            Assert.AreEqual(RadiansInOneDegree, degree.Convert(AngleUnit.Radian), Delta);
+            Assert.AreEqual(DegreesInOneDegree, degree.As(AngleUnit.Degree), Delta);
+            Assert.AreEqual(GradiansInOneDegree, degree.As(AngleUnit.Gradian), Delta);
+            Assert.AreEqual(RadiansInOneDegree, degree.As(AngleUnit.Radian), Delta);
         }
 
         [Test]

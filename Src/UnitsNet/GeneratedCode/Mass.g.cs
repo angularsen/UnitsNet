@@ -474,82 +474,51 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Mass to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(MassUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case MassUnit.Centigram:
-                    newValue = Centigrams;
-                    return true;
-                case MassUnit.Decagram:
-                    newValue = Decagrams;
-                    return true;
-                case MassUnit.Decigram:
-                    newValue = Decigrams;
-                    return true;
-                case MassUnit.Gram:
-                    newValue = Grams;
-                    return true;
-                case MassUnit.Hectogram:
-                    newValue = Hectograms;
-                    return true;
-                case MassUnit.Kilogram:
-                    newValue = Kilograms;
-                    return true;
-                case MassUnit.Kilotonne:
-                    newValue = Kilotonnes;
-                    return true;
-                case MassUnit.LongTon:
-                    newValue = LongTons;
-                    return true;
-                case MassUnit.Megatonne:
-                    newValue = Megatonnes;
-                    return true;
-                case MassUnit.Microgram:
-                    newValue = Micrograms;
-                    return true;
-                case MassUnit.Milligram:
-                    newValue = Milligrams;
-                    return true;
-                case MassUnit.Nanogram:
-                    newValue = Nanograms;
-                    return true;
-                case MassUnit.Pound:
-                    newValue = Pounds;
-                    return true;
-                case MassUnit.ShortTon:
-                    newValue = ShortTons;
-                    return true;
-                case MassUnit.Tonne:
-                    newValue = Tonnes;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Mass to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(MassUnit toUnit)
+        public double As(MassUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case MassUnit.Centigram:
+                    return Centigrams;
+                case MassUnit.Decagram:
+                    return Decagrams;
+                case MassUnit.Decigram:
+                    return Decigrams;
+                case MassUnit.Gram:
+                    return Grams;
+                case MassUnit.Hectogram:
+                    return Hectograms;
+                case MassUnit.Kilogram:
+                    return Kilograms;
+                case MassUnit.Kilotonne:
+                    return Kilotonnes;
+                case MassUnit.LongTon:
+                    return LongTons;
+                case MassUnit.Megatonne:
+                    return Megatonnes;
+                case MassUnit.Microgram:
+                    return Micrograms;
+                case MassUnit.Milligram:
+                    return Milligrams;
+                case MassUnit.Nanogram:
+                    return Nanograms;
+                case MassUnit.Pound:
+                    return Pounds;
+                case MassUnit.ShortTon:
+                    return ShortTons;
+                case MassUnit.Tonne:
+                    return Tonnes;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -576,7 +545,7 @@ namespace UnitsNet
         public string ToString(MassUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

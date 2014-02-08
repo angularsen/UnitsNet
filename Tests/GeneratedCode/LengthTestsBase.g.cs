@@ -90,22 +90,22 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var meter = Length.FromMeters(1);
-            Assert.AreEqual(CentimetersInOneMeter, meter.Convert(LengthUnit.Centimeter), Delta);
-            Assert.AreEqual(DecimetersInOneMeter, meter.Convert(LengthUnit.Decimeter), Delta);
-            Assert.AreEqual(FeetInOneMeter, meter.Convert(LengthUnit.Foot), Delta);
-            Assert.AreEqual(InchesInOneMeter, meter.Convert(LengthUnit.Inch), Delta);
-            Assert.AreEqual(KilometersInOneMeter, meter.Convert(LengthUnit.Kilometer), Delta);
-            Assert.AreEqual(MetersInOneMeter, meter.Convert(LengthUnit.Meter), Delta);
-            Assert.AreEqual(MicroinchesInOneMeter, meter.Convert(LengthUnit.Microinch), Delta);
-            Assert.AreEqual(MicrometersInOneMeter, meter.Convert(LengthUnit.Micrometer), Delta);
-            Assert.AreEqual(MilsInOneMeter, meter.Convert(LengthUnit.Mil), Delta);
-            Assert.AreEqual(MilesInOneMeter, meter.Convert(LengthUnit.Mile), Delta);
-            Assert.AreEqual(MillimetersInOneMeter, meter.Convert(LengthUnit.Millimeter), Delta);
-            Assert.AreEqual(NanometersInOneMeter, meter.Convert(LengthUnit.Nanometer), Delta);
-            Assert.AreEqual(YardsInOneMeter, meter.Convert(LengthUnit.Yard), Delta);
+            Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), Delta);
+            Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), Delta);
+            Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), Delta);
+            Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), Delta);
+            Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), Delta);
+            Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), Delta);
+            Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), Delta);
+            Assert.AreEqual(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), Delta);
+            Assert.AreEqual(MilsInOneMeter, meter.As(LengthUnit.Mil), Delta);
+            Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), Delta);
+            Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), Delta);
+            Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), Delta);
+            Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), Delta);
         }
 
         [Test]

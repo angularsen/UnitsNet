@@ -72,16 +72,16 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var newton = Force.FromNewtons(1);
-            Assert.AreEqual(DyneInOneNewton, newton.Convert(ForceUnit.Dyn), Delta);
-            Assert.AreEqual(KilogramsForceInOneNewton, newton.Convert(ForceUnit.KilogramForce), Delta);
-            Assert.AreEqual(KilonewtonsInOneNewton, newton.Convert(ForceUnit.Kilonewton), Delta);
-            Assert.AreEqual(KiloPondsInOneNewton, newton.Convert(ForceUnit.KiloPond), Delta);
-            Assert.AreEqual(NewtonsInOneNewton, newton.Convert(ForceUnit.Newton), Delta);
-            Assert.AreEqual(PoundalsInOneNewton, newton.Convert(ForceUnit.Poundal), Delta);
-            Assert.AreEqual(PoundForcesInOneNewton, newton.Convert(ForceUnit.PoundForce), Delta);
+            Assert.AreEqual(DyneInOneNewton, newton.As(ForceUnit.Dyn), Delta);
+            Assert.AreEqual(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), Delta);
+            Assert.AreEqual(KilonewtonsInOneNewton, newton.As(ForceUnit.Kilonewton), Delta);
+            Assert.AreEqual(KiloPondsInOneNewton, newton.As(ForceUnit.KiloPond), Delta);
+            Assert.AreEqual(NewtonsInOneNewton, newton.As(ForceUnit.Newton), Delta);
+            Assert.AreEqual(PoundalsInOneNewton, newton.As(ForceUnit.Poundal), Delta);
+            Assert.AreEqual(PoundForcesInOneNewton, newton.As(ForceUnit.PoundForce), Delta);
         }
 
         [Test]

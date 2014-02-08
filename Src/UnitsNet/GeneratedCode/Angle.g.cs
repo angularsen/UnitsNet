@@ -234,46 +234,27 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Angle to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(AngleUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case AngleUnit.Degree:
-                    newValue = Degrees;
-                    return true;
-                case AngleUnit.Gradian:
-                    newValue = Gradians;
-                    return true;
-                case AngleUnit.Radian:
-                    newValue = Radians;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Angle to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(AngleUnit toUnit)
+        public double As(AngleUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case AngleUnit.Degree:
+                    return Degrees;
+                case AngleUnit.Gradian:
+                    return Gradians;
+                case AngleUnit.Radian:
+                    return Radians;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -300,7 +281,7 @@ namespace UnitsNet
         public string ToString(AngleUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

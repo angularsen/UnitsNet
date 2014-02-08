@@ -374,67 +374,41 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Duration to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(DurationUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case DurationUnit.Day:
-                    newValue = Days;
-                    return true;
-                case DurationUnit.Hour:
-                    newValue = Hours;
-                    return true;
-                case DurationUnit.Microsecond:
-                    newValue = Microseconds;
-                    return true;
-                case DurationUnit.Millisecond:
-                    newValue = Milliseconds;
-                    return true;
-                case DurationUnit.Minute:
-                    newValue = Minutes;
-                    return true;
-                case DurationUnit.Month30Days:
-                    newValue = Month30Dayss;
-                    return true;
-                case DurationUnit.Nanosecond:
-                    newValue = Nanoseconds;
-                    return true;
-                case DurationUnit.Second:
-                    newValue = Seconds;
-                    return true;
-                case DurationUnit.Week:
-                    newValue = Weeks;
-                    return true;
-                case DurationUnit.Year365Days:
-                    newValue = Year365Dayss;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Duration to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(DurationUnit toUnit)
+        public double As(DurationUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case DurationUnit.Day:
+                    return Days;
+                case DurationUnit.Hour:
+                    return Hours;
+                case DurationUnit.Microsecond:
+                    return Microseconds;
+                case DurationUnit.Millisecond:
+                    return Milliseconds;
+                case DurationUnit.Minute:
+                    return Minutes;
+                case DurationUnit.Month30Days:
+                    return Month30Dayss;
+                case DurationUnit.Nanosecond:
+                    return Nanoseconds;
+                case DurationUnit.Second:
+                    return Seconds;
+                case DurationUnit.Week:
+                    return Weeks;
+                case DurationUnit.Year365Days:
+                    return Year365Dayss;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -461,7 +435,7 @@ namespace UnitsNet
         public string ToString(DurationUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

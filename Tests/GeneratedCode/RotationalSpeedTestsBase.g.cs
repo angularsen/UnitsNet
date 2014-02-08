@@ -57,11 +57,11 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
-            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.Convert(RotationalSpeedUnit.RevolutionPerMinute), Delta);
-            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.Convert(RotationalSpeedUnit.RevolutionPerSecond), Delta);
+            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), Delta);
+            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), Delta);
         }
 
         [Test]

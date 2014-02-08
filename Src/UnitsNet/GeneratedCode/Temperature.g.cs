@@ -334,61 +334,37 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Temperature to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(TemperatureUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case TemperatureUnit.DegreeCelsius:
-                    newValue = DegreesCelsius;
-                    return true;
-                case TemperatureUnit.DegreeDelisle:
-                    newValue = DegreesDelisle;
-                    return true;
-                case TemperatureUnit.DegreeFahrenheit:
-                    newValue = DegreesFahrenheit;
-                    return true;
-                case TemperatureUnit.DegreeNewton:
-                    newValue = DegreesNewton;
-                    return true;
-                case TemperatureUnit.DegreeRankine:
-                    newValue = DegreesRankine;
-                    return true;
-                case TemperatureUnit.DegreeReaumur:
-                    newValue = DegreesReaumur;
-                    return true;
-                case TemperatureUnit.DegreeRoemer:
-                    newValue = DegreesRoemer;
-                    return true;
-                case TemperatureUnit.Kelvin:
-                    newValue = Kelvins;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Temperature to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(TemperatureUnit toUnit)
+        public double As(TemperatureUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case TemperatureUnit.DegreeCelsius:
+                    return DegreesCelsius;
+                case TemperatureUnit.DegreeDelisle:
+                    return DegreesDelisle;
+                case TemperatureUnit.DegreeFahrenheit:
+                    return DegreesFahrenheit;
+                case TemperatureUnit.DegreeNewton:
+                    return DegreesNewton;
+                case TemperatureUnit.DegreeRankine:
+                    return DegreesRankine;
+                case TemperatureUnit.DegreeReaumur:
+                    return DegreesReaumur;
+                case TemperatureUnit.DegreeRoemer:
+                    return DegreesRoemer;
+                case TemperatureUnit.Kelvin:
+                    return Kelvins;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -415,7 +391,7 @@ namespace UnitsNet
         public string ToString(TemperatureUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

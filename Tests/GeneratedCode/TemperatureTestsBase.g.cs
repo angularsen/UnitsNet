@@ -75,17 +75,17 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var kelvin = Temperature.FromKelvins(1);
-            Assert.AreEqual(DegreesCelsiusInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeCelsius), Delta);
-            Assert.AreEqual(DegreesDelisleInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeDelisle), Delta);
-            Assert.AreEqual(DegreesFahrenheitInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeFahrenheit), Delta);
-            Assert.AreEqual(DegreesNewtonInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeNewton), Delta);
-            Assert.AreEqual(DegreesRankineInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeRankine), Delta);
-            Assert.AreEqual(DegreesReaumurInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeReaumur), Delta);
-            Assert.AreEqual(DegreesRoemerInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeRoemer), Delta);
-            Assert.AreEqual(KelvinsInOneKelvin, kelvin.Convert(TemperatureUnit.Kelvin), Delta);
+            Assert.AreEqual(DegreesCelsiusInOneKelvin, kelvin.As(TemperatureUnit.DegreeCelsius), Delta);
+            Assert.AreEqual(DegreesDelisleInOneKelvin, kelvin.As(TemperatureUnit.DegreeDelisle), Delta);
+            Assert.AreEqual(DegreesFahrenheitInOneKelvin, kelvin.As(TemperatureUnit.DegreeFahrenheit), Delta);
+            Assert.AreEqual(DegreesNewtonInOneKelvin, kelvin.As(TemperatureUnit.DegreeNewton), Delta);
+            Assert.AreEqual(DegreesRankineInOneKelvin, kelvin.As(TemperatureUnit.DegreeRankine), Delta);
+            Assert.AreEqual(DegreesReaumurInOneKelvin, kelvin.As(TemperatureUnit.DegreeReaumur), Delta);
+            Assert.AreEqual(DegreesRoemerInOneKelvin, kelvin.As(TemperatureUnit.DegreeRoemer), Delta);
+            Assert.AreEqual(KelvinsInOneKelvin, kelvin.As(TemperatureUnit.Kelvin), Delta);
         }
 
         [Test]

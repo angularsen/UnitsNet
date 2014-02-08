@@ -57,11 +57,11 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
-            Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.Convert(FlowUnit.CubicMeterPerHour), Delta);
-            Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.Convert(FlowUnit.CubicMeterPerSecond), Delta);
+            Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.CubicMeterPerHour), Delta);
+            Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.CubicMeterPerSecond), Delta);
         }
 
         [Test]

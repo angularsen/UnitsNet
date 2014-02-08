@@ -354,64 +354,39 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Area to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(AreaUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case AreaUnit.SquareCentimeter:
-                    newValue = SquareCentimeters;
-                    return true;
-                case AreaUnit.SquareDecimeter:
-                    newValue = SquareDecimeters;
-                    return true;
-                case AreaUnit.SquareFoot:
-                    newValue = SquareFeet;
-                    return true;
-                case AreaUnit.SquareInch:
-                    newValue = SquareInches;
-                    return true;
-                case AreaUnit.SquareKilometer:
-                    newValue = SquareKilometers;
-                    return true;
-                case AreaUnit.SquareMeter:
-                    newValue = SquareMeters;
-                    return true;
-                case AreaUnit.SquareMile:
-                    newValue = SquareMiles;
-                    return true;
-                case AreaUnit.SquareMillimeter:
-                    newValue = SquareMillimeters;
-                    return true;
-                case AreaUnit.SquareYard:
-                    newValue = SquareYards;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Area to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(AreaUnit toUnit)
+        public double As(AreaUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case AreaUnit.SquareCentimeter:
+                    return SquareCentimeters;
+                case AreaUnit.SquareDecimeter:
+                    return SquareDecimeters;
+                case AreaUnit.SquareFoot:
+                    return SquareFeet;
+                case AreaUnit.SquareInch:
+                    return SquareInches;
+                case AreaUnit.SquareKilometer:
+                    return SquareKilometers;
+                case AreaUnit.SquareMeter:
+                    return SquareMeters;
+                case AreaUnit.SquareMile:
+                    return SquareMiles;
+                case AreaUnit.SquareMillimeter:
+                    return SquareMillimeters;
+                case AreaUnit.SquareYard:
+                    return SquareYards;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -438,7 +413,7 @@ namespace UnitsNet
         public string ToString(AreaUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

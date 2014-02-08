@@ -54,10 +54,10 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var newtonmeter = Torque.FromNewtonmeters(1);
-            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.Convert(TorqueUnit.Newtonmeter), Delta);
+            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.As(TorqueUnit.Newtonmeter), Delta);
         }
 
         [Test]

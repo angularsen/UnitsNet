@@ -81,19 +81,19 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var second = Duration.FromSeconds(1);
-            Assert.AreEqual(DaysInOneSecond, second.Convert(DurationUnit.Day), Delta);
-            Assert.AreEqual(HoursInOneSecond, second.Convert(DurationUnit.Hour), Delta);
-            Assert.AreEqual(MicrosecondsInOneSecond, second.Convert(DurationUnit.Microsecond), Delta);
-            Assert.AreEqual(MillisecondsInOneSecond, second.Convert(DurationUnit.Millisecond), Delta);
-            Assert.AreEqual(MinutesInOneSecond, second.Convert(DurationUnit.Minute), Delta);
-            Assert.AreEqual(Month30DayssInOneSecond, second.Convert(DurationUnit.Month30Days), Delta);
-            Assert.AreEqual(NanosecondsInOneSecond, second.Convert(DurationUnit.Nanosecond), Delta);
-            Assert.AreEqual(SecondsInOneSecond, second.Convert(DurationUnit.Second), Delta);
-            Assert.AreEqual(WeeksInOneSecond, second.Convert(DurationUnit.Week), Delta);
-            Assert.AreEqual(Year365DayssInOneSecond, second.Convert(DurationUnit.Year365Days), Delta);
+            Assert.AreEqual(DaysInOneSecond, second.As(DurationUnit.Day), Delta);
+            Assert.AreEqual(HoursInOneSecond, second.As(DurationUnit.Hour), Delta);
+            Assert.AreEqual(MicrosecondsInOneSecond, second.As(DurationUnit.Microsecond), Delta);
+            Assert.AreEqual(MillisecondsInOneSecond, second.As(DurationUnit.Millisecond), Delta);
+            Assert.AreEqual(MinutesInOneSecond, second.As(DurationUnit.Minute), Delta);
+            Assert.AreEqual(Month30DayssInOneSecond, second.As(DurationUnit.Month30Days), Delta);
+            Assert.AreEqual(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), Delta);
+            Assert.AreEqual(SecondsInOneSecond, second.As(DurationUnit.Second), Delta);
+            Assert.AreEqual(WeeksInOneSecond, second.As(DurationUnit.Week), Delta);
+            Assert.AreEqual(Year365DayssInOneSecond, second.As(DurationUnit.Year365Days), Delta);
         }
 
         [Test]

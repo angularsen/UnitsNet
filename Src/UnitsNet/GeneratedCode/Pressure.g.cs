@@ -414,73 +414,45 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Pressure to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(PressureUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case PressureUnit.Atmosphere:
-                    newValue = Atmospheres;
-                    return true;
-                case PressureUnit.Bar:
-                    newValue = Bars;
-                    return true;
-                case PressureUnit.KilogramForcePerSquareCentimeter:
-                    newValue = KilogramForcePerSquareCentimeter;
-                    return true;
-                case PressureUnit.Kilopascal:
-                    newValue = Kilopascals;
-                    return true;
-                case PressureUnit.Megapascal:
-                    newValue = Megapascals;
-                    return true;
-                case PressureUnit.NewtonPerSquareCentimeter:
-                    newValue = NewtonsPerSquareCentimeter;
-                    return true;
-                case PressureUnit.NewtonPerSquareMeter:
-                    newValue = NewtonsPerSquareMeter;
-                    return true;
-                case PressureUnit.NewtonPerSquareMillimeter:
-                    newValue = NewtonsPerSquareMillimeter;
-                    return true;
-                case PressureUnit.Pascal:
-                    newValue = Pascals;
-                    return true;
-                case PressureUnit.Psi:
-                    newValue = Psi;
-                    return true;
-                case PressureUnit.TechnicalAtmosphere:
-                    newValue = TechnicalAtmospheres;
-                    return true;
-                case PressureUnit.Torr:
-                    newValue = Torrs;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Pressure to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(PressureUnit toUnit)
+        public double As(PressureUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case PressureUnit.Atmosphere:
+                    return Atmospheres;
+                case PressureUnit.Bar:
+                    return Bars;
+                case PressureUnit.KilogramForcePerSquareCentimeter:
+                    return KilogramForcePerSquareCentimeter;
+                case PressureUnit.Kilopascal:
+                    return Kilopascals;
+                case PressureUnit.Megapascal:
+                    return Megapascals;
+                case PressureUnit.NewtonPerSquareCentimeter:
+                    return NewtonsPerSquareCentimeter;
+                case PressureUnit.NewtonPerSquareMeter:
+                    return NewtonsPerSquareMeter;
+                case PressureUnit.NewtonPerSquareMillimeter:
+                    return NewtonsPerSquareMillimeter;
+                case PressureUnit.Pascal:
+                    return Pascals;
+                case PressureUnit.Psi:
+                    return Psi;
+                case PressureUnit.TechnicalAtmosphere:
+                    return TechnicalAtmospheres;
+                case PressureUnit.Torr:
+                    return Torrs;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -507,7 +479,7 @@ namespace UnitsNet
         public string ToString(PressureUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

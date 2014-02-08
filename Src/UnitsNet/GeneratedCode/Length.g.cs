@@ -434,76 +434,47 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Length to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(LengthUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case LengthUnit.Centimeter:
-                    newValue = Centimeters;
-                    return true;
-                case LengthUnit.Decimeter:
-                    newValue = Decimeters;
-                    return true;
-                case LengthUnit.Foot:
-                    newValue = Feet;
-                    return true;
-                case LengthUnit.Inch:
-                    newValue = Inches;
-                    return true;
-                case LengthUnit.Kilometer:
-                    newValue = Kilometers;
-                    return true;
-                case LengthUnit.Meter:
-                    newValue = Meters;
-                    return true;
-                case LengthUnit.Microinch:
-                    newValue = Microinches;
-                    return true;
-                case LengthUnit.Micrometer:
-                    newValue = Micrometers;
-                    return true;
-                case LengthUnit.Mil:
-                    newValue = Mils;
-                    return true;
-                case LengthUnit.Mile:
-                    newValue = Miles;
-                    return true;
-                case LengthUnit.Millimeter:
-                    newValue = Millimeters;
-                    return true;
-                case LengthUnit.Nanometer:
-                    newValue = Nanometers;
-                    return true;
-                case LengthUnit.Yard:
-                    newValue = Yards;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Length to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(LengthUnit toUnit)
+        public double As(LengthUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case LengthUnit.Centimeter:
+                    return Centimeters;
+                case LengthUnit.Decimeter:
+                    return Decimeters;
+                case LengthUnit.Foot:
+                    return Feet;
+                case LengthUnit.Inch:
+                    return Inches;
+                case LengthUnit.Kilometer:
+                    return Kilometers;
+                case LengthUnit.Meter:
+                    return Meters;
+                case LengthUnit.Microinch:
+                    return Microinches;
+                case LengthUnit.Micrometer:
+                    return Micrometers;
+                case LengthUnit.Mil:
+                    return Mils;
+                case LengthUnit.Mile:
+                    return Miles;
+                case LengthUnit.Millimeter:
+                    return Millimeters;
+                case LengthUnit.Nanometer:
+                    return Nanometers;
+                case LengthUnit.Yard:
+                    return Yards;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -530,7 +501,7 @@ namespace UnitsNet
         public string ToString(LengthUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 

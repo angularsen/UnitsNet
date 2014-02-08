@@ -54,10 +54,10 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var volt = ElectricPotential.FromVolts(1);
-            Assert.AreEqual(VoltsInOneVolt, volt.Convert(ElectricPotentialUnit.Volt), Delta);
+            Assert.AreEqual(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), Delta);
         }
 
         [Test]

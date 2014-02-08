@@ -102,16 +102,16 @@ namespace UnitsNet.Tests
 
 <#+     /*  Example:
         [Test]
-        public void In()
+        public void As()
         {
             var cubicMeter = Volume.FromCubicMeters(1);
-            Assert.AreEqual(CentilitersInOneCubicMeter, cubicMeter.Convert(VolumeUnit.Centiliter), Delta);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicMeter.As(VolumeUnit.Centiliter), Delta);
         }
         */
 #>
 
         [Test]
-        public void In()
+        public void As()
         {
             var <#=baseUnitVariableName#> = <#=className#>.From<#=baseUnitPluralName#>(1);
 <#+
@@ -119,7 +119,7 @@ namespace UnitsNet.Tests
             {
                 string unitPluralName = unit.PluralName;
 #>
-            Assert.AreEqual(<#=unit.PluralName#>InOne<#=baseUnitName#>, <#=baseUnitVariableName#>.Convert(<#=className#>Unit.<#=unit.SingularName#>), Delta);
+            Assert.AreEqual(<#=unit.PluralName#>InOne<#=baseUnitName#>, <#=baseUnitVariableName#>.As(<#=className#>Unit.<#=unit.SingularName#>), Delta);
 <#+         }
 #>
         }

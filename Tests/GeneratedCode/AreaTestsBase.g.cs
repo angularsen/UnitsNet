@@ -78,18 +78,18 @@ namespace UnitsNet.Tests
 
 
         [Test]
-        public void In()
+        public void As()
         {
             var squaremeter = Area.FromSquareMeters(1);
-            Assert.AreEqual(SquareCentimetersInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareCentimeter), Delta);
-            Assert.AreEqual(SquareDecimetersInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareDecimeter), Delta);
-            Assert.AreEqual(SquareFeetInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareFoot), Delta);
-            Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareInch), Delta);
-            Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareKilometer), Delta);
-            Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareMeter), Delta);
-            Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareMile), Delta);
-            Assert.AreEqual(SquareMillimetersInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareMillimeter), Delta);
-            Assert.AreEqual(SquareYardsInOneSquareMeter, squaremeter.Convert(AreaUnit.SquareYard), Delta);
+            Assert.AreEqual(SquareCentimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareCentimeter), Delta);
+            Assert.AreEqual(SquareDecimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareDecimeter), Delta);
+            Assert.AreEqual(SquareFeetInOneSquareMeter, squaremeter.As(AreaUnit.SquareFoot), Delta);
+            Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.As(AreaUnit.SquareInch), Delta);
+            Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.As(AreaUnit.SquareKilometer), Delta);
+            Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMeter), Delta);
+            Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.As(AreaUnit.SquareMile), Delta);
+            Assert.AreEqual(SquareMillimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMillimeter), Delta);
+            Assert.AreEqual(SquareYardsInOneSquareMeter, squaremeter.As(AreaUnit.SquareYard), Delta);
         }
 
         [Test]

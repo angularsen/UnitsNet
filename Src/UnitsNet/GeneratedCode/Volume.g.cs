@@ -534,91 +534,57 @@ namespace UnitsNet
         #endregion
         
         #region Conversion
- 
-        /// <summary>
-        /// Try to dynamically convert from Volume to <paramref name="toUnit"/>.
-        /// </summary>
-        /// <param name="toUnit">Compatible unit to convert to.</param>
-        /// <param name="newValue">Value in new unit if successful, zero otherwise.</param>
-        /// <returns>True if the two units were compatible and the conversion was successful.</returns> 
-        public bool TryConvert(VolumeUnit toUnit, out double newValue)
-        {
-            switch (toUnit)
-            {
-                case VolumeUnit.Centiliter:
-                    newValue = Centiliters;
-                    return true;
-                case VolumeUnit.CubicCentimeter:
-                    newValue = CubicCentimeters;
-                    return true;
-                case VolumeUnit.CubicDecimeter:
-                    newValue = CubicDecimeters;
-                    return true;
-                case VolumeUnit.CubicFoot:
-                    newValue = CubicFeet;
-                    return true;
-                case VolumeUnit.CubicInch:
-                    newValue = CubicInches;
-                    return true;
-                case VolumeUnit.CubicKilometer:
-                    newValue = CubicKilometers;
-                    return true;
-                case VolumeUnit.CubicMeter:
-                    newValue = CubicMeters;
-                    return true;
-                case VolumeUnit.CubicMile:
-                    newValue = CubicMiles;
-                    return true;
-                case VolumeUnit.CubicMillimeter:
-                    newValue = CubicMillimeters;
-                    return true;
-                case VolumeUnit.CubicYard:
-                    newValue = CubicYards;
-                    return true;
-                case VolumeUnit.Deciliter:
-                    newValue = Deciliters;
-                    return true;
-                case VolumeUnit.Hectoliter:
-                    newValue = Hectoliters;
-                    return true;
-                case VolumeUnit.ImperialGallon:
-                    newValue = ImperialGallons;
-                    return true;
-                case VolumeUnit.ImperialOunce:
-                    newValue = ImperialOunces;
-                    return true;
-                case VolumeUnit.Liter:
-                    newValue = Liters;
-                    return true;
-                case VolumeUnit.Milliliter:
-                    newValue = Milliliters;
-                    return true;
-                case VolumeUnit.UsGallon:
-                    newValue = UsGallons;
-                    return true;
-                case VolumeUnit.UsOunce:
-                    newValue = UsOunces;
-                    return true;
-
-                default:
-                    newValue = 0;
-                    return false;
-            }
-        }
 
         /// <summary>
-        /// Dynamically convert from Volume to <paramref name="toUnit"/>.
+        /// Convert to the unit representation in <paramref name="asUnit"/>.
         /// </summary>
         /// <param name="toUnit">Compatible unit to convert to.</param>
         /// <returns>Value in new unit if successful, exception otherwise.</returns> 
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double Convert(VolumeUnit toUnit)
+        public double As(VolumeUnit unit)
         {
-            double newValue;
-            if (!TryConvert(toUnit, out newValue))
-                throw new NotImplementedException("toUnit: " + toUnit);
+            switch (unit)
+            {
+                case VolumeUnit.Centiliter:
+                    return Centiliters;
+                case VolumeUnit.CubicCentimeter:
+                    return CubicCentimeters;
+                case VolumeUnit.CubicDecimeter:
+                    return CubicDecimeters;
+                case VolumeUnit.CubicFoot:
+                    return CubicFeet;
+                case VolumeUnit.CubicInch:
+                    return CubicInches;
+                case VolumeUnit.CubicKilometer:
+                    return CubicKilometers;
+                case VolumeUnit.CubicMeter:
+                    return CubicMeters;
+                case VolumeUnit.CubicMile:
+                    return CubicMiles;
+                case VolumeUnit.CubicMillimeter:
+                    return CubicMillimeters;
+                case VolumeUnit.CubicYard:
+                    return CubicYards;
+                case VolumeUnit.Deciliter:
+                    return Deciliters;
+                case VolumeUnit.Hectoliter:
+                    return Hectoliters;
+                case VolumeUnit.ImperialGallon:
+                    return ImperialGallons;
+                case VolumeUnit.ImperialOunce:
+                    return ImperialOunces;
+                case VolumeUnit.Liter:
+                    return Liters;
+                case VolumeUnit.Milliliter:
+                    return Milliliters;
+                case VolumeUnit.UsGallon:
+                    return UsGallons;
+                case VolumeUnit.UsOunce:
+                    return UsOunces;
 
-            return newValue;
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
         }
 
         #endregion
@@ -645,7 +611,7 @@ namespace UnitsNet
         public string ToString(VolumeUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            var finalArgs = new object[] {Convert(unit), abbreviation}
+            var finalArgs = new object[] {As(unit), abbreviation}
                 .Concat(args)
                 .ToArray();
 
