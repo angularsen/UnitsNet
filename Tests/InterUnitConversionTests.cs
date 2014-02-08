@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace UnitsNet.Tests.net35
+namespace UnitsNet.Tests
 {
     [TestFixture]
     public class InterUnitConversionTests

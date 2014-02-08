@@ -7,7 +7,7 @@
     <ProjectGuid>{6D74103A-9393-42E8-83A8-9E01F806E29D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitsNet.Tests.net35</RootNamespace>
+    <RootNamespace>UnitsNet.Tests</RootNamespace>
     <AssemblyName>UnitsNet.Tests.net35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -21,7 +21,7 @@
 
 using System;
 
-namespace UnitsNet.Tests.net35.CustomCode
+namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {

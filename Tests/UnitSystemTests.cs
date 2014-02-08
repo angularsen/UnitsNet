@@ -28,7 +28,7 @@ using NUnit.Framework;
 using UnitsNet.Units;
 using UnitsNet.Utils;
 
-namespace UnitsNet.Tests.net35
+namespace UnitsNet.Tests
 {
     [TestFixture]
     public class UnitSystemTests

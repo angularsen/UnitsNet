@@ -21,7 +21,7 @@
 
 using NUnit.Framework;
 
-namespace UnitsNet.Tests.net35.CustomCode
+namespace UnitsNet.Tests.CustomCode
 {
 // ReSharper disable once InconsistentNaming
     [TestFixture]
