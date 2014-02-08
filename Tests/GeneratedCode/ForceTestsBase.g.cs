@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -55,6 +56,32 @@ namespace UnitsNet.Tests
             Assert.AreEqual(NewtonsInOneNewton, newton.Newtons, Delta);
             Assert.AreEqual(PoundalsInOneNewton, newton.Poundals, Delta);
             Assert.AreEqual(PoundForcesInOneNewton, newton.PoundForces, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Dyn).Dyne, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.KilogramForce).KilogramsForce, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Kilonewton).Kilonewtons, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.KiloPond).KiloPonds, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Newton).Newtons, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Poundal).Poundals, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.PoundForce).PoundForces, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var newton = Force.FromNewtons(1);
+            Assert.AreEqual(DyneInOneNewton, newton.Convert(ForceUnit.Dyn), Delta);
+            Assert.AreEqual(KilogramsForceInOneNewton, newton.Convert(ForceUnit.KilogramForce), Delta);
+            Assert.AreEqual(KilonewtonsInOneNewton, newton.Convert(ForceUnit.Kilonewton), Delta);
+            Assert.AreEqual(KiloPondsInOneNewton, newton.Convert(ForceUnit.KiloPond), Delta);
+            Assert.AreEqual(NewtonsInOneNewton, newton.Convert(ForceUnit.Newton), Delta);
+            Assert.AreEqual(PoundalsInOneNewton, newton.Convert(ForceUnit.Poundal), Delta);
+            Assert.AreEqual(PoundForcesInOneNewton, newton.Convert(ForceUnit.PoundForce), Delta);
         }
 
         [Test]

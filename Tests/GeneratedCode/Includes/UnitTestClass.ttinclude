@@ -34,6 +34,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -75,6 +76,50 @@ namespace UnitsNet.Tests
         */
 #>
             Assert.AreEqual(<#=unitPluralName#>InOne<#=baseUnitName#>, <#=baseUnitVariableName#>.<#=unitPluralName#>, Delta);
+<#+         }
+#>
+        }
+<#+     /*  Example:
+        [Test]
+        public void FromByEnum()
+        {
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Centiliter).Centiliters, Delta);
+        }
+        */
+#>
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+<#+
+            foreach (UnitInfo unit in orderedClassUnits)
+            {
+#>
+            Assert.AreEqual(1, <#=className#>.From(1, <#=className#>Unit.<#=unit.SingularName#>).<#=unit.PluralName#>, Delta);
+<#+         }
+#>
+        }
+
+<#+     /*  Example:
+        [Test]
+        public void In()
+        {
+            var cubicMeter = Volume.FromCubicMeters(1);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicMeter.Convert(VolumeUnit.Centiliter), Delta);
+        }
+        */
+#>
+
+        [Test]
+        public void In()
+        {
+            var <#=baseUnitVariableName#> = <#=className#>.From<#=baseUnitPluralName#>(1);
+<#+
+            foreach (UnitInfo unit in orderedClassUnits)
+            {
+                string unitPluralName = unit.PluralName;
+#>
+            Assert.AreEqual(<#=unit.PluralName#>InOne<#=baseUnitName#>, <#=baseUnitVariableName#>.Convert(<#=className#>Unit.<#=unit.SingularName#>), Delta);
 <#+         }
 #>
         }

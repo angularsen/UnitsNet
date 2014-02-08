@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -65,6 +66,42 @@ namespace UnitsNet.Tests
             Assert.AreEqual(PsiInOnePascal, pascal.Psi, Delta);
             Assert.AreEqual(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, Delta);
             Assert.AreEqual(TorrsInOnePascal, pascal.Torrs, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Atmosphere).Atmospheres, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Bar).Bars, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter).KilogramForcePerSquareCentimeter, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Kilopascal).Kilopascals, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Megapascal).Megapascals, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter).NewtonsPerSquareCentimeter, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareMeter).NewtonsPerSquareMeter, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter).NewtonsPerSquareMillimeter, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Pascal).Pascals, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Psi).Psi, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.TechnicalAtmosphere).TechnicalAtmospheres, Delta);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Torr).Torrs, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var pascal = Pressure.FromPascals(1);
+            Assert.AreEqual(AtmospheresInOnePascal, pascal.Convert(PressureUnit.Atmosphere), Delta);
+            Assert.AreEqual(BarsInOnePascal, pascal.Convert(PressureUnit.Bar), Delta);
+            Assert.AreEqual(KilogramForcePerSquareCentimeterInOnePascal, pascal.Convert(PressureUnit.KilogramForcePerSquareCentimeter), Delta);
+            Assert.AreEqual(KilopascalsInOnePascal, pascal.Convert(PressureUnit.Kilopascal), Delta);
+            Assert.AreEqual(MegapascalsInOnePascal, pascal.Convert(PressureUnit.Megapascal), Delta);
+            Assert.AreEqual(NewtonsPerSquareCentimeterInOnePascal, pascal.Convert(PressureUnit.NewtonPerSquareCentimeter), Delta);
+            Assert.AreEqual(NewtonsPerSquareMeterInOnePascal, pascal.Convert(PressureUnit.NewtonPerSquareMeter), Delta);
+            Assert.AreEqual(NewtonsPerSquareMillimeterInOnePascal, pascal.Convert(PressureUnit.NewtonPerSquareMillimeter), Delta);
+            Assert.AreEqual(PascalsInOnePascal, pascal.Convert(PressureUnit.Pascal), Delta);
+            Assert.AreEqual(PsiInOnePascal, pascal.Convert(PressureUnit.Psi), Delta);
+            Assert.AreEqual(TechnicalAtmospheresInOnePascal, pascal.Convert(PressureUnit.TechnicalAtmosphere), Delta);
+            Assert.AreEqual(TorrsInOnePascal, pascal.Convert(PressureUnit.Torr), Delta);
         }
 
         [Test]

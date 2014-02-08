@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -57,6 +58,34 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DegreesReaumurInOneKelvin, kelvin.DegreesReaumur, Delta);
             Assert.AreEqual(DegreesRoemerInOneKelvin, kelvin.DegreesRoemer, Delta);
             Assert.AreEqual(KelvinsInOneKelvin, kelvin.Kelvins, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeCelsius).DegreesCelsius, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeDelisle).DegreesDelisle, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeFahrenheit).DegreesFahrenheit, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeNewton).DegreesNewton, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeRankine).DegreesRankine, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeReaumur).DegreesReaumur, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.DegreeRoemer).DegreesRoemer, Delta);
+            Assert.AreEqual(1, Temperature.From(1, TemperatureUnit.Kelvin).Kelvins, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var kelvin = Temperature.FromKelvins(1);
+            Assert.AreEqual(DegreesCelsiusInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeCelsius), Delta);
+            Assert.AreEqual(DegreesDelisleInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeDelisle), Delta);
+            Assert.AreEqual(DegreesFahrenheitInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeFahrenheit), Delta);
+            Assert.AreEqual(DegreesNewtonInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeNewton), Delta);
+            Assert.AreEqual(DegreesRankineInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeRankine), Delta);
+            Assert.AreEqual(DegreesReaumurInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeReaumur), Delta);
+            Assert.AreEqual(DegreesRoemerInOneKelvin, kelvin.Convert(TemperatureUnit.DegreeRoemer), Delta);
+            Assert.AreEqual(KelvinsInOneKelvin, kelvin.Convert(TemperatureUnit.Kelvin), Delta);
         }
 
         [Test]

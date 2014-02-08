@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -51,6 +52,28 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Knots, Delta);
             Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.MetersPerSecond, Delta);
             Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.MilesPerHour, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, Delta);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, Delta);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.Knot).Knots, Delta);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, Delta);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var meterpersecond = Speed.FromMetersPerSecond(1);
+            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.FootPerSecond), Delta);
+            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.KilometerPerHour), Delta);
+            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.Knot), Delta);
+            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.MeterPerSecond), Delta);
+            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.Convert(SpeedUnit.MilePerHour), Delta);
         }
 
         [Test]

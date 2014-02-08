@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -77,6 +78,54 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Milliliters, Delta);
             Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, Delta);
             Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.UsOunces, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Centiliter).Centiliters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicCentimeter).CubicCentimeters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicDecimeter).CubicDecimeters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicFoot).CubicFeet, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicInch).CubicInches, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicKilometer).CubicKilometers, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMeter).CubicMeters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMile).CubicMiles, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMillimeter).CubicMillimeters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Deciliter).Deciliters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Hectoliter).Hectoliters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialGallon).ImperialGallons, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialOunce).ImperialOunces, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Liter).Liters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Milliliter).Milliliters, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsGallon).UsGallons, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsOunce).UsOunces, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var cubicmeter = Volume.FromCubicMeters(1);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.Centiliter), Delta);
+            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicCentimeter), Delta);
+            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicDecimeter), Delta);
+            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicFoot), Delta);
+            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicInch), Delta);
+            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicKilometer), Delta);
+            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicMeter), Delta);
+            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicMile), Delta);
+            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicMillimeter), Delta);
+            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.Convert(VolumeUnit.CubicYard), Delta);
+            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.Deciliter), Delta);
+            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.Hectoliter), Delta);
+            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.Convert(VolumeUnit.ImperialGallon), Delta);
+            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.Convert(VolumeUnit.ImperialOunce), Delta);
+            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.Liter), Delta);
+            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Convert(VolumeUnit.Milliliter), Delta);
+            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.Convert(VolumeUnit.UsGallon), Delta);
+            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.Convert(VolumeUnit.UsOunce), Delta);
         }
 
         [Test]

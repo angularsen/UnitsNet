@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -71,6 +72,48 @@ namespace UnitsNet.Tests
             Assert.AreEqual(PoundsInOneKilogram, kilogram.Pounds, Delta);
             Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, Delta);
             Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Centigram).Centigrams, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Decagram).Decagrams, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Decigram).Decigrams, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Gram).Grams, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Hectogram).Hectograms, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilogram).Kilograms, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.LongTon).LongTons, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Microgram).Micrograms, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Milligram).Milligrams, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Nanogram).Nanograms, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Pound).Pounds, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.ShortTon).ShortTons, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Tonne).Tonnes, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var kilogram = Mass.FromKilograms(1);
+            Assert.AreEqual(CentigramsInOneKilogram, kilogram.Convert(MassUnit.Centigram), Delta);
+            Assert.AreEqual(DecagramsInOneKilogram, kilogram.Convert(MassUnit.Decagram), Delta);
+            Assert.AreEqual(DecigramsInOneKilogram, kilogram.Convert(MassUnit.Decigram), Delta);
+            Assert.AreEqual(GramsInOneKilogram, kilogram.Convert(MassUnit.Gram), Delta);
+            Assert.AreEqual(HectogramsInOneKilogram, kilogram.Convert(MassUnit.Hectogram), Delta);
+            Assert.AreEqual(KilogramsInOneKilogram, kilogram.Convert(MassUnit.Kilogram), Delta);
+            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.Convert(MassUnit.Kilotonne), Delta);
+            Assert.AreEqual(LongTonsInOneKilogram, kilogram.Convert(MassUnit.LongTon), Delta);
+            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.Convert(MassUnit.Megatonne), Delta);
+            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Convert(MassUnit.Microgram), Delta);
+            Assert.AreEqual(MilligramsInOneKilogram, kilogram.Convert(MassUnit.Milligram), Delta);
+            Assert.AreEqual(NanogramsInOneKilogram, kilogram.Convert(MassUnit.Nanogram), Delta);
+            Assert.AreEqual(PoundsInOneKilogram, kilogram.Convert(MassUnit.Pound), Delta);
+            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.Convert(MassUnit.ShortTon), Delta);
+            Assert.AreEqual(TonnesInOneKilogram, kilogram.Convert(MassUnit.Tonne), Delta);
         }
 
         [Test]

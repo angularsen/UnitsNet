@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -61,6 +62,38 @@ namespace UnitsNet.Tests
             Assert.AreEqual(SecondsInOneSecond, second.Seconds, Delta);
             Assert.AreEqual(WeeksInOneSecond, second.Weeks, Delta);
             Assert.AreEqual(Year365DayssInOneSecond, second.Year365Dayss, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Day).Days, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Hour).Hours, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Microsecond).Microseconds, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Millisecond).Milliseconds, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Minute).Minutes, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Month30Days).Month30Dayss, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Nanosecond).Nanoseconds, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Second).Seconds, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Week).Weeks, Delta);
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Year365Days).Year365Dayss, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var second = Duration.FromSeconds(1);
+            Assert.AreEqual(DaysInOneSecond, second.Convert(DurationUnit.Day), Delta);
+            Assert.AreEqual(HoursInOneSecond, second.Convert(DurationUnit.Hour), Delta);
+            Assert.AreEqual(MicrosecondsInOneSecond, second.Convert(DurationUnit.Microsecond), Delta);
+            Assert.AreEqual(MillisecondsInOneSecond, second.Convert(DurationUnit.Millisecond), Delta);
+            Assert.AreEqual(MinutesInOneSecond, second.Convert(DurationUnit.Minute), Delta);
+            Assert.AreEqual(Month30DayssInOneSecond, second.Convert(DurationUnit.Month30Days), Delta);
+            Assert.AreEqual(NanosecondsInOneSecond, second.Convert(DurationUnit.Nanosecond), Delta);
+            Assert.AreEqual(SecondsInOneSecond, second.Convert(DurationUnit.Second), Delta);
+            Assert.AreEqual(WeeksInOneSecond, second.Convert(DurationUnit.Week), Delta);
+            Assert.AreEqual(Year365DayssInOneSecond, second.Convert(DurationUnit.Year365Days), Delta);
         }
 
         [Test]

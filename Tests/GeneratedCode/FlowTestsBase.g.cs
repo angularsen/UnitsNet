@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -45,6 +46,22 @@ namespace UnitsNet.Tests
             Flow cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
             Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerHour, Delta);
             Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerSecond, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Flow.From(1, FlowUnit.CubicMeterPerHour).CubicMetersPerHour, Delta);
+            Assert.AreEqual(1, Flow.From(1, FlowUnit.CubicMeterPerSecond).CubicMetersPerSecond, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
+            Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.Convert(FlowUnit.CubicMeterPerHour), Delta);
+            Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.Convert(FlowUnit.CubicMeterPerSecond), Delta);
         }
 
         [Test]

@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -47,6 +48,24 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DegreesInOneDegree, degree.Degrees, Delta);
             Assert.AreEqual(GradiansInOneDegree, degree.Gradians, Delta);
             Assert.AreEqual(RadiansInOneDegree, degree.Radians, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Degree).Degrees, Delta);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Gradian).Gradians, Delta);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Radian).Radians, Delta);
+        }
+
+
+        [Test]
+        public void In()
+        {
+            var degree = Angle.FromDegrees(1);
+            Assert.AreEqual(DegreesInOneDegree, degree.Convert(AngleUnit.Degree), Delta);
+            Assert.AreEqual(GradiansInOneDegree, degree.Convert(AngleUnit.Gradian), Delta);
+            Assert.AreEqual(RadiansInOneDegree, degree.Convert(AngleUnit.Radian), Delta);
         }
 
         [Test]
