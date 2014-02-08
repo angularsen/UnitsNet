@@ -78,13 +78,16 @@ namespace UnitsNet.Tests.net35.CustomCode
             Length2d a = Length2d.FromMeters(1, 2);
             Length2d b = Length2d.FromMeters(2, 1);
 
-// ReSharper disable EqualExpressionComparison
+            // ReSharper disable EqualExpressionComparison
+            // Disable build warning: Comparison made to same variable; did you mean to compare something else?
+#pragma warning disable 1718
             Assert.True(a == a);
             Assert.True(a != b);
 
             Assert.False(a == b);
             Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
+#pragma warning restore 1718
+            // ReSharper restore EqualExpressionComparison
         }
 
         [Test]
