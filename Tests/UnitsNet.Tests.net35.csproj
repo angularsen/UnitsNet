@@ -109,7 +109,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GeneratedCode\Includes\UnitTestClass.ttinclude" />
     <None Include="GeneratedCode\UnitTestClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UnitTestClasses.txt</LastGenOutput>
