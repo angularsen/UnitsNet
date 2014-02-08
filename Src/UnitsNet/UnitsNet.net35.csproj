@@ -76,6 +76,9 @@
     <Compile Include="GeneratedCode\Pressure.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedCode\Ratio.g.cs">
+      <DependentUpon>UnitClasses.tt</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedCode\RotationalSpeed.g.cs">
       <DependentUpon>UnitClasses.tt</DependentUpon>
     </Compile>
@@ -104,6 +107,7 @@
     <Compile Include="Templating\UnitInfo.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UnitSystem.cs" />
+    <Compile Include="Units\RatioUnit.cs" />
     <Compile Include="Units\AngleUnit.cs" />
     <Compile Include="Units\AreaUnit.cs" />
     <Compile Include="Units\DurationUnit.cs" />
