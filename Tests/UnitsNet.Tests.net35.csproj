@@ -57,6 +57,7 @@
     <Compile Include="CustomCode\LengthTests.cs" />
     <Compile Include="CustomCode\MassTests.cs" />
     <Compile Include="CustomCode\PressureTests.cs" />
+    <Compile Include="CustomCode\RatioTests.cs" />
     <Compile Include="CustomCode\RotationalSpeedTests.cs" />
     <Compile Include="CustomCode\SpeedTests.cs" />
     <Compile Include="CustomCode\TemperatureTests.cs" />
@@ -87,6 +88,9 @@
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\PressureTestsBase.g.cs">
+      <DependentUpon>UnitTestClasses.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedCode\RatioTestsBase.g.cs">
       <DependentUpon>UnitTestClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\RotationalSpeedTestsBase.g.cs">

@@ -126,6 +126,18 @@ namespace UnitsNet.Attributes
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class RatioAttribute : UnitAttribute, IUnitAttribute
+    {
+        public RatioUnit BaseUnit { get { return RatioUnit.DecimalFraction; } }
+        public string BaseUnitName { get { return BaseUnit.ToString(); }}
+        public string XmlDocSummary { get { return "In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as \"a to b\" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer)."; } }
+
+        public RatioAttribute(double fraction, string pluralName = (string)null) : base(pluralName, fraction, offset: 0)
+        {
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class RotationalSpeedAttribute : UnitAttribute, IUnitAttribute
     {
         public RotationalSpeedUnit BaseUnit { get { return RotationalSpeedUnit.RevolutionPerSecond; } }
