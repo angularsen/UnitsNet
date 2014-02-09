@@ -2,16 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>1.13</version>
+    <version>2.0.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
-    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/develop/LICENSE</licenseUrl>
     <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v1.13: Add mass unit (pound) (thanks @strvmarv). 
+    <releaseNotes>v2.0.0: Add support for custom units. Add ratio unit.
+
+Breaking changes: Merge UnitValue and UnitConverter into unit classes.
+
+v1.13: Add mass unit (pound) (thanks @strvmarv). 
 
 v1.12: Add speed units (km/h, m/s, ft/s, knots, mph). Add mass units (microgram, nanogram).
 
@@ -46,7 +50,5 @@ v1.2: Add force, torque, pressure, mass, voltage, length and length2d units of m
   <files>
     <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
     <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.sl4.dll" target="lib\sl4\UnitsNet.sl4.dll" />
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.netcore45.dll" target="lib\netcore45\UnitsNet.netcore45.dll" />
   </files>
 </package>

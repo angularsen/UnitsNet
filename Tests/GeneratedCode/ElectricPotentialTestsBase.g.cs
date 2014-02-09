@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -43,6 +44,20 @@ namespace UnitsNet.Tests
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
             Assert.AreEqual(VoltsInOneVolt, volt.Volts, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, Delta);
+        }
+
+
+        [Test]
+        public void As()
+        {
+            var volt = ElectricPotential.FromVolts(1);
+            Assert.AreEqual(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), Delta);
         }
 
         [Test]

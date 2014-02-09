@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -67,6 +68,44 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, Delta);
             Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, Delta);
             Assert.AreEqual(YardsInOneMeter, meter.Yards, Delta);
+        }
+
+        [Test]
+        public void FromValueAndUnit()
+        {
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Centimeter).Centimeters, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Meter).Meters, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Microinch).Microinches, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Micrometer).Micrometers, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Mil).Mils, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Mile).Miles, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, Delta);
+        }
+
+
+        [Test]
+        public void As()
+        {
+            var meter = Length.FromMeters(1);
+            Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), Delta);
+            Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), Delta);
+            Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), Delta);
+            Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), Delta);
+            Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), Delta);
+            Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), Delta);
+            Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), Delta);
+            Assert.AreEqual(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), Delta);
+            Assert.AreEqual(MilsInOneMeter, meter.As(LengthUnit.Mil), Delta);
+            Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), Delta);
+            Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), Delta);
+            Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), Delta);
+            Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), Delta);
         }
 
         [Test]

@@ -1,8 +1,0 @@
-﻿<#@ template debug="True" language="C#" hostspecific="True" #>
-<#@ include file="..\..\Src\UnitsNet\GeneratedCode\Includes\Shared.ttinclude" once="true" #>
-<#@ include file="Includes\UnitValueTests.ttinclude" once="true" #>
-<#@ output extension=".g.cs" #>
-<#
-    Dictionary<Unit, UnitAttribute> unitToAttribute = GetUnitToAttributeDictionary<UnitAttribute>();
-    GenerateUnitValueTests(unitToAttribute);
-#><#+ #>

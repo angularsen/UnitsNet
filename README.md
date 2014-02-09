@@ -1,4 +1,4 @@
-[![Build Status](http://anj.no:8500/app/rest/builds/buildType:(id:UnitsNet_Base)/statusIcon)](http://anj.no:8500/viewType.html?buildTypeId=btN&guest=1 "Build Status")
+[![Build Status](http://anj.no:8500/app/rest/builds/buildType:(id:UnitsNet_ReleaseBuilds)/statusIcon)](http://anj.no:8500/viewType.html?buildTypeId=UnitsNet_ReleaseBuilds&guest=1 "Build Status")
 Units.NET
 ========
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
@@ -132,5 +132,24 @@ Want To Contribute?
 This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask](https://github.com/InitialForce/UnitsNet/issues) for it by creating an issue.
 
 Before adding new units, please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit). Other than that, we could always use more/better tests and documentation.
+
+The repo uses [git-flow](https://github.com/nvie/gitflow) branch structure. 
+In practice this means:
+  * [Fork the repo](https://help.github.com/articles/fork-a-repo) as normal
+  * Checkout the default **develop** branch. There is no master branch.
+  * Adding a new unit
+    * Branch out from **develop** into **feature/MyNewUnit**
+  * Fixing a bug in latest release
+    * Branch out from **stable** into **hotfix/FixSomeBug**
+  * [Create a pull request](https://help.github.com/articles/using-pull-requests) as normal.
+
+Using [git-flow extensions](https://github.com/nvie/gitflow/wiki/Installation) is recommended, but not necessary.
+
+Continuous Integration
+======================
+A [TeamCity build server](http://anj.no:8500/project.html?projectId=UnitsNet&tab=projectOverview&guest=1) performs the following:
+  * Build and test pull requests. Notifies on success or error.
+  * Build and publish nuget on commits to **stable** branch.
+
 
 [Contact me](https://github.com/anjdreas) if you have any questions.
