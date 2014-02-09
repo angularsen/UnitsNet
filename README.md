@@ -1,52 +1,41 @@
 [![Build Status](http://anj.no:8500/app/rest/builds/buildType:(id:UnitsNet_ReleaseBuilds)/statusIcon)](http://anj.no:8500/viewType.html?buildTypeId=UnitsNet_ReleaseBuilds&guest=1 "Build Status")
 Units.NET
-========
+===
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
 
 
-Install
-=======
-To install Units.NET, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/ "NuGet site") for the complete relase history.
+Installing
+===
+Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
 
-![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/develop/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
+* Portable Class Library (.NET 4.0 + Silverlight 5 + Win8/WinPhone8)
 * .NET 3.5 Client
-* Silverlight 4
-* WinRT / .NET Core 4.5
-* Portable Class Library (.NET 4.0 + Silverlight 4 + Windows Phone 7 + Xbox 360)
 
 Features
-========
+===
+* 15+ units of measurement, [see full list](https://github.com/InitialForce/UnitsNet/tree/develop/Src/UnitsNet/Units)
+* Generated code for uniform implementations and fewer bugs
+* Immutable structs implementing IEquatable, IComparable and operator overloads
+* Extendable with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
+* Localization of abbreviations
+* ToString() variants for custom cultures and format patterns
+* Over 220 tests to ensure conversions and localizations are in order
 
-* Immutable structs for units of measurement, such as Length, Mass, Force and Pressure. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/ "Data structures").
-* Convert between most popular units in the metric and imperial systems. See full list [here](https://github.com/InitialForce/UnitsNet/blob/master/Src/UnitsNet/Unit.cs "Unit.cs").
-* Choose between static (Length, Mass, Force etc.) or dynamic (UnitValue) representations for units of measurement.
-* Parse abbreviation string to unit taking culture into account.
-* Get abbreviation string for unit in different cultures.
-
-Static Representation and Explicit Conversion
------------------------------------------------
+Statically Typed Units
+---
 ```C#
-// Stop postfixing your variables and method names with the unit...
-double weightKg = GetPersonWeightInKg();
-UpdatePersonWeightInGrams(weightKg * 1000);
-
-// ...and start using a static representation for the measurement then 
-// explicitly convert to the unit of choice - when you need it.
+// Convert to the unit of choice - when you need it.
 Mass weight = GetPersonWeight();
 UpdatePersonWeightInGrams(weight.Grams);
 
-// Convert between compatible units of measurement...
-Force scaleMeasurement = Force.FromNewtons(850);
-Mass personWeight = Mass.FromGravitationalForce(scaleMeasurement);
-double weightKg = personWeight.Kilograms;
-
-// ...while avoiding confusing conversions, such as between weight and mass.
+// Avoid confusing conversions, such as between weight and mass.
 Mass weight = GetPersonWeight();
-double weightNewtons = weight.Newtons; // No such thing.
+double weightNewtons = weight.Newtons; // No such thing
 
 // Some popular conversions.
 Length meter = Length.FromMeters(1);
@@ -54,102 +43,103 @@ double cm = meter.Centimeters; // 100
 double yards = meter.Yards; // 1.09361
 double feet = meter.Feet; // 3.28084
 double inches = meter.Inches; // 39.3701
-
-Pressure p = Pressure.FromPascal(1);
-double kpa = p.KiloPascals; // 1×10-3
-double bar = p.Bars; // 1×10-5
-double atm = p.Atmosphere; // 9.86923267×10-6
-double psi = p.Psi; // 1.45037738×10-4
 ```
 
-Dynamic Representation and Conversion
-------------------
+Unit Enumeration
+---
+All units have a corresponding unit enum value, in fact the unit classes are generated from these. This is useful when you want to let the user choose the unit, such as when editing the height in his user profile.
 ```C#
-// Explicitly
-double m = UnitConverter.Convert(1, Unit.Kilometer, Unit.Meter); // 1000
-double mi = UnitConverter.Convert(1, Unit.Kilometer, Unit.Mile); // 0.621371
-double yds = UnitConverter.Convert(1, Unit.Meter, Unit.Yard); // 1.09361
+/// <summary>Convert the previous height to the new unit.</summary>
+void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit newUnit)
+{
+    // Construct from dynamic unit and value
+    var prevHeight = Length.From(prevValue, prevUnit);
 
-// Or dynamically.
-UnitValue val = GetUnknownValueAndUnit();
+    // Convert to the new unit
+    double newHeightValue = prevHeight.As(newUnit);
 
-// Returns false if conversion was not possible.
-double cm;
-val.TryConvert(Unit.Centimeter, out cm);
+    // Update UI with the converted value and the newly selected unit
+    UpdateHeightUI(newHeightValue, newUnit);
+}
 ```
 
-Helper Methods to Construct Measurements
-----------------------------------------
+Culture and Localization
+---
+The culture defaults to Thread.CurrentUICulture and affects localization of unit abbreviations as well as number formatting. The relevant methods are:
+
+* ToString()
+* GetAbbreviation()
+* Parse/TryParse()
+* ParseUnit/TryParseUnit() support cultures. 
+
+The abbreviations support localization, but currently only US English, Russian and Norwegian are implemented. Localization defaults to US English if no localization for the current/specified culture is found.
+
 ```C#
-var f = Force.FromPressureByArea(Pressure p, Length2d area);
-var f = Force.FromMassAcceleration(Mass mass, double metersPerSecondSquared);
+var usEnglish = new CultureInfo("en-US");
+var russian = new CultureInfo("ru-RU");
+var oneKg = Mass.FromKilograms(1);
+
+// ToString() with Thread.CurrentUICulture as US English and Russian respectively
+"1 kg" == oneKg.ToString();
+"1 кг" == oneKg.ToString();
+
+// ToString() with specific culture and string format pattern
+"mg 1.00" == oneKg.ToString(MassUnit.Milligram, usEnglish, "{1} {0:0.00}");
+"мг 1,00" == oneKg.ToString(MassUnit.Milligram, russian, "{1} {0:0.00}");
+
+// Parse measurement from string
+Mass kg = Mass.Parse(usEnglish, "1.0 kg");
+Mass kg = Mass.Parse(russian, "1,0 кг");
+
+// Parse unit from string, a unit can have multiple abbreviations
+RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("rpm");
+RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
+
+// Get default abbreviation for a unit
+"kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
 ```
 
-Parse and Get Culture-Specific Abbreviations
--------------------------------------------------
+Helper Construction Methods
+---
+Construct measurements with various helper methods for convenience and readability.
 ```C#
-var us = new CultureInfo("en-US");
-var norwegian = new CultureInfo("nb-NO");
-  
-Unit.Tablespoon == UnitSystem.Create(us).Parse("tbsp");
-Unit.Tablespoon == UnitSystem.Create(norwegian).Parse("ss");
-
-"T" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, us);
-"ss" == UnitSystem.GetDefaultAbbreviation(Unit.Tablespoon, norwegian);
+Force.FromPressureByArea(Pressure p, Length2d area)
+Force.FromMassAcceleration(Mass mass, double metersPerSecondSquared)
 ```
 
-Precision
-=========
-A base unit is chosen for all classes of units, which is represented by a double value (64-bit), and all conversions go via this unit.
-This means there will always be a small error in both representing other units than the base unit as well as converting between units.
+Precision and Accuracy
+===
+A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units. Also, some conversions may use different constants in different contexts, such as the air temperature or the standard gravity.
 
-In the unit tests I accept an error less than 1E-5 for all units I've added so far. In many usecases this is sufficient, but for some usecases this is definitely not OK and something you need to be aware of.
+Units.NET was intended for convenience and ease of use, not highly accurate conversions, but I am open to suggestions for improvements.
+
+The tests accept an error up to 1E-5 for all the units added so far. In many usecases this is sufficient, but for others this may be a showstopper and something you need to be aware of.
+
 For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision).
 
 
 What It Is Not
-==============
-
+===
 * It is not an equation solver. 
 * It does not figure out the units after a calculation.
 
-Frequently Asked Questions
-==========================
-Q: Why is the conversion not perfectly accurate? 
-As an example, when converting 1 PoundForce (lbF) to KilogramForce (kgF) I expected the result to be 0.45359237 and instead I got​0.45359240790780886 using the following for the conversion:
-
-```C# 
-double kg = UnitConverter.Convert(1, Unit.PoundForce, Unit.KilogramForce);
-```
-
-A: There are a few concerns here.
-* For several unit conversions there is no one perfect answer. Some units depend on constants such as the standard gravity, where different precisions are used in different contexts. Other constants depend on the environment, such as the temperature or altitude.
-* By design, Units.NET was not intended for high-accuracy conversions but rather convenience and simplicity. I am open to suggestions for improvements. If you want to know more, see the [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision) article.
-
-
 Want To Contribute?
-===================
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask](https://github.com/InitialForce/UnitsNet/issues) for it by creating an issue.
+==
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/InitialForce/UnitsNet/issues) by creating an issue.
 
-Before adding new units, please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit). Other than that, we could always use more/better tests and documentation.
+Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
 
 The repo uses [git-flow](https://github.com/nvie/gitflow) branch structure. 
 In practice this means:
   * [Fork the repo](https://help.github.com/articles/fork-a-repo) as normal
   * Checkout the default **develop** branch. There is no master branch.
-  * Adding a new unit
-    * Branch out from **develop** into **feature/MyNewUnit**
-  * Fixing a bug in latest release
-    * Branch out from **stable** into **hotfix/FixSomeBug**
+  * Do work on branches such as **feature/add-myunit** and **fix-some-bug**
   * [Create a pull request](https://help.github.com/articles/using-pull-requests) as normal.
 
-Using [git-flow extensions](https://github.com/nvie/gitflow/wiki/Installation) is recommended, but not necessary.
-
 Continuous Integration
-======================
+===
 A [TeamCity build server](http://anj.no:8500/project.html?projectId=UnitsNet&tab=projectOverview&guest=1) performs the following:
-  * Build and test pull requests. Notifies on success or error.
-  * Build and publish nuget on commits to **stable** branch.
-
+* Build and test pull requests. Notifies on success or error.
+* Build, test and publish nuget on commits to **stable** branch.
 
 [Contact me](https://github.com/anjdreas) if you have any questions.
