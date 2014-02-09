@@ -133,10 +133,7 @@ The repo uses [git-flow](https://github.com/nvie/gitflow) branch structure.
 In practice this means:
   * [Fork the repo](https://help.github.com/articles/fork-a-repo) as normal
   * Checkout the default **develop** branch. There is no master branch.
-  * Adding a new unit
-    * Branch out from **develop** into **feature/add-myunit**
-  * Fixing a bug in the latest release
-    * Branch out from **develop** into **fix-some-bug**
+  * Do work on branches such as **feature/add-myunit** and **fix-some-bug**
   * [Create a pull request](https://help.github.com/articles/using-pull-requests) as normal.
 
 Continuous Integration
