@@ -24,7 +24,7 @@ Features
 * Extendable with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
 * Localization of abbreviations
 * ToString() variants for custom cultures and format patterns
-* Over 220 tests to ensure conversions and localizations are in order
+* Over 200 tests to ensure conversions and localizations are in order
 
 Statically Typed Units
 ---
