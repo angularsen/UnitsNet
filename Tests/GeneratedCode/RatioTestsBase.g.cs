@@ -42,7 +42,7 @@ namespace UnitsNet.Tests
         public abstract double PartsPerMillionsInOneDecimalFraction { get; }
         public abstract double PartsPerThousandsInOneDecimalFraction { get; }
         public abstract double PartsPerTrillionsInOneDecimalFraction { get; }
-        public abstract double PercentsInOneDecimalFraction { get; }
+        public abstract double PercentInOneDecimalFraction { get; }
 
         [Test]
         public void DecimalFractionToRatioUnits()
@@ -53,7 +53,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(PartsPerMillionsInOneDecimalFraction, decimalfraction.PartsPerMillions, Delta);
             Assert.AreEqual(PartsPerThousandsInOneDecimalFraction, decimalfraction.PartsPerThousands, Delta);
             Assert.AreEqual(PartsPerTrillionsInOneDecimalFraction, decimalfraction.PartsPerTrillions, Delta);
-            Assert.AreEqual(PercentsInOneDecimalFraction, decimalfraction.Percents, Delta);
+            Assert.AreEqual(PercentInOneDecimalFraction, decimalfraction.Percent, Delta);
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Ratio.From(1, RatioUnit.PartsPerMillion).PartsPerMillions, Delta);
             Assert.AreEqual(1, Ratio.From(1, RatioUnit.PartsPerThousand).PartsPerThousands, Delta);
             Assert.AreEqual(1, Ratio.From(1, RatioUnit.PartsPerTrillion).PartsPerTrillions, Delta);
-            Assert.AreEqual(1, Ratio.From(1, RatioUnit.Percent).Percents, Delta);
+            Assert.AreEqual(1, Ratio.From(1, RatioUnit.Percent).Percent, Delta);
         }
 
 
@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(PartsPerMillionsInOneDecimalFraction, decimalfraction.As(RatioUnit.PartsPerMillion), Delta);
             Assert.AreEqual(PartsPerThousandsInOneDecimalFraction, decimalfraction.As(RatioUnit.PartsPerThousand), Delta);
             Assert.AreEqual(PartsPerTrillionsInOneDecimalFraction, decimalfraction.As(RatioUnit.PartsPerTrillion), Delta);
-            Assert.AreEqual(PercentsInOneDecimalFraction, decimalfraction.As(RatioUnit.Percent), Delta);
+            Assert.AreEqual(PercentInOneDecimalFraction, decimalfraction.As(RatioUnit.Percent), Delta);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Ratio.FromPartsPerMillions(decimalfraction.PartsPerMillions).DecimalFractions, Delta);
             Assert.AreEqual(1, Ratio.FromPartsPerThousands(decimalfraction.PartsPerThousands).DecimalFractions, Delta);
             Assert.AreEqual(1, Ratio.FromPartsPerTrillions(decimalfraction.PartsPerTrillions).DecimalFractions, Delta);
-            Assert.AreEqual(1, Ratio.FromPercents(decimalfraction.Percents).DecimalFractions, Delta);
+            Assert.AreEqual(1, Ratio.FromPercent(decimalfraction.Percent).DecimalFractions, Delta);
         }
 
         [Test]

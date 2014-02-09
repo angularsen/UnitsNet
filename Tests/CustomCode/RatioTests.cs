@@ -49,9 +49,9 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1e12; }
         }
 
-        public override double PercentsInOneDecimalFraction
+        public override double PercentInOneDecimalFraction
         {
             get { return 100; }
-        }
+        } 
     }
 }

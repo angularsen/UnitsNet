@@ -81,10 +81,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Get Ratio in Percents.
+        /// Get Ratio in Percent.
         /// </summary>
-        /// <remarks>Example: x = (y - b) / a where x is value in Percents and y is value in base unit DecimalFractions.</remarks>
-        public double Percents
+        /// <remarks>Example: x = (y - b) / a where x is value in Percent and y is value in base unit DecimalFractions.</remarks>
+        public double Percent
         { 
             get { return DecimalFractions / 0.01; }
         }
@@ -144,12 +144,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Get Ratio from Percents.
+        /// Get Ratio from Percent.
         /// </summary>
-        /// <remarks>Example: y = ax + b where x is value in Percents and y is value in base unit DecimalFractions.</remarks>
-        public static Ratio FromPercents(double percents)
+        /// <remarks>Example: y = ax + b where x is value in Percent and y is value in base unit DecimalFractions.</remarks>
+        public static Ratio FromPercent(double percent)
         { 
-            return new Ratio(0.01 * percents);
+            return new Ratio(0.01 * percent);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace UnitsNet
                 case RatioUnit.PartsPerTrillion:
                     return FromPartsPerTrillions(value);
                 case RatioUnit.Percent:
-                    return FromPercents(value);
+                    return FromPercent(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -316,7 +316,7 @@ namespace UnitsNet
                 case RatioUnit.PartsPerTrillion:
                     return PartsPerTrillions;
                 case RatioUnit.Percent:
-                    return Percents;
+                    return Percent;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
