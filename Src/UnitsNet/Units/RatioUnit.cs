@@ -17,7 +17,7 @@ namespace UnitsNet.Units
 
         [I18n("en-US", "")]
         [I18n("ru-RU", "")]
-        [Ratio(1e-2)]
+        [Ratio(1e-2, "Percent")]
         Percent,
 
         [I18n("en-US", "")]

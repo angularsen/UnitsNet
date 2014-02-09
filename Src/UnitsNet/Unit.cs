@@ -36,9 +36,6 @@ namespace UnitsNet
         [I18n("nb-NO", "stk", "stk.", "x")]
         Piece,
 
-        [I18n("en-US", "%")]
-        Percent,
-
         // Cooking units
         // TODO Move to volume?
         [I18n("en-US", "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon")]
