@@ -13,6 +13,8 @@
     <summary>Simplifies working with units of measurement.</summary>
     <releaseNotes>v2.0.0: Add support for custom units. Add ratio unit.
 
+Breaking changes: Merge UnitValue and UnitConverter into unit classes.
+
 v1.13: Add mass unit (pound) (thanks @strvmarv). 
 
 v1.12: Add speed units (km/h, m/s, ft/s, knots, mph). Add mass units (microgram, nanogram).
