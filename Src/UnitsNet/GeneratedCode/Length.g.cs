@@ -81,6 +81,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Length in InternationalNauticalMiles.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in InternationalNauticalMiles and y is value in base unit Meters.</remarks>
+        public double InternationalNauticalMiles
+        { 
+            get { return Meters / 1852; }
+        }
+
+        /// <summary>
         /// Get Length in Kilometers.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in Kilometers and y is value in base unit Meters.</remarks>
@@ -198,6 +207,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Length from InternationalNauticalMiles.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in InternationalNauticalMiles and y is value in base unit Meters.</remarks>
+        public static Length FromInternationalNauticalMiles(double internationalnauticalmiles)
+        { 
+            return new Length(1852 * internationalnauticalmiles);
+        }
+
+        /// <summary>
         /// Get Length from Kilometers.
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in Kilometers and y is value in base unit Meters.</remarks>
@@ -296,6 +314,8 @@ namespace UnitsNet
                     return FromFeet(value);
                 case LengthUnit.Inch:
                     return FromInches(value);
+                case LengthUnit.InternationalNauticalMile:
+                    return FromInternationalNauticalMiles(value);
                 case LengthUnit.Kilometer:
                     return FromKilometers(value);
                 case LengthUnit.Meter:
@@ -453,6 +473,8 @@ namespace UnitsNet
                     return Feet;
                 case LengthUnit.Inch:
                     return Inches;
+                case LengthUnit.InternationalNauticalMile:
+                    return InternationalNauticalMiles;
                 case LengthUnit.Kilometer:
                     return Kilometers;
                 case LengthUnit.Meter:

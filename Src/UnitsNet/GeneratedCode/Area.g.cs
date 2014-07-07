@@ -81,6 +81,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Area in SquareInternationalNauticalMiles.
+        /// </summary>
+        /// <remarks>Example: x = (y - b) / a where x is value in SquareInternationalNauticalMiles and y is value in base unit SquareMeters.</remarks>
+        public double SquareInternationalNauticalMiles
+        { 
+            get { return SquareMeters / 3429904; }
+        }
+
+        /// <summary>
         /// Get Area in SquareKilometers.
         /// </summary>
         /// <remarks>Example: x = (y - b) / a where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
@@ -162,6 +171,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Get Area from SquareInternationalNauticalMiles.
+        /// </summary>
+        /// <remarks>Example: y = ax + b where x is value in SquareInternationalNauticalMiles and y is value in base unit SquareMeters.</remarks>
+        public static Area FromSquareInternationalNauticalMiles(double squareinternationalnauticalmiles)
+        { 
+            return new Area(3429904 * squareinternationalnauticalmiles);
+        }
+
+        /// <summary>
         /// Get Area from SquareKilometers.
         /// </summary>
         /// <remarks>Example: y = ax + b where x is value in SquareKilometers and y is value in base unit SquareMeters.</remarks>
@@ -224,6 +242,8 @@ namespace UnitsNet
                     return FromSquareFeet(value);
                 case AreaUnit.SquareInch:
                     return FromSquareInches(value);
+                case AreaUnit.SquareInternationalNauticalMile:
+                    return FromSquareInternationalNauticalMiles(value);
                 case AreaUnit.SquareKilometer:
                     return FromSquareKilometers(value);
                 case AreaUnit.SquareMeter:
@@ -373,6 +393,8 @@ namespace UnitsNet
                     return SquareFeet;
                 case AreaUnit.SquareInch:
                     return SquareInches;
+                case AreaUnit.SquareInternationalNauticalMile:
+                    return SquareInternationalNauticalMiles;
                 case AreaUnit.SquareKilometer:
                     return SquareKilometers;
                 case AreaUnit.SquareMeter:

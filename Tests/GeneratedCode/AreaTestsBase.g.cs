@@ -41,6 +41,7 @@ namespace UnitsNet.Tests
         public abstract double SquareDecimetersInOneSquareMeter { get; }
         public abstract double SquareFeetInOneSquareMeter { get; }
         public abstract double SquareInchesInOneSquareMeter { get; }
+        public abstract double SquareInternationalNauticalMilesInOneSquareMeter { get; }
         public abstract double SquareKilometersInOneSquareMeter { get; }
         public abstract double SquareMetersInOneSquareMeter { get; }
         public abstract double SquareMilesInOneSquareMeter { get; }
@@ -55,6 +56,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(SquareDecimetersInOneSquareMeter, squaremeter.SquareDecimeters, Delta);
             Assert.AreEqual(SquareFeetInOneSquareMeter, squaremeter.SquareFeet, Delta);
             Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.SquareInches, Delta);
+            Assert.AreEqual(SquareInternationalNauticalMilesInOneSquareMeter, squaremeter.SquareInternationalNauticalMiles, Delta);
             Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.SquareKilometers, Delta);
             Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.SquareMeters, Delta);
             Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.SquareMiles, Delta);
@@ -69,6 +71,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareDecimeter).SquareDecimeters, Delta);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareFoot).SquareFeet, Delta);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareInch).SquareInches, Delta);
+            Assert.AreEqual(1, Area.From(1, AreaUnit.SquareInternationalNauticalMile).SquareInternationalNauticalMiles, Delta);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareKilometer).SquareKilometers, Delta);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMeter).SquareMeters, Delta);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMile).SquareMiles, Delta);
@@ -85,6 +88,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(SquareDecimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareDecimeter), Delta);
             Assert.AreEqual(SquareFeetInOneSquareMeter, squaremeter.As(AreaUnit.SquareFoot), Delta);
             Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.As(AreaUnit.SquareInch), Delta);
+            Assert.AreEqual(SquareInternationalNauticalMilesInOneSquareMeter, squaremeter.As(AreaUnit.SquareInternationalNauticalMile), Delta);
             Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.As(AreaUnit.SquareKilometer), Delta);
             Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMeter), Delta);
             Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.As(AreaUnit.SquareMile), Delta);
@@ -100,6 +104,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Area.FromSquareDecimeters(squaremeter.SquareDecimeters).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareFeet(squaremeter.SquareFeet).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareInches(squaremeter.SquareInches).SquareMeters, Delta);
+            Assert.AreEqual(1, Area.FromSquareInternationalNauticalMiles(squaremeter.SquareInternationalNauticalMiles).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareKilometers(squaremeter.SquareKilometers).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareMeters(squaremeter.SquareMeters).SquareMeters, Delta);
             Assert.AreEqual(1, Area.FromSquareMiles(squaremeter.SquareMiles).SquareMeters, Delta);

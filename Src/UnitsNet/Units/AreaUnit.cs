@@ -10,6 +10,18 @@ namespace UnitsNet.Units
         Undefined = 0,
 
         // Metric 
+        /*
+         * International Nautical Mile
+         * "Beginning on July 1, 1954, the National Bureau of Standards will use
+         * the international Nautical Mile in lieu of the U.S. Nautical Mil. This deciision, replacint the U.S. Nautical
+         * Mile of 1,853.248 meters (6,080.20 feet) by the International Nautical Mile of 1,852 meters (6,076.10333... feet),
+         * confirms an official agreement between the Secretart of Commerce and the Secretary of Defense to use the 
+         * Inernational Nautical Mile within their respective departments." http://physics.nist.gov/Pubs/SP447/app4.pdf
+        */
+        [I18n("en-US", "nmi²")]
+        [I18n("ru-RU", "нмиля²")]
+        [Length(3429904)]
+        SquareInternationalNauticalMile,
 
         [I18n("en-US", "km²")]
         [I18n("ru-RU", "км²")]

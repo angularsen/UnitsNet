@@ -41,6 +41,7 @@ namespace UnitsNet.Tests
         public abstract double DecimetersInOneMeter { get; }
         public abstract double FeetInOneMeter { get; }
         public abstract double InchesInOneMeter { get; }
+        public abstract double InternationalNauticalMilesInOneMeter { get; }
         public abstract double KilometersInOneMeter { get; }
         public abstract double MetersInOneMeter { get; }
         public abstract double MicroinchesInOneMeter { get; }
@@ -59,6 +60,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DecimetersInOneMeter, meter.Decimeters, Delta);
             Assert.AreEqual(FeetInOneMeter, meter.Feet, Delta);
             Assert.AreEqual(InchesInOneMeter, meter.Inches, Delta);
+            Assert.AreEqual(InternationalNauticalMilesInOneMeter, meter.InternationalNauticalMiles, Delta);
             Assert.AreEqual(KilometersInOneMeter, meter.Kilometers, Delta);
             Assert.AreEqual(MetersInOneMeter, meter.Meters, Delta);
             Assert.AreEqual(MicroinchesInOneMeter, meter.Microinches, Delta);
@@ -77,6 +79,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, Delta);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, Delta);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.InternationalNauticalMile).InternationalNauticalMiles, Delta);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, Delta);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Meter).Meters, Delta);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Microinch).Microinches, Delta);
@@ -97,6 +100,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), Delta);
             Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), Delta);
             Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), Delta);
+            Assert.AreEqual(InternationalNauticalMilesInOneMeter, meter.As(LengthUnit.InternationalNauticalMile), Delta);
             Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), Delta);
             Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), Delta);
             Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), Delta);
@@ -116,6 +120,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
             Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, Delta);
             Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, Delta);
+            Assert.AreEqual(1, Length.FromInternationalNauticalMiles(meter.InternationalNauticalMiles).Meters, Delta);
             Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
             Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, Delta);
             Assert.AreEqual(1, Length.FromMicroinches(meter.Microinches).Meters, Delta);
