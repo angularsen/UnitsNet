@@ -19,67 +19,66 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {
-        public override double AtmospheresInOnePascal
+        protected override double AtmospheresInOnePascal
         {
             get { return 9.8692*1E-6; }
         }
 
-        public override double BarsInOnePascal
+        protected override double BarsInOnePascal
         {
             get { return 1E-5; }
         }
 
-        public override double KilogramForcePerSquareCentimeterInOnePascal
+        protected override double KilogramsForcePerSquareCentimeterInOnePascal
         {
             get { return 1/98066.5; }
         }
 
-        public override double KilopascalsInOnePascal
+        protected override double KilopascalsInOnePascal
         {
             get { return 1E-3; }
         }
 
-        public override double MegapascalsInOnePascal
+        protected override double MegapascalsInOnePascal
         {
             get { return 1E-6; }
         }
 
-        public override double NewtonsPerSquareCentimeterInOnePascal
+        protected override double NewtonsPerSquareCentimeterInOnePascal
         {
             get { return 1E-4; }
         }
 
-        public override double NewtonsPerSquareMeterInOnePascal
+        protected override double NewtonsPerSquareMeterInOnePascal
         {
             get { return 1; }
         }
 
-        public override double NewtonsPerSquareMillimeterInOnePascal
+        protected override double NewtonsPerSquareMillimeterInOnePascal
         {
             get { return 1E-6; }
         }
 
-        public override double PascalsInOnePascal
+        protected override double PascalsInOnePascal
         {
             get { return 1; }
         }
 
-        public override double PsiInOnePascal
+        protected override double PsiInOnePascal
         {
             get { return 1.450377*1E-4; }
         }
 
-        public override double TechnicalAtmospheresInOnePascal
+        protected override double TechnicalAtmospheresInOnePascal
         {
             get { return 1.0197*1E-5; }
         }
 
-        public override double TorrsInOnePascal
+        protected override double TorrsInOnePascal
         {
             get { return 7.5006*1E-3; }
         }

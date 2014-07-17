@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,71 +33,77 @@ namespace UnitsNet.Tests
     /// Test of Speed.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpeedTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double FeetPerSecondInOneMeterPerSecond { get; }
+        protected abstract double KilometersPerHourInOneMeterPerSecond { get; }
+        protected abstract double KnotsInOneMeterPerSecond { get; }
+        protected abstract double MetersPerSecondInOneMeterPerSecond { get; }
+        protected abstract double MilesPerHourInOneMeterPerSecond { get; }
 
-        public abstract double FeetPerSecondInOneMeterPerSecond { get; }
-        public abstract double KilometersPerHourInOneMeterPerSecond { get; }
-        public abstract double KnotsInOneMeterPerSecond { get; }
-        public abstract double MetersPerSecondInOneMeterPerSecond { get; }
-        public abstract double MilesPerHourInOneMeterPerSecond { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double FeetPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilometersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double KnotsTolerance { get { return 1E-5; } }
+        protected virtual double MetersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MilesPerHourTolerance { get { return 1E-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void MeterPerSecondToSpeedUnits()
         {
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
-            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.FeetPerSecond, Delta);
-            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.KilometersPerHour, Delta);
-            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Knots, Delta);
-            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.MetersPerSecond, Delta);
-            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.MilesPerHour, Delta);
+            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.FeetPerSecond, FeetPerSecondTolerance);
+            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.KilometersPerHour, KilometersPerHourTolerance);
+            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Knots, KnotsTolerance);
+            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.MilesPerHour, MilesPerHourTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Speed.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, Delta);
-            Assert.AreEqual(1, Speed.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, Delta);
-            Assert.AreEqual(1, Speed.From(1, SpeedUnit.Knot).Knots, Delta);
-            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, Delta);
-            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, Delta);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.FootPerSecond).FeetPerSecond, FeetPerSecondTolerance);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.KilometerPerHour).KilometersPerHour, KilometersPerHourTolerance);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.Knot).Knots, KnotsTolerance);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, MilesPerHourTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var meterpersecond = Speed.FromMetersPerSecond(1);
-            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.FootPerSecond), Delta);
-            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.KilometerPerHour), Delta);
-            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.As(SpeedUnit.Knot), Delta);
-            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MeterPerSecond), Delta);
-            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MilePerHour), Delta);
+            Assert.AreEqual(FeetPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.FootPerSecond), FeetPerSecondTolerance);
+            Assert.AreEqual(KilometersPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.KilometerPerHour), KilometersPerHourTolerance);
+            Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.As(SpeedUnit.Knot), KnotsTolerance);
+            Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MeterPerSecond), MetersPerSecondTolerance);
+            Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MilePerHour), MilesPerHourTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Speed meterpersecond = Speed.FromMetersPerSecond(1); 
-            Assert.AreEqual(1, Speed.FromFeetPerSecond(meterpersecond.FeetPerSecond).MetersPerSecond, Delta);
-            Assert.AreEqual(1, Speed.FromKilometersPerHour(meterpersecond.KilometersPerHour).MetersPerSecond, Delta);
-            Assert.AreEqual(1, Speed.FromKnots(meterpersecond.Knots).MetersPerSecond, Delta);
-            Assert.AreEqual(1, Speed.FromMetersPerSecond(meterpersecond.MetersPerSecond).MetersPerSecond, Delta);
-            Assert.AreEqual(1, Speed.FromMilesPerHour(meterpersecond.MilesPerHour).MetersPerSecond, Delta);
+            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            Assert.AreEqual(1, Speed.FromFeetPerSecond(meterpersecond.FeetPerSecond).MetersPerSecond, FeetPerSecondTolerance);
+            Assert.AreEqual(1, Speed.FromKilometersPerHour(meterpersecond.KilometersPerHour).MetersPerSecond, KilometersPerHourTolerance);
+            Assert.AreEqual(1, Speed.FromKnots(meterpersecond.Knots).MetersPerSecond, KnotsTolerance);
+            Assert.AreEqual(1, Speed.FromMetersPerSecond(meterpersecond.MetersPerSecond).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(1, Speed.FromMilesPerHour(meterpersecond.MilesPerHour).MetersPerSecond, MilesPerHourTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Speed v = Speed.FromMetersPerSecond(1);
-            Assert.AreEqual(-1, -v.MetersPerSecond, Delta);
-            Assert.AreEqual(2, (Speed.FromMetersPerSecond(3)-v).MetersPerSecond, Delta);
-            Assert.AreEqual(2, (v + v).MetersPerSecond, Delta);
-            Assert.AreEqual(10, (v*10).MetersPerSecond, Delta);
-            Assert.AreEqual(10, (10*v).MetersPerSecond, Delta);
-            Assert.AreEqual(2, (Speed.FromMetersPerSecond(10)/5).MetersPerSecond, Delta);
-            Assert.AreEqual(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), Delta);
+            Assert.AreEqual(-1, -v.MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(2, (Speed.FromMetersPerSecond(3)-v).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(2, (v + v).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(10, (v*10).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(10, (10*v).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(2, (Speed.FromMetersPerSecond(10)/5).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), MilesPerHourTolerance);
         }
 
         [Test]

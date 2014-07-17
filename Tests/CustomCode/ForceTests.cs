@@ -19,42 +19,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
-        public override double DyneInOneNewton
+        protected override double DyneInOneNewton
         {
             get { return 1E5; }
         }
 
-        public override double KilogramsForceInOneNewton
+        protected override double KilogramsForceInOneNewton
         {
             get { return 1/Constants.Gravity; }
         }
 
-        public override double KilonewtonsInOneNewton
+        protected override double KilonewtonsInOneNewton
         {
             get { return 1E-3; }
         }
 
-        public override double KiloPondsInOneNewton
+        protected override double KiloPondsInOneNewton
         {
             get { return 1/Constants.Gravity; }
         }
 
-        public override double NewtonsInOneNewton
+        protected override double NewtonsInOneNewton
         {
             get { return 1; }
         }
 
-        public override double PoundalsInOneNewton
+        protected override double PoundalsInOneNewton
         {
             get { return 7.23301; }
         }
 
-        public override double PoundForcesInOneNewton
+        protected override double PoundForcesInOneNewton
         {
             get { return 0.22481; }
         }

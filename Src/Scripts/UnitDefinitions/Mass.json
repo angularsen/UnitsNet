@@ -1,0 +1,92 @@
+﻿{
+    "Name": "Mass",
+    "BaseUnit": "Kilogram",
+    "XmlDoc": "In physics, mass (from Greek μᾶζα \"barley cake, lump [of dough]\") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).",
+    "Units": [
+        {
+            "SingularName": "Gram",
+            "PluralName": "Grams",
+            "FromUnitToBaseFunc": "x/1e3",
+            "FromBaseToUnitFunc": "x*1e3",
+            "Prefixes": ["Nano","Micro","Milli","Centi","Deci","Deca","Hecto","Kilo"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["g"]                  
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["г"],
+                    "AbbreviationsWithPrefixes": ["нг","мкг","мг","сг","дг","даг","гг","кг"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Tonne",
+            "PluralName": "Tonnes",
+            "FromUnitToBaseFunc": "x*1e3",
+            "FromBaseToUnitFunc": "x/1e3",
+            "Prefixes": ["Kilo","Mega"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["t"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["т"],
+                    "AbbreviationsWithPrefixes": ["кт","Мт"]
+                }
+            ]
+        },
+        {
+            "SingularName": "ShortTon",
+            "PluralName": "ShortTons",
+            "FromUnitToBaseFunc": "x*907.18474",
+            "FromBaseToUnitFunc": "x/907.18474",
+            "XmlDocSummary": "The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.",
+            "XmlDocRemarks": "http://en.wikipedia.org/wiki/Short_ton",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["short tn"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["тонна малая"]
+                }
+            ]
+        },
+        {
+            "SingularName": "LongTon",
+            "PluralName": "LongTons",
+            "FromUnitToBaseFunc": "x*1016.0469088",
+            "FromBaseToUnitFunc": "x/1016.0469088",
+            "XmlDocSummary": "Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the \"ton\" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.",
+            "XmlDocRemarks": "http://en.wikipedia.org/wiki/Long_ton",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["long tn"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["тонна большая"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Pound",
+            "PluralName": "Pounds",
+            "FromUnitToBaseFunc": "x*0.45359237",
+            "FromBaseToUnitFunc": "x/0.45359237",
+            "XmlDocSummary": "The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["lb"]
+                }
+            ]
+        }
+    ]
+}

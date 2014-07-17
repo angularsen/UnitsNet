@@ -19,32 +19,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
-        public override double FeetPerSecondInOneMeterPerSecond
+        protected override double FeetPerSecondInOneMeterPerSecond
         {
             get { return 3.28084; }
         }
 
-        public override double KilometersPerHourInOneMeterPerSecond
+        protected override double KilometersPerHourInOneMeterPerSecond
         {
             get { return 3.6; }
         }
 
-        public override double KnotsInOneMeterPerSecond
+        protected override double KnotsInOneMeterPerSecond
         {
             get { return 1.94384; }
         }
 
-        public override double MetersPerSecondInOneMeterPerSecond
+        protected override double MetersPerSecondInOneMeterPerSecond
         {
             get { return 1; }
         }
 
-        public override double MilesPerHourInOneMeterPerSecond
+        protected override double MilesPerHourInOneMeterPerSecond
         {
             get { return 2.23694; }
         }

@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,56 +33,59 @@ namespace UnitsNet.Tests
     /// Test of RotationalSpeed.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RotationalSpeedTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double RevolutionsPerMinuteInOneRevolutionPerSecond { get; }
+        protected abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }
 
-        public abstract double RevolutionsPerMinuteInOneRevolutionPerSecond { get; }
-        public abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double RevolutionsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double RevolutionsPerSecondTolerance { get { return 1E-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void RevolutionPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
-            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerMinute, Delta);
-            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerSecond, Delta);
+            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
+            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, Delta);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, Delta);
+            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
+            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
-            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), Delta);
-            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), Delta);
+            Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), RevolutionsPerMinuteTolerance);
+            Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), RevolutionsPerSecondTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1); 
-            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerMinute(revolutionpersecond.RevolutionsPerMinute).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerSecond(revolutionpersecond.RevolutionsPerSecond).RevolutionsPerSecond, Delta);
+            RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
+            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerMinute(revolutionpersecond.RevolutionsPerMinute).RevolutionsPerSecond, RevolutionsPerMinuteTolerance);
+            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerSecond(revolutionpersecond.RevolutionsPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             RotationalSpeed v = RotationalSpeed.FromRevolutionsPerSecond(1);
-            Assert.AreEqual(-1, -v.RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(3)-v).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, (v + v).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(10, (v*10).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(10, (10*v).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(10)/5).RevolutionsPerSecond, Delta);
-            Assert.AreEqual(2, RotationalSpeed.FromRevolutionsPerSecond(10)/RotationalSpeed.FromRevolutionsPerSecond(5), Delta);
+            Assert.AreEqual(-1, -v.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(3)-v).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(2, (v + v).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(10, (v*10).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(10, (10*v).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(2, (RotationalSpeed.FromRevolutionsPerSecond(10)/5).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            Assert.AreEqual(2, RotationalSpeed.FromRevolutionsPerSecond(10)/RotationalSpeed.FromRevolutionsPerSecond(5), RevolutionsPerSecondTolerance);
         }
 
         [Test]

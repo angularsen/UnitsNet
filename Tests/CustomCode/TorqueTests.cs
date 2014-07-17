@@ -19,12 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
-        public override double NewtonmetersInOneNewtonmeter
+        protected override double NewtonmetersInOneNewtonmeter
         {
             get { return 1; }
         }

@@ -19,97 +19,116 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
-        public override double CentilitersInOneCubicMeter
+        protected override double CentilitersInOneCubicMeter
         {
             get { return 1E5; }
         }
 
-        public override double CubicCentimetersInOneCubicMeter
+        protected override double CubicCentimetersInOneCubicMeter
         {
             get { return 1E6; }
         }
 
-        public override double CubicDecimetersInOneCubicMeter
+        protected override double CubicDecimetersInOneCubicMeter
         {
             get { return 1E3; }
         }
 
-        public override double CubicFeetInOneCubicMeter
+        protected override double CubicFeetInOneCubicMeter
         {
             get { return 35.31472; }
         }
 
-        public override double CubicInchesInOneCubicMeter
+        protected override double CubicInchesInOneCubicMeter
         {
             get { return 61023.98242; }
         }
 
-        public override double CubicKilometersInOneCubicMeter
+        protected override double CubicKilometersInOneCubicMeter
         {
             get { return 1E-9; }
         }
 
-        public override double CubicMetersInOneCubicMeter
+        protected override double CubicMetersInOneCubicMeter
         {
             get { return 1; }
         }
 
-        public override double CubicMilesInOneCubicMeter
+        protected override double CubicMilesInOneCubicMeter
         {
             get { return 3.86102*1E-7; }
         }
 
-        public override double CubicMillimetersInOneCubicMeter
+        protected override double CubicMillimetersInOneCubicMeter
         {
             get { return 1E9; }
         }
 
-        public override double CubicYardsInOneCubicMeter
+        protected override double CubicYardsInOneCubicMeter
         {
             get { return 1.30795062; }
         }
 
-        public override double DecilitersInOneCubicMeter
+        protected override double DecilitersInOneCubicMeter
         {
             get { return 1E4; }
         }
 
-        public override double HectolitersInOneCubicMeter
+        protected override double HectolitersInOneCubicMeter
         {
             get { return 1E1; }
         }
 
-        public override double ImperialGallonsInOneCubicMeter
+        protected override double ImperialGallonsInOneCubicMeter
         {
             get { return 219.96924; }
         }
 
-        public override double ImperialOuncesInOneCubicMeter
+        protected override double ImperialOuncesInOneCubicMeter
         {
             get { return 35195.07972; }
         }
 
-        public override double LitersInOneCubicMeter
+        protected override double LitersInOneCubicMeter
         {
             get { return 1E3; }
         }
 
-        public override double MillilitersInOneCubicMeter
+        protected override double MillilitersInOneCubicMeter
         {
             get { return 1E6; }
         }
 
-        public override double UsGallonsInOneCubicMeter
+        protected override double TablespoonsInOneCubicMeter
+        {
+            get { return 67628.0454; }
+        }
+
+        protected override double TablespoonsTolerance
+        {
+            get { return 1E-4; }
+        }
+
+        protected override double TeaspoonsInOneCubicMeter
+        {
+            get { return 202884.136; }
+        }
+
+        protected override double TeaspoonsTolerance
+        {
+            get { return 1E-3; }
+        }
+
+        protected override double UsGallonsInOneCubicMeter
         {
             get { return 264.17217; }
         }
 
-        public override double UsOuncesInOneCubicMeter
+        protected override double UsOuncesInOneCubicMeter
         {
             get { return 33814.02270; }
         }
