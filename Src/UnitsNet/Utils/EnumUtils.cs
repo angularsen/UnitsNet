@@ -1,5 +1,5 @@
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ using System.Reflection;
 namespace UnitsNet.Utils
 {
     /// <summary>
-    /// Cross-platform enum utils. For instance, WinRT does not support Enum enumeration.
+    ///     Cross-platform enum utils. For instance, WinRT does not support Enum enumeration.
     /// </summary>
     public static class EnumUtils
     {
@@ -40,10 +40,10 @@ namespace UnitsNet.Utils
                 throw new ArgumentException("Type '" + type.Name + "' is not an enum");
 
             return (
-                       from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
-                       where field.IsLiteral
-                       select (T) field.GetValue(null)
-                   ).ToArray();
+                from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
+                where field.IsLiteral
+                select (T) field.GetValue(null)
+                ).ToArray();
 #endif
         }
 
