@@ -83,6 +83,11 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1E12; }
         }
 
+        protected override double NanogramsTolerance
+        {
+            get { return 1E-3; }
+        }
+
         protected override double ShortTonsInOneKilogram
         {
             get { return 0.00110231; }
