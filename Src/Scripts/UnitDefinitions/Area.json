@@ -1,0 +1,151 @@
+﻿{
+    "Name": "Area",
+    "BaseUnit": "SquareMeter",
+    "XmlDoc": "Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).",
+    "Units": [
+        {
+            "SingularName": "SquareKilometer",
+            "PluralName": "SquareKilometers",
+            "FromUnitToBaseFunc": "x*1e6",
+            "FromBaseToUnitFunc": "x/1e6",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["km²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["км²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareMeter",
+            "PluralName": "SquareMeters",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["m²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["м²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareDecimeter",
+            "PluralName": "SquareDecimeters",
+            "FromUnitToBaseFunc": "x*1e-2",
+            "FromBaseToUnitFunc": "x/1e-2",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["dm²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["дм²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareCentimeter",
+            "PluralName": "SquareCentimeters",
+            "FromUnitToBaseFunc": "x*1e-4",
+            "FromBaseToUnitFunc": "x/1e-4",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["cm²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["см²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareMillimeter",
+            "PluralName": "SquareMillimeters",
+            "FromUnitToBaseFunc": "x*1e-6",
+            "FromBaseToUnitFunc": "x/1e-6",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["mm²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мм²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareMile",
+            "PluralName": "SquareMiles",
+            "FromUnitToBaseFunc": "x*2.59e6",
+            "FromBaseToUnitFunc": "x/2.59e6",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["mi²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["миля²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareYard",
+            "PluralName": "SquareYards",
+            "FromUnitToBaseFunc": "x*0.836127",
+            "FromBaseToUnitFunc": "x/0.836127",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["yd²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["ярд²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareFoot",
+            "PluralName": "SquareFeet",
+            "FromUnitToBaseFunc": "x*0.092903",
+            "FromBaseToUnitFunc": "x/0.092903",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["ft²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["фут²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "SquareInch",
+            "PluralName": "SquareInches",
+            "FromUnitToBaseFunc": "x*0.00064516",
+            "FromBaseToUnitFunc": "x/0.00064516",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["in²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["дюйм²"]
+                }
+            ]
+        }
+    ]
+}

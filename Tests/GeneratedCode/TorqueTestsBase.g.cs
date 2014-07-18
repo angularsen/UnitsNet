@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,51 +33,53 @@ namespace UnitsNet.Tests
     /// Test of Torque.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TorqueTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double NewtonmetersInOneNewtonmeter { get; }
 
-        public abstract double NewtonmetersInOneNewtonmeter { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double NewtonmetersTolerance { get { return 1E-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void NewtonmeterToTorqueUnits()
         {
             Torque newtonmeter = Torque.FromNewtonmeters(1);
-            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.Newtonmeters, Delta);
+            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.Newtonmeters, NewtonmetersTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Torque.From(1, TorqueUnit.Newtonmeter).Newtonmeters, Delta);
+            Assert.AreEqual(1, Torque.From(1, TorqueUnit.Newtonmeter).Newtonmeters, NewtonmetersTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var newtonmeter = Torque.FromNewtonmeters(1);
-            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.As(TorqueUnit.Newtonmeter), Delta);
+            Assert.AreEqual(NewtonmetersInOneNewtonmeter, newtonmeter.As(TorqueUnit.Newtonmeter), NewtonmetersTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Torque newtonmeter = Torque.FromNewtonmeters(1); 
-            Assert.AreEqual(1, Torque.FromNewtonmeters(newtonmeter.Newtonmeters).Newtonmeters, Delta);
+            Torque newtonmeter = Torque.FromNewtonmeters(1);
+            Assert.AreEqual(1, Torque.FromNewtonmeters(newtonmeter.Newtonmeters).Newtonmeters, NewtonmetersTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Torque v = Torque.FromNewtonmeters(1);
-            Assert.AreEqual(-1, -v.Newtonmeters, Delta);
-            Assert.AreEqual(2, (Torque.FromNewtonmeters(3)-v).Newtonmeters, Delta);
-            Assert.AreEqual(2, (v + v).Newtonmeters, Delta);
-            Assert.AreEqual(10, (v*10).Newtonmeters, Delta);
-            Assert.AreEqual(10, (10*v).Newtonmeters, Delta);
-            Assert.AreEqual(2, (Torque.FromNewtonmeters(10)/5).Newtonmeters, Delta);
-            Assert.AreEqual(2, Torque.FromNewtonmeters(10)/Torque.FromNewtonmeters(5), Delta);
+            Assert.AreEqual(-1, -v.Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(2, (Torque.FromNewtonmeters(3)-v).Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(2, (v + v).Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(10, (v*10).Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(10, (10*v).Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(2, (Torque.FromNewtonmeters(10)/5).Newtonmeters, NewtonmetersTolerance);
+            Assert.AreEqual(2, Torque.FromNewtonmeters(10)/Torque.FromNewtonmeters(5), NewtonmetersTolerance);
         }
 
         [Test]

@@ -19,17 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class FlowTests : FlowTestsBase
     {
-        public override double CubicMetersPerHourInOneCubicMeterPerSecond
+        protected override double CubicMetersPerHourInOneCubicMeterPerSecond
         {
             get { return 1*3600.0; }
         }
 
-        public override double CubicMetersPerSecondInOneCubicMeterPerSecond
+        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
         {
             get { return 1; }
         }

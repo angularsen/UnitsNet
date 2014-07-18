@@ -40,98 +40,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\Attributes.cs" />
-    <Compile Include="Attributes\I18nAttribute.cs" />
-    <Compile Include="Attributes\IUnitAttribute.cs" />
-    <Compile Include="Attributes\UnitAttribute.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CustomCode\Force.extra.cs" />
-    <Compile Include="CustomCode\Mass.extra.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\UnitSystemExtensions.cs" />
-    <Compile Include="GeneratedCode\Angle.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Area.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Duration.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\ElectricPotential.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Flow.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Force.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Length.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Mass.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Pressure.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Ratio.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\RotationalSpeed.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Speed.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Temperature.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templating\TemplateUtils.cs" />
-    <Compile Include="GeneratedCode\Torque.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\UnitClasses.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\Volume.g.cs">
-      <DependentUpon>UnitClasses.tt</DependentUpon>
-    </Compile>
+    <Compile Include="CustomCode\UnitClasses\Force.extra.cs" />
+    <Compile Include="CustomCode\UnitClasses\Mass.extra.cs" />
+    <Compile Include="GeneratedCode\Enums\AngleUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\AreaUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\DurationUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\ElectricPotentialUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\FlowUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\ForceUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\LengthUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\MassUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\PressureUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\RatioUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\RotationalSpeedUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\SpeedUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\TemperatureUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\TorqueUnit.g.cs" />
+    <Compile Include="GeneratedCode\Enums\VolumeUnit.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Angle.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Area.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Duration.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\ElectricPotential.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Flow.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Force.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Length.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Mass.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Pressure.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Ratio.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\RotationalSpeed.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Speed.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Temperature.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Torque.g.cs" />
+    <Compile Include="GeneratedCode\UnitClasses\Volume.g.cs" />
+    <Compile Include="I18n\AbbreviationsForCulture.cs" />
+    <Compile Include="I18n\CulturesForEnumValue.cs" />
+    <Compile Include="I18n\UnitLocalization.cs" />
     <Compile Include="Length2d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Templating\UnitClassInfo.cs" />
-    <Compile Include="Templating\UnitEnumValueInfo.cs" />
-    <Compile Include="Templating\UnitInfo.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="UnitSystem.cs" />
-    <Compile Include="Units\RatioUnit.cs" />
-    <Compile Include="Units\AngleUnit.cs" />
-    <Compile Include="Units\AreaUnit.cs" />
-    <Compile Include="Units\DurationUnit.cs" />
-    <Compile Include="Units\ElectricPotentialUnit.cs" />
-    <Compile Include="Units\FlowUnit.cs" />
-    <Compile Include="Units\ForceUnit.cs" />
-    <Compile Include="Units\LengthUnit.cs" />
-    <Compile Include="Units\MassUnit.cs" />
-    <Compile Include="Units\PressureUnit.cs" />
-    <Compile Include="Units\RotationalSpeedUnit.cs" />
-    <Compile Include="Units\SpeedUnit.cs" />
-    <Compile Include="Units\TemperatureUnit.cs" />
-    <Compile Include="Units\TorqueUnit.cs" />
-    <Compile Include="Units\VolumeUnit.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="CustomCode\UnitSystem.cs" />
+    <Compile Include="GeneratedCode\UnitSystem.Default.g.cs" />
     <Compile Include="Utils\EnumUtils.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultipleOutputHelper.ttinclude" />
-    <None Include="GeneratedCode\UnitClasses.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UnitClasses.g.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

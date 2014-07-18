@@ -42,42 +42,9 @@ namespace UnitsNet.Tests
         //}
 
         //[TestCaseSource("TestCases")]
-        [Test]
-        public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")]string cultureName)
-        {
-            var unitValuesMissingAbbreviations = new List<object>()
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
-            .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()));
 
-            // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered 
-            // critical and it is cumbersome to have a third person review the pull request
-            // and add in any translations before merging it in.
-            if (unitValuesMissingAbbreviations.Any())
-            {
-                string message = "Units missing abbreviations: " +
-                                 string.Join(", ",
-                                     unitValuesMissingAbbreviations.Select(
-                                         unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
-
-                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
-            }
-            //Assert.IsEmpty(unitsMissingAbbreviations, message);
-        }
-        
-        private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
+        private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
+            IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
@@ -99,34 +66,46 @@ namespace UnitsNet.Tests
         }
 
         [Test]
-        public void ToStringRoundsToTwoDecimals()
+        public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")] string cultureName)
         {
-            var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
-            var currentCulture = Thread.CurrentThread.CurrentCulture;
-            try
-            {
-                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            List<object> unitValuesMissingAbbreviations = new List<object>()
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName,
+                    EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()))
+                .ToList();
 
-                // CurrentUICulture affects localization, in this case for the abbreviation.
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-
-                Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
-                Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
-                Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
-                Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
-            }
-            finally
+            // We want to flag if any localizations are missing, but not break the build
+            // or flag an error for pull requests. For now they are not considered 
+            // critical and it is cumbersome to have a third person review the pull request
+            // and add in any translations before merging it in.
+            if (unitValuesMissingAbbreviations.Any())
             {
-                Thread.CurrentThread.CurrentUICulture = currentUiCulture;
-                Thread.CurrentThread.CurrentCulture = currentCulture;
+                string message = "Units missing abbreviations: " +
+                                 string.Join(", ",
+                                     unitValuesMissingAbbreviations.Select(
+                                         unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
+
+                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
             }
+            //Assert.IsEmpty(unitsMissingAbbreviations, message);
         }
 
         [Test]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
-            var originalCulture = Thread.CurrentThread.CurrentUICulture;
+            CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
             try
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
@@ -153,7 +132,7 @@ namespace UnitsNet.Tests
         [Test]
         public void AllUnitsImplementToStringForNorwegian()
         {
-            var originalCulture = Thread.CurrentThread.CurrentUICulture;
+            CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
             try
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
@@ -181,7 +160,7 @@ namespace UnitsNet.Tests
         [Test]
         public void AllUnitsImplementToStringForRussian()
         {
-            var originalCulture = Thread.CurrentThread.CurrentUICulture;
+            CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
             try
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
@@ -206,27 +185,28 @@ namespace UnitsNet.Tests
         }
 
         [Test]
-        public void DefaultFoodUnitAbbreviationsForNorwegian()
+        public void ToStringRoundsToTwoDecimals()
         {
-            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo("nb-NO"));
-            Assert.AreEqual("ss", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
-            Assert.AreEqual("ts", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
-        }
+            CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+            try
+            {
+                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-        [Test]
-        public void DefaultFoodUnitAbbreviationsForInvariant()
-        {
-            UnitSystem unitSystem = UnitSystem.GetCached(CultureInfo.InvariantCulture);
-            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
-            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
-        }
-        
-        [Test]
-        public void DefaultFoodUnitAbbreviationsForUsEnglish()
-        {
-            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo("en-US"));
-            Assert.AreEqual("Tbsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Tablespoon));
-            Assert.AreEqual("tsp", unitSystem.GetDefaultAbbreviation(OtherUnit.Teaspoon));
+                // CurrentUICulture affects localization, in this case for the abbreviation.
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+                Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
+                Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
+                Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
+                Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = currentUiCulture;
+                Thread.CurrentThread.CurrentCulture = currentCulture;
+            }
         }
     }
 }

@@ -19,47 +19,46 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureTests : TemperatureTestsBase
     {
-        public override double DegreesCelsiusInOneKelvin
+        protected override double DegreesCelsiusInOneKelvin
         {
             get { return -272.15; }
         }
 
-        public override double DegreesDelisleInOneKelvin
+        protected override double DegreesDelisleInOneKelvin
         {
             get { return 558.2249999999999; }
         }
 
-        public override double DegreesFahrenheitInOneKelvin
+        protected override double DegreesFahrenheitInOneKelvin
         {
             get { return -457.87; }
         }
 
-        public override double DegreesNewtonInOneKelvin
+        protected override double DegreesNewtonInOneKelvin
         {
             get { return -89.8095; }
         }
 
-        public override double DegreesRankineInOneKelvin
+        protected override double DegreesRankineInOneKelvin
         {
             get { return 1.8; }
         }
 
-        public override double DegreesReaumurInOneKelvin
+        protected override double DegreesReaumurInOneKelvin
         {
             get { return -217.72; }
         }
 
-        public override double DegreesRoemerInOneKelvin
+        protected override double DegreesRoemerInOneKelvin
         {
             get { return -135.378750000; }
         }
 
-        public override double KelvinsInOneKelvin
+        protected override double KelvinsInOneKelvin
         {
             get { return 1; }
         }

@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,51 +33,53 @@ namespace UnitsNet.Tests
     /// Test of ElectricPotential.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double VoltsInOneVolt { get; }
 
-        public abstract double VoltsInOneVolt { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double VoltsTolerance { get { return 1E-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void VoltToElectricPotentialUnits()
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
-            Assert.AreEqual(VoltsInOneVolt, volt.Volts, Delta);
+            Assert.AreEqual(VoltsInOneVolt, volt.Volts, VoltsTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, Delta);
+            Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, VoltsTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var volt = ElectricPotential.FromVolts(1);
-            Assert.AreEqual(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), Delta);
+            Assert.AreEqual(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), VoltsTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1); 
-            Assert.AreEqual(1, ElectricPotential.FromVolts(volt.Volts).Volts, Delta);
+            ElectricPotential volt = ElectricPotential.FromVolts(1);
+            Assert.AreEqual(1, ElectricPotential.FromVolts(volt.Volts).Volts, VoltsTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             ElectricPotential v = ElectricPotential.FromVolts(1);
-            Assert.AreEqual(-1, -v.Volts, Delta);
-            Assert.AreEqual(2, (ElectricPotential.FromVolts(3)-v).Volts, Delta);
-            Assert.AreEqual(2, (v + v).Volts, Delta);
-            Assert.AreEqual(10, (v*10).Volts, Delta);
-            Assert.AreEqual(10, (10*v).Volts, Delta);
-            Assert.AreEqual(2, (ElectricPotential.FromVolts(10)/5).Volts, Delta);
-            Assert.AreEqual(2, ElectricPotential.FromVolts(10)/ElectricPotential.FromVolts(5), Delta);
+            Assert.AreEqual(-1, -v.Volts, VoltsTolerance);
+            Assert.AreEqual(2, (ElectricPotential.FromVolts(3)-v).Volts, VoltsTolerance);
+            Assert.AreEqual(2, (v + v).Volts, VoltsTolerance);
+            Assert.AreEqual(10, (v*10).Volts, VoltsTolerance);
+            Assert.AreEqual(10, (10*v).Volts, VoltsTolerance);
+            Assert.AreEqual(2, (ElectricPotential.FromVolts(10)/5).Volts, VoltsTolerance);
+            Assert.AreEqual(2, ElectricPotential.FromVolts(10)/ElectricPotential.FromVolts(5), VoltsTolerance);
         }
 
         [Test]

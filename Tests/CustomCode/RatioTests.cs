@@ -19,39 +19,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class RatioTests : RatioTestsBase
     {
-        public override double DecimalFractionsInOneDecimalFraction
+        protected override double DecimalFractionsInOneDecimalFraction
         {
             get { return 1; }
         }
 
-        public override double PartsPerBillionsInOneDecimalFraction
+        protected override double PartsPerBillionInOneDecimalFraction
         {
             get { return 1e9; }
         }
 
-        public override double PartsPerMillionsInOneDecimalFraction
+        protected override double PartsPerMillionInOneDecimalFraction
         {
             get { return 1e6; }
         }
 
-        public override double PartsPerThousandsInOneDecimalFraction
+        protected override double PartsPerThousandInOneDecimalFraction
         {
             get { return 1e3; }
         }
 
-        public override double PartsPerTrillionsInOneDecimalFraction
+        protected override double PartsPerTrillionInOneDecimalFraction
         {
             get { return 1e12; }
         }
 
-        public override double PercentInOneDecimalFraction
+        protected override double PercentInOneDecimalFraction
         {
             get { return 100; }
-        } 
+        }
     }
 }

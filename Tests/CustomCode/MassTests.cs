@@ -19,82 +19,86 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassTests : MassTestsBase
     {
-        public override double CentigramsInOneKilogram
+        protected override double CentigramsInOneKilogram
         {
             get { return 1E5; }
         }
 
-        public override double DecagramsInOneKilogram
+        protected override double DecagramsInOneKilogram
         {
             get { return 1E2; }
         }
 
-        public override double DecigramsInOneKilogram
+        protected override double DecigramsInOneKilogram
         {
             get { return 1E4; }
         }
 
-        public override double GramsInOneKilogram
+        protected override double GramsInOneKilogram
         {
             get { return 1E3; }
         }
 
-        public override double HectogramsInOneKilogram
+        protected override double HectogramsInOneKilogram
         {
             get { return 10; }
         }
 
-        public override double KilogramsInOneKilogram
+        protected override double KilogramsInOneKilogram
         {
             get { return 1; }
         }
 
-        public override double KilotonnesInOneKilogram
+        protected override double KilotonnesInOneKilogram
         {
             get { return 1E-6; }
         }
 
-        public override double LongTonsInOneKilogram
+        protected override double LongTonsInOneKilogram
         {
             get { return 0.000984207; }
         }
 
-        public override double MegatonnesInOneKilogram
+        protected override double MegatonnesInOneKilogram
         {
             get { return 1E-6; }
         }
 
-        public override double MicrogramsInOneKilogram
+        protected override double MicrogramsInOneKilogram
         {
             get { return 1E9; }
         }
 
-        public override double MilligramsInOneKilogram
+        protected override double MilligramsInOneKilogram
         {
             get { return 1E6; }
         }
 
-        public override double NanogramsInOneKilogram
+        protected override double NanogramsInOneKilogram
         {
             get { return 1E12; }
         }
 
-        public override double ShortTonsInOneKilogram
+        protected override double NanogramsTolerance
+        {
+            get { return 1E-3; }
+        }
+
+        protected override double ShortTonsInOneKilogram
         {
             get { return 0.00110231; }
         }
 
-        public override double PoundsInOneKilogram
+        protected override double PoundsInOneKilogram
         {
             get { return 2.2046226218487757d; }
         }
 
-        public override double TonnesInOneKilogram
+        protected override double TonnesInOneKilogram
         {
             get { return 1E-3; }
         }

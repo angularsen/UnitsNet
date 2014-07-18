@@ -1,0 +1,167 @@
+﻿{
+    "Name": "Duration",
+    "BaseUnit": "Second",
+    "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
+    "Units": [
+        {
+            "SingularName": "Year",
+            "PluralName": "Years",
+            "FromUnitToBaseFunc": "x*365*24*3600",
+            "FromBaseToUnitFunc": "x/(365*24*3600)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["yr", "year", "years"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["год"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Month",
+            "PluralName": "Months",
+            "FromUnitToBaseFunc": "x*30*24*3600",
+            "FromBaseToUnitFunc": "x/(30*24*3600)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["mo", "month", "months"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["месяц"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Week",
+            "PluralName": "Weeks",
+            "FromUnitToBaseFunc": "x*7*24*3600",
+            "FromBaseToUnitFunc": "x/(7*24*3600)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["wk", "week", "weeks"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мин"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Day",
+            "PluralName": "Days",
+            "FromUnitToBaseFunc": "x*24*3600",
+            "FromBaseToUnitFunc": "x/(24*3600)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["d", "day", "days"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["д"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Hour",
+            "PluralName": "Hours",
+            "FromUnitToBaseFunc": "x*3600",
+            "FromBaseToUnitFunc": "x/3600",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["h", "hr", "hrs", "hour", "hours"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["ч"]
+                }
+            ]
+        },      
+        {
+            "SingularName": "Minute",
+            "PluralName": "Minutes",
+            "FromUnitToBaseFunc": "x*60",
+            "FromBaseToUnitFunc": "x/60",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["m", "min", "minute", "minutes"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мин"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Second",
+            "PluralName": "Seconds",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["s", "sec", "secs", "second", "seconds"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["с"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Millisecond",
+            "PluralName": "Milliseconds",
+            "FromUnitToBaseFunc": "x/1e3",
+            "FromBaseToUnitFunc": "x*1e3",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["ms"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мс"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Microsecond",
+            "PluralName": "Microseconds",
+            "FromUnitToBaseFunc": "x/1e6",
+            "FromBaseToUnitFunc": "x*1e6",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["µs"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мкс"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Nanosecond",
+            "PluralName": "Nanoseconds",
+            "FromUnitToBaseFunc": "x/1e9",
+            "FromBaseToUnitFunc": "x*1e9",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["ns"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["нс"]
+                }
+            ]
+        }
+    ]
+}

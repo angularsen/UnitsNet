@@ -19,72 +19,71 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class LengthTests : LengthTestsBase
     {
-        public override double CentimetersInOneMeter
+        protected override double CentimetersInOneMeter
         {
             get { return 100; }
         }
 
-        public override double DecimetersInOneMeter
+        protected override double DecimetersInOneMeter
         {
             get { return 10; }
         }
 
-        public override double FeetInOneMeter
+        protected override double FeetInOneMeter
         {
             get { return 3.28084; }
         }
 
-        public override double InchesInOneMeter
+        protected override double InchesInOneMeter
         {
             get { return 39.37007874; }
         }
 
-        public override double KilometersInOneMeter
+        protected override double KilometersInOneMeter
         {
             get { return 1E-3; }
         }
 
-        public override double MetersInOneMeter
+        protected override double MetersInOneMeter
         {
             get { return 1; }
         }
 
-        public override double MicroinchesInOneMeter
+        protected override double MicroinchesInOneMeter
         {
             get { return 39370078.74015748; }
         }
 
-        public override double MicrometersInOneMeter
+        protected override double MicrometersInOneMeter
         {
             get { return 1E6; }
         }
 
-        public override double MilsInOneMeter
+        protected override double MilsInOneMeter
         {
             get { return 39370.07874015; }
         }
 
-        public override double MilesInOneMeter
+        protected override double MilesInOneMeter
         {
             get { return 0.000621371; }
         }
 
-        public override double MillimetersInOneMeter
+        protected override double MillimetersInOneMeter
         {
             get { return 1E3; }
         }
 
-        public override double NanometersInOneMeter
+        protected override double NanometersInOneMeter
         {
             get { return 1E9; }
         }
 
-        public override double YardsInOneMeter
+        protected override double YardsInOneMeter
         {
             get { return 1.09361; }
         }

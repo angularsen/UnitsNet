@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -223,7 +223,8 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters, UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
+            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
+                UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
         }
 
         public Length DistanceTo(Length2d other)

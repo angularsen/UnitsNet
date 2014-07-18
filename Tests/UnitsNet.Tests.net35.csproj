@@ -63,61 +63,26 @@
     <Compile Include="CustomCode\TemperatureTests.cs" />
     <Compile Include="CustomCode\TorqueTests.cs" />
     <Compile Include="CustomCode\VolumeTests.cs" />
-    <Compile Include="GeneratedCode\AngleTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\AreaTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\DurationTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\ElectricPotentialTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\FlowTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\ForceTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\LengthTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\MassTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\PressureTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\RatioTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\RotationalSpeedTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\SpeedTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\TemperatureTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\TorqueTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedCode\VolumeTestsBase.g.cs">
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Compile>
+    <Compile Include="GeneratedCode\AngleTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\AreaTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\DurationTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\ElectricPotentialTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\FlowTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\ForceTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\LengthTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\MassTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\PressureTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\RatioTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\RotationalSpeedTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\SpeedTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\TemperatureTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\TorqueTestsBase.g.cs" />
+    <Compile Include="GeneratedCode\VolumeTestsBase.g.cs" />
     <Compile Include="UnitSystemTests.cs" />
     <Compile Include="InterUnitConversionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GeneratedCode\UnitTestClasses.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UnitTestClasses.txt</LastGenOutput>
-    </None>
-    <None Include="MultipleOutputHelper.ttinclude" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,13 +93,6 @@
       <Project>{62e7f8ab-01ed-455a-8ce2-86f020d429b0}</Project>
       <Name>UnitsNet.net35</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GeneratedCode\UnitTestClasses.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnitTestClasses.tt</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
