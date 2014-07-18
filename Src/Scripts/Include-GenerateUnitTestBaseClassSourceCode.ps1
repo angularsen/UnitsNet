@@ -1,4 +1,4 @@
-function GenerateUnitTestClassSourceCode($unitClass)
+function GenerateUnitTestBaseClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
     $units = $unitClass.Units;

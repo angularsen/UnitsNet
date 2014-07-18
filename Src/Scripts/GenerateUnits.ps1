@@ -71,12 +71,12 @@ function GenerateUnitClass($unitClass)
     GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
 
-function GenerateUnitTestClass($unitClass)
+function GenerateUnitTestBaseClass($unitClass)
 {
     Write-Host "Generate test for: " + $unitClass.Name;    
     
     $outFileName = "$PSScriptRoot/../../Tests/GeneratedCode/$($unitClass.Name)TestsBase.g.cs";
-    GenerateUnitTestClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
+    GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
 
 function GenerateUnitEnum($unitClass)
@@ -111,7 +111,7 @@ function GenerateUnitSystemDefault($unitClasses)
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateUnitTestClassSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 
 $templatesDir = "$PSScriptRoot/UnitDefinitions";
 $unitClasses = @();
@@ -126,7 +126,7 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     
     GenerateUnitClass $unitClass
     GenerateUnitEnum $unitClass
-    GenerateUnitTestClass $unitClass
+    GenerateUnitTestBaseClass $unitClass
     
     $unitClasses += $unitClass;
 }
