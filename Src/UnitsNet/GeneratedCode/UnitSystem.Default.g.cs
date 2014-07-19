@@ -250,6 +250,50 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "фунт-сила"),
                             }),
                     }),
+                new UnitLocalization(typeof (InformationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) InformationUnit.Bit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "b"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Byte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "B"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Exabyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "EB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Gigabyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Kilobyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Megabyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Petabyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Terabyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TB"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (LengthUnit),
                     new[]
                     {
