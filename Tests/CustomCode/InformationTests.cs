@@ -26,6 +26,44 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class InformationTests : InformationTestsBase
     {
-        // TODO Override properties in base class here
+        protected override double BitsInOneBit
+        {
+            get { return 1; }
+        }
+
+        protected override double BytesInOneBit
+        {
+            get { return 0.125; }
+        }
+
+        protected override double ExabytesInOneBit
+        {
+            get { return 0.125*1e-18; }
+        }
+
+        protected override double GigabytesInOneBit
+        {
+            get { return 0.125*1e-9; }
+        }
+
+        protected override double KilobytesInOneBit
+        {
+            get { return 0.000125; }
+        }
+
+        protected override double MegabytesInOneBit
+        {
+            get { return 0.125*1e-6; }
+        }
+
+        protected override double PetabytesInOneBit
+        {
+            get { return 0.125*1e-15; }
+        }
+
+        protected override double TerabytesInOneBit
+        {
+            get { return 0.125*1e-12; }
+        }
     }
 }
