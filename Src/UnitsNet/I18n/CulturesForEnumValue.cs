@@ -33,7 +33,7 @@ namespace UnitsNet.I18n
         public CulturesForEnumValue(int value, IEnumerable<AbbreviationsForCulture> cultures)
         {
             Value = value;
-            Cultures = cultures.ToList().AsReadOnly();
+            Cultures = new ReadOnlyCollection<AbbreviationsForCulture>(cultures.ToList());
         }
     }
 }

@@ -32,7 +32,7 @@ namespace UnitsNet
     public partial class UnitSystem
     {
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
-            = new List<UnitLocalization>
+            = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
                 new UnitLocalization(typeof (AngleUnit),
                     new[]
@@ -804,6 +804,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "Американская унция"),
                             }),
                     }),
-            }.AsReadOnly();
+             });
     }
 }

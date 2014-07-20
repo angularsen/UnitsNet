@@ -32,8 +32,8 @@ namespace UnitsNet.I18n
 
         public AbbreviationsForCulture(string cultureName, params string[] abbreviations)
         {
-            Cult = CultureInfo.GetCultureInfo(cultureName);
-            Abbreviations = abbreviations.ToList().AsReadOnly();
+            Cult = new CultureInfo(cultureName);
+            Abbreviations = new ReadOnlyCollection<string>(abbreviations.ToList());
         }
     }
 }

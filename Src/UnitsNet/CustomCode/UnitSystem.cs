@@ -245,7 +245,7 @@ namespace UnitsNet
                 foreach (CulturesForEnumValue ev in localization.EnumValues)
                 {
                     int unitEnumValue = ev.Value;
-                    CultureInfo usCulture = CultureInfo.GetCultureInfo("en-US");
+                    var usCulture = new CultureInfo("en-US");
 
                     // Fall back to US English if localization not found
                     AbbreviationsForCulture matchingCulture =

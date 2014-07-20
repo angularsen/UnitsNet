@@ -35,7 +35,7 @@ namespace UnitsNet
     public partial class UnitSystem
     {
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
-            = new List<UnitLocalization>
+            = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
 "@;
     foreach ($unitClass in $unitClasses) 
@@ -72,7 +72,7 @@ namespace UnitsNet
 "@;
     }
 @"
-            }.AsReadOnly();
+             });
     }
 }
 "@;

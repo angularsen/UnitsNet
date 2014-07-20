@@ -34,7 +34,7 @@ namespace UnitsNet.I18n
         public UnitLocalization(Type unitEnumType, IEnumerable<CulturesForEnumValue> enumValues)
         {
             UnitEnumType = unitEnumType;
-            EnumValues = enumValues.ToList().AsReadOnly();
+            EnumValues = new ReadOnlyCollection<CulturesForEnumValue>(enumValues.ToList());
         }
     }
 }
