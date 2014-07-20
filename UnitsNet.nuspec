@@ -49,6 +49,8 @@ v1.2: Add force, torque, pressure, mass, voltage, length and length2d units of m
   </metadata>
   <files>
     <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.pdb" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.pdb" />
     <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
+    <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.pdb" target="lib\net35-client\UnitsNet.net35.pdb" />
   </files>
 </package>
