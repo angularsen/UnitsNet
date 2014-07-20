@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>2.1.0-alpha</version>
+    <version>3.0.0-alpha</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -11,7 +11,26 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <releaseNotes>v2.0.0: Add support for custom units. Add ratio unit.
+    <releaseNotes>v3.0.0: Clean up naming of units. Add information unit.
+
+New:
+* Add information units for bit, byte, kilobyte,..., exabyte
+
+Breaking changes:
+* Delete OtherUnit.Piece
+* Move OtherUnit.Table/Teaspoon to Volume
+* Rename Month30Days Year365Days units to Month and Year
+* Fix plural naming of Pressure.KilogramsForcePerSquareCentimeterInOnePascal
+* Fix plural naming of Ratio.PartsPer-units
+
+Behind the scenes:
+* Replace T4 templates with PowerShell + JSON templates
+* Support custom tolerance per unit in tests
+* Move code more consistently into Custom/GeneratedCode folders
+* Fix misc R# warnings
+* Match R# cleanup profile in generated code
+
+v2.0.0: Add support for custom units. Add ratio unit.
 
 Breaking changes: Merge UnitValue and UnitConverter into unit classes.
 
