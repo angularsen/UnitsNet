@@ -34,11 +34,12 @@ namespace UnitsNet
     public partial class UnitSystem
     {
         private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
+        private static readonly CultureInfo DefaultCulture = CultureInfo.GetCultureInfo("en-US");
 
         /// <summary>
         ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
         /// </summary>
-        [PublicAPI] public readonly CultureInfo Culture;
+        [NotNull] [PublicAPI] public readonly CultureInfo Culture;
 
         /// <summary>
         ///     Per-unit-type dictionary of enum values by abbreviation. This is the inverse of
@@ -66,13 +67,18 @@ namespace UnitsNet
         public UnitSystem([CanBeNull] CultureInfo cultureInfo = null)
         {
             if (cultureInfo == null)
-                cultureInfo = new CultureInfo("en-US");
+                cultureInfo = new CultureInfo(DefaultCulture.Name);
 
             Culture = cultureInfo;
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
 
             LoadDefaultAbbreviatons(cultureInfo);
+        }
+
+        public bool IsDefaultCulture
+        {
+            get { return Culture.Equals(DefaultCulture); }
         }
 
         [PublicAPI]
@@ -145,7 +151,7 @@ namespace UnitsNet
         public void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            // Assuming TUnit is an enum, this conversion is safe. Not possible to cleanly enforce this today.
+            // Assuming TUnit is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
             // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
             int unitValue = Convert.ToInt32(unit);
@@ -197,22 +203,31 @@ namespace UnitsNet
             Type unitType = typeof (TUnit);
 
             Dictionary<string, int> abbrevToUnitValue;
-            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType,
-                        Culture.EnglishName));
-
             int unitValue;
-            if (!abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
+
+            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue) ||
+                !abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
             {
-                unit = default(TUnit);
-                return false;
+                if (IsDefaultCulture)
+                {
+                    unit = default(TUnit);
+                    return false;
+                }
+
+                // Fall back to default culture
+                return GetCached(DefaultCulture).TryParse(unitAbbreviation, out unit);
             }
 
             unit = (TUnit) (object) unitValue;
             return true;
         }
 
+        /// <summary>
+        ///     Get all abbreviations for unit.
+        /// </summary>
+        /// <typeparam name="TUnit">Enum type for units.</typeparam>
+        /// <param name="unit">Enum value for unit.</param>
+        /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
         public string[] GetAllAbbreviations<TUnit>(TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
@@ -221,18 +236,20 @@ namespace UnitsNet
             int unitValue = Convert.ToInt32(unit);
 
             Dictionary<int, List<string>> unitValueToAbbrevs;
-            if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
-                throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType,
-                        Culture.EnglishName));
-
             List<string> abbrevs;
-            if (!unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
-                throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}.{1}] for culture [{2}].", unitType,
-                        unitValue, Culture.EnglishName));
 
-            // Return the first (most commonly used) abbreviation for this unit)
+            if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs) ||
+                !unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
+            {
+                if (IsDefaultCulture)
+                {
+                    return new[] {string.Format("(no abbreviation for {0})", unit.ToString())};
+                }
+
+                // Fall back to default culture
+                return GetCached(DefaultCulture).GetAllAbbreviations(unit);
+            }
+
             return abbrevs.ToArray();
         }
 

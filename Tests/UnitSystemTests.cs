@@ -55,6 +55,15 @@ namespace UnitsNet.Tests
             return unitsMissingAbbreviations.Cast<object>();
         }
 
+        private enum CustomUnit
+        {
+// ReSharper disable UnusedMember.Local
+            Undefined = 0,
+            Unit1,
+            Unit2
+// ReSharper restore UnusedMember.Local
+        }
+
         [Test]
         public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")] string cultureName)
         {
@@ -172,6 +181,25 @@ namespace UnitsNet.Tests
             {
                 Thread.CurrentThread.CurrentUICulture = originalCulture;
             }
+        }
+
+        [Test]
+        public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
+        {
+            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+            // CurrentUICulture affects localization, in this case the abbreviation.
+            // Zulu (South Africa)
+            UnitSystem zuluUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("zu-ZA"));
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = zuluUnits.Culture;
+
+            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+            usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");
+
+            // Act
+            string abbreviation = zuluUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+
+            // Assert
+            Assert.AreEqual("US english abbreviation for Unit1", abbreviation);
         }
 
         [Test]
