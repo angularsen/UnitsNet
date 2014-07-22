@@ -243,7 +243,7 @@ namespace UnitsNet
             {
                 if (IsDefaultCulture)
                 {
-                    return new[] {string.Format("(no abbreviation for {0})", unit.ToString())};
+                    return new[] {string.Format("(no abbreviation for {0}.{1})", unitType.Name, unit)};
                 }
 
                 // Fall back to default culture
