@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 
-using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -64,6 +64,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TerabytesInOneBit
         {
             get { return 0.125*1e-12; }
+        }
+
+        [Test]
+        public void OneKBHas1000Bytes()
+        {
+            Assert.AreEqual(1000, Information.FromKilobytes(1).Bytes);
         }
     }
 }
