@@ -36,7 +36,7 @@ Behind the scenes:
 </releaseNotes>
     <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
     <language>en-US</language>
-    <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
+    <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
   </metadata>
   <files>
     <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
