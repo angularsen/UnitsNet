@@ -34,7 +34,7 @@ Behind the scenes:
 * Fix misc R# warnings
 * Match R# cleanup profile in generated code
 </releaseNotes>
-    <copyright>Copyright © 2007-2013 Initial Force AS</copyright>
+    <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
     <language>en-US</language>
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert parse c# .net immutable</tags>
   </metadata>
