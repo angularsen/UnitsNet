@@ -33,17 +33,7 @@ namespace UnitsNet.Tests
     [TestFixture]
     public class UnitSystemTests
     {
-        //public IEnumerable<TUnit[]> TestCases<TUnit>()
-        //    where TUnit : /*Enum constraint hack*/ struct, IConvertible
-        //{
-        //    yield return EnumUtils.GetEnumValues<AngleUnit>();
-        //    //yield return new Tester<int> { Expectation = "23tnI" };
-        //    //yield return new Tester<List<string>> { Expectation = "1`tsiL" };
-        //}
-
-        //[TestCaseSource("TestCases")]
-
-        private IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
+        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
             IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
