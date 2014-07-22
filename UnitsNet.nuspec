@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
+    <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/develop/logo-32x32.png</iconUrl>
     <releaseNotes>v3.0.0: Clean up naming of units. Add information unit.
 
 New:
