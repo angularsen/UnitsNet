@@ -63,7 +63,7 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
-        public UnitSystem([CanBeNull] CultureInfo cultureInfo)
+        public UnitSystem([CanBeNull] CultureInfo cultureInfo = null)
         {
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo("en-US");
