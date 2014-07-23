@@ -41,9 +41,9 @@ namespace UnitsNet.Tests
         protected abstract double RadiansInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DegreesTolerance { get { return 1E-5; } }
-        protected virtual double GradiansTolerance { get { return 1E-5; } }
-        protected virtual double RadiansTolerance { get { return 1E-5; } }
+        protected virtual double DegreesTolerance { get { return 1e-5; } }
+        protected virtual double GradiansTolerance { get { return 1e-5; } }
+        protected virtual double RadiansTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

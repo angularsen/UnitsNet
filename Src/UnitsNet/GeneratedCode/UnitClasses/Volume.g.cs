@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Volume.
         /// </summary>
-        [UsedImplicitly] public readonly double CubicMeters;
+        private readonly double _cubicMeters;
 
         public Volume(double cubicmeters) : this()
         {
-            CubicMeters = cubicmeters;
+            _cubicMeters = cubicmeters;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Centiliters
         {
-            get { return (CubicMeters*1e3) / 1e-2; }
+            get { return (_cubicMeters*1e3) / 1e-2d; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicCentimeters
         {
-            get { return CubicMeters*1e6; }
+            get { return _cubicMeters*1e6; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicDecimeters
         {
-            get { return CubicMeters*1e3; }
+            get { return _cubicMeters*1e3; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicFeet
         {
-            get { return CubicMeters/0.0283168; }
+            get { return _cubicMeters/0.0283168; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicInches
         {
-            get { return CubicMeters/(1.6387*1e-5); }
+            get { return _cubicMeters/(1.6387*1e-5); }
         }
 
         /// <summary>
@@ -92,7 +92,15 @@ namespace UnitsNet
         /// </summary>
         public double CubicKilometers
         {
-            get { return CubicMeters/1e9; }
+            get { return _cubicMeters/1e9; }
+        }
+
+        /// <summary>
+        ///     Get Volume in CubicMeters.
+        /// </summary>
+        public double CubicMeters
+        {
+            get { return _cubicMeters; }
         }
 
         /// <summary>
@@ -100,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicMiles
         {
-            get { return CubicMeters/(4.16818183*1e9); }
+            get { return _cubicMeters/(4.16818183*1e9); }
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicMillimeters
         {
-            get { return CubicMeters*1e9; }
+            get { return _cubicMeters*1e9; }
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicYards
         {
-            get { return CubicMeters/0.764554858; }
+            get { return _cubicMeters/0.764554858; }
         }
 
         /// <summary>
@@ -124,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public double Deciliters
         {
-            get { return (CubicMeters*1e3) / 1e-1; }
+            get { return (_cubicMeters*1e3) / 1e-1d; }
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace UnitsNet
         /// </summary>
         public double Hectoliters
         {
-            get { return (CubicMeters*1e3) / 1e2; }
+            get { return (_cubicMeters*1e3) / 1e2d; }
         }
 
         /// <summary>
@@ -140,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         public double ImperialGallons
         {
-            get { return CubicMeters/0.00454609000000181429905810072407; }
+            get { return _cubicMeters/0.00454609000000181429905810072407; }
         }
 
         /// <summary>
@@ -148,7 +156,7 @@ namespace UnitsNet
         /// </summary>
         public double ImperialOunces
         {
-            get { return CubicMeters/2.8413062499962901241875439064617e-5; }
+            get { return _cubicMeters/2.8413062499962901241875439064617e-5; }
         }
 
         /// <summary>
@@ -156,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         public double Liters
         {
-            get { return CubicMeters*1e3; }
+            get { return _cubicMeters*1e3; }
         }
 
         /// <summary>
@@ -164,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         public double Milliliters
         {
-            get { return (CubicMeters*1e3) / 1e-3; }
+            get { return (_cubicMeters*1e3) / 1e-3d; }
         }
 
         /// <summary>
@@ -172,7 +180,7 @@ namespace UnitsNet
         /// </summary>
         public double Tablespoons
         {
-            get { return CubicMeters/1.47867648e-5; }
+            get { return _cubicMeters/1.47867648e-5; }
         }
 
         /// <summary>
@@ -180,7 +188,7 @@ namespace UnitsNet
         /// </summary>
         public double Teaspoons
         {
-            get { return CubicMeters/4.92892159e-6; }
+            get { return _cubicMeters/4.92892159e-6; }
         }
 
         /// <summary>
@@ -188,7 +196,7 @@ namespace UnitsNet
         /// </summary>
         public double UsGallons
         {
-            get { return CubicMeters/0.00378541; }
+            get { return _cubicMeters/0.00378541; }
         }
 
         /// <summary>
@@ -196,7 +204,7 @@ namespace UnitsNet
         /// </summary>
         public double UsOunces
         {
-            get { return CubicMeters/2.957352956253760505068307980135e-5; }
+            get { return _cubicMeters/2.957352956253760505068307980135e-5; }
         }
 
         #endregion
@@ -213,7 +221,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromCentiliters(double centiliters)
         {
-            return new Volume((centiliters/1e3) * 1e-2);
+            return new Volume((centiliters/1e3) * 1e-2d);
         }
 
         /// <summary>
@@ -293,7 +301,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromDeciliters(double deciliters)
         {
-            return new Volume((deciliters/1e3) * 1e-1);
+            return new Volume((deciliters/1e3) * 1e-1d);
         }
 
         /// <summary>
@@ -301,7 +309,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromHectoliters(double hectoliters)
         {
-            return new Volume((hectoliters/1e3) * 1e2);
+            return new Volume((hectoliters/1e3) * 1e2d);
         }
 
         /// <summary>
@@ -333,7 +341,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromMilliliters(double milliliters)
         {
-            return new Volume((milliliters/1e3) * 1e-3);
+            return new Volume((milliliters/1e3) * 1e-3d);
         }
 
         /// <summary>
@@ -443,37 +451,37 @@ namespace UnitsNet
 
         public static Volume operator -(Volume right)
         {
-            return new Volume(-right.CubicMeters);
+            return new Volume(-right._cubicMeters);
         }
 
         public static Volume operator +(Volume left, Volume right)
         {
-            return new Volume(left.CubicMeters + right.CubicMeters);
+            return new Volume(left._cubicMeters + right._cubicMeters);
         }
 
         public static Volume operator -(Volume left, Volume right)
         {
-            return new Volume(left.CubicMeters - right.CubicMeters);
+            return new Volume(left._cubicMeters - right._cubicMeters);
         }
 
         public static Volume operator *(double left, Volume right)
         {
-            return new Volume(left*right.CubicMeters);
+            return new Volume(left*right._cubicMeters);
         }
 
         public static Volume operator *(Volume left, double right)
         {
-            return new Volume(left.CubicMeters*right);
+            return new Volume(left._cubicMeters*(double)right);
         }
 
         public static Volume operator /(Volume left, double right)
         {
-            return new Volume(left.CubicMeters/right);
+            return new Volume(left._cubicMeters/(double)right);
         }
 
         public static double operator /(Volume left, Volume right)
         {
-            return left.CubicMeters/right.CubicMeters;
+            return Convert.ToDouble(left._cubicMeters/right._cubicMeters);
         }
 
         #endregion
@@ -489,39 +497,39 @@ namespace UnitsNet
 
         public int CompareTo(Volume other)
         {
-            return CubicMeters.CompareTo(other.CubicMeters);
+            return _cubicMeters.CompareTo(other._cubicMeters);
         }
 
         public static bool operator <=(Volume left, Volume right)
         {
-            return left.CubicMeters <= right.CubicMeters;
+            return left._cubicMeters <= right._cubicMeters;
         }
 
         public static bool operator >=(Volume left, Volume right)
         {
-            return left.CubicMeters >= right.CubicMeters;
+            return left._cubicMeters >= right._cubicMeters;
         }
 
         public static bool operator <(Volume left, Volume right)
         {
-            return left.CubicMeters < right.CubicMeters;
+            return left._cubicMeters < right._cubicMeters;
         }
 
         public static bool operator >(Volume left, Volume right)
         {
-            return left.CubicMeters > right.CubicMeters;
+            return left._cubicMeters > right._cubicMeters;
         }
 
         public static bool operator ==(Volume left, Volume right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.CubicMeters == right.CubicMeters;
+            return left._cubicMeters == right._cubicMeters;
         }
 
         public static bool operator !=(Volume left, Volume right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.CubicMeters != right.CubicMeters;
+            return left._cubicMeters != right._cubicMeters;
         }
 
         public override bool Equals(object obj)
@@ -531,12 +539,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return CubicMeters.Equals(((Volume) obj).CubicMeters);
+            return _cubicMeters.Equals(((Volume) obj)._cubicMeters);
         }
 
         public override int GetHashCode()
         {
-            return CubicMeters.GetHashCode();
+            return _cubicMeters.GetHashCode();
         }
 
         #endregion

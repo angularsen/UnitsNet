@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Force.
         /// </summary>
-        [UsedImplicitly] public readonly double Newtons;
+        private readonly double _newtons;
 
         public Force(double newtons) : this()
         {
-            Newtons = newtons;
+            _newtons = newtons;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Dyne
         {
-            get { return Newtons*1e5; }
+            get { return _newtons*1e5; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsForce
         {
-            get { return Newtons/Constants.Gravity; }
+            get { return _newtons/Constants.Gravity; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Kilonewtons
         {
-            get { return Newtons/1e3; }
+            get { return _newtons/1e3; }
         }
 
         /// <summary>
@@ -76,7 +76,15 @@ namespace UnitsNet
         /// </summary>
         public double KiloPonds
         {
-            get { return Newtons/Constants.Gravity; }
+            get { return _newtons/Constants.Gravity; }
+        }
+
+        /// <summary>
+        ///     Get Force in Newtons.
+        /// </summary>
+        public double Newtons
+        {
+            get { return _newtons; }
         }
 
         /// <summary>
@@ -84,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double Poundals
         {
-            get { return Newtons/0.13825502798973041652092282466083; }
+            get { return _newtons/0.13825502798973041652092282466083; }
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double PoundForces
         {
-            get { return Newtons/4.4482216152605095551842641431421; }
+            get { return _newtons/4.4482216152605095551842641431421; }
         }
 
         #endregion
@@ -209,37 +217,37 @@ namespace UnitsNet
 
         public static Force operator -(Force right)
         {
-            return new Force(-right.Newtons);
+            return new Force(-right._newtons);
         }
 
         public static Force operator +(Force left, Force right)
         {
-            return new Force(left.Newtons + right.Newtons);
+            return new Force(left._newtons + right._newtons);
         }
 
         public static Force operator -(Force left, Force right)
         {
-            return new Force(left.Newtons - right.Newtons);
+            return new Force(left._newtons - right._newtons);
         }
 
         public static Force operator *(double left, Force right)
         {
-            return new Force(left*right.Newtons);
+            return new Force(left*right._newtons);
         }
 
         public static Force operator *(Force left, double right)
         {
-            return new Force(left.Newtons*right);
+            return new Force(left._newtons*(double)right);
         }
 
         public static Force operator /(Force left, double right)
         {
-            return new Force(left.Newtons/right);
+            return new Force(left._newtons/(double)right);
         }
 
         public static double operator /(Force left, Force right)
         {
-            return left.Newtons/right.Newtons;
+            return Convert.ToDouble(left._newtons/right._newtons);
         }
 
         #endregion
@@ -255,39 +263,39 @@ namespace UnitsNet
 
         public int CompareTo(Force other)
         {
-            return Newtons.CompareTo(other.Newtons);
+            return _newtons.CompareTo(other._newtons);
         }
 
         public static bool operator <=(Force left, Force right)
         {
-            return left.Newtons <= right.Newtons;
+            return left._newtons <= right._newtons;
         }
 
         public static bool operator >=(Force left, Force right)
         {
-            return left.Newtons >= right.Newtons;
+            return left._newtons >= right._newtons;
         }
 
         public static bool operator <(Force left, Force right)
         {
-            return left.Newtons < right.Newtons;
+            return left._newtons < right._newtons;
         }
 
         public static bool operator >(Force left, Force right)
         {
-            return left.Newtons > right.Newtons;
+            return left._newtons > right._newtons;
         }
 
         public static bool operator ==(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Newtons == right.Newtons;
+            return left._newtons == right._newtons;
         }
 
         public static bool operator !=(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Newtons != right.Newtons;
+            return left._newtons != right._newtons;
         }
 
         public override bool Equals(object obj)
@@ -297,12 +305,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Newtons.Equals(((Force) obj).Newtons);
+            return _newtons.Equals(((Force) obj)._newtons);
         }
 
         public override int GetHashCode()
         {
-            return Newtons.GetHashCode();
+            return _newtons.GetHashCode();
         }
 
         #endregion

@@ -184,6 +184,18 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        {
+            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+
+            // Act
+            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+
+            // Assert
+            Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+        }
+
+        [Test]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
             // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
@@ -201,6 +213,7 @@ namespace UnitsNet.Tests
             // Assert
             Assert.AreEqual("US english abbreviation for Unit1", abbreviation);
         }
+
 
         [Test]
         public void ToStringRoundsToTwoDecimals()

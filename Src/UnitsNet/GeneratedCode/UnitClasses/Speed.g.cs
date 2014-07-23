@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Speed.
         /// </summary>
-        [UsedImplicitly] public readonly double MetersPerSecond;
+        private readonly double _metersPerSecond;
 
         public Speed(double meterspersecond) : this()
         {
-            MetersPerSecond = meterspersecond;
+            _metersPerSecond = meterspersecond;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double FeetPerSecond
         {
-            get { return MetersPerSecond/0.3048; }
+            get { return _metersPerSecond/0.3048; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double KilometersPerHour
         {
-            get { return MetersPerSecond*3.6; }
+            get { return _metersPerSecond*3.6; }
         }
 
         /// <summary>
@@ -68,7 +68,15 @@ namespace UnitsNet
         /// </summary>
         public double Knots
         {
-            get { return MetersPerSecond/0.514444; }
+            get { return _metersPerSecond/0.514444; }
+        }
+
+        /// <summary>
+        ///     Get Speed in MetersPerSecond.
+        /// </summary>
+        public double MetersPerSecond
+        {
+            get { return _metersPerSecond; }
         }
 
         /// <summary>
@@ -76,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double MilesPerHour
         {
-            get { return MetersPerSecond/0.44704; }
+            get { return _metersPerSecond/0.44704; }
         }
 
         #endregion
@@ -173,37 +181,37 @@ namespace UnitsNet
 
         public static Speed operator -(Speed right)
         {
-            return new Speed(-right.MetersPerSecond);
+            return new Speed(-right._metersPerSecond);
         }
 
         public static Speed operator +(Speed left, Speed right)
         {
-            return new Speed(left.MetersPerSecond + right.MetersPerSecond);
+            return new Speed(left._metersPerSecond + right._metersPerSecond);
         }
 
         public static Speed operator -(Speed left, Speed right)
         {
-            return new Speed(left.MetersPerSecond - right.MetersPerSecond);
+            return new Speed(left._metersPerSecond - right._metersPerSecond);
         }
 
         public static Speed operator *(double left, Speed right)
         {
-            return new Speed(left*right.MetersPerSecond);
+            return new Speed(left*right._metersPerSecond);
         }
 
         public static Speed operator *(Speed left, double right)
         {
-            return new Speed(left.MetersPerSecond*right);
+            return new Speed(left._metersPerSecond*(double)right);
         }
 
         public static Speed operator /(Speed left, double right)
         {
-            return new Speed(left.MetersPerSecond/right);
+            return new Speed(left._metersPerSecond/(double)right);
         }
 
         public static double operator /(Speed left, Speed right)
         {
-            return left.MetersPerSecond/right.MetersPerSecond;
+            return Convert.ToDouble(left._metersPerSecond/right._metersPerSecond);
         }
 
         #endregion
@@ -219,39 +227,39 @@ namespace UnitsNet
 
         public int CompareTo(Speed other)
         {
-            return MetersPerSecond.CompareTo(other.MetersPerSecond);
+            return _metersPerSecond.CompareTo(other._metersPerSecond);
         }
 
         public static bool operator <=(Speed left, Speed right)
         {
-            return left.MetersPerSecond <= right.MetersPerSecond;
+            return left._metersPerSecond <= right._metersPerSecond;
         }
 
         public static bool operator >=(Speed left, Speed right)
         {
-            return left.MetersPerSecond >= right.MetersPerSecond;
+            return left._metersPerSecond >= right._metersPerSecond;
         }
 
         public static bool operator <(Speed left, Speed right)
         {
-            return left.MetersPerSecond < right.MetersPerSecond;
+            return left._metersPerSecond < right._metersPerSecond;
         }
 
         public static bool operator >(Speed left, Speed right)
         {
-            return left.MetersPerSecond > right.MetersPerSecond;
+            return left._metersPerSecond > right._metersPerSecond;
         }
 
         public static bool operator ==(Speed left, Speed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.MetersPerSecond == right.MetersPerSecond;
+            return left._metersPerSecond == right._metersPerSecond;
         }
 
         public static bool operator !=(Speed left, Speed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.MetersPerSecond != right.MetersPerSecond;
+            return left._metersPerSecond != right._metersPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -261,12 +269,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return MetersPerSecond.Equals(((Speed) obj).MetersPerSecond);
+            return _metersPerSecond.Equals(((Speed) obj)._metersPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return MetersPerSecond.GetHashCode();
+            return _metersPerSecond.GetHashCode();
         }
 
         #endregion

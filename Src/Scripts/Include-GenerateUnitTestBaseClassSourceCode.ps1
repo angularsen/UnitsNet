@@ -1,6 +1,7 @@
 function GenerateUnitTestBaseClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
+    $baseType = $unitClass.BaseType;
     $units = $unitClass.Units;
     $baseUnit = $units | where { $_.SingularName -eq $unitClass.BaseUnit }
     $baseUnitPluralName = $baseUnit.PluralName
@@ -52,7 +53,7 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
 "@;    foreach ($unit in $units) {@"
-        protected virtual double $($unit.PluralName)Tolerance { get { return 1E-5; } }
+        protected virtual double $($unit.PluralName)Tolerance { get { return 1e-5; } }
 "@; }@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 

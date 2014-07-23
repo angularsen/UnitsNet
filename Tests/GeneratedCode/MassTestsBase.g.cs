@@ -53,21 +53,21 @@ namespace UnitsNet.Tests
         protected abstract double TonnesInOneKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsTolerance { get { return 1E-5; } }
-        protected virtual double GramsTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsTolerance { get { return 1E-5; } }
-        protected virtual double KilotonnesTolerance { get { return 1E-5; } }
-        protected virtual double LongTonsTolerance { get { return 1E-5; } }
-        protected virtual double MegatonnesTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsTolerance { get { return 1E-5; } }
-        protected virtual double PoundsTolerance { get { return 1E-5; } }
-        protected virtual double ShortTonsTolerance { get { return 1E-5; } }
-        protected virtual double TonnesTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsTolerance { get { return 1e-5; } }
+        protected virtual double GramsTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilotonnesTolerance { get { return 1e-5; } }
+        protected virtual double LongTonsTolerance { get { return 1e-5; } }
+        protected virtual double MegatonnesTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsTolerance { get { return 1e-5; } }
+        protected virtual double PoundsTolerance { get { return 1e-5; } }
+        protected virtual double ShortTonsTolerance { get { return 1e-5; } }
+        protected virtual double TonnesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

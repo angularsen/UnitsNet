@@ -43,11 +43,11 @@ namespace UnitsNet.Tests
         protected abstract double MilesPerHourInOneMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double FeetPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double KnotsTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MilesPerHourTolerance { get { return 1E-5; } }
+        protected virtual double FeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KnotsTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MilesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

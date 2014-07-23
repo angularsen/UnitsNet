@@ -38,21 +38,29 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Angle.
         /// </summary>
-        [UsedImplicitly] public readonly double Degrees;
+        private readonly double _degrees;
 
         public Angle(double degrees) : this()
         {
-            Degrees = degrees;
+            _degrees = degrees;
         }
 
         #region Properties
+
+        /// <summary>
+        ///     Get Angle in Degrees.
+        /// </summary>
+        public double Degrees
+        {
+            get { return _degrees; }
+        }
 
         /// <summary>
         ///     Get Angle in Gradians.
         /// </summary>
         public double Gradians
         {
-            get { return Degrees/0.9; }
+            get { return _degrees/0.9; }
         }
 
         /// <summary>
@@ -60,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Radians
         {
-            get { return Degrees/180*Math.PI; }
+            get { return _degrees/180*Math.PI; }
         }
 
         #endregion
@@ -137,37 +145,37 @@ namespace UnitsNet
 
         public static Angle operator -(Angle right)
         {
-            return new Angle(-right.Degrees);
+            return new Angle(-right._degrees);
         }
 
         public static Angle operator +(Angle left, Angle right)
         {
-            return new Angle(left.Degrees + right.Degrees);
+            return new Angle(left._degrees + right._degrees);
         }
 
         public static Angle operator -(Angle left, Angle right)
         {
-            return new Angle(left.Degrees - right.Degrees);
+            return new Angle(left._degrees - right._degrees);
         }
 
         public static Angle operator *(double left, Angle right)
         {
-            return new Angle(left*right.Degrees);
+            return new Angle(left*right._degrees);
         }
 
         public static Angle operator *(Angle left, double right)
         {
-            return new Angle(left.Degrees*right);
+            return new Angle(left._degrees*(double)right);
         }
 
         public static Angle operator /(Angle left, double right)
         {
-            return new Angle(left.Degrees/right);
+            return new Angle(left._degrees/(double)right);
         }
 
         public static double operator /(Angle left, Angle right)
         {
-            return left.Degrees/right.Degrees;
+            return Convert.ToDouble(left._degrees/right._degrees);
         }
 
         #endregion
@@ -183,39 +191,39 @@ namespace UnitsNet
 
         public int CompareTo(Angle other)
         {
-            return Degrees.CompareTo(other.Degrees);
+            return _degrees.CompareTo(other._degrees);
         }
 
         public static bool operator <=(Angle left, Angle right)
         {
-            return left.Degrees <= right.Degrees;
+            return left._degrees <= right._degrees;
         }
 
         public static bool operator >=(Angle left, Angle right)
         {
-            return left.Degrees >= right.Degrees;
+            return left._degrees >= right._degrees;
         }
 
         public static bool operator <(Angle left, Angle right)
         {
-            return left.Degrees < right.Degrees;
+            return left._degrees < right._degrees;
         }
 
         public static bool operator >(Angle left, Angle right)
         {
-            return left.Degrees > right.Degrees;
+            return left._degrees > right._degrees;
         }
 
         public static bool operator ==(Angle left, Angle right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Degrees == right.Degrees;
+            return left._degrees == right._degrees;
         }
 
         public static bool operator !=(Angle left, Angle right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Degrees != right.Degrees;
+            return left._degrees != right._degrees;
         }
 
         public override bool Equals(object obj)
@@ -225,12 +233,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Degrees.Equals(((Angle) obj).Degrees);
+            return _degrees.Equals(((Angle) obj)._degrees);
         }
 
         public override int GetHashCode()
         {
-            return Degrees.GetHashCode();
+            return _degrees.GetHashCode();
         }
 
         #endregion

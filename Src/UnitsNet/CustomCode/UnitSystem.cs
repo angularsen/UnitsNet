@@ -34,7 +34,7 @@ namespace UnitsNet
     public partial class UnitSystem
     {
         private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
-        private static readonly CultureInfo DefaultCulture = CultureInfo.GetCultureInfo("en-US");
+        private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
 
         /// <summary>
         ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
@@ -243,7 +243,7 @@ namespace UnitsNet
             {
                 if (IsDefaultCulture)
                 {
-                    return new[] {string.Format("(no abbreviation for {0})", unit.ToString())};
+                    return new[] {string.Format("(no abbreviation for {0}.{1})", unitType.Name, unit)};
                 }
 
                 // Fall back to default culture

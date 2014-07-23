@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Area.
         /// </summary>
-        [UsedImplicitly] public readonly double SquareMeters;
+        private readonly double _squareMeters;
 
         public Area(double squaremeters) : this()
         {
-            SquareMeters = squaremeters;
+            _squareMeters = squaremeters;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareCentimeters
         {
-            get { return SquareMeters/1e-4; }
+            get { return _squareMeters/1e-4; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareDecimeters
         {
-            get { return SquareMeters/1e-2; }
+            get { return _squareMeters/1e-2; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareFeet
         {
-            get { return SquareMeters/0.092903; }
+            get { return _squareMeters/0.092903; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareInches
         {
-            get { return SquareMeters/0.00064516; }
+            get { return _squareMeters/0.00064516; }
         }
 
         /// <summary>
@@ -84,7 +84,15 @@ namespace UnitsNet
         /// </summary>
         public double SquareKilometers
         {
-            get { return SquareMeters/1e6; }
+            get { return _squareMeters/1e6; }
+        }
+
+        /// <summary>
+        ///     Get Area in SquareMeters.
+        /// </summary>
+        public double SquareMeters
+        {
+            get { return _squareMeters; }
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareMiles
         {
-            get { return SquareMeters/2.59e6; }
+            get { return _squareMeters/2.59e6; }
         }
 
         /// <summary>
@@ -100,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareMillimeters
         {
-            get { return SquareMeters/1e-6; }
+            get { return _squareMeters/1e-6; }
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareYards
         {
-            get { return SquareMeters/0.836127; }
+            get { return _squareMeters/0.836127; }
         }
 
         #endregion
@@ -245,37 +253,37 @@ namespace UnitsNet
 
         public static Area operator -(Area right)
         {
-            return new Area(-right.SquareMeters);
+            return new Area(-right._squareMeters);
         }
 
         public static Area operator +(Area left, Area right)
         {
-            return new Area(left.SquareMeters + right.SquareMeters);
+            return new Area(left._squareMeters + right._squareMeters);
         }
 
         public static Area operator -(Area left, Area right)
         {
-            return new Area(left.SquareMeters - right.SquareMeters);
+            return new Area(left._squareMeters - right._squareMeters);
         }
 
         public static Area operator *(double left, Area right)
         {
-            return new Area(left*right.SquareMeters);
+            return new Area(left*right._squareMeters);
         }
 
         public static Area operator *(Area left, double right)
         {
-            return new Area(left.SquareMeters*right);
+            return new Area(left._squareMeters*(double)right);
         }
 
         public static Area operator /(Area left, double right)
         {
-            return new Area(left.SquareMeters/right);
+            return new Area(left._squareMeters/(double)right);
         }
 
         public static double operator /(Area left, Area right)
         {
-            return left.SquareMeters/right.SquareMeters;
+            return Convert.ToDouble(left._squareMeters/right._squareMeters);
         }
 
         #endregion
@@ -291,39 +299,39 @@ namespace UnitsNet
 
         public int CompareTo(Area other)
         {
-            return SquareMeters.CompareTo(other.SquareMeters);
+            return _squareMeters.CompareTo(other._squareMeters);
         }
 
         public static bool operator <=(Area left, Area right)
         {
-            return left.SquareMeters <= right.SquareMeters;
+            return left._squareMeters <= right._squareMeters;
         }
 
         public static bool operator >=(Area left, Area right)
         {
-            return left.SquareMeters >= right.SquareMeters;
+            return left._squareMeters >= right._squareMeters;
         }
 
         public static bool operator <(Area left, Area right)
         {
-            return left.SquareMeters < right.SquareMeters;
+            return left._squareMeters < right._squareMeters;
         }
 
         public static bool operator >(Area left, Area right)
         {
-            return left.SquareMeters > right.SquareMeters;
+            return left._squareMeters > right._squareMeters;
         }
 
         public static bool operator ==(Area left, Area right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.SquareMeters == right.SquareMeters;
+            return left._squareMeters == right._squareMeters;
         }
 
         public static bool operator !=(Area left, Area right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.SquareMeters != right.SquareMeters;
+            return left._squareMeters != right._squareMeters;
         }
 
         public override bool Equals(object obj)
@@ -333,12 +341,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return SquareMeters.Equals(((Area) obj).SquareMeters);
+            return _squareMeters.Equals(((Area) obj)._squareMeters);
         }
 
         public override int GetHashCode()
         {
-            return SquareMeters.GetHashCode();
+            return _squareMeters.GetHashCode();
         }
 
         #endregion

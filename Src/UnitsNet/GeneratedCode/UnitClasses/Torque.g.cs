@@ -38,14 +38,22 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Torque.
         /// </summary>
-        [UsedImplicitly] public readonly double Newtonmeters;
+        private readonly double _newtonmeters;
 
         public Torque(double newtonmeters) : this()
         {
-            Newtonmeters = newtonmeters;
+            _newtonmeters = newtonmeters;
         }
 
         #region Properties
+
+        /// <summary>
+        ///     Get Torque in Newtonmeters.
+        /// </summary>
+        public double Newtonmeters
+        {
+            get { return _newtonmeters; }
+        }
 
         #endregion
 
@@ -101,37 +109,37 @@ namespace UnitsNet
 
         public static Torque operator -(Torque right)
         {
-            return new Torque(-right.Newtonmeters);
+            return new Torque(-right._newtonmeters);
         }
 
         public static Torque operator +(Torque left, Torque right)
         {
-            return new Torque(left.Newtonmeters + right.Newtonmeters);
+            return new Torque(left._newtonmeters + right._newtonmeters);
         }
 
         public static Torque operator -(Torque left, Torque right)
         {
-            return new Torque(left.Newtonmeters - right.Newtonmeters);
+            return new Torque(left._newtonmeters - right._newtonmeters);
         }
 
         public static Torque operator *(double left, Torque right)
         {
-            return new Torque(left*right.Newtonmeters);
+            return new Torque(left*right._newtonmeters);
         }
 
         public static Torque operator *(Torque left, double right)
         {
-            return new Torque(left.Newtonmeters*right);
+            return new Torque(left._newtonmeters*(double)right);
         }
 
         public static Torque operator /(Torque left, double right)
         {
-            return new Torque(left.Newtonmeters/right);
+            return new Torque(left._newtonmeters/(double)right);
         }
 
         public static double operator /(Torque left, Torque right)
         {
-            return left.Newtonmeters/right.Newtonmeters;
+            return Convert.ToDouble(left._newtonmeters/right._newtonmeters);
         }
 
         #endregion
@@ -147,39 +155,39 @@ namespace UnitsNet
 
         public int CompareTo(Torque other)
         {
-            return Newtonmeters.CompareTo(other.Newtonmeters);
+            return _newtonmeters.CompareTo(other._newtonmeters);
         }
 
         public static bool operator <=(Torque left, Torque right)
         {
-            return left.Newtonmeters <= right.Newtonmeters;
+            return left._newtonmeters <= right._newtonmeters;
         }
 
         public static bool operator >=(Torque left, Torque right)
         {
-            return left.Newtonmeters >= right.Newtonmeters;
+            return left._newtonmeters >= right._newtonmeters;
         }
 
         public static bool operator <(Torque left, Torque right)
         {
-            return left.Newtonmeters < right.Newtonmeters;
+            return left._newtonmeters < right._newtonmeters;
         }
 
         public static bool operator >(Torque left, Torque right)
         {
-            return left.Newtonmeters > right.Newtonmeters;
+            return left._newtonmeters > right._newtonmeters;
         }
 
         public static bool operator ==(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Newtonmeters == right.Newtonmeters;
+            return left._newtonmeters == right._newtonmeters;
         }
 
         public static bool operator !=(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Newtonmeters != right.Newtonmeters;
+            return left._newtonmeters != right._newtonmeters;
         }
 
         public override bool Equals(object obj)
@@ -189,12 +197,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Newtonmeters.Equals(((Torque) obj).Newtonmeters);
+            return _newtonmeters.Equals(((Torque) obj)._newtonmeters);
         }
 
         public override int GetHashCode()
         {
-            return Newtonmeters.GetHashCode();
+            return _newtonmeters.GetHashCode();
         }
 
         #endregion

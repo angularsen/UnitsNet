@@ -51,19 +51,19 @@ namespace UnitsNet.Tests
         protected abstract double YardsInOneMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersTolerance { get { return 1E-5; } }
-        protected virtual double FeetTolerance { get { return 1E-5; } }
-        protected virtual double InchesTolerance { get { return 1E-5; } }
-        protected virtual double KilometersTolerance { get { return 1E-5; } }
-        protected virtual double MetersTolerance { get { return 1E-5; } }
-        protected virtual double MicroinchesTolerance { get { return 1E-5; } }
-        protected virtual double MicrometersTolerance { get { return 1E-5; } }
-        protected virtual double MilsTolerance { get { return 1E-5; } }
-        protected virtual double MilesTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersTolerance { get { return 1E-5; } }
-        protected virtual double NanometersTolerance { get { return 1E-5; } }
-        protected virtual double YardsTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersTolerance { get { return 1e-5; } }
+        protected virtual double FeetTolerance { get { return 1e-5; } }
+        protected virtual double InchesTolerance { get { return 1e-5; } }
+        protected virtual double KilometersTolerance { get { return 1e-5; } }
+        protected virtual double MetersTolerance { get { return 1e-5; } }
+        protected virtual double MicroinchesTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersTolerance { get { return 1e-5; } }
+        protected virtual double MilsTolerance { get { return 1e-5; } }
+        protected virtual double MilesTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersTolerance { get { return 1e-5; } }
+        protected virtual double NanometersTolerance { get { return 1e-5; } }
+        protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

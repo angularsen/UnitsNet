@@ -47,15 +47,15 @@ namespace UnitsNet.Tests
         protected abstract double SquareYardsInOneSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double SquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double SquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double SquareFeetTolerance { get { return 1E-5; } }
-        protected virtual double SquareInchesTolerance { get { return 1E-5; } }
-        protected virtual double SquareKilometersTolerance { get { return 1E-5; } }
-        protected virtual double SquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double SquareMilesTolerance { get { return 1E-5; } }
-        protected virtual double SquareMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double SquareYardsTolerance { get { return 1E-5; } }
+        protected virtual double SquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareFeetTolerance { get { return 1e-5; } }
+        protected virtual double SquareInchesTolerance { get { return 1e-5; } }
+        protected virtual double SquareKilometersTolerance { get { return 1e-5; } }
+        protected virtual double SquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareMilesTolerance { get { return 1e-5; } }
+        protected virtual double SquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareYardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

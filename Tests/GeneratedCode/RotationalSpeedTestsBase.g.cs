@@ -40,8 +40,8 @@ namespace UnitsNet.Tests
         protected abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double RevolutionsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double RevolutionsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double RevolutionsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

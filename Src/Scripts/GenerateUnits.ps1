@@ -10,35 +10,42 @@
         {
             $prefixInfo = switch ($prefix)
             {
-                "Kilo" { "k", "1e3"; break; }
-                "Hecto" { "h", "1e2"; break; }
-                "Deca" { "da", "1e1"; break; }
-                "Deci" { "d", "1e-1"; break; }
-                "Centi" { "c", "1e-2"; break; }
-                "Milli" { "m", "1e-3"; break; }
-                "Micro" { "μ", "1e-6"; break; }
-                "Nano" { "n", "1e-9"; break; }
+                "Kilo" { "k", "1e3d"; break; }
+                "Hecto" { "h", "1e2d"; break; }
+                "Deca" { "da", "1e1d"; break; }
+                "Deci" { "d", "1e-1d"; break; }
+                "Centi" { "c", "1e-2d"; break; }
+                "Milli" { "m", "1e-3d"; break; }
+                "Micro" { "μ", "1e-6d"; break; }
+                "Nano" { "n", "1e-9d"; break; }
 
                 # Optimization, move less frequently used prefixes to the end
-                "Pico" { "p", "1e-12"; break; }
-                "Femto" { "f", "1e-15"; break; }
-                "Atto" { "a", "1e-18"; break; }
-                "Zepto" { "z", "1e-21"; break; }
-                "Yocto" { "y", "1e-24"; break; }
+                "Pico" { "p", "1e-12d"; break; }
+                "Femto" { "f", "1e-15d"; break; }
+                "Atto" { "a", "1e-18d"; break; }
+                "Zepto" { "z", "1e-21d"; break; }
+                "Yocto" { "y", "1e-24d"; break; }
 
-                "Yotta" { "Y", "1e24"; break; }
-                "Zetta" { "Z", "1e21"; break; }
-                "Exa" { "E", "1e18"; break; }
-                "Peta" { "P", "1e15"; break; }
-                "Tera" { "T", "1e12"; break; }
-                "Giga" { "G", "1e9"; break; }
-                "Mega" { "M", "1e6"; break; }
+                "Yotta" { "Y", "1e24d"; break; }
+                "Zetta" { "Z", "1e21d"; break; }
+                "Exa" { "E", "1e18d"; break; }
+                "Peta" { "P", "1e15d"; break; }
+                "Tera" { "T", "1e12d"; break; }
+                "Giga" { "G", "1e9d"; break; }
+                "Mega" { "M", "1e6d"; break; }
 
-            }
+                # Binary prefixes
+                "Kibi" { "Ki", "1024d"; break; }
+                "Mebi" { "Mi", "(1024d * 1024)"; break; }
+                "Gibi" { "Gi", "(1024d * 1024 * 1024)"; break; }
+                "Tebi" { "Ti", "(1024d * 1024 * 1024 * 1024)"; break; }
+                "Pebi" { "Pi", "(1024d * 1024 * 1024 * 1024 * 1024)"; break; }
+                "Exbi" { "Ei", "(1024d * 1024 * 1024 * 1024 * 1024 * 1024)"; break; }
+            }            
             
             $prefixAbbreviation = $prefixInfo[0];
             $prefixFactor = $prefixInfo[1];
-            
+      
             $u = New-Object PsObject -Property @{ 
                 SingularName=$prefix+$unit.SingularName.ToLowerInvariant(); 
                 PluralName=$prefix+$unit.PluralName.ToLowerInvariant();
@@ -57,6 +64,25 @@
             }
             
             $units += $u;
+        }
+    }
+    
+    foreach ($u in $units) {
+        # Use decimal for internal calculations if base type is not double, such as for long or int.
+        if ($unitClass.BaseType -ne "double") {
+            $u.FromUnitToBaseFunc = $u.FromUnitToBaseFunc -replace "m", "d";
+            $u.FromBaseToUnitFunc = $u.FromBaseToUnitFunc -replace "d", "m";
+        }
+        
+        # Convert to/from double for other base types
+        if ($unitClass.BaseType -eq "decimal") {
+            $u.FromUnitToBaseFunc = "Convert.ToDecimal($($u.FromUnitToBaseFunc))";
+            $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))";
+        } else { 
+            if ($unitClass.BaseType -eq "long") {
+              $u.FromUnitToBaseFunc = "Convert.ToInt64($($u.FromUnitToBaseFunc))";
+              $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))";
+            }
         }
     }
     
@@ -136,6 +162,11 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     $json = (Get-Content $templateFile | Out-String)
     $unitClass = $json | ConvertFrom-Json
 
+  # Set default values
+  if (!$unitClass.BaseType) {
+    $unitClass | Add-Member BaseType "double";
+  }
+  
     # Expand unit prefixes into units
     $unitClass.Units = GetUnits $unitClass;
     

@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Flow.
         /// </summary>
-        [UsedImplicitly] public readonly double CubicMetersPerSecond;
+        private readonly double _cubicMetersPerSecond;
 
         public Flow(double cubicmeterspersecond) : this()
         {
-            CubicMetersPerSecond = cubicmeterspersecond;
+            _cubicMetersPerSecond = cubicmeterspersecond;
         }
 
         #region Properties
@@ -52,7 +52,15 @@ namespace UnitsNet
         /// </summary>
         public double CubicMetersPerHour
         {
-            get { return CubicMetersPerSecond*3600; }
+            get { return _cubicMetersPerSecond*3600; }
+        }
+
+        /// <summary>
+        ///     Get Flow in CubicMetersPerSecond.
+        /// </summary>
+        public double CubicMetersPerSecond
+        {
+            get { return _cubicMetersPerSecond; }
         }
 
         #endregion
@@ -119,37 +127,37 @@ namespace UnitsNet
 
         public static Flow operator -(Flow right)
         {
-            return new Flow(-right.CubicMetersPerSecond);
+            return new Flow(-right._cubicMetersPerSecond);
         }
 
         public static Flow operator +(Flow left, Flow right)
         {
-            return new Flow(left.CubicMetersPerSecond + right.CubicMetersPerSecond);
+            return new Flow(left._cubicMetersPerSecond + right._cubicMetersPerSecond);
         }
 
         public static Flow operator -(Flow left, Flow right)
         {
-            return new Flow(left.CubicMetersPerSecond - right.CubicMetersPerSecond);
+            return new Flow(left._cubicMetersPerSecond - right._cubicMetersPerSecond);
         }
 
         public static Flow operator *(double left, Flow right)
         {
-            return new Flow(left*right.CubicMetersPerSecond);
+            return new Flow(left*right._cubicMetersPerSecond);
         }
 
         public static Flow operator *(Flow left, double right)
         {
-            return new Flow(left.CubicMetersPerSecond*right);
+            return new Flow(left._cubicMetersPerSecond*(double)right);
         }
 
         public static Flow operator /(Flow left, double right)
         {
-            return new Flow(left.CubicMetersPerSecond/right);
+            return new Flow(left._cubicMetersPerSecond/(double)right);
         }
 
         public static double operator /(Flow left, Flow right)
         {
-            return left.CubicMetersPerSecond/right.CubicMetersPerSecond;
+            return Convert.ToDouble(left._cubicMetersPerSecond/right._cubicMetersPerSecond);
         }
 
         #endregion
@@ -165,39 +173,39 @@ namespace UnitsNet
 
         public int CompareTo(Flow other)
         {
-            return CubicMetersPerSecond.CompareTo(other.CubicMetersPerSecond);
+            return _cubicMetersPerSecond.CompareTo(other._cubicMetersPerSecond);
         }
 
         public static bool operator <=(Flow left, Flow right)
         {
-            return left.CubicMetersPerSecond <= right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond <= right._cubicMetersPerSecond;
         }
 
         public static bool operator >=(Flow left, Flow right)
         {
-            return left.CubicMetersPerSecond >= right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond >= right._cubicMetersPerSecond;
         }
 
         public static bool operator <(Flow left, Flow right)
         {
-            return left.CubicMetersPerSecond < right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond < right._cubicMetersPerSecond;
         }
 
         public static bool operator >(Flow left, Flow right)
         {
-            return left.CubicMetersPerSecond > right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond > right._cubicMetersPerSecond;
         }
 
         public static bool operator ==(Flow left, Flow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.CubicMetersPerSecond == right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond == right._cubicMetersPerSecond;
         }
 
         public static bool operator !=(Flow left, Flow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.CubicMetersPerSecond != right.CubicMetersPerSecond;
+            return left._cubicMetersPerSecond != right._cubicMetersPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -207,12 +215,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return CubicMetersPerSecond.Equals(((Flow) obj).CubicMetersPerSecond);
+            return _cubicMetersPerSecond.Equals(((Flow) obj)._cubicMetersPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return CubicMetersPerSecond.GetHashCode();
+            return _cubicMetersPerSecond.GetHashCode();
         }
 
         #endregion
