@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of RotationalSpeed.
         /// </summary>
-        [UsedImplicitly] public readonly double RevolutionsPerSecond;
+        private readonly double _revolutionsPerSecond;
 
         public RotationalSpeed(double revolutionspersecond) : this()
         {
-            RevolutionsPerSecond = revolutionspersecond;
+            _revolutionsPerSecond = revolutionspersecond;
         }
 
         #region Properties
@@ -52,7 +52,15 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerMinute
         {
-            get { return RevolutionsPerSecond*60; }
+            get { return _revolutionsPerSecond*60; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in RevolutionsPerSecond.
+        /// </summary>
+        public double RevolutionsPerSecond
+        {
+            get { return _revolutionsPerSecond; }
         }
 
         #endregion
@@ -119,37 +127,37 @@ namespace UnitsNet
 
         public static RotationalSpeed operator -(RotationalSpeed right)
         {
-            return new RotationalSpeed(-right.RevolutionsPerSecond);
+            return new RotationalSpeed(-right._revolutionsPerSecond);
         }
 
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.RevolutionsPerSecond + right.RevolutionsPerSecond);
+            return new RotationalSpeed(left._revolutionsPerSecond + right._revolutionsPerSecond);
         }
 
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.RevolutionsPerSecond - right.RevolutionsPerSecond);
+            return new RotationalSpeed(left._revolutionsPerSecond - right._revolutionsPerSecond);
         }
 
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left*right.RevolutionsPerSecond);
+            return new RotationalSpeed(left*right._revolutionsPerSecond);
         }
 
         public static RotationalSpeed operator *(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left.RevolutionsPerSecond*right);
+            return new RotationalSpeed(left._revolutionsPerSecond*(double)right);
         }
 
         public static RotationalSpeed operator /(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left.RevolutionsPerSecond/right);
+            return new RotationalSpeed(left._revolutionsPerSecond/(double)right);
         }
 
         public static double operator /(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.RevolutionsPerSecond/right.RevolutionsPerSecond;
+            return Convert.ToDouble(left._revolutionsPerSecond/right._revolutionsPerSecond);
         }
 
         #endregion
@@ -165,39 +173,39 @@ namespace UnitsNet
 
         public int CompareTo(RotationalSpeed other)
         {
-            return RevolutionsPerSecond.CompareTo(other.RevolutionsPerSecond);
+            return _revolutionsPerSecond.CompareTo(other._revolutionsPerSecond);
         }
 
         public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.RevolutionsPerSecond <= right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond <= right._revolutionsPerSecond;
         }
 
         public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.RevolutionsPerSecond >= right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond >= right._revolutionsPerSecond;
         }
 
         public static bool operator <(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.RevolutionsPerSecond < right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond < right._revolutionsPerSecond;
         }
 
         public static bool operator >(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.RevolutionsPerSecond > right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond > right._revolutionsPerSecond;
         }
 
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.RevolutionsPerSecond == right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond == right._revolutionsPerSecond;
         }
 
         public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.RevolutionsPerSecond != right.RevolutionsPerSecond;
+            return left._revolutionsPerSecond != right._revolutionsPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -207,12 +215,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return RevolutionsPerSecond.Equals(((RotationalSpeed) obj).RevolutionsPerSecond);
+            return _revolutionsPerSecond.Equals(((RotationalSpeed) obj)._revolutionsPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return RevolutionsPerSecond.GetHashCode();
+            return _revolutionsPerSecond.GetHashCode();
         }
 
         #endregion

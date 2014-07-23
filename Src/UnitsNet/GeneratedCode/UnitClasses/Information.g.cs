@@ -38,21 +38,37 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Information.
         /// </summary>
-        [UsedImplicitly] public readonly double Bits;
+        private readonly decimal _bits;
 
-        public Information(double bits) : this()
+        public Information(decimal bits) : this()
         {
-            Bits = bits;
+            _bits = bits;
         }
 
         #region Properties
+
+        /// <summary>
+        ///     Get Information in Bits.
+        /// </summary>
+        public double Bits
+        {
+            get { return Convert.ToDouble(_bits); }
+        }
 
         /// <summary>
         ///     Get Information in Bytes.
         /// </summary>
         public double Bytes
         {
-            get { return Bits/8; }
+            get { return Convert.ToDouble(_bits/8m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Exabits.
+        /// </summary>
+        public double Exabits
+        {
+            get { return Convert.ToDouble((_bits) / 1e18m); }
         }
 
         /// <summary>
@@ -60,7 +76,47 @@ namespace UnitsNet
         /// </summary>
         public double Exabytes
         {
-            get { return (Bits/8) / 1e18; }
+            get { return Convert.ToDouble((_bits/8m) / 1e18m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Exbibits.
+        /// </summary>
+        public double Exbibits
+        {
+            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Exbibytes.
+        /// </summary>
+        public double Exbibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Gibibits.
+        /// </summary>
+        public double Gibibits
+        {
+            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Gibibytes.
+        /// </summary>
+        public double Gibibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Gigabits.
+        /// </summary>
+        public double Gigabits
+        {
+            get { return Convert.ToDouble((_bits) / 1e9m); }
         }
 
         /// <summary>
@@ -68,7 +124,31 @@ namespace UnitsNet
         /// </summary>
         public double Gigabytes
         {
-            get { return (Bits/8) / 1e9; }
+            get { return Convert.ToDouble((_bits/8m) / 1e9m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Kibibits.
+        /// </summary>
+        public double Kibibits
+        {
+            get { return Convert.ToDouble((_bits) / 1024m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Kibibytes.
+        /// </summary>
+        public double Kibibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / 1024m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Kilobits.
+        /// </summary>
+        public double Kilobits
+        {
+            get { return Convert.ToDouble((_bits) / 1e3m); }
         }
 
         /// <summary>
@@ -76,7 +156,31 @@ namespace UnitsNet
         /// </summary>
         public double Kilobytes
         {
-            get { return (Bits/8) / 1e3; }
+            get { return Convert.ToDouble((_bits/8m) / 1e3m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Mebibits.
+        /// </summary>
+        public double Mebibits
+        {
+            get { return Convert.ToDouble((_bits) / (1024m * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Mebibytes.
+        /// </summary>
+        public double Mebibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Megabits.
+        /// </summary>
+        public double Megabits
+        {
+            get { return Convert.ToDouble((_bits) / 1e6m); }
         }
 
         /// <summary>
@@ -84,7 +188,31 @@ namespace UnitsNet
         /// </summary>
         public double Megabytes
         {
-            get { return (Bits/8) / 1e6; }
+            get { return Convert.ToDouble((_bits/8m) / 1e6m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Pebibits.
+        /// </summary>
+        public double Pebibits
+        {
+            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Pebibytes.
+        /// </summary>
+        public double Pebibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Petabits.
+        /// </summary>
+        public double Petabits
+        {
+            get { return Convert.ToDouble((_bits) / 1e15m); }
         }
 
         /// <summary>
@@ -92,7 +220,31 @@ namespace UnitsNet
         /// </summary>
         public double Petabytes
         {
-            get { return (Bits/8) / 1e15; }
+            get { return Convert.ToDouble((_bits/8m) / 1e15m); }
+        }
+
+        /// <summary>
+        ///     Get Information in Tebibits.
+        /// </summary>
+        public double Tebibits
+        {
+            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Tebibytes.
+        /// </summary>
+        public double Tebibytes
+        {
+            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024)); }
+        }
+
+        /// <summary>
+        ///     Get Information in Terabits.
+        /// </summary>
+        public double Terabits
+        {
+            get { return Convert.ToDouble((_bits) / 1e12m); }
         }
 
         /// <summary>
@@ -100,7 +252,7 @@ namespace UnitsNet
         /// </summary>
         public double Terabytes
         {
-            get { return (Bits/8) / 1e12; }
+            get { return Convert.ToDouble((_bits/8m) / 1e12m); }
         }
 
         #endregion
@@ -117,7 +269,7 @@ namespace UnitsNet
         /// </summary>
         public static Information FromBits(double bits)
         {
-            return new Information(bits);
+            return new Information(Convert.ToDecimal(bits));
         }
 
         /// <summary>
@@ -125,7 +277,15 @@ namespace UnitsNet
         /// </summary>
         public static Information FromBytes(double bytes)
         {
-            return new Information(bytes*8);
+            return new Information(Convert.ToDecimal(bytes*8d));
+        }
+
+        /// <summary>
+        ///     Get Information from Exabits.
+        /// </summary>
+        public static Information FromExabits(double exabits)
+        {
+            return new Information(Convert.ToDecimal((exabits) * 1e18d));
         }
 
         /// <summary>
@@ -133,7 +293,47 @@ namespace UnitsNet
         /// </summary>
         public static Information FromExabytes(double exabytes)
         {
-            return new Information((exabytes*8) * 1e18);
+            return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
+        }
+
+        /// <summary>
+        ///     Get Information from Exbibits.
+        /// </summary>
+        public static Information FromExbibits(double exbibits)
+        {
+            return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Exbibytes.
+        /// </summary>
+        public static Information FromExbibytes(double exbibytes)
+        {
+            return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Gibibits.
+        /// </summary>
+        public static Information FromGibibits(double gibibits)
+        {
+            return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Gibibytes.
+        /// </summary>
+        public static Information FromGibibytes(double gibibytes)
+        {
+            return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Gigabits.
+        /// </summary>
+        public static Information FromGigabits(double gigabits)
+        {
+            return new Information(Convert.ToDecimal((gigabits) * 1e9d));
         }
 
         /// <summary>
@@ -141,7 +341,31 @@ namespace UnitsNet
         /// </summary>
         public static Information FromGigabytes(double gigabytes)
         {
-            return new Information((gigabytes*8) * 1e9);
+            return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
+        }
+
+        /// <summary>
+        ///     Get Information from Kibibits.
+        /// </summary>
+        public static Information FromKibibits(double kibibits)
+        {
+            return new Information(Convert.ToDecimal((kibibits) * 1024d));
+        }
+
+        /// <summary>
+        ///     Get Information from Kibibytes.
+        /// </summary>
+        public static Information FromKibibytes(double kibibytes)
+        {
+            return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
+        }
+
+        /// <summary>
+        ///     Get Information from Kilobits.
+        /// </summary>
+        public static Information FromKilobits(double kilobits)
+        {
+            return new Information(Convert.ToDecimal((kilobits) * 1e3d));
         }
 
         /// <summary>
@@ -149,7 +373,31 @@ namespace UnitsNet
         /// </summary>
         public static Information FromKilobytes(double kilobytes)
         {
-            return new Information((kilobytes*8) * 1e3);
+            return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
+        }
+
+        /// <summary>
+        ///     Get Information from Mebibits.
+        /// </summary>
+        public static Information FromMebibits(double mebibits)
+        {
+            return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Mebibytes.
+        /// </summary>
+        public static Information FromMebibytes(double mebibytes)
+        {
+            return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Megabits.
+        /// </summary>
+        public static Information FromMegabits(double megabits)
+        {
+            return new Information(Convert.ToDecimal((megabits) * 1e6d));
         }
 
         /// <summary>
@@ -157,7 +405,31 @@ namespace UnitsNet
         /// </summary>
         public static Information FromMegabytes(double megabytes)
         {
-            return new Information((megabytes*8) * 1e6);
+            return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
+        }
+
+        /// <summary>
+        ///     Get Information from Pebibits.
+        /// </summary>
+        public static Information FromPebibits(double pebibits)
+        {
+            return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Pebibytes.
+        /// </summary>
+        public static Information FromPebibytes(double pebibytes)
+        {
+            return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Petabits.
+        /// </summary>
+        public static Information FromPetabits(double petabits)
+        {
+            return new Information(Convert.ToDecimal((petabits) * 1e15d));
         }
 
         /// <summary>
@@ -165,7 +437,31 @@ namespace UnitsNet
         /// </summary>
         public static Information FromPetabytes(double petabytes)
         {
-            return new Information((petabytes*8) * 1e15);
+            return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
+        }
+
+        /// <summary>
+        ///     Get Information from Tebibits.
+        /// </summary>
+        public static Information FromTebibits(double tebibits)
+        {
+            return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Tebibytes.
+        /// </summary>
+        public static Information FromTebibytes(double tebibytes)
+        {
+            return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+        /// <summary>
+        ///     Get Information from Terabits.
+        /// </summary>
+        public static Information FromTerabits(double terabits)
+        {
+            return new Information(Convert.ToDecimal((terabits) * 1e12d));
         }
 
         /// <summary>
@@ -173,7 +469,7 @@ namespace UnitsNet
         /// </summary>
         public static Information FromTerabytes(double terabytes)
         {
-            return new Information((terabytes*8) * 1e12);
+            return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
         }
 
 
@@ -191,16 +487,52 @@ namespace UnitsNet
                     return FromBits(value);
                 case InformationUnit.Byte:
                     return FromBytes(value);
+                case InformationUnit.Exabit:
+                    return FromExabits(value);
                 case InformationUnit.Exabyte:
                     return FromExabytes(value);
+                case InformationUnit.Exbibit:
+                    return FromExbibits(value);
+                case InformationUnit.Exbibyte:
+                    return FromExbibytes(value);
+                case InformationUnit.Gibibit:
+                    return FromGibibits(value);
+                case InformationUnit.Gibibyte:
+                    return FromGibibytes(value);
+                case InformationUnit.Gigabit:
+                    return FromGigabits(value);
                 case InformationUnit.Gigabyte:
                     return FromGigabytes(value);
+                case InformationUnit.Kibibit:
+                    return FromKibibits(value);
+                case InformationUnit.Kibibyte:
+                    return FromKibibytes(value);
+                case InformationUnit.Kilobit:
+                    return FromKilobits(value);
                 case InformationUnit.Kilobyte:
                     return FromKilobytes(value);
+                case InformationUnit.Mebibit:
+                    return FromMebibits(value);
+                case InformationUnit.Mebibyte:
+                    return FromMebibytes(value);
+                case InformationUnit.Megabit:
+                    return FromMegabits(value);
                 case InformationUnit.Megabyte:
                     return FromMegabytes(value);
+                case InformationUnit.Pebibit:
+                    return FromPebibits(value);
+                case InformationUnit.Pebibyte:
+                    return FromPebibytes(value);
+                case InformationUnit.Petabit:
+                    return FromPetabits(value);
                 case InformationUnit.Petabyte:
                     return FromPetabytes(value);
+                case InformationUnit.Tebibit:
+                    return FromTebibits(value);
+                case InformationUnit.Tebibyte:
+                    return FromTebibytes(value);
+                case InformationUnit.Terabit:
+                    return FromTerabits(value);
                 case InformationUnit.Terabyte:
                     return FromTerabytes(value);
 
@@ -227,37 +559,37 @@ namespace UnitsNet
 
         public static Information operator -(Information right)
         {
-            return new Information(-right.Bits);
+            return new Information(-right._bits);
         }
 
         public static Information operator +(Information left, Information right)
         {
-            return new Information(left.Bits + right.Bits);
+            return new Information(left._bits + right._bits);
         }
 
         public static Information operator -(Information left, Information right)
         {
-            return new Information(left.Bits - right.Bits);
+            return new Information(left._bits - right._bits);
         }
 
-        public static Information operator *(double left, Information right)
+        public static Information operator *(decimal left, Information right)
         {
-            return new Information(left*right.Bits);
+            return new Information(left*right._bits);
         }
 
         public static Information operator *(Information left, double right)
         {
-            return new Information(left.Bits*right);
+            return new Information(left._bits*(decimal)right);
         }
 
         public static Information operator /(Information left, double right)
         {
-            return new Information(left.Bits/right);
+            return new Information(left._bits/(decimal)right);
         }
 
         public static double operator /(Information left, Information right)
         {
-            return left.Bits/right.Bits;
+            return Convert.ToDouble(left._bits/right._bits);
         }
 
         #endregion
@@ -273,39 +605,39 @@ namespace UnitsNet
 
         public int CompareTo(Information other)
         {
-            return Bits.CompareTo(other.Bits);
+            return _bits.CompareTo(other._bits);
         }
 
         public static bool operator <=(Information left, Information right)
         {
-            return left.Bits <= right.Bits;
+            return left._bits <= right._bits;
         }
 
         public static bool operator >=(Information left, Information right)
         {
-            return left.Bits >= right.Bits;
+            return left._bits >= right._bits;
         }
 
         public static bool operator <(Information left, Information right)
         {
-            return left.Bits < right.Bits;
+            return left._bits < right._bits;
         }
 
         public static bool operator >(Information left, Information right)
         {
-            return left.Bits > right.Bits;
+            return left._bits > right._bits;
         }
 
         public static bool operator ==(Information left, Information right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Bits == right.Bits;
+            return left._bits == right._bits;
         }
 
         public static bool operator !=(Information left, Information right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Bits != right.Bits;
+            return left._bits != right._bits;
         }
 
         public override bool Equals(object obj)
@@ -315,12 +647,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Bits.Equals(((Information) obj).Bits);
+            return _bits.Equals(((Information) obj)._bits);
         }
 
         public override int GetHashCode()
         {
-            return Bits.GetHashCode();
+            return _bits.GetHashCode();
         }
 
         #endregion
@@ -340,16 +672,52 @@ namespace UnitsNet
                     return Bits;
                 case InformationUnit.Byte:
                     return Bytes;
+                case InformationUnit.Exabit:
+                    return Exabits;
                 case InformationUnit.Exabyte:
                     return Exabytes;
+                case InformationUnit.Exbibit:
+                    return Exbibits;
+                case InformationUnit.Exbibyte:
+                    return Exbibytes;
+                case InformationUnit.Gibibit:
+                    return Gibibits;
+                case InformationUnit.Gibibyte:
+                    return Gibibytes;
+                case InformationUnit.Gigabit:
+                    return Gigabits;
                 case InformationUnit.Gigabyte:
                     return Gigabytes;
+                case InformationUnit.Kibibit:
+                    return Kibibits;
+                case InformationUnit.Kibibyte:
+                    return Kibibytes;
+                case InformationUnit.Kilobit:
+                    return Kilobits;
                 case InformationUnit.Kilobyte:
                     return Kilobytes;
+                case InformationUnit.Mebibit:
+                    return Mebibits;
+                case InformationUnit.Mebibyte:
+                    return Mebibytes;
+                case InformationUnit.Megabit:
+                    return Megabits;
                 case InformationUnit.Megabyte:
                     return Megabytes;
+                case InformationUnit.Pebibit:
+                    return Pebibits;
+                case InformationUnit.Pebibyte:
+                    return Pebibytes;
+                case InformationUnit.Petabit:
+                    return Petabits;
                 case InformationUnit.Petabyte:
                     return Petabytes;
+                case InformationUnit.Tebibit:
+                    return Tebibits;
+                case InformationUnit.Tebibyte:
+                    return Tebibytes;
+                case InformationUnit.Terabit:
+                    return Terabits;
                 case InformationUnit.Terabyte:
                     return Terabytes;
 

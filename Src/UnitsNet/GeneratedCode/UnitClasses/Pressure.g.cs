@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Pressure.
         /// </summary>
-        [UsedImplicitly] public readonly double Pascals;
+        private readonly double _pascals;
 
         public Pressure(double pascals) : this()
         {
-            Pascals = pascals;
+            _pascals = pascals;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Atmospheres
         {
-            get { return Pascals/(1.01325*1e5); }
+            get { return _pascals/(1.01325*1e5); }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double Bars
         {
-            get { return Pascals/1e5; }
+            get { return _pascals/1e5; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsForcePerSquareCentimeter
         {
-            get { return Pascals/(9.80665*1e4); }
+            get { return _pascals/(9.80665*1e4); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double Kilopascals
         {
-            get { return (Pascals) / 1e3; }
+            get { return (_pascals) / 1e3d; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double Megapascals
         {
-            get { return (Pascals) / 1e6; }
+            get { return (_pascals) / 1e6d; }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerSquareCentimeter
         {
-            get { return Pascals/1e4; }
+            get { return _pascals/1e4; }
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerSquareMeter
         {
-            get { return Pascals; }
+            get { return _pascals; }
         }
 
         /// <summary>
@@ -108,7 +108,15 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerSquareMillimeter
         {
-            get { return Pascals/1e6; }
+            get { return _pascals/1e6; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Pascals.
+        /// </summary>
+        public double Pascals
+        {
+            get { return _pascals; }
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double Psi
         {
-            get { return Pascals/(6.89464975179*1e3); }
+            get { return _pascals/(6.89464975179*1e3); }
         }
 
         /// <summary>
@@ -124,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public double TechnicalAtmospheres
         {
-            get { return Pascals/(9.80680592331*1e4); }
+            get { return _pascals/(9.80680592331*1e4); }
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace UnitsNet
         /// </summary>
         public double Torrs
         {
-            get { return Pascals/(1.3332266752*1e2); }
+            get { return _pascals/(1.3332266752*1e2); }
         }
 
         #endregion
@@ -173,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         public static Pressure FromKilopascals(double kilopascals)
         {
-            return new Pressure((kilopascals) * 1e3);
+            return new Pressure((kilopascals) * 1e3d);
         }
 
         /// <summary>
@@ -181,7 +189,7 @@ namespace UnitsNet
         /// </summary>
         public static Pressure FromMegapascals(double megapascals)
         {
-            return new Pressure((megapascals) * 1e6);
+            return new Pressure((megapascals) * 1e6d);
         }
 
         /// <summary>
@@ -299,37 +307,37 @@ namespace UnitsNet
 
         public static Pressure operator -(Pressure right)
         {
-            return new Pressure(-right.Pascals);
+            return new Pressure(-right._pascals);
         }
 
         public static Pressure operator +(Pressure left, Pressure right)
         {
-            return new Pressure(left.Pascals + right.Pascals);
+            return new Pressure(left._pascals + right._pascals);
         }
 
         public static Pressure operator -(Pressure left, Pressure right)
         {
-            return new Pressure(left.Pascals - right.Pascals);
+            return new Pressure(left._pascals - right._pascals);
         }
 
         public static Pressure operator *(double left, Pressure right)
         {
-            return new Pressure(left*right.Pascals);
+            return new Pressure(left*right._pascals);
         }
 
         public static Pressure operator *(Pressure left, double right)
         {
-            return new Pressure(left.Pascals*right);
+            return new Pressure(left._pascals*(double)right);
         }
 
         public static Pressure operator /(Pressure left, double right)
         {
-            return new Pressure(left.Pascals/right);
+            return new Pressure(left._pascals/(double)right);
         }
 
         public static double operator /(Pressure left, Pressure right)
         {
-            return left.Pascals/right.Pascals;
+            return Convert.ToDouble(left._pascals/right._pascals);
         }
 
         #endregion
@@ -345,39 +353,39 @@ namespace UnitsNet
 
         public int CompareTo(Pressure other)
         {
-            return Pascals.CompareTo(other.Pascals);
+            return _pascals.CompareTo(other._pascals);
         }
 
         public static bool operator <=(Pressure left, Pressure right)
         {
-            return left.Pascals <= right.Pascals;
+            return left._pascals <= right._pascals;
         }
 
         public static bool operator >=(Pressure left, Pressure right)
         {
-            return left.Pascals >= right.Pascals;
+            return left._pascals >= right._pascals;
         }
 
         public static bool operator <(Pressure left, Pressure right)
         {
-            return left.Pascals < right.Pascals;
+            return left._pascals < right._pascals;
         }
 
         public static bool operator >(Pressure left, Pressure right)
         {
-            return left.Pascals > right.Pascals;
+            return left._pascals > right._pascals;
         }
 
         public static bool operator ==(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Pascals == right.Pascals;
+            return left._pascals == right._pascals;
         }
 
         public static bool operator !=(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Pascals != right.Pascals;
+            return left._pascals != right._pascals;
         }
 
         public override bool Equals(object obj)
@@ -387,12 +395,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Pascals.Equals(((Pressure) obj).Pascals);
+            return _pascals.Equals(((Pressure) obj)._pascals);
         }
 
         public override int GetHashCode()
         {
-            return Pascals.GetHashCode();
+            return _pascals.GetHashCode();
         }
 
         #endregion

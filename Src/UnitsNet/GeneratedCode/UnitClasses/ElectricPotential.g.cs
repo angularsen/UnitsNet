@@ -38,14 +38,22 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ElectricPotential.
         /// </summary>
-        [UsedImplicitly] public readonly double Volts;
+        private readonly double _volts;
 
         public ElectricPotential(double volts) : this()
         {
-            Volts = volts;
+            _volts = volts;
         }
 
         #region Properties
+
+        /// <summary>
+        ///     Get ElectricPotential in Volts.
+        /// </summary>
+        public double Volts
+        {
+            get { return _volts; }
+        }
 
         #endregion
 
@@ -101,37 +109,37 @@ namespace UnitsNet
 
         public static ElectricPotential operator -(ElectricPotential right)
         {
-            return new ElectricPotential(-right.Volts);
+            return new ElectricPotential(-right._volts);
         }
 
         public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left.Volts + right.Volts);
+            return new ElectricPotential(left._volts + right._volts);
         }
 
         public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left.Volts - right.Volts);
+            return new ElectricPotential(left._volts - right._volts);
         }
 
         public static ElectricPotential operator *(double left, ElectricPotential right)
         {
-            return new ElectricPotential(left*right.Volts);
+            return new ElectricPotential(left*right._volts);
         }
 
         public static ElectricPotential operator *(ElectricPotential left, double right)
         {
-            return new ElectricPotential(left.Volts*right);
+            return new ElectricPotential(left._volts*(double)right);
         }
 
         public static ElectricPotential operator /(ElectricPotential left, double right)
         {
-            return new ElectricPotential(left.Volts/right);
+            return new ElectricPotential(left._volts/(double)right);
         }
 
         public static double operator /(ElectricPotential left, ElectricPotential right)
         {
-            return left.Volts/right.Volts;
+            return Convert.ToDouble(left._volts/right._volts);
         }
 
         #endregion
@@ -147,39 +155,39 @@ namespace UnitsNet
 
         public int CompareTo(ElectricPotential other)
         {
-            return Volts.CompareTo(other.Volts);
+            return _volts.CompareTo(other._volts);
         }
 
         public static bool operator <=(ElectricPotential left, ElectricPotential right)
         {
-            return left.Volts <= right.Volts;
+            return left._volts <= right._volts;
         }
 
         public static bool operator >=(ElectricPotential left, ElectricPotential right)
         {
-            return left.Volts >= right.Volts;
+            return left._volts >= right._volts;
         }
 
         public static bool operator <(ElectricPotential left, ElectricPotential right)
         {
-            return left.Volts < right.Volts;
+            return left._volts < right._volts;
         }
 
         public static bool operator >(ElectricPotential left, ElectricPotential right)
         {
-            return left.Volts > right.Volts;
+            return left._volts > right._volts;
         }
 
         public static bool operator ==(ElectricPotential left, ElectricPotential right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Volts == right.Volts;
+            return left._volts == right._volts;
         }
 
         public static bool operator !=(ElectricPotential left, ElectricPotential right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Volts != right.Volts;
+            return left._volts != right._volts;
         }
 
         public override bool Equals(object obj)
@@ -189,12 +197,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Volts.Equals(((ElectricPotential) obj).Volts);
+            return _volts.Equals(((ElectricPotential) obj)._volts);
         }
 
         public override int GetHashCode()
         {
-            return Volts.GetHashCode();
+            return _volts.GetHashCode();
         }
 
         #endregion

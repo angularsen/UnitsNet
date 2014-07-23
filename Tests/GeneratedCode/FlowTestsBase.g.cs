@@ -40,8 +40,8 @@ namespace UnitsNet.Tests
         protected abstract double CubicMetersPerSecondInOneCubicMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CubicMetersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double CubicMetersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CubicMetersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CubicMetersPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

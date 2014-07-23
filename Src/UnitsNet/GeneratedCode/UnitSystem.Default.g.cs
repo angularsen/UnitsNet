@@ -263,30 +263,120 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "B"),
                             }),
+                        new CulturesForEnumValue((int) InformationUnit.Exabit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Eb"),
+                            }),
                         new CulturesForEnumValue((int) InformationUnit.Exabyte,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "EB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Exbibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Eib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Exbibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "EiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Gibibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Gib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Gibibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Gigabit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Gb"),
                             }),
                         new CulturesForEnumValue((int) InformationUnit.Gigabyte,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "GB"),
                             }),
+                        new CulturesForEnumValue((int) InformationUnit.Kibibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Kib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Kibibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "KiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Kilobit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kb"),
+                            }),
                         new CulturesForEnumValue((int) InformationUnit.Kilobyte,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Mebibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Mebibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Megabit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mb"),
                             }),
                         new CulturesForEnumValue((int) InformationUnit.Megabyte,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MB"),
                             }),
+                        new CulturesForEnumValue((int) InformationUnit.Pebibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Pebibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Petabit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pb"),
+                            }),
                         new CulturesForEnumValue((int) InformationUnit.Petabyte,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "PB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Tebibit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Tib"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Tebibyte,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TiB"),
+                            }),
+                        new CulturesForEnumValue((int) InformationUnit.Terabit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Tb"),
                             }),
                         new CulturesForEnumValue((int) InformationUnit.Terabyte,
                             new[]

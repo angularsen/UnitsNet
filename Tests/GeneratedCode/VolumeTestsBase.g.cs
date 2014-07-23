@@ -58,26 +58,26 @@ namespace UnitsNet.Tests
         protected abstract double UsOuncesInOneCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentilitersTolerance { get { return 1E-5; } }
-        protected virtual double CubicCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double CubicDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double CubicFeetTolerance { get { return 1E-5; } }
-        protected virtual double CubicInchesTolerance { get { return 1E-5; } }
-        protected virtual double CubicKilometersTolerance { get { return 1E-5; } }
-        protected virtual double CubicMetersTolerance { get { return 1E-5; } }
-        protected virtual double CubicMilesTolerance { get { return 1E-5; } }
-        protected virtual double CubicMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double CubicYardsTolerance { get { return 1E-5; } }
-        protected virtual double DecilitersTolerance { get { return 1E-5; } }
-        protected virtual double HectolitersTolerance { get { return 1E-5; } }
-        protected virtual double ImperialGallonsTolerance { get { return 1E-5; } }
-        protected virtual double ImperialOuncesTolerance { get { return 1E-5; } }
-        protected virtual double LitersTolerance { get { return 1E-5; } }
-        protected virtual double MillilitersTolerance { get { return 1E-5; } }
-        protected virtual double TablespoonsTolerance { get { return 1E-5; } }
-        protected virtual double TeaspoonsTolerance { get { return 1E-5; } }
-        protected virtual double UsGallonsTolerance { get { return 1E-5; } }
-        protected virtual double UsOuncesTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersTolerance { get { return 1e-5; } }
+        protected virtual double CubicCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicFeetTolerance { get { return 1e-5; } }
+        protected virtual double CubicInchesTolerance { get { return 1e-5; } }
+        protected virtual double CubicKilometersTolerance { get { return 1e-5; } }
+        protected virtual double CubicMetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicMilesTolerance { get { return 1e-5; } }
+        protected virtual double CubicMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicYardsTolerance { get { return 1e-5; } }
+        protected virtual double DecilitersTolerance { get { return 1e-5; } }
+        protected virtual double HectolitersTolerance { get { return 1e-5; } }
+        protected virtual double ImperialGallonsTolerance { get { return 1e-5; } }
+        protected virtual double ImperialOuncesTolerance { get { return 1e-5; } }
+        protected virtual double LitersTolerance { get { return 1e-5; } }
+        protected virtual double MillilitersTolerance { get { return 1e-5; } }
+        protected virtual double TablespoonsTolerance { get { return 1e-5; } }
+        protected virtual double TeaspoonsTolerance { get { return 1e-5; } }
+        protected virtual double UsGallonsTolerance { get { return 1e-5; } }
+        protected virtual double UsOuncesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

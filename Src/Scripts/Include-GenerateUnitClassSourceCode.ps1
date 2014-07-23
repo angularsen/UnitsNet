@@ -2,12 +2,13 @@ function GenerateUnitClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
     $units = $unitClass.Units;
+    $baseType = $unitClass.BaseType;    
     $baseUnit = $units | where { $_.SingularName -eq $unitClass.BaseUnit }
     $baseUnitSingularName = $baseUnit.SingularName
     $baseUnitPluralName = $baseUnit.PluralName
-	$baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
-    $baseUnitFieldName = $baseUnitPluralName;
+    $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()    
     $unitEnumName = "$className" + "Unit";
+    $baseUnitFieldName = "_"+[Char]::ToLowerInvariant($baseUnitPluralName[0]) + $baseUnitPluralName.Substring(1);
 
 @"
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -50,20 +51,16 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of $className.
         /// </summary>
-        [UsedImplicitly] public readonly double $baseUnitPluralName;
+        private readonly $baseType $baseUnitFieldName;
 
-        public $className(double $baseUnitPluralNameLower) : this()
+        public $className($baseType $baseUnitPluralNameLower) : this()
         {
-            $baseUnitPluralName = $baseUnitPluralNameLower;
+            $baseUnitFieldName = $baseUnitPluralNameLower;
         }
 
         #region Properties
 "@; foreach ($unit in $units) {
-        # Base unit already has a public readonly field
-        if ($unit.SingularName -eq $baseUnitSingularName) { continue; }
-
-		$propertyName = $unit.PluralName;
-		$baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant();
+        $propertyName = $unit.PluralName;
         $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"
 
         /// <summary>
@@ -73,7 +70,7 @@ namespace UnitsNet
         {
             get { return $fromBaseToUnitFunc; }
         }
-"@;	}@"
+"@; }@"
 
         #endregion
 
@@ -85,7 +82,7 @@ namespace UnitsNet
         }
 
 "@; foreach ($unit in $units) {
-		$valueParamName = $unit.PluralName.ToLowerInvariant();
+    $valueParamName = $unit.PluralName.ToLowerInvariant();
         $func = $unit.FromUnitToBaseFunc.Replace("x", $valueParamName);@"
         /// <summary>
         ///     Get $className from $($unit.PluralName).
@@ -95,7 +92,7 @@ namespace UnitsNet
             return new $className($func);
         }
 
-"@;	}@"
+"@; }@"
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="$unitEnumName" /> to <see cref="$className" />.
@@ -110,7 +107,7 @@ namespace UnitsNet
 "@; foreach ($unit in $units) {@"
                 case $unitEnumName.$($unit.SingularName):
                     return From$($unit.PluralName)(value);
-"@;	}@"
+"@; }@"
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -135,37 +132,37 @@ namespace UnitsNet
 
         public static $className operator -($className right)
         {
-            return new $className(-right.$baseUnitPluralName);
+            return new $className(-right.$baseUnitFieldName);
         }
 
         public static $className operator +($className left, $className right)
         {
-            return new $className(left.$baseUnitPluralName + right.$baseUnitPluralName);
+            return new $className(left.$baseUnitFieldName + right.$baseUnitFieldName);
         }
 
         public static $className operator -($className left, $className right)
         {
-            return new $className(left.$baseUnitPluralName - right.$baseUnitPluralName);
+            return new $className(left.$baseUnitFieldName - right.$baseUnitFieldName);
         }
 
-        public static $className operator *(double left, $className right)
+        public static $className operator *($baseType left, $className right)
         {
-            return new $className(left*right.$baseUnitPluralName);
+            return new $className(left*right.$baseUnitFieldName);
         }
 
         public static $className operator *($className left, double right)
         {
-            return new $className(left.$baseUnitPluralName*right);
+            return new $className(left.$baseUnitFieldName*($baseType)right);
         }
 
         public static $className operator /($className left, double right)
         {
-            return new $className(left.$baseUnitPluralName/right);
+            return new $className(left.$baseUnitFieldName/($baseType)right);
         }
 
         public static double operator /($className left, $className right)
         {
-            return left.$baseUnitPluralName/right.$baseUnitPluralName;
+            return Convert.ToDouble(left.$baseUnitFieldName/right.$baseUnitFieldName);
         }
 
         #endregion
@@ -181,39 +178,39 @@ namespace UnitsNet
 
         public int CompareTo($className other)
         {
-            return $baseUnitPluralName.CompareTo(other.$baseUnitPluralName);
+            return $baseUnitFieldName.CompareTo(other.$baseUnitFieldName);
         }
 
         public static bool operator <=($className left, $className right)
         {
-            return left.$baseUnitPluralName <= right.$baseUnitPluralName;
+            return left.$baseUnitFieldName <= right.$baseUnitFieldName;
         }
 
         public static bool operator >=($className left, $className right)
         {
-            return left.$baseUnitPluralName >= right.$baseUnitPluralName;
+            return left.$baseUnitFieldName >= right.$baseUnitFieldName;
         }
 
         public static bool operator <($className left, $className right)
         {
-            return left.$baseUnitPluralName < right.$baseUnitPluralName;
+            return left.$baseUnitFieldName < right.$baseUnitFieldName;
         }
 
         public static bool operator >($className left, $className right)
         {
-            return left.$baseUnitPluralName > right.$baseUnitPluralName;
+            return left.$baseUnitFieldName > right.$baseUnitFieldName;
         }
 
         public static bool operator ==($className left, $className right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.$baseUnitPluralName == right.$baseUnitPluralName;
+            return left.$baseUnitFieldName == right.$baseUnitFieldName;
         }
 
         public static bool operator !=($className left, $className right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.$baseUnitPluralName != right.$baseUnitPluralName;
+            return left.$baseUnitFieldName != right.$baseUnitFieldName;
         }
 
         public override bool Equals(object obj)
@@ -223,12 +220,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return $baseUnitPluralName.Equals((($className) obj).$baseUnitPluralName);
+            return $baseUnitFieldName.Equals((($className) obj).$baseUnitFieldName);
         }
 
         public override int GetHashCode()
         {
-            return $baseUnitPluralName.GetHashCode();
+            return $baseUnitFieldName.GetHashCode();
         }
 
         #endregion
@@ -244,7 +241,7 @@ namespace UnitsNet
         {
             switch (unit)
             {
-"@;	foreach ($unit in $units) {@"
+"@; foreach ($unit in $units) {@"
                 case $unitEnumName.$($unit.SingularName):
                     return $($unit.PluralName);
 "@; }@"

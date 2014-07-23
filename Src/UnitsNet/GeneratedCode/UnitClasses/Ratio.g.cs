@@ -38,21 +38,29 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Ratio.
         /// </summary>
-        [UsedImplicitly] public readonly double DecimalFractions;
+        private readonly double _decimalFractions;
 
         public Ratio(double decimalfractions) : this()
         {
-            DecimalFractions = decimalfractions;
+            _decimalFractions = decimalfractions;
         }
 
         #region Properties
+
+        /// <summary>
+        ///     Get Ratio in DecimalFractions.
+        /// </summary>
+        public double DecimalFractions
+        {
+            get { return _decimalFractions; }
+        }
 
         /// <summary>
         ///     Get Ratio in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion
         {
-            get { return DecimalFractions*1e9; }
+            get { return _decimalFractions*1e9; }
         }
 
         /// <summary>
@@ -60,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double PartsPerMillion
         {
-            get { return DecimalFractions*1e6; }
+            get { return _decimalFractions*1e6; }
         }
 
         /// <summary>
@@ -68,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double PartsPerThousand
         {
-            get { return DecimalFractions*1e3; }
+            get { return _decimalFractions*1e3; }
         }
 
         /// <summary>
@@ -76,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double PartsPerTrillion
         {
-            get { return DecimalFractions*1e12; }
+            get { return _decimalFractions*1e12; }
         }
 
         /// <summary>
@@ -84,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double Percent
         {
-            get { return DecimalFractions*1e2; }
+            get { return _decimalFractions*1e2; }
         }
 
         #endregion
@@ -191,37 +199,37 @@ namespace UnitsNet
 
         public static Ratio operator -(Ratio right)
         {
-            return new Ratio(-right.DecimalFractions);
+            return new Ratio(-right._decimalFractions);
         }
 
         public static Ratio operator +(Ratio left, Ratio right)
         {
-            return new Ratio(left.DecimalFractions + right.DecimalFractions);
+            return new Ratio(left._decimalFractions + right._decimalFractions);
         }
 
         public static Ratio operator -(Ratio left, Ratio right)
         {
-            return new Ratio(left.DecimalFractions - right.DecimalFractions);
+            return new Ratio(left._decimalFractions - right._decimalFractions);
         }
 
         public static Ratio operator *(double left, Ratio right)
         {
-            return new Ratio(left*right.DecimalFractions);
+            return new Ratio(left*right._decimalFractions);
         }
 
         public static Ratio operator *(Ratio left, double right)
         {
-            return new Ratio(left.DecimalFractions*right);
+            return new Ratio(left._decimalFractions*(double)right);
         }
 
         public static Ratio operator /(Ratio left, double right)
         {
-            return new Ratio(left.DecimalFractions/right);
+            return new Ratio(left._decimalFractions/(double)right);
         }
 
         public static double operator /(Ratio left, Ratio right)
         {
-            return left.DecimalFractions/right.DecimalFractions;
+            return Convert.ToDouble(left._decimalFractions/right._decimalFractions);
         }
 
         #endregion
@@ -237,39 +245,39 @@ namespace UnitsNet
 
         public int CompareTo(Ratio other)
         {
-            return DecimalFractions.CompareTo(other.DecimalFractions);
+            return _decimalFractions.CompareTo(other._decimalFractions);
         }
 
         public static bool operator <=(Ratio left, Ratio right)
         {
-            return left.DecimalFractions <= right.DecimalFractions;
+            return left._decimalFractions <= right._decimalFractions;
         }
 
         public static bool operator >=(Ratio left, Ratio right)
         {
-            return left.DecimalFractions >= right.DecimalFractions;
+            return left._decimalFractions >= right._decimalFractions;
         }
 
         public static bool operator <(Ratio left, Ratio right)
         {
-            return left.DecimalFractions < right.DecimalFractions;
+            return left._decimalFractions < right._decimalFractions;
         }
 
         public static bool operator >(Ratio left, Ratio right)
         {
-            return left.DecimalFractions > right.DecimalFractions;
+            return left._decimalFractions > right._decimalFractions;
         }
 
         public static bool operator ==(Ratio left, Ratio right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.DecimalFractions == right.DecimalFractions;
+            return left._decimalFractions == right._decimalFractions;
         }
 
         public static bool operator !=(Ratio left, Ratio right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.DecimalFractions != right.DecimalFractions;
+            return left._decimalFractions != right._decimalFractions;
         }
 
         public override bool Equals(object obj)
@@ -279,12 +287,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return DecimalFractions.Equals(((Ratio) obj).DecimalFractions);
+            return _decimalFractions.Equals(((Ratio) obj)._decimalFractions);
         }
 
         public override int GetHashCode()
         {
-            return DecimalFractions.GetHashCode();
+            return _decimalFractions.GetHashCode();
         }
 
         #endregion

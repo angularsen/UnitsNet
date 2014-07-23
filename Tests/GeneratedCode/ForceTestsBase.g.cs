@@ -45,13 +45,13 @@ namespace UnitsNet.Tests
         protected abstract double PoundForcesInOneNewton { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DyneTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForceTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsTolerance { get { return 1E-5; } }
-        protected virtual double KiloPondsTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsTolerance { get { return 1E-5; } }
-        protected virtual double PoundalsTolerance { get { return 1E-5; } }
-        protected virtual double PoundForcesTolerance { get { return 1E-5; } }
+        protected virtual double DyneTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForceTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsTolerance { get { return 1e-5; } }
+        protected virtual double KiloPondsTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsTolerance { get { return 1e-5; } }
+        protected virtual double PoundalsTolerance { get { return 1e-5; } }
+        protected virtual double PoundForcesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

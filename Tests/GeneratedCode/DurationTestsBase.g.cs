@@ -48,16 +48,16 @@ namespace UnitsNet.Tests
         protected abstract double YearsInOneSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DaysTolerance { get { return 1E-5; } }
-        protected virtual double HoursTolerance { get { return 1E-5; } }
-        protected virtual double MicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double MillisecondsTolerance { get { return 1E-5; } }
-        protected virtual double MinutesTolerance { get { return 1E-5; } }
-        protected virtual double MonthsTolerance { get { return 1E-5; } }
-        protected virtual double NanosecondsTolerance { get { return 1E-5; } }
-        protected virtual double SecondsTolerance { get { return 1E-5; } }
-        protected virtual double WeeksTolerance { get { return 1E-5; } }
-        protected virtual double YearsTolerance { get { return 1E-5; } }
+        protected virtual double DaysTolerance { get { return 1e-5; } }
+        protected virtual double HoursTolerance { get { return 1e-5; } }
+        protected virtual double MicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double MillisecondsTolerance { get { return 1e-5; } }
+        protected virtual double MinutesTolerance { get { return 1e-5; } }
+        protected virtual double MonthsTolerance { get { return 1e-5; } }
+        protected virtual double NanosecondsTolerance { get { return 1e-5; } }
+        protected virtual double SecondsTolerance { get { return 1e-5; } }
+        protected virtual double WeeksTolerance { get { return 1e-5; } }
+        protected virtual double YearsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Temperature.
         /// </summary>
-        [UsedImplicitly] public readonly double Kelvins;
+        private readonly double _kelvins;
 
         public Temperature(double kelvins) : this()
         {
-            Kelvins = kelvins;
+            _kelvins = kelvins;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesCelsius
         {
-            get { return Kelvins - 273.15; }
+            get { return _kelvins - 273.15; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesDelisle
         {
-            get { return (Kelvins - 373.15)*-3/2; }
+            get { return (_kelvins - 373.15)*-3/2; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesFahrenheit
         {
-            get { return (Kelvins - 459.67*5/9)*9/5; }
+            get { return (_kelvins - 459.67*5/9)*9/5; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesNewton
         {
-            get { return (Kelvins - 273.15)*33/100; }
+            get { return (_kelvins - 273.15)*33/100; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesRankine
         {
-            get { return Kelvins*9/5; }
+            get { return _kelvins*9/5; }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesReaumur
         {
-            get { return (Kelvins - 273.15)*4/5; }
+            get { return (_kelvins - 273.15)*4/5; }
         }
 
         /// <summary>
@@ -100,7 +100,15 @@ namespace UnitsNet
         /// </summary>
         public double DegreesRoemer
         {
-            get { return (Kelvins - (273.15 - 7.5*40d/21))*21/40; }
+            get { return (_kelvins - (273.15 - 7.5*40d/21))*21/40; }
+        }
+
+        /// <summary>
+        ///     Get Temperature in Kelvins.
+        /// </summary>
+        public double Kelvins
+        {
+            get { return _kelvins; }
         }
 
         #endregion
@@ -227,37 +235,37 @@ namespace UnitsNet
 
         public static Temperature operator -(Temperature right)
         {
-            return new Temperature(-right.Kelvins);
+            return new Temperature(-right._kelvins);
         }
 
         public static Temperature operator +(Temperature left, Temperature right)
         {
-            return new Temperature(left.Kelvins + right.Kelvins);
+            return new Temperature(left._kelvins + right._kelvins);
         }
 
         public static Temperature operator -(Temperature left, Temperature right)
         {
-            return new Temperature(left.Kelvins - right.Kelvins);
+            return new Temperature(left._kelvins - right._kelvins);
         }
 
         public static Temperature operator *(double left, Temperature right)
         {
-            return new Temperature(left*right.Kelvins);
+            return new Temperature(left*right._kelvins);
         }
 
         public static Temperature operator *(Temperature left, double right)
         {
-            return new Temperature(left.Kelvins*right);
+            return new Temperature(left._kelvins*(double)right);
         }
 
         public static Temperature operator /(Temperature left, double right)
         {
-            return new Temperature(left.Kelvins/right);
+            return new Temperature(left._kelvins/(double)right);
         }
 
         public static double operator /(Temperature left, Temperature right)
         {
-            return left.Kelvins/right.Kelvins;
+            return Convert.ToDouble(left._kelvins/right._kelvins);
         }
 
         #endregion
@@ -273,39 +281,39 @@ namespace UnitsNet
 
         public int CompareTo(Temperature other)
         {
-            return Kelvins.CompareTo(other.Kelvins);
+            return _kelvins.CompareTo(other._kelvins);
         }
 
         public static bool operator <=(Temperature left, Temperature right)
         {
-            return left.Kelvins <= right.Kelvins;
+            return left._kelvins <= right._kelvins;
         }
 
         public static bool operator >=(Temperature left, Temperature right)
         {
-            return left.Kelvins >= right.Kelvins;
+            return left._kelvins >= right._kelvins;
         }
 
         public static bool operator <(Temperature left, Temperature right)
         {
-            return left.Kelvins < right.Kelvins;
+            return left._kelvins < right._kelvins;
         }
 
         public static bool operator >(Temperature left, Temperature right)
         {
-            return left.Kelvins > right.Kelvins;
+            return left._kelvins > right._kelvins;
         }
 
         public static bool operator ==(Temperature left, Temperature right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Kelvins == right.Kelvins;
+            return left._kelvins == right._kelvins;
         }
 
         public static bool operator !=(Temperature left, Temperature right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Kelvins != right.Kelvins;
+            return left._kelvins != right._kelvins;
         }
 
         public override bool Equals(object obj)
@@ -315,12 +323,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Kelvins.Equals(((Temperature) obj).Kelvins);
+            return _kelvins.Equals(((Temperature) obj)._kelvins);
         }
 
         public override int GetHashCode()
         {
-            return Kelvins.GetHashCode();
+            return _kelvins.GetHashCode();
         }
 
         #endregion

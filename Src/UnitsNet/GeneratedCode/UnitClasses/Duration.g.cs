@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Duration.
         /// </summary>
-        [UsedImplicitly] public readonly double Seconds;
+        private readonly double _seconds;
 
         public Duration(double seconds) : this()
         {
-            Seconds = seconds;
+            _seconds = seconds;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Days
         {
-            get { return Seconds/(24*3600); }
+            get { return _seconds/(24*3600); }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double Hours
         {
-            get { return Seconds/3600; }
+            get { return _seconds/3600; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Microseconds
         {
-            get { return Seconds*1e6; }
+            get { return _seconds*1e6; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double Milliseconds
         {
-            get { return Seconds*1e3; }
+            get { return _seconds*1e3; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double Minutes
         {
-            get { return Seconds/60; }
+            get { return _seconds/60; }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double Months
         {
-            get { return Seconds/(30*24*3600); }
+            get { return _seconds/(30*24*3600); }
         }
 
         /// <summary>
@@ -100,7 +100,15 @@ namespace UnitsNet
         /// </summary>
         public double Nanoseconds
         {
-            get { return Seconds*1e9; }
+            get { return _seconds*1e9; }
+        }
+
+        /// <summary>
+        ///     Get Duration in Seconds.
+        /// </summary>
+        public double Seconds
+        {
+            get { return _seconds; }
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double Weeks
         {
-            get { return Seconds/(7*24*3600); }
+            get { return _seconds/(7*24*3600); }
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double Years
         {
-            get { return Seconds/(365*24*3600); }
+            get { return _seconds/(365*24*3600); }
         }
 
         #endregion
@@ -263,37 +271,37 @@ namespace UnitsNet
 
         public static Duration operator -(Duration right)
         {
-            return new Duration(-right.Seconds);
+            return new Duration(-right._seconds);
         }
 
         public static Duration operator +(Duration left, Duration right)
         {
-            return new Duration(left.Seconds + right.Seconds);
+            return new Duration(left._seconds + right._seconds);
         }
 
         public static Duration operator -(Duration left, Duration right)
         {
-            return new Duration(left.Seconds - right.Seconds);
+            return new Duration(left._seconds - right._seconds);
         }
 
         public static Duration operator *(double left, Duration right)
         {
-            return new Duration(left*right.Seconds);
+            return new Duration(left*right._seconds);
         }
 
         public static Duration operator *(Duration left, double right)
         {
-            return new Duration(left.Seconds*right);
+            return new Duration(left._seconds*(double)right);
         }
 
         public static Duration operator /(Duration left, double right)
         {
-            return new Duration(left.Seconds/right);
+            return new Duration(left._seconds/(double)right);
         }
 
         public static double operator /(Duration left, Duration right)
         {
-            return left.Seconds/right.Seconds;
+            return Convert.ToDouble(left._seconds/right._seconds);
         }
 
         #endregion
@@ -309,39 +317,39 @@ namespace UnitsNet
 
         public int CompareTo(Duration other)
         {
-            return Seconds.CompareTo(other.Seconds);
+            return _seconds.CompareTo(other._seconds);
         }
 
         public static bool operator <=(Duration left, Duration right)
         {
-            return left.Seconds <= right.Seconds;
+            return left._seconds <= right._seconds;
         }
 
         public static bool operator >=(Duration left, Duration right)
         {
-            return left.Seconds >= right.Seconds;
+            return left._seconds >= right._seconds;
         }
 
         public static bool operator <(Duration left, Duration right)
         {
-            return left.Seconds < right.Seconds;
+            return left._seconds < right._seconds;
         }
 
         public static bool operator >(Duration left, Duration right)
         {
-            return left.Seconds > right.Seconds;
+            return left._seconds > right._seconds;
         }
 
         public static bool operator ==(Duration left, Duration right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Seconds == right.Seconds;
+            return left._seconds == right._seconds;
         }
 
         public static bool operator !=(Duration left, Duration right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Seconds != right.Seconds;
+            return left._seconds != right._seconds;
         }
 
         public override bool Equals(object obj)
@@ -351,12 +359,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Seconds.Equals(((Duration) obj).Seconds);
+            return _seconds.Equals(((Duration) obj)._seconds);
         }
 
         public override int GetHashCode()
         {
-            return Seconds.GetHashCode();
+            return _seconds.GetHashCode();
         }
 
         #endregion

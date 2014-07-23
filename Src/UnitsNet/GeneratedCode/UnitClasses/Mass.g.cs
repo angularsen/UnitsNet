@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Mass.
         /// </summary>
-        [UsedImplicitly] public readonly double Kilograms;
+        private readonly double _kilograms;
 
         public Mass(double kilograms) : this()
         {
-            Kilograms = kilograms;
+            _kilograms = kilograms;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Centigrams
         {
-            get { return (Kilograms*1e3) / 1e-2; }
+            get { return (_kilograms*1e3) / 1e-2d; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double Decagrams
         {
-            get { return (Kilograms*1e3) / 1e1; }
+            get { return (_kilograms*1e3) / 1e1d; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Decigrams
         {
-            get { return (Kilograms*1e3) / 1e-1; }
+            get { return (_kilograms*1e3) / 1e-1d; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double Grams
         {
-            get { return Kilograms*1e3; }
+            get { return _kilograms*1e3; }
         }
 
         /// <summary>
@@ -84,7 +84,15 @@ namespace UnitsNet
         /// </summary>
         public double Hectograms
         {
-            get { return (Kilograms*1e3) / 1e2; }
+            get { return (_kilograms*1e3) / 1e2d; }
+        }
+
+        /// <summary>
+        ///     Get Mass in Kilograms.
+        /// </summary>
+        public double Kilograms
+        {
+            get { return (_kilograms*1e3) / 1e3d; }
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double Kilotonnes
         {
-            get { return (Kilograms/1e3) / 1e3; }
+            get { return (_kilograms/1e3) / 1e3d; }
         }
 
         /// <summary>
@@ -100,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public double LongTons
         {
-            get { return Kilograms/1016.0469088; }
+            get { return _kilograms/1016.0469088; }
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double Megatonnes
         {
-            get { return (Kilograms/1e3) / 1e6; }
+            get { return (_kilograms/1e3) / 1e6d; }
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double Micrograms
         {
-            get { return (Kilograms*1e3) / 1e-6; }
+            get { return (_kilograms*1e3) / 1e-6d; }
         }
 
         /// <summary>
@@ -124,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public double Milligrams
         {
-            get { return (Kilograms*1e3) / 1e-3; }
+            get { return (_kilograms*1e3) / 1e-3d; }
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace UnitsNet
         /// </summary>
         public double Nanograms
         {
-            get { return (Kilograms*1e3) / 1e-9; }
+            get { return (_kilograms*1e3) / 1e-9d; }
         }
 
         /// <summary>
@@ -140,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         public double Pounds
         {
-            get { return Kilograms/0.45359237; }
+            get { return _kilograms/0.45359237; }
         }
 
         /// <summary>
@@ -148,7 +156,7 @@ namespace UnitsNet
         /// </summary>
         public double ShortTons
         {
-            get { return Kilograms/907.18474; }
+            get { return _kilograms/907.18474; }
         }
 
         /// <summary>
@@ -156,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         public double Tonnes
         {
-            get { return Kilograms/1e3; }
+            get { return _kilograms/1e3; }
         }
 
         #endregion
@@ -173,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromCentigrams(double centigrams)
         {
-            return new Mass((centigrams/1e3) * 1e-2);
+            return new Mass((centigrams/1e3) * 1e-2d);
         }
 
         /// <summary>
@@ -181,7 +189,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromDecagrams(double decagrams)
         {
-            return new Mass((decagrams/1e3) * 1e1);
+            return new Mass((decagrams/1e3) * 1e1d);
         }
 
         /// <summary>
@@ -189,7 +197,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromDecigrams(double decigrams)
         {
-            return new Mass((decigrams/1e3) * 1e-1);
+            return new Mass((decigrams/1e3) * 1e-1d);
         }
 
         /// <summary>
@@ -205,7 +213,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromHectograms(double hectograms)
         {
-            return new Mass((hectograms/1e3) * 1e2);
+            return new Mass((hectograms/1e3) * 1e2d);
         }
 
         /// <summary>
@@ -213,7 +221,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromKilograms(double kilograms)
         {
-            return new Mass((kilograms/1e3) * 1e3);
+            return new Mass((kilograms/1e3) * 1e3d);
         }
 
         /// <summary>
@@ -221,7 +229,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromKilotonnes(double kilotonnes)
         {
-            return new Mass((kilotonnes*1e3) * 1e3);
+            return new Mass((kilotonnes*1e3) * 1e3d);
         }
 
         /// <summary>
@@ -237,7 +245,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromMegatonnes(double megatonnes)
         {
-            return new Mass((megatonnes*1e3) * 1e6);
+            return new Mass((megatonnes*1e3) * 1e6d);
         }
 
         /// <summary>
@@ -245,7 +253,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromMicrograms(double micrograms)
         {
-            return new Mass((micrograms/1e3) * 1e-6);
+            return new Mass((micrograms/1e3) * 1e-6d);
         }
 
         /// <summary>
@@ -253,7 +261,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromMilligrams(double milligrams)
         {
-            return new Mass((milligrams/1e3) * 1e-3);
+            return new Mass((milligrams/1e3) * 1e-3d);
         }
 
         /// <summary>
@@ -261,7 +269,7 @@ namespace UnitsNet
         /// </summary>
         public static Mass FromNanograms(double nanograms)
         {
-            return new Mass((nanograms/1e3) * 1e-9);
+            return new Mass((nanograms/1e3) * 1e-9d);
         }
 
         /// <summary>
@@ -353,37 +361,37 @@ namespace UnitsNet
 
         public static Mass operator -(Mass right)
         {
-            return new Mass(-right.Kilograms);
+            return new Mass(-right._kilograms);
         }
 
         public static Mass operator +(Mass left, Mass right)
         {
-            return new Mass(left.Kilograms + right.Kilograms);
+            return new Mass(left._kilograms + right._kilograms);
         }
 
         public static Mass operator -(Mass left, Mass right)
         {
-            return new Mass(left.Kilograms - right.Kilograms);
+            return new Mass(left._kilograms - right._kilograms);
         }
 
         public static Mass operator *(double left, Mass right)
         {
-            return new Mass(left*right.Kilograms);
+            return new Mass(left*right._kilograms);
         }
 
         public static Mass operator *(Mass left, double right)
         {
-            return new Mass(left.Kilograms*right);
+            return new Mass(left._kilograms*(double)right);
         }
 
         public static Mass operator /(Mass left, double right)
         {
-            return new Mass(left.Kilograms/right);
+            return new Mass(left._kilograms/(double)right);
         }
 
         public static double operator /(Mass left, Mass right)
         {
-            return left.Kilograms/right.Kilograms;
+            return Convert.ToDouble(left._kilograms/right._kilograms);
         }
 
         #endregion
@@ -399,39 +407,39 @@ namespace UnitsNet
 
         public int CompareTo(Mass other)
         {
-            return Kilograms.CompareTo(other.Kilograms);
+            return _kilograms.CompareTo(other._kilograms);
         }
 
         public static bool operator <=(Mass left, Mass right)
         {
-            return left.Kilograms <= right.Kilograms;
+            return left._kilograms <= right._kilograms;
         }
 
         public static bool operator >=(Mass left, Mass right)
         {
-            return left.Kilograms >= right.Kilograms;
+            return left._kilograms >= right._kilograms;
         }
 
         public static bool operator <(Mass left, Mass right)
         {
-            return left.Kilograms < right.Kilograms;
+            return left._kilograms < right._kilograms;
         }
 
         public static bool operator >(Mass left, Mass right)
         {
-            return left.Kilograms > right.Kilograms;
+            return left._kilograms > right._kilograms;
         }
 
         public static bool operator ==(Mass left, Mass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Kilograms == right.Kilograms;
+            return left._kilograms == right._kilograms;
         }
 
         public static bool operator !=(Mass left, Mass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Kilograms != right.Kilograms;
+            return left._kilograms != right._kilograms;
         }
 
         public override bool Equals(object obj)
@@ -441,12 +449,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Kilograms.Equals(((Mass) obj).Kilograms);
+            return _kilograms.Equals(((Mass) obj)._kilograms);
         }
 
         public override int GetHashCode()
         {
-            return Kilograms.GetHashCode();
+            return _kilograms.GetHashCode();
         }
 
         #endregion

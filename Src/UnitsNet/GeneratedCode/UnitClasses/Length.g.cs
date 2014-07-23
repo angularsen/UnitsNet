@@ -38,11 +38,11 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Length.
         /// </summary>
-        [UsedImplicitly] public readonly double Meters;
+        private readonly double _meters;
 
         public Length(double meters) : this()
         {
-            Meters = meters;
+            _meters = meters;
         }
 
         #region Properties
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Centimeters
         {
-            get { return (Meters) / 1e-2; }
+            get { return (_meters) / 1e-2d; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double Decimeters
         {
-            get { return (Meters) / 1e-1; }
+            get { return (_meters) / 1e-1d; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Feet
         {
-            get { return Meters/0.3048; }
+            get { return _meters/0.3048; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double Inches
         {
-            get { return Meters/2.54e-2; }
+            get { return _meters/2.54e-2; }
         }
 
         /// <summary>
@@ -84,7 +84,15 @@ namespace UnitsNet
         /// </summary>
         public double Kilometers
         {
-            get { return (Meters) / 1e3; }
+            get { return (_meters) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Length in Meters.
+        /// </summary>
+        public double Meters
+        {
+            get { return _meters; }
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double Microinches
         {
-            get { return Meters/2.54e-8; }
+            get { return _meters/2.54e-8; }
         }
 
         /// <summary>
@@ -100,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public double Micrometers
         {
-            get { return (Meters) / 1e-6; }
+            get { return (_meters) / 1e-6d; }
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double Mils
         {
-            get { return Meters/2.54e-5; }
+            get { return _meters/2.54e-5; }
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double Miles
         {
-            get { return Meters/1609.34; }
+            get { return _meters/1609.34; }
         }
 
         /// <summary>
@@ -124,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public double Millimeters
         {
-            get { return (Meters) / 1e-3; }
+            get { return (_meters) / 1e-3d; }
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace UnitsNet
         /// </summary>
         public double Nanometers
         {
-            get { return (Meters) / 1e-9; }
+            get { return (_meters) / 1e-9d; }
         }
 
         /// <summary>
@@ -140,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         public double Yards
         {
-            get { return Meters/0.9144; }
+            get { return _meters/0.9144; }
         }
 
         #endregion
@@ -157,7 +165,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromCentimeters(double centimeters)
         {
-            return new Length((centimeters) * 1e-2);
+            return new Length((centimeters) * 1e-2d);
         }
 
         /// <summary>
@@ -165,7 +173,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromDecimeters(double decimeters)
         {
-            return new Length((decimeters) * 1e-1);
+            return new Length((decimeters) * 1e-1d);
         }
 
         /// <summary>
@@ -189,7 +197,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromKilometers(double kilometers)
         {
-            return new Length((kilometers) * 1e3);
+            return new Length((kilometers) * 1e3d);
         }
 
         /// <summary>
@@ -213,7 +221,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromMicrometers(double micrometers)
         {
-            return new Length((micrometers) * 1e-6);
+            return new Length((micrometers) * 1e-6d);
         }
 
         /// <summary>
@@ -237,7 +245,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromMillimeters(double millimeters)
         {
-            return new Length((millimeters) * 1e-3);
+            return new Length((millimeters) * 1e-3d);
         }
 
         /// <summary>
@@ -245,7 +253,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromNanometers(double nanometers)
         {
-            return new Length((nanometers) * 1e-9);
+            return new Length((nanometers) * 1e-9d);
         }
 
         /// <summary>
@@ -317,37 +325,37 @@ namespace UnitsNet
 
         public static Length operator -(Length right)
         {
-            return new Length(-right.Meters);
+            return new Length(-right._meters);
         }
 
         public static Length operator +(Length left, Length right)
         {
-            return new Length(left.Meters + right.Meters);
+            return new Length(left._meters + right._meters);
         }
 
         public static Length operator -(Length left, Length right)
         {
-            return new Length(left.Meters - right.Meters);
+            return new Length(left._meters - right._meters);
         }
 
         public static Length operator *(double left, Length right)
         {
-            return new Length(left*right.Meters);
+            return new Length(left*right._meters);
         }
 
         public static Length operator *(Length left, double right)
         {
-            return new Length(left.Meters*right);
+            return new Length(left._meters*(double)right);
         }
 
         public static Length operator /(Length left, double right)
         {
-            return new Length(left.Meters/right);
+            return new Length(left._meters/(double)right);
         }
 
         public static double operator /(Length left, Length right)
         {
-            return left.Meters/right.Meters;
+            return Convert.ToDouble(left._meters/right._meters);
         }
 
         #endregion
@@ -363,39 +371,39 @@ namespace UnitsNet
 
         public int CompareTo(Length other)
         {
-            return Meters.CompareTo(other.Meters);
+            return _meters.CompareTo(other._meters);
         }
 
         public static bool operator <=(Length left, Length right)
         {
-            return left.Meters <= right.Meters;
+            return left._meters <= right._meters;
         }
 
         public static bool operator >=(Length left, Length right)
         {
-            return left.Meters >= right.Meters;
+            return left._meters >= right._meters;
         }
 
         public static bool operator <(Length left, Length right)
         {
-            return left.Meters < right.Meters;
+            return left._meters < right._meters;
         }
 
         public static bool operator >(Length left, Length right)
         {
-            return left.Meters > right.Meters;
+            return left._meters > right._meters;
         }
 
         public static bool operator ==(Length left, Length right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Meters == right.Meters;
+            return left._meters == right._meters;
         }
 
         public static bool operator !=(Length left, Length right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Meters != right.Meters;
+            return left._meters != right._meters;
         }
 
         public override bool Equals(object obj)
@@ -405,12 +413,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return Meters.Equals(((Length) obj).Meters);
+            return _meters.Equals(((Length) obj)._meters);
         }
 
         public override int GetHashCode()
         {
-            return Meters.GetHashCode();
+            return _meters.GetHashCode();
         }
 
         #endregion

@@ -39,7 +39,7 @@ namespace UnitsNet.Tests
         protected abstract double NewtonmetersInOneNewtonmeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double NewtonmetersTolerance { get { return 1E-5; } }
+        protected virtual double NewtonmetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

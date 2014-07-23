@@ -50,18 +50,18 @@ namespace UnitsNet.Tests
         protected abstract double TorrsInOnePascal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AtmospheresTolerance { get { return 1E-5; } }
-        protected virtual double BarsTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilopascalsTolerance { get { return 1E-5; } }
-        protected virtual double MegapascalsTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double PascalsTolerance { get { return 1E-5; } }
-        protected virtual double PsiTolerance { get { return 1E-5; } }
-        protected virtual double TechnicalAtmospheresTolerance { get { return 1E-5; } }
-        protected virtual double TorrsTolerance { get { return 1E-5; } }
+        protected virtual double AtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double BarsTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilopascalsTolerance { get { return 1e-5; } }
+        protected virtual double MegapascalsTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double PascalsTolerance { get { return 1e-5; } }
+        protected virtual double PsiTolerance { get { return 1e-5; } }
+        protected virtual double TechnicalAtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double TorrsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
