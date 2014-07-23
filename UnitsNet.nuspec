@@ -23,6 +23,7 @@ Breaking changes:
 * Rename Month30Days Year365Days units to Month and Year
 * Fix plural naming of Pressure.KilogramsForcePerSquareCentimeterInOnePascal
 * Fix plural naming of Ratio.PartsPer-units
+* Custom units added manually via UnitSystem.MapUnitToAbbreviation()
 
 Fixes:
 * Fall back to US English culture when parsing/getting abbreviations
