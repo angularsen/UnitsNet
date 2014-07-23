@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,81 +33,89 @@ namespace UnitsNet.Tests
     /// Test of Force.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ForceTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double DyneInOneNewton { get; }
+        protected abstract double KilogramsForceInOneNewton { get; }
+        protected abstract double KilonewtonsInOneNewton { get; }
+        protected abstract double KiloPondsInOneNewton { get; }
+        protected abstract double NewtonsInOneNewton { get; }
+        protected abstract double PoundalsInOneNewton { get; }
+        protected abstract double PoundForcesInOneNewton { get; }
 
-        public abstract double DyneInOneNewton { get; }
-        public abstract double KilogramsForceInOneNewton { get; }
-        public abstract double KilonewtonsInOneNewton { get; }
-        public abstract double KiloPondsInOneNewton { get; }
-        public abstract double NewtonsInOneNewton { get; }
-        public abstract double PoundalsInOneNewton { get; }
-        public abstract double PoundForcesInOneNewton { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double DyneTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForceTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsTolerance { get { return 1e-5; } }
+        protected virtual double KiloPondsTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsTolerance { get { return 1e-5; } }
+        protected virtual double PoundalsTolerance { get { return 1e-5; } }
+        protected virtual double PoundForcesTolerance { get { return 1e-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void NewtonToForceUnits()
         {
             Force newton = Force.FromNewtons(1);
-            Assert.AreEqual(DyneInOneNewton, newton.Dyne, Delta);
-            Assert.AreEqual(KilogramsForceInOneNewton, newton.KilogramsForce, Delta);
-            Assert.AreEqual(KilonewtonsInOneNewton, newton.Kilonewtons, Delta);
-            Assert.AreEqual(KiloPondsInOneNewton, newton.KiloPonds, Delta);
-            Assert.AreEqual(NewtonsInOneNewton, newton.Newtons, Delta);
-            Assert.AreEqual(PoundalsInOneNewton, newton.Poundals, Delta);
-            Assert.AreEqual(PoundForcesInOneNewton, newton.PoundForces, Delta);
+            Assert.AreEqual(DyneInOneNewton, newton.Dyne, DyneTolerance);
+            Assert.AreEqual(KilogramsForceInOneNewton, newton.KilogramsForce, KilogramsForceTolerance);
+            Assert.AreEqual(KilonewtonsInOneNewton, newton.Kilonewtons, KilonewtonsTolerance);
+            Assert.AreEqual(KiloPondsInOneNewton, newton.KiloPonds, KiloPondsTolerance);
+            Assert.AreEqual(NewtonsInOneNewton, newton.Newtons, NewtonsTolerance);
+            Assert.AreEqual(PoundalsInOneNewton, newton.Poundals, PoundalsTolerance);
+            Assert.AreEqual(PoundForcesInOneNewton, newton.PoundForces, PoundForcesTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Force.From(1, ForceUnit.Dyn).Dyne, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.KilogramForce).KilogramsForce, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.Kilonewton).Kilonewtons, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.KiloPond).KiloPonds, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.Newton).Newtons, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.Poundal).Poundals, Delta);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.PoundForce).PoundForces, Delta);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Dyn).Dyne, DyneTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.KilogramForce).KilogramsForce, KilogramsForceTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Kilonewton).Kilonewtons, KilonewtonsTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.KiloPond).KiloPonds, KiloPondsTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Newton).Newtons, NewtonsTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Poundal).Poundals, PoundalsTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.PoundForce).PoundForces, PoundForcesTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var newton = Force.FromNewtons(1);
-            Assert.AreEqual(DyneInOneNewton, newton.As(ForceUnit.Dyn), Delta);
-            Assert.AreEqual(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), Delta);
-            Assert.AreEqual(KilonewtonsInOneNewton, newton.As(ForceUnit.Kilonewton), Delta);
-            Assert.AreEqual(KiloPondsInOneNewton, newton.As(ForceUnit.KiloPond), Delta);
-            Assert.AreEqual(NewtonsInOneNewton, newton.As(ForceUnit.Newton), Delta);
-            Assert.AreEqual(PoundalsInOneNewton, newton.As(ForceUnit.Poundal), Delta);
-            Assert.AreEqual(PoundForcesInOneNewton, newton.As(ForceUnit.PoundForce), Delta);
+            Assert.AreEqual(DyneInOneNewton, newton.As(ForceUnit.Dyn), DyneTolerance);
+            Assert.AreEqual(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), KilogramsForceTolerance);
+            Assert.AreEqual(KilonewtonsInOneNewton, newton.As(ForceUnit.Kilonewton), KilonewtonsTolerance);
+            Assert.AreEqual(KiloPondsInOneNewton, newton.As(ForceUnit.KiloPond), KiloPondsTolerance);
+            Assert.AreEqual(NewtonsInOneNewton, newton.As(ForceUnit.Newton), NewtonsTolerance);
+            Assert.AreEqual(PoundalsInOneNewton, newton.As(ForceUnit.Poundal), PoundalsTolerance);
+            Assert.AreEqual(PoundForcesInOneNewton, newton.As(ForceUnit.PoundForce), PoundForcesTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Force newton = Force.FromNewtons(1); 
-            Assert.AreEqual(1, Force.FromDyne(newton.Dyne).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromNewtons(newton.Newtons).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromPoundals(newton.Poundals).Newtons, Delta);
-            Assert.AreEqual(1, Force.FromPoundForces(newton.PoundForces).Newtons, Delta);
+            Force newton = Force.FromNewtons(1);
+            Assert.AreEqual(1, Force.FromDyne(newton.Dyne).Newtons, DyneTolerance);
+            Assert.AreEqual(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, KilogramsForceTolerance);
+            Assert.AreEqual(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, KilonewtonsTolerance);
+            Assert.AreEqual(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, KiloPondsTolerance);
+            Assert.AreEqual(1, Force.FromNewtons(newton.Newtons).Newtons, NewtonsTolerance);
+            Assert.AreEqual(1, Force.FromPoundals(newton.Poundals).Newtons, PoundalsTolerance);
+            Assert.AreEqual(1, Force.FromPoundForces(newton.PoundForces).Newtons, PoundForcesTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Force v = Force.FromNewtons(1);
-            Assert.AreEqual(-1, -v.Newtons, Delta);
-            Assert.AreEqual(2, (Force.FromNewtons(3)-v).Newtons, Delta);
-            Assert.AreEqual(2, (v + v).Newtons, Delta);
-            Assert.AreEqual(10, (v*10).Newtons, Delta);
-            Assert.AreEqual(10, (10*v).Newtons, Delta);
-            Assert.AreEqual(2, (Force.FromNewtons(10)/5).Newtons, Delta);
-            Assert.AreEqual(2, Force.FromNewtons(10)/Force.FromNewtons(5), Delta);
+            Assert.AreEqual(-1, -v.Newtons, PoundForcesTolerance);
+            Assert.AreEqual(2, (Force.FromNewtons(3)-v).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(2, (v + v).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(10, (v*10).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(10, (10*v).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(2, (Force.FromNewtons(10)/5).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(2, Force.FromNewtons(10)/Force.FromNewtons(5), PoundForcesTolerance);
         }
 
         [Test]

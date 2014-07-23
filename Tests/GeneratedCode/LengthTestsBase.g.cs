@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,111 +33,125 @@ namespace UnitsNet.Tests
     /// Test of Length.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LengthTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double CentimetersInOneMeter { get; }
+        protected abstract double DecimetersInOneMeter { get; }
+        protected abstract double FeetInOneMeter { get; }
+        protected abstract double InchesInOneMeter { get; }
+        protected abstract double KilometersInOneMeter { get; }
+        protected abstract double MetersInOneMeter { get; }
+        protected abstract double MicroinchesInOneMeter { get; }
+        protected abstract double MicrometersInOneMeter { get; }
+        protected abstract double MilsInOneMeter { get; }
+        protected abstract double MilesInOneMeter { get; }
+        protected abstract double MillimetersInOneMeter { get; }
+        protected abstract double NanometersInOneMeter { get; }
+        protected abstract double YardsInOneMeter { get; }
 
-        public abstract double CentimetersInOneMeter { get; }
-        public abstract double DecimetersInOneMeter { get; }
-        public abstract double FeetInOneMeter { get; }
-        public abstract double InchesInOneMeter { get; }
-        public abstract double KilometersInOneMeter { get; }
-        public abstract double MetersInOneMeter { get; }
-        public abstract double MicroinchesInOneMeter { get; }
-        public abstract double MicrometersInOneMeter { get; }
-        public abstract double MilsInOneMeter { get; }
-        public abstract double MilesInOneMeter { get; }
-        public abstract double MillimetersInOneMeter { get; }
-        public abstract double NanometersInOneMeter { get; }
-        public abstract double YardsInOneMeter { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CentimetersTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersTolerance { get { return 1e-5; } }
+        protected virtual double FeetTolerance { get { return 1e-5; } }
+        protected virtual double InchesTolerance { get { return 1e-5; } }
+        protected virtual double KilometersTolerance { get { return 1e-5; } }
+        protected virtual double MetersTolerance { get { return 1e-5; } }
+        protected virtual double MicroinchesTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersTolerance { get { return 1e-5; } }
+        protected virtual double MilsTolerance { get { return 1e-5; } }
+        protected virtual double MilesTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersTolerance { get { return 1e-5; } }
+        protected virtual double NanometersTolerance { get { return 1e-5; } }
+        protected virtual double YardsTolerance { get { return 1e-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
-            Assert.AreEqual(CentimetersInOneMeter, meter.Centimeters, Delta);
-            Assert.AreEqual(DecimetersInOneMeter, meter.Decimeters, Delta);
-            Assert.AreEqual(FeetInOneMeter, meter.Feet, Delta);
-            Assert.AreEqual(InchesInOneMeter, meter.Inches, Delta);
-            Assert.AreEqual(KilometersInOneMeter, meter.Kilometers, Delta);
-            Assert.AreEqual(MetersInOneMeter, meter.Meters, Delta);
-            Assert.AreEqual(MicroinchesInOneMeter, meter.Microinches, Delta);
-            Assert.AreEqual(MicrometersInOneMeter, meter.Micrometers, Delta);
-            Assert.AreEqual(MilsInOneMeter, meter.Mils, Delta);
-            Assert.AreEqual(MilesInOneMeter, meter.Miles, Delta);
-            Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, Delta);
-            Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, Delta);
-            Assert.AreEqual(YardsInOneMeter, meter.Yards, Delta);
+            Assert.AreEqual(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
+            Assert.AreEqual(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
+            Assert.AreEqual(FeetInOneMeter, meter.Feet, FeetTolerance);
+            Assert.AreEqual(InchesInOneMeter, meter.Inches, InchesTolerance);
+            Assert.AreEqual(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
+            Assert.AreEqual(MetersInOneMeter, meter.Meters, MetersTolerance);
+            Assert.AreEqual(MicroinchesInOneMeter, meter.Microinches, MicroinchesTolerance);
+            Assert.AreEqual(MicrometersInOneMeter, meter.Micrometers, MicrometersTolerance);
+            Assert.AreEqual(MilsInOneMeter, meter.Mils, MilsTolerance);
+            Assert.AreEqual(MilesInOneMeter, meter.Miles, MilesTolerance);
+            Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, MillimetersTolerance);
+            Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, NanometersTolerance);
+            Assert.AreEqual(YardsInOneMeter, meter.Yards, YardsTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Centimeter).Centimeters, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Meter).Meters, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Microinch).Microinches, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Micrometer).Micrometers, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Mil).Mils, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Mile).Miles, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, Delta);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, Delta);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Mil).Mils, MilsTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Mile).Miles, MilesTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var meter = Length.FromMeters(1);
-            Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), Delta);
-            Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), Delta);
-            Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), Delta);
-            Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), Delta);
-            Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), Delta);
-            Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), Delta);
-            Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), Delta);
-            Assert.AreEqual(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), Delta);
-            Assert.AreEqual(MilsInOneMeter, meter.As(LengthUnit.Mil), Delta);
-            Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), Delta);
-            Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), Delta);
-            Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), Delta);
-            Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), Delta);
+            Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
+            Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
+            Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
+            Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
+            Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
+            Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
+            Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), MicroinchesTolerance);
+            Assert.AreEqual(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), MicrometersTolerance);
+            Assert.AreEqual(MilsInOneMeter, meter.As(LengthUnit.Mil), MilsTolerance);
+            Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), MilesTolerance);
+            Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), MillimetersTolerance);
+            Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), NanometersTolerance);
+            Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), YardsTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Length meter = Length.FromMeters(1); 
-            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, Delta);
-            Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, Delta);
-            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMicroinches(meter.Microinches).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMils(meter.Mils).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMiles(meter.Miles).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, Delta);
-            Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, Delta);
+            Length meter = Length.FromMeters(1);
+            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
+            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
+            Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
+            Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
+            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
+            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
+            Assert.AreEqual(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
+            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
+            Assert.AreEqual(1, Length.FromMils(meter.Mils).Meters, MilsTolerance);
+            Assert.AreEqual(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
+            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
+            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
+            Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Length v = Length.FromMeters(1);
-            Assert.AreEqual(-1, -v.Meters, Delta);
-            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, Delta);
-            Assert.AreEqual(2, (v + v).Meters, Delta);
-            Assert.AreEqual(10, (v*10).Meters, Delta);
-            Assert.AreEqual(10, (10*v).Meters, Delta);
-            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, Delta);
-            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), Delta);
+            Assert.AreEqual(-1, -v.Meters, YardsTolerance);
+            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, YardsTolerance);
+            Assert.AreEqual(2, (v + v).Meters, YardsTolerance);
+            Assert.AreEqual(10, (v*10).Meters, YardsTolerance);
+            Assert.AreEqual(10, (10*v).Meters, YardsTolerance);
+            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, YardsTolerance);
+            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), YardsTolerance);
         }
 
         [Test]

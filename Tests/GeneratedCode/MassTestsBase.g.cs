@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,121 +33,137 @@ namespace UnitsNet.Tests
     /// Test of Mass.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double CentigramsInOneKilogram { get; }
+        protected abstract double DecagramsInOneKilogram { get; }
+        protected abstract double DecigramsInOneKilogram { get; }
+        protected abstract double GramsInOneKilogram { get; }
+        protected abstract double HectogramsInOneKilogram { get; }
+        protected abstract double KilogramsInOneKilogram { get; }
+        protected abstract double KilotonnesInOneKilogram { get; }
+        protected abstract double LongTonsInOneKilogram { get; }
+        protected abstract double MegatonnesInOneKilogram { get; }
+        protected abstract double MicrogramsInOneKilogram { get; }
+        protected abstract double MilligramsInOneKilogram { get; }
+        protected abstract double NanogramsInOneKilogram { get; }
+        protected abstract double PoundsInOneKilogram { get; }
+        protected abstract double ShortTonsInOneKilogram { get; }
+        protected abstract double TonnesInOneKilogram { get; }
 
-        public abstract double CentigramsInOneKilogram { get; }
-        public abstract double DecagramsInOneKilogram { get; }
-        public abstract double DecigramsInOneKilogram { get; }
-        public abstract double GramsInOneKilogram { get; }
-        public abstract double HectogramsInOneKilogram { get; }
-        public abstract double KilogramsInOneKilogram { get; }
-        public abstract double KilotonnesInOneKilogram { get; }
-        public abstract double LongTonsInOneKilogram { get; }
-        public abstract double MegatonnesInOneKilogram { get; }
-        public abstract double MicrogramsInOneKilogram { get; }
-        public abstract double MilligramsInOneKilogram { get; }
-        public abstract double NanogramsInOneKilogram { get; }
-        public abstract double PoundsInOneKilogram { get; }
-        public abstract double ShortTonsInOneKilogram { get; }
-        public abstract double TonnesInOneKilogram { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CentigramsTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsTolerance { get { return 1e-5; } }
+        protected virtual double GramsTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilotonnesTolerance { get { return 1e-5; } }
+        protected virtual double LongTonsTolerance { get { return 1e-5; } }
+        protected virtual double MegatonnesTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsTolerance { get { return 1e-5; } }
+        protected virtual double PoundsTolerance { get { return 1e-5; } }
+        protected virtual double ShortTonsTolerance { get { return 1e-5; } }
+        protected virtual double TonnesTolerance { get { return 1e-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void KilogramToMassUnits()
         {
             Mass kilogram = Mass.FromKilograms(1);
-            Assert.AreEqual(CentigramsInOneKilogram, kilogram.Centigrams, Delta);
-            Assert.AreEqual(DecagramsInOneKilogram, kilogram.Decagrams, Delta);
-            Assert.AreEqual(DecigramsInOneKilogram, kilogram.Decigrams, Delta);
-            Assert.AreEqual(GramsInOneKilogram, kilogram.Grams, Delta);
-            Assert.AreEqual(HectogramsInOneKilogram, kilogram.Hectograms, Delta);
-            Assert.AreEqual(KilogramsInOneKilogram, kilogram.Kilograms, Delta);
-            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.Kilotonnes, Delta);
-            Assert.AreEqual(LongTonsInOneKilogram, kilogram.LongTons, Delta);
-            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.Megatonnes, Delta);
-            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Micrograms, Delta);
-            Assert.AreEqual(MilligramsInOneKilogram, kilogram.Milligrams, Delta);
-            Assert.AreEqual(NanogramsInOneKilogram, kilogram.Nanograms, Delta);
-            Assert.AreEqual(PoundsInOneKilogram, kilogram.Pounds, Delta);
-            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, Delta);
-            Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, Delta);
+            Assert.AreEqual(CentigramsInOneKilogram, kilogram.Centigrams, CentigramsTolerance);
+            Assert.AreEqual(DecagramsInOneKilogram, kilogram.Decagrams, DecagramsTolerance);
+            Assert.AreEqual(DecigramsInOneKilogram, kilogram.Decigrams, DecigramsTolerance);
+            Assert.AreEqual(GramsInOneKilogram, kilogram.Grams, GramsTolerance);
+            Assert.AreEqual(HectogramsInOneKilogram, kilogram.Hectograms, HectogramsTolerance);
+            Assert.AreEqual(KilogramsInOneKilogram, kilogram.Kilograms, KilogramsTolerance);
+            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.Kilotonnes, KilotonnesTolerance);
+            Assert.AreEqual(LongTonsInOneKilogram, kilogram.LongTons, LongTonsTolerance);
+            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.Megatonnes, MegatonnesTolerance);
+            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Micrograms, MicrogramsTolerance);
+            Assert.AreEqual(MilligramsInOneKilogram, kilogram.Milligrams, MilligramsTolerance);
+            Assert.AreEqual(NanogramsInOneKilogram, kilogram.Nanograms, NanogramsTolerance);
+            Assert.AreEqual(PoundsInOneKilogram, kilogram.Pounds, PoundsTolerance);
+            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, ShortTonsTolerance);
+            Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, TonnesTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Centigram).Centigrams, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Decagram).Decagrams, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Decigram).Decigrams, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Gram).Grams, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Hectogram).Hectograms, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilogram).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.LongTon).LongTons, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Microgram).Micrograms, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Milligram).Milligrams, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Nanogram).Nanograms, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Pound).Pounds, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.ShortTon).ShortTons, Delta);
-            Assert.AreEqual(1, Mass.From(1, MassUnit.Tonne).Tonnes, Delta);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Centigram).Centigrams, CentigramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Decagram).Decagrams, DecagramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Decigram).Decigrams, DecigramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Gram).Grams, GramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilogram).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, KilotonnesTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.LongTon).LongTons, LongTonsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, MegatonnesTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Nanogram).Nanograms, NanogramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Pound).Pounds, PoundsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var kilogram = Mass.FromKilograms(1);
-            Assert.AreEqual(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), Delta);
-            Assert.AreEqual(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), Delta);
-            Assert.AreEqual(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), Delta);
-            Assert.AreEqual(GramsInOneKilogram, kilogram.As(MassUnit.Gram), Delta);
-            Assert.AreEqual(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), Delta);
-            Assert.AreEqual(KilogramsInOneKilogram, kilogram.As(MassUnit.Kilogram), Delta);
-            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.As(MassUnit.Kilotonne), Delta);
-            Assert.AreEqual(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), Delta);
-            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), Delta);
-            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), Delta);
-            Assert.AreEqual(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), Delta);
-            Assert.AreEqual(NanogramsInOneKilogram, kilogram.As(MassUnit.Nanogram), Delta);
-            Assert.AreEqual(PoundsInOneKilogram, kilogram.As(MassUnit.Pound), Delta);
-            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.As(MassUnit.ShortTon), Delta);
-            Assert.AreEqual(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), Delta);
+            Assert.AreEqual(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), CentigramsTolerance);
+            Assert.AreEqual(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), DecagramsTolerance);
+            Assert.AreEqual(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), DecigramsTolerance);
+            Assert.AreEqual(GramsInOneKilogram, kilogram.As(MassUnit.Gram), GramsTolerance);
+            Assert.AreEqual(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), HectogramsTolerance);
+            Assert.AreEqual(KilogramsInOneKilogram, kilogram.As(MassUnit.Kilogram), KilogramsTolerance);
+            Assert.AreEqual(KilotonnesInOneKilogram, kilogram.As(MassUnit.Kilotonne), KilotonnesTolerance);
+            Assert.AreEqual(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), LongTonsTolerance);
+            Assert.AreEqual(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), MegatonnesTolerance);
+            Assert.AreEqual(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), MicrogramsTolerance);
+            Assert.AreEqual(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), MilligramsTolerance);
+            Assert.AreEqual(NanogramsInOneKilogram, kilogram.As(MassUnit.Nanogram), NanogramsTolerance);
+            Assert.AreEqual(PoundsInOneKilogram, kilogram.As(MassUnit.Pound), PoundsTolerance);
+            Assert.AreEqual(ShortTonsInOneKilogram, kilogram.As(MassUnit.ShortTon), ShortTonsTolerance);
+            Assert.AreEqual(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), TonnesTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Mass kilogram = Mass.FromKilograms(1); 
-            Assert.AreEqual(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromGrams(kilogram.Grams).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromPounds(kilogram.Pounds).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, Delta);
-            Assert.AreEqual(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, Delta);
+            Mass kilogram = Mass.FromKilograms(1);
+            Assert.AreEqual(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
+            Assert.AreEqual(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
+            Assert.AreEqual(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
+            Assert.AreEqual(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
+            Assert.AreEqual(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
+            Assert.AreEqual(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
+            Assert.AreEqual(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
+            Assert.AreEqual(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
+            Assert.AreEqual(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
+            Assert.AreEqual(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
+            Assert.AreEqual(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
+            Assert.AreEqual(1, Mass.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
+            Assert.AreEqual(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
+            Assert.AreEqual(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Mass v = Mass.FromKilograms(1);
-            Assert.AreEqual(-1, -v.Kilograms, Delta);
-            Assert.AreEqual(2, (Mass.FromKilograms(3)-v).Kilograms, Delta);
-            Assert.AreEqual(2, (v + v).Kilograms, Delta);
-            Assert.AreEqual(10, (v*10).Kilograms, Delta);
-            Assert.AreEqual(10, (10*v).Kilograms, Delta);
-            Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, Delta);
-            Assert.AreEqual(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), Delta);
+            Assert.AreEqual(-1, -v.Kilograms, TonnesTolerance);
+            Assert.AreEqual(2, (Mass.FromKilograms(3)-v).Kilograms, TonnesTolerance);
+            Assert.AreEqual(2, (v + v).Kilograms, TonnesTolerance);
+            Assert.AreEqual(10, (v*10).Kilograms, TonnesTolerance);
+            Assert.AreEqual(10, (10*v).Kilograms, TonnesTolerance);
+            Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, TonnesTolerance);
+            Assert.AreEqual(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), TonnesTolerance);
         }
 
         [Test]

@@ -19,57 +19,56 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class DurationTests : DurationTestsBase
     {
-        public override double DaysInOneSecond
+        protected override double DaysInOneSecond
         {
             get { return 1.15741e-5; }
         }
 
-        public override double HoursInOneSecond
+        protected override double HoursInOneSecond
         {
             get { return 0.0002777784; }
         }
 
-        public override double MicrosecondsInOneSecond
+        protected override double MicrosecondsInOneSecond
         {
             get { return 1e+6; }
         }
 
-        public override double MillisecondsInOneSecond
+        protected override double MillisecondsInOneSecond
         {
             get { return 1000; }
         }
 
-        public override double MinutesInOneSecond
+        protected override double MinutesInOneSecond
         {
             get { return 0.0166667; }
         }
 
-        public override double Month30DayssInOneSecond
+        protected override double MonthsInOneSecond
         {
             get { return 3.8027e-7; }
         }
 
-        public override double NanosecondsInOneSecond
+        protected override double NanosecondsInOneSecond
         {
             get { return 1e+9; }
         }
 
-        public override double SecondsInOneSecond
+        protected override double SecondsInOneSecond
         {
             get { return 1; }
         }
 
-        public override double WeeksInOneSecond
+        protected override double WeeksInOneSecond
         {
             get { return 1.6534e-6; }
         }
 
-        public override double Year365DayssInOneSecond
+        protected override double YearsInOneSecond
         {
             get { return 3.1689e-8; }
         }

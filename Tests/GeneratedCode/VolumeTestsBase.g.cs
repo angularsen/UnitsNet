@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,136 +33,167 @@ namespace UnitsNet.Tests
     /// Test of Volume.
     /// </summary>
     [TestFixture]
+// ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VolumeTestsBase
     {
-        protected virtual double Delta { get { return 1E-5; } }
+        protected abstract double CentilitersInOneCubicMeter { get; }
+        protected abstract double CubicCentimetersInOneCubicMeter { get; }
+        protected abstract double CubicDecimetersInOneCubicMeter { get; }
+        protected abstract double CubicFeetInOneCubicMeter { get; }
+        protected abstract double CubicInchesInOneCubicMeter { get; }
+        protected abstract double CubicKilometersInOneCubicMeter { get; }
+        protected abstract double CubicMetersInOneCubicMeter { get; }
+        protected abstract double CubicMilesInOneCubicMeter { get; }
+        protected abstract double CubicMillimetersInOneCubicMeter { get; }
+        protected abstract double CubicYardsInOneCubicMeter { get; }
+        protected abstract double DecilitersInOneCubicMeter { get; }
+        protected abstract double HectolitersInOneCubicMeter { get; }
+        protected abstract double ImperialGallonsInOneCubicMeter { get; }
+        protected abstract double ImperialOuncesInOneCubicMeter { get; }
+        protected abstract double LitersInOneCubicMeter { get; }
+        protected abstract double MillilitersInOneCubicMeter { get; }
+        protected abstract double TablespoonsInOneCubicMeter { get; }
+        protected abstract double TeaspoonsInOneCubicMeter { get; }
+        protected abstract double UsGallonsInOneCubicMeter { get; }
+        protected abstract double UsOuncesInOneCubicMeter { get; }
 
-        public abstract double CentilitersInOneCubicMeter { get; }
-        public abstract double CubicCentimetersInOneCubicMeter { get; }
-        public abstract double CubicDecimetersInOneCubicMeter { get; }
-        public abstract double CubicFeetInOneCubicMeter { get; }
-        public abstract double CubicInchesInOneCubicMeter { get; }
-        public abstract double CubicKilometersInOneCubicMeter { get; }
-        public abstract double CubicMetersInOneCubicMeter { get; }
-        public abstract double CubicMilesInOneCubicMeter { get; }
-        public abstract double CubicMillimetersInOneCubicMeter { get; }
-        public abstract double CubicYardsInOneCubicMeter { get; }
-        public abstract double DecilitersInOneCubicMeter { get; }
-        public abstract double HectolitersInOneCubicMeter { get; }
-        public abstract double ImperialGallonsInOneCubicMeter { get; }
-        public abstract double ImperialOuncesInOneCubicMeter { get; }
-        public abstract double LitersInOneCubicMeter { get; }
-        public abstract double MillilitersInOneCubicMeter { get; }
-        public abstract double UsGallonsInOneCubicMeter { get; }
-        public abstract double UsOuncesInOneCubicMeter { get; }
+// ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CentilitersTolerance { get { return 1e-5; } }
+        protected virtual double CubicCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicFeetTolerance { get { return 1e-5; } }
+        protected virtual double CubicInchesTolerance { get { return 1e-5; } }
+        protected virtual double CubicKilometersTolerance { get { return 1e-5; } }
+        protected virtual double CubicMetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicMilesTolerance { get { return 1e-5; } }
+        protected virtual double CubicMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicYardsTolerance { get { return 1e-5; } }
+        protected virtual double DecilitersTolerance { get { return 1e-5; } }
+        protected virtual double HectolitersTolerance { get { return 1e-5; } }
+        protected virtual double ImperialGallonsTolerance { get { return 1e-5; } }
+        protected virtual double ImperialOuncesTolerance { get { return 1e-5; } }
+        protected virtual double LitersTolerance { get { return 1e-5; } }
+        protected virtual double MillilitersTolerance { get { return 1e-5; } }
+        protected virtual double TablespoonsTolerance { get { return 1e-5; } }
+        protected virtual double TeaspoonsTolerance { get { return 1e-5; } }
+        protected virtual double UsGallonsTolerance { get { return 1e-5; } }
+        protected virtual double UsOuncesTolerance { get { return 1e-5; } }
+// ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
         public void CubicMeterToVolumeUnits()
         {
             Volume cubicmeter = Volume.FromCubicMeters(1);
-            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.Centiliters, Delta);
-            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.CubicCentimeters, Delta);
-            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.CubicDecimeters, Delta);
-            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.CubicFeet, Delta);
-            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.CubicInches, Delta);
-            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.CubicKilometers, Delta);
-            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.CubicMeters, Delta);
-            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.CubicMiles, Delta);
-            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.CubicMillimeters, Delta);
-            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, Delta);
-            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.Deciliters, Delta);
-            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, Delta);
-            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, Delta);
-            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, Delta);
-            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.Liters, Delta);
-            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Milliliters, Delta);
-            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, Delta);
-            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.UsOunces, Delta);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.Centiliters, CentilitersTolerance);
+            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.CubicCentimeters, CubicCentimetersTolerance);
+            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.CubicDecimeters, CubicDecimetersTolerance);
+            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.CubicFeet, CubicFeetTolerance);
+            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.CubicInches, CubicInchesTolerance);
+            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.CubicKilometers, CubicKilometersTolerance);
+            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.CubicMiles, CubicMilesTolerance);
+            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.CubicMillimeters, CubicMillimetersTolerance);
+            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, CubicYardsTolerance);
+            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.Deciliters, DecilitersTolerance);
+            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, HectolitersTolerance);
+            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, ImperialGallonsTolerance);
+            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, ImperialOuncesTolerance);
+            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.Liters, LitersTolerance);
+            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Milliliters, MillilitersTolerance);
+            Assert.AreEqual(TablespoonsInOneCubicMeter, cubicmeter.Tablespoons, TablespoonsTolerance);
+            Assert.AreEqual(TeaspoonsInOneCubicMeter, cubicmeter.Teaspoons, TeaspoonsTolerance);
+            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, UsGallonsTolerance);
+            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.UsOunces, UsOuncesTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Centiliter).Centiliters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicCentimeter).CubicCentimeters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicDecimeter).CubicDecimeters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicFoot).CubicFeet, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicInch).CubicInches, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicKilometer).CubicKilometers, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMeter).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMile).CubicMiles, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMillimeter).CubicMillimeters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Deciliter).Deciliters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Hectoliter).Hectoliters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialGallon).ImperialGallons, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialOunce).ImperialOunces, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Liter).Liters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Milliliter).Milliliters, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsGallon).UsGallons, Delta);
-            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsOunce).UsOunces, Delta);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Centiliter).Centiliters, CentilitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicCentimeter).CubicCentimeters, CubicCentimetersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicDecimeter).CubicDecimeters, CubicDecimetersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicFoot).CubicFeet, CubicFeetTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicInch).CubicInches, CubicInchesTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicKilometer).CubicKilometers, CubicKilometersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMeter).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMile).CubicMiles, CubicMilesTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMillimeter).CubicMillimeters, CubicMillimetersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, CubicYardsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Deciliter).Deciliters, DecilitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Hectoliter).Hectoliters, HectolitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialGallon).ImperialGallons, ImperialGallonsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialOunce).ImperialOunces, ImperialOuncesTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Liter).Liters, LitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Milliliter).Milliliters, MillilitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Tablespoon).Tablespoons, TablespoonsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Teaspoon).Teaspoons, TeaspoonsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsGallon).UsGallons, UsGallonsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsOunce).UsOunces, UsOuncesTolerance);
         }
-
 
         [Test]
         public void As()
         {
             var cubicmeter = Volume.FromCubicMeters(1);
-            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Centiliter), Delta);
-            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicCentimeter), Delta);
-            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicDecimeter), Delta);
-            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicFoot), Delta);
-            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicInch), Delta);
-            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicKilometer), Delta);
-            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMeter), Delta);
-            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMile), Delta);
-            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMillimeter), Delta);
-            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicYard), Delta);
-            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Deciliter), Delta);
-            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Hectoliter), Delta);
-            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialGallon), Delta);
-            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialOunce), Delta);
-            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Liter), Delta);
-            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Milliliter), Delta);
-            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsGallon), Delta);
-            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.UsOunce), Delta);
+            Assert.AreEqual(CentilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Centiliter), CentilitersTolerance);
+            Assert.AreEqual(CubicCentimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicCentimeter), CubicCentimetersTolerance);
+            Assert.AreEqual(CubicDecimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicDecimeter), CubicDecimetersTolerance);
+            Assert.AreEqual(CubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicFoot), CubicFeetTolerance);
+            Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicInch), CubicInchesTolerance);
+            Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicKilometer), CubicKilometersTolerance);
+            Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMeter), CubicMetersTolerance);
+            Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMile), CubicMilesTolerance);
+            Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMillimeter), CubicMillimetersTolerance);
+            Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicYard), CubicYardsTolerance);
+            Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Deciliter), DecilitersTolerance);
+            Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Hectoliter), HectolitersTolerance);
+            Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialGallon), ImperialGallonsTolerance);
+            Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialOunce), ImperialOuncesTolerance);
+            Assert.AreEqual(LitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Liter), LitersTolerance);
+            Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Milliliter), MillilitersTolerance);
+            Assert.AreEqual(TablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Tablespoon), TablespoonsTolerance);
+            Assert.AreEqual(TeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Teaspoon), TeaspoonsTolerance);
+            Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsGallon), UsGallonsTolerance);
+            Assert.AreEqual(UsOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.UsOunce), UsOuncesTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            Volume cubicmeter = Volume.FromCubicMeters(1); 
-            Assert.AreEqual(1, Volume.FromCentiliters(cubicmeter.Centiliters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicCentimeters(cubicmeter.CubicCentimeters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicDecimeters(cubicmeter.CubicDecimeters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicFeet(cubicmeter.CubicFeet).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicInches(cubicmeter.CubicInches).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicKilometers(cubicmeter.CubicKilometers).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicMeters(cubicmeter.CubicMeters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicMiles(cubicmeter.CubicMiles).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicMillimeters(cubicmeter.CubicMillimeters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromCubicYards(cubicmeter.CubicYards).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromDeciliters(cubicmeter.Deciliters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromHectoliters(cubicmeter.Hectoliters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromImperialGallons(cubicmeter.ImperialGallons).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromImperialOunces(cubicmeter.ImperialOunces).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromLiters(cubicmeter.Liters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromMilliliters(cubicmeter.Milliliters).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromUsGallons(cubicmeter.UsGallons).CubicMeters, Delta);
-            Assert.AreEqual(1, Volume.FromUsOunces(cubicmeter.UsOunces).CubicMeters, Delta);
+            Volume cubicmeter = Volume.FromCubicMeters(1);
+            Assert.AreEqual(1, Volume.FromCentiliters(cubicmeter.Centiliters).CubicMeters, CentilitersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicCentimeters(cubicmeter.CubicCentimeters).CubicMeters, CubicCentimetersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicDecimeters(cubicmeter.CubicDecimeters).CubicMeters, CubicDecimetersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicFeet(cubicmeter.CubicFeet).CubicMeters, CubicFeetTolerance);
+            Assert.AreEqual(1, Volume.FromCubicInches(cubicmeter.CubicInches).CubicMeters, CubicInchesTolerance);
+            Assert.AreEqual(1, Volume.FromCubicKilometers(cubicmeter.CubicKilometers).CubicMeters, CubicKilometersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicMeters(cubicmeter.CubicMeters).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicMiles(cubicmeter.CubicMiles).CubicMeters, CubicMilesTolerance);
+            Assert.AreEqual(1, Volume.FromCubicMillimeters(cubicmeter.CubicMillimeters).CubicMeters, CubicMillimetersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicYards(cubicmeter.CubicYards).CubicMeters, CubicYardsTolerance);
+            Assert.AreEqual(1, Volume.FromDeciliters(cubicmeter.Deciliters).CubicMeters, DecilitersTolerance);
+            Assert.AreEqual(1, Volume.FromHectoliters(cubicmeter.Hectoliters).CubicMeters, HectolitersTolerance);
+            Assert.AreEqual(1, Volume.FromImperialGallons(cubicmeter.ImperialGallons).CubicMeters, ImperialGallonsTolerance);
+            Assert.AreEqual(1, Volume.FromImperialOunces(cubicmeter.ImperialOunces).CubicMeters, ImperialOuncesTolerance);
+            Assert.AreEqual(1, Volume.FromLiters(cubicmeter.Liters).CubicMeters, LitersTolerance);
+            Assert.AreEqual(1, Volume.FromMilliliters(cubicmeter.Milliliters).CubicMeters, MillilitersTolerance);
+            Assert.AreEqual(1, Volume.FromTablespoons(cubicmeter.Tablespoons).CubicMeters, TablespoonsTolerance);
+            Assert.AreEqual(1, Volume.FromTeaspoons(cubicmeter.Teaspoons).CubicMeters, TeaspoonsTolerance);
+            Assert.AreEqual(1, Volume.FromUsGallons(cubicmeter.UsGallons).CubicMeters, UsGallonsTolerance);
+            Assert.AreEqual(1, Volume.FromUsOunces(cubicmeter.UsOunces).CubicMeters, UsOuncesTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Volume v = Volume.FromCubicMeters(1);
-            Assert.AreEqual(-1, -v.CubicMeters, Delta);
-            Assert.AreEqual(2, (Volume.FromCubicMeters(3)-v).CubicMeters, Delta);
-            Assert.AreEqual(2, (v + v).CubicMeters, Delta);
-            Assert.AreEqual(10, (v*10).CubicMeters, Delta);
-            Assert.AreEqual(10, (10*v).CubicMeters, Delta);
-            Assert.AreEqual(2, (Volume.FromCubicMeters(10)/5).CubicMeters, Delta);
-            Assert.AreEqual(2, Volume.FromCubicMeters(10)/Volume.FromCubicMeters(5), Delta);
+            Assert.AreEqual(-1, -v.CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(2, (Volume.FromCubicMeters(3)-v).CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(2, (v + v).CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(10, (v*10).CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(10, (10*v).CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(2, (Volume.FromCubicMeters(10)/5).CubicMeters, UsOuncesTolerance);
+            Assert.AreEqual(2, Volume.FromCubicMeters(10)/Volume.FromCubicMeters(5), UsOuncesTolerance);
         }
 
         [Test]

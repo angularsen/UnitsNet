@@ -19,12 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
-        public override double VoltsInOneVolt
+        protected override double VoltsInOneVolt
         {
             get { return 1; }
         }

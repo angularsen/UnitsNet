@@ -18,10 +18,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 namespace UnitsNet
 {
     public static class Constants
     {
-         public const double Gravity = 9.80665002864;
+        public const double Gravity = 9.80665002864;
     }
 }
