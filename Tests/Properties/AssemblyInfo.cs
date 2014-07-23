@@ -29,9 +29,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UnitsNet.Tests.net35")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Initial Force AS")]
 [assembly: AssemblyProduct("UnitsNet.Tests.net35")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

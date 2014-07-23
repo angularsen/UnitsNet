@@ -34,7 +34,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Initial Force AS")]
 [assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2013 Initial Force AS")]
+[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
