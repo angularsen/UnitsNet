@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using UnitsNet.Annotations;
 using UnitsNet.I18n;
 
@@ -162,8 +163,13 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
+#if PORTABLE45
+            if (!unitType.GetTypeInfo().IsEnum)
+                throw new ArgumentException("Must be an enum type.", "unitType");
+#else
             if (!unitType.IsEnum)
                 throw new ArgumentException("Must be an enum type.", "unitType");
+#endif
             if (abbreviations == null)
                 throw new ArgumentNullException("abbreviations");
 
