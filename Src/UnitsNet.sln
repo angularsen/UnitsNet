@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4DC016EB-1ED1-4EAA-8537-E47278281BDC}"
 EndProject
@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9A9082
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.pcl", "UnitsNet\UnitsNet.pcl.csproj", "{52C647A6-A05A-4CBD-A18A-9F1D260800F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable40", "UnitsNet\UnitsNet.Portable40.csproj", "{52C647A6-A05A-4CBD-A18A-9F1D260800F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.net35", "UnitsNet\UnitsNet.net35.csproj", "{62E7F8AB-01ED-455A-8CE2-86F020D429B0}"
 EndProject
