@@ -21,54 +21,14 @@
 
 using System;
 using System.Linq;
-using System.Reflection;
 
-namespace UnitsNet.Utils
+namespace UnitsNet.Tests
 {
-    /// <summary>
-    ///     Cross-platform enum utils. For instance, WinRT does not support Enum enumeration.
-    /// </summary>
     public static class EnumUtils
     {
         public static T[] GetEnumValues<T>()
         {
-#if NETFX_CORE
-            return GetEnumValuesWinRT<T>();
-#else
-            Type type = typeof (T);
-            if (!type.IsEnum)
-                throw new ArgumentException("Type '" + type.Name + "' is not an enum");
-
-            return (
-                from field in type.GetFields(BindingFlags.Public | BindingFlags.Static)
-                where field.IsLiteral
-                select (T) field.GetValue(null)
-                ).ToArray();
-#endif
+            return Enum.GetValues(typeof (T)).Cast<T>().ToArray();
         }
-
-        private static T[] GetEnumValuesWinRT<T>()
-        {
-#if NETFX_CORE
-    // using System.Reflection;
-            var values = typeof (T)
-                .GetRuntimeProperties()
-                .Select(c => (T) c.GetValue(null));
-
-            return values.ToArray(); 
-#else
-            throw new NotImplementedException();
-#endif
-        }
-
-        //public static string[] GetEnumNames<T>()
-        //{
-        //    // using System.Reflection;
-        //    var names = typeof (T)
-        //        .GetRuntimeProperties()
-        //        .Select(c => c.Name);
-
-        //    return names.ToArray();
-        //}
     }
 }
