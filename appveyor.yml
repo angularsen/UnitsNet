@@ -38,19 +38,19 @@ init:
 clone_folder: c:\projects\UnitsNet
 
 # setting up etc\hosts file
-hosts:
+# hosts:
   #queue-server: 127.0.0.1
   #db.server.com: 127.0.0.2
 
 # environment variables
-environment:
+# environment:
   #my_var1: value1
   # this is how to set encrypted variable. Go to "Encrypt data" page in account menu to encrypt data.
   #my_secure_var1:
   #  secure: FW3tJ3fMncxvs58/ifSP7w==
 
 # scripts that run after cloning repository
-install:
+# install:
   # by default, all script lines are interpreted as batch
   #- echo This is batch
   # to run script as a PowerShell command prepend it with ps:
@@ -115,7 +115,7 @@ build_script:
 #       tests configuration       #
 #---------------------------------#
 
-test:
+# test:
   #assemblies:
     #- asm1.dll
     #- asm2.dll
@@ -173,7 +173,7 @@ artifacts:
 
 # providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
 # provider names are case-sensitive!
-deploy:
+# deploy:
 
     # Deploying to NuGet feed
   # - provider: Environment
@@ -215,4 +215,4 @@ on_finish:
 #         notifications           #
 #---------------------------------#
   
-notifications:
+# notifications:
