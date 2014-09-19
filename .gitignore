@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 
 Build
+Thumbs.db

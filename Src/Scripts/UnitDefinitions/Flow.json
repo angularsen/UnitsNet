@@ -1,0 +1,39 @@
+﻿{
+    "Name": "Flow",
+    "BaseUnit": "CubicMeterPerSecond",
+    "XmlDoc": "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m3·s−1 (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft3/s (cubic feet per second). It is usually represented by the symbol Q.",
+    "Units": [
+        {
+            "SingularName": "CubicMeterPerSecond",
+            "PluralName": "CubicMetersPerSecond",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["m³/s"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["м³/с"]
+                }
+            ]
+        },
+        {
+            "SingularName": "CubicMeterPerHour",
+            "PluralName": "CubicMetersPerHour",
+            "FromUnitToBaseFunc": "x/3600",
+            "FromBaseToUnitFunc": "x*3600",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["m³/h"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["м³/ч"]
+                }
+            ]
+        }
+    ]
+}

@@ -1,5 +1,5 @@
-// Copyright � 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -30,8 +30,6 @@ namespace UnitsNet
     /// </summary>
     public struct Length2d
     {
-        private static readonly CultureInfo Culture = new CultureInfo("en-US");
-
         /// <summary>
         ///     Returns a point represented in meters.
         /// </summary>
@@ -225,7 +223,8 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format(Culture, "({0}, {1}) m", X.Meters, Y.Meters);
+            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
+                UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
         }
 
         public Length DistanceTo(Length2d other)

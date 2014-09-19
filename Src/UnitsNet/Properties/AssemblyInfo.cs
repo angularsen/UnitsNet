@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/SIUnits
+// https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,11 +27,14 @@ using System.Resources;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("UnitsNet")]
-[assembly: AssemblyDescription("Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation.")]
+[assembly:
+    AssemblyDescription(
+        "Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation."
+        )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Initial Force AS")]
 [assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2013 Initial Force AS")]
+[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
@@ -44,5 +47,5 @@ using System.Resources;
 //      Revision
 //
 
-[assembly: AssemblyVersion("1.7.0")]
-[assembly: AssemblyFileVersion("1.7.0")]
+[assembly: AssemblyVersion("2.1.0")]
+[assembly: AssemblyFileVersion("2.1.0")]
