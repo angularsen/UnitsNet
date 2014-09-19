@@ -8,14 +8,14 @@
     <ProjectGuid>{72BC5ED7-7496-4048-9233-7A4A843FE8A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitsNet.Portable45</RootNamespace>
-    <AssemblyName>UnitsNet.Portable45</AssemblyName>
+    <RootNamespace>UnitsNet</RootNamespace>
+    <AssemblyName>UnitsNet</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <OutputPath>..\..\Build\bin\$(Platform)_$(Configuration)\</OutputPath>
+    <OutputPath>..\..\Build\Bin\$(Platform)_$(Configuration)\portable-net45+wp80+win8+wpa81\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

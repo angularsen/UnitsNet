@@ -42,9 +42,6 @@ Behind the scenes:
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
   </metadata>
   <files>
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.dll" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.dll" />
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.pcl.pdb" target="lib\portable-net40+win+sl5+wp8\UnitsNet.pcl.pdb" />
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.dll" target="lib\net35-client\UnitsNet.net35.dll" />
-    <file src="Build\bin\AnyCPU_Release\UnitsNet.net35.pdb" target="lib\net35-client\UnitsNet.net35.pdb" />
+    <file src="Build\bin\AnyCPU_Release\**\UnitsNet.*" target="lib" />
   </files>
 </package>

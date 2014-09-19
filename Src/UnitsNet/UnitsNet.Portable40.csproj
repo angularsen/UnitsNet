@@ -9,12 +9,12 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitsNet</RootNamespace>
-    <AssemblyName>UnitsNet.Portable40</AssemblyName>
+    <AssemblyName>UnitsNet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputPath>..\..\Build\bin\$(Platform)_$(Configuration)\</OutputPath>
+    <OutputPath>..\..\Build\Bin\$(Platform)_$(Configuration)\portable-net40+sl5+wp80+win8+wpa81\</OutputPath>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
