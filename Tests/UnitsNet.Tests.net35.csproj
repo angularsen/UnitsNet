@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="obj\**" />
+    <Compile Include="EnumUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
