@@ -1,9 +1,9 @@
 @echo off
-SET ROOT="%CD%\.."
-SET NugetSpecFile=%CD%\UnitsNet.nuspec
+SET ROOT=%~dp0..
+SET NugetSpecFile=%ROOT%\Build\UnitsNet.nuspec
 SET NuGetExe=%ROOT%\Src\.nuget\NuGet.exe
-SET OutDir=%ROOT%\Artifacts\NuGet
+SET NuGetOutDir=%ROOT%\Artifacts\NuGet
 
-mkdir "%OutDir%"
+mkdir "%NuGetOutDir%"
 
-%NuGetExe% pack %NugetSpecFile% -Verbosity detailed -OutputDirectory "%OutDir%" -BasePath "%ROOT%"
+%NuGetExe% pack %NugetSpecFile% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%"

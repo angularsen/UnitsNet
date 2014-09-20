@@ -1,9 +1,11 @@
 @echo off
-rmdir /Q /S %CD%\..\Artifacts
+SET ROOT=%~dp0..
+rmdir /Q /S %ROOT%\Artifacts
 
-call build-src-release.bat
-call build-tests.bat
-call run-tests.bat
-call pack-nuget.bat
-call zip-artifacts.bat
+call %ROOT%\Build\build-src-release.bat
+call %ROOT%\Build\build-tests.bat
+call %ROOT%\Build\run-tests.bat
+call %ROOT%\Build\pack-nuget.bat
+call %ROOT%\Build\zip-artifacts.bat
+
 pause
