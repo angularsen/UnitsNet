@@ -1,0 +1,1 @@
+..\Tools\7-zip\7za.exe a -tzip ..\Artifacts\UnitsNet.zip ..\Artifacts\*

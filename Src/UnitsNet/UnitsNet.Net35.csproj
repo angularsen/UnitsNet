@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <OutputPath>..\..\Build\bin\$(Platform)_$(Configuration)\net35\</OutputPath>
+    <OutputPath>..\..\Artifacts\Bin\Src\$(Platform)_$(Configuration)\net35\</OutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
