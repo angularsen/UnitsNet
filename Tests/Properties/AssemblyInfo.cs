@@ -26,11 +26,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("UnitsNet.Tests.net35")]
+[assembly: AssemblyTitle("UnitsNet.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Initial Force AS")]
-[assembly: AssemblyProduct("UnitsNet.Tests.net35")]
+[assembly: AssemblyProduct("UnitsNet.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
