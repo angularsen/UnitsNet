@@ -17,7 +17,7 @@
 
   <Target Name="CompileProjects">
 
-    <MSBuild Projects="$(TestsSrcPath)\UnitsNet.Tests.Net35.csproj"
+    <MSBuild Projects="$(TestsSrcPath)\UnitsNet.Tests.csproj"
        Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);AllowUnsafeBlocks=true"
        Targets="Build">
     </MSBuild>

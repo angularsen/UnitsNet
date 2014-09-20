@@ -15,7 +15,7 @@
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <OutputPath>..\Artifacts\Bin\Tests\$(Platform)_$(Configuration)\net35\</OutputPath>
+    <OutputPath>..\Artifacts\Bin\Tests\$(Platform)_$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
