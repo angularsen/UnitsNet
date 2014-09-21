@@ -13,8 +13,10 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 ![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/develop/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
-* Portable Class Library (.NET 4.0 + Silverlight 5 + Win8/WinPhone8)
+* Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
+* Portable 4.5 Profile259 (.NET 4.5, Win8, WinPhone 8.1 + WP Silverlight 8)
 * .NET 3.5 Client
+* .NET 4.5.1 
 
 Features
 ===
