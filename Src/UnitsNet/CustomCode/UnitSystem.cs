@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using UnitsNet.Annotations;
+using JetBrains.Annotations;
 using UnitsNet.I18n;
 
 // ReSharper disable once CheckNamespace

@@ -22,7 +22,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using UnitsNet.Annotations;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
