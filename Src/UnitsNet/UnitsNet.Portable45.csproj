@@ -16,6 +16,7 @@
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <OutputPath>..\..\Artifacts\Bin\Src\$(Platform)_$(Configuration)\portable-net45+wp80+win8+wpa81\</OutputPath>
+    <IntermediateOutputPath>obj\Portable45\</IntermediateOutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
