@@ -1,4 +1,4 @@
-[![Build Status](http://anj.no:8500/app/rest/builds/buildType:(id:UnitsNet_ReleaseBuilds)/statusIcon)](http://anj.no:8500/viewType.html?buildTypeId=UnitsNet_ReleaseBuilds&guest=1 "Build Status")
+[![Build Status](http://dev.swingcatalyst.com/TeamCity/app/rest/builds/buildType:(id:UnitsNet)/statusIcon)](http://dev.swingcatalyst.com/TeamCity/viewType.html?buildTypeId=UnitsNet&guest=1 "Build Status")
 Units.NET
 ===
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
@@ -13,8 +13,10 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 ![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/develop/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
-* Portable Class Library (.NET 4.0 + Silverlight 5 + Win8/WinPhone8)
+* Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
+* Portable 4.5 Profile259 (.NET 4.5, Win8, WinPhone 8.1 + WP Silverlight 8)
 * .NET 3.5 Client
+* .NET 4.5.1 
 
 Features
 ===

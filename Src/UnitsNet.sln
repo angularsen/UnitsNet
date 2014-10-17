@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
@@ -9,14 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9A9082
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable40", "UnitsNet\UnitsNet.Portable40.csproj", "{52C647A6-A05A-4CBD-A18A-9F1D260800F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net35", "UnitsNet\UnitsNet.Net35.csproj", "{62E7F8AB-01ED-455A-8CE2-86F020D429B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests.net35", "..\Tests\UnitsNet.Tests.net35.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests", "..\Tests\UnitsNet.Tests.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8A38A719-E983-47BD-9EC5-678D71C055C6}"
 	ProjectSection(SolutionItems) = preProject

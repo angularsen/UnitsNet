@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
     <summary>Simplifies working with units of measurement.</summary>
-    <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/develop/logo-32x32.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>v3.1.0: Add more nuget targets for .NET 4.5
 * .NET 4.5.1
 * Portable profile 259 (portable-net45+wp80+win8+wpa81)
@@ -21,6 +21,6 @@
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
   </metadata>
   <files>
-    <file src="Build\bin\AnyCPU_Release\**\UnitsNet.*" target="lib" />
+    <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.*" target="lib" />
   </files>
 </package>
