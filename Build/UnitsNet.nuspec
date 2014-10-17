@@ -19,5 +19,6 @@
   </metadata>
   <files>
     <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.*" target="lib" />
+    <file src="Src\**\*.cs" exclude="Src\**\obj\**\*.cs" target="src" />
   </files>
 </package>
