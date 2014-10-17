@@ -6,4 +6,4 @@ SET NuGetOutDir=%ROOT%\Artifacts\NuGet
 
 mkdir "%NuGetOutDir%"
 
-%NuGetExe% pack %NugetSpecFile% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%"
+%NuGetExe% pack %NugetSpecFile% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
