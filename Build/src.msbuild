@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="CompileProjects" ToolsVersion="12.0">
+  <Import Project="paths.msbuild" />
+  
+  <PropertyGroup>
+    <Platform>AnyCPU</Platform>
+    <Configuration>Release</Configuration>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+ 
+  <Target Name="CleanAndBuild" DependsOnTargets="Clean;CompileProjects" />
+   
+  <Target Name="Clean">
+    <MSBuild Projects="@(AllProjects)" Targets="Clean" />
+    <RemoveDir Directories="$(SrcBinPath)" />
+  </Target>  
+
+  <Target Name="CompileProjects">
+
+    <MSBuild Projects="
+$(SrcPath)\UnitsNet\UnitsNet.Net35.csproj;
+$(SrcPath)\UnitsNet\UnitsNet.Net451.csproj;
+$(SrcPath)\UnitsNet\UnitsNet.Portable40.csproj;
+$(SrcPath)\UnitsNet\UnitsNet.Portable45.csproj"
+       Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);AllowUnsafeBlocks=true;Retries=15;RetryDelayMilliseconds=5"
+       Targets="Build">
+    </MSBuild>
+  </Target>
+</Project>

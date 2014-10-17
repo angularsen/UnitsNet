@@ -1,0 +1,24 @@
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
+    
+    <!-- Root -->
+    <ArtifactsPath>$(RootPath)\Artifacts</ArtifactsPath>
+    <SrcPath>$(RootPath)\Src</SrcPath>
+    <TestsSrcPath>$(RootPath)\Tests</TestsSrcPath>   		
+    <BuildToolsPath>$(RootPath)\Tools</BuildToolsPath>
+    <LibsPath>$(RootPath)\Libs</LibsPath>
+	<ToolsPath>$(RootPath)\Tools</ToolsPath>
+
+    <!-- Artifacts -->
+    <BuildLogsPath>$(ArtifactsPath)\BuildLog</BuildLogsPath>
+    <DeployPath>$(ArtifactsPath)\Deploy</DeployPath>
+    <BinPath>$(ArtifactsPath)\Bin</BinPath>
+    
+    <!-- Artifacts\Bin -->
+    <SrcBinBasePath>$(BinPath)\Src</SrcBinBasePath>
+    <TestsBinPath>$(BinPath)\Tests\$(Platform)_$(Configuration)</TestsBinPath>
+    <SrcBinPath>$(SrcBinBasePath)\$(Platform)_$(Configuration)</SrcBinPath>    
+    
+  </PropertyGroup>
+</Project>

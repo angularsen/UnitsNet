@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UnitsNet</id>
+    <version>3.1.0</version>
+    <title>Units.NET</title>
+    <authors>Andreas Gullberg Larsen</authors>
+    <owners>Initial Force AS</owners>
+    <licenseUrl>https://github.com/InitialForce/UnitsNet/blob/develop/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/InitialForce/UnitsNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
+    <summary>Simplifies working with units of measurement.</summary>
+    <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <releaseNotes>v3.1.0: Add more nuget targets for .NET 4.5
+* .NET 4.5.1
+* Portable profile 259 (portable-net45+wp80+win8+wpa81)
+</releaseNotes>
+    <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
+    <language>en-US</language>
+    <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
+  </metadata>
+  <files>
+    <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.*" target="lib" />
+  </files>
+</package>
