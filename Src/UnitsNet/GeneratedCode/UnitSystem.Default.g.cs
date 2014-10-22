@@ -250,6 +250,35 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "фунт-сила"),
                             }),
                     }),
+                new UnitLocalization(typeof (FrequencyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) FrequencyUnit.Gigahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Hertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Hz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Kilohertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Megahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Terahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "THz"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (InformationUnit),
                     new[]
                     {
