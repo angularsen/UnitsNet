@@ -1,0 +1,291 @@
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// https://github.com/InitialForce/UnitsNet
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
+using System.Globalization;
+using System.Linq;
+using JetBrains.Annotations;
+using UnitsNet.Units;
+
+// ReSharper disable once CheckNamespace
+
+namespace UnitsNet
+{
+    /// <summary>
+    ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
+    /// </summary>
+    // ReSharper disable once PartialTypeWithSinglePart
+    public partial struct ElectricCurrent : IComparable, IComparable<ElectricCurrent>
+    {
+        /// <summary>
+        ///     Base unit of ElectricCurrent.
+        /// </summary>
+        private readonly double _amperes;
+
+        public ElectricCurrent(double amperes) : this()
+        {
+            _amperes = amperes;
+        }
+
+        #region Properties
+
+        /// <summary>
+        ///     Get ElectricCurrent in Amperes.
+        /// </summary>
+        public double Amperes
+        {
+            get { return _amperes; }
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent in Milliamperes.
+        /// </summary>
+        public double Milliamperes
+        {
+            get { return (_amperes) / 1e-3d; }
+        }
+
+        #endregion
+
+        #region Static 
+
+        public static ElectricCurrent Zero
+        {
+            get { return new ElectricCurrent(); }
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Amperes.
+        /// </summary>
+        public static ElectricCurrent FromAmperes(double amperes)
+        {
+            return new ElectricCurrent(amperes);
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Milliamperes.
+        /// </summary>
+        public static ElectricCurrent FromMilliamperes(double milliamperes)
+        {
+            return new ElectricCurrent((milliamperes) * 1e-3d);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricCurrent unit value.</returns>
+        public static ElectricCurrent From(double value, ElectricCurrentUnit fromUnit)
+        {
+            switch (fromUnit)
+            {
+                case ElectricCurrentUnit.Ampere:
+                    return FromAmperes(value);
+                case ElectricCurrentUnit.Milliampere:
+                    return FromMilliamperes(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(ElectricCurrentUnit unit, CultureInfo culture = null)
+        {
+            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricCurrent operator -(ElectricCurrent right)
+        {
+            return new ElectricCurrent(-right._amperes);
+        }
+
+        public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left._amperes + right._amperes);
+        }
+
+        public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left._amperes - right._amperes);
+        }
+
+        public static ElectricCurrent operator *(double left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left*right._amperes);
+        }
+
+        public static ElectricCurrent operator *(ElectricCurrent left, double right)
+        {
+            return new ElectricCurrent(left._amperes*(double)right);
+        }
+
+        public static ElectricCurrent operator /(ElectricCurrent left, double right)
+        {
+            return new ElectricCurrent(left._amperes/(double)right);
+        }
+
+        public static double operator /(ElectricCurrent left, ElectricCurrent right)
+        {
+            return Convert.ToDouble(left._amperes/right._amperes);
+        }
+
+        #endregion
+
+        #region Equality / IComparable
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (!(obj is ElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", "obj");
+            return CompareTo((ElectricCurrent) obj);
+        }
+
+        public int CompareTo(ElectricCurrent other)
+        {
+            return _amperes.CompareTo(other._amperes);
+        }
+
+        public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left._amperes <= right._amperes;
+        }
+
+        public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left._amperes >= right._amperes;
+        }
+
+        public static bool operator <(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left._amperes < right._amperes;
+        }
+
+        public static bool operator >(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left._amperes > right._amperes;
+        }
+
+        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._amperes == right._amperes;
+        }
+
+        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._amperes != right._amperes;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return _amperes.Equals(((ElectricCurrent) obj)._amperes);
+        }
+
+        public override int GetHashCode()
+        {
+            return _amperes.GetHashCode();
+        }
+
+        #endregion
+
+        #region Conversion
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value in new unit if successful, exception otherwise.</returns>
+        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        public double As(ElectricCurrentUnit unit)
+        {
+            switch (unit)
+            {
+                case ElectricCurrentUnit.Ampere:
+                    return Amperes;
+                case ElectricCurrentUnit.Milliampere:
+                    return Milliamperes;
+
+                default:
+                    throw new NotImplementedException("unit: " + unit);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        [UsedImplicitly]
+        public string ToString(ElectricCurrentUnit unit, CultureInfo culture = null)
+        {
+            return ToString(unit, culture, "{0:0.##} {1}");
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        [UsedImplicitly]
+        public string ToString(ElectricCurrentUnit unit, CultureInfo culture, string format, params object[] args)
+        {
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+            object[] finalArgs = new object[] {As(unit), abbreviation}
+                .Concat(args)
+                .ToArray();
+
+            return string.Format(culture, format, finalArgs);
+        }
+
+        /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(ElectricCurrentUnit.Ampere);
+        }
+    }
+}

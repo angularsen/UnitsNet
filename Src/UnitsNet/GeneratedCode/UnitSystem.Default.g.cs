@@ -178,6 +178,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "год"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricCurrentUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Ampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Milliampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mA"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
                     new[]
                     {
