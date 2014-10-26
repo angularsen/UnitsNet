@@ -217,20 +217,67 @@ namespace UnitsNet.Tests
         [Test]
         public void ToStringRoundsToTwoDecimals()
         {
+            PerformToStringTest(() =>
+                {
+                    Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
+                    Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
+                    Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
+                    Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
+                    Assert.AreEqual("0.12 m", Length.FromMeters(0.115).ToString());
+                    return null;
+                });
+        }
+
+        [TestCase(123.4567, 2, Result = "0.00012 m")]
+        [TestCase(55.4321, 3, Result = "5.543e-05 m")]
+        [TestCase(5.4321, 4, Result = "5.4321e-06 m")]
+        public string VerySmallUnitsToBaseUnits_ExpectStringFormattedCorrectly(double value, int digitsAfterRadix)
+        {
+            return PerformToStringTest(() => Length.FromMicrometers(value).ToString(LengthUnit.Meter, digitsAfterRadix));
+        }
+
+        [TestCase(1234, 0, Result = "1 km")]
+        [TestCase(12345, 1, Result = "12.3 km")]
+        [TestCase(1234567, 3, Result = "1234.567 km")]
+        [TestCase(123456.789, 4, Result = "123.4568 km")]
+        [TestCase(1234567898, 2, Result = "1.23e06 km")]
+        public string BaseUnitsToLargerUnits_ExpectStringFormattedCorrectly(double value, int digitsAfterRadix)
+        {
+            return PerformToStringTest(() => Length.FromMeters(value).ToString(LengthUnit.Kilometer, digitsAfterRadix));
+        }
+
+        [TestCase(0.00442, Result = "4420 mm")]
+        [TestCase(0.0327, Result = "32700 mm")]
+        [TestCase(0.5, Result = "500000 mm")]
+        [TestCase(1, Result = "1e06 mm")]
+        [TestCase(83, Result = "8.3e07 mm")]
+        [TestCase(999, Result = "9.99e08 mm")]
+        public string LargeUnitsToVerySmallUnits_ExpectStringFormattedCorrectly(double value)
+        {
+            return PerformToStringTest(() => Length.FromKilometers(value).ToString(LengthUnit.Millimeter));
+        }
+
+        [Test]
+        [Explicit]
+        public void FullRangeManualTest()
+        {
+            for (double i = 1.1e-12; i < 1e12; i = i*10)
+            {
+                Console.WriteLine("{0:0.###############} => {1}", i, Length.FromMeters(i).ToString(LengthUnit.Kilometer));
+            }
+        }
+
+        private string PerformToStringTest(Func<string> testAction)
+        {
             CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
             CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            // CurrentUICulture affects localization, in this case for the abbreviation.
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             try
             {
-                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-
-                // CurrentUICulture affects localization, in this case for the abbreviation.
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-
-                Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
-                Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
-                Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
-                Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
+                return testAction();
             }
             finally
             {
