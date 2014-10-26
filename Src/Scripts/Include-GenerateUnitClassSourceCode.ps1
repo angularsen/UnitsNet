@@ -253,7 +253,7 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
@@ -267,7 +267,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="unit">Unit representation to use.</param>
-		/// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
         public string ToString($unitEnumName unit, int significantDigitsAfterRadix = 2, CultureInfo culture = null)
