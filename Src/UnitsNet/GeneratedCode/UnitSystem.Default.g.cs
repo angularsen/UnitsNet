@@ -188,6 +188,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "В"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricResistanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kO"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Megaohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MO"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Ohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "O"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
