@@ -37,12 +37,14 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricPotentialTestsBase
     {
         protected abstract double KilovoltsInOneVolt { get; }
+        protected abstract double MegavoltsInOneVolt { get; }
         protected abstract double MicrovoltsInOneVolt { get; }
         protected abstract double MillivoltsInOneVolt { get; }
         protected abstract double VoltsInOneVolt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilovoltsTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsTolerance { get { return 1e-5; } }
         protected virtual double MicrovoltsTolerance { get { return 1e-5; } }
         protected virtual double MillivoltsTolerance { get { return 1e-5; } }
         protected virtual double VoltsTolerance { get { return 1e-5; } }
@@ -53,6 +55,7 @@ namespace UnitsNet.Tests
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
             Assert.AreEqual(KilovoltsInOneVolt, volt.Kilovolts, KilovoltsTolerance);
+            Assert.AreEqual(MegavoltsInOneVolt, volt.Megavolts, MegavoltsTolerance);
             Assert.AreEqual(MicrovoltsInOneVolt, volt.Microvolts, MicrovoltsTolerance);
             Assert.AreEqual(MillivoltsInOneVolt, volt.Millivolts, MillivoltsTolerance);
             Assert.AreEqual(VoltsInOneVolt, volt.Volts, VoltsTolerance);
@@ -62,6 +65,7 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Kilovolt).Kilovolts, KilovoltsTolerance);
+            Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Megavolt).Megavolts, MegavoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Microvolt).Microvolts, MicrovoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Millivolt).Millivolts, MillivoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, VoltsTolerance);
@@ -72,6 +76,7 @@ namespace UnitsNet.Tests
         {
             var volt = ElectricPotential.FromVolts(1);
             Assert.AreEqual(KilovoltsInOneVolt, volt.As(ElectricPotentialUnit.Kilovolt), KilovoltsTolerance);
+            Assert.AreEqual(MegavoltsInOneVolt, volt.As(ElectricPotentialUnit.Megavolt), MegavoltsTolerance);
             Assert.AreEqual(MicrovoltsInOneVolt, volt.As(ElectricPotentialUnit.Microvolt), MicrovoltsTolerance);
             Assert.AreEqual(MillivoltsInOneVolt, volt.As(ElectricPotentialUnit.Millivolt), MillivoltsTolerance);
             Assert.AreEqual(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), VoltsTolerance);
@@ -82,6 +87,7 @@ namespace UnitsNet.Tests
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
             Assert.AreEqual(1, ElectricPotential.FromKilovolts(volt.Kilovolts).Volts, KilovoltsTolerance);
+            Assert.AreEqual(1, ElectricPotential.FromMegavolts(volt.Megavolts).Volts, MegavoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.FromMicrovolts(volt.Microvolts).Volts, MicrovoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.FromMillivolts(volt.Millivolts).Volts, MillivoltsTolerance);
             Assert.AreEqual(1, ElectricPotential.FromVolts(volt.Volts).Volts, VoltsTolerance);

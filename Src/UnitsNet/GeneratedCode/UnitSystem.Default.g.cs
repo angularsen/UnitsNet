@@ -187,6 +187,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kV"),
                                 new AbbreviationsForCulture("ru-RU", "kВ"),
                             }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Megavolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MV"),
+                                new AbbreviationsForCulture("ru-RU", "MВ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricPotentialUnit.Microvolt,
                             new[]
                             {

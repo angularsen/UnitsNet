@@ -8,7 +8,7 @@
             "PluralName": "Volts",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Micro","Milli","Kilo"],
+            "Prefixes": ["Micro","Milli","Kilo","Mega"],
             "Localization": [
                 {
                     "Culture": "en-US",

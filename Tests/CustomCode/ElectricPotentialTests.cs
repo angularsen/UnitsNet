@@ -42,5 +42,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 1e-3; }
         }
+
+        protected override double MegavoltsInOneVolt
+        {
+            get { return 1e-6; }
+        }
     }
 }

@@ -56,6 +56,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ElectricPotential in Megavolts.
+        /// </summary>
+        public double Megavolts
+        {
+            get { return (_volts) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get ElectricPotential in Microvolts.
         /// </summary>
         public double Microvolts
@@ -97,6 +105,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ElectricPotential from Megavolts.
+        /// </summary>
+        public static ElectricPotential FromMegavolts(double megavolts)
+        {
+            return new ElectricPotential((megavolts) * 1e6d);
+        }
+
+        /// <summary>
         ///     Get ElectricPotential from Microvolts.
         /// </summary>
         public static ElectricPotential FromMicrovolts(double microvolts)
@@ -133,6 +149,8 @@ namespace UnitsNet
             {
                 case ElectricPotentialUnit.Kilovolt:
                     return FromKilovolts(value);
+                case ElectricPotentialUnit.Megavolt:
+                    return FromMegavolts(value);
                 case ElectricPotentialUnit.Microvolt:
                     return FromMicrovolts(value);
                 case ElectricPotentialUnit.Millivolt:
@@ -274,6 +292,8 @@ namespace UnitsNet
             {
                 case ElectricPotentialUnit.Kilovolt:
                     return Kilovolts;
+                case ElectricPotentialUnit.Megavolt:
+                    return Megavolts;
                 case ElectricPotentialUnit.Microvolt:
                     return Microvolts;
                 case ElectricPotentialUnit.Millivolt:
