@@ -56,11 +56,43 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ElectricCurrent in Kiloamperes.
+        /// </summary>
+        public double Kiloamperes
+        {
+            get { return (_amperes) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent in Megaamperes.
+        /// </summary>
+        public double Megaamperes
+        {
+            get { return (_amperes) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent in Microamperes.
+        /// </summary>
+        public double Microamperes
+        {
+            get { return (_amperes) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get ElectricCurrent in Milliamperes.
         /// </summary>
         public double Milliamperes
         {
             get { return (_amperes) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent in Nanoamperes.
+        /// </summary>
+        public double Nanoamperes
+        {
+            get { return (_amperes) / 1e-9d; }
         }
 
         #endregion
@@ -81,11 +113,43 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ElectricCurrent from Kiloamperes.
+        /// </summary>
+        public static ElectricCurrent FromKiloamperes(double kiloamperes)
+        {
+            return new ElectricCurrent((kiloamperes) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Megaamperes.
+        /// </summary>
+        public static ElectricCurrent FromMegaamperes(double megaamperes)
+        {
+            return new ElectricCurrent((megaamperes) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Microamperes.
+        /// </summary>
+        public static ElectricCurrent FromMicroamperes(double microamperes)
+        {
+            return new ElectricCurrent((microamperes) * 1e-6d);
+        }
+
+        /// <summary>
         ///     Get ElectricCurrent from Milliamperes.
         /// </summary>
         public static ElectricCurrent FromMilliamperes(double milliamperes)
         {
             return new ElectricCurrent((milliamperes) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Nanoamperes.
+        /// </summary>
+        public static ElectricCurrent FromNanoamperes(double nanoamperes)
+        {
+            return new ElectricCurrent((nanoamperes) * 1e-9d);
         }
 
 
@@ -101,8 +165,16 @@ namespace UnitsNet
             {
                 case ElectricCurrentUnit.Ampere:
                     return FromAmperes(value);
+                case ElectricCurrentUnit.Kiloampere:
+                    return FromKiloamperes(value);
+                case ElectricCurrentUnit.Megaampere:
+                    return FromMegaamperes(value);
+                case ElectricCurrentUnit.Microampere:
+                    return FromMicroamperes(value);
                 case ElectricCurrentUnit.Milliampere:
                     return FromMilliamperes(value);
+                case ElectricCurrentUnit.Nanoampere:
+                    return FromNanoamperes(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -238,8 +310,16 @@ namespace UnitsNet
             {
                 case ElectricCurrentUnit.Ampere:
                     return Amperes;
+                case ElectricCurrentUnit.Kiloampere:
+                    return Kiloamperes;
+                case ElectricCurrentUnit.Megaampere:
+                    return Megaamperes;
+                case ElectricCurrentUnit.Microampere:
+                    return Microamperes;
                 case ElectricCurrentUnit.Milliampere:
                     return Milliamperes;
+                case ElectricCurrentUnit.Nanoampere:
+                    return Nanoamperes;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

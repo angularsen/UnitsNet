@@ -37,11 +37,19 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricCurrentTestsBase
     {
         protected abstract double AmperesInOneAmpere { get; }
+        protected abstract double KiloamperesInOneAmpere { get; }
+        protected abstract double MegaamperesInOneAmpere { get; }
+        protected abstract double MicroamperesInOneAmpere { get; }
         protected abstract double MilliamperesInOneAmpere { get; }
+        protected abstract double NanoamperesInOneAmpere { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesTolerance { get { return 1e-5; } }
+        protected virtual double KiloamperesTolerance { get { return 1e-5; } }
+        protected virtual double MegaamperesTolerance { get { return 1e-5; } }
+        protected virtual double MicroamperesTolerance { get { return 1e-5; } }
         protected virtual double MilliamperesTolerance { get { return 1e-5; } }
+        protected virtual double NanoamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
@@ -49,14 +57,22 @@ namespace UnitsNet.Tests
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             Assert.AreEqual(AmperesInOneAmpere, ampere.Amperes, AmperesTolerance);
+            Assert.AreEqual(KiloamperesInOneAmpere, ampere.Kiloamperes, KiloamperesTolerance);
+            Assert.AreEqual(MegaamperesInOneAmpere, ampere.Megaamperes, MegaamperesTolerance);
+            Assert.AreEqual(MicroamperesInOneAmpere, ampere.Microamperes, MicroamperesTolerance);
             Assert.AreEqual(MilliamperesInOneAmpere, ampere.Milliamperes, MilliamperesTolerance);
+            Assert.AreEqual(NanoamperesInOneAmpere, ampere.Nanoamperes, NanoamperesTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
             Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Ampere).Amperes, AmperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere).Kiloamperes, KiloamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere).Megaamperes, MegaamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Microampere).Microamperes, MicroamperesTolerance);
             Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere).Milliamperes, MilliamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere).Nanoamperes, NanoamperesTolerance);
         }
 
         [Test]
@@ -64,7 +80,11 @@ namespace UnitsNet.Tests
         {
             var ampere = ElectricCurrent.FromAmperes(1);
             Assert.AreEqual(AmperesInOneAmpere, ampere.As(ElectricCurrentUnit.Ampere), AmperesTolerance);
+            Assert.AreEqual(KiloamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Kiloampere), KiloamperesTolerance);
+            Assert.AreEqual(MegaamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Megaampere), MegaamperesTolerance);
+            Assert.AreEqual(MicroamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Microampere), MicroamperesTolerance);
             Assert.AreEqual(MilliamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Milliampere), MilliamperesTolerance);
+            Assert.AreEqual(NanoamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Nanoampere), NanoamperesTolerance);
         }
 
         [Test]
@@ -72,20 +92,24 @@ namespace UnitsNet.Tests
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             Assert.AreEqual(1, ElectricCurrent.FromAmperes(ampere.Amperes).Amperes, AmperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.FromKiloamperes(ampere.Kiloamperes).Amperes, KiloamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.FromMegaamperes(ampere.Megaamperes).Amperes, MegaamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.FromMicroamperes(ampere.Microamperes).Amperes, MicroamperesTolerance);
             Assert.AreEqual(1, ElectricCurrent.FromMilliamperes(ampere.Milliamperes).Amperes, MilliamperesTolerance);
+            Assert.AreEqual(1, ElectricCurrent.FromNanoamperes(ampere.Nanoamperes).Amperes, NanoamperesTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             ElectricCurrent v = ElectricCurrent.FromAmperes(1);
-            Assert.AreEqual(-1, -v.Amperes, MilliamperesTolerance);
-            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(3)-v).Amperes, MilliamperesTolerance);
-            Assert.AreEqual(2, (v + v).Amperes, MilliamperesTolerance);
-            Assert.AreEqual(10, (v*10).Amperes, MilliamperesTolerance);
-            Assert.AreEqual(10, (10*v).Amperes, MilliamperesTolerance);
-            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(10)/5).Amperes, MilliamperesTolerance);
-            Assert.AreEqual(2, ElectricCurrent.FromAmperes(10)/ElectricCurrent.FromAmperes(5), MilliamperesTolerance);
+            Assert.AreEqual(-1, -v.Amperes, NanoamperesTolerance);
+            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(3)-v).Amperes, NanoamperesTolerance);
+            Assert.AreEqual(2, (v + v).Amperes, NanoamperesTolerance);
+            Assert.AreEqual(10, (v*10).Amperes, NanoamperesTolerance);
+            Assert.AreEqual(10, (10*v).Amperes, NanoamperesTolerance);
+            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(10)/5).Amperes, NanoamperesTolerance);
+            Assert.AreEqual(2, ElectricCurrent.FromAmperes(10)/ElectricCurrent.FromAmperes(5), NanoamperesTolerance);
         }
 
         [Test]

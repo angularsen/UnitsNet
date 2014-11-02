@@ -186,10 +186,30 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "A"),
                             }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Kiloampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Megaampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Microampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μA"),
+                            }),
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Milliampere,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Nanoampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nA"),
                             }),
                     }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
