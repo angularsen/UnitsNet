@@ -38,9 +38,9 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Power.
         /// </summary>
-        private readonly double _watts;
+        private readonly decimal _watts;
 
-        public Power(double watts) : this()
+        public Power(decimal watts) : this()
         {
             _watts = watts;
         }
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         public double Femtowatts
         {
-            get { return (_watts) / 1e-15d; }
+            get { return Convert.ToDouble((_watts) / 1e-15m); }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         public double Gigawatts
         {
-            get { return (_watts) / 1e9d; }
+            get { return Convert.ToDouble((_watts) / 1e9m); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UnitsNet
         /// </summary>
         public double Kilowatts
         {
-            get { return (_watts) / 1e3d; }
+            get { return Convert.ToDouble((_watts) / 1e3m); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace UnitsNet
         /// </summary>
         public double Megawatts
         {
-            get { return (_watts) / 1e6d; }
+            get { return Convert.ToDouble((_watts) / 1e6m); }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         public double Microwatts
         {
-            get { return (_watts) / 1e-6d; }
+            get { return Convert.ToDouble((_watts) / 1e-6m); }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public double Milliwatts
         {
-            get { return (_watts) / 1e-3d; }
+            get { return Convert.ToDouble((_watts) / 1e-3m); }
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace UnitsNet
         /// </summary>
         public double Nanowatts
         {
-            get { return (_watts) / 1e-9d; }
+            get { return Convert.ToDouble((_watts) / 1e-9m); }
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public double Petawatts
         {
-            get { return (_watts) / 1e15d; }
+            get { return Convert.ToDouble((_watts) / 1e15m); }
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace UnitsNet
         /// </summary>
         public double Picowatts
         {
-            get { return (_watts) / 1e-12d; }
+            get { return Convert.ToDouble((_watts) / 1e-12m); }
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         public double Terawatts
         {
-            get { return (_watts) / 1e12d; }
+            get { return Convert.ToDouble((_watts) / 1e12m); }
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public double Watts
         {
-            get { return _watts; }
+            get { return Convert.ToDouble(_watts); }
         }
 
         #endregion
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromFemtowatts(double femtowatts)
         {
-            return new Power((femtowatts) * 1e-15d);
+            return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromGigawatts(double gigawatts)
         {
-            return new Power((gigawatts) * 1e9d);
+            return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromKilowatts(double kilowatts)
         {
-            return new Power((kilowatts) * 1e3d);
+            return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromMegawatts(double megawatts)
         {
-            return new Power((megawatts) * 1e6d);
+            return new Power(Convert.ToDecimal((megawatts) * 1e6d));
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromMicrowatts(double microwatts)
         {
-            return new Power((microwatts) * 1e-6d);
+            return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromMilliwatts(double milliwatts)
         {
-            return new Power((milliwatts) * 1e-3d);
+            return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromNanowatts(double nanowatts)
         {
-            return new Power((nanowatts) * 1e-9d);
+            return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromPetawatts(double petawatts)
         {
-            return new Power((petawatts) * 1e15d);
+            return new Power(Convert.ToDecimal((petawatts) * 1e15d));
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromPicowatts(double picowatts)
         {
-            return new Power((picowatts) * 1e-12d);
+            return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromTerawatts(double terawatts)
         {
-            return new Power((terawatts) * 1e12d);
+            return new Power(Convert.ToDecimal((terawatts) * 1e12d));
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromWatts(double watts)
         {
-            return new Power(watts);
+            return new Power(Convert.ToDecimal(watts));
         }
 
 
@@ -302,19 +302,19 @@ namespace UnitsNet
             return new Power(left._watts - right._watts);
         }
 
-        public static Power operator *(double left, Power right)
+        public static Power operator *(decimal left, Power right)
         {
             return new Power(left*right._watts);
         }
 
         public static Power operator *(Power left, double right)
         {
-            return new Power(left._watts*(double)right);
+            return new Power(left._watts*(decimal)right);
         }
 
         public static Power operator /(Power left, double right)
         {
-            return new Power(left._watts/(double)right);
+            return new Power(left._watts/(decimal)right);
         }
 
         public static double operator /(Power left, Power right)

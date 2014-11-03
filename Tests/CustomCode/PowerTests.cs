@@ -23,11 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerTests : PowerTestsBase
     {
-        protected override double FemtowattsTolerance
-        {
-            get { return 0.15; }
-        }
-
         protected override double FemtowattsInOneWatt
         {
             get { return 1e15; }
