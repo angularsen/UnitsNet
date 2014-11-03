@@ -45,12 +45,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KiloamperesInOneAmpere
         {
-            get { return 1e3; }
+            get { return 1e-3; }
         }
 
         protected override double MegaamperesInOneAmpere
         {
-            get { return 1e6; }
+            get { return 1e-6; }
         }
     }
 }
