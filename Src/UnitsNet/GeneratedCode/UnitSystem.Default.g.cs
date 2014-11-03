@@ -194,17 +194,17 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kO"),
+                                new AbbreviationsForCulture("en-US", "kΩ"),
                             }),
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Megaohm,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MO"),
+                                new AbbreviationsForCulture("en-US", "MΩ"),
                             }),
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Ohm,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "O"),
+                                new AbbreviationsForCulture("en-US", "Ω"),
                             }),
                     }),
                 new UnitLocalization(typeof (FlowUnit),
@@ -605,6 +605,65 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t"),
                                 new AbbreviationsForCulture("ru-RU", "т"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PowerUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerUnit.Femtowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "fW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Gigawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Kilowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Megawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Microwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Milliwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Nanowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Petawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Picowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Terawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Watt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W"),
                             }),
                     }),
                 new UnitLocalization(typeof (PressureUnit),
