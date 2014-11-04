@@ -162,10 +162,17 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     $json = (Get-Content $templateFile | Out-String)
     $unitClass = $json | ConvertFrom-Json
 
-  # Set default values
-  if (!$unitClass.BaseType) {
-    $unitClass | Add-Member BaseType "double";
-  }
+    # Set default values
+    if (!$unitClass.BaseType) {
+        $unitClass | Add-Member BaseType "double";
+    }
+    # 'Logarithmic' is optional in the .json file and assumed to be false if not specified
+    if (!$unitClass.Logarithmic) {
+        $unitClass | Add-Member Logarithmic "False"
+    }
+    if (!$unitClass.LogarithmicScalingFactor) {
+        $unitClass | Add-Member LogarithmicScalingFactor "1"
+    }
   
     # Expand unit prefixes into units
     $unitClass.Units = GetUnits $unitClass;

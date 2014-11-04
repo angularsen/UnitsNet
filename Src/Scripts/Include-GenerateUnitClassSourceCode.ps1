@@ -127,6 +127,7 @@ namespace UnitsNet
         }
 
         #endregion
+"@; if ($unitClass.Logarithmic -eq $false) {@"
 
         #region Arithmetic Operators
 
@@ -166,6 +167,11 @@ namespace UnitsNet
         }
 
         #endregion
+"@; }
+    else {
+        # Call another script to generate logarithm-specific arithmetic operator code.
+        .\Include-GenerateLogarithmicArithmeticOperatorsCode.ps1 -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
+    }@"
 
         #region Equality / IComparable
 
