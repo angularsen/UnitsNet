@@ -1,11 +1,10 @@
 # Generates arithmetic operators code for logarithmic units
-param ([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$scalingFactor)
-
+function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$scalingFactor)
+{
     # Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to
     # use 20 instead of 10.
     $x = 10 * $scalingFactor;
     
-    # This is the code that's generated
 @"
 
         #region Arithmetic Operators
@@ -53,3 +52,22 @@ param ([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$
 
         #endregion
 "@;
+}
+
+function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit, [int]$scalingFactor)
+{
+@"
+        [Test]
+        public void ArithmeticOperators()
+        {
+            $className v = $className.From$baseUnitPluralName(40);
+            Assert.AreEqual(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual($scalingFactor*23.3491145, ($className.From$baseUnitPluralName(50)-v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual($scalingFactor*23.0102995, (v + v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual(50, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual(50, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            Assert.AreEqual(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
+        }
+"@;
+}

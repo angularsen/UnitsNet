@@ -169,8 +169,9 @@ namespace UnitsNet
         #endregion
 "@; }
     else {
-        # Call another script to generate logarithm-specific arithmetic operator code.
-        .\Include-GenerateLogarithmicArithmeticOperatorsCode.ps1 -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
+        . .\Include-GenerateLogarithmicCode.ps1; 
+        # Call another script function to generate logarithm-specific arithmetic operator code.
+        GenerateUnitClassSourceCode -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
     }@"
 
         #region Equality / IComparable
