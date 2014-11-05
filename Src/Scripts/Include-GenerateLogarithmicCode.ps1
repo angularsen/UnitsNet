@@ -1,4 +1,19 @@
-# Generates arithmetic operators code for logarithmic units
+<#
+.SYNOPSIS
+Generates the C# source code for logarithmic arithmetic operators.
+
+.PARAMETER className
+The name of the unit.
+
+.PARAMETER baseUnitFieldName
+The name of the backing field used to store the unit's value.
+
+.PARAMETER baseType
+The data type of the backing field used to store the unit's value.
+
+.PARAMETER scalingFactor
+The scaling factor used in logarithmic calculations. In most cases this is equal to 1.
+#>
 function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$scalingFactor)
 {
     # Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to
@@ -7,7 +22,7 @@ function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldN
     
 @"
 
-        #region Arithmetic Operators
+        #region Logarithmic Arithmetic Operators
 
         public static $className operator -($className right)
         {
@@ -16,13 +31,15 @@ function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldN
 
         public static $className operator +($className left, $className right)
         {
-            // $x*log10(10^(x/$x) + 10^(y/$x)) -- logarithmic addition
+            // Logarithmic addition
+            // Formula: $x*log10(10^(x/$x) + 10^(y/$x))
             return new $className($x*Math.Log10(Math.Pow(10, left.$baseUnitFieldName/$x) + Math.Pow(10, right.$baseUnitFieldName/$x)));
         }
 
         public static $className operator -($className left, $className right)
         {
-            // $x*log10(10^(x/$x) - 10^(y/$x)) -- logarithmic subtraction
+            // Logarithmic subtraction 
+            // Formula: $x*log10(10^(x/$x) - 10^(y/$x))
             return new $className($x*Math.Log10(Math.Pow(10, left.$baseUnitFieldName/$x) - Math.Pow(10, right.$baseUnitFieldName/$x)));
         }
 
@@ -54,11 +71,28 @@ function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldN
 "@;
 }
 
+
+<#
+.SYNOPSIS
+Generates the C# source code for logarithmic arithmetic operator unit tests.
+
+.PARAMETER className
+The name of the unit.
+
+.PARAMETER baseUnitPluralName
+The plural name of the backing field used to store the unit's value.
+
+.PARAMETER unit
+The actual unit type.
+
+.PARAMETER scalingFactor
+The scaling factor used in logarithmic calculations. In most cases this is equal to 1.
+#>
 function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit, [int]$scalingFactor)
 {
 @"
         [Test]
-        public void ArithmeticOperators()
+        public void LogarithmicArithmeticOperators()
         {
             $className v = $className.From$baseUnitPluralName(40);
             Assert.AreEqual(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);

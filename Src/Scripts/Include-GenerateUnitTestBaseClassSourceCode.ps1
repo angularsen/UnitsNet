@@ -92,7 +92,13 @@ namespace UnitsNet.Tests
 "@; }@"
         }
 
-"@; if ($unitClass.Logarithmic -eq $false) {@"
+"@; if ($unitClass.Logarithmic -eq $true) {
+        # Dot into the script to load its functions into the global scope so we can access them.
+        . .\Include-GenerateLogarithmicCode.ps1; 
+        # Call another script function to generate logarithm-specific arithmetic operator test code.
+        GenerateTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit -scalingFactor $unitClass.LogarithmicScalingFactor
+    }
+    else {@"
         [Test]
         public void ArithmeticOperators()
         {
@@ -105,12 +111,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             Assert.AreEqual(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
         }
-"@; }
-    else {
-        . .\Include-GenerateLogarithmicCode.ps1; 
-        # Call another script function to generate logarithm-specific arithmetic operator test code.
-        GenerateTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit -scalingFactor $unitClass.LogarithmicScalingFactor
-    }@"
+"@; }@"
 
         [Test]
         public void ComparisonOperators()
