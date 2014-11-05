@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
         # Dot into the script to load its functions into the global scope so we can access them.
         . .\Include-GenerateLogarithmicCode.ps1; 
         # Call another script function to generate logarithm-specific arithmetic operator test code.
-        GenerateTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit -scalingFactor $unitClass.LogarithmicScalingFactor
+        GenerateTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit
     }
     else {@"
         [Test]

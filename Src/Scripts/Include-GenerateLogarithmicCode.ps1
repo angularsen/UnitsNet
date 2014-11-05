@@ -84,11 +84,8 @@ The plural name of the backing field used to store the unit's value.
 
 .PARAMETER unit
 The actual unit type.
-
-.PARAMETER scalingFactor
-The scaling factor used in logarithmic calculations. In most cases this is equal to 1.
 #>
-function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit, [int]$scalingFactor)
+function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit)
 {
 @"
         [Test]
@@ -96,12 +93,16 @@ function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPl
         {
             $className v = $className.From$baseUnitPluralName(40);
             Assert.AreEqual(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual($scalingFactor*23.3491145, ($className.From$baseUnitPluralName(50)-v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual($scalingFactor*23.0102995, (v + v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertLogarithmicAddition();
+            AssertLogarithmicSubtraction();
             Assert.AreEqual(50, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             Assert.AreEqual(50, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             Assert.AreEqual(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             Assert.AreEqual(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
         }
+        
+        protected abstract void AssertLogarithmicAddition();
+        
+        protected abstract void AssertLogarithmicSubtraction();
 "@;
 }
