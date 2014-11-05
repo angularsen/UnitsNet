@@ -181,6 +181,30 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricPotentialUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Kilovolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kV"),
+                                new AbbreviationsForCulture("ru-RU", "kВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Megavolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MV"),
+                                new AbbreviationsForCulture("ru-RU", "MВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Microvolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μV"),
+                                new AbbreviationsForCulture("ru-RU", "μВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Millivolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mV"),
+                                new AbbreviationsForCulture("ru-RU", "mВ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricPotentialUnit.Volt,
                             new[]
                             {
