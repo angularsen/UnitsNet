@@ -724,6 +724,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W"),
                             }),
                     }),
+                new UnitLocalization(typeof (PowerRatioUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelMilliwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBmW", "dBm"),
+                            }),
+                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBW"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PressureUnit),
                     new[]
                     {
