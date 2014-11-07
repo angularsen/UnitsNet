@@ -572,6 +572,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд"),
                             }),
                     }),
+                new UnitLocalization(typeof (LevelUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LevelUnit.Decibel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dB"),
+                            }),
+                        new CulturesForEnumValue((int) LevelUnit.Neper,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Np"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MassUnit),
                     new[]
                     {
