@@ -39,6 +39,16 @@ namespace UnitsNet
         {
             return PowerRatio.ToPower(powerRatio);
         }
+
+        /// <summary>
+        ///     Gets a <see cref="AmplitudeRatio"/> from a <see cref="PowerRatio"/>.
+        /// </summary>
+        /// <param name="powerRatio">The power ratio.</param>
+        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
+        public static AmplitudeRatio ToAmplitudeRatio(this PowerRatio powerRatio, ElectricResistance impedance)
+        {
+            return PowerRatio.ToAmplitudeRatio(powerRatio, impedance);
+        }
     }
 
     /// <summary>
@@ -93,6 +103,18 @@ namespace UnitsNet
         {
             // P(W) = 1W * 10^(P(dBW)/10)
             return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts / 10));
+        }
+
+        /// <summary>
+        ///     Gets a <see cref="AmplitudeRatio"/> from a <see cref="PowerRatio"/>.
+        /// </summary>
+        /// <param name="powerRatio">The power ratio.</param>
+        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
+        /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
+        public static AmplitudeRatio ToAmplitudeRatio(PowerRatio powerRatio, ElectricResistance impedance)
+        {
+            // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
+            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + powerRatio.DecibelWatts);
         }
     }
 }

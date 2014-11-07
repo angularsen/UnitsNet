@@ -80,5 +80,33 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         #endregion
+
+        #region To Amplitude Ratio Tests
+
+        // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
+
+        [TestCase(-36.99, Result = 10)]
+        [TestCase(-26.99, Result = 20)]
+        [TestCase(-16.99, Result = 30)]
+        [TestCase(-6.99, Result = 40)]
+        public double PowerRatioToAmplitudeRatio_50OhmImpedance(double dBmW)
+        {
+            var powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+
+            return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+        }
+
+        [TestCase(-38.75, Result = 10)]
+        [TestCase(-28.75, Result = 20)]
+        [TestCase(-18.75, Result = 30)]
+        [TestCase(-8.75, Result = 40)]
+        public double PowerRatioToAmplitudeRatio_75OhmImpedance(double dBmW)
+        {
+            var powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+
+            return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+        }
+
+        #endregion
     }
 }
