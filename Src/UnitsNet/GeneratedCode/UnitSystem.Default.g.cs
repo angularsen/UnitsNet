@@ -34,6 +34,25 @@ namespace UnitsNet
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
+                new UnitLocalization(typeof (AmplitudeRatioUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMicrovolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBµV"),
+                            }),
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMillivolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBmV"),
+                            }),
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelVolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBV"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AngleUnit),
                     new[]
                     {
