@@ -30,97 +30,61 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
+    ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the metre per second squared (m/s2). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Angle : IComparable, IComparable<Angle>
+    public partial struct Acceleration : IComparable, IComparable<Acceleration>
     {
         /// <summary>
-        ///     Base unit of Angle.
+        ///     Base unit of Acceleration.
         /// </summary>
-        private readonly double _degrees;
+        private readonly double _metrePerSecondSquared;
 
-        public Angle(double degrees) : this()
+        public Acceleration(double metrepersecondsquared) : this()
         {
-            _degrees = degrees;
+            _metrePerSecondSquared = metrepersecondsquared;
         }
 
         #region Properties
 
         /// <summary>
-        ///     Get Angle in Degrees.
+        ///     Get Acceleration in MetrePerSecondSquared.
         /// </summary>
-        public double Degrees
+        public double MetrePerSecondSquared
         {
-            get { return _degrees; }
-        }
-
-        /// <summary>
-        ///     Get Angle in Gradians.
-        /// </summary>
-        public double Gradians
-        {
-            get { return _degrees/0.9; }
-        }
-
-        /// <summary>
-        ///     Get Angle in Radians.
-        /// </summary>
-        public double Radians
-        {
-            get { return _degrees/180*Math.PI; }
+            get { return _metrePerSecondSquared; }
         }
 
         #endregion
 
         #region Static 
 
-        public static Angle Zero
+        public static Acceleration Zero
         {
-            get { return new Angle(); }
+            get { return new Acceleration(); }
         }
 
         /// <summary>
-        ///     Get Angle from Degrees.
+        ///     Get Acceleration from MetrePerSecondSquared.
         /// </summary>
-        public static Angle FromDegrees(double degrees)
+        public static Acceleration FromMetrePerSecondSquared(double metrepersecondsquared)
         {
-            return new Angle(degrees);
-        }
-
-        /// <summary>
-        ///     Get Angle from Gradians.
-        /// </summary>
-        public static Angle FromGradians(double gradians)
-        {
-            return new Angle(gradians*0.9);
-        }
-
-        /// <summary>
-        ///     Get Angle from Radians.
-        /// </summary>
-        public static Angle FromRadians(double radians)
-        {
-            return new Angle(radians*180/Math.PI);
+            return new Acceleration(metrepersecondsquared);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
+        ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Angle unit value.</returns>
-        public static Angle From(double value, AngleUnit fromUnit)
+        /// <returns>Acceleration unit value.</returns>
+        public static Acceleration From(double value, AccelerationUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case AngleUnit.Degree:
-                    return FromDegrees(value);
-                case AngleUnit.Gradian:
-                    return FromGradians(value);
-                case AngleUnit.Radian:
-                    return FromRadians(value);
+                case AccelerationUnit.MetrePerSecondSquared:
+                    return FromMetrePerSecondSquared(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -134,7 +98,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AngleUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(AccelerationUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -143,39 +107,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static Angle operator -(Angle right)
+        public static Acceleration operator -(Acceleration right)
         {
-            return new Angle(-right._degrees);
+            return new Acceleration(-right._metrePerSecondSquared);
         }
 
-        public static Angle operator +(Angle left, Angle right)
+        public static Acceleration operator +(Acceleration left, Acceleration right)
         {
-            return new Angle(left._degrees + right._degrees);
+            return new Acceleration(left._metrePerSecondSquared + right._metrePerSecondSquared);
         }
 
-        public static Angle operator -(Angle left, Angle right)
+        public static Acceleration operator -(Acceleration left, Acceleration right)
         {
-            return new Angle(left._degrees - right._degrees);
+            return new Acceleration(left._metrePerSecondSquared - right._metrePerSecondSquared);
         }
 
-        public static Angle operator *(double left, Angle right)
+        public static Acceleration operator *(double left, Acceleration right)
         {
-            return new Angle(left*right._degrees);
+            return new Acceleration(left*right._metrePerSecondSquared);
         }
 
-        public static Angle operator *(Angle left, double right)
+        public static Acceleration operator *(Acceleration left, double right)
         {
-            return new Angle(left._degrees*(double)right);
+            return new Acceleration(left._metrePerSecondSquared*(double)right);
         }
 
-        public static Angle operator /(Angle left, double right)
+        public static Acceleration operator /(Acceleration left, double right)
         {
-            return new Angle(left._degrees/(double)right);
+            return new Acceleration(left._metrePerSecondSquared/(double)right);
         }
 
-        public static double operator /(Angle left, Angle right)
+        public static double operator /(Acceleration left, Acceleration right)
         {
-            return Convert.ToDouble(left._degrees/right._degrees);
+            return Convert.ToDouble(left._metrePerSecondSquared/right._metrePerSecondSquared);
         }
 
         #endregion
@@ -185,45 +149,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Angle)) throw new ArgumentException("Expected type Angle.", "obj");
-            return CompareTo((Angle) obj);
+            if (!(obj is Acceleration)) throw new ArgumentException("Expected type Acceleration.", "obj");
+            return CompareTo((Acceleration) obj);
         }
 
-        public int CompareTo(Angle other)
+        public int CompareTo(Acceleration other)
         {
-            return _degrees.CompareTo(other._degrees);
+            return _metrePerSecondSquared.CompareTo(other._metrePerSecondSquared);
         }
 
-        public static bool operator <=(Angle left, Angle right)
+        public static bool operator <=(Acceleration left, Acceleration right)
         {
-            return left._degrees <= right._degrees;
+            return left._metrePerSecondSquared <= right._metrePerSecondSquared;
         }
 
-        public static bool operator >=(Angle left, Angle right)
+        public static bool operator >=(Acceleration left, Acceleration right)
         {
-            return left._degrees >= right._degrees;
+            return left._metrePerSecondSquared >= right._metrePerSecondSquared;
         }
 
-        public static bool operator <(Angle left, Angle right)
+        public static bool operator <(Acceleration left, Acceleration right)
         {
-            return left._degrees < right._degrees;
+            return left._metrePerSecondSquared < right._metrePerSecondSquared;
         }
 
-        public static bool operator >(Angle left, Angle right)
+        public static bool operator >(Acceleration left, Acceleration right)
         {
-            return left._degrees > right._degrees;
+            return left._metrePerSecondSquared > right._metrePerSecondSquared;
         }
 
-        public static bool operator ==(Angle left, Angle right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._degrees == right._degrees;
-        }
-
-        public static bool operator !=(Angle left, Angle right)
+        public static bool operator ==(Acceleration left, Acceleration right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._degrees != right._degrees;
+            return left._metrePerSecondSquared == right._metrePerSecondSquared;
+        }
+
+        public static bool operator !=(Acceleration left, Acceleration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._metrePerSecondSquared != right._metrePerSecondSquared;
         }
 
         public override bool Equals(object obj)
@@ -233,12 +197,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _degrees.Equals(((Angle) obj)._degrees);
+            return _metrePerSecondSquared.Equals(((Acceleration) obj)._metrePerSecondSquared);
         }
 
         public override int GetHashCode()
         {
-            return _degrees.GetHashCode();
+            return _metrePerSecondSquared.GetHashCode();
         }
 
         #endregion
@@ -250,16 +214,12 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(AngleUnit unit)
+        public double As(AccelerationUnit unit)
         {
             switch (unit)
             {
-                case AngleUnit.Degree:
-                    return Degrees;
-                case AngleUnit.Gradian:
-                    return Gradians;
-                case AngleUnit.Radian:
-                    return Radians;
+                case AccelerationUnit.MetrePerSecondSquared:
+                    return MetrePerSecondSquared;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -275,7 +235,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AngleUnit unit, CultureInfo culture = null)
+        public string ToString(AccelerationUnit unit, CultureInfo culture = null)
         {
             return ToString(unit, culture, "{0:0.##} {1}");
         }
@@ -289,7 +249,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AngleUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(AccelerationUnit unit, CultureInfo culture, string format, params object[] args)
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
             object[] finalArgs = new object[] {As(unit), abbreviation}
@@ -305,7 +265,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(AngleUnit.Degree);
+            return ToString(AccelerationUnit.MetrePerSecondSquared);
         }
     }
 }

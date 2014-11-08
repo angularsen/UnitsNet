@@ -1,4 +1,4 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// Copyright ?2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy

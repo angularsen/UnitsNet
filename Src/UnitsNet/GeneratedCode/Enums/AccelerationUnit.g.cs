@@ -22,11 +22,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum ElectricResistanceUnit
+    public enum AccelerationUnit
     {
         Undefined = 0,
-        Kiloohm,
-        Megaohm,
-        Ohm,
+        MetrePerSecondSquared,
     }
 }

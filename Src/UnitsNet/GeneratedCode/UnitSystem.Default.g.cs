@@ -1,4 +1,4 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+﻿// Copyright ?2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,15 @@ namespace UnitsNet
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
+                new UnitLocalization(typeof (AccelerationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AccelerationUnit.MetrePerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/s^2"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AngleUnit),
                     new[]
                     {
