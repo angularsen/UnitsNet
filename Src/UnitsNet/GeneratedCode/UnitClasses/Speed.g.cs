@@ -111,6 +111,14 @@ namespace UnitsNet
             get { return _metersPerSecond/0.44704; }
         }
 
+        /// <summary>
+        ///     Get Speed in MillimeterPerSecond.
+        /// </summary>
+        public double MillimeterPerSecond
+        {
+            get { return _metersPerSecond*1000.0; }
+        }
+
         #endregion
 
         #region Static 
@@ -184,6 +192,14 @@ namespace UnitsNet
             return new Speed(milesperhour*0.44704);
         }
 
+        /// <summary>
+        ///     Get Speed from MillimeterPerSecond.
+        /// </summary>
+        public static Speed FromMillimeterPerSecond(double millimeterpersecond)
+        {
+            return new Speed(millimeterpersecond/1000.0);
+        }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
@@ -211,6 +227,8 @@ namespace UnitsNet
                     return FromMicrometerPerMinute(value);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(value);
+                case SpeedUnit.MillimeterPerSecond:
+                    return FromMillimeterPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -360,6 +378,8 @@ namespace UnitsNet
                     return MicrometerPerMinute;
                 case SpeedUnit.MilePerHour:
                     return MilesPerHour;
+                case SpeedUnit.MillimeterPerSecond:
+                    return MillimeterPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

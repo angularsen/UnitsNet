@@ -98,6 +98,18 @@
                     "Abbreviations": ["um/min"]
                 }
             ]
+        },
+	{
+            "SingularName": "MillimeterPerSecond",
+            "PluralName": "MillimeterPerSecond",
+            "FromUnitToBaseFunc": "x/1000.0",
+            "FromBaseToUnitFunc": "x*1000.0",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["mm/s"]
+                }
+            ]
         }
     ]
 }
