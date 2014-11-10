@@ -34,6 +34,25 @@ namespace UnitsNet
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
+                new UnitLocalization(typeof (AccelerationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerMillisecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "um/ms²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "um/s²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
                     new[]
                     {
@@ -919,6 +938,16 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "m/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.MicrometerPerMillisecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "um/ms"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.MicrometerPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "um/min"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.MilePerHour,
                             new[]

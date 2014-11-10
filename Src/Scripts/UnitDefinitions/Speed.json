@@ -62,6 +62,30 @@
                     "Abbreviations": ["mph"]
                 }
             ]
+        },
+    	{
+            "SingularName": "MicrometerPerMillisecond",
+            "PluralName": "MicrometerPerMillisecond",
+            "FromUnitToBaseFunc": "x/1000.0",
+            "FromBaseToUnitFunc": "x*1000.0",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["um/ms"]
+                }
+            ]
+        },
+	{
+            "SingularName": "MicrometerPerMinute",
+            "PluralName": "MicrometerPerMinute",
+            "FromUnitToBaseFunc": "x/60000000.0",
+            "FromBaseToUnitFunc": "x*60000000.0",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["um/min"]
+                }
+            ]
         }
     ]
 }

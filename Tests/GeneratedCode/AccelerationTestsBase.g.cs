@@ -37,9 +37,13 @@ namespace UnitsNet.Tests
     public abstract partial class AccelerationTestsBase
     {
         protected abstract double MeterPerSecondSquaredInOneMeterPerSecondSquared { get; }
+        protected abstract double MicrometerPerMillisecondSquaredInOneMeterPerSecondSquared { get; }
+        protected abstract double MicrometerPerSecondSquaredInOneMeterPerSecondSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double MeterPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double MicrometerPerMillisecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double MicrometerPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
@@ -47,12 +51,16 @@ namespace UnitsNet.Tests
         {
             Acceleration meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(1);
             Assert.AreEqual(MeterPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
+            Assert.AreEqual(MicrometerPerMillisecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.MicrometerPerMillisecondSquared, MicrometerPerMillisecondSquaredTolerance);
+            Assert.AreEqual(MicrometerPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.MicrometerPerSecondSquared, MicrometerPerSecondSquaredTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
             Assert.AreEqual(1, Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
+            Assert.AreEqual(1, Acceleration.From(1, AccelerationUnit.MicrometerPerMillisecondSquared).MicrometerPerMillisecondSquared, MicrometerPerMillisecondSquaredTolerance);
+            Assert.AreEqual(1, Acceleration.From(1, AccelerationUnit.MicrometerPerSecondSquared).MicrometerPerSecondSquared, MicrometerPerSecondSquaredTolerance);
         }
 
         [Test]
@@ -60,6 +68,8 @@ namespace UnitsNet.Tests
         {
             var meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(1);
             Assert.AreEqual(MeterPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.MeterPerSecondSquared), MeterPerSecondSquaredTolerance);
+            Assert.AreEqual(MicrometerPerMillisecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.MicrometerPerMillisecondSquared), MicrometerPerMillisecondSquaredTolerance);
+            Assert.AreEqual(MicrometerPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.MicrometerPerSecondSquared), MicrometerPerSecondSquaredTolerance);
         }
 
         [Test]
@@ -67,19 +77,21 @@ namespace UnitsNet.Tests
         {
             Acceleration meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(1);
             Assert.AreEqual(1, Acceleration.FromMeterPerSecondSquared(meterpersecondsquared.MeterPerSecondSquared).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
+            Assert.AreEqual(1, Acceleration.FromMicrometerPerMillisecondSquared(meterpersecondsquared.MicrometerPerMillisecondSquared).MeterPerSecondSquared, MicrometerPerMillisecondSquaredTolerance);
+            Assert.AreEqual(1, Acceleration.FromMicrometerPerSecondSquared(meterpersecondsquared.MicrometerPerSecondSquared).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
             Acceleration v = Acceleration.FromMeterPerSecondSquared(1);
-            Assert.AreEqual(-1, -v.MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(2, (Acceleration.FromMeterPerSecondSquared(3)-v).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(2, (v + v).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(10, (v*10).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(10, (10*v).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(2, (Acceleration.FromMeterPerSecondSquared(10)/5).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
-            Assert.AreEqual(2, Acceleration.FromMeterPerSecondSquared(10)/Acceleration.FromMeterPerSecondSquared(5), MeterPerSecondSquaredTolerance);
+            Assert.AreEqual(-1, -v.MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(2, (Acceleration.FromMeterPerSecondSquared(3)-v).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(2, (v + v).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(10, (v*10).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(10, (10*v).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(2, (Acceleration.FromMeterPerSecondSquared(10)/5).MeterPerSecondSquared, MicrometerPerSecondSquaredTolerance);
+            Assert.AreEqual(2, Acceleration.FromMeterPerSecondSquared(10)/Acceleration.FromMeterPerSecondSquared(5), MicrometerPerSecondSquaredTolerance);
         }
 
         [Test]

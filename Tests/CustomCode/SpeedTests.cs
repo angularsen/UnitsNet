@@ -43,6 +43,16 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1; }
         }
 
+        protected override double MicrometerPerMillisecondInOneMeterPerSecond
+        {
+            get { return 1000.0*1000.0/1000.0; }
+        }
+
+        protected override double MicrometerPerMinuteInOneMeterPerSecond
+        {
+            get { return 1000.0*1000.0*60.0; }
+        }
+
         protected override double MilesPerHourInOneMeterPerSecond
         {
             get { return 2.23694; }

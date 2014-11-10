@@ -30,5 +30,15 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 1; }
         }
+
+        protected override double MicrometerPerMillisecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return (1000.0*1000.0)/(1000.0*1000.0); }
+        }
+
+        protected override double MicrometerPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1000.0*1000.0; }
+        }
     }
 }

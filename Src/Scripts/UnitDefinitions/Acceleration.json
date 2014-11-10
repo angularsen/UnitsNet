@@ -14,6 +14,30 @@
                     "Abbreviations": ["m/s²"]
                 }
             ]
-        }        
+        },
+        {
+            "SingularName": "MicrometerPerSecondSquared",
+            "PluralName": "MicrometerPerSecondSquared",
+            "FromUnitToBaseFunc": "x/1000000.0",
+            "FromBaseToUnitFunc": "x*1000000.0",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["um/s²"]
+                }
+            ]
+        },
+	{
+            "SingularName": "MicrometerPerMillisecondSquared",
+            "PluralName": "MicrometerPerMillisecondSquared",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["um/ms²"]
+                }
+            ]
+        }		
     ]
 }
