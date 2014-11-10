@@ -28,6 +28,7 @@ namespace UnitsNet.Units
         FootPerSecond,
         KilometerPerHour,
         Knot,
+        MeterPerMinute,
         MeterPerSecond,
         MicrometerPerMillisecond,
         MicrometerPerMinute,

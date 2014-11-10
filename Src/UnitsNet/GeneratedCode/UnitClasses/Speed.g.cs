@@ -72,6 +72,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in MetersPerMinute.
+        /// </summary>
+        public double MetersPerMinute
+        {
+            get { return _metersPerSecond*60.0; }
+        }
+
+        /// <summary>
         ///     Get Speed in MetersPerSecond.
         /// </summary>
         public double MetersPerSecond
@@ -137,6 +145,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from MetersPerMinute.
+        /// </summary>
+        public static Speed FromMetersPerMinute(double metersperminute)
+        {
+            return new Speed(metersperminute/60.0);
+        }
+
+        /// <summary>
         ///     Get Speed from MetersPerSecond.
         /// </summary>
         public static Speed FromMetersPerSecond(double meterspersecond)
@@ -185,6 +201,8 @@ namespace UnitsNet
                     return FromKilometersPerHour(value);
                 case SpeedUnit.Knot:
                     return FromKnots(value);
+                case SpeedUnit.MeterPerMinute:
+                    return FromMetersPerMinute(value);
                 case SpeedUnit.MeterPerSecond:
                     return FromMetersPerSecond(value);
                 case SpeedUnit.MicrometerPerMillisecond:
@@ -332,6 +350,8 @@ namespace UnitsNet
                     return KilometersPerHour;
                 case SpeedUnit.Knot:
                     return Knots;
+                case SpeedUnit.MeterPerMinute:
+                    return MetersPerMinute;
                 case SpeedUnit.MeterPerSecond:
                     return MetersPerSecond;
                 case SpeedUnit.MicrometerPerMillisecond:

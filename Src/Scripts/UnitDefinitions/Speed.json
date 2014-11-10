@@ -15,6 +15,18 @@
                 }
             ]
         },
+		{
+            "SingularName": "MeterPerMinute",
+            "PluralName": "MetersPerMinute",
+            "FromUnitToBaseFunc": "x/60.0",
+            "FromBaseToUnitFunc": "x*60.0",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["m/min"]
+                }
+            ]
+        },
         {
             "SingularName": "FootPerSecond",
             "PluralName": "FeetPerSecond",

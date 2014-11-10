@@ -934,6 +934,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kt", "kn", "knot", "knots"),
                             }),
+                        new CulturesForEnumValue((int) SpeedUnit.MeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/min"),
+                            }),
                         new CulturesForEnumValue((int) SpeedUnit.MeterPerSecond,
                             new[]
                             {
