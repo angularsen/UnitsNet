@@ -55,6 +55,22 @@ namespace UnitsNet
             get { return _meterPerSecondSquared; }
         }
 
+        /// <summary>
+        ///     Get Acceleration in MicrometerPerMillisecondSquared.
+        /// </summary>
+        public double MicrometerPerMillisecondSquared
+        {
+            get { return _meterPerSecondSquared; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in MicrometerPerSecondSquared.
+        /// </summary>
+        public double MicrometerPerSecondSquared
+        {
+            get { return _meterPerSecondSquared*1000000.0; }
+        }
+
         #endregion
 
         #region Static 
@@ -72,6 +88,22 @@ namespace UnitsNet
             return new Acceleration(meterpersecondsquared);
         }
 
+        /// <summary>
+        ///     Get Acceleration from MicrometerPerMillisecondSquared.
+        /// </summary>
+        public static Acceleration FromMicrometerPerMillisecondSquared(double micrometerpermillisecondsquared)
+        {
+            return new Acceleration(micrometerpermillisecondsquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
+        {
+            return new Acceleration(micrometerpersecondsquared/1000000.0);
+        }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
@@ -85,6 +117,10 @@ namespace UnitsNet
             {
                 case AccelerationUnit.MeterPerSecondSquared:
                     return FromMeterPerSecondSquared(value);
+                case AccelerationUnit.MicrometerPerMillisecondSquared:
+                    return FromMicrometerPerMillisecondSquared(value);
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return FromMicrometerPerSecondSquared(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -220,6 +256,10 @@ namespace UnitsNet
             {
                 case AccelerationUnit.MeterPerSecondSquared:
                     return MeterPerSecondSquared;
+                case AccelerationUnit.MicrometerPerMillisecondSquared:
+                    return MicrometerPerMillisecondSquared;
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return MicrometerPerSecondSquared;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

@@ -26,5 +26,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         MeterPerSecondSquared,
+        MicrometerPerMillisecondSquared,
+        MicrometerPerSecondSquared,
     }
 }

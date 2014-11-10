@@ -72,6 +72,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in MetersPerMinute.
+        /// </summary>
+        public double MetersPerMinute
+        {
+            get { return _metersPerSecond*60.0; }
+        }
+
+        /// <summary>
         ///     Get Speed in MetersPerSecond.
         /// </summary>
         public double MetersPerSecond
@@ -80,11 +88,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in MicrometerPerMillisecond.
+        /// </summary>
+        public double MicrometerPerMillisecond
+        {
+            get { return _metersPerSecond*1000.0; }
+        }
+
+        /// <summary>
+        ///     Get Speed in MicrometerPerMinute.
+        /// </summary>
+        public double MicrometerPerMinute
+        {
+            get { return _metersPerSecond*60000000.0; }
+        }
+
+        /// <summary>
         ///     Get Speed in MilesPerHour.
         /// </summary>
         public double MilesPerHour
         {
             get { return _metersPerSecond/0.44704; }
+        }
+
+        /// <summary>
+        ///     Get Speed in MillimeterPerSecond.
+        /// </summary>
+        public double MillimeterPerSecond
+        {
+            get { return _metersPerSecond*1000.0; }
         }
 
         #endregion
@@ -121,6 +153,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from MetersPerMinute.
+        /// </summary>
+        public static Speed FromMetersPerMinute(double metersperminute)
+        {
+            return new Speed(metersperminute/60.0);
+        }
+
+        /// <summary>
         ///     Get Speed from MetersPerSecond.
         /// </summary>
         public static Speed FromMetersPerSecond(double meterspersecond)
@@ -129,11 +169,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from MicrometerPerMillisecond.
+        /// </summary>
+        public static Speed FromMicrometerPerMillisecond(double micrometerpermillisecond)
+        {
+            return new Speed(micrometerpermillisecond/1000.0);
+        }
+
+        /// <summary>
+        ///     Get Speed from MicrometerPerMinute.
+        /// </summary>
+        public static Speed FromMicrometerPerMinute(double micrometerperminute)
+        {
+            return new Speed(micrometerperminute/60000000.0);
+        }
+
+        /// <summary>
         ///     Get Speed from MilesPerHour.
         /// </summary>
         public static Speed FromMilesPerHour(double milesperhour)
         {
             return new Speed(milesperhour*0.44704);
+        }
+
+        /// <summary>
+        ///     Get Speed from MillimeterPerSecond.
+        /// </summary>
+        public static Speed FromMillimeterPerSecond(double millimeterpersecond)
+        {
+            return new Speed(millimeterpersecond/1000.0);
         }
 
 
@@ -153,10 +217,18 @@ namespace UnitsNet
                     return FromKilometersPerHour(value);
                 case SpeedUnit.Knot:
                     return FromKnots(value);
+                case SpeedUnit.MeterPerMinute:
+                    return FromMetersPerMinute(value);
                 case SpeedUnit.MeterPerSecond:
                     return FromMetersPerSecond(value);
+                case SpeedUnit.MicrometerPerMillisecond:
+                    return FromMicrometerPerMillisecond(value);
+                case SpeedUnit.MicrometerPerMinute:
+                    return FromMicrometerPerMinute(value);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(value);
+                case SpeedUnit.MillimeterPerSecond:
+                    return FromMillimeterPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -296,10 +368,18 @@ namespace UnitsNet
                     return KilometersPerHour;
                 case SpeedUnit.Knot:
                     return Knots;
+                case SpeedUnit.MeterPerMinute:
+                    return MetersPerMinute;
                 case SpeedUnit.MeterPerSecond:
                     return MetersPerSecond;
+                case SpeedUnit.MicrometerPerMillisecond:
+                    return MicrometerPerMillisecond;
+                case SpeedUnit.MicrometerPerMinute:
+                    return MicrometerPerMinute;
                 case SpeedUnit.MilePerHour:
                     return MilesPerHour;
+                case SpeedUnit.MillimeterPerSecond:
+                    return MillimeterPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
