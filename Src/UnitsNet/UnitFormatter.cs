@@ -34,35 +34,38 @@ namespace UnitsNet
         /// Gets the default ToString format for the specified value.
         /// </summary>
         /// <param name="value">The value to format.</param>
-        /// <param name="digitsAfterRadix">The number of digits after the radix point to display in the formatted string.</param>
+        /// <param name="significantDigitsAfterRadix">The number of digits after the radix point to display in the formatted string.</param>
         /// <returns>A ToString format for the specified value.</returns>
-        public static string GetFormat(double value, int digitsAfterRadix)
+        public static string GetFormat(double value, int significantDigitsAfterRadix)
         {
-            var digitsAfterRadixStr = new string('#', digitsAfterRadix);
+            double v = Math.Abs(value);
+            var sigDigitsAfterRadixStr = new string('#', significantDigitsAfterRadix);
             string format;
-            if (NearlyEqual(value, 0))
+
+            if (NearlyEqual(v, 0))
             {
                 format = "{0} {1}";
             }
-            // Very small values are always displayed in scientific notation.
-            else if (value < 1e-4)
+            // Values below 1e-3 are displayed in scientific notation.
+            else if (v < 1e-3)
             {
-                format = "{0:0." + digitsAfterRadixStr + "e-00} {1}";
+                format = "{0:0." + sigDigitsAfterRadixStr + "e-00} {1}";
             }
-            // Medium-small values use 'general' formatting with the specified precision.
-            else if (value > 1e-4 && value < 1)
+            // Values from 1e-3 to 1 use fixed point notation.
+            else if (v > 1e-4 && v < 1)
             {
-                format = "{0:g" + digitsAfterRadix + "} {1}";
+                format = "{0:g" + significantDigitsAfterRadix + "} {1}";
             }
-            // Medium-large values use default formatting.
-            else if (value >= 1 && value < 1e6)
+            // Values between 1 and 1e5 use fixed point notation with digit grouping.
+            else if (v >= 1 && v < 1e6)
             {
-                format = "{0:0." + digitsAfterRadixStr + "} {1}";
+                // The comma will be automatically replaced with the correct digit separator if a different culture is used.
+                format = "{0:#,0." + sigDigitsAfterRadixStr + "} {1}";
             }
-            // Very large values use scientific notation.
+            // Values above 1e5 use scientific notation.
             else
             {
-                format = "{0:0." + digitsAfterRadixStr + "e00} {1}";
+                format = "{0:0." + sigDigitsAfterRadixStr + "e+00} {1}";
             }
 
             return format;
@@ -70,7 +73,7 @@ namespace UnitsNet
 
         private static bool NearlyEqual(double a, double b)
         {
-            return Math.Abs(a - b) < 1e-20;
+            return Math.Abs(a - b) < 1e-150;
         }
 
         /// <summary>

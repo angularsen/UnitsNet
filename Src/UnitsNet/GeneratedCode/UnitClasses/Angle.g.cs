@@ -268,7 +268,7 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
@@ -280,14 +280,14 @@ namespace UnitsNet
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="unit">Unit representation to use.</param>
-		/// <param name="digitsAfterRadix">The number of digits after the radix point.</param>
+		/// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AngleUnit unit, int digitsAfterRadix = 2, CultureInfo culture = null)
+        public string ToString(AngleUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), digitsAfterRadix));
+            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
 
         /// <summary>

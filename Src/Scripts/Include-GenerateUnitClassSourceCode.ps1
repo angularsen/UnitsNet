@@ -273,12 +273,12 @@ namespace UnitsNet
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="unit">Unit representation to use.</param>
+		/// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString($unitEnumName unit, int significantDigitsAfterRadix = 2, CultureInfo culture = null)
+        public string ToString($unitEnumName unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }

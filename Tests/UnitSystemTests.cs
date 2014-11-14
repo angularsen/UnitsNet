@@ -32,8 +32,64 @@ namespace UnitsNet.Tests
     [TestFixture]
     public class UnitSystemTests
     {
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
-            IEnumerable<TUnit> unitValues)
+        private enum CustomUnit
+        {
+            // ReSharper disable UnusedMember.Local
+            Undefined = 0,
+            Unit1,
+            Unit2
+            // ReSharper restore UnusedMember.Local
+        }
+
+        #region Missing Abbreviations
+
+        [Test]
+        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        {
+            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+
+            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+
+            Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+        }
+
+        [Test]
+        public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")] string cultureName)
+        {
+            List<object> unitValuesMissingAbbreviations = new List<object>()
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()))
+                .ToList();
+
+            // We want to flag if any localizations are missing, but not break the build
+            // or flag an error for pull requests. For now they are not considered 
+            // critical and it is cumbersome to have a third person review the pull request
+            // and add in any translations before merging it in.
+            if (unitValuesMissingAbbreviations.Any())
+            {
+                string message = "Units missing abbreviations: " +
+                                    string.Join(", ",
+                                        unitValuesMissingAbbreviations.Select(
+                                            unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
+
+                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
+            }
+            //Assert.IsEmpty(unitsMissingAbbreviations, message);
+        }
+
+        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
@@ -54,51 +110,9 @@ namespace UnitsNet.Tests
             return unitsMissingAbbreviations.Cast<object>();
         }
 
-        private enum CustomUnit
-        {
-// ReSharper disable UnusedMember.Local
-            Undefined = 0,
-            Unit1,
-            Unit2
-// ReSharper restore UnusedMember.Local
-        }
+        #endregion
 
-        [Test]
-        public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")] string cultureName)
-        {
-            List<object> unitValuesMissingAbbreviations = new List<object>()
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName,
-                    EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()))
-                .ToList();
-
-            // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered 
-            // critical and it is cumbersome to have a third person review the pull request
-            // and add in any translations before merging it in.
-            if (unitValuesMissingAbbreviations.Any())
-            {
-                string message = "Units missing abbreviations: " +
-                                 string.Join(", ",
-                                     unitValuesMissingAbbreviations.Select(
-                                         unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
-
-                Assert.Inconclusive("Failed, but skipping error for localization: " + message);
-            }
-            //Assert.IsEmpty(unitsMissingAbbreviations, message);
-        }
+        #region Culture Unit Symbol Formatting
 
         [Test]
         public void AllUnitsImplementToStringForInvariantCulture()
@@ -154,7 +168,6 @@ namespace UnitsNet.Tests
             }
         }
 
-
         [Test]
         public void AllUnitsImplementToStringForRussian()
         {
@@ -183,18 +196,6 @@ namespace UnitsNet.Tests
         }
 
         [Test]
-        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
-        {
-            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
-
-            // Act
-            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
-
-            // Assert
-            Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
-        }
-
-        [Test]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
             // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
@@ -213,77 +214,172 @@ namespace UnitsNet.Tests
             Assert.AreEqual("US english abbreviation for Unit1", abbreviation);
         }
 
+        #endregion
+
+        #region Radix Point Formatting
+
+        // These cultures all use a comma for the radix point
+        [TestCase("de-DE")]
+        [TestCase("da-DK")]
+        [TestCase("es-AR")]
+        [TestCase("es-ES")]
+        [TestCase("it-IT")]
+        public void CommaRadixPointCulture(string culture)
+        {
+            Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures all use a comma for the radix point
+        [TestCase("en-CA")]
+        [TestCase("en-US")]
+        [TestCase("ar-EG")]
+        [TestCase("en-GB")]
+        [TestCase("es-MX")]
+        public void DecimalRadixPointCulture(string culture)
+        {
+            Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        #endregion
+
+        #region Digit Group Formatting
+
+        // These cultures all use a comma in digit grouping
+        [TestCase("en-CA")]
+        [TestCase("en-US")]
+        [TestCase("ar-EG")]
+        [TestCase("en-GB")]
+        [TestCase("es-MX")]
+        public void CommaDigitGroupingCulture(string culture)
+        {
+            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures all use a decimal point in digit grouping
+        [TestCase("de-DE")]
+        [TestCase("da-DK")]
+        [TestCase("es-AR")]
+        [TestCase("es-ES")]
+        [TestCase("it-IT")]
+        public void DecimalPointDigitGroupingCulture(string culture)
+        {
+            Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        #endregion
+
+        #region Digits After Radix Formatting
 
         [Test]
-        public void ToStringRoundsToTwoDecimals()
+        public void ExpectDefaultUsesTwoSignificantDigitsAfterRadix()
         {
-            PerformToStringTest(() =>
-                {
-                    Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
-                    Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
-                    Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
-                    Assert.AreEqual("0.11 m", Length.FromMeters(0.111).ToString());
-                    Assert.AreEqual("0.12 m", Length.FromMeters(0.115).ToString());
-                    return null;
-                });
+            Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
+            Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
+            Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
+            Assert.AreEqual("0.11 m", Length.FromMeters(0.111234).ToString());
+            Assert.AreEqual("0.12 m", Length.FromMeters(0.115).ToString());
         }
 
-        [TestCase(123.4567, 2, Result = "0.00012 m")]
-        [TestCase(55.4321, 3, Result = "5.543e-05 m")]
-        [TestCase(5.4321, 4, Result = "5.4321e-06 m")]
-        public string VerySmallUnitsToBaseUnits_ExpectStringFormattedCorrectly(double value, int digitsAfterRadix)
-        {
-            return PerformToStringTest(() => Length.FromMicrometers(value).ToString(LengthUnit.Meter, digitsAfterRadix));
-        }
+        #endregion
 
-        [TestCase(1234, 0, Result = "1 km")]
-        [TestCase(12345, 1, Result = "12.3 km")]
-        [TestCase(1234567, 3, Result = "1234.567 km")]
-        [TestCase(123456.789, 4, Result = "123.4568 km")]
-        [TestCase(1234567898, 2, Result = "1.23e06 km")]
-        public string BaseUnitsToLargerUnits_ExpectStringFormattedCorrectly(double value, int digitsAfterRadix)
-        {
-            return PerformToStringTest(() => Length.FromMeters(value).ToString(LengthUnit.Kilometer, digitsAfterRadix));
-        }
+        #region ToString Formatting Intervals
 
-        [TestCase(0.00442, Result = "4420 mm")]
-        [TestCase(0.0327, Result = "32700 mm")]
-        [TestCase(0.5, Result = "500000 mm")]
-        [TestCase(1, Result = "1e06 mm")]
-        [TestCase(83, Result = "8.3e07 mm")]
-        [TestCase(999, Result = "9.99e08 mm")]
-        public string LargeUnitsToVerySmallUnits_ExpectStringFormattedCorrectly(double value)
+        [Test]
+        public void NegativeInfinityFormatting()
         {
-            return PerformToStringTest(() => Length.FromKilometers(value).ToString(LengthUnit.Millimeter));
+            Assert.That(Length.FromMeters(Double.NegativeInfinity).ToString(),
+                        Is.EqualTo("-Infinity m"));
         }
 
         [Test]
-        [Explicit]
-        public void FullRangeManualTest()
+        public void ScientificNotationLowerThreshold()
         {
-            for (double i = 1.1e-12; i < 1e12; i = i*10)
-            {
-                Console.WriteLine("{0:0.###############} => {1}", i, Length.FromMeters(i).ToString(LengthUnit.Kilometer));
-            }
+            // Anything below 1e-3 is formatted in scientific notation.
+            Assert.That(Length.FromMeters(0.000111).ToString(),
+                        Is.EqualTo("1.11e-04 m"));
+
+            Assert.That(Length.FromMeters(0.0000111).ToString(),
+                        Is.EqualTo("1.11e-05 m"));
+
+            Assert.That(Length.FromMeters(8.88e-15).ToString(),
+                        Is.EqualTo("8.88e-15 m"));
+
+            // Make sure extremely small numbers are still formatted correctly (we've gone past the Planck length, alert the physicists!)
+            Assert.That(Length.FromMeters(7.77e-120).ToString(),
+                        Is.EqualTo("7.77e-120 m"));
+
+            Assert.That(Length.FromMeters(Double.MinValue).ToString(),
+                        Is.EqualTo("-1.8e+308 m"));
         }
 
-        private string PerformToStringTest(Func<string> testAction)
+        [Test]
+        public void FixedPointNotationInterval()
         {
-            CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
-            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            // CurrentUICulture affects localization, in this case for the abbreviation.
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-            try
-            {
-                return testAction();
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentUICulture = currentUiCulture;
-                Thread.CurrentThread.CurrentCulture = currentCulture;
-            }
+            // Anything between 1e-3 and 1e3 is formatted in fixed point notation.
+            Assert.That(Length.FromMeters(1e-3).ToString(),
+                        Is.EqualTo("0.001 m"));
+
+            Assert.That(Length.FromMeters(0.011).ToString(),
+                        Is.EqualTo("0.011 m"));
+
+            Assert.That(Length.FromMeters(0.11).ToString(),
+                        Is.EqualTo("0.11 m"));
+
+            Assert.That(Length.FromMeters(1.11).ToString(),
+                        Is.EqualTo("1.11 m"));
+
+            Assert.That(Length.FromMeters(11.1).ToString(),
+                        Is.EqualTo("11.1 m"));
+
+            Assert.That(Length.FromMeters(110).ToString(),
+                        Is.EqualTo("110 m"));
         }
+
+        [Test]
+        public void FixedPointNotationWithDigitGroupingInterval()
+        {
+            // Anything between 1000 and 100,000 is formatted in fixed point notation with digit grouping.
+            Assert.That(Length.FromMeters(1000).ToString(),
+                        Is.EqualTo("1,000 m"));
+
+            Assert.That(Length.FromMeters(1100).ToString(),
+                        Is.EqualTo("1,100 m"));
+
+            Assert.That(Length.FromMeters(11000).ToString(),
+                        Is.EqualTo("11,000 m"));
+
+            Assert.That(Length.FromMeters(110000).ToString(),
+                        Is.EqualTo("110,000 m"));
+        }
+
+        [Test]
+        public void ScientificNotationUpperThreshold()
+        {
+            // Any value at or above 1e6 is formatted in scientific notation
+            Assert.That(Length.FromMeters(1e6).ToString(),
+                        Is.EqualTo("1e+06 m"));
+
+            Assert.That(Length.FromMeters(11100000).ToString(),
+                        Is.EqualTo("1.11e+07 m"));
+
+            Assert.That(Length.FromMeters(Double.MaxValue).ToString(),
+                        Is.EqualTo("1.8e+308 m"));
+        }
+
+        [Test]
+        public void PositiveInfinityFormatting()
+        {
+            Assert.That(Length.FromMeters(Double.PositiveInfinity).ToString(),
+                        Is.EqualTo("Infinity m"));
+        }
+
+        [Test]
+        public void NotANumberFormatting()
+        {
+            Assert.That(Length.FromMeters(Double.NaN).ToString(),
+                        Is.EqualTo("NaN m"));
+        }
+
+        #endregion
     }
 }
