@@ -1,4 +1,4 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+﻿// Copyright ©2007 by Initial Force AS.  All rights reserved.
 // https://github.com/InitialForce/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,16 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    public enum ElectricPotentialUnit
+    public class AccelerationTests : AccelerationTestsBase
     {
-        Undefined = 0,
-        Kilovolt,
-        Megavolt,
-        Microvolt,
-        Millivolt,
-        Volt,
+        protected override double MeterPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1; }
+        }
     }
 }

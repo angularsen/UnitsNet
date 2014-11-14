@@ -19,16 +19,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+namespace UnitsNet
 {
-    public enum ElectricPotentialUnit
+    using System;
+
+    public partial struct Level
     {
-        Undefined = 0,
-        Kilovolt,
-        Megavolt,
-        Microvolt,
-        Millivolt,
-        Volt,
+        /// <summary>
+        /// Initializes a new instance of the logarithmic <see cref="Level"/> struct which is the ratio of a quantity Q to a
+        /// reference value of that quantity Q0.
+        /// </summary>
+        /// <param name="quantity">The quantity.</param>
+        /// <param name="reference">The reference value that <paramref name="quantity"/> is compared to.</param>
+        public Level(double quantity, double reference)
+            : this()
+        {
+            string errorMessage =
+                string.Format("The base-10 logarithm of a number ≤ 0 is undefined ({0}/{1}).", quantity, reference);
+
+            if (quantity == 0 || (quantity < 0 && reference > 0))
+                throw new ArgumentOutOfRangeException("quantity", errorMessage);
+            if (reference == 0 || quantity > 0 && reference < 0)
+                throw new ArgumentOutOfRangeException("reference", errorMessage);
+
+            _decibels = 10*Math.Log10(quantity/reference);
+        }
     }
 }

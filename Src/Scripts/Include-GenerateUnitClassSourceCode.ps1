@@ -127,6 +127,13 @@ namespace UnitsNet
         }
 
         #endregion
+"@; if ($unitClass.Logarithmic -eq $true) {
+        # Dot into the script to load its functions into the global scope so we can access them.
+        . .\Include-GenerateLogarithmicCode.ps1; 
+        # Call another script function to generate logarithm-specific arithmetic operator code.
+        GenerateUnitClassSourceCode -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
+    }
+    else {@"
 
         #region Arithmetic Operators
 
@@ -166,6 +173,7 @@ namespace UnitsNet
         }
 
         #endregion
+"@; }@"
 
         #region Equality / IComparable
 

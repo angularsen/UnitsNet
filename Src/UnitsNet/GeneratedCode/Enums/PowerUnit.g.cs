@@ -22,13 +22,19 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum ElectricPotentialUnit
+    public enum PowerUnit
     {
         Undefined = 0,
-        Kilovolt,
-        Megavolt,
-        Microvolt,
-        Millivolt,
-        Volt,
+        Femtowatt,
+        Gigawatt,
+        Kilowatt,
+        Megawatt,
+        Microwatt,
+        Milliwatt,
+        Nanowatt,
+        Petawatt,
+        Picowatt,
+        Terawatt,
+        Watt,
     }
 }

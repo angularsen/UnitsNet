@@ -21,31 +21,61 @@
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class ElectricPotentialTests : ElectricPotentialTestsBase
+    public class PowerTests : PowerTestsBase
     {
-        protected override double MicrovoltsInOneVolt
+        protected override double FemtowattsInOneWatt
+        {
+            get { return 1e15; }
+        }
+
+        protected override double PicowattsInOneWatt
+        {
+            get { return 1e12; }
+        }
+
+        protected override double NanowattsInOneWatt
+        {
+            get { return 1e9; }
+        }
+
+        protected override double MicrowattsInOneWatt
         {
             get { return 1e6; }
         }
 
-        protected override double MillivoltsInOneVolt
+        protected override double MilliwattsInOneWatt
         {
             get { return 1e3; }
         }
 
-        protected override double VoltsInOneVolt
+        protected override double WattsInOneWatt
         {
             get { return 1; }
         }
 
-        protected override double KilovoltsInOneVolt
+        protected override double KilowattsInOneWatt
         {
             get { return 1e-3; }
         }
 
-        protected override double MegavoltsInOneVolt
+        protected override double MegawattsInOneWatt
         {
             get { return 1e-6; }
+        }
+
+        protected override double GigawattsInOneWatt
+        {
+            get { return 1e-9; }
+        }
+
+        protected override double TerawattsInOneWatt
+        {
+            get { return 1e-12; }
+        }
+
+        protected override double PetawattsInOneWatt
+        {
+            get { return 1e-15; }
         }
     }
 }

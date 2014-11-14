@@ -19,16 +19,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+namespace UnitsNet.Tests.CustomCode
 {
-    public enum ElectricPotentialUnit
+    public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
-        Undefined = 0,
-        Kilovolt,
-        Megavolt,
-        Microvolt,
-        Millivolt,
-        Volt,
+        protected override double OhmsInOneOhm
+        {
+            get { return 1; }
+        }
+
+        protected override double KiloohmsInOneOhm
+        {
+            get { return 1e-3; }
+        }
+
+        protected override double MegaohmsInOneOhm
+        {
+            get { return 1e-6; }
+        }
     }
 }
