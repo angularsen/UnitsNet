@@ -32,6 +32,7 @@ namespace UnitsNet.Tests
     [TestFixture]
     public class UnitSystemTests
     {
+        private CultureInfo _originalUICulture;
         private CultureInfo _originalCulture;
 
         private enum CustomUnit
@@ -46,14 +47,17 @@ namespace UnitsNet.Tests
         [SetUp]
         public void Setup()
         {
-            _originalCulture = Thread.CurrentThread.CurrentUICulture;
+            _originalUICulture = Thread.CurrentThread.CurrentUICulture;
+            _originalCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         }
 
         [TearDown]
         public void Teardown()
         {
-            Thread.CurrentThread.CurrentUICulture = _originalCulture;
+            Thread.CurrentThread.CurrentUICulture = _originalUICulture;
+            Thread.CurrentThread.CurrentCulture = _originalCulture;
         }
 
         #region Missing Abbreviations
@@ -273,16 +277,29 @@ namespace UnitsNet.Tests
 
         #endregion
 
-        #region Digits After Radix Formatting
+        #region Significant Digits After Radix Formatting
 
-        [Test]
-        public void ExpectDefaultUsesTwoSignificantDigitsAfterRadix()
+        [TestCase(1, Result = "1.1 m")]
+        [TestCase(2, Result = "1.12 m")]
+        [TestCase(3, Result = "1.123 m")]
+        [TestCase(4, Result = "1.1235 m")]
+        [TestCase(5, Result = "1.12346 m")]
+        [TestCase(6, Result = "1.123457 m")]
+        public string CustomNumberOfSignificantDigitsAfterRadix(int significantDigitsAfterRadix)
         {
-            Assert.AreEqual("0 m", Length.FromMeters(0).ToString());
-            Assert.AreEqual("0.1 m", Length.FromMeters(0.1).ToString());
-            Assert.AreEqual("0.11 m", Length.FromMeters(0.11).ToString());
-            Assert.AreEqual("0.11 m", Length.FromMeters(0.111234).ToString());
-            Assert.AreEqual("0.12 m", Length.FromMeters(0.115).ToString());
+            return Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, null, significantDigitsAfterRadix);
+        }
+
+        // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
+        [TestCase(0.819999999999, 2, Result = "0.82 m")]
+        [TestCase(0.819999999999, 4, Result = "0.82 m")]
+        [TestCase(0.00299999999, 2, Result = "0.003 m")]
+        [TestCase(0.00299999999, 4, Result = "0.003 m")]
+        [TestCase(0.0003000001, 2, Result = "3e-04 m")]
+        [TestCase(0.0003000001, 4, Result = "3e-04 m")]
+        public string RoundingErrorsWithSignificantDigitsAfterRadix(double value, int maxSignificantDigitsAfterRadix)
+        {
+            return Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
         }
 
         #endregion
@@ -296,79 +313,46 @@ namespace UnitsNet.Tests
                         Is.EqualTo("-Infinity m"));
         }
 
-        [Test]
-        public void ScientificNotationLowerThreshold()
+        // Anything below 1e-3 is formatted in scientific notation.
+        [TestCase(0.000111, Result = "1.11e-04 m")]
+        [TestCase(0.0000111, Result = "1.11e-05 m")]
+        [TestCase(8.88e-15, Result = "8.88e-15 m")]
+        [TestCase(7.77e-120, Result = "7.77e-120 m")]
+        [TestCase(Double.MinValue, Result = "-1.8e+308 m")]
+        public string ScientificNotationLowerThreshold(double value)
         {
-            // Anything below 1e-3 is formatted in scientific notation.
-            Assert.That(Length.FromMeters(0.000111).ToString(),
-                        Is.EqualTo("1.11e-04 m"));
-
-            Assert.That(Length.FromMeters(0.0000111).ToString(),
-                        Is.EqualTo("1.11e-05 m"));
-
-            Assert.That(Length.FromMeters(8.88e-15).ToString(),
-                        Is.EqualTo("8.88e-15 m"));
-
-            // Make sure extremely small numbers are still formatted correctly (we've gone past the Planck length, alert the physicists!)
-            Assert.That(Length.FromMeters(7.77e-120).ToString(),
-                        Is.EqualTo("7.77e-120 m"));
-
-            Assert.That(Length.FromMeters(Double.MinValue).ToString(),
-                        Is.EqualTo("-1.8e+308 m"));
+            return Length.FromMeters(value).ToString();
         }
 
-        [Test]
-        public void FixedPointNotationInterval()
+        // Anything between 1e-3 and 1e3 is formatted in fixed point notation.
+        [TestCase(1e-3, Result = "0.001 m")]
+        [TestCase(0.011, Result = "0.011 m")]
+        [TestCase(0.11, Result = "0.11 m")]
+        [TestCase(1.1, Result = "1.1 m")]
+        [TestCase(11.1, Result = "11.1 m")]
+        [TestCase(111, Result = "111 m")]
+        public string FixedPointNotationInterval(double value)
         {
-            // Anything between 1e-3 and 1e3 is formatted in fixed point notation.
-            Assert.That(Length.FromMeters(1e-3).ToString(),
-                        Is.EqualTo("0.001 m"));
-
-            Assert.That(Length.FromMeters(0.011).ToString(),
-                        Is.EqualTo("0.011 m"));
-
-            Assert.That(Length.FromMeters(0.11).ToString(),
-                        Is.EqualTo("0.11 m"));
-
-            Assert.That(Length.FromMeters(1.11).ToString(),
-                        Is.EqualTo("1.11 m"));
-
-            Assert.That(Length.FromMeters(11.1).ToString(),
-                        Is.EqualTo("11.1 m"));
-
-            Assert.That(Length.FromMeters(110).ToString(),
-                        Is.EqualTo("110 m"));
+            return Length.FromMeters(value).ToString();
         }
 
-        [Test]
-        public void FixedPointNotationWithDigitGroupingInterval()
+        // Anything between 1000 and 999,999 is formatted in fixed point notation with digit grouping.
+        [TestCase(1000, Result = "1,000 m")]
+        [TestCase(11000, Result = "11,000 m")]
+        [TestCase(111000, Result = "111,000 m")]
+        [TestCase(999999.99, Result = "999,999.99 m")]
+        public string FixedPointNotationWithDigitGroupingInterval(double value)
         {
-            // Anything between 1000 and 100,000 is formatted in fixed point notation with digit grouping.
-            Assert.That(Length.FromMeters(1000).ToString(),
-                        Is.EqualTo("1,000 m"));
-
-            Assert.That(Length.FromMeters(1100).ToString(),
-                        Is.EqualTo("1,100 m"));
-
-            Assert.That(Length.FromMeters(11000).ToString(),
-                        Is.EqualTo("11,000 m"));
-
-            Assert.That(Length.FromMeters(110000).ToString(),
-                        Is.EqualTo("110,000 m"));
+            return Length.FromMeters(value).ToString();
         }
 
-        [Test]
-        public void ScientificNotationUpperThreshold()
+        // Any value at or above 1e6 is formatted in scientific notation
+        [TestCase(1e6, Result = "1e+06 m")]
+        [TestCase(11100000, Result = "1.11e+07 m")]
+        [TestCase(Double.MaxValue, Result = "1.8e+308 m")]
+        public string ScientificNotationUpperThreshold(double value)
         {
-            // Any value at or above 1e6 is formatted in scientific notation
-            Assert.That(Length.FromMeters(1e6).ToString(),
-                        Is.EqualTo("1e+06 m"));
-
-            Assert.That(Length.FromMeters(11100000).ToString(),
-                        Is.EqualTo("1.11e+07 m"));
-
-            Assert.That(Length.FromMeters(Double.MaxValue).ToString(),
-                        Is.EqualTo("1.8e+308 m"));
+            return Length.FromMeters(value).ToString();
         }
 
         [Test]
