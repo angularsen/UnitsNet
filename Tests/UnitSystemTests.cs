@@ -344,7 +344,7 @@ namespace UnitsNet.Tests
                         Is.EqualTo("-Infinity m"));
         }
 
-        // Any value in the interval (-inf ≤ x ≤ 1e-04] is formatted in scientific notation
+        // Any value in the interval (-inf ≤ x < 1e-03] is formatted in scientific notation
         [TestCase(Double.MinValue, Result = "-1.8e+308 m")]
         [TestCase(1.23e-120, Result = "1.23e-120 m")]
         [TestCase(0.0000111, Result = "1.11e-05 m")]
@@ -354,7 +354,7 @@ namespace UnitsNet.Tests
             return Length.FromMeters(value).ToString();
         }
 
-        // Any value in the interval [1e-04 < x < 1e+3] is formatted in fixed point notation.
+        // Any value in the interval [1e-03 ≤ x < 1e+03] is formatted in fixed point notation.
         [TestCase(1e-3, Result = "0.001 m")]
         [TestCase(1.1, Result = "1.1 m")]
         [TestCase(999.99, Result = "999.99 m")]
@@ -363,7 +363,7 @@ namespace UnitsNet.Tests
             return Length.FromMeters(value).ToString();
         }
 
-        // Any value in the interval [1e+3 ≤ x < 1e6] is formatted in fixed point notation with digit grouping.
+        // Any value in the interval [1e+03 ≤ x < 1e+06] is formatted in fixed point notation with digit grouping.
         [TestCase(1000, Result = "1,000 m")]
         [TestCase(11000, Result = "11,000 m")]
         [TestCase(111000, Result = "111,000 m")]
@@ -373,7 +373,7 @@ namespace UnitsNet.Tests
             return Length.FromMeters(value).ToString();
         }
 
-        // Any value in the interval [1e6 ≤ x ≤ +inf) is formatted in scientific notation.
+        // Any value in the interval [1e+06 ≤ x ≤ +inf) is formatted in scientific notation.
         [TestCase(1e6, Result = "1e+06 m")]
         [TestCase(11100000, Result = "1.11e+07 m")]
         [TestCase(Double.MaxValue, Result = "1.8e+308 m")]
