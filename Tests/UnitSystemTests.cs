@@ -233,18 +233,18 @@ namespace UnitsNet.Tests
         [TestCase("es-AR")]
         [TestCase("es-ES")]
         [TestCase("it-IT")]
-        public void CommaRadixPointCulture(string culture)
+        public void CommaRadixPointCultureFormatting(string culture)
         {
             Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
 
-        // These cultures all use a comma for the radix point
+        // These cultures all use a decimal point for the radix point
         [TestCase("en-CA")]
         [TestCase("en-US")]
         [TestCase("ar-EG")]
         [TestCase("en-GB")]
         [TestCase("es-MX")]
-        public void DecimalRadixPointCulture(string culture)
+        public void DecimalRadixPointCultureFormatting(string culture)
         {
             Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
@@ -259,9 +259,25 @@ namespace UnitsNet.Tests
         [TestCase("ar-EG")]
         [TestCase("en-GB")]
         [TestCase("es-MX")]
-        public void CommaDigitGroupingCulture(string culture)
+        public void CommaDigitGroupingCultureFormatting(string culture)
         {
             Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures use a thin space in digit grouping
+        [TestCase("nn-NO")]
+        [TestCase("fr-FR")]
+        public void SpaceDigitGroupingCultureFormatting(string culture)
+        {
+            // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
+            Assert.AreEqual("1 111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // Switzerland uses an apostrophe for digit grouping
+        [TestCase("fr-CH")]
+        public void ApostropheDigitGroupingCultureFormatting(string culture)
+        {
+            Assert.AreEqual("1'111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
 
         // These cultures all use a decimal point in digit grouping
@@ -270,7 +286,7 @@ namespace UnitsNet.Tests
         [TestCase("es-AR")]
         [TestCase("es-ES")]
         [TestCase("it-IT")]
-        public void DecimalPointDigitGroupingCulture(string culture)
+        public void DecimalPointDigitGroupingCultureFormatting(string culture)
         {
             Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
@@ -285,7 +301,7 @@ namespace UnitsNet.Tests
         [TestCase(4, Result = "1.1235 m")]
         [TestCase(5, Result = "1.12346 m")]
         [TestCase(6, Result = "1.123457 m")]
-        public string CustomNumberOfSignificantDigitsAfterRadix(int significantDigitsAfterRadix)
+        public string CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix)
         {
             return Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, null, significantDigitsAfterRadix);
         }
@@ -297,9 +313,24 @@ namespace UnitsNet.Tests
         [TestCase(0.00299999999, 4, Result = "0.003 m")]
         [TestCase(0.0003000001, 2, Result = "3e-04 m")]
         [TestCase(0.0003000001, 4, Result = "3e-04 m")]
-        public string RoundingErrorsWithSignificantDigitsAfterRadix(double value, int maxSignificantDigitsAfterRadix)
+        public string RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value, int maxSignificantDigitsAfterRadix)
         {
             return Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
+        }
+
+        #endregion
+
+        #region Default ToString Formatting
+
+        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
+        [TestCase(0, Result = "0 m")]
+        [TestCase(0.1, Result = "0.1 m")]
+        [TestCase(0.11, Result = "0.11 m")]
+        [TestCase(0.111234, Result = "0.11 m")]
+        [TestCase(0.115, Result = "0.12 m")]
+        public string DefaultToStringFormatting(double value)
+        {
+            return Length.FromMeters(value).ToString();
         }
 
         #endregion
@@ -313,44 +344,40 @@ namespace UnitsNet.Tests
                         Is.EqualTo("-Infinity m"));
         }
 
-        // Anything below 1e-3 is formatted in scientific notation.
-        [TestCase(0.000111, Result = "1.11e-04 m")]
-        [TestCase(0.0000111, Result = "1.11e-05 m")]
-        [TestCase(8.88e-15, Result = "8.88e-15 m")]
-        [TestCase(7.77e-120, Result = "7.77e-120 m")]
+        // Any value in the interval (-inf ≤ x ≤ 1e-04] is formatted in scientific notation
         [TestCase(Double.MinValue, Result = "-1.8e+308 m")]
-        public string ScientificNotationLowerThreshold(double value)
+        [TestCase(1.23e-120, Result = "1.23e-120 m")]
+        [TestCase(0.0000111, Result = "1.11e-05 m")]
+        [TestCase(1.99e-4, Result = "1.99e-04 m")]
+        public string ScientificNotationLowerInterval(double value)
         {
             return Length.FromMeters(value).ToString();
         }
 
-        // Anything between 1e-3 and 1e3 is formatted in fixed point notation.
+        // Any value in the interval [1e-04 < x < 1e+3] is formatted in fixed point notation.
         [TestCase(1e-3, Result = "0.001 m")]
-        [TestCase(0.011, Result = "0.011 m")]
-        [TestCase(0.11, Result = "0.11 m")]
         [TestCase(1.1, Result = "1.1 m")]
-        [TestCase(11.1, Result = "11.1 m")]
-        [TestCase(111, Result = "111 m")]
-        public string FixedPointNotationInterval(double value)
+        [TestCase(999.99, Result = "999.99 m")]
+        public string FixedPointNotationIntervalFormatting(double value)
         {
             return Length.FromMeters(value).ToString();
         }
 
-        // Anything between 1000 and 999,999 is formatted in fixed point notation with digit grouping.
+        // Any value in the interval [1e+3 ≤ x < 1e6] is formatted in fixed point notation with digit grouping.
         [TestCase(1000, Result = "1,000 m")]
         [TestCase(11000, Result = "11,000 m")]
         [TestCase(111000, Result = "111,000 m")]
         [TestCase(999999.99, Result = "999,999.99 m")]
-        public string FixedPointNotationWithDigitGroupingInterval(double value)
+        public string FixedPointNotationWithDigitGroupingIntervalFormatting(double value)
         {
             return Length.FromMeters(value).ToString();
         }
 
-        // Any value at or above 1e6 is formatted in scientific notation
+        // Any value in the interval [1e6 ≤ x ≤ +inf) is formatted in scientific notation.
         [TestCase(1e6, Result = "1e+06 m")]
         [TestCase(11100000, Result = "1.11e+07 m")]
         [TestCase(Double.MaxValue, Result = "1.8e+308 m")]
-        public string ScientificNotationUpperThreshold(double value)
+        public string ScientificNotationUpperIntervalFormatting(double value)
         {
             return Length.FromMeters(value).ToString();
         }
