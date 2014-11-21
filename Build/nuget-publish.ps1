@@ -5,5 +5,5 @@ $list = gci -Path $nugetDir -Filter UnitsNet.*.nupkg | where-object {$_.Name -No
 foreach ($file in $list)
 {
   write-host "Publishing nuget: $($file.Name)"
-  & "$root\Tools\nuget.exe push $file"
+  & "$root\Tools\nuget.exe push $($file.FullName)"
 }
