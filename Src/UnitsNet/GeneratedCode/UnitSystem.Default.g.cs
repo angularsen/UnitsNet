@@ -34,6 +34,15 @@ namespace UnitsNet
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
+                new UnitLocalization(typeof (AccelerationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/s²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
                     new[]
                     {
