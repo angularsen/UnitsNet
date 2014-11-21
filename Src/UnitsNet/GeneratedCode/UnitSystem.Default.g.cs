@@ -34,6 +34,34 @@ namespace UnitsNet
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
+                new UnitLocalization(typeof (AccelerationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/s²"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (AmplitudeRatioUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMicrovolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBµV"),
+                            }),
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMillivolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBmV"),
+                            }),
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelVolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBV"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AngleUnit),
                     new[]
                     {
@@ -178,14 +206,91 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "год"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricCurrentUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Ampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Kiloampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Megaampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Microampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Milliampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Nanoampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nA"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Kilovolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kV"),
+                                new AbbreviationsForCulture("ru-RU", "kВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Megavolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MV"),
+                                new AbbreviationsForCulture("ru-RU", "MВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Microvolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μV"),
+                                new AbbreviationsForCulture("ru-RU", "μВ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialUnit.Millivolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mV"),
+                                new AbbreviationsForCulture("ru-RU", "mВ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricPotentialUnit.Volt,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "V"),
                                 new AbbreviationsForCulture("ru-RU", "В"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricResistanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kΩ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Megaohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MΩ"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Ohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Ω"),
                             }),
                     }),
                 new UnitLocalization(typeof (FlowUnit),
@@ -248,6 +353,35 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lbf"),
                                 new AbbreviationsForCulture("ru-RU", "фунт-сила"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (FrequencyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) FrequencyUnit.Gigahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Hertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Hz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Kilohertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Megahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MHz"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.Terahertz,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "THz"),
                             }),
                     }),
                 new UnitLocalization(typeof (InformationUnit),
@@ -466,6 +600,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд"),
                             }),
                     }),
+                new UnitLocalization(typeof (LevelUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LevelUnit.Decibel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dB"),
+                            }),
+                        new CulturesForEnumValue((int) LevelUnit.Neper,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Np"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MassUnit),
                     new[]
                     {
@@ -557,6 +705,79 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t"),
                                 new AbbreviationsForCulture("ru-RU", "т"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PowerUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerUnit.Femtowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "fW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Gigawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Kilowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Megawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Microwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Milliwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Nanowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Petawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Picowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Terawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Watt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PowerRatioUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelMilliwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBmW", "dBm"),
+                            }),
+                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBW"),
                             }),
                     }),
                 new UnitLocalization(typeof (PressureUnit),

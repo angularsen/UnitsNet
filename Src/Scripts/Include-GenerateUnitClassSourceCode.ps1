@@ -127,6 +127,13 @@ namespace UnitsNet
         }
 
         #endregion
+"@; if ($unitClass.Logarithmic -eq $true) {
+        # Dot into the script to load its functions into the global scope so we can access them.
+        . .\Include-GenerateLogarithmicCode.ps1; 
+        # Call another script function to generate logarithm-specific arithmetic operator code.
+        GenerateUnitClassSourceCode -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
+    }
+    else {@"
 
         #region Arithmetic Operators
 
@@ -166,6 +173,7 @@ namespace UnitsNet
         }
 
         #endregion
+"@; }@"
 
         #region Equality / IComparable
 
@@ -254,15 +262,25 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString($unitEnumName.$baseUnitSingularName);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="unit">Unit representation to use.</param>
+		/// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString($unitEnumName unit, CultureInfo culture = null)
+        public string ToString($unitEnumName unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
-            return ToString(unit, culture, "{0:0.##} {1}");
+            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
 
         /// <summary>
@@ -276,21 +294,7 @@ namespace UnitsNet
         [UsedImplicitly]
         public string ToString($unitEnumName unit, CultureInfo culture, string format, params object[] args)
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            object[] finalArgs = new object[] {As(unit), abbreviation}
-                .Concat(args)
-                .ToArray();
-
-            return string.Format(culture, format, finalArgs);
-        }
-
-        /// <summary>
-        ///     Get default string representation of value and unit.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        public override string ToString()
-        {
-            return ToString($unitEnumName.$baseUnitSingularName);
+            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }
     }
 }
