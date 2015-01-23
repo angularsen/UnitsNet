@@ -33,7 +33,7 @@ New units:
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
   </metadata>
   <files>
-    <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.*" target="lib" />
+    <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet*.dll" target="lib" />
     <file src="Src\**\*.cs" exclude="Src\**\obj\**\*.cs" target="src" />
   </files>
 </package>
