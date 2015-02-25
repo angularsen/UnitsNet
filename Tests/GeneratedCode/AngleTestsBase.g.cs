@@ -85,13 +85,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Angle v = Angle.FromDegrees(1);
-            Assert.AreEqual(-1, -v.Degrees, RadiansTolerance);
-            Assert.AreEqual(2, (Angle.FromDegrees(3)-v).Degrees, RadiansTolerance);
-            Assert.AreEqual(2, (v + v).Degrees, RadiansTolerance);
-            Assert.AreEqual(10, (v*10).Degrees, RadiansTolerance);
-            Assert.AreEqual(10, (10*v).Degrees, RadiansTolerance);
-            Assert.AreEqual(2, (Angle.FromDegrees(10)/5).Degrees, RadiansTolerance);
-            Assert.AreEqual(2, Angle.FromDegrees(10)/Angle.FromDegrees(5), RadiansTolerance);
+            Assert.AreEqual(-1, -v.Degrees, DegreesTolerance);
+            Assert.AreEqual(2, (Angle.FromDegrees(3)-v).Degrees, DegreesTolerance);
+            Assert.AreEqual(2, (v + v).Degrees, DegreesTolerance);
+            Assert.AreEqual(10, (v*10).Degrees, DegreesTolerance);
+            Assert.AreEqual(10, (10*v).Degrees, DegreesTolerance);
+            Assert.AreEqual(2, (Angle.FromDegrees(10)/5).Degrees, DegreesTolerance);
+            Assert.AreEqual(2, Angle.FromDegrees(10)/Angle.FromDegrees(5), DegreesTolerance);
         }
 
         [Test]

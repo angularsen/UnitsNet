@@ -97,13 +97,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Speed v = Speed.FromMetersPerSecond(1);
-            Assert.AreEqual(-1, -v.MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(2, (Speed.FromMetersPerSecond(3)-v).MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(2, (v + v).MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(10, (v*10).MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(10, (10*v).MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(2, (Speed.FromMetersPerSecond(10)/5).MetersPerSecond, MilesPerHourTolerance);
-            Assert.AreEqual(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), MilesPerHourTolerance);
+            Assert.AreEqual(-1, -v.MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(2, (Speed.FromMetersPerSecond(3)-v).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(2, (v + v).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(10, (v*10).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(10, (10*v).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(2, (Speed.FromMetersPerSecond(10)/5).MetersPerSecond, MetersPerSecondTolerance);
+            Assert.AreEqual(2, Speed.FromMetersPerSecond(10)/Speed.FromMetersPerSecond(5), MetersPerSecondTolerance);
         }
 
         [Test]

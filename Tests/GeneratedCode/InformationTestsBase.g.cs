@@ -223,13 +223,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Information v = Information.FromBits(1);
-            Assert.AreEqual(-1, -v.Bits, TerabytesTolerance);
-            Assert.AreEqual(2, (Information.FromBits(3)-v).Bits, TerabytesTolerance);
-            Assert.AreEqual(2, (v + v).Bits, TerabytesTolerance);
-            Assert.AreEqual(10, (v*10).Bits, TerabytesTolerance);
-            Assert.AreEqual(10, (10*v).Bits, TerabytesTolerance);
-            Assert.AreEqual(2, (Information.FromBits(10)/5).Bits, TerabytesTolerance);
-            Assert.AreEqual(2, Information.FromBits(10)/Information.FromBits(5), TerabytesTolerance);
+            Assert.AreEqual(-1, -v.Bits, BitsTolerance);
+            Assert.AreEqual(2, (Information.FromBits(3)-v).Bits, BitsTolerance);
+            Assert.AreEqual(2, (v + v).Bits, BitsTolerance);
+            Assert.AreEqual(10, (v*10).Bits, BitsTolerance);
+            Assert.AreEqual(10, (10*v).Bits, BitsTolerance);
+            Assert.AreEqual(2, (Information.FromBits(10)/5).Bits, BitsTolerance);
+            Assert.AreEqual(2, Information.FromBits(10)/Information.FromBits(5), BitsTolerance);
         }
 
         [Test]

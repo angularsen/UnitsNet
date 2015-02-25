@@ -121,13 +121,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Area v = Area.FromSquareMeters(1);
-            Assert.AreEqual(-1, -v.SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(2, (Area.FromSquareMeters(3)-v).SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(2, (v + v).SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(10, (v*10).SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(10, (10*v).SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(2, (Area.FromSquareMeters(10)/5).SquareMeters, SquareYardsTolerance);
-            Assert.AreEqual(2, Area.FromSquareMeters(10)/Area.FromSquareMeters(5), SquareYardsTolerance);
+            Assert.AreEqual(-1, -v.SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(2, (Area.FromSquareMeters(3)-v).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(2, (v + v).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(10, (v*10).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(10, (10*v).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(2, (Area.FromSquareMeters(10)/5).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(2, Area.FromSquareMeters(10)/Area.FromSquareMeters(5), SquareMetersTolerance);
         }
 
         [Test]

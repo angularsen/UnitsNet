@@ -157,13 +157,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Mass v = Mass.FromKilograms(1);
-            Assert.AreEqual(-1, -v.Kilograms, TonnesTolerance);
-            Assert.AreEqual(2, (Mass.FromKilograms(3)-v).Kilograms, TonnesTolerance);
-            Assert.AreEqual(2, (v + v).Kilograms, TonnesTolerance);
-            Assert.AreEqual(10, (v*10).Kilograms, TonnesTolerance);
-            Assert.AreEqual(10, (10*v).Kilograms, TonnesTolerance);
-            Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, TonnesTolerance);
-            Assert.AreEqual(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), TonnesTolerance);
+            Assert.AreEqual(-1, -v.Kilograms, KilogramsTolerance);
+            Assert.AreEqual(2, (Mass.FromKilograms(3)-v).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(2, (v + v).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(10, (v*10).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(10, (10*v).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(2, (Mass.FromKilograms(10)/5).Kilograms, KilogramsTolerance);
+            Assert.AreEqual(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), KilogramsTolerance);
         }
 
         [Test]
