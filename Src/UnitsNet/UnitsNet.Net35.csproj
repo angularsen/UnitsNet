@@ -14,7 +14,6 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <OutputPath>..\..\Artifacts\Bin\Src\$(Platform)_$(Configuration)\net35\</OutputPath>
     <IntermediateOutputPath>obj\Net35\</IntermediateOutputPath>
-    <IntermediateOutputPath>obj\net35\</IntermediateOutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
