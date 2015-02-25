@@ -25,7 +25,9 @@ namespace UnitsNet.Units
     public enum FlowUnit
     {
         Undefined = 0,
+        CubicFootPerSecond,
         CubicMeterPerHour,
         CubicMeterPerSecond,
+        MillionUsGallonsPerDay,
     }
 }

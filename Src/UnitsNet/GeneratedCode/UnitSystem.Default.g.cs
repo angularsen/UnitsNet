@@ -296,6 +296,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/h"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicMeterPerHour,
                             new[]
                             {
@@ -307,6 +312,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MGD"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),
