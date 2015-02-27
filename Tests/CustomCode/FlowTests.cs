@@ -28,9 +28,21 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1*3600.0; }
         }
 
+        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond
+        {
+            get { return 1*35.314666213; }
+        }
+
+        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond
+        {
+            get { return 1*22.824465227; }
+        }
+
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
         {
             get { return 1; }
         }
+
+        
     }
 }
