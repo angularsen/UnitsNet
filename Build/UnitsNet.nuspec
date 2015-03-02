@@ -14,7 +14,8 @@
     <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
 * Add flow units MGD and ft³/s (@jcramer)
-* Support Xamarin Unified API 
+* Support Xamarin Unified API
+* Remove R# annotations from binary
     </releaseNotes>
     <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
     <language>en-US</language>
