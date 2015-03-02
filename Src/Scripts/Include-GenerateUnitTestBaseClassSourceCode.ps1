@@ -103,13 +103,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             $className v = $className.From$baseUnitPluralName(1);
-            Assert.AreEqual(-1, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(2, ($className.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(2, (v + v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(10, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(10, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
+            Assert.AreEqual(-1, -v.$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(2, ($className.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(2, (v + v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(10, (v*10).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(10, (10*v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            Assert.AreEqual(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($baseUnit.PluralName)Tolerance);
         }
 "@; }@"
 

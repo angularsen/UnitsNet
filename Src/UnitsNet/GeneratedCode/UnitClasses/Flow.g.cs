@@ -48,6 +48,14 @@ namespace UnitsNet
         #region Properties
 
         /// <summary>
+        ///     Get Flow in CubicFeetPerSecond.
+        /// </summary>
+        public double CubicFeetPerSecond
+        {
+            get { return _cubicMetersPerSecond*35.314666213; }
+        }
+
+        /// <summary>
         ///     Get Flow in CubicMetersPerHour.
         /// </summary>
         public double CubicMetersPerHour
@@ -63,6 +71,14 @@ namespace UnitsNet
             get { return _cubicMetersPerSecond; }
         }
 
+        /// <summary>
+        ///     Get Flow in MillionUsGallonsPerDay.
+        /// </summary>
+        public double MillionUsGallonsPerDay
+        {
+            get { return _cubicMetersPerSecond*22.824465227; }
+        }
+
         #endregion
 
         #region Static 
@@ -70,6 +86,14 @@ namespace UnitsNet
         public static Flow Zero
         {
             get { return new Flow(); }
+        }
+
+        /// <summary>
+        ///     Get Flow from CubicFeetPerSecond.
+        /// </summary>
+        public static Flow FromCubicFeetPerSecond(double cubicfeetpersecond)
+        {
+            return new Flow(cubicfeetpersecond/35.314666213);
         }
 
         /// <summary>
@@ -88,6 +112,14 @@ namespace UnitsNet
             return new Flow(cubicmeterspersecond);
         }
 
+        /// <summary>
+        ///     Get Flow from MillionUsGallonsPerDay.
+        /// </summary>
+        public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
+        {
+            return new Flow(millionusgallonsperday/22.824465227);
+        }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FlowUnit" /> to <see cref="Flow" />.
@@ -99,10 +131,14 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case FlowUnit.CubicFootPerSecond:
+                    return FromCubicFeetPerSecond(value);
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value);
                 case FlowUnit.CubicMeterPerSecond:
                     return FromCubicMetersPerSecond(value);
+                case FlowUnit.MillionUsGallonsPerDay:
+                    return FromMillionUsGallonsPerDay(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -236,10 +272,14 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case FlowUnit.CubicFootPerSecond:
+                    return CubicFeetPerSecond;
                 case FlowUnit.CubicMeterPerHour:
                     return CubicMetersPerHour;
                 case FlowUnit.CubicMeterPerSecond:
                     return CubicMetersPerSecond;
+                case FlowUnit.MillionUsGallonsPerDay:
+                    return MillionUsGallonsPerDay;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

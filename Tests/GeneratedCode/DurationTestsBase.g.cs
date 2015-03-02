@@ -127,13 +127,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Duration v = Duration.FromSeconds(1);
-            Assert.AreEqual(-1, -v.Seconds, YearsTolerance);
-            Assert.AreEqual(2, (Duration.FromSeconds(3)-v).Seconds, YearsTolerance);
-            Assert.AreEqual(2, (v + v).Seconds, YearsTolerance);
-            Assert.AreEqual(10, (v*10).Seconds, YearsTolerance);
-            Assert.AreEqual(10, (10*v).Seconds, YearsTolerance);
-            Assert.AreEqual(2, (Duration.FromSeconds(10)/5).Seconds, YearsTolerance);
-            Assert.AreEqual(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), YearsTolerance);
+            Assert.AreEqual(-1, -v.Seconds, SecondsTolerance);
+            Assert.AreEqual(2, (Duration.FromSeconds(3)-v).Seconds, SecondsTolerance);
+            Assert.AreEqual(2, (v + v).Seconds, SecondsTolerance);
+            Assert.AreEqual(10, (v*10).Seconds, SecondsTolerance);
+            Assert.AreEqual(10, (10*v).Seconds, SecondsTolerance);
+            Assert.AreEqual(2, (Duration.FromSeconds(10)/5).Seconds, SecondsTolerance);
+            Assert.AreEqual(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), SecondsTolerance);
         }
 
         [Test]

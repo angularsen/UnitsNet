@@ -109,13 +109,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Force v = Force.FromNewtons(1);
-            Assert.AreEqual(-1, -v.Newtons, PoundForcesTolerance);
-            Assert.AreEqual(2, (Force.FromNewtons(3)-v).Newtons, PoundForcesTolerance);
-            Assert.AreEqual(2, (v + v).Newtons, PoundForcesTolerance);
-            Assert.AreEqual(10, (v*10).Newtons, PoundForcesTolerance);
-            Assert.AreEqual(10, (10*v).Newtons, PoundForcesTolerance);
-            Assert.AreEqual(2, (Force.FromNewtons(10)/5).Newtons, PoundForcesTolerance);
-            Assert.AreEqual(2, Force.FromNewtons(10)/Force.FromNewtons(5), PoundForcesTolerance);
+            Assert.AreEqual(-1, -v.Newtons, NewtonsTolerance);
+            Assert.AreEqual(2, (Force.FromNewtons(3)-v).Newtons, NewtonsTolerance);
+            Assert.AreEqual(2, (v + v).Newtons, NewtonsTolerance);
+            Assert.AreEqual(10, (v*10).Newtons, NewtonsTolerance);
+            Assert.AreEqual(10, (10*v).Newtons, NewtonsTolerance);
+            Assert.AreEqual(2, (Force.FromNewtons(10)/5).Newtons, NewtonsTolerance);
+            Assert.AreEqual(2, Force.FromNewtons(10)/Force.FromNewtons(5), NewtonsTolerance);
         }
 
         [Test]

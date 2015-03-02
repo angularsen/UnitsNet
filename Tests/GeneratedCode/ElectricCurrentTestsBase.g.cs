@@ -103,13 +103,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             ElectricCurrent v = ElectricCurrent.FromAmperes(1);
-            Assert.AreEqual(-1, -v.Amperes, NanoamperesTolerance);
-            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(3)-v).Amperes, NanoamperesTolerance);
-            Assert.AreEqual(2, (v + v).Amperes, NanoamperesTolerance);
-            Assert.AreEqual(10, (v*10).Amperes, NanoamperesTolerance);
-            Assert.AreEqual(10, (10*v).Amperes, NanoamperesTolerance);
-            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(10)/5).Amperes, NanoamperesTolerance);
-            Assert.AreEqual(2, ElectricCurrent.FromAmperes(10)/ElectricCurrent.FromAmperes(5), NanoamperesTolerance);
+            Assert.AreEqual(-1, -v.Amperes, AmperesTolerance);
+            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(3)-v).Amperes, AmperesTolerance);
+            Assert.AreEqual(2, (v + v).Amperes, AmperesTolerance);
+            Assert.AreEqual(10, (v*10).Amperes, AmperesTolerance);
+            Assert.AreEqual(10, (10*v).Amperes, AmperesTolerance);
+            Assert.AreEqual(2, (ElectricCurrent.FromAmperes(10)/5).Amperes, AmperesTolerance);
+            Assert.AreEqual(2, ElectricCurrent.FromAmperes(10)/ElectricCurrent.FromAmperes(5), AmperesTolerance);
         }
 
         [Test]

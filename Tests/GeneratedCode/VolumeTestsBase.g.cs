@@ -187,13 +187,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Volume v = Volume.FromCubicMeters(1);
-            Assert.AreEqual(-1, -v.CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(2, (Volume.FromCubicMeters(3)-v).CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(2, (v + v).CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(10, (v*10).CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(10, (10*v).CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(2, (Volume.FromCubicMeters(10)/5).CubicMeters, UsOuncesTolerance);
-            Assert.AreEqual(2, Volume.FromCubicMeters(10)/Volume.FromCubicMeters(5), UsOuncesTolerance);
+            Assert.AreEqual(-1, -v.CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(2, (Volume.FromCubicMeters(3)-v).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(2, (v + v).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(10, (v*10).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(10, (10*v).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(2, (Volume.FromCubicMeters(10)/5).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(2, Volume.FromCubicMeters(10)/Volume.FromCubicMeters(5), CubicMetersTolerance);
         }
 
         [Test]

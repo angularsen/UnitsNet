@@ -97,13 +97,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Frequency v = Frequency.FromHertz(1);
-            Assert.AreEqual(-1, -v.Hertz, TerahertzTolerance);
-            Assert.AreEqual(2, (Frequency.FromHertz(3)-v).Hertz, TerahertzTolerance);
-            Assert.AreEqual(2, (v + v).Hertz, TerahertzTolerance);
-            Assert.AreEqual(10, (v*10).Hertz, TerahertzTolerance);
-            Assert.AreEqual(10, (10*v).Hertz, TerahertzTolerance);
-            Assert.AreEqual(2, (Frequency.FromHertz(10)/5).Hertz, TerahertzTolerance);
-            Assert.AreEqual(2, Frequency.FromHertz(10)/Frequency.FromHertz(5), TerahertzTolerance);
+            Assert.AreEqual(-1, -v.Hertz, HertzTolerance);
+            Assert.AreEqual(2, (Frequency.FromHertz(3)-v).Hertz, HertzTolerance);
+            Assert.AreEqual(2, (v + v).Hertz, HertzTolerance);
+            Assert.AreEqual(10, (v*10).Hertz, HertzTolerance);
+            Assert.AreEqual(10, (10*v).Hertz, HertzTolerance);
+            Assert.AreEqual(2, (Frequency.FromHertz(10)/5).Hertz, HertzTolerance);
+            Assert.AreEqual(2, Frequency.FromHertz(10)/Frequency.FromHertz(5), HertzTolerance);
         }
 
         [Test]

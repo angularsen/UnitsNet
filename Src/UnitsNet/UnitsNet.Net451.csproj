@@ -13,7 +13,6 @@
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\Artifacts\Bin\Src\$(Platform)_$(Configuration)\net451\</OutputPath>
     <IntermediateOutputPath>obj\Net451\</IntermediateOutputPath>
-    <IntermediateOutputPath>obj\net451\</IntermediateOutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

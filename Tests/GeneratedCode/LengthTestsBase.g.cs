@@ -145,13 +145,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Length v = Length.FromMeters(1);
-            Assert.AreEqual(-1, -v.Meters, YardsTolerance);
-            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, YardsTolerance);
-            Assert.AreEqual(2, (v + v).Meters, YardsTolerance);
-            Assert.AreEqual(10, (v*10).Meters, YardsTolerance);
-            Assert.AreEqual(10, (10*v).Meters, YardsTolerance);
-            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, YardsTolerance);
-            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), YardsTolerance);
+            Assert.AreEqual(-1, -v.Meters, MetersTolerance);
+            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, MetersTolerance);
+            Assert.AreEqual(2, (v + v).Meters, MetersTolerance);
+            Assert.AreEqual(10, (v*10).Meters, MetersTolerance);
+            Assert.AreEqual(10, (10*v).Meters, MetersTolerance);
+            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, MetersTolerance);
+            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), MetersTolerance);
         }
 
         [Test]

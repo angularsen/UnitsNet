@@ -34,6 +34,30 @@
                     "Abbreviations": ["м³/ч"]
                 }
             ]
+        },
+        {
+            "SingularName": "CubicFootPerSecond",
+            "PluralName": "CubicFeetPerSecond",
+            "FromUnitToBaseFunc": "x/35.314666213",
+            "FromBaseToUnitFunc": "x*35.314666213",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["ft³/h"]
+                }
+            ]
+        },
+        {
+            "SingularName": "MillionUsGallonsPerDay",
+            "PluralName": "MillionUsGallonsPerDay",
+            "FromUnitToBaseFunc": "x/22.824465227",
+            "FromBaseToUnitFunc": "x*22.824465227",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["MGD"]
+                }
+            ]
         }
     ]
 }

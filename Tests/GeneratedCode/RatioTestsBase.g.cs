@@ -103,13 +103,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Ratio v = Ratio.FromDecimalFractions(1);
-            Assert.AreEqual(-1, -v.DecimalFractions, PercentTolerance);
-            Assert.AreEqual(2, (Ratio.FromDecimalFractions(3)-v).DecimalFractions, PercentTolerance);
-            Assert.AreEqual(2, (v + v).DecimalFractions, PercentTolerance);
-            Assert.AreEqual(10, (v*10).DecimalFractions, PercentTolerance);
-            Assert.AreEqual(10, (10*v).DecimalFractions, PercentTolerance);
-            Assert.AreEqual(2, (Ratio.FromDecimalFractions(10)/5).DecimalFractions, PercentTolerance);
-            Assert.AreEqual(2, Ratio.FromDecimalFractions(10)/Ratio.FromDecimalFractions(5), PercentTolerance);
+            Assert.AreEqual(-1, -v.DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(2, (Ratio.FromDecimalFractions(3)-v).DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(2, (v + v).DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(10, (v*10).DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(10, (10*v).DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(2, (Ratio.FromDecimalFractions(10)/5).DecimalFractions, DecimalFractionsTolerance);
+            Assert.AreEqual(2, Ratio.FromDecimalFractions(10)/Ratio.FromDecimalFractions(5), DecimalFractionsTolerance);
         }
 
         [Test]

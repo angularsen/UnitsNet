@@ -139,13 +139,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {
             Pressure v = Pressure.FromPascals(1);
-            Assert.AreEqual(-1, -v.Pascals, TorrsTolerance);
-            Assert.AreEqual(2, (Pressure.FromPascals(3)-v).Pascals, TorrsTolerance);
-            Assert.AreEqual(2, (v + v).Pascals, TorrsTolerance);
-            Assert.AreEqual(10, (v*10).Pascals, TorrsTolerance);
-            Assert.AreEqual(10, (10*v).Pascals, TorrsTolerance);
-            Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, TorrsTolerance);
-            Assert.AreEqual(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), TorrsTolerance);
+            Assert.AreEqual(-1, -v.Pascals, PascalsTolerance);
+            Assert.AreEqual(2, (Pressure.FromPascals(3)-v).Pascals, PascalsTolerance);
+            Assert.AreEqual(2, (v + v).Pascals, PascalsTolerance);
+            Assert.AreEqual(10, (v*10).Pascals, PascalsTolerance);
+            Assert.AreEqual(10, (10*v).Pascals, PascalsTolerance);
+            Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, PascalsTolerance);
+            Assert.AreEqual(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), PascalsTolerance);
         }
 
         [Test]
