@@ -92,12 +92,12 @@ namespace UnitsNet.Tests
         {
             Flow v = Flow.FromCubicMetersPerSecond(1);
             Assert.AreEqual(-1, -v.CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(3) - v).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(3)-v).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
             Assert.AreEqual(2, (v + v).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.AreEqual(10, (v * 10).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.AreEqual(10, (10 * v).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(10) / 5).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.AreEqual(2, Flow.FromCubicMetersPerSecond(10) / Flow.FromCubicMetersPerSecond(5), CubicMetersPerSecondTolerance);
+            Assert.AreEqual(10, (v*10).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            Assert.AreEqual(10, (10*v).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            Assert.AreEqual(2, (Flow.FromCubicMetersPerSecond(10)/5).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            Assert.AreEqual(2, Flow.FromCubicMetersPerSecond(10)/Flow.FromCubicMetersPerSecond(5), CubicMetersPerSecondTolerance);
         }
 
         [Test]
