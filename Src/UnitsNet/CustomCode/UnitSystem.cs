@@ -34,13 +34,13 @@ namespace UnitsNet
     [PublicAPI]
     public partial class UnitSystem
     {
-        private static readonly Dictionary<CultureInfo, UnitSystem> CultureToInstance;
+        private static readonly Dictionary<IFormatProvider, UnitSystem> CultureToInstance;
         private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
 
         /// <summary>
         ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
         /// </summary>
-        [NotNull] [PublicAPI] public readonly CultureInfo Culture;
+        [NotNull] [PublicAPI] public readonly IFormatProvider Culture;
 
         /// <summary>
         ///     Per-unit-type dictionary of enum values by abbreviation. This is the inverse of
@@ -57,7 +57,7 @@ namespace UnitsNet
 
         static UnitSystem()
         {
-            CultureToInstance = new Dictionary<CultureInfo, UnitSystem>();
+            CultureToInstance = new Dictionary<IFormatProvider, UnitSystem>();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
-        public UnitSystem([CanBeNull] CultureInfo cultureInfo = null)
+        public UnitSystem([CanBeNull] IFormatProvider cultureInfo = null)
         {
             if (cultureInfo == null)
                 cultureInfo = new CultureInfo(DefaultCulture.Name);
@@ -96,7 +96,7 @@ namespace UnitsNet
         /// <param name="cultureInfo">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
         /// <returns></returns>
         [PublicAPI]
-        public static UnitSystem GetCached(CultureInfo cultureInfo = null)
+        public static UnitSystem GetCached(IFormatProvider cultureInfo = null)
         {
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
@@ -122,8 +122,7 @@ namespace UnitsNet
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType,
-                        Culture.EnglishName));
+                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture));
 
             int unitValue;
             TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
@@ -259,7 +258,7 @@ namespace UnitsNet
             return abbrevs.ToArray();
         }
 
-        private void LoadDefaultAbbreviatons([NotNull] CultureInfo culture)
+        private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
         {
             foreach (UnitLocalization localization in DefaultLocalizations)
             {
