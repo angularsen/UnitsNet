@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.3.0</version>
+    <version>3.4.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -13,20 +13,9 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-New units:
- * Frequency (@bretthysuik)
- * Electric resistance (@bretthysuik)
- * Electric current (@bretthysuik)
- * Electric potential (@bretthysuik)
- * Power (@bretthysuik)
- * Level (@bretthysuik)
- * Power ratio (@bretthysuik)
- * Amplitude ratio (@bretthysuik)
- * Acceleration (@derekhe)
- 
- Improvements:
- * Support logarithmic units in generator scripts
- * Improve readability in ToString(). Use digit grouping in fixed point notation. Use scientific notation for values below 1e-3 and from 1e6 and up. 
+* Add flow units MGD and ft³/s (@jcramer)
+* Support Xamarin Unified API
+* Remove R# annotations from binary
     </releaseNotes>
     <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
     <language>en-US</language>
