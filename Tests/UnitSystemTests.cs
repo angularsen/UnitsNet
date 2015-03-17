@@ -210,8 +210,9 @@ namespace UnitsNet.Tests
             // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
             // CurrentUICulture affects localization, in this case the abbreviation.
             // Zulu (South Africa)
-            UnitSystem zuluUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("zu-ZA"));
-            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = zuluUnits.Culture;
+            var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
+            UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = zuluCulture;
 
             UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
             usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");

@@ -19,33 +19,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System.Reflection;
-using System.Resources;
+using System;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+namespace UnitsNet
+{
+    public class UnitsNetException : Exception
+    {
+        public UnitsNetException()
+        {
+        }
 
-[assembly: AssemblyTitle("UnitsNet")]
-[assembly:
-    AssemblyDescription(
-        "Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation."
-        )]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Initial Force AS")]
-[assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("")]
+        public UnitsNetException(string message) : base(message)
+        {
+        }
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-
-[assembly: AssemblyVersion("3.5.0")]
-[assembly: AssemblyFileVersion("3.5.0")]
+        public UnitsNetException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
+}

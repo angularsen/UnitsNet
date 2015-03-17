@@ -248,6 +248,61 @@ namespace UnitsNet
 
         #endregion
 
+        #region Parsing
+
+        /// <summary>
+        ///     Parse a string of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected 2 words. Input string needs to be in the format "&lt;quantity&gt; &lt;unit
+        ///     &gt;".
+        /// </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static RotationalSpeed Parse(string str, IFormatProvider formatProvider = null)
+        {
+            if (str == null) throw new ArgumentNullException("str");
+            string[] words = str.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length < 2)
+            {
+                var ex = new ArgumentException(
+                    "Expected two or more words. Input string needs to be in the format \"<quantity> <unit>\".", "str");
+                ex.Data["input"] = str;
+                ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                throw ex;
+            }
+
+            try
+            {
+                // Unit string is the last word, since units added so far don't contain spaces.
+                // Value string is everything else since number formatting can contain spaces.
+                string[] allWordsButLast = words.Take(words.Length - 1).ToArray();
+                string lastWord = words[words.Length - 1];
+
+                string unitString = lastWord;
+                string valueString = string.Join(" ", allWordsButLast);
+
+                var unitSystem = UnitSystem.GetCached(formatProvider);
+
+                RotationalSpeedUnit unit = unitSystem.Parse<RotationalSpeedUnit>(unitString);
+                double value = double.Parse(valueString, formatProvider);
+
+                return From(value, unit);
+            }
+            catch (Exception e)
+            {
+                var newEx = new UnitsNetException("Error parsing string.", e);
+                newEx.Data["input"] = str;
+                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                throw newEx;
+            }
+        }
+
+        #endregion
+
         /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
@@ -261,7 +316,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-		/// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
