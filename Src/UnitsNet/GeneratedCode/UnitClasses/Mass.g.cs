@@ -144,6 +144,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass in Ounces.
+        /// </summary>
+        public double Ounces
+        {
+            get { return _kilograms*35.2739619; }
+        }
+
+        /// <summary>
         ///     Get Mass in Pounds.
         /// </summary>
         public double Pounds
@@ -273,6 +281,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass from Ounces.
+        /// </summary>
+        public static Mass FromOunces(double ounces)
+        {
+            return new Mass(ounces/35.2739619);
+        }
+
+        /// <summary>
         ///     Get Mass from Pounds.
         /// </summary>
         public static Mass FromPounds(double pounds)
@@ -331,6 +347,8 @@ namespace UnitsNet
                     return FromMilligrams(value);
                 case MassUnit.Nanogram:
                     return FromNanograms(value);
+                case MassUnit.Ounce:
+                    return FromOunces(value);
                 case MassUnit.Pound:
                     return FromPounds(value);
                 case MassUnit.ShortTon:
@@ -494,6 +512,8 @@ namespace UnitsNet
                     return Milligrams;
                 case MassUnit.Nanogram:
                     return Nanograms;
+                case MassUnit.Ounce:
+                    return Ounces;
                 case MassUnit.Pound:
                     return Pounds;
                 case MassUnit.ShortTon:

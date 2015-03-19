@@ -699,6 +699,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "ng"),
                                 new AbbreviationsForCulture("ru-RU", "нг"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.Ounce,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "oz"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.Pound,
                             new[]
                             {

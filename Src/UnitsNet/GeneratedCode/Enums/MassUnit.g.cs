@@ -44,6 +44,12 @@ namespace UnitsNet.Units
         Nanogram,
         
         /// <summary>
+        ///     An ounce (abbreviated oz) is usually the international avoirdupois ounce as used in the United States customary and British imperial systems, which is equal to one-sixteenth of a pound or approximately 28 grams. The abbreviation 'oz' derives from the Italian word onza (now spelled oncia).
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Ounce</remarks>
+        Ounce,
+        
+        /// <summary>
         ///     The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.
         /// </summary>
         Pound,

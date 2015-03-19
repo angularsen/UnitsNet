@@ -48,6 +48,7 @@ namespace UnitsNet.Tests
         protected abstract double MicrogramsInOneKilogram { get; }
         protected abstract double MilligramsInOneKilogram { get; }
         protected abstract double NanogramsInOneKilogram { get; }
+        protected abstract double OuncesInOneKilogram { get; }
         protected abstract double PoundsInOneKilogram { get; }
         protected abstract double ShortTonsInOneKilogram { get; }
         protected abstract double TonnesInOneKilogram { get; }
@@ -65,6 +66,7 @@ namespace UnitsNet.Tests
         protected virtual double MicrogramsTolerance { get { return 1e-5; } }
         protected virtual double MilligramsTolerance { get { return 1e-5; } }
         protected virtual double NanogramsTolerance { get { return 1e-5; } }
+        protected virtual double OuncesTolerance { get { return 1e-5; } }
         protected virtual double PoundsTolerance { get { return 1e-5; } }
         protected virtual double ShortTonsTolerance { get { return 1e-5; } }
         protected virtual double TonnesTolerance { get { return 1e-5; } }
@@ -86,6 +88,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MicrogramsInOneKilogram, kilogram.Micrograms, MicrogramsTolerance);
             Assert.AreEqual(MilligramsInOneKilogram, kilogram.Milligrams, MilligramsTolerance);
             Assert.AreEqual(NanogramsInOneKilogram, kilogram.Nanograms, NanogramsTolerance);
+            Assert.AreEqual(OuncesInOneKilogram, kilogram.Ounces, OuncesTolerance);
             Assert.AreEqual(PoundsInOneKilogram, kilogram.Pounds, PoundsTolerance);
             Assert.AreEqual(ShortTonsInOneKilogram, kilogram.ShortTons, ShortTonsTolerance);
             Assert.AreEqual(TonnesInOneKilogram, kilogram.Tonnes, TonnesTolerance);
@@ -106,6 +109,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Mass.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
             Assert.AreEqual(1, Mass.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
             Assert.AreEqual(1, Mass.From(1, MassUnit.Nanogram).Nanograms, NanogramsTolerance);
+            Assert.AreEqual(1, Mass.From(1, MassUnit.Ounce).Ounces, OuncesTolerance);
             Assert.AreEqual(1, Mass.From(1, MassUnit.Pound).Pounds, PoundsTolerance);
             Assert.AreEqual(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
             Assert.AreEqual(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
@@ -127,6 +131,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), MicrogramsTolerance);
             Assert.AreEqual(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), MilligramsTolerance);
             Assert.AreEqual(NanogramsInOneKilogram, kilogram.As(MassUnit.Nanogram), NanogramsTolerance);
+            Assert.AreEqual(OuncesInOneKilogram, kilogram.As(MassUnit.Ounce), OuncesTolerance);
             Assert.AreEqual(PoundsInOneKilogram, kilogram.As(MassUnit.Pound), PoundsTolerance);
             Assert.AreEqual(ShortTonsInOneKilogram, kilogram.As(MassUnit.ShortTon), ShortTonsTolerance);
             Assert.AreEqual(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), TonnesTolerance);
@@ -148,6 +153,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
             Assert.AreEqual(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
             Assert.AreEqual(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
+            Assert.AreEqual(1, Mass.FromOunces(kilogram.Ounces).Kilograms, OuncesTolerance);
             Assert.AreEqual(1, Mass.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
             Assert.AreEqual(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
             Assert.AreEqual(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
