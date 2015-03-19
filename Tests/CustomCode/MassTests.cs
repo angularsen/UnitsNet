@@ -98,6 +98,11 @@ namespace UnitsNet.Tests.CustomCode
             get { return 2.2046226218487757d; }
         }
 
+        protected override double OuncesInOneKilogram
+        {
+            get { return 35.2739619; }
+        }
+
         protected override double TonnesInOneKilogram
         {
             get { return 1E-3; }
