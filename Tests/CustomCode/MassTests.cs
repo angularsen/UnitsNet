@@ -88,9 +88,9 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1E-3; }
         }
 
-        protected override double ShortTonsInOneKilogram
+        protected override double OuncesInOneKilogram
         {
-            get { return 0.00110231; }
+            get { return 35.2739619; }
         }
 
         protected override double PoundsInOneKilogram
@@ -98,9 +98,9 @@ namespace UnitsNet.Tests.CustomCode
             get { return 2.2046226218487757d; }
         }
 
-        protected override double OuncesInOneKilogram
+        protected override double ShortTonsInOneKilogram
         {
-            get { return 35.2739619; }
+            get { return 0.00110231; }
         }
 
         protected override double TonnesInOneKilogram

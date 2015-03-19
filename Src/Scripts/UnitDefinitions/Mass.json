@@ -94,7 +94,7 @@
             "FromUnitToBaseFunc": "x/35.2739619",
             "FromBaseToUnitFunc": "x*35.2739619",
             "XmlDocSummary": "An ounce (abbreviated oz) is usually the international avoirdupois ounce as used in the United States customary and British imperial systems, which is equal to one-sixteenth of a pound or approximately 28 grams. The abbreviation 'oz' derives from the Italian word onza (now spelled oncia).",
-			"XmlDocRemarks": "http://en.wikipedia.org/wiki/Ounce",
+            "XmlDocRemarks": "http://en.wikipedia.org/wiki/Ounce",
             "Localization": [
                 {
                     "Culture": "en-US",
