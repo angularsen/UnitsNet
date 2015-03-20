@@ -21,9 +21,11 @@
 
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+
 
 // ReSharper disable once CheckNamespace
 
@@ -445,11 +447,22 @@ namespace UnitsNet
         public static Power Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            string[] words = str.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-            if (words.Length < 2)
+
+            const string regexString = @"\s*"                                               // ignore leading whitespace
+                                     + @"(?<value>[-+]?[., \d]*\d(?:[eE][-+]?[., \d]*\d)?)" // capture Quantity input
+                                     + @"\s?"                                               // ignore whitespace (if any)
+                                     + @"(?<unit>\S+)"                                      // capture Unit (non-whitespace) input
+                                     + @"\s*";                                              // ignore trailing whitespace
+            var regex = new Regex(regexString);
+            GroupCollection groups = regex.Match(str).Groups;
+
+            var valueString = groups["value"].Value;
+            var unitString = groups["unit"].Value;
+
+            if (valueString == "" || unitString == "")
             {
                 var ex = new ArgumentException(
-                    "Expected two or more words. Input string needs to be in the format \"<quantity> <unit>\".", "str");
+                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity> <unit>\".", "str");
                 ex.Data["input"] = str;
                 ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw ex;
@@ -457,14 +470,6 @@ namespace UnitsNet
 
             try
             {
-                // Unit string is the last word, since units added so far don't contain spaces.
-                // Value string is everything else since number formatting can contain spaces.
-                string[] allWordsButLast = words.Take(words.Length - 1).ToArray();
-                string lastWord = words[words.Length - 1];
-
-                string unitString = lastWord;
-                string valueString = string.Join(" ", allWordsButLast);
-
                 var unitSystem = UnitSystem.GetCached(formatProvider);
 
                 PowerUnit unit = unitSystem.Parse<PowerUnit>(unitString);
