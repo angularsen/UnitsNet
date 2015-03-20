@@ -748,11 +748,19 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            const string regexString = @"\s*"                                               // ignore leading whitespace
-                                     + @"(?<value>[-+]?[., \d]*\d(?:[eE][-+]?[., \d]*\d)?)" // capture Quantity input
-                                     + @"\s?"                                               // ignore whitespace (if any)
-                                     + @"(?<unit>\S+)"                                      // capture Unit (non-whitespace) input
-                                     + @"\s*";                                              // ignore trailing whitespace
+            var numFormat = formatProvider != null ?
+                (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
+                (NumberFormatInfo) CultureInfo.CurrentCulture.NumberFormat.Clone();
+
+            var numRegex = @"[\d., "                        // allows digits, dots, commas, and spaces in the number by default
+                         + numFormat.NumberGroupSeparator   // adds provided (or current) culture's group separator
+                         + numFormat.NumberDecimalSeparator // adds provided (or current) culture's group separator
+                         + @"]*\d";                         // ensures quantity ends in digit
+            var regexString = @"\s*"                                                             // ignore leading whitespace
+                            + @"(?<value>[-+]?" + numRegex + @"(?:[eE][-+]?" + numRegex + @")?)" // capture Quantity input
+                            + @"\s?"                                                             // ignore whitespace (if any)
+                            + @"(?<unit>\S+)"                                                    // capture Unit (non-whitespace) input
+                            + @"\s*";                                                            // ignore trailing whitespace
             var regex = new Regex(regexString);
             GroupCollection groups = regex.Match(str).Groups;
 
