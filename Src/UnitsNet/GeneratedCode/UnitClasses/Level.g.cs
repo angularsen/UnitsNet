@@ -26,7 +26,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -282,15 +281,14 @@ namespace UnitsNet
 
             var numRegex = @"[\d., "                        // allows digits, dots, commas, and spaces in the number by default
                          + numFormat.NumberGroupSeparator   // adds provided (or current) culture's group separator
-                         + numFormat.NumberDecimalSeparator // adds provided (or current) culture's group separator
+                         + numFormat.NumberDecimalSeparator // adds provided (or current) culture's decimal separator
                          + @"]*\d";                         // ensures quantity ends in digit
-            var regexString = @"\s*"                                                             // ignore leading whitespace
-                            + @"(?<value>[-+]?" + numRegex + @"(?:[eE][-+]?" + numRegex + @")?)" // capture Quantity input
-                            + @"\s?"                                                             // ignore whitespace (if any)
-                            + @"(?<unit>\S+)"                                                    // capture Unit (non-whitespace) input
-                            + @"\s*";                                                            // ignore trailing whitespace
+            var regexString = @"(?<value>[-+]?" + numRegex + @"(?:[eE][-+]?\d+)?)" // capture Quantity input
+                            + @"\s?"                                               // ignore whitespace (allows both "1kg", "1 kg")
+                            + @"(?<unit>\S+)";                                     // capture Unit (non-whitespace) input
+
             var regex = new Regex(regexString);
-            GroupCollection groups = regex.Match(str).Groups;
+            GroupCollection groups = regex.Match(str.Trim()).Groups;
 
             var valueString = groups["value"].Value;
             var unitString = groups["unit"].Value;
@@ -298,7 +296,7 @@ namespace UnitsNet
             if (valueString == "" || unitString == "")
             {
                 var ex = new ArgumentException(
-                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity> <unit>\".", "str");
+                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
                 ex.Data["input"] = str;
                 ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw ex;
