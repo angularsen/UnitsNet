@@ -22,6 +22,7 @@
 using System;
 using System.Globalization;
 using NUnit.Framework;
+using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -67,7 +68,7 @@ namespace UnitsNet.Tests.CustomCode
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         [TestCase("5,5 m", Result = 5.5)]
         [TestCase("500.005.050,001 m", Result = 500005050.001)]
-        [TestCase("5.5 m", Result = 55)] // dot is group separator not decimal
+        [TestCase("5.555 m", Result = 5555)] // dot is group separator not decimal
         [TestCase("500 005 m", ExpectedExceptionName = "UnitsNet.UnitsNetException")] // quantity doesn't match number format
         public double ParseWithCultureUsingDotAsThousandSeparators(string s)
         {
@@ -76,6 +77,16 @@ namespace UnitsNet.Tests.CustomCode
             numberFormat.NumberDecimalSeparator = ",";
 
             return Length.Parse(s, numberFormat).Meters;
+        }
+
+        [TestCase("m", Result = LengthUnit.Meter)]
+        [TestCase("kg", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
+        [TestCase(null, ExpectedExceptionName = "System.ArgumentNullException")]
+        public LengthUnit ParseLengthUnitUsEnglish(string s)
+        {
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
+
+            return Length.ParseUnit(s, usEnglish);
         }
     }
 }
