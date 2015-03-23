@@ -749,7 +749,7 @@ namespace UnitsNet
 
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
-                (NumberFormatInfo) CultureInfo.CurrentCulture.NumberFormat.Clone();
+                NumberFormatInfo.CurrentInfo;
 
             var numRegex = @"[\d., "                        // allows digits, dots, commas, and spaces in the number by default
                          + numFormat.NumberGroupSeparator   // adds provided (or current) culture's group separator
@@ -776,9 +776,7 @@ namespace UnitsNet
 
             try
             {
-                var unitSystem = UnitSystem.GetCached(formatProvider);
-
-                InformationUnit unit = unitSystem.Parse<InformationUnit>(unitString);
+                InformationUnit unit = ParseUnit(unitString, formatProvider);
                 double value = double.Parse(valueString, formatProvider);
 
                 return From(value, unit);
@@ -790,6 +788,32 @@ namespace UnitsNet
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static InformationUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        {
+            if (str == null) throw new ArgumentNullException("str");
+            var unitSystem = UnitSystem.GetCached(formatProvider);
+
+            var unit = unitSystem.Parse<InformationUnit>(str.Trim());
+
+            if (unit == InformationUnit.Undefined)
+            {
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized InformationUnit.");
+                newEx.Data["input"] = str;
+                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                throw newEx;
+            }
+
+            return unit;
         }
 
         #endregion
