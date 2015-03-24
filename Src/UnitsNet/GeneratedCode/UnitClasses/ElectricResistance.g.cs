@@ -291,17 +291,14 @@ namespace UnitsNet
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
 
-            var numRegex = string.Format("{0}{1}{2}{3}",
-                                @"[\d., ",                        // allows digits, dots, commas, and spaces in the number by default
-                                numFormat.NumberGroupSeparator,   // adds provided (or current) culture's group separator
-                                numFormat.NumberDecimalSeparator, // adds provided (or current) culture's decimal separator
-                                @"]*\d");                         // ensures quantity ends in digit
-            var regexString = string.Format("{0}{1}{2}{3}{4}",
-                                @"(?<value>[-+]?",                // start capturing Quantity
-                                numRegex,                         // parse base (integral) Quantity value
-                                @"(?:[eE][-+]?\d+)?)",            // capture Quantity exponential (if any), end capturing Quantity
-                                @"\s?",                           // ignore whitespace (allows both "1kg", "1 kg")
-                                @"(?<unit>\S+)");                 // capture Unit (non-whitespace) input
+            var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
+                            numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
+                            numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
+            var regexString = string.Format("(?<value>[-+]?{0}{1}{2}{3}",
+                            numRegex,              // capture base (integral) Quantity value
+                            @"(?:[eE][-+]?\d+)?)", // capture exponential (if any), end of Quantity capturing
+                            @"\s?",                // ignore whitespace (allows both "1kg", "1 kg")
+                            @"(?<unit>\S+)");      // capture Unit (non-whitespace) input
 
             var regex = new Regex(regexString);
             GroupCollection groups = regex.Match(str.Trim()).Groups;
