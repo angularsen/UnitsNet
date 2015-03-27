@@ -19,33 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System.Reflection;
-using System.Resources;
-
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-
-[assembly: AssemblyTitle("UnitsNet")]
-[assembly:
-    AssemblyDescription(
-        "Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation."
-        )]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Initial Force AS")]
-[assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-
-[assembly: AssemblyVersion("3.7.0")]
-[assembly: AssemblyFileVersion("3.7.0")]
+// ReSharper disable once CheckNamespace
+namespace UnitsNet.Units
+{
+    public enum DensityUnit
+    {
+        Undefined = 0,
+        KilogramPerCubicMeter,
+    }
+}

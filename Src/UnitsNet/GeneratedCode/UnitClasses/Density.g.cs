@@ -31,187 +31,61 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
+    ///     The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Temperature : IComparable, IComparable<Temperature>
+    public partial struct Density : IComparable, IComparable<Density>
     {
         /// <summary>
-        ///     Base unit of Temperature.
+        ///     Base unit of Density.
         /// </summary>
-        private readonly double _kelvins;
+        private readonly double _kilogramPerCubicMeter;
 
-        public Temperature(double kelvins) : this()
+        public Density(double kilogrampercubicmeter) : this()
         {
-            _kelvins = kelvins;
+            _kilogramPerCubicMeter = kilogrampercubicmeter;
         }
 
         #region Properties
 
         /// <summary>
-        ///     Get Temperature in DegreesCelsius.
+        ///     Get Density in KilogramPerCubicMeter.
         /// </summary>
-        public double DegreesCelsius
+        public double KilogramPerCubicMeter
         {
-            get { return _kelvins - 273.15; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesDelisle.
-        /// </summary>
-        public double DegreesDelisle
-        {
-            get { return (_kelvins - 373.15)*-3/2; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesFahrenheit.
-        /// </summary>
-        public double DegreesFahrenheit
-        {
-            get { return (_kelvins - 459.67*5/9)*9/5; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesNewton.
-        /// </summary>
-        public double DegreesNewton
-        {
-            get { return (_kelvins - 273.15)*33/100; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesRankine.
-        /// </summary>
-        public double DegreesRankine
-        {
-            get { return _kelvins*9/5; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesReaumur.
-        /// </summary>
-        public double DegreesReaumur
-        {
-            get { return (_kelvins - 273.15)*4/5; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in DegreesRoemer.
-        /// </summary>
-        public double DegreesRoemer
-        {
-            get { return (_kelvins - (273.15 - 7.5*40d/21))*21/40; }
-        }
-
-        /// <summary>
-        ///     Get Temperature in Kelvins.
-        /// </summary>
-        public double Kelvins
-        {
-            get { return _kelvins; }
+            get { return _kilogramPerCubicMeter; }
         }
 
         #endregion
 
         #region Static 
 
-        public static Temperature Zero
+        public static Density Zero
         {
-            get { return new Temperature(); }
+            get { return new Density(); }
         }
 
         /// <summary>
-        ///     Get Temperature from DegreesCelsius.
+        ///     Get Density from KilogramPerCubicMeter.
         /// </summary>
-        public static Temperature FromDegreesCelsius(double degreescelsius)
+        public static Density FromKilogramPerCubicMeter(double kilogrampercubicmeter)
         {
-            return new Temperature(degreescelsius + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesDelisle.
-        /// </summary>
-        public static Temperature FromDegreesDelisle(double degreesdelisle)
-        {
-            return new Temperature(degreesdelisle*-2/3 + 373.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesFahrenheit.
-        /// </summary>
-        public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
-        {
-            return new Temperature(degreesfahrenheit*5/9 + 459.67*5/9);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesNewton.
-        /// </summary>
-        public static Temperature FromDegreesNewton(double degreesnewton)
-        {
-            return new Temperature(degreesnewton*100/33 + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRankine.
-        /// </summary>
-        public static Temperature FromDegreesRankine(double degreesrankine)
-        {
-            return new Temperature(degreesrankine*5/9);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesReaumur.
-        /// </summary>
-        public static Temperature FromDegreesReaumur(double degreesreaumur)
-        {
-            return new Temperature(degreesreaumur*5/4 + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRoemer.
-        /// </summary>
-        public static Temperature FromDegreesRoemer(double degreesroemer)
-        {
-            return new Temperature(degreesroemer*40/21 + 273.15 - 7.5*40d/21);
-        }
-
-        /// <summary>
-        ///     Get Temperature from Kelvins.
-        /// </summary>
-        public static Temperature FromKelvins(double kelvins)
-        {
-            return new Temperature(kelvins);
+            return new Density(kilogrampercubicmeter);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
+        ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Temperature unit value.</returns>
-        public static Temperature From(double value, TemperatureUnit fromUnit)
+        /// <returns>Density unit value.</returns>
+        public static Density From(double value, DensityUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case TemperatureUnit.DegreeCelsius:
-                    return FromDegreesCelsius(value);
-                case TemperatureUnit.DegreeDelisle:
-                    return FromDegreesDelisle(value);
-                case TemperatureUnit.DegreeFahrenheit:
-                    return FromDegreesFahrenheit(value);
-                case TemperatureUnit.DegreeNewton:
-                    return FromDegreesNewton(value);
-                case TemperatureUnit.DegreeRankine:
-                    return FromDegreesRankine(value);
-                case TemperatureUnit.DegreeReaumur:
-                    return FromDegreesReaumur(value);
-                case TemperatureUnit.DegreeRoemer:
-                    return FromDegreesRoemer(value);
-                case TemperatureUnit.Kelvin:
-                    return FromKelvins(value);
+                case DensityUnit.KilogramPerCubicMeter:
+                    return FromKilogramPerCubicMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -225,7 +99,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(TemperatureUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(DensityUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -234,39 +108,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static Temperature operator -(Temperature right)
+        public static Density operator -(Density right)
         {
-            return new Temperature(-right._kelvins);
+            return new Density(-right._kilogramPerCubicMeter);
         }
 
-        public static Temperature operator +(Temperature left, Temperature right)
+        public static Density operator +(Density left, Density right)
         {
-            return new Temperature(left._kelvins + right._kelvins);
+            return new Density(left._kilogramPerCubicMeter + right._kilogramPerCubicMeter);
         }
 
-        public static Temperature operator -(Temperature left, Temperature right)
+        public static Density operator -(Density left, Density right)
         {
-            return new Temperature(left._kelvins - right._kelvins);
+            return new Density(left._kilogramPerCubicMeter - right._kilogramPerCubicMeter);
         }
 
-        public static Temperature operator *(double left, Temperature right)
+        public static Density operator *(double left, Density right)
         {
-            return new Temperature(left*right._kelvins);
+            return new Density(left*right._kilogramPerCubicMeter);
         }
 
-        public static Temperature operator *(Temperature left, double right)
+        public static Density operator *(Density left, double right)
         {
-            return new Temperature(left._kelvins*(double)right);
+            return new Density(left._kilogramPerCubicMeter*(double)right);
         }
 
-        public static Temperature operator /(Temperature left, double right)
+        public static Density operator /(Density left, double right)
         {
-            return new Temperature(left._kelvins/(double)right);
+            return new Density(left._kilogramPerCubicMeter/(double)right);
         }
 
-        public static double operator /(Temperature left, Temperature right)
+        public static double operator /(Density left, Density right)
         {
-            return Convert.ToDouble(left._kelvins/right._kelvins);
+            return Convert.ToDouble(left._kilogramPerCubicMeter/right._kilogramPerCubicMeter);
         }
 
         #endregion
@@ -276,45 +150,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Temperature)) throw new ArgumentException("Expected type Temperature.", "obj");
-            return CompareTo((Temperature) obj);
+            if (!(obj is Density)) throw new ArgumentException("Expected type Density.", "obj");
+            return CompareTo((Density) obj);
         }
 
-        public int CompareTo(Temperature other)
+        public int CompareTo(Density other)
         {
-            return _kelvins.CompareTo(other._kelvins);
+            return _kilogramPerCubicMeter.CompareTo(other._kilogramPerCubicMeter);
         }
 
-        public static bool operator <=(Temperature left, Temperature right)
+        public static bool operator <=(Density left, Density right)
         {
-            return left._kelvins <= right._kelvins;
+            return left._kilogramPerCubicMeter <= right._kilogramPerCubicMeter;
         }
 
-        public static bool operator >=(Temperature left, Temperature right)
+        public static bool operator >=(Density left, Density right)
         {
-            return left._kelvins >= right._kelvins;
+            return left._kilogramPerCubicMeter >= right._kilogramPerCubicMeter;
         }
 
-        public static bool operator <(Temperature left, Temperature right)
+        public static bool operator <(Density left, Density right)
         {
-            return left._kelvins < right._kelvins;
+            return left._kilogramPerCubicMeter < right._kilogramPerCubicMeter;
         }
 
-        public static bool operator >(Temperature left, Temperature right)
+        public static bool operator >(Density left, Density right)
         {
-            return left._kelvins > right._kelvins;
+            return left._kilogramPerCubicMeter > right._kilogramPerCubicMeter;
         }
 
-        public static bool operator ==(Temperature left, Temperature right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kelvins == right._kelvins;
-        }
-
-        public static bool operator !=(Temperature left, Temperature right)
+        public static bool operator ==(Density left, Density right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kelvins != right._kelvins;
+            return left._kilogramPerCubicMeter == right._kilogramPerCubicMeter;
+        }
+
+        public static bool operator !=(Density left, Density right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._kilogramPerCubicMeter != right._kilogramPerCubicMeter;
         }
 
         public override bool Equals(object obj)
@@ -324,12 +198,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kelvins.Equals(((Temperature) obj)._kelvins);
+            return _kilogramPerCubicMeter.Equals(((Density) obj)._kilogramPerCubicMeter);
         }
 
         public override int GetHashCode()
         {
-            return _kelvins.GetHashCode();
+            return _kilogramPerCubicMeter.GetHashCode();
         }
 
         #endregion
@@ -341,26 +215,12 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(TemperatureUnit unit)
+        public double As(DensityUnit unit)
         {
             switch (unit)
             {
-                case TemperatureUnit.DegreeCelsius:
-                    return DegreesCelsius;
-                case TemperatureUnit.DegreeDelisle:
-                    return DegreesDelisle;
-                case TemperatureUnit.DegreeFahrenheit:
-                    return DegreesFahrenheit;
-                case TemperatureUnit.DegreeNewton:
-                    return DegreesNewton;
-                case TemperatureUnit.DegreeRankine:
-                    return DegreesRankine;
-                case TemperatureUnit.DegreeReaumur:
-                    return DegreesReaumur;
-                case TemperatureUnit.DegreeRoemer:
-                    return DegreesRoemer;
-                case TemperatureUnit.Kelvin:
-                    return Kelvins;
+                case DensityUnit.KilogramPerCubicMeter:
+                    return KilogramPerCubicMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -383,7 +243,7 @@ namespace UnitsNet
         ///     &gt;".
         /// </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static Temperature Parse(string str, IFormatProvider formatProvider = null)
+        public static Density Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -417,7 +277,7 @@ namespace UnitsNet
 
             try
             {
-                TemperatureUnit unit = ParseUnit(unitString, formatProvider);
+                DensityUnit unit = ParseUnit(unitString, formatProvider);
                 double value = double.Parse(valueString, formatProvider);
 
                 return From(value, unit);
@@ -439,16 +299,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static TemperatureUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static DensityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<TemperatureUnit>(str.Trim());
+            var unit = unitSystem.Parse<DensityUnit>(str.Trim());
 
-            if (unit == TemperatureUnit.Undefined)
+            if (unit == DensityUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized TemperatureUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized DensityUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -465,7 +325,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(TemperatureUnit.Kelvin);
+            return ToString(DensityUnit.KilogramPerCubicMeter);
         }
 
         /// <summary>
@@ -476,7 +336,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(TemperatureUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(DensityUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -490,7 +350,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(TemperatureUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(DensityUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }

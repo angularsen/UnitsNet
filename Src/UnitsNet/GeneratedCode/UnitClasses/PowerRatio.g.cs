@@ -21,6 +21,7 @@
 
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -273,11 +274,30 @@ namespace UnitsNet
         public static PowerRatio Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            string[] words = str.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-            if (words.Length < 2)
+
+            var numFormat = formatProvider != null ?
+                (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
+                NumberFormatInfo.CurrentInfo;
+
+            var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
+                            numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
+                            numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
+            var regexString = string.Format("(?<value>[-+]?{0}{1}{2}{3}",
+                            numRegex,              // capture base (integral) Quantity value
+                            @"(?:[eE][-+]?\d+)?)", // capture exponential (if any), end of Quantity capturing
+                            @"\s?",                // ignore whitespace (allows both "1kg", "1 kg")
+                            @"(?<unit>\S+)");      // capture Unit (non-whitespace) input
+
+            var regex = new Regex(regexString);
+            GroupCollection groups = regex.Match(str.Trim()).Groups;
+
+            var valueString = groups["value"].Value;
+            var unitString = groups["unit"].Value;
+
+            if (valueString == "" || unitString == "")
             {
                 var ex = new ArgumentException(
-                    "Expected two or more words. Input string needs to be in the format \"<quantity> <unit>\".", "str");
+                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
                 ex.Data["input"] = str;
                 ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw ex;
@@ -285,17 +305,7 @@ namespace UnitsNet
 
             try
             {
-                // Unit string is the last word, since units added so far don't contain spaces.
-                // Value string is everything else since number formatting can contain spaces.
-                string[] allWordsButLast = words.Take(words.Length - 1).ToArray();
-                string lastWord = words[words.Length - 1];
-
-                string unitString = lastWord;
-                string valueString = string.Join(" ", allWordsButLast);
-
-                var unitSystem = UnitSystem.GetCached(formatProvider);
-
-                PowerRatioUnit unit = unitSystem.Parse<PowerRatioUnit>(unitString);
+                PowerRatioUnit unit = ParseUnit(unitString, formatProvider);
                 double value = double.Parse(valueString, formatProvider);
 
                 return From(value, unit);
@@ -307,6 +317,32 @@ namespace UnitsNet
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static PowerRatioUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        {
+            if (str == null) throw new ArgumentNullException("str");
+            var unitSystem = UnitSystem.GetCached(formatProvider);
+
+            var unit = unitSystem.Parse<PowerRatioUnit>(str.Trim());
+
+            if (unit == PowerRatioUnit.Undefined)
+            {
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PowerRatioUnit.");
+                newEx.Data["input"] = str;
+                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                throw newEx;
+            }
+
+            return unit;
         }
 
         #endregion
