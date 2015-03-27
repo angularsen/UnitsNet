@@ -26,6 +26,13 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
-        // TODO Override properties in base class here
+        #region Overrides of DensityTestsBase
+
+        protected override double KilogramPerCubicMeterInOneKilogramPerCubicMeter
+        {
+            get { return 1; }
+        }
+
+        #endregion
     }
 }
