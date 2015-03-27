@@ -142,6 +142,16 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
                     }),
+                new UnitLocalization(typeof (DensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m³"),
+                                new AbbreviationsForCulture("ru-RU", "кг/м³"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (DurationUnit),
                     new[]
                     {
