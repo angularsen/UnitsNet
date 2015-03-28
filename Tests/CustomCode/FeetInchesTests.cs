@@ -6,7 +6,7 @@ namespace UnitsNet.Tests.CustomCode
     public class FeetInchesTests : LengthTests
     {
         [Test]
-        public void FeeInchesRoundTrip()
+        public void FeetInchesRoundTrip()
         {
             Length meter = Length.FromFeetInches(3, 7);
             Length.FeetInchesCombo feetInches = meter.FeetInches;
@@ -15,7 +15,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
-        public void FeeInchesFrom()
+        public void FeetInchesFrom()
         {
             Length meter = Length.FromFeetInches(3, 7);
             double expectedMeters = (3 / FeetInOneMeter) + (7 / InchesInOneMeter);
