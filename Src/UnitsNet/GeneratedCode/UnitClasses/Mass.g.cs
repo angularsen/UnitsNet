@@ -168,6 +168,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass in Stone.
+        /// </summary>
+        public double Stone
+        {
+            get { return _kilograms*0.1574731728702698; }
+        }
+
+        /// <summary>
         ///     Get Mass in Tonnes.
         /// </summary>
         public double Tonnes
@@ -305,6 +313,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass from Stone.
+        /// </summary>
+        public static Mass FromStone(double stone)
+        {
+            return new Mass(stone/0.1574731728702698);
+        }
+
+        /// <summary>
         ///     Get Mass from Tonnes.
         /// </summary>
         public static Mass FromTonnes(double tonnes)
@@ -353,6 +369,8 @@ namespace UnitsNet
                     return FromPounds(value);
                 case MassUnit.ShortTon:
                     return FromShortTons(value);
+                case MassUnit.Stone:
+                    return FromStone(value);
                 case MassUnit.Tonne:
                     return FromTonnes(value);
 
@@ -518,6 +536,8 @@ namespace UnitsNet
                     return Pounds;
                 case MassUnit.ShortTon:
                     return ShortTons;
+                case MassUnit.Stone:
+                    return Stone;
                 case MassUnit.Tonne:
                     return Tonnes;
 

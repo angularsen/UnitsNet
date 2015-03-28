@@ -59,6 +59,12 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         ShortTon,
+        
+        /// <summary>
+        ///     The stone (abbreviation st) is a unit of mass equal to 14 pounds avoirdupois (about 6.35 kilograms) used in Great Britain and Ireland for measuring human body weight.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Stone_(unit)</remarks>
+        Stone,
         Tonne,
     }
 }
