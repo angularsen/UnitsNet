@@ -8,7 +8,7 @@ namespace UnitsNet.Tests.CustomCode
         private const double StoneInOneKilogram = 0.1574731728702698;
         private const double PoundsInOneKilogram = 2.2046226218487757d;
         private const double StoneTolerance = 1e-5;
-        private const double PoundsTolerance = 1e-5;
+        private const double PoundsTolerance = 1e-4;
 
         [Test]
         public void StonePoundsRoundTrip()
