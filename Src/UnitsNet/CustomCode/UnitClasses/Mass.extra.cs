@@ -83,7 +83,7 @@ namespace UnitsNet
             string stoneUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Stone);
             string poundUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Pound);
 
-            return string.Format((cultureInfo == null) ? CultureInfo.CurrentUICulture : cultureInfo, "{0} {1} {2} {3}", Stone, stoneUnit, Math.Round(Pounds), poundUnit);
+            return string.Format((cultureInfo == null) ? CultureInfo.CurrentCulture : cultureInfo, "{0} {1} {2} {3}", Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }
 }
