@@ -101,6 +101,20 @@
                     "Abbreviations": ["oz"]
                 }
             ]
+        },
+        {
+            "SingularName": "Stone",
+            "PluralName": "Stone",
+            "FromUnitToBaseFunc": "x/0.1574731728702698",
+            "FromBaseToUnitFunc": "x*0.1574731728702698",
+            "XmlDocSummary": "The stone (abbreviation st) is a unit of mass equal to 14 pounds avoirdupois (about 6.35 kilograms) used in Great Britain and Ireland for measuring human body weight.",
+            "XmlDocRemarks": "http://en.wikipedia.org/wiki/Stone_(unit)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["st"]
+                }
+            ]
         }
     ]
 }

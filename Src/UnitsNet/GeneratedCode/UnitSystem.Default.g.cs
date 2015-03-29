@@ -725,6 +725,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "short tn"),
                                 new AbbreviationsForCulture("ru-RU", "тонна малая"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.Stone,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "st"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.Tonne,
                             new[]
                             {

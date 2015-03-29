@@ -103,6 +103,11 @@ namespace UnitsNet.Tests.CustomCode
             get { return 0.00110231; }
         }
 
+        protected override double StoneInOneKilogram
+        {
+            get { return 0.1574731728702698; }
+        }
+
         protected override double TonnesInOneKilogram
         {
             get { return 1E-3; }

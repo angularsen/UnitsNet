@@ -148,6 +148,9 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
             Assert.AreEqual("1 Nm", Torque.FromNewtonmeters(1).ToString());
             Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
+
+            Assert.AreEqual("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
+            Assert.AreEqual("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
         }
 
         [Test]
@@ -263,6 +266,11 @@ namespace UnitsNet.Tests
         public void CommaDigitGroupingCultureFormatting(string culture)
         {
             Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+
+            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
+            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
+            Assert.AreEqual("2,222 ft 3 in", Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
+            Assert.AreEqual("3,333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
         }
 
         // These cultures use a thin space in digit grouping
