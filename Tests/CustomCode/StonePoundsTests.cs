@@ -9,7 +9,7 @@ namespace UnitsNet.Tests.CustomCode
         public void StonePoundsRoundTrip()
         {
             Mass m = Mass.FromStonePounds(3, 7);
-            Mass.StonePoundsCombo stonePounds = m.StonePounds;
+            StonePounds stonePounds = m.StonePounds;
             Assert.AreEqual(3, stonePounds.Stone, StoneTolerance);
             Assert.AreEqual(7, stonePounds.Pounds, PoundsTolerance);
         }

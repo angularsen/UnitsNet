@@ -9,7 +9,7 @@ namespace UnitsNet.Tests.CustomCode
         public void FeetInchesRoundTrip()
         {
             Length meter = Length.FromFeetInches(3, 7);
-            Length.FeetInchesCombo feetInches = meter.FeetInches;
+            FeetInches feetInches = meter.FeetInches;
             Assert.AreEqual(3, feetInches.Feet, FeetTolerance);
             Assert.AreEqual(7, feetInches.Inches, InchesTolerance);
         }
