@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using UnitsNet.Units;
@@ -58,7 +59,7 @@ namespace UnitsNet
             string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
             string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
 
-            return string.Format("{0} {1} {2} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
+            return string.Format((cultureInfo == null) ? CultureInfo.CurrentUICulture : cultureInfo, "{0} {1} {2} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
         }
     }
 }
