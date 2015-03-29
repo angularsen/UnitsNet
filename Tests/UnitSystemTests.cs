@@ -148,6 +148,9 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
             Assert.AreEqual("1 Nm", Torque.FromNewtonmeters(1).ToString());
             Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
+
+            Assert.AreEqual("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
+            Assert.AreEqual("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
         }
 
         [Test]
