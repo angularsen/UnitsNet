@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -72,14 +73,16 @@ namespace UnitsNet
             Pounds = pounds;
         }
 
-        public override string ToString()
+        public string ToString(IFormatProvider cultureInfo = null)
         {
-            // Stone/pounds combos are only used in the UK. So should be safe to use English text
-            // here.
-            /// 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
-            return string.Format("{0} st {1} lb", Stone, Math.Round(Pounds));
+
+            var unitSystem = UnitSystem.GetCached(cultureInfo);
+            string stoneUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Stone);
+            string poundUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Pound);
+
+            return string.Format("{0} {1} {2} {3}", Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }
 }

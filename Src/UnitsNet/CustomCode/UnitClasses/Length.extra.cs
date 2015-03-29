@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -48,14 +49,16 @@ namespace UnitsNet
             Inches = inches;
         }
 
-        public override string ToString()
+        public string ToString(IFormatProvider cultureInfo = null)
         {
-            // Feet/Inches combos are only used in English speaking countries. So should be safe to use English text
-            // here.
-            // 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            return string.Format("{0} ft {1} in", Feet, Math.Round(Inches));
+
+            var unitSystem = UnitSystem.GetCached(cultureInfo);
+            string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
+            string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
+
+            return string.Format("{0} {1} {2} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
         }
     }
 }
