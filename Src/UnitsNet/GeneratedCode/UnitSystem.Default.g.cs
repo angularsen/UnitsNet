@@ -538,6 +538,58 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "TB"),
                             }),
                     }),
+                new UnitLocalization(typeof (KinematicViscosityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Centistokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cSt"),
+                                new AbbreviationsForCulture("ru-RU", "сСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Decistokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dSt"),
+                                new AbbreviationsForCulture("ru-RU", "дСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Kilostokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kSt"),
+                                new AbbreviationsForCulture("ru-RU", "кСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Microstokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μSt"),
+                                new AbbreviationsForCulture("ru-RU", "мкСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Millistokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mSt"),
+                                new AbbreviationsForCulture("ru-RU", "мСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Nanostokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nSt"),
+                                new AbbreviationsForCulture("ru-RU", "нСт"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.SquareMeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m²/s"),
+                                new AbbreviationsForCulture("ru-RU", "м²/с"),
+                            }),
+                        new CulturesForEnumValue((int) KinematicViscosityUnit.Stokes,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "St"),
+                                new AbbreviationsForCulture("ru-RU", "Ст"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (LengthUnit),
                     new[]
                     {
