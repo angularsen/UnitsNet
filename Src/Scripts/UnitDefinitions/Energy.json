@@ -1,0 +1,21 @@
+﻿{
+    "Name": "Energy",
+    "BaseUnit": "Joule",
+    "XmlDoc": "The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second",
+    "Units": [
+        {
+            "SingularName": "Joule",
+            "PluralName": "Joules",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Kilo","Mega"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["J"]
+                }
+            ]
+        }
+    ]
+}
+

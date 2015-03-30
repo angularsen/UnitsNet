@@ -303,6 +303,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Ω"),
                             }),
                     }),
+                new UnitLocalization(typeof (EnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) EnergyUnit.Joule,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.Kilojoule,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.Megajoule,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
