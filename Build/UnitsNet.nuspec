@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.10.0</version>
+    <version>3.11.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Initial Force AS</owners>
@@ -13,7 +13,7 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/InitialForce/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-* Add Energy with units joule, kilojoule, megajoule (@mperdeck)
+* Remove R# annotations from binary metadata
     </releaseNotes>
     <copyright>Copyright © 2007-2014 Initial Force AS</copyright>
     <language>en-US</language>
