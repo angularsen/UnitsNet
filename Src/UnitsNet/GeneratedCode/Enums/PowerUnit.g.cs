@@ -25,10 +25,15 @@ namespace UnitsNet.Units
     public enum PowerUnit
     {
         Undefined = 0,
+        BoilerHorsepower,
+        ElectricalHorsepower,
         Femtowatt,
         Gigawatt,
+        HydraulicHorsepower,
         Kilowatt,
+        MechanicalHorsepower,
         Megawatt,
+        MetricHorsepower,
         Microwatt,
         Milliwatt,
         Nanowatt,

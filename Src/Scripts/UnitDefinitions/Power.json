@@ -9,11 +9,71 @@
             "PluralName": "Watts",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Femto","Pico","Nano","Micro","Milli","Kilo","Mega","Giga","Tera","Peta"],
+            "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["W"]
+                    "Abbreviations": [ "W" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "MechanicalHorsepower",
+            "PluralName": "MechanicalHorsepower",
+            "FromUnitToBaseFunc": "x*745.69",
+            "FromBaseToUnitFunc": "x/745.69",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "hp(I)" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "MetricHorsepower",
+            "PluralName": "MetricHorsepower",
+            "FromUnitToBaseFunc": "x*735.49875",
+            "FromBaseToUnitFunc": "x/735.49875",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "hp(M)" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "ElectricalHorsepower",
+            "PluralName": "ElectricalHorsepower",
+            "FromUnitToBaseFunc": "x*746",
+            "FromBaseToUnitFunc": "x/746",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "hp(E)" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "BoilerHorsepower",
+            "PluralName": "BoilerHorsepower",
+            "FromUnitToBaseFunc": "x*9812.5",
+            "FromBaseToUnitFunc": "x/9812.5",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "hp(S)" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "HydraulicHorsepower",
+            "PluralName": "HydraulicHorsepower",
+            "FromUnitToBaseFunc": "x*745.69988145",
+            "FromBaseToUnitFunc": "x/745.69988145",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "hp(H)" ]
                 }
             ]
         }

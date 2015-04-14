@@ -811,6 +811,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (PowerUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) PowerUnit.BoilerHorsepower,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hp(S)"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.ElectricalHorsepower,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hp(E)"),
+                            }),
                         new CulturesForEnumValue((int) PowerUnit.Femtowatt,
                             new[]
                             {
@@ -821,15 +831,30 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "GW"),
                             }),
+                        new CulturesForEnumValue((int) PowerUnit.HydraulicHorsepower,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hp(H)"),
+                            }),
                         new CulturesForEnumValue((int) PowerUnit.Kilowatt,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kW"),
                             }),
+                        new CulturesForEnumValue((int) PowerUnit.MechanicalHorsepower,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hp(I)"),
+                            }),
                         new CulturesForEnumValue((int) PowerUnit.Megawatt,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.MetricHorsepower,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hp(M)"),
                             }),
                         new CulturesForEnumValue((int) PowerUnit.Microwatt,
                             new[]
