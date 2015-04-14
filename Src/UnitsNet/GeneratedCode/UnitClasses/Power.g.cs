@@ -49,6 +49,22 @@ namespace UnitsNet
         #region Properties
 
         /// <summary>
+        ///     Get Power in BoilerHorsepower.
+        /// </summary>
+        public double BoilerHorsepower
+        {
+            get { return Convert.ToDouble(_watts/9812.5m); }
+        }
+
+        /// <summary>
+        ///     Get Power in ElectricalHorsepower.
+        /// </summary>
+        public double ElectricalHorsepower
+        {
+            get { return Convert.ToDouble(_watts/746m); }
+        }
+
+        /// <summary>
         ///     Get Power in Femtowatts.
         /// </summary>
         public double Femtowatts
@@ -65,6 +81,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power in HydraulicHorsepower.
+        /// </summary>
+        public double HydraulicHorsepower
+        {
+            get { return Convert.ToDouble(_watts/745.69988145m); }
+        }
+
+        /// <summary>
         ///     Get Power in Kilowatts.
         /// </summary>
         public double Kilowatts
@@ -73,11 +97,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power in MechanicalHorsepower.
+        /// </summary>
+        public double MechanicalHorsepower
+        {
+            get { return Convert.ToDouble(_watts/745.69m); }
+        }
+
+        /// <summary>
         ///     Get Power in Megawatts.
         /// </summary>
         public double Megawatts
         {
             get { return Convert.ToDouble((_watts) / 1e6m); }
+        }
+
+        /// <summary>
+        ///     Get Power in MetricHorsepower.
+        /// </summary>
+        public double MetricHorsepower
+        {
+            get { return Convert.ToDouble(_watts/735.49875m); }
         }
 
         /// <summary>
@@ -146,6 +186,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power from BoilerHorsepower.
+        /// </summary>
+        public static Power FromBoilerHorsepower(double boilerhorsepower)
+        {
+            return new Power(Convert.ToDecimal(boilerhorsepower*9812.5));
+        }
+
+        /// <summary>
+        ///     Get Power from ElectricalHorsepower.
+        /// </summary>
+        public static Power FromElectricalHorsepower(double electricalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(electricalhorsepower*746));
+        }
+
+        /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
         public static Power FromFemtowatts(double femtowatts)
@@ -162,6 +218,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power from HydraulicHorsepower.
+        /// </summary>
+        public static Power FromHydraulicHorsepower(double hydraulichorsepower)
+        {
+            return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145));
+        }
+
+        /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
         public static Power FromKilowatts(double kilowatts)
@@ -170,11 +234,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power from MechanicalHorsepower.
+        /// </summary>
+        public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69));
+        }
+
+        /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
         public static Power FromMegawatts(double megawatts)
         {
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
+        }
+
+        /// <summary>
+        ///     Get Power from MetricHorsepower.
+        /// </summary>
+        public static Power FromMetricHorsepower(double metrichorsepower)
+        {
+            return new Power(Convert.ToDecimal(metrichorsepower*735.49875));
         }
 
         /// <summary>
@@ -244,14 +324,24 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case PowerUnit.BoilerHorsepower:
+                    return FromBoilerHorsepower(value);
+                case PowerUnit.ElectricalHorsepower:
+                    return FromElectricalHorsepower(value);
                 case PowerUnit.Femtowatt:
                     return FromFemtowatts(value);
                 case PowerUnit.Gigawatt:
                     return FromGigawatts(value);
+                case PowerUnit.HydraulicHorsepower:
+                    return FromHydraulicHorsepower(value);
                 case PowerUnit.Kilowatt:
                     return FromKilowatts(value);
+                case PowerUnit.MechanicalHorsepower:
+                    return FromMechanicalHorsepower(value);
                 case PowerUnit.Megawatt:
                     return FromMegawatts(value);
+                case PowerUnit.MetricHorsepower:
+                    return FromMetricHorsepower(value);
                 case PowerUnit.Microwatt:
                     return FromMicrowatts(value);
                 case PowerUnit.Milliwatt:
@@ -399,14 +489,24 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case PowerUnit.BoilerHorsepower:
+                    return BoilerHorsepower;
+                case PowerUnit.ElectricalHorsepower:
+                    return ElectricalHorsepower;
                 case PowerUnit.Femtowatt:
                     return Femtowatts;
                 case PowerUnit.Gigawatt:
                     return Gigawatts;
+                case PowerUnit.HydraulicHorsepower:
+                    return HydraulicHorsepower;
                 case PowerUnit.Kilowatt:
                     return Kilowatts;
+                case PowerUnit.MechanicalHorsepower:
+                    return MechanicalHorsepower;
                 case PowerUnit.Megawatt:
                     return Megawatts;
+                case PowerUnit.MetricHorsepower:
+                    return MetricHorsepower;
                 case PowerUnit.Microwatt:
                     return Microwatts;
                 case PowerUnit.Milliwatt:
