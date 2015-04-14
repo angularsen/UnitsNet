@@ -77,5 +77,30 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 1e-15; }
         }
+
+        protected override double BoilerHorsepowerInOneWatt
+        {
+            get { return 1.0191082802547770700636942675159e-4; }
+        }
+
+        protected override double ElectricalHorsepowerInOneWatt
+        {
+            get { return 0.00134048257372654155495978552279; }
+        }
+
+        protected override double HydraulicHorsepowerInOneWatt
+        {
+            get { return 0.00134102207184949258114167291719; }
+        }
+
+        protected override double MechanicalHorsepowerInOneWatt
+        {
+            get { return 0.00134103984229371454625916935992; }
+        }
+
+        protected override double MetricHorsepowerInOneWatt
+        {
+            get { return 0.00135962161730390432342679032425; }
+        }
     }
 }
