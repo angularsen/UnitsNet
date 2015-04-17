@@ -36,6 +36,22 @@
             ]
         },
         {
+            "SingularName": "Ton",
+            "PluralName": "Tons",
+            "FromUnitToBaseFunc": "x*Constants.Gravity*1000",
+            "FromBaseToUnitFunc": "x/(Constants.Gravity*1000)",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Ton"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["?????"]
+                }
+            ]
+        },
+        {
             "SingularName": "Kilonewton",
             "PluralName": "Kilonewtons",
             "FromUnitToBaseFunc": "x*1e3",
