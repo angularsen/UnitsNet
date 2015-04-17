@@ -164,6 +164,162 @@
                     "Abbreviations": ["торр"]
                 }
             ]
-        }
+        },
+        {
+            "SingularName": "PoundPerSquareInch",
+            "PluralName": "PoundPerSquareInchs",
+            "FromUnitToBaseFunc": "x*6894.75788951576",
+            "FromBaseToUnitFunc": "x*0.000145037725185479",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["lb/in^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PoundPerSquareFoot",
+            "PluralName": "PoundPerSquareFoots",
+            "FromUnitToBaseFunc": "x*47.8802631216372",
+            "FromBaseToUnitFunc": "x*0.020885432426709",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["lb/ft^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloPoundPerSquareInch",
+            "PluralName": "KiloPoundPerSquareInchs",
+            "FromUnitToBaseFunc": "x*6894757.88951576",
+            "FromBaseToUnitFunc": "x*1.45037725185479E-07",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Kip/in^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloPoundPerSquareFoot",
+            "PluralName": "KiloPoundPerSquareFoots",
+            "FromUnitToBaseFunc": "x*47880.2631216372",
+            "FromBaseToUnitFunc": "x*0.000020885432426709",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Kip/ft^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonPerSquareMillimeter",
+            "PluralName": "KiloNewtonPerSquareMillimeters",
+            "FromUnitToBaseFunc": "x*1000000000",
+            "FromBaseToUnitFunc": "x*0.000000001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN/mm^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonPerSquareMeter",
+            "PluralName": "KiloNewtonPerSquareMeters",
+            "FromUnitToBaseFunc": "x*1000",
+            "FromBaseToUnitFunc": "x*0.001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN/m^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramForcePerSquareMillimeter",
+            "PluralName": "KilogramForcePerSquareMillimeters",
+            "FromUnitToBaseFunc": "x*9806650.19960652",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-07",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kgf/mm^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramForcePerSquareMeter",
+            "PluralName": "KilogramForcePerSquareMeters",
+            "FromUnitToBaseFunc": "x*9.80665019960652",
+            "FromBaseToUnitFunc": "x*0.101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kgf/m^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonForcePerSquareMillimeter",
+            "PluralName": "TonForcePerSquareMillimeters",
+            "FromUnitToBaseFunc": "x*9806650199.60653",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-10",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Tonforce/mm^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonForcePerSquareMeter",
+            "PluralName": "TonForcePerSquareMeters",
+            "FromUnitToBaseFunc": "x*9806.65019960653",
+            "FromBaseToUnitFunc": "x*0.000101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["TonForce/m^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonPerSquareCentimeter",
+            "PluralName": "KiloNewtonPerSquareCentimeters",
+            "FromUnitToBaseFunc": "x*10000000",
+            "FromBaseToUnitFunc": "x*0.0000001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN/cm^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "NewtonPerSquareCentimeter",
+            "PluralName": "NewtonPerSquareCentimeters",
+            "FromUnitToBaseFunc": "x*10000",
+            "FromBaseToUnitFunc": "x*0.0001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["N/cm^2"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonForcePerSquareCentimeter",
+            "PluralName": "TonForcePerSquareCentimeters",
+            "FromUnitToBaseFunc": "x*98066501.9960652",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-08",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["TonForce/cm^2"]
+                }
+            ]
+        },
     ]
 }

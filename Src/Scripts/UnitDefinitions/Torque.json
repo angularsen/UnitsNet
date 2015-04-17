@@ -18,6 +18,186 @@
                     "Abbreviations": ["Н·м"]
                 }
             ]
-        }
+        },
+        {
+            "SingularName": "NewtonCentimeter",
+            "PluralName": "NewtonCentimeters",
+            "FromUnitToBaseFunc": "x*0.01",
+            "FromBaseToUnitFunc": "x*100",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["N-cm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "NewtonMillimeter",
+            "PluralName": "NewtonMillimeters",
+            "FromUnitToBaseFunc": "x*0.001",
+            "FromBaseToUnitFunc": "x*1000",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["N-mm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PoundInch",
+            "PluralName": "PoundInchs",
+            "FromUnitToBaseFunc": "x*0.1129848388",
+            "FromBaseToUnitFunc": "x*8.85074502580075",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Pnd-In"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PoundFoot",
+            "PluralName": "PoundFoots",
+            "FromUnitToBaseFunc": "x*1.3558180656",
+            "FromBaseToUnitFunc": "x*0.737562085483396",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Pnd-Ft"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KipInch",
+            "PluralName": "KipInchs",
+            "FromUnitToBaseFunc": "x*112.9848388",
+            "FromBaseToUnitFunc": "x*0.00885074502580075",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Kip-in"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KipFoot",
+            "PluralName": "KipFoots",
+            "FromUnitToBaseFunc": "x*1355.8180656",
+            "FromBaseToUnitFunc": "x*0.000737562085483396",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Kip-ft"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonMillimiter",
+            "PluralName": "KiloNewtonMillimiters",
+            "FromUnitToBaseFunc": "x*1",
+            "FromBaseToUnitFunc": "x*1",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN-mm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonMeter",
+            "PluralName": "KiloNewtonMeters",
+            "FromUnitToBaseFunc": "x*1000",
+            "FromBaseToUnitFunc": "x*0.001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN-m"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramForceMillimeter",
+            "PluralName": "KilogramForceMillimeters",
+            "FromUnitToBaseFunc": "x*0.00980665019960652",
+            "FromBaseToUnitFunc": "x*101.971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KGF-mm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramForceMeter",
+            "PluralName": "KilogramForceMeters",
+            "FromUnitToBaseFunc": "x*9.80665019960652",
+            "FromBaseToUnitFunc": "x*0.101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KGF-m"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonMillimeter",
+            "PluralName": "TonMillimeters",
+            "FromUnitToBaseFunc": "x*9.80665019960652",
+            "FromBaseToUnitFunc": "x*0.101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Ton-mm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonMeter",
+            "PluralName": "TonMeters",
+            "FromUnitToBaseFunc": "x*9806.65019960653",
+            "FromBaseToUnitFunc": "x*0.000101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Ton-m"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KiloNewtonCentimeter",
+            "PluralName": "KiloNewtonCentimeters",
+            "FromUnitToBaseFunc": "x*10",
+            "FromBaseToUnitFunc": "x*0.1",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KN-cm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramForceCentimeter",
+            "PluralName": "KilogramForceCentimeters",
+            "FromUnitToBaseFunc": "x*0.0980665019960652",
+            "FromBaseToUnitFunc": "x*10.1971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["KGF-cm"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonCentimeter",
+            "PluralName": "TonCentimeters",
+            "FromUnitToBaseFunc": "x*98.0665019960652",
+            "FromBaseToUnitFunc": "x*0.0101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Ton-cm"]
+                }
+            ]
+        },
     ]
 }
