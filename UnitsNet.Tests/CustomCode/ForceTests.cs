@@ -53,9 +53,14 @@ namespace UnitsNet.Tests.CustomCode
             get { return 7.23301; }
         }
 
-        protected override double PoundForcesInOneNewton
+        protected override double PoundsForceInOneNewton
         {
             get { return 0.22481; }
+        }
+
+        protected override double TonnesForceInOneNewton
+        {
+            get { return 1.02e-4; }
         }
     }
 }
