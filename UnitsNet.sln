@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4DC016EB-1ED1-4EAA-8537-E47278281BDC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "UnitsNet.Tests", "{4DC016EB-1ED1-4EAA-8537-E47278281BDC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9A908246-C3FE-479A-A417-7A43F2FD68EB}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable40", "Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net35", "UnitsNet\UnitsNet.Net35.csproj", "{62E7F8AB-01ED-455A-8CE2-86F020D429B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests", "UnitsNet\Tests\UnitsNet.Tests.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8A38A719-E983-47BD-9EC5-678D71C055C6}"
 	ProjectSection(SolutionItems) = preProject
