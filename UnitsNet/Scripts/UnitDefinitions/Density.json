@@ -47,8 +47,8 @@
         {
             "SingularName": "PoundPerCubicInch",
             "PluralName": "PoundsPerCubicInch",
-            "FromUnitToBaseFunc": "x*1089760.10003604",
-            "FromBaseToUnitFunc": "x*9.17633156111081E-07",
+            "FromUnitToBaseFunc": "x*27679.904710191",
+            "FromBaseToUnitFunc": "x/27679.904710191",
             "Prefixes": ["Kilo"],
             "Localization": [
                 {
@@ -61,8 +61,8 @@
         {
             "SingularName": "PoundPerCubicFoot",
             "PluralName": "PoundsPerCubicFoot",
-            "FromUnitToBaseFunc": "x*52.5540171699479",
-            "FromBaseToUnitFunc": "x*0.0190280411251194",
+            "FromUnitToBaseFunc": "x/0.062427961",
+            "FromBaseToUnitFunc": "x*0.062427961",
             "Prefixes": ["Kilo"],
             "Localization": [
                 {
