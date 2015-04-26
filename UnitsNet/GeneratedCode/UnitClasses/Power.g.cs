@@ -190,7 +190,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromBoilerHorsepower(double boilerhorsepower)
         {
-            return new Power(Convert.ToDecimal(boilerhorsepower*9812.5));
+            return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromElectricalHorsepower(double electricalhorsepower)
         {
-            return new Power(Convert.ToDecimal(electricalhorsepower*746));
+            return new Power(Convert.ToDecimal(electricalhorsepower*746d));
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
         {
-            return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145));
+            return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
         {
-            return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69));
+            return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace UnitsNet
         /// </summary>
         public static Power FromMetricHorsepower(double metrichorsepower)
         {
-            return new Power(Convert.ToDecimal(metrichorsepower*735.49875));
+            return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
         }
 
         /// <summary>
