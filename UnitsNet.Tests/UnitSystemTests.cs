@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1 Pa", Pressure.FromPascals(1).ToString());
             Assert.AreEqual("1 r/s", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
             Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
-            Assert.AreEqual("1 Nm", Torque.FromNewtonmeters(1).ToString());
+            Assert.AreEqual("1 N·m", Torque.FromNewtonMeters(1).ToString());
             Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
 
             Assert.AreEqual("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
                 Assert.AreEqual("1 Pa", Pressure.FromPascals(1).ToString());
                 Assert.AreEqual("1 r/s", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
                 Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
-                Assert.AreEqual("1 Nm", Torque.FromNewtonmeters(1).ToString());
+                Assert.AreEqual("1 N·m", Torque.FromNewtonMeters(1).ToString());
                 Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
             }
             finally
@@ -198,7 +198,7 @@ namespace UnitsNet.Tests
                 Assert.AreEqual("1 Па", Pressure.FromPascals(1).ToString());
                 Assert.AreEqual("1 об/с", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
                 Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
-                Assert.AreEqual("1 Н·м", Torque.FromNewtonmeters(1).ToString());
+                Assert.AreEqual("1 Н·м", Torque.FromNewtonMeters(1).ToString());
                 Assert.AreEqual("1 м³", Volume.FromCubicMeters(1).ToString());
             }
             finally

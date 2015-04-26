@@ -73,11 +73,67 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in KilogramsForcePerSquareMeter.
+        /// </summary>
+        public double KilogramsForcePerSquareMeter
+        {
+            get { return _pascals*0.101971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public double KilogramsForcePerSquareMillimeter
+        {
+            get { return _pascals*1.01971619222242E-07; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public double KilonewtonsPerSquareCentimeter
+        {
+            get { return (_pascals/1e4) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilonewtonsPerSquareMeter.
+        /// </summary>
+        public double KilonewtonsPerSquareMeter
+        {
+            get { return (_pascals) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public double KilonewtonsPerSquareMillimeter
+        {
+            get { return (_pascals/1e6) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Kilopascals.
         /// </summary>
         public double Kilopascals
         {
             get { return (_pascals) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public double KilopoundsForcePerSquareFoot
+        {
+            get { return (_pascals*0.020885432426709) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in KilopoundsForcePerSquareInch.
+        /// </summary>
+        public double KilopoundsForcePerSquareInch
+        {
+            get { return (_pascals*0.000145037725185479) / 1e3d; }
         }
 
         /// <summary>
@@ -121,6 +177,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in PoundsForcePerSquareFoot.
+        /// </summary>
+        public double PoundsForcePerSquareFoot
+        {
+            get { return _pascals*0.020885432426709; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in PoundsForcePerSquareInch.
+        /// </summary>
+        public double PoundsForcePerSquareInch
+        {
+            get { return _pascals*0.000145037725185479; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Psi.
         /// </summary>
         public double Psi
@@ -134,6 +206,30 @@ namespace UnitsNet
         public double TechnicalAtmospheres
         {
             get { return _pascals/(9.80680592331*1e4); }
+        }
+
+        /// <summary>
+        ///     Get Pressure in TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public double TonnesForcePerSquareCentimeter
+        {
+            get { return _pascals*1.01971619222242E-08; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in TonnesForcePerSquareMeter.
+        /// </summary>
+        public double TonnesForcePerSquareMeter
+        {
+            get { return _pascals*0.000101971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public double TonnesForcePerSquareMillimeter
+        {
+            get { return _pascals*1.01971619222242E-10; }
         }
 
         /// <summary>
@@ -178,11 +274,67 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMeter(double kilogramsforcepersquaremeter)
+        {
+            return new Pressure(kilogramsforcepersquaremeter*9.80665019960652);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMillimeter(double kilogramsforcepersquaremillimeter)
+        {
+            return new Pressure(kilogramsforcepersquaremillimeter*9806650.19960652);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareCentimeter(double kilonewtonspersquarecentimeter)
+        {
+            return new Pressure((kilonewtonspersquarecentimeter*1e4) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMeter(double kilonewtonspersquaremeter)
+        {
+            return new Pressure((kilonewtonspersquaremeter) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMillimeter(double kilonewtonspersquaremillimeter)
+        {
+            return new Pressure((kilonewtonspersquaremillimeter*1e6) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Pressure from Kilopascals.
         /// </summary>
         public static Pressure FromKilopascals(double kilopascals)
         {
             return new Pressure((kilopascals) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareFoot(double kilopoundsforcepersquarefoot)
+        {
+            return new Pressure((kilopoundsforcepersquarefoot*47.8802631216372) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch)
+        {
+            return new Pressure((kilopoundsforcepersquareinch*6894.75788951576) * 1e3d);
         }
 
         /// <summary>
@@ -226,6 +378,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareFoot(double poundsforcepersquarefoot)
+        {
+            return new Pressure(poundsforcepersquarefoot*47.8802631216372);
+        }
+
+        /// <summary>
+        ///     Get Pressure from PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch)
+        {
+            return new Pressure(poundsforcepersquareinch*6894.75788951576);
+        }
+
+        /// <summary>
         ///     Get Pressure from Psi.
         /// </summary>
         public static Pressure FromPsi(double psi)
@@ -239,6 +407,30 @@ namespace UnitsNet
         public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
         {
             return new Pressure(technicalatmospheres*9.80680592331*1e4);
+        }
+
+        /// <summary>
+        ///     Get Pressure from TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareCentimeter(double tonnesforcepersquarecentimeter)
+        {
+            return new Pressure(tonnesforcepersquarecentimeter*98066501.9960652);
+        }
+
+        /// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMeter(double tonnesforcepersquaremeter)
+        {
+            return new Pressure(tonnesforcepersquaremeter*9806.65019960653);
+        }
+
+        /// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMillimeter(double tonnesforcepersquaremillimeter)
+        {
+            return new Pressure(tonnesforcepersquaremillimeter*9806650199.60653);
         }
 
         /// <summary>
@@ -266,8 +458,22 @@ namespace UnitsNet
                     return FromBars(value);
                 case PressureUnit.KilogramForcePerSquareCentimeter:
                     return FromKilogramsForcePerSquareCentimeter(value);
+                case PressureUnit.KilogramForcePerSquareMeter:
+                    return FromKilogramsForcePerSquareMeter(value);
+                case PressureUnit.KilogramForcePerSquareMillimeter:
+                    return FromKilogramsForcePerSquareMillimeter(value);
+                case PressureUnit.KilonewtonPerSquareCentimeter:
+                    return FromKilonewtonsPerSquareCentimeter(value);
+                case PressureUnit.KilonewtonPerSquareMeter:
+                    return FromKilonewtonsPerSquareMeter(value);
+                case PressureUnit.KilonewtonPerSquareMillimeter:
+                    return FromKilonewtonsPerSquareMillimeter(value);
                 case PressureUnit.Kilopascal:
                     return FromKilopascals(value);
+                case PressureUnit.KilopoundForcePerSquareFoot:
+                    return FromKilopoundsForcePerSquareFoot(value);
+                case PressureUnit.KilopoundForcePerSquareInch:
+                    return FromKilopoundsForcePerSquareInch(value);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(value);
                 case PressureUnit.NewtonPerSquareCentimeter:
@@ -278,10 +484,20 @@ namespace UnitsNet
                     return FromNewtonsPerSquareMillimeter(value);
                 case PressureUnit.Pascal:
                     return FromPascals(value);
+                case PressureUnit.PoundForcePerSquareFoot:
+                    return FromPoundsForcePerSquareFoot(value);
+                case PressureUnit.PoundForcePerSquareInch:
+                    return FromPoundsForcePerSquareInch(value);
                 case PressureUnit.Psi:
                     return FromPsi(value);
                 case PressureUnit.TechnicalAtmosphere:
                     return FromTechnicalAtmospheres(value);
+                case PressureUnit.TonneForcePerSquareCentimeter:
+                    return FromTonnesForcePerSquareCentimeter(value);
+                case PressureUnit.TonneForcePerSquareMeter:
+                    return FromTonnesForcePerSquareMeter(value);
+                case PressureUnit.TonneForcePerSquareMillimeter:
+                    return FromTonnesForcePerSquareMillimeter(value);
                 case PressureUnit.Torr:
                     return FromTorrs(value);
 
@@ -423,8 +639,22 @@ namespace UnitsNet
                     return Bars;
                 case PressureUnit.KilogramForcePerSquareCentimeter:
                     return KilogramsForcePerSquareCentimeter;
+                case PressureUnit.KilogramForcePerSquareMeter:
+                    return KilogramsForcePerSquareMeter;
+                case PressureUnit.KilogramForcePerSquareMillimeter:
+                    return KilogramsForcePerSquareMillimeter;
+                case PressureUnit.KilonewtonPerSquareCentimeter:
+                    return KilonewtonsPerSquareCentimeter;
+                case PressureUnit.KilonewtonPerSquareMeter:
+                    return KilonewtonsPerSquareMeter;
+                case PressureUnit.KilonewtonPerSquareMillimeter:
+                    return KilonewtonsPerSquareMillimeter;
                 case PressureUnit.Kilopascal:
                     return Kilopascals;
+                case PressureUnit.KilopoundForcePerSquareFoot:
+                    return KilopoundsForcePerSquareFoot;
+                case PressureUnit.KilopoundForcePerSquareInch:
+                    return KilopoundsForcePerSquareInch;
                 case PressureUnit.Megapascal:
                     return Megapascals;
                 case PressureUnit.NewtonPerSquareCentimeter:
@@ -435,10 +665,20 @@ namespace UnitsNet
                     return NewtonsPerSquareMillimeter;
                 case PressureUnit.Pascal:
                     return Pascals;
+                case PressureUnit.PoundForcePerSquareFoot:
+                    return PoundsForcePerSquareFoot;
+                case PressureUnit.PoundForcePerSquareInch:
+                    return PoundsForcePerSquareInch;
                 case PressureUnit.Psi:
                     return Psi;
                 case PressureUnit.TechnicalAtmosphere:
                     return TechnicalAtmospheres;
+                case PressureUnit.TonneForcePerSquareCentimeter:
+                    return TonnesForcePerSquareCentimeter;
+                case PressureUnit.TonneForcePerSquareMeter:
+                    return TonnesForcePerSquareMeter;
+                case PressureUnit.TonneForcePerSquareMillimeter:
+                    return TonnesForcePerSquareMillimeter;
                 case PressureUnit.Torr:
                     return Torrs;
 

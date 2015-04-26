@@ -32,5 +32,6 @@ namespace UnitsNet.Units
         Newton,
         Poundal,
         PoundForce,
+        TonneForce,
     }
 }

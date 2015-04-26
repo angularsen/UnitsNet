@@ -25,6 +25,15 @@ namespace UnitsNet.Units
     public enum DensityUnit
     {
         Undefined = 0,
+        KilogramPerCubicCentimeter,
         KilogramPerCubicMeter,
+        KilogramPerCubicMillimeter,
+        KilopoundPerCubicFoot,
+        KilopoundPerCubicInch,
+        PoundPerCubicFoot,
+        PoundPerCubicInch,
+        TonnePerCubicCentimeter,
+        TonnePerCubicMeter,
+        TonnePerCubicMillimeter,
     }
 }

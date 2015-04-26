@@ -19,48 +19,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace UnitsNet.Tests.CustomCode
+// ReSharper disable once CheckNamespace
+namespace UnitsNet.Units
 {
-    public class ForceTests : ForceTestsBase
+    public enum SpecificWeightUnit
     {
-        protected override double DyneInOneNewton
-        {
-            get { return 1E5; }
-        }
-
-        protected override double KilogramsForceInOneNewton
-        {
-            get { return 1/Constants.Gravity; }
-        }
-
-        protected override double KilonewtonsInOneNewton
-        {
-            get { return 1E-3; }
-        }
-
-        protected override double KiloPondsInOneNewton
-        {
-            get { return 1/Constants.Gravity; }
-        }
-
-        protected override double NewtonsInOneNewton
-        {
-            get { return 1; }
-        }
-
-        protected override double PoundalsInOneNewton
-        {
-            get { return 7.23301; }
-        }
-
-        protected override double PoundsForceInOneNewton
-        {
-            get { return 0.22481; }
-        }
-
-        protected override double TonnesForceInOneNewton
-        {
-            get { return 1.02e-4; }
-        }
+        Undefined = 0,
+        KilogramForcePerCubicCentimeter,
+        KilogramForcePerCubicMeter,
+        KilogramForcePerCubicMillimeter,
+        KilonewtonPerCubicCentimeter,
+        KilonewtonPerCubicMeter,
+        KilonewtonPerCubicMillimeter,
+        KilopoundForcePerCubicFoot,
+        KilopoundForcePerCubicInch,
+        NewtonPerCubicCentimeter,
+        NewtonPerCubicMeter,
+        NewtonPerCubicMillimeter,
+        PoundForcePerCubicFoot,
+        PoundForcePerCubicInch,
+        TonneForcePerCubicCentimeter,
+        TonneForcePerCubicMeter,
+        TonneForcePerCubicMillimeter,
     }
 }

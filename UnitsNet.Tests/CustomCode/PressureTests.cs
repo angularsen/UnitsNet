@@ -35,12 +35,47 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsForcePerSquareCentimeterInOnePascal
         {
-            get { return 1/98066.5; }
+            get { return 0.101971621e-5; }
+        }
+
+        protected override double KilogramsForcePerSquareMeterInOnePascal
+        {
+            get { return 0.101971621; }
+        }
+
+        protected override double KilogramsForcePerSquareMillimeterInOnePascal
+        {
+            get { return 0.101971621e-7; }
+        }
+
+        protected override double KilonewtonsPerSquareCentimeterInOnePascal
+        {
+            get { return 1e-7; }
+        }
+
+        protected override double KilonewtonsPerSquareMeterInOnePascal
+        {
+            get { return 0.001; }
+        }
+
+        protected override double KilonewtonsPerSquareMillimeterInOnePascal
+        {
+            get { return 1e-9; }
         }
 
         protected override double KilopascalsInOnePascal
         {
-            get { return 1E-3; }
+            get { return 1e-3; }
+        }
+
+        protected override double KilopoundsForcePerSquareFootInOnePascal
+        {
+            get { return 2.089e-5; }
+        }
+
+        protected override double KilopoundsForcePerSquareInchInOnePascal
+        {
+            get { return 1.45e-7; }
         }
 
         protected override double MegapascalsInOnePascal
@@ -68,6 +103,16 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1; }
         }
 
+        protected override double PoundsForcePerSquareFootInOnePascal
+        {
+            get { return 0.0208854342; }
+        }
+
+        protected override double PoundsForcePerSquareInchInOnePascal
+        {
+            get { return 0.000145037738; }
+        }
+
         protected override double PsiInOnePascal
         {
             get { return 1.450377*1E-4; }
@@ -76,6 +121,21 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TechnicalAtmospheresInOnePascal
         {
             get { return 1.0197*1E-5; }
+        }
+
+        protected override double TonnesForcePerSquareCentimeterInOnePascal
+        {
+            get { return 1e-8; }
+        }
+
+        protected override double TonnesForcePerSquareMeterInOnePascal
+        {
+            get { return 1e-4; }
+        }
+
+        protected override double TonnesForcePerSquareMillimeterInOnePascal
+        {
+            get { return 1e-10; }
         }
 
         protected override double TorrsInOnePascal

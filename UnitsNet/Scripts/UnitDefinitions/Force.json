@@ -36,18 +36,18 @@
             ]
         },
         {
-            "SingularName": "Kilonewton",
-            "PluralName": "Kilonewtons",
-            "FromUnitToBaseFunc": "x*1e3",
-            "FromBaseToUnitFunc": "x/1e3",
+            "SingularName": "TonneForce",
+            "PluralName": "TonnesForce",
+            "FromUnitToBaseFunc": "x*Constants.Gravity*1000",
+            "FromBaseToUnitFunc": "x/Constants.Gravity/1000",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["kN"]
+                    "Abbreviations": ["Ton"]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["кН"]
+                    "Abbreviations": ["тс"]
                 }
             ]
         },
@@ -56,6 +56,7 @@
             "PluralName": "Newtons",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
@@ -63,7 +64,8 @@
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["Н"]
+                    "Abbreviations": ["Н"],
+                    "AbbreviationsWithPrefixes": ["кН"]
                 }
             ]
         },
@@ -101,7 +103,7 @@
         },
         {
             "SingularName": "PoundForce",
-            "PluralName": "PoundForces",
+            "PluralName": "PoundsForce",
             "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
             "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
             "Localization": [

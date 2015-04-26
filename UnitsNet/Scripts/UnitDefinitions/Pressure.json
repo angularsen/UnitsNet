@@ -54,6 +54,22 @@
             ]
         },
         {
+            "SingularName": "KilogramForcePerSquareMeter",
+            "PluralName": "KilogramsForcePerSquareMeter",
+            "FromUnitToBaseFunc": "x*9.80665019960652",
+            "FromBaseToUnitFunc": "x*0.101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kgf/m²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["кгс/м²"]
+                }
+            ]
+        },
+        {
             "SingularName": "KilogramForcePerSquareCentimeter",
             "PluralName": "KilogramsForcePerSquareCentimeter",
             "FromUnitToBaseFunc": "x*9.80665*1e4",
@@ -70,18 +86,37 @@
             ]
         },
         {
+            "SingularName": "KilogramForcePerSquareMillimeter",
+            "PluralName": "KilogramsForcePerSquareMillimeter",
+            "FromUnitToBaseFunc": "x*9806650.19960652",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-07",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kgf/mm²"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["кгс/мм²"]
+                }
+            ]
+        },
+        {
             "SingularName": "NewtonPerSquareMeter",
             "PluralName": "NewtonsPerSquareMeter",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["N/m²"]
+                    "Abbreviations": ["N/m²"],
+                    "AbbreviationsWithPrefixes": ["kN/m²"]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["Н/м²"]
+                    "Abbreviations": ["Н/м²"],
+                    "AbbreviationsWithPrefixes": ["кН/м²"]
                 }
             ]
         },
@@ -90,14 +125,17 @@
             "PluralName": "NewtonsPerSquareCentimeter",
             "FromUnitToBaseFunc": "x*1e4",
             "FromBaseToUnitFunc": "x/1e4",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["N/cm²"]
+                    "Abbreviations": ["N/cm²"],
+                    "AbbreviationsWithPrefixes": ["kN/cm²"]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["Н/см²"]
+                    "Abbreviations": ["Н/см²"],
+                    "AbbreviationsWithPrefixes": ["кН/см²"]
                 }
             ]
         },
@@ -106,14 +144,17 @@
             "PluralName": "NewtonsPerSquareMillimeter",
             "FromUnitToBaseFunc": "x*1e6",
             "FromBaseToUnitFunc": "x/1e6",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["N/mm²"]
+                    "Abbreviations": ["N/mm²"],
+                    "AbbreviationsWithPrefixes": ["kN/mm²"]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["Н/мм²"]
+                    "Abbreviations": ["Н/мм²"],
+                    "AbbreviationsWithPrefixes": ["кН/мм²"]
                 }
             ]
         },
@@ -162,6 +203,70 @@
                 {
                     "Culture": "ru-RU",
                     "Abbreviations": ["торр"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PoundForcePerSquareInch",
+            "PluralName": "PoundsForcePerSquareInch",
+            "FromUnitToBaseFunc": "x*6894.75788951576",
+            "FromBaseToUnitFunc": "x*0.000145037725185479",
+            "Prefixes": ["Kilo"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["lb/in²"],
+                    "AbbreviationsWithPrefixes": ["kipf/in²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PoundForcePerSquareFoot",
+            "PluralName": "PoundsForcePerSquareFoot",
+            "FromUnitToBaseFunc": "x*47.8802631216372",
+            "FromBaseToUnitFunc": "x*0.020885432426709",
+            "Prefixes": ["Kilo"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["lb/ft²"],
+                    "AbbreviationsWithPrefixes": ["kipf/ft²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonneForcePerSquareMillimeter",
+            "PluralName": "TonnesForcePerSquareMillimeter",
+            "FromUnitToBaseFunc": "x*9806650199.60653",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-10",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["tf/mm²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonneForcePerSquareMeter",
+            "PluralName": "TonnesForcePerSquareMeter",
+            "FromUnitToBaseFunc": "x*9806.65019960653",
+            "FromBaseToUnitFunc": "x*0.000101971619222242",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["tf/m²"]
+                }
+            ]
+        },
+        {
+            "SingularName": "TonneForcePerSquareCentimeter",
+            "PluralName": "TonnesForcePerSquareCentimeter",
+            "FromUnitToBaseFunc": "x*98066501.9960652",
+            "FromBaseToUnitFunc": "x*1.01971619222242E-08",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["tf/cm²"]
                 }
             ]
         }
