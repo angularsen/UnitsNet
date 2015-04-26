@@ -1,4 +1,10 @@
-﻿function GetUnits($unitClass)
+﻿# DaddyCool => daddyCool
+function ToCamelCase($str)
+{
+    return $str.Substring(0,1).ToLowerInvariant() + $str.Substring(1);
+}
+
+function GetUnits($unitClass)
 {
     $units = @();
     
@@ -45,10 +51,10 @@
             
             $prefixAbbreviation = $prefixInfo[0];
             $prefixFactor = $prefixInfo[1];
-      
+
             $u = New-Object PsObject -Property @{ 
-                SingularName=$prefix+$unit.SingularName.ToLowerInvariant(); 
-                PluralName=$prefix+$unit.PluralName.ToLowerInvariant();
+                SingularName=$prefix + $(ToCamelCase $unit.SingularName); 
+                PluralName=$prefix + $(ToCamelCase $unit.PluralName);
                 FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor";
                 FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor";
                 Localization=$unit.Localization | % { 
