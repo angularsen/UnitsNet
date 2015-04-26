@@ -5,8 +5,32 @@
     "XmlDocRemarks": "http://en.wikipedia.org/wiki/Density",
     "Units": [
         {
+            "SingularName": "KilogramPerCubicMillimeter",
+            "PluralName": "KilogramsPerCubicMillimeter",
+            "FromUnitToBaseFunc": "x*1000000000000",
+            "FromBaseToUnitFunc": "x*0.000000000001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kg/mm³"]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramPerCubicCentimeter",
+            "PluralName": "KilogramsPerCubicCentimeter",
+            "FromUnitToBaseFunc": "x*100000000",
+            "FromBaseToUnitFunc": "x*0.00000001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kg/cm³"]
+                }
+            ]
+        },
+        {
             "SingularName": "KilogramPerCubicMeter",
-            "PluralName": "KilogramPerCubicMeter",
+            "PluralName": "KilogramsPerCubicMeter",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
             "Localization": [
@@ -21,376 +45,68 @@
             ]
         },
         {
-            "SingularName": "PoundMassPerCubicInch",
-            "PluralName": "PoundMassPerCubicInchs",
+            "SingularName": "PoundPerCubicInch",
+            "PluralName": "PoundsPerCubicInch",
             "FromUnitToBaseFunc": "x*1089760.10003604",
             "FromBaseToUnitFunc": "x*9.17633156111081E-07",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["lbmass/in^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "PoundMassPerCubicFoot",
-            "PluralName": "PoundMassPerCubicFoots",
-            "FromUnitToBaseFunc": "x*52.5540171699479",
-            "FromBaseToUnitFunc": "x*0.0190280411251194",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["lbmass/ft^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloPoundMassPerCubicInch",
-            "PluralName": "KiloPoundMassPerCubicInchs",
-            "FromUnitToBaseFunc": "x*1089760100.03604",
-            "FromBaseToUnitFunc": "x*9.17633156111082E-10",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kipmass/In^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloPoundMassPerCubicFoot",
-            "PluralName": "KiloPoundMassPerCubicFoots",
-            "FromUnitToBaseFunc": "x*52554.0171699479",
-            "FromBaseToUnitFunc": "x*1.90280411251194E-05",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kipmass/ft^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloNewtonMassPerCubicMillimeter",
-            "PluralName": "KiloNewtonMassPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*101971619222242",
-            "FromBaseToUnitFunc": "x*9.80665019960653E-15",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["KNmass/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloNewtonMassPerCubicMeter",
-            "PluralName": "KiloNewtonMassPerCubicMeters",
-            "FromUnitToBaseFunc": "x*101.971619222242",
-            "FromBaseToUnitFunc": "x*0.00980665019960653",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["KNmass/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KillogramMassPerCubicMillimeter",
-            "PluralName": "KillogramMassPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*1000000000000",
-            "FromBaseToUnitFunc": "x*0.000000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kg/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonMassPerCubicMillimeter",
-            "PluralName": "NewtonMassPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*101971619222.242",
-            "FromBaseToUnitFunc": "x*9.80665019960652E-12",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Nmass/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonMassPerCubicMeter",
-            "PluralName": "NewtonMassPerCubicMeters",
-            "FromUnitToBaseFunc": "x*0.101971619222242",
-            "FromBaseToUnitFunc": "x*9.80665019960652",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Nmass/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonPerCubicMillimeter",
-            "PluralName": "TonPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*1000000000000000",
-            "FromBaseToUnitFunc": "x*0.000000000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Ton/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonPerCubicMeter",
-            "PluralName": "TonPerCubicMeters",
-            "FromUnitToBaseFunc": "x*1000",
-            "FromBaseToUnitFunc": "x*0.001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Ton/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloNewtonMassPerCubicCentimeter",
-            "PluralName": "KiloNewtonMassPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*10197161922.2242",
-            "FromBaseToUnitFunc": "x*9.80665019960652E-11",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["KNmass/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KilogramPerCubicCentimeter",
-            "PluralName": "KilogramPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*100000000",
-            "FromBaseToUnitFunc": "x*0.00000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kg/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonMassPerCubicCentimeter",
-            "PluralName": "NewtonMassPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*10197161.9222242",
-            "FromBaseToUnitFunc": "x*9.80665019960652E-08",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Nmass/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonPerCubicCentimeter",
-            "PluralName": "TonPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*100000000000",
-            "FromBaseToUnitFunc": "x*0.00000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Ton/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KilogramForcePerCubicMeter",
-            "PluralName": "KilogramForcePerCubicMeters",
-            "FromUnitToBaseFunc": "x*0.101971620999988",
-            "FromBaseToUnitFunc": "x*9.80665002864",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kgf/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "PoundPerCubicInch",
-            "PluralName": "PoundPerCubicInchs",
-            "FromUnitToBaseFunc": "x*111124.603901784",
-            "FromBaseToUnitFunc": "x*8.99890721665775E-06",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["lb/in^3"]
+                    "Abbreviations": ["lb/in³"],
+                    "AbbreviationsWithPrefixes": ["kip/in³"]
                 }
             ]
         },
         {
             "SingularName": "PoundPerCubicFoot",
-            "PluralName": "PoundPerCubicFoots",
-            "FromUnitToBaseFunc": "x*5.35901832088079",
-            "FromBaseToUnitFunc": "x*0.186601340044615",
+            "PluralName": "PoundsPerCubicFoot",
+            "FromUnitToBaseFunc": "x*52.5540171699479",
+            "FromBaseToUnitFunc": "x*0.0190280411251194",
+            "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["lb/ft^3"]
+                    "Abbreviations": ["lb/ft³"],
+                    "AbbreviationsWithPrefixes": ["kip/ft³"]
                 }
             ]
         },
         {
-            "SingularName": "KiloPoundPerCubicInch",
-            "PluralName": "KiloPoundPerCubicInchs",
-            "FromUnitToBaseFunc": "x*111124603.901784",
-            "FromBaseToUnitFunc": "x*8.99890721665776E-09",
+            "SingularName": "TonnePerCubicMillimeter",
+            "PluralName": "TonnesPerCubicMillimeter",
+            "FromUnitToBaseFunc": "x*1000000000000000",
+            "FromBaseToUnitFunc": "x*0.000000000000001",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["Kip/In^3"]
+                    "Abbreviations": ["t/mm³"]
                 }
             ]
         },
         {
-            "SingularName": "KiloPoundPerCubicFoot",
-            "PluralName": "KiloPoundPerCubicFoots",
-            "FromUnitToBaseFunc": "x*5359.01832088079",
-            "FromBaseToUnitFunc": "x*0.000186601340044615",
+            "SingularName": "TonnePerCubicCentimeter",
+            "PluralName": "TonnesPerCubicCentimeter",
+            "FromUnitToBaseFunc": "x*100000000000",
+            "FromBaseToUnitFunc": "x*0.00000000001",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["Kip/ft^3"]
+                    "Abbreviations": ["t/cm³"]
                 }
             ]
         },
         {
-            "SingularName": "KiloNewtonPerCubicMillimeter",
-            "PluralName": "KiloNewtonPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*10398211308085.6",
-            "FromBaseToUnitFunc": "x*9.61703864608338E-14",
+            "SingularName": "TonnePerCubicMeter",
+            "PluralName": "TonnesPerCubicMeter",
+            "FromUnitToBaseFunc": "x*1000",
+            "FromBaseToUnitFunc": "x*0.001",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["KN/mm^3"]
+                    "Abbreviations": ["t/m³"]
                 }
             ]
-        },
-        {
-            "SingularName": "KiloNewtonPerCubicMeter",
-            "PluralName": "KiloNewtonPerCubicMeters",
-            "FromUnitToBaseFunc": "x*10.3982113080856",
-            "FromBaseToUnitFunc": "x*0.0961703864608338",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["KN/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KillogramPerCubicMillimeter",
-            "PluralName": "KillogramPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*101971620999.988",
-            "FromBaseToUnitFunc": "x*9.80665002864E-12",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kgf/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonPerCubicMillimeter",
-            "PluralName": "NewtonPerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*10398211308.0856",
-            "FromBaseToUnitFunc": "x*9.61703864608338E-11",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["N/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonPerCubicMeter",
-            "PluralName": "NewtonPerCubicMeters",
-            "FromUnitToBaseFunc": "x*0.0103982113080856",
-            "FromBaseToUnitFunc": "x*96.1703864608337",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["N/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonForcePerCubicMillimeter",
-            "PluralName": "TonForcePerCubicMillimeters",
-            "FromUnitToBaseFunc": "x*101971620999988",
-            "FromBaseToUnitFunc": "x*9.80665002864E-15",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Tonf/mm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonForcePerCubicMeter",
-            "PluralName": "TonForcePerCubicMeters",
-            "FromUnitToBaseFunc": "x*101.971620999988",
-            "FromBaseToUnitFunc": "x*0.00980665002864",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Tonf/m^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KiloNewtonPerCubicCentimeter",
-            "PluralName": "KiloNewtonPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*1039821130.80856",
-            "FromBaseToUnitFunc": "x*9.61703864608337E-10",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["KN/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KilogramForcePerCubicCentimeter",
-            "PluralName": "KilogramForcePerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*10197162.0999988",
-            "FromBaseToUnitFunc": "x*9.80665002864E-08",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Kgf/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "NewtonPerCubicCentimeter",
-            "PluralName": "NewtonPerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*1039821.13080856",
-            "FromBaseToUnitFunc": "x*9.61703864608337E-07",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["N/cm^3"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonForcePerCubicCentimeter",
-            "PluralName": "TonForcePerCubicCentimeters",
-            "FromUnitToBaseFunc": "x*10197162099.9988",
-            "FromBaseToUnitFunc": "x*9.80665002864E-11",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Tonf/cm^3"]
-                }
-            ]
-        },
+        }
     ]
 }
