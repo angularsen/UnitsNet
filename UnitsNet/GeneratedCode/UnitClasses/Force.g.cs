@@ -69,7 +69,7 @@ namespace UnitsNet
         /// </summary>
         public double Kilonewtons
         {
-            get { return _newtons/1e3; }
+            get { return (_newtons) / 1e3d; }
         }
 
         /// <summary>
@@ -97,11 +97,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Force in PoundForces.
+        ///     Get Force in PoundsForce.
         /// </summary>
-        public double PoundForces
+        public double PoundsForce
         {
             get { return _newtons/4.4482216152605095551842641431421; }
+        }
+
+        /// <summary>
+        ///     Get Force in TonnesForce.
+        /// </summary>
+        public double TonnesForce
+        {
+            get { return _newtons/Constants.Gravity/1000; }
         }
 
         #endregion
@@ -134,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         public static Force FromKilonewtons(double kilonewtons)
         {
-            return new Force(kilonewtons*1e3);
+            return new Force((kilonewtons) * 1e3d);
         }
 
         /// <summary>
@@ -162,11 +170,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Force from PoundForces.
+        ///     Get Force from PoundsForce.
         /// </summary>
-        public static Force FromPoundForces(double poundforces)
+        public static Force FromPoundsForce(double poundsforce)
         {
-            return new Force(poundforces*4.4482216152605095551842641431421);
+            return new Force(poundsforce*4.4482216152605095551842641431421);
+        }
+
+        /// <summary>
+        ///     Get Force from TonnesForce.
+        /// </summary>
+        public static Force FromTonnesForce(double tonnesforce)
+        {
+            return new Force(tonnesforce*Constants.Gravity*1000);
         }
 
 
@@ -193,7 +209,9 @@ namespace UnitsNet
                 case ForceUnit.Poundal:
                     return FromPoundals(value);
                 case ForceUnit.PoundForce:
-                    return FromPoundForces(value);
+                    return FromPoundsForce(value);
+                case ForceUnit.TonneForce:
+                    return FromTonnesForce(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -340,7 +358,9 @@ namespace UnitsNet
                 case ForceUnit.Poundal:
                     return Poundals;
                 case ForceUnit.PoundForce:
-                    return PoundForces;
+                    return PoundsForce;
+                case ForceUnit.TonneForce:
+                    return TonnesForce;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

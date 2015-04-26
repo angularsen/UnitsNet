@@ -25,6 +25,21 @@ namespace UnitsNet.Units
     public enum TorqueUnit
     {
         Undefined = 0,
-        Newtonmeter,
+        KilogramForceCentimeter,
+        KilogramForceMeter,
+        KilogramForceMillimeter,
+        KilonewtonCentimeter,
+        KilonewtonMeter,
+        KilonewtonMillimeter,
+        KilopoundForceFoot,
+        KilopoundForceInch,
+        NewtonCentimeter,
+        NewtonMeter,
+        NewtonMillimeter,
+        PoundForceFoot,
+        PoundForceInch,
+        TonneForceCentimeter,
+        TonneForceMeter,
+        TonneForceMillimeter,
     }
 }

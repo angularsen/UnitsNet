@@ -39,21 +39,93 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Density.
         /// </summary>
-        private readonly double _kilogramPerCubicMeter;
+        private readonly double _kilogramsPerCubicMeter;
 
-        public Density(double kilogrampercubicmeter) : this()
+        public Density(double kilogramspercubicmeter) : this()
         {
-            _kilogramPerCubicMeter = kilogrampercubicmeter;
+            _kilogramsPerCubicMeter = kilogramspercubicmeter;
         }
 
         #region Properties
 
         /// <summary>
-        ///     Get Density in KilogramPerCubicMeter.
+        ///     Get Density in KilogramsPerCubicCentimeter.
         /// </summary>
-        public double KilogramPerCubicMeter
+        public double KilogramsPerCubicCentimeter
         {
-            get { return _kilogramPerCubicMeter; }
+            get { return _kilogramsPerCubicMeter*0.00000001; }
+        }
+
+        /// <summary>
+        ///     Get Density in KilogramsPerCubicMeter.
+        /// </summary>
+        public double KilogramsPerCubicMeter
+        {
+            get { return _kilogramsPerCubicMeter; }
+        }
+
+        /// <summary>
+        ///     Get Density in KilogramsPerCubicMillimeter.
+        /// </summary>
+        public double KilogramsPerCubicMillimeter
+        {
+            get { return _kilogramsPerCubicMeter*0.000000000001; }
+        }
+
+        /// <summary>
+        ///     Get Density in KilopoundsPerCubicFoot.
+        /// </summary>
+        public double KilopoundsPerCubicFoot
+        {
+            get { return (_kilogramsPerCubicMeter*0.062427961) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in KilopoundsPerCubicInch.
+        /// </summary>
+        public double KilopoundsPerCubicInch
+        {
+            get { return (_kilogramsPerCubicMeter/27679.904710191) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicFoot.
+        /// </summary>
+        public double PoundsPerCubicFoot
+        {
+            get { return _kilogramsPerCubicMeter*0.062427961; }
+        }
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicInch.
+        /// </summary>
+        public double PoundsPerCubicInch
+        {
+            get { return _kilogramsPerCubicMeter/27679.904710191; }
+        }
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicCentimeter.
+        /// </summary>
+        public double TonnesPerCubicCentimeter
+        {
+            get { return _kilogramsPerCubicMeter*0.00000000001; }
+        }
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicMeter.
+        /// </summary>
+        public double TonnesPerCubicMeter
+        {
+            get { return _kilogramsPerCubicMeter*0.001; }
+        }
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicMillimeter.
+        /// </summary>
+        public double TonnesPerCubicMillimeter
+        {
+            get { return _kilogramsPerCubicMeter*0.000000000000001; }
         }
 
         #endregion
@@ -66,11 +138,83 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Density from KilogramPerCubicMeter.
+        ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
-        public static Density FromKilogramPerCubicMeter(double kilogrampercubicmeter)
+        public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter)
         {
-            return new Density(kilogrampercubicmeter);
+            return new Density(kilogramspercubiccentimeter*100000000);
+        }
+
+        /// <summary>
+        ///     Get Density from KilogramsPerCubicMeter.
+        /// </summary>
+        public static Density FromKilogramsPerCubicMeter(double kilogramspercubicmeter)
+        {
+            return new Density(kilogramspercubicmeter);
+        }
+
+        /// <summary>
+        ///     Get Density from KilogramsPerCubicMillimeter.
+        /// </summary>
+        public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter)
+        {
+            return new Density(kilogramspercubicmillimeter*1000000000000);
+        }
+
+        /// <summary>
+        ///     Get Density from KilopoundsPerCubicFoot.
+        /// </summary>
+        public static Density FromKilopoundsPerCubicFoot(double kilopoundspercubicfoot)
+        {
+            return new Density((kilopoundspercubicfoot/0.062427961) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Density from KilopoundsPerCubicInch.
+        /// </summary>
+        public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch)
+        {
+            return new Density((kilopoundspercubicinch*27679.904710191) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Density from PoundsPerCubicFoot.
+        /// </summary>
+        public static Density FromPoundsPerCubicFoot(double poundspercubicfoot)
+        {
+            return new Density(poundspercubicfoot/0.062427961);
+        }
+
+        /// <summary>
+        ///     Get Density from PoundsPerCubicInch.
+        /// </summary>
+        public static Density FromPoundsPerCubicInch(double poundspercubicinch)
+        {
+            return new Density(poundspercubicinch*27679.904710191);
+        }
+
+        /// <summary>
+        ///     Get Density from TonnesPerCubicCentimeter.
+        /// </summary>
+        public static Density FromTonnesPerCubicCentimeter(double tonnespercubiccentimeter)
+        {
+            return new Density(tonnespercubiccentimeter*100000000000);
+        }
+
+        /// <summary>
+        ///     Get Density from TonnesPerCubicMeter.
+        /// </summary>
+        public static Density FromTonnesPerCubicMeter(double tonnespercubicmeter)
+        {
+            return new Density(tonnespercubicmeter*1000);
+        }
+
+        /// <summary>
+        ///     Get Density from TonnesPerCubicMillimeter.
+        /// </summary>
+        public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter)
+        {
+            return new Density(tonnespercubicmillimeter*1000000000000000);
         }
 
 
@@ -84,8 +228,26 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case DensityUnit.KilogramPerCubicCentimeter:
+                    return FromKilogramsPerCubicCentimeter(value);
                 case DensityUnit.KilogramPerCubicMeter:
-                    return FromKilogramPerCubicMeter(value);
+                    return FromKilogramsPerCubicMeter(value);
+                case DensityUnit.KilogramPerCubicMillimeter:
+                    return FromKilogramsPerCubicMillimeter(value);
+                case DensityUnit.KilopoundPerCubicFoot:
+                    return FromKilopoundsPerCubicFoot(value);
+                case DensityUnit.KilopoundPerCubicInch:
+                    return FromKilopoundsPerCubicInch(value);
+                case DensityUnit.PoundPerCubicFoot:
+                    return FromPoundsPerCubicFoot(value);
+                case DensityUnit.PoundPerCubicInch:
+                    return FromPoundsPerCubicInch(value);
+                case DensityUnit.TonnePerCubicCentimeter:
+                    return FromTonnesPerCubicCentimeter(value);
+                case DensityUnit.TonnePerCubicMeter:
+                    return FromTonnesPerCubicMeter(value);
+                case DensityUnit.TonnePerCubicMillimeter:
+                    return FromTonnesPerCubicMillimeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -110,37 +272,37 @@ namespace UnitsNet
 
         public static Density operator -(Density right)
         {
-            return new Density(-right._kilogramPerCubicMeter);
+            return new Density(-right._kilogramsPerCubicMeter);
         }
 
         public static Density operator +(Density left, Density right)
         {
-            return new Density(left._kilogramPerCubicMeter + right._kilogramPerCubicMeter);
+            return new Density(left._kilogramsPerCubicMeter + right._kilogramsPerCubicMeter);
         }
 
         public static Density operator -(Density left, Density right)
         {
-            return new Density(left._kilogramPerCubicMeter - right._kilogramPerCubicMeter);
+            return new Density(left._kilogramsPerCubicMeter - right._kilogramsPerCubicMeter);
         }
 
         public static Density operator *(double left, Density right)
         {
-            return new Density(left*right._kilogramPerCubicMeter);
+            return new Density(left*right._kilogramsPerCubicMeter);
         }
 
         public static Density operator *(Density left, double right)
         {
-            return new Density(left._kilogramPerCubicMeter*(double)right);
+            return new Density(left._kilogramsPerCubicMeter*(double)right);
         }
 
         public static Density operator /(Density left, double right)
         {
-            return new Density(left._kilogramPerCubicMeter/(double)right);
+            return new Density(left._kilogramsPerCubicMeter/(double)right);
         }
 
         public static double operator /(Density left, Density right)
         {
-            return Convert.ToDouble(left._kilogramPerCubicMeter/right._kilogramPerCubicMeter);
+            return Convert.ToDouble(left._kilogramsPerCubicMeter/right._kilogramsPerCubicMeter);
         }
 
         #endregion
@@ -156,39 +318,39 @@ namespace UnitsNet
 
         public int CompareTo(Density other)
         {
-            return _kilogramPerCubicMeter.CompareTo(other._kilogramPerCubicMeter);
+            return _kilogramsPerCubicMeter.CompareTo(other._kilogramsPerCubicMeter);
         }
 
         public static bool operator <=(Density left, Density right)
         {
-            return left._kilogramPerCubicMeter <= right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter <= right._kilogramsPerCubicMeter;
         }
 
         public static bool operator >=(Density left, Density right)
         {
-            return left._kilogramPerCubicMeter >= right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter >= right._kilogramsPerCubicMeter;
         }
 
         public static bool operator <(Density left, Density right)
         {
-            return left._kilogramPerCubicMeter < right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter < right._kilogramsPerCubicMeter;
         }
 
         public static bool operator >(Density left, Density right)
         {
-            return left._kilogramPerCubicMeter > right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter > right._kilogramsPerCubicMeter;
         }
 
         public static bool operator ==(Density left, Density right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramPerCubicMeter == right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter == right._kilogramsPerCubicMeter;
         }
 
         public static bool operator !=(Density left, Density right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramPerCubicMeter != right._kilogramPerCubicMeter;
+            return left._kilogramsPerCubicMeter != right._kilogramsPerCubicMeter;
         }
 
         public override bool Equals(object obj)
@@ -198,12 +360,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramPerCubicMeter.Equals(((Density) obj)._kilogramPerCubicMeter);
+            return _kilogramsPerCubicMeter.Equals(((Density) obj)._kilogramsPerCubicMeter);
         }
 
         public override int GetHashCode()
         {
-            return _kilogramPerCubicMeter.GetHashCode();
+            return _kilogramsPerCubicMeter.GetHashCode();
         }
 
         #endregion
@@ -219,8 +381,26 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case DensityUnit.KilogramPerCubicCentimeter:
+                    return KilogramsPerCubicCentimeter;
                 case DensityUnit.KilogramPerCubicMeter:
-                    return KilogramPerCubicMeter;
+                    return KilogramsPerCubicMeter;
+                case DensityUnit.KilogramPerCubicMillimeter:
+                    return KilogramsPerCubicMillimeter;
+                case DensityUnit.KilopoundPerCubicFoot:
+                    return KilopoundsPerCubicFoot;
+                case DensityUnit.KilopoundPerCubicInch:
+                    return KilopoundsPerCubicInch;
+                case DensityUnit.PoundPerCubicFoot:
+                    return PoundsPerCubicFoot;
+                case DensityUnit.PoundPerCubicInch:
+                    return PoundsPerCubicInch;
+                case DensityUnit.TonnePerCubicCentimeter:
+                    return TonnesPerCubicCentimeter;
+                case DensityUnit.TonnePerCubicMeter:
+                    return TonnesPerCubicMeter;
+                case DensityUnit.TonnePerCubicMillimeter:
+                    return TonnesPerCubicMillimeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

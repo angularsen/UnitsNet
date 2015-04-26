@@ -22,18 +22,24 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum DensityUnit
+    public enum SpecificWeightUnit
     {
         Undefined = 0,
-        KilogramPerCubicCentimeter,
-        KilogramPerCubicMeter,
-        KilogramPerCubicMillimeter,
-        KilopoundPerCubicFoot,
-        KilopoundPerCubicInch,
-        PoundPerCubicFoot,
-        PoundPerCubicInch,
-        TonnePerCubicCentimeter,
-        TonnePerCubicMeter,
-        TonnePerCubicMillimeter,
+        KilogramForcePerCubicCentimeter,
+        KilogramForcePerCubicMeter,
+        KilogramForcePerCubicMillimeter,
+        KilonewtonPerCubicCentimeter,
+        KilonewtonPerCubicMeter,
+        KilonewtonPerCubicMillimeter,
+        KilopoundForcePerCubicFoot,
+        KilopoundForcePerCubicInch,
+        NewtonPerCubicCentimeter,
+        NewtonPerCubicMeter,
+        NewtonPerCubicMillimeter,
+        PoundForcePerCubicFoot,
+        PoundForcePerCubicInch,
+        TonneForcePerCubicCentimeter,
+        TonneForcePerCubicMeter,
+        TonneForcePerCubicMillimeter,
     }
 }

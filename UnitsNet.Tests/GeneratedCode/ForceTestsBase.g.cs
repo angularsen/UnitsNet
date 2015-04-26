@@ -42,7 +42,8 @@ namespace UnitsNet.Tests
         protected abstract double KiloPondsInOneNewton { get; }
         protected abstract double NewtonsInOneNewton { get; }
         protected abstract double PoundalsInOneNewton { get; }
-        protected abstract double PoundForcesInOneNewton { get; }
+        protected abstract double PoundsForceInOneNewton { get; }
+        protected abstract double TonnesForceInOneNewton { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DyneTolerance { get { return 1e-5; } }
@@ -51,7 +52,8 @@ namespace UnitsNet.Tests
         protected virtual double KiloPondsTolerance { get { return 1e-5; } }
         protected virtual double NewtonsTolerance { get { return 1e-5; } }
         protected virtual double PoundalsTolerance { get { return 1e-5; } }
-        protected virtual double PoundForcesTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForceTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForceTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
@@ -64,7 +66,8 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KiloPondsInOneNewton, newton.KiloPonds, KiloPondsTolerance);
             Assert.AreEqual(NewtonsInOneNewton, newton.Newtons, NewtonsTolerance);
             Assert.AreEqual(PoundalsInOneNewton, newton.Poundals, PoundalsTolerance);
-            Assert.AreEqual(PoundForcesInOneNewton, newton.PoundForces, PoundForcesTolerance);
+            Assert.AreEqual(PoundsForceInOneNewton, newton.PoundsForce, PoundsForceTolerance);
+            Assert.AreEqual(TonnesForceInOneNewton, newton.TonnesForce, TonnesForceTolerance);
         }
 
         [Test]
@@ -76,7 +79,8 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Force.From(1, ForceUnit.KiloPond).KiloPonds, KiloPondsTolerance);
             Assert.AreEqual(1, Force.From(1, ForceUnit.Newton).Newtons, NewtonsTolerance);
             Assert.AreEqual(1, Force.From(1, ForceUnit.Poundal).Poundals, PoundalsTolerance);
-            Assert.AreEqual(1, Force.From(1, ForceUnit.PoundForce).PoundForces, PoundForcesTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.PoundForce).PoundsForce, PoundsForceTolerance);
+            Assert.AreEqual(1, Force.From(1, ForceUnit.TonneForce).TonnesForce, TonnesForceTolerance);
         }
 
         [Test]
@@ -89,7 +93,8 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KiloPondsInOneNewton, newton.As(ForceUnit.KiloPond), KiloPondsTolerance);
             Assert.AreEqual(NewtonsInOneNewton, newton.As(ForceUnit.Newton), NewtonsTolerance);
             Assert.AreEqual(PoundalsInOneNewton, newton.As(ForceUnit.Poundal), PoundalsTolerance);
-            Assert.AreEqual(PoundForcesInOneNewton, newton.As(ForceUnit.PoundForce), PoundForcesTolerance);
+            Assert.AreEqual(PoundsForceInOneNewton, newton.As(ForceUnit.PoundForce), PoundsForceTolerance);
+            Assert.AreEqual(TonnesForceInOneNewton, newton.As(ForceUnit.TonneForce), TonnesForceTolerance);
         }
 
         [Test]
@@ -102,7 +107,8 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, KiloPondsTolerance);
             Assert.AreEqual(1, Force.FromNewtons(newton.Newtons).Newtons, NewtonsTolerance);
             Assert.AreEqual(1, Force.FromPoundals(newton.Poundals).Newtons, PoundalsTolerance);
-            Assert.AreEqual(1, Force.FromPoundForces(newton.PoundForces).Newtons, PoundForcesTolerance);
+            Assert.AreEqual(1, Force.FromPoundsForce(newton.PoundsForce).Newtons, PoundsForceTolerance);
+            Assert.AreEqual(1, Force.FromTonnesForce(newton.TonnesForce).Newtons, TonnesForceTolerance);
         }
 
         [Test]

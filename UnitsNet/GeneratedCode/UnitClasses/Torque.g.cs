@@ -39,21 +39,141 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Torque.
         /// </summary>
-        private readonly double _newtonmeters;
+        private readonly double _newtonMeters;
 
         public Torque(double newtonmeters) : this()
         {
-            _newtonmeters = newtonmeters;
+            _newtonMeters = newtonmeters;
         }
 
         #region Properties
 
         /// <summary>
-        ///     Get Torque in Newtonmeters.
+        ///     Get Torque in KilogramForceCentimeters.
         /// </summary>
-        public double Newtonmeters
+        public double KilogramForceCentimeters
         {
-            get { return _newtonmeters; }
+            get { return _newtonMeters*10.1971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilogramForceMeters.
+        /// </summary>
+        public double KilogramForceMeters
+        {
+            get { return _newtonMeters*0.101971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilogramForceMillimeters.
+        /// </summary>
+        public double KilogramForceMillimeters
+        {
+            get { return _newtonMeters*101.971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilonewtonCentimeters.
+        /// </summary>
+        public double KilonewtonCentimeters
+        {
+            get { return (_newtonMeters*100) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilonewtonMeters.
+        /// </summary>
+        public double KilonewtonMeters
+        {
+            get { return (_newtonMeters) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilonewtonMillimeters.
+        /// </summary>
+        public double KilonewtonMillimeters
+        {
+            get { return (_newtonMeters*1000) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilopoundForceFeet.
+        /// </summary>
+        public double KilopoundForceFeet
+        {
+            get { return (_newtonMeters*0.737562085483396) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in KilopoundForceInches.
+        /// </summary>
+        public double KilopoundForceInches
+        {
+            get { return (_newtonMeters*8.85074502580075) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in NewtonCentimeters.
+        /// </summary>
+        public double NewtonCentimeters
+        {
+            get { return _newtonMeters*100; }
+        }
+
+        /// <summary>
+        ///     Get Torque in NewtonMeters.
+        /// </summary>
+        public double NewtonMeters
+        {
+            get { return _newtonMeters; }
+        }
+
+        /// <summary>
+        ///     Get Torque in NewtonMillimeters.
+        /// </summary>
+        public double NewtonMillimeters
+        {
+            get { return _newtonMeters*1000; }
+        }
+
+        /// <summary>
+        ///     Get Torque in PoundForceFeet.
+        /// </summary>
+        public double PoundForceFeet
+        {
+            get { return _newtonMeters*0.737562085483396; }
+        }
+
+        /// <summary>
+        ///     Get Torque in PoundForceInches.
+        /// </summary>
+        public double PoundForceInches
+        {
+            get { return _newtonMeters*8.85074502580075; }
+        }
+
+        /// <summary>
+        ///     Get Torque in TonneForceCentimeters.
+        /// </summary>
+        public double TonneForceCentimeters
+        {
+            get { return _newtonMeters*0.0101971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Torque in TonneForceMeters.
+        /// </summary>
+        public double TonneForceMeters
+        {
+            get { return _newtonMeters*0.000101971619222242; }
+        }
+
+        /// <summary>
+        ///     Get Torque in TonneForceMillimeters.
+        /// </summary>
+        public double TonneForceMillimeters
+        {
+            get { return _newtonMeters*0.101971619222242; }
         }
 
         #endregion
@@ -66,11 +186,131 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Torque from Newtonmeters.
+        ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
-        public static Torque FromNewtonmeters(double newtonmeters)
+        public static Torque FromKilogramForceCentimeters(double kilogramforcecentimeters)
+        {
+            return new Torque(kilogramforcecentimeters*0.0980665019960652);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilogramForceMeters.
+        /// </summary>
+        public static Torque FromKilogramForceMeters(double kilogramforcemeters)
+        {
+            return new Torque(kilogramforcemeters*9.80665019960652);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilogramForceMillimeters.
+        /// </summary>
+        public static Torque FromKilogramForceMillimeters(double kilogramforcemillimeters)
+        {
+            return new Torque(kilogramforcemillimeters*0.00980665019960652);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilonewtonCentimeters.
+        /// </summary>
+        public static Torque FromKilonewtonCentimeters(double kilonewtoncentimeters)
+        {
+            return new Torque((kilonewtoncentimeters*0.01) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilonewtonMeters.
+        /// </summary>
+        public static Torque FromKilonewtonMeters(double kilonewtonmeters)
+        {
+            return new Torque((kilonewtonmeters) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilonewtonMillimeters.
+        /// </summary>
+        public static Torque FromKilonewtonMillimeters(double kilonewtonmillimeters)
+        {
+            return new Torque((kilonewtonmillimeters*0.001) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilopoundForceFeet.
+        /// </summary>
+        public static Torque FromKilopoundForceFeet(double kilopoundforcefeet)
+        {
+            return new Torque((kilopoundforcefeet*1.3558180656) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Torque from KilopoundForceInches.
+        /// </summary>
+        public static Torque FromKilopoundForceInches(double kilopoundforceinches)
+        {
+            return new Torque((kilopoundforceinches*0.1129848388) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Torque from NewtonCentimeters.
+        /// </summary>
+        public static Torque FromNewtonCentimeters(double newtoncentimeters)
+        {
+            return new Torque(newtoncentimeters*0.01);
+        }
+
+        /// <summary>
+        ///     Get Torque from NewtonMeters.
+        /// </summary>
+        public static Torque FromNewtonMeters(double newtonmeters)
         {
             return new Torque(newtonmeters);
+        }
+
+        /// <summary>
+        ///     Get Torque from NewtonMillimeters.
+        /// </summary>
+        public static Torque FromNewtonMillimeters(double newtonmillimeters)
+        {
+            return new Torque(newtonmillimeters*0.001);
+        }
+
+        /// <summary>
+        ///     Get Torque from PoundForceFeet.
+        /// </summary>
+        public static Torque FromPoundForceFeet(double poundforcefeet)
+        {
+            return new Torque(poundforcefeet*1.3558180656);
+        }
+
+        /// <summary>
+        ///     Get Torque from PoundForceInches.
+        /// </summary>
+        public static Torque FromPoundForceInches(double poundforceinches)
+        {
+            return new Torque(poundforceinches*0.1129848388);
+        }
+
+        /// <summary>
+        ///     Get Torque from TonneForceCentimeters.
+        /// </summary>
+        public static Torque FromTonneForceCentimeters(double tonneforcecentimeters)
+        {
+            return new Torque(tonneforcecentimeters*98.0665019960652);
+        }
+
+        /// <summary>
+        ///     Get Torque from TonneForceMeters.
+        /// </summary>
+        public static Torque FromTonneForceMeters(double tonneforcemeters)
+        {
+            return new Torque(tonneforcemeters*9806.65019960653);
+        }
+
+        /// <summary>
+        ///     Get Torque from TonneForceMillimeters.
+        /// </summary>
+        public static Torque FromTonneForceMillimeters(double tonneforcemillimeters)
+        {
+            return new Torque(tonneforcemillimeters*9.80665019960652);
         }
 
 
@@ -84,8 +324,38 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case TorqueUnit.Newtonmeter:
-                    return FromNewtonmeters(value);
+                case TorqueUnit.KilogramForceCentimeter:
+                    return FromKilogramForceCentimeters(value);
+                case TorqueUnit.KilogramForceMeter:
+                    return FromKilogramForceMeters(value);
+                case TorqueUnit.KilogramForceMillimeter:
+                    return FromKilogramForceMillimeters(value);
+                case TorqueUnit.KilonewtonCentimeter:
+                    return FromKilonewtonCentimeters(value);
+                case TorqueUnit.KilonewtonMeter:
+                    return FromKilonewtonMeters(value);
+                case TorqueUnit.KilonewtonMillimeter:
+                    return FromKilonewtonMillimeters(value);
+                case TorqueUnit.KilopoundForceFoot:
+                    return FromKilopoundForceFeet(value);
+                case TorqueUnit.KilopoundForceInch:
+                    return FromKilopoundForceInches(value);
+                case TorqueUnit.NewtonCentimeter:
+                    return FromNewtonCentimeters(value);
+                case TorqueUnit.NewtonMeter:
+                    return FromNewtonMeters(value);
+                case TorqueUnit.NewtonMillimeter:
+                    return FromNewtonMillimeters(value);
+                case TorqueUnit.PoundForceFoot:
+                    return FromPoundForceFeet(value);
+                case TorqueUnit.PoundForceInch:
+                    return FromPoundForceInches(value);
+                case TorqueUnit.TonneForceCentimeter:
+                    return FromTonneForceCentimeters(value);
+                case TorqueUnit.TonneForceMeter:
+                    return FromTonneForceMeters(value);
+                case TorqueUnit.TonneForceMillimeter:
+                    return FromTonneForceMillimeters(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -110,37 +380,37 @@ namespace UnitsNet
 
         public static Torque operator -(Torque right)
         {
-            return new Torque(-right._newtonmeters);
+            return new Torque(-right._newtonMeters);
         }
 
         public static Torque operator +(Torque left, Torque right)
         {
-            return new Torque(left._newtonmeters + right._newtonmeters);
+            return new Torque(left._newtonMeters + right._newtonMeters);
         }
 
         public static Torque operator -(Torque left, Torque right)
         {
-            return new Torque(left._newtonmeters - right._newtonmeters);
+            return new Torque(left._newtonMeters - right._newtonMeters);
         }
 
         public static Torque operator *(double left, Torque right)
         {
-            return new Torque(left*right._newtonmeters);
+            return new Torque(left*right._newtonMeters);
         }
 
         public static Torque operator *(Torque left, double right)
         {
-            return new Torque(left._newtonmeters*(double)right);
+            return new Torque(left._newtonMeters*(double)right);
         }
 
         public static Torque operator /(Torque left, double right)
         {
-            return new Torque(left._newtonmeters/(double)right);
+            return new Torque(left._newtonMeters/(double)right);
         }
 
         public static double operator /(Torque left, Torque right)
         {
-            return Convert.ToDouble(left._newtonmeters/right._newtonmeters);
+            return Convert.ToDouble(left._newtonMeters/right._newtonMeters);
         }
 
         #endregion
@@ -156,39 +426,39 @@ namespace UnitsNet
 
         public int CompareTo(Torque other)
         {
-            return _newtonmeters.CompareTo(other._newtonmeters);
+            return _newtonMeters.CompareTo(other._newtonMeters);
         }
 
         public static bool operator <=(Torque left, Torque right)
         {
-            return left._newtonmeters <= right._newtonmeters;
+            return left._newtonMeters <= right._newtonMeters;
         }
 
         public static bool operator >=(Torque left, Torque right)
         {
-            return left._newtonmeters >= right._newtonmeters;
+            return left._newtonMeters >= right._newtonMeters;
         }
 
         public static bool operator <(Torque left, Torque right)
         {
-            return left._newtonmeters < right._newtonmeters;
+            return left._newtonMeters < right._newtonMeters;
         }
 
         public static bool operator >(Torque left, Torque right)
         {
-            return left._newtonmeters > right._newtonmeters;
+            return left._newtonMeters > right._newtonMeters;
         }
 
         public static bool operator ==(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonmeters == right._newtonmeters;
+            return left._newtonMeters == right._newtonMeters;
         }
 
         public static bool operator !=(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonmeters != right._newtonmeters;
+            return left._newtonMeters != right._newtonMeters;
         }
 
         public override bool Equals(object obj)
@@ -198,12 +468,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtonmeters.Equals(((Torque) obj)._newtonmeters);
+            return _newtonMeters.Equals(((Torque) obj)._newtonMeters);
         }
 
         public override int GetHashCode()
         {
-            return _newtonmeters.GetHashCode();
+            return _newtonMeters.GetHashCode();
         }
 
         #endregion
@@ -219,8 +489,38 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case TorqueUnit.Newtonmeter:
-                    return Newtonmeters;
+                case TorqueUnit.KilogramForceCentimeter:
+                    return KilogramForceCentimeters;
+                case TorqueUnit.KilogramForceMeter:
+                    return KilogramForceMeters;
+                case TorqueUnit.KilogramForceMillimeter:
+                    return KilogramForceMillimeters;
+                case TorqueUnit.KilonewtonCentimeter:
+                    return KilonewtonCentimeters;
+                case TorqueUnit.KilonewtonMeter:
+                    return KilonewtonMeters;
+                case TorqueUnit.KilonewtonMillimeter:
+                    return KilonewtonMillimeters;
+                case TorqueUnit.KilopoundForceFoot:
+                    return KilopoundForceFeet;
+                case TorqueUnit.KilopoundForceInch:
+                    return KilopoundForceInches;
+                case TorqueUnit.NewtonCentimeter:
+                    return NewtonCentimeters;
+                case TorqueUnit.NewtonMeter:
+                    return NewtonMeters;
+                case TorqueUnit.NewtonMillimeter:
+                    return NewtonMillimeters;
+                case TorqueUnit.PoundForceFoot:
+                    return PoundForceFeet;
+                case TorqueUnit.PoundForceInch:
+                    return PoundForceInches;
+                case TorqueUnit.TonneForceCentimeter:
+                    return TonneForceCentimeters;
+                case TorqueUnit.TonneForceMeter:
+                    return TonneForceMeters;
+                case TorqueUnit.TonneForceMillimeter:
+                    return TonneForceMillimeters;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -325,7 +625,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(TorqueUnit.Newtonmeter);
+            return ToString(TorqueUnit.NewtonMeter);
         }
 
         /// <summary>
