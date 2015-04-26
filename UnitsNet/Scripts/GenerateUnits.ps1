@@ -93,7 +93,7 @@ function GenerateUnitClass($unitClass)
 {
     Write-Host "Generate unit for: " + $unitClass.Name;    
     
-    $outFileName = "$PSScriptRoot/../UnitsNet/GeneratedCode/UnitClasses/$($unitClass.Name).g.cs";
+    $outFileName = "$PSScriptRoot/../GeneratedCode/UnitClasses/$($unitClass.Name).g.cs";
     GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
 
@@ -101,13 +101,13 @@ function GenerateUnitTestBaseClass($unitClass)
 {
     Write-Host "Generate test base for: " + $unitClass.Name;    
     
-    $outFileName = "$PSScriptRoot/../../Tests/GeneratedCode/$($unitClass.Name)TestsBase.g.cs";
+    $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode/$($unitClass.Name)TestsBase.g.cs";
     GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
 
 function GenerateUnitTestClassIfNotExists($unitClass)
 {
-    $outFileName = "$PSScriptRoot/../../Tests/CustomCode/$($unitClass.Name)Tests.cs";
+    $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode/$($unitClass.Name)Tests.cs";
     if (Test-Path $outFileName) 
     {
         return;
@@ -123,7 +123,7 @@ function GenerateUnitEnum($unitClass)
 {
     Write-Host "Generate unit enum for: " + $unitClass.Name;
 
-    $outDir = "$PSScriptRoot/../UnitsNet/GeneratedCode/Enums";
+    $outDir = "$PSScriptRoot/../GeneratedCode/Enums";
     $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs";
     
     New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
@@ -136,7 +136,7 @@ function GenerateUnitSystemDefault($unitClasses)
 {
     Write-Host "Generate UnitSystem.Default.g.cs.";
 
-    $outDir = "$PSScriptRoot/../UnitsNet/GeneratedCode";
+    $outDir = "$PSScriptRoot/../GeneratedCode";
     $outFileName = "$outDir/UnitSystem.Default.g.cs";
 
     New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
