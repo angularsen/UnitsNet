@@ -4,8 +4,8 @@
     
     <!-- Root -->
     <ArtifactsPath>$(RootPath)\Artifacts</ArtifactsPath>
-    <SrcPath>$(RootPath)\Src</SrcPath>
-    <TestsSrcPath>$(RootPath)\Tests</TestsSrcPath>   		
+    <SrcPath>$(RootPath)\UnitsNet</SrcPath>
+    <TestsSrcPath>$(RootPath)\UnitsNet.Tests</TestsSrcPath>   		
     <BuildToolsPath>$(RootPath)\Tools</BuildToolsPath>
     <LibsPath>$(RootPath)\Libs</LibsPath>
 	<ToolsPath>$(RootPath)\Tools</ToolsPath>
