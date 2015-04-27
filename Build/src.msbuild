@@ -18,10 +18,10 @@
   <Target Name="CompileProjects">
 
     <MSBuild Projects="
-$(SrcPath)\UnitsNet\UnitsNet.Net35.csproj;
-$(SrcPath)\UnitsNet\UnitsNet.Net451.csproj;
-$(SrcPath)\UnitsNet\UnitsNet.Portable40.csproj;
-$(SrcPath)\UnitsNet\UnitsNet.Portable45.csproj"
+$(SrcPath)\UnitsNet.Net35.csproj;
+$(SrcPath)\UnitsNet.Net451.csproj;
+$(SrcPath)\UnitsNet.Portable40.csproj;
+$(SrcPath)\UnitsNet.Portable45.csproj"
        Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);AllowUnsafeBlocks=true;Retries=15;RetryDelayMilliseconds=5"
        Targets="Build">
     </MSBuild>

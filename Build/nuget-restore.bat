@@ -1,5 +1,5 @@
 @echo off
 SET ROOT=%~dp0..
 SET NuGetExe=%ROOT%\Tools\NuGet.exe
-SET SolutionFile=%ROOT%\Src\UnitsNet.sln
+SET SolutionFile=%ROOT%\UnitsNet.sln
 %NuGetExe% restore %SolutionFile%
