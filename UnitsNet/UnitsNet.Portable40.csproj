@@ -44,7 +44,7 @@
     <None Include="packages.UnitsNet.Portable40.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="obj\**" />
+    <Compile Include="**\*.cs;Scripts\**\*.*" Exclude="obj\**" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations.PCL328">

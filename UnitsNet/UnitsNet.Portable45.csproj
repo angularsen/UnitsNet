@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="obj\**" />
+    <Compile Include="**\*.cs;Scripts\**\*.*" Exclude="obj\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
