@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs;Scripts\**\*.*" Exclude="obj\**" />
+    <Compile Include="**\*.cs;" Exclude="obj\**" />
+    <None Include="Scripts\**\*.*" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
