@@ -8,7 +8,7 @@
             "PluralName": "Pascals",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Kilo","Mega"],
+            "Prefixes": ["Micro","Deca","Hecto","Kilo","Mega","Giga"],
             "Localization": [
                 {
                     "Culture": "en-US",
@@ -42,6 +42,7 @@
             "PluralName": "Bars",
             "FromUnitToBaseFunc": "x*1e5",
             "FromBaseToUnitFunc": "x/1e5",
+            "Prefixes": ["Milli","Centi","Deci","Kilo","Mega"],
             "Localization": [
                 {
                     "Culture": "en-US",
