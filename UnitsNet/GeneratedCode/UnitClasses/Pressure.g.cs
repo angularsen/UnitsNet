@@ -65,6 +65,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in Centibars.
+        /// </summary>
+        public double Centibars
+        {
+            get { return (_pascals/1e5) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Decapascals.
+        /// </summary>
+        public double Decapascals
+        {
+            get { return (_pascals) / 1e1d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Decibars.
+        /// </summary>
+        public double Decibars
+        {
+            get { return (_pascals/1e5) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Gigapascals.
+        /// </summary>
+        public double Gigapascals
+        {
+            get { return (_pascals) / 1e9d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Hectopascals.
+        /// </summary>
+        public double Hectopascals
+        {
+            get { return (_pascals) / 1e2d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Kilobars.
+        /// </summary>
+        public double Kilobars
+        {
+            get { return (_pascals/1e5) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Pressure in KilogramsForcePerSquareCentimeter.
         /// </summary>
         public double KilogramsForcePerSquareCentimeter
@@ -137,11 +185,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in Megabars.
+        /// </summary>
+        public double Megabars
+        {
+            get { return (_pascals/1e5) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Megapascals.
         /// </summary>
         public double Megapascals
         {
             get { return (_pascals) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Micropascals.
+        /// </summary>
+        public double Micropascals
+        {
+            get { return (_pascals) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in Millibars.
+        /// </summary>
+        public double Millibars
+        {
+            get { return (_pascals/1e5) / 1e-3d; }
         }
 
         /// <summary>
@@ -266,6 +338,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from Centibars.
+        /// </summary>
+        public static Pressure FromCentibars(double centibars)
+        {
+            return new Pressure((centibars*1e5) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Decapascals.
+        /// </summary>
+        public static Pressure FromDecapascals(double decapascals)
+        {
+            return new Pressure((decapascals) * 1e1d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Decibars.
+        /// </summary>
+        public static Pressure FromDecibars(double decibars)
+        {
+            return new Pressure((decibars*1e5) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Gigapascals.
+        /// </summary>
+        public static Pressure FromGigapascals(double gigapascals)
+        {
+            return new Pressure((gigapascals) * 1e9d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Hectopascals.
+        /// </summary>
+        public static Pressure FromHectopascals(double hectopascals)
+        {
+            return new Pressure((hectopascals) * 1e2d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Kilobars.
+        /// </summary>
+        public static Pressure FromKilobars(double kilobars)
+        {
+            return new Pressure((kilobars*1e5) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareCentimeter.
         /// </summary>
         public static Pressure FromKilogramsForcePerSquareCentimeter(double kilogramsforcepersquarecentimeter)
@@ -338,11 +458,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from Megabars.
+        /// </summary>
+        public static Pressure FromMegabars(double megabars)
+        {
+            return new Pressure((megabars*1e5) * 1e6d);
+        }
+
+        /// <summary>
         ///     Get Pressure from Megapascals.
         /// </summary>
         public static Pressure FromMegapascals(double megapascals)
         {
             return new Pressure((megapascals) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Micropascals.
+        /// </summary>
+        public static Pressure FromMicropascals(double micropascals)
+        {
+            return new Pressure((micropascals) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from Millibars.
+        /// </summary>
+        public static Pressure FromMillibars(double millibars)
+        {
+            return new Pressure((millibars*1e5) * 1e-3d);
         }
 
         /// <summary>
@@ -456,6 +600,18 @@ namespace UnitsNet
                     return FromAtmospheres(value);
                 case PressureUnit.Bar:
                     return FromBars(value);
+                case PressureUnit.Centibar:
+                    return FromCentibars(value);
+                case PressureUnit.Decapascal:
+                    return FromDecapascals(value);
+                case PressureUnit.Decibar:
+                    return FromDecibars(value);
+                case PressureUnit.Gigapascal:
+                    return FromGigapascals(value);
+                case PressureUnit.Hectopascal:
+                    return FromHectopascals(value);
+                case PressureUnit.Kilobar:
+                    return FromKilobars(value);
                 case PressureUnit.KilogramForcePerSquareCentimeter:
                     return FromKilogramsForcePerSquareCentimeter(value);
                 case PressureUnit.KilogramForcePerSquareMeter:
@@ -474,8 +630,14 @@ namespace UnitsNet
                     return FromKilopoundsForcePerSquareFoot(value);
                 case PressureUnit.KilopoundForcePerSquareInch:
                     return FromKilopoundsForcePerSquareInch(value);
+                case PressureUnit.Megabar:
+                    return FromMegabars(value);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(value);
+                case PressureUnit.Micropascal:
+                    return FromMicropascals(value);
+                case PressureUnit.Millibar:
+                    return FromMillibars(value);
                 case PressureUnit.NewtonPerSquareCentimeter:
                     return FromNewtonsPerSquareCentimeter(value);
                 case PressureUnit.NewtonPerSquareMeter:
@@ -637,6 +799,18 @@ namespace UnitsNet
                     return Atmospheres;
                 case PressureUnit.Bar:
                     return Bars;
+                case PressureUnit.Centibar:
+                    return Centibars;
+                case PressureUnit.Decapascal:
+                    return Decapascals;
+                case PressureUnit.Decibar:
+                    return Decibars;
+                case PressureUnit.Gigapascal:
+                    return Gigapascals;
+                case PressureUnit.Hectopascal:
+                    return Hectopascals;
+                case PressureUnit.Kilobar:
+                    return Kilobars;
                 case PressureUnit.KilogramForcePerSquareCentimeter:
                     return KilogramsForcePerSquareCentimeter;
                 case PressureUnit.KilogramForcePerSquareMeter:
@@ -655,8 +829,14 @@ namespace UnitsNet
                     return KilopoundsForcePerSquareFoot;
                 case PressureUnit.KilopoundForcePerSquareInch:
                     return KilopoundsForcePerSquareInch;
+                case PressureUnit.Megabar:
+                    return Megabars;
                 case PressureUnit.Megapascal:
                     return Megapascals;
+                case PressureUnit.Micropascal:
+                    return Micropascals;
+                case PressureUnit.Millibar:
+                    return Millibars;
                 case PressureUnit.NewtonPerSquareCentimeter:
                     return NewtonsPerSquareCentimeter;
                 case PressureUnit.NewtonPerSquareMeter:
