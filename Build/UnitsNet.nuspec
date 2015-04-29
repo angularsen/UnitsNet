@@ -5,7 +5,7 @@
     <version>3.12.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
-    <owners>Initial Force AS</owners>
+    <owners>Andreas Gullberg Larsen</owners>
     <licenseUrl>https://github.com/anjdreas/UnitsNet/blob/develop/LICENSE</licenseUrl>
     <projectUrl>https://github.com/anjdreas/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
