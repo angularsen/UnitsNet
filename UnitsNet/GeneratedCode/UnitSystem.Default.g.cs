@@ -1260,6 +1260,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "mph"),
                             }),
+                        new CulturesForEnumValue((int) SpeedUnit.MillimeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm/s"),
+                            }),
                     }),
                 new UnitLocalization(typeof (TemperatureUnit),
                     new[]

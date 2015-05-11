@@ -41,6 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double KnotsInOneMeterPerSecond { get; }
         protected abstract double MetersPerSecondInOneMeterPerSecond { get; }
         protected abstract double MilesPerHourInOneMeterPerSecond { get; }
+        protected abstract double MillimetersPerSecondInOneMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double FeetPerSecondTolerance { get { return 1e-5; } }
@@ -48,6 +49,7 @@ namespace UnitsNet.Tests
         protected virtual double KnotsTolerance { get { return 1e-5; } }
         protected virtual double MetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MilesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
@@ -59,6 +61,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.Knots, KnotsTolerance);
             Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.MetersPerSecond, MetersPerSecondTolerance);
             Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.MilesPerHour, MilesPerHourTolerance);
+            Assert.AreEqual(MillimetersPerSecondInOneMeterPerSecond, meterpersecond.MillimetersPerSecond, MillimetersPerSecondTolerance);
         }
 
         [Test]
@@ -69,6 +72,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Speed.From(1, SpeedUnit.Knot).Knots, KnotsTolerance);
             Assert.AreEqual(1, Speed.From(1, SpeedUnit.MeterPerSecond).MetersPerSecond, MetersPerSecondTolerance);
             Assert.AreEqual(1, Speed.From(1, SpeedUnit.MilePerHour).MilesPerHour, MilesPerHourTolerance);
+            Assert.AreEqual(1, Speed.From(1, SpeedUnit.MillimeterPerSecond).MillimetersPerSecond, MillimetersPerSecondTolerance);
         }
 
         [Test]
@@ -80,6 +84,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KnotsInOneMeterPerSecond, meterpersecond.As(SpeedUnit.Knot), KnotsTolerance);
             Assert.AreEqual(MetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MeterPerSecond), MetersPerSecondTolerance);
             Assert.AreEqual(MilesPerHourInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MilePerHour), MilesPerHourTolerance);
+            Assert.AreEqual(MillimetersPerSecondInOneMeterPerSecond, meterpersecond.As(SpeedUnit.MillimeterPerSecond), MillimetersPerSecondTolerance);
         }
 
         [Test]
@@ -91,6 +96,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Speed.FromKnots(meterpersecond.Knots).MetersPerSecond, KnotsTolerance);
             Assert.AreEqual(1, Speed.FromMetersPerSecond(meterpersecond.MetersPerSecond).MetersPerSecond, MetersPerSecondTolerance);
             Assert.AreEqual(1, Speed.FromMilesPerHour(meterpersecond.MilesPerHour).MetersPerSecond, MilesPerHourTolerance);
+            Assert.AreEqual(1, Speed.FromMillimetersPerSecond(meterpersecond.MillimetersPerSecond).MetersPerSecond, MillimetersPerSecondTolerance);
         }
 
         [Test]

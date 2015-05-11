@@ -16,6 +16,18 @@
             ]
         },
         {
+            "SingularName": "MillimeterPerSecond",
+            "PluralName": "MillimetersPerSecond",
+            "FromUnitToBaseFunc": "x*0.001",
+            "FromBaseToUnitFunc": "x/0.001",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["mm/s"]
+                }
+            ]
+        },
+        {
             "SingularName": "FootPerSecond",
             "PluralName": "FeetPerSecond",
             "FromUnitToBaseFunc": "x*0.3048",
