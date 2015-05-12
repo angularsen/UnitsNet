@@ -30,5 +30,6 @@ namespace UnitsNet.Units
         Knot,
         MeterPerSecond,
         MilePerHour,
+        MillimeterPerSecond,
     }
 }

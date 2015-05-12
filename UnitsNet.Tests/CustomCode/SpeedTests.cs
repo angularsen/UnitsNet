@@ -47,5 +47,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 2.23694; }
         }
+
+        protected override double MillimetersPerSecondInOneMeterPerSecond
+        {
+            get { return 1000; }
+        }
     }
 }
