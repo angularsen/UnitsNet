@@ -142,5 +142,50 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 7.5006*1E-3; }
         }
+
+        protected override double CentibarsInOnePascal
+        {
+            get { return 1e-3; }
+        }
+
+        protected override double DecapascalsInOnePascal
+        {
+            get { return 1e-1; }
+        }
+
+        protected override double DecibarsInOnePascal
+        {
+            get { return 1e-4; }
+        }
+
+        protected override double GigapascalsInOnePascal
+        {
+            get { return 1e-9; }
+        }
+
+        protected override double HectopascalsInOnePascal
+        {
+            get { return 1e-2; }
+        }
+
+        protected override double KilobarsInOnePascal
+        {
+            get { return 1e-8; }
+        }
+
+        protected override double MegabarsInOnePascal
+        {
+            get { return 1e-11; }
+        }
+
+        protected override double MicropascalsInOnePascal
+        {
+            get { return 1e-3; }
+        }
+
+        protected override double MillibarsInOnePascal
+        {
+            get { return 1e-2; }
+        }
     }
 }
