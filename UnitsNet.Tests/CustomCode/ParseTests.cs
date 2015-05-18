@@ -52,6 +52,16 @@ namespace UnitsNet.Tests.CustomCode
             return Length.Parse(s, usEnglish).Meters;
         }
 
+        [TestCase("1 ft 1 in", Result = 13)]
+        [TestCase("1ft 1in", Result = 13)]
+        [TestCase("1ft1in", Result = 13)]
+        public double ParseImperialLengthInchesUsEnglish(string s)
+        {
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
+
+            return Length.Parse(s, usEnglish).Inches;
+        }
+
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         [TestCase("5.5 m", Result = 5.5)]
         [TestCase("500 005 m", Result = 500005)]
