@@ -32,17 +32,8 @@ namespace UnitsNet.Tests
     [TestFixture]
     public class UnitSystemTests
     {
-        private CultureInfo _originalUICulture;
         private CultureInfo _originalCulture;
-
-        private enum CustomUnit
-        {
-            // ReSharper disable UnusedMember.Local
-            Undefined = 0,
-            Unit1,
-            Unit2
-            // ReSharper restore UnusedMember.Local
-        }
+        private CultureInfo _originalUICulture;
 
         [SetUp]
         public void Setup()
@@ -58,6 +49,30 @@ namespace UnitsNet.Tests
         {
             Thread.CurrentThread.CurrentUICulture = _originalUICulture;
             Thread.CurrentThread.CurrentCulture = _originalCulture;
+        }
+
+        #region Default ToString Formatting
+
+        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
+        [TestCase(0, Result = "0 m")]
+        [TestCase(0.1, Result = "0.1 m")]
+        [TestCase(0.11, Result = "0.11 m")]
+        [TestCase(0.111234, Result = "0.11 m")]
+        [TestCase(0.115, Result = "0.12 m")]
+        public string DefaultToStringFormatting(double value)
+        {
+            return Length.FromMeters(value).ToString();
+        }
+
+        #endregion
+
+        private enum CustomUnit
+        {
+            // ReSharper disable UnusedMember.Local
+            Undefined = 0,
+            Unit1,
+            Unit2
+            // ReSharper restore UnusedMember.Local
         }
 
         #region Missing Abbreviations
@@ -79,7 +94,8 @@ namespace UnitsNet.Tests
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName,
+                    EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
@@ -99,16 +115,17 @@ namespace UnitsNet.Tests
             if (unitValuesMissingAbbreviations.Any())
             {
                 string message = "Units missing abbreviations: " +
-                                    string.Join(", ",
-                                        unitValuesMissingAbbreviations.Select(
-                                            unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
+                                 string.Join(", ",
+                                     unitValuesMissingAbbreviations.Select(
+                                         unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
 
                 Assert.Inconclusive("Failed, but skipping error for localization: " + message);
             }
             //Assert.IsEmpty(unitsMissingAbbreviations, message);
         }
 
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName, IEnumerable<TUnit> unitValues)
+        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
+            IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
@@ -269,8 +286,10 @@ namespace UnitsNet.Tests
 
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
-            Assert.AreEqual("2,222 ft 3 in", Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
-            Assert.AreEqual("3,333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
+            Assert.AreEqual("2,222 ft 3 in",
+                Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
+            Assert.AreEqual("3,333 st 7 lb",
+                Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
         }
 
         // These cultures use a thin space in digit grouping
@@ -344,24 +363,10 @@ namespace UnitsNet.Tests
         [TestCase(0.00299999999, 4, Result = "0.003 m")]
         [TestCase(0.0003000001, 2, Result = "3e-04 m")]
         [TestCase(0.0003000001, 4, Result = "3e-04 m")]
-        public string RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value, int maxSignificantDigitsAfterRadix)
+        public string RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
+            int maxSignificantDigitsAfterRadix)
         {
             return Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
-        }
-
-        #endregion
-
-        #region Default ToString Formatting
-
-        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
-        [TestCase(0, Result = "0 m")]
-        [TestCase(0.1, Result = "0.1 m")]
-        [TestCase(0.11, Result = "0.11 m")]
-        [TestCase(0.111234, Result = "0.11 m")]
-        [TestCase(0.115, Result = "0.12 m")]
-        public string DefaultToStringFormatting(double value)
-        {
-            return Length.FromMeters(value).ToString();
         }
 
         #endregion
@@ -372,7 +377,7 @@ namespace UnitsNet.Tests
         public void NegativeInfinityFormatting()
         {
             Assert.That(Length.FromMeters(Double.NegativeInfinity).ToString(),
-                        Is.EqualTo("-Infinity m"));
+                Is.EqualTo("-Infinity m"));
         }
 
         // Any value in the interval (-inf ≤ x < 1e-03] is formatted in scientific notation
@@ -417,14 +422,14 @@ namespace UnitsNet.Tests
         public void PositiveInfinityFormatting()
         {
             Assert.That(Length.FromMeters(Double.PositiveInfinity).ToString(),
-                        Is.EqualTo("Infinity m"));
+                Is.EqualTo("Infinity m"));
         }
 
         [Test]
         public void NotANumberFormatting()
         {
             Assert.That(Length.FromMeters(Double.NaN).ToString(),
-                        Is.EqualTo("NaN m"));
+                Is.EqualTo("NaN m"));
         }
 
         #endregion
