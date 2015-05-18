@@ -373,15 +373,15 @@ namespace UnitsNet
         #region Parsing
 
         /// <summary>
-        ///     Parse a string with at least one quantity of the format "&lt;quantity&gt; &lt;unit&gt;".
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
-        ///     Expected valid quantity and unit. Input string needs to have at least one valid quantity in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;".
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static Force Parse(string str, IFormatProvider formatProvider = null)
@@ -395,11 +395,12 @@ namespace UnitsNet
             var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
                             numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
                             numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
-            var regexString = string.Format(@"(?:(?<value>[-+]?{0}{1}{2}{3}\s?)+?",
+            var regexString = string.Format(@"(?:(?<value>[-+]?{0}{1}{2}{3}\s?){4}",
                             numRegex,              // capture base (integral) Quantity value
                             @"(?:[eE][-+]?\d+)?)", // capture exponential (if any), end of Quantity capturing
                             @"\s?",                // ignore whitespace (allows both "1kg", "1 kg")
-                            @"(?<unit>[^\s\d]+)"); // capture Unit (non-numeric, non-whitespace) input
+                            @"(?<unit>\S+)",       // capture Unit (non-numeric, non-whitespace) input
+                            @"{1,2}?");            // capture one or two quantities (eg. 1ft 2in)
 
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
@@ -428,10 +429,11 @@ namespace UnitsNet
                 }
             }
 
-            if(converted.Count == 0) // No valid matches
+            // Check if there were no valid matches
+            if (converted.Count == 0)
             {
                 var ex = new ArgumentException(
-                    "Expected valid quantity and unit. Input string needs to have at least one valid quantity in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
+                    "Expected string to have one or two pairs of quantity and unit in the format \"<quantity><unit> or <quantity> <unit>\". Eg. \"5.5 m\" or \"1ft 2in\"", "str");
                 ex.Data["input"] = str;
                 ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw ex;
