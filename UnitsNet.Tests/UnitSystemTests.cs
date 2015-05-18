@@ -305,6 +305,27 @@ namespace UnitsNet.Tests
 
         #region Significant Digits After Radix Formatting
 
+        [Test]
+        public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
+        {
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
+
+            Assert.AreEqual("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+        }
+
+        [TestCase("m^2", Result = AreaUnit.SquareMeter)]
+        [TestCase("cm^2", Result = AreaUnit.Undefined)]
+        public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
+        {
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
+
+            return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
+        }
+
         [TestCase(1, Result = "1.1 m")]
         [TestCase(2, Result = "1.12 m")]
         [TestCase(3, Result = "1.123 m")]
