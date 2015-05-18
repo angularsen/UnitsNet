@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
@@ -472,15 +473,15 @@ namespace UnitsNet
         #region Parsing
 
         /// <summary>
-        ///     Parse a string of the format "&lt;quantity&gt; &lt;unit&gt;".
+        ///     Parse a string with at least one quantity of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
-        ///     Expected 2 words. Input string needs to be in the format "&lt;quantity&gt; &lt;unit
-        ///     &gt;".
+        ///     Expected valid quantity and unit. Input string needs to have at least one valid quantity in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;".
         /// </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static Length Parse(string str, IFormatProvider formatProvider = null)
@@ -494,41 +495,48 @@ namespace UnitsNet
             var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
                             numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
                             numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
-            var regexString = string.Format("(?<value>[-+]?{0}{1}{2}{3}",
+            var regexString = string.Format(@"(?:(?<value>[-+]?{0}{1}{2}{3}\s?)+?",
                             numRegex,              // capture base (integral) Quantity value
                             @"(?:[eE][-+]?\d+)?)", // capture exponential (if any), end of Quantity capturing
                             @"\s?",                // ignore whitespace (allows both "1kg", "1 kg")
-                            @"(?<unit>\S+)");      // capture Unit (non-whitespace) input
+                            @"(?<unit>[^\s\d]+)"); // capture Unit (non-numeric, non-whitespace) input
 
             var regex = new Regex(regexString);
-            GroupCollection groups = regex.Match(str.Trim()).Groups;
+            MatchCollection matches = regex.Matches(str.Trim());
+            var converted = new List<Length>();
 
-            var valueString = groups["value"].Value;
-            var unitString = groups["unit"].Value;
+            foreach (Match match in matches)
+            {
+                GroupCollection groups = match.Groups;
 
-            if (valueString == "" || unitString == "")
+                var valueString = groups["value"].Value;
+                var unitString = groups["unit"].Value;
+
+                try
+                {
+                    LengthUnit unit = ParseUnit(unitString, formatProvider);
+                    double value = double.Parse(valueString, formatProvider);
+
+                    converted.Add(From(value, unit));
+                }
+                catch (Exception e)
+                {
+                    var newEx = new UnitsNetException("Error parsing string.", e);
+                    newEx.Data["input"] = str;
+                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                    throw newEx;
+                }
+            }
+
+            if(converted.Count == 0) // No valid matches
             {
                 var ex = new ArgumentException(
-                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
+                    "Expected valid quantity and unit. Input string needs to have at least one valid quantity in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
                 ex.Data["input"] = str;
                 ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw ex;
             }
-
-            try
-            {
-                LengthUnit unit = ParseUnit(unitString, formatProvider);
-                double value = double.Parse(valueString, formatProvider);
-
-                return From(value, unit);
-            }
-            catch (Exception e)
-            {
-                var newEx = new UnitsNetException("Error parsing string.", e);
-                newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                throw newEx;
-            }
+            return converted.Aggregate((x, y) => x + y);
         }
 
         /// <summary>
