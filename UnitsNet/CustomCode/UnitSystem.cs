@@ -184,9 +184,9 @@ namespace UnitsNet
                 existingAbbreviations = unitValueToAbbrev[unitValue] = new List<string>();
             }
 
-            // Update any existing abbreviations so that the latest abbreviations 
-            // take precedence in GetDefaultAbbreviation().
-            unitValueToAbbrev[unitValue] = abbreviations.Concat(existingAbbreviations).Distinct().ToList();
+            // Append new abbreviations to any existing abbreviations so that we don't
+            // change the result of GetDefaultAbbreviation() if already defined.
+            unitValueToAbbrev[unitValue] = existingAbbreviations.Concat(abbreviations).Distinct().ToList();
             foreach (string abbreviation in abbreviations)
             {
                 Dictionary<string, int> abbrevToUnitValue;
