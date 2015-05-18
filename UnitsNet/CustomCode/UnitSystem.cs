@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
@@ -38,11 +37,6 @@ namespace UnitsNet
         private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
 
         /// <summary>
-        ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
-        /// </summary>
-        [NotNull] [PublicAPI] public readonly IFormatProvider Culture;
-
-        /// <summary>
         ///     Per-unit-type dictionary of enum values by abbreviation. This is the inverse of
         ///     <see cref="_unitTypeToUnitValueToAbbrevs" />.
         /// </summary>
@@ -54,6 +48,10 @@ namespace UnitsNet
         /// </summary>
         private readonly Dictionary<Type, Dictionary<int, List<string>>> _unitTypeToUnitValueToAbbrevs;
 
+        /// <summary>
+        ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
+        /// </summary>
+        [NotNull] [PublicAPI] public readonly IFormatProvider Culture;
 
         static UnitSystem()
         {
@@ -145,7 +143,6 @@ namespace UnitsNet
         {
             return GetAllAbbreviations(unit).First();
         }
-
 
         [PublicAPI]
         public void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
