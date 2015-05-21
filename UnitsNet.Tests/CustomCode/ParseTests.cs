@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Globalization;
 using NUnit.Framework;
 using UnitsNet.Units;
@@ -55,6 +54,10 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("1 ft 1 in", Result = 13)]
         [TestCase("1ft 1in", Result = 13)]
         [TestCase("1\' 1\"", Result = 13)]
+        [TestCase("1\'1\"", Result = 13)]
+        [TestCase("1ft1in", Result = 13)]
+        [TestCase("1ft and 1in", Result = 13)]
+        [TestCase("1ft 1invalid", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseImperialLengthInchesUsEnglish(string s)
         {
             var usEnglish = CultureInfo.GetCultureInfo("en-US");
