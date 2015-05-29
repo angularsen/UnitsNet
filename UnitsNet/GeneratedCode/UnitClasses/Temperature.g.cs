@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Temperature : IComparable, IComparable<Temperature>
+    public partial struct Temperature : IQuantity, IComparable<Temperature>
     {
         /// <summary>
         ///     Base unit of Temperature.

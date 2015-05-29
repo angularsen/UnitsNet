@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Power : IComparable, IComparable<Power>
+    public partial struct Power : IQuantity, IComparable<Power>
     {
         /// <summary>
         ///     Base unit of Power.

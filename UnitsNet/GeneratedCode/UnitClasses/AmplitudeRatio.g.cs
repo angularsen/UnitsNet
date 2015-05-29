@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct AmplitudeRatio : IComparable, IComparable<AmplitudeRatio>
+    public partial struct AmplitudeRatio : IQuantity, IComparable<AmplitudeRatio>
     {
         /// <summary>
         ///     Base unit of AmplitudeRatio.

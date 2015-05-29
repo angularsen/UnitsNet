@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Angle : IComparable, IComparable<Angle>
+    public partial struct Angle : IQuantity, IComparable<Angle>
     {
         /// <summary>
         ///     Base unit of Angle.

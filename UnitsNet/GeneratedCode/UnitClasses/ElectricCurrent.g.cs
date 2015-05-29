@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct ElectricCurrent : IComparable, IComparable<ElectricCurrent>
+    public partial struct ElectricCurrent : IQuantity, IComparable<ElectricCurrent>
     {
         /// <summary>
         ///     Base unit of ElectricCurrent.

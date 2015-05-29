@@ -37,6 +37,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -47,7 +48,7 @@ namespace UnitsNet
     ///     $($unitClass.XmlDoc)
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct $className : IComparable, IComparable<$className>
+    public partial struct $className : IQuantity, IComparable<$className>
     {
         /// <summary>
         ///     Base unit of $className.

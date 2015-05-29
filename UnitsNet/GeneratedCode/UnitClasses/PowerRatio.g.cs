@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct PowerRatio : IComparable, IComparable<PowerRatio>
+    public partial struct PowerRatio : IQuantity, IComparable<PowerRatio>
     {
         /// <summary>
         ///     Base unit of PowerRatio.

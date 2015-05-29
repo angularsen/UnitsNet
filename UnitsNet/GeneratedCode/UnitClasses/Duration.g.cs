@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Duration : IComparable, IComparable<Duration>
+    public partial struct Duration : IQuantity, IComparable<Duration>
     {
         /// <summary>
         ///     Base unit of Duration.

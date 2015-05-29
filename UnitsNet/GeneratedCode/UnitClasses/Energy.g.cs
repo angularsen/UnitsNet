@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Energy : IComparable, IComparable<Energy>
+    public partial struct Energy : IQuantity, IComparable<Energy>
     {
         /// <summary>
         ///     Base unit of Energy.

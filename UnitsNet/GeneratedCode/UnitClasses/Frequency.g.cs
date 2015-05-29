@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Frequency : IComparable, IComparable<Frequency>
+    public partial struct Frequency : IQuantity, IComparable<Frequency>
     {
         /// <summary>
         ///     Base unit of Frequency.

@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct KinematicViscosity : IComparable, IComparable<KinematicViscosity>
+    public partial struct KinematicViscosity : IQuantity, IComparable<KinematicViscosity>
     {
         /// <summary>
         ///     Base unit of KinematicViscosity.

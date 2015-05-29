@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q0, expressed in dimensionless units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Level : IComparable, IComparable<Level>
+    public partial struct Level : IQuantity, IComparable<Level>
     {
         /// <summary>
         ///     Base unit of Level.

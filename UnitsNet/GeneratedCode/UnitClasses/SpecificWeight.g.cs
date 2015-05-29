@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct SpecificWeight : IComparable, IComparable<SpecificWeight>
+    public partial struct SpecificWeight : IQuantity, IComparable<SpecificWeight>
     {
         /// <summary>
         ///     Base unit of SpecificWeight.

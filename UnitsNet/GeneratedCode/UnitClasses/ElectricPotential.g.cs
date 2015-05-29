@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct ElectricPotential : IComparable, IComparable<ElectricPotential>
+    public partial struct ElectricPotential : IQuantity, IComparable<ElectricPotential>
     {
         /// <summary>
         ///     Base unit of ElectricPotential.
