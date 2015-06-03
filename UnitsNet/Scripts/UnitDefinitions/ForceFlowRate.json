@@ -1,0 +1,19 @@
+﻿{
+    "Name": "ForceFlowRate",
+    "BaseUnit": "NewtonPerSecond",
+    "XmlDoc": "Quantity .",
+    "Units": [
+        {
+            "SingularName": "NewtonPerSecond",
+            "PluralName": "NewtonsPerSecond",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["N/s"]
+                }
+            ]
+        }        
+    ]
+}
