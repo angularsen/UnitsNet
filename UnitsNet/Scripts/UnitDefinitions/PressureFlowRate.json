@@ -1,0 +1,31 @@
+﻿{
+    "Name": "PressureFlowRate",
+    "BaseUnit": "PascalPerSecond",
+    "XmlDoc": "The quantity of pressure flowing per unit of time.",
+    "Units": [
+        {
+            "SingularName": "PascalPerSecond",
+            "PluralName": "PascalsPerSecond",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Pa/s"]
+                }
+            ]
+        },
+        {
+            "SingularName": "PascalPerMinute",
+            "PluralName": "PascalsPerMinute",
+            "FromUnitToBaseFunc": "x/60",
+            "FromBaseToUnitFunc": "x*60",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Pa/m"]
+                }
+            ]
+        }
+    ]
+}
