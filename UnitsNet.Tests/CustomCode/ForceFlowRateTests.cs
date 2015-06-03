@@ -24,16 +24,11 @@ using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class MassFlowRateTests : MassFlowRateTestsBase
+    public class ForceFlowRateTests : ForceFlowRateTestsBase
     {
-        protected override double KillogramsPerSecondInOneKillogramPerSecond
+        protected override double NewtonsPerSecondInOneNewtonPerSecond
         {
             get { return 1; }
-        }
-
-        protected override double NewtonsPerSecondInOneKillogramPerSecond
-        {
-            get { return 0.101971621; }
         }
     }
 }

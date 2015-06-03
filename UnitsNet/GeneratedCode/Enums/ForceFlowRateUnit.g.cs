@@ -22,10 +22,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum MassFlowRateUnit
+    public enum ForceFlowRateUnit
     {
         Undefined = 0,
-        KillogramPerSecond,
         NewtonPerSecond,
     }
 }

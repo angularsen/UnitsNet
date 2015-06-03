@@ -445,6 +445,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "тс"),
                             }),
                     }),
+                new UnitLocalization(typeof (ForceFlowRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ForceFlowRateUnit.NewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
@@ -857,20 +866,6 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t"),
                                 new AbbreviationsForCulture("ru-RU", "т"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MassFlowRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MassFlowRateUnit.KillogramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/s"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowRateUnit.NewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (PowerUnit),

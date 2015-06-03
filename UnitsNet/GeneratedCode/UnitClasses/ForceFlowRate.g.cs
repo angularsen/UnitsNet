@@ -31,78 +31,60 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     In physics and engineering mass flow rate is the mass of a substance which passes per unit of time. Its unit is kilogram per second in SI units.
+    ///     Quantity .
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct MassFlowRate : IComparable, IComparable<MassFlowRate>
+    public partial struct ForceFlowRate : IComparable, IComparable<ForceFlowRate>
     {
         /// <summary>
-        ///     Base unit of MassFlowRate.
+        ///     Base unit of ForceFlowRate.
         /// </summary>
-        private readonly double _killogramsPerSecond;
+        private readonly double _newtonsPerSecond;
 
-        public MassFlowRate(double killogramspersecond) : this()
+        public ForceFlowRate(double newtonspersecond) : this()
         {
-            _killogramsPerSecond = killogramspersecond;
+            _newtonsPerSecond = newtonspersecond;
         }
 
         #region Properties
 
         /// <summary>
-        ///     Get MassFlowRate in KillogramsPerSecond.
-        /// </summary>
-        public double KillogramsPerSecond
-        {
-            get { return _killogramsPerSecond; }
-        }
-
-        /// <summary>
-        ///     Get MassFlowRate in NewtonsPerSecond.
+        ///     Get ForceFlowRate in NewtonsPerSecond.
         /// </summary>
         public double NewtonsPerSecond
         {
-            get { return _killogramsPerSecond*0.101971621; }
+            get { return _newtonsPerSecond; }
         }
 
         #endregion
 
         #region Static 
 
-        public static MassFlowRate Zero
+        public static ForceFlowRate Zero
         {
-            get { return new MassFlowRate(); }
+            get { return new ForceFlowRate(); }
         }
 
         /// <summary>
-        ///     Get MassFlowRate from KillogramsPerSecond.
+        ///     Get ForceFlowRate from NewtonsPerSecond.
         /// </summary>
-        public static MassFlowRate FromKillogramsPerSecond(double killogramspersecond)
+        public static ForceFlowRate FromNewtonsPerSecond(double newtonspersecond)
         {
-            return new MassFlowRate(killogramspersecond);
-        }
-
-        /// <summary>
-        ///     Get MassFlowRate from NewtonsPerSecond.
-        /// </summary>
-        public static MassFlowRate FromNewtonsPerSecond(double newtonspersecond)
-        {
-            return new MassFlowRate(newtonspersecond/0.101971621);
+            return new ForceFlowRate(newtonspersecond);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassFlowRateUnit" /> to <see cref="MassFlowRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="ForceFlowRateUnit" /> to <see cref="ForceFlowRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassFlowRate unit value.</returns>
-        public static MassFlowRate From(double value, MassFlowRateUnit fromUnit)
+        /// <returns>ForceFlowRate unit value.</returns>
+        public static ForceFlowRate From(double value, ForceFlowRateUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case MassFlowRateUnit.KillogramPerSecond:
-                    return FromKillogramsPerSecond(value);
-                case MassFlowRateUnit.NewtonPerSecond:
+                case ForceFlowRateUnit.NewtonPerSecond:
                     return FromNewtonsPerSecond(value);
 
                 default:
@@ -117,7 +99,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MassFlowRateUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(ForceFlowRateUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -126,39 +108,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static MassFlowRate operator -(MassFlowRate right)
+        public static ForceFlowRate operator -(ForceFlowRate right)
         {
-            return new MassFlowRate(-right._killogramsPerSecond);
+            return new ForceFlowRate(-right._newtonsPerSecond);
         }
 
-        public static MassFlowRate operator +(MassFlowRate left, MassFlowRate right)
+        public static ForceFlowRate operator +(ForceFlowRate left, ForceFlowRate right)
         {
-            return new MassFlowRate(left._killogramsPerSecond + right._killogramsPerSecond);
+            return new ForceFlowRate(left._newtonsPerSecond + right._newtonsPerSecond);
         }
 
-        public static MassFlowRate operator -(MassFlowRate left, MassFlowRate right)
+        public static ForceFlowRate operator -(ForceFlowRate left, ForceFlowRate right)
         {
-            return new MassFlowRate(left._killogramsPerSecond - right._killogramsPerSecond);
+            return new ForceFlowRate(left._newtonsPerSecond - right._newtonsPerSecond);
         }
 
-        public static MassFlowRate operator *(double left, MassFlowRate right)
+        public static ForceFlowRate operator *(double left, ForceFlowRate right)
         {
-            return new MassFlowRate(left*right._killogramsPerSecond);
+            return new ForceFlowRate(left*right._newtonsPerSecond);
         }
 
-        public static MassFlowRate operator *(MassFlowRate left, double right)
+        public static ForceFlowRate operator *(ForceFlowRate left, double right)
         {
-            return new MassFlowRate(left._killogramsPerSecond*(double)right);
+            return new ForceFlowRate(left._newtonsPerSecond*(double)right);
         }
 
-        public static MassFlowRate operator /(MassFlowRate left, double right)
+        public static ForceFlowRate operator /(ForceFlowRate left, double right)
         {
-            return new MassFlowRate(left._killogramsPerSecond/(double)right);
+            return new ForceFlowRate(left._newtonsPerSecond/(double)right);
         }
 
-        public static double operator /(MassFlowRate left, MassFlowRate right)
+        public static double operator /(ForceFlowRate left, ForceFlowRate right)
         {
-            return Convert.ToDouble(left._killogramsPerSecond/right._killogramsPerSecond);
+            return Convert.ToDouble(left._newtonsPerSecond/right._newtonsPerSecond);
         }
 
         #endregion
@@ -168,45 +150,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is MassFlowRate)) throw new ArgumentException("Expected type MassFlowRate.", "obj");
-            return CompareTo((MassFlowRate) obj);
+            if (!(obj is ForceFlowRate)) throw new ArgumentException("Expected type ForceFlowRate.", "obj");
+            return CompareTo((ForceFlowRate) obj);
         }
 
-        public int CompareTo(MassFlowRate other)
+        public int CompareTo(ForceFlowRate other)
         {
-            return _killogramsPerSecond.CompareTo(other._killogramsPerSecond);
+            return _newtonsPerSecond.CompareTo(other._newtonsPerSecond);
         }
 
-        public static bool operator <=(MassFlowRate left, MassFlowRate right)
+        public static bool operator <=(ForceFlowRate left, ForceFlowRate right)
         {
-            return left._killogramsPerSecond <= right._killogramsPerSecond;
+            return left._newtonsPerSecond <= right._newtonsPerSecond;
         }
 
-        public static bool operator >=(MassFlowRate left, MassFlowRate right)
+        public static bool operator >=(ForceFlowRate left, ForceFlowRate right)
         {
-            return left._killogramsPerSecond >= right._killogramsPerSecond;
+            return left._newtonsPerSecond >= right._newtonsPerSecond;
         }
 
-        public static bool operator <(MassFlowRate left, MassFlowRate right)
+        public static bool operator <(ForceFlowRate left, ForceFlowRate right)
         {
-            return left._killogramsPerSecond < right._killogramsPerSecond;
+            return left._newtonsPerSecond < right._newtonsPerSecond;
         }
 
-        public static bool operator >(MassFlowRate left, MassFlowRate right)
+        public static bool operator >(ForceFlowRate left, ForceFlowRate right)
         {
-            return left._killogramsPerSecond > right._killogramsPerSecond;
+            return left._newtonsPerSecond > right._newtonsPerSecond;
         }
 
-        public static bool operator ==(MassFlowRate left, MassFlowRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._killogramsPerSecond == right._killogramsPerSecond;
-        }
-
-        public static bool operator !=(MassFlowRate left, MassFlowRate right)
+        public static bool operator ==(ForceFlowRate left, ForceFlowRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._killogramsPerSecond != right._killogramsPerSecond;
+            return left._newtonsPerSecond == right._newtonsPerSecond;
+        }
+
+        public static bool operator !=(ForceFlowRate left, ForceFlowRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._newtonsPerSecond != right._newtonsPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -216,12 +198,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _killogramsPerSecond.Equals(((MassFlowRate) obj)._killogramsPerSecond);
+            return _newtonsPerSecond.Equals(((ForceFlowRate) obj)._newtonsPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _killogramsPerSecond.GetHashCode();
+            return _newtonsPerSecond.GetHashCode();
         }
 
         #endregion
@@ -233,13 +215,11 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(MassFlowRateUnit unit)
+        public double As(ForceFlowRateUnit unit)
         {
             switch (unit)
             {
-                case MassFlowRateUnit.KillogramPerSecond:
-                    return KillogramsPerSecond;
-                case MassFlowRateUnit.NewtonPerSecond:
+                case ForceFlowRateUnit.NewtonPerSecond:
                     return NewtonsPerSecond;
 
                 default:
@@ -263,7 +243,7 @@ namespace UnitsNet
         ///     &gt;".
         /// </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFlowRate Parse(string str, IFormatProvider formatProvider = null)
+        public static ForceFlowRate Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -297,7 +277,7 @@ namespace UnitsNet
 
             try
             {
-                MassFlowRateUnit unit = ParseUnit(unitString, formatProvider);
+                ForceFlowRateUnit unit = ParseUnit(unitString, formatProvider);
                 double value = double.Parse(valueString, formatProvider);
 
                 return From(value, unit);
@@ -319,16 +299,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFlowRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static ForceFlowRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<MassFlowRateUnit>(str.Trim());
+            var unit = unitSystem.Parse<ForceFlowRateUnit>(str.Trim());
 
-            if (unit == MassFlowRateUnit.Undefined)
+            if (unit == ForceFlowRateUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MassFlowRateUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ForceFlowRateUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -345,7 +325,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowRateUnit.KillogramPerSecond);
+            return ToString(ForceFlowRateUnit.NewtonPerSecond);
         }
 
         /// <summary>
@@ -356,7 +336,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowRateUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(ForceFlowRateUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -370,7 +350,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowRateUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(ForceFlowRateUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }
