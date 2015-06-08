@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -34,7 +35,7 @@ namespace UnitsNet
     ///     The quantity of pressure flowing per unit of time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct PressureFlowRate : IComparable, IComparable<PressureFlowRate>
+    public partial struct PressureFlowRate : IQuantity, IComparable<PressureFlowRate>
     {
         /// <summary>
         ///     Base unit of PressureFlowRate.
