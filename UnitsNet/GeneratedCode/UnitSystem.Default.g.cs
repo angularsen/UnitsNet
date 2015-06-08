@@ -1152,6 +1152,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "торр"),
                             }),
                     }),
+                new UnitLocalization(typeof (PressureFlowRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PressureFlowRateUnit.PascalPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pa/m"),
+                            }),
+                        new CulturesForEnumValue((int) PressureFlowRateUnit.PascalPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pa/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (RatioUnit),
                     new[]
                     {
