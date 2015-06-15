@@ -180,7 +180,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MicropascalsInOnePascal
         {
-            get { return 1e-3; }
+            get { return 1e6; }
         }
 
         protected override double MillibarsInOnePascal
