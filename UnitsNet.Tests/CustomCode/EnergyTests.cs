@@ -33,52 +33,52 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BritishThermalUnitsInOneJoule
         {
-            get { return 1/1055.05585262; }
+            get { return 0.00094781712; }
         }
 
         protected override double CaloriesInOneJoule
         {
-            get { return 1/4.184; }
+            get { return 0.239005736; }
         }
 
         protected override double ElectronVoltsInOneJoule
         {
-            get { return 1/1.602176565e-19; }
+            get { return 6.241509343260179e18; }
         }
 
         protected override double ErgsInOneJoule
         {
-            get { return 1/1e-7; }
+            get { return 10000000; }
         }
 
         protected override double FootPoundsInOneJoule
         {
-            get { return 1/1.355817948; }
+            get { return 0.737562149; }
         }
 
         protected override double GigawattHoursInOneJoule
         {
-            get { return 1 / (3600d * 1e9); }
+            get { return 2.77777778e-13; }
         }
 
         protected override double KilocaloriesInOneJoule
         {
-            get { return 1 / (4.184 * 1000); }
+            get { return 0.00023900573614; }
         }
 
         protected override double KilowattHoursInOneJoule
         {
-            get { return 1 / (3600d * 1e3); }
+            get { return 2.77777778e-7; }
         }
 
         protected override double MegawattHoursInOneJoule
         {
-            get { return 1 / (3600d * 1e6); }
+            get { return 2.77777778e-10; }
         }
 
         protected override double WattHoursInOneJoule
         {
-            get { return 1 /3600d; }
+            get { return 0.000277777778; }
         }
     }
 }
