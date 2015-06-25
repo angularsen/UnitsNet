@@ -351,20 +351,70 @@ namespace UnitsNet
                 new UnitLocalization(typeof (EnergyUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) EnergyUnit.BritishThermalUnit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.Calorie,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.ElectronVolt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "eV"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.Erg,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "erg"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.FootPound,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft·lb"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.GigawattHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GWh"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.Joule,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "J"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.Kilocalorie,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.Kilojoule,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kJ"),
                             }),
+                        new CulturesForEnumValue((int) EnergyUnit.KilowattHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kWh"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.Megajoule,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MJ"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.MegawattHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MWh"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.WattHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Wh"),
                             }),
                     }),
                 new UnitLocalization(typeof (FlowUnit),

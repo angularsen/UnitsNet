@@ -25,8 +25,18 @@ namespace UnitsNet.Units
     public enum EnergyUnit
     {
         Undefined = 0,
+        BritishThermalUnit,
+        Calorie,
+        ElectronVolt,
+        Erg,
+        FootPound,
+        GigawattHour,
         Joule,
+        Kilocalorie,
         Kilojoule,
+        KilowattHour,
         Megajoule,
+        MegawattHour,
+        WattHour,
     }
 }
