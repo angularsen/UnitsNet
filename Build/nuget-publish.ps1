@@ -1,6 +1,6 @@
 $root="$PSScriptRoot\.."
 $nugetDir="$root\Artifacts\NuGet\"
-$apiKeyFile="nuget-apikey.txt"
+$apiKeyFile="$env:appdata\NuGet\unitsnet-apikey.txt"
 
 $apiKey = Get-Content $apiKeyFile
 Write-Host "Using API key: $apiKey"
