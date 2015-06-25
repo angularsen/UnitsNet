@@ -1,0 +1,6 @@
+﻿INSERT API KEY HERE
+
+* Copy this file to nuget-apikey.txt
+* Edit the new file
+* Insert API key above, as the only line in the file
+* Remove all other lines so the file only has one line with the API key
