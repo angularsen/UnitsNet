@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.13.1</version>
+    <version>3.14.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
@@ -13,21 +13,7 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-Add 10 Energy units (@FabioCZ)
-Add 4 prefixes to Pascal Pressure unit (@schulz3000)
-Add 5 prefixes to Bar Pressure unit (@schulz3000)
-Add MillimeterPerSecond Speed unit (@tongbong)
-Add 16 SpecificWeight units (@bijan86)
-Add 9 Density units (@bijan86)
-Add 12 Pressure units (@bijan86)
-Add TonneForce Force unit (@bijan86)
-Add KilogramForceCentimeter Torque unit (@bijan86)
-
-Breaking changes:
-* Torque: Rename Newtonmeter to NewtonMeter
-* Torque: Change "Nm" abbreviation to "NÂ·m
-* Force: Rename PoundForces to PoundsForce
-
+#81 Improve parsing of unit quantities
     </releaseNotes>
     <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
     <language>en-US</language>
