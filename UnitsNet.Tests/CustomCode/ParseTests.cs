@@ -35,14 +35,14 @@ namespace UnitsNet.Tests.CustomCode
     [TestFixture]
     public class ParseTests
     {
-        [TestCase("1km", Result=1000)]
+        [TestCase("1km", Result = 1000)]
         [TestCase("1 km", Result = 1000)]
         [TestCase("1e-3 km", Result = 1)]
         [TestCase("5.5 m", Result = 5.5)]
         [TestCase("500,005 m", Result = 500005)]
         [TestCase(null, ExpectedExceptionName = "System.ArgumentNullException")]
         [TestCase("1", ExpectedExceptionName = "System.ArgumentException")]
-        [TestCase("km", ExpectedExceptionName = "System.ArgumentException")]
+        [TestCase("km", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         [TestCase("1 kg", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseLengthToMetersUsEnglish(string s)
         {
@@ -57,6 +57,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("1\'1\"", Result = 13)]
         [TestCase("1ft1in", Result = 13)]
         [TestCase("1ft and 1in", Result = 13)]
+        [TestCase("1ft monkey 1in", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         [TestCase("1ft 1invalid", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseImperialLengthInchesUsEnglish(string s)
         {
