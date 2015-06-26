@@ -395,36 +395,20 @@ namespace UnitsNet
                             numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
                             numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
             var exponentialRegex = @"(?:[eE][-+]?\d+)?)";
-            var regexString = string.Format(@"(?:(?<value>[-+]?{0}{1}{2}{3}\s?){4}",
-                            numRegex,         // capture base (integral) Quantity value
-                            exponentialRegex, // capture exponential (if any), end of Quantity capturing
-                            @"\s?",           // ignore whitespace (allows both "1kg", "1 kg")
-                            @"(?<unit>\S+)",  // capture Unit (non-whitespace) input
-                            @"{1,2}?");       // capture one or two quantities (eg. "1kg" or "1ft 2in")
+            var regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+                            numRegex,                // capture base (integral) Quantity value
+                            exponentialRegex,        // capture exponential (if any), end of Quantity capturing
+                            @"\s?",                  // ignore whitespace (allows both "1kg", "1 kg")
+                            @"(?<unit>[^\s\d,]+)",   // capture Unit (non-whitespace) input
+                            @"(and)?,?",             // allow "and" & "," separators between quantities
+                            @"(?<invalid>[a-z]*)?"); // capture invalid input
 
-            var quantities = ParseWithRegex(regexString, str, formatProvider, false);
-
-            // Check if there were no valid matches
+            var quantities = ParseWithRegex(regexString, str, formatProvider);
             if (quantities.Count == 0)
             {
-                // Try parsing again, but this time stop parsing units if a number is reached.
-                // This is used to parse input similar to 1'1" (ie. no space between quantities)
-                var imperialRegex = string.Format(@"(?:(?<value>[-+]?{0}{1}{2}{3}\s?){4}",
-                            numRegex, exponentialRegex, @"\s?",
-                            @"(?<unit>[^\d\s]+)", // capture Unit (non-numeric, non-whitespace) input
-                            @"{1,2}?");
-                quantities = ParseWithRegex(imperialRegex, str, formatProvider);
-
-                // Check if there were still no valid matches (invalid input)
-                if (quantities.Count == 0)
-                {
-                    var ex = new ArgumentException(
-                        "Expected string to have one or two pairs of quantity and unit in the format \"<quantity><unit> or <quantity> <unit>\". Eg. \"5.5 m\" or \"1ft 2in\"",
-                        "str");
-                    ex.Data["input"] = str;
-                    ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                    throw ex;
-                }
+                throw new ArgumentException(
+                    "Expected string to have at least one pair of quantity and unit in the format"
+                    + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
             return quantities.Aggregate((x, y) => x + y);
         }
@@ -433,7 +417,7 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<Temperature> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null, bool validateUnit = true)
+        private static List<Temperature> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
@@ -445,6 +429,16 @@ namespace UnitsNet
 
                 var valueString = groups["value"].Value;
                 var unitString = groups["unit"].Value;
+                if (groups["invalid"].Value != "")
+                {
+                    var newEx = new UnitsNetException("Invalid string detected: " + groups["invalid"].Value);
+                    newEx.Data["input"] = str;
+                    newEx.Data["matched value"] = valueString;
+                    newEx.Data["matched unit"] = unitString;
+                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                    throw newEx;
+                }
+                if (valueString == "" && unitString == "") continue;
 
                 try
                 {
@@ -455,16 +449,10 @@ namespace UnitsNet
                 }
                 catch (Exception ex)
                 {
-                    if (!validateUnit && ex is UnitsNetException)
-                    {
-                        // Prevents throwing exception when we'll be attempting a potentially valid match with next regex.
-                        // Instead, stops trying to match the current regex and returns an empty list to avoid returning partially parsed result.
-                        // eg. 1'1" will throw UnitsNetException for unit: '1" from 1st regex but not the 2nd
-                        converted.Clear();
-                        return converted;
-                    }
                     var newEx = new UnitsNetException("Error parsing string.", ex);
                     newEx.Data["input"] = str;
+                    newEx.Data["matched value"] = valueString;
+                    newEx.Data["matched unit"] = unitString;
                     newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                     throw newEx;
                 }
