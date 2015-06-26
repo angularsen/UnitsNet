@@ -53,8 +53,8 @@ namespace UnitsNet.Tests.CustomCode
 
         [TestCase("1 ft 1 in", Result = 13)]
         [TestCase("1ft 1in", Result = 13)]
-        [TestCase("1\' 1\"", Result = 13)]
-        [TestCase("1\'1\"", Result = 13)]
+        [TestCase("1' 1\"", Result = 13)]
+        [TestCase("1'1\"", Result = 13)]
         [TestCase("1ft1in", Result = 13)]
         [TestCase("1ft and 1in", Result = 13)]
         [TestCase("1ft monkey 1in", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
