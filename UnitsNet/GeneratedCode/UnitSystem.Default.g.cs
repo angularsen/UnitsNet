@@ -728,13 +728,13 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) LengthUnit.Foot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft"),
+                                new AbbreviationsForCulture("en-US", "ft", "\'"),
                                 new AbbreviationsForCulture("ru-RU", "фут"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Inch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "in"),
+                                new AbbreviationsForCulture("en-US", "in", "\""),
                                 new AbbreviationsForCulture("ru-RU", "дюйм"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Kilometer,

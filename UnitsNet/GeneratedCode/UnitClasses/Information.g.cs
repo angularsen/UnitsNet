@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
@@ -732,17 +733,16 @@ namespace UnitsNet
         #region Parsing
 
         /// <summary>
-        ///     Parse a string of the format "&lt;quantity&gt; &lt;unit&gt;".
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
-        ///     Expected 2 words. Input string needs to be in the format "&lt;quantity&gt; &lt;unit
-        ///     &gt;".
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static Information Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
@@ -754,41 +754,70 @@ namespace UnitsNet
             var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
                             numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
                             numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
-            var regexString = string.Format("(?<value>[-+]?{0}{1}{2}{3}",
-                            numRegex,              // capture base (integral) Quantity value
-                            @"(?:[eE][-+]?\d+)?)", // capture exponential (if any), end of Quantity capturing
-                            @"\s?",                // ignore whitespace (allows both "1kg", "1 kg")
-                            @"(?<unit>\S+)");      // capture Unit (non-whitespace) input
+            var exponentialRegex = @"(?:[eE][-+]?\d+)?)";
+            var regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+                            numRegex,                // capture base (integral) Quantity value
+                            exponentialRegex,        // capture exponential (if any), end of Quantity capturing
+                            @"\s?",                  // ignore whitespace (allows both "1kg", "1 kg")
+                            @"(?<unit>[^\s\d,]+)",   // capture Unit (non-whitespace) input
+                            @"(and)?,?",             // allow "and" & "," separators between quantities
+                            @"(?<invalid>[a-z]*)?"); // capture invalid input
 
+            var quantities = ParseWithRegex(regexString, str, formatProvider);
+            if (quantities.Count == 0)
+            {
+                throw new ArgumentException(
+                    "Expected string to have at least one pair of quantity and unit in the format"
+                    + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
+            }
+            return quantities.Aggregate((x, y) => x + y);
+        }
+
+        /// <summary>
+        ///     Parse a string given a particular regular expression.
+        /// </summary>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        private static List<Information> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
+        {
             var regex = new Regex(regexString);
-            GroupCollection groups = regex.Match(str.Trim()).Groups;
+            MatchCollection matches = regex.Matches(str.Trim());
+            var converted = new List<Information>();
 
-            var valueString = groups["value"].Value;
-            var unitString = groups["unit"].Value;
-
-            if (valueString == "" || unitString == "")
+            foreach (Match match in matches)
             {
-                var ex = new ArgumentException(
-                    "Expected valid quantity and unit. Input string needs to be in the format \"<quantity><unit> or <quantity> <unit>\".", "str");
-                ex.Data["input"] = str;
-                ex.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                throw ex;
-            }
+                GroupCollection groups = match.Groups;
 
-            try
-            {
-                InformationUnit unit = ParseUnit(unitString, formatProvider);
-                double value = double.Parse(valueString, formatProvider);
+                var valueString = groups["value"].Value;
+                var unitString = groups["unit"].Value;
+                if (groups["invalid"].Value != "")
+                {
+                    var newEx = new UnitsNetException("Invalid string detected: " + groups["invalid"].Value);
+                    newEx.Data["input"] = str;
+                    newEx.Data["matched value"] = valueString;
+                    newEx.Data["matched unit"] = unitString;
+                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                    throw newEx;
+                }
+                if (valueString == "" && unitString == "") continue;
 
-                return From(value, unit);
+                try
+                {
+                    InformationUnit unit = ParseUnit(unitString, formatProvider);
+                    double value = double.Parse(valueString, formatProvider);
+
+                    converted.Add(From(value, unit));
+                }
+                catch (Exception ex)
+                {
+                    var newEx = new UnitsNetException("Error parsing string.", ex);
+                    newEx.Data["input"] = str;
+                    newEx.Data["matched value"] = valueString;
+                    newEx.Data["matched unit"] = unitString;
+                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                    throw newEx;
+                }
             }
-            catch (Exception e)
-            {
-                var newEx = new UnitsNetException("Error parsing string.", e);
-                newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                throw newEx;
-            }
+            return converted;
         }
 
         /// <summary>
