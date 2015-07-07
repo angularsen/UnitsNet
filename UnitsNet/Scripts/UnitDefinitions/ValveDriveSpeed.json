@@ -1,0 +1,39 @@
+﻿{
+    "Name": "ValveDriveSpeed",
+    "BaseUnit": "PercentPerSecond",
+    "XmlDoc": "Speed of the valve's drive is the value of the maximum possible change in the position of the valve per unit time.",
+    "Units": [
+        {
+            "SingularName": "PercentPerSecond",
+            "PluralName": "PercentsPerSecond",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["prc/s"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["%/с"]
+                }
+            ]
+        },
+        {
+            "SingularName": "DegreePerSecond",
+            "PluralName": "DegreesPerSecond",
+            "FromUnitToBaseFunc": "x / 0.9",
+            "FromBaseToUnitFunc": "x * 0.9",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["degree/s"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["град/с"]
+                }
+            ]
+        }
+    ]
+}

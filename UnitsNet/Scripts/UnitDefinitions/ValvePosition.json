@@ -1,0 +1,55 @@
+﻿{
+    "Name": "ValvePosition",
+    "BaseUnit": "OpenPercentage",
+    "XmlDoc": "Valve position is the current position of the damper relative to the perpendicular cross-section of the pipeline. Full throttle cross section perpendicular to the pipe. Fully closed damper coincides section of the pipeline.",
+    "Units": [
+        {
+            "SingularName": "OpenPercentage",
+            "PluralName": "OpenPercentages",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["open prc"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["% открытия"]
+                }
+            ]
+        },
+        {
+            "SingularName": "ClosePercentage",
+            "PluralName": "ClosePercentages",
+            "FromUnitToBaseFunc": "100 - x",
+            "FromBaseToUnitFunc": "100 - x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["close prc"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["% закрытия"]
+                }
+            ]
+        },
+        {
+            "SingularName": "Degree",
+            "PluralName": "Degrees",
+            "FromUnitToBaseFunc": "x / 0.9",
+            "FromBaseToUnitFunc": "x * 0.9",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["degree"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["град"]
+                }
+            ]
+        }
+    ]
+}
