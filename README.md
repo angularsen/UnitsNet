@@ -20,7 +20,7 @@ Build Targets:
 
 Features
 ===
-* Over [20 units of measure](https://github.com/InitialForce/UnitsNet/tree/develop/Src/UnitsNet/GeneratedCode/Enums)
+* Over [20 units of measure](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
 * Generated code for uniform implementations and fewer bugs
 * Immutable structs implementing IEquatable, IComparable and operator overloads
 * Parse unit abbreviations in multiple cultures
