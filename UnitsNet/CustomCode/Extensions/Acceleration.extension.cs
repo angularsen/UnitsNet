@@ -13,19 +13,14 @@ namespace UnitsNet.Extension
             return new UnitsNet.Acceleration(_inputAcceleration);
         }
 
-        public static UnitsNet.Acceleration KilometersPerSecond(this int _inputAcceleration)
+        public static UnitsNet.Acceleration KilometersPerSecondSquared(this int _inputAcceleration)
         {
             return new UnitsNet.Acceleration(_inputAcceleration * 1000);
         }
 
-        public static UnitsNet.Acceleration KilometersPerHour(this int _inputAcceleration)
+        public static UnitsNet.Acceleration MilesPerHourSquared(this int _inputAcceleration)
         {
-            return new UnitsNet.Acceleration(_inputAcceleration * 0.27777777777778);
-        }
-
-        public static UnitsNet.Acceleration MilesPerHour(this int _inputAcceleration)
-        {
-            return new UnitsNet.Acceleration(_inputAcceleration * 0.44704);
+            return new UnitsNet.Acceleration(_inputAcceleration * 0.00012417777777778);
         }
     }
 }
