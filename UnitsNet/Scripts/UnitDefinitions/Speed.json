@@ -8,22 +8,11 @@
             "PluralName": "MetersPerSecond",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Nano","Micro","Milli","Centi","Deci","Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",
                     "Abbreviations": ["m/s"]
-                }
-            ]
-        },
-        {
-            "SingularName": "MillimeterPerSecond",
-            "PluralName": "MillimetersPerSecond",
-            "FromUnitToBaseFunc": "x*0.001",
-            "FromBaseToUnitFunc": "x/0.001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["mm/s"]
                 }
             ]
         },
