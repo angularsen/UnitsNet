@@ -498,6 +498,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) FrequencyUnit.BeatPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BPH"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.BeatPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BPM"),
+                            }),
                         new CulturesForEnumValue((int) FrequencyUnit.Gigahertz,
                             new[]
                             {

@@ -50,6 +50,22 @@ namespace UnitsNet
         #region Properties
 
         /// <summary>
+        ///     Get Frequency in BeatsPerHour.
+        /// </summary>
+        public double BeatsPerHour
+        {
+            get { return _hertz/3600; }
+        }
+
+        /// <summary>
+        ///     Get Frequency in BeatsPerMinute.
+        /// </summary>
+        public double BeatsPerMinute
+        {
+            get { return _hertz/60; }
+        }
+
+        /// <summary>
         ///     Get Frequency in Gigahertz.
         /// </summary>
         public double Gigahertz
@@ -96,6 +112,22 @@ namespace UnitsNet
         public static Frequency Zero
         {
             get { return new Frequency(); }
+        }
+
+        /// <summary>
+        ///     Get Frequency from BeatsPerHour.
+        /// </summary>
+        public static Frequency FromBeatsPerHour(double beatsperhour)
+        {
+            return new Frequency(beatsperhour*3600);
+        }
+
+        /// <summary>
+        ///     Get Frequency from BeatsPerMinute.
+        /// </summary>
+        public static Frequency FromBeatsPerMinute(double beatsperminute)
+        {
+            return new Frequency(beatsperminute*60);
         }
 
         /// <summary>
@@ -149,6 +181,10 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case FrequencyUnit.BeatPerHour:
+                    return FromBeatsPerHour(value);
+                case FrequencyUnit.BeatPerMinute:
+                    return FromBeatsPerMinute(value);
                 case FrequencyUnit.Gigahertz:
                     return FromGigahertz(value);
                 case FrequencyUnit.Hertz:
@@ -292,6 +328,10 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case FrequencyUnit.BeatPerHour:
+                    return BeatsPerHour;
+                case FrequencyUnit.BeatPerMinute:
+                    return BeatsPerMinute;
                 case FrequencyUnit.Gigahertz:
                     return Gigahertz;
                 case FrequencyUnit.Hertz:

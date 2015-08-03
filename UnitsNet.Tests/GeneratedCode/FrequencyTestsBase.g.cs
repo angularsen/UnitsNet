@@ -36,6 +36,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class FrequencyTestsBase
     {
+        protected abstract double BeatsPerHourInOneHertz { get; }
+        protected abstract double BeatsPerMinuteInOneHertz { get; }
         protected abstract double GigahertzInOneHertz { get; }
         protected abstract double HertzInOneHertz { get; }
         protected abstract double KilohertzInOneHertz { get; }
@@ -43,6 +45,8 @@ namespace UnitsNet.Tests
         protected abstract double TerahertzInOneHertz { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double BeatsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double BeatsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double GigahertzTolerance { get { return 1e-5; } }
         protected virtual double HertzTolerance { get { return 1e-5; } }
         protected virtual double KilohertzTolerance { get { return 1e-5; } }
@@ -54,6 +58,8 @@ namespace UnitsNet.Tests
         public void HertzToFrequencyUnits()
         {
             Frequency hertz = Frequency.FromHertz(1);
+            Assert.AreEqual(BeatsPerHourInOneHertz, hertz.BeatsPerHour, BeatsPerHourTolerance);
+            Assert.AreEqual(BeatsPerMinuteInOneHertz, hertz.BeatsPerMinute, BeatsPerMinuteTolerance);
             Assert.AreEqual(GigahertzInOneHertz, hertz.Gigahertz, GigahertzTolerance);
             Assert.AreEqual(HertzInOneHertz, hertz.Hertz, HertzTolerance);
             Assert.AreEqual(KilohertzInOneHertz, hertz.Kilohertz, KilohertzTolerance);
@@ -64,6 +70,8 @@ namespace UnitsNet.Tests
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.BeatPerHour).BeatsPerHour, BeatsPerHourTolerance);
+            Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.BeatPerMinute).BeatsPerMinute, BeatsPerMinuteTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Gigahertz).Gigahertz, GigahertzTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Hertz).Hertz, HertzTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Kilohertz).Kilohertz, KilohertzTolerance);
@@ -75,6 +83,8 @@ namespace UnitsNet.Tests
         public void As()
         {
             var hertz = Frequency.FromHertz(1);
+            Assert.AreEqual(BeatsPerHourInOneHertz, hertz.As(FrequencyUnit.BeatPerHour), BeatsPerHourTolerance);
+            Assert.AreEqual(BeatsPerMinuteInOneHertz, hertz.As(FrequencyUnit.BeatPerMinute), BeatsPerMinuteTolerance);
             Assert.AreEqual(GigahertzInOneHertz, hertz.As(FrequencyUnit.Gigahertz), GigahertzTolerance);
             Assert.AreEqual(HertzInOneHertz, hertz.As(FrequencyUnit.Hertz), HertzTolerance);
             Assert.AreEqual(KilohertzInOneHertz, hertz.As(FrequencyUnit.Kilohertz), KilohertzTolerance);
@@ -86,6 +96,8 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Frequency hertz = Frequency.FromHertz(1);
+            Assert.AreEqual(1, Frequency.FromBeatsPerHour(hertz.BeatsPerHour).Hertz, BeatsPerHourTolerance);
+            Assert.AreEqual(1, Frequency.FromBeatsPerMinute(hertz.BeatsPerMinute).Hertz, BeatsPerMinuteTolerance);
             Assert.AreEqual(1, Frequency.FromGigahertz(hertz.Gigahertz).Hertz, GigahertzTolerance);
             Assert.AreEqual(1, Frequency.FromHertz(hertz.Hertz).Hertz, HertzTolerance);
             Assert.AreEqual(1, Frequency.FromKilohertz(hertz.Kilohertz).Hertz, KilohertzTolerance);
