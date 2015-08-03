@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct AmplitudeRatio : IComparable, IComparable<AmplitudeRatio>
     {
         /// <summary>
         ///     Base unit of AmplitudeRatio.
         /// </summary>
+		[DataMember]
         private readonly double _decibelVolts;
 
         public AmplitudeRatio(double decibelvolts) : this()

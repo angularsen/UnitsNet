@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct Density : IComparable, IComparable<Density>
     {
         /// <summary>
         ///     Base unit of Density.
         /// </summary>
+		[DataMember]
         private readonly double _kilogramsPerCubicMeter;
 
         public Density(double kilogramspercubicmeter) : this()
