@@ -44,7 +44,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CustomCode\Extensions\Acceleration.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Angle.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Area.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Density.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Duration.extension.cs" />
+    <Compile Include="CustomCode\Extensions\ElectricCurrent.extension.cs" />
+    <Compile Include="CustomCode\Extensions\ElectricPotential.extension.cs" />
+    <Compile Include="CustomCode\Extensions\ElectricResistance.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Energy.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Flow.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Force.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Frequency.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Information.extension.cs" />
     <Compile Include="CustomCode\Extensions\Length.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Level.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Mass.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Torque.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Power.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Ratio.extension.cs" />
+    <Compile Include="CustomCode\Extensions\RotationalSpeed.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Speed.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Temperature.extension.cs" />
+    <Compile Include="CustomCode\Extensions\Volume.extension.cs" />
     <Compile Include="CustomCode\UnitClasses\AmplitudeRatio.extra.cs" />
     <Compile Include="CustomCode\UnitClasses\Force.extra.cs" />
     <Compile Include="CustomCode\UnitClasses\Length.extra.cs" />
