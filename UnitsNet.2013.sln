@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable45", "Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net451", "UnitsNet\UnitsNet.Net451.csproj", "{8A855BF9-335F-4EC7-8473-D87883517910}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Examples", "Examples\UnitsNet.Examples.csproj", "{11311CA5-D90A-4E8C-B2B5-09B0EC841846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,11 +84,22 @@ Global
 		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|ARM.ActiveCfg = Release|Any CPU
 		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|x64.ActiveCfg = Release|Any CPU
 		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|x86.ActiveCfg = Release|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Release|ARM.ActiveCfg = Release|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Release|x64.ActiveCfg = Release|Any CPU
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6D74103A-9393-42E8-83A8-9E01F806E29D} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
+		{11311CA5-D90A-4E8C-B2B5-09B0EC841846} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
 	EndGlobalSection
 EndGlobal

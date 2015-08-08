@@ -117,7 +117,7 @@ For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/
 
 Serialization
 ===
-It is up to the consumer to provide their own serialization, however some examples are given in the [Example Unit Tests](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Tests/Examples/Serialization)
+It is up to the consumer to provide their own serialization, however some examples are given in the [Example Unit Tests](https://github.com/anjdreas/UnitsNet/tree/master/Examples/Serialization)
 
 What It Is Not
 ===
