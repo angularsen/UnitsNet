@@ -115,6 +115,9 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision).
 
+Serialization
+===
+It is up to the consumer to provide their own serialization, however some examples are given in the [Example Unit Tests](https://github.com/anjdreas/UnitsNet/tree/master/Examples/Serialization)
 
 What It Is Not
 ===
