@@ -26,6 +26,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using UnitsNet.Units;
+using UnitsNet.NumericExtensions;
 
 namespace UnitsNet.Tests
 {
@@ -81,7 +82,6 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
             UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
-
             string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
 
             Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
