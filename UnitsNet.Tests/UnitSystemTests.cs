@@ -26,7 +26,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using UnitsNet.Units;
-using UnitsNet.Extension;
+using UnitsNet.NumericExtensions;
 
 namespace UnitsNet.Tests
 {

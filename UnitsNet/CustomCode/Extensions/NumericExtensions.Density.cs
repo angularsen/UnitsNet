@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace UnitsNet.Extension
+namespace UnitsNet.NumericExtensions
 {
     public static class Density
     {
@@ -12,9 +12,6 @@ namespace UnitsNet.Extension
             return new UnitsNet.Density(_inputDensity);
         }
 
-        public static UnitsNet.Density GramsPerCubicMeter(this double _inputDensity)
-        {
-            return new UnitsNet.Density(_inputDensity * 1000);
-        }
+        //TODO: Automate generation using powershell
     }
 }

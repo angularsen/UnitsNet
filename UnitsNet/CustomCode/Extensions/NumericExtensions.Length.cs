@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnitsNet;
 
-namespace UnitsNet.Extension
+namespace UnitsNet.NumericExtensions
 {
     public static class Length
     {
