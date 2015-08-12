@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class FrequencyTests : FrequencyTestsBase
@@ -46,6 +48,16 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TerahertzInOneHertz
         {
             get { return 1e-12; }
+        }
+
+        protected override double CyclesPerHourInOneHertz
+        {
+            get { return 2.77777e-4; }
+        }
+
+        protected override double CyclesPerMinuteInOneHertz
+        {
+            get { return 0.016666667; }
         }
     }
 }

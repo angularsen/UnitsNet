@@ -25,6 +25,8 @@ namespace UnitsNet.Units
     public enum FrequencyUnit
     {
         Undefined = 0,
+        CyclePerHour,
+        CyclePerMinute,
         Gigahertz,
         Hertz,
         Kilohertz,
