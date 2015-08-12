@@ -50,12 +50,12 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1e-12; }
         }
 
-        protected override double BeatsPerHourInOneHertz
+        protected override double CyclesPerHourInOneHertz
         {
             get { return 2.77777e-4; }
         }
 
-        protected override double BeatsPerMinuteInOneHertz
+        protected override double CyclesPerMinuteInOneHertz
         {
             get { return 0.016666667; }
         }

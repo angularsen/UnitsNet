@@ -50,17 +50,17 @@ namespace UnitsNet
         #region Properties
 
         /// <summary>
-        ///     Get Frequency in BeatsPerHour.
+        ///     Get Frequency in CyclesPerHour.
         /// </summary>
-        public double BeatsPerHour
+        public double CyclesPerHour
         {
             get { return _hertz/3600; }
         }
 
         /// <summary>
-        ///     Get Frequency in BeatsPerMinute.
+        ///     Get Frequency in CyclesPerMinute.
         /// </summary>
-        public double BeatsPerMinute
+        public double CyclesPerMinute
         {
             get { return _hertz/60; }
         }
@@ -115,19 +115,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Frequency from BeatsPerHour.
+        ///     Get Frequency from CyclesPerHour.
         /// </summary>
-        public static Frequency FromBeatsPerHour(double beatsperhour)
+        public static Frequency FromCyclesPerHour(double cyclesperhour)
         {
-            return new Frequency(beatsperhour*3600);
+            return new Frequency(cyclesperhour*3600);
         }
 
         /// <summary>
-        ///     Get Frequency from BeatsPerMinute.
+        ///     Get Frequency from CyclesPerMinute.
         /// </summary>
-        public static Frequency FromBeatsPerMinute(double beatsperminute)
+        public static Frequency FromCyclesPerMinute(double cyclesperminute)
         {
-            return new Frequency(beatsperminute*60);
+            return new Frequency(cyclesperminute*60);
         }
 
         /// <summary>
@@ -181,10 +181,10 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case FrequencyUnit.BeatPerHour:
-                    return FromBeatsPerHour(value);
-                case FrequencyUnit.BeatPerMinute:
-                    return FromBeatsPerMinute(value);
+                case FrequencyUnit.CyclePerHour:
+                    return FromCyclesPerHour(value);
+                case FrequencyUnit.CyclePerMinute:
+                    return FromCyclesPerMinute(value);
                 case FrequencyUnit.Gigahertz:
                     return FromGigahertz(value);
                 case FrequencyUnit.Hertz:
@@ -328,10 +328,10 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case FrequencyUnit.BeatPerHour:
-                    return BeatsPerHour;
-                case FrequencyUnit.BeatPerMinute:
-                    return BeatsPerMinute;
+                case FrequencyUnit.CyclePerHour:
+                    return CyclesPerHour;
+                case FrequencyUnit.CyclePerMinute:
+                    return CyclesPerMinute;
                 case FrequencyUnit.Gigahertz:
                     return Gigahertz;
                 case FrequencyUnit.Hertz:
