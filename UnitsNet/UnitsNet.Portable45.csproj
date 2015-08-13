@@ -36,14 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs;" Exclude="obj\**" />
+    <None Include="packages.UnitsNet.Portable45.config" />
     <None Include="Scripts\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.UnitsNet.Portable45.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="JetBrains.Annotations.PCL328">
-      <HintPath>..\packages\JetBrains.Annotations.9.1.1\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.PCL328.dll</HintPath>
+    <Reference Include="JetBrains.Annotations.PCL328, Version=9.2.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.9.2.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.PCL328.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
