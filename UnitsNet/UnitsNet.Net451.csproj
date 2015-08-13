@@ -47,7 +47,6 @@
     <None Include="Scripts\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="packages.UnitsNet.Net451.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
