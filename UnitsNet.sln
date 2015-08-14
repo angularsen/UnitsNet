@@ -20,7 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable45", "Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net451", "UnitsNet\UnitsNet.Net451.csproj", "{8A855BF9-335F-4EC7-8473-D87883517910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Examples", "Examples\UnitsNet.Examples.csproj", "{11311CA5-D90A-4E8C-B2B5-09B0EC841846}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Net35", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Net35.csproj", "{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}"
@@ -125,6 +124,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6D74103A-9393-42E8-83A8-9E01F806E29D} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
-		{11311CA5-D90A-4E8C-B2B5-09B0EC841846} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
+		{2A76FC53-E331-4CFA-83C0-93A212FD8F6E} = {4DC016EB-1ED1-4EAA-8537-E47278281BDC}
 	EndGlobalSection
 EndGlobal
