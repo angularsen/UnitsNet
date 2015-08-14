@@ -44,9 +44,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// </summary>
         public $($className)()
         {
-            Init(x => x.$baseUnitPluralName, 
-                 $unitEnumName.$baseUnitSingularName,
-                 x => $($unitName).From(x, $unitEnumName.$baseUnitSingularName));
+            Init(x => x.$baseUnitPluralName, $unitEnumName.$baseUnitSingularName);
         }
     }
 }
