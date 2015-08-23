@@ -50,6 +50,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             }
 
             [Test]
+            public void Information_CanSerializeVeryLargeValues()
+            {
+                Information i = Information.FromExabytes(1E+9);
+                string expectedJson = "{\r\n  \"Unit\": \"InformationUnit.Bit\",\r\n  \"Value\": 8E+27\r\n}";
+
+                string json = SerializeObject(i);
+
+                Assert.That(json, Is.EqualTo(expectedJson));
+            }
+
+            [Test]
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
@@ -73,6 +84,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Mass deserializedMass = DeserializeObject<Mass>(json);
 
                 Assert.That(deserializedMass, Is.EqualTo(originalMass));
+            }
+
+            [Test]
+            public void Information_CanDeserializeVeryLargeValues()
+            {
+                Information original = Information.FromExabytes(1E+9);
+                string json = SerializeObject(original);
+                Information deserialized = DeserializeObject<Information>(json);
+
+                Assert.AreEqual(original, deserialized);
             }
 
             [Test]
