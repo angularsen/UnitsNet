@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static AmplitudeRatioUnit BaseUnit
+        {
+            get { return AmplitudeRatioUnit.DecibelVolt; }
+        }
+
         /// <summary>
         ///     Get AmplitudeRatio in DecibelMicrovolts.
         /// </summary>

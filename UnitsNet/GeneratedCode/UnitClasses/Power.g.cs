@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static PowerUnit BaseUnit
+        {
+            get { return PowerUnit.Watt; }
+        }
+
         /// <summary>
         ///     Get Power in BoilerHorsepower.
         /// </summary>

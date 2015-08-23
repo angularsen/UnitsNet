@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static KinematicViscosityUnit BaseUnit
+        {
+            get { return KinematicViscosityUnit.SquareMeterPerSecond; }
+        }
+
         /// <summary>
         ///     Get KinematicViscosity in Centistokes.
         /// </summary>

@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static SpeedUnit BaseUnit
+        {
+            get { return SpeedUnit.MeterPerSecond; }
+        }
+
         /// <summary>
         ///     Get Speed in CentimetersPerSecond.
         /// </summary>

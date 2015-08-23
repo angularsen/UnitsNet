@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static RatioUnit BaseUnit
+        {
+            get { return RatioUnit.DecimalFraction; }
+        }
+
         /// <summary>
         ///     Get Ratio in DecimalFractions.
         /// </summary>

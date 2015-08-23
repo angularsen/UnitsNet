@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static AccelerationUnit BaseUnit
+        {
+            get { return AccelerationUnit.MeterPerSecondSquared; }
+        }
+
         /// <summary>
         ///     Get Acceleration in MeterPerSecondSquared.
         /// </summary>

@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static ForceUnit BaseUnit
+        {
+            get { return ForceUnit.Newton; }
+        }
+
         /// <summary>
         ///     Get Force in Dyne.
         /// </summary>

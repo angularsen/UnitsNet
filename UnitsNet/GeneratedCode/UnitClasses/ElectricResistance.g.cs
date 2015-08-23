@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static ElectricResistanceUnit BaseUnit
+        {
+            get { return ElectricResistanceUnit.Ohm; }
+        }
+
         /// <summary>
         ///     Get ElectricResistance in Kiloohms.
         /// </summary>

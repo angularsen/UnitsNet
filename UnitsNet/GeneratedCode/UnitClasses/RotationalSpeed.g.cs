@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static RotationalSpeedUnit BaseUnit
+        {
+            get { return RotationalSpeedUnit.RevolutionPerSecond; }
+        }
+
         /// <summary>
         ///     Get RotationalSpeed in RevolutionsPerMinute.
         /// </summary>
