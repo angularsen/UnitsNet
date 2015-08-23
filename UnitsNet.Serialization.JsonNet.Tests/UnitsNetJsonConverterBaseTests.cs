@@ -25,7 +25,6 @@ using NUnit.Framework;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
 {
-    [TestFixture]
     public class UnitsNetJsonConverterBaseTests
     {
         private JsonSerializerSettings _jsonSerializerSettings;
