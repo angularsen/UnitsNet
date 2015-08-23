@@ -1,9 +1,11 @@
 @echo off
 SET ROOT=%~dp0..
-SET NugetSpecFile=%ROOT%\Build\UnitsNet.nuspec
+SET MainLibNuspec=%ROOT%\Build\UnitsNet.nuspec
+SET SerializationLibNuspec=%ROOT%\Build\UnitsNet.Serialization.JsonNet.nuspec
 SET NuGetExe=%ROOT%\Tools\NuGet.exe
 SET NuGetOutDir=%ROOT%\Artifacts\NuGet
 
 mkdir "%NuGetOutDir%"
 
-%NuGetExe% pack %NugetSpecFile% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
+%NuGetExe% pack %MainLibNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
+%NuGetExe% pack %SerializationLibNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
