@@ -130,16 +130,13 @@ This project is still early and many units and conversions are not yet covered. 
 
 Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
 
-The repo uses [git-flow](https://github.com/nvie/gitflow) branch structure. 
-In practice this means:
-  * [Fork the repo](https://help.github.com/articles/fork-a-repo) as normal
-  * Checkout the default **develop** branch. There is no master branch.
+  * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**
-  * [Create a pull request](https://help.github.com/articles/using-pull-requests) as normal.
+  * [Create a pull request](https://help.github.com/articles/using-pull-requests)
 
 Continuous Integration
 ===
-A [TeamCity build server](http://anj.no:8500/project.html?projectId=UnitsNet&tab=projectOverview&guest=1) performs the following:
+A [TeamCity build server](http://dev.swingcatalyst.com/TeamCity/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
 * Build, test and publish nuget on commits to **stable** branch.
 
