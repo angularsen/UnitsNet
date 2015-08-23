@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -28,18 +27,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
     public class UnitsNetJsonConverterBaseTests
     {
         private JsonSerializerSettings _jsonSerializerSettings;
-        private UnitsNetJsonConverterBase<Mass> _massJsonConverter;
-        private UnitsNetJsonConverterBase<Ratio> _ratioJsonConverter;
 
         [SetUp]
         public void Setup()
         {
-            _massJsonConverter = new MassJsonConverter();
-            _ratioJsonConverter = new RatioJsonConverter();
-
             _jsonSerializerSettings = new JsonSerializerSettings() { Formatting = Formatting.Indented };
-            _jsonSerializerSettings.Converters.Add(_massJsonConverter);
-            _jsonSerializerSettings.Converters.Add(_ratioJsonConverter);
+            _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
         }
 
         [TestFixture]
@@ -49,7 +42,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
             {
                 Mass mass = Mass.FromPounds(200);
-                string expectedJson = "{\r\n  \"Value\": 90.718474,\r\n  \"Unit\": \"MassUnit.Kilogram\"\r\n}";
+                string expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 90.718474\r\n}";
 
                 string json = SerializeObject(mass);
 
@@ -60,7 +53,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
-                string expectedJson = "{\r\n  \"Value\": 0.25,\r\n  \"Unit\": \"RatioUnit.DecimalFraction\"\r\n}";
+                string expectedJson = "{\r\n  \"Unit\": \"RatioUnit.DecimalFraction\",\r\n  \"Value\": 0.25\r\n}";
 
                 string json = SerializeObject(ratio);
 
