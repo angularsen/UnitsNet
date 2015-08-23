@@ -24,7 +24,7 @@ using NUnit.Framework;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
 {
-    public class UnitsNetJsonConverterBaseTests
+    public class UnitsNetJsonConverterTests
     {
         private JsonSerializerSettings _jsonSerializerSettings;
 
@@ -36,7 +36,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [TestFixture]
-        public class Serialize : UnitsNetJsonConverterBaseTests
+        public class Serialize : UnitsNetJsonConverterTests
         {
             [Test]
             public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
@@ -62,7 +62,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [TestFixture]
-        public class Deserialize : UnitsNetJsonConverterBaseTests
+        public class Deserialize : UnitsNetJsonConverterTests
         {
             [Test]
             public void Mass_ExpectJsonCorrectlyDeserialized()
