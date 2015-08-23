@@ -20,13 +20,13 @@ Build Targets:
 
 Features
 ===
-* Over [20 units of measure](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
+* [28 units of measurement](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
 * Generated code for uniform implementations and fewer bugs
 * Immutable structs implementing IEquatable, IComparable and operator overloads
 * Parse unit abbreviations in multiple cultures
 * ToString() variants for custom cultures and format patterns
 * Extensible with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
-* Over 300 unit tests to ensure conversions and localizations are in order
+* Over 500 unit tests to ensure conversions and localizations are in order
 
 Static Typing
 ---
