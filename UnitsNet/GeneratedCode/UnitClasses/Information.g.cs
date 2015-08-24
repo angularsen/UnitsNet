@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static InformationUnit BaseUnit
+        {
+            get { return InformationUnit.Bit; }
+        }
+
         /// <summary>
         ///     Get Information in Bits.
         /// </summary>

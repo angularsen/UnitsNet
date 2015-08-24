@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static FrequencyUnit BaseUnit
+        {
+            get { return FrequencyUnit.Hertz; }
+        }
+
         /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>

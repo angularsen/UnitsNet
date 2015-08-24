@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static ElectricPotentialUnit BaseUnit
+        {
+            get { return ElectricPotentialUnit.Volt; }
+        }
+
         /// <summary>
         ///     Get ElectricPotential in Kilovolts.
         /// </summary>

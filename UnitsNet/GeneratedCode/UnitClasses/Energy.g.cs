@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static EnergyUnit BaseUnit
+        {
+            get { return EnergyUnit.Joule; }
+        }
+
         /// <summary>
         ///     Get Energy in BritishThermalUnits.
         /// </summary>

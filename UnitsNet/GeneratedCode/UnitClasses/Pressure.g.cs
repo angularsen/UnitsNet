@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static PressureUnit BaseUnit
+        {
+            get { return PressureUnit.Pascal; }
+        }
+
         /// <summary>
         ///     Get Pressure in Atmospheres.
         /// </summary>

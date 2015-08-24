@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static MassUnit BaseUnit
+        {
+            get { return MassUnit.Kilogram; }
+        }
+
         /// <summary>
         ///     Get Mass in Centigrams.
         /// </summary>

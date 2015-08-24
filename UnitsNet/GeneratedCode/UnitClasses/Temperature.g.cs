@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static TemperatureUnit BaseUnit
+        {
+            get { return TemperatureUnit.Kelvin; }
+        }
+
         /// <summary>
         ///     Get Temperature in DegreesCelsius.
         /// </summary>

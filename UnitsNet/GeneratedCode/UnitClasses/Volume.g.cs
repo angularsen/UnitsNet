@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static VolumeUnit BaseUnit
+        {
+            get { return VolumeUnit.CubicMeter; }
+        }
+
         /// <summary>
         ///     Get Volume in Centiliters.
         /// </summary>

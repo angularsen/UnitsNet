@@ -151,24 +151,12 @@ function GenerateUnitSystemDefault($unitClasses)
     $result | Out-File -Encoding "UTF8" $outFileName;
 }
 
-function GenerateUnitJsonConverters($unitClass)
-{
-    Write-Host "Generate unit JSON converter for: " + $unitClass.Name;
-    
-    $outDir = "$PSScriptRoot/../../UnitsNet.Serialization.JsonNet/Converters";
-    $outFileName = "$outDir/$($unitClass.Name)JsonConverter.cs";
-    GenerateUnitJsonConvertersSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
-}
-
-
-
 # Load external generator functions with same name as file
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateUnitJsonConvertersSourceCode.ps1"
 
 $templatesDir = "$PSScriptRoot/UnitDefinitions";
 $unitClasses = @();
@@ -197,7 +185,6 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     GenerateUnitEnum $unitClass
     GenerateUnitTestBaseClass $unitClass
     GenerateUnitTestClassIfNotExists $unitClass
-    GenerateUnitJsonConverters $unitClass
     
     $unitClasses += $unitClass;
 }

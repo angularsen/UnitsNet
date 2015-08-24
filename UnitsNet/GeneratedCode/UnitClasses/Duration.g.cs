@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static DurationUnit BaseUnit
+        {
+            get { return DurationUnit.Second; }
+        }
+
         /// <summary>
         ///     Get Duration in Days.
         /// </summary>

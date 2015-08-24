@@ -2,11 +2,11 @@ function GenerateUnitClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
     $units = $unitClass.Units;
-    $baseType = $unitClass.BaseType;    
+    $baseType = $unitClass.BaseType;
     $baseUnit = $units | where { $_.SingularName -eq $unitClass.BaseUnit }
     $baseUnitSingularName = $baseUnit.SingularName
     $baseUnitPluralName = $baseUnit.PluralName
-    $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()    
+    $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$className" + "Unit";
     $baseUnitFieldName = "_"+[Char]::ToLowerInvariant($baseUnitPluralName[0]) + $baseUnitPluralName.Substring(1);
 
@@ -61,6 +61,11 @@ namespace UnitsNet
         }
 
         #region Properties
+
+        public static $unitEnumName BaseUnit
+        {
+            get { return $unitEnumName.$baseUnitSingularName; }
+        }
 "@; foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"

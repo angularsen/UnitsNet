@@ -19,39 +19,43 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
 {
-    public class UnitsNetJsonConverterBaseTests
+    public class UnitsNetJsonConverterTests
     {
         private JsonSerializerSettings _jsonSerializerSettings;
-        private UnitsNetJsonConverterBase<Mass> _massJsonConverter;
-        private UnitsNetJsonConverterBase<Ratio> _ratioJsonConverter;
 
         [SetUp]
         public void Setup()
         {
-            _massJsonConverter = new MassJsonConverter();
-            _ratioJsonConverter = new RatioJsonConverter();
-
             _jsonSerializerSettings = new JsonSerializerSettings() { Formatting = Formatting.Indented };
-            _jsonSerializerSettings.Converters.Add(_massJsonConverter);
-            _jsonSerializerSettings.Converters.Add(_ratioJsonConverter);
+            _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
         }
 
         [TestFixture]
-        public class Serialize : UnitsNetJsonConverterBaseTests
+        public class Serialize : UnitsNetJsonConverterTests
         {
             [Test]
             public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
             {
                 Mass mass = Mass.FromPounds(200);
-                string expectedJson = "{\r\n  \"Value\": 90.718474,\r\n  \"Unit\": \"MassUnit.Kilogram\"\r\n}";
+                string expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 90.718474\r\n}";
 
                 string json = SerializeObject(mass);
+
+                Assert.That(json, Is.EqualTo(expectedJson));
+            }
+
+            [Test]
+            public void Information_CanSerializeVeryLargeValues()
+            {
+                Information i = Information.FromExabytes(1E+9);
+                string expectedJson = "{\r\n  \"Unit\": \"InformationUnit.Bit\",\r\n  \"Value\": 8E+27\r\n}";
+
+                string json = SerializeObject(i);
 
                 Assert.That(json, Is.EqualTo(expectedJson));
             }
@@ -60,7 +64,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
-                string expectedJson = "{\r\n  \"Value\": 0.25,\r\n  \"Unit\": \"RatioUnit.DecimalFraction\"\r\n}";
+                string expectedJson = "{\r\n  \"Unit\": \"RatioUnit.DecimalFraction\",\r\n  \"Value\": 0.25\r\n}";
 
                 string json = SerializeObject(ratio);
 
@@ -69,7 +73,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [TestFixture]
-        public class Deserialize : UnitsNetJsonConverterBaseTests
+        public class Deserialize : UnitsNetJsonConverterTests
         {
             [Test]
             public void Mass_ExpectJsonCorrectlyDeserialized()
@@ -80,6 +84,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Mass deserializedMass = DeserializeObject<Mass>(json);
 
                 Assert.That(deserializedMass, Is.EqualTo(originalMass));
+            }
+
+            [Test]
+            public void Information_CanDeserializeVeryLargeValues()
+            {
+                Information original = Information.FromExabytes(1E+9);
+                string json = SerializeObject(original);
+                Information deserialized = DeserializeObject<Information>(json);
+
+                Assert.AreEqual(original, deserialized);
             }
 
             [Test]
