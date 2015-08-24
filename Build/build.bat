@@ -2,6 +2,7 @@
 SET ROOT=%~dp0..
 rmdir /Q /S %ROOT%\Artifacts
 
+call powershell -NoProfile %ROOT%\Build\UpdateAssemblyInfo.ps1
 call %ROOT%\Build\nuget-restore.bat
 call %ROOT%\Build\build-src-release.bat
 call %ROOT%\Build\build-tests.bat
