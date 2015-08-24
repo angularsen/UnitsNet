@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Ratio
+    public static partial class Ratio
     {
         public static UnitsNet.Ratio DecimalFraction(this double _inputRatio)
         {

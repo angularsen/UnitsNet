@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class ElectricPotential
+    public static partial class ElectricPotential
     {
         public static UnitsNet.ElectricPotential Volts(this double _inputPotential)
         {

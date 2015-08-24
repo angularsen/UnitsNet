@@ -5,11 +5,11 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Torque
+    public static partial class Torque
     {
         public static UnitsNet.Torque NewtonMeters(this double _inputTorque)
         {
-            return new Torque(_inputTorque);
+            return new UnitsNet.Torque(_inputTorque);
         }
     }
 }

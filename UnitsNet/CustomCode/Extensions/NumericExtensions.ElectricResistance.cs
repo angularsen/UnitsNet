@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class ElectricResistance
+    public static partial class ElectricResistance
     {
         public static UnitsNet.ElectricResistance Ohms(this double _inputResistance)
         {

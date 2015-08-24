@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Area
+    public static partial class Area
     {
         // Metric
         /// <summary>

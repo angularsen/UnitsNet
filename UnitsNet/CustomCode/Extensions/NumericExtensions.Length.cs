@@ -6,7 +6,7 @@ using UnitsNet;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Length
+    public static partial class Length
     {
         // Metric Units
 

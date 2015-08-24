@@ -6,7 +6,7 @@ using UnitsNet;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Acceleration
+    public static partial class Acceleration
     {
         /// <summary>
         ///     Get Acceleration from MeterPerSecondSquared.

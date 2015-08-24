@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Energy
+    public static partial class Energy
     {
         public static UnitsNet.Energy Joules(this double _inputEnergy)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class RotationalSpeed
+    public static partial class RotationalSpeed
     {
         public static UnitsNet.RotationalSpeed RevolitionsPerMinute(this double _inputRotSpeed)
         {

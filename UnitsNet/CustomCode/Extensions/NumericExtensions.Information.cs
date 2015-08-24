@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Information
+    public static partial class Information
     {
         public static UnitsNet.Information Bits(this int _inputInformation)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using UnitsNet;
 namespace UnitsNet.NumericExtensions
 {
-    public static class Volume
+    public static partial class Volume
     {
         public static UnitsNet.Volume CubicMeter(this double _inputVolume)
         {

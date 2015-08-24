@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Duration
+    public static partial class Duration
     {
         public static UnitsNet.Duration Seconds(this double _inputDuration)
         {

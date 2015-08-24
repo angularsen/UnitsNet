@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Frequency
+    public static partial class Frequency
     {
         public static UnitsNet.Frequency Hertz(this double _inputFrequency)
         {

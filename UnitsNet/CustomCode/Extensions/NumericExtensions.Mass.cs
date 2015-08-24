@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Mass
+    public static partial class Mass
     {
         public static UnitsNet.Mass Kilograms(this double _inputMass)
         {

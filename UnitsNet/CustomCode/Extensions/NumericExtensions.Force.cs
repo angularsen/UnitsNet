@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Force
+    public static partial class Force
     {
         public static UnitsNet.Force Newtons(this double _inputForce)
         {

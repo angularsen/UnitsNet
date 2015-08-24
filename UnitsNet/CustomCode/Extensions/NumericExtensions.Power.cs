@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Power
+    public static partial class Power
     {
         public static UnitsNet.Power Watts(this int _inputPower)
         {

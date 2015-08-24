@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class ElectricCurrent
+    public static partial class ElectricCurrent
     {
         public static UnitsNet.ElectricCurrent Amperes(this double _inputCurrent)
         {

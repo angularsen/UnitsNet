@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Temperature
+    public static partial class Temperature
     {
         // http://i.imgur.com/ucOQh.jpg
 

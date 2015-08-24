@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Angle
+    public static partial class Angle
     {
         /// <summary>
         ///     Returns Angle in Degrees

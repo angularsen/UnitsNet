@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Level
+    public static partial class Level
     {
         public static UnitsNet.Level Decibels(this double _inputLevel)
         {

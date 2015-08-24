@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.CustomCode.Extensions
 {
-    public static class Speed
+    public static partial class Speed
     {
         public static UnitsNet.Acceleration MetersPerSecond(this int _inputSpeed)
         {

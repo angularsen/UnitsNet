@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Density
+    public static partial class Density
     {
         public static UnitsNet.Density KilogramsPerCubicMeter(this double _inputDensity)
         {

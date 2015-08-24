@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitsNet.NumericExtensions
 {
-    public static class Flow
+    public static partial class Flow
     {
         public static UnitsNet.Flow CubicMetersPerSecond(this double _inputFlow)
         {
