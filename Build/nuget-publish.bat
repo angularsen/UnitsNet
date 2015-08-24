@@ -1,2 +1,2 @@
 @echo off
-call powershell .\nuget-publish.ps1
+call powershell -NoProfile .\nuget-publish.ps1
