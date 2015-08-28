@@ -37,10 +37,40 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AccelerationUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) AccelerationUnit.CentimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.DecimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KilometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "km/s²"),
+                            }),
                         new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "m/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MillimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.NanometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nm/s²"),
                             }),
                     }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
