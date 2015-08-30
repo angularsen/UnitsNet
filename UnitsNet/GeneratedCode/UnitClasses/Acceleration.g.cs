@@ -55,11 +55,59 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Acceleration in CentimeterPerSecondSquared.
+        /// </summary>
+        public double CentimeterPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in DecimeterPerSecondSquared.
+        /// </summary>
+        public double DecimeterPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in KilometerPerSecondSquared.
+        /// </summary>
+        public double KilometerPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Acceleration in MeterPerSecondSquared.
         /// </summary>
         public double MeterPerSecondSquared
         {
             get { return _meterPerSecondSquared; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in MicrometerPerSecondSquared.
+        /// </summary>
+        public double MicrometerPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in MillimeterPerSecondSquared.
+        /// </summary>
+        public double MillimeterPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in NanometerPerSecondSquared.
+        /// </summary>
+        public double NanometerPerSecondSquared
+        {
+            get { return (_meterPerSecondSquared) / 1e-9d; }
         }
 
         #endregion
@@ -72,11 +120,59 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Acceleration from CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromCentimeterPerSecondSquared(double centimeterpersecondsquared)
+        {
+            return new Acceleration((centimeterpersecondsquared) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromDecimeterPerSecondSquared(double decimeterpersecondsquared)
+        {
+            return new Acceleration((decimeterpersecondsquared) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromKilometerPerSecondSquared(double kilometerpersecondsquared)
+        {
+            return new Acceleration((kilometerpersecondsquared) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Acceleration from MeterPerSecondSquared.
         /// </summary>
         public static Acceleration FromMeterPerSecondSquared(double meterpersecondsquared)
         {
             return new Acceleration(meterpersecondsquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
+        {
+            return new Acceleration((micrometerpersecondsquared) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMillimeterPerSecondSquared(double millimeterpersecondsquared)
+        {
+            return new Acceleration((millimeterpersecondsquared) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromNanometerPerSecondSquared(double nanometerpersecondsquared)
+        {
+            return new Acceleration((nanometerpersecondsquared) * 1e-9d);
         }
 
 
@@ -90,8 +186,20 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case AccelerationUnit.CentimeterPerSecondSquared:
+                    return FromCentimeterPerSecondSquared(value);
+                case AccelerationUnit.DecimeterPerSecondSquared:
+                    return FromDecimeterPerSecondSquared(value);
+                case AccelerationUnit.KilometerPerSecondSquared:
+                    return FromKilometerPerSecondSquared(value);
                 case AccelerationUnit.MeterPerSecondSquared:
                     return FromMeterPerSecondSquared(value);
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return FromMicrometerPerSecondSquared(value);
+                case AccelerationUnit.MillimeterPerSecondSquared:
+                    return FromMillimeterPerSecondSquared(value);
+                case AccelerationUnit.NanometerPerSecondSquared:
+                    return FromNanometerPerSecondSquared(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -225,8 +333,20 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case AccelerationUnit.CentimeterPerSecondSquared:
+                    return CentimeterPerSecondSquared;
+                case AccelerationUnit.DecimeterPerSecondSquared:
+                    return DecimeterPerSecondSquared;
+                case AccelerationUnit.KilometerPerSecondSquared:
+                    return KilometerPerSecondSquared;
                 case AccelerationUnit.MeterPerSecondSquared:
                     return MeterPerSecondSquared;
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return MicrometerPerSecondSquared;
+                case AccelerationUnit.MillimeterPerSecondSquared:
+                    return MillimeterPerSecondSquared;
+                case AccelerationUnit.NanometerPerSecondSquared:
+                    return NanometerPerSecondSquared;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
