@@ -36,6 +36,7 @@ namespace UnitsNet
     {
         private static readonly Dictionary<IFormatProvider, UnitSystem> CultureToInstance;
         private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
+        private static readonly object LockUnitSystemCache = new object();
 
         /// <summary>
         ///     Per-unit-type dictionary of enum values by abbreviation. This is the inverse of
@@ -100,10 +101,14 @@ namespace UnitsNet
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
 
-            if (!CultureToInstance.ContainsKey(cultureInfo))
-                CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);
+            lock(LockUnitSystemCache)
+            {
+                if ( CultureToInstance.ContainsKey(cultureInfo) )
+                    return CultureToInstance[cultureInfo];
 
-            return CultureToInstance[cultureInfo];
+                CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);
+                return CultureToInstance[cultureInfo];
+            }
         }
 
         [PublicAPI]
