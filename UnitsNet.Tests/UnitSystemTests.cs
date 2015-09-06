@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
             CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
             try
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("nb-NO");
 
                 Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
                 Assert.AreEqual("1 m²", Area.FromSquareMeters(1).ToString());
