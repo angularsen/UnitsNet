@@ -174,54 +174,39 @@ namespace UnitsNet.Tests
         public void AllUnitsImplementToStringForNorwegian()
         {
             CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
-            try
-            {
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("nb-NO");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("nb-NO");
 
-                Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
-                Assert.AreEqual("1 m²", Area.FromSquareMeters(1).ToString());
-                Assert.AreEqual("1 V", ElectricPotential.FromVolts(1).ToString());
-                Assert.AreEqual("1 m³/s", Flow.FromCubicMetersPerSecond(1).ToString());
-                Assert.AreEqual("1 N", Force.FromNewtons(1).ToString());
-                Assert.AreEqual("1 m", Length.FromMeters(1).ToString());
-                Assert.AreEqual("1 kg", Mass.FromKilograms(1).ToString());
-                Assert.AreEqual("1 Pa", Pressure.FromPascals(1).ToString());
-                Assert.AreEqual("1 r/s", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
-                Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
-                Assert.AreEqual("1 N·m", Torque.FromNewtonMeters(1).ToString());
-                Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentUICulture = originalCulture;
-            }
+            Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
+            Assert.AreEqual("1 m²", Area.FromSquareMeters(1).ToString());
+            Assert.AreEqual("1 V", ElectricPotential.FromVolts(1).ToString());
+            Assert.AreEqual("1 m³/s", Flow.FromCubicMetersPerSecond(1).ToString());
+            Assert.AreEqual("1 N", Force.FromNewtons(1).ToString());
+            Assert.AreEqual("1 m", Length.FromMeters(1).ToString());
+            Assert.AreEqual("1 kg", Mass.FromKilograms(1).ToString());
+            Assert.AreEqual("1 Pa", Pressure.FromPascals(1).ToString());
+            Assert.AreEqual("1 r/s", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
+            Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
+            Assert.AreEqual("1 N·m", Torque.FromNewtonMeters(1).ToString());
+            Assert.AreEqual("1 m³", Volume.FromCubicMeters(1).ToString());
         }
 
         [Test]
         public void AllUnitsImplementToStringForRussian()
         {
-            CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
-            try
-            {
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
 
-                Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
-                Assert.AreEqual("1 м²", Area.FromSquareMeters(1).ToString());
-                Assert.AreEqual("1 В", ElectricPotential.FromVolts(1).ToString());
-                Assert.AreEqual("1 м³/с", Flow.FromCubicMetersPerSecond(1).ToString());
-                Assert.AreEqual("1 Н", Force.FromNewtons(1).ToString());
-                Assert.AreEqual("1 м", Length.FromMeters(1).ToString());
-                Assert.AreEqual("1 кг", Mass.FromKilograms(1).ToString());
-                Assert.AreEqual("1 Па", Pressure.FromPascals(1).ToString());
-                Assert.AreEqual("1 об/с", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
-                Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
-                Assert.AreEqual("1 Н·м", Torque.FromNewtonMeters(1).ToString());
-                Assert.AreEqual("1 м³", Volume.FromCubicMeters(1).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentUICulture = originalCulture;
-            }
+            Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
+            Assert.AreEqual("1 м²", Area.FromSquareMeters(1).ToString());
+            Assert.AreEqual("1 В", ElectricPotential.FromVolts(1).ToString());
+            Assert.AreEqual("1 м³/с", Flow.FromCubicMetersPerSecond(1).ToString());
+            Assert.AreEqual("1 Н", Force.FromNewtons(1).ToString());
+            Assert.AreEqual("1 м", Length.FromMeters(1).ToString());
+            Assert.AreEqual("1 кг", Mass.FromKilograms(1).ToString());
+            Assert.AreEqual("1 Па", Pressure.FromPascals(1).ToString());
+            Assert.AreEqual("1 об/с", RotationalSpeed.FromRevolutionsPerSecond(1).ToString());
+            Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
+            Assert.AreEqual("1 Н·м", Torque.FromNewtonMeters(1).ToString());
+            Assert.AreEqual("1 м³", Volume.FromCubicMeters(1).ToString());
         }
 
         [Test]
