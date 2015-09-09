@@ -1,2 +1,3 @@
 @echo off
-call powershell -NoProfile .\nuget-publish.ps1
+SET ROOT=%~dp0..
+call powershell -NoProfile %ROOT%\Build\nuget-publish.ps1
