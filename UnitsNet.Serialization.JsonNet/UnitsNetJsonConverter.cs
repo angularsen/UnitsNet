@@ -41,15 +41,46 @@ namespace UnitsNet.Serialization.JsonNet
     /// </remarks>
     public class UnitsNetJsonConverter : JsonConverter
     {
+        #region Can Convert
+
         /// <summary>
-        ///     Determines whether this instance can convert the specified object type.
+        /// Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns></returns>
         public override bool CanConvert(Type objectType)
         {
+            if (IsNullable(objectType))
+            {
+                return CanConvertNullable(objectType);
+            }
+
             return objectType.Namespace != null && objectType.Namespace.Equals("UnitsNet");
         }
+
+        /// <summary>
+        /// Determines whether the specified object type is actually a <see cref="System.Nullable"/> type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns><c>true</c> if the object type is nullable; otherwise <c>false</c>.</returns>
+        protected bool IsNullable(Type objectType)
+        {
+            return Nullable.GetUnderlyingType(objectType) != null;
+        }
+
+        /// <summary>
+        /// Determines whether this instance can convert the specified nullable object type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns><c>true</c> if the object type is a nullable container for a UnitsNet type; otherwise <c>false</c>.</returns>
+        protected virtual bool CanConvertNullable(Type objectType)
+        {
+            // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
+            // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
+            return objectType.FullName != null && objectType.FullName.Contains("UnitsNet.");
+        }
+
+        #endregion
 
         /// <summary>
         ///     Reads the JSON representation of the object.
@@ -66,8 +97,9 @@ namespace UnitsNet.Serialization.JsonNet
             JsonSerializer serializer)
         {
             ValueUnit vu = serializer.Deserialize<ValueUnit>(reader);
+            // A null System.Nullable value was deserialized so just return null.
             if (vu == null)
-                throw new UnitsNetException("Unable to parse JSON.");
+                return null;
 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
@@ -121,9 +153,6 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (value == null)
-                throw new UnitsNetException("Can't serialize 'null' value.");
-
             Type unitType = value.GetType();
 
             FieldInfo[] fields =

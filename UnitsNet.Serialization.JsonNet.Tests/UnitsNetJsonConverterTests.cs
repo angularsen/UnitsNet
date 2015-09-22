@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -70,6 +71,58 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 Assert.That(json, Is.EqualTo(expectedJson));
             }
+
+            [Test]
+            public void NullValue_ExpectJsonContainsNullString()
+            {
+                Mass? nullMass = null;
+                string expectedJson = "null";
+
+                string json = SerializeObject(nullMass);
+                Console.WriteLine(json);
+
+                Assert.That(expectedJson, Is.EqualTo(expectedJson));
+            }
+
+            [Test]
+            public void NonNullNullableValue_ExpectJsonUnaffected()
+            {
+                Mass? nullableMass = Mass.FromKilograms(10);
+                string expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 10.0\r\n}";
+
+                string json = SerializeObject(nullableMass);
+                Console.WriteLine(json);
+
+                // There shouldn't be any change in the JSON for the non-null nullable value.
+                Assert.That(json, Is.EqualTo(expectedJson));
+            }
+
+            [Test]
+            public void NonNullNullableValueNestedInObject_ExpectJsonUnaffected()
+            {
+                var testObj = new TestObj()
+                    {
+                        NullableFrequency = Frequency.FromHertz(10),
+                        NonNullableFrequency = Frequency.FromHertz(10)
+                    };
+                // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
+                //  on the build server (i.e. the build server uses '\r' instead of '\r\n')
+                string expectedJson = "{\r\n"+
+                                      "  \"NullableFrequency\": {\r\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\r\n" +
+                                      "    \"Value\": 10.0\r\n" + 
+                                      "  },\r\n" +
+                                      "  \"NonNullableFrequency\": {\r\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\r\n" +
+                                      "    \"Value\": 10.0\r\n" +
+                                      "  }\r\n" +
+                                      "}";
+
+                string json = SerializeObject(testObj);
+                Console.WriteLine(json);
+
+                Assert.That(json, Is.EqualTo(expectedJson));
+            }
         }
 
         [TestFixture]
@@ -111,6 +164,58 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 //  still deserializable, and the correct value of 1000 g is obtained.
                 Assert.That(deserializedMass.Grams, Is.EqualTo(1000));
             }
+
+            [Test]
+            public void NullValue_ExpectNullReturned()
+            {
+                Mass? nullMass = null;
+                string json = SerializeObject(nullMass);
+
+                var deserializedNullMass = DeserializeObject<Mass?>(json);
+
+                Assert.That(deserializedNullMass, Is.Null);
+            }
+
+            [Test]
+            public void NonNullNullableValue_ExpectValueDeserializedCorrectly()
+            {
+                Mass? nullableMass = Mass.FromKilograms(10);
+                string json = SerializeObject(nullableMass);
+
+                var deserializedNullableMass = DeserializeObject<Mass?>(json);
+
+                Assert.That(deserializedNullableMass.Value, Is.EqualTo(nullableMass.Value));
+            }
+
+            [Test]
+            public void NullValueNestedInObject_ExpectValueDeserializedToNullCorrectly()
+            {
+                var testObj = new TestObj()
+                    {
+                        NullableFrequency = null,
+                        NonNullableFrequency = Frequency.FromHertz(10)
+                    };
+                string json = SerializeObject(testObj);
+
+                var deserializedTestObj = DeserializeObject<TestObj>(json);
+
+                Assert.That(deserializedTestObj.NullableFrequency, Is.Null);
+            }
+
+            [Test]
+            public void NonNullNullableValueNestedInObject_ExpectValueDeserializedCorrectly()
+            {
+                var testObj = new TestObj()
+                    {
+                        NullableFrequency = Frequency.FromHertz(10),
+                        NonNullableFrequency = Frequency.FromHertz(10)
+                    };
+                string json = SerializeObject(testObj);
+
+                var deserializedTestObj = DeserializeObject<TestObj>(json);
+
+                Assert.That(deserializedTestObj.NullableFrequency, Is.EqualTo(testObj.NullableFrequency));
+            }
         }
 
         protected string SerializeObject(object obj)
@@ -121,6 +226,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         protected T DeserializeObject<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
+        }
+
+        internal class TestObj
+        {
+            public Frequency? NullableFrequency { get; set; }
+            public Frequency NonNullableFrequency { get; set; }
         }
     }
 }
