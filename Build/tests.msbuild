@@ -17,7 +17,9 @@
 
   <Target Name="CompileProjects">
 
-    <MSBuild Projects="$(TestsSrcPath)\UnitsNet.Tests.csproj"
+    <MSBuild Projects="
+$(TestsSrcPath)\UnitsNet.Tests.csproj;
+$(SerializationTestsSrcPath)\UnitsNet.Serialization.JsonNet.Tests.csproj"
        Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);AllowUnsafeBlocks=true"
        Targets="Build">
     </MSBuild>

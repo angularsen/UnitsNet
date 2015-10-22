@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static PowerRatioUnit BaseUnit
+        {
+            get { return PowerRatioUnit.DecibelWatt; }
+        }
+
         /// <summary>
         ///     Get PowerRatio in DecibelMilliwatts.
         /// </summary>

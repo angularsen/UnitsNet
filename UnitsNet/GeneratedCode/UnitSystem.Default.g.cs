@@ -37,10 +37,40 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AccelerationUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) AccelerationUnit.CentimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.DecimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KilometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "km/s²"),
+                            }),
                         new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "m/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.MillimeterPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.NanometerPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nm/s²"),
                             }),
                     }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
@@ -529,6 +559,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) FrequencyUnit.CyclePerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cph"),
+                            }),
+                        new CulturesForEnumValue((int) FrequencyUnit.CyclePerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cpm"),
+                            }),
                         new CulturesForEnumValue((int) FrequencyUnit.Gigahertz,
                             new[]
                             {
@@ -1370,6 +1410,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (SpeedUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) SpeedUnit.CentimeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.DecimeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm/s"),
+                            }),
                         new CulturesForEnumValue((int) SpeedUnit.FootPerSecond,
                             new[]
                             {
@@ -1379,6 +1429,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "km/h", "kph"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.KilometerPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "km/s"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.Knot,
                             new[]
@@ -1390,6 +1445,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "m/s"),
                             }),
+                        new CulturesForEnumValue((int) SpeedUnit.MicrometerPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μm/s"),
+                            }),
                         new CulturesForEnumValue((int) SpeedUnit.MilePerHour,
                             new[]
                             {
@@ -1399,6 +1459,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mm/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.NanometerPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nm/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (TemperatureUnit),

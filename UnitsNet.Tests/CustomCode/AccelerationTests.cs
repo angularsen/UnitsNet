@@ -26,9 +26,40 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AccelerationTests : AccelerationTestsBase
     {
+
+        protected override double KilometerPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E-3; }
+        }
+
         protected override double MeterPerSecondSquaredInOneMeterPerSecondSquared
         {
             get { return 1; }
+        }
+
+        protected override double DecimeterPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E1; }
+        }
+
+        protected override double CentimeterPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E2; }
+        }
+
+        protected override double MillimeterPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E3; }
+        }
+
+        protected override double MicrometerPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E6; }
+        }
+
+        protected override double NanometerPerSecondSquaredInOneMeterPerSecondSquared
+        {
+            get { return 1E9; }
         }
     }
 }

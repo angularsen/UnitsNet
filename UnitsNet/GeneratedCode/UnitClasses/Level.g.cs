@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static LevelUnit BaseUnit
+        {
+            get { return LevelUnit.Decibel; }
+        }
+
         /// <summary>
         ///     Get Level in Decibels.
         /// </summary>

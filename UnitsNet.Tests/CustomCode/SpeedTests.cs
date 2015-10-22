@@ -23,6 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
+
         protected override double FeetPerSecondInOneMeterPerSecond
         {
             get { return 3.28084; }
@@ -48,9 +49,35 @@ namespace UnitsNet.Tests.CustomCode
             get { return 2.23694; }
         }
 
+        protected override double NanometersPerSecondInOneMeterPerSecond
+        {
+            get { return 1E9; }
+        }
+
+        protected override double MicrometersPerSecondInOneMeterPerSecond
+        {
+            get { return 1E6; }
+        }
+
         protected override double MillimetersPerSecondInOneMeterPerSecond
         {
-            get { return 1000; }
+            get { return 1E3; }
         }
+
+        protected override double CentimetersPerSecondInOneMeterPerSecond
+        {
+            get { return 1E2; }
+        }
+
+        protected override double DecimetersPerSecondInOneMeterPerSecond
+        {
+            get { return 1E1; }
+        }
+
+        protected override double KilometersPerSecondInOneMeterPerSecond
+        {
+            get { return 1E-3; }
+        }
+
     }
 }

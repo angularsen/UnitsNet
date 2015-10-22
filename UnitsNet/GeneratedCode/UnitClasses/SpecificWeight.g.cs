@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static SpecificWeightUnit BaseUnit
+        {
+            get { return SpecificWeightUnit.NewtonPerCubicMeter; }
+        }
+
         /// <summary>
         ///     Get SpecificWeight in KilogramsForcePerCubicCentimeter.
         /// </summary>

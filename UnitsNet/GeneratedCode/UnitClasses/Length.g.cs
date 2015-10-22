@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static LengthUnit BaseUnit
+        {
+            get { return LengthUnit.Meter; }
+        }
+
         /// <summary>
         ///     Get Length in Centimeters.
         /// </summary>

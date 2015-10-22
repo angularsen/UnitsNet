@@ -49,6 +49,27 @@ namespace UnitsNet
 
         #region Properties
 
+        public static SpeedUnit BaseUnit
+        {
+            get { return SpeedUnit.MeterPerSecond; }
+        }
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerSecond.
+        /// </summary>
+        public double CentimetersPerSecond
+        {
+            get { return (_metersPerSecond) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Speed in DecimetersPerSecond.
+        /// </summary>
+        public double DecimetersPerSecond
+        {
+            get { return (_metersPerSecond) / 1e-1d; }
+        }
+
         /// <summary>
         ///     Get Speed in FeetPerSecond.
         /// </summary>
@@ -63,6 +84,14 @@ namespace UnitsNet
         public double KilometersPerHour
         {
             get { return _metersPerSecond*3.6; }
+        }
+
+        /// <summary>
+        ///     Get Speed in KilometersPerSecond.
+        /// </summary>
+        public double KilometersPerSecond
+        {
+            get { return (_metersPerSecond) / 1e3d; }
         }
 
         /// <summary>
@@ -82,6 +111,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in MicrometersPerSecond.
+        /// </summary>
+        public double MicrometersPerSecond
+        {
+            get { return (_metersPerSecond) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get Speed in MilesPerHour.
         /// </summary>
         public double MilesPerHour
@@ -94,7 +131,15 @@ namespace UnitsNet
         /// </summary>
         public double MillimetersPerSecond
         {
-            get { return _metersPerSecond/0.001; }
+            get { return (_metersPerSecond) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Speed in NanometersPerSecond.
+        /// </summary>
+        public double NanometersPerSecond
+        {
+            get { return (_metersPerSecond) / 1e-9d; }
         }
 
         #endregion
@@ -104,6 +149,22 @@ namespace UnitsNet
         public static Speed Zero
         {
             get { return new Speed(); }
+        }
+
+        /// <summary>
+        ///     Get Speed from CentimetersPerSecond.
+        /// </summary>
+        public static Speed FromCentimetersPerSecond(double centimeterspersecond)
+        {
+            return new Speed((centimeterspersecond) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Speed from DecimetersPerSecond.
+        /// </summary>
+        public static Speed FromDecimetersPerSecond(double decimeterspersecond)
+        {
+            return new Speed((decimeterspersecond) * 1e-1d);
         }
 
         /// <summary>
@@ -123,6 +184,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from KilometersPerSecond.
+        /// </summary>
+        public static Speed FromKilometersPerSecond(double kilometerspersecond)
+        {
+            return new Speed((kilometerspersecond) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Speed from Knots.
         /// </summary>
         public static Speed FromKnots(double knots)
@@ -139,6 +208,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from MicrometersPerSecond.
+        /// </summary>
+        public static Speed FromMicrometersPerSecond(double micrometerspersecond)
+        {
+            return new Speed((micrometerspersecond) * 1e-6d);
+        }
+
+        /// <summary>
         ///     Get Speed from MilesPerHour.
         /// </summary>
         public static Speed FromMilesPerHour(double milesperhour)
@@ -151,7 +228,15 @@ namespace UnitsNet
         /// </summary>
         public static Speed FromMillimetersPerSecond(double millimeterspersecond)
         {
-            return new Speed(millimeterspersecond*0.001);
+            return new Speed((millimeterspersecond) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Speed from NanometersPerSecond.
+        /// </summary>
+        public static Speed FromNanometersPerSecond(double nanometerspersecond)
+        {
+            return new Speed((nanometerspersecond) * 1e-9d);
         }
 
 
@@ -165,18 +250,28 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case SpeedUnit.CentimeterPerSecond:
+                    return FromCentimetersPerSecond(value);
+                case SpeedUnit.DecimeterPerSecond:
+                    return FromDecimetersPerSecond(value);
                 case SpeedUnit.FootPerSecond:
                     return FromFeetPerSecond(value);
                 case SpeedUnit.KilometerPerHour:
                     return FromKilometersPerHour(value);
+                case SpeedUnit.KilometerPerSecond:
+                    return FromKilometersPerSecond(value);
                 case SpeedUnit.Knot:
                     return FromKnots(value);
                 case SpeedUnit.MeterPerSecond:
                     return FromMetersPerSecond(value);
+                case SpeedUnit.MicrometerPerSecond:
+                    return FromMicrometersPerSecond(value);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(value);
                 case SpeedUnit.MillimeterPerSecond:
                     return FromMillimetersPerSecond(value);
+                case SpeedUnit.NanometerPerSecond:
+                    return FromNanometersPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -310,18 +405,28 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case SpeedUnit.CentimeterPerSecond:
+                    return CentimetersPerSecond;
+                case SpeedUnit.DecimeterPerSecond:
+                    return DecimetersPerSecond;
                 case SpeedUnit.FootPerSecond:
                     return FeetPerSecond;
                 case SpeedUnit.KilometerPerHour:
                     return KilometersPerHour;
+                case SpeedUnit.KilometerPerSecond:
+                    return KilometersPerSecond;
                 case SpeedUnit.Knot:
                     return Knots;
                 case SpeedUnit.MeterPerSecond:
                     return MetersPerSecond;
+                case SpeedUnit.MicrometerPerSecond:
+                    return MicrometersPerSecond;
                 case SpeedUnit.MilePerHour:
                     return MilesPerHour;
                 case SpeedUnit.MillimeterPerSecond:
                     return MillimetersPerSecond;
+                case SpeedUnit.NanometerPerSecond:
+                    return NanometersPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

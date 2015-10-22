@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static AreaUnit BaseUnit
+        {
+            get { return AreaUnit.SquareMeter; }
+        }
+
         /// <summary>
         ///     Get Area in Acres.
         /// </summary>

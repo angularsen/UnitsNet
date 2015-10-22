@@ -25,6 +25,12 @@ namespace UnitsNet.Units
     public enum AccelerationUnit
     {
         Undefined = 0,
+        CentimeterPerSecondSquared,
+        DecimeterPerSecondSquared,
+        KilometerPerSecondSquared,
         MeterPerSecondSquared,
+        MicrometerPerSecondSquared,
+        MillimeterPerSecondSquared,
+        NanometerPerSecondSquared,
     }
 }

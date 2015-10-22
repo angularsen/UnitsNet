@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static FlowUnit BaseUnit
+        {
+            get { return FlowUnit.CubicMeterPerSecond; }
+        }
+
         /// <summary>
         ///     Get Flow in CubicFeetPerSecond.
         /// </summary>

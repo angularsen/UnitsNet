@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static DensityUnit BaseUnit
+        {
+            get { return DensityUnit.KilogramPerCubicMeter; }
+        }
+
         /// <summary>
         ///     Get Density in KilogramsPerCubicCentimeter.
         /// </summary>

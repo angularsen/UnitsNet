@@ -5,7 +5,9 @@
     <!-- Root -->
     <ArtifactsPath>$(RootPath)\Artifacts</ArtifactsPath>
     <SrcPath>$(RootPath)\UnitsNet</SrcPath>
-    <TestsSrcPath>$(RootPath)\UnitsNet.Tests</TestsSrcPath>   		
+    <SerializationSrcPath>$(RootPath)\UnitsNet.Serialization.JsonNet</SerializationSrcPath>
+    <TestsSrcPath>$(RootPath)\UnitsNet.Tests</TestsSrcPath>
+    <SerializationTestsSrcPath>$(RootPath)\UnitsNet.Serialization.JsonNet.Tests</SerializationTestsSrcPath>
     <BuildToolsPath>$(RootPath)\Tools</BuildToolsPath>
     <LibsPath>$(RootPath)\Libs</LibsPath>
 	<ToolsPath>$(RootPath)\Tools</ToolsPath>

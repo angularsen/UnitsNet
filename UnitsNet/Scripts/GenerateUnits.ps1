@@ -151,8 +151,6 @@ function GenerateUnitSystemDefault($unitClasses)
     $result | Out-File -Encoding "UTF8" $outFileName;
 }
 
-
-
 # Load external generator functions with same name as file
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"

@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static TorqueUnit BaseUnit
+        {
+            get { return TorqueUnit.NewtonMeter; }
+        }
+
         /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
         /// </summary>

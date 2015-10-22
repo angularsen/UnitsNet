@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static AngleUnit BaseUnit
+        {
+            get { return AngleUnit.Degree; }
+        }
+
         /// <summary>
         ///     Get Angle in Degrees.
         /// </summary>

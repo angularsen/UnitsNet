@@ -10,7 +10,7 @@ Installing
 ===
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
 
-![Install-Package UnitsNet](https://raw.github.com/InitialForce/UnitsNet/develop/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+![Install-Package UnitsNet](https://raw.githubusercontent.com/anjdreas/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
 * Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
@@ -20,13 +20,13 @@ Build Targets:
 
 Features
 ===
-* Over [20 units of measure](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
+* [28 units of measurement](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
 * Generated code for uniform implementations and fewer bugs
 * Immutable structs implementing IEquatable, IComparable and operator overloads
 * Parse unit abbreviations in multiple cultures
 * ToString() variants for custom cultures and format patterns
 * Extensible with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
-* Over 300 unit tests to ensure conversions and localizations are in order
+* Over 500 unit tests to ensure conversions and localizations are in order
 
 Static Typing
 ---
@@ -115,6 +115,9 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision).
 
+Serialization
+===
+It is up to the consumer to provide their own serialization, however some examples are given in the [Example Unit Tests](https://github.com/anjdreas/UnitsNet/tree/master/Examples/Serialization)
 
 What It Is Not
 ===
@@ -127,16 +130,13 @@ This project is still early and many units and conversions are not yet covered. 
 
 Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
 
-The repo uses [git-flow](https://github.com/nvie/gitflow) branch structure. 
-In practice this means:
-  * [Fork the repo](https://help.github.com/articles/fork-a-repo) as normal
-  * Checkout the default **develop** branch. There is no master branch.
+  * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**
-  * [Create a pull request](https://help.github.com/articles/using-pull-requests) as normal.
+  * [Create a pull request](https://help.github.com/articles/using-pull-requests)
 
 Continuous Integration
 ===
-A [TeamCity build server](http://anj.no:8500/project.html?projectId=UnitsNet&tab=projectOverview&guest=1) performs the following:
+A [TeamCity build server](http://dev.swingcatalyst.com/TeamCity/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
 * Build, test and publish nuget on commits to **stable** branch.
 

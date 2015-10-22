@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static ElectricCurrentUnit BaseUnit
+        {
+            get { return ElectricCurrentUnit.Ampere; }
+        }
+
         /// <summary>
         ///     Get ElectricCurrent in Amperes.
         /// </summary>

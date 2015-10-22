@@ -1,3 +1,3 @@
 @echo off
-powershell -ExecutionPolicy Bypass -File .\GenerateUnits.ps1
+powershell -ExecutionPolicy Bypass -NoProfile -File .\GenerateUnits.ps1
 pause
