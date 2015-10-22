@@ -11,11 +11,43 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["km²"]
+                    "Abbreviations": [ "km²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["км²"]
+                    "Abbreviations": [ "км²" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "Hectare",
+            "PluralName": "Hectares",
+            "FromUnitToBaseFunc": "x*1e4",
+            "FromBaseToUnitFunc": "x/1e4",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "ha" ]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": [ "ha" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "Acre",
+            "PluralName": "Acres",
+            "FromUnitToBaseFunc": "x*4046.86",
+            "FromBaseToUnitFunc": "x/4046.86",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "ac" ]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": [ "ac" ]
                 }
             ]
         },
@@ -27,11 +59,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["m²"]
+                    "Abbreviations": [ "m²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["м²"]
+                    "Abbreviations": [ "м²" ]
                 }
             ]
         },
@@ -43,11 +75,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["dm²"]
+                    "Abbreviations": [ "dm²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["дм²"]
+                    "Abbreviations": [ "дм²" ]
                 }
             ]
         },
@@ -59,11 +91,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["cm²"]
+                    "Abbreviations": [ "cm²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["см²"]
+                    "Abbreviations": [ "см²" ]
                 }
             ]
         },
@@ -75,11 +107,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["mm²"]
+                    "Abbreviations": [ "mm²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["мм²"]
+                    "Abbreviations": [ "мм²" ]
                 }
             ]
         },
@@ -91,11 +123,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["mi²"]
+                    "Abbreviations": [ "mi²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["миля²"]
+                    "Abbreviations": [ "миля²" ]
                 }
             ]
         },
@@ -107,11 +139,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["yd²"]
+                    "Abbreviations": [ "yd²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["ярд²"]
+                    "Abbreviations": [ "ярд²" ]
                 }
             ]
         },
@@ -123,11 +155,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["ft²"]
+                    "Abbreviations": [ "ft²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["фут²"]
+                    "Abbreviations": [ "фут²" ]
                 }
             ]
         },
@@ -139,11 +171,11 @@
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["in²"]
+                    "Abbreviations": [ "in²" ]
                 },
                 {
                     "Culture": "ru-RU",
-                    "Abbreviations": ["дюйм²"]
+                    "Abbreviations": [ "дюйм²" ]
                 }
             ]
         }

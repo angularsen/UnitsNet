@@ -22,19 +22,11 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum AreaUnit
+    public enum AreaDensityUnit
     {
         Undefined = 0,
-        Acre,
-        Hectare,
-        SquareCentimeter,
-        SquareDecimeter,
-        SquareFoot,
-        SquareInch,
-        SquareKilometer,
-        SquareMeter,
-        SquareMile,
-        SquareMillimeter,
-        SquareYard,
+        KilogramPerHectare,
+        KilogramPerSquareMeter,
+        PoundPerAcre,
     }
 }
