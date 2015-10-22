@@ -1,0 +1,43 @@
+﻿{
+    "Name": "AreaDensity",
+    "BaseUnit": "KilogramPerSquareMeter",
+    "XmlDoc": "The area density (also known as areal density, surface density, or superficial density) of a two-dimensional object is calculated as the mass per unit area. The SI derived unit is: kilogram per square metre (kg·m−2).",
+    "Units": [
+        {
+            "SingularName": "PoundPerAcre",
+            "PluralName": "PoundsPerAcre",
+            "FromUnitToBaseFunc": "x/8921.532921",
+            "FromBaseToUnitFunc": "x*8921.532921",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "lb/ac" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramPerHectare",
+            "PluralName": "KilgramsPerHectare",
+            "FromUnitToBaseFunc": "x/10000",
+            "FromBaseToUnitFunc": "x*10000",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "kg/ha" ]
+                }
+            ]
+        },
+        {
+            "SingularName": "KilogramPerSquareMeter",
+            "PluralName": "KilogramsPerSquareMeter",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": [ "kg/m²" ]
+                }
+            ]
+        }
+    ]
+}

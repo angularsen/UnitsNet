@@ -21,61 +21,21 @@
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class AreaTests : AreaTestsBase
+    public class AreaDensityTests : AreaDensityTestsBase
     {
-        protected override double AcresInOneSquareMeter
+        protected override double KilgramsPerHectareInOneKilogramPerSquareMeter
         {
-            get { return 0.000247105d; }
+            get { return 10000; }
         }
 
-        protected override double HectaresInOneSquareMeter
-        {
-            get { return 0.0001d; }
-        }
-
-        protected override double SquareCentimetersInOneSquareMeter
-        {
-            get { return 1E4; }
-        }
-
-        protected override double SquareDecimetersInOneSquareMeter
-        {
-            get { return 1E2; }
-        }
-
-        protected override double SquareFeetInOneSquareMeter
-        {
-            get { return 10.76391; }
-        }
-
-        protected override double SquareInchesInOneSquareMeter
-        {
-            get { return 1550.003100; }
-        }
-
-        protected override double SquareKilometersInOneSquareMeter
-        {
-            get { return 1E-6; }
-        }
-
-        protected override double SquareMetersInOneSquareMeter
+        protected override double KilogramsPerSquareMeterInOneKilogramPerSquareMeter
         {
             get { return 1; }
         }
 
-        protected override double SquareMilesInOneSquareMeter
+        protected override double PoundsPerAcreInOneKilogramPerSquareMeter
         {
-            get { return 3.86102*1E-7; }
-        }
-
-        protected override double SquareMillimetersInOneSquareMeter
-        {
-            get { return 1E6; }
-        }
-
-        protected override double SquareYardsInOneSquareMeter
-        {
-            get { return 1.19599; }
+            get { return 8921.532921d; }
         }
     }
 }

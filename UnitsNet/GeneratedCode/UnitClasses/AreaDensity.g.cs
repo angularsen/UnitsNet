@@ -32,246 +32,97 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
+    ///     The area density (also known as areal density, surface density, or superficial density) of a two-dimensional object is calculated as the mass per unit area. The SI derived unit is: kilogram per square metre (kg·m−2).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct Area : IComparable, IComparable<Area>
+    public partial struct AreaDensity : IComparable, IComparable<AreaDensity>
     {
         /// <summary>
-        ///     Base unit of Area.
+        ///     Base unit of AreaDensity.
         /// </summary>
-        private readonly double _squareMeters;
+        private readonly double _kilogramsPerSquareMeter;
 
-        public Area(double squaremeters) : this()
+        public AreaDensity(double kilogramspersquaremeter) : this()
         {
-            _squareMeters = squaremeters;
+            _kilogramsPerSquareMeter = kilogramspersquaremeter;
         }
 
         #region Properties
 
-        public static AreaUnit BaseUnit
+        /// <summary>
+        ///     Get AreaDensity in KilgramsPerHectare.
+        /// </summary>
+        public double KilgramsPerHectare
         {
-            get { return AreaUnit.SquareMeter; }
+            get { return _kilogramsPerSquareMeter*10000; }
         }
 
         /// <summary>
-        ///     Get Area in Acres.
+        ///     Get AreaDensity in KilogramsPerSquareMeter.
         /// </summary>
-        public double Acres
+        public double KilogramsPerSquareMeter
         {
-            get { return _squareMeters/4046.86; }
+            get { return _kilogramsPerSquareMeter; }
         }
 
         /// <summary>
-        ///     Get Area in Hectares.
+        ///     Get AreaDensity in PoundsPerAcre.
         /// </summary>
-        public double Hectares
+        public double PoundsPerAcre
         {
-            get { return _squareMeters/1e4; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareCentimeters.
-        /// </summary>
-        public double SquareCentimeters
-        {
-            get { return _squareMeters/1e-4; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareDecimeters.
-        /// </summary>
-        public double SquareDecimeters
-        {
-            get { return _squareMeters/1e-2; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareFeet.
-        /// </summary>
-        public double SquareFeet
-        {
-            get { return _squareMeters/0.092903; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareInches.
-        /// </summary>
-        public double SquareInches
-        {
-            get { return _squareMeters/0.00064516; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareKilometers.
-        /// </summary>
-        public double SquareKilometers
-        {
-            get { return _squareMeters/1e6; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareMeters.
-        /// </summary>
-        public double SquareMeters
-        {
-            get { return _squareMeters; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareMiles.
-        /// </summary>
-        public double SquareMiles
-        {
-            get { return _squareMeters/2.59e6; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareMillimeters.
-        /// </summary>
-        public double SquareMillimeters
-        {
-            get { return _squareMeters/1e-6; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareYards.
-        /// </summary>
-        public double SquareYards
-        {
-            get { return _squareMeters/0.836127; }
+            get { return _kilogramsPerSquareMeter*8921.532921; }
         }
 
         #endregion
 
         #region Static 
 
-        public static Area Zero
+        public static AreaDensity Zero
         {
-            get { return new Area(); }
+            get { return new AreaDensity(); }
         }
 
         /// <summary>
-        ///     Get Area from Acres.
+        ///     Get AreaDensity from KilgramsPerHectare.
         /// </summary>
-        public static Area FromAcres(double acres)
+        public static AreaDensity FromKilgramsPerHectare(double kilgramsperhectare)
         {
-            return new Area(acres*4046.86);
+            return new AreaDensity(kilgramsperhectare/10000);
         }
 
         /// <summary>
-        ///     Get Area from Hectares.
+        ///     Get AreaDensity from KilogramsPerSquareMeter.
         /// </summary>
-        public static Area FromHectares(double hectares)
+        public static AreaDensity FromKilogramsPerSquareMeter(double kilogramspersquaremeter)
         {
-            return new Area(hectares*1e4);
+            return new AreaDensity(kilogramspersquaremeter);
         }
 
         /// <summary>
-        ///     Get Area from SquareCentimeters.
+        ///     Get AreaDensity from PoundsPerAcre.
         /// </summary>
-        public static Area FromSquareCentimeters(double squarecentimeters)
+        public static AreaDensity FromPoundsPerAcre(double poundsperacre)
         {
-            return new Area(squarecentimeters*1e-4);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareDecimeters.
-        /// </summary>
-        public static Area FromSquareDecimeters(double squaredecimeters)
-        {
-            return new Area(squaredecimeters*1e-2);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareFeet.
-        /// </summary>
-        public static Area FromSquareFeet(double squarefeet)
-        {
-            return new Area(squarefeet*0.092903);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareInches.
-        /// </summary>
-        public static Area FromSquareInches(double squareinches)
-        {
-            return new Area(squareinches*0.00064516);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareKilometers.
-        /// </summary>
-        public static Area FromSquareKilometers(double squarekilometers)
-        {
-            return new Area(squarekilometers*1e6);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareMeters.
-        /// </summary>
-        public static Area FromSquareMeters(double squaremeters)
-        {
-            return new Area(squaremeters);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareMiles.
-        /// </summary>
-        public static Area FromSquareMiles(double squaremiles)
-        {
-            return new Area(squaremiles*2.59e6);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareMillimeters.
-        /// </summary>
-        public static Area FromSquareMillimeters(double squaremillimeters)
-        {
-            return new Area(squaremillimeters*1e-6);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareYards.
-        /// </summary>
-        public static Area FromSquareYards(double squareyards)
-        {
-            return new Area(squareyards*0.836127);
+            return new AreaDensity(poundsperacre/8921.532921);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
+        ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Area unit value.</returns>
-        public static Area From(double value, AreaUnit fromUnit)
+        /// <returns>AreaDensity unit value.</returns>
+        public static AreaDensity From(double value, AreaDensityUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case AreaUnit.Acre:
-                    return FromAcres(value);
-                case AreaUnit.Hectare:
-                    return FromHectares(value);
-                case AreaUnit.SquareCentimeter:
-                    return FromSquareCentimeters(value);
-                case AreaUnit.SquareDecimeter:
-                    return FromSquareDecimeters(value);
-                case AreaUnit.SquareFoot:
-                    return FromSquareFeet(value);
-                case AreaUnit.SquareInch:
-                    return FromSquareInches(value);
-                case AreaUnit.SquareKilometer:
-                    return FromSquareKilometers(value);
-                case AreaUnit.SquareMeter:
-                    return FromSquareMeters(value);
-                case AreaUnit.SquareMile:
-                    return FromSquareMiles(value);
-                case AreaUnit.SquareMillimeter:
-                    return FromSquareMillimeters(value);
-                case AreaUnit.SquareYard:
-                    return FromSquareYards(value);
+                case AreaDensityUnit.KilogramPerHectare:
+                    return FromKilgramsPerHectare(value);
+                case AreaDensityUnit.KilogramPerSquareMeter:
+                    return FromKilogramsPerSquareMeter(value);
+                case AreaDensityUnit.PoundPerAcre:
+                    return FromPoundsPerAcre(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -285,7 +136,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AreaUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(AreaDensityUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -294,39 +145,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static Area operator -(Area right)
+        public static AreaDensity operator -(AreaDensity right)
         {
-            return new Area(-right._squareMeters);
+            return new AreaDensity(-right._kilogramsPerSquareMeter);
         }
 
-        public static Area operator +(Area left, Area right)
+        public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new Area(left._squareMeters + right._squareMeters);
+            return new AreaDensity(left._kilogramsPerSquareMeter + right._kilogramsPerSquareMeter);
         }
 
-        public static Area operator -(Area left, Area right)
+        public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new Area(left._squareMeters - right._squareMeters);
+            return new AreaDensity(left._kilogramsPerSquareMeter - right._kilogramsPerSquareMeter);
         }
 
-        public static Area operator *(double left, Area right)
+        public static AreaDensity operator *(double left, AreaDensity right)
         {
-            return new Area(left*right._squareMeters);
+            return new AreaDensity(left*right._kilogramsPerSquareMeter);
         }
 
-        public static Area operator *(Area left, double right)
+        public static AreaDensity operator *(AreaDensity left, double right)
         {
-            return new Area(left._squareMeters*(double)right);
+            return new AreaDensity(left._kilogramsPerSquareMeter*(double)right);
         }
 
-        public static Area operator /(Area left, double right)
+        public static AreaDensity operator /(AreaDensity left, double right)
         {
-            return new Area(left._squareMeters/(double)right);
+            return new AreaDensity(left._kilogramsPerSquareMeter/(double)right);
         }
 
-        public static double operator /(Area left, Area right)
+        public static double operator /(AreaDensity left, AreaDensity right)
         {
-            return Convert.ToDouble(left._squareMeters/right._squareMeters);
+            return Convert.ToDouble(left._kilogramsPerSquareMeter/right._kilogramsPerSquareMeter);
         }
 
         #endregion
@@ -336,45 +187,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Area)) throw new ArgumentException("Expected type Area.", "obj");
-            return CompareTo((Area) obj);
+            if (!(obj is AreaDensity)) throw new ArgumentException("Expected type AreaDensity.", "obj");
+            return CompareTo((AreaDensity) obj);
         }
 
-        public int CompareTo(Area other)
+        public int CompareTo(AreaDensity other)
         {
-            return _squareMeters.CompareTo(other._squareMeters);
+            return _kilogramsPerSquareMeter.CompareTo(other._kilogramsPerSquareMeter);
         }
 
-        public static bool operator <=(Area left, Area right)
+        public static bool operator <=(AreaDensity left, AreaDensity right)
         {
-            return left._squareMeters <= right._squareMeters;
+            return left._kilogramsPerSquareMeter <= right._kilogramsPerSquareMeter;
         }
 
-        public static bool operator >=(Area left, Area right)
+        public static bool operator >=(AreaDensity left, AreaDensity right)
         {
-            return left._squareMeters >= right._squareMeters;
+            return left._kilogramsPerSquareMeter >= right._kilogramsPerSquareMeter;
         }
 
-        public static bool operator <(Area left, Area right)
+        public static bool operator <(AreaDensity left, AreaDensity right)
         {
-            return left._squareMeters < right._squareMeters;
+            return left._kilogramsPerSquareMeter < right._kilogramsPerSquareMeter;
         }
 
-        public static bool operator >(Area left, Area right)
+        public static bool operator >(AreaDensity left, AreaDensity right)
         {
-            return left._squareMeters > right._squareMeters;
+            return left._kilogramsPerSquareMeter > right._kilogramsPerSquareMeter;
         }
 
-        public static bool operator ==(Area left, Area right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._squareMeters == right._squareMeters;
-        }
-
-        public static bool operator !=(Area left, Area right)
+        public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._squareMeters != right._squareMeters;
+            return left._kilogramsPerSquareMeter == right._kilogramsPerSquareMeter;
+        }
+
+        public static bool operator !=(AreaDensity left, AreaDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._kilogramsPerSquareMeter != right._kilogramsPerSquareMeter;
         }
 
         public override bool Equals(object obj)
@@ -384,12 +235,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _squareMeters.Equals(((Area) obj)._squareMeters);
+            return _kilogramsPerSquareMeter.Equals(((AreaDensity) obj)._kilogramsPerSquareMeter);
         }
 
         public override int GetHashCode()
         {
-            return _squareMeters.GetHashCode();
+            return _kilogramsPerSquareMeter.GetHashCode();
         }
 
         #endregion
@@ -401,32 +252,16 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(AreaUnit unit)
+        public double As(AreaDensityUnit unit)
         {
             switch (unit)
             {
-                case AreaUnit.Acre:
-                    return Acres;
-                case AreaUnit.Hectare:
-                    return Hectares;
-                case AreaUnit.SquareCentimeter:
-                    return SquareCentimeters;
-                case AreaUnit.SquareDecimeter:
-                    return SquareDecimeters;
-                case AreaUnit.SquareFoot:
-                    return SquareFeet;
-                case AreaUnit.SquareInch:
-                    return SquareInches;
-                case AreaUnit.SquareKilometer:
-                    return SquareKilometers;
-                case AreaUnit.SquareMeter:
-                    return SquareMeters;
-                case AreaUnit.SquareMile:
-                    return SquareMiles;
-                case AreaUnit.SquareMillimeter:
-                    return SquareMillimeters;
-                case AreaUnit.SquareYard:
-                    return SquareYards;
+                case AreaDensityUnit.KilogramPerHectare:
+                    return KilgramsPerHectare;
+                case AreaDensityUnit.KilogramPerSquareMeter:
+                    return KilogramsPerSquareMeter;
+                case AreaDensityUnit.PoundPerAcre:
+                    return PoundsPerAcre;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -448,7 +283,7 @@ namespace UnitsNet
         ///     Expected string to have one or two pairs of quantity and unit in the format
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
-        public static Area Parse(string str, IFormatProvider formatProvider = null)
+        public static AreaDensity Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -482,11 +317,11 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<Area> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
+        private static List<AreaDensity> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<Area>();
+            var converted = new List<AreaDensity>();
 
             foreach (Match match in matches)
             {
@@ -507,7 +342,7 @@ namespace UnitsNet
 
                 try
                 {
-                    AreaUnit unit = ParseUnit(unitString, formatProvider);
+                    AreaDensityUnit unit = ParseUnit(unitString, formatProvider);
                     double value = double.Parse(valueString, formatProvider);
 
                     converted.Add(From(value, unit));
@@ -533,16 +368,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static AreaUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static AreaDensityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<AreaUnit>(str.Trim());
+            var unit = unitSystem.Parse<AreaDensityUnit>(str.Trim());
 
-            if (unit == AreaUnit.Undefined)
+            if (unit == AreaDensityUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AreaUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AreaDensityUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -559,7 +394,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(AreaUnit.SquareMeter);
+            return ToString(AreaDensityUnit.KilogramPerSquareMeter);
         }
 
         /// <summary>
@@ -570,7 +405,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(AreaDensityUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -584,7 +419,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(AreaDensityUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }
