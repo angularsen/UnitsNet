@@ -26,6 +26,7 @@ Features
 * Parse unit abbreviations in multiple cultures
 * ToString() variants for custom cultures and format patterns
 * Extensible with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
+* [Serializable with JSON.NET](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet)
 * Over 500 unit tests to ensure conversions and localizations are in order
 
 Static Typing
@@ -117,7 +118,10 @@ For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/
 
 Serialization
 ===
-It is up to the consumer to provide their own serialization, however some examples are given in the [Example Unit Tests](https://github.com/anjdreas/UnitsNet/tree/master/Examples/Serialization)
+* `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+
+**Important!** 
+We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
 
 What It Is Not
 ===
@@ -129,6 +133,7 @@ Want To Contribute?
 This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/InitialForce/UnitsNet/issues) by creating an issue.
 
 Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
+Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefinitions\*.json` files and running `UnitsNet\Scripts\GenerateUnits.bat` to regenerate the source code and test code stubs, then manually implement the new unit conversion constants in the test code.
 
   * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**
