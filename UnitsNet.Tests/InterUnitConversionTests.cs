@@ -44,7 +44,7 @@ namespace UnitsNet.Tests
         }
 
         [Test]
-        public void LengthAndTimeStampToSpeed()
+        public void LengthAndTimepanToSpeed()
         {
             Length length = Length.FromMeters(10);
             Speed speed = length / TimeSpan.FromSeconds(1);
