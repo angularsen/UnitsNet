@@ -453,7 +453,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft³/h"),
+                                new AbbreviationsForCulture("en-US", "ft³/s"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.CubicMeterPerHour,
                             new[]
