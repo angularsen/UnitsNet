@@ -366,6 +366,10 @@ namespace UnitsNet
         }
 
         #endregion
+        public static Speed operator / (Length left, TimeSpan right)
+		{
+			return Speed.FromMetersPerSecond(left.Meters/right.TotalSeconds) ;
+		}
 
         #region Equality / IComparable
 
