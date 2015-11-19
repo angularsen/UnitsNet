@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using NUnit.Framework;
+using System;
 
 namespace UnitsNet.Tests
 {
@@ -40,6 +41,14 @@ namespace UnitsNet.Tests
             Mass mass = Mass.FromKilograms(1);
             Force force = Force.FromKilogramsForce(mass.Kilograms);
             Assert.AreEqual(mass.Kilograms, force.KilogramsForce);
+        }
+
+        [Test]
+        public void LengthAndTimeStampToSpeed()
+        {
+            Length length = Length.FromMeters(10);
+            Speed speed = length / TimeSpan.FromSeconds(1);
+            Assert.AreEqual(10.0, speed.MetersPerSecond);
         }
     }
 }

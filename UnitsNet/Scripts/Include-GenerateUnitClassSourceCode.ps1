@@ -182,10 +182,16 @@ namespace UnitsNet
 
         #endregion
 
+<<<<<<< HEAD
+"@; }
+			
+		foreach ($operatorOverload in $operatorOverloads) {
+=======
 		#region Operator overloads to other units
 "@; }
 	
 		 foreach ($operatorOverload in $operatorOverloads) {
+>>>>>>> 28f46c434f89d5b3672439ca1f76efe237b201d5
 				$returnUnit = $operatorOverload.ReturnUnit;
 				$operator = $operatorOverload.Operator;
 				$otherUnit = $operatorOverload.OtherUnit;
@@ -197,8 +203,11 @@ namespace UnitsNet
 		}
 "@; }
 		@"
+<<<<<<< HEAD
+=======
 
 		#endregion
+>>>>>>> 28f46c434f89d5b3672439ca1f76efe237b201d5
 
         #region Equality / IComparable
 
