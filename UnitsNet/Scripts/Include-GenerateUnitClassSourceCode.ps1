@@ -9,6 +9,7 @@ function GenerateUnitClassSourceCode($unitClass)
     $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$className" + "Unit";
     $baseUnitFieldName = "_"+[Char]::ToLowerInvariant($baseUnitPluralName[0]) + $baseUnitPluralName.Substring(1);
+	$operatorOverloads = $unitClass.OperatorOverloads;
 
 @"
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
@@ -180,7 +181,24 @@ namespace UnitsNet
         }
 
         #endregion
-"@; }@"
+
+		#region Operator overloads to other units
+"@; }
+	
+		 foreach ($operatorOverload in $operatorOverloads) {
+				$returnUnit = $operatorOverload.ReturnUnit;
+				$operator = $operatorOverload.Operator;
+				$otherUnit = $operatorOverload.OtherUnit;
+				$conversionCode = $operatorOverload.ConversionCode
+			 @"
+        public static $returnUnit operator $operator ($className left, $otherUnit right)
+		{
+			return $conversionCode ;
+		}
+"@; }
+		@"
+
+		#endregion
 
         #region Equality / IComparable
 
