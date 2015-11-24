@@ -25,17 +25,17 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double CubicMetersPerHourInOneCubicMeterPerSecond
         {
-            get { return 1*3600.0; }
+            get { return 3600.0; }
         }
 
         protected override double CubicFeetPerSecondInOneCubicMeterPerSecond
         {
-            get { return 1*35.314666213; }
+            get { return 35.314666213; }
         }
 
         protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond
         {
-            get { return 1*22.824465227; }
+            get { return 22.824465227; }
         }
 
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
@@ -45,12 +45,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond
         {
-            get { return 1 * 15850.323141489; }
+            get { return 15850.323141489; }
         }
 
         protected override double LitersPerMinuteInOneCubicMeterPerSecond
         {
-            get { return 1 * 60000.00000; }
+            get { return 60000.00000; }
         }
 
     }
