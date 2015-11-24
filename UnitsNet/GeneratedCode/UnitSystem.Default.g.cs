@@ -467,10 +467,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MGD"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GPM"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),

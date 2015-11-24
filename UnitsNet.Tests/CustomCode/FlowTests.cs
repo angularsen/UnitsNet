@@ -43,6 +43,15 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1; }
         }
 
-        
+        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond
+        {
+            get { return 1 * 15850.323141489; }
+        }
+
+        protected override double LitersPerMinuteInOneCubicMeterPerSecond
+        {
+            get { return 1 * 60000.00000; }
+        }
+
     }
 }

@@ -58,6 +58,30 @@
                     "Abbreviations": ["MGD"]
                 }
             ]
+        },
+        {
+            "SingularName": "LitersPerMinute",
+            "PluralName": "LitersPerMinute",
+            "FromUnitToBaseFunc": "x/60000.00000",
+            "FromBaseToUnitFunc": "x*60000.00000",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["LPM"]
+                }
+            ]
+        },
+        {
+            "SingularName": "UsGallonsPerMinute",
+            "PluralName": "UsGallonsPerMinute",
+            "FromUnitToBaseFunc": "x/15850.323141489",
+            "FromBaseToUnitFunc": "x*15850.323141489",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["GPM"]
+                }
+            ]
         }
     ]
 }
