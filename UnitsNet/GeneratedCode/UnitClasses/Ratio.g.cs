@@ -50,6 +50,22 @@ namespace UnitsNet
         #region Properties
 
         /// <summary>
+        ///     Get Ratio in ComplementDecimalFractions.
+        /// </summary>
+        public double ComplementDecimalFractions
+        {
+            get { return 1-_decimalFractions; }
+        }
+
+        /// <summary>
+        ///     Get Ratio in ComplementPercent.
+        /// </summary>
+        public double ComplementPercent
+        {
+            get { return 100-_decimalFractions*1e2; }
+        }
+
+        /// <summary>
         ///     Get Ratio in DecimalFractions.
         /// </summary>
         public double DecimalFractions
@@ -104,6 +120,22 @@ namespace UnitsNet
         public static Ratio Zero
         {
             get { return new Ratio(); }
+        }
+
+        /// <summary>
+        ///     Get Ratio from ComplementDecimalFractions.
+        /// </summary>
+        public static Ratio FromComplementDecimalFractions(double complementdecimalfractions)
+        {
+            return new Ratio(1-complementdecimalfractions);
+        }
+
+        /// <summary>
+        ///     Get Ratio from ComplementPercent.
+        /// </summary>
+        public static Ratio FromComplementPercent(double complementpercent)
+        {
+            return new Ratio(1-complementpercent/1e2);
         }
 
         /// <summary>
@@ -165,6 +197,10 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case RatioUnit.ComplementDecimalFraction:
+                    return FromComplementDecimalFractions(value);
+                case RatioUnit.ComplementPercent:
+                    return FromComplementPercent(value);
                 case RatioUnit.DecimalFraction:
                     return FromDecimalFractions(value);
                 case RatioUnit.PartPerBillion:
@@ -310,6 +346,10 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case RatioUnit.ComplementDecimalFraction:
+                    return ComplementDecimalFractions;
+                case RatioUnit.ComplementPercent:
+                    return ComplementPercent;
                 case RatioUnit.DecimalFraction:
                     return DecimalFractions;
                 case RatioUnit.PartPerBillion:

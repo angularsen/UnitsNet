@@ -25,6 +25,8 @@ namespace UnitsNet.Units
     public enum RatioUnit
     {
         Undefined = 0,
+        ComplementDecimalFraction,
+        ComplementPercent,
         DecimalFraction,
         PartPerBillion,
         PartPerMillion,

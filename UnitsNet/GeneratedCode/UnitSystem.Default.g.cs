@@ -1233,6 +1233,17 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RatioUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) RatioUnit.ComplementDecimalFraction,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                            }),
+                        new CulturesForEnumValue((int) RatioUnit.ComplementPercent,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "%"),
+                                new AbbreviationsForCulture("ru-RU", "% закрытия"),
+                            }),
                         new CulturesForEnumValue((int) RatioUnit.DecimalFraction,
                             new[]
                             {
@@ -1262,6 +1273,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "%"),
+                                new AbbreviationsForCulture("ru-RU", "% открытия"),
                             }),
                     }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
@@ -1278,22 +1290,6 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "r/s"),
                                 new AbbreviationsForCulture("ru-RU", "об/с"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RotationalSpeedChangeRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RotationalSpeedChangeRateUnit.RevolutionPerMinutePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rpm/s"),
-                                new AbbreviationsForCulture("ru-RU", "об/мин за с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedChangeRateUnit.RevolutionPerSquareSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "r/s²"),
-                                new AbbreviationsForCulture("ru-RU", "об/с²"),
                             }),
                     }),
                 new UnitLocalization(typeof (SpecificWeightUnit),
@@ -1542,44 +1538,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "tf·mm"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ValveDriveSpeedUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ValveDriveSpeedUnit.DegreePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "degree/s"),
-                                new AbbreviationsForCulture("ru-RU", "град/с"),
-                            }),
-                        new CulturesForEnumValue((int) ValveDriveSpeedUnit.PercentPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "prc/s"),
-                                new AbbreviationsForCulture("ru-RU", "%/с"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ValvePositionUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ValvePositionUnit.ClosePercentage,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "close prc"),
-                                new AbbreviationsForCulture("ru-RU", "% закрытия"),
-                            }),
-                        new CulturesForEnumValue((int) ValvePositionUnit.Degree,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "degree"),
-                                new AbbreviationsForCulture("ru-RU", "град"),
-                            }),
-                        new CulturesForEnumValue((int) ValvePositionUnit.OpenPercentage,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "open prc"),
-                                new AbbreviationsForCulture("ru-RU", "% открытия"),
                             }),
                     }),
                 new UnitLocalization(typeof (VolumeUnit),
