@@ -44,11 +44,39 @@ namespace UnitsNet.Tests
         }
 
         [Test]
-        public void LengthAndTimepanToSpeed()
+        public void LengthAndTimeSpanToSpeed()
         {
             Length length = Length.FromMeters(10);
             Speed speed = length / TimeSpan.FromSeconds(1);
             Assert.AreEqual(10.0, speed.MetersPerSecond);
+        }
+
+        [Test]
+        public void LengthAndLengthToArea()
+        {
+            Length length1 = Length.FromMeters(10);
+            Length length2 = Length.FromMeters(20);
+            Area area = length1 * length2;
+            Assert.AreEqual(200.0, area.SquareMeters);
+        }
+
+        [Test]
+        public void LengthAndAreaToVolume()
+        {
+            Length length = Length.FromMeters(10);
+            Area area = Area.FromSquareMeters(20);
+            Volume volume = length * area;
+            Assert.AreEqual(200.0, volume.CubicMeters);
+        }
+
+
+        [Test]
+        public void LengthAndForceToEnergy()
+        {
+            Length length = Length.FromMeters(10);
+            Force force = Force.FromNewtons(20);
+            Energy energy = length * force;
+            Assert.AreEqual(200.0, energy.Joules);
         }
     }
 }

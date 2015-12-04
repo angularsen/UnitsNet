@@ -186,12 +186,12 @@ namespace UnitsNet
 
 				$returnUnit = $operatorOverload.ReturnUnit;
 				$operator = $operatorOverload.Operator;
-				$otherUnit = $operatorOverload.OtherUnit;
-				$conversionCode = $operatorOverload.ConversionCode
+				$returnUnitBasePluralName = $operatorOverload.ReturnUnitBasePluralName;
+				$otherUnitBasePluralName = $operatorOverload.OtherUnitBasePluralName;
 			 @"
-        public static $returnUnit operator $operator ($className left, $otherUnit right)
+        public static $returnUnit operator $operator ($className left, $($operatorOverload.OtherUnit) right)
 		{
-			return $conversionCode ;
+			return $returnUnit.From$returnUnitBasePluralName(left.$baseUnitPluralName $operator right.$otherUnitBasePluralName);
 		}
 "@; }
 		@"

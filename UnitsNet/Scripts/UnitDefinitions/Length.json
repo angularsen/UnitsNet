@@ -122,8 +122,30 @@
     {
       "Operator": "/",
       "OtherUnit": "TimeSpan",
-      "ReturnUnit":  "Speed",
-      "ConversionCode":  "Speed.FromMetersPerSecond(left.Meters/right.TotalSeconds)"
+      "ReturnUnit": "Speed",
+      "ReturnUnitBasePluralName": "MetersPerSecond",
+      "OtherUnitBasePluralName": "TotalSeconds"
+    },
+    {
+      "Operator": "*",
+      "OtherUnit": "Length",
+      "ReturnUnit": "Area",
+      "ReturnUnitBasePluralName": "SquareMeters",
+      "OtherUnitBasePluralName": "Meters"
+    },
+    {
+      "Operator": "*",
+      "OtherUnit": "Area",
+      "ReturnUnit": "Volume",
+      "ReturnUnitBasePluralName": "CubicMeters",
+      "OtherUnitBasePluralName": "SquareMeters"
+    },
+    {
+      "Operator": "*",
+      "OtherUnit": "Force",
+      "ReturnUnit": "Energy",
+      "ReturnUnitBasePluralName": "Joules",
+      "OtherUnitBasePluralName": "Newtons"
     }
   ]
 }
