@@ -366,6 +366,22 @@ namespace UnitsNet
         }
 
         #endregion
+        public static Speed operator / (Length left, TimeSpan right)
+		{
+			return Speed.FromMetersPerSecond(left.Meters / right.TotalSeconds);
+		}
+        public static Area operator * (Length left, Length right)
+		{
+			return Area.FromSquareMeters(left.Meters * right.Meters);
+		}
+        public static Volume operator * (Length left, Area right)
+		{
+			return Volume.FromCubicMeters(left.Meters * right.SquareMeters);
+		}
+        public static Energy operator * (Length left, Force right)
+		{
+			return Energy.FromJoules(left.Meters * right.Newtons);
+		}
 
         #region Equality / IComparable
 
