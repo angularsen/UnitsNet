@@ -1233,17 +1233,6 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RatioUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) RatioUnit.ComplementDecimalFraction,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.ComplementPercent,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "%"),
-                                new AbbreviationsForCulture("ru-RU", "% закрытия"),
-                            }),
                         new CulturesForEnumValue((int) RatioUnit.DecimalFraction,
                             new[]
                             {
@@ -1273,7 +1262,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "%"),
-                                new AbbreviationsForCulture("ru-RU", "% открытия"),
                             }),
                     }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),

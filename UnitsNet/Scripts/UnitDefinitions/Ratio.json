@@ -15,18 +15,6 @@
                 }
             ]
         },
-	{
-            "SingularName": "ComplementDecimalFraction",
-            "PluralName": "ComplementDecimalFractions",
-            "FromUnitToBaseFunc": "1-x",
-            "FromBaseToUnitFunc": "1-x",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": [""]
-                }
-            ]
-        },
         {
             "SingularName": "Percent",
             "PluralName": "Percent",
@@ -36,26 +24,6 @@
                 {
                     "Culture": "en-US",
                     "Abbreviations": ["%"]
-                },
-                {
-                    "Culture": "ru-RU",
-                    "Abbreviations": ["% открытия"]
-                }
-            ]
-        },
-	{
-            "SingularName": "ComplementPercent",
-            "PluralName": "ComplementPercent",
-            "FromUnitToBaseFunc": "1-x/1e2",
-            "FromBaseToUnitFunc": "100-x*1e2",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["%"]
-                },
-                {
-                    "Culture": "ru-RU",
-                    "Abbreviations": ["% закрытия"]
                 }
             ]
         },

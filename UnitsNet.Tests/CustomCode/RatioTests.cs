@@ -23,16 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RatioTests : RatioTestsBase
     {
-        protected override double ComplementDecimalFractionsInOneDecimalFraction
-        {
-            get { return 0; }
-        }
-
-        protected override double ComplementPercentInOneDecimalFraction
-        {
-            get { return 0; }
-        }
-
         protected override double DecimalFractionsInOneDecimalFraction
         {
             get { return 1; }
