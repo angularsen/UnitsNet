@@ -568,6 +568,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "MHz"),
                             }),
+                        new CulturesForEnumValue((int) FrequencyUnit.RadianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rad/s"),
+                            }),
                         new CulturesForEnumValue((int) FrequencyUnit.Terahertz,
                             new[]
                             {

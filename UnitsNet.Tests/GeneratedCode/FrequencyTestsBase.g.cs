@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double HertzInOneHertz { get; }
         protected abstract double KilohertzInOneHertz { get; }
         protected abstract double MegahertzInOneHertz { get; }
+        protected abstract double RadiansPerSecondInOneHertz { get; }
         protected abstract double TerahertzInOneHertz { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
@@ -51,6 +52,7 @@ namespace UnitsNet.Tests
         protected virtual double HertzTolerance { get { return 1e-5; } }
         protected virtual double KilohertzTolerance { get { return 1e-5; } }
         protected virtual double MegahertzTolerance { get { return 1e-5; } }
+        protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -64,6 +66,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(HertzInOneHertz, hertz.Hertz, HertzTolerance);
             Assert.AreEqual(KilohertzInOneHertz, hertz.Kilohertz, KilohertzTolerance);
             Assert.AreEqual(MegahertzInOneHertz, hertz.Megahertz, MegahertzTolerance);
+            Assert.AreEqual(RadiansPerSecondInOneHertz, hertz.RadiansPerSecond, RadiansPerSecondTolerance);
             Assert.AreEqual(TerahertzInOneHertz, hertz.Terahertz, TerahertzTolerance);
         }
 
@@ -76,6 +79,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Hertz).Hertz, HertzTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Kilohertz).Kilohertz, KilohertzTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Megahertz).Megahertz, MegahertzTolerance);
+            Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
             Assert.AreEqual(1, Frequency.From(1, FrequencyUnit.Terahertz).Terahertz, TerahertzTolerance);
         }
 
@@ -89,6 +93,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(HertzInOneHertz, hertz.As(FrequencyUnit.Hertz), HertzTolerance);
             Assert.AreEqual(KilohertzInOneHertz, hertz.As(FrequencyUnit.Kilohertz), KilohertzTolerance);
             Assert.AreEqual(MegahertzInOneHertz, hertz.As(FrequencyUnit.Megahertz), MegahertzTolerance);
+            Assert.AreEqual(RadiansPerSecondInOneHertz, hertz.As(FrequencyUnit.RadianPerSecond), RadiansPerSecondTolerance);
             Assert.AreEqual(TerahertzInOneHertz, hertz.As(FrequencyUnit.Terahertz), TerahertzTolerance);
         }
 
@@ -102,6 +107,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Frequency.FromHertz(hertz.Hertz).Hertz, HertzTolerance);
             Assert.AreEqual(1, Frequency.FromKilohertz(hertz.Kilohertz).Hertz, KilohertzTolerance);
             Assert.AreEqual(1, Frequency.FromMegahertz(hertz.Megahertz).Hertz, MegahertzTolerance);
+            Assert.AreEqual(1, Frequency.FromRadiansPerSecond(hertz.RadiansPerSecond).Hertz, RadiansPerSecondTolerance);
             Assert.AreEqual(1, Frequency.FromTerahertz(hertz.Terahertz).Hertz, TerahertzTolerance);
         }
 

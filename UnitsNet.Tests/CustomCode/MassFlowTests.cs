@@ -19,52 +19,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class FrequencyTests : FrequencyTestsBase
+    public class MassFlowTests : MassFlowTestsBase
     {
-        protected override double HertzInOneHertz
-        {
-            get { return 1; }
-        }
-
-        protected override double KilohertzInOneHertz
-        {
-            get { return 1e-3; }
-        }
-
-        protected override double MegahertzInOneHertz
-        {
-            get { return 1e-6; }
-        }
-
-        protected override double GigahertzInOneHertz
-        {
-            get { return 1e-9; }
-        }
-
-        protected override double TerahertzInOneHertz
-        {
-            get { return 1e-12; }
-        }
-
-        protected override double CyclesPerHourInOneHertz
-        {
-            get { return 2.77777e-4; }
-        }
-
-        protected override double CyclesPerMinuteInOneHertz
-        {
-            get { return 0.016666667; }
-        }
-
-        protected override double RadiansPerSecondInOneHertz
+        // TODO Override properties in base class here
+        protected override double KiloGramsPerSecondInOneKiloGramPerSecond
         {
             get
             {
-                return 2 * Math.PI;
+                return 1.0;
+            }
+        }
+
+        protected override double TonnesPerDayInOneKiloGramPerSecond
+        {
+            get
+            {
+                return 1.0 / (60.0 * 60 * 24 / 1000);
             }
         }
     }
