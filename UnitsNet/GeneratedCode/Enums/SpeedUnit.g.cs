@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         KilometerPerHour,
         KilometerPerSecond,
         Knot,
+        MeterPerHour,
         MeterPerSecond,
         MicrometerPerSecond,
         MilePerHour,

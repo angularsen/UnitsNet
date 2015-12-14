@@ -19,10 +19,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
+        protected override double RadiansPerSecondInOneRevolutionPerSecond
+        {
+            get
+            {
+                return 2 * Math.PI;
+            }
+        }
+
         protected override double RevolutionsPerMinuteInOneRevolutionPerSecond
         {
             get { return 1.0*60; }

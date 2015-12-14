@@ -22,22 +22,15 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum LengthUnit
+    public enum SpecificEnergyUnit
     {
         Undefined = 0,
-        Centimeter,
-        Decimeter,
-        Foot,
-        Inch,
-        Kilometer,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
-        Yard,
+        JoulePerKiloGram,
+        KiloCaloriePerGram,
+        KilojoulePerKiloGram,
+        KilowattHourPerKiloGram,
+        MegajoulePerKiloGram,
+        MegawattHourPerKiloGram,
+        WattHourPerKiloGram,
     }
 }

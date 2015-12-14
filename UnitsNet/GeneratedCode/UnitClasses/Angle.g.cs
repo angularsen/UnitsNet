@@ -71,11 +71,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle in MinutesOfArc.
+        /// </summary>
+        public double MinutesOfArc
+        {
+            get { return _degrees*60; }
+        }
+
+        /// <summary>
         ///     Get Angle in Radians.
         /// </summary>
         public double Radians
         {
             get { return _degrees/180*Math.PI; }
+        }
+
+        /// <summary>
+        ///     Get Angle in SecondsOfArc.
+        /// </summary>
+        public double SecondsOfArc
+        {
+            get { return _degrees*3600; }
         }
 
         #endregion
@@ -104,11 +120,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle from MinutesOfArc.
+        /// </summary>
+        public static Angle FromMinutesOfArc(double minutesofarc)
+        {
+            return new Angle(minutesofarc/60);
+        }
+
+        /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
         public static Angle FromRadians(double radians)
         {
             return new Angle(radians*180/Math.PI);
+        }
+
+        /// <summary>
+        ///     Get Angle from SecondsOfArc.
+        /// </summary>
+        public static Angle FromSecondsOfArc(double secondsofarc)
+        {
+            return new Angle(secondsofarc/3600);
         }
 
 
@@ -126,8 +158,12 @@ namespace UnitsNet
                     return FromDegrees(value);
                 case AngleUnit.Gradian:
                     return FromGradians(value);
+                case AngleUnit.MinuteOfArc:
+                    return FromMinutesOfArc(value);
                 case AngleUnit.Radian:
                     return FromRadians(value);
+                case AngleUnit.SecondOfArc:
+                    return FromSecondsOfArc(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -265,8 +301,12 @@ namespace UnitsNet
                     return Degrees;
                 case AngleUnit.Gradian:
                     return Gradians;
+                case AngleUnit.MinuteOfArc:
+                    return MinutesOfArc;
                 case AngleUnit.Radian:
                     return Radians;
+                case AngleUnit.SecondOfArc:
+                    return SecondsOfArc;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
