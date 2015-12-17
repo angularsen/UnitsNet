@@ -21,7 +21,8 @@ namespace UnitsNet
         /// </summary>
         public FeetInches FeetInches
         {
-            get {
+            get
+            {
                 double totalInches = Inches;
                 double wholeFeet = Math.Floor(totalInches / FeetToInches);
                 double inches = totalInches % FeetToInches;
