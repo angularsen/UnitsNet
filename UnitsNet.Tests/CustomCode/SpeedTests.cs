@@ -19,10 +19,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
+
+        [Test]
+        public void SpeedDevidedByTimespanEqualsAcceleration()
+        {
+            var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
+            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
+        }
+        [Test]
+        public void SpeedTimesTimespanEqualsLength()
+        {
+            var length= Speed.FromMetersPerSecond(20) * TimeSpan.FromSeconds(2);
+            Assert.AreEqual(length, Length.FromMeters(40));
+        }
+
 
         protected override double FeetPerSecondInOneMeterPerSecond
         {

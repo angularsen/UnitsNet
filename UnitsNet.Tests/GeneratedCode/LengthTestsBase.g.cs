@@ -235,5 +235,6 @@ namespace UnitsNet.Tests
             Length meter = Length.FromMeters(1);
             Assert.IsFalse(meter.Equals(null));
         }
+
     }
 }

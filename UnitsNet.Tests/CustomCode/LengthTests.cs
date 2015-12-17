@@ -19,10 +19,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class LengthTests : LengthTestsBase
     {
+        [Test]
+        public void LengthTimesLengthEqualsArea()
+        {
+            var area = Length.FromMeters(10) * Length.FromMeters(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(20));
+        }
+
+        [Test]
+        public void AreaTimesLengthEqualsArea()
+        {
+            var volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(30));
+        }
+        [Test]
+        public void LengthTimesAreaEqualsArea()
+        {
+            var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
+        }
+
+        [Test]
+        public void ForceTimesLengthEqualsTorque()
+        {
+            var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
+        }
+
         protected override double CentimetersInOneMeter
         {
             get { return 100; }
@@ -87,5 +116,6 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 1.09361; }
         }
+
     }
 }

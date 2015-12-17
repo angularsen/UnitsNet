@@ -61,6 +61,16 @@ namespace UnitsNet
         {
             return FromPounds((StoneToPounds * stone) + pounds);
         }
+
+        public static Density operator /(Mass mass, Volume volume)
+        {
+            return Density.FromKilogramsPerCubicMeter(mass.Kilograms / volume.CubicMeters);
+        }
+        public static Force operator *(Mass mass, Acceleration acceleration)
+        {
+            return Force.FromNewtons(mass.Kilograms * acceleration.MeterPerSecondSquared);
+        }
+
     }
 
     public class StonePounds

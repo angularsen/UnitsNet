@@ -19,10 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
+        [Test]
+        public void VolumeTimesDensityEqualsMass()
+        {
+            var mass = Volume.FromCubicMeters(2) * Density.FromKilogramsPerCubicMeter(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
+        }
+        
         protected override double CentilitersInOneCubicMeter
         {
             get { return 1E5; }
