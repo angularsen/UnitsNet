@@ -35,7 +35,31 @@
                 }
             ]
         },
-        {
+		{
+            "SingularName": "MinuteOfArc",
+            "PluralName": "MinutesOfArc",
+            "FromUnitToBaseFunc": "x/60",
+            "FromBaseToUnitFunc": "x*60",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["'", "min"]
+                }
+            ]
+        },
+		{
+            "SingularName": "SecondOfArc",
+            "PluralName": "SecondsOfArc",
+            "FromUnitToBaseFunc": "x/3600",
+            "FromBaseToUnitFunc": "x*3600",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["″", "sec"]
+                }
+            ]
+        },
+		{
             "SingularName": "Gradian",
             "PluralName": "Gradians",
             "FromUnitToBaseFunc": "x*0.9",

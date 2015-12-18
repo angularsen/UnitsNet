@@ -59,5 +59,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 0.016666667; }
         }
+
+        protected override double RadiansPerSecondInOneHertz
+        {
+            get
+            {
+                return 2 * Math.PI;
+            }
+        }
     }
 }

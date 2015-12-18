@@ -19,40 +19,68 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class AngleTests : AngleTestsBase
+    public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double DegreesInOneDegree
-        {
-            get { return 1; }
-        }
 
-        protected override double GradiansInOneDegree
-        {
-            get { return 400/360.0; }
-        }
-
-        protected override double MinutesOfArcInOneDegree
+        // TODO Override properties in base class here
+        protected override double JoulesPerKiloGramInOneJoulePerKiloGram
         {
             get
             {
-                return 60.0;
+                return 1.0;
             }
         }
 
-        protected override double RadiansInOneDegree
-        {
-            get { return Math.PI/2/90; }
-        }
-
-        protected override double SecondsOfArcInOneDegree
+        protected override double KiloCaloriesPerGramInOneJoulePerKiloGram
         {
             get
             {
-                return 3600.0;
+                return 1.0 / (4.184E6);
+            }
+        }
+
+        protected override double KilojoulesPerKiloGramInOneJoulePerKiloGram
+        {
+            get
+            {
+                return 1.0E-3;
+            }
+        }
+
+        protected override double KilowattHoursPerKiloGramInOneJoulePerKiloGram
+        {
+            get
+            {
+                return 2.77777778e-7;
+            }
+        }
+
+        protected override double MegajoulesPerKiloGramInOneJoulePerKiloGram
+        {
+            get
+            {
+                return 1.0E-6;
+            }
+        }
+
+        protected override double MegawattHoursPerKiloGramInOneJoulePerKiloGram
+        {
+            get
+            {
+                return 2.77777778E-10;
+            }
+        }
+
+        protected override double WattHoursPerKiloGramInOneJoulePerKiloGram
+        {
+            get
+            {
+                return 1.0 / 3.6e3;
             }
         }
     }

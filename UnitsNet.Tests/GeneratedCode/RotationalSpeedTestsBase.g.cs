@@ -36,10 +36,12 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RotationalSpeedTestsBase
     {
+        protected abstract double RadiansPerSecondInOneRevolutionPerSecond { get; }
         protected abstract double RevolutionsPerMinuteInOneRevolutionPerSecond { get; }
         protected abstract double RevolutionsPerSecondInOneRevolutionPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -48,6 +50,7 @@ namespace UnitsNet.Tests
         public void RevolutionPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
+            Assert.AreEqual(RadiansPerSecondInOneRevolutionPerSecond, revolutionpersecond.RadiansPerSecond, RadiansPerSecondTolerance);
             Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
             Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
@@ -55,6 +58,7 @@ namespace UnitsNet.Tests
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
@@ -63,6 +67,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
+            Assert.AreEqual(RadiansPerSecondInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RadianPerSecond), RadiansPerSecondTolerance);
             Assert.AreEqual(RevolutionsPerMinuteInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), RevolutionsPerMinuteTolerance);
             Assert.AreEqual(RevolutionsPerSecondInOneRevolutionPerSecond, revolutionpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), RevolutionsPerSecondTolerance);
         }
@@ -71,6 +76,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             RotationalSpeed revolutionpersecond = RotationalSpeed.FromRevolutionsPerSecond(1);
+            Assert.AreEqual(1, RotationalSpeed.FromRadiansPerSecond(revolutionpersecond.RadiansPerSecond).RevolutionsPerSecond, RadiansPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerMinute(revolutionpersecond.RevolutionsPerMinute).RevolutionsPerSecond, RevolutionsPerMinuteTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerSecond(revolutionpersecond.RevolutionsPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }

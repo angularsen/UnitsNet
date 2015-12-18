@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
@@ -115,6 +116,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override double YardsInOneMeter
         {
             get { return 1.09361; }
+        }
+
+
+        protected override double NauticalMilesInOneMeter
+        {
+            get
+            { return 5.3996E-04; }
         }
 
     }

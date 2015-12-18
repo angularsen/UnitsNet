@@ -32,102 +32,174 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
+    ///     The SpecificEnergy
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct RotationalSpeed : IComparable, IComparable<RotationalSpeed>
+    public partial struct SpecificEnergy : IComparable, IComparable<SpecificEnergy>
     {
         /// <summary>
-        ///     Base unit of RotationalSpeed.
+        ///     Base unit of SpecificEnergy.
         /// </summary>
-        private readonly double _revolutionsPerSecond;
+        private readonly double _joulesPerKiloGram;
 
-        public RotationalSpeed(double revolutionspersecond) : this()
+        public SpecificEnergy(double joulesperkilogram) : this()
         {
-            _revolutionsPerSecond = revolutionspersecond;
+            _joulesPerKiloGram = joulesperkilogram;
         }
 
         #region Properties
 
-        public static RotationalSpeedUnit BaseUnit
+        public static SpecificEnergyUnit BaseUnit
         {
-            get { return RotationalSpeedUnit.RevolutionPerSecond; }
+            get { return SpecificEnergyUnit.JoulePerKiloGram; }
         }
 
         /// <summary>
-        ///     Get RotationalSpeed in RadiansPerSecond.
+        ///     Get SpecificEnergy in JoulesPerKiloGram.
         /// </summary>
-        public double RadiansPerSecond
+        public double JoulesPerKiloGram
         {
-            get { return _revolutionsPerSecond*6.2831853072; }
+            get { return _joulesPerKiloGram; }
         }
 
         /// <summary>
-        ///     Get RotationalSpeed in RevolutionsPerMinute.
+        ///     Get SpecificEnergy in KiloCaloriesPerGram.
         /// </summary>
-        public double RevolutionsPerMinute
+        public double KiloCaloriesPerGram
         {
-            get { return _revolutionsPerSecond*60; }
+            get { return _joulesPerKiloGram/4.184e6; }
         }
 
         /// <summary>
-        ///     Get RotationalSpeed in RevolutionsPerSecond.
+        ///     Get SpecificEnergy in KilojoulesPerKiloGram.
         /// </summary>
-        public double RevolutionsPerSecond
+        public double KilojoulesPerKiloGram
         {
-            get { return _revolutionsPerSecond; }
+            get { return (_joulesPerKiloGram) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy in KilowattHoursPerKiloGram.
+        /// </summary>
+        public double KilowattHoursPerKiloGram
+        {
+            get { return (_joulesPerKiloGram/3.6e3) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy in MegajoulesPerKiloGram.
+        /// </summary>
+        public double MegajoulesPerKiloGram
+        {
+            get { return (_joulesPerKiloGram) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy in MegawattHoursPerKiloGram.
+        /// </summary>
+        public double MegawattHoursPerKiloGram
+        {
+            get { return (_joulesPerKiloGram/3.6e3) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy in WattHoursPerKiloGram.
+        /// </summary>
+        public double WattHoursPerKiloGram
+        {
+            get { return _joulesPerKiloGram/3.6e3; }
         }
 
         #endregion
 
         #region Static 
 
-        public static RotationalSpeed Zero
+        public static SpecificEnergy Zero
         {
-            get { return new RotationalSpeed(); }
+            get { return new SpecificEnergy(); }
         }
 
         /// <summary>
-        ///     Get RotationalSpeed from RadiansPerSecond.
+        ///     Get SpecificEnergy from JoulesPerKiloGram.
         /// </summary>
-        public static RotationalSpeed FromRadiansPerSecond(double radianspersecond)
+        public static SpecificEnergy FromJoulesPerKiloGram(double joulesperkilogram)
         {
-            return new RotationalSpeed(radianspersecond/6.2831853072);
+            return new SpecificEnergy(joulesperkilogram);
         }
 
         /// <summary>
-        ///     Get RotationalSpeed from RevolutionsPerMinute.
+        ///     Get SpecificEnergy from KiloCaloriesPerGram.
         /// </summary>
-        public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
+        public static SpecificEnergy FromKiloCaloriesPerGram(double kilocaloriespergram)
         {
-            return new RotationalSpeed(revolutionsperminute/60);
+            return new SpecificEnergy(kilocaloriespergram*4.184e6);
         }
 
         /// <summary>
-        ///     Get RotationalSpeed from RevolutionsPerSecond.
+        ///     Get SpecificEnergy from KilojoulesPerKiloGram.
         /// </summary>
-        public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
+        public static SpecificEnergy FromKilojoulesPerKiloGram(double kilojoulesperkilogram)
         {
-            return new RotationalSpeed(revolutionspersecond);
+            return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy from KilowattHoursPerKiloGram.
+        /// </summary>
+        public static SpecificEnergy FromKilowattHoursPerKiloGram(double kilowatthoursperkilogram)
+        {
+            return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy from MegajoulesPerKiloGram.
+        /// </summary>
+        public static SpecificEnergy FromMegajoulesPerKiloGram(double megajoulesperkilogram)
+        {
+            return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy from MegawattHoursPerKiloGram.
+        /// </summary>
+        public static SpecificEnergy FromMegawattHoursPerKiloGram(double megawatthoursperkilogram)
+        {
+            return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy from WattHoursPerKiloGram.
+        /// </summary>
+        public static SpecificEnergy FromWattHoursPerKiloGram(double watthoursperkilogram)
+        {
+            return new SpecificEnergy(watthoursperkilogram*3.6e3);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
+        ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RotationalSpeed unit value.</returns>
-        public static RotationalSpeed From(double value, RotationalSpeedUnit fromUnit)
+        /// <returns>SpecificEnergy unit value.</returns>
+        public static SpecificEnergy From(double value, SpecificEnergyUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return FromRadiansPerSecond(value);
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return FromRevolutionsPerMinute(value);
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return FromRevolutionsPerSecond(value);
+                case SpecificEnergyUnit.JoulePerKiloGram:
+                    return FromJoulesPerKiloGram(value);
+                case SpecificEnergyUnit.KiloCaloriePerGram:
+                    return FromKiloCaloriesPerGram(value);
+                case SpecificEnergyUnit.KilojoulePerKiloGram:
+                    return FromKilojoulesPerKiloGram(value);
+                case SpecificEnergyUnit.KilowattHourPerKiloGram:
+                    return FromKilowattHoursPerKiloGram(value);
+                case SpecificEnergyUnit.MegajoulePerKiloGram:
+                    return FromMegajoulesPerKiloGram(value);
+                case SpecificEnergyUnit.MegawattHourPerKiloGram:
+                    return FromMegawattHoursPerKiloGram(value);
+                case SpecificEnergyUnit.WattHourPerKiloGram:
+                    return FromWattHoursPerKiloGram(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -141,7 +213,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RotationalSpeedUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(SpecificEnergyUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -150,39 +222,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static RotationalSpeed operator -(RotationalSpeed right)
+        public static SpecificEnergy operator -(SpecificEnergy right)
         {
-            return new RotationalSpeed(-right._revolutionsPerSecond);
+            return new SpecificEnergy(-right._joulesPerKiloGram);
         }
 
-        public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
+        public static SpecificEnergy operator +(SpecificEnergy left, SpecificEnergy right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond + right._revolutionsPerSecond);
+            return new SpecificEnergy(left._joulesPerKiloGram + right._joulesPerKiloGram);
         }
 
-        public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
+        public static SpecificEnergy operator -(SpecificEnergy left, SpecificEnergy right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond - right._revolutionsPerSecond);
+            return new SpecificEnergy(left._joulesPerKiloGram - right._joulesPerKiloGram);
         }
 
-        public static RotationalSpeed operator *(double left, RotationalSpeed right)
+        public static SpecificEnergy operator *(double left, SpecificEnergy right)
         {
-            return new RotationalSpeed(left*right._revolutionsPerSecond);
+            return new SpecificEnergy(left*right._joulesPerKiloGram);
         }
 
-        public static RotationalSpeed operator *(RotationalSpeed left, double right)
+        public static SpecificEnergy operator *(SpecificEnergy left, double right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond*(double)right);
+            return new SpecificEnergy(left._joulesPerKiloGram*(double)right);
         }
 
-        public static RotationalSpeed operator /(RotationalSpeed left, double right)
+        public static SpecificEnergy operator /(SpecificEnergy left, double right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond/(double)right);
+            return new SpecificEnergy(left._joulesPerKiloGram/(double)right);
         }
 
-        public static double operator /(RotationalSpeed left, RotationalSpeed right)
+        public static double operator /(SpecificEnergy left, SpecificEnergy right)
         {
-            return Convert.ToDouble(left._revolutionsPerSecond/right._revolutionsPerSecond);
+            return Convert.ToDouble(left._joulesPerKiloGram/right._joulesPerKiloGram);
         }
 
         #endregion
@@ -192,45 +264,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is RotationalSpeed)) throw new ArgumentException("Expected type RotationalSpeed.", "obj");
-            return CompareTo((RotationalSpeed) obj);
+            if (!(obj is SpecificEnergy)) throw new ArgumentException("Expected type SpecificEnergy.", "obj");
+            return CompareTo((SpecificEnergy) obj);
         }
 
-        public int CompareTo(RotationalSpeed other)
+        public int CompareTo(SpecificEnergy other)
         {
-            return _revolutionsPerSecond.CompareTo(other._revolutionsPerSecond);
+            return _joulesPerKiloGram.CompareTo(other._joulesPerKiloGram);
         }
 
-        public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator <=(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._revolutionsPerSecond <= right._revolutionsPerSecond;
+            return left._joulesPerKiloGram <= right._joulesPerKiloGram;
         }
 
-        public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator >=(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._revolutionsPerSecond >= right._revolutionsPerSecond;
+            return left._joulesPerKiloGram >= right._joulesPerKiloGram;
         }
 
-        public static bool operator <(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator <(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._revolutionsPerSecond < right._revolutionsPerSecond;
+            return left._joulesPerKiloGram < right._joulesPerKiloGram;
         }
 
-        public static bool operator >(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator >(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._revolutionsPerSecond > right._revolutionsPerSecond;
+            return left._joulesPerKiloGram > right._joulesPerKiloGram;
         }
 
-        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._revolutionsPerSecond == right._revolutionsPerSecond;
-        }
-
-        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
+        public static bool operator ==(SpecificEnergy left, SpecificEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._revolutionsPerSecond != right._revolutionsPerSecond;
+            return left._joulesPerKiloGram == right._joulesPerKiloGram;
+        }
+
+        public static bool operator !=(SpecificEnergy left, SpecificEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._joulesPerKiloGram != right._joulesPerKiloGram;
         }
 
         public override bool Equals(object obj)
@@ -240,12 +312,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _revolutionsPerSecond.Equals(((RotationalSpeed) obj)._revolutionsPerSecond);
+            return _joulesPerKiloGram.Equals(((SpecificEnergy) obj)._joulesPerKiloGram);
         }
 
         public override int GetHashCode()
         {
-            return _revolutionsPerSecond.GetHashCode();
+            return _joulesPerKiloGram.GetHashCode();
         }
 
         #endregion
@@ -257,16 +329,24 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(RotationalSpeedUnit unit)
+        public double As(SpecificEnergyUnit unit)
         {
             switch (unit)
             {
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return RadiansPerSecond;
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return RevolutionsPerMinute;
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return RevolutionsPerSecond;
+                case SpecificEnergyUnit.JoulePerKiloGram:
+                    return JoulesPerKiloGram;
+                case SpecificEnergyUnit.KiloCaloriePerGram:
+                    return KiloCaloriesPerGram;
+                case SpecificEnergyUnit.KilojoulePerKiloGram:
+                    return KilojoulesPerKiloGram;
+                case SpecificEnergyUnit.KilowattHourPerKiloGram:
+                    return KilowattHoursPerKiloGram;
+                case SpecificEnergyUnit.MegajoulePerKiloGram:
+                    return MegajoulesPerKiloGram;
+                case SpecificEnergyUnit.MegawattHourPerKiloGram:
+                    return MegawattHoursPerKiloGram;
+                case SpecificEnergyUnit.WattHourPerKiloGram:
+                    return WattHoursPerKiloGram;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -288,7 +368,7 @@ namespace UnitsNet
         ///     Expected string to have one or two pairs of quantity and unit in the format
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
-        public static RotationalSpeed Parse(string str, IFormatProvider formatProvider = null)
+        public static SpecificEnergy Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -322,11 +402,11 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<RotationalSpeed> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
+        private static List<SpecificEnergy> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<RotationalSpeed>();
+            var converted = new List<SpecificEnergy>();
 
             foreach (Match match in matches)
             {
@@ -347,7 +427,7 @@ namespace UnitsNet
 
                 try
                 {
-                    RotationalSpeedUnit unit = ParseUnit(unitString, formatProvider);
+                    SpecificEnergyUnit unit = ParseUnit(unitString, formatProvider);
                     double value = double.Parse(valueString, formatProvider);
 
                     converted.Add(From(value, unit));
@@ -373,16 +453,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static RotationalSpeedUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static SpecificEnergyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<RotationalSpeedUnit>(str.Trim());
+            var unit = unitSystem.Parse<SpecificEnergyUnit>(str.Trim());
 
-            if (unit == RotationalSpeedUnit.Undefined)
+            if (unit == SpecificEnergyUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalSpeedUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized SpecificEnergyUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -399,7 +479,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(RotationalSpeedUnit.RevolutionPerSecond);
+            return ToString(SpecificEnergyUnit.JoulePerKiloGram);
         }
 
         /// <summary>
@@ -410,7 +490,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalSpeedUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(SpecificEnergyUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -424,7 +504,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalSpeedUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(SpecificEnergyUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }

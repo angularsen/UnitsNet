@@ -151,6 +151,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in NauticalMiles.
+        /// </summary>
+        public double NauticalMiles
+        {
+            get { return _meters/1852; }
+        }
+
+        /// <summary>
         ///     Get Length in Yards.
         /// </summary>
         public double Yards
@@ -264,6 +272,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length from NauticalMiles.
+        /// </summary>
+        public static Length FromNauticalMiles(double nauticalmiles)
+        {
+            return new Length(nauticalmiles*1852);
+        }
+
+        /// <summary>
         ///     Get Length from Yards.
         /// </summary>
         public static Length FromYards(double yards)
@@ -306,6 +322,8 @@ namespace UnitsNet
                     return FromMillimeters(value);
                 case LengthUnit.Nanometer:
                     return FromNanometers(value);
+                case LengthUnit.NauticalMile:
+                    return FromNauticalMiles(value);
                 case LengthUnit.Yard:
                     return FromYards(value);
 
@@ -465,6 +483,8 @@ namespace UnitsNet
                     return Millimeters;
                 case LengthUnit.Nanometer:
                     return Nanometers;
+                case LengthUnit.NauticalMile:
+                    return NauticalMiles;
                 case LengthUnit.Yard:
                     return Yards;
 

@@ -102,6 +102,22 @@
             ]
         },
         {
+            "SingularName": "NauticalMile",
+            "PluralName": "NauticalMiles",
+            "FromUnitToBaseFunc": "x*1852",
+            "FromBaseToUnitFunc": "x/1852",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["NM"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мил"]
+                }
+            ]
+        },
+        {
             "SingularName": "Microinch",
             "PluralName": "Microinches",
             "FromUnitToBaseFunc": "x*2.54e-8",

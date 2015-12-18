@@ -27,6 +27,8 @@ namespace UnitsNet.Units
         Undefined = 0,
         Degree,
         Gradian,
+        MinuteOfArc,
         Radian,
+        SecondOfArc,
     }
 }

@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         Hertz,
         Kilohertz,
         Megahertz,
+        RadianPerSecond,
         Terahertz,
     }
 }
