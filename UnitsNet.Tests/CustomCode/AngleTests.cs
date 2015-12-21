@@ -20,11 +20,19 @@
 // THE SOFTWARE.
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
+        [Test]
+        public void AngleDividedByTimeEqualsRotationalSpeed()
+        {
+            var rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
+
         protected override double DegreesInOneDegree
         {
             get { return 1; }
