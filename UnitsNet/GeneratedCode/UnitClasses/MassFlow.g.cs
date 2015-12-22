@@ -40,26 +40,26 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of MassFlow.
         /// </summary>
-        private readonly double _kiloGramsPerSecond;
+        private readonly double _kilogramsPerSecond;
 
         public MassFlow(double kilogramspersecond) : this()
         {
-            _kiloGramsPerSecond = kilogramspersecond;
+            _kilogramsPerSecond = kilogramspersecond;
         }
 
         #region Properties
 
         public static MassFlowUnit BaseUnit
         {
-            get { return MassFlowUnit.KiloGramPerSecond; }
+            get { return MassFlowUnit.KilogramPerSecond; }
         }
 
         /// <summary>
-        ///     Get MassFlow in KiloGramsPerSecond.
+        ///     Get MassFlow in KilogramsPerSecond.
         /// </summary>
-        public double KiloGramsPerSecond
+        public double KilogramsPerSecond
         {
-            get { return _kiloGramsPerSecond; }
+            get { return _kilogramsPerSecond; }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerDay
         {
-            get { return _kiloGramsPerSecond/86.4000; }
+            get { return _kilogramsPerSecond/86.4000; }
         }
 
         #endregion
@@ -80,9 +80,9 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get MassFlow from KiloGramsPerSecond.
+        ///     Get MassFlow from KilogramsPerSecond.
         /// </summary>
-        public static MassFlow FromKiloGramsPerSecond(double kilogramspersecond)
+        public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
         {
             return new MassFlow(kilogramspersecond);
         }
@@ -106,8 +106,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case MassFlowUnit.KiloGramPerSecond:
-                    return FromKiloGramsPerSecond(value);
+                case MassFlowUnit.KilogramPerSecond:
+                    return FromKilogramsPerSecond(value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value);
 
@@ -134,37 +134,37 @@ namespace UnitsNet
 
         public static MassFlow operator -(MassFlow right)
         {
-            return new MassFlow(-right._kiloGramsPerSecond);
+            return new MassFlow(-right._kilogramsPerSecond);
         }
 
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._kiloGramsPerSecond + right._kiloGramsPerSecond);
+            return new MassFlow(left._kilogramsPerSecond + right._kilogramsPerSecond);
         }
 
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._kiloGramsPerSecond - right._kiloGramsPerSecond);
+            return new MassFlow(left._kilogramsPerSecond - right._kilogramsPerSecond);
         }
 
         public static MassFlow operator *(double left, MassFlow right)
         {
-            return new MassFlow(left*right._kiloGramsPerSecond);
+            return new MassFlow(left*right._kilogramsPerSecond);
         }
 
         public static MassFlow operator *(MassFlow left, double right)
         {
-            return new MassFlow(left._kiloGramsPerSecond*(double)right);
+            return new MassFlow(left._kilogramsPerSecond*(double)right);
         }
 
         public static MassFlow operator /(MassFlow left, double right)
         {
-            return new MassFlow(left._kiloGramsPerSecond/(double)right);
+            return new MassFlow(left._kilogramsPerSecond/(double)right);
         }
 
         public static double operator /(MassFlow left, MassFlow right)
         {
-            return Convert.ToDouble(left._kiloGramsPerSecond/right._kiloGramsPerSecond);
+            return Convert.ToDouble(left._kilogramsPerSecond/right._kilogramsPerSecond);
         }
 
         #endregion
@@ -180,39 +180,39 @@ namespace UnitsNet
 
         public int CompareTo(MassFlow other)
         {
-            return _kiloGramsPerSecond.CompareTo(other._kiloGramsPerSecond);
+            return _kilogramsPerSecond.CompareTo(other._kilogramsPerSecond);
         }
 
         public static bool operator <=(MassFlow left, MassFlow right)
         {
-            return left._kiloGramsPerSecond <= right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond <= right._kilogramsPerSecond;
         }
 
         public static bool operator >=(MassFlow left, MassFlow right)
         {
-            return left._kiloGramsPerSecond >= right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond >= right._kilogramsPerSecond;
         }
 
         public static bool operator <(MassFlow left, MassFlow right)
         {
-            return left._kiloGramsPerSecond < right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond < right._kilogramsPerSecond;
         }
 
         public static bool operator >(MassFlow left, MassFlow right)
         {
-            return left._kiloGramsPerSecond > right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond > right._kilogramsPerSecond;
         }
 
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kiloGramsPerSecond == right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond == right._kilogramsPerSecond;
         }
 
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kiloGramsPerSecond != right._kiloGramsPerSecond;
+            return left._kilogramsPerSecond != right._kilogramsPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -222,12 +222,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kiloGramsPerSecond.Equals(((MassFlow) obj)._kiloGramsPerSecond);
+            return _kilogramsPerSecond.Equals(((MassFlow) obj)._kilogramsPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _kiloGramsPerSecond.GetHashCode();
+            return _kilogramsPerSecond.GetHashCode();
         }
 
         #endregion
@@ -243,8 +243,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case MassFlowUnit.KiloGramPerSecond:
-                    return KiloGramsPerSecond;
+                case MassFlowUnit.KilogramPerSecond:
+                    return KilogramsPerSecond;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
 
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowUnit.KiloGramPerSecond);
+            return ToString(MassFlowUnit.KilogramPerSecond);
         }
 
         /// <summary>

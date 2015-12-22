@@ -55,6 +55,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle in Arcminutes.
+        /// </summary>
+        public double Arcminutes
+        {
+            get { return _degrees*60; }
+        }
+
+        /// <summary>
+        ///     Get Angle in Arcseconds.
+        /// </summary>
+        public double Arcseconds
+        {
+            get { return _degrees*3600; }
+        }
+
+        /// <summary>
         ///     Get Angle in Degrees.
         /// </summary>
         public double Degrees
@@ -71,27 +87,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Angle in MinutesOfArc.
-        /// </summary>
-        public double MinutesOfArc
-        {
-            get { return _degrees*60; }
-        }
-
-        /// <summary>
         ///     Get Angle in Radians.
         /// </summary>
         public double Radians
         {
             get { return _degrees/180*Math.PI; }
-        }
-
-        /// <summary>
-        ///     Get Angle in SecondsOfArc.
-        /// </summary>
-        public double SecondsOfArc
-        {
-            get { return _degrees*3600; }
         }
 
         #endregion
@@ -101,6 +101,22 @@ namespace UnitsNet
         public static Angle Zero
         {
             get { return new Angle(); }
+        }
+
+        /// <summary>
+        ///     Get Angle from Arcminutes.
+        /// </summary>
+        public static Angle FromArcminutes(double arcminutes)
+        {
+            return new Angle(arcminutes/60);
+        }
+
+        /// <summary>
+        ///     Get Angle from Arcseconds.
+        /// </summary>
+        public static Angle FromArcseconds(double arcseconds)
+        {
+            return new Angle(arcseconds/3600);
         }
 
         /// <summary>
@@ -120,27 +136,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Angle from MinutesOfArc.
-        /// </summary>
-        public static Angle FromMinutesOfArc(double minutesofarc)
-        {
-            return new Angle(minutesofarc/60);
-        }
-
-        /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
         public static Angle FromRadians(double radians)
         {
             return new Angle(radians*180/Math.PI);
-        }
-
-        /// <summary>
-        ///     Get Angle from SecondsOfArc.
-        /// </summary>
-        public static Angle FromSecondsOfArc(double secondsofarc)
-        {
-            return new Angle(secondsofarc/3600);
         }
 
 
@@ -154,16 +154,16 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case AngleUnit.Arcminute:
+                    return FromArcminutes(value);
+                case AngleUnit.Arcsecond:
+                    return FromArcseconds(value);
                 case AngleUnit.Degree:
                     return FromDegrees(value);
                 case AngleUnit.Gradian:
                     return FromGradians(value);
-                case AngleUnit.MinuteOfArc:
-                    return FromMinutesOfArc(value);
                 case AngleUnit.Radian:
                     return FromRadians(value);
-                case AngleUnit.SecondOfArc:
-                    return FromSecondsOfArc(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -297,16 +297,16 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case AngleUnit.Arcminute:
+                    return Arcminutes;
+                case AngleUnit.Arcsecond:
+                    return Arcseconds;
                 case AngleUnit.Degree:
                     return Degrees;
                 case AngleUnit.Gradian:
                     return Gradians;
-                case AngleUnit.MinuteOfArc:
-                    return MinutesOfArc;
                 case AngleUnit.Radian:
                     return Radians;
-                case AngleUnit.SecondOfArc:
-                    return SecondsOfArc;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

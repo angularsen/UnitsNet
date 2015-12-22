@@ -40,74 +40,82 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of SpecificEnergy.
         /// </summary>
-        private readonly double _joulesPerKiloGram;
+        private readonly double _joulesPerKilogram;
 
         public SpecificEnergy(double joulesperkilogram) : this()
         {
-            _joulesPerKiloGram = joulesperkilogram;
+            _joulesPerKilogram = joulesperkilogram;
         }
 
         #region Properties
 
         public static SpecificEnergyUnit BaseUnit
         {
-            get { return SpecificEnergyUnit.JoulePerKiloGram; }
+            get { return SpecificEnergyUnit.JoulePerKilogram; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in JoulesPerKiloGram.
+        ///     Get SpecificEnergy in CaloriesPerGram.
         /// </summary>
-        public double JoulesPerKiloGram
+        public double CaloriesPerGram
         {
-            get { return _joulesPerKiloGram; }
+            get { return _joulesPerKilogram/4.184e3; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in KiloCaloriesPerGram.
+        ///     Get SpecificEnergy in JoulesPerKilogram.
         /// </summary>
-        public double KiloCaloriesPerGram
+        public double JoulesPerKilogram
         {
-            get { return _joulesPerKiloGram/4.184e6; }
+            get { return _joulesPerKilogram; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in KilojoulesPerKiloGram.
+        ///     Get SpecificEnergy in KilocaloriesPerGram.
         /// </summary>
-        public double KilojoulesPerKiloGram
+        public double KilocaloriesPerGram
         {
-            get { return (_joulesPerKiloGram) / 1e3d; }
+            get { return (_joulesPerKilogram/4.184e3) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattHoursPerKiloGram.
+        ///     Get SpecificEnergy in KilojoulesPerKilogram.
         /// </summary>
-        public double KilowattHoursPerKiloGram
+        public double KilojoulesPerKilogram
         {
-            get { return (_joulesPerKiloGram/3.6e3) / 1e3d; }
+            get { return (_joulesPerKilogram) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in MegajoulesPerKiloGram.
+        ///     Get SpecificEnergy in KilowattHoursPerKilogram.
         /// </summary>
-        public double MegajoulesPerKiloGram
+        public double KilowattHoursPerKilogram
         {
-            get { return (_joulesPerKiloGram) / 1e6d; }
+            get { return (_joulesPerKilogram/3.6e3) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattHoursPerKiloGram.
+        ///     Get SpecificEnergy in MegajoulesPerKilogram.
         /// </summary>
-        public double MegawattHoursPerKiloGram
+        public double MegajoulesPerKilogram
         {
-            get { return (_joulesPerKiloGram/3.6e3) / 1e6d; }
+            get { return (_joulesPerKilogram) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get SpecificEnergy in WattHoursPerKiloGram.
+        ///     Get SpecificEnergy in MegawattHoursPerKilogram.
         /// </summary>
-        public double WattHoursPerKiloGram
+        public double MegawattHoursPerKilogram
         {
-            get { return _joulesPerKiloGram/3.6e3; }
+            get { return (_joulesPerKilogram/3.6e3) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy in WattHoursPerKilogram.
+        /// </summary>
+        public double WattHoursPerKilogram
+        {
+            get { return _joulesPerKilogram/3.6e3; }
         }
 
         #endregion
@@ -120,57 +128,65 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKiloGram.
+        ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>
-        public static SpecificEnergy FromJoulesPerKiloGram(double joulesperkilogram)
+        public static SpecificEnergy FromCaloriesPerGram(double caloriespergram)
+        {
+            return new SpecificEnergy(caloriespergram*4.184e3);
+        }
+
+        /// <summary>
+        ///     Get SpecificEnergy from JoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy FromJoulesPerKilogram(double joulesperkilogram)
         {
             return new SpecificEnergy(joulesperkilogram);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from KiloCaloriesPerGram.
+        ///     Get SpecificEnergy from KilocaloriesPerGram.
         /// </summary>
-        public static SpecificEnergy FromKiloCaloriesPerGram(double kilocaloriespergram)
+        public static SpecificEnergy FromKilocaloriesPerGram(double kilocaloriespergram)
         {
-            return new SpecificEnergy(kilocaloriespergram*4.184e6);
+            return new SpecificEnergy((kilocaloriespergram*4.184e3) * 1e3d);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKiloGram.
+        ///     Get SpecificEnergy from KilojoulesPerKilogram.
         /// </summary>
-        public static SpecificEnergy FromKilojoulesPerKiloGram(double kilojoulesperkilogram)
+        public static SpecificEnergy FromKilojoulesPerKilogram(double kilojoulesperkilogram)
         {
             return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKiloGram.
+        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerKiloGram(double kilowatthoursperkilogram)
+        public static SpecificEnergy FromKilowattHoursPerKilogram(double kilowatthoursperkilogram)
         {
             return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKiloGram.
+        ///     Get SpecificEnergy from MegajoulesPerKilogram.
         /// </summary>
-        public static SpecificEnergy FromMegajoulesPerKiloGram(double megajoulesperkilogram)
+        public static SpecificEnergy FromMegajoulesPerKilogram(double megajoulesperkilogram)
         {
             return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKiloGram.
+        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerKiloGram(double megawatthoursperkilogram)
+        public static SpecificEnergy FromMegawattHoursPerKilogram(double megawatthoursperkilogram)
         {
             return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
         }
 
         /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKiloGram.
+        ///     Get SpecificEnergy from WattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy FromWattHoursPerKiloGram(double watthoursperkilogram)
+        public static SpecificEnergy FromWattHoursPerKilogram(double watthoursperkilogram)
         {
             return new SpecificEnergy(watthoursperkilogram*3.6e3);
         }
@@ -186,20 +202,22 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case SpecificEnergyUnit.JoulePerKiloGram:
-                    return FromJoulesPerKiloGram(value);
-                case SpecificEnergyUnit.KiloCaloriePerGram:
-                    return FromKiloCaloriesPerGram(value);
-                case SpecificEnergyUnit.KilojoulePerKiloGram:
-                    return FromKilojoulesPerKiloGram(value);
-                case SpecificEnergyUnit.KilowattHourPerKiloGram:
-                    return FromKilowattHoursPerKiloGram(value);
-                case SpecificEnergyUnit.MegajoulePerKiloGram:
-                    return FromMegajoulesPerKiloGram(value);
-                case SpecificEnergyUnit.MegawattHourPerKiloGram:
-                    return FromMegawattHoursPerKiloGram(value);
-                case SpecificEnergyUnit.WattHourPerKiloGram:
-                    return FromWattHoursPerKiloGram(value);
+                case SpecificEnergyUnit.CaloriePerGram:
+                    return FromCaloriesPerGram(value);
+                case SpecificEnergyUnit.JoulePerKilogram:
+                    return FromJoulesPerKilogram(value);
+                case SpecificEnergyUnit.KilocaloriePerGram:
+                    return FromKilocaloriesPerGram(value);
+                case SpecificEnergyUnit.KilojoulePerKilogram:
+                    return FromKilojoulesPerKilogram(value);
+                case SpecificEnergyUnit.KilowattHourPerKilogram:
+                    return FromKilowattHoursPerKilogram(value);
+                case SpecificEnergyUnit.MegajoulePerKilogram:
+                    return FromMegajoulesPerKilogram(value);
+                case SpecificEnergyUnit.MegawattHourPerKilogram:
+                    return FromMegawattHoursPerKilogram(value);
+                case SpecificEnergyUnit.WattHourPerKilogram:
+                    return FromWattHoursPerKilogram(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -224,37 +242,37 @@ namespace UnitsNet
 
         public static SpecificEnergy operator -(SpecificEnergy right)
         {
-            return new SpecificEnergy(-right._joulesPerKiloGram);
+            return new SpecificEnergy(-right._joulesPerKilogram);
         }
 
         public static SpecificEnergy operator +(SpecificEnergy left, SpecificEnergy right)
         {
-            return new SpecificEnergy(left._joulesPerKiloGram + right._joulesPerKiloGram);
+            return new SpecificEnergy(left._joulesPerKilogram + right._joulesPerKilogram);
         }
 
         public static SpecificEnergy operator -(SpecificEnergy left, SpecificEnergy right)
         {
-            return new SpecificEnergy(left._joulesPerKiloGram - right._joulesPerKiloGram);
+            return new SpecificEnergy(left._joulesPerKilogram - right._joulesPerKilogram);
         }
 
         public static SpecificEnergy operator *(double left, SpecificEnergy right)
         {
-            return new SpecificEnergy(left*right._joulesPerKiloGram);
+            return new SpecificEnergy(left*right._joulesPerKilogram);
         }
 
         public static SpecificEnergy operator *(SpecificEnergy left, double right)
         {
-            return new SpecificEnergy(left._joulesPerKiloGram*(double)right);
+            return new SpecificEnergy(left._joulesPerKilogram*(double)right);
         }
 
         public static SpecificEnergy operator /(SpecificEnergy left, double right)
         {
-            return new SpecificEnergy(left._joulesPerKiloGram/(double)right);
+            return new SpecificEnergy(left._joulesPerKilogram/(double)right);
         }
 
         public static double operator /(SpecificEnergy left, SpecificEnergy right)
         {
-            return Convert.ToDouble(left._joulesPerKiloGram/right._joulesPerKiloGram);
+            return Convert.ToDouble(left._joulesPerKilogram/right._joulesPerKilogram);
         }
 
         #endregion
@@ -270,39 +288,39 @@ namespace UnitsNet
 
         public int CompareTo(SpecificEnergy other)
         {
-            return _joulesPerKiloGram.CompareTo(other._joulesPerKiloGram);
+            return _joulesPerKilogram.CompareTo(other._joulesPerKilogram);
         }
 
         public static bool operator <=(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._joulesPerKiloGram <= right._joulesPerKiloGram;
+            return left._joulesPerKilogram <= right._joulesPerKilogram;
         }
 
         public static bool operator >=(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._joulesPerKiloGram >= right._joulesPerKiloGram;
+            return left._joulesPerKilogram >= right._joulesPerKilogram;
         }
 
         public static bool operator <(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._joulesPerKiloGram < right._joulesPerKiloGram;
+            return left._joulesPerKilogram < right._joulesPerKilogram;
         }
 
         public static bool operator >(SpecificEnergy left, SpecificEnergy right)
         {
-            return left._joulesPerKiloGram > right._joulesPerKiloGram;
+            return left._joulesPerKilogram > right._joulesPerKilogram;
         }
 
         public static bool operator ==(SpecificEnergy left, SpecificEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerKiloGram == right._joulesPerKiloGram;
+            return left._joulesPerKilogram == right._joulesPerKilogram;
         }
 
         public static bool operator !=(SpecificEnergy left, SpecificEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerKiloGram != right._joulesPerKiloGram;
+            return left._joulesPerKilogram != right._joulesPerKilogram;
         }
 
         public override bool Equals(object obj)
@@ -312,12 +330,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _joulesPerKiloGram.Equals(((SpecificEnergy) obj)._joulesPerKiloGram);
+            return _joulesPerKilogram.Equals(((SpecificEnergy) obj)._joulesPerKilogram);
         }
 
         public override int GetHashCode()
         {
-            return _joulesPerKiloGram.GetHashCode();
+            return _joulesPerKilogram.GetHashCode();
         }
 
         #endregion
@@ -333,20 +351,22 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case SpecificEnergyUnit.JoulePerKiloGram:
-                    return JoulesPerKiloGram;
-                case SpecificEnergyUnit.KiloCaloriePerGram:
-                    return KiloCaloriesPerGram;
-                case SpecificEnergyUnit.KilojoulePerKiloGram:
-                    return KilojoulesPerKiloGram;
-                case SpecificEnergyUnit.KilowattHourPerKiloGram:
-                    return KilowattHoursPerKiloGram;
-                case SpecificEnergyUnit.MegajoulePerKiloGram:
-                    return MegajoulesPerKiloGram;
-                case SpecificEnergyUnit.MegawattHourPerKiloGram:
-                    return MegawattHoursPerKiloGram;
-                case SpecificEnergyUnit.WattHourPerKiloGram:
-                    return WattHoursPerKiloGram;
+                case SpecificEnergyUnit.CaloriePerGram:
+                    return CaloriesPerGram;
+                case SpecificEnergyUnit.JoulePerKilogram:
+                    return JoulesPerKilogram;
+                case SpecificEnergyUnit.KilocaloriePerGram:
+                    return KilocaloriesPerGram;
+                case SpecificEnergyUnit.KilojoulePerKilogram:
+                    return KilojoulesPerKilogram;
+                case SpecificEnergyUnit.KilowattHourPerKilogram:
+                    return KilowattHoursPerKilogram;
+                case SpecificEnergyUnit.MegajoulePerKilogram:
+                    return MegajoulesPerKilogram;
+                case SpecificEnergyUnit.MegawattHourPerKilogram:
+                    return MegawattHoursPerKilogram;
+                case SpecificEnergyUnit.WattHourPerKilogram:
+                    return WattHoursPerKilogram;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -479,7 +499,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(SpecificEnergyUnit.JoulePerKiloGram);
+            return ToString(SpecificEnergyUnit.JoulePerKilogram);
         }
 
         /// <summary>

@@ -25,6 +25,22 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
+        protected override double ArcminutesInOneDegree
+        {
+            get
+            {
+                return 60.0;
+            }
+        }
+
+        protected override double ArcsecondsInOneDegree
+        {
+            get
+            {
+                return 3600.0;
+            }
+        }
+
         protected override double DegreesInOneDegree
         {
             get { return 1; }
@@ -35,25 +51,11 @@ namespace UnitsNet.Tests.CustomCode
             get { return 400/360.0; }
         }
 
-        protected override double MinutesOfArcInOneDegree
-        {
-            get
-            {
-                return 60.0;
-            }
-        }
 
         protected override double RadiansInOneDegree
         {
             get { return Math.PI/2/90; }
         }
 
-        protected override double SecondsOfArcInOneDegree
-        {
-            get
-            {
-                return 3600.0;
-            }
-        }
     }
 }
