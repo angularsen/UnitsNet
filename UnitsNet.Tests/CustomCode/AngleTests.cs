@@ -33,6 +33,22 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 
+        protected override double ArcminutesInOneDegree
+        {
+            get
+            {
+                return 60.0;
+            }
+        }
+
+        protected override double ArcsecondsInOneDegree
+        {
+            get
+            {
+                return 3600.0;
+            }
+        }
+
         protected override double DegreesInOneDegree
         {
             get { return 1; }
