@@ -59,25 +59,11 @@ namespace UnitsNet.Tests.CustomCode
             get { return 400/360.0; }
         }
 
-        protected override double MinutesOfArcInOneDegree
-        {
-            get
-            {
-                return 60.0;
-            }
-        }
 
         protected override double RadiansInOneDegree
         {
             get { return Math.PI/2/90; }
         }
 
-        protected override double SecondsOfArcInOneDegree
-        {
-            get
-            {
-                return 3600.0;
-            }
-        }
     }
 }
