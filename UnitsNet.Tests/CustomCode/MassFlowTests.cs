@@ -19,13 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 using System;
+using NUnit.Framework;
+using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassFlowTests : MassFlowTestsBase
     {
+        // strange bug
+        [Test]
+        public void MassFlowTimesTimeSpanEqualsMass()
+        {
+            var mass = MassFlow.FromKilogramsPerSecond(20.0) * TimeSpan.FromSeconds(4.0);
+            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+        }
+        [Test]
+        public void TimeSpanTimesMassFlowEqualsMass()
+        {
+            var mass = TimeSpan.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+        }
+
         // TODO Override properties in base class here
         protected override double KilogramsPerSecondInOneKilogramPerSecond
         {

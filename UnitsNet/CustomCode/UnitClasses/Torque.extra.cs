@@ -13,5 +13,9 @@ namespace UnitsNet
         {
             return Force.FromNewtons(torque.NewtonMeters/length.Meters);
         }
+        public static Length operator /(Torque torque, Force force)
+        {
+            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
+        }
     }
 }

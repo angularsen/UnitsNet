@@ -18,11 +18,43 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using NUnit.Framework;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class PowerTests : PowerTestsBase
     {
+        [Test]
+        public void PowerDevidedBySpeedEqualsForce()
+        {
+            var force= Power.FromWatts(15.0) / Speed.FromMetersPerSecond(3);
+            Assert.AreEqual(force, Force.FromNewtons(5));
+        }
+        [Test]
+        public void PowerDevidedByRotationalSpeedEqualsForce()
+        {
+            var torque = Power.FromWatts(15.0) / RotationalSpeed.FromRadiansPerSecond(3);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(5));
+        }
+        [Test]
+        public void PowerDevidedByTorqueEqualsRotationalSpeed()
+        {
+            var rotationalSpeed= Power.FromWatts(15.0) / Torque.FromNewtonMeters(3);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
+        }
+        [Test]
+        public void PowerTimesTimespanEqualsEnergy()
+        {
+            var energy = Power.FromWatts(5.0)*TimeSpan.FromSeconds(8.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+        }
+        [Test]
+        public void TimeSpanTimesPowerEqualsEnergy()
+        {
+            var energy = TimeSpan.FromSeconds(8.0)* Power.FromWatts(5.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+        }
         protected override double FemtowattsInOneWatt
         {
             get { return 1e15; }

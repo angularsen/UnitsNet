@@ -19,11 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using NUnit.Framework;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassTests : MassTestsBase
     {
+        [Test]
+        public void MassDividedByTimeEqualsMassFlow()
+        {
+            var massFlow= Mass.FromKilograms(18.0) / TimeSpan.FromSeconds(6);
+            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+        }
+
         [Test]
         public void MassDividedByVolumeEqualsDensity()
         {

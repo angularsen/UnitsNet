@@ -26,6 +26,18 @@ namespace UnitsNet.Tests.CustomCode
     public class VolumeTests : VolumeTestsBase
     {
         [Test]
+        public void VolumeDividedByLengthEqualsArea()
+        {
+            var area = Volume.FromCubicMeters(15) / Length.FromMeters(5);
+            Assert.AreEqual(area, Area.FromSquareMeters(3));
+        }
+        [Test]
+        public void VolumeDividedByAreaEqualsLength()
+        {
+            var length= Volume.FromCubicMeters(15) / Area.FromSquareMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(3));
+        }
+        [Test]
         public void VolumeTimesDensityEqualsMass()
         {
             var mass = Volume.FromCubicMeters(2) * Density.FromKilogramsPerCubicMeter(3);

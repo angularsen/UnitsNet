@@ -9,6 +9,7 @@ namespace UnitsNet
 {
     public partial struct Speed
     {
+
         public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
         {
             return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);

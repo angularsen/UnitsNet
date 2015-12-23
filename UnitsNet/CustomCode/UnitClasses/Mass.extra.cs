@@ -62,6 +62,10 @@ namespace UnitsNet
             return FromPounds((StoneToPounds * stone) + pounds);
         }
 
+        public static MassFlow operator/(Mass mass, TimeSpan timeSpan)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
+        }
         public static Density operator /(Mass mass, Volume volume)
         {
             return Density.FromKilogramsPerCubicMeter(mass.Kilograms / volume.CubicMeters);

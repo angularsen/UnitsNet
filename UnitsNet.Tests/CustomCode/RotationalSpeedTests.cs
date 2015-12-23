@@ -20,11 +20,20 @@
 // THE SOFTWARE.
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
+
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
+        [Test]
+        public void RotationalSpeedTimesTimeSpanEqualsAngle()
+        {
+            var angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
         protected override double RadiansPerSecondInOneRevolutionPerSecond
         {
             get

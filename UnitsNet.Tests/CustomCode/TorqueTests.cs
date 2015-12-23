@@ -30,6 +30,12 @@ namespace UnitsNet.Tests.CustomCode
             var force = Torque.FromNewtonMeters(4) / Length.FromMeters(2);
             Assert.AreEqual(force, Force.FromNewtons(2));
         }
+        [Test]
+        public void TorqueDevidedByForceEqualsLength()
+        {
+            var length= Torque.FromNewtonMeters(4) / Force.FromNewtons(2);
+            Assert.AreEqual(length, Length.FromMeters(2));
+        }
 
         protected override double KilogramForceCentimetersInOneNewtonMeter
         {

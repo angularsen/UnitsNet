@@ -18,11 +18,30 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Force
     {
+        public static Power operator*(Force force, Speed speed)
+        {
+            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
+        }
+        public static Power operator *(Speed speed, Force force)
+        {
+            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
+        }
+        public static Acceleration operator /(Force force, Mass mass)
+        {
+            return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
+        }
+        public static Pressure operator /(Force force, Area area)
+        {
+            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
+        }
+
+
         public static Force FromPressureByArea(Pressure p, Length2d area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;

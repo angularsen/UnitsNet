@@ -14,7 +14,14 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(volume.CubicMeters * density.KilogramsPerCubicMeter);
         }
-
+        public static Area operator/(Volume volume, Length length)
+        {
+            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+        }
+        public static Length operator /(Volume volume, Area area)
+        {
+            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+        }
 
     }
 }
