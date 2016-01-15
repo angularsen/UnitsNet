@@ -25,12 +25,13 @@ namespace UnitsNet.Units
     public enum SpecificEnergyUnit
     {
         Undefined = 0,
-        JoulePerKiloGram,
-        KiloCaloriePerGram,
-        KilojoulePerKiloGram,
-        KilowattHourPerKiloGram,
-        MegajoulePerKiloGram,
-        MegawattHourPerKiloGram,
-        WattHourPerKiloGram,
+        CaloriePerGram,
+        JoulePerKilogram,
+        KilocaloriePerGram,
+        KilojoulePerKilogram,
+        KilowattHourPerKilogram,
+        MegajoulePerKilogram,
+        MegawattHourPerKilogram,
+        WattHourPerKilogram,
     }
 }

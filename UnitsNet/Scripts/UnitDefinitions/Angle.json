@@ -36,26 +36,26 @@
             ]
         },
 		{
-            "SingularName": "MinuteOfArc",
-            "PluralName": "MinutesOfArc",
+            "SingularName": "Arcminute",
+            "PluralName": "Arcminutes",
             "FromUnitToBaseFunc": "x/60",
             "FromBaseToUnitFunc": "x*60",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["'", "min"]
+                    "Abbreviations": ["'", "arcmin", "amin", "min"]
                 }
             ]
         },
 		{
-            "SingularName": "SecondOfArc",
-            "PluralName": "SecondsOfArc",
+            "SingularName": "Arcsecond",
+            "PluralName": "Arcseconds",
             "FromUnitToBaseFunc": "x/3600",
             "FromBaseToUnitFunc": "x*3600",
             "Localization": [
                 {
                     "Culture": "en-US",
-                    "Abbreviations": ["″", "sec"]
+                    "Abbreviations": ["″", "arcsec", "asec", "sec"]
                 }
             ]
         },

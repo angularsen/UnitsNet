@@ -25,10 +25,10 @@ namespace UnitsNet.Units
     public enum AngleUnit
     {
         Undefined = 0,
+        Arcminute,
+        Arcsecond,
         Degree,
         Gradian,
-        MinuteOfArc,
         Radian,
-        SecondOfArc,
     }
 }

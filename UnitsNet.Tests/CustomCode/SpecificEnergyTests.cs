@@ -26,9 +26,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-
-        // TODO Override properties in base class here
-        protected override double JoulesPerKiloGramInOneJoulePerKiloGram
+        protected override double JoulesPerKilogramInOneJoulePerKilogram
         {
             get
             {
@@ -36,7 +34,15 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double KiloCaloriesPerGramInOneJoulePerKiloGram
+        protected override double CaloriesPerGramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0 / (4.184E3);
+            }
+        }
+
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram
         {
             get
             {
@@ -44,7 +50,8 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double KilojoulesPerKiloGramInOneJoulePerKiloGram
+
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram
         {
             get
             {
@@ -52,7 +59,7 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double KilowattHoursPerKiloGramInOneJoulePerKiloGram
+        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram
         {
             get
             {
@@ -60,7 +67,7 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double MegajoulesPerKiloGramInOneJoulePerKiloGram
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram
         {
             get
             {
@@ -68,7 +75,7 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double MegawattHoursPerKiloGramInOneJoulePerKiloGram
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram
         {
             get
             {
@@ -76,7 +83,7 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double WattHoursPerKiloGramInOneJoulePerKiloGram
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram
         {
             get
             {

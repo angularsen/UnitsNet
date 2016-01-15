@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
     public class MassFlowTests : MassFlowTestsBase
     {
         // TODO Override properties in base class here
-        protected override double KiloGramsPerSecondInOneKiloGramPerSecond
+        protected override double KilogramsPerSecondInOneKilogramPerSecond
         {
             get
             {
@@ -35,7 +35,7 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
-        protected override double TonnesPerDayInOneKiloGramPerSecond
+        protected override double TonnesPerDayInOneKilogramPerSecond
         {
             get
             {

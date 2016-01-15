@@ -1,11 +1,11 @@
 {
     "Name": "MassFlow",
-    "BaseUnit": "KiloGramPerSecond",
+    "BaseUnit": "KilogramPerSecond",
     "XmlDoc": "",
     "Units": [
         {
-            "SingularName": "KiloGramPerSecond",
-            "PluralName": "KiloGramsPerSecond",
+            "SingularName": "KilogramPerSecond",
+            "PluralName": "KilogramsPerSecond",
             "FromUnitToBaseFunc": "x",
             "FromBaseToUnitFunc": "x",
             "Localization": [

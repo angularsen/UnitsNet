@@ -35,7 +35,7 @@ namespace UnitsNet.Tests.CustomCode
             get { return 400/360.0; }
         }
 
-        protected override double MinutesOfArcInOneDegree
+        protected override double ArcminutesInOneDegree
         {
             get
             {
@@ -48,7 +48,7 @@ namespace UnitsNet.Tests.CustomCode
             get { return Math.PI/2/90; }
         }
 
-        protected override double SecondsOfArcInOneDegree
+        protected override double ArcsecondsInOneDegree
         {
             get
             {
