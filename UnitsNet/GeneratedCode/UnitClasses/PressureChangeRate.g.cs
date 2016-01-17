@@ -49,6 +49,11 @@ namespace UnitsNet
 
         #region Properties
 
+        public static PressureChangeRateUnit BaseUnit
+        {
+            get { return PressureChangeRateUnit.PascalPerSecond; }
+        }
+
         /// <summary>
         ///     Get PressureChangeRate in AtmospheresPerSecond.
         /// </summary>
