@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4DC016EB-1ED1-4EAA-8537-E47278281BDC}"
 EndProject
@@ -23,6 +23,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Net35", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Net35.csproj", "{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9BEB42C6-EC3A-49B8-A065-0D01DDFF16B2}"
+	ProjectSection(SolutionItems) = preProject
+		Build\UnitsNet.nuspec = Build\UnitsNet.nuspec
+		Build\UnitsNet.Serialization.JsonNet.nuspec = Build\UnitsNet.Serialization.JsonNet.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
