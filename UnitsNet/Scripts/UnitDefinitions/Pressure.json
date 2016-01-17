@@ -17,7 +17,7 @@
                 {
                     "Culture": "ru-RU",
                     "Abbreviations": ["Па"],
-                    "AbbreviationsWithPrefixes": ["кПа","МПа"]
+                    "AbbreviationsWithPrefixes": ["мкПа", "даПа", "гПа", "кПа","МПа", "ГПа"]
                 }
             ]
         },

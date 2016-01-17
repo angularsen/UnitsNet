@@ -19,39 +19,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace UnitsNet.Tests.CustomCode
+// ReSharper disable once CheckNamespace
+namespace UnitsNet.Units
 {
-    public class FlowTests : FlowTestsBase
+    public enum PressureChangeRateUnit
     {
-        protected override double CubicMetersPerHourInOneCubicMeterPerSecond
-        {
-            get { return 3600.0; }
-        }
-
-        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond
-        {
-            get { return 35.314666213; }
-        }
-
-        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond
-        {
-            get { return 22.824465227; }
-        }
-
-        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
-        {
-            get { return 1; }
-        }
-
-        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 15850.323141489; }
-        }
-
-        protected override double LitersPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 60000.00000; }
-        }
-
+        Undefined = 0,
+        AtmospherePerSecond,
+        KilopascalPerSecond,
+        MegapascalPerSecond,
+        PascalPerSecond,
     }
 }

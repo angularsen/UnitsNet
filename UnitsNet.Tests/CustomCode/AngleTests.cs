@@ -33,6 +33,16 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 
+        protected override double DegreesInOneDegree
+        {
+            get { return 1; }
+        }
+
+        protected override double GradiansInOneDegree
+        {
+            get { return 400 / 360.0; }
+        }
+
         protected override double ArcminutesInOneDegree
         {
             get
@@ -41,28 +51,17 @@ namespace UnitsNet.Tests.CustomCode
             }
         }
 
+        protected override double RadiansInOneDegree
+        {
+            get { return Math.PI / 2 / 90; }
+        }
+
         protected override double ArcsecondsInOneDegree
         {
             get
             {
                 return 3600.0;
             }
-        }
-
-        protected override double DegreesInOneDegree
-        {
-            get { return 1; }
-        }
-
-        protected override double GradiansInOneDegree
-        {
-            get { return 400/360.0; }
-        }
-
-
-        protected override double RadiansInOneDegree
-        {
-            get { return Math.PI/2/90; }
         }
 
     }

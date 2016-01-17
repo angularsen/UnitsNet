@@ -32,84 +32,120 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     
+    ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct MassFlow : IComparable, IComparable<MassFlow>
+    public partial struct PressureChangeRate : IComparable, IComparable<PressureChangeRate>
     {
         /// <summary>
-        ///     Base unit of MassFlow.
+        ///     Base unit of PressureChangeRate.
         /// </summary>
-        private readonly double _kilogramsPerSecond;
+        private readonly double _pascalsPerSecond;
 
-        public MassFlow(double kilogramspersecond) : this()
+        public PressureChangeRate(double pascalspersecond) : this()
         {
-            _kilogramsPerSecond = kilogramspersecond;
+            _pascalsPerSecond = pascalspersecond;
         }
 
         #region Properties
 
-        public static MassFlowUnit BaseUnit
+        public static PressureChangeRateUnit BaseUnit
         {
-            get { return MassFlowUnit.KilogramPerSecond; }
+            get { return PressureChangeRateUnit.PascalPerSecond; }
         }
 
         /// <summary>
-        ///     Get MassFlow in KilogramsPerSecond.
+        ///     Get PressureChangeRate in AtmospheresPerSecond.
         /// </summary>
-        public double KilogramsPerSecond
+        public double AtmospheresPerSecond
         {
-            get { return _kilogramsPerSecond; }
+            get { return _pascalsPerSecond / (1.01325*1e5); }
         }
 
         /// <summary>
-        ///     Get MassFlow in TonnesPerDay.
+        ///     Get PressureChangeRate in KilopascalsPerSecond.
         /// </summary>
-        public double TonnesPerDay
+        public double KilopascalsPerSecond
         {
-            get { return _kilogramsPerSecond*86.4000; }
+            get { return (_pascalsPerSecond) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get PressureChangeRate in MegapascalsPerSecond.
+        /// </summary>
+        public double MegapascalsPerSecond
+        {
+            get { return (_pascalsPerSecond) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get PressureChangeRate in PascalsPerSecond.
+        /// </summary>
+        public double PascalsPerSecond
+        {
+            get { return _pascalsPerSecond; }
         }
 
         #endregion
 
         #region Static 
 
-        public static MassFlow Zero
+        public static PressureChangeRate Zero
         {
-            get { return new MassFlow(); }
+            get { return new PressureChangeRate(); }
         }
 
         /// <summary>
-        ///     Get MassFlow from KilogramsPerSecond.
+        ///     Get PressureChangeRate from AtmospheresPerSecond.
         /// </summary>
-        public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
+        public static PressureChangeRate FromAtmospheresPerSecond(double atmospherespersecond)
         {
-            return new MassFlow(kilogramspersecond);
+            return new PressureChangeRate(atmospherespersecond * 1.01325*1e5);
         }
 
         /// <summary>
-        ///     Get MassFlow from TonnesPerDay.
+        ///     Get PressureChangeRate from KilopascalsPerSecond.
         /// </summary>
-        public static MassFlow FromTonnesPerDay(double tonnesperday)
+        public static PressureChangeRate FromKilopascalsPerSecond(double kilopascalspersecond)
         {
-            return new MassFlow(tonnesperday/86.4000);
+            return new PressureChangeRate((kilopascalspersecond) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get PressureChangeRate from MegapascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate FromMegapascalsPerSecond(double megapascalspersecond)
+        {
+            return new PressureChangeRate((megapascalspersecond) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get PressureChangeRate from PascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate FromPascalsPerSecond(double pascalspersecond)
+        {
+            return new PressureChangeRate(pascalspersecond);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
+        ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassFlow unit value.</returns>
-        public static MassFlow From(double value, MassFlowUnit fromUnit)
+        /// <returns>PressureChangeRate unit value.</returns>
+        public static PressureChangeRate From(double value, PressureChangeRateUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case MassFlowUnit.KilogramPerSecond:
-                    return FromKilogramsPerSecond(value);
-                case MassFlowUnit.TonnePerDay:
-                    return FromTonnesPerDay(value);
+                case PressureChangeRateUnit.AtmospherePerSecond:
+                    return FromAtmospheresPerSecond(value);
+                case PressureChangeRateUnit.KilopascalPerSecond:
+                    return FromKilopascalsPerSecond(value);
+                case PressureChangeRateUnit.MegapascalPerSecond:
+                    return FromMegapascalsPerSecond(value);
+                case PressureChangeRateUnit.PascalPerSecond:
+                    return FromPascalsPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -123,7 +159,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MassFlowUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(PressureChangeRateUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -132,39 +168,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static MassFlow operator -(MassFlow right)
+        public static PressureChangeRate operator -(PressureChangeRate right)
         {
-            return new MassFlow(-right._kilogramsPerSecond);
+            return new PressureChangeRate(-right._pascalsPerSecond);
         }
 
-        public static MassFlow operator +(MassFlow left, MassFlow right)
+        public static PressureChangeRate operator +(PressureChangeRate left, PressureChangeRate right)
         {
-            return new MassFlow(left._kilogramsPerSecond + right._kilogramsPerSecond);
+            return new PressureChangeRate(left._pascalsPerSecond + right._pascalsPerSecond);
         }
 
-        public static MassFlow operator -(MassFlow left, MassFlow right)
+        public static PressureChangeRate operator -(PressureChangeRate left, PressureChangeRate right)
         {
-            return new MassFlow(left._kilogramsPerSecond - right._kilogramsPerSecond);
+            return new PressureChangeRate(left._pascalsPerSecond - right._pascalsPerSecond);
         }
 
-        public static MassFlow operator *(double left, MassFlow right)
+        public static PressureChangeRate operator *(double left, PressureChangeRate right)
         {
-            return new MassFlow(left*right._kilogramsPerSecond);
+            return new PressureChangeRate(left*right._pascalsPerSecond);
         }
 
-        public static MassFlow operator *(MassFlow left, double right)
+        public static PressureChangeRate operator *(PressureChangeRate left, double right)
         {
-            return new MassFlow(left._kilogramsPerSecond*(double)right);
+            return new PressureChangeRate(left._pascalsPerSecond*(double)right);
         }
 
-        public static MassFlow operator /(MassFlow left, double right)
+        public static PressureChangeRate operator /(PressureChangeRate left, double right)
         {
-            return new MassFlow(left._kilogramsPerSecond/(double)right);
+            return new PressureChangeRate(left._pascalsPerSecond/(double)right);
         }
 
-        public static double operator /(MassFlow left, MassFlow right)
+        public static double operator /(PressureChangeRate left, PressureChangeRate right)
         {
-            return Convert.ToDouble(left._kilogramsPerSecond/right._kilogramsPerSecond);
+            return Convert.ToDouble(left._pascalsPerSecond/right._pascalsPerSecond);
         }
 
         #endregion
@@ -174,45 +210,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is MassFlow)) throw new ArgumentException("Expected type MassFlow.", "obj");
-            return CompareTo((MassFlow) obj);
+            if (!(obj is PressureChangeRate)) throw new ArgumentException("Expected type PressureChangeRate.", "obj");
+            return CompareTo((PressureChangeRate) obj);
         }
 
-        public int CompareTo(MassFlow other)
+        public int CompareTo(PressureChangeRate other)
         {
-            return _kilogramsPerSecond.CompareTo(other._kilogramsPerSecond);
+            return _pascalsPerSecond.CompareTo(other._pascalsPerSecond);
         }
 
-        public static bool operator <=(MassFlow left, MassFlow right)
+        public static bool operator <=(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._kilogramsPerSecond <= right._kilogramsPerSecond;
+            return left._pascalsPerSecond <= right._pascalsPerSecond;
         }
 
-        public static bool operator >=(MassFlow left, MassFlow right)
+        public static bool operator >=(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._kilogramsPerSecond >= right._kilogramsPerSecond;
+            return left._pascalsPerSecond >= right._pascalsPerSecond;
         }
 
-        public static bool operator <(MassFlow left, MassFlow right)
+        public static bool operator <(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._kilogramsPerSecond < right._kilogramsPerSecond;
+            return left._pascalsPerSecond < right._pascalsPerSecond;
         }
 
-        public static bool operator >(MassFlow left, MassFlow right)
+        public static bool operator >(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._kilogramsPerSecond > right._kilogramsPerSecond;
+            return left._pascalsPerSecond > right._pascalsPerSecond;
         }
 
-        public static bool operator ==(MassFlow left, MassFlow right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSecond == right._kilogramsPerSecond;
-        }
-
-        public static bool operator !=(MassFlow left, MassFlow right)
+        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSecond != right._kilogramsPerSecond;
+            return left._pascalsPerSecond == right._pascalsPerSecond;
+        }
+
+        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._pascalsPerSecond != right._pascalsPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -222,12 +258,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramsPerSecond.Equals(((MassFlow) obj)._kilogramsPerSecond);
+            return _pascalsPerSecond.Equals(((PressureChangeRate) obj)._pascalsPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _kilogramsPerSecond.GetHashCode();
+            return _pascalsPerSecond.GetHashCode();
         }
 
         #endregion
@@ -239,14 +275,18 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(MassFlowUnit unit)
+        public double As(PressureChangeRateUnit unit)
         {
             switch (unit)
             {
-                case MassFlowUnit.KilogramPerSecond:
-                    return KilogramsPerSecond;
-                case MassFlowUnit.TonnePerDay:
-                    return TonnesPerDay;
+                case PressureChangeRateUnit.AtmospherePerSecond:
+                    return AtmospheresPerSecond;
+                case PressureChangeRateUnit.KilopascalPerSecond:
+                    return KilopascalsPerSecond;
+                case PressureChangeRateUnit.MegapascalPerSecond:
+                    return MegapascalsPerSecond;
+                case PressureChangeRateUnit.PascalPerSecond:
+                    return PascalsPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -268,7 +308,7 @@ namespace UnitsNet
         ///     Expected string to have one or two pairs of quantity and unit in the format
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
-        public static MassFlow Parse(string str, IFormatProvider formatProvider = null)
+        public static PressureChangeRate Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -302,11 +342,11 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<MassFlow> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
+        private static List<PressureChangeRate> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<MassFlow>();
+            var converted = new List<PressureChangeRate>();
 
             foreach (Match match in matches)
             {
@@ -327,7 +367,7 @@ namespace UnitsNet
 
                 try
                 {
-                    MassFlowUnit unit = ParseUnit(unitString, formatProvider);
+                    PressureChangeRateUnit unit = ParseUnit(unitString, formatProvider);
                     double value = double.Parse(valueString, formatProvider);
 
                     converted.Add(From(value, unit));
@@ -353,16 +393,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFlowUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static PressureChangeRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<MassFlowUnit>(str.Trim());
+            var unit = unitSystem.Parse<PressureChangeRateUnit>(str.Trim());
 
-            if (unit == MassFlowUnit.Undefined)
+            if (unit == PressureChangeRateUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MassFlowUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PressureChangeRateUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -379,7 +419,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowUnit.KilogramPerSecond);
+            return ToString(PressureChangeRateUnit.PascalPerSecond);
         }
 
         /// <summary>
@@ -390,7 +430,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(PressureChangeRateUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -404,7 +444,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(PressureChangeRateUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }

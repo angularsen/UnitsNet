@@ -19,39 +19,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
-    public class FlowTests : FlowTestsBase
+    public class PressureChangeRateTests : PressureChangeRateTestsBase
     {
-        protected override double CubicMetersPerHourInOneCubicMeterPerSecond
+        protected override double AtmospheresPerSecondInOnePascalPerSecond
         {
-            get { return 3600.0; }
+            get { return 9.8692 * 1E-6; }
         }
 
-        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond
+        protected override double KilopascalsPerSecondInOnePascalPerSecond
         {
-            get { return 35.314666213; }
+            get { return 1e-3; }
         }
 
-        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond
+        protected override double MegapascalsPerSecondInOnePascalPerSecond
         {
-            get { return 22.824465227; }
+            get { return 1E-6; }
         }
 
-        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
+        protected override double PascalsPerSecondInOnePascalPerSecond
         {
             get { return 1; }
         }
-
-        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 15850.323141489; }
-        }
-
-        protected override double LitersPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 60000.00000; }
-        }
-
     }
 }

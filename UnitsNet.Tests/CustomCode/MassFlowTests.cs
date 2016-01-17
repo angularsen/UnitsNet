@@ -54,7 +54,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             get
             {
-                return 1.0 / (60.0 * 60 * 24 / 1000);
+                return (60.0 * 60 * 24 / 1000);
             }
         }
     }

@@ -144,6 +144,6 @@ Continuous Integration
 ===
 A [TeamCity build server](http://dev.swingcatalyst.com/TeamCity/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
-* Build, test and publish nuget on commits to **stable** branch.
+* Build and test master branch.
 
 [Contact me](https://github.com/anjdreas) if you have any questions.

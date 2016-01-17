@@ -98,12 +98,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) AngleUnit.Arcminute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "'", "arcmin"),
+                                new AbbreviationsForCulture("en-US", "'", "arcmin", "amin", "min"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Arcsecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "″", "arcsec"),
+                                new AbbreviationsForCulture("en-US", "″", "arcsec", "asec", "sec"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Degree,
                             new[]
@@ -477,10 +477,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MGD"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GPM"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),
@@ -1107,7 +1117,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "daPa"),
-                                new AbbreviationsForCulture("ru-RU", "МПа"),
+                                new AbbreviationsForCulture("ru-RU", "даПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Decibar,
                             new[]
@@ -1119,13 +1129,13 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "GPa"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "ГПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Hectopascal,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "hPa"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "гПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Kilobar,
                             new[]
@@ -1173,7 +1183,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kPa"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "кПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.KilopoundForcePerSquareFoot,
                             new[]
@@ -1195,13 +1205,13 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MPa"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "МПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Micropascal,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "μPa"),
-                                new AbbreviationsForCulture("ru-RU", "кПа"),
+                                new AbbreviationsForCulture("ru-RU", "мкПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Millibar,
                             new[]
@@ -1275,6 +1285,34 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "torr"),
                                 new AbbreviationsForCulture("ru-RU", "торр"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PressureChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PressureChangeRateUnit.AtmospherePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "atm/s"),
+                                new AbbreviationsForCulture("ru-RU", "атм/с"),
+                            }),
+                        new CulturesForEnumValue((int) PressureChangeRateUnit.KilopascalPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kPa/s"),
+                                new AbbreviationsForCulture("ru-RU", "кПа/с"),
+                            }),
+                        new CulturesForEnumValue((int) PressureChangeRateUnit.MegapascalPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MPa/s"),
+                                new AbbreviationsForCulture("ru-RU", "МПа/с"),
+                            }),
+                        new CulturesForEnumValue((int) PressureChangeRateUnit.PascalPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pa/s"),
+                                new AbbreviationsForCulture("ru-RU", "Па/с"),
                             }),
                     }),
                 new UnitLocalization(typeof (RatioUnit),

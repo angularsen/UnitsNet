@@ -1,6 +1,6 @@
 {
     "Name": "SpecificEnergy",
-    "BaseUnit": "JoulePerKiloGram",
+    "BaseUnit": "JoulePerKilogram",
     "XmlDoc": "The SpecificEnergy",
 	"XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
     "Units": [
@@ -22,7 +22,7 @@
             "PluralName": "CaloriesPerGram",
             "FromUnitToBaseFunc": "x*4.184e3",
             "FromBaseToUnitFunc": "x/4.184e3",
-			"Prefixes": ["Kilo"],
+			      "Prefixes": ["Kilo"],
             "Localization": [
                 {
                     "Culture": "en-US",

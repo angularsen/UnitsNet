@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
+
         [Test]
         public void SpecificEnergyTimesMassEqualsEnergy()
         {
@@ -41,7 +42,6 @@ namespace UnitsNet.Tests.CustomCode
         }
 
 
-        // TODO Override properties in base class here
         protected override double JoulesPerKilogramInOneJoulePerKilogram
         {
             get
@@ -57,6 +57,7 @@ namespace UnitsNet.Tests.CustomCode
                 return 1.0 / (4.184E3);
             }
         }
+
         protected override double KilocaloriesPerGramInOneJoulePerKilogram
         {
             get
@@ -64,6 +65,7 @@ namespace UnitsNet.Tests.CustomCode
                 return 1.0 / (4.184E6);
             }
         }
+
 
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram
         {
