@@ -16,7 +16,19 @@
                 }
             ]
         },
-        {
+		{
+            "SingularName": "RadianPerSecond",
+            "PluralName": "RadiansPerSecond",
+            "FromUnitToBaseFunc": "x/6.2831853072",
+            "FromBaseToUnitFunc": "x*6.2831853072",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["rad/s"]
+                }
+            ]
+        },
+		{
             "SingularName": "CyclePerMinute",
             "PluralName": "CyclesPerMinute",
             "FromUnitToBaseFunc": "x*60",

@@ -1,0 +1,31 @@
+{
+    "Name": "MassFlow",
+    "BaseUnit": "KilogramPerSecond",
+    "XmlDoc": "",
+    "Units": [
+        {
+            "SingularName": "KilogramPerSecond",
+            "PluralName": "KilogramsPerSecond",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["kg/s"]
+                }
+            ]
+        },
+		{
+            "SingularName": "TonnePerDay",
+            "PluralName": "TonnesPerDay",
+            "FromUnitToBaseFunc": "x/86.4000",
+            "FromBaseToUnitFunc": "x*86.4000",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["t/d"]
+                }
+            ]
+        }
+    ]
+}

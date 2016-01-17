@@ -95,6 +95,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AngleUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) AngleUnit.Arcminute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "'", "arcmin", "amin", "min"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Arcsecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "″", "arcsec", "asec", "sec"),
+                            }),
                         new CulturesForEnumValue((int) AngleUnit.Degree,
                             new[]
                             {
@@ -568,6 +578,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "MHz"),
                             }),
+                        new CulturesForEnumValue((int) FrequencyUnit.RadianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rad/s"),
+                            }),
                         new CulturesForEnumValue((int) FrequencyUnit.Terahertz,
                             new[]
                             {
@@ -835,6 +850,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "nm"),
                                 new AbbreviationsForCulture("ru-RU", "нм"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.NauticalMile,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "NM"),
+                                new AbbreviationsForCulture("ru-RU", "мил"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Yard,
                             new[]
                             {
@@ -957,6 +978,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t"),
                                 new AbbreviationsForCulture("ru-RU", "т"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MassFlowUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/s"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.TonnePerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t/d"),
                             }),
                     }),
                 new UnitLocalization(typeof (PowerUnit),
@@ -1317,6 +1352,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.RadianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rad/s"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RevolutionPerMinute,
                             new[]
                             {
@@ -1328,6 +1368,50 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "r/s"),
                                 new AbbreviationsForCulture("ru-RU", "об/с"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (SpecificEnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.CaloriePerGram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal/g"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.JoulePerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/kg"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilocaloriePerGram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/g"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilojoulePerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/kg"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilowattHourPerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kWh/kg"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.MegajoulePerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/kg"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.MegawattHourPerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MWh/kg"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEnergyUnit.WattHourPerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Wh/kg"),
                             }),
                     }),
                 new UnitLocalization(typeof (SpecificWeightUnit),
@@ -1446,6 +1530,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kt", "kn", "knot", "knots"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.MeterPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m/h"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.MeterPerSecond,
                             new[]

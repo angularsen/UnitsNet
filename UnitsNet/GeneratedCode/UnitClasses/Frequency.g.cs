@@ -103,6 +103,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Frequency in RadiansPerSecond.
+        /// </summary>
+        public double RadiansPerSecond
+        {
+            get { return _hertz*6.2831853072; }
+        }
+
+        /// <summary>
         ///     Get Frequency in Terahertz.
         /// </summary>
         public double Terahertz
@@ -168,6 +176,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Frequency from RadiansPerSecond.
+        /// </summary>
+        public static Frequency FromRadiansPerSecond(double radianspersecond)
+        {
+            return new Frequency(radianspersecond/6.2831853072);
+        }
+
+        /// <summary>
         ///     Get Frequency from Terahertz.
         /// </summary>
         public static Frequency FromTerahertz(double terahertz)
@@ -198,6 +214,8 @@ namespace UnitsNet
                     return FromKilohertz(value);
                 case FrequencyUnit.Megahertz:
                     return FromMegahertz(value);
+                case FrequencyUnit.RadianPerSecond:
+                    return FromRadiansPerSecond(value);
                 case FrequencyUnit.Terahertz:
                     return FromTerahertz(value);
 
@@ -345,6 +363,8 @@ namespace UnitsNet
                     return Kilohertz;
                 case FrequencyUnit.Megahertz:
                     return Megahertz;
+                case FrequencyUnit.RadianPerSecond:
+                    return RadiansPerSecond;
                 case FrequencyUnit.Terahertz:
                     return Terahertz;
 

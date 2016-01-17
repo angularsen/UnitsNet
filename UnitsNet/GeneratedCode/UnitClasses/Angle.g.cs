@@ -55,6 +55,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle in Arcminutes.
+        /// </summary>
+        public double Arcminutes
+        {
+            get { return _degrees*60; }
+        }
+
+        /// <summary>
+        ///     Get Angle in Arcseconds.
+        /// </summary>
+        public double Arcseconds
+        {
+            get { return _degrees*3600; }
+        }
+
+        /// <summary>
         ///     Get Angle in Degrees.
         /// </summary>
         public double Degrees
@@ -85,6 +101,22 @@ namespace UnitsNet
         public static Angle Zero
         {
             get { return new Angle(); }
+        }
+
+        /// <summary>
+        ///     Get Angle from Arcminutes.
+        /// </summary>
+        public static Angle FromArcminutes(double arcminutes)
+        {
+            return new Angle(arcminutes/60);
+        }
+
+        /// <summary>
+        ///     Get Angle from Arcseconds.
+        /// </summary>
+        public static Angle FromArcseconds(double arcseconds)
+        {
+            return new Angle(arcseconds/3600);
         }
 
         /// <summary>
@@ -122,6 +154,10 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case AngleUnit.Arcminute:
+                    return FromArcminutes(value);
+                case AngleUnit.Arcsecond:
+                    return FromArcseconds(value);
                 case AngleUnit.Degree:
                     return FromDegrees(value);
                 case AngleUnit.Gradian:
@@ -261,6 +297,10 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case AngleUnit.Arcminute:
+                    return Arcminutes;
+                case AngleUnit.Arcsecond:
+                    return Arcseconds;
                 case AngleUnit.Degree:
                     return Degrees;
                 case AngleUnit.Gradian:

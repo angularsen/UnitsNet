@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
@@ -79,5 +81,12 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1E-3; }
         }
 
+        protected override double MetersPerHourInOneMeterPerSecond
+        {
+            get
+            {
+                return 3600.0;
+            }
+        }
     }
 }

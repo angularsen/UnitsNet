@@ -48,6 +48,7 @@ namespace UnitsNet.Tests
         protected abstract double MilesInOneMeter { get; }
         protected abstract double MillimetersInOneMeter { get; }
         protected abstract double NanometersInOneMeter { get; }
+        protected abstract double NauticalMilesInOneMeter { get; }
         protected abstract double YardsInOneMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
@@ -63,6 +64,7 @@ namespace UnitsNet.Tests
         protected virtual double MilesTolerance { get { return 1e-5; } }
         protected virtual double MillimetersTolerance { get { return 1e-5; } }
         protected virtual double NanometersTolerance { get { return 1e-5; } }
+        protected virtual double NauticalMilesTolerance { get { return 1e-5; } }
         protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -82,6 +84,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MilesInOneMeter, meter.Miles, MilesTolerance);
             Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, MillimetersTolerance);
             Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, NanometersTolerance);
+            Assert.AreEqual(NauticalMilesInOneMeter, meter.NauticalMiles, NauticalMilesTolerance);
             Assert.AreEqual(YardsInOneMeter, meter.Yards, YardsTolerance);
         }
 
@@ -100,6 +103,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.From(1, LengthUnit.Mile).Miles, MilesTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
         }
 
@@ -119,6 +123,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), MilesTolerance);
             Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), MillimetersTolerance);
             Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), NanometersTolerance);
+            Assert.AreEqual(NauticalMilesInOneMeter, meter.As(LengthUnit.NauticalMile), NauticalMilesTolerance);
             Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), YardsTolerance);
         }
 
@@ -138,6 +143,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
             Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
             Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
+            Assert.AreEqual(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
             Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
         }
 

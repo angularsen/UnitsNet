@@ -22,22 +22,10 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum LengthUnit
+    public enum MassFlowUnit
     {
         Undefined = 0,
-        Centimeter,
-        Decimeter,
-        Foot,
-        Inch,
-        Kilometer,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
-        Yard,
+        KilogramPerSecond,
+        TonnePerDay,
     }
 }

@@ -1,0 +1,48 @@
+{
+    "Name": "SpecificEnergy",
+    "BaseUnit": "JoulePerKilogram",
+    "XmlDoc": "The SpecificEnergy",
+	"XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
+    "Units": [
+        {
+            "SingularName": "JoulePerKilogram",
+            "PluralName": "JoulesPerKilogram",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Kilo","Mega"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["J/kg"]
+                }
+            ]
+        },
+		{
+            "SingularName": "CaloriePerGram",
+            "PluralName": "CaloriesPerGram",
+            "FromUnitToBaseFunc": "x*4.184e3",
+            "FromBaseToUnitFunc": "x/4.184e3",
+            "Prefixes": ["Kilo"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["cal/g"]
+                }
+            ]
+		},
+		{
+            "SingularName": "WattHourPerKilogram",
+            "PluralName": "WattHoursPerKilogram",
+            "FromUnitToBaseFunc": "x*3.6e3",
+            "FromBaseToUnitFunc": "x/3.6e3",
+            "Prefixes": ["Kilo","Mega"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Wh/kg"]
+                }
+            ]
+		}
+
+   ]
+}

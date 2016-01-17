@@ -19,25 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    public enum LengthUnit
+    public class MassFlowTests : MassFlowTestsBase
     {
-        Undefined = 0,
-        Centimeter,
-        Decimeter,
-        Foot,
-        Inch,
-        Kilometer,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
-        Yard,
+        // TODO Override properties in base class here
+        protected override double KilogramsPerSecondInOneKilogramPerSecond
+        {
+            get
+            {
+                return 1.0;
+            }
+        }
+
+        protected override double TonnesPerDayInOneKilogramPerSecond
+        {
+            get
+            {
+                return (60.0 * 60 * 24 / 1000);
+            }
+        }
     }
 }

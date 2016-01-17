@@ -19,52 +19,75 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class FrequencyTests : FrequencyTestsBase
+    public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double HertzInOneHertz
-        {
-            get { return 1; }
-        }
-
-        protected override double KilohertzInOneHertz
-        {
-            get { return 1e-3; }
-        }
-
-        protected override double MegahertzInOneHertz
-        {
-            get { return 1e-6; }
-        }
-
-        protected override double GigahertzInOneHertz
-        {
-            get { return 1e-9; }
-        }
-
-        protected override double TerahertzInOneHertz
-        {
-            get { return 1e-12; }
-        }
-
-        protected override double CyclesPerHourInOneHertz
-        {
-            get { return 2.77777e-4; }
-        }
-
-        protected override double CyclesPerMinuteInOneHertz
-        {
-            get { return 0.016666667; }
-        }
-
-        protected override double RadiansPerSecondInOneHertz
+        protected override double JoulesPerKilogramInOneJoulePerKilogram
         {
             get
             {
-                return 2 * Math.PI;
+                return 1.0;
+            }
+        }
+
+        protected override double CaloriesPerGramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0 / (4.184E3);
+            }
+        }
+
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0 / (4.184E6);
+            }
+        }
+
+
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0E-3;
+            }
+        }
+
+        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 2.77777778e-7;
+            }
+        }
+
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0E-6;
+            }
+        }
+
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 2.77777778E-10;
+            }
+        }
+
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram
+        {
+            get
+            {
+                return 1.0 / 3.6e3;
             }
         }
     }
