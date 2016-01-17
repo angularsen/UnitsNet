@@ -67,7 +67,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerDay
         {
-            get { return _kilogramsPerSecond/86.4000; }
+            get { return _kilogramsPerSecond*86.4000; }
         }
 
         #endregion
@@ -92,7 +92,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromTonnesPerDay(double tonnesperday)
         {
-            return new MassFlow(tonnesperday*86.4000);
+            return new MassFlow(tonnesperday/86.4000);
         }
 
 

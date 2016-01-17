@@ -93,7 +93,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NauticalMilesInOneMeter
         {
             get
-            { return 5.3996E-04; }
+            { return 1.0/1852.0; }
         }
     }
 }
