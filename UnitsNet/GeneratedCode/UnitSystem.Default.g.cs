@@ -1606,6 +1606,55 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "K"),
                             }),
                     }),
+                new UnitLocalization(typeof (TemperatureChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "c°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "da°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "d°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "h°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "k°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μ°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "n°C/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (TorqueUnit),
                     new[]
                     {
