@@ -203,7 +203,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1 м", Length.FromMeters(1).ToString());
             Assert.AreEqual("1 кг", Mass.FromKilograms(1).ToString());
             Assert.AreEqual("1 Па", Pressure.FromPascals(1).ToString());
-            Assert.AreEqual("1 об/с", RotationalSpeed.FromRadiansPerSecond(1).ToString());
+            Assert.AreEqual("1 рад/с", RotationalSpeed.FromRadiansPerSecond(1).ToString());
             Assert.AreEqual("1 K", Temperature.FromKelvins(1).ToString());
             Assert.AreEqual("1 Н·м", Torque.FromNewtonMeters(1).ToString());
             Assert.AreEqual("1 м³", Volume.FromCubicMeters(1).ToString());

@@ -13,6 +13,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "rad/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад/с" ]
         }
       ]
     },
