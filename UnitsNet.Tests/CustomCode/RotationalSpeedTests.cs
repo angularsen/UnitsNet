@@ -26,43 +26,44 @@ namespace UnitsNet.Tests.CustomCode
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
 
-        protected override double RadiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI; }
-        }
-        protected override double DeciradiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI * 1E1; }
-        }
-
-        protected override double CentiradiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI * 1E2; }
-        }
-
-        protected override double MilliradiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI * 1E3; }
-        }
-
-        protected override double MicroradiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI * 1E6; }
-        }
-
-        protected override double NanoradiansPerSecondInOneRevolutionPerSecond
-        {
-            get { return 2 * Math.PI * 1E9; }
-        }
-
-        protected override double RevolutionsPerMinuteInOneRevolutionPerSecond
-        {
-            get { return 1.0*60; }
-        }
-
-        protected override double RevolutionsPerSecondInOneRevolutionPerSecond
+        protected override double RadiansPerSecondInOneRadianPerSecond
         {
             get { return 1; }
+        }
+
+        protected override double DeciradiansPerSecondInOneRadianPerSecond
+        {
+            get { return 1E1; }
+        }
+
+        protected override double CentiradiansPerSecondInOneRadianPerSecond
+        {
+            get { return 1E2; }
+        }
+
+        protected override double MilliradiansPerSecondInOneRadianPerSecond
+        {
+            get { return 1E3; }
+        }
+
+        protected override double MicroradiansPerSecondInOneRadianPerSecond
+        {
+            get { return 1E6; }
+        }
+
+        protected override double NanoradiansPerSecondInOneRadianPerSecond
+        {
+            get { return 1E9; }
+        }
+
+        protected override double RevolutionsPerMinuteInOneRadianPerSecond
+        {
+            get { return (60*1) / (2 * Math.PI); }
+        }
+
+        protected override double RevolutionsPerSecondInOneRadianPerSecond
+        {
+            get { return 1/(2*Math.PI); }
         }
     }
 }

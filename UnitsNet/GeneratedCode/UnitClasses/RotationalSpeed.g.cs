@@ -40,18 +40,18 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of RotationalSpeed.
         /// </summary>
-        private readonly double _revolutionsPerSecond;
+        private readonly double _radiansPerSecond;
 
-        public RotationalSpeed(double revolutionspersecond) : this()
+        public RotationalSpeed(double radianspersecond) : this()
         {
-            _revolutionsPerSecond = revolutionspersecond;
+            _radiansPerSecond = radianspersecond;
         }
 
         #region Properties
 
         public static RotationalSpeedUnit BaseUnit
         {
-            get { return RotationalSpeedUnit.RevolutionPerSecond; }
+            get { return RotationalSpeedUnit.RadianPerSecond; }
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace UnitsNet
         /// </summary>
         public double CentiradiansPerSecond
         {
-            get { return (_revolutionsPerSecond*6.2831853072) / 1e-2d; }
+            get { return (_radiansPerSecond) / 1e-2d; }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace UnitsNet
         /// </summary>
         public double DeciradiansPerSecond
         {
-            get { return (_revolutionsPerSecond*6.2831853072) / 1e-1d; }
+            get { return (_radiansPerSecond) / 1e-1d; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace UnitsNet
         /// </summary>
         public double MicroradiansPerSecond
         {
-            get { return (_revolutionsPerSecond*6.2831853072) / 1e-6d; }
+            get { return (_radiansPerSecond) / 1e-6d; }
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace UnitsNet
         /// </summary>
         public double MilliradiansPerSecond
         {
-            get { return (_revolutionsPerSecond*6.2831853072) / 1e-3d; }
+            get { return (_radiansPerSecond) / 1e-3d; }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         public double NanoradiansPerSecond
         {
-            get { return (_revolutionsPerSecond*6.2831853072) / 1e-9d; }
+            get { return (_radiansPerSecond) / 1e-9d; }
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         /// </summary>
         public double RadiansPerSecond
         {
-            get { return _revolutionsPerSecond*6.2831853072; }
+            get { return _radiansPerSecond; }
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerMinute
         {
-            get { return _revolutionsPerSecond*60; }
+            get { return (_radiansPerSecond/6.2831853072)*60; }
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerSecond
         {
-            get { return _revolutionsPerSecond; }
+            get { return _radiansPerSecond/6.2831853072; }
         }
 
         #endregion
@@ -132,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond)
         {
-            return new RotationalSpeed((centiradianspersecond/6.2831853072) * 1e-2d);
+            return new RotationalSpeed((centiradianspersecond) * 1e-2d);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
         {
-            return new RotationalSpeed((deciradianspersecond/6.2831853072) * 1e-1d);
+            return new RotationalSpeed((deciradianspersecond) * 1e-1d);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
         {
-            return new RotationalSpeed((microradianspersecond/6.2831853072) * 1e-6d);
+            return new RotationalSpeed((microradianspersecond) * 1e-6d);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
         {
-            return new RotationalSpeed((milliradianspersecond/6.2831853072) * 1e-3d);
+            return new RotationalSpeed((milliradianspersecond) * 1e-3d);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond)
         {
-            return new RotationalSpeed((nanoradianspersecond/6.2831853072) * 1e-9d);
+            return new RotationalSpeed((nanoradianspersecond) * 1e-9d);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromRadiansPerSecond(double radianspersecond)
         {
-            return new RotationalSpeed(radianspersecond/6.2831853072);
+            return new RotationalSpeed(radianspersecond);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
         {
-            return new RotationalSpeed(revolutionsperminute/60);
+            return new RotationalSpeed((revolutionsperminute*6.2831853072)/60);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
         {
-            return new RotationalSpeed(revolutionspersecond);
+            return new RotationalSpeed(revolutionspersecond*6.2831853072);
         }
 
 
@@ -242,37 +242,37 @@ namespace UnitsNet
 
         public static RotationalSpeed operator -(RotationalSpeed right)
         {
-            return new RotationalSpeed(-right._revolutionsPerSecond);
+            return new RotationalSpeed(-right._radiansPerSecond);
         }
 
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond + right._revolutionsPerSecond);
+            return new RotationalSpeed(left._radiansPerSecond + right._radiansPerSecond);
         }
 
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond - right._revolutionsPerSecond);
+            return new RotationalSpeed(left._radiansPerSecond - right._radiansPerSecond);
         }
 
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left*right._revolutionsPerSecond);
+            return new RotationalSpeed(left*right._radiansPerSecond);
         }
 
         public static RotationalSpeed operator *(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond*(double)right);
+            return new RotationalSpeed(left._radiansPerSecond*(double)right);
         }
 
         public static RotationalSpeed operator /(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left._revolutionsPerSecond/(double)right);
+            return new RotationalSpeed(left._radiansPerSecond/(double)right);
         }
 
         public static double operator /(RotationalSpeed left, RotationalSpeed right)
         {
-            return Convert.ToDouble(left._revolutionsPerSecond/right._revolutionsPerSecond);
+            return Convert.ToDouble(left._radiansPerSecond/right._radiansPerSecond);
         }
 
         #endregion
@@ -288,39 +288,39 @@ namespace UnitsNet
 
         public int CompareTo(RotationalSpeed other)
         {
-            return _revolutionsPerSecond.CompareTo(other._revolutionsPerSecond);
+            return _radiansPerSecond.CompareTo(other._radiansPerSecond);
         }
 
         public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._revolutionsPerSecond <= right._revolutionsPerSecond;
+            return left._radiansPerSecond <= right._radiansPerSecond;
         }
 
         public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._revolutionsPerSecond >= right._revolutionsPerSecond;
+            return left._radiansPerSecond >= right._radiansPerSecond;
         }
 
         public static bool operator <(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._revolutionsPerSecond < right._revolutionsPerSecond;
+            return left._radiansPerSecond < right._radiansPerSecond;
         }
 
         public static bool operator >(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._revolutionsPerSecond > right._revolutionsPerSecond;
+            return left._radiansPerSecond > right._radiansPerSecond;
         }
 
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._revolutionsPerSecond == right._revolutionsPerSecond;
+            return left._radiansPerSecond == right._radiansPerSecond;
         }
 
         public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._revolutionsPerSecond != right._revolutionsPerSecond;
+            return left._radiansPerSecond != right._radiansPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -330,12 +330,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _revolutionsPerSecond.Equals(((RotationalSpeed) obj)._revolutionsPerSecond);
+            return _radiansPerSecond.Equals(((RotationalSpeed) obj)._radiansPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _revolutionsPerSecond.GetHashCode();
+            return _radiansPerSecond.GetHashCode();
         }
 
         #endregion
@@ -499,7 +499,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(RotationalSpeedUnit.RevolutionPerSecond);
+            return ToString(RotationalSpeedUnit.RadianPerSecond);
         }
 
         /// <summary>
