@@ -19,18 +19,19 @@
                 }
             ]
         },
-		{
-            "SingularName": "RadianPerSecond",
-            "PluralName": "RadiansPerSecond",
-            "FromUnitToBaseFunc": "x/6.2831853072",
-            "FromBaseToUnitFunc": "x*6.2831853072",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["rad/s"]
-                }
-            ]
-        },
+      {
+        "SingularName": "RadianPerSecond",
+        "PluralName": "RadiansPerSecond",
+        "FromUnitToBaseFunc": "x/6.2831853072",
+        "FromBaseToUnitFunc": "x*6.2831853072",
+        "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "rad/s" ]
+          }
+        ]
+      },
 		{
             "SingularName": "RevolutionPerMinute",
             "PluralName": "RevolutionsPerMinute",

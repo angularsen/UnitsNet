@@ -55,6 +55,46 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed in CentiradiansPerSecond.
+        /// </summary>
+        public double CentiradiansPerSecond
+        {
+            get { return (_revolutionsPerSecond*6.2831853072) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in DeciradiansPerSecond.
+        /// </summary>
+        public double DeciradiansPerSecond
+        {
+            get { return (_revolutionsPerSecond*6.2831853072) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in MicroradiansPerSecond.
+        /// </summary>
+        public double MicroradiansPerSecond
+        {
+            get { return (_revolutionsPerSecond*6.2831853072) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in MilliradiansPerSecond.
+        /// </summary>
+        public double MilliradiansPerSecond
+        {
+            get { return (_revolutionsPerSecond*6.2831853072) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in NanoradiansPerSecond.
+        /// </summary>
+        public double NanoradiansPerSecond
+        {
+            get { return (_revolutionsPerSecond*6.2831853072) / 1e-9d; }
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond
@@ -85,6 +125,46 @@ namespace UnitsNet
         public static RotationalSpeed Zero
         {
             get { return new RotationalSpeed(); }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from CentiradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond)
+        {
+            return new RotationalSpeed((centiradianspersecond/6.2831853072) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from DeciradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
+        {
+            return new RotationalSpeed((deciradianspersecond/6.2831853072) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from MicroradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
+        {
+            return new RotationalSpeed((microradianspersecond/6.2831853072) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from MilliradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
+        {
+            return new RotationalSpeed((milliradianspersecond/6.2831853072) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from NanoradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond)
+        {
+            return new RotationalSpeed((nanoradianspersecond/6.2831853072) * 1e-9d);
         }
 
         /// <summary>
@@ -122,6 +202,16 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case RotationalSpeedUnit.CentiradianPerSecond:
+                    return FromCentiradiansPerSecond(value);
+                case RotationalSpeedUnit.DeciradianPerSecond:
+                    return FromDeciradiansPerSecond(value);
+                case RotationalSpeedUnit.MicroradianPerSecond:
+                    return FromMicroradiansPerSecond(value);
+                case RotationalSpeedUnit.MilliradianPerSecond:
+                    return FromMilliradiansPerSecond(value);
+                case RotationalSpeedUnit.NanoradianPerSecond:
+                    return FromNanoradiansPerSecond(value);
                 case RotationalSpeedUnit.RadianPerSecond:
                     return FromRadiansPerSecond(value);
                 case RotationalSpeedUnit.RevolutionPerMinute:
@@ -261,6 +351,16 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case RotationalSpeedUnit.CentiradianPerSecond:
+                    return CentiradiansPerSecond;
+                case RotationalSpeedUnit.DeciradianPerSecond:
+                    return DeciradiansPerSecond;
+                case RotationalSpeedUnit.MicroradianPerSecond:
+                    return MicroradiansPerSecond;
+                case RotationalSpeedUnit.MilliradianPerSecond:
+                    return MilliradiansPerSecond;
+                case RotationalSpeedUnit.NanoradianPerSecond:
+                    return NanoradiansPerSecond;
                 case RotationalSpeedUnit.RadianPerSecond:
                     return RadiansPerSecond;
                 case RotationalSpeedUnit.RevolutionPerMinute:
