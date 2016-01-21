@@ -1352,6 +1352,31 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.CentiradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "crad/s"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.DeciradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "drad/s"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μrad/s"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mrad/s"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nrad/s"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RadianPerSecond,
                             new[]
                             {
