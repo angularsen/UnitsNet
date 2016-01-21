@@ -983,10 +983,50 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MassFlowUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) MassFlowUnit.CentigramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.DecagramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dag/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.DecigramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.GramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.HectogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hg/S"),
+                            }),
                         new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kg/s"),
+                                new AbbreviationsForCulture("en-US", "kg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MilligramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.NanogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ng/S"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.TonnePerDay,
                             new[]

@@ -32,7 +32,7 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     
+    ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
     public partial struct MassFlow : IComparable, IComparable<MassFlow>
@@ -40,18 +40,58 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of MassFlow.
         /// </summary>
-        private readonly double _kilogramsPerSecond;
+        private readonly double _gramsPerSecond;
 
-        public MassFlow(double kilogramspersecond) : this()
+        public MassFlow(double gramspersecond) : this()
         {
-            _kilogramsPerSecond = kilogramspersecond;
+            _gramsPerSecond = gramspersecond;
         }
 
         #region Properties
 
         public static MassFlowUnit BaseUnit
         {
-            get { return MassFlowUnit.KilogramPerSecond; }
+            get { return MassFlowUnit.GramPerSecond; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in CentigramsPerSecond.
+        /// </summary>
+        public double CentigramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in DecagramsPerSecond.
+        /// </summary>
+        public double DecagramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e1d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in DecigramsPerSecond.
+        /// </summary>
+        public double DecigramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in GramsPerSecond.
+        /// </summary>
+        public double GramsPerSecond
+        {
+            get { return _gramsPerSecond; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in HectogramsPerSecond.
+        /// </summary>
+        public double HectogramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e2d; }
         }
 
         /// <summary>
@@ -59,7 +99,31 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerSecond
         {
-            get { return _kilogramsPerSecond; }
+            get { return (_gramsPerSecond) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in MicrogramsPerSecond.
+        /// </summary>
+        public double MicrogramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in MilligramsPerSecond.
+        /// </summary>
+        public double MilligramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in NanogramsPerSecond.
+        /// </summary>
+        public double NanogramsPerSecond
+        {
+            get { return (_gramsPerSecond) / 1e-9d; }
         }
 
         /// <summary>
@@ -67,7 +131,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerDay
         {
-            get { return _kilogramsPerSecond*86.4000; }
+            get { return _gramsPerSecond*0.0864000; }
         }
 
         #endregion
@@ -80,11 +144,75 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow from CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
+        {
+            return new MassFlow((centigramspersecond) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
+        {
+            return new MassFlow((decagramspersecond) * 1e1d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
+        {
+            return new MassFlow((decigramspersecond) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from GramsPerSecond.
+        /// </summary>
+        public static MassFlow FromGramsPerSecond(double gramspersecond)
+        {
+            return new MassFlow(gramspersecond);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
+        {
+            return new MassFlow((hectogramspersecond) * 1e2d);
+        }
+
+        /// <summary>
         ///     Get MassFlow from KilogramsPerSecond.
         /// </summary>
         public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
         {
-            return new MassFlow(kilogramspersecond);
+            return new MassFlow((kilogramspersecond) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
+        {
+            return new MassFlow((microgramspersecond) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
+        {
+            return new MassFlow((milligramspersecond) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
+        {
+            return new MassFlow((nanogramspersecond) * 1e-9d);
         }
 
         /// <summary>
@@ -92,7 +220,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromTonnesPerDay(double tonnesperday)
         {
-            return new MassFlow(tonnesperday/86.4000);
+            return new MassFlow(tonnesperday/0.0864000);
         }
 
 
@@ -106,8 +234,24 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case MassFlowUnit.CentigramPerSecond:
+                    return FromCentigramsPerSecond(value);
+                case MassFlowUnit.DecagramPerSecond:
+                    return FromDecagramsPerSecond(value);
+                case MassFlowUnit.DecigramPerSecond:
+                    return FromDecigramsPerSecond(value);
+                case MassFlowUnit.GramPerSecond:
+                    return FromGramsPerSecond(value);
+                case MassFlowUnit.HectogramPerSecond:
+                    return FromHectogramsPerSecond(value);
                 case MassFlowUnit.KilogramPerSecond:
                     return FromKilogramsPerSecond(value);
+                case MassFlowUnit.MicrogramPerSecond:
+                    return FromMicrogramsPerSecond(value);
+                case MassFlowUnit.MilligramPerSecond:
+                    return FromMilligramsPerSecond(value);
+                case MassFlowUnit.NanogramPerSecond:
+                    return FromNanogramsPerSecond(value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value);
 
@@ -134,37 +278,37 @@ namespace UnitsNet
 
         public static MassFlow operator -(MassFlow right)
         {
-            return new MassFlow(-right._kilogramsPerSecond);
+            return new MassFlow(-right._gramsPerSecond);
         }
 
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._kilogramsPerSecond + right._kilogramsPerSecond);
+            return new MassFlow(left._gramsPerSecond + right._gramsPerSecond);
         }
 
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._kilogramsPerSecond - right._kilogramsPerSecond);
+            return new MassFlow(left._gramsPerSecond - right._gramsPerSecond);
         }
 
         public static MassFlow operator *(double left, MassFlow right)
         {
-            return new MassFlow(left*right._kilogramsPerSecond);
+            return new MassFlow(left*right._gramsPerSecond);
         }
 
         public static MassFlow operator *(MassFlow left, double right)
         {
-            return new MassFlow(left._kilogramsPerSecond*(double)right);
+            return new MassFlow(left._gramsPerSecond*(double)right);
         }
 
         public static MassFlow operator /(MassFlow left, double right)
         {
-            return new MassFlow(left._kilogramsPerSecond/(double)right);
+            return new MassFlow(left._gramsPerSecond/(double)right);
         }
 
         public static double operator /(MassFlow left, MassFlow right)
         {
-            return Convert.ToDouble(left._kilogramsPerSecond/right._kilogramsPerSecond);
+            return Convert.ToDouble(left._gramsPerSecond/right._gramsPerSecond);
         }
 
         #endregion
@@ -180,39 +324,39 @@ namespace UnitsNet
 
         public int CompareTo(MassFlow other)
         {
-            return _kilogramsPerSecond.CompareTo(other._kilogramsPerSecond);
+            return _gramsPerSecond.CompareTo(other._gramsPerSecond);
         }
 
         public static bool operator <=(MassFlow left, MassFlow right)
         {
-            return left._kilogramsPerSecond <= right._kilogramsPerSecond;
+            return left._gramsPerSecond <= right._gramsPerSecond;
         }
 
         public static bool operator >=(MassFlow left, MassFlow right)
         {
-            return left._kilogramsPerSecond >= right._kilogramsPerSecond;
+            return left._gramsPerSecond >= right._gramsPerSecond;
         }
 
         public static bool operator <(MassFlow left, MassFlow right)
         {
-            return left._kilogramsPerSecond < right._kilogramsPerSecond;
+            return left._gramsPerSecond < right._gramsPerSecond;
         }
 
         public static bool operator >(MassFlow left, MassFlow right)
         {
-            return left._kilogramsPerSecond > right._kilogramsPerSecond;
+            return left._gramsPerSecond > right._gramsPerSecond;
         }
 
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSecond == right._kilogramsPerSecond;
+            return left._gramsPerSecond == right._gramsPerSecond;
         }
 
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSecond != right._kilogramsPerSecond;
+            return left._gramsPerSecond != right._gramsPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -222,12 +366,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramsPerSecond.Equals(((MassFlow) obj)._kilogramsPerSecond);
+            return _gramsPerSecond.Equals(((MassFlow) obj)._gramsPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _kilogramsPerSecond.GetHashCode();
+            return _gramsPerSecond.GetHashCode();
         }
 
         #endregion
@@ -243,8 +387,24 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case MassFlowUnit.CentigramPerSecond:
+                    return CentigramsPerSecond;
+                case MassFlowUnit.DecagramPerSecond:
+                    return DecagramsPerSecond;
+                case MassFlowUnit.DecigramPerSecond:
+                    return DecigramsPerSecond;
+                case MassFlowUnit.GramPerSecond:
+                    return GramsPerSecond;
+                case MassFlowUnit.HectogramPerSecond:
+                    return HectogramsPerSecond;
                 case MassFlowUnit.KilogramPerSecond:
                     return KilogramsPerSecond;
+                case MassFlowUnit.MicrogramPerSecond:
+                    return MicrogramsPerSecond;
+                case MassFlowUnit.MilligramPerSecond:
+                    return MilligramsPerSecond;
+                case MassFlowUnit.NanogramPerSecond:
+                    return NanogramsPerSecond;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
 
@@ -379,7 +539,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowUnit.KilogramPerSecond);
+            return ToString(MassFlowUnit.GramPerSecond);
         }
 
         /// <summary>
