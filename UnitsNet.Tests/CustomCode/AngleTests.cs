@@ -25,6 +25,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
+
         protected override double DegreesInOneDegree
         {
             get { return 1; }
@@ -48,6 +49,31 @@ namespace UnitsNet.Tests.CustomCode
             get { return Math.PI/2/90; }
         }
 
+        protected override double NanoradiansInOneDegree
+        {
+            get { return (Math.PI / 2 / 90) * 1E9; }
+        }
+
+        protected override double MicroradiansInOneDegree
+        {
+            get { return (Math.PI / 2 / 90) * 1E6; }
+        }
+
+        protected override double MilliradiansInOneDegree
+        {
+            get { return (Math.PI / 2 / 90) * 1E3; }
+        }
+
+        protected override double CentiradiansInOneDegree
+        {
+            get { return (Math.PI / 2 / 90) * 1E2; }
+        }
+
+        protected override double DeciradiansInOneDegree
+        {
+            get { return (Math.PI / 2 / 90) * 1E1; }
+        }
+
         protected override double ArcsecondsInOneDegree
         {
             get
@@ -55,5 +81,6 @@ namespace UnitsNet.Tests.CustomCode
                 return 3600.0;
             }
         }
+
     }
 }

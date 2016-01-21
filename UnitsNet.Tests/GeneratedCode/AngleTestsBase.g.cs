@@ -38,15 +38,25 @@ namespace UnitsNet.Tests
     {
         protected abstract double ArcminutesInOneDegree { get; }
         protected abstract double ArcsecondsInOneDegree { get; }
+        protected abstract double CentiradiansInOneDegree { get; }
+        protected abstract double DeciradiansInOneDegree { get; }
         protected abstract double DegreesInOneDegree { get; }
         protected abstract double GradiansInOneDegree { get; }
+        protected abstract double MicroradiansInOneDegree { get; }
+        protected abstract double MilliradiansInOneDegree { get; }
+        protected abstract double NanoradiansInOneDegree { get; }
         protected abstract double RadiansInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double ArcminutesTolerance { get { return 1e-5; } }
         protected virtual double ArcsecondsTolerance { get { return 1e-5; } }
+        protected virtual double CentiradiansTolerance { get { return 1e-5; } }
+        protected virtual double DeciradiansTolerance { get { return 1e-5; } }
         protected virtual double DegreesTolerance { get { return 1e-5; } }
         protected virtual double GradiansTolerance { get { return 1e-5; } }
+        protected virtual double MicroradiansTolerance { get { return 1e-5; } }
+        protected virtual double MilliradiansTolerance { get { return 1e-5; } }
+        protected virtual double NanoradiansTolerance { get { return 1e-5; } }
         protected virtual double RadiansTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -56,8 +66,13 @@ namespace UnitsNet.Tests
             Angle degree = Angle.FromDegrees(1);
             Assert.AreEqual(ArcminutesInOneDegree, degree.Arcminutes, ArcminutesTolerance);
             Assert.AreEqual(ArcsecondsInOneDegree, degree.Arcseconds, ArcsecondsTolerance);
+            Assert.AreEqual(CentiradiansInOneDegree, degree.Centiradians, CentiradiansTolerance);
+            Assert.AreEqual(DeciradiansInOneDegree, degree.Deciradians, DeciradiansTolerance);
             Assert.AreEqual(DegreesInOneDegree, degree.Degrees, DegreesTolerance);
             Assert.AreEqual(GradiansInOneDegree, degree.Gradians, GradiansTolerance);
+            Assert.AreEqual(MicroradiansInOneDegree, degree.Microradians, MicroradiansTolerance);
+            Assert.AreEqual(MilliradiansInOneDegree, degree.Milliradians, MilliradiansTolerance);
+            Assert.AreEqual(NanoradiansInOneDegree, degree.Nanoradians, NanoradiansTolerance);
             Assert.AreEqual(RadiansInOneDegree, degree.Radians, RadiansTolerance);
         }
 
@@ -66,8 +81,13 @@ namespace UnitsNet.Tests
         {
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Arcminute).Arcminutes, ArcminutesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Arcsecond).Arcseconds, ArcsecondsTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Centiradian).Centiradians, CentiradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Deciradian).Deciradians, DeciradiansTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Degree).Degrees, DegreesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Gradian).Gradians, GradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Microradian).Microradians, MicroradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Milliradian).Milliradians, MilliradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Nanoradian).Nanoradians, NanoradiansTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Radian).Radians, RadiansTolerance);
         }
 
@@ -77,8 +97,13 @@ namespace UnitsNet.Tests
             var degree = Angle.FromDegrees(1);
             Assert.AreEqual(ArcminutesInOneDegree, degree.As(AngleUnit.Arcminute), ArcminutesTolerance);
             Assert.AreEqual(ArcsecondsInOneDegree, degree.As(AngleUnit.Arcsecond), ArcsecondsTolerance);
+            Assert.AreEqual(CentiradiansInOneDegree, degree.As(AngleUnit.Centiradian), CentiradiansTolerance);
+            Assert.AreEqual(DeciradiansInOneDegree, degree.As(AngleUnit.Deciradian), DeciradiansTolerance);
             Assert.AreEqual(DegreesInOneDegree, degree.As(AngleUnit.Degree), DegreesTolerance);
             Assert.AreEqual(GradiansInOneDegree, degree.As(AngleUnit.Gradian), GradiansTolerance);
+            Assert.AreEqual(MicroradiansInOneDegree, degree.As(AngleUnit.Microradian), MicroradiansTolerance);
+            Assert.AreEqual(MilliradiansInOneDegree, degree.As(AngleUnit.Milliradian), MilliradiansTolerance);
+            Assert.AreEqual(NanoradiansInOneDegree, degree.As(AngleUnit.Nanoradian), NanoradiansTolerance);
             Assert.AreEqual(RadiansInOneDegree, degree.As(AngleUnit.Radian), RadiansTolerance);
         }
 
@@ -88,8 +113,13 @@ namespace UnitsNet.Tests
             Angle degree = Angle.FromDegrees(1);
             Assert.AreEqual(1, Angle.FromArcminutes(degree.Arcminutes).Degrees, ArcminutesTolerance);
             Assert.AreEqual(1, Angle.FromArcseconds(degree.Arcseconds).Degrees, ArcsecondsTolerance);
+            Assert.AreEqual(1, Angle.FromCentiradians(degree.Centiradians).Degrees, CentiradiansTolerance);
+            Assert.AreEqual(1, Angle.FromDeciradians(degree.Deciradians).Degrees, DeciradiansTolerance);
             Assert.AreEqual(1, Angle.FromDegrees(degree.Degrees).Degrees, DegreesTolerance);
             Assert.AreEqual(1, Angle.FromGradians(degree.Gradians).Degrees, GradiansTolerance);
+            Assert.AreEqual(1, Angle.FromMicroradians(degree.Microradians).Degrees, MicroradiansTolerance);
+            Assert.AreEqual(1, Angle.FromMilliradians(degree.Milliradians).Degrees, MilliradiansTolerance);
+            Assert.AreEqual(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
             Assert.AreEqual(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
         }
 

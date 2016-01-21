@@ -105,6 +105,18 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "″", "arcsec", "asec", "sec"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Centiradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "crad"),
+                                new AbbreviationsForCulture("ru-RU", "cрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Deciradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "drad"),
+                                new AbbreviationsForCulture("ru-RU", "dрад"),
+                            }),
                         new CulturesForEnumValue((int) AngleUnit.Degree,
                             new[]
                             {
@@ -116,6 +128,24 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "g"),
                                 new AbbreviationsForCulture("ru-RU", "g"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Microradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μrad"),
+                                new AbbreviationsForCulture("ru-RU", "μрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Milliradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mrad"),
+                                new AbbreviationsForCulture("ru-RU", "mрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Nanoradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nrad"),
+                                new AbbreviationsForCulture("ru-RU", "nрад"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Radian,
                             new[]
