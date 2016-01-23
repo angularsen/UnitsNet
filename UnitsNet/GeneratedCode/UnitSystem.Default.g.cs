@@ -1422,10 +1422,41 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.CentiradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "crad/s"),
+                                new AbbreviationsForCulture("ru-RU", "cрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.DeciradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "drad/s"),
+                                new AbbreviationsForCulture("ru-RU", "dрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "μрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "mрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "nрад/с"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RadianPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "rad/s"),
+                                new AbbreviationsForCulture("ru-RU", "рад/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RevolutionPerMinute,
                             new[]
