@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct Frequency : IComparable, IComparable<Frequency>
     {
         /// <summary>
         ///     Base unit of Frequency.
         /// </summary>
+		[DataMember]
         private readonly double _hertz;
 
         public Frequency(double hertz) : this()

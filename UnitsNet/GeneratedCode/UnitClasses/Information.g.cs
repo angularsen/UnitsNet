@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct Information : IComparable, IComparable<Information>
     {
         /// <summary>
         ///     Base unit of Information.
         /// </summary>
+		[DataMember]
         private readonly decimal _bits;
 
         public Information(decimal bits) : this()

@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct Torque : IComparable, IComparable<Torque>
     {
         /// <summary>
         ///     Base unit of Torque.
         /// </summary>
+		[DataMember]
         private readonly double _newtonMeters;
 
         public Torque(double newtonmeters) : this()

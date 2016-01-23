@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct Area : IComparable, IComparable<Area>
     {
         /// <summary>
         ///     Base unit of Area.
         /// </summary>
+		[DataMember]
         private readonly double _squareMeters;
 
         public Area(double squaremeters) : this()

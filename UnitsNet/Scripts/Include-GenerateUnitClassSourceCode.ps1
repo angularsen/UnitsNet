@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -48,11 +49,13 @@ namespace UnitsNet
     ///     $($unitClass.XmlDoc)
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct $className : IComparable, IComparable<$className>
     {
         /// <summary>
         ///     Base unit of $className.
         /// </summary>
+		[DataMember]
         private readonly $baseType $baseUnitFieldName;
 
         public $className($baseType $baseUnitPluralNameLower) : this()

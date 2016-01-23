@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -35,11 +36,13 @@ namespace UnitsNet
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+	[DataContract]
     public partial struct ElectricResistance : IComparable, IComparable<ElectricResistance>
     {
         /// <summary>
         ///     Base unit of ElectricResistance.
         /// </summary>
+		[DataMember]
         private readonly double _ohms;
 
         public ElectricResistance(double ohms) : this()
