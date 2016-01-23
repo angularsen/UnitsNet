@@ -3,22 +3,23 @@
     "BaseUnit": "Degree",
     "XmlDoc": "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
     "Units": [
-        {
-            "SingularName": "Radian",
-            "PluralName": "Radians",
-            "FromUnitToBaseFunc": "x*180/Math.PI",
-            "FromBaseToUnitFunc": "x/180*Math.PI",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["rad"]
-                },
-                {
-                    "Culture": "ru-RU",
-                    "Abbreviations": ["рад"]
-                }
-            ]
-        },
+      {
+        "SingularName": "Radian",
+        "PluralName": "Radians",
+        "FromUnitToBaseFunc": "x*180/Math.PI",
+        "FromBaseToUnitFunc": "x/180*Math.PI",
+        "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "rad" ]
+          },
+          {
+            "Culture": "ru-RU",
+            "Abbreviations": [ "рад" ]
+          }
+        ]
+      },
         {
             "SingularName": "Degree",
             "PluralName": "Degrees",
