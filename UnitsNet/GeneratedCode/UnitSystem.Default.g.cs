@@ -575,6 +575,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "тс"),
                             }),
                     }),
+                new UnitLocalization(typeof (ForceChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
