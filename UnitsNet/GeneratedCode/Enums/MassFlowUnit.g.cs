@@ -25,7 +25,15 @@ namespace UnitsNet.Units
     public enum MassFlowUnit
     {
         Undefined = 0,
+        CentigramPerSecond,
+        DecagramPerSecond,
+        DecigramPerSecond,
+        GramPerSecond,
+        HectogramPerSecond,
         KilogramPerSecond,
+        MicrogramPerSecond,
+        MilligramPerSecond,
+        NanogramPerSecond,
         TonnePerDay,
     }
 }
