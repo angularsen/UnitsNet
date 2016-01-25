@@ -19,51 +19,56 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class RotationalSpeedTests : RotationalSpeedTestsBase
+    public class TemperatureChangeRateTests : TemperatureChangeRateTestsBase
     {
-
-        protected override double RadiansPerSecondInOneRadianPerSecond
+        protected override double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1; }
         }
 
-        protected override double DeciradiansPerSecondInOneRadianPerSecond
+        protected override double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
+        {
+            get { return 1E-1; }
+        }
+
+        protected override double HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
+        {
+            get { return 1E-2; }
+        }
+
+        protected override double KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
+        {
+            get { return 1E-3; }
+        }
+
+        protected override double DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1E1; }
         }
 
-        protected override double CentiradiansPerSecondInOneRadianPerSecond
+        protected override double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1E2; }
         }
 
-        protected override double MilliradiansPerSecondInOneRadianPerSecond
+        protected override double MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1E3; }
         }
 
-        protected override double MicroradiansPerSecondInOneRadianPerSecond
+        protected override double MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1E6; }
         }
 
-        protected override double NanoradiansPerSecondInOneRadianPerSecond
+        protected override double NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond
         {
             get { return 1E9; }
-        }
-
-        protected override double RevolutionsPerMinuteInOneRadianPerSecond
-        {
-            get { return (60*1) / (2 * Math.PI); }
-        }
-
-        protected override double RevolutionsPerSecondInOneRadianPerSecond
-        {
-            get { return 1/(2*Math.PI); }
         }
     }
 }

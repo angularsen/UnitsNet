@@ -105,6 +105,18 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "″", "arcsec", "asec", "sec"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Centiradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "crad"),
+                                new AbbreviationsForCulture("ru-RU", "cрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Deciradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "drad"),
+                                new AbbreviationsForCulture("ru-RU", "dрад"),
+                            }),
                         new CulturesForEnumValue((int) AngleUnit.Degree,
                             new[]
                             {
@@ -116,6 +128,24 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "g"),
                                 new AbbreviationsForCulture("ru-RU", "g"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Microradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μrad"),
+                                new AbbreviationsForCulture("ru-RU", "μрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Milliradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mrad"),
+                                new AbbreviationsForCulture("ru-RU", "mрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Nanoradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nrad"),
+                                new AbbreviationsForCulture("ru-RU", "nрад"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Radian,
                             new[]
@@ -543,6 +573,15 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "Ton"),
                                 new AbbreviationsForCulture("ru-RU", "тс"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ForceChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (FrequencyUnit),
@@ -983,10 +1022,50 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MassFlowUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) MassFlowUnit.CentigramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.DecagramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dag/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.DecigramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.GramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.HectogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hg/S"),
+                            }),
                         new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kg/s"),
+                                new AbbreviationsForCulture("en-US", "kg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MilligramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.NanogramPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ng/S"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.TonnePerDay,
                             new[]
@@ -1352,10 +1431,41 @@ namespace UnitsNet
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.CentiradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "crad/s"),
+                                new AbbreviationsForCulture("ru-RU", "cрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.DeciradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "drad/s"),
+                                new AbbreviationsForCulture("ru-RU", "dрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "μрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "mрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "nрад/с"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RadianPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "rad/s"),
+                                new AbbreviationsForCulture("ru-RU", "рад/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.RevolutionPerMinute,
                             new[]
@@ -1604,6 +1714,55 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "K"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (TemperatureChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "c°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "da°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "d°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "h°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "k°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μ°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m°C/s"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "n°C/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (TorqueUnit),

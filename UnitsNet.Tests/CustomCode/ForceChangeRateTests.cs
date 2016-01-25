@@ -19,21 +19,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    public enum MassFlowUnit
+    public class ForceChangeRateTests : ForceChangeRateTestsBase
     {
-        Undefined = 0,
-        CentigramPerSecond,
-        DecagramPerSecond,
-        DecigramPerSecond,
-        GramPerSecond,
-        HectogramPerSecond,
-        KilogramPerSecond,
-        MicrogramPerSecond,
-        MilligramPerSecond,
-        NanogramPerSecond,
-        TonnePerDay,
+        // TODO Override properties in base class here
+        protected override double NewtonsPerSecondInOneNewtonPerSecond
+        {
+            get { return 1; }
+        }
     }
 }

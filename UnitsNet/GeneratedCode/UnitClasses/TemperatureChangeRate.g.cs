@@ -32,228 +32,210 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
+    ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial struct MassFlow : IComparable, IComparable<MassFlow>
+    public partial struct TemperatureChangeRate : IComparable, IComparable<TemperatureChangeRate>
     {
         /// <summary>
-        ///     Base unit of MassFlow.
+        ///     Base unit of TemperatureChangeRate.
         /// </summary>
-        private readonly double _gramsPerSecond;
+        private readonly double _degreesCelsiusPerSecond;
 
-        public MassFlow(double gramspersecond) : this()
+        public TemperatureChangeRate(double degreescelsiuspersecond) : this()
         {
-            _gramsPerSecond = gramspersecond;
+            _degreesCelsiusPerSecond = degreescelsiuspersecond;
         }
 
         #region Properties
 
-        public static MassFlowUnit BaseUnit
+        public static TemperatureChangeRateUnit BaseUnit
         {
-            get { return MassFlowUnit.GramPerSecond; }
+            get { return TemperatureChangeRateUnit.DegreeCelsiusPerSecond; }
         }
 
         /// <summary>
-        ///     Get MassFlow in CentigramsPerSecond.
+        ///     Get TemperatureChangeRate in CentidegreesCelsiusPerSecond.
         /// </summary>
-        public double CentigramsPerSecond
+        public double CentidegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e-2d; }
+            get { return (_degreesCelsiusPerSecond) / 1e-2d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in DecagramsPerSecond.
+        ///     Get TemperatureChangeRate in DecadegreesCelsiusPerSecond.
         /// </summary>
-        public double DecagramsPerSecond
+        public double DecadegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e1d; }
+            get { return (_degreesCelsiusPerSecond) / 1e1d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in DecigramsPerSecond.
+        ///     Get TemperatureChangeRate in DecidegreesCelsiusPerSecond.
         /// </summary>
-        public double DecigramsPerSecond
+        public double DecidegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e-1d; }
+            get { return (_degreesCelsiusPerSecond) / 1e-1d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in GramsPerSecond.
+        ///     Get TemperatureChangeRate in DegreesCelsiusPerSecond.
         /// </summary>
-        public double GramsPerSecond
+        public double DegreesCelsiusPerSecond
         {
-            get { return _gramsPerSecond; }
+            get { return _degreesCelsiusPerSecond; }
         }
 
         /// <summary>
-        ///     Get MassFlow in HectogramsPerSecond.
+        ///     Get TemperatureChangeRate in HectodegreesCelsiusPerSecond.
         /// </summary>
-        public double HectogramsPerSecond
+        public double HectodegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e2d; }
+            get { return (_degreesCelsiusPerSecond) / 1e2d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in KilogramsPerSecond.
+        ///     Get TemperatureChangeRate in KilodegreesCelsiusPerSecond.
         /// </summary>
-        public double KilogramsPerSecond
+        public double KilodegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e3d; }
+            get { return (_degreesCelsiusPerSecond) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in MicrogramsPerSecond.
+        ///     Get TemperatureChangeRate in MicrodegreesCelsiusPerSecond.
         /// </summary>
-        public double MicrogramsPerSecond
+        public double MicrodegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e-6d; }
+            get { return (_degreesCelsiusPerSecond) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in MilligramsPerSecond.
+        ///     Get TemperatureChangeRate in MillidegreesCelsiusPerSecond.
         /// </summary>
-        public double MilligramsPerSecond
+        public double MillidegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e-3d; }
+            get { return (_degreesCelsiusPerSecond) / 1e-3d; }
         }
 
         /// <summary>
-        ///     Get MassFlow in NanogramsPerSecond.
+        ///     Get TemperatureChangeRate in NanodegreesCelsiusPerSecond.
         /// </summary>
-        public double NanogramsPerSecond
+        public double NanodegreesCelsiusPerSecond
         {
-            get { return (_gramsPerSecond) / 1e-9d; }
-        }
-
-        /// <summary>
-        ///     Get MassFlow in TonnesPerDay.
-        /// </summary>
-        public double TonnesPerDay
-        {
-            get { return _gramsPerSecond*0.0864000; }
+            get { return (_degreesCelsiusPerSecond) / 1e-9d; }
         }
 
         #endregion
 
         #region Static 
 
-        public static MassFlow Zero
+        public static TemperatureChangeRate Zero
         {
-            get { return new MassFlow(); }
+            get { return new TemperatureChangeRate(); }
         }
 
         /// <summary>
-        ///     Get MassFlow from CentigramsPerSecond.
+        ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
+        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double centidegreescelsiuspersecond)
         {
-            return new MassFlow((centigramspersecond) * 1e-2d);
+            return new TemperatureChangeRate((centidegreescelsiuspersecond) * 1e-2d);
         }
 
         /// <summary>
-        ///     Get MassFlow from DecagramsPerSecond.
+        ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
+        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double decadegreescelsiuspersecond)
         {
-            return new MassFlow((decagramspersecond) * 1e1d);
+            return new TemperatureChangeRate((decadegreescelsiuspersecond) * 1e1d);
         }
 
         /// <summary>
-        ///     Get MassFlow from DecigramsPerSecond.
+        ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
+        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
         {
-            return new MassFlow((decigramspersecond) * 1e-1d);
+            return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
         }
 
         /// <summary>
-        ///     Get MassFlow from GramsPerSecond.
+        ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromGramsPerSecond(double gramspersecond)
+        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double degreescelsiuspersecond)
         {
-            return new MassFlow(gramspersecond);
+            return new TemperatureChangeRate(degreescelsiuspersecond);
         }
 
         /// <summary>
-        ///     Get MassFlow from HectogramsPerSecond.
+        ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
+        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double hectodegreescelsiuspersecond)
         {
-            return new MassFlow((hectogramspersecond) * 1e2d);
+            return new TemperatureChangeRate((hectodegreescelsiuspersecond) * 1e2d);
         }
 
         /// <summary>
-        ///     Get MassFlow from KilogramsPerSecond.
+        ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
+        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double kilodegreescelsiuspersecond)
         {
-            return new MassFlow((kilogramspersecond) * 1e3d);
+            return new TemperatureChangeRate((kilodegreescelsiuspersecond) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MassFlow from MicrogramsPerSecond.
+        ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
+        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double microdegreescelsiuspersecond)
         {
-            return new MassFlow((microgramspersecond) * 1e-6d);
+            return new TemperatureChangeRate((microdegreescelsiuspersecond) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get MassFlow from MilligramsPerSecond.
+        ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
+        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double millidegreescelsiuspersecond)
         {
-            return new MassFlow((milligramspersecond) * 1e-3d);
+            return new TemperatureChangeRate((millidegreescelsiuspersecond) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get MassFlow from NanogramsPerSecond.
+        ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
         /// </summary>
-        public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
+        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double nanodegreescelsiuspersecond)
         {
-            return new MassFlow((nanogramspersecond) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get MassFlow from TonnesPerDay.
-        /// </summary>
-        public static MassFlow FromTonnesPerDay(double tonnesperday)
-        {
-            return new MassFlow(tonnesperday/0.0864000);
+            return new TemperatureChangeRate((nanodegreescelsiuspersecond) * 1e-9d);
         }
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassFlow unit value.</returns>
-        public static MassFlow From(double value, MassFlowUnit fromUnit)
+        /// <returns>TemperatureChangeRate unit value.</returns>
+        public static TemperatureChangeRate From(double value, TemperatureChangeRateUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case MassFlowUnit.CentigramPerSecond:
-                    return FromCentigramsPerSecond(value);
-                case MassFlowUnit.DecagramPerSecond:
-                    return FromDecagramsPerSecond(value);
-                case MassFlowUnit.DecigramPerSecond:
-                    return FromDecigramsPerSecond(value);
-                case MassFlowUnit.GramPerSecond:
-                    return FromGramsPerSecond(value);
-                case MassFlowUnit.HectogramPerSecond:
-                    return FromHectogramsPerSecond(value);
-                case MassFlowUnit.KilogramPerSecond:
-                    return FromKilogramsPerSecond(value);
-                case MassFlowUnit.MicrogramPerSecond:
-                    return FromMicrogramsPerSecond(value);
-                case MassFlowUnit.MilligramPerSecond:
-                    return FromMilligramsPerSecond(value);
-                case MassFlowUnit.NanogramPerSecond:
-                    return FromNanogramsPerSecond(value);
-                case MassFlowUnit.TonnePerDay:
-                    return FromTonnesPerDay(value);
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
+                    return FromCentidegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
+                    return FromDecadegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
+                    return FromDecidegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
+                    return FromDegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
+                    return FromHectodegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
+                    return FromKilodegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
+                    return FromMicrodegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
+                    return FromMillidegreesCelsiusPerSecond(value);
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
+                    return FromNanodegreesCelsiusPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -267,7 +249,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MassFlowUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(TemperatureChangeRateUnit unit, CultureInfo culture = null)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -276,39 +258,39 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
-        public static MassFlow operator -(MassFlow right)
+        public static TemperatureChangeRate operator -(TemperatureChangeRate right)
         {
-            return new MassFlow(-right._gramsPerSecond);
+            return new TemperatureChangeRate(-right._degreesCelsiusPerSecond);
         }
 
-        public static MassFlow operator +(MassFlow left, MassFlow right)
+        public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new MassFlow(left._gramsPerSecond + right._gramsPerSecond);
+            return new TemperatureChangeRate(left._degreesCelsiusPerSecond + right._degreesCelsiusPerSecond);
         }
 
-        public static MassFlow operator -(MassFlow left, MassFlow right)
+        public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new MassFlow(left._gramsPerSecond - right._gramsPerSecond);
+            return new TemperatureChangeRate(left._degreesCelsiusPerSecond - right._degreesCelsiusPerSecond);
         }
 
-        public static MassFlow operator *(double left, MassFlow right)
+        public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
         {
-            return new MassFlow(left*right._gramsPerSecond);
+            return new TemperatureChangeRate(left*right._degreesCelsiusPerSecond);
         }
 
-        public static MassFlow operator *(MassFlow left, double right)
+        public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
         {
-            return new MassFlow(left._gramsPerSecond*(double)right);
+            return new TemperatureChangeRate(left._degreesCelsiusPerSecond*(double)right);
         }
 
-        public static MassFlow operator /(MassFlow left, double right)
+        public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
         {
-            return new MassFlow(left._gramsPerSecond/(double)right);
+            return new TemperatureChangeRate(left._degreesCelsiusPerSecond/(double)right);
         }
 
-        public static double operator /(MassFlow left, MassFlow right)
+        public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return Convert.ToDouble(left._gramsPerSecond/right._gramsPerSecond);
+            return Convert.ToDouble(left._degreesCelsiusPerSecond/right._degreesCelsiusPerSecond);
         }
 
         #endregion
@@ -318,45 +300,45 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is MassFlow)) throw new ArgumentException("Expected type MassFlow.", "obj");
-            return CompareTo((MassFlow) obj);
+            if (!(obj is TemperatureChangeRate)) throw new ArgumentException("Expected type TemperatureChangeRate.", "obj");
+            return CompareTo((TemperatureChangeRate) obj);
         }
 
-        public int CompareTo(MassFlow other)
+        public int CompareTo(TemperatureChangeRate other)
         {
-            return _gramsPerSecond.CompareTo(other._gramsPerSecond);
+            return _degreesCelsiusPerSecond.CompareTo(other._degreesCelsiusPerSecond);
         }
 
-        public static bool operator <=(MassFlow left, MassFlow right)
+        public static bool operator <=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._gramsPerSecond <= right._gramsPerSecond;
+            return left._degreesCelsiusPerSecond <= right._degreesCelsiusPerSecond;
         }
 
-        public static bool operator >=(MassFlow left, MassFlow right)
+        public static bool operator >=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._gramsPerSecond >= right._gramsPerSecond;
+            return left._degreesCelsiusPerSecond >= right._degreesCelsiusPerSecond;
         }
 
-        public static bool operator <(MassFlow left, MassFlow right)
+        public static bool operator <(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._gramsPerSecond < right._gramsPerSecond;
+            return left._degreesCelsiusPerSecond < right._degreesCelsiusPerSecond;
         }
 
-        public static bool operator >(MassFlow left, MassFlow right)
+        public static bool operator >(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._gramsPerSecond > right._gramsPerSecond;
+            return left._degreesCelsiusPerSecond > right._degreesCelsiusPerSecond;
         }
 
-        public static bool operator ==(MassFlow left, MassFlow right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._gramsPerSecond == right._gramsPerSecond;
-        }
-
-        public static bool operator !=(MassFlow left, MassFlow right)
+        public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._gramsPerSecond != right._gramsPerSecond;
+            return left._degreesCelsiusPerSecond == right._degreesCelsiusPerSecond;
+        }
+
+        public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._degreesCelsiusPerSecond != right._degreesCelsiusPerSecond;
         }
 
         public override bool Equals(object obj)
@@ -366,12 +348,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _gramsPerSecond.Equals(((MassFlow) obj)._gramsPerSecond);
+            return _degreesCelsiusPerSecond.Equals(((TemperatureChangeRate) obj)._degreesCelsiusPerSecond);
         }
 
         public override int GetHashCode()
         {
-            return _gramsPerSecond.GetHashCode();
+            return _degreesCelsiusPerSecond.GetHashCode();
         }
 
         #endregion
@@ -383,30 +365,28 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(MassFlowUnit unit)
+        public double As(TemperatureChangeRateUnit unit)
         {
             switch (unit)
             {
-                case MassFlowUnit.CentigramPerSecond:
-                    return CentigramsPerSecond;
-                case MassFlowUnit.DecagramPerSecond:
-                    return DecagramsPerSecond;
-                case MassFlowUnit.DecigramPerSecond:
-                    return DecigramsPerSecond;
-                case MassFlowUnit.GramPerSecond:
-                    return GramsPerSecond;
-                case MassFlowUnit.HectogramPerSecond:
-                    return HectogramsPerSecond;
-                case MassFlowUnit.KilogramPerSecond:
-                    return KilogramsPerSecond;
-                case MassFlowUnit.MicrogramPerSecond:
-                    return MicrogramsPerSecond;
-                case MassFlowUnit.MilligramPerSecond:
-                    return MilligramsPerSecond;
-                case MassFlowUnit.NanogramPerSecond:
-                    return NanogramsPerSecond;
-                case MassFlowUnit.TonnePerDay:
-                    return TonnesPerDay;
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
+                    return CentidegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
+                    return DecadegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
+                    return DecidegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
+                    return DegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
+                    return HectodegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
+                    return KilodegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
+                    return MicrodegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
+                    return MillidegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
+                    return NanodegreesCelsiusPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -428,7 +408,7 @@ namespace UnitsNet
         ///     Expected string to have one or two pairs of quantity and unit in the format
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
-        public static MassFlow Parse(string str, IFormatProvider formatProvider = null)
+        public static TemperatureChangeRate Parse(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -462,11 +442,11 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<MassFlow> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
+        private static List<TemperatureChangeRate> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<MassFlow>();
+            var converted = new List<TemperatureChangeRate>();
 
             foreach (Match match in matches)
             {
@@ -487,7 +467,7 @@ namespace UnitsNet
 
                 try
                 {
-                    MassFlowUnit unit = ParseUnit(unitString, formatProvider);
+                    TemperatureChangeRateUnit unit = ParseUnit(unitString, formatProvider);
                     double value = double.Parse(valueString, formatProvider);
 
                     converted.Add(From(value, unit));
@@ -513,16 +493,16 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFlowUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static TemperatureChangeRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
             var unitSystem = UnitSystem.GetCached(formatProvider);
 
-            var unit = unitSystem.Parse<MassFlowUnit>(str.Trim());
+            var unit = unitSystem.Parse<TemperatureChangeRateUnit>(str.Trim());
 
-            if (unit == MassFlowUnit.Undefined)
+            if (unit == TemperatureChangeRateUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MassFlowUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized TemperatureChangeRateUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
                 throw newEx;
@@ -539,7 +519,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowUnit.GramPerSecond);
+            return ToString(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
 
         /// <summary>
@@ -550,7 +530,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(TemperatureChangeRateUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
         {
             return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
         }
@@ -564,7 +544,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(TemperatureChangeRateUnit unit, CultureInfo culture, string format, params object[] args)
         {
             return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
         }
