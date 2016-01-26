@@ -27,9 +27,16 @@ namespace UnitsNet.Tests.CustomCode
     public class AngleTests : AngleTestsBase
     {
         [Test]
-        public void AngleDividedByTimeEqualsRotationalSpeed()
+        public void AngleDividedByTimeSpanEqualsRotationalSpeed()
         {
             var rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
+
+        [Test]
+        public void AngleDividedByDurationEqualsRotationalSpeed()
+        {
+            var rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
             Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 

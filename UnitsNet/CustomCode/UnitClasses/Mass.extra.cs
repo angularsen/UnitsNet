@@ -67,6 +67,11 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
         }
 
+        public static MassFlow operator /(Mass mass, Duration duration)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
+        }
+
         public static Density operator /(Mass mass, Volume volume)
         {
             return Density.FromKilogramsPerCubicMeter(mass.Kilograms / volume.CubicMeters);

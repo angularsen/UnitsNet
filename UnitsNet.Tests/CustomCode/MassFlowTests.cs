@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassFlowTests : MassFlowTestsBase
     {
-        // strange bug
         [Test]
         public void MassFlowTimesTimeSpanEqualsMass()
         {
@@ -41,7 +40,19 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
 
-        // TODO Override properties in base class here
+        [Test]
+        public void MassFlowTimesDurationEqualsMass()
+        {
+            var mass = MassFlow.FromKilogramsPerSecond(20.0) * Duration.FromSeconds(4.0);
+            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+        }
+        [Test]
+        public void DurationTimesMassFlowEqualsMass()
+        {
+            var mass = Duration.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+        }
+
         protected override double KilogramsPerSecondInOneKilogramPerSecond
         {
             get

@@ -40,5 +40,20 @@ namespace UnitsNet
         {
             return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
         }
+
+        public static Acceleration operator /(Speed speed, Duration duration)
+        {
+            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+        }
+
+        public static Length operator *(Speed speed, Duration duration)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+        }
+
+        public static Length operator *(Duration duration, Speed speed)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+        }
     }
 }

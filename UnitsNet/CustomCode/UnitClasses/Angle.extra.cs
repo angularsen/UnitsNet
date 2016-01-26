@@ -29,5 +29,10 @@ namespace UnitsNet
         {
             return RotationalSpeed.FromRadiansPerSecond(angle.Radians / timeSpan.TotalSeconds);
         }
+
+        public static RotationalSpeed operator /(Angle angle, Duration duration)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(angle.Radians / duration.Seconds);
+        }
     }
 }

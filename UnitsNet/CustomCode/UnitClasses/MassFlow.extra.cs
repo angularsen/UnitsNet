@@ -34,5 +34,14 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
         }
+
+        public static Mass operator *(MassFlow massFlow, Duration duration)
+        {
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+        }
+        public static Mass operator *(Duration duration, MassFlow massFlow)
+        {
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+        }
     }
 }

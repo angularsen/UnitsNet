@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
     public class SpeedTests : SpeedTestsBase
     {
         [Test]
-        public void SpeedDevidedByTimespanEqualsAcceleration()
+        public void SpeedDevidedByTimeSpanEqualsAcceleration()
         {
             var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
@@ -37,6 +37,20 @@ namespace UnitsNet.Tests.CustomCode
         public void SpeedTimesTimeSpanEqualsLength()
         {
             var length= Speed.FromMetersPerSecond(20) * TimeSpan.FromSeconds(2);
+            Assert.AreEqual(length, Length.FromMeters(40));
+        }
+
+        [Test]
+        public void SpeedDevidedByDurationEqualsAcceleration()
+        {
+            var acceleration = Speed.FromMetersPerSecond(20) / Duration.FromSeconds(2);
+            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
+        }
+
+        [Test]
+        public void SpeedTimesDurationEqualsLength()
+        {
+            var length = Speed.FromMetersPerSecond(20) * Duration.FromSeconds(2);
             Assert.AreEqual(length, Length.FromMeters(40));
         }
 
@@ -51,6 +65,20 @@ namespace UnitsNet.Tests.CustomCode
         public void LengthDividedByTimeSpanEqualsSpeed()
         {
             var speed = Length.FromMeters(20) / TimeSpan.FromSeconds(2);
+            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
+        }
+
+        [Test]
+        public void DurationSpeedTimesEqualsLength()
+        {
+            var length = Duration.FromSeconds(2) * Speed.FromMetersPerSecond(20);
+            Assert.AreEqual(length, Length.FromMeters(40));
+        }
+
+        [Test]
+        public void LengthDividedByDurationEqualsSpeed()
+        {
+            var speed = Length.FromMeters(20) / Duration.FromSeconds(2);
             Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
         }
 

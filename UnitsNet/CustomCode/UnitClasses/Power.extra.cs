@@ -34,18 +34,32 @@ namespace UnitsNet
         {
             return Energy.FromJoules(power.Watts* time.TotalSeconds);
         }
+
         public static Energy operator *(TimeSpan time, Power power)
         {
             return Energy.FromJoules(power.Watts * time.TotalSeconds);
         }
+
+        public static Energy operator *(Power power, Duration duration)
+        {
+            return Energy.FromJoules(power.Watts * duration.Seconds);
+        }
+
+        public static Energy operator *(Duration duration, Power power)
+        {
+            return Energy.FromJoules(power.Watts * duration.Seconds);
+        }
+
         public static Force operator/(Power power, Speed speed)
         {
             return Force.FromNewtons(power.Watts / speed.MetersPerSecond);
         }
+
         public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
         {
             return Torque.FromNewtonMeters(power.Watts / rotationalSpeed.RadiansPerSecond);
         }
+
         public static RotationalSpeed operator/(Power power, Torque torque)
         {
             return RotationalSpeed.FromRadiansPerSecond(power.Watts / torque.NewtonMeters);

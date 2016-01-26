@@ -42,6 +42,20 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void RotationalSpeedTimesDurationEqualsAngle()
+        {
+            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * Duration.FromSeconds(9.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void DurationTimesRotationalSpeedEqualsAngle()
+        {
+            var angle = Duration.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
         public void RotationalSpeedTimesForceEqualsPower()
         {
             var power = RotationalSpeed.FromRadiansPerSecond(10.0) * Force.FromNewtons(2.0);

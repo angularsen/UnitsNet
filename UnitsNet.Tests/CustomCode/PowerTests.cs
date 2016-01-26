@@ -44,7 +44,7 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
         }
         [Test]
-        public void PowerTimesTimespanEqualsEnergy()
+        public void PowerTimesTimeSpanEqualsEnergy()
         {
             var energy = Power.FromWatts(5.0)*TimeSpan.FromSeconds(8.0);
             Assert.AreEqual(energy, Energy.FromJoules(40.0));
@@ -55,6 +55,20 @@ namespace UnitsNet.Tests.CustomCode
             var energy = TimeSpan.FromSeconds(8.0)* Power.FromWatts(5.0);
             Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
+
+        [Test]
+        public void PowerTimesDurationEqualsEnergy()
+        {
+            var energy = Power.FromWatts(5.0) * Duration.FromSeconds(8.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+        }
+        [Test]
+        public void DurationTimesPowerEqualsEnergy()
+        {
+            var energy = Duration.FromSeconds(8.0) * Power.FromWatts(5.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+        }
+
         protected override double FemtowattsInOneWatt
         {
             get { return 1e15; }

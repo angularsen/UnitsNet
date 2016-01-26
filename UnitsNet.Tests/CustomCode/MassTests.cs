@@ -26,9 +26,16 @@ namespace UnitsNet.Tests.CustomCode
     public class MassTests : MassTestsBase
     {
         [Test]
-        public void MassDividedByTimeEqualsMassFlow()
+        public void MassDividedByTimeSpanEqualsMassFlow()
         {
             var massFlow= Mass.FromKilograms(18.0) / TimeSpan.FromSeconds(6);
+            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+        }
+
+        [Test]
+        public void MassDividedByDurationEqualsMassFlow()
+        {
+            var massFlow = Mass.FromKilograms(18.0) / Duration.FromSeconds(6);
             Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 

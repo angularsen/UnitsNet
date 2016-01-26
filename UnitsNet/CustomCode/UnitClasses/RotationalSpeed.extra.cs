@@ -35,6 +35,16 @@ namespace UnitsNet
             return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
         }
 
+        public static Angle operator *(RotationalSpeed rotationalSpeed, Duration duration)
+        {
+            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+        }
+
+        public static Angle operator *(Duration duration, RotationalSpeed rotationalSpeed)
+        {
+            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+        }
+
         public static Power operator *(RotationalSpeed rotationalSpeed, Force force)
         {
             return Power.FromWatts(rotationalSpeed.RadiansPerSecond * force.Newtons);
