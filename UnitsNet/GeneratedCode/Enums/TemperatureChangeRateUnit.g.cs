@@ -22,18 +22,17 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum MassFlowUnit
+    public enum TemperatureChangeRateUnit
     {
         Undefined = 0,
-        CentigramPerSecond,
-        DecagramPerSecond,
-        DecigramPerSecond,
-        GramPerSecond,
-        HectogramPerSecond,
-        KilogramPerSecond,
-        MicrogramPerSecond,
-        MilligramPerSecond,
-        NanogramPerSecond,
-        TonnePerDay,
+        CentidegreeCelsiusPerSecond,
+        DecadegreeCelsiusPerSecond,
+        DecidegreeCelsiusPerSecond,
+        DegreeCelsiusPerSecond,
+        HectodegreeCelsiusPerSecond,
+        KilodegreeCelsiusPerSecond,
+        MicrodegreeCelsiusPerSecond,
+        MillidegreeCelsiusPerSecond,
+        NanodegreeCelsiusPerSecond,
     }
 }

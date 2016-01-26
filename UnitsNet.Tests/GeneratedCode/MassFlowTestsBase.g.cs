@@ -36,108 +36,156 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassFlowTestsBase
     {
-        protected abstract double KilogramsPerSecondInOneKilogramPerSecond { get; }
-        protected abstract double TonnesPerDayInOneKilogramPerSecond { get; }
+        protected abstract double CentigramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double DecagramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double DecigramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double GramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double HectogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double KilogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double MicrogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double MilligramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double NanogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double TonnesPerDayInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CentigramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
-        public void KilogramPerSecondToMassFlowUnits()
+        public void GramPerSecondToMassFlowUnits()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.AreEqual(KilogramsPerSecondInOneKilogramPerSecond, kilogrampersecond.KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(TonnesPerDayInOneKilogramPerSecond, kilogrampersecond.TonnesPerDay, TonnesPerDayTolerance);
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.AreEqual(CentigramsPerSecondInOneGramPerSecond, grampersecond.CentigramsPerSecond, CentigramsPerSecondTolerance);
+            Assert.AreEqual(DecagramsPerSecondInOneGramPerSecond, grampersecond.DecagramsPerSecond, DecagramsPerSecondTolerance);
+            Assert.AreEqual(DecigramsPerSecondInOneGramPerSecond, grampersecond.DecigramsPerSecond, DecigramsPerSecondTolerance);
+            Assert.AreEqual(GramsPerSecondInOneGramPerSecond, grampersecond.GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(HectogramsPerSecondInOneGramPerSecond, grampersecond.HectogramsPerSecond, HectogramsPerSecondTolerance);
+            Assert.AreEqual(KilogramsPerSecondInOneGramPerSecond, grampersecond.KilogramsPerSecond, KilogramsPerSecondTolerance);
+            Assert.AreEqual(MicrogramsPerSecondInOneGramPerSecond, grampersecond.MicrogramsPerSecond, MicrogramsPerSecondTolerance);
+            Assert.AreEqual(MilligramsPerSecondInOneGramPerSecond, grampersecond.MilligramsPerSecond, MilligramsPerSecondTolerance);
+            Assert.AreEqual(NanogramsPerSecondInOneGramPerSecond, grampersecond.NanogramsPerSecond, NanogramsPerSecondTolerance);
+            Assert.AreEqual(TonnesPerDayInOneGramPerSecond, grampersecond.TonnesPerDay, TonnesPerDayTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.CentigramPerSecond).CentigramsPerSecond, CentigramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.DecagramPerSecond).DecagramsPerSecond, DecagramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.DecigramPerSecond).DecigramsPerSecond, DecigramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.GramPerSecond).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.HectogramPerSecond).HectogramsPerSecond, HectogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.KilogramPerSecond).KilogramsPerSecond, KilogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.MicrogramPerSecond).MicrogramsPerSecond, MicrogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.MilligramPerSecond).MilligramsPerSecond, MilligramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.NanogramPerSecond).NanogramsPerSecond, NanogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.TonnePerDay).TonnesPerDay, TonnesPerDayTolerance);
         }
 
         [Test]
         public void As()
         {
-            var kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.AreEqual(KilogramsPerSecondInOneKilogramPerSecond, kilogrampersecond.As(MassFlowUnit.KilogramPerSecond), KilogramsPerSecondTolerance);
-            Assert.AreEqual(TonnesPerDayInOneKilogramPerSecond, kilogrampersecond.As(MassFlowUnit.TonnePerDay), TonnesPerDayTolerance);
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.AreEqual(CentigramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.CentigramPerSecond), CentigramsPerSecondTolerance);
+            Assert.AreEqual(DecagramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.DecagramPerSecond), DecagramsPerSecondTolerance);
+            Assert.AreEqual(DecigramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.DecigramPerSecond), DecigramsPerSecondTolerance);
+            Assert.AreEqual(GramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerSecond), GramsPerSecondTolerance);
+            Assert.AreEqual(HectogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.HectogramPerSecond), HectogramsPerSecondTolerance);
+            Assert.AreEqual(KilogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerSecond), KilogramsPerSecondTolerance);
+            Assert.AreEqual(MicrogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MicrogramPerSecond), MicrogramsPerSecondTolerance);
+            Assert.AreEqual(MilligramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MilligramPerSecond), MilligramsPerSecondTolerance);
+            Assert.AreEqual(NanogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.NanogramPerSecond), NanogramsPerSecondTolerance);
+            Assert.AreEqual(TonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerDay), TonnesPerDayTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.AreEqual(1, MassFlow.FromKilogramsPerSecond(kilogrampersecond.KilogramsPerSecond).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(1, MassFlow.FromTonnesPerDay(kilogrampersecond.TonnesPerDay).KilogramsPerSecond, TonnesPerDayTolerance);
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.AreEqual(1, MassFlow.FromCentigramsPerSecond(grampersecond.CentigramsPerSecond).GramsPerSecond, CentigramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromDecagramsPerSecond(grampersecond.DecagramsPerSecond).GramsPerSecond, DecagramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromDecigramsPerSecond(grampersecond.DecigramsPerSecond).GramsPerSecond, DecigramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromGramsPerSecond(grampersecond.GramsPerSecond).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromHectogramsPerSecond(grampersecond.HectogramsPerSecond).GramsPerSecond, HectogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromKilogramsPerSecond(grampersecond.KilogramsPerSecond).GramsPerSecond, KilogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromMicrogramsPerSecond(grampersecond.MicrogramsPerSecond).GramsPerSecond, MicrogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromMilligramsPerSecond(grampersecond.MilligramsPerSecond).GramsPerSecond, MilligramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromNanogramsPerSecond(grampersecond.NanogramsPerSecond).GramsPerSecond, NanogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromTonnesPerDay(grampersecond.TonnesPerDay).GramsPerSecond, TonnesPerDayTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
-            MassFlow v = MassFlow.FromKilogramsPerSecond(1);
-            Assert.AreEqual(-1, -v.KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(2, (MassFlow.FromKilogramsPerSecond(3)-v).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(2, (v + v).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(10, (v*10).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(10, (10*v).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(2, (MassFlow.FromKilogramsPerSecond(10)/5).KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.AreEqual(2, MassFlow.FromKilogramsPerSecond(10)/MassFlow.FromKilogramsPerSecond(5), KilogramsPerSecondTolerance);
+            MassFlow v = MassFlow.FromGramsPerSecond(1);
+            Assert.AreEqual(-1, -v.GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(2, (MassFlow.FromGramsPerSecond(3)-v).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(2, (v + v).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(10, (v*10).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(10, (10*v).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(2, (MassFlow.FromGramsPerSecond(10)/5).GramsPerSecond, GramsPerSecondTolerance);
+            Assert.AreEqual(2, MassFlow.FromGramsPerSecond(10)/MassFlow.FromGramsPerSecond(5), GramsPerSecondTolerance);
         }
 
         [Test]
         public void ComparisonOperators()
         {
-            MassFlow oneKilogramPerSecond = MassFlow.FromKilogramsPerSecond(1);
-            MassFlow twoKilogramsPerSecond = MassFlow.FromKilogramsPerSecond(2);
+            MassFlow oneGramPerSecond = MassFlow.FromGramsPerSecond(1);
+            MassFlow twoGramsPerSecond = MassFlow.FromGramsPerSecond(2);
 
-            Assert.True(oneKilogramPerSecond < twoKilogramsPerSecond);
-            Assert.True(oneKilogramPerSecond <= twoKilogramsPerSecond);
-            Assert.True(twoKilogramsPerSecond > oneKilogramPerSecond);
-            Assert.True(twoKilogramsPerSecond >= oneKilogramPerSecond);
+            Assert.True(oneGramPerSecond < twoGramsPerSecond);
+            Assert.True(oneGramPerSecond <= twoGramsPerSecond);
+            Assert.True(twoGramsPerSecond > oneGramPerSecond);
+            Assert.True(twoGramsPerSecond >= oneGramPerSecond);
 
-            Assert.False(oneKilogramPerSecond > twoKilogramsPerSecond);
-            Assert.False(oneKilogramPerSecond >= twoKilogramsPerSecond);
-            Assert.False(twoKilogramsPerSecond < oneKilogramPerSecond);
-            Assert.False(twoKilogramsPerSecond <= oneKilogramPerSecond);
+            Assert.False(oneGramPerSecond > twoGramsPerSecond);
+            Assert.False(oneGramPerSecond >= twoGramsPerSecond);
+            Assert.False(twoGramsPerSecond < oneGramPerSecond);
+            Assert.False(twoGramsPerSecond <= oneGramPerSecond);
         }
 
         [Test]
         public void CompareToIsImplemented()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.AreEqual(0, kilogrampersecond.CompareTo(kilogrampersecond));
-            Assert.Greater(kilogrampersecond.CompareTo(MassFlow.Zero), 0);
-            Assert.Less(MassFlow.Zero.CompareTo(kilogrampersecond), 0);
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.AreEqual(0, grampersecond.CompareTo(grampersecond));
+            Assert.Greater(grampersecond.CompareTo(MassFlow.Zero), 0);
+            Assert.Less(MassFlow.Zero.CompareTo(grampersecond), 0);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CompareToThrowsOnTypeMismatch()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
 // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            kilogrampersecond.CompareTo(new object());
+            grampersecond.CompareTo(new object());
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void CompareToThrowsOnNull()
         { 
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
 // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            kilogrampersecond.CompareTo(null);
+            grampersecond.CompareTo(null);
         }
 
 
         [Test]
         public void EqualityOperators()
         {
-            MassFlow a = MassFlow.FromKilogramsPerSecond(1);
-            MassFlow b = MassFlow.FromKilogramsPerSecond(2);
+            MassFlow a = MassFlow.FromGramsPerSecond(1);
+            MassFlow b = MassFlow.FromGramsPerSecond(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a); 
@@ -151,23 +199,23 @@ namespace UnitsNet.Tests
         [Test]
         public void EqualsIsImplemented()
         {
-            MassFlow v = MassFlow.FromKilogramsPerSecond(1);
-            Assert.IsTrue(v.Equals(MassFlow.FromKilogramsPerSecond(1)));
+            MassFlow v = MassFlow.FromGramsPerSecond(1);
+            Assert.IsTrue(v.Equals(MassFlow.FromGramsPerSecond(1)));
             Assert.IsFalse(v.Equals(MassFlow.Zero));
         }
 
         [Test]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.IsFalse(kilogrampersecond.Equals(new object()));
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.IsFalse(grampersecond.Equals(new object()));
         }
 
         [Test]
         public void EqualsReturnsFalseOnNull()
         {
-            MassFlow kilogrampersecond = MassFlow.FromKilogramsPerSecond(1);
-            Assert.IsFalse(kilogrampersecond.Equals(null));
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            Assert.IsFalse(grampersecond.Equals(null));
         }
     }
 }

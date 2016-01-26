@@ -53,19 +53,56 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
 
-        protected override double KilogramsPerSecondInOneKilogramPerSecond
+        protected override double GramsPerSecondInOneGramPerSecond
         {
-            get
-            {
-                return 1.0;
-            }
+            get { return 1; }
         }
 
-        protected override double TonnesPerDayInOneKilogramPerSecond
+        protected override double DecagramsPerSecondInOneGramPerSecond
+            {
+            get { return 1E-1; }
+            }
+
+        protected override double HectogramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E-2; }
+        }
+
+        protected override double KilogramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E-3; }
+        }
+
+        protected override double DecigramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E1; }
+        }
+
+        protected override double CentigramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E2; }
+        }
+
+        protected override double MilligramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E3; }
+        }
+
+        protected override double MicrogramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E6; }
+        }
+
+        protected override double NanogramsPerSecondInOneGramPerSecond
+        {
+            get { return 1E9; }
+        }
+
+        protected override double TonnesPerDayInOneGramPerSecond
         {
             get
             {
-                return (60.0 * 60 * 24 / 1000);
+                return (60.0 * 60 * 24 / 1E6);
             }
         }
     }
