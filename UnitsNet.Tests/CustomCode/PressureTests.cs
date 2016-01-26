@@ -24,8 +24,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {
-
-
         [Test]
         public void PressureTimesAreaEqualsForce()
         {
@@ -33,6 +31,12 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(force, Force.FromNewtons(60));
         }
 
+        [Test]
+        public void AreaTimePressureEqualsForce()
+        {
+            var force = Area.FromSquareMeters(3) * Pressure.FromPascals(20);
+            Assert.AreEqual(force, Force.FromNewtons(60));
+        }
 
         protected override double AtmospheresInOnePascal
         {

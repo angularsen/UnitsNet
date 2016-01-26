@@ -38,12 +38,21 @@ namespace UnitsNet.Tests.CustomCode
             var density = Mass.FromKilograms(18) / Volume.FromCubicMeters(3);
             Assert.AreEqual(density, Density.FromKilogramsPerCubicMeter(6));
         }
+
         [Test]
         public void MassTimesAccelerationEqualsForce()
         {
             var force = Mass.FromKilograms(18) * Acceleration.FromMeterPerSecondSquared(3);
             Assert.AreEqual(force, Force.FromNewtons(54));
         }
+
+        [Test]
+        public void AccelerationTimesMassEqualsForce()
+        {
+            var force = Acceleration.FromMeterPerSecondSquared(3) * Mass.FromKilograms(18);
+            Assert.AreEqual(force, Force.FromNewtons(54));
+        }
+
         protected override double CentigramsInOneKilogram
         {
             get { return 1E5; }

@@ -34,13 +34,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
-        public void AreaTimesLengthEqualsArea()
+        public void AreaTimesLengthEqualsVolume()
         {
             var volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
             Assert.AreEqual(volume, Volume.FromCubicMeters(30));
         }
         [Test]
-        public void LengthTimesAreaEqualsArea()
+        public void LengthTimesAreaEqualsVolume()
         {
             var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
             Assert.AreEqual(volume, Volume.FromCubicMeters(27));
@@ -49,8 +49,15 @@ namespace UnitsNet.Tests.CustomCode
         [Test]
         public void ForceTimesLengthEqualsTorque()
         {
-            var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
-            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
+            var torque = Force.FromNewtons(1) * Length.FromMeters(3);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
+        }
+
+        [Test]
+        public void LengthTimesForceEqualsTorque()
+        {
+            var torque = Length.FromMeters(3) * Force.FromNewtons(1);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
         }
 
         protected override double CentimetersInOneMeter

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -56,6 +53,11 @@ namespace UnitsNet
             return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
         }
         public static Torque operator*(Force force, Length length)
+        {
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
+        }
+
+        public static Torque operator *(Length length, Force force)
         {
             return Torque.FromNewtonMeters(force.Newtons * length.Meters);
         }

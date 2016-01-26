@@ -30,8 +30,29 @@ namespace UnitsNet.Tests.CustomCode
         [Test]
         public void RotationalSpeedTimesTimeSpanEqualsAngle()
         {
-            var angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
+            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * TimeSpan.FromSeconds(9.0);
             Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void TimeSpanTimesRotationalSpeedEqualsAngle()
+        {
+            var angle = TimeSpan.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0) ;
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void RotationalSpeedTimesForceEqualsPower()
+        {
+            var power = RotationalSpeed.FromRadiansPerSecond(10.0) * Force.FromNewtons(2.0);
+            Assert.AreEqual(power, Power.FromWatts(20.0));
+        }
+
+        [Test]
+        public void ForceTimesRotationalSpeedEqualsPower()
+        {
+            var power = Force.FromNewtons(2.0) * RotationalSpeed.FromRadiansPerSecond(10.0) ;
+            Assert.AreEqual(power, Power.FromWatts(20.0));
         }
 
         protected override double RadiansPerSecondInOneRevolutionPerSecond

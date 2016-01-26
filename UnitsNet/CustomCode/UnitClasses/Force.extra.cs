@@ -18,7 +18,6 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -40,8 +39,7 @@ namespace UnitsNet
         {
             return Pressure.FromPascals(force.Newtons / area.SquareMeters);
         }
-
-
+        
         public static Force FromPressureByArea(Pressure p, Length2d area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;

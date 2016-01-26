@@ -20,28 +20,39 @@
 // THE SOFTWARE.
 
 using System;
-
 using NUnit.Framework;
-using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
-
         [Test]
         public void SpeedDevidedByTimespanEqualsAcceleration()
         {
             var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
         }
+
         [Test]
-        public void SpeedTimesTimespanEqualsLength()
+        public void SpeedTimesTimeSpanEqualsLength()
         {
             var length= Speed.FromMetersPerSecond(20) * TimeSpan.FromSeconds(2);
             Assert.AreEqual(length, Length.FromMeters(40));
         }
 
+        [Test]
+        public void TimeSpanSpeedTimesEqualsLength()
+        {
+            var length = TimeSpan.FromSeconds(2) * Speed.FromMetersPerSecond(20);
+            Assert.AreEqual(length, Length.FromMeters(40));
+        }
+
+        [Test]
+        public void LengthDividedByTimeSpanEqualsSpeed()
+        {
+            var speed = Length.FromMeters(20) / TimeSpan.FromSeconds(2);
+            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
+        }
 
         protected override double FeetPerSecondInOneMeterPerSecond
         {
