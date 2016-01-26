@@ -19,10 +19,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        [Test]
+        public static void DensityTimesVolumeEqualsMass()
+        {
+            var mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
+        }
+
+        [Test]
+        public static void VolumeTimesDensityEqualsMass()
+        {
+            var mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
+        }
+
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter
         {
             get { return 1e-6; }

@@ -21,17 +21,17 @@
 
 namespace UnitsNet
 {
-    public partial struct Volume
+    public partial struct Density
     {
-        public static Area operator /(Volume volume, Length length)
+        public static Mass operator *(Density density, Volume volume)
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
-        public static Length operator /(Volume volume, Area area)
+        public static Mass operator *(Volume volume, Density density)
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
-
     }
 }
+

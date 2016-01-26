@@ -20,12 +20,48 @@
 // THE SOFTWARE.
 
 
+using NUnit.Framework;
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class KinematicViscosityTests : KinematicViscosityTestsBase
     {
+        [Test]
+        public static void KinematicViscosityDividedByLengthEqualsSpeed()
+        {
+            var speed = KinematicViscosity.FromSquareMetersPerSecond(4) / Length.FromMeters(2);
+            Assert.AreEqual(speed, Speed.FromMetersPerSecond(2));
+        }
+
+        [Test]
+        public static void KinematicViscosityTimesTimeSpanEqualsArea()
+        {
+            var area = KinematicViscosity.FromSquareMetersPerSecond(4) * TimeSpan.FromSeconds(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
+        }
+
+        [Test]
+        public static void TimeSpanTimesKinematicViscosityEqualsArea()
+        {
+            var area = TimeSpan.FromSeconds(2) * KinematicViscosity.FromSquareMetersPerSecond(4);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
+        }
+
+        [Test]
+        public static void KinematicViscosityTimesDurationEqualsArea()
+        {
+            var area = KinematicViscosity.FromSquareMetersPerSecond(4) * Duration.FromSeconds(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
+        }
+
+        [Test]
+        public static void DurationTimesKinematicViscosityEqualsArea()
+        {
+            var area = Duration.FromSeconds(2) * KinematicViscosity.FromSquareMetersPerSecond(4);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
+        }
+
         #region Overrides of KinematicViscosityTestsBase
 
         protected override double CentistokesInOneSquareMeterPerSecond

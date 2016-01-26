@@ -19,19 +19,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
-    public partial struct Volume
+    public partial struct KinematicViscosity
     {
-        public static Area operator /(Volume volume, Length length)
+        public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
         }
 
-        public static Length operator /(Volume volume, Area area)
+        public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
         }
 
+        public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+        }
+
+        public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+        }
     }
 }
+
