@@ -19,18 +19,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
-        protected override double SquareCentimetersInOneSquareMeter
+
+        protected override double KilosquareMetersInOneSquareMeter
         {
-            get { return 1E4; }
+            get { return 1E-3; }
         }
 
-        protected override double SquareDecimetersInOneSquareMeter
+        protected override double DecisquareMetersInOneSquareMeter
+        {
+            get { return 1E1; }
+        }
+
+        protected override double CentisquareMetersInOneSquareMeter
         {
             get { return 1E2; }
+        }
+
+        protected override double MillisquareMetersInOneSquareMeter
+        {
+            get { return 1E3; }
+        }
+
+        protected override double MicrosquareMetersInOneSquareMeter
+        {
+            get { return 1E6; }
+        }
+
+        protected override double NanosquareMetersInOneSquareMeter
+        {
+            get { return 1E9; }
         }
 
         protected override double SquareFeetInOneSquareMeter
@@ -42,12 +65,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 1550.003100; }
         }
-
-        protected override double SquareKilometersInOneSquareMeter
-        {
-            get { return 1E-6; }
-        }
-
+        
         protected override double SquareMetersInOneSquareMeter
         {
             get { return 1; }
@@ -56,11 +74,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareMilesInOneSquareMeter
         {
             get { return 3.86102*1E-7; }
-        }
-
-        protected override double SquareMillimetersInOneSquareMeter
-        {
-            get { return 1E6; }
         }
 
         protected override double SquareYardsInOneSquareMeter

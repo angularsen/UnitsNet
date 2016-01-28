@@ -25,14 +25,16 @@ namespace UnitsNet.Units
     public enum AreaUnit
     {
         Undefined = 0,
-        SquareCentimeter,
-        SquareDecimeter,
+        CentisquareMeter,
+        DecisquareMeter,
+        KilosquareMeter,
+        MicrosquareMeter,
+        MillisquareMeter,
+        NanosquareMeter,
         SquareFoot,
         SquareInch,
-        SquareKilometer,
         SquareMeter,
         SquareMile,
-        SquareMillimeter,
         SquareYard,
     }
 }
