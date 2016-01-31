@@ -81,7 +81,10 @@ namespace UnitsNet
         [PublicAPI]
         public static void ClearCache()
         {
-            CultureToInstance.Clear();
+            lock (LockUnitSystemCache)
+            {
+                CultureToInstance.Clear();
+            }
         }
 
         /// <summary>
