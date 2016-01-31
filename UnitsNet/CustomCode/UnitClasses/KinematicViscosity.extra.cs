@@ -19,43 +19,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
-    public partial struct Force
+    public partial struct KinematicViscosity
     {
-        public static Power operator*(Force force, Speed speed)
+        public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
         {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
-        }
-        public static Power operator *(Speed speed, Force force)
-        {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
-        }
-        public static Acceleration operator /(Force force, Mass mass)
-        {
-            return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
-        }
-        public static Pressure operator /(Force force, Area area)
-        {
-            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
-        }
-        
-        public static Force FromPressureByArea(Pressure p, Length2d area)
-        {
-            double metersSquared = area.Meters.X*area.Meters.Y;
-            double newtons = p.Pascals*metersSquared;
-            return new Force(newtons);
+            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
         }
 
-        public static Force FromPressureByArea(Pressure p, Area area)
+        public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
         {
-            double newtons = p.Pascals*area.SquareMeters;
-            return new Force(newtons);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
+        public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
         {
-            return new Force(mass.Kilograms*metersPerSecondSquared);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+        }
+
+        public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
         }
     }
 }
+

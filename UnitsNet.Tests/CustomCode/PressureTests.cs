@@ -18,11 +18,26 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {
+        [Test]
+        public void PressureTimesAreaEqualsForce()
+        {
+            var force = Pressure.FromPascals(20) * Area.FromSquareMeters(3);
+            Assert.AreEqual(force, Force.FromNewtons(60));
+        }
+
+        [Test]
+        public void AreaTimesPressureEqualsForce()
+        {
+            var force = Area.FromSquareMeters(3) * Pressure.FromPascals(20);
+            Assert.AreEqual(force, Force.FromNewtons(60));
+        }
+
         protected override double AtmospheresInOnePascal
         {
             get { return 9.8692*1E-6; }

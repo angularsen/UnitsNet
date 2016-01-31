@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -21,7 +18,8 @@ namespace UnitsNet
         /// </summary>
         public FeetInches FeetInches
         {
-            get {
+            get
+            {
                 double totalInches = Inches;
                 double wholeFeet = Math.Floor(totalInches / FeetToInches);
                 double inches = totalInches % FeetToInches;
@@ -37,6 +35,39 @@ namespace UnitsNet
         {
             return FromInches((FeetToInches * feet) + inches);
         }
+
+        public static Speed operator/ (Length length, TimeSpan timeSpan)
+        {
+            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
+        }
+
+        public static Speed operator /(Length length, Duration duration)
+        {
+            return Speed.FromMetersPerSecond(length.Meters / duration.Seconds);
+        }
+
+        public static Area operator*(Length length1, Length length2)
+        {
+            return Area.FromSquareMeters(length1.Meters * length2.Meters);
+        }
+        public static Volume operator*(Area area, Length length)
+        {
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
+        }
+        public static Volume operator *(Length length, Area area)
+        {
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
+        }
+        public static Torque operator*(Force force, Length length)
+        {
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
+        }
+
+        public static Torque operator *(Length length, Force force)
+        {
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
+        }
+
     }
 
     public class FeetInches

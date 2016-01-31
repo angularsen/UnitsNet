@@ -20,11 +20,40 @@
 // THE SOFTWARE.
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
+
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
+        [Test]
+        public void RotationalSpeedTimesTimeSpanEqualsAngle()
+        {
+            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * TimeSpan.FromSeconds(9.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void TimeSpanTimesRotationalSpeedEqualsAngle()
+        {
+            var angle = TimeSpan.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0) ;
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void RotationalSpeedTimesDurationEqualsAngle()
+        {
+            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * Duration.FromSeconds(9.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
+
+        [Test]
+        public void DurationTimesRotationalSpeedEqualsAngle()
+        {
+            var angle = Duration.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+        }
 
         protected override double RadiansPerSecondInOneRadianPerSecond
         {
@@ -32,9 +61,9 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         protected override double DeciradiansPerSecondInOneRadianPerSecond
-        {
+            {
             get { return 1E1; }
-        }
+            }
 
         protected override double CentiradiansPerSecondInOneRadianPerSecond
         {
@@ -54,7 +83,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanoradiansPerSecondInOneRadianPerSecond
         {
             get { return 1E9; }
-        }
+    }
 
         protected override double RevolutionsPerMinuteInOneRadianPerSecond
         {

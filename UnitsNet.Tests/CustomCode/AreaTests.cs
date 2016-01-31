@@ -19,10 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
+        [Test]
+        public void AreaDividedByLengthEqualsLength()
+        {
+            var length = Area.FromSquareMeters(50) / Length.FromMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(10));
+        }
+
         protected override double SquareCentimetersInOneSquareMeter
         {
             get { return 1E4; }

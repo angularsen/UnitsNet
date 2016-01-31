@@ -18,11 +18,48 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using NUnit.Framework;
+using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassTests : MassTestsBase
     {
+        [Test]
+        public void MassDividedByTimeSpanEqualsMassFlow()
+        {
+            var massFlow= Mass.FromKilograms(18.0) / TimeSpan.FromSeconds(6);
+            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+        }
+
+        [Test]
+        public void MassDividedByDurationEqualsMassFlow()
+        {
+            var massFlow = Mass.FromKilograms(18.0) / Duration.FromSeconds(6);
+            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+        }
+
+        [Test]
+        public void MassDividedByVolumeEqualsDensity()
+        {
+            var density = Mass.FromKilograms(18) / Volume.FromCubicMeters(3);
+            Assert.AreEqual(density, Density.FromKilogramsPerCubicMeter(6));
+        }
+
+        [Test]
+        public void MassTimesAccelerationEqualsForce()
+        {
+            var force = Mass.FromKilograms(18) * Acceleration.FromMeterPerSecondSquared(3);
+            Assert.AreEqual(force, Force.FromNewtons(54));
+        }
+
+        [Test]
+        public void AccelerationTimesMassEqualsForce()
+        {
+            var force = Acceleration.FromMeterPerSecondSquared(3) * Mass.FromKilograms(18);
+            Assert.AreEqual(force, Force.FromNewtons(54));
+        }
+
         protected override double CentigramsInOneKilogram
         {
             get { return 1E5; }

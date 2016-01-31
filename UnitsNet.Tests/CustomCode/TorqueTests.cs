@@ -18,11 +18,25 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
+        [Test]
+        public void TorqueDividedByLengthEqualsForce()
+        {
+            var force = Torque.FromNewtonMeters(4) / Length.FromMeters(2);
+            Assert.AreEqual(force, Force.FromNewtons(2));
+        }
+        [Test]
+        public void TorqueDividedByForceEqualsLength()
+        {
+            var length= Torque.FromNewtonMeters(4) / Force.FromNewtons(2);
+            Assert.AreEqual(length, Length.FromMeters(2));
+        }
+
         protected override double KilogramForceCentimetersInOneNewtonMeter
         {
             get { return 10.1971621; }

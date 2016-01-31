@@ -19,43 +19,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
-    public partial struct Force
+    public partial struct Speed
     {
-        public static Power operator*(Force force, Speed speed)
+
+        public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
         {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
-        }
-        public static Power operator *(Speed speed, Force force)
-        {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
-        }
-        public static Acceleration operator /(Force force, Mass mass)
-        {
-            return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
-        }
-        public static Pressure operator /(Force force, Area area)
-        {
-            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
-        }
-        
-        public static Force FromPressureByArea(Pressure p, Length2d area)
-        {
-            double metersSquared = area.Meters.X*area.Meters.Y;
-            double newtons = p.Pascals*metersSquared;
-            return new Force(newtons);
+            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
         }
 
-        public static Force FromPressureByArea(Pressure p, Area area)
+        public static Length operator *(Speed speed, TimeSpan timeSpan)
         {
-            double newtons = p.Pascals*area.SquareMeters;
-            return new Force(newtons);
+            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
         }
 
-        public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
+        public static Length operator *(TimeSpan timeSpan, Speed speed)
         {
-            return new Force(mass.Kilograms*metersPerSecondSquared);
+            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        public static Acceleration operator /(Speed speed, Duration duration)
+        {
+            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+        }
+
+        public static Length operator *(Speed speed, Duration duration)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+        }
+
+        public static Length operator *(Duration duration, Speed speed)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
         }
     }
 }

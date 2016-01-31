@@ -19,10 +19,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
+        [Test]
+        public void VolumeDividedByLengthEqualsArea()
+        {
+            var area = Volume.FromCubicMeters(15) / Length.FromMeters(5);
+            Assert.AreEqual(area, Area.FromSquareMeters(3));
+        }
+
+        [Test]
+        public void VolumeDividedByAreaEqualsLength()
+        {
+            var length= Volume.FromCubicMeters(15) / Area.FromSquareMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(3));
+        }
+
+        [Test]
+        public void VolumeTimesDensityEqualsMass()
+        {
+            var mass = Volume.FromCubicMeters(2) * Density.FromKilogramsPerCubicMeter(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
+        }
+        
         protected override double CentilitersInOneCubicMeter
         {
             get { return 1E5; }

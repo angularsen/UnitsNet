@@ -21,11 +21,27 @@
 
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
+
+        [Test]
+        public void SpecificEnergyTimesMassEqualsEnergy()
+        {
+            var energy = SpecificEnergy.FromJoulesPerKilogram(10.0) * Mass.FromKilograms(20.0);
+            Assert.AreEqual(energy, Energy.FromJoules(200.0));
+        }
+        [Test]
+        public void MassTimesSpecificEnergyEqualsEnergy()
+        {
+            var energy = Mass.FromKilograms(20.0)* SpecificEnergy.FromJoulesPerKilogram(10.0);
+            Assert.AreEqual(energy, Energy.FromJoules(200.0));
+        }
+
+
         protected override double JoulesPerKilogramInOneJoulePerKilogram
         {
             get
@@ -90,5 +106,6 @@ namespace UnitsNet.Tests.CustomCode
                 return 1.0 / 3.6e3;
             }
         }
+
     }
 }

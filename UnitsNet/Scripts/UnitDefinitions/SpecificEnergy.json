@@ -2,7 +2,7 @@
     "Name": "SpecificEnergy",
     "BaseUnit": "JoulePerKilogram",
     "XmlDoc": "The SpecificEnergy",
-	"XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
+    "XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
     "Units": [
         {
             "SingularName": "JoulePerKilogram",

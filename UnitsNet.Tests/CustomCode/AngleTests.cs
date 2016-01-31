@@ -20,11 +20,25 @@
 // THE SOFTWARE.
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
+        [Test]
+        public void AngleDividedByTimeSpanEqualsRotationalSpeed()
+        {
+            var rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
+
+        [Test]
+        public void AngleDividedByDurationEqualsRotationalSpeed()
+        {
+            var rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
 
         protected override double DegreesInOneDegree
         {
@@ -33,7 +47,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GradiansInOneDegree
         {
-            get { return 400/360.0; }
+            get { return 400 / 360.0; }
         }
 
         protected override double ArcminutesInOneDegree
@@ -46,7 +60,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double RadiansInOneDegree
         {
-            get { return Math.PI/2/90; }
+            get { return Math.PI / 2 / 90; }
         }
 
         protected override double NanoradiansInOneDegree

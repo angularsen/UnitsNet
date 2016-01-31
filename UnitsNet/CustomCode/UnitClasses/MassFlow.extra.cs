@@ -19,43 +19,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
-    public partial struct Force
+    public partial struct MassFlow
     {
-        public static Power operator*(Force force, Speed speed)
+
+        public static Mass operator *(MassFlow massFlow, TimeSpan time)
         {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
         }
-        public static Power operator *(Speed speed, Force force)
+        public static Mass operator *(TimeSpan time, MassFlow massFlow)
         {
-            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
-        }
-        public static Acceleration operator /(Force force, Mass mass)
-        {
-            return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
-        }
-        public static Pressure operator /(Force force, Area area)
-        {
-            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
-        }
-        
-        public static Force FromPressureByArea(Pressure p, Length2d area)
-        {
-            double metersSquared = area.Meters.X*area.Meters.Y;
-            double newtons = p.Pascals*metersSquared;
-            return new Force(newtons);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
         }
 
-        public static Force FromPressureByArea(Pressure p, Area area)
+        public static Mass operator *(MassFlow massFlow, Duration duration)
         {
-            double newtons = p.Pascals*area.SquareMeters;
-            return new Force(newtons);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
         }
-
-        public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
+        public static Mass operator *(Duration duration, MassFlow massFlow)
         {
-            return new Force(mass.Kilograms*metersPerSecondSquared);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
         }
     }
 }
