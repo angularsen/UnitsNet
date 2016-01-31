@@ -51,6 +51,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             ElectricPotential invalidVoltage = ElectricPotential.FromVolts(voltage);
 
+            // ReSharper disable once ObjectCreationAsStatement
             Assert.Throws<ArgumentOutOfRangeException>(() => new AmplitudeRatio(invalidVoltage));
         }
 
