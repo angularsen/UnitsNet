@@ -205,7 +205,7 @@ namespace UnitsNet
 
         public bool Equals(Length2d other)
         {
-            return MetersComparer.Equals(other);
+            return MetersComparer.Equals(this, other);
         }
 
         public override bool Equals(object obj)
