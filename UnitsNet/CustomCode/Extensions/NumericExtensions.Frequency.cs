@@ -19,7 +19,7 @@ namespace UnitsNet.NumericExtensions
 
         public static UnitsNet.Frequency GigaHertz(this double _inputFrequency)
         {
-            return new UnitsNet.Frequency(_inputFrequency * 1000000000)
+            return new UnitsNet.Frequency(_inputFrequency * 1000000000);
         }
     }
 }

@@ -31,10 +31,5 @@ namespace UnitsNet.NumericExtensions
         {
             return new UnitsNet.Duration(_inputDuration * 60 * 60 * 24 * 7);
         }
-
-        public static UnitsNet.Duration Seconds(this double _inputDuration)
-        {
-            return new UnitsNet.Duration(_inputDuration * 60 * 60 * 24 * 365); // May have leap year inaccuracies
-        }
     }
 }

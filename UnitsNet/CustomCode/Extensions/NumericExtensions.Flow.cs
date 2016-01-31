@@ -9,7 +9,7 @@ namespace UnitsNet.NumericExtensions
     {
         public static UnitsNet.Flow CubicMetersPerSecond(this double _inputFlow)
         {
-            return new UnitsNet.Flow(_inputFlow)
+            return new UnitsNet.Flow(_inputFlow);
         }
     }
 }

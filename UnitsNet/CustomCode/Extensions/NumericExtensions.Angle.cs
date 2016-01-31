@@ -34,7 +34,7 @@ namespace UnitsNet.NumericExtensions
         /// <returns></returns>
         public static UnitsNet.Angle Grads(this double _inputAngle)
         {
-            return UnitsNet.Angle.FromGradians(_inputAngle)
+            return UnitsNet.Angle.FromGradians(_inputAngle);
         }
     }
 }
