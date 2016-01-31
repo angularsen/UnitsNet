@@ -55,19 +55,51 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Area in SquareCentimeters.
+        ///     Get Area in CentisquareMeters.
         /// </summary>
-        public double SquareCentimeters
+        public double CentisquareMeters
         {
-            get { return _squareMeters/1e-4; }
+            get { return (_squareMeters) / 1e-2d; }
         }
 
         /// <summary>
-        ///     Get Area in SquareDecimeters.
+        ///     Get Area in DecisquareMeters.
         /// </summary>
-        public double SquareDecimeters
+        public double DecisquareMeters
         {
-            get { return _squareMeters/1e-2; }
+            get { return (_squareMeters) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Area in KilosquareMeters.
+        /// </summary>
+        public double KilosquareMeters
+        {
+            get { return (_squareMeters) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Area in MicrosquareMeters.
+        /// </summary>
+        public double MicrosquareMeters
+        {
+            get { return (_squareMeters) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Area in MillisquareMeters.
+        /// </summary>
+        public double MillisquareMeters
+        {
+            get { return (_squareMeters) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Area in NanosquareMeters.
+        /// </summary>
+        public double NanosquareMeters
+        {
+            get { return (_squareMeters) / 1e-9d; }
         }
 
         /// <summary>
@@ -87,14 +119,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Area in SquareKilometers.
-        /// </summary>
-        public double SquareKilometers
-        {
-            get { return _squareMeters/1e6; }
-        }
-
-        /// <summary>
         ///     Get Area in SquareMeters.
         /// </summary>
         public double SquareMeters
@@ -108,14 +132,6 @@ namespace UnitsNet
         public double SquareMiles
         {
             get { return _squareMeters/2.59e6; }
-        }
-
-        /// <summary>
-        ///     Get Area in SquareMillimeters.
-        /// </summary>
-        public double SquareMillimeters
-        {
-            get { return _squareMeters/1e-6; }
         }
 
         /// <summary>
@@ -136,19 +152,51 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Area from SquareCentimeters.
+        ///     Get Area from CentisquareMeters.
         /// </summary>
-        public static Area FromSquareCentimeters(double squarecentimeters)
+        public static Area FromCentisquareMeters(double centisquaremeters)
         {
-            return new Area(squarecentimeters*1e-4);
+            return new Area((centisquaremeters) * 1e-2d);
         }
 
         /// <summary>
-        ///     Get Area from SquareDecimeters.
+        ///     Get Area from DecisquareMeters.
         /// </summary>
-        public static Area FromSquareDecimeters(double squaredecimeters)
+        public static Area FromDecisquareMeters(double decisquaremeters)
         {
-            return new Area(squaredecimeters*1e-2);
+            return new Area((decisquaremeters) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Area from KilosquareMeters.
+        /// </summary>
+        public static Area FromKilosquareMeters(double kilosquaremeters)
+        {
+            return new Area((kilosquaremeters) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Area from MicrosquareMeters.
+        /// </summary>
+        public static Area FromMicrosquareMeters(double microsquaremeters)
+        {
+            return new Area((microsquaremeters) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Area from MillisquareMeters.
+        /// </summary>
+        public static Area FromMillisquareMeters(double millisquaremeters)
+        {
+            return new Area((millisquaremeters) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Area from NanosquareMeters.
+        /// </summary>
+        public static Area FromNanosquareMeters(double nanosquaremeters)
+        {
+            return new Area((nanosquaremeters) * 1e-9d);
         }
 
         /// <summary>
@@ -168,14 +216,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Area from SquareKilometers.
-        /// </summary>
-        public static Area FromSquareKilometers(double squarekilometers)
-        {
-            return new Area(squarekilometers*1e6);
-        }
-
-        /// <summary>
         ///     Get Area from SquareMeters.
         /// </summary>
         public static Area FromSquareMeters(double squaremeters)
@@ -189,14 +229,6 @@ namespace UnitsNet
         public static Area FromSquareMiles(double squaremiles)
         {
             return new Area(squaremiles*2.59e6);
-        }
-
-        /// <summary>
-        ///     Get Area from SquareMillimeters.
-        /// </summary>
-        public static Area FromSquareMillimeters(double squaremillimeters)
-        {
-            return new Area(squaremillimeters*1e-6);
         }
 
         /// <summary>
@@ -218,22 +250,26 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case AreaUnit.SquareCentimeter:
-                    return FromSquareCentimeters(value);
-                case AreaUnit.SquareDecimeter:
-                    return FromSquareDecimeters(value);
+                case AreaUnit.CentisquareMeter:
+                    return FromCentisquareMeters(value);
+                case AreaUnit.DecisquareMeter:
+                    return FromDecisquareMeters(value);
+                case AreaUnit.KilosquareMeter:
+                    return FromKilosquareMeters(value);
+                case AreaUnit.MicrosquareMeter:
+                    return FromMicrosquareMeters(value);
+                case AreaUnit.MillisquareMeter:
+                    return FromMillisquareMeters(value);
+                case AreaUnit.NanosquareMeter:
+                    return FromNanosquareMeters(value);
                 case AreaUnit.SquareFoot:
                     return FromSquareFeet(value);
                 case AreaUnit.SquareInch:
                     return FromSquareInches(value);
-                case AreaUnit.SquareKilometer:
-                    return FromSquareKilometers(value);
                 case AreaUnit.SquareMeter:
                     return FromSquareMeters(value);
                 case AreaUnit.SquareMile:
                     return FromSquareMiles(value);
-                case AreaUnit.SquareMillimeter:
-                    return FromSquareMillimeters(value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value);
 
@@ -369,22 +405,26 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case AreaUnit.SquareCentimeter:
-                    return SquareCentimeters;
-                case AreaUnit.SquareDecimeter:
-                    return SquareDecimeters;
+                case AreaUnit.CentisquareMeter:
+                    return CentisquareMeters;
+                case AreaUnit.DecisquareMeter:
+                    return DecisquareMeters;
+                case AreaUnit.KilosquareMeter:
+                    return KilosquareMeters;
+                case AreaUnit.MicrosquareMeter:
+                    return MicrosquareMeters;
+                case AreaUnit.MillisquareMeter:
+                    return MillisquareMeters;
+                case AreaUnit.NanosquareMeter:
+                    return NanosquareMeters;
                 case AreaUnit.SquareFoot:
                     return SquareFeet;
                 case AreaUnit.SquareInch:
                     return SquareInches;
-                case AreaUnit.SquareKilometer:
-                    return SquareKilometers;
                 case AreaUnit.SquareMeter:
                     return SquareMeters;
                 case AreaUnit.SquareMile:
                     return SquareMiles;
-                case AreaUnit.SquareMillimeter:
-                    return SquareMillimeters;
                 case AreaUnit.SquareYard:
                     return SquareYards;
 

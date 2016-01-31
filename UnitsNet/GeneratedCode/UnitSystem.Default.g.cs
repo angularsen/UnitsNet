@@ -157,17 +157,41 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AreaUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) AreaUnit.SquareCentimeter,
+                        new CulturesForEnumValue((int) AreaUnit.CentisquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "cm²"),
-                                new AbbreviationsForCulture("ru-RU", "см²"),
+                                new AbbreviationsForCulture("ru-RU", "cм²"),
                             }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareDecimeter,
+                        new CulturesForEnumValue((int) AreaUnit.DecisquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dm²"),
-                                new AbbreviationsForCulture("ru-RU", "дм²"),
+                                new AbbreviationsForCulture("ru-RU", "dм²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.KilosquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "km²"),
+                                new AbbreviationsForCulture("ru-RU", "kм²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.MicrosquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μm²"),
+                                new AbbreviationsForCulture("ru-RU", "μм²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.MillisquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm²"),
+                                new AbbreviationsForCulture("ru-RU", "mм²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.NanosquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nm²"),
+                                new AbbreviationsForCulture("ru-RU", "nм²"),
                             }),
                         new CulturesForEnumValue((int) AreaUnit.SquareFoot,
                             new[]
@@ -181,12 +205,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "in²"),
                                 new AbbreviationsForCulture("ru-RU", "дюйм²"),
                             }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareKilometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km²"),
-                                new AbbreviationsForCulture("ru-RU", "км²"),
-                            }),
                         new CulturesForEnumValue((int) AreaUnit.SquareMeter,
                             new[]
                             {
@@ -198,12 +216,6 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "mi²"),
                                 new AbbreviationsForCulture("ru-RU", "миля²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm²"),
-                                new AbbreviationsForCulture("ru-RU", "мм²"),
                             }),
                         new CulturesForEnumValue((int) AreaUnit.SquareYard,
                             new[]
