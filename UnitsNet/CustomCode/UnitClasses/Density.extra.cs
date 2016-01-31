@@ -25,13 +25,12 @@ namespace UnitsNet
     {
         public static Mass operator *(Density density, Volume volume)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter*volume.CubicMeters);
         }
 
         public static Mass operator *(Volume volume, Density density)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter*volume.CubicMeters);
         }
     }
 }
-

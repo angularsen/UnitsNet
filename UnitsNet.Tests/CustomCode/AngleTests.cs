@@ -26,20 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
-        [Test]
-        public void AngleDividedByTimeSpanEqualsRotationalSpeed()
-        {
-            var rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
-            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
-        }
-
-        [Test]
-        public void AngleDividedByDurationEqualsRotationalSpeed()
-        {
-            var rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
-            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
-        }
-
         protected override double DegreesInOneDegree
         {
             get { return 1; }
@@ -47,54 +33,61 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GradiansInOneDegree
         {
-            get { return 400 / 360.0; }
+            get { return 400/360.0; }
         }
 
         protected override double ArcminutesInOneDegree
         {
-            get
-            {
-                return 60.0;
-            }
+            get { return 60.0; }
         }
 
         protected override double RadiansInOneDegree
         {
-            get { return Math.PI / 2 / 90; }
+            get { return Math.PI/2/90; }
         }
 
         protected override double NanoradiansInOneDegree
         {
-            get { return (Math.PI / 2 / 90) * 1E9; }
+            get { return Math.PI/2/90*1E9; }
         }
 
         protected override double MicroradiansInOneDegree
         {
-            get { return (Math.PI / 2 / 90) * 1E6; }
+            get { return Math.PI/2/90*1E6; }
         }
 
         protected override double MilliradiansInOneDegree
         {
-            get { return (Math.PI / 2 / 90) * 1E3; }
+            get { return Math.PI/2/90*1E3; }
         }
 
         protected override double CentiradiansInOneDegree
         {
-            get { return (Math.PI / 2 / 90) * 1E2; }
+            get { return Math.PI/2/90*1E2; }
         }
 
         protected override double DeciradiansInOneDegree
         {
-            get { return (Math.PI / 2 / 90) * 1E1; }
+            get { return Math.PI/2/90*1E1; }
         }
 
         protected override double ArcsecondsInOneDegree
         {
-            get
-            {
-                return 3600.0;
-            }
+            get { return 3600.0; }
         }
 
+        [Test]
+        public void AngleDividedByDurationEqualsRotationalSpeed()
+        {
+            RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/Duration.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
+
+        [Test]
+        public void AngleDividedByTimeSpanEqualsRotationalSpeed()
+        {
+            RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+        }
     }
 }

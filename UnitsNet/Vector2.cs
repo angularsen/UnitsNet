@@ -42,12 +42,7 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Vector2> XyComparerInstance = new XyEqualityComparer();
-
-        public static IEqualityComparer<Vector2> XyComparer
-        {
-            get { return XyComparerInstance; }
-        }
+        public static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
 
         public bool Equals(Vector2 other)
         {
@@ -56,12 +51,12 @@ namespace UnitsNet
 
         public static bool operator !=(Vector2 left, Vector2 right)
         {
-            return !XyComparerInstance.Equals(left, right);
+            return !XyComparer.Equals(left, right);
         }
 
         public static bool operator ==(Vector2 left, Vector2 right)
         {
-            return XyComparerInstance.Equals(left, right);
+            return XyComparer.Equals(left, right);
         }
 
         public override bool Equals(object obj)

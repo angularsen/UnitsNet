@@ -223,7 +223,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
+            return string.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
                 UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
         }
 
@@ -240,12 +240,7 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Length2d> MetersComparerInstance = new MetersEqualityComparer();
-
-        public static IEqualityComparer<Length2d> MetersComparer
-        {
-            get { return MetersComparerInstance; }
-        }
+        public static IEqualityComparer<Length2d> MetersComparer { get; } = new MetersEqualityComparer();
 
         public bool Equals(Length2d other)
         {

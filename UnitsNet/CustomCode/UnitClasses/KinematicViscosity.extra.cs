@@ -27,28 +27,27 @@ namespace UnitsNet
     {
         public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
         {
-            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
+            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond/length.Meters);
         }
 
         public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*duration.Seconds);
         }
 
         public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*duration.Seconds);
         }
     }
 }
-

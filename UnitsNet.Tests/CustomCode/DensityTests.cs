@@ -25,20 +25,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
-        [Test]
-        public static void DensityTimesVolumeEqualsMass()
-        {
-            var mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
-            Assert.AreEqual(mass, Mass.FromKilograms(6));
-        }
-
-        [Test]
-        public static void VolumeTimesDensityEqualsMass()
-        {
-            var mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.AreEqual(mass, Mass.FromKilograms(6));
-        }
-
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter
         {
             get { return 1e-6; }
@@ -87,6 +73,20 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter
         {
             get { return 1e-12; }
+        }
+
+        [Test]
+        public static void DensityTimesVolumeEqualsMass()
+        {
+            Mass mass = Density.FromKilogramsPerCubicMeter(2)*Volume.FromCubicMeters(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
+        }
+
+        [Test]
+        public static void VolumeTimesDensityEqualsMass()
+        {
+            Mass mass = Volume.FromCubicMeters(3)*Density.FromKilogramsPerCubicMeter(2);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
     }
 }

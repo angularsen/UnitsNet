@@ -62,10 +62,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double RadiansPerSecondInOneHertz
         {
-            get
-            {
-                return 2 * Math.PI;
-            }
+            get { return 2*Math.PI; }
         }
     }
 }

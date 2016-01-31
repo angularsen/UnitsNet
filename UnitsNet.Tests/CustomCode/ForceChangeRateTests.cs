@@ -20,8 +20,6 @@
 // THE SOFTWARE.
 
 
-using System;
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class ForceChangeRateTests : ForceChangeRateTestsBase

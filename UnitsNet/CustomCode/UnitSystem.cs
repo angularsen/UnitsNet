@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
@@ -101,9 +100,9 @@ namespace UnitsNet
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
 
-            lock(LockUnitSystemCache)
+            lock (LockUnitSystemCache)
             {
-                if ( CultureToInstance.ContainsKey(cultureInfo) )
+                if (CultureToInstance.ContainsKey(cultureInfo))
                     return CultureToInstance[cultureInfo];
 
                 CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);

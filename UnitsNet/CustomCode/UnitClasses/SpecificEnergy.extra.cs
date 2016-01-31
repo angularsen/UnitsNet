@@ -23,13 +23,14 @@ namespace UnitsNet
 {
     public partial struct SpecificEnergy
     {
-        public static Energy operator*(SpecificEnergy specificEnergy, Mass mass)
+        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
         }
+
         public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
         }
     }
 }

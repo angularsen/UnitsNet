@@ -20,16 +20,25 @@
 // THE SOFTWARE.
 
 
-using System;
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class EnergyTests : EnergyTestsBase
     {
         // TODO Override properties in base class here
-        protected override double JoulesInOneJoule { get { return 1; } }
-        protected override double KilojoulesInOneJoule { get { return 1E-3; } }
-        protected override double MegajoulesInOneJoule { get { return 1E-6; } }
+        protected override double JoulesInOneJoule
+        {
+            get { return 1; }
+        }
+
+        protected override double KilojoulesInOneJoule
+        {
+            get { return 1E-3; }
+        }
+
+        protected override double MegajoulesInOneJoule
+        {
+            get { return 1E-6; }
+        }
 
         protected override double BritishThermalUnitsInOneJoule
         {

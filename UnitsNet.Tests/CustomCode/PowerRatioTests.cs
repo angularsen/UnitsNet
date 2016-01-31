@@ -27,9 +27,15 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerRatioTests : PowerRatioTestsBase
     {
-        protected override double DecibelMilliwattsInOneDecibelWatt { get { return 31; } }
+        protected override double DecibelMilliwattsInOneDecibelWatt
+        {
+            get { return 31; }
+        }
 
-        protected override double DecibelWattsInOneDecibelWatt { get { return 1; } }
+        protected override double DecibelWattsInOneDecibelWatt
+        {
+            get { return 1; }
+        }
 
         protected override void AssertLogarithmicAddition()
         {
@@ -42,8 +48,6 @@ namespace UnitsNet.Tests.CustomCode
             PowerRatio v = PowerRatio.FromDecibelWatts(40);
             Assert.AreEqual(49.5424250944, (PowerRatio.FromDecibelWatts(50) - v).DecibelWatts, DecibelWattsTolerance);
         }
-        
-        #region From Power Tests
 
         [TestCase(0)]
         [TestCase(-1)]
@@ -58,30 +62,22 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(100, Result = 20)]
         public double ExpectPowerConvertedCorrectly(double power)
         {
-            var p = Power.FromWatts(power);
+            Power p = Power.FromWatts(power);
 
             return PowerRatio.FromPower(p).DecibelWatts;
         }
 
-        #endregion
-
-        #region To Power Tests
-
         [TestCase(-20, Result = 0.01)]
         [TestCase(-10, Result = 0.1)]
-        [TestCase(0,   Result = 1)]
-        [TestCase(10,  Result = 10)]
-        [TestCase(20,  Result = 100)]
+        [TestCase(0, Result = 1)]
+        [TestCase(10, Result = 10)]
+        [TestCase(20, Result = 100)]
         public double ExpectPowerRatioConvertedCorrectly(double powerRatio)
         {
-            var pr = PowerRatio.FromDecibelWatts(powerRatio);
+            PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
 
             return PowerRatio.ToPower(pr).Watts;
         }
-
-        #endregion
-
-        #region To Amplitude Ratio Tests
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
 
@@ -91,7 +87,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(-6.99, Result = 40)]
         public double PowerRatioToAmplitudeRatio_50OhmImpedance(double dBmW)
         {
-            var powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+            PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
             return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
         }
@@ -102,11 +98,9 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(-8.75, Result = 40)]
         public double PowerRatioToAmplitudeRatio_75OhmImpedance(double dBmW)
         {
-            var powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
+            PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
             return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
         }
-
-        #endregion
     }
 }

@@ -19,18 +19,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
-    using System;
-
     public partial struct Level
     {
         /// <summary>
-        /// Initializes a new instance of the logarithmic <see cref="Level"/> struct which is the ratio of a quantity Q to a
-        /// reference value of that quantity Q0.
+        ///     Initializes a new instance of the logarithmic <see cref="Level" /> struct which is the ratio of a quantity Q to a
+        ///     reference value of that quantity Q0.
         /// </summary>
         /// <param name="quantity">The quantity.</param>
-        /// <param name="reference">The reference value that <paramref name="quantity"/> is compared to.</param>
+        /// <param name="reference">The reference value that <paramref name="quantity" /> is compared to.</param>
         public Level(double quantity, double reference)
             : this()
         {

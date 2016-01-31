@@ -20,15 +20,13 @@
 // THE SOFTWARE.
 
 
-using System;
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class PressureChangeRateTests : PressureChangeRateTestsBase
     {
         protected override double AtmospheresPerSecondInOnePascalPerSecond
         {
-            get { return 9.8692 * 1E-6; }
+            get { return 9.8692*1E-6; }
         }
 
         protected override double KilopascalsPerSecondInOnePascalPerSecond

@@ -25,13 +25,12 @@ namespace UnitsNet
     {
         public static Area operator /(Volume volume, Length length)
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Area.FromSquareMeters(volume.CubicMeters/length.Meters);
         }
 
         public static Length operator /(Volume volume, Area area)
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+            return Length.FromMeters(volume.CubicMeters/area.SquareMeters);
         }
-
     }
 }

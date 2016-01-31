@@ -38,8 +38,6 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Vector3> XyzComparerInstance = new XyzEqualityComparer();
-
         public Vector3(double xyz) : this()
         {
             X = xyz;
@@ -47,10 +45,7 @@ namespace UnitsNet
             Z = xyz;
         }
 
-        public static IEqualityComparer<Vector3> XyzComparer
-        {
-            get { return XyzComparerInstance; }
-        }
+        public static IEqualityComparer<Vector3> XyzComparer { get; } = new XyzEqualityComparer();
 
         public bool Equals(Vector3 other)
         {

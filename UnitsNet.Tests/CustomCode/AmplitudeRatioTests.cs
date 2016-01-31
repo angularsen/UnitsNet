@@ -54,14 +54,12 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(46.6982292275, (AmplitudeRatio.FromDecibelVolts(50) - v).DecibelVolts, DecibelVoltsTolerance);
         }
 
-        #region From Electric Potential Tests
-
         [TestCase(0)]
         [TestCase(-1)]
         [TestCase(-10)]
         public void InvalidVoltage_ExpectArgumentOutOfRangeException(double voltage)
         {
-            var invalidVoltage = ElectricPotential.FromVolts(voltage);
+            ElectricPotential invalidVoltage = ElectricPotential.FromVolts(voltage);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => new AmplitudeRatio(invalidVoltage));
         }
@@ -73,31 +71,23 @@ namespace UnitsNet.Tests.CustomCode
         public double ExpectVoltageConvertedToAmplitudeRatioCorrectly(double voltage)
         {
             // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
-            var v = ElectricPotential.FromVolts(voltage);
+            ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
             return AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
         }
 
-        #endregion
-
-        #region To Electric Potential Tests
-
         [TestCase(-40, Result = 0.01)]
         [TestCase(-20, Result = 0.1)]
-        [TestCase(0,   Result = 1)]
-        [TestCase(20,  Result = 10)]
-        [TestCase(40,  Result = 100)]
+        [TestCase(0, Result = 1)]
+        [TestCase(20, Result = 10)]
+        [TestCase(40, Result = 100)]
         public double ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio)
         {
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
-            var ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
+            AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
             return AmplitudeRatio.ToElectricPotential(ar).Volts;
         }
-
-        #endregion
-
-        #region To Power Ratio Tests
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
 
@@ -107,7 +97,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(60, Result = 13.01)]
         public double AmplitudeRatioToPowerRatio_50OhmImpedance(double dBmV)
         {
-            var ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
+            AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
             return Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
         }
@@ -118,11 +108,9 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(60, Result = 11.25)]
         public double AmplitudeRatioToPowerRatio_75OhmImpedance(double dBmV)
         {
-            var ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
+            AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
             return Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
         }
-
-        #endregion
     }
 }

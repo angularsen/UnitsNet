@@ -41,47 +41,6 @@ namespace UnitsNet.Serialization.JsonNet
     /// </remarks>
     public class UnitsNetJsonConverter : JsonConverter
     {
-        #region Can Convert
-
-        /// <summary>
-        /// Determines whether this instance can convert the specified object type.
-        /// </summary>
-        /// <param name="objectType">Type of the object.</param>
-        /// <returns></returns>
-        public override bool CanConvert(Type objectType)
-        {
-            if (IsNullable(objectType))
-            {
-                return CanConvertNullable(objectType);
-            }
-
-            return objectType.Namespace != null && objectType.Namespace.Equals("UnitsNet");
-        }
-
-        /// <summary>
-        /// Determines whether the specified object type is actually a <see cref="System.Nullable"/> type.
-        /// </summary>
-        /// <param name="objectType">Type of the object.</param>
-        /// <returns><c>true</c> if the object type is nullable; otherwise <c>false</c>.</returns>
-        protected bool IsNullable(Type objectType)
-        {
-            return Nullable.GetUnderlyingType(objectType) != null;
-        }
-
-        /// <summary>
-        /// Determines whether this instance can convert the specified nullable object type.
-        /// </summary>
-        /// <param name="objectType">Type of the object.</param>
-        /// <returns><c>true</c> if the object type is a nullable container for a UnitsNet type; otherwise <c>false</c>.</returns>
-        protected virtual bool CanConvertNullable(Type objectType)
-        {
-            // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
-            // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
-            return objectType.FullName != null && objectType.FullName.Contains("UnitsNet.");
-        }
-
-        #endregion
-
         /// <summary>
         ///     Reads the JSON representation of the object.
         /// </summary>
@@ -96,7 +55,7 @@ namespace UnitsNet.Serialization.JsonNet
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            ValueUnit vu = serializer.Deserialize<ValueUnit>(reader);
+            var vu = serializer.Deserialize<ValueUnit>(reader);
             // A null System.Nullable value was deserialized so just return null.
             if (vu == null)
                 return null;
@@ -180,7 +139,7 @@ namespace UnitsNet.Serialization.JsonNet
             PropertyInfo baseUnitPropInfo = unitType.GetProperty("BaseUnit");
 
             // Read static BaseUnit property value
-            Enum baseUnitEnumValue = (Enum) baseUnitPropInfo.GetValue(null, null);
+            var baseUnitEnumValue = (Enum) baseUnitPropInfo.GetValue(null, null);
             Type baseUnitType = baseUnitEnumValue.GetType();
             string baseUnit = string.Format("{0}.{1}", baseUnitType.Name, baseUnitEnumValue);
 
@@ -207,5 +166,46 @@ namespace UnitsNet.Serialization.JsonNet
             public string Unit { get; [UsedImplicitly] set; }
             public double Value { get; [UsedImplicitly] set; }
         }
+
+        #region Can Convert
+
+        /// <summary>
+        ///     Determines whether this instance can convert the specified object type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns></returns>
+        public override bool CanConvert(Type objectType)
+        {
+            if (IsNullable(objectType))
+            {
+                return CanConvertNullable(objectType);
+            }
+
+            return objectType.Namespace != null && objectType.Namespace.Equals("UnitsNet");
+        }
+
+        /// <summary>
+        ///     Determines whether the specified object type is actually a <see cref="System.Nullable" /> type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns><c>true</c> if the object type is nullable; otherwise <c>false</c>.</returns>
+        protected bool IsNullable(Type objectType)
+        {
+            return Nullable.GetUnderlyingType(objectType) != null;
+        }
+
+        /// <summary>
+        ///     Determines whether this instance can convert the specified nullable object type.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns><c>true</c> if the object type is a nullable container for a UnitsNet type; otherwise <c>false</c>.</returns>
+        protected virtual bool CanConvertNullable(Type objectType)
+        {
+            // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
+            // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
+            return objectType.FullName != null && objectType.FullName.Contains("UnitsNet.");
+        }
+
+        #endregion
     }
 }

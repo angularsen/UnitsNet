@@ -20,12 +20,13 @@
 // THE SOFTWARE.
 
 
-using System;
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class VitaminATests : VitaminATestsBase
     {
-        protected override double InternationalUnitsInOneInternationalUnit { get { return 1; } }
+        protected override double InternationalUnitsInOneInternationalUnit
+        {
+            get { return 1; }
+        }
     }
 }

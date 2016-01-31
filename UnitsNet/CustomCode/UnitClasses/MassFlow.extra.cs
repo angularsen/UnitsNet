@@ -25,23 +25,24 @@ namespace UnitsNet
 {
     public partial struct MassFlow
     {
-
         public static Mass operator *(MassFlow massFlow, TimeSpan time)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*time.TotalSeconds);
         }
+
         public static Mass operator *(TimeSpan time, MassFlow massFlow)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*time.TotalSeconds);
         }
 
         public static Mass operator *(MassFlow massFlow, Duration duration)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*duration.Seconds);
         }
+
         public static Mass operator *(Duration duration, MassFlow massFlow)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*duration.Seconds);
         }
     }
 }

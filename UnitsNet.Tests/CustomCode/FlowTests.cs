@@ -52,6 +52,5 @@ namespace UnitsNet.Tests.CustomCode
         {
             get { return 60000.00000; }
         }
-
     }
 }

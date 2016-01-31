@@ -26,9 +26,15 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LevelTests : LevelTestsBase
     {
-        protected override double DecibelsInOneDecibel { get { return 1; } }
+        protected override double DecibelsInOneDecibel
+        {
+            get { return 1; }
+        }
 
-        protected override double NepersInOneDecibel { get { return 0.115129254; } }
+        protected override double NepersInOneDecibel
+        {
+            get { return 0.115129254; }
+        }
 
         protected override void AssertLogarithmicAddition()
         {
@@ -41,8 +47,6 @@ namespace UnitsNet.Tests.CustomCode
             Level v = Level.FromDecibels(40);
             Assert.AreEqual(49.5424250944, (Level.FromDecibels(50) - v).Decibels, DecibelsTolerance);
         }
-
-        #region Custom Constructor Tests
 
         [TestCase(0, 1)]
         [TestCase(-1, 1)]
@@ -59,7 +63,5 @@ namespace UnitsNet.Tests.CustomCode
             // reference can't be zero or less than zero if quantity is postive.
             Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
         }
-
-        #endregion
     }
 }

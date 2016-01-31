@@ -18,36 +18,13 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
-        [Test]
-        public void ForceTimesSpeedEqualsPower()
-        {
-            var power = Force.FromNewtons(27.0) * Speed.FromMetersPerSecond(10.0);
-            Assert.AreEqual(power, Power.FromWatts(270));
-        }
-        [Test]
-        public void SpeedTimesForceEqualsPower()
-        {
-            var power = Speed.FromMetersPerSecond(10.0)* Force.FromNewtons(27.0);
-            Assert.AreEqual(power, Power.FromWatts(270));
-        }
-        [Test]
-        public void ForceDividedByMassEqualsAcceleration()
-        {
-            var acceleration= Force.FromNewtons(27)/Mass.FromKilograms(9);
-            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(3));
-        }
-        [Test]
-        public void ForceDividedByAreaEqualsPressure()
-        {
-            var pressure=Force.FromNewtons(81)/Area.FromSquareMeters(9);
-            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(9));
-        }
         protected override double DyneInOneNewton
         {
             get { return 1E5; }
@@ -86,6 +63,34 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonnesForceInOneNewton
         {
             get { return 1.02e-4; }
+        }
+
+        [Test]
+        public void ForceDividedByAreaEqualsPressure()
+        {
+            Pressure pressure = Force.FromNewtons(81)/Area.FromSquareMeters(9);
+            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(9));
+        }
+
+        [Test]
+        public void ForceDividedByMassEqualsAcceleration()
+        {
+            Acceleration acceleration = Force.FromNewtons(27)/Mass.FromKilograms(9);
+            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(3));
+        }
+
+        [Test]
+        public void ForceTimesSpeedEqualsPower()
+        {
+            Power power = Force.FromNewtons(27.0)*Speed.FromMetersPerSecond(10.0);
+            Assert.AreEqual(power, Power.FromWatts(270));
+        }
+
+        [Test]
+        public void SpeedTimesForceEqualsPower()
+        {
+            Power power = Speed.FromMetersPerSecond(10.0)*Force.FromNewtons(27.0);
+            Assert.AreEqual(power, Power.FromWatts(270));
         }
     }
 }

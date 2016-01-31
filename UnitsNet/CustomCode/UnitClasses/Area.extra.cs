@@ -23,10 +23,9 @@ namespace UnitsNet
 {
     public partial struct Area
     {
-        public static Length operator/(Area area, Length length)
+        public static Length operator /(Area area, Length length)
         {
-            return Length.FromMeters(area.SquareMeters / length.Meters);
+            return Length.FromMeters(area.SquareMeters/length.Meters);
         }
-
     }
 }

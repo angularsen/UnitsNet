@@ -25,13 +25,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
-        [Test]
-        public void AreaDividedByLengthEqualsLength()
-        {
-            var length = Area.FromSquareMeters(50) / Length.FromMeters(5);
-            Assert.AreEqual(length, Length.FromMeters(10));
-        }
-
         protected override double SquareCentimetersInOneSquareMeter
         {
             get { return 1E4; }
@@ -75,6 +68,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareYardsInOneSquareMeter
         {
             get { return 1.19599; }
+        }
+
+        [Test]
+        public void AreaDividedByLengthEqualsLength()
+        {
+            Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(10));
         }
     }
 }

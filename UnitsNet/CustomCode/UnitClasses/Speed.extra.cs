@@ -25,35 +25,34 @@ namespace UnitsNet
 {
     public partial struct Speed
     {
-
         public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
         {
-            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
+            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond/timeSpan.TotalSeconds);
         }
 
         public static Length operator *(Speed speed, TimeSpan timeSpan)
         {
-            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+            return Length.FromMeters(speed.MetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Length operator *(TimeSpan timeSpan, Speed speed)
         {
-            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+            return Length.FromMeters(speed.MetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Acceleration operator /(Speed speed, Duration duration)
         {
-            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond/duration.Seconds);
         }
 
         public static Length operator *(Speed speed, Duration duration)
         {
-            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+            return Length.FromMeters(speed.MetersPerSecond*duration.Seconds);
         }
 
         public static Length operator *(Duration duration, Speed speed)
         {
-            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+            return Length.FromMeters(speed.MetersPerSecond*duration.Seconds);
         }
     }
 }

@@ -23,14 +23,14 @@ namespace UnitsNet
 {
     public partial struct Pressure
     {
-        public static Force operator*(Pressure pressure, Area area)
+        public static Force operator *(Pressure pressure, Area area)
         {
-            return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
+            return Force.FromNewtons(pressure.Pascals*area.SquareMeters);
         }
 
         public static Force operator *(Area area, Pressure pressure)
         {
-            return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
+            return Force.FromNewtons(pressure.Pascals*area.SquareMeters);
         }
     }
 }

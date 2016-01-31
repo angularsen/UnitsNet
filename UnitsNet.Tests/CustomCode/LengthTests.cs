@@ -19,47 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class LengthTests : LengthTestsBase
     {
-        [Test]
-        public void LengthTimesLengthEqualsArea()
-        {
-            var area = Length.FromMeters(10) * Length.FromMeters(2);
-            Assert.AreEqual(area, Area.FromSquareMeters(20));
-        }
-
-        [Test]
-        public void AreaTimesLengthEqualsVolume()
-        {
-            var volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
-            Assert.AreEqual(volume, Volume.FromCubicMeters(30));
-        }
-        [Test]
-        public void LengthTimesAreaEqualsVolume()
-        {
-            var volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
-            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
-        }
-
-        [Test]
-        public void ForceTimesLengthEqualsTorque()
-        {
-            var torque = Force.FromNewtons(1) * Length.FromMeters(3);
-            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
-        }
-
-        [Test]
-        public void LengthTimesForceEqualsTorque()
-        {
-            var torque = Length.FromMeters(3) * Force.FromNewtons(1);
-            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
-        }
-
         protected override double CentimetersInOneMeter
         {
             get { return 100; }
@@ -128,9 +93,42 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NauticalMilesInOneMeter
         {
-            get
-            { return 1.0/1852.0; }
+            get { return 1.0/1852.0; }
         }
 
+        [Test]
+        public void AreaTimesLengthEqualsVolume()
+        {
+            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(30));
+        }
+
+        [Test]
+        public void ForceTimesLengthEqualsTorque()
+        {
+            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
+        }
+
+        [Test]
+        public void LengthTimesAreaEqualsVolume()
+        {
+            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
+        }
+
+        [Test]
+        public void LengthTimesForceEqualsTorque()
+        {
+            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
+        }
+
+        [Test]
+        public void LengthTimesLengthEqualsArea()
+        {
+            Area area = Length.FromMeters(10)*Length.FromMeters(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(20));
+        }
     }
 }

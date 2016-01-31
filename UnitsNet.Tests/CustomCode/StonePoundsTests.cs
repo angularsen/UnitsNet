@@ -11,20 +11,20 @@ namespace UnitsNet.Tests.CustomCode
         private const double PoundsTolerance = 1e-4;
 
         [Test]
+        public void StonePoundsFrom()
+        {
+            Mass m = Mass.FromStonePounds(2, 3);
+            double expectedKg = 2/StoneInOneKilogram + 3/PoundsInOneKilogram;
+            Assert.AreEqual(expectedKg, m.Kilograms, StoneTolerance);
+        }
+
+        [Test]
         public void StonePoundsRoundTrip()
         {
             Mass m = Mass.FromStonePounds(2, 3);
             StonePounds stonePounds = m.StonePounds;
             Assert.AreEqual(2, stonePounds.Stone, StoneTolerance);
             Assert.AreEqual(3, stonePounds.Pounds, PoundsTolerance);
-        }
-
-        [Test]
-        public void StonePoundsFrom()
-        {
-            Mass m = Mass.FromStonePounds(2, 3);
-            double expectedKg = (2 / StoneInOneKilogram) + (3 / PoundsInOneKilogram);
-            Assert.AreEqual(expectedKg, m.Kilograms, StoneTolerance);
         }
     }
 }

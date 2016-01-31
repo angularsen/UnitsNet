@@ -20,13 +20,10 @@
 // THE SOFTWARE.
 
 
-using System;
-
 namespace UnitsNet.Tests.CustomCode
 {
     public class AccelerationTests : AccelerationTestsBase
     {
-
         protected override double KilometerPerSecondSquaredInOneMeterPerSecondSquared
         {
             get { return 1E-3; }
