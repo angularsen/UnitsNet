@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
     public class SpeedTests : SpeedTestsBase
     {
         [Test]
-        public void SpeedDevidedByTimeSpanEqualsAcceleration()
+        public void SpeedDividedByTimeSpanEqualsAcceleration()
         {
             var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
-        public void SpeedDevidedByDurationEqualsAcceleration()
+        public void SpeedDividedByDurationEqualsAcceleration()
         {
             var acceleration = Speed.FromMetersPerSecond(20) / Duration.FromSeconds(2);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
@@ -55,7 +55,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
-        public void TimeSpanSpeedTimesEqualsLength()
+        public void TimeSpanTimesSpeedEqualsLength()
         {
             var length = TimeSpan.FromSeconds(2) * Speed.FromMetersPerSecond(20);
             Assert.AreEqual(length, Length.FromMeters(40));

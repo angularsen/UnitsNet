@@ -32,7 +32,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
-        public void AreaTimePressureEqualsForce()
+        public void AreaTimesPressureEqualsForce()
         {
             var force = Area.FromSquareMeters(3) * Pressure.FromPascals(20);
             Assert.AreEqual(force, Force.FromNewtons(60));

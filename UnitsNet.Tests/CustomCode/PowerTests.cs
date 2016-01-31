@@ -26,19 +26,19 @@ namespace UnitsNet.Tests.CustomCode
     public class PowerTests : PowerTestsBase
     {
         [Test]
-        public void PowerDevidedBySpeedEqualsForce()
+        public void PowerDividedBySpeedEqualsForce()
         {
             var force= Power.FromWatts(15.0) / Speed.FromMetersPerSecond(3);
             Assert.AreEqual(force, Force.FromNewtons(5));
         }
         [Test]
-        public void PowerDevidedByRotationalSpeedEqualsForce()
+        public void PowerDividedByRotationalSpeedEqualsForce()
         {
             var torque = Power.FromWatts(15.0) / RotationalSpeed.FromRadiansPerSecond(3);
             Assert.AreEqual(torque, Torque.FromNewtonMeters(5));
         }
         [Test]
-        public void PowerDevidedByTorqueEqualsRotationalSpeed()
+        public void PowerDividedByTorqueEqualsRotationalSpeed()
         {
             var rotationalSpeed= Power.FromWatts(15.0) / Torque.FromNewtonMeters(3);
             Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));

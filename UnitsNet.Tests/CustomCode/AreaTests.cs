@@ -26,7 +26,7 @@ namespace UnitsNet.Tests.CustomCode
     public class AreaTests : AreaTestsBase
     {
         [Test]
-        public void AreaDevidedByLengthEqualsLength()
+        public void AreaDividedByLengthEqualsLength()
         {
             var length = Area.FromSquareMeters(50) / Length.FromMeters(5);
             Assert.AreEqual(length, Length.FromMeters(10));

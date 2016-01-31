@@ -37,13 +37,13 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(power, Power.FromWatts(270));
         }
         [Test]
-        public void ForceDevidedByMassEqualsAcceleration()
+        public void ForceDividedByMassEqualsAcceleration()
         {
             var acceleration= Force.FromNewtons(27)/Mass.FromKilograms(9);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(3));
         }
         [Test]
-        public void ForceDevidedByAreaEqualsPressure()
+        public void ForceDividedByAreaEqualsPressure()
         {
             var pressure=Force.FromNewtons(81)/Area.FromSquareMeters(9);
             Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(9));

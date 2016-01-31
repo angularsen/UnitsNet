@@ -25,13 +25,13 @@ namespace UnitsNet.Tests.CustomCode
     public class TorqueTests : TorqueTestsBase
     {
         [Test]
-        public void TorqueDevidedByLengthEqualsForce()
+        public void TorqueDividedByLengthEqualsForce()
         {
             var force = Torque.FromNewtonMeters(4) / Length.FromMeters(2);
             Assert.AreEqual(force, Force.FromNewtons(2));
         }
         [Test]
-        public void TorqueDevidedByForceEqualsLength()
+        public void TorqueDividedByForceEqualsLength()
         {
             var length= Torque.FromNewtonMeters(4) / Force.FromNewtons(2);
             Assert.AreEqual(length, Length.FromMeters(2));

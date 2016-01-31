@@ -55,20 +55,6 @@ namespace UnitsNet.Tests.CustomCode
             Assert.AreEqual(angle, Angle.FromRadians(90.0));
         }
 
-        [Test]
-        public void RotationalSpeedTimesForceEqualsPower()
-        {
-            var power = RotationalSpeed.FromRadiansPerSecond(10.0) * Force.FromNewtons(2.0);
-            Assert.AreEqual(power, Power.FromWatts(20.0));
-        }
-
-        [Test]
-        public void ForceTimesRotationalSpeedEqualsPower()
-        {
-            var power = Force.FromNewtons(2.0) * RotationalSpeed.FromRadiansPerSecond(10.0) ;
-            Assert.AreEqual(power, Power.FromWatts(20.0));
-        }
-
         protected override double RadiansPerSecondInOneRadianPerSecond
         {
             get { return 1; }
