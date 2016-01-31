@@ -27,45 +27,21 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class KinematicViscosityTests : KinematicViscosityTestsBase
     {
-        protected override double CentistokesInOneSquareMeterPerSecond
-        {
-            get { return 1e6; }
-        }
+        protected override double CentistokesInOneSquareMeterPerSecond => 1e6;
 
-        protected override double DecistokesInOneSquareMeterPerSecond
-        {
-            get { return 1e5; }
-        }
+        protected override double DecistokesInOneSquareMeterPerSecond => 1e5;
 
-        protected override double KilostokesInOneSquareMeterPerSecond
-        {
-            get { return 10; }
-        }
+        protected override double KilostokesInOneSquareMeterPerSecond => 10;
 
-        protected override double MicrostokesInOneSquareMeterPerSecond
-        {
-            get { return 1e10; }
-        }
+        protected override double MicrostokesInOneSquareMeterPerSecond => 1e10;
 
-        protected override double MillistokesInOneSquareMeterPerSecond
-        {
-            get { return 1e7; }
-        }
+        protected override double MillistokesInOneSquareMeterPerSecond => 1e7;
 
-        protected override double NanostokesInOneSquareMeterPerSecond
-        {
-            get { return 1e13; }
-        }
+        protected override double NanostokesInOneSquareMeterPerSecond => 1e13;
 
-        protected override double SquareMetersPerSecondInOneSquareMeterPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double SquareMetersPerSecondInOneSquareMeterPerSecond => 1;
 
-        protected override double StokesInOneSquareMeterPerSecond
-        {
-            get { return 1e4; }
-        }
+        protected override double StokesInOneSquareMeterPerSecond => 1e4;
 
         [Test]
         public static void DurationTimesKinematicViscosityEqualsArea()

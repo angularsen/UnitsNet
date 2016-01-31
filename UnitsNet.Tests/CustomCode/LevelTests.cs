@@ -26,15 +26,9 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LevelTests : LevelTestsBase
     {
-        protected override double DecibelsInOneDecibel
-        {
-            get { return 1; }
-        }
+        protected override double DecibelsInOneDecibel => 1;
 
-        protected override double NepersInOneDecibel
-        {
-            get { return 0.115129254; }
-        }
+        protected override double NepersInOneDecibel => 0.115129254;
 
         protected override void AssertLogarithmicAddition()
         {

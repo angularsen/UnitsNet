@@ -25,9 +25,6 @@ namespace UnitsNet.Tests.CustomCode
     public class ForceChangeRateTests : ForceChangeRateTestsBase
     {
         // TODO Override properties in base class here
-        protected override double NewtonsPerSecondInOneNewtonPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double NewtonsPerSecondInOneNewtonPerSecond => 1;
     }
 }

@@ -26,46 +26,22 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double JoulesPerKilogramInOneJoulePerKilogram
-        {
-            get { return 1.0; }
-        }
+        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
 
-        protected override double CaloriesPerGramInOneJoulePerKilogram
-        {
-            get { return 1.0/4.184E3; }
-        }
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E3;
 
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram
-        {
-            get { return 1.0/4.184E6; }
-        }
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E6;
 
 
-        protected override double KilojoulesPerKilogramInOneJoulePerKilogram
-        {
-            get { return 1.0E-3; }
-        }
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
 
-        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get { return 2.77777778e-7; }
-        }
+        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-7;
 
-        protected override double MegajoulesPerKilogramInOneJoulePerKilogram
-        {
-            get { return 1.0E-6; }
-        }
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1.0E-6;
 
-        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get { return 2.77777778E-10; }
-        }
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778E-10;
 
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get { return 1.0/3.6e3; }
-        }
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
 
         [Test]
         public void MassTimesSpecificEnergyEqualsEnergy()

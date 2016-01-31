@@ -25,115 +25,49 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
-        protected override double CentilitersInOneCubicMeter
-        {
-            get { return 1E5; }
-        }
+        protected override double CentilitersInOneCubicMeter => 1E5;
 
-        protected override double CubicCentimetersInOneCubicMeter
-        {
-            get { return 1E6; }
-        }
+        protected override double CubicCentimetersInOneCubicMeter => 1E6;
 
-        protected override double CubicDecimetersInOneCubicMeter
-        {
-            get { return 1E3; }
-        }
+        protected override double CubicDecimetersInOneCubicMeter => 1E3;
 
-        protected override double CubicFeetInOneCubicMeter
-        {
-            get { return 35.31472; }
-        }
+        protected override double CubicFeetInOneCubicMeter => 35.31472;
 
-        protected override double CubicInchesInOneCubicMeter
-        {
-            get { return 61023.98242; }
-        }
+        protected override double CubicInchesInOneCubicMeter => 61023.98242;
 
-        protected override double CubicKilometersInOneCubicMeter
-        {
-            get { return 1E-9; }
-        }
+        protected override double CubicKilometersInOneCubicMeter => 1E-9;
 
-        protected override double CubicMetersInOneCubicMeter
-        {
-            get { return 1; }
-        }
+        protected override double CubicMetersInOneCubicMeter => 1;
 
-        protected override double CubicMilesInOneCubicMeter
-        {
-            get { return 3.86102*1E-7; }
-        }
+        protected override double CubicMilesInOneCubicMeter => 3.86102*1E-7;
 
-        protected override double CubicMillimetersInOneCubicMeter
-        {
-            get { return 1E9; }
-        }
+        protected override double CubicMillimetersInOneCubicMeter => 1E9;
 
-        protected override double CubicYardsInOneCubicMeter
-        {
-            get { return 1.30795062; }
-        }
+        protected override double CubicYardsInOneCubicMeter => 1.30795062;
 
-        protected override double DecilitersInOneCubicMeter
-        {
-            get { return 1E4; }
-        }
+        protected override double DecilitersInOneCubicMeter => 1E4;
 
-        protected override double HectolitersInOneCubicMeter
-        {
-            get { return 1E1; }
-        }
+        protected override double HectolitersInOneCubicMeter => 1E1;
 
-        protected override double ImperialGallonsInOneCubicMeter
-        {
-            get { return 219.96924; }
-        }
+        protected override double ImperialGallonsInOneCubicMeter => 219.96924;
 
-        protected override double ImperialOuncesInOneCubicMeter
-        {
-            get { return 35195.07972; }
-        }
+        protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
 
-        protected override double LitersInOneCubicMeter
-        {
-            get { return 1E3; }
-        }
+        protected override double LitersInOneCubicMeter => 1E3;
 
-        protected override double MillilitersInOneCubicMeter
-        {
-            get { return 1E6; }
-        }
+        protected override double MillilitersInOneCubicMeter => 1E6;
 
-        protected override double TablespoonsInOneCubicMeter
-        {
-            get { return 67628.0454; }
-        }
+        protected override double TablespoonsInOneCubicMeter => 67628.0454;
 
-        protected override double TablespoonsTolerance
-        {
-            get { return 1E-4; }
-        }
+        protected override double TablespoonsTolerance => 1E-4;
 
-        protected override double TeaspoonsInOneCubicMeter
-        {
-            get { return 202884.136; }
-        }
+        protected override double TeaspoonsInOneCubicMeter => 202884.136;
 
-        protected override double TeaspoonsTolerance
-        {
-            get { return 1E-3; }
-        }
+        protected override double TeaspoonsTolerance => 1E-3;
 
-        protected override double UsGallonsInOneCubicMeter
-        {
-            get { return 264.17217; }
-        }
+        protected override double UsGallonsInOneCubicMeter => 264.17217;
 
-        protected override double UsOuncesInOneCubicMeter
-        {
-            get { return 33814.02270; }
-        }
+        protected override double UsOuncesInOneCubicMeter => 33814.02270;
 
         [Test]
         public void VolumeDividedByAreaEqualsLength()

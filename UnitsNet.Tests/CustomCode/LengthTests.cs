@@ -25,76 +25,34 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LengthTests : LengthTestsBase
     {
-        protected override double CentimetersInOneMeter
-        {
-            get { return 100; }
-        }
+        protected override double CentimetersInOneMeter => 100;
 
-        protected override double DecimetersInOneMeter
-        {
-            get { return 10; }
-        }
+        protected override double DecimetersInOneMeter => 10;
 
-        protected override double FeetInOneMeter
-        {
-            get { return 3.28084; }
-        }
+        protected override double FeetInOneMeter => 3.28084;
 
-        protected override double InchesInOneMeter
-        {
-            get { return 39.37007874; }
-        }
+        protected override double InchesInOneMeter => 39.37007874;
 
-        protected override double KilometersInOneMeter
-        {
-            get { return 1E-3; }
-        }
+        protected override double KilometersInOneMeter => 1E-3;
 
-        protected override double MetersInOneMeter
-        {
-            get { return 1; }
-        }
+        protected override double MetersInOneMeter => 1;
 
-        protected override double MicroinchesInOneMeter
-        {
-            get { return 39370078.74015748; }
-        }
+        protected override double MicroinchesInOneMeter => 39370078.74015748;
 
-        protected override double MicrometersInOneMeter
-        {
-            get { return 1E6; }
-        }
+        protected override double MicrometersInOneMeter => 1E6;
 
-        protected override double MilsInOneMeter
-        {
-            get { return 39370.07874015; }
-        }
+        protected override double MilsInOneMeter => 39370.07874015;
 
-        protected override double MilesInOneMeter
-        {
-            get { return 0.000621371; }
-        }
+        protected override double MilesInOneMeter => 0.000621371;
 
-        protected override double MillimetersInOneMeter
-        {
-            get { return 1E3; }
-        }
+        protected override double MillimetersInOneMeter => 1E3;
 
-        protected override double NanometersInOneMeter
-        {
-            get { return 1E9; }
-        }
+        protected override double NanometersInOneMeter => 1E9;
 
-        protected override double YardsInOneMeter
-        {
-            get { return 1.09361; }
-        }
+        protected override double YardsInOneMeter => 1.09361;
 
 
-        protected override double NauticalMilesInOneMeter
-        {
-            get { return 1.0/1852.0; }
-        }
+        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
         [Test]
         public void AreaTimesLengthEqualsVolume()

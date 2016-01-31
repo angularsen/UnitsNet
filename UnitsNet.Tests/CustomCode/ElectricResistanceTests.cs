@@ -23,19 +23,10 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
-        protected override double OhmsInOneOhm
-        {
-            get { return 1; }
-        }
+        protected override double OhmsInOneOhm => 1;
 
-        protected override double KiloohmsInOneOhm
-        {
-            get { return 1e-3; }
-        }
+        protected override double KiloohmsInOneOhm => 1e-3;
 
-        protected override double MegaohmsInOneOhm
-        {
-            get { return 1e-6; }
-        }
+        protected override double MegaohmsInOneOhm => 1e-6;
     }
 }

@@ -25,85 +25,37 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
-        protected override double KilogramForceCentimetersInOneNewtonMeter
-        {
-            get { return 10.1971621; }
-        }
+        protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
 
-        protected override double KilogramForceMetersInOneNewtonMeter
-        {
-            get { return 0.101971621; }
-        }
+        protected override double KilogramForceMetersInOneNewtonMeter => 0.101971621;
 
-        protected override double KilogramForceMillimetersInOneNewtonMeter
-        {
-            get { return 101.971621; }
-        }
+        protected override double KilogramForceMillimetersInOneNewtonMeter => 101.971621;
 
-        protected override double KilonewtonCentimetersInOneNewtonMeter
-        {
-            get { return 0.1; }
-        }
+        protected override double KilonewtonCentimetersInOneNewtonMeter => 0.1;
 
-        protected override double KilonewtonMetersInOneNewtonMeter
-        {
-            get { return 0.001; }
-        }
+        protected override double KilonewtonMetersInOneNewtonMeter => 0.001;
 
-        protected override double KilonewtonMillimetersInOneNewtonMeter
-        {
-            get { return 1; }
-        }
+        protected override double KilonewtonMillimetersInOneNewtonMeter => 1;
 
-        protected override double KilopoundForceFeetInOneNewtonMeter
-        {
-            get { return 7.376e-4; }
-        }
+        protected override double KilopoundForceFeetInOneNewtonMeter => 7.376e-4;
 
-        protected override double KilopoundForceInchesInOneNewtonMeter
-        {
-            get { return 0.008851; }
-        }
+        protected override double KilopoundForceInchesInOneNewtonMeter => 0.008851;
 
-        protected override double NewtonCentimetersInOneNewtonMeter
-        {
-            get { return 100; }
-        }
+        protected override double NewtonCentimetersInOneNewtonMeter => 100;
 
-        protected override double NewtonMetersInOneNewtonMeter
-        {
-            get { return 1; }
-        }
+        protected override double NewtonMetersInOneNewtonMeter => 1;
 
-        protected override double NewtonMillimetersInOneNewtonMeter
-        {
-            get { return 1000; }
-        }
+        protected override double NewtonMillimetersInOneNewtonMeter => 1000;
 
-        protected override double PoundForceFeetInOneNewtonMeter
-        {
-            get { return 0.737562149277; }
-        }
+        protected override double PoundForceFeetInOneNewtonMeter => 0.737562149277;
 
-        protected override double PoundForceInchesInOneNewtonMeter
-        {
-            get { return 8.85074579; }
-        }
+        protected override double PoundForceInchesInOneNewtonMeter => 8.85074579;
 
-        protected override double TonneForceCentimetersInOneNewtonMeter
-        {
-            get { return 1.01972e-2; }
-        }
+        protected override double TonneForceCentimetersInOneNewtonMeter => 1.01972e-2;
 
-        protected override double TonneForceMetersInOneNewtonMeter
-        {
-            get { return 1.01972e-4; }
-        }
+        protected override double TonneForceMetersInOneNewtonMeter => 1.01972e-4;
 
-        protected override double TonneForceMillimetersInOneNewtonMeter
-        {
-            get { return 1.01972e-1; }
-        }
+        protected override double TonneForceMillimetersInOneNewtonMeter => 1.01972e-1;
 
         [Test]
         public void TorqueDividedByForceEqualsLength()

@@ -23,84 +23,36 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificWeightTests : SpecificWeightTestsBase
     {
-        protected override double KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter
-        {
-            get { return 0.101971621e-7; }
-        }
+        protected override double KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter => 0.101971621e-7;
 
-        protected override double KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter
-        {
-            get { return 0.101971621; }
-        }
+        protected override double KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter => 0.101971621;
 
-        protected override double KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter
-        {
-            get { return 0.101971621e-10; }
-        }
+        protected override double KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter => 0.101971621e-10;
 
-        protected override double KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
+        protected override double KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter => 1e-9;
 
-        protected override double KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter
-        {
-            get { return 1e-3; }
-        }
+        protected override double KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1e-3;
 
-        protected override double KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1e-12; }
-        }
+        protected override double KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter => 1e-12;
 
-        protected override double KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter
-        {
-            get { return 6.366e-6; }
-        }
+        protected override double KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter => 6.366e-6;
 
-        protected override double KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter
-        {
-            get { return 3.684e-9; }
-        }
+        protected override double KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter => 3.684e-9;
 
-        protected override double NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1e-6; }
-        }
+        protected override double NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter => 1e-6;
 
-        protected override double NewtonsPerCubicMeterInOneNewtonPerCubicMeter
-        {
-            get { return 1; }
-        }
+        protected override double NewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1;
 
-        protected override double NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
+        protected override double NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter => 1e-9;
 
-        protected override double PoundsForcePerCubicFootInOneNewtonPerCubicMeter
-        {
-            get { return 0.006366; }
-        }
+        protected override double PoundsForcePerCubicFootInOneNewtonPerCubicMeter => 0.006366;
 
-        protected override double PoundsForcePerCubicInchInOneNewtonPerCubicMeter
-        {
-            get { return 3.684e-6; }
-        }
+        protected override double PoundsForcePerCubicInchInOneNewtonPerCubicMeter => 3.684e-6;
 
-        protected override double TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1.02e-13; }
-        }
+        protected override double TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter => 1.02e-13;
 
-        protected override double TonnesForcePerCubicMeterInOneNewtonPerCubicMeter
-        {
-            get { return 1.02e-4; }
-        }
+        protected override double TonnesForcePerCubicMeterInOneNewtonPerCubicMeter => 1.02e-4;
 
-        protected override double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter
-        {
-            get { return 1.02e-10; }
-        }
+        protected override double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter => 1.02e-10;
     }
 }

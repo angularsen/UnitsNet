@@ -24,24 +24,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PressureChangeRateTests : PressureChangeRateTestsBase
     {
-        protected override double AtmospheresPerSecondInOnePascalPerSecond
-        {
-            get { return 9.8692*1E-6; }
-        }
+        protected override double AtmospheresPerSecondInOnePascalPerSecond => 9.8692*1E-6;
 
-        protected override double KilopascalsPerSecondInOnePascalPerSecond
-        {
-            get { return 1e-3; }
-        }
+        protected override double KilopascalsPerSecondInOnePascalPerSecond => 1e-3;
 
-        protected override double MegapascalsPerSecondInOnePascalPerSecond
-        {
-            get { return 1E-6; }
-        }
+        protected override double MegapascalsPerSecondInOnePascalPerSecond => 1E-6;
 
-        protected override double PascalsPerSecondInOnePascalPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double PascalsPerSecondInOnePascalPerSecond => 1;
     }
 }

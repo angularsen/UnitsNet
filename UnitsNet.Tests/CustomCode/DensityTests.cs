@@ -25,55 +25,25 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
-        protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-6; }
-        }
+        protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
 
-        protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter
-        {
-            get { return 1; }
-        }
+        protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
 
-        protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
+        protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-9;
 
-        protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter
-        {
-            get { return 6.242796e-5; }
-        }
+        protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-5;
 
-        protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter
-        {
-            get { return 3.6127292e-8; }
-        }
+        protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter => 3.6127292e-8;
 
-        protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter
-        {
-            get { return 6.242796e-2; }
-        }
+        protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
 
-        protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter
-        {
-            get { return 3.61272923e-5; }
-        }
+        protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
 
-        protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
+        protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-9;
 
-        protected override double TonnesPerCubicMeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-3; }
-        }
+        protected override double TonnesPerCubicMeterInOneKilogramPerCubicMeter => 1e-3;
 
-        protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-12; }
-        }
+        protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-12;
 
         [Test]
         public static void DensityTimesVolumeEqualsMass()

@@ -25,44 +25,20 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class FrequencyTests : FrequencyTestsBase
     {
-        protected override double HertzInOneHertz
-        {
-            get { return 1; }
-        }
+        protected override double HertzInOneHertz => 1;
 
-        protected override double KilohertzInOneHertz
-        {
-            get { return 1e-3; }
-        }
+        protected override double KilohertzInOneHertz => 1e-3;
 
-        protected override double MegahertzInOneHertz
-        {
-            get { return 1e-6; }
-        }
+        protected override double MegahertzInOneHertz => 1e-6;
 
-        protected override double GigahertzInOneHertz
-        {
-            get { return 1e-9; }
-        }
+        protected override double GigahertzInOneHertz => 1e-9;
 
-        protected override double TerahertzInOneHertz
-        {
-            get { return 1e-12; }
-        }
+        protected override double TerahertzInOneHertz => 1e-12;
 
-        protected override double CyclesPerHourInOneHertz
-        {
-            get { return 2.77777e-4; }
-        }
+        protected override double CyclesPerHourInOneHertz => 2.77777e-4;
 
-        protected override double CyclesPerMinuteInOneHertz
-        {
-            get { return 0.016666667; }
-        }
+        protected override double CyclesPerMinuteInOneHertz => 0.016666667;
 
-        protected override double RadiansPerSecondInOneHertz
-        {
-            get { return 2*Math.PI; }
-        }
+        protected override double RadiansPerSecondInOneHertz => 2*Math.PI;
     }
 }

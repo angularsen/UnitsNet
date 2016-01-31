@@ -23,34 +23,16 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentTests : ElectricCurrentTestsBase
     {
-        protected override double NanoamperesInOneAmpere
-        {
-            get { return 1e9; }
-        }
+        protected override double NanoamperesInOneAmpere => 1e9;
 
-        protected override double MicroamperesInOneAmpere
-        {
-            get { return 1e6; }
-        }
+        protected override double MicroamperesInOneAmpere => 1e6;
 
-        protected override double MilliamperesInOneAmpere
-        {
-            get { return 1e3; }
-        }
+        protected override double MilliamperesInOneAmpere => 1e3;
 
-        protected override double AmperesInOneAmpere
-        {
-            get { return 1; }
-        }
+        protected override double AmperesInOneAmpere => 1;
 
-        protected override double KiloamperesInOneAmpere
-        {
-            get { return 1e-3; }
-        }
+        protected override double KiloamperesInOneAmpere => 1e-3;
 
-        protected override double MegaamperesInOneAmpere
-        {
-            get { return 1e-6; }
-        }
+        protected override double MegaamperesInOneAmpere => 1e-6;
     }
 }

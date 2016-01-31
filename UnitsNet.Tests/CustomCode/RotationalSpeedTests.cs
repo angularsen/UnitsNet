@@ -26,45 +26,21 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
-        protected override double RadiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double RadiansPerSecondInOneRadianPerSecond => 1;
 
-        protected override double DeciradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E1; }
-        }
+        protected override double DeciradiansPerSecondInOneRadianPerSecond => 1E1;
 
-        protected override double CentiradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E2; }
-        }
+        protected override double CentiradiansPerSecondInOneRadianPerSecond => 1E2;
 
-        protected override double MilliradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E3; }
-        }
+        protected override double MilliradiansPerSecondInOneRadianPerSecond => 1E3;
 
-        protected override double MicroradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E6; }
-        }
+        protected override double MicroradiansPerSecondInOneRadianPerSecond => 1E6;
 
-        protected override double NanoradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E9; }
-        }
+        protected override double NanoradiansPerSecondInOneRadianPerSecond => 1E9;
 
-        protected override double RevolutionsPerMinuteInOneRadianPerSecond
-        {
-            get { return 60*1/(2*Math.PI); }
-        }
+        protected override double RevolutionsPerMinuteInOneRadianPerSecond => 60*1/(2*Math.PI);
 
-        protected override double RevolutionsPerSecondInOneRadianPerSecond
-        {
-            get { return 1/(2*Math.PI); }
-        }
+        protected override double RevolutionsPerSecondInOneRadianPerSecond => 1/(2*Math.PI);
 
         [Test]
         public void DurationTimesRotationalSpeedEqualsAngle()

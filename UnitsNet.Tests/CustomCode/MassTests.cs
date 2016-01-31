@@ -26,95 +26,41 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassTests : MassTestsBase
     {
-        protected override double CentigramsInOneKilogram
-        {
-            get { return 1E5; }
-        }
+        protected override double CentigramsInOneKilogram => 1E5;
 
-        protected override double DecagramsInOneKilogram
-        {
-            get { return 1E2; }
-        }
+        protected override double DecagramsInOneKilogram => 1E2;
 
-        protected override double DecigramsInOneKilogram
-        {
-            get { return 1E4; }
-        }
+        protected override double DecigramsInOneKilogram => 1E4;
 
-        protected override double GramsInOneKilogram
-        {
-            get { return 1E3; }
-        }
+        protected override double GramsInOneKilogram => 1E3;
 
-        protected override double HectogramsInOneKilogram
-        {
-            get { return 10; }
-        }
+        protected override double HectogramsInOneKilogram => 10;
 
-        protected override double KilogramsInOneKilogram
-        {
-            get { return 1; }
-        }
+        protected override double KilogramsInOneKilogram => 1;
 
-        protected override double KilotonnesInOneKilogram
-        {
-            get { return 1E-6; }
-        }
+        protected override double KilotonnesInOneKilogram => 1E-6;
 
-        protected override double LongTonsInOneKilogram
-        {
-            get { return 0.000984207; }
-        }
+        protected override double LongTonsInOneKilogram => 0.000984207;
 
-        protected override double MegatonnesInOneKilogram
-        {
-            get { return 1E-6; }
-        }
+        protected override double MegatonnesInOneKilogram => 1E-6;
 
-        protected override double MicrogramsInOneKilogram
-        {
-            get { return 1E9; }
-        }
+        protected override double MicrogramsInOneKilogram => 1E9;
 
-        protected override double MilligramsInOneKilogram
-        {
-            get { return 1E6; }
-        }
+        protected override double MilligramsInOneKilogram => 1E6;
 
-        protected override double NanogramsInOneKilogram
-        {
-            get { return 1E12; }
-        }
+        protected override double NanogramsInOneKilogram => 1E12;
 
-        protected override double NanogramsTolerance
-        {
-            get { return 1E-3; }
-        }
+        protected override double NanogramsTolerance => 1E-3;
 
-        protected override double OuncesInOneKilogram
-        {
-            get { return 35.2739619; }
-        }
+        protected override double OuncesInOneKilogram => 35.2739619;
 
-        protected override double PoundsInOneKilogram
-        {
-            get { return 2.2046226218487757d; }
-        }
+        protected override double PoundsInOneKilogram => 2.2046226218487757d;
 
-        protected override double ShortTonsInOneKilogram
-        {
-            get { return 0.00110231; }
-        }
+        protected override double ShortTonsInOneKilogram => 0.00110231;
 
-        protected override double StoneInOneKilogram
-        {
-            get { return 0.1574731728702698; }
-        }
+        protected override double StoneInOneKilogram => 0.1574731728702698;
 
-        protected override double TonnesInOneKilogram
-        {
-            get { return 1E-3; }
-        }
+        protected override double TonnesInOneKilogram => 1E-3;
 
         [Test]
         public void AccelerationTimesMassEqualsForce()

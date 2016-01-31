@@ -26,55 +26,25 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassFlowTests : MassFlowTestsBase
     {
-        protected override double GramsPerSecondInOneGramPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double GramsPerSecondInOneGramPerSecond => 1;
 
-        protected override double DecagramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E-1; }
-        }
+        protected override double DecagramsPerSecondInOneGramPerSecond => 1E-1;
 
-        protected override double HectogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E-2; }
-        }
+        protected override double HectogramsPerSecondInOneGramPerSecond => 1E-2;
 
-        protected override double KilogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E-3; }
-        }
+        protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
-        protected override double DecigramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E1; }
-        }
+        protected override double DecigramsPerSecondInOneGramPerSecond => 1E1;
 
-        protected override double CentigramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E2; }
-        }
+        protected override double CentigramsPerSecondInOneGramPerSecond => 1E2;
 
-        protected override double MilligramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E3; }
-        }
+        protected override double MilligramsPerSecondInOneGramPerSecond => 1E3;
 
-        protected override double MicrogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E6; }
-        }
+        protected override double MicrogramsPerSecondInOneGramPerSecond => 1E6;
 
-        protected override double NanogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E9; }
-        }
+        protected override double NanogramsPerSecondInOneGramPerSecond => 1E9;
 
-        protected override double TonnesPerDayInOneGramPerSecond
-        {
-            get { return 60.0*60*24/1E6; }
-        }
+        protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
 
         [Test]
         public void DurationTimesMassFlowEqualsMass()

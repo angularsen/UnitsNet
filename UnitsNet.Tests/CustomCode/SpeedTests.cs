@@ -26,65 +26,29 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
-        protected override double FeetPerSecondInOneMeterPerSecond
-        {
-            get { return 3.28084; }
-        }
+        protected override double FeetPerSecondInOneMeterPerSecond => 3.28084;
 
-        protected override double KilometersPerHourInOneMeterPerSecond
-        {
-            get { return 3.6; }
-        }
+        protected override double KilometersPerHourInOneMeterPerSecond => 3.6;
 
-        protected override double KnotsInOneMeterPerSecond
-        {
-            get { return 1.94384; }
-        }
+        protected override double KnotsInOneMeterPerSecond => 1.94384;
 
-        protected override double MetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double MetersPerSecondInOneMeterPerSecond => 1;
 
-        protected override double MilesPerHourInOneMeterPerSecond
-        {
-            get { return 2.23694; }
-        }
+        protected override double MilesPerHourInOneMeterPerSecond => 2.23694;
 
-        protected override double NanometersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E9; }
-        }
+        protected override double NanometersPerSecondInOneMeterPerSecond => 1E9;
 
-        protected override double MicrometersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E6; }
-        }
+        protected override double MicrometersPerSecondInOneMeterPerSecond => 1E6;
 
-        protected override double MillimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E3; }
-        }
+        protected override double MillimetersPerSecondInOneMeterPerSecond => 1E3;
 
-        protected override double CentimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E2; }
-        }
+        protected override double CentimetersPerSecondInOneMeterPerSecond => 1E2;
 
-        protected override double DecimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E1; }
-        }
+        protected override double DecimetersPerSecondInOneMeterPerSecond => 1E1;
 
-        protected override double KilometersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E-3; }
-        }
+        protected override double KilometersPerSecondInOneMeterPerSecond => 1E-3;
 
-        protected override double MetersPerHourInOneMeterPerSecond
-        {
-            get { return 3600.0; }
-        }
+        protected override double MetersPerHourInOneMeterPerSecond => 3600.0;
 
         [Test]
         public void DurationSpeedTimesEqualsLength()

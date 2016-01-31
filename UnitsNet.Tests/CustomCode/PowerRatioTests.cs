@@ -27,15 +27,9 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerRatioTests : PowerRatioTestsBase
     {
-        protected override double DecibelMilliwattsInOneDecibelWatt
-        {
-            get { return 31; }
-        }
+        protected override double DecibelMilliwattsInOneDecibelWatt => 31;
 
-        protected override double DecibelWattsInOneDecibelWatt
-        {
-            get { return 1; }
-        }
+        protected override double DecibelWattsInOneDecibelWatt => 1;
 
         protected override void AssertLogarithmicAddition()
         {

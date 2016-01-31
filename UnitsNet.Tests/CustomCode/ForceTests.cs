@@ -25,45 +25,21 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
-        protected override double DyneInOneNewton
-        {
-            get { return 1E5; }
-        }
+        protected override double DyneInOneNewton => 1E5;
 
-        protected override double KilogramsForceInOneNewton
-        {
-            get { return 1/Constants.Gravity; }
-        }
+        protected override double KilogramsForceInOneNewton => 1/Constants.Gravity;
 
-        protected override double KilonewtonsInOneNewton
-        {
-            get { return 1E-3; }
-        }
+        protected override double KilonewtonsInOneNewton => 1E-3;
 
-        protected override double KiloPondsInOneNewton
-        {
-            get { return 1/Constants.Gravity; }
-        }
+        protected override double KiloPondsInOneNewton => 1/Constants.Gravity;
 
-        protected override double NewtonsInOneNewton
-        {
-            get { return 1; }
-        }
+        protected override double NewtonsInOneNewton => 1;
 
-        protected override double PoundalsInOneNewton
-        {
-            get { return 7.23301; }
-        }
+        protected override double PoundalsInOneNewton => 7.23301;
 
-        protected override double PoundsForceInOneNewton
-        {
-            get { return 0.22481; }
-        }
+        protected override double PoundsForceInOneNewton => 0.22481;
 
-        protected override double TonnesForceInOneNewton
-        {
-            get { return 1.02e-4; }
-        }
+        protected override double TonnesForceInOneNewton => 1.02e-4;
 
         [Test]
         public void ForceDividedByAreaEqualsPressure()

@@ -27,20 +27,11 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AmplitudeRatioTests : AmplitudeRatioTestsBase
     {
-        protected override double DecibelMicrovoltsInOneDecibelVolt
-        {
-            get { return 121; }
-        }
+        protected override double DecibelMicrovoltsInOneDecibelVolt => 121;
 
-        protected override double DecibelMillivoltsInOneDecibelVolt
-        {
-            get { return 61; }
-        }
+        protected override double DecibelMillivoltsInOneDecibelVolt => 61;
 
-        protected override double DecibelVoltsInOneDecibelVolt
-        {
-            get { return 1; }
-        }
+        protected override double DecibelVoltsInOneDecibelVolt => 1;
 
         protected override void AssertLogarithmicAddition()
         {

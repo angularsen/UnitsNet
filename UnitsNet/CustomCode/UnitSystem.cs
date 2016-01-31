@@ -76,10 +76,7 @@ namespace UnitsNet
             LoadDefaultAbbreviatons(cultureInfo);
         }
 
-        public bool IsDefaultCulture
-        {
-            get { return Culture.Equals(DefaultCulture); }
-        }
+        public bool IsDefaultCulture => Culture.Equals(DefaultCulture);
 
         [PublicAPI]
         public static void ClearCache()
