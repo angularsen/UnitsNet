@@ -93,7 +93,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("[{0:0.####}, {1:0.####}, {2:0.####}]", X, Y, Z);
+            return $"[{X:0.####}, {Y:0.####}, {Z:0.####}]";
         }
     }
 }

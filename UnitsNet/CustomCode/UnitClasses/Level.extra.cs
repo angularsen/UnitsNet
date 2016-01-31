@@ -35,7 +35,7 @@ namespace UnitsNet
             : this()
         {
             string errorMessage =
-                string.Format("The base-10 logarithm of a number ≤ 0 is undefined ({0}/{1}).", quantity, reference);
+                $"The base-10 logarithm of a number ≤ 0 is undefined ({quantity}/{reference}).";
 
             if (quantity == 0 || (quantity < 0 && reference > 0))
                 throw new ArgumentOutOfRangeException(nameof(quantity), errorMessage);

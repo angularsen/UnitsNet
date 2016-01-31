@@ -223,8 +223,8 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
-                UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
+            return
+                $"({X.Meters:0.##}, {Y.Meters:0.##}) {UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter)}";
         }
 
         public Length DistanceTo(Length2d other)

@@ -125,7 +125,7 @@ namespace UnitsNet
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture));
+                    $"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
             int unitValue;
             TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
@@ -250,7 +250,7 @@ namespace UnitsNet
             {
                 if (IsDefaultCulture)
                 {
-                    return new[] {string.Format("(no abbreviation for {0}.{1})", unitType.Name, unit)};
+                    return new[] {$"(no abbreviation for {unitType.Name}.{unit})"};
                 }
 
                 // Fall back to default culture
