@@ -90,7 +90,7 @@ namespace UnitsNet
         {
             if (voltage.Volts <= 0)
                 throw new ArgumentOutOfRangeException(
-                    "voltage", "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
+                    nameof(voltage), "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
             _decibelVolts = 20*Math.Log10(voltage/ElectricPotential.FromVolts(1));

@@ -84,7 +84,7 @@ namespace UnitsNet
         {
             if (power.Watts <= 0)
                 throw new ArgumentOutOfRangeException(
-                    "power", "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
+                    nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
             _decibelWatts = 10*Math.Log10(power/Power.FromWatts(1));

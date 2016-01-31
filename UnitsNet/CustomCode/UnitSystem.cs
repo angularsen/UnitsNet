@@ -166,13 +166,13 @@ namespace UnitsNet
         {
 #if PORTABLE45
             if (System.Reflection.IntrospectionExtensions.GetTypeInfo(unitType).IsEnum)
-                throw new ArgumentException("Must be an enum type.", "unitType");
+                throw new ArgumentException("Must be an enum type.", nameof(unitType));
 #else
             if (!unitType.IsEnum)
-                throw new ArgumentException("Must be an enum type.", "unitType");
+                throw new ArgumentException("Must be an enum type.", nameof(unitType));
 #endif
             if (abbreviations == null)
-                throw new ArgumentNullException("abbreviations");
+                throw new ArgumentNullException(nameof(abbreviations));
 
             Dictionary<int, List<string>> unitValueToAbbrev;
             if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrev))
