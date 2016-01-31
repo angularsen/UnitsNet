@@ -19,11 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 
 namespace UnitsNet
 {
-    public struct Vector2
+    public struct Vector2 : IEquatable<Vector2>
     {
         public readonly double X;
         public readonly double Y;
@@ -42,11 +43,11 @@ namespace UnitsNet
 
         #region Equality
 
-        public static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
+        private static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
 
         public bool Equals(Vector2 other)
         {
-            return X.Equals(other.X) && Y.Equals(other.Y);
+            return XyComparer.Equals(this, other);
         }
 
         public static bool operator !=(Vector2 left, Vector2 right)
