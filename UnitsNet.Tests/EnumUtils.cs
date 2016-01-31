@@ -1,4 +1,4 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// Copyright(c) 2007 Andreas Gullberg Larsen
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
