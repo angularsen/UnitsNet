@@ -1851,6 +1851,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "tf·mm"),
                             }),
                     }),
+                new UnitLocalization(typeof (VitaminAUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) VitaminAUnit.InternationalUnit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "IU"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (VolumeUnit),
                     new[]
                     {
