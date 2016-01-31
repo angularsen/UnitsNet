@@ -16,10 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net35", "UnitsNet\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{6D74103A-9393-42E8-83A8-9E01F806E29D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Portable45", "UnitsNet\UnitsNet.Portable45.csproj", "{72BC5ED7-7496-4048-9233-7A4A843FE8A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Net451", "UnitsNet\UnitsNet.Net451.csproj", "{8A855BF9-335F-4EC7-8473-D87883517910}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Net35", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Net35.csproj", "{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}"
@@ -72,26 +68,6 @@ Global
 		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|ARM.ActiveCfg = Release|Any CPU
 		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|x64.ActiveCfg = Release|Any CPU
 		{6D74103A-9393-42E8-83A8-9E01F806E29D}.Release|x86.ActiveCfg = Release|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Release|ARM.ActiveCfg = Release|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Release|x64.ActiveCfg = Release|Any CPU
-		{72BC5ED7-7496-4048-9233-7A4A843FE8A2}.Release|x86.ActiveCfg = Release|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|ARM.ActiveCfg = Release|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|x64.ActiveCfg = Release|Any CPU
-		{8A855BF9-335F-4EC7-8473-D87883517910}.Release|x86.ActiveCfg = Release|Any CPU
 		{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF845D1-8177-4DF3-AEA9-5231E53CB30E}.Debug|ARM.ActiveCfg = Debug|Any CPU
