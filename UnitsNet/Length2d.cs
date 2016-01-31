@@ -28,7 +28,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing position in two dimensions.
     /// </summary>
-    public struct Length2d
+    public struct Length2d : IEquatable<Length2d>
     {
         /// <summary>
         ///     Returns a point represented in meters.
@@ -240,11 +240,11 @@ namespace UnitsNet
 
         #region Equality
 
-        public static IEqualityComparer<Length2d> MetersComparer { get; } = new MetersEqualityComparer();
+        private  static IEqualityComparer<Length2d> MetersComparer { get; } = new MetersEqualityComparer();
 
         public bool Equals(Length2d other)
         {
-            return Meters.Equals(other.Meters);
+            return MetersComparer.Equals(other);
         }
 
         public override bool Equals(object obj)
