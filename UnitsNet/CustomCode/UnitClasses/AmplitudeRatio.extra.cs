@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,8 @@ namespace UnitsNet
         {
             if (voltage.Volts <= 0)
                 throw new ArgumentOutOfRangeException(
-                    nameof(voltage), "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
+                    nameof(voltage),
+                    "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
             _decibelVolts = 20*Math.Log10(voltage/ElectricPotential.FromVolts(1));
