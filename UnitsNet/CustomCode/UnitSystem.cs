@@ -165,7 +165,7 @@ namespace UnitsNet
         public void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
 #if PORTABLE45
-            if (!unitType.GetTypeInfo().IsEnum)
+            if (System.Reflection.IntrospectionExtensions.GetTypeInfo(unitType).IsEnum)
                 throw new ArgumentException("Must be an enum type.", "unitType");
 #else
             if (!unitType.IsEnum)
