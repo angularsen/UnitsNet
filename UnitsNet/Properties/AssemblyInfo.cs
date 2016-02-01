@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Reflection;
 using System.Resources;
 
@@ -34,11 +35,11 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Initial Force AS")]
 [assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2014 Initial Force AS")]
+[assembly: AssemblyCopyright("Copyright © 2007-2016 Initial Force AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
-
+[assembly: CLSCompliant(true)]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
