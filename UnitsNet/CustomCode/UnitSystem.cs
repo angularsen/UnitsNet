@@ -1,16 +1,16 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
-//
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
@@ -77,15 +76,15 @@ namespace UnitsNet
             LoadDefaultAbbreviatons(cultureInfo);
         }
 
-        public bool IsDefaultCulture
-        {
-            get { return Culture.Equals(DefaultCulture); }
-        }
+        public bool IsDefaultCulture => Culture.Equals(DefaultCulture);
 
         [PublicAPI]
         public static void ClearCache()
         {
-            CultureToInstance.Clear();
+            lock (LockUnitSystemCache)
+            {
+                CultureToInstance.Clear();
+            }
         }
 
         /// <summary>
@@ -101,9 +100,9 @@ namespace UnitsNet
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentUICulture;
 
-            lock(LockUnitSystemCache)
+            lock (LockUnitSystemCache)
             {
-                if ( CultureToInstance.ContainsKey(cultureInfo) )
+                if (CultureToInstance.ContainsKey(cultureInfo))
                     return CultureToInstance[cultureInfo];
 
                 CultureToInstance[cultureInfo] = new UnitSystem(cultureInfo);
@@ -126,7 +125,7 @@ namespace UnitsNet
             Dictionary<string, int> abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 throw new NotImplementedException(
-                    string.Format("No abbreviations defined for unit type [{0}] for culture [{1}].", unitType, Culture));
+                    $"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
             int unitValue;
             TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
@@ -165,15 +164,11 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
-#if PORTABLE45
-            if (!unitType.GetTypeInfo().IsEnum)
-                throw new ArgumentException("Must be an enum type.", "unitType");
-#else
             if (!unitType.IsEnum)
-                throw new ArgumentException("Must be an enum type.", "unitType");
-#endif
+                throw new ArgumentException("Must be an enum type.", nameof(unitType));
+
             if (abbreviations == null)
-                throw new ArgumentNullException("abbreviations");
+                throw new ArgumentNullException(nameof(abbreviations));
 
             Dictionary<int, List<string>> unitValueToAbbrev;
             if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrev))
@@ -251,7 +246,7 @@ namespace UnitsNet
             {
                 if (IsDefaultCulture)
                 {
-                    return new[] {string.Format("(no abbreviation for {0}.{1})", unitType.Name, unit)};
+                    return new[] {$"(no abbreviation for {unitType.Name}.{unit})"};
                 }
 
                 // Fall back to default culture

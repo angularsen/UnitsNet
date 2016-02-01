@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,89 +21,57 @@
 
 using System;
 using NUnit.Framework;
-using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MassFlowTests : MassFlowTestsBase
     {
+        protected override double GramsPerSecondInOneGramPerSecond => 1;
+
+        protected override double DecagramsPerSecondInOneGramPerSecond => 1E-1;
+
+        protected override double HectogramsPerSecondInOneGramPerSecond => 1E-2;
+
+        protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
+
+        protected override double DecigramsPerSecondInOneGramPerSecond => 1E1;
+
+        protected override double CentigramsPerSecondInOneGramPerSecond => 1E2;
+
+        protected override double MilligramsPerSecondInOneGramPerSecond => 1E3;
+
+        protected override double MicrogramsPerSecondInOneGramPerSecond => 1E6;
+
+        protected override double NanogramsPerSecondInOneGramPerSecond => 1E9;
+
+        protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
+
         [Test]
-        public void MassFlowTimesTimeSpanEqualsMass()
+        public void DurationTimesMassFlowEqualsMass()
         {
-            var mass = MassFlow.FromKilogramsPerSecond(20.0) * TimeSpan.FromSeconds(4.0);
-            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
-        }
-        [Test]
-        public void TimeSpanTimesMassFlowEqualsMass()
-        {
-            var mass = TimeSpan.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Mass mass = Duration.FromSeconds(4.0)*MassFlow.FromKilogramsPerSecond(20.0);
             Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
 
         [Test]
         public void MassFlowTimesDurationEqualsMass()
         {
-            var mass = MassFlow.FromKilogramsPerSecond(20.0) * Duration.FromSeconds(4.0);
+            Mass mass = MassFlow.FromKilogramsPerSecond(20.0)*Duration.FromSeconds(4.0);
             Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
+
         [Test]
-        public void DurationTimesMassFlowEqualsMass()
+        public void MassFlowTimesTimeSpanEqualsMass()
         {
-            var mass = Duration.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Mass mass = MassFlow.FromKilogramsPerSecond(20.0)*TimeSpan.FromSeconds(4.0);
             Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
 
-        protected override double GramsPerSecondInOneGramPerSecond
+        [Test]
+        public void TimeSpanTimesMassFlowEqualsMass()
         {
-            get { return 1; }
-        }
-
-        protected override double DecagramsPerSecondInOneGramPerSecond
-            {
-            get { return 1E-1; }
-            }
-
-        protected override double HectogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E-2; }
-        }
-
-        protected override double KilogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E-3; }
-        }
-
-        protected override double DecigramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E1; }
-        }
-
-        protected override double CentigramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E2; }
-        }
-
-        protected override double MilligramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E3; }
-        }
-
-        protected override double MicrogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E6; }
-        }
-
-        protected override double NanogramsPerSecondInOneGramPerSecond
-        {
-            get { return 1E9; }
-        }
-
-        protected override double TonnesPerDayInOneGramPerSecond
-        {
-            get
-            {
-                return (60.0 * 60 * 24 / 1E6);
-            }
+            Mass mass = TimeSpan.FromSeconds(4.0)*MassFlow.FromKilogramsPerSecond(20.0);
+            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
         }
     }
 }

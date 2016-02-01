@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,24 @@ namespace UnitsNet
 {
     public partial struct MassFlow
     {
-
         public static Mass operator *(MassFlow massFlow, TimeSpan time)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*time.TotalSeconds);
         }
+
         public static Mass operator *(TimeSpan time, MassFlow massFlow)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * time.TotalSeconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*time.TotalSeconds);
         }
 
         public static Mass operator *(MassFlow massFlow, Duration duration)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*duration.Seconds);
         }
+
         public static Mass operator *(Duration duration, MassFlow massFlow)
         {
-            return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
+            return Mass.FromKilograms(massFlow.KilogramsPerSecond*duration.Seconds);
         }
     }
 }

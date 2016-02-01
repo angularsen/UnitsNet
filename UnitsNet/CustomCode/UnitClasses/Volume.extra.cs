@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,12 @@ namespace UnitsNet
     {
         public static Area operator /(Volume volume, Length length)
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Area.FromSquareMeters(volume.CubicMeters/length.Meters);
         }
 
         public static Length operator /(Volume volume, Area area)
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+            return Length.FromMeters(volume.CubicMeters/area.SquareMeters);
         }
-
     }
 }

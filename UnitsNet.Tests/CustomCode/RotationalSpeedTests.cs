@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,75 +24,50 @@ using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
-
     public class RotationalSpeedTests : RotationalSpeedTestsBase
     {
-        [Test]
-        public void RotationalSpeedTimesTimeSpanEqualsAngle()
-        {
-            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * TimeSpan.FromSeconds(9.0);
-            Assert.AreEqual(angle, Angle.FromRadians(90.0));
-        }
+        protected override double RadiansPerSecondInOneRadianPerSecond => 1;
+
+        protected override double DeciradiansPerSecondInOneRadianPerSecond => 1E1;
+
+        protected override double CentiradiansPerSecondInOneRadianPerSecond => 1E2;
+
+        protected override double MilliradiansPerSecondInOneRadianPerSecond => 1E3;
+
+        protected override double MicroradiansPerSecondInOneRadianPerSecond => 1E6;
+
+        protected override double NanoradiansPerSecondInOneRadianPerSecond => 1E9;
+
+        protected override double RevolutionsPerMinuteInOneRadianPerSecond => 60*1/(2*Math.PI);
+
+        protected override double RevolutionsPerSecondInOneRadianPerSecond => 1/(2*Math.PI);
 
         [Test]
-        public void TimeSpanTimesRotationalSpeedEqualsAngle()
+        public void DurationTimesRotationalSpeedEqualsAngle()
         {
-            var angle = TimeSpan.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0) ;
+            Angle angle = Duration.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
             Assert.AreEqual(angle, Angle.FromRadians(90.0));
         }
 
         [Test]
         public void RotationalSpeedTimesDurationEqualsAngle()
         {
-            var angle = RotationalSpeed.FromRadiansPerSecond(10.0) * Duration.FromSeconds(9.0);
+            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*Duration.FromSeconds(9.0);
             Assert.AreEqual(angle, Angle.FromRadians(90.0));
         }
 
         [Test]
-        public void DurationTimesRotationalSpeedEqualsAngle()
+        public void RotationalSpeedTimesTimeSpanEqualsAngle()
         {
-            var angle = Duration.FromSeconds(9.0) * RotationalSpeed.FromRadiansPerSecond(10.0);
+            Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
             Assert.AreEqual(angle, Angle.FromRadians(90.0));
         }
 
-        protected override double RadiansPerSecondInOneRadianPerSecond
+        [Test]
+        public void TimeSpanTimesRotationalSpeedEqualsAngle()
         {
-            get { return 1; }
-        }
-
-        protected override double DeciradiansPerSecondInOneRadianPerSecond
-            {
-            get { return 1E1; }
-            }
-
-        protected override double CentiradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E2; }
-        }
-
-        protected override double MilliradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E3; }
-        }
-
-        protected override double MicroradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E6; }
-        }
-
-        protected override double NanoradiansPerSecondInOneRadianPerSecond
-        {
-            get { return 1E9; }
-    }
-
-        protected override double RevolutionsPerMinuteInOneRadianPerSecond
-        {
-            get { return (60*1) / (2 * Math.PI); }
-        }
-
-        protected override double RevolutionsPerSecondInOneRadianPerSecond
-        {
-            get { return 1/(2*Math.PI); }
+            Angle angle = TimeSpan.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
+            Assert.AreEqual(angle, Angle.FromRadians(90.0));
         }
     }
 }

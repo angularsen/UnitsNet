@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,44 +23,20 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureTests : TemperatureTestsBase
     {
-        protected override double DegreesCelsiusInOneKelvin
-        {
-            get { return -272.15; }
-        }
+        protected override double DegreesCelsiusInOneKelvin => -272.15;
 
-        protected override double DegreesDelisleInOneKelvin
-        {
-            get { return 558.2249999999999; }
-        }
+        protected override double DegreesDelisleInOneKelvin => 558.2249999999999;
 
-        protected override double DegreesFahrenheitInOneKelvin
-        {
-            get { return -457.87; }
-        }
+        protected override double DegreesFahrenheitInOneKelvin => -457.87;
 
-        protected override double DegreesNewtonInOneKelvin
-        {
-            get { return -89.8095; }
-        }
+        protected override double DegreesNewtonInOneKelvin => -89.8095;
 
-        protected override double DegreesRankineInOneKelvin
-        {
-            get { return 1.8; }
-        }
+        protected override double DegreesRankineInOneKelvin => 1.8;
 
-        protected override double DegreesReaumurInOneKelvin
-        {
-            get { return -217.72; }
-        }
+        protected override double DegreesReaumurInOneKelvin => -217.72;
 
-        protected override double DegreesRoemerInOneKelvin
-        {
-            get { return -135.378750000; }
-        }
+        protected override double DegreesRoemerInOneKelvin => -135.378750000;
 
-        protected override double KelvinsInOneKelvin
-        {
-            get { return 1; }
-        }
+        protected override double KelvinsInOneKelvin => 1;
     }
 }

@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,123 +26,84 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpeedTests : SpeedTestsBase
     {
-        [Test]
-        public void SpeedDividedByTimeSpanEqualsAcceleration()
-        {
-            var acceleration = Speed.FromMetersPerSecond(20) / TimeSpan.FromSeconds(2);
-            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
-        }
+        protected override double FeetPerSecondInOneMeterPerSecond => 3.28084;
 
-        [Test]
-        public void SpeedTimesTimeSpanEqualsLength()
-        {
-            var length= Speed.FromMetersPerSecond(20) * TimeSpan.FromSeconds(2);
-            Assert.AreEqual(length, Length.FromMeters(40));
-        }
+        protected override double KilometersPerHourInOneMeterPerSecond => 3.6;
 
-        [Test]
-        public void SpeedDividedByDurationEqualsAcceleration()
-        {
-            var acceleration = Speed.FromMetersPerSecond(20) / Duration.FromSeconds(2);
-            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
-        }
+        protected override double KnotsInOneMeterPerSecond => 1.94384;
 
-        [Test]
-        public void SpeedTimesDurationEqualsLength()
-        {
-            var length = Speed.FromMetersPerSecond(20) * Duration.FromSeconds(2);
-            Assert.AreEqual(length, Length.FromMeters(40));
-        }
+        protected override double MetersPerSecondInOneMeterPerSecond => 1;
 
-        [Test]
-        public void TimeSpanTimesSpeedEqualsLength()
-        {
-            var length = TimeSpan.FromSeconds(2) * Speed.FromMetersPerSecond(20);
-            Assert.AreEqual(length, Length.FromMeters(40));
-        }
+        protected override double MilesPerHourInOneMeterPerSecond => 2.23694;
 
-        [Test]
-        public void LengthDividedByTimeSpanEqualsSpeed()
-        {
-            var speed = Length.FromMeters(20) / TimeSpan.FromSeconds(2);
-            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
-        }
+        protected override double NanometersPerSecondInOneMeterPerSecond => 1E9;
+
+        protected override double MicrometersPerSecondInOneMeterPerSecond => 1E6;
+
+        protected override double MillimetersPerSecondInOneMeterPerSecond => 1E3;
+
+        protected override double CentimetersPerSecondInOneMeterPerSecond => 1E2;
+
+        protected override double DecimetersPerSecondInOneMeterPerSecond => 1E1;
+
+        protected override double KilometersPerSecondInOneMeterPerSecond => 1E-3;
+
+        protected override double MetersPerHourInOneMeterPerSecond => 3600.0;
 
         [Test]
         public void DurationSpeedTimesEqualsLength()
         {
-            var length = Duration.FromSeconds(2) * Speed.FromMetersPerSecond(20);
+            Length length = Duration.FromSeconds(2)*Speed.FromMetersPerSecond(20);
             Assert.AreEqual(length, Length.FromMeters(40));
         }
 
         [Test]
         public void LengthDividedByDurationEqualsSpeed()
         {
-            var speed = Length.FromMeters(20) / Duration.FromSeconds(2);
+            Speed speed = Length.FromMeters(20)/Duration.FromSeconds(2);
             Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
         }
 
-        protected override double FeetPerSecondInOneMeterPerSecond
+        [Test]
+        public void LengthDividedByTimeSpanEqualsSpeed()
         {
-            get { return 3.28084; }
+            Speed speed = Length.FromMeters(20)/TimeSpan.FromSeconds(2);
+            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
         }
 
-        protected override double KilometersPerHourInOneMeterPerSecond
+        [Test]
+        public void SpeedDividedByDurationEqualsAcceleration()
         {
-            get { return 3.6; }
+            Acceleration acceleration = Speed.FromMetersPerSecond(20)/Duration.FromSeconds(2);
+            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
         }
 
-        protected override double KnotsInOneMeterPerSecond
+        [Test]
+        public void SpeedDividedByTimeSpanEqualsAcceleration()
         {
-            get { return 1.94384; }
+            Acceleration acceleration = Speed.FromMetersPerSecond(20)/TimeSpan.FromSeconds(2);
+            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
         }
 
-        protected override double MetersPerSecondInOneMeterPerSecond
+        [Test]
+        public void SpeedTimesDurationEqualsLength()
         {
-            get { return 1; }
+            Length length = Speed.FromMetersPerSecond(20)*Duration.FromSeconds(2);
+            Assert.AreEqual(length, Length.FromMeters(40));
         }
 
-        protected override double MilesPerHourInOneMeterPerSecond
+        [Test]
+        public void SpeedTimesTimeSpanEqualsLength()
         {
-            get { return 2.23694; }
+            Length length = Speed.FromMetersPerSecond(20)*TimeSpan.FromSeconds(2);
+            Assert.AreEqual(length, Length.FromMeters(40));
         }
 
-        protected override double NanometersPerSecondInOneMeterPerSecond
+        [Test]
+        public void TimeSpanTimesSpeedEqualsLength()
         {
-            get { return 1E9; }
-        }
-
-        protected override double MicrometersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E6; }
-        }
-
-        protected override double MillimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E3; }
-        }
-
-        protected override double CentimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E2; }
-        }
-
-        protected override double DecimetersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E1; }
-        }
-
-        protected override double KilometersPerSecondInOneMeterPerSecond
-        {
-            get { return 1E-3; }
-        }
-
-        protected override double MetersPerHourInOneMeterPerSecond
-        {
-            get
-            {
-                return 3600.0;
-            }
+            Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
+            Assert.AreEqual(length, Length.FromMeters(40));
         }
     }
 }

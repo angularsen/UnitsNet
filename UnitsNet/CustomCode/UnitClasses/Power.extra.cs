@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,46 +24,45 @@ using System;
 namespace UnitsNet
 {
     /// <summary>
-    /// Extension to the generated Length struct.
-    /// Makes it easier to work with Feet/Inches combinations, which are customarily used in the US and UK
-    /// to express body height. For example, someone is 5 feet 3 inches tall.
+    ///     Extension to the generated Length struct.
+    ///     Makes it easier to work with Feet/Inches combinations, which are customarily used in the US and UK
+    ///     to express body height. For example, someone is 5 feet 3 inches tall.
     /// </summary>
     public partial struct Power
     {
-        public static Energy operator*(Power power, TimeSpan time)
+        public static Energy operator *(Power power, TimeSpan time)
         {
-            return Energy.FromJoules(power.Watts* time.TotalSeconds);
+            return Energy.FromJoules(power.Watts*time.TotalSeconds);
         }
 
         public static Energy operator *(TimeSpan time, Power power)
         {
-            return Energy.FromJoules(power.Watts * time.TotalSeconds);
+            return Energy.FromJoules(power.Watts*time.TotalSeconds);
         }
 
         public static Energy operator *(Power power, Duration duration)
         {
-            return Energy.FromJoules(power.Watts * duration.Seconds);
+            return Energy.FromJoules(power.Watts*duration.Seconds);
         }
 
         public static Energy operator *(Duration duration, Power power)
         {
-            return Energy.FromJoules(power.Watts * duration.Seconds);
+            return Energy.FromJoules(power.Watts*duration.Seconds);
         }
 
-        public static Force operator/(Power power, Speed speed)
+        public static Force operator /(Power power, Speed speed)
         {
-            return Force.FromNewtons(power.Watts / speed.MetersPerSecond);
+            return Force.FromNewtons(power.Watts/speed.MetersPerSecond);
         }
 
         public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
         {
-            return Torque.FromNewtonMeters(power.Watts / rotationalSpeed.RadiansPerSecond);
+            return Torque.FromNewtonMeters(power.Watts/rotationalSpeed.RadiansPerSecond);
         }
 
-        public static RotationalSpeed operator/(Power power, Torque torque)
+        public static RotationalSpeed operator /(Power power, Torque torque)
         {
-            return RotationalSpeed.FromRadiansPerSecond(power.Watts / torque.NewtonMeters);
+            return RotationalSpeed.FromRadiansPerSecond(power.Watts/torque.NewtonMeters);
         }
-
     }
 }

@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,28 +27,27 @@ namespace UnitsNet
     {
         public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
         {
-            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
+            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond/length.Meters);
         }
 
         public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*timeSpan.TotalSeconds);
         }
 
         public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*duration.Seconds);
         }
 
         public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
         {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*duration.Seconds);
         }
     }
 }
-

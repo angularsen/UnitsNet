@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,54 +23,24 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DurationTests : DurationTestsBase
     {
-        protected override double DaysInOneSecond
-        {
-            get { return 1.15741e-5; }
-        }
+        protected override double DaysInOneSecond => 1.15741e-5;
 
-        protected override double HoursInOneSecond
-        {
-            get { return 0.0002777784; }
-        }
+        protected override double HoursInOneSecond => 0.0002777784;
 
-        protected override double MicrosecondsInOneSecond
-        {
-            get { return 1e+6; }
-        }
+        protected override double MicrosecondsInOneSecond => 1e+6;
 
-        protected override double MillisecondsInOneSecond
-        {
-            get { return 1000; }
-        }
+        protected override double MillisecondsInOneSecond => 1000;
 
-        protected override double MinutesInOneSecond
-        {
-            get { return 0.0166667; }
-        }
+        protected override double MinutesInOneSecond => 0.0166667;
 
-        protected override double MonthsInOneSecond
-        {
-            get { return 3.8027e-7; }
-        }
+        protected override double MonthsInOneSecond => 3.8027e-7;
 
-        protected override double NanosecondsInOneSecond
-        {
-            get { return 1e+9; }
-        }
+        protected override double NanosecondsInOneSecond => 1e+9;
 
-        protected override double SecondsInOneSecond
-        {
-            get { return 1; }
-        }
+        protected override double SecondsInOneSecond => 1;
 
-        protected override double WeeksInOneSecond
-        {
-            get { return 1.6534e-6; }
-        }
+        protected override double WeeksInOneSecond => 1.6534e-6;
 
-        protected override double YearsInOneSecond
-        {
-            get { return 3.1689e-8; }
-        }
+        protected override double YearsInOneSecond => 3.1689e-8;
     }
 }

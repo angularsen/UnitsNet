@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,10 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
-        protected override double OhmsInOneOhm
-        {
-            get { return 1; }
-        }
+        protected override double OhmsInOneOhm => 1;
 
-        protected override double KiloohmsInOneOhm
-        {
-            get { return 1e-3; }
-        }
+        protected override double KiloohmsInOneOhm => 1e-3;
 
-        protected override double MegaohmsInOneOhm
-        {
-            get { return 1e-6; }
-        }
+        protected override double MegaohmsInOneOhm => 1e-6;
     }
 }

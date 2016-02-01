@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,14 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
-        protected override double MicrovoltsInOneVolt
-        {
-            get { return 1e6; }
-        }
+        protected override double MicrovoltsInOneVolt => 1e6;
 
-        protected override double MillivoltsInOneVolt
-        {
-            get { return 1e3; }
-        }
+        protected override double MillivoltsInOneVolt => 1e3;
 
-        protected override double VoltsInOneVolt
-        {
-            get { return 1; }
-        }
+        protected override double VoltsInOneVolt => 1;
 
-        protected override double KilovoltsInOneVolt
-        {
-            get { return 1e-3; }
-        }
+        protected override double KilovoltsInOneVolt => 1e-3;
 
-        protected override double MegavoltsInOneVolt
-        {
-            get { return 1e-6; }
-        }
+        protected override double MegavoltsInOneVolt => 1e-6;
     }
 }

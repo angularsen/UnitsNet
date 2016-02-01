@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,18 @@ using System;
 namespace UnitsNet
 {
     /// <summary>
-    /// Extension methods for <see cref="PowerRatio"/>.
+    ///     Extension methods for <see cref="PowerRatio" />.
     /// </summary>
     public static class PowerRatioExtensions
     {
         /// <summary>
-        ///     Gets a <see cref="Power"/> from a <see cref="PowerRatio"/>.
+        ///     Gets a <see cref="Power" /> from a <see cref="PowerRatio" />.
         /// </summary>
         /// <remarks>
-        /// Provides a nicer syntax for converting a power ratio back to a power.
-        /// <example><c>var power = powerRatio.ToPower();</c></example>
+        ///     Provides a nicer syntax for converting a power ratio back to a power.
+        ///     <example>
+        ///         <c>var power = powerRatio.ToPower();</c>
+        ///     </example>
         /// </remarks>
         public static Power ToPower(this PowerRatio powerRatio)
         {
@@ -41,7 +43,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets a <see cref="AmplitudeRatio"/> from a <see cref="PowerRatio"/>.
+        ///     Gets a <see cref="AmplitudeRatio" /> from a <see cref="PowerRatio" />.
         /// </summary>
         /// <param name="powerRatio">The power ratio.</param>
         /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
@@ -52,16 +54,18 @@ namespace UnitsNet
     }
 
     /// <summary>
-    /// Extension methods for <see cref="Power"/>.
+    ///     Extension methods for <see cref="Power" />.
     /// </summary>
     public static class PowerExtensions
     {
         /// <summary>
-        ///     Gets a <see cref="PowerRatio"/> from a <see cref="Power"/> relative to one watt.
+        ///     Gets a <see cref="PowerRatio" /> from a <see cref="Power" /> relative to one watt.
         /// </summary>
         /// <remarks>
-        /// Provides a nicer syntax for converting a power to a power ratio (relative to 1 watt).
-        /// <example><c>var powerRatio = power.ToPowerRatio();</c></example>
+        ///     Provides a nicer syntax for converting a power to a power ratio (relative to 1 watt).
+        ///     <example>
+        ///         <c>var powerRatio = power.ToPowerRatio();</c>
+        ///     </example>
         /// </remarks>
         public static PowerRatio ToPowerRatio(this Power power)
         {
@@ -72,7 +76,7 @@ namespace UnitsNet
     public partial struct PowerRatio
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PowerRatio"/> struct from the specified power referenced to one watt. 
+        ///     Initializes a new instance of the <see cref="PowerRatio" /> struct from the specified power referenced to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
         public PowerRatio(Power power)
@@ -80,14 +84,14 @@ namespace UnitsNet
         {
             if (power.Watts <= 0)
                 throw new ArgumentOutOfRangeException(
-                    "power", "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
+                    nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _decibelWatts = 10 * Math.Log10(power / Power.FromWatts(1));
+            _decibelWatts = 10*Math.Log10(power/Power.FromWatts(1));
         }
 
         /// <summary>
-        ///     Gets a <see cref="PowerRatio"/> from a <see cref="Power"/> relative to one watt.
+        ///     Gets a <see cref="PowerRatio" /> from a <see cref="Power" /> relative to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
         public static PowerRatio FromPower(Power power)
@@ -96,17 +100,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Gets a <see cref="Power"/> from a <see cref="PowerRatio"/> (which is a power level relative to one watt).
+        ///     Gets a <see cref="Power" /> from a <see cref="PowerRatio" /> (which is a power level relative to one watt).
         /// </summary>
         /// <param name="powerRatio">The power level relative to one watt.</param>
         public static Power ToPower(PowerRatio powerRatio)
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts / 10));
+            return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts/10));
         }
 
         /// <summary>
-        ///     Gets a <see cref="AmplitudeRatio"/> from a <see cref="PowerRatio"/>.
+        ///     Gets a <see cref="AmplitudeRatio" /> from a <see cref="PowerRatio" />.
         /// </summary>
         /// <param name="powerRatio">The power ratio.</param>
         /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
@@ -114,7 +118,7 @@ namespace UnitsNet
         public static AmplitudeRatio ToAmplitudeRatio(PowerRatio powerRatio, ElectricResistance impedance)
         {
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + powerRatio.DecibelWatts);
+            return AmplitudeRatio.FromDecibelVolts(10*Math.Log10(impedance.Ohms/1) + powerRatio.DecibelWatts);
         }
     }
 }

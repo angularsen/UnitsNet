@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,16 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class FlowTests : FlowTestsBase
     {
-        protected override double CubicMetersPerHourInOneCubicMeterPerSecond
-        {
-            get { return 3600.0; }
-        }
+        protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3600.0;
 
-        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond
-        {
-            get { return 35.314666213; }
-        }
+        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666213;
 
-        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond
-        {
-            get { return 22.824465227; }
-        }
+        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
 
-        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond
-        {
-            get { return 1; }
-        }
+        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
 
-        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 15850.323141489; }
-        }
+        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond => 15850.323141489;
 
-        protected override double LitersPerMinuteInOneCubicMeterPerSecond
-        {
-            get { return 60000.00000; }
-        }
-
+        protected override double LitersPerMinuteInOneCubicMeterPerSecond => 60000.00000;
     }
 }

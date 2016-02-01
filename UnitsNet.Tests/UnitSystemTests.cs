@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,6 @@ namespace UnitsNet.Tests
     [TestFixture]
     public class UnitSystemTests
     {
-        private CultureInfo _originalCulture;
-        private CultureInfo _originalUICulture;
-
         [SetUp]
         public void Setup()
         {
@@ -51,7 +48,8 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentCulture = _originalCulture;
         }
 
-        #region Default ToString Formatting
+        private CultureInfo _originalCulture;
+        private CultureInfo _originalUICulture;
 
         // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
         [TestCase(0, Result = "0 m")]
@@ -64,8 +62,6 @@ namespace UnitsNet.Tests
             return Length.FromMeters(value).ToString();
         }
 
-        #endregion
-
         private enum CustomUnit
         {
             // ReSharper disable UnusedMember.Local
@@ -75,16 +71,167 @@ namespace UnitsNet.Tests
             // ReSharper restore UnusedMember.Local
         }
 
-        #region Missing Abbreviations
-
-        [Test]
-        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
+            IEnumerable<TUnit> unitValues)
+            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
 
-            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+            var unitsMissingAbbreviations = new List<TUnit>();
+            foreach (TUnit unit in unitValues)
+            {
+                try
+                {
+                    unitSystem.GetDefaultAbbreviation(unit);
+                }
+                catch
+                {
+                    unitsMissingAbbreviations.Add(unit);
+                }
+            }
 
-            Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+            return unitsMissingAbbreviations.Cast<object>();
+        }
+
+        // These cultures all use a comma for the radix point
+        [TestCase("de-DE")]
+        [TestCase("da-DK")]
+        [TestCase("es-AR")]
+        [TestCase("es-ES")]
+        [TestCase("it-IT")]
+        public void CommaRadixPointCultureFormatting(string culture)
+        {
+            Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures all use a decimal point for the radix point
+        [TestCase("en-CA")]
+        [TestCase("en-US")]
+        [TestCase("ar-EG")]
+        [TestCase("en-GB")]
+        [TestCase("es-MX")]
+        public void DecimalRadixPointCultureFormatting(string culture)
+        {
+            Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures all use a comma in digit grouping
+        [TestCase("en-CA")]
+        [TestCase("en-US")]
+        [TestCase("ar-EG")]
+        [TestCase("en-GB")]
+        [TestCase("es-MX")]
+        public void CommaDigitGroupingCultureFormatting(string culture)
+        {
+            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+
+            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
+            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
+            Assert.AreEqual("2,222 ft 3 in",
+                Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
+            Assert.AreEqual("3,333 st 7 lb",
+                Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
+        }
+
+        // These cultures use a thin space in digit grouping
+        [TestCase("nn-NO")]
+        [TestCase("fr-FR")]
+        public void SpaceDigitGroupingCultureFormatting(string culture)
+        {
+            // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
+            Assert.AreEqual("1 111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // Switzerland uses an apostrophe for digit grouping
+        [Ignore("Fails on Win 8.1 due to a bug in .NET framework.")]
+        [TestCase("fr-CH")]
+        public void ApostropheDigitGroupingCultureFormatting(string culture)
+        {
+            Assert.AreEqual("1'111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        // These cultures all use a decimal point in digit grouping
+        [TestCase("de-DE")]
+        [TestCase("da-DK")]
+        [TestCase("es-AR")]
+        [TestCase("es-ES")]
+        [TestCase("it-IT")]
+        public void DecimalPointDigitGroupingCultureFormatting(string culture)
+        {
+            Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+        }
+
+        [TestCase("m^2", Result = AreaUnit.SquareMeter)]
+        [TestCase("cm^2", Result = AreaUnit.Undefined)]
+        public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
+        {
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
+
+            return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
+        }
+
+        [TestCase(1, Result = "1.1 m")]
+        [TestCase(2, Result = "1.12 m")]
+        [TestCase(3, Result = "1.123 m")]
+        [TestCase(4, Result = "1.1235 m")]
+        [TestCase(5, Result = "1.12346 m")]
+        [TestCase(6, Result = "1.123457 m")]
+        public string CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix)
+        {
+            return Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, null, significantDigitsAfterRadix);
+        }
+
+        // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
+        [TestCase(0.819999999999, 2, Result = "0.82 m")]
+        [TestCase(0.819999999999, 4, Result = "0.82 m")]
+        [TestCase(0.00299999999, 2, Result = "0.003 m")]
+        [TestCase(0.00299999999, 4, Result = "0.003 m")]
+        [TestCase(0.0003000001, 2, Result = "3e-04 m")]
+        [TestCase(0.0003000001, 4, Result = "3e-04 m")]
+        public string RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
+            int maxSignificantDigitsAfterRadix)
+        {
+            return Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
+        }
+
+        // Any value in the interval (-inf ≤ x < 1e-03] is formatted in scientific notation
+        [TestCase(double.MinValue, Result = "-1.8e+308 m")]
+        [TestCase(1.23e-120, Result = "1.23e-120 m")]
+        [TestCase(0.0000111, Result = "1.11e-05 m")]
+        [TestCase(1.99e-4, Result = "1.99e-04 m")]
+        public string ScientificNotationLowerInterval(double value)
+        {
+            return Length.FromMeters(value).ToString();
+        }
+
+        // Any value in the interval [1e-03 ≤ x < 1e+03] is formatted in fixed point notation.
+        [TestCase(1e-3, Result = "0.001 m")]
+        [TestCase(1.1, Result = "1.1 m")]
+        [TestCase(999.99, Result = "999.99 m")]
+        public string FixedPointNotationIntervalFormatting(double value)
+        {
+            return Length.FromMeters(value).ToString();
+        }
+
+        // Any value in the interval [1e+03 ≤ x < 1e+06] is formatted in fixed point notation with digit grouping.
+        [TestCase(1000, Result = "1,000 m")]
+        [TestCase(11000, Result = "11,000 m")]
+        [TestCase(111000, Result = "111,000 m")]
+        [TestCase(999999.99, Result = "999,999.99 m")]
+        public string FixedPointNotationWithDigitGroupingIntervalFormatting(double value)
+        {
+            return Length.FromMeters(value).ToString();
+        }
+
+        // Any value in the interval [1e+06 ≤ x ≤ +inf) is formatted in scientific notation.
+        [TestCase(1e6, Result = "1e+06 m")]
+        [TestCase(11100000, Result = "1.11e+07 m")]
+        [TestCase(double.MaxValue, Result = "1.8e+308 m")]
+        public string ScientificNotationUpperIntervalFormatting(double value)
+        {
+            return Length.FromMeters(value).ToString();
         }
 
         [Test]
@@ -123,32 +270,6 @@ namespace UnitsNet.Tests
             }
             //Assert.IsEmpty(unitsMissingAbbreviations, message);
         }
-
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
-            IEnumerable<TUnit> unitValues)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
-        {
-            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
-
-            var unitsMissingAbbreviations = new List<TUnit>();
-            foreach (TUnit unit in unitValues)
-            {
-                try
-                {
-                    unitSystem.GetDefaultAbbreviation(unit);
-                }
-                catch
-                {
-                    unitsMissingAbbreviations.Add(unit);
-                }
-            }
-
-            return unitsMissingAbbreviations.Cast<object>();
-        }
-
-        #endregion
-
-        #region Culture Unit Symbol Formatting
 
         [Test]
         public void AllUnitsImplementToStringForInvariantCulture()
@@ -210,12 +331,22 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        {
+            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+
+            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+
+            Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+        }
+
+        [Test]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
             // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
             // CurrentUICulture affects localization, in this case the abbreviation.
             // Zulu (South Africa)
-            var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
+            CultureInfo zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
             UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
             Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = zuluCulture;
 
@@ -229,86 +360,6 @@ namespace UnitsNet.Tests
             Assert.AreEqual("US english abbreviation for Unit1", abbreviation);
         }
 
-        #endregion
-
-        #region Radix Point Formatting
-
-        // These cultures all use a comma for the radix point
-        [TestCase("de-DE")]
-        [TestCase("da-DK")]
-        [TestCase("es-AR")]
-        [TestCase("es-ES")]
-        [TestCase("it-IT")]
-        public void CommaRadixPointCultureFormatting(string culture)
-        {
-            Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
-
-        // These cultures all use a decimal point for the radix point
-        [TestCase("en-CA")]
-        [TestCase("en-US")]
-        [TestCase("ar-EG")]
-        [TestCase("en-GB")]
-        [TestCase("es-MX")]
-        public void DecimalRadixPointCultureFormatting(string culture)
-        {
-            Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
-
-        #endregion
-
-        #region Digit Group Formatting
-
-        // These cultures all use a comma in digit grouping
-        [TestCase("en-CA")]
-        [TestCase("en-US")]
-        [TestCase("ar-EG")]
-        [TestCase("en-GB")]
-        [TestCase("es-MX")]
-        public void CommaDigitGroupingCultureFormatting(string culture)
-        {
-            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-
-            // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
-            // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
-            Assert.AreEqual("2,222 ft 3 in",
-                Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
-            Assert.AreEqual("3,333 st 7 lb",
-                Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
-        }
-
-        // These cultures use a thin space in digit grouping
-        [TestCase("nn-NO")]
-        [TestCase("fr-FR")]
-        public void SpaceDigitGroupingCultureFormatting(string culture)
-        {
-            // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
-            Assert.AreEqual("1 111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
-
-        // Switzerland uses an apostrophe for digit grouping
-        [Ignore("Fails on Win 8.1 due to a bug in .NET framework.")]
-        [TestCase("fr-CH")]
-        public void ApostropheDigitGroupingCultureFormatting(string culture)
-        {
-            Assert.AreEqual("1'111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
-
-        // These cultures all use a decimal point in digit grouping
-        [TestCase("de-DE")]
-        [TestCase("da-DK")]
-        [TestCase("es-AR")]
-        [TestCase("es-ES")]
-        [TestCase("it-IT")]
-        public void DecimalPointDigitGroupingCultureFormatting(string culture)
-        {
-            Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
-
-        #endregion
-
-        #region Significant Digits After Radix Formatting
-
         [Test]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
@@ -319,104 +370,25 @@ namespace UnitsNet.Tests
             Assert.AreEqual("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
-        [TestCase("m^2", Result = AreaUnit.SquareMeter)]
-        [TestCase("cm^2", Result = AreaUnit.Undefined)]
-        public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
-        {
-            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
-            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
-
-            return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
-        }
-
-        [TestCase(1, Result = "1.1 m")]
-        [TestCase(2, Result = "1.12 m")]
-        [TestCase(3, Result = "1.123 m")]
-        [TestCase(4, Result = "1.1235 m")]
-        [TestCase(5, Result = "1.12346 m")]
-        [TestCase(6, Result = "1.123457 m")]
-        public string CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix)
-        {
-            return Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, null, significantDigitsAfterRadix);
-        }
-
-        // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
-        [TestCase(0.819999999999, 2, Result = "0.82 m")]
-        [TestCase(0.819999999999, 4, Result = "0.82 m")]
-        [TestCase(0.00299999999, 2, Result = "0.003 m")]
-        [TestCase(0.00299999999, 4, Result = "0.003 m")]
-        [TestCase(0.0003000001, 2, Result = "3e-04 m")]
-        [TestCase(0.0003000001, 4, Result = "3e-04 m")]
-        public string RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
-            int maxSignificantDigitsAfterRadix)
-        {
-            return Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
-        }
-
-        #endregion
-
-        #region ToString Formatting Intervals
-
         [Test]
         public void NegativeInfinityFormatting()
         {
-            Assert.That(Length.FromMeters(Double.NegativeInfinity).ToString(),
+            Assert.That(Length.FromMeters(double.NegativeInfinity).ToString(),
                 Is.EqualTo("-Infinity m"));
-        }
-
-        // Any value in the interval (-inf ≤ x < 1e-03] is formatted in scientific notation
-        [TestCase(Double.MinValue, Result = "-1.8e+308 m")]
-        [TestCase(1.23e-120, Result = "1.23e-120 m")]
-        [TestCase(0.0000111, Result = "1.11e-05 m")]
-        [TestCase(1.99e-4, Result = "1.99e-04 m")]
-        public string ScientificNotationLowerInterval(double value)
-        {
-            return Length.FromMeters(value).ToString();
-        }
-
-        // Any value in the interval [1e-03 ≤ x < 1e+03] is formatted in fixed point notation.
-        [TestCase(1e-3, Result = "0.001 m")]
-        [TestCase(1.1, Result = "1.1 m")]
-        [TestCase(999.99, Result = "999.99 m")]
-        public string FixedPointNotationIntervalFormatting(double value)
-        {
-            return Length.FromMeters(value).ToString();
-        }
-
-        // Any value in the interval [1e+03 ≤ x < 1e+06] is formatted in fixed point notation with digit grouping.
-        [TestCase(1000, Result = "1,000 m")]
-        [TestCase(11000, Result = "11,000 m")]
-        [TestCase(111000, Result = "111,000 m")]
-        [TestCase(999999.99, Result = "999,999.99 m")]
-        public string FixedPointNotationWithDigitGroupingIntervalFormatting(double value)
-        {
-            return Length.FromMeters(value).ToString();
-        }
-
-        // Any value in the interval [1e+06 ≤ x ≤ +inf) is formatted in scientific notation.
-        [TestCase(1e6, Result = "1e+06 m")]
-        [TestCase(11100000, Result = "1.11e+07 m")]
-        [TestCase(Double.MaxValue, Result = "1.8e+308 m")]
-        public string ScientificNotationUpperIntervalFormatting(double value)
-        {
-            return Length.FromMeters(value).ToString();
-        }
-
-        [Test]
-        public void PositiveInfinityFormatting()
-        {
-            Assert.That(Length.FromMeters(Double.PositiveInfinity).ToString(),
-                Is.EqualTo("Infinity m"));
         }
 
         [Test]
         public void NotANumberFormatting()
         {
-            Assert.That(Length.FromMeters(Double.NaN).ToString(),
+            Assert.That(Length.FromMeters(double.NaN).ToString(),
                 Is.EqualTo("NaN m"));
         }
 
-        #endregion
+        [Test]
+        public void PositiveInfinityFormatting()
+        {
+            Assert.That(Length.FromMeters(double.PositiveInfinity).ToString(),
+                Is.EqualTo("Infinity m"));
+        }
     }
 }

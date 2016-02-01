@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,18 @@ using System.Linq;
 namespace UnitsNet
 {
     /// <summary>
-    /// Utility class for formatting units and values.
+    ///     Utility class for formatting units and values.
     /// </summary>
     public static class UnitFormatter
     {
         /// <summary>
-        /// Gets the default ToString format for the specified value.
+        ///     Gets the default ToString format for the specified value.
         /// </summary>
         /// <param name="value">The value to format.</param>
-        /// <param name="significantDigitsAfterRadix">The number of digits after the radix point to display in the formatted string.</param>
+        /// <param name="significantDigitsAfterRadix">
+        ///     The number of digits after the radix point to display in the formatted
+        ///     string.
+        /// </param>
         /// <returns>A ToString format for the specified value.</returns>
         public static string GetFormat(double value, int significantDigitsAfterRadix)
         {
@@ -77,7 +80,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Gets ToString format arguments.
+        ///     Gets ToString format arguments.
         /// </summary>
         /// <typeparam name="TUnit">The type of units to format.</typeparam>
         /// <param name="unit">The units</param>
@@ -89,7 +92,7 @@ namespace UnitsNet
             where TUnit : struct, IComparable, IFormattable
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            return new object[] { value, abbreviation }.Concat(args).ToArray();
+            return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }
 }

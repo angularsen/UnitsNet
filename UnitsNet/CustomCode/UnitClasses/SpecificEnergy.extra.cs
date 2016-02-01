@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,14 @@ namespace UnitsNet
 {
     public partial struct SpecificEnergy
     {
-        public static Energy operator*(SpecificEnergy specificEnergy, Mass mass)
+        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
         }
+
         public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
         }
     }
 }

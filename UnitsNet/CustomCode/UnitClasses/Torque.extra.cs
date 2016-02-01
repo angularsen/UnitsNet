@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,10 @@ namespace UnitsNet
         {
             return Force.FromNewtons(torque.NewtonMeters/length.Meters);
         }
+
         public static Length operator /(Torque torque, Force force)
         {
-            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
+            return Length.FromMeters(torque.NewtonMeters/force.Newtons);
         }
     }
 }

@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,11 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 
 namespace UnitsNet
 {
-    public struct Vector2
+    public struct Vector2 : IEquatable<Vector2>
     {
         public readonly double X;
         public readonly double Y;
@@ -42,26 +43,21 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Vector2> XyComparerInstance = new XyEqualityComparer();
-
-        public static IEqualityComparer<Vector2> XyComparer
-        {
-            get { return XyComparerInstance; }
-        }
+        private static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
 
         public bool Equals(Vector2 other)
         {
-            return X.Equals(other.X) && Y.Equals(other.Y);
+            return XyComparer.Equals(this, other);
         }
 
         public static bool operator !=(Vector2 left, Vector2 right)
         {
-            return !XyComparerInstance.Equals(left, right);
+            return !XyComparer.Equals(left, right);
         }
 
         public static bool operator ==(Vector2 left, Vector2 right)
         {
-            return XyComparerInstance.Equals(left, right);
+            return XyComparer.Equals(left, right);
         }
 
         public override bool Equals(object obj)
@@ -98,7 +94,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("[{0:0.####}, {1:0.####}]", X, Y);
+            return $"[{X:0.####}, {Y:0.####}]";
         }
     }
 }

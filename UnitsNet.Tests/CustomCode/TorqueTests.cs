@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,103 +18,57 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
-        [Test]
-        public void TorqueDividedByLengthEqualsForce()
-        {
-            var force = Torque.FromNewtonMeters(4) / Length.FromMeters(2);
-            Assert.AreEqual(force, Force.FromNewtons(2));
-        }
+        protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
+
+        protected override double KilogramForceMetersInOneNewtonMeter => 0.101971621;
+
+        protected override double KilogramForceMillimetersInOneNewtonMeter => 101.971621;
+
+        protected override double KilonewtonCentimetersInOneNewtonMeter => 0.1;
+
+        protected override double KilonewtonMetersInOneNewtonMeter => 0.001;
+
+        protected override double KilonewtonMillimetersInOneNewtonMeter => 1;
+
+        protected override double KilopoundForceFeetInOneNewtonMeter => 7.376e-4;
+
+        protected override double KilopoundForceInchesInOneNewtonMeter => 0.008851;
+
+        protected override double NewtonCentimetersInOneNewtonMeter => 100;
+
+        protected override double NewtonMetersInOneNewtonMeter => 1;
+
+        protected override double NewtonMillimetersInOneNewtonMeter => 1000;
+
+        protected override double PoundForceFeetInOneNewtonMeter => 0.737562149277;
+
+        protected override double PoundForceInchesInOneNewtonMeter => 8.85074579;
+
+        protected override double TonneForceCentimetersInOneNewtonMeter => 1.01972e-2;
+
+        protected override double TonneForceMetersInOneNewtonMeter => 1.01972e-4;
+
+        protected override double TonneForceMillimetersInOneNewtonMeter => 1.01972e-1;
+
         [Test]
         public void TorqueDividedByForceEqualsLength()
         {
-            var length= Torque.FromNewtonMeters(4) / Force.FromNewtons(2);
+            Length length = Torque.FromNewtonMeters(4)/Force.FromNewtons(2);
             Assert.AreEqual(length, Length.FromMeters(2));
         }
 
-        protected override double KilogramForceCentimetersInOneNewtonMeter
+        [Test]
+        public void TorqueDividedByLengthEqualsForce()
         {
-            get { return 10.1971621; }
-        }
-
-        protected override double KilogramForceMetersInOneNewtonMeter
-        {
-            get { return 0.101971621; }
-        }
-
-        protected override double KilogramForceMillimetersInOneNewtonMeter
-        {
-            get { return 101.971621; }
-        }
-
-        protected override double KilonewtonCentimetersInOneNewtonMeter
-        {
-            get { return 0.1; }
-        }
-
-        protected override double KilonewtonMetersInOneNewtonMeter
-        {
-            get { return 0.001; }
-        }
-
-        protected override double KilonewtonMillimetersInOneNewtonMeter
-        {
-            get { return 1; }
-        }
-
-        protected override double KilopoundForceFeetInOneNewtonMeter
-        {
-            get { return 7.376e-4; }
-        }
-
-        protected override double KilopoundForceInchesInOneNewtonMeter
-        {
-            get { return 0.008851; }
-        }
-
-        protected override double NewtonCentimetersInOneNewtonMeter
-        {
-            get { return 100; }
-        }
-
-        protected override double NewtonMetersInOneNewtonMeter
-        {
-            get { return 1; }
-        }
-
-        protected override double NewtonMillimetersInOneNewtonMeter
-        {
-            get { return 1000; }
-        }
-
-        protected override double PoundForceFeetInOneNewtonMeter
-        {
-            get { return 0.737562149277; }
-        }
-
-        protected override double PoundForceInchesInOneNewtonMeter
-        {
-            get { return 8.85074579; }
-        }
-
-        protected override double TonneForceCentimetersInOneNewtonMeter
-        {
-            get { return 1.01972e-2; }
-        }
-
-        protected override double TonneForceMetersInOneNewtonMeter
-        {
-            get { return 1.01972e-4; }
-        }
-
-        protected override double TonneForceMillimetersInOneNewtonMeter
-        {
-            get { return 1.01972e-1; }
+            Force force = Torque.FromNewtonMeters(4)/Length.FromMeters(2);
+            Assert.AreEqual(force, Force.FromNewtons(2));
         }
     }
 }
