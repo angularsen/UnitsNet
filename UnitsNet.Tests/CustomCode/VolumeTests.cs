@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,118 +19,75 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
-        protected override double CentilitersInOneCubicMeter
+        protected override double CentilitersInOneCubicMeter => 1E5;
+
+        protected override double CubicCentimetersInOneCubicMeter => 1E6;
+
+        protected override double CubicDecimetersInOneCubicMeter => 1E3;
+
+        protected override double CubicFeetInOneCubicMeter => 35.31472;
+
+        protected override double CubicInchesInOneCubicMeter => 61023.98242;
+
+        protected override double CubicKilometersInOneCubicMeter => 1E-9;
+
+        protected override double CubicMetersInOneCubicMeter => 1;
+
+        protected override double CubicMilesInOneCubicMeter => 3.86102*1E-7;
+
+        protected override double CubicMillimetersInOneCubicMeter => 1E9;
+
+        protected override double CubicYardsInOneCubicMeter => 1.30795062;
+
+        protected override double DecilitersInOneCubicMeter => 1E4;
+
+        protected override double HectolitersInOneCubicMeter => 1E1;
+
+        protected override double ImperialGallonsInOneCubicMeter => 219.96924;
+
+        protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
+
+        protected override double LitersInOneCubicMeter => 1E3;
+
+        protected override double MillilitersInOneCubicMeter => 1E6;
+
+        protected override double TablespoonsInOneCubicMeter => 67628.0454;
+
+        protected override double TablespoonsTolerance => 1E-4;
+
+        protected override double TeaspoonsInOneCubicMeter => 202884.136;
+
+        protected override double TeaspoonsTolerance => 1E-3;
+
+        protected override double UsGallonsInOneCubicMeter => 264.17217;
+
+        protected override double UsOuncesInOneCubicMeter => 33814.02270;
+
+        [Test]
+        public void VolumeDividedByAreaEqualsLength()
         {
-            get { return 1E5; }
+            Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(3));
         }
 
-        protected override double CubicCentimetersInOneCubicMeter
+        [Test]
+        public void VolumeDividedByLengthEqualsArea()
         {
-            get { return 1E6; }
+            Area area = Volume.FromCubicMeters(15)/Length.FromMeters(5);
+            Assert.AreEqual(area, Area.FromSquareMeters(3));
         }
 
-        protected override double CubicDecimetersInOneCubicMeter
+        [Test]
+        public void VolumeTimesDensityEqualsMass()
         {
-            get { return 1E3; }
-        }
-
-        protected override double CubicFeetInOneCubicMeter
-        {
-            get { return 35.31472; }
-        }
-
-        protected override double CubicInchesInOneCubicMeter
-        {
-            get { return 61023.98242; }
-        }
-
-        protected override double CubicKilometersInOneCubicMeter
-        {
-            get { return 1E-9; }
-        }
-
-        protected override double CubicMetersInOneCubicMeter
-        {
-            get { return 1; }
-        }
-
-        protected override double CubicMilesInOneCubicMeter
-        {
-            get { return 3.86102*1E-7; }
-        }
-
-        protected override double CubicMillimetersInOneCubicMeter
-        {
-            get { return 1E9; }
-        }
-
-        protected override double CubicYardsInOneCubicMeter
-        {
-            get { return 1.30795062; }
-        }
-
-        protected override double DecilitersInOneCubicMeter
-        {
-            get { return 1E4; }
-        }
-
-        protected override double HectolitersInOneCubicMeter
-        {
-            get { return 1E1; }
-        }
-
-        protected override double ImperialGallonsInOneCubicMeter
-        {
-            get { return 219.96924; }
-        }
-
-        protected override double ImperialOuncesInOneCubicMeter
-        {
-            get { return 35195.07972; }
-        }
-
-        protected override double LitersInOneCubicMeter
-        {
-            get { return 1E3; }
-        }
-
-        protected override double MillilitersInOneCubicMeter
-        {
-            get { return 1E6; }
-        }
-
-        protected override double TablespoonsInOneCubicMeter
-        {
-            get { return 67628.0454; }
-        }
-
-        protected override double TablespoonsTolerance
-        {
-            get { return 1E-4; }
-        }
-
-        protected override double TeaspoonsInOneCubicMeter
-        {
-            get { return 202884.136; }
-        }
-
-        protected override double TeaspoonsTolerance
-        {
-            get { return 1E-3; }
-        }
-
-        protected override double UsGallonsInOneCubicMeter
-        {
-            get { return 264.17217; }
-        }
-
-        protected override double UsOuncesInOneCubicMeter
-        {
-            get { return 33814.02270; }
+            Mass mass = Volume.FromCubicMeters(2)*Density.FromKilogramsPerCubicMeter(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
     }
 }

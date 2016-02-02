@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet.Serialization.JsonNet</id>
@@ -17,12 +18,13 @@
     <language>en-US</language>
     <tags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="7.0.1"/>
-      <dependency id="UnitsNet" version="3.17.0"/>
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="UnitsNet" version="3.17.0" />
     </dependencies>
   </metadata>
   <files>
     <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.Serialization.JsonNet.dll" target="lib" />
-    <file src="UnitsNet.Serialization.JsonNet\**\*.cs" exclude="UnitsNet.Serialization.JsonNet\**\obj\**\*.cs" target="src" />
+    <file src="UnitsNet.Serialization.JsonNet\**\*.cs" exclude="UnitsNet.Serialization.JsonNet\**\obj\**\*.cs"
+          target="src" />
   </files>
 </package>

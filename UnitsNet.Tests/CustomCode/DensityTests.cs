@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,58 +19,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
-        protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter
+        protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
+
+        protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
+
+        protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-9;
+
+        protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-5;
+
+        protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter => 3.6127292e-8;
+
+        protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
+
+        protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
+
+        protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-9;
+
+        protected override double TonnesPerCubicMeterInOneKilogramPerCubicMeter => 1e-3;
+
+        protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-12;
+
+        [Test]
+        public static void DensityTimesVolumeEqualsMass()
         {
-            get { return 1e-6; }
+            Mass mass = Density.FromKilogramsPerCubicMeter(2)*Volume.FromCubicMeters(3);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
 
-        protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter
+        [Test]
+        public static void VolumeTimesDensityEqualsMass()
         {
-            get { return 1; }
-        }
-
-        protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
-
-        protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter
-        {
-            get { return 6.242796e-5; }
-        }
-
-        protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter
-        {
-            get { return 3.6127292e-8; }
-        }
-
-        protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter
-        {
-            get { return 6.242796e-2; }
-        }
-
-        protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter
-        {
-            get { return 3.61272923e-5; }
-        }
-
-        protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-9; }
-        }
-
-        protected override double TonnesPerCubicMeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-3; }
-        }
-
-        protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter
-        {
-            get { return 1e-12; }
+            Mass mass = Volume.FromCubicMeters(3)*Density.FromKilogramsPerCubicMeter(2);
+            Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
     }
 }

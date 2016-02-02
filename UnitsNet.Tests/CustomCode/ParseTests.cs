@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("1 kg", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseLengthToMetersUsEnglish(string s)
         {
-            var usEnglish = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
 
             return Length.Parse(s, usEnglish).Meters;
         }
@@ -61,7 +61,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("1ft 1invalid", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseImperialLengthInchesUsEnglish(string s)
         {
-            var usEnglish = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
 
             return Length.Parse(s, usEnglish).Inches;
         }
@@ -69,10 +69,11 @@ namespace UnitsNet.Tests.CustomCode
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         [TestCase("5.5 m", Result = 5.5)]
         [TestCase("500 005 m", Result = 500005)]
-        [TestCase("500.005.050,001 m", ExpectedExceptionName = "UnitsNet.UnitsNetException")] // quantity doesn't match number format
+        [TestCase("500.005.050,001 m", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
+        // quantity doesn't match number format
         public double ParseWithCultureUsingSpaceAsThousandSeparators(string s)
         {
-            var numberFormat = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
             numberFormat.NumberDecimalSeparator = ".";
 
@@ -83,10 +84,11 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("5,5 m", Result = 5.5)]
         [TestCase("500.005.050,001 m", Result = 500005050.001)]
         [TestCase("5.555 m", Result = 5555)] // dot is group separator not decimal
-        [TestCase("500 005 m", ExpectedExceptionName = "UnitsNet.UnitsNetException")] // quantity doesn't match number format
+        [TestCase("500 005 m", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
+        // quantity doesn't match number format
         public double ParseWithCultureUsingDotAsThousandSeparators(string s)
         {
-            var numberFormat = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
             numberFormat.NumberDecimalSeparator = ",";
 
@@ -98,7 +100,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase(null, ExpectedExceptionName = "System.ArgumentNullException")]
         public LengthUnit ParseLengthUnitUsEnglish(string s)
         {
-            var usEnglish = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
 
             return Length.ParseUnit(s, usEnglish);
         }

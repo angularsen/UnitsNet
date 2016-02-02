@@ -1,5 +1,5 @@
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,11 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 
 namespace UnitsNet
 {
-    public struct Vector3
+    public struct Vector3 : IEquatable<Vector3>
     {
         public readonly double X;
         public readonly double Y;
@@ -38,8 +39,6 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Vector3> XyzComparerInstance = new XyzEqualityComparer();
-
         public Vector3(double xyz) : this()
         {
             X = xyz;
@@ -47,14 +46,11 @@ namespace UnitsNet
             Z = xyz;
         }
 
-        public static IEqualityComparer<Vector3> XyzComparer
-        {
-            get { return XyzComparerInstance; }
-        }
+        private static IEqualityComparer<Vector3> XyzComparer { get; } = new XyzEqualityComparer();
 
         public bool Equals(Vector3 other)
         {
-            return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
+            return XyzComparer.Equals(this, other);
         }
 
         public override bool Equals(object obj)
@@ -97,7 +93,7 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return string.Format("[{0:0.####}, {1:0.####}, {2:0.####}]", X, Y, Z);
+            return $"[{X:0.####}, {Y:0.####}, {Z:0.####}]";
         }
     }
 }

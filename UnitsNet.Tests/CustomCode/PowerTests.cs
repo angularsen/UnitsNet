@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,88 +19,92 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class PowerTests : PowerTestsBase
     {
-        protected override double FemtowattsInOneWatt
+        protected override double FemtowattsInOneWatt => 1e15;
+
+        protected override double PicowattsInOneWatt => 1e12;
+
+        protected override double NanowattsInOneWatt => 1e9;
+
+        protected override double MicrowattsInOneWatt => 1e6;
+
+        protected override double MilliwattsInOneWatt => 1e3;
+
+        protected override double WattsInOneWatt => 1;
+
+        protected override double KilowattsInOneWatt => 1e-3;
+
+        protected override double MegawattsInOneWatt => 1e-6;
+
+        protected override double GigawattsInOneWatt => 1e-9;
+
+        protected override double TerawattsInOneWatt => 1e-12;
+
+        protected override double PetawattsInOneWatt => 1e-15;
+
+        protected override double BoilerHorsepowerInOneWatt => 1.0191082802547770700636942675159e-4;
+
+        protected override double ElectricalHorsepowerInOneWatt => 0.00134048257372654155495978552279;
+
+        protected override double HydraulicHorsepowerInOneWatt => 0.00134102207184949258114167291719;
+
+        protected override double MechanicalHorsepowerInOneWatt => 0.00134103984229371454625916935992;
+
+        protected override double MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425;
+
+        [Test]
+        public void DurationTimesPowerEqualsEnergy()
         {
-            get { return 1e15; }
+            Energy energy = Duration.FromSeconds(8.0)*Power.FromWatts(5.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
 
-        protected override double PicowattsInOneWatt
+        [Test]
+        public void PowerDividedByRotationalSpeedEqualsForce()
         {
-            get { return 1e12; }
+            Torque torque = Power.FromWatts(15.0)/RotationalSpeed.FromRadiansPerSecond(3);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(5));
         }
 
-        protected override double NanowattsInOneWatt
+        [Test]
+        public void PowerDividedBySpeedEqualsForce()
         {
-            get { return 1e9; }
+            Force force = Power.FromWatts(15.0)/Speed.FromMetersPerSecond(3);
+            Assert.AreEqual(force, Force.FromNewtons(5));
         }
 
-        protected override double MicrowattsInOneWatt
+        [Test]
+        public void PowerDividedByTorqueEqualsRotationalSpeed()
         {
-            get { return 1e6; }
+            RotationalSpeed rotationalSpeed = Power.FromWatts(15.0)/Torque.FromNewtonMeters(3);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
         }
 
-        protected override double MilliwattsInOneWatt
+        [Test]
+        public void PowerTimesDurationEqualsEnergy()
         {
-            get { return 1e3; }
+            Energy energy = Power.FromWatts(5.0)*Duration.FromSeconds(8.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
 
-        protected override double WattsInOneWatt
+        [Test]
+        public void PowerTimesTimeSpanEqualsEnergy()
         {
-            get { return 1; }
+            Energy energy = Power.FromWatts(5.0)*TimeSpan.FromSeconds(8.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
 
-        protected override double KilowattsInOneWatt
+        [Test]
+        public void TimeSpanTimesPowerEqualsEnergy()
         {
-            get { return 1e-3; }
-        }
-
-        protected override double MegawattsInOneWatt
-        {
-            get { return 1e-6; }
-        }
-
-        protected override double GigawattsInOneWatt
-        {
-            get { return 1e-9; }
-        }
-
-        protected override double TerawattsInOneWatt
-        {
-            get { return 1e-12; }
-        }
-
-        protected override double PetawattsInOneWatt
-        {
-            get { return 1e-15; }
-        }
-
-        protected override double BoilerHorsepowerInOneWatt
-        {
-            get { return 1.0191082802547770700636942675159e-4; }
-        }
-
-        protected override double ElectricalHorsepowerInOneWatt
-        {
-            get { return 0.00134048257372654155495978552279; }
-        }
-
-        protected override double HydraulicHorsepowerInOneWatt
-        {
-            get { return 0.00134102207184949258114167291719; }
-        }
-
-        protected override double MechanicalHorsepowerInOneWatt
-        {
-            get { return 0.00134103984229371454625916935992; }
-        }
-
-        protected override double MetricHorsepowerInOneWatt
-        {
-            get { return 0.00135962161730390432342679032425; }
+            Energy energy = TimeSpan.FromSeconds(8.0)*Power.FromWatts(5.0);
+            Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
     }
 }

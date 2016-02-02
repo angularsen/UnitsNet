@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,55 +19,62 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class KinematicViscosityTests : KinematicViscosityTestsBase
     {
-        #region Overrides of KinematicViscosityTestsBase
+        protected override double CentistokesInOneSquareMeterPerSecond => 1e6;
 
-        protected override double CentistokesInOneSquareMeterPerSecond
+        protected override double DecistokesInOneSquareMeterPerSecond => 1e5;
+
+        protected override double KilostokesInOneSquareMeterPerSecond => 10;
+
+        protected override double MicrostokesInOneSquareMeterPerSecond => 1e10;
+
+        protected override double MillistokesInOneSquareMeterPerSecond => 1e7;
+
+        protected override double NanostokesInOneSquareMeterPerSecond => 1e13;
+
+        protected override double SquareMetersPerSecondInOneSquareMeterPerSecond => 1;
+
+        protected override double StokesInOneSquareMeterPerSecond => 1e4;
+
+        [Test]
+        public static void DurationTimesKinematicViscosityEqualsArea()
         {
-            get { return 1e6; }
+            Area area = Duration.FromSeconds(2)*KinematicViscosity.FromSquareMetersPerSecond(4);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
         }
 
-        protected override double DecistokesInOneSquareMeterPerSecond
+        [Test]
+        public static void KinematicViscosityDividedByLengthEqualsSpeed()
         {
-            get { return 1e5; }
+            Speed speed = KinematicViscosity.FromSquareMetersPerSecond(4)/Length.FromMeters(2);
+            Assert.AreEqual(speed, Speed.FromMetersPerSecond(2));
         }
 
-        protected override double KilostokesInOneSquareMeterPerSecond
+        [Test]
+        public static void KinematicViscosityTimesDurationEqualsArea()
         {
-            get { return 10; }
+            Area area = KinematicViscosity.FromSquareMetersPerSecond(4)*Duration.FromSeconds(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
         }
 
-        protected override double MicrostokesInOneSquareMeterPerSecond
+        [Test]
+        public static void KinematicViscosityTimesTimeSpanEqualsArea()
         {
-            get { return 1e10; }
+            Area area = KinematicViscosity.FromSquareMetersPerSecond(4)*TimeSpan.FromSeconds(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
         }
 
-        protected override double MillistokesInOneSquareMeterPerSecond
+        [Test]
+        public static void TimeSpanTimesKinematicViscosityEqualsArea()
         {
-            get { return 1e7; }
+            Area area = TimeSpan.FromSeconds(2)*KinematicViscosity.FromSquareMetersPerSecond(4);
+            Assert.AreEqual(area, Area.FromSquareMeters(8));
         }
-
-        protected override double NanostokesInOneSquareMeterPerSecond
-        {
-            get { return 1e13; }
-        }
-
-        protected override double SquareMetersPerSecondInOneSquareMeterPerSecond
-        {
-            get { return 1; }
-        }
-
-        protected override double StokesInOneSquareMeterPerSecond
-        {
-            get { return 1e4; }
-        }
-
-        #endregion
     }
 }

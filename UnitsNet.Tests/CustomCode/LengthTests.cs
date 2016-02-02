@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,81 +19,74 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class LengthTests : LengthTestsBase
     {
-        protected override double CentimetersInOneMeter
+        protected override double CentimetersInOneMeter => 100;
+
+        protected override double DecimetersInOneMeter => 10;
+
+        protected override double FeetInOneMeter => 3.28084;
+
+        protected override double InchesInOneMeter => 39.37007874;
+
+        protected override double KilometersInOneMeter => 1E-3;
+
+        protected override double MetersInOneMeter => 1;
+
+        protected override double MicroinchesInOneMeter => 39370078.74015748;
+
+        protected override double MicrometersInOneMeter => 1E6;
+
+        protected override double MilsInOneMeter => 39370.07874015;
+
+        protected override double MilesInOneMeter => 0.000621371;
+
+        protected override double MillimetersInOneMeter => 1E3;
+
+        protected override double NanometersInOneMeter => 1E9;
+
+        protected override double YardsInOneMeter => 1.09361;
+
+
+        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
+
+        [Test]
+        public void AreaTimesLengthEqualsVolume()
         {
-            get { return 100; }
+            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(30));
         }
 
-        protected override double DecimetersInOneMeter
+        [Test]
+        public void ForceTimesLengthEqualsTorque()
         {
-            get { return 10; }
+            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
         }
 
-        protected override double FeetInOneMeter
+        [Test]
+        public void LengthTimesAreaEqualsVolume()
         {
-            get { return 3.28084; }
+            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
+            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
         }
 
-        protected override double InchesInOneMeter
+        [Test]
+        public void LengthTimesForceEqualsTorque()
         {
-            get { return 39.37007874; }
+            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
+            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
         }
 
-        protected override double KilometersInOneMeter
+        [Test]
+        public void LengthTimesLengthEqualsArea()
         {
-            get { return 1E-3; }
-        }
-
-        protected override double MetersInOneMeter
-        {
-            get { return 1; }
-        }
-
-        protected override double MicroinchesInOneMeter
-        {
-            get { return 39370078.74015748; }
-        }
-
-        protected override double MicrometersInOneMeter
-        {
-            get { return 1E6; }
-        }
-
-        protected override double MilsInOneMeter
-        {
-            get { return 39370.07874015; }
-        }
-
-        protected override double MilesInOneMeter
-        {
-            get { return 0.000621371; }
-        }
-
-        protected override double MillimetersInOneMeter
-        {
-            get { return 1E3; }
-        }
-
-        protected override double NanometersInOneMeter
-        {
-            get { return 1E9; }
-        }
-
-        protected override double YardsInOneMeter
-        {
-            get { return 1.09361; }
-        }
-
-        protected override double NauticalMilesInOneMeter
-        {
-            get
-            { return 1.0/1852.0; }
+            Area area = Length.FromMeters(10)*Length.FromMeters(2);
+            Assert.AreEqual(area, Area.FromSquareMeters(20));
         }
     }
 }

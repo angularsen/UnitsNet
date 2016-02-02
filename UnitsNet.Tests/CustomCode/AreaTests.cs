@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,53 +19,40 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
-        protected override double SquareCentimetersInOneSquareMeter
+
+        protected override double SquareKilometersInOneSquareMeter => 1E-6;
+
+        protected override double SquareMetersInOneSquareMeter => 1;
+        protected override double SquareCentimetersInOneSquareMeter => 1E4;
+
+        protected override double SquareDecimetersInOneSquareMeter => 1E2;
+
+        protected override double SquareMillimetersInOneSquareMeter => 1E6;
+
+        protected override double SquareFeetInOneSquareMeter => 10.76391;
+
+        protected override double SquareMicrometersInOneSquareMeter
         {
-            get { return 1E4; }
+            get { return 1E12; }
         }
 
-        protected override double SquareDecimetersInOneSquareMeter
-        {
-            get { return 1E2; }
-        }
+        protected override double SquareInchesInOneSquareMeter => 1550.003100;
 
-        protected override double SquareFeetInOneSquareMeter
-        {
-            get { return 10.76391; }
-        }
+        protected override double SquareMilesInOneSquareMeter => 3.86102*1E-7;
 
-        protected override double SquareInchesInOneSquareMeter
-        {
-            get { return 1550.003100; }
-        }
+        protected override double SquareYardsInOneSquareMeter => 1.19599;
 
-        protected override double SquareKilometersInOneSquareMeter
+        [Test]
+        public void AreaDividedByLengthEqualsLength()
         {
-            get { return 1E-6; }
-        }
-
-        protected override double SquareMetersInOneSquareMeter
-        {
-            get { return 1; }
-        }
-
-        protected override double SquareMilesInOneSquareMeter
-        {
-            get { return 3.86102*1E-7; }
-        }
-
-        protected override double SquareMillimetersInOneSquareMeter
-        {
-            get { return 1E6; }
-        }
-
-        protected override double SquareYardsInOneSquareMeter
-        {
-            get { return 1.19599; }
+            Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
+            Assert.AreEqual(length, Length.FromMeters(10));
         }
     }
 }

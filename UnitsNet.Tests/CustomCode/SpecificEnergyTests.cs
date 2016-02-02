@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,76 +19,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double JoulesPerKilogramInOneJoulePerKilogram
+        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
+
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E3;
+
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E6;
+
+
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
+
+        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-7;
+
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1.0E-6;
+
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778E-10;
+
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
+
+        [Test]
+        public void MassTimesSpecificEnergyEqualsEnergy()
         {
-            get
-            {
-                return 1.0;
-            }
+            Energy energy = Mass.FromKilograms(20.0)*SpecificEnergy.FromJoulesPerKilogram(10.0);
+            Assert.AreEqual(energy, Energy.FromJoules(200.0));
         }
 
-        protected override double CaloriesPerGramInOneJoulePerKilogram
+        [Test]
+        public void SpecificEnergyTimesMassEqualsEnergy()
         {
-            get
-            {
-                return 1.0 / (4.184E3);
-            }
-        }
-
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 1.0 / (4.184E6);
-            }
-        }
-
-
-        protected override double KilojoulesPerKilogramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 1.0E-3;
-            }
-        }
-
-        protected override double KilowattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 2.77777778e-7;
-            }
-        }
-
-        protected override double MegajoulesPerKilogramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 1.0E-6;
-            }
-        }
-
-        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 2.77777778E-10;
-            }
-        }
-
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram
-        {
-            get
-            {
-                return 1.0 / 3.6e3;
-            }
+            Energy energy = SpecificEnergy.FromJoulesPerKilogram(10.0)*Mass.FromKilograms(20.0);
+            Assert.AreEqual(energy, Energy.FromJoules(200.0));
         }
     }
 }

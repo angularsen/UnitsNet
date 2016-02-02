@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ namespace UnitsNet
     /// <summary>
     ///     A class for representing position in two dimensions.
     /// </summary>
-    public struct Length2d
+    public struct Length2d : IEquatable<Length2d>
     {
         /// <summary>
         ///     Returns a point represented in meters.
@@ -69,80 +69,41 @@ namespace UnitsNet
             }
         }
 
-        public Length X
-        {
-            get { return Length.FromMeters(Meters.X); }
-        }
+        public Length X => Length.FromMeters(Meters.X);
 
-        public Length Y
-        {
-            get { return Length.FromMeters(Meters.Y); }
-        }
+        public Length Y => Length.FromMeters(Meters.Y);
 
-        public Vector2 Miles
-        {
-            get { return new Vector2(X.Miles, Y.Miles); }
-        }
+        public Vector2 Miles => new Vector2(X.Miles, Y.Miles);
 
-        public Vector2 Yards
-        {
-            get { return new Vector2(X.Yards, Y.Yards); }
-        }
+        public Vector2 Yards => new Vector2(X.Yards, Y.Yards);
 
-        public Vector2 Feet
-        {
-            get { return new Vector2(X.Feet, Y.Feet); }
-        }
+        public Vector2 Feet => new Vector2(X.Feet, Y.Feet);
 
-        public Vector2 Inches
-        {
-            get { return new Vector2(X.Inches, Y.Inches); }
-        }
+        public Vector2 Inches => new Vector2(X.Inches, Y.Inches);
 
-        public Vector2 Kilometers
-        {
-            get { return new Vector2(X.Kilometers, Y.Kilometers); }
-        }
+        public Vector2 Kilometers => new Vector2(X.Kilometers, Y.Kilometers);
 
-        public Vector2 Decimeters
-        {
-            get { return new Vector2(X.Decimeters, Y.Decimeters); }
-        }
+        public Vector2 Decimeters => new Vector2(X.Decimeters, Y.Decimeters);
 
         /// <summary>
         ///     Returns a point represented in centimeters.
         /// </summary>
-        public Vector2 Centimeters
-        {
-            get { return new Vector2(Meters.X*1E2, Meters.Y*1E2); }
-        }
+        public Vector2 Centimeters => new Vector2(Meters.X*1E2, Meters.Y*1E2);
 
         /// <summary>
         ///     Returns a point represented in millimeters.
         /// </summary>
-        public Vector2 Millimeters
-        {
-            get { return new Vector2(Meters.X*1E3, Meters.Y*1E3); }
-        }
+        public Vector2 Millimeters => new Vector2(Meters.X*1E3, Meters.Y*1E3);
 
-        public Vector2 Micrometers
-        {
-            get { return new Vector2(X.Micrometers, Y.Micrometers); }
-        }
+        public Vector2 Micrometers => new Vector2(X.Micrometers, Y.Micrometers);
 
-        public Vector2 Nanometers
-        {
-            get { return new Vector2(X.Nanometers, Y.Nanometers); }
-        }
+        public Vector2 Nanometers => new Vector2(X.Nanometers, Y.Nanometers);
 
         #endregion
 
         #region Static methods
 
-        public static Length2d Zero
-        {
-            get { return new Length2d(); }
-        }
+        public static Length2d Zero => new Length2d();
 
         public static Length2d FromMeters(double xMeters, double yMeters)
         {
@@ -223,8 +184,8 @@ namespace UnitsNet
 
         public override string ToString()
         {
-            return String.Format("({0:0.##}, {1:0.##}) {2}", X.Meters, Y.Meters,
-                UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter));
+            return
+                $"({X.Meters:0.##}, {Y.Meters:0.##}) {UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter)}";
         }
 
         public Length DistanceTo(Length2d other)
@@ -240,16 +201,11 @@ namespace UnitsNet
 
         #region Equality
 
-        private static readonly IEqualityComparer<Length2d> MetersComparerInstance = new MetersEqualityComparer();
-
-        public static IEqualityComparer<Length2d> MetersComparer
-        {
-            get { return MetersComparerInstance; }
-        }
+        private static IEqualityComparer<Length2d> MetersComparer { get; } = new MetersEqualityComparer();
 
         public bool Equals(Length2d other)
         {
-            return Meters.Equals(other.Meters);
+            return MetersComparer.Equals(this, other);
         }
 
         public override bool Equals(object obj)

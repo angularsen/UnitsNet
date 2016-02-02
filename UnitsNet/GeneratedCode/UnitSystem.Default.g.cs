@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -192,6 +192,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "m²"),
                                 new AbbreviationsForCulture("ru-RU", "м²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.SquareMicrometer,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µm²"),
+                                new AbbreviationsForCulture("ru-RU", "мкм²"),
                             }),
                         new CulturesForEnumValue((int) AreaUnit.SquareMile,
                             new[]
@@ -1863,6 +1869,15 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "tf·mm"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (VitaminAUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) VitaminAUnit.InternationalUnit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "IU"),
                             }),
                     }),
                 new UnitLocalization(typeof (VolumeUnit),

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="CleanAndBuild" ToolsVersion="12.0">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="CleanAndBuild" ToolsVersion="14.0">
   <Import Project="paths.msbuild" />
 
   <PropertyGroup>
     <Platform>AnyCPU</Platform>
     <Configuration>Release</Configuration>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
   </PropertyGroup>
 
   <Target Name="CleanAndBuild" DependsOnTargets="Clean;CompileProjects" />
-  
+
   <Target Name="Clean">
     <MSBuild Projects="@(AllProjects)" Targets="Clean" />
     <RemoveDir Directories="$(TestsBinPath)" />
-  </Target>  
+  </Target>
 
   <Target Name="CompileProjects">
 

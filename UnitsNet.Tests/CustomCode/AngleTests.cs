@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,67 +20,44 @@
 // THE SOFTWARE.
 
 using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
+        protected override double DegreesInOneDegree => 1;
 
-        protected override double DegreesInOneDegree
+        protected override double GradiansInOneDegree => 400/360.0;
+
+        protected override double ArcminutesInOneDegree => 60.0;
+
+        protected override double RadiansInOneDegree => Math.PI/2/90;
+
+        protected override double NanoradiansInOneDegree => Math.PI/2/90*1E9;
+
+        protected override double MicroradiansInOneDegree => Math.PI/2/90*1E6;
+
+        protected override double MilliradiansInOneDegree => Math.PI/2/90*1E3;
+
+        protected override double CentiradiansInOneDegree => Math.PI/2/90*1E2;
+
+        protected override double DeciradiansInOneDegree => Math.PI/2/90*1E1;
+
+        protected override double ArcsecondsInOneDegree => 3600.0;
+
+        [Test]
+        public void AngleDividedByDurationEqualsRotationalSpeed()
         {
-            get { return 1; }
+            RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/Duration.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 
-        protected override double GradiansInOneDegree
+        [Test]
+        public void AngleDividedByTimeSpanEqualsRotationalSpeed()
         {
-            get { return 400/360.0; }
+            RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
+            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
-
-        protected override double ArcminutesInOneDegree
-        {
-            get
-            {
-                return 60.0;
-            }
-        }
-
-        protected override double RadiansInOneDegree
-        {
-            get { return Math.PI/2/90; }
-        }
-
-        protected override double NanoradiansInOneDegree
-        {
-            get { return (Math.PI / 2 / 90) * 1E9; }
-        }
-
-        protected override double MicroradiansInOneDegree
-        {
-            get { return (Math.PI / 2 / 90) * 1E6; }
-        }
-
-        protected override double MilliradiansInOneDegree
-        {
-            get { return (Math.PI / 2 / 90) * 1E3; }
-        }
-
-        protected override double CentiradiansInOneDegree
-        {
-            get { return (Math.PI / 2 / 90) * 1E2; }
-        }
-
-        protected override double DeciradiansInOneDegree
-        {
-            get { return (Math.PI / 2 / 90) * 1E1; }
-        }
-
-        protected override double ArcsecondsInOneDegree
-        {
-            get
-            {
-                return 3600.0;
-            }
-        }
-
     }
 }

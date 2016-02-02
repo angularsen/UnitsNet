@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.22.0</version>
+    <version>3.24.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
@@ -13,13 +14,7 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-* Add MassFlow units: KilogramPerSecond, TonnePerDay (@eriove)
-* Add 8 SpecificEnergy units (@eriove)
-* Add Angle units: Arcminute, ArcSecond (@eriove)
-* Add Frequency units: RadianPerSecond (@eriove)
-* Add Length units: NauticalMile (@eriove)
-* Add RotationalSpeed units: RadianPerSecond (@eriove)
-* Add Speed units: MeterPerHour (@eriove)
+      * Add VitaminA unit (@neutmute)
     </releaseNotes>
     <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
     <language>en-US</language>

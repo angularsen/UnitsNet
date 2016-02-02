@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/InitialForce/UnitsNet
+// https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -103,6 +103,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Area in SquareMicrometers.
+        /// </summary>
+        public double SquareMicrometers
+        {
+            get { return _squareMeters/1e-12; }
+        }
+
+        /// <summary>
         ///     Get Area in SquareMiles.
         /// </summary>
         public double SquareMiles
@@ -184,6 +192,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Area from SquareMicrometers.
+        /// </summary>
+        public static Area FromSquareMicrometers(double squaremicrometers)
+        {
+            return new Area(squaremicrometers*1e-12);
+        }
+
+        /// <summary>
         ///     Get Area from SquareMiles.
         /// </summary>
         public static Area FromSquareMiles(double squaremiles)
@@ -230,6 +246,8 @@ namespace UnitsNet
                     return FromSquareKilometers(value);
                 case AreaUnit.SquareMeter:
                     return FromSquareMeters(value);
+                case AreaUnit.SquareMicrometer:
+                    return FromSquareMicrometers(value);
                 case AreaUnit.SquareMile:
                     return FromSquareMiles(value);
                 case AreaUnit.SquareMillimeter:
@@ -381,6 +399,8 @@ namespace UnitsNet
                     return SquareKilometers;
                 case AreaUnit.SquareMeter:
                     return SquareMeters;
+                case AreaUnit.SquareMicrometer:
+                    return SquareMicrometers;
                 case AreaUnit.SquareMile:
                     return SquareMiles;
                 case AreaUnit.SquareMillimeter:
