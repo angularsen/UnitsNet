@@ -23,14 +23,35 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
-        protected override double SquareCentimetersInOneSquareMeter
+
+        protected override double SquareKilometersInOneSquareMeter
         {
-            get { return 1E4; }
+            get { return 1E-6; }
+        }
+
+        protected override double SquareMetersInOneSquareMeter
+        {
+            get { return 1; }
         }
 
         protected override double SquareDecimetersInOneSquareMeter
         {
             get { return 1E2; }
+        }
+
+        protected override double SquareCentimetersInOneSquareMeter
+        {
+            get { return 1E4; }
+        }
+
+        protected override double SquareMillimetersInOneSquareMeter
+        {
+            get { return 1E6; }
+        }
+
+        protected override double SquareMicrometersInOneSquareMeter
+        {
+            get { return 1E12; }
         }
 
         protected override double SquareFeetInOneSquareMeter
@@ -43,24 +64,9 @@ namespace UnitsNet.Tests.CustomCode
             get { return 1550.003100; }
         }
 
-        protected override double SquareKilometersInOneSquareMeter
-        {
-            get { return 1E-6; }
-        }
-
-        protected override double SquareMetersInOneSquareMeter
-        {
-            get { return 1; }
-        }
-
         protected override double SquareMilesInOneSquareMeter
         {
             get { return 3.86102*1E-7; }
-        }
-
-        protected override double SquareMillimetersInOneSquareMeter
-        {
-            get { return 1E6; }
         }
 
         protected override double SquareYardsInOneSquareMeter
