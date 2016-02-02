@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         SquareInch,
         SquareKilometer,
         SquareMeter,
+        SquareMicrometer,
         SquareMile,
         SquareMillimeter,
         SquareYard,

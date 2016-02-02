@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double SquareInchesInOneSquareMeter { get; }
         protected abstract double SquareKilometersInOneSquareMeter { get; }
         protected abstract double SquareMetersInOneSquareMeter { get; }
+        protected abstract double SquareMicrometersInOneSquareMeter { get; }
         protected abstract double SquareMilesInOneSquareMeter { get; }
         protected abstract double SquareMillimetersInOneSquareMeter { get; }
         protected abstract double SquareYardsInOneSquareMeter { get; }
@@ -53,6 +54,7 @@ namespace UnitsNet.Tests
         protected virtual double SquareInchesTolerance { get { return 1e-5; } }
         protected virtual double SquareKilometersTolerance { get { return 1e-5; } }
         protected virtual double SquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareMicrometersTolerance { get { return 1e-5; } }
         protected virtual double SquareMilesTolerance { get { return 1e-5; } }
         protected virtual double SquareMillimetersTolerance { get { return 1e-5; } }
         protected virtual double SquareYardsTolerance { get { return 1e-5; } }
@@ -68,6 +70,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.SquareInches, SquareInchesTolerance);
             Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.SquareKilometers, SquareKilometersTolerance);
             Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(SquareMicrometersInOneSquareMeter, squaremeter.SquareMicrometers, SquareMicrometersTolerance);
             Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.SquareMiles, SquareMilesTolerance);
             Assert.AreEqual(SquareMillimetersInOneSquareMeter, squaremeter.SquareMillimeters, SquareMillimetersTolerance);
             Assert.AreEqual(SquareYardsInOneSquareMeter, squaremeter.SquareYards, SquareYardsTolerance);
@@ -82,6 +85,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareInch).SquareInches, SquareInchesTolerance);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareKilometer).SquareKilometers, SquareKilometersTolerance);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMeter).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMicrometer).SquareMicrometers, SquareMicrometersTolerance);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMile).SquareMiles, SquareMilesTolerance);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareMillimeter).SquareMillimeters, SquareMillimetersTolerance);
             Assert.AreEqual(1, Area.From(1, AreaUnit.SquareYard).SquareYards, SquareYardsTolerance);
@@ -97,6 +101,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(SquareInchesInOneSquareMeter, squaremeter.As(AreaUnit.SquareInch), SquareInchesTolerance);
             Assert.AreEqual(SquareKilometersInOneSquareMeter, squaremeter.As(AreaUnit.SquareKilometer), SquareKilometersTolerance);
             Assert.AreEqual(SquareMetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMeter), SquareMetersTolerance);
+            Assert.AreEqual(SquareMicrometersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMicrometer), SquareMicrometersTolerance);
             Assert.AreEqual(SquareMilesInOneSquareMeter, squaremeter.As(AreaUnit.SquareMile), SquareMilesTolerance);
             Assert.AreEqual(SquareMillimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMillimeter), SquareMillimetersTolerance);
             Assert.AreEqual(SquareYardsInOneSquareMeter, squaremeter.As(AreaUnit.SquareYard), SquareYardsTolerance);
@@ -112,6 +117,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Area.FromSquareInches(squaremeter.SquareInches).SquareMeters, SquareInchesTolerance);
             Assert.AreEqual(1, Area.FromSquareKilometers(squaremeter.SquareKilometers).SquareMeters, SquareKilometersTolerance);
             Assert.AreEqual(1, Area.FromSquareMeters(squaremeter.SquareMeters).SquareMeters, SquareMetersTolerance);
+            Assert.AreEqual(1, Area.FromSquareMicrometers(squaremeter.SquareMicrometers).SquareMeters, SquareMicrometersTolerance);
             Assert.AreEqual(1, Area.FromSquareMiles(squaremeter.SquareMiles).SquareMeters, SquareMilesTolerance);
             Assert.AreEqual(1, Area.FromSquareMillimeters(squaremeter.SquareMillimeters).SquareMeters, SquareMillimetersTolerance);
             Assert.AreEqual(1, Area.FromSquareYards(squaremeter.SquareYards).SquareMeters, SquareYardsTolerance);

@@ -193,6 +193,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m²"),
                                 new AbbreviationsForCulture("ru-RU", "м²"),
                             }),
+                        new CulturesForEnumValue((int) AreaUnit.SquareMicrometer,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µm²"),
+                                new AbbreviationsForCulture("ru-RU", "мкм²"),
+                            }),
                         new CulturesForEnumValue((int) AreaUnit.SquareMile,
                             new[]
                             {
