@@ -66,8 +66,14 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TeaspoonsTolerance => 1E-3;
 
         protected override double UsGallonsInOneCubicMeter => 264.17217;
-
+        
         protected override double UsOuncesInOneCubicMeter => 33814.02270;
+
+        protected override double MetricCupsInOneCubicMeter => 4000;
+
+        protected override double UsCustomaryCupsInOneCubicMeter => 4226.75283773;
+
+        protected override double UsLegalCupsInOneCubicMeter => 4166.666666667;
 
         [Test]
         public void VolumeDividedByAreaEqualsLength()

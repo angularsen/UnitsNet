@@ -1959,6 +1959,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "l"),
                                 new AbbreviationsForCulture("ru-RU", "л"),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.MetricCup,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.Milliliter,
                             new[]
                             {
@@ -1979,11 +1984,21 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "чайная ложка"),
                                 new AbbreviationsForCulture("nb-NO", "ts", "ts."),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsCustomaryCup,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.UsGallon,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "gal (U.S.)"),
                                 new AbbreviationsForCulture("ru-RU", "Американский галлон"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsLegalCup,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UsOunce,
                             new[]
