@@ -40,10 +40,13 @@ namespace UnitsNet.Units
         ImperialGallon,
         ImperialOunce,
         Liter,
+        MetricCup,
         Milliliter,
         Tablespoon,
         Teaspoon,
+        UsCustomaryCup,
         UsGallon,
+        UsLegalCup,
         UsOunce,
     }
 }

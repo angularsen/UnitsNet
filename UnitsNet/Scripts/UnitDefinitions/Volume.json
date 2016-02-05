@@ -268,6 +268,42 @@
                     "Abbreviations": ["ts", "ts."]
                 }
             ]
+        },
+        {
+            "SingularName": "MetricCup",
+            "PluralName": "MetricCups",
+            "FromUnitToBaseFunc": "x*0.00025",
+            "FromBaseToUnitFunc": "x/0.00025",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": []
+                }
+            ]
+        },
+        {
+            "SingularName": "UsCustomaryCup",
+            "PluralName": "UsCustomaryCups",
+            "FromUnitToBaseFunc": "x*0.0002365882365",
+            "FromBaseToUnitFunc": "x/0.0002365882365",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": []
+                }
+            ]
+        },
+        {
+            "SingularName": "UsLegalCup",
+            "PluralName": "UsLegalCups",
+            "FromUnitToBaseFunc": "x*0.00024",
+            "FromBaseToUnitFunc": "x/0.00024",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": []
+                }
+            ]
         }
     ]
 }
