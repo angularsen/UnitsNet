@@ -453,13 +453,18 @@ namespace UnitsNet
 
         #endregion
 
+		/// <summary>
+        ///     Set the default unit used by ToString(). Default is Ampere
+        /// </summary>
+		public static ElectricCurrentUnit ToStringDefaultUnit { get; set; } = ElectricCurrentUnit.Ampere;
+
         /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ElectricCurrentUnit.Ampere);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

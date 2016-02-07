@@ -181,5 +181,63 @@ namespace UnitsNet.Tests
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
             Assert.IsFalse(pascalpersecond.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.PascalPerSecond;
+            PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
+            string pascalpersecondString = pascalpersecond.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureChangeRateUnit.PascalPerSecond), pascalpersecondString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithAtmospherePerSecondAsDefualtUnit()
+        {
+			PressureChangeRateUnit oldUnit = PressureChangeRate.ToStringDefaultUnit;
+			PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.AtmospherePerSecond;
+			PressureChangeRate value = PressureChangeRate.From(1, PressureChangeRateUnit.AtmospherePerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureChangeRateUnit.AtmospherePerSecond);
+			PressureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilopascalPerSecondAsDefualtUnit()
+        {
+			PressureChangeRateUnit oldUnit = PressureChangeRate.ToStringDefaultUnit;
+			PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.KilopascalPerSecond;
+			PressureChangeRate value = PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureChangeRateUnit.KilopascalPerSecond);
+			PressureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMegapascalPerSecondAsDefualtUnit()
+        {
+			PressureChangeRateUnit oldUnit = PressureChangeRate.ToStringDefaultUnit;
+			PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.MegapascalPerSecond;
+			PressureChangeRate value = PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureChangeRateUnit.MegapascalPerSecond);
+			PressureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPascalPerSecondAsDefualtUnit()
+        {
+			PressureChangeRateUnit oldUnit = PressureChangeRate.ToStringDefaultUnit;
+			PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.PascalPerSecond;
+			PressureChangeRate value = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureChangeRateUnit.PascalPerSecond);
+			PressureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

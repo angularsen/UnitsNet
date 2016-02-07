@@ -229,5 +229,159 @@ namespace UnitsNet.Tests
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
             Assert.IsFalse(meterpersecond.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			Speed.ToStringDefaultUnit = SpeedUnit.MeterPerSecond;
+            Speed meterpersecond = Speed.FromMetersPerSecond(1);
+            string meterpersecondString = meterpersecond.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MeterPerSecond), meterpersecondString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.CentimeterPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.CentimeterPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.CentimeterPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDecimeterPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.DecimeterPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.DecimeterPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.DecimeterPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithFootPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.FootPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.FootPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.FootPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilometerPerHourAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.KilometerPerHour;
+			Speed value = Speed.From(1, SpeedUnit.KilometerPerHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.KilometerPerHour);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilometerPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.KilometerPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.KilometerPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.KilometerPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKnotAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.Knot;
+			Speed value = Speed.From(1, SpeedUnit.Knot);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.Knot);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMeterPerHourAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.MeterPerHour;
+			Speed value = Speed.From(1, SpeedUnit.MeterPerHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MeterPerHour);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMeterPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.MeterPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.MeterPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MeterPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMicrometerPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.MicrometerPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.MicrometerPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MicrometerPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMilePerHourAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.MilePerHour;
+			Speed value = Speed.From(1, SpeedUnit.MilePerHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MilePerHour);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMillimeterPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.MillimeterPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.MillimeterPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.MillimeterPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNanometerPerSecondAsDefualtUnit()
+        {
+			SpeedUnit oldUnit = Speed.ToStringDefaultUnit;
+			Speed.ToStringDefaultUnit = SpeedUnit.NanometerPerSecond;
+			Speed value = Speed.From(1, SpeedUnit.NanometerPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpeedUnit.NanometerPerSecond);
+			Speed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }
