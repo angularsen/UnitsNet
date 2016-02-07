@@ -301,5 +301,291 @@ namespace UnitsNet.Tests
             Volume cubicmeter = Volume.FromCubicMeters(1);
             Assert.IsFalse(cubicmeter.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicMeter;
+            Volume cubicmeter = Volume.FromCubicMeters(1);
+            string cubicmeterString = cubicmeter.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicMeter), cubicmeterString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentiliterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Centiliter;
+			Volume value = Volume.From(1, VolumeUnit.Centiliter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Centiliter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicCentimeterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicCentimeter;
+			Volume value = Volume.From(1, VolumeUnit.CubicCentimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicCentimeter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicDecimeterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicDecimeter;
+			Volume value = Volume.From(1, VolumeUnit.CubicDecimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicDecimeter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicFootAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicFoot;
+			Volume value = Volume.From(1, VolumeUnit.CubicFoot);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicFoot);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicInchAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicInch;
+			Volume value = Volume.From(1, VolumeUnit.CubicInch);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicInch);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicKilometerAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicKilometer;
+			Volume value = Volume.From(1, VolumeUnit.CubicKilometer);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicKilometer);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicMeterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicMeter;
+			Volume value = Volume.From(1, VolumeUnit.CubicMeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicMeter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicMileAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicMile;
+			Volume value = Volume.From(1, VolumeUnit.CubicMile);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicMile);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicMillimeterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicMillimeter;
+			Volume value = Volume.From(1, VolumeUnit.CubicMillimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicMillimeter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCubicYardAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.CubicYard;
+			Volume value = Volume.From(1, VolumeUnit.CubicYard);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.CubicYard);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDeciliterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Deciliter;
+			Volume value = Volume.From(1, VolumeUnit.Deciliter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Deciliter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithHectoliterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Hectoliter;
+			Volume value = Volume.From(1, VolumeUnit.Hectoliter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Hectoliter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithImperialGallonAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.ImperialGallon;
+			Volume value = Volume.From(1, VolumeUnit.ImperialGallon);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.ImperialGallon);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithImperialOunceAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.ImperialOunce;
+			Volume value = Volume.From(1, VolumeUnit.ImperialOunce);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.ImperialOunce);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithLiterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Liter;
+			Volume value = Volume.From(1, VolumeUnit.Liter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Liter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMetricCupAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.MetricCup;
+			Volume value = Volume.From(1, VolumeUnit.MetricCup);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.MetricCup);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMilliliterAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Milliliter;
+			Volume value = Volume.From(1, VolumeUnit.Milliliter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Milliliter);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTablespoonAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Tablespoon;
+			Volume value = Volume.From(1, VolumeUnit.Tablespoon);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Tablespoon);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTeaspoonAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.Teaspoon;
+			Volume value = Volume.From(1, VolumeUnit.Teaspoon);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.Teaspoon);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithUsCustomaryCupAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.UsCustomaryCup;
+			Volume value = Volume.From(1, VolumeUnit.UsCustomaryCup);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.UsCustomaryCup);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithUsGallonAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.UsGallon;
+			Volume value = Volume.From(1, VolumeUnit.UsGallon);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.UsGallon);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithUsLegalCupAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.UsLegalCup;
+			Volume value = Volume.From(1, VolumeUnit.UsLegalCup);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.UsLegalCup);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithUsOunceAsDefualtUnit()
+        {
+			VolumeUnit oldUnit = Volume.ToStringDefaultUnit;
+			Volume.ToStringDefaultUnit = VolumeUnit.UsOunce;
+			Volume value = Volume.From(1, VolumeUnit.UsOunce);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VolumeUnit.UsOunce);
+			Volume.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

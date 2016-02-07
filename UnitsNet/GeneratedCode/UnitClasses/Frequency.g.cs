@@ -493,13 +493,18 @@ namespace UnitsNet
 
         #endregion
 
+		/// <summary>
+        ///     Set the default unit used by ToString(). Default is Hertz
+        /// </summary>
+		public static FrequencyUnit ToStringDefaultUnit { get; set; } = FrequencyUnit.Hertz;
+
         /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(FrequencyUnit.Hertz);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

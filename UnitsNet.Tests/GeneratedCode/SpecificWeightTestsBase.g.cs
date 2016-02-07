@@ -253,5 +253,207 @@ namespace UnitsNet.Tests
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
             Assert.IsFalse(newtonpercubicmeter.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.NewtonPerCubicMeter;
+            SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
+            string newtonpercubicmeterString = newtonpercubicmeter.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.NewtonPerCubicMeter), newtonpercubicmeterString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerCubicCentimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilogramForcePerCubicCentimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerCubicMeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilogramForcePerCubicMeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilogramForcePerCubicMeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerCubicMillimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilogramForcePerCubicMillimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerCubicCentimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilonewtonPerCubicCentimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerCubicMeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilonewtonPerCubicMeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilonewtonPerCubicMeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerCubicMillimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilonewtonPerCubicMillimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilopoundForcePerCubicFootAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilopoundForcePerCubicFoot;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicFoot);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilopoundForcePerCubicFoot);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilopoundForcePerCubicInchAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.KilopoundForcePerCubicInch;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicInch);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.KilopoundForcePerCubicInch);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerCubicCentimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.NewtonPerCubicCentimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicCentimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.NewtonPerCubicCentimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerCubicMeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.NewtonPerCubicMeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.NewtonPerCubicMeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerCubicMillimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.NewtonPerCubicMillimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMillimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.NewtonPerCubicMillimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPoundForcePerCubicFootAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.PoundForcePerCubicFoot;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicFoot);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.PoundForcePerCubicFoot);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPoundForcePerCubicInchAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.PoundForcePerCubicInch;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicInch);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.PoundForcePerCubicInch);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerCubicCentimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.TonneForcePerCubicCentimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicCentimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.TonneForcePerCubicCentimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerCubicMeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.TonneForcePerCubicMeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.TonneForcePerCubicMeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerCubicMillimeterAsDefualtUnit()
+        {
+			SpecificWeightUnit oldUnit = SpecificWeight.ToStringDefaultUnit;
+			SpecificWeight.ToStringDefaultUnit = SpecificWeightUnit.TonneForcePerCubicMillimeter;
+			SpecificWeight value = SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMillimeter);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificWeightUnit.TonneForcePerCubicMillimeter);
+			SpecificWeight.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

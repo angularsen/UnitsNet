@@ -217,5 +217,135 @@ namespace UnitsNet.Tests
             MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
             Assert.IsFalse(grampersecond.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.GramPerSecond;
+            MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
+            string grampersecondString = grampersecond.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.GramPerSecond), grampersecondString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentigramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.CentigramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.CentigramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.CentigramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDecagramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.DecagramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.DecagramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.DecagramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDecigramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.DecigramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.DecigramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.DecigramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.GramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.GramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.GramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithHectogramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.HectogramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.HectogramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.HectogramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilogramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.KilogramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.KilogramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.KilogramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMicrogramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.MicrogramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.MicrogramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.MicrogramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMilligramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.MilligramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.MilligramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.MilligramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNanogramPerSecondAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.NanogramPerSecond;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.NanogramPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.NanogramPerSecond);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTonnePerDayAsDefualtUnit()
+        {
+			MassFlowUnit oldUnit = MassFlow.ToStringDefaultUnit;
+			MassFlow.ToStringDefaultUnit = MassFlowUnit.TonnePerDay;
+			MassFlow value = MassFlow.From(1, MassFlowUnit.TonnePerDay);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(MassFlowUnit.TonnePerDay);
+			MassFlow.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

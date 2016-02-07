@@ -211,5 +211,123 @@ namespace UnitsNet.Tests
             TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             Assert.IsFalse(degreecelsiuspersecond.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+            TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            string degreecelsiuspersecondString = degreecelsiuspersecond.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.DegreeCelsiusPerSecond), degreecelsiuspersecondString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentidegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDecadegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDecidegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithHectodegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilodegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMicrodegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMillidegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNanodegreeCelsiusPerSecondAsDefualtUnit()
+        {
+			TemperatureChangeRateUnit oldUnit = TemperatureChangeRate.ToStringDefaultUnit;
+			TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond;
+			TemperatureChangeRate value = TemperatureChangeRate.From(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+			TemperatureChangeRate.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

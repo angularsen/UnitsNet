@@ -205,5 +205,111 @@ namespace UnitsNet.Tests
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.IsFalse(radianpersecond.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.RadianPerSecond;
+            RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
+            string radianpersecondString = radianpersecond.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.RadianPerSecond), radianpersecondString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentiradianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.CentiradianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.CentiradianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDeciradianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.DeciradianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.DeciradianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMicroradianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.MicroradianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.MicroradianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMilliradianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.MilliradianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.MilliradianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithNanoradianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.NanoradianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.NanoradianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithRadianPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.RadianPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.RadianPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithRevolutionPerMinuteAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.RevolutionPerMinute;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.RevolutionPerMinute);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithRevolutionPerSecondAsDefualtUnit()
+        {
+			RotationalSpeedUnit oldUnit = RotationalSpeed.ToStringDefaultUnit;
+			RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.RevolutionPerSecond;
+			RotationalSpeed value = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(RotationalSpeedUnit.RevolutionPerSecond);
+			RotationalSpeed.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

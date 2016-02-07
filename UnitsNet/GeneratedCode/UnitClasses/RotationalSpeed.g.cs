@@ -493,13 +493,18 @@ namespace UnitsNet
 
         #endregion
 
+		/// <summary>
+        ///     Set the default unit used by ToString(). Default is RadianPerSecond
+        /// </summary>
+		public static RotationalSpeedUnit ToStringDefaultUnit { get; set; } = RotationalSpeedUnit.RadianPerSecond;
+
         /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(RotationalSpeedUnit.RadianPerSecond);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

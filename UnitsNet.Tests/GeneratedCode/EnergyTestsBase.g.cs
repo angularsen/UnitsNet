@@ -235,5 +235,171 @@ namespace UnitsNet.Tests
             Energy joule = Energy.FromJoules(1);
             Assert.IsFalse(joule.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			Energy.ToStringDefaultUnit = EnergyUnit.Joule;
+            Energy joule = Energy.FromJoules(1);
+            string jouleString = joule.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Joule), jouleString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithBritishThermalUnitAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.BritishThermalUnit;
+			Energy value = Energy.From(1, EnergyUnit.BritishThermalUnit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.BritishThermalUnit);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCalorieAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Calorie;
+			Energy value = Energy.From(1, EnergyUnit.Calorie);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Calorie);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithElectronVoltAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.ElectronVolt;
+			Energy value = Energy.From(1, EnergyUnit.ElectronVolt);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.ElectronVolt);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithErgAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Erg;
+			Energy value = Energy.From(1, EnergyUnit.Erg);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Erg);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithFootPoundAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.FootPound;
+			Energy value = Energy.From(1, EnergyUnit.FootPound);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.FootPound);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGigawattHourAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.GigawattHour;
+			Energy value = Energy.From(1, EnergyUnit.GigawattHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.GigawattHour);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithJouleAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Joule;
+			Energy value = Energy.From(1, EnergyUnit.Joule);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Joule);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilocalorieAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Kilocalorie;
+			Energy value = Energy.From(1, EnergyUnit.Kilocalorie);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Kilocalorie);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilojouleAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Kilojoule;
+			Energy value = Energy.From(1, EnergyUnit.Kilojoule);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Kilojoule);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilowattHourAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.KilowattHour;
+			Energy value = Energy.From(1, EnergyUnit.KilowattHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.KilowattHour);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMegajouleAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.Megajoule;
+			Energy value = Energy.From(1, EnergyUnit.Megajoule);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.Megajoule);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMegawattHourAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.MegawattHour;
+			Energy value = Energy.From(1, EnergyUnit.MegawattHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.MegawattHour);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithWattHourAsDefualtUnit()
+        {
+			EnergyUnit oldUnit = Energy.ToStringDefaultUnit;
+			Energy.ToStringDefaultUnit = EnergyUnit.WattHour;
+			Energy value = Energy.From(1, EnergyUnit.WattHour);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(EnergyUnit.WattHour);
+			Energy.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

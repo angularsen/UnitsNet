@@ -313,5 +313,327 @@ namespace UnitsNet.Tests
             Information bit = Information.FromBits(1);
             Assert.IsFalse(bit.Equals(null));
         }
+
+		[Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
+        {
+			Information.ToStringDefaultUnit = InformationUnit.Bit;
+            Information bit = Information.FromBits(1);
+            string bitString = bit.ToString();
+			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Bit), bitString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithBitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Bit;
+			Information value = Information.From(1, InformationUnit.Bit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Bit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithByteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Byte;
+			Information value = Information.From(1, InformationUnit.Byte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Byte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithExabitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Exabit;
+			Information value = Information.From(1, InformationUnit.Exabit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Exabit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithExabyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Exabyte;
+			Information value = Information.From(1, InformationUnit.Exabyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Exabyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithExbibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Exbibit;
+			Information value = Information.From(1, InformationUnit.Exbibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Exbibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithExbibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Exbibyte;
+			Information value = Information.From(1, InformationUnit.Exbibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Exbibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGibibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Gibibit;
+			Information value = Information.From(1, InformationUnit.Gibibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Gibibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGibibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Gibibyte;
+			Information value = Information.From(1, InformationUnit.Gibibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Gibibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGigabitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Gigabit;
+			Information value = Information.From(1, InformationUnit.Gigabit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Gigabit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithGigabyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Gigabyte;
+			Information value = Information.From(1, InformationUnit.Gigabyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Gigabyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKibibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Kibibit;
+			Information value = Information.From(1, InformationUnit.Kibibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Kibibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKibibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Kibibyte;
+			Information value = Information.From(1, InformationUnit.Kibibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Kibibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilobitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Kilobit;
+			Information value = Information.From(1, InformationUnit.Kilobit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Kilobit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithKilobyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Kilobyte;
+			Information value = Information.From(1, InformationUnit.Kilobyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Kilobyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMebibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Mebibit;
+			Information value = Information.From(1, InformationUnit.Mebibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Mebibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMebibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Mebibyte;
+			Information value = Information.From(1, InformationUnit.Mebibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Mebibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMegabitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Megabit;
+			Information value = Information.From(1, InformationUnit.Megabit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Megabit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithMegabyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Megabyte;
+			Information value = Information.From(1, InformationUnit.Megabyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Megabyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPebibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Pebibit;
+			Information value = Information.From(1, InformationUnit.Pebibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Pebibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPebibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Pebibyte;
+			Information value = Information.From(1, InformationUnit.Pebibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Pebibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPetabitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Petabit;
+			Information value = Information.From(1, InformationUnit.Petabit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Petabit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithPetabyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Petabyte;
+			Information value = Information.From(1, InformationUnit.Petabyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Petabyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTebibitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Tebibit;
+			Information value = Information.From(1, InformationUnit.Tebibit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Tebibit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTebibyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Tebibyte;
+			Information value = Information.From(1, InformationUnit.Tebibyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Tebibyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTerabitAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Terabit;
+			Information value = Information.From(1, InformationUnit.Terabit);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Terabit);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithTerabyteAsDefualtUnit()
+        {
+			InformationUnit oldUnit = Information.ToStringDefaultUnit;
+			Information.ToStringDefaultUnit = InformationUnit.Terabyte;
+			Information value = Information.From(1, InformationUnit.Terabyte);
+			string valueString = value.ToString();
+			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(InformationUnit.Terabyte);
+			Information.ToStringDefaultUnit = oldUnit;
+			Assert.AreEqual("1 " + unitString, valueString);
+        }
+
     }
 }

@@ -533,13 +533,18 @@ namespace UnitsNet
 
         #endregion
 
+		/// <summary>
+        ///     Set the default unit used by ToString(). Default is GramPerSecond
+        /// </summary>
+		public static MassFlowUnit ToStringDefaultUnit { get; set; } = MassFlowUnit.GramPerSecond;
+
         /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(MassFlowUnit.GramPerSecond);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>
