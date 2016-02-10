@@ -111,6 +111,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in CubicMicrometers.
+        /// </summary>
+        public double CubicMicrometers
+        {
+            get { return _cubicMeters*1e18; }
+        }
+
+        /// <summary>
         ///     Get Volume in CubicMiles.
         /// </summary>
         public double CubicMiles
@@ -304,6 +312,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from CubicMicrometers.
+        /// </summary>
+        public static Volume FromCubicMicrometers(double cubicmicrometers)
+        {
+            return new Volume(cubicmicrometers/1e18);
+        }
+
+        /// <summary>
         ///     Get Volume from CubicMiles.
         /// </summary>
         public static Volume FromCubicMiles(double cubicmiles)
@@ -456,6 +472,8 @@ namespace UnitsNet
                     return FromCubicKilometers(value);
                 case VolumeUnit.CubicMeter:
                     return FromCubicMeters(value);
+                case VolumeUnit.CubicMicrometer:
+                    return FromCubicMicrometers(value);
                 case VolumeUnit.CubicMile:
                     return FromCubicMiles(value);
                 case VolumeUnit.CubicMillimeter:
@@ -635,6 +653,8 @@ namespace UnitsNet
                     return CubicKilometers;
                 case VolumeUnit.CubicMeter:
                     return CubicMeters;
+                case VolumeUnit.CubicMicrometer:
+                    return CubicMicrometers;
                 case VolumeUnit.CubicMile:
                     return CubicMiles;
                 case VolumeUnit.CubicMillimeter:
