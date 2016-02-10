@@ -167,22 +167,22 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			VitaminA.ToStringDefaultUnit = VitaminAUnit.InternationalUnit;
+            VitaminA.ToStringDefaultUnit = VitaminAUnit.InternationalUnit;
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
             string internationalunitString = internationalunit.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(VitaminAUnit.InternationalUnit), internationalunitString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(VitaminAUnit.InternationalUnit), internationalunitString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithInternationalUnitAsDefualtUnit()
         {
-			VitaminAUnit oldUnit = VitaminA.ToStringDefaultUnit;
-			VitaminA.ToStringDefaultUnit = VitaminAUnit.InternationalUnit;
-			VitaminA value = VitaminA.From(1, VitaminAUnit.InternationalUnit);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VitaminAUnit.InternationalUnit);
-			VitaminA.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            VitaminAUnit oldUnit = VitaminA.ToStringDefaultUnit;
+            VitaminA.ToStringDefaultUnit = VitaminAUnit.InternationalUnit;
+            VitaminA value = VitaminA.From(1, VitaminAUnit.InternationalUnit);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(VitaminAUnit.InternationalUnit);
+            VitaminA.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

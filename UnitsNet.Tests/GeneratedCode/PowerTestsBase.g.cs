@@ -257,202 +257,202 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Power.ToStringDefaultUnit = PowerUnit.Watt;
+            Power.ToStringDefaultUnit = PowerUnit.Watt;
             Power watt = Power.FromWatts(1);
             string wattString = watt.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Watt), wattString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Watt), wattString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithBoilerHorsepowerAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.BoilerHorsepower;
-			Power value = Power.From(1, PowerUnit.BoilerHorsepower);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.BoilerHorsepower);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.BoilerHorsepower;
+            Power value = Power.From(1, PowerUnit.BoilerHorsepower);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.BoilerHorsepower);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithElectricalHorsepowerAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.ElectricalHorsepower;
-			Power value = Power.From(1, PowerUnit.ElectricalHorsepower);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.ElectricalHorsepower);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.ElectricalHorsepower;
+            Power value = Power.From(1, PowerUnit.ElectricalHorsepower);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.ElectricalHorsepower);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithFemtowattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Femtowatt;
-			Power value = Power.From(1, PowerUnit.Femtowatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Femtowatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Femtowatt;
+            Power value = Power.From(1, PowerUnit.Femtowatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Femtowatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithGigawattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Gigawatt;
-			Power value = Power.From(1, PowerUnit.Gigawatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Gigawatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Gigawatt;
+            Power value = Power.From(1, PowerUnit.Gigawatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Gigawatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithHydraulicHorsepowerAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.HydraulicHorsepower;
-			Power value = Power.From(1, PowerUnit.HydraulicHorsepower);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.HydraulicHorsepower);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.HydraulicHorsepower;
+            Power value = Power.From(1, PowerUnit.HydraulicHorsepower);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.HydraulicHorsepower);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilowattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Kilowatt;
-			Power value = Power.From(1, PowerUnit.Kilowatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Kilowatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Kilowatt;
+            Power value = Power.From(1, PowerUnit.Kilowatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Kilowatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMechanicalHorsepowerAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.MechanicalHorsepower;
-			Power value = Power.From(1, PowerUnit.MechanicalHorsepower);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.MechanicalHorsepower);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.MechanicalHorsepower;
+            Power value = Power.From(1, PowerUnit.MechanicalHorsepower);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.MechanicalHorsepower);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegawattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Megawatt;
-			Power value = Power.From(1, PowerUnit.Megawatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Megawatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Megawatt;
+            Power value = Power.From(1, PowerUnit.Megawatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Megawatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMetricHorsepowerAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.MetricHorsepower;
-			Power value = Power.From(1, PowerUnit.MetricHorsepower);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.MetricHorsepower);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.MetricHorsepower;
+            Power value = Power.From(1, PowerUnit.MetricHorsepower);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.MetricHorsepower);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicrowattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Microwatt;
-			Power value = Power.From(1, PowerUnit.Microwatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Microwatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Microwatt;
+            Power value = Power.From(1, PowerUnit.Microwatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Microwatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMilliwattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Milliwatt;
-			Power value = Power.From(1, PowerUnit.Milliwatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Milliwatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Milliwatt;
+            Power value = Power.From(1, PowerUnit.Milliwatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Milliwatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanowattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Nanowatt;
-			Power value = Power.From(1, PowerUnit.Nanowatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Nanowatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Nanowatt;
+            Power value = Power.From(1, PowerUnit.Nanowatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Nanowatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPetawattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Petawatt;
-			Power value = Power.From(1, PowerUnit.Petawatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Petawatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Petawatt;
+            Power value = Power.From(1, PowerUnit.Petawatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Petawatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPicowattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Picowatt;
-			Power value = Power.From(1, PowerUnit.Picowatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Picowatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Picowatt;
+            Power value = Power.From(1, PowerUnit.Picowatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Picowatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTerawattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Terawatt;
-			Power value = Power.From(1, PowerUnit.Terawatt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Terawatt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Terawatt;
+            Power value = Power.From(1, PowerUnit.Terawatt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Terawatt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithWattAsDefualtUnit()
         {
-			PowerUnit oldUnit = Power.ToStringDefaultUnit;
-			Power.ToStringDefaultUnit = PowerUnit.Watt;
-			Power value = Power.From(1, PowerUnit.Watt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Watt);
-			Power.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PowerUnit oldUnit = Power.ToStringDefaultUnit;
+            Power.ToStringDefaultUnit = PowerUnit.Watt;
+            Power value = Power.From(1, PowerUnit.Watt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerUnit.Watt);
+            Power.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

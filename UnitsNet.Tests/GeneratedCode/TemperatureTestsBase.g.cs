@@ -209,106 +209,106 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Temperature.ToStringDefaultUnit = TemperatureUnit.Kelvin;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.Kelvin;
             Temperature kelvin = Temperature.FromKelvins(1);
             string kelvinString = kelvin.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.Kelvin), kelvinString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.Kelvin), kelvinString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeCelsiusAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeCelsius;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeCelsius);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeCelsius);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeCelsius;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeCelsius);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeCelsius);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeDelisleAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeDelisle;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeDelisle);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeDelisle);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeDelisle;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeDelisle);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeDelisle);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeFahrenheitAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeFahrenheit;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeFahrenheit);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeFahrenheit;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeFahrenheit);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeNewtonAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeNewton;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeNewton);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeNewton);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeNewton;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeNewton);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeNewton);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeRankineAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeRankine;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeRankine);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeRankine);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeRankine;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeRankine);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeRankine);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeReaumurAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeReaumur;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeReaumur);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeReaumur);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeReaumur;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeReaumur);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeReaumur);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeRoemerAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeRoemer;
-			Temperature value = Temperature.From(1, TemperatureUnit.DegreeRoemer);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeRoemer);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.DegreeRoemer;
+            Temperature value = Temperature.From(1, TemperatureUnit.DegreeRoemer);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.DegreeRoemer);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKelvinAsDefualtUnit()
         {
-			TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
-			Temperature.ToStringDefaultUnit = TemperatureUnit.Kelvin;
-			Temperature value = Temperature.From(1, TemperatureUnit.Kelvin);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.Kelvin);
-			Temperature.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            TemperatureUnit oldUnit = Temperature.ToStringDefaultUnit;
+            Temperature.ToStringDefaultUnit = TemperatureUnit.Kelvin;
+            Temperature value = Temperature.From(1, TemperatureUnit.Kelvin);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(TemperatureUnit.Kelvin);
+            Temperature.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

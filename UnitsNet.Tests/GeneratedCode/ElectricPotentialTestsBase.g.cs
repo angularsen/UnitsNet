@@ -191,70 +191,70 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Volt;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Volt;
             ElectricPotential volt = ElectricPotential.FromVolts(1);
             string voltString = volt.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Volt), voltString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Volt), voltString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilovoltAsDefualtUnit()
         {
-			ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Kilovolt;
-			ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Kilovolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Kilovolt);
-			ElectricPotential.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Kilovolt;
+            ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Kilovolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Kilovolt);
+            ElectricPotential.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegavoltAsDefualtUnit()
         {
-			ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Megavolt;
-			ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Megavolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Megavolt);
-			ElectricPotential.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Megavolt;
+            ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Megavolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Megavolt);
+            ElectricPotential.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicrovoltAsDefualtUnit()
         {
-			ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Microvolt;
-			ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Microvolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Microvolt);
-			ElectricPotential.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Microvolt;
+            ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Microvolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Microvolt);
+            ElectricPotential.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMillivoltAsDefualtUnit()
         {
-			ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Millivolt;
-			ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Millivolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Millivolt);
-			ElectricPotential.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Millivolt;
+            ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Millivolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Millivolt);
+            ElectricPotential.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithVoltAsDefualtUnit()
         {
-			ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
-			ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Volt;
-			ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Volt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Volt);
-			ElectricPotential.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricPotentialUnit oldUnit = ElectricPotential.ToStringDefaultUnit;
+            ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Volt;
+            ElectricPotential value = ElectricPotential.From(1, ElectricPotentialUnit.Volt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricPotentialUnit.Volt);
+            ElectricPotential.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

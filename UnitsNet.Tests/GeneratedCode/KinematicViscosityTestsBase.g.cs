@@ -209,106 +209,106 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.SquareMeterPerSecond;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.SquareMeterPerSecond;
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
             string squaremeterpersecondString = squaremeterpersecond.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond), squaremeterpersecondString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond), squaremeterpersecondString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithCentistokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Centistokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Centistokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Centistokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Centistokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Centistokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Centistokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecistokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Decistokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Decistokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Decistokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Decistokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Decistokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Decistokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilostokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Kilostokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Kilostokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Kilostokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Kilostokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Kilostokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Kilostokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicrostokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Microstokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Microstokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Microstokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Microstokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Microstokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Microstokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMillistokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Millistokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Millistokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Millistokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Millistokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Millistokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Millistokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanostokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Nanostokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Nanostokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Nanostokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Nanostokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Nanostokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Nanostokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithSquareMeterPerSecondAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.SquareMeterPerSecond;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.SquareMeterPerSecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.SquareMeterPerSecond;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.SquareMeterPerSecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithStokesAsDefualtUnit()
         {
-			KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
-			KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Stokes;
-			KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Stokes);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Stokes);
-			KinematicViscosity.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            KinematicViscosityUnit oldUnit = KinematicViscosity.ToStringDefaultUnit;
+            KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.Stokes;
+            KinematicViscosity value = KinematicViscosity.From(1, KinematicViscosityUnit.Stokes);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(KinematicViscosityUnit.Stokes);
+            KinematicViscosity.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

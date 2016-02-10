@@ -183,46 +183,46 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelVolt;
+            AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelVolt;
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             string decibelvoltString = decibelvolt.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelVolt), decibelvoltString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelVolt), decibelvoltString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecibelMicrovoltAsDefualtUnit()
         {
-			AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
-			AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelMicrovolt;
-			AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelMicrovolt);
-			AmplitudeRatio.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
+            AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelMicrovolt;
+            AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelMicrovolt);
+            AmplitudeRatio.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecibelMillivoltAsDefualtUnit()
         {
-			AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
-			AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelMillivolt;
-			AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelMillivolt);
-			AmplitudeRatio.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
+            AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelMillivolt;
+            AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelMillivolt);
+            AmplitudeRatio.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecibelVoltAsDefualtUnit()
         {
-			AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
-			AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelVolt;
-			AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelVolt);
-			AmplitudeRatio.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AmplitudeRatioUnit oldUnit = AmplitudeRatio.ToStringDefaultUnit;
+            AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelVolt;
+            AmplitudeRatio value = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AmplitudeRatioUnit.DecibelVolt);
+            AmplitudeRatio.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

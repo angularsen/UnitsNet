@@ -221,130 +221,130 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Angle.ToStringDefaultUnit = AngleUnit.Degree;
+            Angle.ToStringDefaultUnit = AngleUnit.Degree;
             Angle degree = Angle.FromDegrees(1);
             string degreeString = degree.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Degree), degreeString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Degree), degreeString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithArcminuteAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Arcminute;
-			Angle value = Angle.From(1, AngleUnit.Arcminute);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Arcminute);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Arcminute;
+            Angle value = Angle.From(1, AngleUnit.Arcminute);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Arcminute);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithArcsecondAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Arcsecond;
-			Angle value = Angle.From(1, AngleUnit.Arcsecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Arcsecond);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Arcsecond;
+            Angle value = Angle.From(1, AngleUnit.Arcsecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Arcsecond);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithCentiradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Centiradian;
-			Angle value = Angle.From(1, AngleUnit.Centiradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Centiradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Centiradian;
+            Angle value = Angle.From(1, AngleUnit.Centiradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Centiradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDeciradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Deciradian;
-			Angle value = Angle.From(1, AngleUnit.Deciradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Deciradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Deciradian;
+            Angle value = Angle.From(1, AngleUnit.Deciradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Deciradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDegreeAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Degree;
-			Angle value = Angle.From(1, AngleUnit.Degree);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Degree);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Degree;
+            Angle value = Angle.From(1, AngleUnit.Degree);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Degree);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithGradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Gradian;
-			Angle value = Angle.From(1, AngleUnit.Gradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Gradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Gradian;
+            Angle value = Angle.From(1, AngleUnit.Gradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Gradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicroradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Microradian;
-			Angle value = Angle.From(1, AngleUnit.Microradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Microradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Microradian;
+            Angle value = Angle.From(1, AngleUnit.Microradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Microradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMilliradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Milliradian;
-			Angle value = Angle.From(1, AngleUnit.Milliradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Milliradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Milliradian;
+            Angle value = Angle.From(1, AngleUnit.Milliradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Milliradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanoradianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Nanoradian;
-			Angle value = Angle.From(1, AngleUnit.Nanoradian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Nanoradian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Nanoradian;
+            Angle value = Angle.From(1, AngleUnit.Nanoradian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Nanoradian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithRadianAsDefualtUnit()
         {
-			AngleUnit oldUnit = Angle.ToStringDefaultUnit;
-			Angle.ToStringDefaultUnit = AngleUnit.Radian;
-			Angle value = Angle.From(1, AngleUnit.Radian);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Radian);
-			Angle.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AngleUnit oldUnit = Angle.ToStringDefaultUnit;
+            Angle.ToStringDefaultUnit = AngleUnit.Radian;
+            Angle value = Angle.From(1, AngleUnit.Radian);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AngleUnit.Radian);
+            Angle.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }
