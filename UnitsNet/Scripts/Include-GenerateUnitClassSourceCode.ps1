@@ -386,10 +386,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is $baseUnitSingularName
         /// </summary>
-		public static $unitEnumName ToStringDefaultUnit { get; set; } = $unitEnumName.$baseUnitSingularName;
+        public static $unitEnumName ToStringDefaultUnit { get; set; } = $unitEnumName.$baseUnitSingularName;
 
         /// <summary>
         ///     Get default string representation of value and unit.

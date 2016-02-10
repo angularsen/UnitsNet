@@ -353,10 +353,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is InternationalUnit
         /// </summary>
-		public static VitaminAUnit ToStringDefaultUnit { get; set; } = VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit ToStringDefaultUnit { get; set; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
         ///     Get default string representation of value and unit.

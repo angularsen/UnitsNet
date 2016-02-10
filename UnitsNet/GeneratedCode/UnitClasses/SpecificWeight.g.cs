@@ -653,10 +653,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonPerCubicMeter
         /// </summary>
-		public static SpecificWeightUnit ToStringDefaultUnit { get; set; } = SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit ToStringDefaultUnit { get; set; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

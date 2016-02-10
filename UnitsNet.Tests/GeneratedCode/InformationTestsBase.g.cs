@@ -314,7 +314,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(bit.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Information.ToStringDefaultUnit = InformationUnit.Bit;

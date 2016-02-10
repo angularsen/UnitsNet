@@ -356,7 +356,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(pascal.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Pressure.ToStringDefaultUnit = PressureUnit.Pascal;

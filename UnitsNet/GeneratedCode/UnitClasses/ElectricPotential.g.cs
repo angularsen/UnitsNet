@@ -433,10 +433,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Volt
         /// </summary>
-		public static ElectricPotentialUnit ToStringDefaultUnit { get; set; } = ElectricPotentialUnit.Volt;
+        public static ElectricPotentialUnit ToStringDefaultUnit { get; set; } = ElectricPotentialUnit.Volt;
 
         /// <summary>
         ///     Get default string representation of value and unit.

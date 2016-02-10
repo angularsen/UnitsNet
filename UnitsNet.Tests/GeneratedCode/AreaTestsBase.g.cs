@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(squaremeter.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Area.ToStringDefaultUnit = AreaUnit.SquareMeter;

@@ -200,7 +200,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(meterpersecondsquared.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Acceleration.ToStringDefaultUnit = AccelerationUnit.MeterPerSecondSquared;

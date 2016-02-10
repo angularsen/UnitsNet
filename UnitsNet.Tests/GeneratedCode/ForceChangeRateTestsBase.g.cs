@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(newtonpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             ForceChangeRate.ToStringDefaultUnit = ForceChangeRateUnit.NewtonPerSecond;

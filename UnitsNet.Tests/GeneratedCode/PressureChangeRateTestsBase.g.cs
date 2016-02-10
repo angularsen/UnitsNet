@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(pascalpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             PressureChangeRate.ToStringDefaultUnit = PressureChangeRateUnit.PascalPerSecond;

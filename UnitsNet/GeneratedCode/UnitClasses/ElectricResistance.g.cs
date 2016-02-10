@@ -393,10 +393,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Ohm
         /// </summary>
-		public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
 
         /// <summary>
         ///     Get default string representation of value and unit.

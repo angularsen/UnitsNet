@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(cubicmeterpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Flow.ToStringDefaultUnit = FlowUnit.CubicMeterPerSecond;

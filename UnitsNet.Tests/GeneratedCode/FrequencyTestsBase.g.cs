@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(hertz.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Frequency.ToStringDefaultUnit = FrequencyUnit.Hertz;

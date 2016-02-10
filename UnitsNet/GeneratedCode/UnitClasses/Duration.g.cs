@@ -533,10 +533,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Second
         /// </summary>
-		public static DurationUnit ToStringDefaultUnit { get; set; } = DurationUnit.Second;
+        public static DurationUnit ToStringDefaultUnit { get; set; } = DurationUnit.Second;
 
         /// <summary>
         ///     Get default string representation of value and unit.

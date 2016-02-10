@@ -254,7 +254,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(newtonmeter.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Torque.ToStringDefaultUnit = TorqueUnit.NewtonMeter;

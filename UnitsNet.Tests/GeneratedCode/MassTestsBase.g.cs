@@ -260,7 +260,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(kilogram.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Mass.ToStringDefaultUnit = MassUnit.Kilogram;

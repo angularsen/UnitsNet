@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(decimalfraction.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Ratio.ToStringDefaultUnit = RatioUnit.DecimalFraction;

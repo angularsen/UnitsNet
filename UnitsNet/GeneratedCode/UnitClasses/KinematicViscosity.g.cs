@@ -493,10 +493,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is SquareMeterPerSecond
         /// </summary>
-		public static KinematicViscosityUnit ToStringDefaultUnit { get; set; } = KinematicViscosityUnit.SquareMeterPerSecond;
+        public static KinematicViscosityUnit ToStringDefaultUnit { get; set; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

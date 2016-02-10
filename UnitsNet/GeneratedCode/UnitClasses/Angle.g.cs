@@ -533,10 +533,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Degree
         /// </summary>
-		public static AngleUnit ToStringDefaultUnit { get; set; } = AngleUnit.Degree;
+        public static AngleUnit ToStringDefaultUnit { get; set; } = AngleUnit.Degree;
 
         /// <summary>
         ///     Get default string representation of value and unit.

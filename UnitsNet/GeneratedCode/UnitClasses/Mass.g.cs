@@ -673,10 +673,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Kilogram
         /// </summary>
-		public static MassUnit ToStringDefaultUnit { get; set; } = MassUnit.Kilogram;
+        public static MassUnit ToStringDefaultUnit { get; set; } = MassUnit.Kilogram;
 
         /// <summary>
         ///     Get default string representation of value and unit.

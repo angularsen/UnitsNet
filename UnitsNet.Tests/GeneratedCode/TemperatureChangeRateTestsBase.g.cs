@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(degreecelsiuspersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             TemperatureChangeRate.ToStringDefaultUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;

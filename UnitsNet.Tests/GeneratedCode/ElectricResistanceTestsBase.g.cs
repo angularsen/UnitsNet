@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(ohm.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             ElectricResistance.ToStringDefaultUnit = ElectricResistanceUnit.Ohm;

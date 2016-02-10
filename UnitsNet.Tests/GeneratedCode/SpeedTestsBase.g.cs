@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(meterpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Speed.ToStringDefaultUnit = SpeedUnit.MeterPerSecond;

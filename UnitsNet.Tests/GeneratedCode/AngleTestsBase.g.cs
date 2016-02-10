@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(degree.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Angle.ToStringDefaultUnit = AngleUnit.Degree;

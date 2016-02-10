@@ -242,7 +242,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(meter.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Length.ToStringDefaultUnit = LengthUnit.Meter;

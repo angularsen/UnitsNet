@@ -413,10 +413,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is PascalPerSecond
         /// </summary>
-		public static PressureChangeRateUnit ToStringDefaultUnit { get; set; } = PressureChangeRateUnit.PascalPerSecond;
+        public static PressureChangeRateUnit ToStringDefaultUnit { get; set; } = PressureChangeRateUnit.PascalPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

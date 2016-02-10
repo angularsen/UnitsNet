@@ -993,10 +993,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Pascal
         /// </summary>
-		public static PressureUnit ToStringDefaultUnit { get; set; } = PressureUnit.Pascal;
+        public static PressureUnit ToStringDefaultUnit { get; set; } = PressureUnit.Pascal;
 
         /// <summary>
         ///     Get default string representation of value and unit.

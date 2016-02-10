@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(grampersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             MassFlow.ToStringDefaultUnit = MassFlowUnit.GramPerSecond;

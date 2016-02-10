@@ -254,7 +254,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(watt.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Power.ToStringDefaultUnit = PowerUnit.Watt;

@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(jouleperkilogram.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.JoulePerKilogram;

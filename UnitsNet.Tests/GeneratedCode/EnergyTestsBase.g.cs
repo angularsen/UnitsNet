@@ -236,7 +236,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(joule.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Energy.ToStringDefaultUnit = EnergyUnit.Joule;
