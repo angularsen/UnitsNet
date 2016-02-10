@@ -22,32 +22,10 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum VolumeUnit
+    public enum RatioChangeRateUnit
     {
         Undefined = 0,
-        Centiliter,
-        CubicCentimeter,
-        CubicDecimeter,
-        CubicFoot,
-        CubicInch,
-        CubicKilometer,
-        CubicMeter,
-        CubicMicrometer,
-        CubicMile,
-        CubicMillimeter,
-        CubicYard,
-        Deciliter,
-        Hectoliter,
-        ImperialGallon,
-        ImperialOunce,
-        Liter,
-        MetricCup,
-        Milliliter,
-        Tablespoon,
-        Teaspoon,
-        UsCustomaryCup,
-        UsGallon,
-        UsLegalCup,
-        UsOunce,
+        DecimalFractionPerSecond,
+        PercentPerSecond,
     }
 }

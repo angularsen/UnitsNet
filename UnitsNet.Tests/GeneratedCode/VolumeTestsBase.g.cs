@@ -43,6 +43,7 @@ namespace UnitsNet.Tests
         protected abstract double CubicInchesInOneCubicMeter { get; }
         protected abstract double CubicKilometersInOneCubicMeter { get; }
         protected abstract double CubicMetersInOneCubicMeter { get; }
+        protected abstract double CubicMicrometersInOneCubicMeter { get; }
         protected abstract double CubicMilesInOneCubicMeter { get; }
         protected abstract double CubicMillimetersInOneCubicMeter { get; }
         protected abstract double CubicYardsInOneCubicMeter { get; }
@@ -68,6 +69,7 @@ namespace UnitsNet.Tests
         protected virtual double CubicInchesTolerance { get { return 1e-5; } }
         protected virtual double CubicKilometersTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersTolerance { get { return 1e-5; } }
+        protected virtual double CubicMicrometersTolerance { get { return 1e-5; } }
         protected virtual double CubicMilesTolerance { get { return 1e-5; } }
         protected virtual double CubicMillimetersTolerance { get { return 1e-5; } }
         protected virtual double CubicYardsTolerance { get { return 1e-5; } }
@@ -97,6 +99,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.CubicInches, CubicInchesTolerance);
             Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.CubicKilometers, CubicKilometersTolerance);
             Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(CubicMicrometersInOneCubicMeter, cubicmeter.CubicMicrometers, CubicMicrometersTolerance);
             Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.CubicMiles, CubicMilesTolerance);
             Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.CubicMillimeters, CubicMillimetersTolerance);
             Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, CubicYardsTolerance);
@@ -125,6 +128,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicInch).CubicInches, CubicInchesTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicKilometer).CubicKilometers, CubicKilometersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMeter).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMicrometer).CubicMicrometers, CubicMicrometersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMile).CubicMiles, CubicMilesTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMillimeter).CubicMillimeters, CubicMillimetersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, CubicYardsTolerance);
@@ -154,6 +158,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicInchesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicInch), CubicInchesTolerance);
             Assert.AreEqual(CubicKilometersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicKilometer), CubicKilometersTolerance);
             Assert.AreEqual(CubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMeter), CubicMetersTolerance);
+            Assert.AreEqual(CubicMicrometersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMicrometer), CubicMicrometersTolerance);
             Assert.AreEqual(CubicMilesInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMile), CubicMilesTolerance);
             Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMillimeter), CubicMillimetersTolerance);
             Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicYard), CubicYardsTolerance);
@@ -183,6 +188,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.FromCubicInches(cubicmeter.CubicInches).CubicMeters, CubicInchesTolerance);
             Assert.AreEqual(1, Volume.FromCubicKilometers(cubicmeter.CubicKilometers).CubicMeters, CubicKilometersTolerance);
             Assert.AreEqual(1, Volume.FromCubicMeters(cubicmeter.CubicMeters).CubicMeters, CubicMetersTolerance);
+            Assert.AreEqual(1, Volume.FromCubicMicrometers(cubicmeter.CubicMicrometers).CubicMeters, CubicMicrometersTolerance);
             Assert.AreEqual(1, Volume.FromCubicMiles(cubicmeter.CubicMiles).CubicMeters, CubicMilesTolerance);
             Assert.AreEqual(1, Volume.FromCubicMillimeters(cubicmeter.CubicMillimeters).CubicMeters, CubicMillimetersTolerance);
             Assert.AreEqual(1, Volume.FromCubicYards(cubicmeter.CubicYards).CubicMeters, CubicYardsTolerance);
