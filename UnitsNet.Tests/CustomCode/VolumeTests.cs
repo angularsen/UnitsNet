@@ -43,6 +43,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicMillimetersInOneCubicMeter => 1E9;
 
+        protected override double CubicMicrometersInOneCubicMeter => 1E18;
+
         protected override double CubicYardsInOneCubicMeter => 1.30795062;
 
         protected override double DecilitersInOneCubicMeter => 1E4;

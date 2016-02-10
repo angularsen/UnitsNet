@@ -1434,6 +1434,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "%"),
                             }),
                     }),
+                new UnitLocalization(typeof (RatioChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) RatioChangeRateUnit.DecimalFractionPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                            }),
+                        new CulturesForEnumValue((int) RatioChangeRateUnit.PercentPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "%/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
@@ -1910,6 +1924,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "m³"),
                                 new AbbreviationsForCulture("ru-RU", "м³"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.CubicMicrometer,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µm³"),
+                                new AbbreviationsForCulture("ru-RU", "мкм³"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.CubicMile,
                             new[]
