@@ -175,6 +175,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in MetricCups.
+        /// </summary>
+        public double MetricCups
+        {
+            get { return _cubicMeters/0.00025; }
+        }
+
+        /// <summary>
         ///     Get Volume in Milliliters.
         /// </summary>
         public double Milliliters
@@ -199,11 +207,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in UsCustomaryCups.
+        /// </summary>
+        public double UsCustomaryCups
+        {
+            get { return _cubicMeters/0.0002365882365; }
+        }
+
+        /// <summary>
         ///     Get Volume in UsGallons.
         /// </summary>
         public double UsGallons
         {
             get { return _cubicMeters/0.00378541; }
+        }
+
+        /// <summary>
+        ///     Get Volume in UsLegalCups.
+        /// </summary>
+        public double UsLegalCups
+        {
+            get { return _cubicMeters/0.00024; }
         }
 
         /// <summary>
@@ -344,6 +368,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from MetricCups.
+        /// </summary>
+        public static Volume FromMetricCups(double metriccups)
+        {
+            return new Volume(metriccups*0.00025);
+        }
+
+        /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
         public static Volume FromMilliliters(double milliliters)
@@ -368,11 +400,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from UsCustomaryCups.
+        /// </summary>
+        public static Volume FromUsCustomaryCups(double uscustomarycups)
+        {
+            return new Volume(uscustomarycups*0.0002365882365);
+        }
+
+        /// <summary>
         ///     Get Volume from UsGallons.
         /// </summary>
         public static Volume FromUsGallons(double usgallons)
         {
             return new Volume(usgallons*0.00378541);
+        }
+
+        /// <summary>
+        ///     Get Volume from UsLegalCups.
+        /// </summary>
+        public static Volume FromUsLegalCups(double uslegalcups)
+        {
+            return new Volume(uslegalcups*0.00024);
         }
 
         /// <summary>
@@ -424,14 +472,20 @@ namespace UnitsNet
                     return FromImperialOunces(value);
                 case VolumeUnit.Liter:
                     return FromLiters(value);
+                case VolumeUnit.MetricCup:
+                    return FromMetricCups(value);
                 case VolumeUnit.Milliliter:
                     return FromMilliliters(value);
                 case VolumeUnit.Tablespoon:
                     return FromTablespoons(value);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(value);
+                case VolumeUnit.UsCustomaryCup:
+                    return FromUsCustomaryCups(value);
                 case VolumeUnit.UsGallon:
                     return FromUsGallons(value);
+                case VolumeUnit.UsLegalCup:
+                    return FromUsLegalCups(value);
                 case VolumeUnit.UsOunce:
                     return FromUsOunces(value);
 
@@ -597,14 +651,20 @@ namespace UnitsNet
                     return ImperialOunces;
                 case VolumeUnit.Liter:
                     return Liters;
+                case VolumeUnit.MetricCup:
+                    return MetricCups;
                 case VolumeUnit.Milliliter:
                     return Milliliters;
                 case VolumeUnit.Tablespoon:
                     return Tablespoons;
                 case VolumeUnit.Teaspoon:
                     return Teaspoons;
+                case VolumeUnit.UsCustomaryCup:
+                    return UsCustomaryCups;
                 case VolumeUnit.UsGallon:
                     return UsGallons;
+                case VolumeUnit.UsLegalCup:
+                    return UsLegalCups;
                 case VolumeUnit.UsOunce:
                     return UsOunces;
 
