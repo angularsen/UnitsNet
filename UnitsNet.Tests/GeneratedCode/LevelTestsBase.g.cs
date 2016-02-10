@@ -177,34 +177,34 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Level.ToStringDefaultUnit = LevelUnit.Decibel;
+            Level.ToStringDefaultUnit = LevelUnit.Decibel;
             Level decibel = Level.FromDecibels(1);
             string decibelString = decibel.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Decibel), decibelString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Decibel), decibelString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecibelAsDefualtUnit()
         {
-			LevelUnit oldUnit = Level.ToStringDefaultUnit;
-			Level.ToStringDefaultUnit = LevelUnit.Decibel;
-			Level value = Level.From(1, LevelUnit.Decibel);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Decibel);
-			Level.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            LevelUnit oldUnit = Level.ToStringDefaultUnit;
+            Level.ToStringDefaultUnit = LevelUnit.Decibel;
+            Level value = Level.From(1, LevelUnit.Decibel);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Decibel);
+            Level.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNeperAsDefualtUnit()
         {
-			LevelUnit oldUnit = Level.ToStringDefaultUnit;
-			Level.ToStringDefaultUnit = LevelUnit.Neper;
-			Level value = Level.From(1, LevelUnit.Neper);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Neper);
-			Level.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            LevelUnit oldUnit = Level.ToStringDefaultUnit;
+            Level.ToStringDefaultUnit = LevelUnit.Neper;
+            Level value = Level.From(1, LevelUnit.Neper);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(LevelUnit.Neper);
+            Level.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

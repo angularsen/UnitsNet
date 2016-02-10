@@ -221,130 +221,130 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Duration.ToStringDefaultUnit = DurationUnit.Second;
+            Duration.ToStringDefaultUnit = DurationUnit.Second;
             Duration second = Duration.FromSeconds(1);
             string secondString = second.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Second), secondString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Second), secondString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDayAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Day;
-			Duration value = Duration.From(1, DurationUnit.Day);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Day);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Day;
+            Duration value = Duration.From(1, DurationUnit.Day);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Day);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithHourAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Hour;
-			Duration value = Duration.From(1, DurationUnit.Hour);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Hour);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Hour;
+            Duration value = Duration.From(1, DurationUnit.Hour);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Hour);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicrosecondAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Microsecond;
-			Duration value = Duration.From(1, DurationUnit.Microsecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Microsecond);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Microsecond;
+            Duration value = Duration.From(1, DurationUnit.Microsecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Microsecond);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMillisecondAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Millisecond;
-			Duration value = Duration.From(1, DurationUnit.Millisecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Millisecond);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Millisecond;
+            Duration value = Duration.From(1, DurationUnit.Millisecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Millisecond);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMinuteAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Minute;
-			Duration value = Duration.From(1, DurationUnit.Minute);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Minute);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Minute;
+            Duration value = Duration.From(1, DurationUnit.Minute);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Minute);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMonthAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Month;
-			Duration value = Duration.From(1, DurationUnit.Month);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Month);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Month;
+            Duration value = Duration.From(1, DurationUnit.Month);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Month);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanosecondAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Nanosecond;
-			Duration value = Duration.From(1, DurationUnit.Nanosecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Nanosecond);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Nanosecond;
+            Duration value = Duration.From(1, DurationUnit.Nanosecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Nanosecond);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithSecondAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Second;
-			Duration value = Duration.From(1, DurationUnit.Second);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Second);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Second;
+            Duration value = Duration.From(1, DurationUnit.Second);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Second);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithWeekAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Week;
-			Duration value = Duration.From(1, DurationUnit.Week);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Week);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Week;
+            Duration value = Duration.From(1, DurationUnit.Week);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Week);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithYearAsDefualtUnit()
         {
-			DurationUnit oldUnit = Duration.ToStringDefaultUnit;
-			Duration.ToStringDefaultUnit = DurationUnit.Year;
-			Duration value = Duration.From(1, DurationUnit.Year);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Year);
-			Duration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            DurationUnit oldUnit = Duration.ToStringDefaultUnit;
+            Duration.ToStringDefaultUnit = DurationUnit.Year;
+            Duration value = Duration.From(1, DurationUnit.Year);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(DurationUnit.Year);
+            Duration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

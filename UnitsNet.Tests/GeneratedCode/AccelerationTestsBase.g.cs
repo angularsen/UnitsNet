@@ -203,94 +203,94 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.MeterPerSecondSquared;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.MeterPerSecondSquared;
             Acceleration meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(1);
             string meterpersecondsquaredString = meterpersecondsquared.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MeterPerSecondSquared), meterpersecondsquaredString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MeterPerSecondSquared), meterpersecondsquaredString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.CentimeterPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.CentimeterPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.CentimeterPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.CentimeterPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.CentimeterPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.CentimeterPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecimeterPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.DecimeterPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.DecimeterPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.DecimeterPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.DecimeterPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.DecimeterPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.DecimeterPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilometerPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.KilometerPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.KilometerPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.KilometerPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.KilometerPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.KilometerPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.KilometerPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMeterPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.MeterPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MeterPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.MeterPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MeterPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicrometerPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.MicrometerPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.MicrometerPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MicrometerPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.MicrometerPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.MicrometerPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MicrometerPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMillimeterPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.MillimeterPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.MillimeterPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MillimeterPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.MillimeterPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.MillimeterPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.MillimeterPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanometerPerSecondSquaredAsDefualtUnit()
         {
-			AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
-			Acceleration.ToStringDefaultUnit = AccelerationUnit.NanometerPerSecondSquared;
-			Acceleration value = Acceleration.From(1, AccelerationUnit.NanometerPerSecondSquared);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.NanometerPerSecondSquared);
-			Acceleration.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            AccelerationUnit oldUnit = Acceleration.ToStringDefaultUnit;
+            Acceleration.ToStringDefaultUnit = AccelerationUnit.NanometerPerSecondSquared;
+            Acceleration value = Acceleration.From(1, AccelerationUnit.NanometerPerSecondSquared);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(AccelerationUnit.NanometerPerSecondSquared);
+            Acceleration.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

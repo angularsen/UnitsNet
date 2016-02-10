@@ -209,106 +209,106 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Force.ToStringDefaultUnit = ForceUnit.Newton;
+            Force.ToStringDefaultUnit = ForceUnit.Newton;
             Force newton = Force.FromNewtons(1);
             string newtonString = newton.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Newton), newtonString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Newton), newtonString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDynAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.Dyn;
-			Force value = Force.From(1, ForceUnit.Dyn);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Dyn);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.Dyn;
+            Force value = Force.From(1, ForceUnit.Dyn);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Dyn);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilogramForceAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.KilogramForce;
-			Force value = Force.From(1, ForceUnit.KilogramForce);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.KilogramForce);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.KilogramForce;
+            Force value = Force.From(1, ForceUnit.KilogramForce);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.KilogramForce);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.Kilonewton;
-			Force value = Force.From(1, ForceUnit.Kilonewton);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Kilonewton);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.Kilonewton;
+            Force value = Force.From(1, ForceUnit.Kilonewton);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Kilonewton);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKiloPondAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.KiloPond;
-			Force value = Force.From(1, ForceUnit.KiloPond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.KiloPond);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.KiloPond;
+            Force value = Force.From(1, ForceUnit.KiloPond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.KiloPond);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNewtonAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.Newton;
-			Force value = Force.From(1, ForceUnit.Newton);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Newton);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.Newton;
+            Force value = Force.From(1, ForceUnit.Newton);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Newton);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPoundalAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.Poundal;
-			Force value = Force.From(1, ForceUnit.Poundal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Poundal);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.Poundal;
+            Force value = Force.From(1, ForceUnit.Poundal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.Poundal);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPoundForceAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.PoundForce;
-			Force value = Force.From(1, ForceUnit.PoundForce);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.PoundForce);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.PoundForce;
+            Force value = Force.From(1, ForceUnit.PoundForce);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.PoundForce);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTonneForceAsDefualtUnit()
         {
-			ForceUnit oldUnit = Force.ToStringDefaultUnit;
-			Force.ToStringDefaultUnit = ForceUnit.TonneForce;
-			Force value = Force.From(1, ForceUnit.TonneForce);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.TonneForce);
-			Force.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceUnit oldUnit = Force.ToStringDefaultUnit;
+            Force.ToStringDefaultUnit = ForceUnit.TonneForce;
+            Force value = Force.From(1, ForceUnit.TonneForce);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceUnit.TonneForce);
+            Force.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

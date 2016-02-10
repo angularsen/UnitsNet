@@ -209,106 +209,106 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.JoulePerKilogram;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.JoulePerKilogram;
             SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
             string jouleperkilogramString = jouleperkilogram.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.JoulePerKilogram), jouleperkilogramString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.JoulePerKilogram), jouleperkilogramString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithCaloriePerGramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.CaloriePerGram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.CaloriePerGram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.CaloriePerGram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.CaloriePerGram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.CaloriePerGram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.CaloriePerGram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithJoulePerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.JoulePerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.JoulePerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.JoulePerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.JoulePerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.JoulePerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.JoulePerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilocaloriePerGramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilocaloriePerGram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilocaloriePerGram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilocaloriePerGram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilocaloriePerGram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilocaloriePerGram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilocaloriePerGram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilojoulePerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilojoulePerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilojoulePerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilojoulePerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilojoulePerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilojoulePerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilojoulePerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilowattHourPerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilowattHourPerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilowattHourPerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.KilowattHourPerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.KilowattHourPerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.KilowattHourPerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegajoulePerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.MegajoulePerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.MegajoulePerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.MegajoulePerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.MegajoulePerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.MegajoulePerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.MegajoulePerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegawattHourPerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.MegawattHourPerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.MegawattHourPerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.MegawattHourPerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.MegawattHourPerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.MegawattHourPerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithWattHourPerKilogramAsDefualtUnit()
         {
-			SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
-			SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.WattHourPerKilogram;
-			SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerKilogram);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.WattHourPerKilogram);
-			SpecificEnergy.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            SpecificEnergyUnit oldUnit = SpecificEnergy.ToStringDefaultUnit;
+            SpecificEnergy.ToStringDefaultUnit = SpecificEnergyUnit.WattHourPerKilogram;
+            SpecificEnergy value = SpecificEnergy.From(1, SpecificEnergyUnit.WattHourPerKilogram);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(SpecificEnergyUnit.WattHourPerKilogram);
+            SpecificEnergy.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

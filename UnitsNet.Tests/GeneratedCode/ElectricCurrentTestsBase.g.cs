@@ -197,82 +197,82 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Ampere;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Ampere;
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             string ampereString = ampere.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Ampere), ampereString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Ampere), ampereString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithAmpereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Ampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Ampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Ampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Ampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKiloampereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Kiloampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Kiloampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Kiloampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Kiloampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegaampereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Megaampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Megaampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Megaampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Megaampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicroampereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Microampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Microampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Microampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Microampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Microampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Microampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMilliampereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Milliampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Milliampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Milliampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Milliampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNanoampereAsDefualtUnit()
         {
-			ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
-			ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Nanoampere;
-			ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Nanoampere);
-			ElectricCurrent.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ElectricCurrentUnit oldUnit = ElectricCurrent.ToStringDefaultUnit;
+            ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Nanoampere;
+            ElectricCurrent value = ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricCurrentUnit.Nanoampere);
+            ElectricCurrent.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

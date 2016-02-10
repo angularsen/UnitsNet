@@ -167,22 +167,22 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			ForceChangeRate.ToStringDefaultUnit = ForceChangeRateUnit.NewtonPerSecond;
+            ForceChangeRate.ToStringDefaultUnit = ForceChangeRateUnit.NewtonPerSecond;
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
             string newtonpersecondString = newtonpersecond.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceChangeRateUnit.NewtonPerSecond), newtonpersecondString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceChangeRateUnit.NewtonPerSecond), newtonpersecondString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerSecondAsDefualtUnit()
         {
-			ForceChangeRateUnit oldUnit = ForceChangeRate.ToStringDefaultUnit;
-			ForceChangeRate.ToStringDefaultUnit = ForceChangeRateUnit.NewtonPerSecond;
-			ForceChangeRate value = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerSecond);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceChangeRateUnit.NewtonPerSecond);
-			ForceChangeRate.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            ForceChangeRateUnit oldUnit = ForceChangeRate.ToStringDefaultUnit;
+            ForceChangeRate.ToStringDefaultUnit = ForceChangeRateUnit.NewtonPerSecond;
+            ForceChangeRate value = ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerSecond);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ForceChangeRateUnit.NewtonPerSecond);
+            ForceChangeRate.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

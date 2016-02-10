@@ -359,406 +359,406 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			Pressure.ToStringDefaultUnit = PressureUnit.Pascal;
+            Pressure.ToStringDefaultUnit = PressureUnit.Pascal;
             Pressure pascal = Pressure.FromPascals(1);
             string pascalString = pascal.ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Pascal), pascalString);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Pascal), pascalString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithAtmosphereAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Atmosphere;
-			Pressure value = Pressure.From(1, PressureUnit.Atmosphere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Atmosphere);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Atmosphere;
+            Pressure value = Pressure.From(1, PressureUnit.Atmosphere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Atmosphere);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithBarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Bar;
-			Pressure value = Pressure.From(1, PressureUnit.Bar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Bar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Bar;
+            Pressure value = Pressure.From(1, PressureUnit.Bar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Bar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithCentibarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Centibar;
-			Pressure value = Pressure.From(1, PressureUnit.Centibar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Centibar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Centibar;
+            Pressure value = Pressure.From(1, PressureUnit.Centibar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Centibar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecapascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Decapascal;
-			Pressure value = Pressure.From(1, PressureUnit.Decapascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Decapascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Decapascal;
+            Pressure value = Pressure.From(1, PressureUnit.Decapascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Decapascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDecibarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Decibar;
-			Pressure value = Pressure.From(1, PressureUnit.Decibar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Decibar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Decibar;
+            Pressure value = Pressure.From(1, PressureUnit.Decibar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Decibar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithGigapascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Gigapascal;
-			Pressure value = Pressure.From(1, PressureUnit.Gigapascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Gigapascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Gigapascal;
+            Pressure value = Pressure.From(1, PressureUnit.Gigapascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Gigapascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithHectopascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Hectopascal;
-			Pressure value = Pressure.From(1, PressureUnit.Hectopascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Hectopascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Hectopascal;
+            Pressure value = Pressure.From(1, PressureUnit.Hectopascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Hectopascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilobarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Kilobar;
-			Pressure value = Pressure.From(1, PressureUnit.Kilobar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Kilobar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Kilobar;
+            Pressure value = Pressure.From(1, PressureUnit.Kilobar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Kilobar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerSquareCentimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareCentimeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareCentimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareCentimeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareCentimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerSquareMeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareMeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareMeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareMeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareMeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilogramForcePerSquareMillimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareMillimeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareMillimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilogramForcePerSquareMillimeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilogramForcePerSquareMillimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerSquareCentimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareCentimeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareCentimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareCentimeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareCentimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerSquareMeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareMeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareMeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareMeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareMeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilonewtonPerSquareMillimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareMillimeter;
-			Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareMillimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilonewtonPerSquareMillimeter;
+            Pressure value = Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilonewtonPerSquareMillimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilopascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Kilopascal;
-			Pressure value = Pressure.From(1, PressureUnit.Kilopascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Kilopascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Kilopascal;
+            Pressure value = Pressure.From(1, PressureUnit.Kilopascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Kilopascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilopoundForcePerSquareFootAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilopoundForcePerSquareFoot;
-			Pressure value = Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilopoundForcePerSquareFoot);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilopoundForcePerSquareFoot;
+            Pressure value = Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilopoundForcePerSquareFoot);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithKilopoundForcePerSquareInchAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.KilopoundForcePerSquareInch;
-			Pressure value = Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilopoundForcePerSquareInch);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.KilopoundForcePerSquareInch;
+            Pressure value = Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.KilopoundForcePerSquareInch);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegabarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Megabar;
-			Pressure value = Pressure.From(1, PressureUnit.Megabar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Megabar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Megabar;
+            Pressure value = Pressure.From(1, PressureUnit.Megabar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Megabar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMegapascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Megapascal;
-			Pressure value = Pressure.From(1, PressureUnit.Megapascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Megapascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Megapascal;
+            Pressure value = Pressure.From(1, PressureUnit.Megapascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Megapascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMicropascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Micropascal;
-			Pressure value = Pressure.From(1, PressureUnit.Micropascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Micropascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Micropascal;
+            Pressure value = Pressure.From(1, PressureUnit.Micropascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Micropascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithMillibarAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Millibar;
-			Pressure value = Pressure.From(1, PressureUnit.Millibar);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Millibar);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Millibar;
+            Pressure value = Pressure.From(1, PressureUnit.Millibar);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Millibar);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerSquareCentimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareCentimeter;
-			Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareCentimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareCentimeter;
+            Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareCentimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerSquareMeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareMeter;
-			Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareMeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareMeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareMeter;
+            Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareMeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareMeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithNewtonPerSquareMillimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareMillimeter;
-			Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareMillimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.NewtonPerSquareMillimeter;
+            Pressure value = Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.NewtonPerSquareMillimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPascalAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Pascal;
-			Pressure value = Pressure.From(1, PressureUnit.Pascal);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Pascal);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Pascal;
+            Pressure value = Pressure.From(1, PressureUnit.Pascal);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Pascal);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPoundForcePerSquareFootAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.PoundForcePerSquareFoot;
-			Pressure value = Pressure.From(1, PressureUnit.PoundForcePerSquareFoot);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.PoundForcePerSquareFoot);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.PoundForcePerSquareFoot;
+            Pressure value = Pressure.From(1, PressureUnit.PoundForcePerSquareFoot);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.PoundForcePerSquareFoot);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPoundForcePerSquareInchAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.PoundForcePerSquareInch;
-			Pressure value = Pressure.From(1, PressureUnit.PoundForcePerSquareInch);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.PoundForcePerSquareInch);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.PoundForcePerSquareInch;
+            Pressure value = Pressure.From(1, PressureUnit.PoundForcePerSquareInch);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.PoundForcePerSquareInch);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithPsiAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Psi;
-			Pressure value = Pressure.From(1, PressureUnit.Psi);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Psi);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Psi;
+            Pressure value = Pressure.From(1, PressureUnit.Psi);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Psi);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTechnicalAtmosphereAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.TechnicalAtmosphere;
-			Pressure value = Pressure.From(1, PressureUnit.TechnicalAtmosphere);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TechnicalAtmosphere);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.TechnicalAtmosphere;
+            Pressure value = Pressure.From(1, PressureUnit.TechnicalAtmosphere);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TechnicalAtmosphere);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerSquareCentimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareCentimeter;
-			Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareCentimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareCentimeter;
+            Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareCentimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerSquareMeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareMeter;
-			Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareMeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareMeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareMeter;
+            Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareMeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareMeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTonneForcePerSquareMillimeterAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareMillimeter;
-			Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareMillimeter);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.TonneForcePerSquareMillimeter;
+            Pressure value = Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.TonneForcePerSquareMillimeter);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithTorrAsDefualtUnit()
         {
-			PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
-			Pressure.ToStringDefaultUnit = PressureUnit.Torr;
-			Pressure value = Pressure.From(1, PressureUnit.Torr);
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Torr);
-			Pressure.ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            PressureUnit oldUnit = Pressure.ToStringDefaultUnit;
+            Pressure.ToStringDefaultUnit = PressureUnit.Torr;
+            Pressure value = Pressure.From(1, PressureUnit.Torr);
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PressureUnit.Torr);
+            Pressure.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
     }

@@ -198,23 +198,23 @@ namespace UnitsNet.Tests
 		[Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
-			$className.ToStringDefaultUnit = $($unitEnumName).$($baseUnit.SingularName);
+            $className.ToStringDefaultUnit = $($unitEnumName).$($baseUnit.SingularName);
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
             string $($baseUnitVariableName)String = $($baseUnitVariableName).ToString();
-			Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation($($className)Unit.$($baseUnit.SingularName)), $($baseUnitVariableName)String);
+            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation($($className)Unit.$($baseUnit.SingularName)), $($baseUnitVariableName)String);
         }
 
 "@;    foreach ($unit in $units) {@"
         [Test]
         public void ToStringReturnsCorrectNumberAndUnitWith$($unit.SingularName)AsDefualtUnit()
         {
-			$($unitEnumName) oldUnit = $($className).ToStringDefaultUnit;
-			$($className).ToStringDefaultUnit = $($unitEnumName).$($unit.SingularName);
-			$($className) value = $($className).From(1, $($unitEnumName).$($unit.SingularName));
-			string valueString = value.ToString();
-			string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation($($unitEnumName).$($unit.SingularName));
-			$($className).ToStringDefaultUnit = oldUnit;
-			Assert.AreEqual("1 " + unitString, valueString);
+            $($unitEnumName) oldUnit = $($className).ToStringDefaultUnit;
+            $($className).ToStringDefaultUnit = $($unitEnumName).$($unit.SingularName);
+            $($className) value = $($className).From(1, $($unitEnumName).$($unit.SingularName));
+            string valueString = value.ToString();
+            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation($($unitEnumName).$($unit.SingularName));
+            $($className).ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("1 " + unitString, valueString);
         }
 
 "@; }@"
