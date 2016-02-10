@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(squaremeterpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             KinematicViscosity.ToStringDefaultUnit = KinematicViscosityUnit.SquareMeterPerSecond;

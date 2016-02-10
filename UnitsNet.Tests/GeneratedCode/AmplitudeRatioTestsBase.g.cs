@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(decibelvolt.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             AmplitudeRatio.ToStringDefaultUnit = AmplitudeRatioUnit.DecibelVolt;

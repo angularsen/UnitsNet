@@ -493,10 +493,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is JoulePerKilogram
         /// </summary>
-		public static SpecificEnergyUnit ToStringDefaultUnit { get; set; } = SpecificEnergyUnit.JoulePerKilogram;
+        public static SpecificEnergyUnit ToStringDefaultUnit { get; set; } = SpecificEnergyUnit.JoulePerKilogram;
 
         /// <summary>
         ///     Get default string representation of value and unit.

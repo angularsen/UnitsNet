@@ -853,10 +853,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Bit
         /// </summary>
-		public static InformationUnit ToStringDefaultUnit { get; set; } = InformationUnit.Bit;
+        public static InformationUnit ToStringDefaultUnit { get; set; } = InformationUnit.Bit;
 
         /// <summary>
         ///     Get default string representation of value and unit.

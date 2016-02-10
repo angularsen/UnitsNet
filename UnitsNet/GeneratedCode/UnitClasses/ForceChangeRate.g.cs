@@ -353,10 +353,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonPerSecond
         /// </summary>
-		public static ForceChangeRateUnit ToStringDefaultUnit { get; set; } = ForceChangeRateUnit.NewtonPerSecond;
+        public static ForceChangeRateUnit ToStringDefaultUnit { get; set; } = ForceChangeRateUnit.NewtonPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

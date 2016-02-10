@@ -296,7 +296,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(cubicmeter.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Volume.ToStringDefaultUnit = VolumeUnit.CubicMeter;

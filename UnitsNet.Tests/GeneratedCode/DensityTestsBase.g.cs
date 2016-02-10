@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(kilogrampercubicmeter.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Density.ToStringDefaultUnit = DensityUnit.KilogramPerCubicMeter;

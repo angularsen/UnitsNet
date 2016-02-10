@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(decibelwatt.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             PowerRatio.ToStringDefaultUnit = PowerRatioUnit.DecibelWatt;

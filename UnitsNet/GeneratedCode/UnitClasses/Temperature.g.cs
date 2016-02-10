@@ -493,10 +493,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Kelvin
         /// </summary>
-		public static TemperatureUnit ToStringDefaultUnit { get; set; } = TemperatureUnit.Kelvin;
+        public static TemperatureUnit ToStringDefaultUnit { get; set; } = TemperatureUnit.Kelvin;
 
         /// <summary>
         ///     Get default string representation of value and unit.

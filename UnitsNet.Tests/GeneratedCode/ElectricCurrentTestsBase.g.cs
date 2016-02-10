@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(ampere.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             ElectricCurrent.ToStringDefaultUnit = ElectricCurrentUnit.Ampere;

@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(newton.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Force.ToStringDefaultUnit = ForceUnit.Newton;

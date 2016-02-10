@@ -513,10 +513,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is DegreeCelsiusPerSecond
         /// </summary>
-		public static TemperatureChangeRateUnit ToStringDefaultUnit { get; set; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+        public static TemperatureChangeRateUnit ToStringDefaultUnit { get; set; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

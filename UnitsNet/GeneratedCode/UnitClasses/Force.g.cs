@@ -493,10 +493,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Newton
         /// </summary>
-		public static ForceUnit ToStringDefaultUnit { get; set; } = ForceUnit.Newton;
+        public static ForceUnit ToStringDefaultUnit { get; set; } = ForceUnit.Newton;
 
         /// <summary>
         ///     Get default string representation of value and unit.

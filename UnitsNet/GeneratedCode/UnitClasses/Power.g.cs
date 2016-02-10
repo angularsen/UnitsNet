@@ -653,10 +653,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Watt
         /// </summary>
-		public static PowerUnit ToStringDefaultUnit { get; set; } = PowerUnit.Watt;
+        public static PowerUnit ToStringDefaultUnit { get; set; } = PowerUnit.Watt;
 
         /// <summary>
         ///     Get default string representation of value and unit.

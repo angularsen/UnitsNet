@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(radianpersecond.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             RotationalSpeed.ToStringDefaultUnit = RotationalSpeedUnit.RadianPerSecond;

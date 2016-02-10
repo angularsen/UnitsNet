@@ -195,7 +195,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse($baseUnitVariableName.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             $className.ToStringDefaultUnit = $($unitEnumName).$($baseUnit.SingularName);

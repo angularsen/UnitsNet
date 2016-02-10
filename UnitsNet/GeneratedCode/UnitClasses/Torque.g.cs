@@ -653,10 +653,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonMeter
         /// </summary>
-		public static TorqueUnit ToStringDefaultUnit { get; set; } = TorqueUnit.NewtonMeter;
+        public static TorqueUnit ToStringDefaultUnit { get; set; } = TorqueUnit.NewtonMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

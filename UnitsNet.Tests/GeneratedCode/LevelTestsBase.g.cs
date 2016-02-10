@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(decibel.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Level.ToStringDefaultUnit = LevelUnit.Decibel;

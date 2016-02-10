@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(kelvin.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Temperature.ToStringDefaultUnit = TemperatureUnit.Kelvin;

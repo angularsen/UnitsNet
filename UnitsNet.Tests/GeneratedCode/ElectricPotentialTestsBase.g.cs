@@ -188,7 +188,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(volt.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             ElectricPotential.ToStringDefaultUnit = ElectricPotentialUnit.Volt;

@@ -613,10 +613,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Meter
         /// </summary>
-		public static LengthUnit ToStringDefaultUnit { get; set; } = LengthUnit.Meter;
+        public static LengthUnit ToStringDefaultUnit { get; set; } = LengthUnit.Meter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

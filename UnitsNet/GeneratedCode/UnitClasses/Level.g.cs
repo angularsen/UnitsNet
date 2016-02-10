@@ -381,10 +381,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is Decibel
         /// </summary>
-		public static LevelUnit ToStringDefaultUnit { get; set; } = LevelUnit.Decibel;
+        public static LevelUnit ToStringDefaultUnit { get; set; } = LevelUnit.Decibel;
 
         /// <summary>
         ///     Get default string representation of value and unit.

@@ -401,10 +401,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is DecibelVolt
         /// </summary>
-		public static AmplitudeRatioUnit ToStringDefaultUnit { get; set; } = AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit ToStringDefaultUnit { get; set; } = AmplitudeRatioUnit.DecibelVolt;
 
         /// <summary>
         ///     Get default string representation of value and unit.

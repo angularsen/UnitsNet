@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(second.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             Duration.ToStringDefaultUnit = DurationUnit.Second;

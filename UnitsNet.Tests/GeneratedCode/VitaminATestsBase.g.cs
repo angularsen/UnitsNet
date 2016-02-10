@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             Assert.IsFalse(internationalunit.Equals(null));
         }
 
-		[Test]
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
         {
             VitaminA.ToStringDefaultUnit = VitaminAUnit.InternationalUnit;

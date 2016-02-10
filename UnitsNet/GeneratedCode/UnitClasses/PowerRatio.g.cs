@@ -381,10 +381,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is DecibelWatt
         /// </summary>
-		public static PowerRatioUnit ToStringDefaultUnit { get; set; } = PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit ToStringDefaultUnit { get; set; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
         ///     Get default string representation of value and unit.

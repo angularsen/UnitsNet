@@ -453,10 +453,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is CubicMeterPerSecond
         /// </summary>
-		public static FlowUnit ToStringDefaultUnit { get; set; } = FlowUnit.CubicMeterPerSecond;
+        public static FlowUnit ToStringDefaultUnit { get; set; } = FlowUnit.CubicMeterPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

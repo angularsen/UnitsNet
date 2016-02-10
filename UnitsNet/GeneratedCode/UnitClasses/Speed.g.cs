@@ -573,10 +573,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is MeterPerSecond
         /// </summary>
-		public static SpeedUnit ToStringDefaultUnit { get; set; } = SpeedUnit.MeterPerSecond;
+        public static SpeedUnit ToStringDefaultUnit { get; set; } = SpeedUnit.MeterPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.

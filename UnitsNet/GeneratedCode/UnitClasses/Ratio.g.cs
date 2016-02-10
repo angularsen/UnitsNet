@@ -453,10 +453,10 @@ namespace UnitsNet
 
         #endregion
 
-		/// <summary>
+        /// <summary>
         ///     Set the default unit used by ToString(). Default is DecimalFraction
         /// </summary>
-		public static RatioUnit ToStringDefaultUnit { get; set; } = RatioUnit.DecimalFraction;
+        public static RatioUnit ToStringDefaultUnit { get; set; } = RatioUnit.DecimalFraction;
 
         /// <summary>
         ///     Get default string representation of value and unit.
