@@ -87,13 +87,13 @@ namespace UnitsNet.Tests
         protected virtual double MillilitersTolerance { get { return 1e-5; } }
         protected virtual double TablespoonsTolerance { get { return 1e-5; } }
         protected virtual double TeaspoonsTolerance { get { return 1e-5; } }
-        protected virtual double UsTablespoonsTolerance { get { return 1e-5; } }
-        protected virtual double UsTeaspoonsTolerance { get { return 1e-5; } }
         protected virtual double UkTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsCustomaryCupsTolerance { get { return 1e-5; } }
         protected virtual double UsGallonsTolerance { get { return 1e-5; } }
         protected virtual double UsLegalCupsTolerance { get { return 1e-5; } }
         protected virtual double UsOuncesTolerance { get { return 1e-5; } }
+        protected virtual double UsTablespoonsTolerance { get { return 1e-5; } }
+        protected virtual double UsTeaspoonsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]

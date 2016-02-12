@@ -212,7 +212,7 @@ namespace UnitsNet
         [Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
         public double Tablespoons
         {
-            get { return _cubicMeters/1.47867648e-5; }
+            get { return _cubicMeters/1.478676478125e-5; }
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace UnitsNet
         [Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         public double Teaspoons
         {
-            get { return _cubicMeters/4.92892159e-6; }
+            get { return _cubicMeters/4.92892159375e-6; }
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace UnitsNet
         /// </summary>
         public double UsTablespoons
         {
-            get { return _cubicMeters/1.47867648e-5; }
+            get { return _cubicMeters/1.478676478125e-5; }
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace UnitsNet
         /// </summary>
         public double UsTeaspoons
         {
-            get { return _cubicMeters/4.92892159e-6; }
+            get { return _cubicMeters/4.92892159375e-6; }
         }
 
         #endregion
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromTablespoons(double tablespoons)
         {
-            return new Volume(tablespoons*1.47867648e-5);
+            return new Volume(tablespoons*1.478676478125e-5);
         }
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromTeaspoons(double teaspoons)
         {
-            return new Volume(teaspoons*4.92892159e-6);
+            return new Volume(teaspoons*4.92892159375e-6);
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromUsTablespoons(double ustablespoons)
         {
-            return new Volume(ustablespoons*1.47867648e-5);
+            return new Volume(ustablespoons*1.478676478125e-5);
         }
 
         /// <summary>
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// </summary>
         public static Volume FromUsTeaspoons(double usteaspoons)
         {
-            return new Volume(usteaspoons*4.92892159e-6);
+            return new Volume(usteaspoons*4.92892159375e-6);
         }
 
 
