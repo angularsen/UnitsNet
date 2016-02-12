@@ -68,6 +68,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double UsGallonsInOneCubicMeter => 264.17217;
         
         protected override double UsOuncesInOneCubicMeter => 33814.02270;
+        protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
+        protected override double UsTeaspoonsInOneCubicMeter => 202884.136;
 
         protected override double MetricCupsInOneCubicMeter => 4000;
 

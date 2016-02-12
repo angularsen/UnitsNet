@@ -48,5 +48,7 @@ namespace UnitsNet.Units
         UsGallon,
         UsLegalCup,
         UsOunce,
+        UsTablespoon,
+        UsTeaspoon,
     }
 }

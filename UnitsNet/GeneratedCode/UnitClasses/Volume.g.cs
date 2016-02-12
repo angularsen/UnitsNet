@@ -193,6 +193,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume in Tablespoons.
         /// </summary>
+        [Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
         public double Tablespoons
         {
             get { return _cubicMeters/1.47867648e-5; }
@@ -201,6 +202,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume in Teaspoons.
         /// </summary>
+        [Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         public double Teaspoons
         {
             get { return _cubicMeters/4.92892159e-6; }
@@ -236,6 +238,22 @@ namespace UnitsNet
         public double UsOunces
         {
             get { return _cubicMeters/2.957352956253760505068307980135e-5; }
+        }
+
+        /// <summary>
+        ///     Get Volume in UsTablespoons.
+        /// </summary>
+        public double UsTablespoons
+        {
+            get { return _cubicMeters/1.47867648e-5; }
+        }
+
+        /// <summary>
+        ///     Get Volume in UsTeaspoons.
+        /// </summary>
+        public double UsTeaspoons
+        {
+            get { return _cubicMeters/4.92892159e-6; }
         }
 
         #endregion
@@ -431,6 +449,22 @@ namespace UnitsNet
             return new Volume(usounces*2.957352956253760505068307980135e-5);
         }
 
+        /// <summary>
+        ///     Get Volume from UsTablespoons.
+        /// </summary>
+        public static Volume FromUsTablespoons(double ustablespoons)
+        {
+            return new Volume(ustablespoons*1.47867648e-5);
+        }
+
+        /// <summary>
+        ///     Get Volume from UsTeaspoons.
+        /// </summary>
+        public static Volume FromUsTeaspoons(double usteaspoons)
+        {
+            return new Volume(usteaspoons*4.92892159e-6);
+        }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.
@@ -488,6 +522,10 @@ namespace UnitsNet
                     return FromUsLegalCups(value);
                 case VolumeUnit.UsOunce:
                     return FromUsOunces(value);
+                case VolumeUnit.UsTablespoon:
+                    return FromUsTablespoons(value);
+                case VolumeUnit.UsTeaspoon:
+                    return FromUsTeaspoons(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -667,6 +705,10 @@ namespace UnitsNet
                     return UsLegalCups;
                 case VolumeUnit.UsOunce:
                     return UsOunces;
+                case VolumeUnit.UsTablespoon:
+                    return UsTablespoons;
+                case VolumeUnit.UsTeaspoon:
+                    return UsTeaspoons;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

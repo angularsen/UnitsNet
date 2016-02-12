@@ -1,3 +1,13 @@
+function GetObsoleteAttribute($unitClass)
+{
+	if ($unitClass.ObsoleteText)
+	{
+		return  "
+        [Obsolete(""$($unitClass.ObsoleteText)"")]";
+	}
+	return "";
+}
+
 function GenerateUnitClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
@@ -68,11 +78,12 @@ namespace UnitsNet
         }
 "@; foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
         $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"
 
         /// <summary>
         ///     Get $className in $propertyName.
-        /// </summary>
+        /// </summary>$obsoleteAttribute
         public double $propertyName
         {
             get { return $fromBaseToUnitFunc; }

@@ -2006,6 +2006,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "oz (U.S.)"),
                                 new AbbreviationsForCulture("ru-RU", "Американская унция"),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsTablespoon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("nb-NO", ""),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsTeaspoon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("nb-NO", ""),
+                            }),
                     }),
              });
     }
