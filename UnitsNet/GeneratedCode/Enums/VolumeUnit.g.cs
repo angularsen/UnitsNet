@@ -25,6 +25,7 @@ namespace UnitsNet.Units
     public enum VolumeUnit
     {
         Undefined = 0,
+        AuTablespoon,
         Centiliter,
         CubicCentimeter,
         CubicDecimeter,
@@ -41,9 +42,11 @@ namespace UnitsNet.Units
         ImperialOunce,
         Liter,
         MetricCup,
+        MetricTeaspoon,
         Milliliter,
         Tablespoon,
         Teaspoon,
+        UkTablespoon,
         UsCustomaryCup,
         UsGallon,
         UsLegalCup,

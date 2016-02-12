@@ -55,6 +55,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in AuTablespoons.
+        /// </summary>
+        public double AuTablespoons
+        {
+            get { return _cubicMeters/2e-5; }
+        }
+
+        /// <summary>
         ///     Get Volume in Centiliters.
         /// </summary>
         public double Centiliters
@@ -183,6 +191,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in MetricTeaspoons.
+        /// </summary>
+        public double MetricTeaspoons
+        {
+            get { return _cubicMeters/0.5e-5; }
+        }
+
+        /// <summary>
         ///     Get Volume in Milliliters.
         /// </summary>
         public double Milliliters
@@ -206,6 +222,14 @@ namespace UnitsNet
         public double Teaspoons
         {
             get { return _cubicMeters/4.92892159e-6; }
+        }
+
+        /// <summary>
+        ///     Get Volume in UkTablespoons.
+        /// </summary>
+        public double UkTablespoons
+        {
+            get { return _cubicMeters/1.5e-5; }
         }
 
         /// <summary>
@@ -263,6 +287,14 @@ namespace UnitsNet
         public static Volume Zero
         {
             get { return new Volume(); }
+        }
+
+        /// <summary>
+        ///     Get Volume from AuTablespoons.
+        /// </summary>
+        public static Volume FromAuTablespoons(double autablespoons)
+        {
+            return new Volume(autablespoons*2e-5);
         }
 
         /// <summary>
@@ -394,6 +426,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from MetricTeaspoons.
+        /// </summary>
+        public static Volume FromMetricTeaspoons(double metricteaspoons)
+        {
+            return new Volume(metricteaspoons*0.5e-5);
+        }
+
+        /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
         public static Volume FromMilliliters(double milliliters)
@@ -415,6 +455,14 @@ namespace UnitsNet
         public static Volume FromTeaspoons(double teaspoons)
         {
             return new Volume(teaspoons*4.92892159e-6);
+        }
+
+        /// <summary>
+        ///     Get Volume from UkTablespoons.
+        /// </summary>
+        public static Volume FromUkTablespoons(double uktablespoons)
+        {
+            return new Volume(uktablespoons*1.5e-5);
         }
 
         /// <summary>
@@ -476,6 +524,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case VolumeUnit.AuTablespoon:
+                    return FromAuTablespoons(value);
                 case VolumeUnit.Centiliter:
                     return FromCentiliters(value);
                 case VolumeUnit.CubicCentimeter:
@@ -508,12 +558,16 @@ namespace UnitsNet
                     return FromLiters(value);
                 case VolumeUnit.MetricCup:
                     return FromMetricCups(value);
+                case VolumeUnit.MetricTeaspoon:
+                    return FromMetricTeaspoons(value);
                 case VolumeUnit.Milliliter:
                     return FromMilliliters(value);
                 case VolumeUnit.Tablespoon:
                     return FromTablespoons(value);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(value);
+                case VolumeUnit.UkTablespoon:
+                    return FromUkTablespoons(value);
                 case VolumeUnit.UsCustomaryCup:
                     return FromUsCustomaryCups(value);
                 case VolumeUnit.UsGallon:
@@ -659,6 +713,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case VolumeUnit.AuTablespoon:
+                    return AuTablespoons;
                 case VolumeUnit.Centiliter:
                     return Centiliters;
                 case VolumeUnit.CubicCentimeter:
@@ -691,12 +747,16 @@ namespace UnitsNet
                     return Liters;
                 case VolumeUnit.MetricCup:
                     return MetricCups;
+                case VolumeUnit.MetricTeaspoon:
+                    return MetricTeaspoons;
                 case VolumeUnit.Milliliter:
                     return Milliliters;
                 case VolumeUnit.Tablespoon:
                     return Tablespoons;
                 case VolumeUnit.Teaspoon:
                     return Teaspoons;
+                case VolumeUnit.UkTablespoon:
+                    return UkTablespoons;
                 case VolumeUnit.UsCustomaryCup:
                     return UsCustomaryCups;
                 case VolumeUnit.UsGallon:

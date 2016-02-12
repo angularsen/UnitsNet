@@ -54,22 +54,30 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
 
         protected override double LitersInOneCubicMeter => 1E3;
-
+        
         protected override double MillilitersInOneCubicMeter => 1E6;
 
+        protected override double AuTablespoonsInOneCubicMeter => 50000;
+
+        protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
+        
         protected override double TablespoonsInOneCubicMeter => 67628.0454;
 
         protected override double TablespoonsTolerance => 1E-4;
 
+        protected override double MetricTeaspoonsInOneCubicMeter => 200000;
+
+        protected override double UsTeaspoonsInOneCubicMeter => 202884.136;
+
         protected override double TeaspoonsInOneCubicMeter => 202884.136;
+
+        protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 
         protected override double TeaspoonsTolerance => 1E-3;
 
         protected override double UsGallonsInOneCubicMeter => 264.17217;
         
         protected override double UsOuncesInOneCubicMeter => 33814.02270;
-        protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
-        protected override double UsTeaspoonsInOneCubicMeter => 202884.136;
 
         protected override double MetricCupsInOneCubicMeter => 4000;
 

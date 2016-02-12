@@ -1869,6 +1869,13 @@ namespace UnitsNet
                 new UnitLocalization(typeof (VolumeUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) VolumeUnit.AuTablespoon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("nb-NO", ""),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.Centiliter,
                             new[]
                             {
@@ -1964,6 +1971,13 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", ""),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.MetricTeaspoon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("nb-NO", ""),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.Milliliter,
                             new[]
                             {
@@ -1983,6 +1997,13 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"),
                                 new AbbreviationsForCulture("ru-RU", "чайная ложка"),
                                 new AbbreviationsForCulture("nb-NO", "ts", "ts."),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.UkTablespoon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("nb-NO", ""),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UsCustomaryCup,
                             new[]
