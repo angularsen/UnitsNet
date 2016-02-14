@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         CubicInch,
         CubicKilometer,
         CubicMeter,
+        CubicMicrometer,
         CubicMile,
         CubicMillimeter,
         CubicYard,

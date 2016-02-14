@@ -102,6 +102,22 @@
             ]
         },
         {
+            "SingularName": "CubicMicrometer",
+            "PluralName": "CubicMicrometers",
+            "FromUnitToBaseFunc": "x/1e18",
+            "FromBaseToUnitFunc": "x*1e18",
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["µm³"]
+                },
+                {
+                    "Culture": "ru-RU",
+                    "Abbreviations": ["мкм³"]
+                }
+            ]
+        },
+        {
             "SingularName": "CubicMile",
             "PluralName": "CubicMiles",
             "FromUnitToBaseFunc": "x*4.16818183*1e9",
@@ -287,10 +303,10 @@
             "FromUnitToBaseFunc": "x*0.0002365882365",
             "FromBaseToUnitFunc": "x/0.0002365882365",
             "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": []
-                }
+              {
+                "Culture": "en-US",
+                "Abbreviations": [ ]
+              }
             ]
         },
         {

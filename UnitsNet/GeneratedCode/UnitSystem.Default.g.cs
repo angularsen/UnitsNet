@@ -1911,6 +1911,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³"),
                                 new AbbreviationsForCulture("ru-RU", "м³"),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.CubicMicrometer,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µm³"),
+                                new AbbreviationsForCulture("ru-RU", "мкм³"),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.CubicMile,
                             new[]
                             {
