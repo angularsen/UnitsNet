@@ -175,51 +175,5 @@ namespace UnitsNet.Tests
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             Assert.IsFalse(ohm.Equals(null));
         }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
-        {
-            ElectricResistance.ToStringDefaultUnit = ElectricResistanceUnit.Ohm;
-            ElectricResistance ohm = ElectricResistance.FromOhms(1);
-            string ohmString = ohm.ToString();
-            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricResistanceUnit.Ohm), ohmString);
-        }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithKiloohmAsDefualtUnit()
-        {
-            ElectricResistanceUnit oldUnit = ElectricResistance.ToStringDefaultUnit;
-            ElectricResistance.ToStringDefaultUnit = ElectricResistanceUnit.Kiloohm;
-            ElectricResistance value = ElectricResistance.From(1, ElectricResistanceUnit.Kiloohm);
-            string valueString = value.ToString();
-            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricResistanceUnit.Kiloohm);
-            ElectricResistance.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("1 " + unitString, valueString);
-        }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithMegaohmAsDefualtUnit()
-        {
-            ElectricResistanceUnit oldUnit = ElectricResistance.ToStringDefaultUnit;
-            ElectricResistance.ToStringDefaultUnit = ElectricResistanceUnit.Megaohm;
-            ElectricResistance value = ElectricResistance.From(1, ElectricResistanceUnit.Megaohm);
-            string valueString = value.ToString();
-            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricResistanceUnit.Megaohm);
-            ElectricResistance.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("1 " + unitString, valueString);
-        }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithOhmAsDefualtUnit()
-        {
-            ElectricResistanceUnit oldUnit = ElectricResistance.ToStringDefaultUnit;
-            ElectricResistance.ToStringDefaultUnit = ElectricResistanceUnit.Ohm;
-            ElectricResistance value = ElectricResistance.From(1, ElectricResistanceUnit.Ohm);
-            string valueString = value.ToString();
-            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(ElectricResistanceUnit.Ohm);
-            ElectricResistance.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("1 " + unitString, valueString);
-        }
-
     }
 }

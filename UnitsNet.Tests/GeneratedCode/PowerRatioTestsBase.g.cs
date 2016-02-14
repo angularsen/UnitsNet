@@ -173,39 +173,5 @@ namespace UnitsNet.Tests
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
             Assert.IsFalse(decibelwatt.Equals(null));
         }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnit()
-        {
-            PowerRatio.ToStringDefaultUnit = PowerRatioUnit.DecibelWatt;
-            PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            string decibelwattString = decibelwatt.ToString();
-            Assert.AreEqual("1 " + UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerRatioUnit.DecibelWatt), decibelwattString);
-        }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithDecibelMilliwattAsDefualtUnit()
-        {
-            PowerRatioUnit oldUnit = PowerRatio.ToStringDefaultUnit;
-            PowerRatio.ToStringDefaultUnit = PowerRatioUnit.DecibelMilliwatt;
-            PowerRatio value = PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt);
-            string valueString = value.ToString();
-            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerRatioUnit.DecibelMilliwatt);
-            PowerRatio.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("1 " + unitString, valueString);
-        }
-
-        [Test]
-        public void ToStringReturnsCorrectNumberAndUnitWithDecibelWattAsDefualtUnit()
-        {
-            PowerRatioUnit oldUnit = PowerRatio.ToStringDefaultUnit;
-            PowerRatio.ToStringDefaultUnit = PowerRatioUnit.DecibelWatt;
-            PowerRatio value = PowerRatio.From(1, PowerRatioUnit.DecibelWatt);
-            string valueString = value.ToString();
-            string unitString = UnitSystem.GetCached(null).GetDefaultAbbreviation(PowerRatioUnit.DecibelWatt);
-            PowerRatio.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("1 " + unitString, valueString);
-        }
-
     }
 }
