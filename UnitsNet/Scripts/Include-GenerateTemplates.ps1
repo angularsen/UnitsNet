@@ -5,9 +5,9 @@ It is up to the consumer to wrap any padding/new lines in order to keep to corre
 #>
 function GetObsoleteAttribute($unitClass)
 {
-	if ($unitClass.ObsoleteText)
-	{
-		return  "[System.Obsolete(""$($unitClass.ObsoleteText)"")]";
-	}
-	return "";
+    if ($unitClass.ObsoleteText)
+    {
+        return  "[System.Obsolete(""$($unitClass.ObsoleteText)"")]";
+    }
+    return "";
 }
