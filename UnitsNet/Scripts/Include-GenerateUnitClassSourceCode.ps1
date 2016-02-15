@@ -1,12 +1,4 @@
-function GetObsoleteAttribute($unitClass)
-{
-	if ($unitClass.ObsoleteText)
-	{
-		return  "
-        [Obsolete(""$($unitClass.ObsoleteText)"")]";
-	}
-	return "";
-}
+. ".\Include-GenerateTemplates.ps1"
 
 function GenerateUnitClassSourceCode($unitClass)
 {
@@ -79,11 +71,16 @@ namespace UnitsNet
 "@; foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
+		if ($obsoleteAttribute)
+		{
+			$obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+		}
+				
         $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"
 
         /// <summary>
         ///     Get $className in $propertyName.
-        /// </summary>$obsoleteAttribute
+        /// </summary>$($obsoleteAttribute)
         public double $propertyName
         {
             get { return $fromBaseToUnitFunc; }

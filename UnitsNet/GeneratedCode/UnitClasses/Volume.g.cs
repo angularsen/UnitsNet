@@ -209,7 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume in Tablespoons.
         /// </summary>
-        [Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
         public double Tablespoons
         {
             get { return _cubicMeters/1.478676478125e-5; }
@@ -218,7 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume in Teaspoons.
         /// </summary>
-        [Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         public double Teaspoons
         {
             get { return _cubicMeters/4.92892159375e-6; }
