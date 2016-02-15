@@ -1,3 +1,5 @@
+. ".\Include-GenerateTemplates.ps1"
+
 function GenerateUnitEnumSourceCode($unitClass) {
     $className = $unitClass.Name;
     $units = $unitClass.Units;
@@ -31,6 +33,8 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
 "@; foreach ($unit in $units) {
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
+
         if ($unit.XmlDocSummary) {@"
         
         /// <summary>
@@ -39,6 +43,9 @@ namespace UnitsNet.Units
 "@;     }
         if ($unit.XmlDocRemarks) {@"
         /// <remarks>$($unit.XmlDocRemarks)</remarks>
+"@;     }
+		if ($obsoleteAttribute) {@"
+        $($obsoleteAttribute)
 "@;     }@"
         $($unit.SingularName),
 "@; }@"
