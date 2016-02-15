@@ -33,7 +33,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
 "@; foreach ($unit in $units) {
-		$obsoleteAttribute = GetObsoleteAttribute($unit);
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
 
         if ($unit.XmlDocSummary) {@"
         

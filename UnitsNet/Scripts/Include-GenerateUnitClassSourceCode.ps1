@@ -71,7 +71,7 @@ namespace UnitsNet
 "@; foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
-		if ($obsoleteAttribute)
+        if ($obsoleteAttribute)
 		{
 			$obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
 		}
