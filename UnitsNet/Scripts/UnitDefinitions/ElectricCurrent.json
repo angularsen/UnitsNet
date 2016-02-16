@@ -1,20 +1,20 @@
 {
-    "Name": "ElectricCurrent",
-    "BaseUnit": "Ampere",
-    "XmlDoc": "An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.",
-    "Units": [
+  "Name": "ElectricCurrent",
+  "BaseUnit": "Ampere",
+  "XmlDoc": "An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.",
+  "Units": [
+    {
+      "SingularName": "Ampere",
+      "PluralName": "Amperes",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
         {
-            "SingularName": "Ampere",
-            "PluralName": "Amperes",
-            "FromUnitToBaseFunc": "x",
-            "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Nano","Micro","Milli","Kilo","Mega"],
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["A"]
-                }
-            ]
+          "Culture": "en-US",
+          "Abbreviations": [ "A" ]
         }
-    ]
+      ]
+    }
+  ]
 }
