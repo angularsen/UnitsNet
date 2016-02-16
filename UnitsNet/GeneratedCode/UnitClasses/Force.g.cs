@@ -498,12 +498,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is Newton
+        /// </summary>
+        public static ForceUnit ToStringDefaultUnit { get; set; } = ForceUnit.Newton;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ForceUnit.Newton);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

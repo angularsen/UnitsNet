@@ -478,12 +478,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is MeterPerSecondSquared
+        /// </summary>
+        public static AccelerationUnit ToStringDefaultUnit { get; set; } = AccelerationUnit.MeterPerSecondSquared;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(AccelerationUnit.MeterPerSecondSquared);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

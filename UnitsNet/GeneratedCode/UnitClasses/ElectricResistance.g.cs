@@ -398,12 +398,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is Ohm
+        /// </summary>
+        public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ElectricResistanceUnit.Ohm);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>
