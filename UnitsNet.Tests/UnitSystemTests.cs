@@ -186,14 +186,7 @@ namespace UnitsNet.Tests
             Assert.Throws<AmbiguousUnitParseException>( ()=>unitSystem.Parse<VolumeUnit>("tsp"));
 
             // Act 2
-            try
-            {
-                Volume.Parse("1 tsp");
-            }
-            catch (UnitsNetException e)
-            {
-                Assert.True(e.InnerException is AmbiguousUnitParseException);
-            }
+            Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
         }
 
         [TestCase("m^2", Result = AreaUnit.SquareMeter)]

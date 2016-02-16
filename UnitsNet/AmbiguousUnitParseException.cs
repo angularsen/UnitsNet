@@ -23,17 +23,13 @@ using System;
 
 namespace UnitsNet
 {
-    public class UnitsNetException : Exception
+    public class AmbiguousUnitParseException : UnitsNetException
     {
-        public UnitsNetException()
+        public AmbiguousUnitParseException(string message) : base(message)
         {
         }
 
-        public UnitsNetException(string message) : base(message)
-        {
-        }
-
-        public UnitsNetException(string message, Exception innerException) : base(message, innerException)
+        public AmbiguousUnitParseException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }

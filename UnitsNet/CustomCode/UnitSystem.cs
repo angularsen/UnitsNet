@@ -32,11 +32,6 @@ using UnitsNet.I18n;
 
 namespace UnitsNet
 {
-    public class AbbreviationMap : Dictionary<string, List<int>>
-    {
-        
-    }
-
     [PublicAPI]
     public partial class UnitSystem
     {
@@ -311,6 +306,14 @@ namespace UnitsNet
                     MapUnitToAbbreviation(unitEnumType, unitEnumValue, matchingCulture.Abbreviations.ToArray());
                 }
             }
+        }
+        
+        /// <summary>
+        /// Avoids having too many nested generics for code clarity
+        /// </summary>
+        class AbbreviationMap : Dictionary<string, List<int>>
+        {
+
         }
     }
 }
