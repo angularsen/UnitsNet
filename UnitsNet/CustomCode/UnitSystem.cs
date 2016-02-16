@@ -28,8 +28,15 @@ using UnitsNet.I18n;
 
 // ReSharper disable once CheckNamespace
 
+
+
 namespace UnitsNet
 {
+    public class AbbreviationMap : Dictionary<string, List<int>>
+    {
+        
+    }
+
     [PublicAPI]
     public partial class UnitSystem
     {
@@ -41,7 +48,7 @@ namespace UnitsNet
         ///     Per-unit-type dictionary of enum values by abbreviation. This is the inverse of
         ///     <see cref="_unitTypeToUnitValueToAbbrevs" />.
         /// </summary>
-        private readonly Dictionary<Type, Dictionary<string, int>> _unitTypeToAbbrevToUnitValue;
+        private readonly Dictionary<Type, AbbreviationMap> _unitTypeToAbbrevToUnitValue;
 
         /// <summary>
         ///     Per-unit-type dictionary of abbreviations by enum value. This is the inverse of
@@ -71,7 +78,7 @@ namespace UnitsNet
 
             Culture = cultureInfo;
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
-            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, Dictionary<string, int>>();
+            _unitTypeToAbbrevToUnitValue = new Dictionary<Type, AbbreviationMap>();
 
             LoadDefaultAbbreviatons(cultureInfo);
         }
@@ -122,17 +129,33 @@ namespace UnitsNet
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Type unitType = typeof (TUnit);
-            Dictionary<string, int> abbrevToUnitValue;
+            AbbreviationMap abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 throw new NotImplementedException(
                     $"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
-            int unitValue;
-            TUnit result = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue)
-                ? (TUnit) (object) unitValue
-                : default(TUnit);
+            List<int> unitValues;
+            List<TUnit> units;
 
-            return result;
+            if (abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValues))
+            {
+                units = unitValues.Cast<TUnit>().Distinct().ToList();
+            }
+            else
+            {
+                units = new List<TUnit>();
+            }
+
+            switch (units.Count)
+            {
+                case 1:
+                    return units[0];
+                case 0:
+                    return default(TUnit);
+                default:
+                    var unitsCsv = String.Join(", ", units.Select(x => x.ToString()).ToArray());
+                    throw new AmbiguousUnitParseException($"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
+            }
         }
 
         [PublicAPI]
@@ -187,15 +210,17 @@ namespace UnitsNet
             unitValueToAbbrev[unitValue] = existingAbbreviations.Concat(abbreviations).Distinct().ToList();
             foreach (string abbreviation in abbreviations)
             {
-                Dictionary<string, int> abbrevToUnitValue;
+                AbbreviationMap abbrevToUnitValue;
                 if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 {
-                    abbrevToUnitValue = _unitTypeToAbbrevToUnitValue[unitType] =
-                        new Dictionary<string, int>();
+                    abbrevToUnitValue = _unitTypeToAbbrevToUnitValue[unitType] = new AbbreviationMap();
                 }
 
                 if (!abbrevToUnitValue.ContainsKey(abbreviation))
-                    abbrevToUnitValue[abbreviation] = unitValue;
+                {
+                    abbrevToUnitValue[abbreviation] = new List<int>();
+                }
+                abbrevToUnitValue[abbreviation].Add(unitValue);
             }
         }
 
@@ -205,11 +230,11 @@ namespace UnitsNet
         {
             Type unitType = typeof (TUnit);
 
-            Dictionary<string, int> abbrevToUnitValue;
-            int unitValue;
+            AbbreviationMap abbrevToUnitValue;
+            List<int> unitValues;
 
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue) ||
-                !abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValue))
+                !abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValues))
             {
                 if (IsDefaultCulture)
                 {
@@ -221,8 +246,16 @@ namespace UnitsNet
                 return GetCached(DefaultCulture).TryParse(unitAbbreviation, out unit);
             }
 
-            unit = (TUnit) (object) unitValue;
-            return true;
+            var maps = (List<TUnit>) (object) unitValues;
+
+            switch (maps.Count)
+            {
+                case 1: unit = maps[0];
+                    return true;
+                default:
+                    unit = default(TUnit);
+                    return false;
+            }
         }
 
         /// <summary>

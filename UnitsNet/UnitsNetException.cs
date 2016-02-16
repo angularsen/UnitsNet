@@ -37,4 +37,15 @@ namespace UnitsNet
         {
         }
     }
+
+    public class AmbiguousUnitParseException : UnitsNetException
+    {
+        public AmbiguousUnitParseException(string message) : base(message)
+        {
+        }
+
+        public AmbiguousUnitParseException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
 }
