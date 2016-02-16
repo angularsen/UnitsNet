@@ -534,12 +534,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is SquareMeter
+        /// </summary>
+        public static AreaUnit ToStringDefaultUnit { get; set; } = AreaUnit.SquareMeter;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(AreaUnit.SquareMeter);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

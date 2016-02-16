@@ -594,12 +594,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is Joule
+        /// </summary>
+        public static EnergyUnit ToStringDefaultUnit { get; set; } = EnergyUnit.Joule;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(EnergyUnit.Joule);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>

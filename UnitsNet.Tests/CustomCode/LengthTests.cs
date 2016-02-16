@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using NUnit.Framework;
+using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -87,6 +88,26 @@ namespace UnitsNet.Tests.CustomCode
         {
             Area area = Length.FromMeters(10)*Length.FromMeters(2);
             Assert.AreEqual(area, Area.FromSquareMeters(20));
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
+        {
+            Length.ToStringDefaultUnit = LengthUnit.Meter;
+            Length meter = Length.FromMeters(5);
+            string meterString = meter.ToString();
+            Assert.AreEqual("5 m", meterString);
+        }
+
+        [Test]
+        public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
+        {
+            LengthUnit oldUnit = Length.ToStringDefaultUnit;
+            Length.ToStringDefaultUnit = LengthUnit.Centimeter;
+            Length value = Length.From(2, LengthUnit.Centimeter);
+            string valueString = value.ToString();
+            Length.ToStringDefaultUnit = oldUnit;
+            Assert.AreEqual("2 cm", valueString);
         }
     }
 }

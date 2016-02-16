@@ -395,12 +395,17 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     Set the default unit used by ToString(). Default is $baseUnitSingularName
+        /// </summary>
+        public static $unitEnumName ToStringDefaultUnit { get; set; } = $unitEnumName.$baseUnitSingularName;
+
+        /// <summary>
         ///     Get default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString($unitEnumName.$baseUnitSingularName);
+            return ToString(ToStringDefaultUnit);
         }
 
         /// <summary>
