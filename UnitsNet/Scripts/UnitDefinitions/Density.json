@@ -1,112 +1,112 @@
 ﻿{
-    "Name": "Density",
-    "BaseUnit": "KilogramPerCubicMeter",
-    "XmlDoc": "The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.",
-    "XmlDocRemarks": "http://en.wikipedia.org/wiki/Density",
-    "Units": [
+  "Name": "Density",
+  "BaseUnit": "KilogramPerCubicMeter",
+  "XmlDoc": "The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.",
+  "XmlDocRemarks": "http://en.wikipedia.org/wiki/Density",
+  "Units": [
+    {
+      "SingularName": "KilogramPerCubicMillimeter",
+      "PluralName": "KilogramsPerCubicMillimeter",
+      "FromUnitToBaseFunc": "x*1000000000000",
+      "FromBaseToUnitFunc": "x*0.000000000001",
+      "Localization": [
         {
-            "SingularName": "KilogramPerCubicMillimeter",
-            "PluralName": "KilogramsPerCubicMillimeter",
-            "FromUnitToBaseFunc": "x*1000000000000",
-            "FromBaseToUnitFunc": "x*0.000000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["kg/mm³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KilogramPerCubicCentimeter",
-            "PluralName": "KilogramsPerCubicCentimeter",
-            "FromUnitToBaseFunc": "x*100000000",
-            "FromBaseToUnitFunc": "x*0.00000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["kg/cm³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "KilogramPerCubicMeter",
-            "PluralName": "KilogramsPerCubicMeter",
-            "FromUnitToBaseFunc": "x",
-            "FromBaseToUnitFunc": "x",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["kg/m³"]
-                },
-                {
-                    "Culture": "ru-RU",
-                    "Abbreviations": ["кг/м³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "PoundPerCubicInch",
-            "PluralName": "PoundsPerCubicInch",
-            "FromUnitToBaseFunc": "x*27679.904710191",
-            "FromBaseToUnitFunc": "x/27679.904710191",
-            "Prefixes": ["Kilo"],
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["lb/in³"],
-                    "AbbreviationsWithPrefixes": ["kip/in³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "PoundPerCubicFoot",
-            "PluralName": "PoundsPerCubicFoot",
-            "FromUnitToBaseFunc": "x/0.062427961",
-            "FromBaseToUnitFunc": "x*0.062427961",
-            "Prefixes": ["Kilo"],
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["lb/ft³"],
-                    "AbbreviationsWithPrefixes": ["kip/ft³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonnePerCubicMillimeter",
-            "PluralName": "TonnesPerCubicMillimeter",
-            "FromUnitToBaseFunc": "x*1000000000000000",
-            "FromBaseToUnitFunc": "x*0.000000000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["t/mm³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonnePerCubicCentimeter",
-            "PluralName": "TonnesPerCubicCentimeter",
-            "FromUnitToBaseFunc": "x*100000000000",
-            "FromBaseToUnitFunc": "x*0.00000000001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["t/cm³"]
-                }
-            ]
-        },
-        {
-            "SingularName": "TonnePerCubicMeter",
-            "PluralName": "TonnesPerCubicMeter",
-            "FromUnitToBaseFunc": "x*1000",
-            "FromBaseToUnitFunc": "x*0.001",
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["t/m³"]
-                }
-            ]
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/mm³" ]
         }
-    ]
+      ]
+    },
+    {
+      "SingularName": "KilogramPerCubicCentimeter",
+      "PluralName": "KilogramsPerCubicCentimeter",
+      "FromUnitToBaseFunc": "x*100000000",
+      "FromBaseToUnitFunc": "x*0.00000001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerCubicMeter",
+      "PluralName": "KilogramsPerCubicMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/m³" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кг/м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicInch",
+      "PluralName": "PoundsPerCubicInch",
+      "FromUnitToBaseFunc": "x*27679.904710191",
+      "FromBaseToUnitFunc": "x/27679.904710191",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/in³" ],
+          "AbbreviationsWithPrefixes": [ "kip/in³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicFoot",
+      "PluralName": "PoundsPerCubicFoot",
+      "FromUnitToBaseFunc": "x/0.062427961",
+      "FromBaseToUnitFunc": "x*0.062427961",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft³" ],
+          "AbbreviationsWithPrefixes": [ "kip/ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMillimeter",
+      "PluralName": "TonnesPerCubicMillimeter",
+      "FromUnitToBaseFunc": "x*1000000000000000",
+      "FromBaseToUnitFunc": "x*0.000000000000001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicCentimeter",
+      "PluralName": "TonnesPerCubicCentimeter",
+      "FromUnitToBaseFunc": "x*100000000000",
+      "FromBaseToUnitFunc": "x*0.00000000001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicMeter",
+      "PluralName": "TonnesPerCubicMeter",
+      "FromUnitToBaseFunc": "x*1000",
+      "FromBaseToUnitFunc": "x*0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/m³" ]
+        }
+      ]
+    }
+  ]
 }

@@ -1,20 +1,20 @@
 ﻿{
-    "Name": "ElectricResistance",
-    "BaseUnit": "Ohm",
-    "XmlDoc": "The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.",
-    "Units": [
+  "Name": "ElectricResistance",
+  "BaseUnit": "Ohm",
+  "XmlDoc": "The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.",
+  "Units": [
+    {
+      "SingularName": "Ohm",
+      "PluralName": "Ohms",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
         {
-            "SingularName": "Ohm",
-            "PluralName": "Ohms",
-            "FromUnitToBaseFunc": "x",
-            "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Kilo","Mega"],
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["Ω"]
-                }
-            ]
+          "Culture": "en-US",
+          "Abbreviations": [ "Ω" ]
         }
-    ]
+      ]
+    }
+  ]
 }
