@@ -71,6 +71,13 @@ namespace UnitsNet.Tests
             // ReSharper restore UnusedMember.Local
         }
 
+        private UnitSystem GetCachedUnitSystem()
+        {
+            var cultureInfo = CultureInfo.GetCultureInfo("en-US");
+            var unitSystem = UnitSystem.GetCached(cultureInfo);
+            return unitSystem;
+        }
+
         private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
             IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
@@ -161,12 +168,32 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
 
+        [Test]
+        public void Parse_UnambiguousUnitsDoesNotThrow()
+        {
+            var unitSystem = GetCachedUnitSystem();
+            var unit = Volume.Parse("1 l");
+
+            Assert.AreEqual(Volume.FromLiters(1), unit);
+        }
+
+        [Test]
+        public void Parse_AmbiguousUnitsThrowsException()
+        {
+            var unitSystem = GetCachedUnitSystem();
+
+            // Act 1
+            Assert.Throws<AmbiguousUnitParseException>( ()=>unitSystem.Parse<VolumeUnit>("tsp"));
+
+            // Act 2
+            Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
+        }
+
         [TestCase("m^2", Result = AreaUnit.SquareMeter)]
         [TestCase("cm^2", Result = AreaUnit.Undefined)]
         public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
         {
-            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            var unitSystem = GetCachedUnitSystem();
             unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
 
             return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);

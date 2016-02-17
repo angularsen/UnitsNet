@@ -1980,7 +1980,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) VolumeUnit.MetricTeaspoon,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("en-US", "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"),
                                 new AbbreviationsForCulture("ru-RU", ""),
                                 new AbbreviationsForCulture("nb-NO", ""),
                             }),

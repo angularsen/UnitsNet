@@ -432,7 +432,11 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch (Exception ex)
+                catch(AmbiguousUnitParseException ambiguousException)
+                {
+                    throw;
+                }
+                catch(Exception ex)
                 {
                     var newEx = new UnitsNetException("Error parsing string.", ex);
                     newEx.Data["input"] = str;
