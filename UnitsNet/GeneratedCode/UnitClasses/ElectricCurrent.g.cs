@@ -340,6 +340,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -347,6 +349,16 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     Expected string to have one or two pairs of quantity and unit in the format
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+		///     More than one unit is represented by the specified unit abbreviation.
+		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+		///     If anything else goes wrong, typically due to a bug or unhandled case.
+		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+		///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static ElectricCurrent Parse(string str, IFormatProvider formatProvider = null)
         {
