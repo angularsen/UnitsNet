@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.25.0</version>
+    <version>3.26.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
@@ -14,12 +14,10 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-      * Add 3 cup Volume units (@neutmute)
-      * Add Add VitaminA international unit (@neutmute)
-      * Add SquareMicrometer Area unit (@tongbong)
-      * Mark library as CLS compliant (@eriove)
-      * Remove .NET 4.5.1 and Portable45 targets (@anjdreas)
-      * Add operator overloading to most units (@eriove)
+      * Add cubicmicrometer unit (@tongbong)
+      * Add table/teaspoon units (@neutmute)
+      * Add ToStringDefaultUnit static property (@eriove)
+      * Throw on ambiguous units in Parse() (@neutmute)
     </releaseNotes>
     <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
     <language>en-US</language>
