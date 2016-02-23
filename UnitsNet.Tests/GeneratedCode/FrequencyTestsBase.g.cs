@@ -214,6 +214,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Frequency? hertz = Frequency.From(null,FrequencyUnit.Hertz);
+            Assert.IsTrue(hertz.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Frequency? hertz = Frequency.From(value,FrequencyUnit.Hertz);
+            Assert.IsTrue(hertz.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

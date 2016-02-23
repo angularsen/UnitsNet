@@ -188,6 +188,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            AmplitudeRatio? decibelvolt = AmplitudeRatio.From(null,AmplitudeRatioUnit.DecibelVolt);
+            Assert.IsTrue(decibelvolt.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            AmplitudeRatio? decibelvolt = AmplitudeRatio.From(value,AmplitudeRatioUnit.DecibelVolt);
+            Assert.IsTrue(decibelvolt.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

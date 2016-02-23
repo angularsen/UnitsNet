@@ -544,6 +544,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Length unit value.</returns>
+        public static Length? From(double? value, LengthUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case LengthUnit.Centimeter:
+                    return FromCentimeters(value.Value);
+                case LengthUnit.Decimeter:
+                    return FromDecimeters(value.Value);
+                case LengthUnit.Foot:
+                    return FromFeet(value.Value);
+                case LengthUnit.Inch:
+                    return FromInches(value.Value);
+                case LengthUnit.Kilometer:
+                    return FromKilometers(value.Value);
+                case LengthUnit.Meter:
+                    return FromMeters(value.Value);
+                case LengthUnit.Microinch:
+                    return FromMicroinches(value.Value);
+                case LengthUnit.Micrometer:
+                    return FromMicrometers(value.Value);
+                case LengthUnit.Mil:
+                    return FromMils(value.Value);
+                case LengthUnit.Mile:
+                    return FromMiles(value.Value);
+                case LengthUnit.Millimeter:
+                    return FromMillimeters(value.Value);
+                case LengthUnit.Nanometer:
+                    return FromNanometers(value.Value);
+                case LengthUnit.NauticalMile:
+                    return FromNauticalMiles(value.Value);
+                case LengthUnit.Yard:
+                    return FromYards(value.Value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -722,14 +770,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Length Parse(string str, IFormatProvider formatProvider = null)
         {

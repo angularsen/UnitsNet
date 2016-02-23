@@ -226,6 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Angle? degree = Angle.From(null,AngleUnit.Degree);
+            Assert.IsTrue(degree.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Angle? degree = Angle.From(value,AngleUnit.Degree);
+            Assert.IsTrue(degree.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

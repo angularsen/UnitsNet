@@ -184,6 +184,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            ElectricResistance? ohm = ElectricResistance.From(null,ElectricResistanceUnit.Ohm);
+            Assert.IsTrue(ohm.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            ElectricResistance? ohm = ElectricResistance.From(value,ElectricResistanceUnit.Ohm);
+            Assert.IsTrue(ohm.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

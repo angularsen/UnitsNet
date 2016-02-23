@@ -202,6 +202,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Ratio? decimalfraction = Ratio.From(null,RatioUnit.DecimalFraction);
+            Assert.IsTrue(decimalfraction.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Ratio? decimalfraction = Ratio.From(value,RatioUnit.DecimalFraction);
+            Assert.IsTrue(decimalfraction.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

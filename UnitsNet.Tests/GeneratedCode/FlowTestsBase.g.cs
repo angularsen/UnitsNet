@@ -202,6 +202,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Flow? cubicmeterpersecond = Flow.From(null,FlowUnit.CubicMeterPerSecond);
+            Assert.IsTrue(cubicmeterpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Flow? cubicmeterpersecond = Flow.From(value,FlowUnit.CubicMeterPerSecond);
+            Assert.IsTrue(cubicmeterpersecond.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

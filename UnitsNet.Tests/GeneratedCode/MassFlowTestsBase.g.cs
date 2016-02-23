@@ -226,6 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            MassFlow? grampersecond = MassFlow.From(null,MassFlowUnit.GramPerSecond);
+            Assert.IsTrue(grampersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            MassFlow? grampersecond = MassFlow.From(value,MassFlowUnit.GramPerSecond);
+            Assert.IsTrue(grampersecond.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

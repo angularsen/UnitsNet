@@ -220,6 +220,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            TemperatureChangeRate? degreecelsiuspersecond = TemperatureChangeRate.From(null,TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+            Assert.IsTrue(degreecelsiuspersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            TemperatureChangeRate? degreecelsiuspersecond = TemperatureChangeRate.From(value,TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+            Assert.IsTrue(degreecelsiuspersecond.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

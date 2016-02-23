@@ -262,6 +262,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            SpecificWeight? newtonpercubicmeter = SpecificWeight.From(null,SpecificWeightUnit.NewtonPerCubicMeter);
+            Assert.IsTrue(newtonpercubicmeter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            SpecificWeight? newtonpercubicmeter = SpecificWeight.From(value,SpecificWeightUnit.NewtonPerCubicMeter);
+            Assert.IsTrue(newtonpercubicmeter.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

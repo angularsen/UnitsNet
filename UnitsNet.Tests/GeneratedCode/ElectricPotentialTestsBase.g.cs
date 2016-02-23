@@ -196,6 +196,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            ElectricPotential? volt = ElectricPotential.From(null,ElectricPotentialUnit.Volt);
+            Assert.IsTrue(volt.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            ElectricPotential? volt = ElectricPotential.From(value,ElectricPotentialUnit.Volt);
+            Assert.IsTrue(volt.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

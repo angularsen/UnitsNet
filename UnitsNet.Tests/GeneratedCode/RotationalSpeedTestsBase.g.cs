@@ -214,6 +214,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            RotationalSpeed? radianpersecond = RotationalSpeed.From(null,RotationalSpeedUnit.RadianPerSecond);
+            Assert.IsTrue(radianpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            RotationalSpeed? radianpersecond = RotationalSpeed.From(value,RotationalSpeedUnit.RadianPerSecond);
+            Assert.IsTrue(radianpersecond.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

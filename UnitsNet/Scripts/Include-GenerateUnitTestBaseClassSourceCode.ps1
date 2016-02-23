@@ -203,6 +203,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            $($className)? $baseUnitVariableName = $className.From(null,$($unitEnumName).$($baseUnit.SingularName));
+            Assert.IsTrue($baseUnitVariableName.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            $($className)? $baseUnitVariableName = $className.From(value,$($unitEnumName).$($baseUnit.SingularName));
+            Assert.IsTrue($($baseUnitVariableName).HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

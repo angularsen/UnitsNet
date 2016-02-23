@@ -93,7 +93,10 @@ namespace UnitsNet.Serialization.JsonNet
             object unit = Enum.Parse(reflectedUnitEnumType, unitEnumValue);
 
             // Mass.From() method, assume no overloads exist
-            MethodInfo fromMethod = reflectedUnitType.GetMethod("From");
+            MethodInfo fromMethod = (from m in reflectedUnitType.GetMethods()
+                                     where m.Name.Equals("From", StringComparison.InvariantCulture) &&
+                                     !m.ReturnType.IsGenericType  // we want the non nullable type
+                                     select m).Single();
 
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.

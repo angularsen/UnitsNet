@@ -214,6 +214,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Temperature? kelvin = Temperature.From(null,TemperatureUnit.Kelvin);
+            Assert.IsTrue(kelvin.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Temperature? kelvin = Temperature.From(value,TemperatureUnit.Kelvin);
+            Assert.IsTrue(kelvin.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

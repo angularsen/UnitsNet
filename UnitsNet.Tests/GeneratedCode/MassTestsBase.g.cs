@@ -268,6 +268,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Mass? kilogram = Mass.From(null,MassUnit.Kilogram);
+            Assert.IsTrue(kilogram.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Mass? kilogram = Mass.From(value,MassUnit.Kilogram);
+            Assert.IsTrue(kilogram.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

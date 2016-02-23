@@ -226,6 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Area? squaremeter = Area.From(null,AreaUnit.SquareMeter);
+            Assert.IsTrue(squaremeter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Area? squaremeter = Area.From(value,AreaUnit.SquareMeter);
+            Assert.IsTrue(squaremeter.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

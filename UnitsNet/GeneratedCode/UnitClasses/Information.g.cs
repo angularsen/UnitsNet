@@ -940,6 +940,78 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Information unit value.</returns>
+        public static Information? From(double? value, InformationUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case InformationUnit.Bit:
+                    return FromBits(value.Value);
+                case InformationUnit.Byte:
+                    return FromBytes(value.Value);
+                case InformationUnit.Exabit:
+                    return FromExabits(value.Value);
+                case InformationUnit.Exabyte:
+                    return FromExabytes(value.Value);
+                case InformationUnit.Exbibit:
+                    return FromExbibits(value.Value);
+                case InformationUnit.Exbibyte:
+                    return FromExbibytes(value.Value);
+                case InformationUnit.Gibibit:
+                    return FromGibibits(value.Value);
+                case InformationUnit.Gibibyte:
+                    return FromGibibytes(value.Value);
+                case InformationUnit.Gigabit:
+                    return FromGigabits(value.Value);
+                case InformationUnit.Gigabyte:
+                    return FromGigabytes(value.Value);
+                case InformationUnit.Kibibit:
+                    return FromKibibits(value.Value);
+                case InformationUnit.Kibibyte:
+                    return FromKibibytes(value.Value);
+                case InformationUnit.Kilobit:
+                    return FromKilobits(value.Value);
+                case InformationUnit.Kilobyte:
+                    return FromKilobytes(value.Value);
+                case InformationUnit.Mebibit:
+                    return FromMebibits(value.Value);
+                case InformationUnit.Mebibyte:
+                    return FromMebibytes(value.Value);
+                case InformationUnit.Megabit:
+                    return FromMegabits(value.Value);
+                case InformationUnit.Megabyte:
+                    return FromMegabytes(value.Value);
+                case InformationUnit.Pebibit:
+                    return FromPebibits(value.Value);
+                case InformationUnit.Pebibyte:
+                    return FromPebibytes(value.Value);
+                case InformationUnit.Petabit:
+                    return FromPetabits(value.Value);
+                case InformationUnit.Petabyte:
+                    return FromPetabytes(value.Value);
+                case InformationUnit.Tebibit:
+                    return FromTebibits(value.Value);
+                case InformationUnit.Tebibyte:
+                    return FromTebibytes(value.Value);
+                case InformationUnit.Terabit:
+                    return FromTerabits(value.Value);
+                case InformationUnit.Terabyte:
+                    return FromTerabytes(value.Value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -1142,14 +1214,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Information Parse(string str, IFormatProvider formatProvider = null)
         {

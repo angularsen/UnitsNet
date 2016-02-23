@@ -1171,6 +1171,92 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Pressure unit value.</returns>
+        public static Pressure? From(double? value, PressureUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case PressureUnit.Atmosphere:
+                    return FromAtmospheres(value.Value);
+                case PressureUnit.Bar:
+                    return FromBars(value.Value);
+                case PressureUnit.Centibar:
+                    return FromCentibars(value.Value);
+                case PressureUnit.Decapascal:
+                    return FromDecapascals(value.Value);
+                case PressureUnit.Decibar:
+                    return FromDecibars(value.Value);
+                case PressureUnit.Gigapascal:
+                    return FromGigapascals(value.Value);
+                case PressureUnit.Hectopascal:
+                    return FromHectopascals(value.Value);
+                case PressureUnit.Kilobar:
+                    return FromKilobars(value.Value);
+                case PressureUnit.KilogramForcePerSquareCentimeter:
+                    return FromKilogramsForcePerSquareCentimeter(value.Value);
+                case PressureUnit.KilogramForcePerSquareMeter:
+                    return FromKilogramsForcePerSquareMeter(value.Value);
+                case PressureUnit.KilogramForcePerSquareMillimeter:
+                    return FromKilogramsForcePerSquareMillimeter(value.Value);
+                case PressureUnit.KilonewtonPerSquareCentimeter:
+                    return FromKilonewtonsPerSquareCentimeter(value.Value);
+                case PressureUnit.KilonewtonPerSquareMeter:
+                    return FromKilonewtonsPerSquareMeter(value.Value);
+                case PressureUnit.KilonewtonPerSquareMillimeter:
+                    return FromKilonewtonsPerSquareMillimeter(value.Value);
+                case PressureUnit.Kilopascal:
+                    return FromKilopascals(value.Value);
+                case PressureUnit.KilopoundForcePerSquareFoot:
+                    return FromKilopoundsForcePerSquareFoot(value.Value);
+                case PressureUnit.KilopoundForcePerSquareInch:
+                    return FromKilopoundsForcePerSquareInch(value.Value);
+                case PressureUnit.Megabar:
+                    return FromMegabars(value.Value);
+                case PressureUnit.Megapascal:
+                    return FromMegapascals(value.Value);
+                case PressureUnit.Micropascal:
+                    return FromMicropascals(value.Value);
+                case PressureUnit.Millibar:
+                    return FromMillibars(value.Value);
+                case PressureUnit.NewtonPerSquareCentimeter:
+                    return FromNewtonsPerSquareCentimeter(value.Value);
+                case PressureUnit.NewtonPerSquareMeter:
+                    return FromNewtonsPerSquareMeter(value.Value);
+                case PressureUnit.NewtonPerSquareMillimeter:
+                    return FromNewtonsPerSquareMillimeter(value.Value);
+                case PressureUnit.Pascal:
+                    return FromPascals(value.Value);
+                case PressureUnit.PoundForcePerSquareFoot:
+                    return FromPoundsForcePerSquareFoot(value.Value);
+                case PressureUnit.PoundForcePerSquareInch:
+                    return FromPoundsForcePerSquareInch(value.Value);
+                case PressureUnit.Psi:
+                    return FromPsi(value.Value);
+                case PressureUnit.TechnicalAtmosphere:
+                    return FromTechnicalAtmospheres(value.Value);
+                case PressureUnit.TonneForcePerSquareCentimeter:
+                    return FromTonnesForcePerSquareCentimeter(value.Value);
+                case PressureUnit.TonneForcePerSquareMeter:
+                    return FromTonnesForcePerSquareMeter(value.Value);
+                case PressureUnit.TonneForcePerSquareMillimeter:
+                    return FromTonnesForcePerSquareMillimeter(value.Value);
+                case PressureUnit.Torr:
+                    return FromTorrs(value.Value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -1387,14 +1473,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Pressure Parse(string str, IFormatProvider formatProvider = null)
         {

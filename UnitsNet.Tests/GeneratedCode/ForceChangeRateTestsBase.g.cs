@@ -172,6 +172,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            ForceChangeRate? newtonpersecond = ForceChangeRate.From(null,ForceChangeRateUnit.NewtonPerSecond);
+            Assert.IsTrue(newtonpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            ForceChangeRate? newtonpersecond = ForceChangeRate.From(value,ForceChangeRateUnit.NewtonPerSecond);
+            Assert.IsTrue(newtonpersecond.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

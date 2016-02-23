@@ -182,6 +182,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            PowerRatio? decibelwatt = PowerRatio.From(null,PowerRatioUnit.DecibelWatt);
+            Assert.IsTrue(decibelwatt.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            PowerRatio? decibelwatt = PowerRatio.From(value,PowerRatioUnit.DecibelWatt);
+            Assert.IsTrue(decibelwatt.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

@@ -262,6 +262,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Torque? newtonmeter = Torque.From(null,TorqueUnit.NewtonMeter);
+            Assert.IsTrue(newtonmeter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Torque? newtonmeter = Torque.From(value,TorqueUnit.NewtonMeter);
+            Assert.IsTrue(newtonmeter.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

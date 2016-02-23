@@ -208,6 +208,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Acceleration? meterpersecondsquared = Acceleration.From(null,AccelerationUnit.MeterPerSecondSquared);
+            Assert.IsTrue(meterpersecondsquared.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Acceleration? meterpersecondsquared = Acceleration.From(value,AccelerationUnit.MeterPerSecondSquared);
+            Assert.IsTrue(meterpersecondsquared.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;

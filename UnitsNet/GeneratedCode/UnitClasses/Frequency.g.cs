@@ -346,6 +346,42 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Frequency unit value.</returns>
+        public static Frequency? From(double? value, FrequencyUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case FrequencyUnit.CyclePerHour:
+                    return FromCyclesPerHour(value.Value);
+                case FrequencyUnit.CyclePerMinute:
+                    return FromCyclesPerMinute(value.Value);
+                case FrequencyUnit.Gigahertz:
+                    return FromGigahertz(value.Value);
+                case FrequencyUnit.Hertz:
+                    return FromHertz(value.Value);
+                case FrequencyUnit.Kilohertz:
+                    return FromKilohertz(value.Value);
+                case FrequencyUnit.Megahertz:
+                    return FromMegahertz(value.Value);
+                case FrequencyUnit.RadianPerSecond:
+                    return FromRadiansPerSecond(value.Value);
+                case FrequencyUnit.Terahertz:
+                    return FromTerahertz(value.Value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -512,14 +548,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Frequency Parse(string str, IFormatProvider formatProvider = null)
         {

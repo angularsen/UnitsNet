@@ -412,6 +412,46 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Density unit value.</returns>
+        public static Density? From(double? value, DensityUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case DensityUnit.KilogramPerCubicCentimeter:
+                    return FromKilogramsPerCubicCentimeter(value.Value);
+                case DensityUnit.KilogramPerCubicMeter:
+                    return FromKilogramsPerCubicMeter(value.Value);
+                case DensityUnit.KilogramPerCubicMillimeter:
+                    return FromKilogramsPerCubicMillimeter(value.Value);
+                case DensityUnit.KilopoundPerCubicFoot:
+                    return FromKilopoundsPerCubicFoot(value.Value);
+                case DensityUnit.KilopoundPerCubicInch:
+                    return FromKilopoundsPerCubicInch(value.Value);
+                case DensityUnit.PoundPerCubicFoot:
+                    return FromPoundsPerCubicFoot(value.Value);
+                case DensityUnit.PoundPerCubicInch:
+                    return FromPoundsPerCubicInch(value.Value);
+                case DensityUnit.TonnePerCubicCentimeter:
+                    return FromTonnesPerCubicCentimeter(value.Value);
+                case DensityUnit.TonnePerCubicMeter:
+                    return FromTonnesPerCubicMeter(value.Value);
+                case DensityUnit.TonnePerCubicMillimeter:
+                    return FromTonnesPerCubicMillimeter(value.Value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -582,14 +622,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Density Parse(string str, IFormatProvider formatProvider = null)
         {

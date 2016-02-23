@@ -364,6 +364,21 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void StaticConstructorWithNullAndEnumReturnsNull()
+        {
+            Pressure? pascal = Pressure.From(null,PressureUnit.Pascal);
+            Assert.IsTrue(pascal.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Pressure? pascal = Pressure.From(value,PressureUnit.Pascal);
+            Assert.IsTrue(pascal.HasValue);
+        }
+
+        [Test]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
         {
             double? value = 1.0;
