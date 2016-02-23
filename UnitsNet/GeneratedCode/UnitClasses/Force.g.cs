@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Force from nullable Dyne.
+        /// </summary>
+        public static Force? FromDyne(double? dyne)
+        {
+            if (dyne.HasValue)
+            {
+                return new Force(dyne.Value/1e5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable KilogramsForce.
+        /// </summary>
+        public static Force? FromKilogramsForce(double? kilogramsforce)
+        {
+            if (kilogramsforce.HasValue)
+            {
+                return new Force(kilogramsforce.Value*Constants.Gravity);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Kilonewtons.
+        /// </summary>
+        public static Force? FromKilonewtons(double? kilonewtons)
+        {
+            if (kilonewtons.HasValue)
+            {
+                return new Force((kilonewtons.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable KiloPonds.
+        /// </summary>
+        public static Force? FromKiloPonds(double? kiloponds)
+        {
+            if (kiloponds.HasValue)
+            {
+                return new Force(kiloponds.Value*Constants.Gravity);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Newtons.
+        /// </summary>
+        public static Force? FromNewtons(double? newtons)
+        {
+            if (newtons.HasValue)
+            {
+                return new Force(newtons.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Poundals.
+        /// </summary>
+        public static Force? FromPoundals(double? poundals)
+        {
+            if (poundals.HasValue)
+            {
+                return new Force(poundals.Value*0.13825502798973041652092282466083);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable PoundsForce.
+        /// </summary>
+        public static Force? FromPoundsForce(double? poundsforce)
+        {
+            if (poundsforce.HasValue)
+            {
+                return new Force(poundsforce.Value*4.4482216152605095551842641431421);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable TonnesForce.
+        /// </summary>
+        public static Force? FromTonnesForce(double? tonnesforce)
+        {
+            if (tonnesforce.HasValue)
+            {
+                return new Force(tonnesforce.Value*Constants.Gravity*1000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceUnit" /> to <see cref="Force" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

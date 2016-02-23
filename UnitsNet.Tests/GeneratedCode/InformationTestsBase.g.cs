@@ -313,5 +313,20 @@ namespace UnitsNet.Tests
             Information bit = Information.FromBits(1);
             Assert.IsFalse(bit.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Information? bit = Information.FromBits(null);
+            Assert.IsTrue(bit.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Information? bit = Information.FromBits(value);
+            Assert.IsTrue(bit.HasValue);
+        }
     }
 }

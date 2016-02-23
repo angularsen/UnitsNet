@@ -161,6 +161,97 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Amperes.
+        /// </summary>
+        public static ElectricCurrent? FromAmperes(double? amperes)
+        {
+            if (amperes.HasValue)
+            {
+                return new ElectricCurrent(amperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
+        /// </summary>
+        public static ElectricCurrent? FromKiloamperes(double? kiloamperes)
+        {
+            if (kiloamperes.HasValue)
+            {
+                return new ElectricCurrent((kiloamperes.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Megaamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMegaamperes(double? megaamperes)
+        {
+            if (megaamperes.HasValue)
+            {
+                return new ElectricCurrent((megaamperes.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Microamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMicroamperes(double? microamperes)
+        {
+            if (microamperes.HasValue)
+            {
+                return new ElectricCurrent((microamperes.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Milliamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMilliamperes(double? milliamperes)
+        {
+            if (milliamperes.HasValue)
+            {
+                return new ElectricCurrent((milliamperes.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
+        /// </summary>
+        public static ElectricCurrent? FromNanoamperes(double? nanoamperes)
+        {
+            if (nanoamperes.HasValue)
+            {
+                return new ElectricCurrent((nanoamperes.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

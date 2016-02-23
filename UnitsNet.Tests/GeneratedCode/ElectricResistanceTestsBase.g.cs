@@ -175,5 +175,20 @@ namespace UnitsNet.Tests
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             Assert.IsFalse(ohm.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            ElectricResistance? ohm = ElectricResistance.FromOhms(null);
+            Assert.IsTrue(ohm.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            ElectricResistance? ohm = ElectricResistance.FromOhms(value);
+            Assert.IsTrue(ohm.HasValue);
+        }
     }
 }

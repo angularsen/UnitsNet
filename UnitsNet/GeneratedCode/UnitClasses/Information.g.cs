@@ -481,6 +481,397 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Information from nullable Bits.
+        /// </summary>
+        public static Information? FromBits(double? bits)
+        {
+            if (bits.HasValue)
+            {
+                return new Information(Convert.ToDecimal(bits.Value));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Bytes.
+        /// </summary>
+        public static Information? FromBytes(double? bytes)
+        {
+            if (bytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal(bytes.Value*8d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabits.
+        /// </summary>
+        public static Information? FromExabits(double? exabits)
+        {
+            if (exabits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((exabits.Value) * 1e18d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabytes.
+        /// </summary>
+        public static Information? FromExabytes(double? exabytes)
+        {
+            if (exabytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((exabytes.Value*8d) * 1e18d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibits.
+        /// </summary>
+        public static Information? FromExbibits(double? exbibits)
+        {
+            if (exbibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((exbibits.Value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibytes.
+        /// </summary>
+        public static Information? FromExbibytes(double? exbibytes)
+        {
+            if (exbibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((exbibytes.Value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibits.
+        /// </summary>
+        public static Information? FromGibibits(double? gibibits)
+        {
+            if (gibibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((gibibits.Value) * (1024d * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibytes.
+        /// </summary>
+        public static Information? FromGibibytes(double? gibibytes)
+        {
+            if (gibibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((gibibytes.Value*8d) * (1024d * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabits.
+        /// </summary>
+        public static Information? FromGigabits(double? gigabits)
+        {
+            if (gigabits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((gigabits.Value) * 1e9d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabytes.
+        /// </summary>
+        public static Information? FromGigabytes(double? gigabytes)
+        {
+            if (gigabytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((gigabytes.Value*8d) * 1e9d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibits.
+        /// </summary>
+        public static Information? FromKibibits(double? kibibits)
+        {
+            if (kibibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((kibibits.Value) * 1024d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibytes.
+        /// </summary>
+        public static Information? FromKibibytes(double? kibibytes)
+        {
+            if (kibibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((kibibytes.Value*8d) * 1024d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobits.
+        /// </summary>
+        public static Information? FromKilobits(double? kilobits)
+        {
+            if (kilobits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((kilobits.Value) * 1e3d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobytes.
+        /// </summary>
+        public static Information? FromKilobytes(double? kilobytes)
+        {
+            if (kilobytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((kilobytes.Value*8d) * 1e3d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibits.
+        /// </summary>
+        public static Information? FromMebibits(double? mebibits)
+        {
+            if (mebibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((mebibits.Value) * (1024d * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibytes.
+        /// </summary>
+        public static Information? FromMebibytes(double? mebibytes)
+        {
+            if (mebibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((mebibytes.Value*8d) * (1024d * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabits.
+        /// </summary>
+        public static Information? FromMegabits(double? megabits)
+        {
+            if (megabits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((megabits.Value) * 1e6d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabytes.
+        /// </summary>
+        public static Information? FromMegabytes(double? megabytes)
+        {
+            if (megabytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((megabytes.Value*8d) * 1e6d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibits.
+        /// </summary>
+        public static Information? FromPebibits(double? pebibits)
+        {
+            if (pebibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((pebibits.Value) * (1024d * 1024 * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibytes.
+        /// </summary>
+        public static Information? FromPebibytes(double? pebibytes)
+        {
+            if (pebibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((pebibytes.Value*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabits.
+        /// </summary>
+        public static Information? FromPetabits(double? petabits)
+        {
+            if (petabits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((petabits.Value) * 1e15d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabytes.
+        /// </summary>
+        public static Information? FromPetabytes(double? petabytes)
+        {
+            if (petabytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((petabytes.Value*8d) * 1e15d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibits.
+        /// </summary>
+        public static Information? FromTebibits(double? tebibits)
+        {
+            if (tebibits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((tebibits.Value) * (1024d * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibytes.
+        /// </summary>
+        public static Information? FromTebibytes(double? tebibytes)
+        {
+            if (tebibytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((tebibytes.Value*8d) * (1024d * 1024 * 1024 * 1024)));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabits.
+        /// </summary>
+        public static Information? FromTerabits(double? terabits)
+        {
+            if (terabits.HasValue)
+            {
+                return new Information(Convert.ToDecimal((terabits.Value) * 1e12d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabytes.
+        /// </summary>
+        public static Information? FromTerabytes(double? terabytes)
+        {
+            if (terabytes.HasValue)
+            {
+                return new Information(Convert.ToDecimal((terabytes.Value*8d) * 1e12d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

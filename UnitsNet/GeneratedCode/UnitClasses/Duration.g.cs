@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Duration from nullable Days.
+        /// </summary>
+        public static Duration? FromDays(double? days)
+        {
+            if (days.HasValue)
+            {
+                return new Duration(days.Value*24*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Hours.
+        /// </summary>
+        public static Duration? FromHours(double? hours)
+        {
+            if (hours.HasValue)
+            {
+                return new Duration(hours.Value*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Microseconds.
+        /// </summary>
+        public static Duration? FromMicroseconds(double? microseconds)
+        {
+            if (microseconds.HasValue)
+            {
+                return new Duration(microseconds.Value/1e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Milliseconds.
+        /// </summary>
+        public static Duration? FromMilliseconds(double? milliseconds)
+        {
+            if (milliseconds.HasValue)
+            {
+                return new Duration(milliseconds.Value/1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Minutes.
+        /// </summary>
+        public static Duration? FromMinutes(double? minutes)
+        {
+            if (minutes.HasValue)
+            {
+                return new Duration(minutes.Value*60);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Months.
+        /// </summary>
+        public static Duration? FromMonths(double? months)
+        {
+            if (months.HasValue)
+            {
+                return new Duration(months.Value*30*24*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Nanoseconds.
+        /// </summary>
+        public static Duration? FromNanoseconds(double? nanoseconds)
+        {
+            if (nanoseconds.HasValue)
+            {
+                return new Duration(nanoseconds.Value/1e9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Seconds.
+        /// </summary>
+        public static Duration? FromSeconds(double? seconds)
+        {
+            if (seconds.HasValue)
+            {
+                return new Duration(seconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Weeks.
+        /// </summary>
+        public static Duration? FromWeeks(double? weeks)
+        {
+            if (weeks.HasValue)
+            {
+                return new Duration(weeks.Value*7*24*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Years.
+        /// </summary>
+        public static Duration? FromYears(double? years)
+        {
+            if (years.HasValue)
+            {
+                return new Duration(years.Value*365*24*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromCentiradiansPerSecond(double? centiradianspersecond)
+        {
+            if (centiradianspersecond.HasValue)
+            {
+                return new RotationalSpeed((centiradianspersecond.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromDeciradiansPerSecond(double? deciradianspersecond)
+        {
+            if (deciradianspersecond.HasValue)
+            {
+                return new RotationalSpeed((deciradianspersecond.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMicroradiansPerSecond(double? microradianspersecond)
+        {
+            if (microradianspersecond.HasValue)
+            {
+                return new RotationalSpeed((microradianspersecond.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMilliradiansPerSecond(double? milliradianspersecond)
+        {
+            if (milliradianspersecond.HasValue)
+            {
+                return new RotationalSpeed((milliradianspersecond.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromNanoradiansPerSecond(double? nanoradianspersecond)
+        {
+            if (nanoradianspersecond.HasValue)
+            {
+                return new RotationalSpeed((nanoradianspersecond.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRadiansPerSecond(double? radianspersecond)
+        {
+            if (radianspersecond.HasValue)
+            {
+                return new RotationalSpeed(radianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerMinute(double? revolutionsperminute)
+        {
+            if (revolutionsperminute.HasValue)
+            {
+                return new RotationalSpeed((revolutionsperminute.Value*6.2831853072)/60);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerSecond(double? revolutionspersecond)
+        {
+            if (revolutionspersecond.HasValue)
+            {
+                return new RotationalSpeed(revolutionspersecond.Value*6.2831853072);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

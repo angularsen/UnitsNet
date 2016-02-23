@@ -72,10 +72,10 @@ namespace UnitsNet
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
         if ($obsoleteAttribute)
-		{
-			$obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
-		}
-				
+        {
+            $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+        }
+
         $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"
 
         /// <summary>
@@ -105,6 +105,26 @@ namespace UnitsNet
         public static $className From$($unit.PluralName)(double $valueParamName)
         {
             return new $className($func);
+        }
+
+"@; }@"
+
+"@; foreach ($unit in $units) {
+    $valueParamName = $unit.PluralName.ToLowerInvariant();
+        $func = $unit.FromUnitToBaseFunc.Replace("x", "$($valueParamName).Value");@"
+        /// <summary>
+        ///     Get nullable $className from nullable $($unit.PluralName).
+        /// </summary>
+        public static $($className)? From$($unit.PluralName)(double? $valueParamName)
+        {
+            if ($($valueParamName).HasValue)
+            {
+                return new $className($func);
+            }
+            else
+            {
+            	return null;
+            }
         }
 
 "@; }@"

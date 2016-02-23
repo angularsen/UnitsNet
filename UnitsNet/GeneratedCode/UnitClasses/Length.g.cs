@@ -289,6 +289,217 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Length from nullable Centimeters.
+        /// </summary>
+        public static Length? FromCentimeters(double? centimeters)
+        {
+            if (centimeters.HasValue)
+            {
+                return new Length((centimeters.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Decimeters.
+        /// </summary>
+        public static Length? FromDecimeters(double? decimeters)
+        {
+            if (decimeters.HasValue)
+            {
+                return new Length((decimeters.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Feet.
+        /// </summary>
+        public static Length? FromFeet(double? feet)
+        {
+            if (feet.HasValue)
+            {
+                return new Length(feet.Value*0.3048);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Inches.
+        /// </summary>
+        public static Length? FromInches(double? inches)
+        {
+            if (inches.HasValue)
+            {
+                return new Length(inches.Value*2.54e-2);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Kilometers.
+        /// </summary>
+        public static Length? FromKilometers(double? kilometers)
+        {
+            if (kilometers.HasValue)
+            {
+                return new Length((kilometers.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Meters.
+        /// </summary>
+        public static Length? FromMeters(double? meters)
+        {
+            if (meters.HasValue)
+            {
+                return new Length(meters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Microinches.
+        /// </summary>
+        public static Length? FromMicroinches(double? microinches)
+        {
+            if (microinches.HasValue)
+            {
+                return new Length(microinches.Value*2.54e-8);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Micrometers.
+        /// </summary>
+        public static Length? FromMicrometers(double? micrometers)
+        {
+            if (micrometers.HasValue)
+            {
+                return new Length((micrometers.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Mils.
+        /// </summary>
+        public static Length? FromMils(double? mils)
+        {
+            if (mils.HasValue)
+            {
+                return new Length(mils.Value*2.54e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Miles.
+        /// </summary>
+        public static Length? FromMiles(double? miles)
+        {
+            if (miles.HasValue)
+            {
+                return new Length(miles.Value*1609.34);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Millimeters.
+        /// </summary>
+        public static Length? FromMillimeters(double? millimeters)
+        {
+            if (millimeters.HasValue)
+            {
+                return new Length((millimeters.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Nanometers.
+        /// </summary>
+        public static Length? FromNanometers(double? nanometers)
+        {
+            if (nanometers.HasValue)
+            {
+                return new Length((nanometers.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable NauticalMiles.
+        /// </summary>
+        public static Length? FromNauticalMiles(double? nauticalmiles)
+        {
+            if (nauticalmiles.HasValue)
+            {
+                return new Length(nauticalmiles.Value*1852);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Yards.
+        /// </summary>
+        public static Length? FromYards(double? yards)
+        {
+            if (yards.HasValue)
+            {
+                return new Length(yards.Value*0.9144);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

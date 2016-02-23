@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Frequency from nullable CyclesPerHour.
+        /// </summary>
+        public static Frequency? FromCyclesPerHour(double? cyclesperhour)
+        {
+            if (cyclesperhour.HasValue)
+            {
+                return new Frequency(cyclesperhour.Value*3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable CyclesPerMinute.
+        /// </summary>
+        public static Frequency? FromCyclesPerMinute(double? cyclesperminute)
+        {
+            if (cyclesperminute.HasValue)
+            {
+                return new Frequency(cyclesperminute.Value*60);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable Gigahertz.
+        /// </summary>
+        public static Frequency? FromGigahertz(double? gigahertz)
+        {
+            if (gigahertz.HasValue)
+            {
+                return new Frequency((gigahertz.Value) * 1e9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable Hertz.
+        /// </summary>
+        public static Frequency? FromHertz(double? hertz)
+        {
+            if (hertz.HasValue)
+            {
+                return new Frequency(hertz.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable Kilohertz.
+        /// </summary>
+        public static Frequency? FromKilohertz(double? kilohertz)
+        {
+            if (kilohertz.HasValue)
+            {
+                return new Frequency((kilohertz.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable Megahertz.
+        /// </summary>
+        public static Frequency? FromMegahertz(double? megahertz)
+        {
+            if (megahertz.HasValue)
+            {
+                return new Frequency((megahertz.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable RadiansPerSecond.
+        /// </summary>
+        public static Frequency? FromRadiansPerSecond(double? radianspersecond)
+        {
+            if (radianspersecond.HasValue)
+            {
+                return new Frequency(radianspersecond.Value/6.2831853072);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Frequency from nullable Terahertz.
+        /// </summary>
+        public static Frequency? FromTerahertz(double? terahertz)
+        {
+            if (terahertz.HasValue)
+            {
+                return new Frequency((terahertz.Value) * 1e12d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

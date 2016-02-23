@@ -81,6 +81,22 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable VitaminA from nullable InternationalUnits.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(double? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return new VitaminA(internationalunits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

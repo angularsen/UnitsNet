@@ -161,6 +161,97 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Ratio from nullable DecimalFractions.
+        /// </summary>
+        public static Ratio? FromDecimalFractions(double? decimalfractions)
+        {
+            if (decimalfractions.HasValue)
+            {
+                return new Ratio(decimalfractions.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerBillion.
+        /// </summary>
+        public static Ratio? FromPartsPerBillion(double? partsperbillion)
+        {
+            if (partsperbillion.HasValue)
+            {
+                return new Ratio(partsperbillion.Value/1e9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerMillion.
+        /// </summary>
+        public static Ratio? FromPartsPerMillion(double? partspermillion)
+        {
+            if (partspermillion.HasValue)
+            {
+                return new Ratio(partspermillion.Value/1e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerThousand.
+        /// </summary>
+        public static Ratio? FromPartsPerThousand(double? partsperthousand)
+        {
+            if (partsperthousand.HasValue)
+            {
+                return new Ratio(partsperthousand.Value/1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerTrillion.
+        /// </summary>
+        public static Ratio? FromPartsPerTrillion(double? partspertrillion)
+        {
+            if (partspertrillion.HasValue)
+            {
+                return new Ratio(partspertrillion.Value/1e12);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable Percent.
+        /// </summary>
+        public static Ratio? FromPercent(double? percent)
+        {
+            if (percent.HasValue)
+            {
+                return new Ratio(percent.Value/1e2);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -145,6 +145,82 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricPotential from nullable Kilovolts.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(double? kilovolts)
+        {
+            if (kilovolts.HasValue)
+            {
+                return new ElectricPotential((kilovolts.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Megavolts.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(double? megavolts)
+        {
+            if (megavolts.HasValue)
+            {
+                return new ElectricPotential((megavolts.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Microvolts.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(double? microvolts)
+        {
+            if (microvolts.HasValue)
+            {
+                return new ElectricPotential((microvolts.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Millivolts.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(double? millivolts)
+        {
+            if (millivolts.HasValue)
+            {
+                return new ElectricPotential((millivolts.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Volts.
+        /// </summary>
+        public static ElectricPotential? FromVolts(double? volts)
+        {
+            if (volts.HasValue)
+            {
+                return new ElectricPotential(volts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Area from nullable SquareCentimeters.
+        /// </summary>
+        public static Area? FromSquareCentimeters(double? squarecentimeters)
+        {
+            if (squarecentimeters.HasValue)
+            {
+                return new Area(squarecentimeters.Value*1e-4);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareDecimeters.
+        /// </summary>
+        public static Area? FromSquareDecimeters(double? squaredecimeters)
+        {
+            if (squaredecimeters.HasValue)
+            {
+                return new Area(squaredecimeters.Value*1e-2);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareFeet.
+        /// </summary>
+        public static Area? FromSquareFeet(double? squarefeet)
+        {
+            if (squarefeet.HasValue)
+            {
+                return new Area(squarefeet.Value*0.092903);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareInches.
+        /// </summary>
+        public static Area? FromSquareInches(double? squareinches)
+        {
+            if (squareinches.HasValue)
+            {
+                return new Area(squareinches.Value*0.00064516);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareKilometers.
+        /// </summary>
+        public static Area? FromSquareKilometers(double? squarekilometers)
+        {
+            if (squarekilometers.HasValue)
+            {
+                return new Area(squarekilometers.Value*1e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMeters.
+        /// </summary>
+        public static Area? FromSquareMeters(double? squaremeters)
+        {
+            if (squaremeters.HasValue)
+            {
+                return new Area(squaremeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMicrometers.
+        /// </summary>
+        public static Area? FromSquareMicrometers(double? squaremicrometers)
+        {
+            if (squaremicrometers.HasValue)
+            {
+                return new Area(squaremicrometers.Value*1e-12);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMiles.
+        /// </summary>
+        public static Area? FromSquareMiles(double? squaremiles)
+        {
+            if (squaremiles.HasValue)
+            {
+                return new Area(squaremiles.Value*2.59e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMillimeters.
+        /// </summary>
+        public static Area? FromSquareMillimeters(double? squaremillimeters)
+        {
+            if (squaremillimeters.HasValue)
+            {
+                return new Area(squaremillimeters.Value*1e-6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareYards.
+        /// </summary>
+        public static Area? FromSquareYards(double? squareyards)
+        {
+            if (squareyards.HasValue)
+            {
+                return new Area(squareyards.Value*0.836127);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

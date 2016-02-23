@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicCentimeter(double? kilogramspercubiccentimeter)
+        {
+            if (kilogramspercubiccentimeter.HasValue)
+            {
+                return new Density(kilogramspercubiccentimeter.Value*100000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMeter(double? kilogramspercubicmeter)
+        {
+            if (kilogramspercubicmeter.HasValue)
+            {
+                return new Density(kilogramspercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMillimeter(double? kilogramspercubicmillimeter)
+        {
+            if (kilogramspercubicmillimeter.HasValue)
+            {
+                return new Density(kilogramspercubicmillimeter.Value*1000000000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicFoot(double? kilopoundspercubicfoot)
+        {
+            if (kilopoundspercubicfoot.HasValue)
+            {
+                return new Density((kilopoundspercubicfoot.Value/0.062427961) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicInch(double? kilopoundspercubicinch)
+        {
+            if (kilopoundspercubicinch.HasValue)
+            {
+                return new Density((kilopoundspercubicinch.Value*27679.904710191) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromPoundsPerCubicFoot(double? poundspercubicfoot)
+        {
+            if (poundspercubicfoot.HasValue)
+            {
+                return new Density(poundspercubicfoot.Value/0.062427961);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromPoundsPerCubicInch(double? poundspercubicinch)
+        {
+            if (poundspercubicinch.HasValue)
+            {
+                return new Density(poundspercubicinch.Value*27679.904710191);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicCentimeter(double? tonnespercubiccentimeter)
+        {
+            if (tonnespercubiccentimeter.HasValue)
+            {
+                return new Density(tonnespercubiccentimeter.Value*100000000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMeter(double? tonnespercubicmeter)
+        {
+            if (tonnespercubicmeter.HasValue)
+            {
+                return new Density(tonnespercubicmeter.Value*1000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMillimeter(double? tonnespercubicmillimeter)
+        {
+            if (tonnespercubicmillimeter.HasValue)
+            {
+                return new Density(tonnespercubicmillimeter.Value*1000000000000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

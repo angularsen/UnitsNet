@@ -205,5 +205,20 @@ namespace UnitsNet.Tests
             Frequency hertz = Frequency.FromHertz(1);
             Assert.IsFalse(hertz.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Frequency? hertz = Frequency.FromHertz(null);
+            Assert.IsTrue(hertz.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Frequency? hertz = Frequency.FromHertz(value);
+            Assert.IsTrue(hertz.HasValue);
+        }
     }
 }

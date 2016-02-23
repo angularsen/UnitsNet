@@ -97,6 +97,37 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelMilliwatts(double? decibelmilliwatts)
+        {
+            if (decibelmilliwatts.HasValue)
+            {
+                return new PowerRatio(decibelmilliwatts.Value - 30);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelWatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelWatts(double? decibelwatts)
+        {
+            if (decibelwatts.HasValue)
+            {
+                return new PowerRatio(decibelwatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

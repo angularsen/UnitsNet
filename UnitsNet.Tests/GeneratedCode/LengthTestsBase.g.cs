@@ -241,5 +241,20 @@ namespace UnitsNet.Tests
             Length meter = Length.FromMeters(1);
             Assert.IsFalse(meter.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Length? meter = Length.FromMeters(null);
+            Assert.IsTrue(meter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Length? meter = Length.FromMeters(value);
+            Assert.IsTrue(meter.HasValue);
+        }
     }
 }

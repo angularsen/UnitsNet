@@ -209,6 +209,142 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(double? centidegreescelsiuspersecond)
+        {
+            if (centidegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((centidegreescelsiuspersecond.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(double? decadegreescelsiuspersecond)
+        {
+            if (decadegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((decadegreescelsiuspersecond.Value) * 1e1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(double? decidegreescelsiuspersecond)
+        {
+            if (decidegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((decidegreescelsiuspersecond.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(double? degreescelsiuspersecond)
+        {
+            if (degreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate(degreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(double? hectodegreescelsiuspersecond)
+        {
+            if (hectodegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((hectodegreescelsiuspersecond.Value) * 1e2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(double? kilodegreescelsiuspersecond)
+        {
+            if (kilodegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((kilodegreescelsiuspersecond.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(double? microdegreescelsiuspersecond)
+        {
+            if (microdegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((microdegreescelsiuspersecond.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(double? millidegreescelsiuspersecond)
+        {
+            if (millidegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((millidegreescelsiuspersecond.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(double? nanodegreescelsiuspersecond)
+        {
+            if (nanodegreescelsiuspersecond.HasValue)
+            {
+                return new TemperatureChangeRate((nanodegreescelsiuspersecond.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
+        /// </summary>
+        public static SpecificEnergy? FromCaloriesPerGram(double? caloriespergram)
+        {
+            if (caloriespergram.HasValue)
+            {
+                return new SpecificEnergy(caloriespergram.Value*4.184e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromJoulesPerKilogram(double? joulesperkilogram)
+        {
+            if (joulesperkilogram.HasValue)
+            {
+                return new SpecificEnergy(joulesperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
+        /// </summary>
+        public static SpecificEnergy? FromKilocaloriesPerGram(double? kilocaloriespergram)
+        {
+            if (kilocaloriespergram.HasValue)
+            {
+                return new SpecificEnergy((kilocaloriespergram.Value*4.184e3) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromKilojoulesPerKilogram(double? kilojoulesperkilogram)
+        {
+            if (kilojoulesperkilogram.HasValue)
+            {
+                return new SpecificEnergy((kilojoulesperkilogram.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromKilowattHoursPerKilogram(double? kilowatthoursperkilogram)
+        {
+            if (kilowatthoursperkilogram.HasValue)
+            {
+                return new SpecificEnergy((kilowatthoursperkilogram.Value*3.6e3) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromMegajoulesPerKilogram(double? megajoulesperkilogram)
+        {
+            if (megajoulesperkilogram.HasValue)
+            {
+                return new SpecificEnergy((megajoulesperkilogram.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromMegawattHoursPerKilogram(double? megawatthoursperkilogram)
+        {
+            if (megawatthoursperkilogram.HasValue)
+            {
+                return new SpecificEnergy((megawatthoursperkilogram.Value*3.6e3) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromWattHoursPerKilogram(double? watthoursperkilogram)
+        {
+            if (watthoursperkilogram.HasValue)
+            {
+                return new SpecificEnergy(watthoursperkilogram.Value*3.6e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

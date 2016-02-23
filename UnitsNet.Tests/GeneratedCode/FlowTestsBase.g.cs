@@ -193,5 +193,20 @@ namespace UnitsNet.Tests
             Flow cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
             Assert.IsFalse(cubicmeterpersecond.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Flow? cubicmeterpersecond = Flow.FromCubicMetersPerSecond(null);
+            Assert.IsTrue(cubicmeterpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Flow? cubicmeterpersecond = Flow.FromCubicMetersPerSecond(value);
+            Assert.IsTrue(cubicmeterpersecond.HasValue);
+        }
     }
 }

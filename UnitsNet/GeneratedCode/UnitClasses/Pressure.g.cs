@@ -593,6 +593,502 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Pressure from nullable Atmospheres.
+        /// </summary>
+        public static Pressure? FromAtmospheres(double? atmospheres)
+        {
+            if (atmospheres.HasValue)
+            {
+                return new Pressure(atmospheres.Value*1.01325*1e5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Bars.
+        /// </summary>
+        public static Pressure? FromBars(double? bars)
+        {
+            if (bars.HasValue)
+            {
+                return new Pressure(bars.Value*1e5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Centibars.
+        /// </summary>
+        public static Pressure? FromCentibars(double? centibars)
+        {
+            if (centibars.HasValue)
+            {
+                return new Pressure((centibars.Value*1e5) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Decapascals.
+        /// </summary>
+        public static Pressure? FromDecapascals(double? decapascals)
+        {
+            if (decapascals.HasValue)
+            {
+                return new Pressure((decapascals.Value) * 1e1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Decibars.
+        /// </summary>
+        public static Pressure? FromDecibars(double? decibars)
+        {
+            if (decibars.HasValue)
+            {
+                return new Pressure((decibars.Value*1e5) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Gigapascals.
+        /// </summary>
+        public static Pressure? FromGigapascals(double? gigapascals)
+        {
+            if (gigapascals.HasValue)
+            {
+                return new Pressure((gigapascals.Value) * 1e9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Hectopascals.
+        /// </summary>
+        public static Pressure? FromHectopascals(double? hectopascals)
+        {
+            if (hectopascals.HasValue)
+            {
+                return new Pressure((hectopascals.Value) * 1e2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Kilobars.
+        /// </summary>
+        public static Pressure? FromKilobars(double? kilobars)
+        {
+            if (kilobars.HasValue)
+            {
+                return new Pressure((kilobars.Value*1e5) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareCentimeter(double? kilogramsforcepersquarecentimeter)
+        {
+            if (kilogramsforcepersquarecentimeter.HasValue)
+            {
+                return new Pressure(kilogramsforcepersquarecentimeter.Value*9.80665*1e4);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMeter(double? kilogramsforcepersquaremeter)
+        {
+            if (kilogramsforcepersquaremeter.HasValue)
+            {
+                return new Pressure(kilogramsforcepersquaremeter.Value*9.80665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMillimeter(double? kilogramsforcepersquaremillimeter)
+        {
+            if (kilogramsforcepersquaremillimeter.HasValue)
+            {
+                return new Pressure(kilogramsforcepersquaremillimeter.Value*9806650.19960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareCentimeter(double? kilonewtonspersquarecentimeter)
+        {
+            if (kilonewtonspersquarecentimeter.HasValue)
+            {
+                return new Pressure((kilonewtonspersquarecentimeter.Value*1e4) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMeter(double? kilonewtonspersquaremeter)
+        {
+            if (kilonewtonspersquaremeter.HasValue)
+            {
+                return new Pressure((kilonewtonspersquaremeter.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMillimeter(double? kilonewtonspersquaremillimeter)
+        {
+            if (kilonewtonspersquaremillimeter.HasValue)
+            {
+                return new Pressure((kilonewtonspersquaremillimeter.Value*1e6) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Kilopascals.
+        /// </summary>
+        public static Pressure? FromKilopascals(double? kilopascals)
+        {
+            if (kilopascals.HasValue)
+            {
+                return new Pressure((kilopascals.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareFoot(double? kilopoundsforcepersquarefoot)
+        {
+            if (kilopoundsforcepersquarefoot.HasValue)
+            {
+                return new Pressure((kilopoundsforcepersquarefoot.Value*47.8802631216372) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareInch(double? kilopoundsforcepersquareinch)
+        {
+            if (kilopoundsforcepersquareinch.HasValue)
+            {
+                return new Pressure((kilopoundsforcepersquareinch.Value*6894.75788951576) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Megabars.
+        /// </summary>
+        public static Pressure? FromMegabars(double? megabars)
+        {
+            if (megabars.HasValue)
+            {
+                return new Pressure((megabars.Value*1e5) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Megapascals.
+        /// </summary>
+        public static Pressure? FromMegapascals(double? megapascals)
+        {
+            if (megapascals.HasValue)
+            {
+                return new Pressure((megapascals.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Micropascals.
+        /// </summary>
+        public static Pressure? FromMicropascals(double? micropascals)
+        {
+            if (micropascals.HasValue)
+            {
+                return new Pressure((micropascals.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Millibars.
+        /// </summary>
+        public static Pressure? FromMillibars(double? millibars)
+        {
+            if (millibars.HasValue)
+            {
+                return new Pressure((millibars.Value*1e5) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareCentimeter(double? newtonspersquarecentimeter)
+        {
+            if (newtonspersquarecentimeter.HasValue)
+            {
+                return new Pressure(newtonspersquarecentimeter.Value*1e4);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMeter(double? newtonspersquaremeter)
+        {
+            if (newtonspersquaremeter.HasValue)
+            {
+                return new Pressure(newtonspersquaremeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMillimeter(double? newtonspersquaremillimeter)
+        {
+            if (newtonspersquaremillimeter.HasValue)
+            {
+                return new Pressure(newtonspersquaremillimeter.Value*1e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Pascals.
+        /// </summary>
+        public static Pressure? FromPascals(double? pascals)
+        {
+            if (pascals.HasValue)
+            {
+                return new Pressure(pascals.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareFoot(double? poundsforcepersquarefoot)
+        {
+            if (poundsforcepersquarefoot.HasValue)
+            {
+                return new Pressure(poundsforcepersquarefoot.Value*47.8802631216372);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareInch(double? poundsforcepersquareinch)
+        {
+            if (poundsforcepersquareinch.HasValue)
+            {
+                return new Pressure(poundsforcepersquareinch.Value*6894.75788951576);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Psi.
+        /// </summary>
+        public static Pressure? FromPsi(double? psi)
+        {
+            if (psi.HasValue)
+            {
+                return new Pressure(psi.Value*6.89464975179*1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable TechnicalAtmospheres.
+        /// </summary>
+        public static Pressure? FromTechnicalAtmospheres(double? technicalatmospheres)
+        {
+            if (technicalatmospheres.HasValue)
+            {
+                return new Pressure(technicalatmospheres.Value*9.80680592331*1e4);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareCentimeter(double? tonnesforcepersquarecentimeter)
+        {
+            if (tonnesforcepersquarecentimeter.HasValue)
+            {
+                return new Pressure(tonnesforcepersquarecentimeter.Value*98066501.9960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMeter(double? tonnesforcepersquaremeter)
+        {
+            if (tonnesforcepersquaremeter.HasValue)
+            {
+                return new Pressure(tonnesforcepersquaremeter.Value*9806.65019960653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMillimeter(double? tonnesforcepersquaremillimeter)
+        {
+            if (tonnesforcepersquaremillimeter.HasValue)
+            {
+                return new Pressure(tonnesforcepersquaremillimeter.Value*9806650199.60653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable Torrs.
+        /// </summary>
+        public static Pressure? FromTorrs(double? torrs)
+        {
+            if (torrs.HasValue)
+            {
+                return new Pressure(torrs.Value*1.3332266752*1e2);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

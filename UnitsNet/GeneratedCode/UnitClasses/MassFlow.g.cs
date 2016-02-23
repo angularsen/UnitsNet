@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(double? centigramspersecond)
+        {
+            if (centigramspersecond.HasValue)
+            {
+                return new MassFlow((centigramspersecond.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(double? decagramspersecond)
+        {
+            if (decagramspersecond.HasValue)
+            {
+                return new MassFlow((decagramspersecond.Value) * 1e1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(double? decigramspersecond)
+        {
+            if (decigramspersecond.HasValue)
+            {
+                return new MassFlow((decigramspersecond.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable GramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(double? gramspersecond)
+        {
+            if (gramspersecond.HasValue)
+            {
+                return new MassFlow(gramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(double? hectogramspersecond)
+        {
+            if (hectogramspersecond.HasValue)
+            {
+                return new MassFlow((hectogramspersecond.Value) * 1e2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(double? kilogramspersecond)
+        {
+            if (kilogramspersecond.HasValue)
+            {
+                return new MassFlow((kilogramspersecond.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(double? microgramspersecond)
+        {
+            if (microgramspersecond.HasValue)
+            {
+                return new MassFlow((microgramspersecond.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(double? milligramspersecond)
+        {
+            if (milligramspersecond.HasValue)
+            {
+                return new MassFlow((milligramspersecond.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(double? nanogramspersecond)
+        {
+            if (nanogramspersecond.HasValue)
+            {
+                return new MassFlow((nanogramspersecond.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerDay.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(double? tonnesperday)
+        {
+            if (tonnesperday.HasValue)
+            {
+                return new MassFlow(tonnesperday.Value/0.0864000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

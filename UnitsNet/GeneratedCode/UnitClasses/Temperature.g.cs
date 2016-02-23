@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Temperature from nullable DegreesCelsius.
+        /// </summary>
+        public static Temperature? FromDegreesCelsius(double? degreescelsius)
+        {
+            if (degreescelsius.HasValue)
+            {
+                return new Temperature(degreescelsius.Value + 273.15);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesDelisle.
+        /// </summary>
+        public static Temperature? FromDegreesDelisle(double? degreesdelisle)
+        {
+            if (degreesdelisle.HasValue)
+            {
+                return new Temperature(degreesdelisle.Value*-2/3 + 373.15);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesFahrenheit.
+        /// </summary>
+        public static Temperature? FromDegreesFahrenheit(double? degreesfahrenheit)
+        {
+            if (degreesfahrenheit.HasValue)
+            {
+                return new Temperature(degreesfahrenheit.Value*5/9 + 459.67*5/9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesNewton.
+        /// </summary>
+        public static Temperature? FromDegreesNewton(double? degreesnewton)
+        {
+            if (degreesnewton.HasValue)
+            {
+                return new Temperature(degreesnewton.Value*100/33 + 273.15);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRankine.
+        /// </summary>
+        public static Temperature? FromDegreesRankine(double? degreesrankine)
+        {
+            if (degreesrankine.HasValue)
+            {
+                return new Temperature(degreesrankine.Value*5/9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesReaumur.
+        /// </summary>
+        public static Temperature? FromDegreesReaumur(double? degreesreaumur)
+        {
+            if (degreesreaumur.HasValue)
+            {
+                return new Temperature(degreesreaumur.Value*5/4 + 273.15);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRoemer.
+        /// </summary>
+        public static Temperature? FromDegreesRoemer(double? degreesroemer)
+        {
+            if (degreesroemer.HasValue)
+            {
+                return new Temperature(degreesroemer.Value*40/21 + 273.15 - 7.5*40d/21);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable Kelvins.
+        /// </summary>
+        public static Temperature? FromKelvins(double? kelvins)
+        {
+            if (kelvins.HasValue)
+            {
+                return new Temperature(kelvins.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

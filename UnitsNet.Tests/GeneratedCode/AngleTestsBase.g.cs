@@ -217,5 +217,20 @@ namespace UnitsNet.Tests
             Angle degree = Angle.FromDegrees(1);
             Assert.IsFalse(degree.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Angle? degree = Angle.FromDegrees(null);
+            Assert.IsTrue(degree.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Angle? degree = Angle.FromDegrees(value);
+            Assert.IsTrue(degree.HasValue);
+        }
     }
 }

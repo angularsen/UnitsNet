@@ -321,6 +321,247 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Power from nullable BoilerHorsepower.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(double? boilerhorsepower)
+        {
+            if (boilerhorsepower.HasValue)
+            {
+                return new Power(Convert.ToDecimal(boilerhorsepower.Value*9812.5d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable ElectricalHorsepower.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(double? electricalhorsepower)
+        {
+            if (electricalhorsepower.HasValue)
+            {
+                return new Power(Convert.ToDecimal(electricalhorsepower.Value*746d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Femtowatts.
+        /// </summary>
+        public static Power? FromFemtowatts(double? femtowatts)
+        {
+            if (femtowatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((femtowatts.Value) * 1e-15d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Gigawatts.
+        /// </summary>
+        public static Power? FromGigawatts(double? gigawatts)
+        {
+            if (gigawatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((gigawatts.Value) * 1e9d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable HydraulicHorsepower.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(double? hydraulichorsepower)
+        {
+            if (hydraulichorsepower.HasValue)
+            {
+                return new Power(Convert.ToDecimal(hydraulichorsepower.Value*745.69988145d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Kilowatts.
+        /// </summary>
+        public static Power? FromKilowatts(double? kilowatts)
+        {
+            if (kilowatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((kilowatts.Value) * 1e3d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MechanicalHorsepower.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(double? mechanicalhorsepower)
+        {
+            if (mechanicalhorsepower.HasValue)
+            {
+                return new Power(Convert.ToDecimal(mechanicalhorsepower.Value*745.69d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Megawatts.
+        /// </summary>
+        public static Power? FromMegawatts(double? megawatts)
+        {
+            if (megawatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((megawatts.Value) * 1e6d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MetricHorsepower.
+        /// </summary>
+        public static Power? FromMetricHorsepower(double? metrichorsepower)
+        {
+            if (metrichorsepower.HasValue)
+            {
+                return new Power(Convert.ToDecimal(metrichorsepower.Value*735.49875d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Microwatts.
+        /// </summary>
+        public static Power? FromMicrowatts(double? microwatts)
+        {
+            if (microwatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((microwatts.Value) * 1e-6d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Milliwatts.
+        /// </summary>
+        public static Power? FromMilliwatts(double? milliwatts)
+        {
+            if (milliwatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((milliwatts.Value) * 1e-3d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Nanowatts.
+        /// </summary>
+        public static Power? FromNanowatts(double? nanowatts)
+        {
+            if (nanowatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((nanowatts.Value) * 1e-9d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Petawatts.
+        /// </summary>
+        public static Power? FromPetawatts(double? petawatts)
+        {
+            if (petawatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((petawatts.Value) * 1e15d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Picowatts.
+        /// </summary>
+        public static Power? FromPicowatts(double? picowatts)
+        {
+            if (picowatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((picowatts.Value) * 1e-12d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Terawatts.
+        /// </summary>
+        public static Power? FromTerawatts(double? terawatts)
+        {
+            if (terawatts.HasValue)
+            {
+                return new Power(Convert.ToDecimal((terawatts.Value) * 1e12d));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Watts.
+        /// </summary>
+        public static Power? FromWatts(double? watts)
+        {
+            if (watts.HasValue)
+            {
+                return new Power(Convert.ToDecimal(watts.Value));
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

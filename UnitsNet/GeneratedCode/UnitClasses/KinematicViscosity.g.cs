@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Centistokes.
+        /// </summary>
+        public static KinematicViscosity? FromCentistokes(double? centistokes)
+        {
+            if (centistokes.HasValue)
+            {
+                return new KinematicViscosity((centistokes.Value/1e4) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Decistokes.
+        /// </summary>
+        public static KinematicViscosity? FromDecistokes(double? decistokes)
+        {
+            if (decistokes.HasValue)
+            {
+                return new KinematicViscosity((decistokes.Value/1e4) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Kilostokes.
+        /// </summary>
+        public static KinematicViscosity? FromKilostokes(double? kilostokes)
+        {
+            if (kilostokes.HasValue)
+            {
+                return new KinematicViscosity((kilostokes.Value/1e4) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Microstokes.
+        /// </summary>
+        public static KinematicViscosity? FromMicrostokes(double? microstokes)
+        {
+            if (microstokes.HasValue)
+            {
+                return new KinematicViscosity((microstokes.Value/1e4) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Millistokes.
+        /// </summary>
+        public static KinematicViscosity? FromMillistokes(double? millistokes)
+        {
+            if (millistokes.HasValue)
+            {
+                return new KinematicViscosity((millistokes.Value/1e4) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Nanostokes.
+        /// </summary>
+        public static KinematicViscosity? FromNanostokes(double? nanostokes)
+        {
+            if (nanostokes.HasValue)
+            {
+                return new KinematicViscosity((nanostokes.Value/1e4) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
+        /// </summary>
+        public static KinematicViscosity? FromSquareMetersPerSecond(double? squaremeterspersecond)
+        {
+            if (squaremeterspersecond.HasValue)
+            {
+                return new KinematicViscosity(squaremeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Stokes.
+        /// </summary>
+        public static KinematicViscosity? FromStokes(double? stokes)
+        {
+            if (stokes.HasValue)
+            {
+                return new KinematicViscosity(stokes.Value/1e4);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

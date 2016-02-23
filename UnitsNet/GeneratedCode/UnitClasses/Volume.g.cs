@@ -531,6 +531,442 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Volume from nullable AuTablespoons.
+        /// </summary>
+        public static Volume? FromAuTablespoons(double? autablespoons)
+        {
+            if (autablespoons.HasValue)
+            {
+                return new Volume(autablespoons.Value*2e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Centiliters.
+        /// </summary>
+        public static Volume? FromCentiliters(double? centiliters)
+        {
+            if (centiliters.HasValue)
+            {
+                return new Volume((centiliters.Value/1e3) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicCentimeters.
+        /// </summary>
+        public static Volume? FromCubicCentimeters(double? cubiccentimeters)
+        {
+            if (cubiccentimeters.HasValue)
+            {
+                return new Volume(cubiccentimeters.Value/1e6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicDecimeters.
+        /// </summary>
+        public static Volume? FromCubicDecimeters(double? cubicdecimeters)
+        {
+            if (cubicdecimeters.HasValue)
+            {
+                return new Volume(cubicdecimeters.Value/1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicFeet.
+        /// </summary>
+        public static Volume? FromCubicFeet(double? cubicfeet)
+        {
+            if (cubicfeet.HasValue)
+            {
+                return new Volume(cubicfeet.Value*0.0283168);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicInches.
+        /// </summary>
+        public static Volume? FromCubicInches(double? cubicinches)
+        {
+            if (cubicinches.HasValue)
+            {
+                return new Volume(cubicinches.Value*1.6387*1e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicKilometers.
+        /// </summary>
+        public static Volume? FromCubicKilometers(double? cubickilometers)
+        {
+            if (cubickilometers.HasValue)
+            {
+                return new Volume(cubickilometers.Value*1e9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicMeters.
+        /// </summary>
+        public static Volume? FromCubicMeters(double? cubicmeters)
+        {
+            if (cubicmeters.HasValue)
+            {
+                return new Volume(cubicmeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicMicrometers.
+        /// </summary>
+        public static Volume? FromCubicMicrometers(double? cubicmicrometers)
+        {
+            if (cubicmicrometers.HasValue)
+            {
+                return new Volume(cubicmicrometers.Value/1e18);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicMiles.
+        /// </summary>
+        public static Volume? FromCubicMiles(double? cubicmiles)
+        {
+            if (cubicmiles.HasValue)
+            {
+                return new Volume(cubicmiles.Value*4.16818183*1e9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicMillimeters.
+        /// </summary>
+        public static Volume? FromCubicMillimeters(double? cubicmillimeters)
+        {
+            if (cubicmillimeters.HasValue)
+            {
+                return new Volume(cubicmillimeters.Value/1e9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable CubicYards.
+        /// </summary>
+        public static Volume? FromCubicYards(double? cubicyards)
+        {
+            if (cubicyards.HasValue)
+            {
+                return new Volume(cubicyards.Value*0.764554858);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Deciliters.
+        /// </summary>
+        public static Volume? FromDeciliters(double? deciliters)
+        {
+            if (deciliters.HasValue)
+            {
+                return new Volume((deciliters.Value/1e3) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Hectoliters.
+        /// </summary>
+        public static Volume? FromHectoliters(double? hectoliters)
+        {
+            if (hectoliters.HasValue)
+            {
+                return new Volume((hectoliters.Value/1e3) * 1e2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable ImperialGallons.
+        /// </summary>
+        public static Volume? FromImperialGallons(double? imperialgallons)
+        {
+            if (imperialgallons.HasValue)
+            {
+                return new Volume(imperialgallons.Value*0.00454609000000181429905810072407);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable ImperialOunces.
+        /// </summary>
+        public static Volume? FromImperialOunces(double? imperialounces)
+        {
+            if (imperialounces.HasValue)
+            {
+                return new Volume(imperialounces.Value*2.8413062499962901241875439064617e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Liters.
+        /// </summary>
+        public static Volume? FromLiters(double? liters)
+        {
+            if (liters.HasValue)
+            {
+                return new Volume(liters.Value/1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable MetricCups.
+        /// </summary>
+        public static Volume? FromMetricCups(double? metriccups)
+        {
+            if (metriccups.HasValue)
+            {
+                return new Volume(metriccups.Value*0.00025);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable MetricTeaspoons.
+        /// </summary>
+        public static Volume? FromMetricTeaspoons(double? metricteaspoons)
+        {
+            if (metricteaspoons.HasValue)
+            {
+                return new Volume(metricteaspoons.Value*0.5e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Milliliters.
+        /// </summary>
+        public static Volume? FromMilliliters(double? milliliters)
+        {
+            if (milliliters.HasValue)
+            {
+                return new Volume((milliliters.Value/1e3) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Tablespoons.
+        /// </summary>
+        public static Volume? FromTablespoons(double? tablespoons)
+        {
+            if (tablespoons.HasValue)
+            {
+                return new Volume(tablespoons.Value*1.478676478125e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Teaspoons.
+        /// </summary>
+        public static Volume? FromTeaspoons(double? teaspoons)
+        {
+            if (teaspoons.HasValue)
+            {
+                return new Volume(teaspoons.Value*4.92892159375e-6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UkTablespoons.
+        /// </summary>
+        public static Volume? FromUkTablespoons(double? uktablespoons)
+        {
+            if (uktablespoons.HasValue)
+            {
+                return new Volume(uktablespoons.Value*1.5e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsCustomaryCups.
+        /// </summary>
+        public static Volume? FromUsCustomaryCups(double? uscustomarycups)
+        {
+            if (uscustomarycups.HasValue)
+            {
+                return new Volume(uscustomarycups.Value*0.0002365882365);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsGallons.
+        /// </summary>
+        public static Volume? FromUsGallons(double? usgallons)
+        {
+            if (usgallons.HasValue)
+            {
+                return new Volume(usgallons.Value*0.00378541);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsLegalCups.
+        /// </summary>
+        public static Volume? FromUsLegalCups(double? uslegalcups)
+        {
+            if (uslegalcups.HasValue)
+            {
+                return new Volume(uslegalcups.Value*0.00024);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsOunces.
+        /// </summary>
+        public static Volume? FromUsOunces(double? usounces)
+        {
+            if (usounces.HasValue)
+            {
+                return new Volume(usounces.Value*2.957352956253760505068307980135e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsTablespoons.
+        /// </summary>
+        public static Volume? FromUsTablespoons(double? ustablespoons)
+        {
+            if (ustablespoons.HasValue)
+            {
+                return new Volume(ustablespoons.Value*1.478676478125e-5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsTeaspoons.
+        /// </summary>
+        public static Volume? FromUsTeaspoons(double? usteaspoons)
+        {
+            if (usteaspoons.HasValue)
+            {
+                return new Volume(usteaspoons.Value*4.92892159375e-6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -113,6 +113,52 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricResistance from nullable Kiloohms.
+        /// </summary>
+        public static ElectricResistance? FromKiloohms(double? kiloohms)
+        {
+            if (kiloohms.HasValue)
+            {
+                return new ElectricResistance((kiloohms.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistance from nullable Megaohms.
+        /// </summary>
+        public static ElectricResistance? FromMegaohms(double? megaohms)
+        {
+            if (megaohms.HasValue)
+            {
+                return new ElectricResistance((megaohms.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistance from nullable Ohms.
+        /// </summary>
+        public static ElectricResistance? FromOhms(double? ohms)
+        {
+            if (ohms.HasValue)
+            {
+                return new ElectricResistance(ohms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

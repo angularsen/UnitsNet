@@ -179,5 +179,20 @@ namespace UnitsNet.Tests
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.IsFalse(decibelvolt.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            AmplitudeRatio? decibelvolt = AmplitudeRatio.FromDecibelVolts(null);
+            Assert.IsTrue(decibelvolt.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            AmplitudeRatio? decibelvolt = AmplitudeRatio.FromDecibelVolts(value);
+            Assert.IsTrue(decibelvolt.HasValue);
+        }
     }
 }

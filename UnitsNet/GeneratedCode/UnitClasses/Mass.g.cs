@@ -337,6 +337,262 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Mass from nullable Centigrams.
+        /// </summary>
+        public static Mass? FromCentigrams(double? centigrams)
+        {
+            if (centigrams.HasValue)
+            {
+                return new Mass((centigrams.Value/1e3) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Decagrams.
+        /// </summary>
+        public static Mass? FromDecagrams(double? decagrams)
+        {
+            if (decagrams.HasValue)
+            {
+                return new Mass((decagrams.Value/1e3) * 1e1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Decigrams.
+        /// </summary>
+        public static Mass? FromDecigrams(double? decigrams)
+        {
+            if (decigrams.HasValue)
+            {
+                return new Mass((decigrams.Value/1e3) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Grams.
+        /// </summary>
+        public static Mass? FromGrams(double? grams)
+        {
+            if (grams.HasValue)
+            {
+                return new Mass(grams.Value/1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Hectograms.
+        /// </summary>
+        public static Mass? FromHectograms(double? hectograms)
+        {
+            if (hectograms.HasValue)
+            {
+                return new Mass((hectograms.Value/1e3) * 1e2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Kilograms.
+        /// </summary>
+        public static Mass? FromKilograms(double? kilograms)
+        {
+            if (kilograms.HasValue)
+            {
+                return new Mass((kilograms.Value/1e3) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Kilotonnes.
+        /// </summary>
+        public static Mass? FromKilotonnes(double? kilotonnes)
+        {
+            if (kilotonnes.HasValue)
+            {
+                return new Mass((kilotonnes.Value*1e3) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable LongTons.
+        /// </summary>
+        public static Mass? FromLongTons(double? longtons)
+        {
+            if (longtons.HasValue)
+            {
+                return new Mass(longtons.Value*1016.0469088);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Megatonnes.
+        /// </summary>
+        public static Mass? FromMegatonnes(double? megatonnes)
+        {
+            if (megatonnes.HasValue)
+            {
+                return new Mass((megatonnes.Value*1e3) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Micrograms.
+        /// </summary>
+        public static Mass? FromMicrograms(double? micrograms)
+        {
+            if (micrograms.HasValue)
+            {
+                return new Mass((micrograms.Value/1e3) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Milligrams.
+        /// </summary>
+        public static Mass? FromMilligrams(double? milligrams)
+        {
+            if (milligrams.HasValue)
+            {
+                return new Mass((milligrams.Value/1e3) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Nanograms.
+        /// </summary>
+        public static Mass? FromNanograms(double? nanograms)
+        {
+            if (nanograms.HasValue)
+            {
+                return new Mass((nanograms.Value/1e3) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Ounces.
+        /// </summary>
+        public static Mass? FromOunces(double? ounces)
+        {
+            if (ounces.HasValue)
+            {
+                return new Mass(ounces.Value/35.2739619);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Pounds.
+        /// </summary>
+        public static Mass? FromPounds(double? pounds)
+        {
+            if (pounds.HasValue)
+            {
+                return new Mass(pounds.Value*0.45359237);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable ShortTons.
+        /// </summary>
+        public static Mass? FromShortTons(double? shorttons)
+        {
+            if (shorttons.HasValue)
+            {
+                return new Mass(shorttons.Value*907.18474);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Stone.
+        /// </summary>
+        public static Mass? FromStone(double? stone)
+        {
+            if (stone.HasValue)
+            {
+                return new Mass(stone.Value/0.1574731728702698);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Tonnes.
+        /// </summary>
+        public static Mass? FromTonnes(double? tonnes)
+        {
+            if (tonnes.HasValue)
+            {
+                return new Mass(tonnes.Value*1e3);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

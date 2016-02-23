@@ -355,5 +355,20 @@ namespace UnitsNet.Tests
             Pressure pascal = Pressure.FromPascals(1);
             Assert.IsFalse(pascal.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Pressure? pascal = Pressure.FromPascals(null);
+            Assert.IsTrue(pascal.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Pressure? pascal = Pressure.FromPascals(value);
+            Assert.IsTrue(pascal.HasValue);
+        }
     }
 }

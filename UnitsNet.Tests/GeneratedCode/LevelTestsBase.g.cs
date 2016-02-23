@@ -173,5 +173,20 @@ namespace UnitsNet.Tests
             Level decibel = Level.FromDecibels(1);
             Assert.IsFalse(decibel.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Level? decibel = Level.FromDecibels(null);
+            Assert.IsTrue(decibel.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Level? decibel = Level.FromDecibels(value);
+            Assert.IsTrue(decibel.HasValue);
+        }
     }
 }

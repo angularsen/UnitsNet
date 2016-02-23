@@ -97,6 +97,37 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Level from nullable Decibels.
+        /// </summary>
+        public static Level? FromDecibels(double? decibels)
+        {
+            if (decibels.HasValue)
+            {
+                return new Level(decibels.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Level from nullable Nepers.
+        /// </summary>
+        public static Level? FromNepers(double? nepers)
+        {
+            if (nepers.HasValue)
+            {
+                return new Level((1/0.115129254)*nepers.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -229,5 +229,20 @@ namespace UnitsNet.Tests
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
             Assert.IsFalse(meterpersecond.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Speed? meterpersecond = Speed.FromMetersPerSecond(null);
+            Assert.IsTrue(meterpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Speed? meterpersecond = Speed.FromMetersPerSecond(value);
+            Assert.IsTrue(meterpersecond.HasValue);
+        }
     }
 }

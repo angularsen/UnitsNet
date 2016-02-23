@@ -253,5 +253,20 @@ namespace UnitsNet.Tests
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
             Assert.IsFalse(newtonpercubicmeter.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            SpecificWeight? newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(null);
+            Assert.IsTrue(newtonpercubicmeter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            SpecificWeight? newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.IsTrue(newtonpercubicmeter.HasValue);
+        }
     }
 }

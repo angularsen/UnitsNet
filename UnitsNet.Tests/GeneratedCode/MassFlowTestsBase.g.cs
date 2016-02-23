@@ -217,5 +217,20 @@ namespace UnitsNet.Tests
             MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
             Assert.IsFalse(grampersecond.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            MassFlow? grampersecond = MassFlow.FromGramsPerSecond(null);
+            Assert.IsTrue(grampersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            MassFlow? grampersecond = MassFlow.FromGramsPerSecond(value);
+            Assert.IsTrue(grampersecond.HasValue);
+        }
     }
 }

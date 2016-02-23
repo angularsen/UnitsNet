@@ -205,5 +205,20 @@ namespace UnitsNet.Tests
             Temperature kelvin = Temperature.FromKelvins(1);
             Assert.IsFalse(kelvin.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Temperature? kelvin = Temperature.FromKelvins(null);
+            Assert.IsTrue(kelvin.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Temperature? kelvin = Temperature.FromKelvins(value);
+            Assert.IsTrue(kelvin.HasValue);
+        }
     }
 }

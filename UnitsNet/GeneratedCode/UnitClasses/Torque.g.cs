@@ -321,6 +321,247 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceCentimeters.
+        /// </summary>
+        public static Torque? FromKilogramForceCentimeters(double? kilogramforcecentimeters)
+        {
+            if (kilogramforcecentimeters.HasValue)
+            {
+                return new Torque(kilogramforcecentimeters.Value*0.0980665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceMeters.
+        /// </summary>
+        public static Torque? FromKilogramForceMeters(double? kilogramforcemeters)
+        {
+            if (kilogramforcemeters.HasValue)
+            {
+                return new Torque(kilogramforcemeters.Value*9.80665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceMillimeters.
+        /// </summary>
+        public static Torque? FromKilogramForceMillimeters(double? kilogramforcemillimeters)
+        {
+            if (kilogramforcemillimeters.HasValue)
+            {
+                return new Torque(kilogramforcemillimeters.Value*0.00980665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonCentimeters.
+        /// </summary>
+        public static Torque? FromKilonewtonCentimeters(double? kilonewtoncentimeters)
+        {
+            if (kilonewtoncentimeters.HasValue)
+            {
+                return new Torque((kilonewtoncentimeters.Value*0.01) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonMeters.
+        /// </summary>
+        public static Torque? FromKilonewtonMeters(double? kilonewtonmeters)
+        {
+            if (kilonewtonmeters.HasValue)
+            {
+                return new Torque((kilonewtonmeters.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonMillimeters.
+        /// </summary>
+        public static Torque? FromKilonewtonMillimeters(double? kilonewtonmillimeters)
+        {
+            if (kilonewtonmillimeters.HasValue)
+            {
+                return new Torque((kilonewtonmillimeters.Value*0.001) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilopoundForceFeet.
+        /// </summary>
+        public static Torque? FromKilopoundForceFeet(double? kilopoundforcefeet)
+        {
+            if (kilopoundforcefeet.HasValue)
+            {
+                return new Torque((kilopoundforcefeet.Value*1.3558180656) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilopoundForceInches.
+        /// </summary>
+        public static Torque? FromKilopoundForceInches(double? kilopoundforceinches)
+        {
+            if (kilopoundforceinches.HasValue)
+            {
+                return new Torque((kilopoundforceinches.Value*0.1129848388) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonCentimeters.
+        /// </summary>
+        public static Torque? FromNewtonCentimeters(double? newtoncentimeters)
+        {
+            if (newtoncentimeters.HasValue)
+            {
+                return new Torque(newtoncentimeters.Value*0.01);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonMeters.
+        /// </summary>
+        public static Torque? FromNewtonMeters(double? newtonmeters)
+        {
+            if (newtonmeters.HasValue)
+            {
+                return new Torque(newtonmeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonMillimeters.
+        /// </summary>
+        public static Torque? FromNewtonMillimeters(double? newtonmillimeters)
+        {
+            if (newtonmillimeters.HasValue)
+            {
+                return new Torque(newtonmillimeters.Value*0.001);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable PoundForceFeet.
+        /// </summary>
+        public static Torque? FromPoundForceFeet(double? poundforcefeet)
+        {
+            if (poundforcefeet.HasValue)
+            {
+                return new Torque(poundforcefeet.Value*1.3558180656);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable PoundForceInches.
+        /// </summary>
+        public static Torque? FromPoundForceInches(double? poundforceinches)
+        {
+            if (poundforceinches.HasValue)
+            {
+                return new Torque(poundforceinches.Value*0.1129848388);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceCentimeters.
+        /// </summary>
+        public static Torque? FromTonneForceCentimeters(double? tonneforcecentimeters)
+        {
+            if (tonneforcecentimeters.HasValue)
+            {
+                return new Torque(tonneforcecentimeters.Value*98.0665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceMeters.
+        /// </summary>
+        public static Torque? FromTonneForceMeters(double? tonneforcemeters)
+        {
+            if (tonneforcemeters.HasValue)
+            {
+                return new Torque(tonneforcemeters.Value*9806.65019960653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceMillimeters.
+        /// </summary>
+        public static Torque? FromTonneForceMillimeters(double? tonneforcemillimeters)
+        {
+            if (tonneforcemillimeters.HasValue)
+            {
+                return new Torque(tonneforcemillimeters.Value*9.80665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TorqueUnit" /> to <see cref="Torque" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

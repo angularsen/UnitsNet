@@ -81,6 +81,22 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromNewtonsPerSecond(double? newtonspersecond)
+        {
+            if (newtonspersecond.HasValue)
+            {
+                return new ForceChangeRate(newtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceChangeRateUnit" /> to <see cref="ForceChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

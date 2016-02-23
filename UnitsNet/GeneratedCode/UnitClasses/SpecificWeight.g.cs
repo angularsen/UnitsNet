@@ -321,6 +321,247 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(double? kilogramsforcepercubiccentimeter)
+        {
+            if (kilogramsforcepercubiccentimeter.HasValue)
+            {
+                return new SpecificWeight(kilogramsforcepercubiccentimeter.Value*9806650.19960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMeter(double? kilogramsforcepercubicmeter)
+        {
+            if (kilogramsforcepercubicmeter.HasValue)
+            {
+                return new SpecificWeight(kilogramsforcepercubicmeter.Value*9.80665019960652);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(double? kilogramsforcepercubicmillimeter)
+        {
+            if (kilogramsforcepercubicmillimeter.HasValue)
+            {
+                return new SpecificWeight(kilogramsforcepercubicmillimeter.Value*9806650199.60653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(double? kilonewtonspercubiccentimeter)
+        {
+            if (kilonewtonspercubiccentimeter.HasValue)
+            {
+                return new SpecificWeight((kilonewtonspercubiccentimeter.Value*1000000) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMeter(double? kilonewtonspercubicmeter)
+        {
+            if (kilonewtonspercubicmeter.HasValue)
+            {
+                return new SpecificWeight((kilonewtonspercubicmeter.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(double? kilonewtonspercubicmillimeter)
+        {
+            if (kilonewtonspercubicmillimeter.HasValue)
+            {
+                return new SpecificWeight((kilonewtonspercubicmillimeter.Value*1000000000) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(double? kilopoundsforcepercubicfoot)
+        {
+            if (kilopoundsforcepercubicfoot.HasValue)
+            {
+                return new SpecificWeight((kilopoundsforcepercubicfoot.Value*157.087477433193) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicInch(double? kilopoundsforcepercubicinch)
+        {
+            if (kilopoundsforcepercubicinch.HasValue)
+            {
+                return new SpecificWeight((kilopoundsforcepercubicinch.Value*271447.161004558) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicCentimeter(double? newtonspercubiccentimeter)
+        {
+            if (newtonspercubiccentimeter.HasValue)
+            {
+                return new SpecificWeight(newtonspercubiccentimeter.Value*1000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMeter(double? newtonspercubicmeter)
+        {
+            if (newtonspercubicmeter.HasValue)
+            {
+                return new SpecificWeight(newtonspercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMillimeter(double? newtonspercubicmillimeter)
+        {
+            if (newtonspercubicmillimeter.HasValue)
+            {
+                return new SpecificWeight(newtonspercubicmillimeter.Value*1000000000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicFoot(double? poundsforcepercubicfoot)
+        {
+            if (poundsforcepercubicfoot.HasValue)
+            {
+                return new SpecificWeight(poundsforcepercubicfoot.Value*157.087477433193);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicInch(double? poundsforcepercubicinch)
+        {
+            if (poundsforcepercubicinch.HasValue)
+            {
+                return new SpecificWeight(poundsforcepercubicinch.Value*271447.161004558);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(double? tonnesforcepercubiccentimeter)
+        {
+            if (tonnesforcepercubiccentimeter.HasValue)
+            {
+                return new SpecificWeight(tonnesforcepercubiccentimeter.Value*9806650199.60653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMeter(double? tonnesforcepercubicmeter)
+        {
+            if (tonnesforcepercubicmeter.HasValue)
+            {
+                return new SpecificWeight(tonnesforcepercubicmeter.Value*9806.65019960653);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(double? tonnesforcepercubicmillimeter)
+        {
+            if (tonnesforcepercubicmillimeter.HasValue)
+            {
+                return new SpecificWeight(tonnesforcepercubicmillimeter.Value*9806650199606.53);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

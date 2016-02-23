@@ -161,6 +161,97 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerSecond.
+        /// </summary>
+        public static Flow? FromCubicFeetPerSecond(double? cubicfeetpersecond)
+        {
+            if (cubicfeetpersecond.HasValue)
+            {
+                return new Flow(cubicfeetpersecond.Value/35.314666213);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerHour.
+        /// </summary>
+        public static Flow? FromCubicMetersPerHour(double? cubicmetersperhour)
+        {
+            if (cubicmetersperhour.HasValue)
+            {
+                return new Flow(cubicmetersperhour.Value/3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerSecond.
+        /// </summary>
+        public static Flow? FromCubicMetersPerSecond(double? cubicmeterspersecond)
+        {
+            if (cubicmeterspersecond.HasValue)
+            {
+                return new Flow(cubicmeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable LitersPerMinute.
+        /// </summary>
+        public static Flow? FromLitersPerMinute(double? litersperminute)
+        {
+            if (litersperminute.HasValue)
+            {
+                return new Flow(litersperminute.Value/60000.00000);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
+        /// </summary>
+        public static Flow? FromMillionUsGallonsPerDay(double? millionusgallonsperday)
+        {
+            if (millionusgallonsperday.HasValue)
+            {
+                return new Flow(millionusgallonsperday.Value/22.824465227);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerMinute.
+        /// </summary>
+        public static Flow? FromUsGallonsPerMinute(double? usgallonsperminute)
+        {
+            if (usgallonsperminute.HasValue)
+            {
+                return new Flow(usgallonsperminute.Value/15850.323141489);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FlowUnit" /> to <see cref="Flow" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -177,6 +177,112 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromCentimeterPerSecondSquared(double? centimeterpersecondsquared)
+        {
+            if (centimeterpersecondsquared.HasValue)
+            {
+                return new Acceleration((centimeterpersecondsquared.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromDecimeterPerSecondSquared(double? decimeterpersecondsquared)
+        {
+            if (decimeterpersecondsquared.HasValue)
+            {
+                return new Acceleration((decimeterpersecondsquared.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromKilometerPerSecondSquared(double? kilometerpersecondsquared)
+        {
+            if (kilometerpersecondsquared.HasValue)
+            {
+                return new Acceleration((kilometerpersecondsquared.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMeterPerSecondSquared(double? meterpersecondsquared)
+        {
+            if (meterpersecondsquared.HasValue)
+            {
+                return new Acceleration(meterpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometerPerSecondSquared(double? micrometerpersecondsquared)
+        {
+            if (micrometerpersecondsquared.HasValue)
+            {
+                return new Acceleration((micrometerpersecondsquared.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimeterPerSecondSquared(double? millimeterpersecondsquared)
+        {
+            if (millimeterpersecondsquared.HasValue)
+            {
+                return new Acceleration((millimeterpersecondsquared.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometerPerSecondSquared(double? nanometerpersecondsquared)
+        {
+            if (nanometerpersecondsquared.HasValue)
+            {
+                return new Acceleration((nanometerpersecondsquared.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

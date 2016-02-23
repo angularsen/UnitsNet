@@ -211,5 +211,20 @@ namespace UnitsNet.Tests
             TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             Assert.IsFalse(degreecelsiuspersecond.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            TemperatureChangeRate? degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(null);
+            Assert.IsTrue(degreecelsiuspersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            TemperatureChangeRate? degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(value);
+            Assert.IsTrue(degreecelsiuspersecond.HasValue);
+        }
     }
 }

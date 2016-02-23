@@ -113,6 +113,52 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMicrovolts(double? decibelmicrovolts)
+        {
+            if (decibelmicrovolts.HasValue)
+            {
+                return new AmplitudeRatio(decibelmicrovolts.Value - 120);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMillivolts(double? decibelmillivolts)
+        {
+            if (decibelmillivolts.HasValue)
+            {
+                return new AmplitudeRatio(decibelmillivolts.Value - 60);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelVolts(double? decibelvolts)
+        {
+            if (decibelvolts.HasValue)
+            {
+                return new AmplitudeRatio(decibelvolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

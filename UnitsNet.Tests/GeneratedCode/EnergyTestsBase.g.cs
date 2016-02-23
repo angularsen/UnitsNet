@@ -235,5 +235,20 @@ namespace UnitsNet.Tests
             Energy joule = Energy.FromJoules(1);
             Assert.IsFalse(joule.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Energy? joule = Energy.FromJoules(null);
+            Assert.IsTrue(joule.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Energy? joule = Energy.FromJoules(value);
+            Assert.IsTrue(joule.HasValue);
+        }
     }
 }

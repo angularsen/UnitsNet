@@ -163,5 +163,20 @@ namespace UnitsNet.Tests
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
             Assert.IsFalse(newtonpersecond.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            ForceChangeRate? newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(null);
+            Assert.IsTrue(newtonpersecond.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            ForceChangeRate? newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(value);
+            Assert.IsTrue(newtonpersecond.HasValue);
+        }
     }
 }

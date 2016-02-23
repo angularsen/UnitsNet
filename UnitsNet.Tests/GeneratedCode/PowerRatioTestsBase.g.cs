@@ -173,5 +173,20 @@ namespace UnitsNet.Tests
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
             Assert.IsFalse(decibelwatt.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            PowerRatio? decibelwatt = PowerRatio.FromDecibelWatts(null);
+            Assert.IsTrue(decibelwatt.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            PowerRatio? decibelwatt = PowerRatio.FromDecibelWatts(value);
+            Assert.IsTrue(decibelwatt.HasValue);
+        }
     }
 }

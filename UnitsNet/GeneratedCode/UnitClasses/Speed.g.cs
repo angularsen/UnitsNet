@@ -257,6 +257,187 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerSecond.
+        /// </summary>
+        public static Speed? FromCentimetersPerSecond(double? centimeterspersecond)
+        {
+            if (centimeterspersecond.HasValue)
+            {
+                return new Speed((centimeterspersecond.Value) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable DecimetersPerSecond.
+        /// </summary>
+        public static Speed? FromDecimetersPerSecond(double? decimeterspersecond)
+        {
+            if (decimeterspersecond.HasValue)
+            {
+                return new Speed((decimeterspersecond.Value) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerSecond.
+        /// </summary>
+        public static Speed? FromFeetPerSecond(double? feetpersecond)
+        {
+            if (feetpersecond.HasValue)
+            {
+                return new Speed(feetpersecond.Value*0.3048);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerHour.
+        /// </summary>
+        public static Speed? FromKilometersPerHour(double? kilometersperhour)
+        {
+            if (kilometersperhour.HasValue)
+            {
+                return new Speed(kilometersperhour.Value/3.6);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerSecond.
+        /// </summary>
+        public static Speed? FromKilometersPerSecond(double? kilometerspersecond)
+        {
+            if (kilometerspersecond.HasValue)
+            {
+                return new Speed((kilometerspersecond.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable Knots.
+        /// </summary>
+        public static Speed? FromKnots(double? knots)
+        {
+            if (knots.HasValue)
+            {
+                return new Speed(knots.Value*0.514444);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerHour.
+        /// </summary>
+        public static Speed? FromMetersPerHour(double? metersperhour)
+        {
+            if (metersperhour.HasValue)
+            {
+                return new Speed(metersperhour.Value/3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerSecond.
+        /// </summary>
+        public static Speed? FromMetersPerSecond(double? meterspersecond)
+        {
+            if (meterspersecond.HasValue)
+            {
+                return new Speed(meterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MicrometersPerSecond.
+        /// </summary>
+        public static Speed? FromMicrometersPerSecond(double? micrometerspersecond)
+        {
+            if (micrometerspersecond.HasValue)
+            {
+                return new Speed((micrometerspersecond.Value) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MilesPerHour.
+        /// </summary>
+        public static Speed? FromMilesPerHour(double? milesperhour)
+        {
+            if (milesperhour.HasValue)
+            {
+                return new Speed(milesperhour.Value*0.44704);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerSecond.
+        /// </summary>
+        public static Speed? FromMillimetersPerSecond(double? millimeterspersecond)
+        {
+            if (millimeterspersecond.HasValue)
+            {
+                return new Speed((millimeterspersecond.Value) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable NanometersPerSecond.
+        /// </summary>
+        public static Speed? FromNanometersPerSecond(double? nanometerspersecond)
+        {
+            if (nanometerspersecond.HasValue)
+            {
+                return new Speed((nanometerspersecond.Value) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -199,5 +199,20 @@ namespace UnitsNet.Tests
             Acceleration meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(1);
             Assert.IsFalse(meterpersecondsquared.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Acceleration? meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(null);
+            Assert.IsTrue(meterpersecondsquared.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Acceleration? meterpersecondsquared = Acceleration.FromMeterPerSecondSquared(value);
+            Assert.IsTrue(meterpersecondsquared.HasValue);
+        }
     }
 }

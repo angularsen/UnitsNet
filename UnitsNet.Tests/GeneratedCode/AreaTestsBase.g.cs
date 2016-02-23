@@ -217,5 +217,20 @@ namespace UnitsNet.Tests
             Area squaremeter = Area.FromSquareMeters(1);
             Assert.IsFalse(squaremeter.Equals(null));
         }
+
+        [Test]
+        public void StaticConstructorWithNullReturnsNull()
+        {
+            Area? squaremeter = Area.FromSquareMeters(null);
+            Assert.IsTrue(squaremeter.Equals(null));
+        }
+
+        [Test]
+        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
+        {
+            double? value = 1.0;
+            Area? squaremeter = Area.FromSquareMeters(value);
+            Assert.IsTrue(squaremeter.HasValue);
+        }
     }
 }

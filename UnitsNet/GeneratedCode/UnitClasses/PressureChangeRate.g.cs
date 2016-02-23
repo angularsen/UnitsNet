@@ -129,6 +129,67 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromAtmospheresPerSecond(double? atmospherespersecond)
+        {
+            if (atmospherespersecond.HasValue)
+            {
+                return new PressureChangeRate(atmospherespersecond.Value * 1.01325*1e5);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromKilopascalsPerSecond(double? kilopascalspersecond)
+        {
+            if (kilopascalspersecond.HasValue)
+            {
+                return new PressureChangeRate((kilopascalspersecond.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromMegapascalsPerSecond(double? megapascalspersecond)
+        {
+            if (megapascalspersecond.HasValue)
+            {
+                return new PressureChangeRate((megapascalspersecond.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromPascalsPerSecond(double? pascalspersecond)
+        {
+            if (pascalspersecond.HasValue)
+            {
+                return new PressureChangeRate(pascalspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

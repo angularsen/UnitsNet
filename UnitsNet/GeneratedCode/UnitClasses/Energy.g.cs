@@ -273,6 +273,202 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Energy from nullable BritishThermalUnits.
+        /// </summary>
+        public static Energy? FromBritishThermalUnits(double? britishthermalunits)
+        {
+            if (britishthermalunits.HasValue)
+            {
+                return new Energy(britishthermalunits.Value*1055.05585262);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Calories.
+        /// </summary>
+        public static Energy? FromCalories(double? calories)
+        {
+            if (calories.HasValue)
+            {
+                return new Energy(calories.Value*4.184);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable ElectronVolts.
+        /// </summary>
+        public static Energy? FromElectronVolts(double? electronvolts)
+        {
+            if (electronvolts.HasValue)
+            {
+                return new Energy(electronvolts.Value*1.602176565e-19);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Ergs.
+        /// </summary>
+        public static Energy? FromErgs(double? ergs)
+        {
+            if (ergs.HasValue)
+            {
+                return new Energy(ergs.Value*1e-7);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable FootPounds.
+        /// </summary>
+        public static Energy? FromFootPounds(double? footpounds)
+        {
+            if (footpounds.HasValue)
+            {
+                return new Energy(footpounds.Value*1.355817948);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable GigawattHours.
+        /// </summary>
+        public static Energy? FromGigawattHours(double? gigawatthours)
+        {
+            if (gigawatthours.HasValue)
+            {
+                return new Energy((gigawatthours.Value*3600d) * 1e9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Joules.
+        /// </summary>
+        public static Energy? FromJoules(double? joules)
+        {
+            if (joules.HasValue)
+            {
+                return new Energy(joules.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Kilocalories.
+        /// </summary>
+        public static Energy? FromKilocalories(double? kilocalories)
+        {
+            if (kilocalories.HasValue)
+            {
+                return new Energy((kilocalories.Value*4.184) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Kilojoules.
+        /// </summary>
+        public static Energy? FromKilojoules(double? kilojoules)
+        {
+            if (kilojoules.HasValue)
+            {
+                return new Energy((kilojoules.Value) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable KilowattHours.
+        /// </summary>
+        public static Energy? FromKilowattHours(double? kilowatthours)
+        {
+            if (kilowatthours.HasValue)
+            {
+                return new Energy((kilowatthours.Value*3600d) * 1e3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Megajoules.
+        /// </summary>
+        public static Energy? FromMegajoules(double? megajoules)
+        {
+            if (megajoules.HasValue)
+            {
+                return new Energy((megajoules.Value) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable MegawattHours.
+        /// </summary>
+        public static Energy? FromMegawattHours(double? megawatthours)
+        {
+            if (megawatthours.HasValue)
+            {
+                return new Energy((megawatthours.Value*3600d) * 1e6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable WattHours.
+        /// </summary>
+        public static Energy? FromWattHours(double? watthours)
+        {
+            if (watthours.HasValue)
+            {
+                return new Energy(watthours.Value*3600d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

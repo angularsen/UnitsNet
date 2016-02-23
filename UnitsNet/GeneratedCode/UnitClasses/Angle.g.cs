@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Angle from nullable Arcminutes.
+        /// </summary>
+        public static Angle? FromArcminutes(double? arcminutes)
+        {
+            if (arcminutes.HasValue)
+            {
+                return new Angle(arcminutes.Value/60);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Arcseconds.
+        /// </summary>
+        public static Angle? FromArcseconds(double? arcseconds)
+        {
+            if (arcseconds.HasValue)
+            {
+                return new Angle(arcseconds.Value/3600);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Centiradians.
+        /// </summary>
+        public static Angle? FromCentiradians(double? centiradians)
+        {
+            if (centiradians.HasValue)
+            {
+                return new Angle((centiradians.Value*180/Math.PI) * 1e-2d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Deciradians.
+        /// </summary>
+        public static Angle? FromDeciradians(double? deciradians)
+        {
+            if (deciradians.HasValue)
+            {
+                return new Angle((deciradians.Value*180/Math.PI) * 1e-1d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Degrees.
+        /// </summary>
+        public static Angle? FromDegrees(double? degrees)
+        {
+            if (degrees.HasValue)
+            {
+                return new Angle(degrees.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Gradians.
+        /// </summary>
+        public static Angle? FromGradians(double? gradians)
+        {
+            if (gradians.HasValue)
+            {
+                return new Angle(gradians.Value*0.9);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Microradians.
+        /// </summary>
+        public static Angle? FromMicroradians(double? microradians)
+        {
+            if (microradians.HasValue)
+            {
+                return new Angle((microradians.Value*180/Math.PI) * 1e-6d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Milliradians.
+        /// </summary>
+        public static Angle? FromMilliradians(double? milliradians)
+        {
+            if (milliradians.HasValue)
+            {
+                return new Angle((milliradians.Value*180/Math.PI) * 1e-3d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Nanoradians.
+        /// </summary>
+        public static Angle? FromNanoradians(double? nanoradians)
+        {
+            if (nanoradians.HasValue)
+            {
+                return new Angle((nanoradians.Value*180/Math.PI) * 1e-9d);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Radians.
+        /// </summary>
+        public static Angle? FromRadians(double? radians)
+        {
+            if (radians.HasValue)
+            {
+                return new Angle(radians.Value*180/Math.PI);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
