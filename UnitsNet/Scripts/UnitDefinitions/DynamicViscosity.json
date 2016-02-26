@@ -1,0 +1,46 @@
+﻿{
+  "Name": "DynamicViscosity",
+  "BaseUnit": "NewtonSecondPerMeterSquared",
+  "XmlDoc": "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity",
+  "Units": [
+    {
+      "SingularName": "NewtonSecondPerMeterSquared",
+      "PluralName": "NewtonSecondsPerMeterSquared",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ns/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalSecond",
+      "PluralName": "PascalSeconds",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "PaS" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Poise",
+      "PluralName": "Poise",
+      "FromUnitToBaseFunc": "x/10",
+      "FromBaseToUnitFunc": "x*10",
+      "Prefixes": [ "Centi" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "P" ]
+        }
+      ]
+    }
+  ]
+}
