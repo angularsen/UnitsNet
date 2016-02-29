@@ -631,6 +631,36 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ForceChangeRateUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.CentinewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecinewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.MicronewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.MillinewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.NanonewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nN/s"),
+                            }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
                             new[]
                             {

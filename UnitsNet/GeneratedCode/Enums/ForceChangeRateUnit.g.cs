@@ -25,6 +25,12 @@ namespace UnitsNet.Units
     public enum ForceChangeRateUnit
     {
         Undefined = 0,
+        CentinewtonPerSecond,
+        DecinewtonPerSecond,
+        KilonewtonPerSecond,
+        MicronewtonPerSecond,
+        MillinewtonPerSecond,
+        NanonewtonPerSecond,
         NewtonPerSecond,
     }
 }

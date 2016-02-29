@@ -23,7 +23,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceChangeRateTests : ForceChangeRateTestsBase
     {
-        // TODO Override properties in base class here
+        protected override double KilonewtonsPerSecondInOneNewtonPerSecond => 1E-3;
         protected override double NewtonsPerSecondInOneNewtonPerSecond => 1;
+        protected override double DecinewtonsPerSecondInOneNewtonPerSecond => 1E1;
+        protected override double CentinewtonsPerSecondInOneNewtonPerSecond => 1E2;
+        protected override double MillinewtonsPerSecondInOneNewtonPerSecond => 1E3;
+        protected override double MicronewtonsPerSecondInOneNewtonPerSecond => 1E6;
+        protected override double NanonewtonsPerSecondInOneNewtonPerSecond => 1E9;
     }
 }

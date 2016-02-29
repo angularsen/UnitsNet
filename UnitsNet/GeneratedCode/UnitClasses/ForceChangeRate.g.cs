@@ -55,6 +55,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ForceChangeRate in CentinewtonsPerSecond.
+        /// </summary>
+        public double CentinewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate in DecinewtonsPerSecond.
+        /// </summary>
+        public double DecinewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate in KilonewtonsPerSecond.
+        /// </summary>
+        public double KilonewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate in MicronewtonsPerSecond.
+        /// </summary>
+        public double MicronewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate in MillinewtonsPerSecond.
+        /// </summary>
+        public double MillinewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate in NanonewtonsPerSecond.
+        /// </summary>
+        public double NanonewtonsPerSecond
+        {
+            get { return (_newtonsPerSecond) / 1e-9d; }
+        }
+
+        /// <summary>
         ///     Get ForceChangeRate in NewtonsPerSecond.
         /// </summary>
         public double NewtonsPerSecond
@@ -69,6 +117,54 @@ namespace UnitsNet
         public static ForceChangeRate Zero
         {
             get { return new ForceChangeRate(); }
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from CentinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromCentinewtonsPerSecond(double centinewtonspersecond)
+        {
+            return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from DecinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromDecinewtonsPerSecond(double decinewtonspersecond)
+        {
+            return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from KilonewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromKilonewtonsPerSecond(double kilonewtonspersecond)
+        {
+            return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from MicronewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromMicronewtonsPerSecond(double micronewtonspersecond)
+        {
+            return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from MillinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromMillinewtonsPerSecond(double millinewtonspersecond)
+        {
+            return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get ForceChangeRate from NanonewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate FromNanonewtonsPerSecond(double nanonewtonspersecond)
+        {
+            return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
         }
 
         /// <summary>
@@ -90,6 +186,18 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ForceChangeRateUnit.CentinewtonPerSecond:
+                    return FromCentinewtonsPerSecond(value);
+                case ForceChangeRateUnit.DecinewtonPerSecond:
+                    return FromDecinewtonsPerSecond(value);
+                case ForceChangeRateUnit.KilonewtonPerSecond:
+                    return FromKilonewtonsPerSecond(value);
+                case ForceChangeRateUnit.MicronewtonPerSecond:
+                    return FromMicronewtonsPerSecond(value);
+                case ForceChangeRateUnit.MillinewtonPerSecond:
+                    return FromMillinewtonsPerSecond(value);
+                case ForceChangeRateUnit.NanonewtonPerSecond:
+                    return FromNanonewtonsPerSecond(value);
                 case ForceChangeRateUnit.NewtonPerSecond:
                     return FromNewtonsPerSecond(value);
 
@@ -225,6 +333,18 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case ForceChangeRateUnit.CentinewtonPerSecond:
+                    return CentinewtonsPerSecond;
+                case ForceChangeRateUnit.DecinewtonPerSecond:
+                    return DecinewtonsPerSecond;
+                case ForceChangeRateUnit.KilonewtonPerSecond:
+                    return KilonewtonsPerSecond;
+                case ForceChangeRateUnit.MicronewtonPerSecond:
+                    return MicronewtonsPerSecond;
+                case ForceChangeRateUnit.MillinewtonPerSecond:
+                    return MillinewtonsPerSecond;
+                case ForceChangeRateUnit.NanonewtonPerSecond:
+                    return NanonewtonsPerSecond;
                 case ForceChangeRateUnit.NewtonPerSecond:
                     return NewtonsPerSecond;
 
