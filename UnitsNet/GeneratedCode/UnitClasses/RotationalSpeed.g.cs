@@ -71,6 +71,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed in DegreesPerSecond.
+        /// </summary>
+        public double DegreesPerSecond
+        {
+            get { return (180/Math.PI)*_radiansPerSecond; }
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed in MicroradiansPerSecond.
         /// </summary>
         public double MicroradiansPerSecond
@@ -144,6 +152,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed from DegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromDegreesPerSecond(double degreespersecond)
+        {
+            return new RotationalSpeed((Math.PI/180)*degreespersecond);
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
@@ -206,6 +222,8 @@ namespace UnitsNet
                     return FromCentiradiansPerSecond(value);
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return FromDeciradiansPerSecond(value);
+                case RotationalSpeedUnit.DegreePerSecond:
+                    return FromDegreesPerSecond(value);
                 case RotationalSpeedUnit.MicroradianPerSecond:
                     return FromMicroradiansPerSecond(value);
                 case RotationalSpeedUnit.MilliradianPerSecond:
@@ -355,6 +373,8 @@ namespace UnitsNet
                     return CentiradiansPerSecond;
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return DeciradiansPerSecond;
+                case RotationalSpeedUnit.DegreePerSecond:
+                    return DegreesPerSecond;
                 case RotationalSpeedUnit.MicroradianPerSecond:
                     return MicroradiansPerSecond;
                 case RotationalSpeedUnit.MilliradianPerSecond:

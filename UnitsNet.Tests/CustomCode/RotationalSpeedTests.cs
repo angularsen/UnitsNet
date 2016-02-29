@@ -42,6 +42,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double RevolutionsPerSecondInOneRadianPerSecond => 1/(2*Math.PI);
 
+        protected override double DegreesPerSecondInOneRadianPerSecond => (180 / Math.PI) * 1;
+
         [Test]
         public void DurationTimesRotationalSpeedEqualsAngle()
         {
