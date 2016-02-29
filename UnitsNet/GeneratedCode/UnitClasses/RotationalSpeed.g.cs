@@ -79,6 +79,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed in MicrodegreesPerSecond.
+        /// </summary>
+        public double MicrodegreesPerSecond
+        {
+            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed in MicroradiansPerSecond.
         /// </summary>
         public double MicroradiansPerSecond
@@ -87,11 +95,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed in MillidegreesPerSecond.
+        /// </summary>
+        public double MillidegreesPerSecond
+        {
+            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-3d; }
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed in MilliradiansPerSecond.
         /// </summary>
         public double MilliradiansPerSecond
         {
             get { return (_radiansPerSecond) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed in NanodegreesPerSecond.
+        /// </summary>
+        public double NanodegreesPerSecond
+        {
+            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-9d; }
         }
 
         /// <summary>
@@ -160,6 +184,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed from MicrodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromMicrodegreesPerSecond(double microdegreespersecond)
+        {
+            return new RotationalSpeed(((Math.PI/180)*microdegreespersecond) * 1e-6d);
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
@@ -168,11 +200,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed from MillidegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromMillidegreesPerSecond(double millidegreespersecond)
+        {
+            return new RotationalSpeed(((Math.PI/180)*millidegreespersecond) * 1e-3d);
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
         {
             return new RotationalSpeed((milliradianspersecond) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from NanodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed FromNanodegreesPerSecond(double nanodegreespersecond)
+        {
+            return new RotationalSpeed(((Math.PI/180)*nanodegreespersecond) * 1e-9d);
         }
 
         /// <summary>
@@ -224,10 +272,16 @@ namespace UnitsNet
                     return FromDeciradiansPerSecond(value);
                 case RotationalSpeedUnit.DegreePerSecond:
                     return FromDegreesPerSecond(value);
+                case RotationalSpeedUnit.MicrodegreePerSecond:
+                    return FromMicrodegreesPerSecond(value);
                 case RotationalSpeedUnit.MicroradianPerSecond:
                     return FromMicroradiansPerSecond(value);
+                case RotationalSpeedUnit.MillidegreePerSecond:
+                    return FromMillidegreesPerSecond(value);
                 case RotationalSpeedUnit.MilliradianPerSecond:
                     return FromMilliradiansPerSecond(value);
+                case RotationalSpeedUnit.NanodegreePerSecond:
+                    return FromNanodegreesPerSecond(value);
                 case RotationalSpeedUnit.NanoradianPerSecond:
                     return FromNanoradiansPerSecond(value);
                 case RotationalSpeedUnit.RadianPerSecond:
@@ -375,10 +429,16 @@ namespace UnitsNet
                     return DeciradiansPerSecond;
                 case RotationalSpeedUnit.DegreePerSecond:
                     return DegreesPerSecond;
+                case RotationalSpeedUnit.MicrodegreePerSecond:
+                    return MicrodegreesPerSecond;
                 case RotationalSpeedUnit.MicroradianPerSecond:
                     return MicroradiansPerSecond;
+                case RotationalSpeedUnit.MillidegreePerSecond:
+                    return MillidegreesPerSecond;
                 case RotationalSpeedUnit.MilliradianPerSecond:
                     return MilliradiansPerSecond;
+                case RotationalSpeedUnit.NanodegreePerSecond:
+                    return NanodegreesPerSecond;
                 case RotationalSpeedUnit.NanoradianPerSecond:
                     return NanoradiansPerSecond;
                 case RotationalSpeedUnit.RadianPerSecond:

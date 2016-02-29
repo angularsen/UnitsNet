@@ -20,22 +20,23 @@
         }
       ]
     },
-    {
-      "SingularName": "DegreePerSecond",
-      "PluralName": "DegreesPerSecond",
-      "FromUnitToBaseFunc": "(Math.PI/180)*x",
-      "FromBaseToUnitFunc": "(180/Math.PI)*x",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "r/s" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "°/с" ]
-        }
-      ]
-    },
+      {
+        "SingularName": "DegreePerSecond",
+        "PluralName": "DegreesPerSecond",
+        "FromUnitToBaseFunc": "(Math.PI/180)*x",
+        "FromBaseToUnitFunc": "(180/Math.PI)*x",
+        "Prefixes": [ "Nano", "Micro", "Milli" ],
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "r/s" ]
+          },
+          {
+            "Culture": "ru-RU",
+            "Abbreviations": [ "°/с" ]
+          }
+        ]
+      },
     {
       "SingularName": "RevolutionPerSecond",
       "PluralName": "RevolutionsPerSecond",

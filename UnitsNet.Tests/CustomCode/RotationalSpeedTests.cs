@@ -44,6 +44,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DegreesPerSecondInOneRadianPerSecond => (180 / Math.PI) * 1;
 
+        protected override double MillidegreesPerSecondInOneRadianPerSecond => ((180 / Math.PI) * 1)* 1E3;
+
+        protected override double MicrodegreesPerSecondInOneRadianPerSecond => ((180 / Math.PI) * 1) * 1E6;
+
+        protected override double NanodegreesPerSecondInOneRadianPerSecond => ((180 / Math.PI) * 1) * 1E9;
+
+
         [Test]
         public void DurationTimesRotationalSpeedEqualsAngle()
         {
