@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             if (atmospherespersecond.HasValue)
             {
-                return new PressureChangeRate(atmospherespersecond.Value * 1.01325*1e5);
+                return FromAtmospheresPerSecond(atmospherespersecond.Value);
             }
             else
             {
@@ -150,7 +150,7 @@ namespace UnitsNet
         {
             if (kilopascalspersecond.HasValue)
             {
-                return new PressureChangeRate((kilopascalspersecond.Value) * 1e3d);
+                return FromKilopascalsPerSecond(kilopascalspersecond.Value);
             }
             else
             {
@@ -165,7 +165,7 @@ namespace UnitsNet
         {
             if (megapascalspersecond.HasValue)
             {
-                return new PressureChangeRate((megapascalspersecond.Value) * 1e6d);
+                return FromMegapascalsPerSecond(megapascalspersecond.Value);
             }
             else
             {
@@ -180,7 +180,7 @@ namespace UnitsNet
         {
             if (pascalspersecond.HasValue)
             {
-                return new PressureChangeRate(pascalspersecond.Value);
+                return FromPascalsPerSecond(pascalspersecond.Value);
             }
             else
             {

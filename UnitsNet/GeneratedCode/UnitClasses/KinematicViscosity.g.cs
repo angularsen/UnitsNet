@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (centistokes.HasValue)
             {
-                return new KinematicViscosity((centistokes.Value/1e4) * 1e-2d);
+                return FromCentistokes(centistokes.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (decistokes.HasValue)
             {
-                return new KinematicViscosity((decistokes.Value/1e4) * 1e-1d);
+                return FromDecistokes(decistokes.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (kilostokes.HasValue)
             {
-                return new KinematicViscosity((kilostokes.Value/1e4) * 1e3d);
+                return FromKilostokes(kilostokes.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (microstokes.HasValue)
             {
-                return new KinematicViscosity((microstokes.Value/1e4) * 1e-6d);
+                return FromMicrostokes(microstokes.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (millistokes.HasValue)
             {
-                return new KinematicViscosity((millistokes.Value/1e4) * 1e-3d);
+                return FromMillistokes(millistokes.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (nanostokes.HasValue)
             {
-                return new KinematicViscosity((nanostokes.Value/1e4) * 1e-9d);
+                return FromNanostokes(nanostokes.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (squaremeterspersecond.HasValue)
             {
-                return new KinematicViscosity(squaremeterspersecond.Value);
+                return FromSquareMetersPerSecond(squaremeterspersecond.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (stokes.HasValue)
             {
-                return new KinematicViscosity(stokes.Value/1e4);
+                return FromStokes(stokes.Value);
             }
             else
             {

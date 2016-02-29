@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (caloriespergram.HasValue)
             {
-                return new SpecificEnergy(caloriespergram.Value*4.184e3);
+                return FromCaloriesPerGram(caloriespergram.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (joulesperkilogram.HasValue)
             {
-                return new SpecificEnergy(joulesperkilogram.Value);
+                return FromJoulesPerKilogram(joulesperkilogram.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (kilocaloriespergram.HasValue)
             {
-                return new SpecificEnergy((kilocaloriespergram.Value*4.184e3) * 1e3d);
+                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (kilojoulesperkilogram.HasValue)
             {
-                return new SpecificEnergy((kilojoulesperkilogram.Value) * 1e3d);
+                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (kilowatthoursperkilogram.HasValue)
             {
-                return new SpecificEnergy((kilowatthoursperkilogram.Value*3.6e3) * 1e3d);
+                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (megajoulesperkilogram.HasValue)
             {
-                return new SpecificEnergy((megajoulesperkilogram.Value) * 1e6d);
+                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (megawatthoursperkilogram.HasValue)
             {
-                return new SpecificEnergy((megawatthoursperkilogram.Value*3.6e3) * 1e6d);
+                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (watthoursperkilogram.HasValue)
             {
-                return new SpecificEnergy(watthoursperkilogram.Value*3.6e3);
+                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
             }
             else
             {

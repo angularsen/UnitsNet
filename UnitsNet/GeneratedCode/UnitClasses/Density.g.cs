@@ -231,7 +231,7 @@ namespace UnitsNet
         {
             if (kilogramspercubiccentimeter.HasValue)
             {
-                return new Density(kilogramspercubiccentimeter.Value*100000000);
+                return FromKilogramsPerCubicCentimeter(kilogramspercubiccentimeter.Value);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace UnitsNet
         {
             if (kilogramspercubicmeter.HasValue)
             {
-                return new Density(kilogramspercubicmeter.Value);
+                return FromKilogramsPerCubicMeter(kilogramspercubicmeter.Value);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace UnitsNet
         {
             if (kilogramspercubicmillimeter.HasValue)
             {
-                return new Density(kilogramspercubicmillimeter.Value*1000000000000);
+                return FromKilogramsPerCubicMillimeter(kilogramspercubicmillimeter.Value);
             }
             else
             {
@@ -276,7 +276,7 @@ namespace UnitsNet
         {
             if (kilopoundspercubicfoot.HasValue)
             {
-                return new Density((kilopoundspercubicfoot.Value/0.062427961) * 1e3d);
+                return FromKilopoundsPerCubicFoot(kilopoundspercubicfoot.Value);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace UnitsNet
         {
             if (kilopoundspercubicinch.HasValue)
             {
-                return new Density((kilopoundspercubicinch.Value*27679.904710191) * 1e3d);
+                return FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value);
             }
             else
             {
@@ -306,7 +306,7 @@ namespace UnitsNet
         {
             if (poundspercubicfoot.HasValue)
             {
-                return new Density(poundspercubicfoot.Value/0.062427961);
+                return FromPoundsPerCubicFoot(poundspercubicfoot.Value);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace UnitsNet
         {
             if (poundspercubicinch.HasValue)
             {
-                return new Density(poundspercubicinch.Value*27679.904710191);
+                return FromPoundsPerCubicInch(poundspercubicinch.Value);
             }
             else
             {
@@ -336,7 +336,7 @@ namespace UnitsNet
         {
             if (tonnespercubiccentimeter.HasValue)
             {
-                return new Density(tonnespercubiccentimeter.Value*100000000000);
+                return FromTonnesPerCubicCentimeter(tonnespercubiccentimeter.Value);
             }
             else
             {
@@ -351,7 +351,7 @@ namespace UnitsNet
         {
             if (tonnespercubicmeter.HasValue)
             {
-                return new Density(tonnespercubicmeter.Value*1000);
+                return FromTonnesPerCubicMeter(tonnespercubicmeter.Value);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UnitsNet
         {
             if (tonnespercubicmillimeter.HasValue)
             {
-                return new Density(tonnespercubicmillimeter.Value*1000000000000000);
+                return FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value);
             }
             else
             {

@@ -295,7 +295,7 @@ namespace UnitsNet
         {
             if (centimeters.HasValue)
             {
-                return new Length((centimeters.Value) * 1e-2d);
+                return FromCentimeters(centimeters.Value);
             }
             else
             {
@@ -310,7 +310,7 @@ namespace UnitsNet
         {
             if (decimeters.HasValue)
             {
-                return new Length((decimeters.Value) * 1e-1d);
+                return FromDecimeters(decimeters.Value);
             }
             else
             {
@@ -325,7 +325,7 @@ namespace UnitsNet
         {
             if (feet.HasValue)
             {
-                return new Length(feet.Value*0.3048);
+                return FromFeet(feet.Value);
             }
             else
             {
@@ -340,7 +340,7 @@ namespace UnitsNet
         {
             if (inches.HasValue)
             {
-                return new Length(inches.Value*2.54e-2);
+                return FromInches(inches.Value);
             }
             else
             {
@@ -355,7 +355,7 @@ namespace UnitsNet
         {
             if (kilometers.HasValue)
             {
-                return new Length((kilometers.Value) * 1e3d);
+                return FromKilometers(kilometers.Value);
             }
             else
             {
@@ -370,7 +370,7 @@ namespace UnitsNet
         {
             if (meters.HasValue)
             {
-                return new Length(meters.Value);
+                return FromMeters(meters.Value);
             }
             else
             {
@@ -385,7 +385,7 @@ namespace UnitsNet
         {
             if (microinches.HasValue)
             {
-                return new Length(microinches.Value*2.54e-8);
+                return FromMicroinches(microinches.Value);
             }
             else
             {
@@ -400,7 +400,7 @@ namespace UnitsNet
         {
             if (micrometers.HasValue)
             {
-                return new Length((micrometers.Value) * 1e-6d);
+                return FromMicrometers(micrometers.Value);
             }
             else
             {
@@ -415,7 +415,7 @@ namespace UnitsNet
         {
             if (mils.HasValue)
             {
-                return new Length(mils.Value*2.54e-5);
+                return FromMils(mils.Value);
             }
             else
             {
@@ -430,7 +430,7 @@ namespace UnitsNet
         {
             if (miles.HasValue)
             {
-                return new Length(miles.Value*1609.34);
+                return FromMiles(miles.Value);
             }
             else
             {
@@ -445,7 +445,7 @@ namespace UnitsNet
         {
             if (millimeters.HasValue)
             {
-                return new Length((millimeters.Value) * 1e-3d);
+                return FromMillimeters(millimeters.Value);
             }
             else
             {
@@ -460,7 +460,7 @@ namespace UnitsNet
         {
             if (nanometers.HasValue)
             {
-                return new Length((nanometers.Value) * 1e-9d);
+                return FromNanometers(nanometers.Value);
             }
             else
             {
@@ -475,7 +475,7 @@ namespace UnitsNet
         {
             if (nauticalmiles.HasValue)
             {
-                return new Length(nauticalmiles.Value*1852);
+                return FromNauticalMiles(nauticalmiles.Value);
             }
             else
             {
@@ -490,7 +490,7 @@ namespace UnitsNet
         {
             if (yards.HasValue)
             {
-                return new Length(yards.Value*0.9144);
+                return FromYards(yards.Value);
             }
             else
             {

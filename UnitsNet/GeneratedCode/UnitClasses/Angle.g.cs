@@ -231,7 +231,7 @@ namespace UnitsNet
         {
             if (arcminutes.HasValue)
             {
-                return new Angle(arcminutes.Value/60);
+                return FromArcminutes(arcminutes.Value);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace UnitsNet
         {
             if (arcseconds.HasValue)
             {
-                return new Angle(arcseconds.Value/3600);
+                return FromArcseconds(arcseconds.Value);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace UnitsNet
         {
             if (centiradians.HasValue)
             {
-                return new Angle((centiradians.Value*180/Math.PI) * 1e-2d);
+                return FromCentiradians(centiradians.Value);
             }
             else
             {
@@ -276,7 +276,7 @@ namespace UnitsNet
         {
             if (deciradians.HasValue)
             {
-                return new Angle((deciradians.Value*180/Math.PI) * 1e-1d);
+                return FromDeciradians(deciradians.Value);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace UnitsNet
         {
             if (degrees.HasValue)
             {
-                return new Angle(degrees.Value);
+                return FromDegrees(degrees.Value);
             }
             else
             {
@@ -306,7 +306,7 @@ namespace UnitsNet
         {
             if (gradians.HasValue)
             {
-                return new Angle(gradians.Value*0.9);
+                return FromGradians(gradians.Value);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace UnitsNet
         {
             if (microradians.HasValue)
             {
-                return new Angle((microradians.Value*180/Math.PI) * 1e-6d);
+                return FromMicroradians(microradians.Value);
             }
             else
             {
@@ -336,7 +336,7 @@ namespace UnitsNet
         {
             if (milliradians.HasValue)
             {
-                return new Angle((milliradians.Value*180/Math.PI) * 1e-3d);
+                return FromMilliradians(milliradians.Value);
             }
             else
             {
@@ -351,7 +351,7 @@ namespace UnitsNet
         {
             if (nanoradians.HasValue)
             {
-                return new Angle((nanoradians.Value*180/Math.PI) * 1e-9d);
+                return FromNanoradians(nanoradians.Value);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UnitsNet
         {
             if (radians.HasValue)
             {
-                return new Angle(radians.Value*180/Math.PI);
+                return FromRadians(radians.Value);
             }
             else
             {

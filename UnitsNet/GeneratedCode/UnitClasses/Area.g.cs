@@ -231,7 +231,7 @@ namespace UnitsNet
         {
             if (squarecentimeters.HasValue)
             {
-                return new Area(squarecentimeters.Value*1e-4);
+                return FromSquareCentimeters(squarecentimeters.Value);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace UnitsNet
         {
             if (squaredecimeters.HasValue)
             {
-                return new Area(squaredecimeters.Value*1e-2);
+                return FromSquareDecimeters(squaredecimeters.Value);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace UnitsNet
         {
             if (squarefeet.HasValue)
             {
-                return new Area(squarefeet.Value*0.092903);
+                return FromSquareFeet(squarefeet.Value);
             }
             else
             {
@@ -276,7 +276,7 @@ namespace UnitsNet
         {
             if (squareinches.HasValue)
             {
-                return new Area(squareinches.Value*0.00064516);
+                return FromSquareInches(squareinches.Value);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace UnitsNet
         {
             if (squarekilometers.HasValue)
             {
-                return new Area(squarekilometers.Value*1e6);
+                return FromSquareKilometers(squarekilometers.Value);
             }
             else
             {
@@ -306,7 +306,7 @@ namespace UnitsNet
         {
             if (squaremeters.HasValue)
             {
-                return new Area(squaremeters.Value);
+                return FromSquareMeters(squaremeters.Value);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace UnitsNet
         {
             if (squaremicrometers.HasValue)
             {
-                return new Area(squaremicrometers.Value*1e-12);
+                return FromSquareMicrometers(squaremicrometers.Value);
             }
             else
             {
@@ -336,7 +336,7 @@ namespace UnitsNet
         {
             if (squaremiles.HasValue)
             {
-                return new Area(squaremiles.Value*2.59e6);
+                return FromSquareMiles(squaremiles.Value);
             }
             else
             {
@@ -351,7 +351,7 @@ namespace UnitsNet
         {
             if (squaremillimeters.HasValue)
             {
-                return new Area(squaremillimeters.Value*1e-6);
+                return FromSquareMillimeters(squaremillimeters.Value);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UnitsNet
         {
             if (squareyards.HasValue)
             {
-                return new Area(squareyards.Value*0.836127);
+                return FromSquareYards(squareyards.Value);
             }
             else
             {

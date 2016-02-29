@@ -327,7 +327,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepercubiccentimeter.HasValue)
             {
-                return new SpecificWeight(kilogramsforcepercubiccentimeter.Value*9806650.19960652);
+                return FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value);
             }
             else
             {
@@ -342,7 +342,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepercubicmeter.HasValue)
             {
-                return new SpecificWeight(kilogramsforcepercubicmeter.Value*9.80665019960652);
+                return FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value);
             }
             else
             {
@@ -357,7 +357,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepercubicmillimeter.HasValue)
             {
-                return new SpecificWeight(kilogramsforcepercubicmillimeter.Value*9806650199.60653);
+                return FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value);
             }
             else
             {
@@ -372,7 +372,7 @@ namespace UnitsNet
         {
             if (kilonewtonspercubiccentimeter.HasValue)
             {
-                return new SpecificWeight((kilonewtonspercubiccentimeter.Value*1000000) * 1e3d);
+                return FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value);
             }
             else
             {
@@ -387,7 +387,7 @@ namespace UnitsNet
         {
             if (kilonewtonspercubicmeter.HasValue)
             {
-                return new SpecificWeight((kilonewtonspercubicmeter.Value) * 1e3d);
+                return FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value);
             }
             else
             {
@@ -402,7 +402,7 @@ namespace UnitsNet
         {
             if (kilonewtonspercubicmillimeter.HasValue)
             {
-                return new SpecificWeight((kilonewtonspercubicmillimeter.Value*1000000000) * 1e3d);
+                return FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value);
             }
             else
             {
@@ -417,7 +417,7 @@ namespace UnitsNet
         {
             if (kilopoundsforcepercubicfoot.HasValue)
             {
-                return new SpecificWeight((kilopoundsforcepercubicfoot.Value*157.087477433193) * 1e3d);
+                return FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value);
             }
             else
             {
@@ -432,7 +432,7 @@ namespace UnitsNet
         {
             if (kilopoundsforcepercubicinch.HasValue)
             {
-                return new SpecificWeight((kilopoundsforcepercubicinch.Value*271447.161004558) * 1e3d);
+                return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
             }
             else
             {
@@ -447,7 +447,7 @@ namespace UnitsNet
         {
             if (newtonspercubiccentimeter.HasValue)
             {
-                return new SpecificWeight(newtonspercubiccentimeter.Value*1000000);
+                return FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value);
             }
             else
             {
@@ -462,7 +462,7 @@ namespace UnitsNet
         {
             if (newtonspercubicmeter.HasValue)
             {
-                return new SpecificWeight(newtonspercubicmeter.Value);
+                return FromNewtonsPerCubicMeter(newtonspercubicmeter.Value);
             }
             else
             {
@@ -477,7 +477,7 @@ namespace UnitsNet
         {
             if (newtonspercubicmillimeter.HasValue)
             {
-                return new SpecificWeight(newtonspercubicmillimeter.Value*1000000000);
+                return FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value);
             }
             else
             {
@@ -492,7 +492,7 @@ namespace UnitsNet
         {
             if (poundsforcepercubicfoot.HasValue)
             {
-                return new SpecificWeight(poundsforcepercubicfoot.Value*157.087477433193);
+                return FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value);
             }
             else
             {
@@ -507,7 +507,7 @@ namespace UnitsNet
         {
             if (poundsforcepercubicinch.HasValue)
             {
-                return new SpecificWeight(poundsforcepercubicinch.Value*271447.161004558);
+                return FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value);
             }
             else
             {
@@ -522,7 +522,7 @@ namespace UnitsNet
         {
             if (tonnesforcepercubiccentimeter.HasValue)
             {
-                return new SpecificWeight(tonnesforcepercubiccentimeter.Value*9806650199.60653);
+                return FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value);
             }
             else
             {
@@ -537,7 +537,7 @@ namespace UnitsNet
         {
             if (tonnesforcepercubicmeter.HasValue)
             {
-                return new SpecificWeight(tonnesforcepercubicmeter.Value*9806.65019960653);
+                return FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value);
             }
             else
             {
@@ -552,7 +552,7 @@ namespace UnitsNet
         {
             if (tonnesforcepercubicmillimeter.HasValue)
             {
-                return new SpecificWeight(tonnesforcepercubicmillimeter.Value*9806650199606.53);
+                return FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value);
             }
             else
             {

@@ -103,7 +103,7 @@ namespace UnitsNet
         {
             if (decibels.HasValue)
             {
-                return new Level(decibels.Value);
+                return FromDecibels(decibels.Value);
             }
             else
             {
@@ -118,7 +118,7 @@ namespace UnitsNet
         {
             if (nepers.HasValue)
             {
-                return new Level((1/0.115129254)*nepers.Value);
+                return FromNepers(nepers.Value);
             }
             else
             {

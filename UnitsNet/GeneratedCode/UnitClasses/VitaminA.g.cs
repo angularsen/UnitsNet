@@ -87,7 +87,7 @@ namespace UnitsNet
         {
             if (internationalunits.HasValue)
             {
-                return new VitaminA(internationalunits.Value);
+                return FromInternationalUnits(internationalunits.Value);
             }
             else
             {

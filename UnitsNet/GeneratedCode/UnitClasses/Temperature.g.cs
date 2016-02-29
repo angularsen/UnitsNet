@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (degreescelsius.HasValue)
             {
-                return new Temperature(degreescelsius.Value + 273.15);
+                return FromDegreesCelsius(degreescelsius.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (degreesdelisle.HasValue)
             {
-                return new Temperature(degreesdelisle.Value*-2/3 + 373.15);
+                return FromDegreesDelisle(degreesdelisle.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (degreesfahrenheit.HasValue)
             {
-                return new Temperature(degreesfahrenheit.Value*5/9 + 459.67*5/9);
+                return FromDegreesFahrenheit(degreesfahrenheit.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (degreesnewton.HasValue)
             {
-                return new Temperature(degreesnewton.Value*100/33 + 273.15);
+                return FromDegreesNewton(degreesnewton.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (degreesrankine.HasValue)
             {
-                return new Temperature(degreesrankine.Value*5/9);
+                return FromDegreesRankine(degreesrankine.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (degreesreaumur.HasValue)
             {
-                return new Temperature(degreesreaumur.Value*5/4 + 273.15);
+                return FromDegreesReaumur(degreesreaumur.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (degreesroemer.HasValue)
             {
-                return new Temperature(degreesroemer.Value*40/21 + 273.15 - 7.5*40d/21);
+                return FromDegreesRoemer(degreesroemer.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (kelvins.HasValue)
             {
-                return new Temperature(kelvins.Value);
+                return FromKelvins(kelvins.Value);
             }
             else
             {

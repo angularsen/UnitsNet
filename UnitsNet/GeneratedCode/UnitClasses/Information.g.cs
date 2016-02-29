@@ -487,7 +487,7 @@ namespace UnitsNet
         {
             if (bits.HasValue)
             {
-                return new Information(Convert.ToDecimal(bits.Value));
+                return FromBits(bits.Value);
             }
             else
             {
@@ -502,7 +502,7 @@ namespace UnitsNet
         {
             if (bytes.HasValue)
             {
-                return new Information(Convert.ToDecimal(bytes.Value*8d));
+                return FromBytes(bytes.Value);
             }
             else
             {
@@ -517,7 +517,7 @@ namespace UnitsNet
         {
             if (exabits.HasValue)
             {
-                return new Information(Convert.ToDecimal((exabits.Value) * 1e18d));
+                return FromExabits(exabits.Value);
             }
             else
             {
@@ -532,7 +532,7 @@ namespace UnitsNet
         {
             if (exabytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((exabytes.Value*8d) * 1e18d));
+                return FromExabytes(exabytes.Value);
             }
             else
             {
@@ -547,7 +547,7 @@ namespace UnitsNet
         {
             if (exbibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((exbibits.Value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+                return FromExbibits(exbibits.Value);
             }
             else
             {
@@ -562,7 +562,7 @@ namespace UnitsNet
         {
             if (exbibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((exbibytes.Value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+                return FromExbibytes(exbibytes.Value);
             }
             else
             {
@@ -577,7 +577,7 @@ namespace UnitsNet
         {
             if (gibibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((gibibits.Value) * (1024d * 1024 * 1024)));
+                return FromGibibits(gibibits.Value);
             }
             else
             {
@@ -592,7 +592,7 @@ namespace UnitsNet
         {
             if (gibibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((gibibytes.Value*8d) * (1024d * 1024 * 1024)));
+                return FromGibibytes(gibibytes.Value);
             }
             else
             {
@@ -607,7 +607,7 @@ namespace UnitsNet
         {
             if (gigabits.HasValue)
             {
-                return new Information(Convert.ToDecimal((gigabits.Value) * 1e9d));
+                return FromGigabits(gigabits.Value);
             }
             else
             {
@@ -622,7 +622,7 @@ namespace UnitsNet
         {
             if (gigabytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((gigabytes.Value*8d) * 1e9d));
+                return FromGigabytes(gigabytes.Value);
             }
             else
             {
@@ -637,7 +637,7 @@ namespace UnitsNet
         {
             if (kibibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((kibibits.Value) * 1024d));
+                return FromKibibits(kibibits.Value);
             }
             else
             {
@@ -652,7 +652,7 @@ namespace UnitsNet
         {
             if (kibibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((kibibytes.Value*8d) * 1024d));
+                return FromKibibytes(kibibytes.Value);
             }
             else
             {
@@ -667,7 +667,7 @@ namespace UnitsNet
         {
             if (kilobits.HasValue)
             {
-                return new Information(Convert.ToDecimal((kilobits.Value) * 1e3d));
+                return FromKilobits(kilobits.Value);
             }
             else
             {
@@ -682,7 +682,7 @@ namespace UnitsNet
         {
             if (kilobytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((kilobytes.Value*8d) * 1e3d));
+                return FromKilobytes(kilobytes.Value);
             }
             else
             {
@@ -697,7 +697,7 @@ namespace UnitsNet
         {
             if (mebibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((mebibits.Value) * (1024d * 1024)));
+                return FromMebibits(mebibits.Value);
             }
             else
             {
@@ -712,7 +712,7 @@ namespace UnitsNet
         {
             if (mebibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((mebibytes.Value*8d) * (1024d * 1024)));
+                return FromMebibytes(mebibytes.Value);
             }
             else
             {
@@ -727,7 +727,7 @@ namespace UnitsNet
         {
             if (megabits.HasValue)
             {
-                return new Information(Convert.ToDecimal((megabits.Value) * 1e6d));
+                return FromMegabits(megabits.Value);
             }
             else
             {
@@ -742,7 +742,7 @@ namespace UnitsNet
         {
             if (megabytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((megabytes.Value*8d) * 1e6d));
+                return FromMegabytes(megabytes.Value);
             }
             else
             {
@@ -757,7 +757,7 @@ namespace UnitsNet
         {
             if (pebibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((pebibits.Value) * (1024d * 1024 * 1024 * 1024 * 1024)));
+                return FromPebibits(pebibits.Value);
             }
             else
             {
@@ -772,7 +772,7 @@ namespace UnitsNet
         {
             if (pebibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((pebibytes.Value*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+                return FromPebibytes(pebibytes.Value);
             }
             else
             {
@@ -787,7 +787,7 @@ namespace UnitsNet
         {
             if (petabits.HasValue)
             {
-                return new Information(Convert.ToDecimal((petabits.Value) * 1e15d));
+                return FromPetabits(petabits.Value);
             }
             else
             {
@@ -802,7 +802,7 @@ namespace UnitsNet
         {
             if (petabytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((petabytes.Value*8d) * 1e15d));
+                return FromPetabytes(petabytes.Value);
             }
             else
             {
@@ -817,7 +817,7 @@ namespace UnitsNet
         {
             if (tebibits.HasValue)
             {
-                return new Information(Convert.ToDecimal((tebibits.Value) * (1024d * 1024 * 1024 * 1024)));
+                return FromTebibits(tebibits.Value);
             }
             else
             {
@@ -832,7 +832,7 @@ namespace UnitsNet
         {
             if (tebibytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((tebibytes.Value*8d) * (1024d * 1024 * 1024 * 1024)));
+                return FromTebibytes(tebibytes.Value);
             }
             else
             {
@@ -847,7 +847,7 @@ namespace UnitsNet
         {
             if (terabits.HasValue)
             {
-                return new Information(Convert.ToDecimal((terabits.Value) * 1e12d));
+                return FromTerabits(terabits.Value);
             }
             else
             {
@@ -862,7 +862,7 @@ namespace UnitsNet
         {
             if (terabytes.HasValue)
             {
-                return new Information(Convert.ToDecimal((terabytes.Value*8d) * 1e12d));
+                return FromTerabytes(terabytes.Value);
             }
             else
             {

@@ -599,7 +599,7 @@ namespace UnitsNet
         {
             if (atmospheres.HasValue)
             {
-                return new Pressure(atmospheres.Value*1.01325*1e5);
+                return FromAtmospheres(atmospheres.Value);
             }
             else
             {
@@ -614,7 +614,7 @@ namespace UnitsNet
         {
             if (bars.HasValue)
             {
-                return new Pressure(bars.Value*1e5);
+                return FromBars(bars.Value);
             }
             else
             {
@@ -629,7 +629,7 @@ namespace UnitsNet
         {
             if (centibars.HasValue)
             {
-                return new Pressure((centibars.Value*1e5) * 1e-2d);
+                return FromCentibars(centibars.Value);
             }
             else
             {
@@ -644,7 +644,7 @@ namespace UnitsNet
         {
             if (decapascals.HasValue)
             {
-                return new Pressure((decapascals.Value) * 1e1d);
+                return FromDecapascals(decapascals.Value);
             }
             else
             {
@@ -659,7 +659,7 @@ namespace UnitsNet
         {
             if (decibars.HasValue)
             {
-                return new Pressure((decibars.Value*1e5) * 1e-1d);
+                return FromDecibars(decibars.Value);
             }
             else
             {
@@ -674,7 +674,7 @@ namespace UnitsNet
         {
             if (gigapascals.HasValue)
             {
-                return new Pressure((gigapascals.Value) * 1e9d);
+                return FromGigapascals(gigapascals.Value);
             }
             else
             {
@@ -689,7 +689,7 @@ namespace UnitsNet
         {
             if (hectopascals.HasValue)
             {
-                return new Pressure((hectopascals.Value) * 1e2d);
+                return FromHectopascals(hectopascals.Value);
             }
             else
             {
@@ -704,7 +704,7 @@ namespace UnitsNet
         {
             if (kilobars.HasValue)
             {
-                return new Pressure((kilobars.Value*1e5) * 1e3d);
+                return FromKilobars(kilobars.Value);
             }
             else
             {
@@ -719,7 +719,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepersquarecentimeter.HasValue)
             {
-                return new Pressure(kilogramsforcepersquarecentimeter.Value*9.80665*1e4);
+                return FromKilogramsForcePerSquareCentimeter(kilogramsforcepersquarecentimeter.Value);
             }
             else
             {
@@ -734,7 +734,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepersquaremeter.HasValue)
             {
-                return new Pressure(kilogramsforcepersquaremeter.Value*9.80665019960652);
+                return FromKilogramsForcePerSquareMeter(kilogramsforcepersquaremeter.Value);
             }
             else
             {
@@ -749,7 +749,7 @@ namespace UnitsNet
         {
             if (kilogramsforcepersquaremillimeter.HasValue)
             {
-                return new Pressure(kilogramsforcepersquaremillimeter.Value*9806650.19960652);
+                return FromKilogramsForcePerSquareMillimeter(kilogramsforcepersquaremillimeter.Value);
             }
             else
             {
@@ -764,7 +764,7 @@ namespace UnitsNet
         {
             if (kilonewtonspersquarecentimeter.HasValue)
             {
-                return new Pressure((kilonewtonspersquarecentimeter.Value*1e4) * 1e3d);
+                return FromKilonewtonsPerSquareCentimeter(kilonewtonspersquarecentimeter.Value);
             }
             else
             {
@@ -779,7 +779,7 @@ namespace UnitsNet
         {
             if (kilonewtonspersquaremeter.HasValue)
             {
-                return new Pressure((kilonewtonspersquaremeter.Value) * 1e3d);
+                return FromKilonewtonsPerSquareMeter(kilonewtonspersquaremeter.Value);
             }
             else
             {
@@ -794,7 +794,7 @@ namespace UnitsNet
         {
             if (kilonewtonspersquaremillimeter.HasValue)
             {
-                return new Pressure((kilonewtonspersquaremillimeter.Value*1e6) * 1e3d);
+                return FromKilonewtonsPerSquareMillimeter(kilonewtonspersquaremillimeter.Value);
             }
             else
             {
@@ -809,7 +809,7 @@ namespace UnitsNet
         {
             if (kilopascals.HasValue)
             {
-                return new Pressure((kilopascals.Value) * 1e3d);
+                return FromKilopascals(kilopascals.Value);
             }
             else
             {
@@ -824,7 +824,7 @@ namespace UnitsNet
         {
             if (kilopoundsforcepersquarefoot.HasValue)
             {
-                return new Pressure((kilopoundsforcepersquarefoot.Value*47.8802631216372) * 1e3d);
+                return FromKilopoundsForcePerSquareFoot(kilopoundsforcepersquarefoot.Value);
             }
             else
             {
@@ -839,7 +839,7 @@ namespace UnitsNet
         {
             if (kilopoundsforcepersquareinch.HasValue)
             {
-                return new Pressure((kilopoundsforcepersquareinch.Value*6894.75788951576) * 1e3d);
+                return FromKilopoundsForcePerSquareInch(kilopoundsforcepersquareinch.Value);
             }
             else
             {
@@ -854,7 +854,7 @@ namespace UnitsNet
         {
             if (megabars.HasValue)
             {
-                return new Pressure((megabars.Value*1e5) * 1e6d);
+                return FromMegabars(megabars.Value);
             }
             else
             {
@@ -869,7 +869,7 @@ namespace UnitsNet
         {
             if (megapascals.HasValue)
             {
-                return new Pressure((megapascals.Value) * 1e6d);
+                return FromMegapascals(megapascals.Value);
             }
             else
             {
@@ -884,7 +884,7 @@ namespace UnitsNet
         {
             if (micropascals.HasValue)
             {
-                return new Pressure((micropascals.Value) * 1e-6d);
+                return FromMicropascals(micropascals.Value);
             }
             else
             {
@@ -899,7 +899,7 @@ namespace UnitsNet
         {
             if (millibars.HasValue)
             {
-                return new Pressure((millibars.Value*1e5) * 1e-3d);
+                return FromMillibars(millibars.Value);
             }
             else
             {
@@ -914,7 +914,7 @@ namespace UnitsNet
         {
             if (newtonspersquarecentimeter.HasValue)
             {
-                return new Pressure(newtonspersquarecentimeter.Value*1e4);
+                return FromNewtonsPerSquareCentimeter(newtonspersquarecentimeter.Value);
             }
             else
             {
@@ -929,7 +929,7 @@ namespace UnitsNet
         {
             if (newtonspersquaremeter.HasValue)
             {
-                return new Pressure(newtonspersquaremeter.Value);
+                return FromNewtonsPerSquareMeter(newtonspersquaremeter.Value);
             }
             else
             {
@@ -944,7 +944,7 @@ namespace UnitsNet
         {
             if (newtonspersquaremillimeter.HasValue)
             {
-                return new Pressure(newtonspersquaremillimeter.Value*1e6);
+                return FromNewtonsPerSquareMillimeter(newtonspersquaremillimeter.Value);
             }
             else
             {
@@ -959,7 +959,7 @@ namespace UnitsNet
         {
             if (pascals.HasValue)
             {
-                return new Pressure(pascals.Value);
+                return FromPascals(pascals.Value);
             }
             else
             {
@@ -974,7 +974,7 @@ namespace UnitsNet
         {
             if (poundsforcepersquarefoot.HasValue)
             {
-                return new Pressure(poundsforcepersquarefoot.Value*47.8802631216372);
+                return FromPoundsForcePerSquareFoot(poundsforcepersquarefoot.Value);
             }
             else
             {
@@ -989,7 +989,7 @@ namespace UnitsNet
         {
             if (poundsforcepersquareinch.HasValue)
             {
-                return new Pressure(poundsforcepersquareinch.Value*6894.75788951576);
+                return FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value);
             }
             else
             {
@@ -1004,7 +1004,7 @@ namespace UnitsNet
         {
             if (psi.HasValue)
             {
-                return new Pressure(psi.Value*6.89464975179*1e3);
+                return FromPsi(psi.Value);
             }
             else
             {
@@ -1019,7 +1019,7 @@ namespace UnitsNet
         {
             if (technicalatmospheres.HasValue)
             {
-                return new Pressure(technicalatmospheres.Value*9.80680592331*1e4);
+                return FromTechnicalAtmospheres(technicalatmospheres.Value);
             }
             else
             {
@@ -1034,7 +1034,7 @@ namespace UnitsNet
         {
             if (tonnesforcepersquarecentimeter.HasValue)
             {
-                return new Pressure(tonnesforcepersquarecentimeter.Value*98066501.9960652);
+                return FromTonnesForcePerSquareCentimeter(tonnesforcepersquarecentimeter.Value);
             }
             else
             {
@@ -1049,7 +1049,7 @@ namespace UnitsNet
         {
             if (tonnesforcepersquaremeter.HasValue)
             {
-                return new Pressure(tonnesforcepersquaremeter.Value*9806.65019960653);
+                return FromTonnesForcePerSquareMeter(tonnesforcepersquaremeter.Value);
             }
             else
             {
@@ -1064,7 +1064,7 @@ namespace UnitsNet
         {
             if (tonnesforcepersquaremillimeter.HasValue)
             {
-                return new Pressure(tonnesforcepersquaremillimeter.Value*9806650199.60653);
+                return FromTonnesForcePerSquareMillimeter(tonnesforcepersquaremillimeter.Value);
             }
             else
             {
@@ -1079,7 +1079,7 @@ namespace UnitsNet
         {
             if (torrs.HasValue)
             {
-                return new Pressure(torrs.Value*1.3332266752*1e2);
+                return FromTorrs(torrs.Value);
             }
             else
             {

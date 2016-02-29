@@ -167,7 +167,7 @@ namespace UnitsNet
         {
             if (decimalfractions.HasValue)
             {
-                return new Ratio(decimalfractions.Value);
+                return FromDecimalFractions(decimalfractions.Value);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace UnitsNet
         {
             if (partsperbillion.HasValue)
             {
-                return new Ratio(partsperbillion.Value/1e9);
+                return FromPartsPerBillion(partsperbillion.Value);
             }
             else
             {
@@ -197,7 +197,7 @@ namespace UnitsNet
         {
             if (partspermillion.HasValue)
             {
-                return new Ratio(partspermillion.Value/1e6);
+                return FromPartsPerMillion(partspermillion.Value);
             }
             else
             {
@@ -212,7 +212,7 @@ namespace UnitsNet
         {
             if (partsperthousand.HasValue)
             {
-                return new Ratio(partsperthousand.Value/1e3);
+                return FromPartsPerThousand(partsperthousand.Value);
             }
             else
             {
@@ -227,7 +227,7 @@ namespace UnitsNet
         {
             if (partspertrillion.HasValue)
             {
-                return new Ratio(partspertrillion.Value/1e12);
+                return FromPartsPerTrillion(partspertrillion.Value);
             }
             else
             {
@@ -242,7 +242,7 @@ namespace UnitsNet
         {
             if (percent.HasValue)
             {
-                return new Ratio(percent.Value/1e2);
+                return FromPercent(percent.Value);
             }
             else
             {

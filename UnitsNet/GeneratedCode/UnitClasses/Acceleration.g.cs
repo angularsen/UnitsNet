@@ -183,7 +183,7 @@ namespace UnitsNet
         {
             if (centimeterpersecondsquared.HasValue)
             {
-                return new Acceleration((centimeterpersecondsquared.Value) * 1e-2d);
+                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
             }
             else
             {
@@ -198,7 +198,7 @@ namespace UnitsNet
         {
             if (decimeterpersecondsquared.HasValue)
             {
-                return new Acceleration((decimeterpersecondsquared.Value) * 1e-1d);
+                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
             }
             else
             {
@@ -213,7 +213,7 @@ namespace UnitsNet
         {
             if (kilometerpersecondsquared.HasValue)
             {
-                return new Acceleration((kilometerpersecondsquared.Value) * 1e3d);
+                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
             }
             else
             {
@@ -228,7 +228,7 @@ namespace UnitsNet
         {
             if (meterpersecondsquared.HasValue)
             {
-                return new Acceleration(meterpersecondsquared.Value);
+                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
             }
             else
             {
@@ -243,7 +243,7 @@ namespace UnitsNet
         {
             if (micrometerpersecondsquared.HasValue)
             {
-                return new Acceleration((micrometerpersecondsquared.Value) * 1e-6d);
+                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
             }
             else
             {
@@ -258,7 +258,7 @@ namespace UnitsNet
         {
             if (millimeterpersecondsquared.HasValue)
             {
-                return new Acceleration((millimeterpersecondsquared.Value) * 1e-3d);
+                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
             }
             else
             {
@@ -273,7 +273,7 @@ namespace UnitsNet
         {
             if (nanometerpersecondsquared.HasValue)
             {
-                return new Acceleration((nanometerpersecondsquared.Value) * 1e-9d);
+                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
             }
             else
             {

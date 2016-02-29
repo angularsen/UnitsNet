@@ -87,7 +87,7 @@ namespace UnitsNet
         {
             if (newtonspersecond.HasValue)
             {
-                return new ForceChangeRate(newtonspersecond.Value);
+                return FromNewtonsPerSecond(newtonspersecond.Value);
             }
             else
             {

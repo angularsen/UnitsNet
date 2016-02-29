@@ -231,7 +231,7 @@ namespace UnitsNet
         {
             if (centigramspersecond.HasValue)
             {
-                return new MassFlow((centigramspersecond.Value) * 1e-2d);
+                return FromCentigramsPerSecond(centigramspersecond.Value);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace UnitsNet
         {
             if (decagramspersecond.HasValue)
             {
-                return new MassFlow((decagramspersecond.Value) * 1e1d);
+                return FromDecagramsPerSecond(decagramspersecond.Value);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace UnitsNet
         {
             if (decigramspersecond.HasValue)
             {
-                return new MassFlow((decigramspersecond.Value) * 1e-1d);
+                return FromDecigramsPerSecond(decigramspersecond.Value);
             }
             else
             {
@@ -276,7 +276,7 @@ namespace UnitsNet
         {
             if (gramspersecond.HasValue)
             {
-                return new MassFlow(gramspersecond.Value);
+                return FromGramsPerSecond(gramspersecond.Value);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace UnitsNet
         {
             if (hectogramspersecond.HasValue)
             {
-                return new MassFlow((hectogramspersecond.Value) * 1e2d);
+                return FromHectogramsPerSecond(hectogramspersecond.Value);
             }
             else
             {
@@ -306,7 +306,7 @@ namespace UnitsNet
         {
             if (kilogramspersecond.HasValue)
             {
-                return new MassFlow((kilogramspersecond.Value) * 1e3d);
+                return FromKilogramsPerSecond(kilogramspersecond.Value);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace UnitsNet
         {
             if (microgramspersecond.HasValue)
             {
-                return new MassFlow((microgramspersecond.Value) * 1e-6d);
+                return FromMicrogramsPerSecond(microgramspersecond.Value);
             }
             else
             {
@@ -336,7 +336,7 @@ namespace UnitsNet
         {
             if (milligramspersecond.HasValue)
             {
-                return new MassFlow((milligramspersecond.Value) * 1e-3d);
+                return FromMilligramsPerSecond(milligramspersecond.Value);
             }
             else
             {
@@ -351,7 +351,7 @@ namespace UnitsNet
         {
             if (nanogramspersecond.HasValue)
             {
-                return new MassFlow((nanogramspersecond.Value) * 1e-9d);
+                return FromNanogramsPerSecond(nanogramspersecond.Value);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UnitsNet
         {
             if (tonnesperday.HasValue)
             {
-                return new MassFlow(tonnesperday.Value/0.0864000);
+                return FromTonnesPerDay(tonnesperday.Value);
             }
             else
             {

@@ -279,7 +279,7 @@ namespace UnitsNet
         {
             if (britishthermalunits.HasValue)
             {
-                return new Energy(britishthermalunits.Value*1055.05585262);
+                return FromBritishThermalUnits(britishthermalunits.Value);
             }
             else
             {
@@ -294,7 +294,7 @@ namespace UnitsNet
         {
             if (calories.HasValue)
             {
-                return new Energy(calories.Value*4.184);
+                return FromCalories(calories.Value);
             }
             else
             {
@@ -309,7 +309,7 @@ namespace UnitsNet
         {
             if (electronvolts.HasValue)
             {
-                return new Energy(electronvolts.Value*1.602176565e-19);
+                return FromElectronVolts(electronvolts.Value);
             }
             else
             {
@@ -324,7 +324,7 @@ namespace UnitsNet
         {
             if (ergs.HasValue)
             {
-                return new Energy(ergs.Value*1e-7);
+                return FromErgs(ergs.Value);
             }
             else
             {
@@ -339,7 +339,7 @@ namespace UnitsNet
         {
             if (footpounds.HasValue)
             {
-                return new Energy(footpounds.Value*1.355817948);
+                return FromFootPounds(footpounds.Value);
             }
             else
             {
@@ -354,7 +354,7 @@ namespace UnitsNet
         {
             if (gigawatthours.HasValue)
             {
-                return new Energy((gigawatthours.Value*3600d) * 1e9d);
+                return FromGigawattHours(gigawatthours.Value);
             }
             else
             {
@@ -369,7 +369,7 @@ namespace UnitsNet
         {
             if (joules.HasValue)
             {
-                return new Energy(joules.Value);
+                return FromJoules(joules.Value);
             }
             else
             {
@@ -384,7 +384,7 @@ namespace UnitsNet
         {
             if (kilocalories.HasValue)
             {
-                return new Energy((kilocalories.Value*4.184) * 1e3d);
+                return FromKilocalories(kilocalories.Value);
             }
             else
             {
@@ -399,7 +399,7 @@ namespace UnitsNet
         {
             if (kilojoules.HasValue)
             {
-                return new Energy((kilojoules.Value) * 1e3d);
+                return FromKilojoules(kilojoules.Value);
             }
             else
             {
@@ -414,7 +414,7 @@ namespace UnitsNet
         {
             if (kilowatthours.HasValue)
             {
-                return new Energy((kilowatthours.Value*3600d) * 1e3d);
+                return FromKilowattHours(kilowatthours.Value);
             }
             else
             {
@@ -429,7 +429,7 @@ namespace UnitsNet
         {
             if (megajoules.HasValue)
             {
-                return new Energy((megajoules.Value) * 1e6d);
+                return FromMegajoules(megajoules.Value);
             }
             else
             {
@@ -444,7 +444,7 @@ namespace UnitsNet
         {
             if (megawatthours.HasValue)
             {
-                return new Energy((megawatthours.Value*3600d) * 1e6d);
+                return FromMegawattHours(megawatthours.Value);
             }
             else
             {
@@ -459,7 +459,7 @@ namespace UnitsNet
         {
             if (watthours.HasValue)
             {
-                return new Energy(watthours.Value*3600d);
+                return FromWattHours(watthours.Value);
             }
             else
             {

@@ -263,7 +263,7 @@ namespace UnitsNet
         {
             if (centimeterspersecond.HasValue)
             {
-                return new Speed((centimeterspersecond.Value) * 1e-2d);
+                return FromCentimetersPerSecond(centimeterspersecond.Value);
             }
             else
             {
@@ -278,7 +278,7 @@ namespace UnitsNet
         {
             if (decimeterspersecond.HasValue)
             {
-                return new Speed((decimeterspersecond.Value) * 1e-1d);
+                return FromDecimetersPerSecond(decimeterspersecond.Value);
             }
             else
             {
@@ -293,7 +293,7 @@ namespace UnitsNet
         {
             if (feetpersecond.HasValue)
             {
-                return new Speed(feetpersecond.Value*0.3048);
+                return FromFeetPerSecond(feetpersecond.Value);
             }
             else
             {
@@ -308,7 +308,7 @@ namespace UnitsNet
         {
             if (kilometersperhour.HasValue)
             {
-                return new Speed(kilometersperhour.Value/3.6);
+                return FromKilometersPerHour(kilometersperhour.Value);
             }
             else
             {
@@ -323,7 +323,7 @@ namespace UnitsNet
         {
             if (kilometerspersecond.HasValue)
             {
-                return new Speed((kilometerspersecond.Value) * 1e3d);
+                return FromKilometersPerSecond(kilometerspersecond.Value);
             }
             else
             {
@@ -338,7 +338,7 @@ namespace UnitsNet
         {
             if (knots.HasValue)
             {
-                return new Speed(knots.Value*0.514444);
+                return FromKnots(knots.Value);
             }
             else
             {
@@ -353,7 +353,7 @@ namespace UnitsNet
         {
             if (metersperhour.HasValue)
             {
-                return new Speed(metersperhour.Value/3600);
+                return FromMetersPerHour(metersperhour.Value);
             }
             else
             {
@@ -368,7 +368,7 @@ namespace UnitsNet
         {
             if (meterspersecond.HasValue)
             {
-                return new Speed(meterspersecond.Value);
+                return FromMetersPerSecond(meterspersecond.Value);
             }
             else
             {
@@ -383,7 +383,7 @@ namespace UnitsNet
         {
             if (micrometerspersecond.HasValue)
             {
-                return new Speed((micrometerspersecond.Value) * 1e-6d);
+                return FromMicrometersPerSecond(micrometerspersecond.Value);
             }
             else
             {
@@ -398,7 +398,7 @@ namespace UnitsNet
         {
             if (milesperhour.HasValue)
             {
-                return new Speed(milesperhour.Value*0.44704);
+                return FromMilesPerHour(milesperhour.Value);
             }
             else
             {
@@ -413,7 +413,7 @@ namespace UnitsNet
         {
             if (millimeterspersecond.HasValue)
             {
-                return new Speed((millimeterspersecond.Value) * 1e-3d);
+                return FromMillimetersPerSecond(millimeterspersecond.Value);
             }
             else
             {
@@ -428,7 +428,7 @@ namespace UnitsNet
         {
             if (nanometerspersecond.HasValue)
             {
-                return new Speed((nanometerspersecond.Value) * 1e-9d);
+                return FromNanometersPerSecond(nanometerspersecond.Value);
             }
             else
             {

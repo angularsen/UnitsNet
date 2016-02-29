@@ -343,7 +343,7 @@ namespace UnitsNet
         {
             if (centigrams.HasValue)
             {
-                return new Mass((centigrams.Value/1e3) * 1e-2d);
+                return FromCentigrams(centigrams.Value);
             }
             else
             {
@@ -358,7 +358,7 @@ namespace UnitsNet
         {
             if (decagrams.HasValue)
             {
-                return new Mass((decagrams.Value/1e3) * 1e1d);
+                return FromDecagrams(decagrams.Value);
             }
             else
             {
@@ -373,7 +373,7 @@ namespace UnitsNet
         {
             if (decigrams.HasValue)
             {
-                return new Mass((decigrams.Value/1e3) * 1e-1d);
+                return FromDecigrams(decigrams.Value);
             }
             else
             {
@@ -388,7 +388,7 @@ namespace UnitsNet
         {
             if (grams.HasValue)
             {
-                return new Mass(grams.Value/1e3);
+                return FromGrams(grams.Value);
             }
             else
             {
@@ -403,7 +403,7 @@ namespace UnitsNet
         {
             if (hectograms.HasValue)
             {
-                return new Mass((hectograms.Value/1e3) * 1e2d);
+                return FromHectograms(hectograms.Value);
             }
             else
             {
@@ -418,7 +418,7 @@ namespace UnitsNet
         {
             if (kilograms.HasValue)
             {
-                return new Mass((kilograms.Value/1e3) * 1e3d);
+                return FromKilograms(kilograms.Value);
             }
             else
             {
@@ -433,7 +433,7 @@ namespace UnitsNet
         {
             if (kilotonnes.HasValue)
             {
-                return new Mass((kilotonnes.Value*1e3) * 1e3d);
+                return FromKilotonnes(kilotonnes.Value);
             }
             else
             {
@@ -448,7 +448,7 @@ namespace UnitsNet
         {
             if (longtons.HasValue)
             {
-                return new Mass(longtons.Value*1016.0469088);
+                return FromLongTons(longtons.Value);
             }
             else
             {
@@ -463,7 +463,7 @@ namespace UnitsNet
         {
             if (megatonnes.HasValue)
             {
-                return new Mass((megatonnes.Value*1e3) * 1e6d);
+                return FromMegatonnes(megatonnes.Value);
             }
             else
             {
@@ -478,7 +478,7 @@ namespace UnitsNet
         {
             if (micrograms.HasValue)
             {
-                return new Mass((micrograms.Value/1e3) * 1e-6d);
+                return FromMicrograms(micrograms.Value);
             }
             else
             {
@@ -493,7 +493,7 @@ namespace UnitsNet
         {
             if (milligrams.HasValue)
             {
-                return new Mass((milligrams.Value/1e3) * 1e-3d);
+                return FromMilligrams(milligrams.Value);
             }
             else
             {
@@ -508,7 +508,7 @@ namespace UnitsNet
         {
             if (nanograms.HasValue)
             {
-                return new Mass((nanograms.Value/1e3) * 1e-9d);
+                return FromNanograms(nanograms.Value);
             }
             else
             {
@@ -523,7 +523,7 @@ namespace UnitsNet
         {
             if (ounces.HasValue)
             {
-                return new Mass(ounces.Value/35.2739619);
+                return FromOunces(ounces.Value);
             }
             else
             {
@@ -538,7 +538,7 @@ namespace UnitsNet
         {
             if (pounds.HasValue)
             {
-                return new Mass(pounds.Value*0.45359237);
+                return FromPounds(pounds.Value);
             }
             else
             {
@@ -553,7 +553,7 @@ namespace UnitsNet
         {
             if (shorttons.HasValue)
             {
-                return new Mass(shorttons.Value*907.18474);
+                return FromShortTons(shorttons.Value);
             }
             else
             {
@@ -568,7 +568,7 @@ namespace UnitsNet
         {
             if (stone.HasValue)
             {
-                return new Mass(stone.Value/0.1574731728702698);
+                return FromStone(stone.Value);
             }
             else
             {
@@ -583,7 +583,7 @@ namespace UnitsNet
         {
             if (tonnes.HasValue)
             {
-                return new Mass(tonnes.Value*1e3);
+                return FromTonnes(tonnes.Value);
             }
             else
             {

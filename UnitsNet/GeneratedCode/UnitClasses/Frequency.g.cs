@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (cyclesperhour.HasValue)
             {
-                return new Frequency(cyclesperhour.Value*3600);
+                return FromCyclesPerHour(cyclesperhour.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (cyclesperminute.HasValue)
             {
-                return new Frequency(cyclesperminute.Value*60);
+                return FromCyclesPerMinute(cyclesperminute.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (gigahertz.HasValue)
             {
-                return new Frequency((gigahertz.Value) * 1e9d);
+                return FromGigahertz(gigahertz.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (hertz.HasValue)
             {
-                return new Frequency(hertz.Value);
+                return FromHertz(hertz.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (kilohertz.HasValue)
             {
-                return new Frequency((kilohertz.Value) * 1e3d);
+                return FromKilohertz(kilohertz.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (megahertz.HasValue)
             {
-                return new Frequency((megahertz.Value) * 1e6d);
+                return FromMegahertz(megahertz.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (radianspersecond.HasValue)
             {
-                return new Frequency(radianspersecond.Value/6.2831853072);
+                return FromRadiansPerSecond(radianspersecond.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (terahertz.HasValue)
             {
-                return new Frequency((terahertz.Value) * 1e12d);
+                return FromTerahertz(terahertz.Value);
             }
             else
             {

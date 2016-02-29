@@ -151,7 +151,7 @@ namespace UnitsNet
         {
             if (kilovolts.HasValue)
             {
-                return new ElectricPotential((kilovolts.Value) * 1e3d);
+                return FromKilovolts(kilovolts.Value);
             }
             else
             {
@@ -166,7 +166,7 @@ namespace UnitsNet
         {
             if (megavolts.HasValue)
             {
-                return new ElectricPotential((megavolts.Value) * 1e6d);
+                return FromMegavolts(megavolts.Value);
             }
             else
             {
@@ -181,7 +181,7 @@ namespace UnitsNet
         {
             if (microvolts.HasValue)
             {
-                return new ElectricPotential((microvolts.Value) * 1e-6d);
+                return FromMicrovolts(microvolts.Value);
             }
             else
             {
@@ -196,7 +196,7 @@ namespace UnitsNet
         {
             if (millivolts.HasValue)
             {
-                return new ElectricPotential((millivolts.Value) * 1e-3d);
+                return FromMillivolts(millivolts.Value);
             }
             else
             {
@@ -211,7 +211,7 @@ namespace UnitsNet
         {
             if (volts.HasValue)
             {
-                return new ElectricPotential(volts.Value);
+                return FromVolts(volts.Value);
             }
             else
             {

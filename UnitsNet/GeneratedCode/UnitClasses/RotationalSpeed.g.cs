@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (centiradianspersecond.HasValue)
             {
-                return new RotationalSpeed((centiradianspersecond.Value) * 1e-2d);
+                return FromCentiradiansPerSecond(centiradianspersecond.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (deciradianspersecond.HasValue)
             {
-                return new RotationalSpeed((deciradianspersecond.Value) * 1e-1d);
+                return FromDeciradiansPerSecond(deciradianspersecond.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (microradianspersecond.HasValue)
             {
-                return new RotationalSpeed((microradianspersecond.Value) * 1e-6d);
+                return FromMicroradiansPerSecond(microradianspersecond.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (milliradianspersecond.HasValue)
             {
-                return new RotationalSpeed((milliradianspersecond.Value) * 1e-3d);
+                return FromMilliradiansPerSecond(milliradianspersecond.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (nanoradianspersecond.HasValue)
             {
-                return new RotationalSpeed((nanoradianspersecond.Value) * 1e-9d);
+                return FromNanoradiansPerSecond(nanoradianspersecond.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (radianspersecond.HasValue)
             {
-                return new RotationalSpeed(radianspersecond.Value);
+                return FromRadiansPerSecond(radianspersecond.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (revolutionsperminute.HasValue)
             {
-                return new RotationalSpeed((revolutionsperminute.Value*6.2831853072)/60);
+                return FromRevolutionsPerMinute(revolutionsperminute.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (revolutionspersecond.HasValue)
             {
-                return new RotationalSpeed(revolutionspersecond.Value*6.2831853072);
+                return FromRevolutionsPerSecond(revolutionspersecond.Value);
             }
             else
             {

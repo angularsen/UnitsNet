@@ -167,7 +167,7 @@ namespace UnitsNet
         {
             if (amperes.HasValue)
             {
-                return new ElectricCurrent(amperes.Value);
+                return FromAmperes(amperes.Value);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace UnitsNet
         {
             if (kiloamperes.HasValue)
             {
-                return new ElectricCurrent((kiloamperes.Value) * 1e3d);
+                return FromKiloamperes(kiloamperes.Value);
             }
             else
             {
@@ -197,7 +197,7 @@ namespace UnitsNet
         {
             if (megaamperes.HasValue)
             {
-                return new ElectricCurrent((megaamperes.Value) * 1e6d);
+                return FromMegaamperes(megaamperes.Value);
             }
             else
             {
@@ -212,7 +212,7 @@ namespace UnitsNet
         {
             if (microamperes.HasValue)
             {
-                return new ElectricCurrent((microamperes.Value) * 1e-6d);
+                return FromMicroamperes(microamperes.Value);
             }
             else
             {
@@ -227,7 +227,7 @@ namespace UnitsNet
         {
             if (milliamperes.HasValue)
             {
-                return new ElectricCurrent((milliamperes.Value) * 1e-3d);
+                return FromMilliamperes(milliamperes.Value);
             }
             else
             {
@@ -242,7 +242,7 @@ namespace UnitsNet
         {
             if (nanoamperes.HasValue)
             {
-                return new ElectricCurrent((nanoamperes.Value) * 1e-9d);
+                return FromNanoamperes(nanoamperes.Value);
             }
             else
             {

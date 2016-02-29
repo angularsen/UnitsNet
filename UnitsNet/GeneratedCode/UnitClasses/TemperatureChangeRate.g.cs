@@ -215,7 +215,7 @@ namespace UnitsNet
         {
             if (centidegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((centidegreescelsiuspersecond.Value) * 1e-2d);
+                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
             }
             else
             {
@@ -230,7 +230,7 @@ namespace UnitsNet
         {
             if (decadegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((decadegreescelsiuspersecond.Value) * 1e1d);
+                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
             }
             else
             {
@@ -245,7 +245,7 @@ namespace UnitsNet
         {
             if (decidegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((decidegreescelsiuspersecond.Value) * 1e-1d);
+                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
             }
             else
             {
@@ -260,7 +260,7 @@ namespace UnitsNet
         {
             if (degreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate(degreescelsiuspersecond.Value);
+                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
             }
             else
             {
@@ -275,7 +275,7 @@ namespace UnitsNet
         {
             if (hectodegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((hectodegreescelsiuspersecond.Value) * 1e2d);
+                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
             }
             else
             {
@@ -290,7 +290,7 @@ namespace UnitsNet
         {
             if (kilodegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((kilodegreescelsiuspersecond.Value) * 1e3d);
+                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
             }
             else
             {
@@ -305,7 +305,7 @@ namespace UnitsNet
         {
             if (microdegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((microdegreescelsiuspersecond.Value) * 1e-6d);
+                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
             }
             else
             {
@@ -320,7 +320,7 @@ namespace UnitsNet
         {
             if (millidegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((millidegreescelsiuspersecond.Value) * 1e-3d);
+                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
             }
             else
             {
@@ -335,7 +335,7 @@ namespace UnitsNet
         {
             if (nanodegreescelsiuspersecond.HasValue)
             {
-                return new TemperatureChangeRate((nanodegreescelsiuspersecond.Value) * 1e-9d);
+                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
             }
             else
             {

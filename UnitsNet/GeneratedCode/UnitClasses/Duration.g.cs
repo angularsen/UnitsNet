@@ -231,7 +231,7 @@ namespace UnitsNet
         {
             if (days.HasValue)
             {
-                return new Duration(days.Value*24*3600);
+                return FromDays(days.Value);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace UnitsNet
         {
             if (hours.HasValue)
             {
-                return new Duration(hours.Value*3600);
+                return FromHours(hours.Value);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace UnitsNet
         {
             if (microseconds.HasValue)
             {
-                return new Duration(microseconds.Value/1e6);
+                return FromMicroseconds(microseconds.Value);
             }
             else
             {
@@ -276,7 +276,7 @@ namespace UnitsNet
         {
             if (milliseconds.HasValue)
             {
-                return new Duration(milliseconds.Value/1e3);
+                return FromMilliseconds(milliseconds.Value);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace UnitsNet
         {
             if (minutes.HasValue)
             {
-                return new Duration(minutes.Value*60);
+                return FromMinutes(minutes.Value);
             }
             else
             {
@@ -306,7 +306,7 @@ namespace UnitsNet
         {
             if (months.HasValue)
             {
-                return new Duration(months.Value*30*24*3600);
+                return FromMonths(months.Value);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace UnitsNet
         {
             if (nanoseconds.HasValue)
             {
-                return new Duration(nanoseconds.Value/1e9);
+                return FromNanoseconds(nanoseconds.Value);
             }
             else
             {
@@ -336,7 +336,7 @@ namespace UnitsNet
         {
             if (seconds.HasValue)
             {
-                return new Duration(seconds.Value);
+                return FromSeconds(seconds.Value);
             }
             else
             {
@@ -351,7 +351,7 @@ namespace UnitsNet
         {
             if (weeks.HasValue)
             {
-                return new Duration(weeks.Value*7*24*3600);
+                return FromWeeks(weeks.Value);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UnitsNet
         {
             if (years.HasValue)
             {
-                return new Duration(years.Value*365*24*3600);
+                return FromYears(years.Value);
             }
             else
             {

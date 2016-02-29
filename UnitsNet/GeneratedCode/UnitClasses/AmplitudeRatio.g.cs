@@ -119,7 +119,7 @@ namespace UnitsNet
         {
             if (decibelmicrovolts.HasValue)
             {
-                return new AmplitudeRatio(decibelmicrovolts.Value - 120);
+                return FromDecibelMicrovolts(decibelmicrovolts.Value);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace UnitsNet
         {
             if (decibelmillivolts.HasValue)
             {
-                return new AmplitudeRatio(decibelmillivolts.Value - 60);
+                return FromDecibelMillivolts(decibelmillivolts.Value);
             }
             else
             {
@@ -149,7 +149,7 @@ namespace UnitsNet
         {
             if (decibelvolts.HasValue)
             {
-                return new AmplitudeRatio(decibelvolts.Value);
+                return FromDecibelVolts(decibelvolts.Value);
             }
             else
             {

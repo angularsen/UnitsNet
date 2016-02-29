@@ -199,7 +199,7 @@ namespace UnitsNet
         {
             if (dyne.HasValue)
             {
-                return new Force(dyne.Value/1e5);
+                return FromDyne(dyne.Value);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace UnitsNet
         {
             if (kilogramsforce.HasValue)
             {
-                return new Force(kilogramsforce.Value*Constants.Gravity);
+                return FromKilogramsForce(kilogramsforce.Value);
             }
             else
             {
@@ -229,7 +229,7 @@ namespace UnitsNet
         {
             if (kilonewtons.HasValue)
             {
-                return new Force((kilonewtons.Value) * 1e3d);
+                return FromKilonewtons(kilonewtons.Value);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace UnitsNet
         {
             if (kiloponds.HasValue)
             {
-                return new Force(kiloponds.Value*Constants.Gravity);
+                return FromKiloPonds(kiloponds.Value);
             }
             else
             {
@@ -259,7 +259,7 @@ namespace UnitsNet
         {
             if (newtons.HasValue)
             {
-                return new Force(newtons.Value);
+                return FromNewtons(newtons.Value);
             }
             else
             {
@@ -274,7 +274,7 @@ namespace UnitsNet
         {
             if (poundals.HasValue)
             {
-                return new Force(poundals.Value*0.13825502798973041652092282466083);
+                return FromPoundals(poundals.Value);
             }
             else
             {
@@ -289,7 +289,7 @@ namespace UnitsNet
         {
             if (poundsforce.HasValue)
             {
-                return new Force(poundsforce.Value*4.4482216152605095551842641431421);
+                return FromPoundsForce(poundsforce.Value);
             }
             else
             {
@@ -304,7 +304,7 @@ namespace UnitsNet
         {
             if (tonnesforce.HasValue)
             {
-                return new Force(tonnesforce.Value*Constants.Gravity*1000);
+                return FromTonnesForce(tonnesforce.Value);
             }
             else
             {

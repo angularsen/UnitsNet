@@ -103,7 +103,7 @@ namespace UnitsNet
         {
             if (decibelmilliwatts.HasValue)
             {
-                return new PowerRatio(decibelmilliwatts.Value - 30);
+                return FromDecibelMilliwatts(decibelmilliwatts.Value);
             }
             else
             {
@@ -118,7 +118,7 @@ namespace UnitsNet
         {
             if (decibelwatts.HasValue)
             {
-                return new PowerRatio(decibelwatts.Value);
+                return FromDecibelWatts(decibelwatts.Value);
             }
             else
             {

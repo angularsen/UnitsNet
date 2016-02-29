@@ -537,7 +537,7 @@ namespace UnitsNet
         {
             if (autablespoons.HasValue)
             {
-                return new Volume(autablespoons.Value*2e-5);
+                return FromAuTablespoons(autablespoons.Value);
             }
             else
             {
@@ -552,7 +552,7 @@ namespace UnitsNet
         {
             if (centiliters.HasValue)
             {
-                return new Volume((centiliters.Value/1e3) * 1e-2d);
+                return FromCentiliters(centiliters.Value);
             }
             else
             {
@@ -567,7 +567,7 @@ namespace UnitsNet
         {
             if (cubiccentimeters.HasValue)
             {
-                return new Volume(cubiccentimeters.Value/1e6);
+                return FromCubicCentimeters(cubiccentimeters.Value);
             }
             else
             {
@@ -582,7 +582,7 @@ namespace UnitsNet
         {
             if (cubicdecimeters.HasValue)
             {
-                return new Volume(cubicdecimeters.Value/1e3);
+                return FromCubicDecimeters(cubicdecimeters.Value);
             }
             else
             {
@@ -597,7 +597,7 @@ namespace UnitsNet
         {
             if (cubicfeet.HasValue)
             {
-                return new Volume(cubicfeet.Value*0.0283168);
+                return FromCubicFeet(cubicfeet.Value);
             }
             else
             {
@@ -612,7 +612,7 @@ namespace UnitsNet
         {
             if (cubicinches.HasValue)
             {
-                return new Volume(cubicinches.Value*1.6387*1e-5);
+                return FromCubicInches(cubicinches.Value);
             }
             else
             {
@@ -627,7 +627,7 @@ namespace UnitsNet
         {
             if (cubickilometers.HasValue)
             {
-                return new Volume(cubickilometers.Value*1e9);
+                return FromCubicKilometers(cubickilometers.Value);
             }
             else
             {
@@ -642,7 +642,7 @@ namespace UnitsNet
         {
             if (cubicmeters.HasValue)
             {
-                return new Volume(cubicmeters.Value);
+                return FromCubicMeters(cubicmeters.Value);
             }
             else
             {
@@ -657,7 +657,7 @@ namespace UnitsNet
         {
             if (cubicmicrometers.HasValue)
             {
-                return new Volume(cubicmicrometers.Value/1e18);
+                return FromCubicMicrometers(cubicmicrometers.Value);
             }
             else
             {
@@ -672,7 +672,7 @@ namespace UnitsNet
         {
             if (cubicmiles.HasValue)
             {
-                return new Volume(cubicmiles.Value*4.16818183*1e9);
+                return FromCubicMiles(cubicmiles.Value);
             }
             else
             {
@@ -687,7 +687,7 @@ namespace UnitsNet
         {
             if (cubicmillimeters.HasValue)
             {
-                return new Volume(cubicmillimeters.Value/1e9);
+                return FromCubicMillimeters(cubicmillimeters.Value);
             }
             else
             {
@@ -702,7 +702,7 @@ namespace UnitsNet
         {
             if (cubicyards.HasValue)
             {
-                return new Volume(cubicyards.Value*0.764554858);
+                return FromCubicYards(cubicyards.Value);
             }
             else
             {
@@ -717,7 +717,7 @@ namespace UnitsNet
         {
             if (deciliters.HasValue)
             {
-                return new Volume((deciliters.Value/1e3) * 1e-1d);
+                return FromDeciliters(deciliters.Value);
             }
             else
             {
@@ -732,7 +732,7 @@ namespace UnitsNet
         {
             if (hectoliters.HasValue)
             {
-                return new Volume((hectoliters.Value/1e3) * 1e2d);
+                return FromHectoliters(hectoliters.Value);
             }
             else
             {
@@ -747,7 +747,7 @@ namespace UnitsNet
         {
             if (imperialgallons.HasValue)
             {
-                return new Volume(imperialgallons.Value*0.00454609000000181429905810072407);
+                return FromImperialGallons(imperialgallons.Value);
             }
             else
             {
@@ -762,7 +762,7 @@ namespace UnitsNet
         {
             if (imperialounces.HasValue)
             {
-                return new Volume(imperialounces.Value*2.8413062499962901241875439064617e-5);
+                return FromImperialOunces(imperialounces.Value);
             }
             else
             {
@@ -777,7 +777,7 @@ namespace UnitsNet
         {
             if (liters.HasValue)
             {
-                return new Volume(liters.Value/1e3);
+                return FromLiters(liters.Value);
             }
             else
             {
@@ -792,7 +792,7 @@ namespace UnitsNet
         {
             if (metriccups.HasValue)
             {
-                return new Volume(metriccups.Value*0.00025);
+                return FromMetricCups(metriccups.Value);
             }
             else
             {
@@ -807,7 +807,7 @@ namespace UnitsNet
         {
             if (metricteaspoons.HasValue)
             {
-                return new Volume(metricteaspoons.Value*0.5e-5);
+                return FromMetricTeaspoons(metricteaspoons.Value);
             }
             else
             {
@@ -822,7 +822,7 @@ namespace UnitsNet
         {
             if (milliliters.HasValue)
             {
-                return new Volume((milliliters.Value/1e3) * 1e-3d);
+                return FromMilliliters(milliliters.Value);
             }
             else
             {
@@ -837,7 +837,7 @@ namespace UnitsNet
         {
             if (tablespoons.HasValue)
             {
-                return new Volume(tablespoons.Value*1.478676478125e-5);
+                return FromTablespoons(tablespoons.Value);
             }
             else
             {
@@ -852,7 +852,7 @@ namespace UnitsNet
         {
             if (teaspoons.HasValue)
             {
-                return new Volume(teaspoons.Value*4.92892159375e-6);
+                return FromTeaspoons(teaspoons.Value);
             }
             else
             {
@@ -867,7 +867,7 @@ namespace UnitsNet
         {
             if (uktablespoons.HasValue)
             {
-                return new Volume(uktablespoons.Value*1.5e-5);
+                return FromUkTablespoons(uktablespoons.Value);
             }
             else
             {
@@ -882,7 +882,7 @@ namespace UnitsNet
         {
             if (uscustomarycups.HasValue)
             {
-                return new Volume(uscustomarycups.Value*0.0002365882365);
+                return FromUsCustomaryCups(uscustomarycups.Value);
             }
             else
             {
@@ -897,7 +897,7 @@ namespace UnitsNet
         {
             if (usgallons.HasValue)
             {
-                return new Volume(usgallons.Value*0.00378541);
+                return FromUsGallons(usgallons.Value);
             }
             else
             {
@@ -912,7 +912,7 @@ namespace UnitsNet
         {
             if (uslegalcups.HasValue)
             {
-                return new Volume(uslegalcups.Value*0.00024);
+                return FromUsLegalCups(uslegalcups.Value);
             }
             else
             {
@@ -927,7 +927,7 @@ namespace UnitsNet
         {
             if (usounces.HasValue)
             {
-                return new Volume(usounces.Value*2.957352956253760505068307980135e-5);
+                return FromUsOunces(usounces.Value);
             }
             else
             {
@@ -942,7 +942,7 @@ namespace UnitsNet
         {
             if (ustablespoons.HasValue)
             {
-                return new Volume(ustablespoons.Value*1.478676478125e-5);
+                return FromUsTablespoons(ustablespoons.Value);
             }
             else
             {
@@ -957,7 +957,7 @@ namespace UnitsNet
         {
             if (usteaspoons.HasValue)
             {
-                return new Volume(usteaspoons.Value*4.92892159375e-6);
+                return FromUsTeaspoons(usteaspoons.Value);
             }
             else
             {

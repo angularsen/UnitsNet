@@ -119,7 +119,7 @@ namespace UnitsNet
         {
             if ($($valueParamName).HasValue)
             {
-                return new $className($func);
+                return From$($unit.PluralName)($($valueParamName).Value);
             }
             else
             {

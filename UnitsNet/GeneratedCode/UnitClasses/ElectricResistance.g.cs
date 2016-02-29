@@ -119,7 +119,7 @@ namespace UnitsNet
         {
             if (kiloohms.HasValue)
             {
-                return new ElectricResistance((kiloohms.Value) * 1e3d);
+                return FromKiloohms(kiloohms.Value);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace UnitsNet
         {
             if (megaohms.HasValue)
             {
-                return new ElectricResistance((megaohms.Value) * 1e6d);
+                return FromMegaohms(megaohms.Value);
             }
             else
             {
@@ -149,7 +149,7 @@ namespace UnitsNet
         {
             if (ohms.HasValue)
             {
-                return new ElectricResistance(ohms.Value);
+                return FromOhms(ohms.Value);
             }
             else
             {

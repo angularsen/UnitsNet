@@ -327,7 +327,7 @@ namespace UnitsNet
         {
             if (boilerhorsepower.HasValue)
             {
-                return new Power(Convert.ToDecimal(boilerhorsepower.Value*9812.5d));
+                return FromBoilerHorsepower(boilerhorsepower.Value);
             }
             else
             {
@@ -342,7 +342,7 @@ namespace UnitsNet
         {
             if (electricalhorsepower.HasValue)
             {
-                return new Power(Convert.ToDecimal(electricalhorsepower.Value*746d));
+                return FromElectricalHorsepower(electricalhorsepower.Value);
             }
             else
             {
@@ -357,7 +357,7 @@ namespace UnitsNet
         {
             if (femtowatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((femtowatts.Value) * 1e-15d));
+                return FromFemtowatts(femtowatts.Value);
             }
             else
             {
@@ -372,7 +372,7 @@ namespace UnitsNet
         {
             if (gigawatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((gigawatts.Value) * 1e9d));
+                return FromGigawatts(gigawatts.Value);
             }
             else
             {
@@ -387,7 +387,7 @@ namespace UnitsNet
         {
             if (hydraulichorsepower.HasValue)
             {
-                return new Power(Convert.ToDecimal(hydraulichorsepower.Value*745.69988145d));
+                return FromHydraulicHorsepower(hydraulichorsepower.Value);
             }
             else
             {
@@ -402,7 +402,7 @@ namespace UnitsNet
         {
             if (kilowatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((kilowatts.Value) * 1e3d));
+                return FromKilowatts(kilowatts.Value);
             }
             else
             {
@@ -417,7 +417,7 @@ namespace UnitsNet
         {
             if (mechanicalhorsepower.HasValue)
             {
-                return new Power(Convert.ToDecimal(mechanicalhorsepower.Value*745.69d));
+                return FromMechanicalHorsepower(mechanicalhorsepower.Value);
             }
             else
             {
@@ -432,7 +432,7 @@ namespace UnitsNet
         {
             if (megawatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((megawatts.Value) * 1e6d));
+                return FromMegawatts(megawatts.Value);
             }
             else
             {
@@ -447,7 +447,7 @@ namespace UnitsNet
         {
             if (metrichorsepower.HasValue)
             {
-                return new Power(Convert.ToDecimal(metrichorsepower.Value*735.49875d));
+                return FromMetricHorsepower(metrichorsepower.Value);
             }
             else
             {
@@ -462,7 +462,7 @@ namespace UnitsNet
         {
             if (microwatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((microwatts.Value) * 1e-6d));
+                return FromMicrowatts(microwatts.Value);
             }
             else
             {
@@ -477,7 +477,7 @@ namespace UnitsNet
         {
             if (milliwatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((milliwatts.Value) * 1e-3d));
+                return FromMilliwatts(milliwatts.Value);
             }
             else
             {
@@ -492,7 +492,7 @@ namespace UnitsNet
         {
             if (nanowatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((nanowatts.Value) * 1e-9d));
+                return FromNanowatts(nanowatts.Value);
             }
             else
             {
@@ -507,7 +507,7 @@ namespace UnitsNet
         {
             if (petawatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((petawatts.Value) * 1e15d));
+                return FromPetawatts(petawatts.Value);
             }
             else
             {
@@ -522,7 +522,7 @@ namespace UnitsNet
         {
             if (picowatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((picowatts.Value) * 1e-12d));
+                return FromPicowatts(picowatts.Value);
             }
             else
             {
@@ -537,7 +537,7 @@ namespace UnitsNet
         {
             if (terawatts.HasValue)
             {
-                return new Power(Convert.ToDecimal((terawatts.Value) * 1e12d));
+                return FromTerawatts(terawatts.Value);
             }
             else
             {
@@ -552,7 +552,7 @@ namespace UnitsNet
         {
             if (watts.HasValue)
             {
-                return new Power(Convert.ToDecimal(watts.Value));
+                return FromWatts(watts.Value);
             }
             else
             {

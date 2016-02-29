@@ -327,7 +327,7 @@ namespace UnitsNet
         {
             if (kilogramforcecentimeters.HasValue)
             {
-                return new Torque(kilogramforcecentimeters.Value*0.0980665019960652);
+                return FromKilogramForceCentimeters(kilogramforcecentimeters.Value);
             }
             else
             {
@@ -342,7 +342,7 @@ namespace UnitsNet
         {
             if (kilogramforcemeters.HasValue)
             {
-                return new Torque(kilogramforcemeters.Value*9.80665019960652);
+                return FromKilogramForceMeters(kilogramforcemeters.Value);
             }
             else
             {
@@ -357,7 +357,7 @@ namespace UnitsNet
         {
             if (kilogramforcemillimeters.HasValue)
             {
-                return new Torque(kilogramforcemillimeters.Value*0.00980665019960652);
+                return FromKilogramForceMillimeters(kilogramforcemillimeters.Value);
             }
             else
             {
@@ -372,7 +372,7 @@ namespace UnitsNet
         {
             if (kilonewtoncentimeters.HasValue)
             {
-                return new Torque((kilonewtoncentimeters.Value*0.01) * 1e3d);
+                return FromKilonewtonCentimeters(kilonewtoncentimeters.Value);
             }
             else
             {
@@ -387,7 +387,7 @@ namespace UnitsNet
         {
             if (kilonewtonmeters.HasValue)
             {
-                return new Torque((kilonewtonmeters.Value) * 1e3d);
+                return FromKilonewtonMeters(kilonewtonmeters.Value);
             }
             else
             {
@@ -402,7 +402,7 @@ namespace UnitsNet
         {
             if (kilonewtonmillimeters.HasValue)
             {
-                return new Torque((kilonewtonmillimeters.Value*0.001) * 1e3d);
+                return FromKilonewtonMillimeters(kilonewtonmillimeters.Value);
             }
             else
             {
@@ -417,7 +417,7 @@ namespace UnitsNet
         {
             if (kilopoundforcefeet.HasValue)
             {
-                return new Torque((kilopoundforcefeet.Value*1.3558180656) * 1e3d);
+                return FromKilopoundForceFeet(kilopoundforcefeet.Value);
             }
             else
             {
@@ -432,7 +432,7 @@ namespace UnitsNet
         {
             if (kilopoundforceinches.HasValue)
             {
-                return new Torque((kilopoundforceinches.Value*0.1129848388) * 1e3d);
+                return FromKilopoundForceInches(kilopoundforceinches.Value);
             }
             else
             {
@@ -447,7 +447,7 @@ namespace UnitsNet
         {
             if (newtoncentimeters.HasValue)
             {
-                return new Torque(newtoncentimeters.Value*0.01);
+                return FromNewtonCentimeters(newtoncentimeters.Value);
             }
             else
             {
@@ -462,7 +462,7 @@ namespace UnitsNet
         {
             if (newtonmeters.HasValue)
             {
-                return new Torque(newtonmeters.Value);
+                return FromNewtonMeters(newtonmeters.Value);
             }
             else
             {
@@ -477,7 +477,7 @@ namespace UnitsNet
         {
             if (newtonmillimeters.HasValue)
             {
-                return new Torque(newtonmillimeters.Value*0.001);
+                return FromNewtonMillimeters(newtonmillimeters.Value);
             }
             else
             {
@@ -492,7 +492,7 @@ namespace UnitsNet
         {
             if (poundforcefeet.HasValue)
             {
-                return new Torque(poundforcefeet.Value*1.3558180656);
+                return FromPoundForceFeet(poundforcefeet.Value);
             }
             else
             {
@@ -507,7 +507,7 @@ namespace UnitsNet
         {
             if (poundforceinches.HasValue)
             {
-                return new Torque(poundforceinches.Value*0.1129848388);
+                return FromPoundForceInches(poundforceinches.Value);
             }
             else
             {
@@ -522,7 +522,7 @@ namespace UnitsNet
         {
             if (tonneforcecentimeters.HasValue)
             {
-                return new Torque(tonneforcecentimeters.Value*98.0665019960652);
+                return FromTonneForceCentimeters(tonneforcecentimeters.Value);
             }
             else
             {
@@ -537,7 +537,7 @@ namespace UnitsNet
         {
             if (tonneforcemeters.HasValue)
             {
-                return new Torque(tonneforcemeters.Value*9806.65019960653);
+                return FromTonneForceMeters(tonneforcemeters.Value);
             }
             else
             {
@@ -552,7 +552,7 @@ namespace UnitsNet
         {
             if (tonneforcemillimeters.HasValue)
             {
-                return new Torque(tonneforcemillimeters.Value*9.80665019960652);
+                return FromTonneForceMillimeters(tonneforcemillimeters.Value);
             }
             else
             {

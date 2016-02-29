@@ -167,7 +167,7 @@ namespace UnitsNet
         {
             if (cubicfeetpersecond.HasValue)
             {
-                return new Flow(cubicfeetpersecond.Value/35.314666213);
+                return FromCubicFeetPerSecond(cubicfeetpersecond.Value);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace UnitsNet
         {
             if (cubicmetersperhour.HasValue)
             {
-                return new Flow(cubicmetersperhour.Value/3600);
+                return FromCubicMetersPerHour(cubicmetersperhour.Value);
             }
             else
             {
@@ -197,7 +197,7 @@ namespace UnitsNet
         {
             if (cubicmeterspersecond.HasValue)
             {
-                return new Flow(cubicmeterspersecond.Value);
+                return FromCubicMetersPerSecond(cubicmeterspersecond.Value);
             }
             else
             {
@@ -212,7 +212,7 @@ namespace UnitsNet
         {
             if (litersperminute.HasValue)
             {
-                return new Flow(litersperminute.Value/60000.00000);
+                return FromLitersPerMinute(litersperminute.Value);
             }
             else
             {
@@ -227,7 +227,7 @@ namespace UnitsNet
         {
             if (millionusgallonsperday.HasValue)
             {
-                return new Flow(millionusgallonsperday.Value/22.824465227);
+                return FromMillionUsGallonsPerDay(millionusgallonsperday.Value);
             }
             else
             {
@@ -242,7 +242,7 @@ namespace UnitsNet
         {
             if (usgallonsperminute.HasValue)
             {
-                return new Flow(usgallonsperminute.Value/15850.323141489);
+                return FromUsGallonsPerMinute(usgallonsperminute.Value);
             }
             else
             {
