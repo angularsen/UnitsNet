@@ -129,17 +129,35 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "g"),
                                 new AbbreviationsForCulture("ru-RU", "g"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Microdegree,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μ°"),
+                                new AbbreviationsForCulture("ru-RU", "μ°"),
+                            }),
                         new CulturesForEnumValue((int) AngleUnit.Microradian,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "μrad"),
                                 new AbbreviationsForCulture("ru-RU", "μрад"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Millidegree,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m°"),
+                                new AbbreviationsForCulture("ru-RU", "m°"),
+                            }),
                         new CulturesForEnumValue((int) AngleUnit.Milliradian,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mrad"),
                                 new AbbreviationsForCulture("ru-RU", "mрад"),
+                            }),
+                        new CulturesForEnumValue((int) AngleUnit.Nanodegree,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "n°"),
+                                new AbbreviationsForCulture("ru-RU", "n°"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Nanoradian,
                             new[]

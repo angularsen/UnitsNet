@@ -31,8 +31,11 @@ namespace UnitsNet.Units
         Deciradian,
         Degree,
         Gradian,
+        Microdegree,
         Microradian,
+        Millidegree,
         Milliradian,
+        Nanodegree,
         Nanoradian,
         Radian,
     }

@@ -23,6 +23,7 @@
     {
       "SingularName": "Degree",
       "PluralName": "Degrees",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [

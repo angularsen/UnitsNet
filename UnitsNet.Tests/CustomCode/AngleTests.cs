@@ -34,6 +34,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double RadiansInOneDegree => Math.PI/2/90;
 
+        protected override double MillidegreesInOneDegree => 1E3;
+
+        protected override double MicrodegreesInOneDegree => 1E6;
+
+        protected override double NanodegreesInOneDegree => 1E9;
+
         protected override double NanoradiansInOneDegree => Math.PI/2/90*1E9;
 
         protected override double MicroradiansInOneDegree => Math.PI/2/90*1E6;
