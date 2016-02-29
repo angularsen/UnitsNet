@@ -42,8 +42,11 @@ namespace UnitsNet.Tests
         protected abstract double DeciradiansInOneDegree { get; }
         protected abstract double DegreesInOneDegree { get; }
         protected abstract double GradiansInOneDegree { get; }
+        protected abstract double MicrodegreesInOneDegree { get; }
         protected abstract double MicroradiansInOneDegree { get; }
+        protected abstract double MillidegreesInOneDegree { get; }
         protected abstract double MilliradiansInOneDegree { get; }
+        protected abstract double NanodegreesInOneDegree { get; }
         protected abstract double NanoradiansInOneDegree { get; }
         protected abstract double RadiansInOneDegree { get; }
 
@@ -54,8 +57,11 @@ namespace UnitsNet.Tests
         protected virtual double DeciradiansTolerance { get { return 1e-5; } }
         protected virtual double DegreesTolerance { get { return 1e-5; } }
         protected virtual double GradiansTolerance { get { return 1e-5; } }
+        protected virtual double MicrodegreesTolerance { get { return 1e-5; } }
         protected virtual double MicroradiansTolerance { get { return 1e-5; } }
+        protected virtual double MillidegreesTolerance { get { return 1e-5; } }
         protected virtual double MilliradiansTolerance { get { return 1e-5; } }
+        protected virtual double NanodegreesTolerance { get { return 1e-5; } }
         protected virtual double NanoradiansTolerance { get { return 1e-5; } }
         protected virtual double RadiansTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -70,8 +76,11 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DeciradiansInOneDegree, degree.Deciradians, DeciradiansTolerance);
             Assert.AreEqual(DegreesInOneDegree, degree.Degrees, DegreesTolerance);
             Assert.AreEqual(GradiansInOneDegree, degree.Gradians, GradiansTolerance);
+            Assert.AreEqual(MicrodegreesInOneDegree, degree.Microdegrees, MicrodegreesTolerance);
             Assert.AreEqual(MicroradiansInOneDegree, degree.Microradians, MicroradiansTolerance);
+            Assert.AreEqual(MillidegreesInOneDegree, degree.Millidegrees, MillidegreesTolerance);
             Assert.AreEqual(MilliradiansInOneDegree, degree.Milliradians, MilliradiansTolerance);
+            Assert.AreEqual(NanodegreesInOneDegree, degree.Nanodegrees, NanodegreesTolerance);
             Assert.AreEqual(NanoradiansInOneDegree, degree.Nanoradians, NanoradiansTolerance);
             Assert.AreEqual(RadiansInOneDegree, degree.Radians, RadiansTolerance);
         }
@@ -85,8 +94,11 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Deciradian).Deciradians, DeciradiansTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Degree).Degrees, DegreesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Gradian).Gradians, GradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Microdegree).Microdegrees, MicrodegreesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Microradian).Microradians, MicroradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Millidegree).Millidegrees, MillidegreesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Milliradian).Milliradians, MilliradiansTolerance);
+            Assert.AreEqual(1, Angle.From(1, AngleUnit.Nanodegree).Nanodegrees, NanodegreesTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Nanoradian).Nanoradians, NanoradiansTolerance);
             Assert.AreEqual(1, Angle.From(1, AngleUnit.Radian).Radians, RadiansTolerance);
         }
@@ -101,8 +113,11 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DeciradiansInOneDegree, degree.As(AngleUnit.Deciradian), DeciradiansTolerance);
             Assert.AreEqual(DegreesInOneDegree, degree.As(AngleUnit.Degree), DegreesTolerance);
             Assert.AreEqual(GradiansInOneDegree, degree.As(AngleUnit.Gradian), GradiansTolerance);
+            Assert.AreEqual(MicrodegreesInOneDegree, degree.As(AngleUnit.Microdegree), MicrodegreesTolerance);
             Assert.AreEqual(MicroradiansInOneDegree, degree.As(AngleUnit.Microradian), MicroradiansTolerance);
+            Assert.AreEqual(MillidegreesInOneDegree, degree.As(AngleUnit.Millidegree), MillidegreesTolerance);
             Assert.AreEqual(MilliradiansInOneDegree, degree.As(AngleUnit.Milliradian), MilliradiansTolerance);
+            Assert.AreEqual(NanodegreesInOneDegree, degree.As(AngleUnit.Nanodegree), NanodegreesTolerance);
             Assert.AreEqual(NanoradiansInOneDegree, degree.As(AngleUnit.Nanoradian), NanoradiansTolerance);
             Assert.AreEqual(RadiansInOneDegree, degree.As(AngleUnit.Radian), RadiansTolerance);
         }
@@ -117,8 +132,11 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Angle.FromDeciradians(degree.Deciradians).Degrees, DeciradiansTolerance);
             Assert.AreEqual(1, Angle.FromDegrees(degree.Degrees).Degrees, DegreesTolerance);
             Assert.AreEqual(1, Angle.FromGradians(degree.Gradians).Degrees, GradiansTolerance);
+            Assert.AreEqual(1, Angle.FromMicrodegrees(degree.Microdegrees).Degrees, MicrodegreesTolerance);
             Assert.AreEqual(1, Angle.FromMicroradians(degree.Microradians).Degrees, MicroradiansTolerance);
+            Assert.AreEqual(1, Angle.FromMillidegrees(degree.Millidegrees).Degrees, MillidegreesTolerance);
             Assert.AreEqual(1, Angle.FromMilliradians(degree.Milliradians).Degrees, MilliradiansTolerance);
+            Assert.AreEqual(1, Angle.FromNanodegrees(degree.Nanodegrees).Degrees, NanodegreesTolerance);
             Assert.AreEqual(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
             Assert.AreEqual(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
         }

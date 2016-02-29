@@ -103,6 +103,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle in Microdegrees.
+        /// </summary>
+        public double Microdegrees
+        {
+            get { return (_degrees) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get Angle in Microradians.
         /// </summary>
         public double Microradians
@@ -111,11 +119,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle in Millidegrees.
+        /// </summary>
+        public double Millidegrees
+        {
+            get { return (_degrees) / 1e-3d; }
+        }
+
+        /// <summary>
         ///     Get Angle in Milliradians.
         /// </summary>
         public double Milliradians
         {
             get { return (_degrees/180*Math.PI) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Angle in Nanodegrees.
+        /// </summary>
+        public double Nanodegrees
+        {
+            get { return (_degrees) / 1e-9d; }
         }
 
         /// <summary>
@@ -192,6 +216,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle from Microdegrees.
+        /// </summary>
+        public static Angle FromMicrodegrees(double microdegrees)
+        {
+            return new Angle((microdegrees) * 1e-6d);
+        }
+
+        /// <summary>
         ///     Get Angle from Microradians.
         /// </summary>
         public static Angle FromMicroradians(double microradians)
@@ -200,11 +232,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Angle from Millidegrees.
+        /// </summary>
+        public static Angle FromMillidegrees(double millidegrees)
+        {
+            return new Angle((millidegrees) * 1e-3d);
+        }
+
+        /// <summary>
         ///     Get Angle from Milliradians.
         /// </summary>
         public static Angle FromMilliradians(double milliradians)
         {
             return new Angle((milliradians*180/Math.PI) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Angle from Nanodegrees.
+        /// </summary>
+        public static Angle FromNanodegrees(double nanodegrees)
+        {
+            return new Angle((nanodegrees) * 1e-9d);
         }
 
         /// <summary>
@@ -246,10 +294,16 @@ namespace UnitsNet
                     return FromDegrees(value);
                 case AngleUnit.Gradian:
                     return FromGradians(value);
+                case AngleUnit.Microdegree:
+                    return FromMicrodegrees(value);
                 case AngleUnit.Microradian:
                     return FromMicroradians(value);
+                case AngleUnit.Millidegree:
+                    return FromMillidegrees(value);
                 case AngleUnit.Milliradian:
                     return FromMilliradians(value);
+                case AngleUnit.Nanodegree:
+                    return FromNanodegrees(value);
                 case AngleUnit.Nanoradian:
                     return FromNanoradians(value);
                 case AngleUnit.Radian:
@@ -399,10 +453,16 @@ namespace UnitsNet
                     return Degrees;
                 case AngleUnit.Gradian:
                     return Gradians;
+                case AngleUnit.Microdegree:
+                    return Microdegrees;
                 case AngleUnit.Microradian:
                     return Microradians;
+                case AngleUnit.Millidegree:
+                    return Millidegrees;
                 case AngleUnit.Milliradian:
                     return Milliradians;
+                case AngleUnit.Nanodegree:
+                    return Nanodegrees;
                 case AngleUnit.Nanoradian:
                     return Nanoradians;
                 case AngleUnit.Radian:
