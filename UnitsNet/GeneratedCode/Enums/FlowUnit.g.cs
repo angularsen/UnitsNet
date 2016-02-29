@@ -25,12 +25,17 @@ namespace UnitsNet.Units
     public enum FlowUnit
     {
         Undefined = 0,
+        CentilitersPerMinute,
         CubicFootPerSecond,
         CubicMeterPerHour,
         CubicMeterPerSecond,
+        DecilitersPerMinute,
+        KilolitersPerMinute,
         LitersPerMinute,
-        MicroLitersPerMinute,
+        MicrolitersPerMinute,
+        MillilitersPerMinute,
         MillionUsGallonsPerDay,
+        NanolitersPerMinute,
         UsGallonsPerMinute,
     }
 }

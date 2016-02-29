@@ -55,6 +55,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in CentilitersPerMinute.
+        /// </summary>
+        public double CentilitersPerMinute
+        {
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e-2d; }
+        }
+
+        /// <summary>
         ///     Get Flow in CubicFeetPerSecond.
         /// </summary>
         public double CubicFeetPerSecond
@@ -79,6 +87,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in DecilitersPerMinute.
+        /// </summary>
+        public double DecilitersPerMinute
+        {
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Flow in KilolitersPerMinute.
+        /// </summary>
+        public double KilolitersPerMinute
+        {
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Flow in LitersPerMinute.
         /// </summary>
         public double LitersPerMinute
@@ -87,11 +111,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Flow in MicroLitersPerMinute.
+        ///     Get Flow in MicrolitersPerMinute.
         /// </summary>
-        public double MicroLitersPerMinute
+        public double MicrolitersPerMinute
         {
-            get { return _cubicMetersPerSecond*60000000000.00000; }
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Flow in MillilitersPerMinute.
+        /// </summary>
+        public double MillilitersPerMinute
+        {
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e-3d; }
         }
 
         /// <summary>
@@ -100,6 +132,14 @@ namespace UnitsNet
         public double MillionUsGallonsPerDay
         {
             get { return _cubicMetersPerSecond*22.824465227; }
+        }
+
+        /// <summary>
+        ///     Get Flow in NanolitersPerMinute.
+        /// </summary>
+        public double NanolitersPerMinute
+        {
+            get { return (_cubicMetersPerSecond*60000.00000) / 1e-9d; }
         }
 
         /// <summary>
@@ -117,6 +157,14 @@ namespace UnitsNet
         public static Flow Zero
         {
             get { return new Flow(); }
+        }
+
+        /// <summary>
+        ///     Get Flow from CentilitersPerMinute.
+        /// </summary>
+        public static Flow FromCentilitersPerMinute(double centilitersperminute)
+        {
+            return new Flow((centilitersperminute/60000.00000) * 1e-2d);
         }
 
         /// <summary>
@@ -144,6 +192,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow from DecilitersPerMinute.
+        /// </summary>
+        public static Flow FromDecilitersPerMinute(double decilitersperminute)
+        {
+            return new Flow((decilitersperminute/60000.00000) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Flow from KilolitersPerMinute.
+        /// </summary>
+        public static Flow FromKilolitersPerMinute(double kilolitersperminute)
+        {
+            return new Flow((kilolitersperminute/60000.00000) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
         public static Flow FromLitersPerMinute(double litersperminute)
@@ -152,11 +216,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Flow from MicroLitersPerMinute.
+        ///     Get Flow from MicrolitersPerMinute.
         /// </summary>
-        public static Flow FromMicroLitersPerMinute(double microlitersperminute)
+        public static Flow FromMicrolitersPerMinute(double microlitersperminute)
         {
-            return new Flow(microlitersperminute/60000000000.00000);
+            return new Flow((microlitersperminute/60000.00000) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Flow from MillilitersPerMinute.
+        /// </summary>
+        public static Flow FromMillilitersPerMinute(double millilitersperminute)
+        {
+            return new Flow((millilitersperminute/60000.00000) * 1e-3d);
         }
 
         /// <summary>
@@ -165,6 +237,14 @@ namespace UnitsNet
         public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
         {
             return new Flow(millionusgallonsperday/22.824465227);
+        }
+
+        /// <summary>
+        ///     Get Flow from NanolitersPerMinute.
+        /// </summary>
+        public static Flow FromNanolitersPerMinute(double nanolitersperminute)
+        {
+            return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
         }
 
         /// <summary>
@@ -186,18 +266,28 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case FlowUnit.CentilitersPerMinute:
+                    return FromCentilitersPerMinute(value);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(value);
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value);
                 case FlowUnit.CubicMeterPerSecond:
                     return FromCubicMetersPerSecond(value);
+                case FlowUnit.DecilitersPerMinute:
+                    return FromDecilitersPerMinute(value);
+                case FlowUnit.KilolitersPerMinute:
+                    return FromKilolitersPerMinute(value);
                 case FlowUnit.LitersPerMinute:
                     return FromLitersPerMinute(value);
-                case FlowUnit.MicroLitersPerMinute:
-                    return FromMicroLitersPerMinute(value);
+                case FlowUnit.MicrolitersPerMinute:
+                    return FromMicrolitersPerMinute(value);
+                case FlowUnit.MillilitersPerMinute:
+                    return FromMillilitersPerMinute(value);
                 case FlowUnit.MillionUsGallonsPerDay:
                     return FromMillionUsGallonsPerDay(value);
+                case FlowUnit.NanolitersPerMinute:
+                    return FromNanolitersPerMinute(value);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(value);
 
@@ -333,18 +423,28 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case FlowUnit.CentilitersPerMinute:
+                    return CentilitersPerMinute;
                 case FlowUnit.CubicFootPerSecond:
                     return CubicFeetPerSecond;
                 case FlowUnit.CubicMeterPerHour:
                     return CubicMetersPerHour;
                 case FlowUnit.CubicMeterPerSecond:
                     return CubicMetersPerSecond;
+                case FlowUnit.DecilitersPerMinute:
+                    return DecilitersPerMinute;
+                case FlowUnit.KilolitersPerMinute:
+                    return KilolitersPerMinute;
                 case FlowUnit.LitersPerMinute:
                     return LitersPerMinute;
-                case FlowUnit.MicroLitersPerMinute:
-                    return MicroLitersPerMinute;
+                case FlowUnit.MicrolitersPerMinute:
+                    return MicrolitersPerMinute;
+                case FlowUnit.MillilitersPerMinute:
+                    return MillilitersPerMinute;
                 case FlowUnit.MillionUsGallonsPerDay:
                     return MillionUsGallonsPerDay;
+                case FlowUnit.NanolitersPerMinute:
+                    return NanolitersPerMinute;
                 case FlowUnit.UsGallonsPerMinute:
                     return UsGallonsPerMinute;
 

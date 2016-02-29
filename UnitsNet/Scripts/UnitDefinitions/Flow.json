@@ -64,22 +64,12 @@
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "x/60000.00000",
       "FromBaseToUnitFunc": "x*60000.00000",
+	  "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ]
-        }
-      ]
-    },
-	{
-      "SingularName": "MicroLitersPerMinute",
-      "PluralName": "MicroLitersPerMinute",
-      "FromUnitToBaseFunc": "x/60000000000.00000",
-      "FromBaseToUnitFunc": "x*60000000000.00000",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "μLPM" ]
+          "Abbreviations": [ "LPM" ],
+		  "AbbreviationsWithPrefixes": ["nLPM", "μLPM", "mLPM", "cLPM", "DLPM", "KLPM"]
         }
       ]
     },
