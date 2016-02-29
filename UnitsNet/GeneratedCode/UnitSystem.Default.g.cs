@@ -337,6 +337,35 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "год"),
                             }),
                     }),
+                new UnitLocalization(typeof (DynamicViscosityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.Centipoise,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cP"),
+                            }),
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.MillipascalSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mPaS"),
+                            }),
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.NewtonSecondPerMeterSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Ns/m²"),
+                            }),
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.PascalSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PaS"),
+                            }),
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.Poise,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "P"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),
                     new[]
                     {
