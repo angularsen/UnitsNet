@@ -71,6 +71,18 @@
         }
       ]
     },
+	{
+      "SingularName": "MicroLitersPerMinute",
+      "PluralName": "MicroLitersPerMinute",
+      "FromUnitToBaseFunc": "x/60000000000.00000",
+      "FromBaseToUnitFunc": "x*60000000000.00000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "μLPM" ]
+        }
+      ]
+    },
     {
       "SingularName": "UsGallonsPerMinute",
       "PluralName": "UsGallonsPerMinute",

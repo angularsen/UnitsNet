@@ -565,6 +565,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "LPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.MicroLitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μLPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
                             new[]
                             {

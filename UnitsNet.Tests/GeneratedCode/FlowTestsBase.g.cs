@@ -40,6 +40,7 @@ namespace UnitsNet.Tests
         protected abstract double CubicMetersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerMinuteInOneCubicMeterPerSecond { get; }
+        protected abstract double MicroLitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double MillionUsGallonsPerDayInOneCubicMeterPerSecond { get; }
         protected abstract double UsGallonsPerMinuteInOneCubicMeterPerSecond { get; }
 
@@ -48,6 +49,7 @@ namespace UnitsNet.Tests
         protected virtual double CubicMetersPerHourTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double LitersPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double MicroLitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MillionUsGallonsPerDayTolerance { get { return 1e-5; } }
         protected virtual double UsGallonsPerMinuteTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -60,6 +62,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerHour, CubicMetersPerHourTolerance);
             Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerSecond, CubicMetersPerSecondTolerance);
             Assert.AreEqual(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerMinute, LitersPerMinuteTolerance);
+            Assert.AreEqual(MicroLitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.MicroLitersPerMinute, MicroLitersPerMinuteTolerance);
             Assert.AreEqual(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
             Assert.AreEqual(UsGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.UsGallonsPerMinute, UsGallonsPerMinuteTolerance);
         }
@@ -71,6 +74,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Flow.From(1, FlowUnit.CubicMeterPerHour).CubicMetersPerHour, CubicMetersPerHourTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.CubicMeterPerSecond).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.LitersPerMinute).LitersPerMinute, LitersPerMinuteTolerance);
+            Assert.AreEqual(1, Flow.From(1, FlowUnit.MicroLitersPerMinute).MicroLitersPerMinute, MicroLitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.MillionUsGallonsPerDay).MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.UsGallonsPerMinute).UsGallonsPerMinute, UsGallonsPerMinuteTolerance);
         }
@@ -83,6 +87,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.CubicMeterPerHour), CubicMetersPerHourTolerance);
             Assert.AreEqual(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.CubicMeterPerSecond), CubicMetersPerSecondTolerance);
             Assert.AreEqual(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.LitersPerMinute), LitersPerMinuteTolerance);
+            Assert.AreEqual(MicroLitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.MicroLitersPerMinute), MicroLitersPerMinuteTolerance);
             Assert.AreEqual(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.MillionUsGallonsPerDay), MillionUsGallonsPerDayTolerance);
             Assert.AreEqual(UsGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.UsGallonsPerMinute), UsGallonsPerMinuteTolerance);
         }
@@ -95,6 +100,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Flow.FromCubicMetersPerHour(cubicmeterpersecond.CubicMetersPerHour).CubicMetersPerSecond, CubicMetersPerHourTolerance);
             Assert.AreEqual(1, Flow.FromCubicMetersPerSecond(cubicmeterpersecond.CubicMetersPerSecond).CubicMetersPerSecond, CubicMetersPerSecondTolerance);
             Assert.AreEqual(1, Flow.FromLitersPerMinute(cubicmeterpersecond.LitersPerMinute).CubicMetersPerSecond, LitersPerMinuteTolerance);
+            Assert.AreEqual(1, Flow.FromMicroLitersPerMinute(cubicmeterpersecond.MicroLitersPerMinute).CubicMetersPerSecond, MicroLitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.FromMillionUsGallonsPerDay(cubicmeterpersecond.MillionUsGallonsPerDay).CubicMetersPerSecond, MillionUsGallonsPerDayTolerance);
             Assert.AreEqual(1, Flow.FromUsGallonsPerMinute(cubicmeterpersecond.UsGallonsPerMinute).CubicMetersPerSecond, UsGallonsPerMinuteTolerance);
         }

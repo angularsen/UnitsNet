@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         CubicMeterPerHour,
         CubicMeterPerSecond,
         LitersPerMinute,
+        MicroLitersPerMinute,
         MillionUsGallonsPerDay,
         UsGallonsPerMinute,
     }

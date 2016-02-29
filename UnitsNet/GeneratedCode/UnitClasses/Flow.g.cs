@@ -87,6 +87,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in MicroLitersPerMinute.
+        /// </summary>
+        public double MicroLitersPerMinute
+        {
+            get { return _cubicMetersPerSecond*60000000000.00000; }
+        }
+
+        /// <summary>
         ///     Get Flow in MillionUsGallonsPerDay.
         /// </summary>
         public double MillionUsGallonsPerDay
@@ -144,6 +152,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow from MicroLitersPerMinute.
+        /// </summary>
+        public static Flow FromMicroLitersPerMinute(double microlitersperminute)
+        {
+            return new Flow(microlitersperminute/60000000000.00000);
+        }
+
+        /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
         public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
@@ -178,6 +194,8 @@ namespace UnitsNet
                     return FromCubicMetersPerSecond(value);
                 case FlowUnit.LitersPerMinute:
                     return FromLitersPerMinute(value);
+                case FlowUnit.MicroLitersPerMinute:
+                    return FromMicroLitersPerMinute(value);
                 case FlowUnit.MillionUsGallonsPerDay:
                     return FromMillionUsGallonsPerDay(value);
                 case FlowUnit.UsGallonsPerMinute:
@@ -323,6 +341,8 @@ namespace UnitsNet
                     return CubicMetersPerSecond;
                 case FlowUnit.LitersPerMinute:
                     return LitersPerMinute;
+                case FlowUnit.MicroLitersPerMinute:
+                    return MicroLitersPerMinute;
                 case FlowUnit.MillionUsGallonsPerDay:
                     return MillionUsGallonsPerDay;
                 case FlowUnit.UsGallonsPerMinute:
