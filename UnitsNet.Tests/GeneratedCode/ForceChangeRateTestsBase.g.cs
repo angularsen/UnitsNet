@@ -36,9 +36,21 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ForceChangeRateTestsBase
     {
+        protected abstract double CentinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double DecinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double KilonewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double MicronewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double MillinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected abstract double NanonewtonsPerSecondInOneNewtonPerSecond { get; }
         protected abstract double NewtonsPerSecondInOneNewtonPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CentinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -46,12 +58,24 @@ namespace UnitsNet.Tests
         public void NewtonPerSecondToForceChangeRateUnits()
         {
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+            Assert.AreEqual(CentinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.CentinewtonsPerSecond, CentinewtonsPerSecondTolerance);
+            Assert.AreEqual(DecinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
+            Assert.AreEqual(KilonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            Assert.AreEqual(MicronewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
+            Assert.AreEqual(MillinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
+            Assert.AreEqual(NanonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
             Assert.AreEqual(NewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.NewtonsPerSecond, NewtonsPerSecondTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.CentinewtonPerSecond).CentinewtonsPerSecond, CentinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.DecinewtonPerSecond).DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.KilonewtonPerSecond).KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.MicronewtonPerSecond).MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.MillinewtonPerSecond).MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.NanonewtonPerSecond).NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
             Assert.AreEqual(1, ForceChangeRate.From(1, ForceChangeRateUnit.NewtonPerSecond).NewtonsPerSecond, NewtonsPerSecondTolerance);
         }
 
@@ -59,6 +83,12 @@ namespace UnitsNet.Tests
         public void As()
         {
             var newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+            Assert.AreEqual(CentinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.CentinewtonPerSecond), CentinewtonsPerSecondTolerance);
+            Assert.AreEqual(DecinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.DecinewtonPerSecond), DecinewtonsPerSecondTolerance);
+            Assert.AreEqual(KilonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.KilonewtonPerSecond), KilonewtonsPerSecondTolerance);
+            Assert.AreEqual(MicronewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.MicronewtonPerSecond), MicronewtonsPerSecondTolerance);
+            Assert.AreEqual(MillinewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.MillinewtonPerSecond), MillinewtonsPerSecondTolerance);
+            Assert.AreEqual(NanonewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.NanonewtonPerSecond), NanonewtonsPerSecondTolerance);
             Assert.AreEqual(NewtonsPerSecondInOneNewtonPerSecond, newtonpersecond.As(ForceChangeRateUnit.NewtonPerSecond), NewtonsPerSecondTolerance);
         }
 
@@ -66,6 +96,12 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+            Assert.AreEqual(1, ForceChangeRate.FromCentinewtonsPerSecond(newtonpersecond.CentinewtonsPerSecond).NewtonsPerSecond, CentinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.FromDecinewtonsPerSecond(newtonpersecond.DecinewtonsPerSecond).NewtonsPerSecond, DecinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.FromKilonewtonsPerSecond(newtonpersecond.KilonewtonsPerSecond).NewtonsPerSecond, KilonewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.FromMicronewtonsPerSecond(newtonpersecond.MicronewtonsPerSecond).NewtonsPerSecond, MicronewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.FromMillinewtonsPerSecond(newtonpersecond.MillinewtonsPerSecond).NewtonsPerSecond, MillinewtonsPerSecondTolerance);
+            Assert.AreEqual(1, ForceChangeRate.FromNanonewtonsPerSecond(newtonpersecond.NanonewtonsPerSecond).NewtonsPerSecond, NanonewtonsPerSecondTolerance);
             Assert.AreEqual(1, ForceChangeRate.FromNewtonsPerSecond(newtonpersecond.NewtonsPerSecond).NewtonsPerSecond, NewtonsPerSecondTolerance);
         }
 
