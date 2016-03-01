@@ -207,6 +207,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in Microliters.
+        /// </summary>
+        public double Microliters
+        {
+            get { return (_cubicMeters*1e3) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get Volume in Milliliters.
         /// </summary>
         public double Milliliters
@@ -447,6 +455,14 @@ namespace UnitsNet
         public static Volume FromMetricTeaspoons(double metricteaspoons)
         {
             return new Volume(metricteaspoons*0.5e-5);
+        }
+
+        /// <summary>
+        ///     Get Volume from Microliters.
+        /// </summary>
+        public static Volume FromMicroliters(double microliters)
+        {
+            return new Volume((microliters/1e3) * 1e-6d);
         }
 
         /// <summary>
@@ -816,6 +832,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable Microliters.
+        /// </summary>
+        public static Volume? FromMicroliters(double? microliters)
+        {
+            if (microliters.HasValue)
+            {
+                return FromMicroliters(microliters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable Milliliters.
         /// </summary>
         public static Volume? FromMilliliters(double? milliliters)
@@ -1014,6 +1045,8 @@ namespace UnitsNet
                     return FromMetricCups(value);
                 case VolumeUnit.MetricTeaspoon:
                     return FromMetricTeaspoons(value);
+                case VolumeUnit.Microliter:
+                    return FromMicroliters(value);
                 case VolumeUnit.Milliliter:
                     return FromMilliliters(value);
                 case VolumeUnit.Tablespoon:
@@ -1092,6 +1125,8 @@ namespace UnitsNet
                     return FromMetricCups(value.Value);
                 case VolumeUnit.MetricTeaspoon:
                     return FromMetricTeaspoons(value.Value);
+                case VolumeUnit.Microliter:
+                    return FromMicroliters(value.Value);
                 case VolumeUnit.Milliliter:
                     return FromMilliliters(value.Value);
                 case VolumeUnit.Tablespoon:
@@ -1283,6 +1318,8 @@ namespace UnitsNet
                     return MetricCups;
                 case VolumeUnit.MetricTeaspoon:
                     return MetricTeaspoons;
+                case VolumeUnit.Microliter:
+                    return Microliters;
                 case VolumeUnit.Milliliter:
                     return Milliliters;
                 case VolumeUnit.Tablespoon:

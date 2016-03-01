@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         Liter,
         MetricCup,
         MetricTeaspoon,
+        Microliter,
         Milliliter,
         [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
         Tablespoon,

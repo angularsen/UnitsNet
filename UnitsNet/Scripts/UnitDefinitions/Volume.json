@@ -8,7 +8,7 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Milli", "Centi", "Deci", "Hecto" ],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -17,7 +17,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "л" ],
-          "AbbreviationsWithPrefixes": [ "мл", "сл", "дл", "гл" ]
+          "AbbreviationsWithPrefixes": [ "мкл", "мл", "сл", "дл", "гл" ]
         }
       ]
     },
