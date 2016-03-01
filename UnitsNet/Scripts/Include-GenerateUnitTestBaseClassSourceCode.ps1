@@ -194,36 +194,6 @@ namespace UnitsNet.Tests
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
             Assert.IsFalse($baseUnitVariableName.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            $($className)? $baseUnitVariableName = $className.From$baseUnitPluralName(null);
-            Assert.IsTrue($baseUnitVariableName.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            $($className)? $baseUnitVariableName = $className.From(null,$($unitEnumName).$($baseUnit.SingularName));
-            Assert.IsTrue($baseUnitVariableName.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            $($className)? $baseUnitVariableName = $className.From(value,$($unitEnumName).$($baseUnit.SingularName));
-            Assert.IsTrue($($baseUnitVariableName).HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            $($className)? $baseUnitVariableName = $className.From$baseUnitPluralName(value);
-            Assert.IsTrue($($baseUnitVariableName).HasValue);
-        }
     }
 }
 "@;

@@ -205,35 +205,5 @@ namespace UnitsNet.Tests
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
             Assert.IsFalse(squaremeterpersecond.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            KinematicViscosity? squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(null);
-            Assert.IsTrue(squaremeterpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            KinematicViscosity? squaremeterpersecond = KinematicViscosity.From(null,KinematicViscosityUnit.SquareMeterPerSecond);
-            Assert.IsTrue(squaremeterpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            KinematicViscosity? squaremeterpersecond = KinematicViscosity.From(value,KinematicViscosityUnit.SquareMeterPerSecond);
-            Assert.IsTrue(squaremeterpersecond.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            KinematicViscosity? squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(value);
-            Assert.IsTrue(squaremeterpersecond.HasValue);
-        }
     }
 }

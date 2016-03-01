@@ -205,35 +205,5 @@ namespace UnitsNet.Tests
             SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
             Assert.IsFalse(jouleperkilogram.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            SpecificEnergy? jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(null);
-            Assert.IsTrue(jouleperkilogram.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            SpecificEnergy? jouleperkilogram = SpecificEnergy.From(null,SpecificEnergyUnit.JoulePerKilogram);
-            Assert.IsTrue(jouleperkilogram.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            SpecificEnergy? jouleperkilogram = SpecificEnergy.From(value,SpecificEnergyUnit.JoulePerKilogram);
-            Assert.IsTrue(jouleperkilogram.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            SpecificEnergy? jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.IsTrue(jouleperkilogram.HasValue);
-        }
     }
 }

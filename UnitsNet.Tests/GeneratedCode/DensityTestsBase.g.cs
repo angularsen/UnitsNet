@@ -217,35 +217,5 @@ namespace UnitsNet.Tests
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
             Assert.IsFalse(kilogrampercubicmeter.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Density? kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(null);
-            Assert.IsTrue(kilogrampercubicmeter.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Density? kilogrampercubicmeter = Density.From(null,DensityUnit.KilogramPerCubicMeter);
-            Assert.IsTrue(kilogrampercubicmeter.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Density? kilogrampercubicmeter = Density.From(value,DensityUnit.KilogramPerCubicMeter);
-            Assert.IsTrue(kilogrampercubicmeter.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Density? kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(value);
-            Assert.IsTrue(kilogrampercubicmeter.HasValue);
-        }
     }
 }

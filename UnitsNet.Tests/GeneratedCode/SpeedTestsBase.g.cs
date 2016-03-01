@@ -229,35 +229,5 @@ namespace UnitsNet.Tests
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
             Assert.IsFalse(meterpersecond.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Speed? meterpersecond = Speed.FromMetersPerSecond(null);
-            Assert.IsTrue(meterpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Speed? meterpersecond = Speed.From(null,SpeedUnit.MeterPerSecond);
-            Assert.IsTrue(meterpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Speed? meterpersecond = Speed.From(value,SpeedUnit.MeterPerSecond);
-            Assert.IsTrue(meterpersecond.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Speed? meterpersecond = Speed.FromMetersPerSecond(value);
-            Assert.IsTrue(meterpersecond.HasValue);
-        }
     }
 }

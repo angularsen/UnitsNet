@@ -193,35 +193,5 @@ namespace UnitsNet.Tests
             Ratio decimalfraction = Ratio.FromDecimalFractions(1);
             Assert.IsFalse(decimalfraction.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Ratio? decimalfraction = Ratio.FromDecimalFractions(null);
-            Assert.IsTrue(decimalfraction.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Ratio? decimalfraction = Ratio.From(null,RatioUnit.DecimalFraction);
-            Assert.IsTrue(decimalfraction.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Ratio? decimalfraction = Ratio.From(value,RatioUnit.DecimalFraction);
-            Assert.IsTrue(decimalfraction.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Ratio? decimalfraction = Ratio.FromDecimalFractions(value);
-            Assert.IsTrue(decimalfraction.HasValue);
-        }
     }
 }

@@ -163,35 +163,5 @@ namespace UnitsNet.Tests
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
             Assert.IsFalse(internationalunit.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            VitaminA? internationalunit = VitaminA.FromInternationalUnits(null);
-            Assert.IsTrue(internationalunit.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            VitaminA? internationalunit = VitaminA.From(null,VitaminAUnit.InternationalUnit);
-            Assert.IsTrue(internationalunit.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            VitaminA? internationalunit = VitaminA.From(value,VitaminAUnit.InternationalUnit);
-            Assert.IsTrue(internationalunit.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            VitaminA? internationalunit = VitaminA.FromInternationalUnits(value);
-            Assert.IsTrue(internationalunit.HasValue);
-        }
     }
 }

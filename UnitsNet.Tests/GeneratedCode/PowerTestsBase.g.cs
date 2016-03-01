@@ -253,35 +253,5 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             Assert.IsFalse(watt.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Power? watt = Power.FromWatts(null);
-            Assert.IsTrue(watt.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Power? watt = Power.From(null,PowerUnit.Watt);
-            Assert.IsTrue(watt.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Power? watt = Power.From(value,PowerUnit.Watt);
-            Assert.IsTrue(watt.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Power? watt = Power.FromWatts(value);
-            Assert.IsTrue(watt.HasValue);
-        }
     }
 }

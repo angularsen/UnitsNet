@@ -181,35 +181,5 @@ namespace UnitsNet.Tests
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
             Assert.IsFalse(pascalpersecond.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            PressureChangeRate? pascalpersecond = PressureChangeRate.FromPascalsPerSecond(null);
-            Assert.IsTrue(pascalpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            PressureChangeRate? pascalpersecond = PressureChangeRate.From(null,PressureChangeRateUnit.PascalPerSecond);
-            Assert.IsTrue(pascalpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            PressureChangeRate? pascalpersecond = PressureChangeRate.From(value,PressureChangeRateUnit.PascalPerSecond);
-            Assert.IsTrue(pascalpersecond.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            PressureChangeRate? pascalpersecond = PressureChangeRate.FromPascalsPerSecond(value);
-            Assert.IsTrue(pascalpersecond.HasValue);
-        }
     }
 }

@@ -331,35 +331,5 @@ namespace UnitsNet.Tests
             Volume cubicmeter = Volume.FromCubicMeters(1);
             Assert.IsFalse(cubicmeter.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Volume? cubicmeter = Volume.FromCubicMeters(null);
-            Assert.IsTrue(cubicmeter.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Volume? cubicmeter = Volume.From(null,VolumeUnit.CubicMeter);
-            Assert.IsTrue(cubicmeter.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Volume? cubicmeter = Volume.From(value,VolumeUnit.CubicMeter);
-            Assert.IsTrue(cubicmeter.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Volume? cubicmeter = Volume.FromCubicMeters(value);
-            Assert.IsTrue(cubicmeter.HasValue);
-        }
     }
 }

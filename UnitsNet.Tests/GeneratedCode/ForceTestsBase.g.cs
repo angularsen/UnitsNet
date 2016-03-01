@@ -205,35 +205,5 @@ namespace UnitsNet.Tests
             Force newton = Force.FromNewtons(1);
             Assert.IsFalse(newton.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Force? newton = Force.FromNewtons(null);
-            Assert.IsTrue(newton.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Force? newton = Force.From(null,ForceUnit.Newton);
-            Assert.IsTrue(newton.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Force? newton = Force.From(value,ForceUnit.Newton);
-            Assert.IsTrue(newton.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Force? newton = Force.FromNewtons(value);
-            Assert.IsTrue(newton.HasValue);
-        }
     }
 }

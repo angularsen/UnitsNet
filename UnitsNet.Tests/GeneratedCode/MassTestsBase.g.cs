@@ -259,35 +259,5 @@ namespace UnitsNet.Tests
             Mass kilogram = Mass.FromKilograms(1);
             Assert.IsFalse(kilogram.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Mass? kilogram = Mass.FromKilograms(null);
-            Assert.IsTrue(kilogram.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Mass? kilogram = Mass.From(null,MassUnit.Kilogram);
-            Assert.IsTrue(kilogram.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Mass? kilogram = Mass.From(value,MassUnit.Kilogram);
-            Assert.IsTrue(kilogram.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Mass? kilogram = Mass.FromKilograms(value);
-            Assert.IsTrue(kilogram.HasValue);
-        }
     }
 }

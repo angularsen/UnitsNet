@@ -205,35 +205,5 @@ namespace UnitsNet.Tests
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.IsFalse(radianpersecond.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            RotationalSpeed? radianpersecond = RotationalSpeed.FromRadiansPerSecond(null);
-            Assert.IsTrue(radianpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            RotationalSpeed? radianpersecond = RotationalSpeed.From(null,RotationalSpeedUnit.RadianPerSecond);
-            Assert.IsTrue(radianpersecond.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            RotationalSpeed? radianpersecond = RotationalSpeed.From(value,RotationalSpeedUnit.RadianPerSecond);
-            Assert.IsTrue(radianpersecond.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            RotationalSpeed? radianpersecond = RotationalSpeed.FromRadiansPerSecond(value);
-            Assert.IsTrue(radianpersecond.HasValue);
-        }
     }
 }

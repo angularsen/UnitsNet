@@ -193,35 +193,5 @@ namespace UnitsNet.Tests
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             Assert.IsFalse(ampere.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            ElectricCurrent? ampere = ElectricCurrent.FromAmperes(null);
-            Assert.IsTrue(ampere.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            ElectricCurrent? ampere = ElectricCurrent.From(null,ElectricCurrentUnit.Ampere);
-            Assert.IsTrue(ampere.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            ElectricCurrent? ampere = ElectricCurrent.From(value,ElectricCurrentUnit.Ampere);
-            Assert.IsTrue(ampere.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            ElectricCurrent? ampere = ElectricCurrent.FromAmperes(value);
-            Assert.IsTrue(ampere.HasValue);
-        }
     }
 }

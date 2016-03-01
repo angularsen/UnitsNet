@@ -217,35 +217,5 @@ namespace UnitsNet.Tests
             Duration second = Duration.FromSeconds(1);
             Assert.IsFalse(second.Equals(null));
         }
-
-        [Test]
-        public void StaticConstructorWithNullReturnsNull()
-        {
-            Duration? second = Duration.FromSeconds(null);
-            Assert.IsTrue(second.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumReturnsNull()
-        {
-            Duration? second = Duration.From(null,DurationUnit.Second);
-            Assert.IsTrue(second.Equals(null));
-        }
-
-        [Test]
-        public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Duration? second = Duration.From(value,DurationUnit.Second);
-            Assert.IsTrue(second.HasValue);
-        }
-
-        [Test]
-        public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValue()
-        {
-            double? value = 1.0;
-            Duration? second = Duration.FromSeconds(value);
-            Assert.IsTrue(second.HasValue);
-        }
     }
 }
