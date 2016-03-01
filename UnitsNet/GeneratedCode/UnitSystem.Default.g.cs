@@ -543,6 +543,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) FlowUnit.CentilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cLPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
                             {
@@ -560,15 +565,40 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.DecilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dLPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.KilolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kLPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "LPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.MicrolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μLPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.MillilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mLPM"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MGD"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.NanolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nLPM"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
                             new[]

@@ -30,9 +30,21 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
 
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
-
+        
         protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond => 15850.323141489;
 
         protected override double LitersPerMinuteInOneCubicMeterPerSecond => 60000.00000;
+
+        protected override double NanolitersPerMinuteInOneCubicMeterPerSecond => 60000000000000.00000;
+
+        protected override double MicrolitersPerMinuteInOneCubicMeterPerSecond => 60000000000.00000;
+
+        protected override double MillilitersPerMinuteInOneCubicMeterPerSecond => 60000000.00000;
+
+        protected override double CentilitersPerMinuteInOneCubicMeterPerSecond => 6000000.00000;
+
+        protected override double DecilitersPerMinuteInOneCubicMeterPerSecond => 600000.00000;
+
+        protected override double KilolitersPerMinuteInOneCubicMeterPerSecond => 60.00000;
     }
 }

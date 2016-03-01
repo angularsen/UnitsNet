@@ -64,10 +64,12 @@
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "x/60000.00000",
       "FromBaseToUnitFunc": "x*60000.00000",
+	  "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ]
+          "Abbreviations": [ "LPM" ],
+		  "AbbreviationsWithPrefixes": ["nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM"]
         }
       ]
     },
