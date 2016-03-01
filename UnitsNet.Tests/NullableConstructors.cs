@@ -23,7 +23,7 @@ using System;
 using NUnit.Framework;
 using UnitsNet.Units;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class NullableConstructors 
     {
