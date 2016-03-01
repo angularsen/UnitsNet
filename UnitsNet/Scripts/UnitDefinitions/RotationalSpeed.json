@@ -29,7 +29,7 @@
         "Localization": [
           {
             "Culture": "en-US",
-            "Abbreviations": [ "r/s" ]
+            "Abbreviations": [ "°/s", "deg/s" ]
           },
           {
             "Culture": "ru-RU",

@@ -1481,13 +1481,13 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "r/s"),
+                                new AbbreviationsForCulture("en-US", "°/s", "deg/s"),
                                 new AbbreviationsForCulture("ru-RU", "°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MicrodegreePerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μr/s"),
+                                new AbbreviationsForCulture("en-US", "μ°/s"),
                                 new AbbreviationsForCulture("ru-RU", "μ°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
@@ -1499,7 +1499,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MillidegreePerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "mr/s"),
+                                new AbbreviationsForCulture("en-US", "m°/s"),
                                 new AbbreviationsForCulture("ru-RU", "m°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
@@ -1511,7 +1511,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) RotationalSpeedUnit.NanodegreePerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "nr/s"),
+                                new AbbreviationsForCulture("en-US", "n°/s"),
                                 new AbbreviationsForCulture("ru-RU", "n°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
