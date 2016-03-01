@@ -568,12 +568,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.DecilitersPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "DLPM"),
+                                new AbbreviationsForCulture("en-US", "dLPM"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.KilolitersPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "KLPM"),
+                                new AbbreviationsForCulture("en-US", "kLPM"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
                             new[]
