@@ -38,9 +38,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanoradiansPerSecondInOneRadianPerSecond => 1E9;
 
-        protected override double RevolutionsPerMinuteInOneRadianPerSecond => 60*1/(2*Math.PI);
+        protected override double RevolutionsPerMinuteInOneRadianPerSecond => 9.54929659;
 
-        protected override double RevolutionsPerSecondInOneRadianPerSecond => 1/(2*Math.PI);
+        protected override double RevolutionsPerSecondInOneRadianPerSecond => 0.15915494;
+
+        protected override double DegreesPerSecondInOneRadianPerSecond => 57.29577951308;
+
+        protected override double MillidegreesPerSecondInOneRadianPerSecond => 57295.77951308;
+
+        protected override double MicrodegreesPerSecondInOneRadianPerSecond => 57295779.51308232;
+
+        protected override double NanodegreesPerSecondInOneRadianPerSecond => 57295779513.08232087;
+
 
         [Test]
         public void DurationTimesRotationalSpeedEqualsAngle()

@@ -1526,17 +1526,41 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "drad/s"),
                                 new AbbreviationsForCulture("ru-RU", "dрад/с"),
                             }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°/s", "deg/s"),
+                                new AbbreviationsForCulture("ru-RU", "°/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicrodegreePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μ°/s"),
+                                new AbbreviationsForCulture("ru-RU", "μ°/с"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "μrad/s"),
                                 new AbbreviationsForCulture("ru-RU", "μрад/с"),
                             }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.MillidegreePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m°/s"),
+                                new AbbreviationsForCulture("ru-RU", "m°/с"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mrad/s"),
                                 new AbbreviationsForCulture("ru-RU", "mрад/с"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanodegreePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "n°/s"),
+                                new AbbreviationsForCulture("ru-RU", "n°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
                             new[]
