@@ -257,6 +257,187 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerSecond.
+        /// </summary>
+        public static Speed? FromCentimetersPerSecond(double? centimeterspersecond)
+        {
+            if (centimeterspersecond.HasValue)
+            {
+                return FromCentimetersPerSecond(centimeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable DecimetersPerSecond.
+        /// </summary>
+        public static Speed? FromDecimetersPerSecond(double? decimeterspersecond)
+        {
+            if (decimeterspersecond.HasValue)
+            {
+                return FromDecimetersPerSecond(decimeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerSecond.
+        /// </summary>
+        public static Speed? FromFeetPerSecond(double? feetpersecond)
+        {
+            if (feetpersecond.HasValue)
+            {
+                return FromFeetPerSecond(feetpersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerHour.
+        /// </summary>
+        public static Speed? FromKilometersPerHour(double? kilometersperhour)
+        {
+            if (kilometersperhour.HasValue)
+            {
+                return FromKilometersPerHour(kilometersperhour.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerSecond.
+        /// </summary>
+        public static Speed? FromKilometersPerSecond(double? kilometerspersecond)
+        {
+            if (kilometerspersecond.HasValue)
+            {
+                return FromKilometersPerSecond(kilometerspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable Knots.
+        /// </summary>
+        public static Speed? FromKnots(double? knots)
+        {
+            if (knots.HasValue)
+            {
+                return FromKnots(knots.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerHour.
+        /// </summary>
+        public static Speed? FromMetersPerHour(double? metersperhour)
+        {
+            if (metersperhour.HasValue)
+            {
+                return FromMetersPerHour(metersperhour.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerSecond.
+        /// </summary>
+        public static Speed? FromMetersPerSecond(double? meterspersecond)
+        {
+            if (meterspersecond.HasValue)
+            {
+                return FromMetersPerSecond(meterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MicrometersPerSecond.
+        /// </summary>
+        public static Speed? FromMicrometersPerSecond(double? micrometerspersecond)
+        {
+            if (micrometerspersecond.HasValue)
+            {
+                return FromMicrometersPerSecond(micrometerspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MilesPerHour.
+        /// </summary>
+        public static Speed? FromMilesPerHour(double? milesperhour)
+        {
+            if (milesperhour.HasValue)
+            {
+                return FromMilesPerHour(milesperhour.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerSecond.
+        /// </summary>
+        public static Speed? FromMillimetersPerSecond(double? millimeterspersecond)
+        {
+            if (millimeterspersecond.HasValue)
+            {
+                return FromMillimetersPerSecond(millimeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable NanometersPerSecond.
+        /// </summary>
+        public static Speed? FromNanometersPerSecond(double? nanometerspersecond)
+        {
+            if (nanometerspersecond.HasValue)
+            {
+                return FromNanometersPerSecond(nanometerspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -290,6 +471,50 @@ namespace UnitsNet
                     return FromMillimetersPerSecond(value);
                 case SpeedUnit.NanometerPerSecond:
                     return FromNanometersPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Speed unit value.</returns>
+        public static Speed? From(double? value, SpeedUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case SpeedUnit.CentimeterPerSecond:
+                    return FromCentimetersPerSecond(value.Value);
+                case SpeedUnit.DecimeterPerSecond:
+                    return FromDecimetersPerSecond(value.Value);
+                case SpeedUnit.FootPerSecond:
+                    return FromFeetPerSecond(value.Value);
+                case SpeedUnit.KilometerPerHour:
+                    return FromKilometersPerHour(value.Value);
+                case SpeedUnit.KilometerPerSecond:
+                    return FromKilometersPerSecond(value.Value);
+                case SpeedUnit.Knot:
+                    return FromKnots(value.Value);
+                case SpeedUnit.MeterPerHour:
+                    return FromMetersPerHour(value.Value);
+                case SpeedUnit.MeterPerSecond:
+                    return FromMetersPerSecond(value.Value);
+                case SpeedUnit.MicrometerPerSecond:
+                    return FromMicrometersPerSecond(value.Value);
+                case SpeedUnit.MilePerHour:
+                    return FromMilesPerHour(value.Value);
+                case SpeedUnit.MillimeterPerSecond:
+                    return FromMillimetersPerSecond(value.Value);
+                case SpeedUnit.NanometerPerSecond:
+                    return FromNanometersPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -471,14 +696,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Speed Parse(string str, IFormatProvider formatProvider = null)
         {

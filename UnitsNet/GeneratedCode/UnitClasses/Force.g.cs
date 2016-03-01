@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Force from nullable Dyne.
+        /// </summary>
+        public static Force? FromDyne(double? dyne)
+        {
+            if (dyne.HasValue)
+            {
+                return FromDyne(dyne.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable KilogramsForce.
+        /// </summary>
+        public static Force? FromKilogramsForce(double? kilogramsforce)
+        {
+            if (kilogramsforce.HasValue)
+            {
+                return FromKilogramsForce(kilogramsforce.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Kilonewtons.
+        /// </summary>
+        public static Force? FromKilonewtons(double? kilonewtons)
+        {
+            if (kilonewtons.HasValue)
+            {
+                return FromKilonewtons(kilonewtons.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable KiloPonds.
+        /// </summary>
+        public static Force? FromKiloPonds(double? kiloponds)
+        {
+            if (kiloponds.HasValue)
+            {
+                return FromKiloPonds(kiloponds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Newtons.
+        /// </summary>
+        public static Force? FromNewtons(double? newtons)
+        {
+            if (newtons.HasValue)
+            {
+                return FromNewtons(newtons.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Poundals.
+        /// </summary>
+        public static Force? FromPoundals(double? poundals)
+        {
+            if (poundals.HasValue)
+            {
+                return FromPoundals(poundals.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable PoundsForce.
+        /// </summary>
+        public static Force? FromPoundsForce(double? poundsforce)
+        {
+            if (poundsforce.HasValue)
+            {
+                return FromPoundsForce(poundsforce.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable TonnesForce.
+        /// </summary>
+        public static Force? FromTonnesForce(double? tonnesforce)
+        {
+            if (tonnesforce.HasValue)
+            {
+                return FromTonnesForce(tonnesforce.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceUnit" /> to <see cref="Force" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -218,6 +339,42 @@ namespace UnitsNet
                     return FromPoundsForce(value);
                 case ForceUnit.TonneForce:
                     return FromTonnesForce(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ForceUnit" /> to <see cref="Force" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Force unit value.</returns>
+        public static Force? From(double? value, ForceUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case ForceUnit.Dyn:
+                    return FromDyne(value.Value);
+                case ForceUnit.KilogramForce:
+                    return FromKilogramsForce(value.Value);
+                case ForceUnit.Kilonewton:
+                    return FromKilonewtons(value.Value);
+                case ForceUnit.KiloPond:
+                    return FromKiloPonds(value.Value);
+                case ForceUnit.Newton:
+                    return FromNewtons(value.Value);
+                case ForceUnit.Poundal:
+                    return FromPoundals(value.Value);
+                case ForceUnit.PoundForce:
+                    return FromPoundsForce(value.Value);
+                case ForceUnit.TonneForce:
+                    return FromTonnesForce(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -391,14 +548,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Force Parse(string str, IFormatProvider formatProvider = null)
         {

@@ -321,6 +321,247 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(double? kilogramsforcepercubiccentimeter)
+        {
+            if (kilogramsforcepercubiccentimeter.HasValue)
+            {
+                return FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMeter(double? kilogramsforcepercubicmeter)
+        {
+            if (kilogramsforcepercubicmeter.HasValue)
+            {
+                return FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(double? kilogramsforcepercubicmillimeter)
+        {
+            if (kilogramsforcepercubicmillimeter.HasValue)
+            {
+                return FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(double? kilonewtonspercubiccentimeter)
+        {
+            if (kilonewtonspercubiccentimeter.HasValue)
+            {
+                return FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMeter(double? kilonewtonspercubicmeter)
+        {
+            if (kilonewtonspercubicmeter.HasValue)
+            {
+                return FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(double? kilonewtonspercubicmillimeter)
+        {
+            if (kilonewtonspercubicmillimeter.HasValue)
+            {
+                return FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(double? kilopoundsforcepercubicfoot)
+        {
+            if (kilopoundsforcepercubicfoot.HasValue)
+            {
+                return FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicInch(double? kilopoundsforcepercubicinch)
+        {
+            if (kilopoundsforcepercubicinch.HasValue)
+            {
+                return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicCentimeter(double? newtonspercubiccentimeter)
+        {
+            if (newtonspercubiccentimeter.HasValue)
+            {
+                return FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMeter(double? newtonspercubicmeter)
+        {
+            if (newtonspercubicmeter.HasValue)
+            {
+                return FromNewtonsPerCubicMeter(newtonspercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMillimeter(double? newtonspercubicmillimeter)
+        {
+            if (newtonspercubicmillimeter.HasValue)
+            {
+                return FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicFoot(double? poundsforcepercubicfoot)
+        {
+            if (poundsforcepercubicfoot.HasValue)
+            {
+                return FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicInch(double? poundsforcepercubicinch)
+        {
+            if (poundsforcepercubicinch.HasValue)
+            {
+                return FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(double? tonnesforcepercubiccentimeter)
+        {
+            if (tonnesforcepercubiccentimeter.HasValue)
+            {
+                return FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMeter(double? tonnesforcepercubicmeter)
+        {
+            if (tonnesforcepercubicmeter.HasValue)
+            {
+                return FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(double? tonnesforcepercubicmillimeter)
+        {
+            if (tonnesforcepercubicmillimeter.HasValue)
+            {
+                return FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -362,6 +603,58 @@ namespace UnitsNet
                     return FromTonnesForcePerCubicMeter(value);
                 case SpecificWeightUnit.TonneForcePerCubicMillimeter:
                     return FromTonnesForcePerCubicMillimeter(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>SpecificWeight unit value.</returns>
+        public static SpecificWeight? From(double? value, SpecificWeightUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
+                    return FromKilogramsForcePerCubicCentimeter(value.Value);
+                case SpecificWeightUnit.KilogramForcePerCubicMeter:
+                    return FromKilogramsForcePerCubicMeter(value.Value);
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
+                    return FromKilogramsForcePerCubicMillimeter(value.Value);
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
+                    return FromKilonewtonsPerCubicCentimeter(value.Value);
+                case SpecificWeightUnit.KilonewtonPerCubicMeter:
+                    return FromKilonewtonsPerCubicMeter(value.Value);
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
+                    return FromKilonewtonsPerCubicMillimeter(value.Value);
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
+                    return FromKilopoundsForcePerCubicFoot(value.Value);
+                case SpecificWeightUnit.KilopoundForcePerCubicInch:
+                    return FromKilopoundsForcePerCubicInch(value.Value);
+                case SpecificWeightUnit.NewtonPerCubicCentimeter:
+                    return FromNewtonsPerCubicCentimeter(value.Value);
+                case SpecificWeightUnit.NewtonPerCubicMeter:
+                    return FromNewtonsPerCubicMeter(value.Value);
+                case SpecificWeightUnit.NewtonPerCubicMillimeter:
+                    return FromNewtonsPerCubicMillimeter(value.Value);
+                case SpecificWeightUnit.PoundForcePerCubicFoot:
+                    return FromPoundsForcePerCubicFoot(value.Value);
+                case SpecificWeightUnit.PoundForcePerCubicInch:
+                    return FromPoundsForcePerCubicInch(value.Value);
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
+                    return FromTonnesForcePerCubicCentimeter(value.Value);
+                case SpecificWeightUnit.TonneForcePerCubicMeter:
+                    return FromTonnesForcePerCubicMeter(value.Value);
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
+                    return FromTonnesForcePerCubicMillimeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -551,14 +844,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static SpecificWeight Parse(string str, IFormatProvider formatProvider = null)
         {

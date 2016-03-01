@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Duration from nullable Days.
+        /// </summary>
+        public static Duration? FromDays(double? days)
+        {
+            if (days.HasValue)
+            {
+                return FromDays(days.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Hours.
+        /// </summary>
+        public static Duration? FromHours(double? hours)
+        {
+            if (hours.HasValue)
+            {
+                return FromHours(hours.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Microseconds.
+        /// </summary>
+        public static Duration? FromMicroseconds(double? microseconds)
+        {
+            if (microseconds.HasValue)
+            {
+                return FromMicroseconds(microseconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Milliseconds.
+        /// </summary>
+        public static Duration? FromMilliseconds(double? milliseconds)
+        {
+            if (milliseconds.HasValue)
+            {
+                return FromMilliseconds(milliseconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Minutes.
+        /// </summary>
+        public static Duration? FromMinutes(double? minutes)
+        {
+            if (minutes.HasValue)
+            {
+                return FromMinutes(minutes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Months.
+        /// </summary>
+        public static Duration? FromMonths(double? months)
+        {
+            if (months.HasValue)
+            {
+                return FromMonths(months.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Nanoseconds.
+        /// </summary>
+        public static Duration? FromNanoseconds(double? nanoseconds)
+        {
+            if (nanoseconds.HasValue)
+            {
+                return FromNanoseconds(nanoseconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Seconds.
+        /// </summary>
+        public static Duration? FromSeconds(double? seconds)
+        {
+            if (seconds.HasValue)
+            {
+                return FromSeconds(seconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Weeks.
+        /// </summary>
+        public static Duration? FromWeeks(double? weeks)
+        {
+            if (weeks.HasValue)
+            {
+                return FromWeeks(weeks.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Years.
+        /// </summary>
+        public static Duration? FromYears(double? years)
+        {
+            if (years.HasValue)
+            {
+                return FromYears(years.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -254,6 +405,46 @@ namespace UnitsNet
                     return FromWeeks(value);
                 case DurationUnit.Year:
                     return FromYears(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Duration unit value.</returns>
+        public static Duration? From(double? value, DurationUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case DurationUnit.Day:
+                    return FromDays(value.Value);
+                case DurationUnit.Hour:
+                    return FromHours(value.Value);
+                case DurationUnit.Microsecond:
+                    return FromMicroseconds(value.Value);
+                case DurationUnit.Millisecond:
+                    return FromMilliseconds(value.Value);
+                case DurationUnit.Minute:
+                    return FromMinutes(value.Value);
+                case DurationUnit.Month:
+                    return FromMonths(value.Value);
+                case DurationUnit.Nanosecond:
+                    return FromNanoseconds(value.Value);
+                case DurationUnit.Second:
+                    return FromSeconds(value.Value);
+                case DurationUnit.Week:
+                    return FromWeeks(value.Value);
+                case DurationUnit.Year:
+                    return FromYears(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -431,14 +622,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Duration Parse(string str, IFormatProvider formatProvider = null)
         {

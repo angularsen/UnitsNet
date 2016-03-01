@@ -161,6 +161,97 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Ratio from nullable DecimalFractions.
+        /// </summary>
+        public static Ratio? FromDecimalFractions(double? decimalfractions)
+        {
+            if (decimalfractions.HasValue)
+            {
+                return FromDecimalFractions(decimalfractions.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerBillion.
+        /// </summary>
+        public static Ratio? FromPartsPerBillion(double? partsperbillion)
+        {
+            if (partsperbillion.HasValue)
+            {
+                return FromPartsPerBillion(partsperbillion.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerMillion.
+        /// </summary>
+        public static Ratio? FromPartsPerMillion(double? partspermillion)
+        {
+            if (partspermillion.HasValue)
+            {
+                return FromPartsPerMillion(partspermillion.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerThousand.
+        /// </summary>
+        public static Ratio? FromPartsPerThousand(double? partsperthousand)
+        {
+            if (partsperthousand.HasValue)
+            {
+                return FromPartsPerThousand(partsperthousand.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable PartsPerTrillion.
+        /// </summary>
+        public static Ratio? FromPartsPerTrillion(double? partspertrillion)
+        {
+            if (partspertrillion.HasValue)
+            {
+                return FromPartsPerTrillion(partspertrillion.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Ratio from nullable Percent.
+        /// </summary>
+        public static Ratio? FromPercent(double? percent)
+        {
+            if (percent.HasValue)
+            {
+                return FromPercent(percent.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -182,6 +273,38 @@ namespace UnitsNet
                     return FromPartsPerTrillion(value);
                 case RatioUnit.Percent:
                     return FromPercent(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Ratio unit value.</returns>
+        public static Ratio? From(double? value, RatioUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case RatioUnit.DecimalFraction:
+                    return FromDecimalFractions(value.Value);
+                case RatioUnit.PartPerBillion:
+                    return FromPartsPerBillion(value.Value);
+                case RatioUnit.PartPerMillion:
+                    return FromPartsPerMillion(value.Value);
+                case RatioUnit.PartPerThousand:
+                    return FromPartsPerThousand(value.Value);
+                case RatioUnit.PartPerTrillion:
+                    return FromPartsPerTrillion(value.Value);
+                case RatioUnit.Percent:
+                    return FromPercent(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -351,14 +474,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Ratio Parse(string str, IFormatProvider formatProvider = null)
         {

@@ -209,6 +209,142 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(double? centidegreescelsiuspersecond)
+        {
+            if (centidegreescelsiuspersecond.HasValue)
+            {
+                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(double? decadegreescelsiuspersecond)
+        {
+            if (decadegreescelsiuspersecond.HasValue)
+            {
+                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(double? decidegreescelsiuspersecond)
+        {
+            if (decidegreescelsiuspersecond.HasValue)
+            {
+                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(double? degreescelsiuspersecond)
+        {
+            if (degreescelsiuspersecond.HasValue)
+            {
+                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(double? hectodegreescelsiuspersecond)
+        {
+            if (hectodegreescelsiuspersecond.HasValue)
+            {
+                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(double? kilodegreescelsiuspersecond)
+        {
+            if (kilodegreescelsiuspersecond.HasValue)
+            {
+                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(double? microdegreescelsiuspersecond)
+        {
+            if (microdegreescelsiuspersecond.HasValue)
+            {
+                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(double? millidegreescelsiuspersecond)
+        {
+            if (millidegreescelsiuspersecond.HasValue)
+            {
+                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
+        /// </summary>
+        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(double? nanodegreescelsiuspersecond)
+        {
+            if (nanodegreescelsiuspersecond.HasValue)
+            {
+                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -236,6 +372,44 @@ namespace UnitsNet
                     return FromMillidegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
                     return FromNanodegreesCelsiusPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>TemperatureChangeRate unit value.</returns>
+        public static TemperatureChangeRate? From(double? value, TemperatureChangeRateUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
+                    return FromCentidegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
+                    return FromDecadegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
+                    return FromDecidegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
+                    return FromDegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
+                    return FromHectodegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
+                    return FromKilodegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
+                    return FromMicrodegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
+                    return FromMillidegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
+                    return FromNanodegreesCelsiusPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -411,14 +585,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static TemperatureChangeRate Parse(string str, IFormatProvider formatProvider = null)
         {

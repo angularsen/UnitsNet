@@ -97,6 +97,37 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelMilliwatts(double? decibelmilliwatts)
+        {
+            if (decibelmilliwatts.HasValue)
+            {
+                return FromDecibelMilliwatts(decibelmilliwatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelWatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelWatts(double? decibelwatts)
+        {
+            if (decibelwatts.HasValue)
+            {
+                return FromDecibelWatts(decibelwatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -110,6 +141,30 @@ namespace UnitsNet
                     return FromDecibelMilliwatts(value);
                 case PowerRatioUnit.DecibelWatt:
                     return FromDecibelWatts(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>PowerRatio unit value.</returns>
+        public static PowerRatio? From(double? value, PowerRatioUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case PowerRatioUnit.DecibelMilliwatt:
+                    return FromDecibelMilliwatts(value.Value);
+                case PowerRatioUnit.DecibelWatt:
+                    return FromDecibelWatts(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -279,14 +334,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static PowerRatio Parse(string str, IFormatProvider formatProvider = null)
         {

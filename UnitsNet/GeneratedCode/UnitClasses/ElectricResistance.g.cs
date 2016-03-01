@@ -113,6 +113,52 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricResistance from nullable Kiloohms.
+        /// </summary>
+        public static ElectricResistance? FromKiloohms(double? kiloohms)
+        {
+            if (kiloohms.HasValue)
+            {
+                return FromKiloohms(kiloohms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistance from nullable Megaohms.
+        /// </summary>
+        public static ElectricResistance? FromMegaohms(double? megaohms)
+        {
+            if (megaohms.HasValue)
+            {
+                return FromMegaohms(megaohms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistance from nullable Ohms.
+        /// </summary>
+        public static ElectricResistance? FromOhms(double? ohms)
+        {
+            if (ohms.HasValue)
+            {
+                return FromOhms(ohms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -128,6 +174,32 @@ namespace UnitsNet
                     return FromMegaohms(value);
                 case ElectricResistanceUnit.Ohm:
                     return FromOhms(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricResistance unit value.</returns>
+        public static ElectricResistance? From(double? value, ElectricResistanceUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case ElectricResistanceUnit.Kiloohm:
+                    return FromKiloohms(value.Value);
+                case ElectricResistanceUnit.Megaohm:
+                    return FromMegaohms(value.Value);
+                case ElectricResistanceUnit.Ohm:
+                    return FromOhms(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -291,14 +363,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static ElectricResistance Parse(string str, IFormatProvider formatProvider = null)
         {

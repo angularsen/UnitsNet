@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Temperature from nullable DegreesCelsius.
+        /// </summary>
+        public static Temperature? FromDegreesCelsius(double? degreescelsius)
+        {
+            if (degreescelsius.HasValue)
+            {
+                return FromDegreesCelsius(degreescelsius.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesDelisle.
+        /// </summary>
+        public static Temperature? FromDegreesDelisle(double? degreesdelisle)
+        {
+            if (degreesdelisle.HasValue)
+            {
+                return FromDegreesDelisle(degreesdelisle.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesFahrenheit.
+        /// </summary>
+        public static Temperature? FromDegreesFahrenheit(double? degreesfahrenheit)
+        {
+            if (degreesfahrenheit.HasValue)
+            {
+                return FromDegreesFahrenheit(degreesfahrenheit.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesNewton.
+        /// </summary>
+        public static Temperature? FromDegreesNewton(double? degreesnewton)
+        {
+            if (degreesnewton.HasValue)
+            {
+                return FromDegreesNewton(degreesnewton.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRankine.
+        /// </summary>
+        public static Temperature? FromDegreesRankine(double? degreesrankine)
+        {
+            if (degreesrankine.HasValue)
+            {
+                return FromDegreesRankine(degreesrankine.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesReaumur.
+        /// </summary>
+        public static Temperature? FromDegreesReaumur(double? degreesreaumur)
+        {
+            if (degreesreaumur.HasValue)
+            {
+                return FromDegreesReaumur(degreesreaumur.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRoemer.
+        /// </summary>
+        public static Temperature? FromDegreesRoemer(double? degreesroemer)
+        {
+            if (degreesroemer.HasValue)
+            {
+                return FromDegreesRoemer(degreesroemer.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable Kelvins.
+        /// </summary>
+        public static Temperature? FromKelvins(double? kelvins)
+        {
+            if (kelvins.HasValue)
+            {
+                return FromKelvins(kelvins.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -218,6 +339,42 @@ namespace UnitsNet
                     return FromDegreesRoemer(value);
                 case TemperatureUnit.Kelvin:
                     return FromKelvins(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Temperature unit value.</returns>
+        public static Temperature? From(double? value, TemperatureUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case TemperatureUnit.DegreeCelsius:
+                    return FromDegreesCelsius(value.Value);
+                case TemperatureUnit.DegreeDelisle:
+                    return FromDegreesDelisle(value.Value);
+                case TemperatureUnit.DegreeFahrenheit:
+                    return FromDegreesFahrenheit(value.Value);
+                case TemperatureUnit.DegreeNewton:
+                    return FromDegreesNewton(value.Value);
+                case TemperatureUnit.DegreeRankine:
+                    return FromDegreesRankine(value.Value);
+                case TemperatureUnit.DegreeReaumur:
+                    return FromDegreesReaumur(value.Value);
+                case TemperatureUnit.DegreeRoemer:
+                    return FromDegreesRoemer(value.Value);
+                case TemperatureUnit.Kelvin:
+                    return FromKelvins(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -391,14 +548,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Temperature Parse(string str, IFormatProvider formatProvider = null)
         {

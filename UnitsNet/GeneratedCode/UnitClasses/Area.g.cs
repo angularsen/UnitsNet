@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Area from nullable SquareCentimeters.
+        /// </summary>
+        public static Area? FromSquareCentimeters(double? squarecentimeters)
+        {
+            if (squarecentimeters.HasValue)
+            {
+                return FromSquareCentimeters(squarecentimeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareDecimeters.
+        /// </summary>
+        public static Area? FromSquareDecimeters(double? squaredecimeters)
+        {
+            if (squaredecimeters.HasValue)
+            {
+                return FromSquareDecimeters(squaredecimeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareFeet.
+        /// </summary>
+        public static Area? FromSquareFeet(double? squarefeet)
+        {
+            if (squarefeet.HasValue)
+            {
+                return FromSquareFeet(squarefeet.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareInches.
+        /// </summary>
+        public static Area? FromSquareInches(double? squareinches)
+        {
+            if (squareinches.HasValue)
+            {
+                return FromSquareInches(squareinches.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareKilometers.
+        /// </summary>
+        public static Area? FromSquareKilometers(double? squarekilometers)
+        {
+            if (squarekilometers.HasValue)
+            {
+                return FromSquareKilometers(squarekilometers.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMeters.
+        /// </summary>
+        public static Area? FromSquareMeters(double? squaremeters)
+        {
+            if (squaremeters.HasValue)
+            {
+                return FromSquareMeters(squaremeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMicrometers.
+        /// </summary>
+        public static Area? FromSquareMicrometers(double? squaremicrometers)
+        {
+            if (squaremicrometers.HasValue)
+            {
+                return FromSquareMicrometers(squaremicrometers.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMiles.
+        /// </summary>
+        public static Area? FromSquareMiles(double? squaremiles)
+        {
+            if (squaremiles.HasValue)
+            {
+                return FromSquareMiles(squaremiles.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMillimeters.
+        /// </summary>
+        public static Area? FromSquareMillimeters(double? squaremillimeters)
+        {
+            if (squaremillimeters.HasValue)
+            {
+                return FromSquareMillimeters(squaremillimeters.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareYards.
+        /// </summary>
+        public static Area? FromSquareYards(double? squareyards)
+        {
+            if (squareyards.HasValue)
+            {
+                return FromSquareYards(squareyards.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -254,6 +405,46 @@ namespace UnitsNet
                     return FromSquareMillimeters(value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Area unit value.</returns>
+        public static Area? From(double? value, AreaUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case AreaUnit.SquareCentimeter:
+                    return FromSquareCentimeters(value.Value);
+                case AreaUnit.SquareDecimeter:
+                    return FromSquareDecimeters(value.Value);
+                case AreaUnit.SquareFoot:
+                    return FromSquareFeet(value.Value);
+                case AreaUnit.SquareInch:
+                    return FromSquareInches(value.Value);
+                case AreaUnit.SquareKilometer:
+                    return FromSquareKilometers(value.Value);
+                case AreaUnit.SquareMeter:
+                    return FromSquareMeters(value.Value);
+                case AreaUnit.SquareMicrometer:
+                    return FromSquareMicrometers(value.Value);
+                case AreaUnit.SquareMile:
+                    return FromSquareMiles(value.Value);
+                case AreaUnit.SquareMillimeter:
+                    return FromSquareMillimeters(value.Value);
+                case AreaUnit.SquareYard:
+                    return FromSquareYards(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -431,14 +622,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Area Parse(string str, IFormatProvider formatProvider = null)
         {

@@ -337,6 +337,262 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Mass from nullable Centigrams.
+        /// </summary>
+        public static Mass? FromCentigrams(double? centigrams)
+        {
+            if (centigrams.HasValue)
+            {
+                return FromCentigrams(centigrams.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Decagrams.
+        /// </summary>
+        public static Mass? FromDecagrams(double? decagrams)
+        {
+            if (decagrams.HasValue)
+            {
+                return FromDecagrams(decagrams.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Decigrams.
+        /// </summary>
+        public static Mass? FromDecigrams(double? decigrams)
+        {
+            if (decigrams.HasValue)
+            {
+                return FromDecigrams(decigrams.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Grams.
+        /// </summary>
+        public static Mass? FromGrams(double? grams)
+        {
+            if (grams.HasValue)
+            {
+                return FromGrams(grams.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Hectograms.
+        /// </summary>
+        public static Mass? FromHectograms(double? hectograms)
+        {
+            if (hectograms.HasValue)
+            {
+                return FromHectograms(hectograms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Kilograms.
+        /// </summary>
+        public static Mass? FromKilograms(double? kilograms)
+        {
+            if (kilograms.HasValue)
+            {
+                return FromKilograms(kilograms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Kilotonnes.
+        /// </summary>
+        public static Mass? FromKilotonnes(double? kilotonnes)
+        {
+            if (kilotonnes.HasValue)
+            {
+                return FromKilotonnes(kilotonnes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable LongTons.
+        /// </summary>
+        public static Mass? FromLongTons(double? longtons)
+        {
+            if (longtons.HasValue)
+            {
+                return FromLongTons(longtons.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Megatonnes.
+        /// </summary>
+        public static Mass? FromMegatonnes(double? megatonnes)
+        {
+            if (megatonnes.HasValue)
+            {
+                return FromMegatonnes(megatonnes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Micrograms.
+        /// </summary>
+        public static Mass? FromMicrograms(double? micrograms)
+        {
+            if (micrograms.HasValue)
+            {
+                return FromMicrograms(micrograms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Milligrams.
+        /// </summary>
+        public static Mass? FromMilligrams(double? milligrams)
+        {
+            if (milligrams.HasValue)
+            {
+                return FromMilligrams(milligrams.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Nanograms.
+        /// </summary>
+        public static Mass? FromNanograms(double? nanograms)
+        {
+            if (nanograms.HasValue)
+            {
+                return FromNanograms(nanograms.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Ounces.
+        /// </summary>
+        public static Mass? FromOunces(double? ounces)
+        {
+            if (ounces.HasValue)
+            {
+                return FromOunces(ounces.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Pounds.
+        /// </summary>
+        public static Mass? FromPounds(double? pounds)
+        {
+            if (pounds.HasValue)
+            {
+                return FromPounds(pounds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable ShortTons.
+        /// </summary>
+        public static Mass? FromShortTons(double? shorttons)
+        {
+            if (shorttons.HasValue)
+            {
+                return FromShortTons(shorttons.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Stone.
+        /// </summary>
+        public static Mass? FromStone(double? stone)
+        {
+            if (stone.HasValue)
+            {
+                return FromStone(stone.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Mass from nullable Tonnes.
+        /// </summary>
+        public static Mass? FromTonnes(double? tonnes)
+        {
+            if (tonnes.HasValue)
+            {
+                return FromTonnes(tonnes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -380,6 +636,60 @@ namespace UnitsNet
                     return FromStone(value);
                 case MassUnit.Tonne:
                     return FromTonnes(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Mass unit value.</returns>
+        public static Mass? From(double? value, MassUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case MassUnit.Centigram:
+                    return FromCentigrams(value.Value);
+                case MassUnit.Decagram:
+                    return FromDecagrams(value.Value);
+                case MassUnit.Decigram:
+                    return FromDecigrams(value.Value);
+                case MassUnit.Gram:
+                    return FromGrams(value.Value);
+                case MassUnit.Hectogram:
+                    return FromHectograms(value.Value);
+                case MassUnit.Kilogram:
+                    return FromKilograms(value.Value);
+                case MassUnit.Kilotonne:
+                    return FromKilotonnes(value.Value);
+                case MassUnit.LongTon:
+                    return FromLongTons(value.Value);
+                case MassUnit.Megatonne:
+                    return FromMegatonnes(value.Value);
+                case MassUnit.Microgram:
+                    return FromMicrograms(value.Value);
+                case MassUnit.Milligram:
+                    return FromMilligrams(value.Value);
+                case MassUnit.Nanogram:
+                    return FromNanograms(value.Value);
+                case MassUnit.Ounce:
+                    return FromOunces(value.Value);
+                case MassUnit.Pound:
+                    return FromPounds(value.Value);
+                case MassUnit.ShortTon:
+                    return FromShortTons(value.Value);
+                case MassUnit.Stone:
+                    return FromStone(value.Value);
+                case MassUnit.Tonne:
+                    return FromTonnes(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -571,14 +881,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Mass Parse(string str, IFormatProvider formatProvider = null)
         {

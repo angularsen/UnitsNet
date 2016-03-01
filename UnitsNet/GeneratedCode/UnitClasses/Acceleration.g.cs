@@ -177,6 +177,112 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromCentimeterPerSecondSquared(double? centimeterpersecondsquared)
+        {
+            if (centimeterpersecondsquared.HasValue)
+            {
+                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromDecimeterPerSecondSquared(double? decimeterpersecondsquared)
+        {
+            if (decimeterpersecondsquared.HasValue)
+            {
+                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromKilometerPerSecondSquared(double? kilometerpersecondsquared)
+        {
+            if (kilometerpersecondsquared.HasValue)
+            {
+                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMeterPerSecondSquared(double? meterpersecondsquared)
+        {
+            if (meterpersecondsquared.HasValue)
+            {
+                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometerPerSecondSquared(double? micrometerpersecondsquared)
+        {
+            if (micrometerpersecondsquared.HasValue)
+            {
+                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimeterPerSecondSquared(double? millimeterpersecondsquared)
+        {
+            if (millimeterpersecondsquared.HasValue)
+            {
+                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometerPerSecondSquared(double? nanometerpersecondsquared)
+        {
+            if (nanometerpersecondsquared.HasValue)
+            {
+                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -200,6 +306,40 @@ namespace UnitsNet
                     return FromMillimeterPerSecondSquared(value);
                 case AccelerationUnit.NanometerPerSecondSquared:
                     return FromNanometerPerSecondSquared(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Acceleration unit value.</returns>
+        public static Acceleration? From(double? value, AccelerationUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case AccelerationUnit.CentimeterPerSecondSquared:
+                    return FromCentimeterPerSecondSquared(value.Value);
+                case AccelerationUnit.DecimeterPerSecondSquared:
+                    return FromDecimeterPerSecondSquared(value.Value);
+                case AccelerationUnit.KilometerPerSecondSquared:
+                    return FromKilometerPerSecondSquared(value.Value);
+                case AccelerationUnit.MeterPerSecondSquared:
+                    return FromMeterPerSecondSquared(value.Value);
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return FromMicrometerPerSecondSquared(value.Value);
+                case AccelerationUnit.MillimeterPerSecondSquared:
+                    return FromMillimeterPerSecondSquared(value.Value);
+                case AccelerationUnit.NanometerPerSecondSquared:
+                    return FromNanometerPerSecondSquared(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -371,14 +511,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Acceleration Parse(string str, IFormatProvider formatProvider = null)
         {

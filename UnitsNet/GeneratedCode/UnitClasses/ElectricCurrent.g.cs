@@ -161,6 +161,97 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Amperes.
+        /// </summary>
+        public static ElectricCurrent? FromAmperes(double? amperes)
+        {
+            if (amperes.HasValue)
+            {
+                return FromAmperes(amperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
+        /// </summary>
+        public static ElectricCurrent? FromKiloamperes(double? kiloamperes)
+        {
+            if (kiloamperes.HasValue)
+            {
+                return FromKiloamperes(kiloamperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Megaamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMegaamperes(double? megaamperes)
+        {
+            if (megaamperes.HasValue)
+            {
+                return FromMegaamperes(megaamperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Microamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMicroamperes(double? microamperes)
+        {
+            if (microamperes.HasValue)
+            {
+                return FromMicroamperes(microamperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Milliamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMilliamperes(double? milliamperes)
+        {
+            if (milliamperes.HasValue)
+            {
+                return FromMilliamperes(milliamperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
+        /// </summary>
+        public static ElectricCurrent? FromNanoamperes(double? nanoamperes)
+        {
+            if (nanoamperes.HasValue)
+            {
+                return FromNanoamperes(nanoamperes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -182,6 +273,38 @@ namespace UnitsNet
                     return FromMilliamperes(value);
                 case ElectricCurrentUnit.Nanoampere:
                     return FromNanoamperes(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricCurrent unit value.</returns>
+        public static ElectricCurrent? From(double? value, ElectricCurrentUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case ElectricCurrentUnit.Ampere:
+                    return FromAmperes(value.Value);
+                case ElectricCurrentUnit.Kiloampere:
+                    return FromKiloamperes(value.Value);
+                case ElectricCurrentUnit.Megaampere:
+                    return FromMegaamperes(value.Value);
+                case ElectricCurrentUnit.Microampere:
+                    return FromMicroamperes(value.Value);
+                case ElectricCurrentUnit.Milliampere:
+                    return FromMilliamperes(value.Value);
+                case ElectricCurrentUnit.Nanoampere:
+                    return FromNanoamperes(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -351,14 +474,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static ElectricCurrent Parse(string str, IFormatProvider formatProvider = null)
         {

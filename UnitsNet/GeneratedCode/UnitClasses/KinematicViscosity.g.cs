@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Centistokes.
+        /// </summary>
+        public static KinematicViscosity? FromCentistokes(double? centistokes)
+        {
+            if (centistokes.HasValue)
+            {
+                return FromCentistokes(centistokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Decistokes.
+        /// </summary>
+        public static KinematicViscosity? FromDecistokes(double? decistokes)
+        {
+            if (decistokes.HasValue)
+            {
+                return FromDecistokes(decistokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Kilostokes.
+        /// </summary>
+        public static KinematicViscosity? FromKilostokes(double? kilostokes)
+        {
+            if (kilostokes.HasValue)
+            {
+                return FromKilostokes(kilostokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Microstokes.
+        /// </summary>
+        public static KinematicViscosity? FromMicrostokes(double? microstokes)
+        {
+            if (microstokes.HasValue)
+            {
+                return FromMicrostokes(microstokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Millistokes.
+        /// </summary>
+        public static KinematicViscosity? FromMillistokes(double? millistokes)
+        {
+            if (millistokes.HasValue)
+            {
+                return FromMillistokes(millistokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Nanostokes.
+        /// </summary>
+        public static KinematicViscosity? FromNanostokes(double? nanostokes)
+        {
+            if (nanostokes.HasValue)
+            {
+                return FromNanostokes(nanostokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
+        /// </summary>
+        public static KinematicViscosity? FromSquareMetersPerSecond(double? squaremeterspersecond)
+        {
+            if (squaremeterspersecond.HasValue)
+            {
+                return FromSquareMetersPerSecond(squaremeterspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Stokes.
+        /// </summary>
+        public static KinematicViscosity? FromStokes(double? stokes)
+        {
+            if (stokes.HasValue)
+            {
+                return FromStokes(stokes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -218,6 +339,42 @@ namespace UnitsNet
                     return FromSquareMetersPerSecond(value);
                 case KinematicViscosityUnit.Stokes:
                     return FromStokes(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>KinematicViscosity unit value.</returns>
+        public static KinematicViscosity? From(double? value, KinematicViscosityUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case KinematicViscosityUnit.Centistokes:
+                    return FromCentistokes(value.Value);
+                case KinematicViscosityUnit.Decistokes:
+                    return FromDecistokes(value.Value);
+                case KinematicViscosityUnit.Kilostokes:
+                    return FromKilostokes(value.Value);
+                case KinematicViscosityUnit.Microstokes:
+                    return FromMicrostokes(value.Value);
+                case KinematicViscosityUnit.Millistokes:
+                    return FromMillistokes(value.Value);
+                case KinematicViscosityUnit.Nanostokes:
+                    return FromNanostokes(value.Value);
+                case KinematicViscosityUnit.SquareMeterPerSecond:
+                    return FromSquareMetersPerSecond(value.Value);
+                case KinematicViscosityUnit.Stokes:
+                    return FromStokes(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -391,14 +548,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static KinematicViscosity Parse(string str, IFormatProvider formatProvider = null)
         {

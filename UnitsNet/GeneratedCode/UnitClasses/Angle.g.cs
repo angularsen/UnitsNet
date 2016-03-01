@@ -273,6 +273,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Angle from nullable Arcminutes.
+        /// </summary>
+        public static Angle? FromArcminutes(double? arcminutes)
+        {
+            if (arcminutes.HasValue)
+            {
+                return FromArcminutes(arcminutes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Arcseconds.
+        /// </summary>
+        public static Angle? FromArcseconds(double? arcseconds)
+        {
+            if (arcseconds.HasValue)
+            {
+                return FromArcseconds(arcseconds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Centiradians.
+        /// </summary>
+        public static Angle? FromCentiradians(double? centiradians)
+        {
+            if (centiradians.HasValue)
+            {
+                return FromCentiradians(centiradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Deciradians.
+        /// </summary>
+        public static Angle? FromDeciradians(double? deciradians)
+        {
+            if (deciradians.HasValue)
+            {
+                return FromDeciradians(deciradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Degrees.
+        /// </summary>
+        public static Angle? FromDegrees(double? degrees)
+        {
+            if (degrees.HasValue)
+            {
+                return FromDegrees(degrees.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Gradians.
+        /// </summary>
+        public static Angle? FromGradians(double? gradians)
+        {
+            if (gradians.HasValue)
+            {
+                return FromGradians(gradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Microradians.
+        /// </summary>
+        public static Angle? FromMicroradians(double? microradians)
+        {
+            if (microradians.HasValue)
+            {
+                return FromMicroradians(microradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Milliradians.
+        /// </summary>
+        public static Angle? FromMilliradians(double? milliradians)
+        {
+            if (milliradians.HasValue)
+            {
+                return FromMilliradians(milliradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Nanoradians.
+        /// </summary>
+        public static Angle? FromNanoradians(double? nanoradians)
+        {
+            if (nanoradians.HasValue)
+            {
+                return FromNanoradians(nanoradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Radians.
+        /// </summary>
+        public static Angle? FromRadians(double? radians)
+        {
+            if (radians.HasValue)
+            {
+                return FromRadians(radians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -308,6 +459,46 @@ namespace UnitsNet
                     return FromNanoradians(value);
                 case AngleUnit.Radian:
                     return FromRadians(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Angle unit value.</returns>
+        public static Angle? From(double? value, AngleUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case AngleUnit.Arcminute:
+                    return FromArcminutes(value.Value);
+                case AngleUnit.Arcsecond:
+                    return FromArcseconds(value.Value);
+                case AngleUnit.Centiradian:
+                    return FromCentiradians(value.Value);
+                case AngleUnit.Deciradian:
+                    return FromDeciradians(value.Value);
+                case AngleUnit.Degree:
+                    return FromDegrees(value.Value);
+                case AngleUnit.Gradian:
+                    return FromGradians(value.Value);
+                case AngleUnit.Microradian:
+                    return FromMicroradians(value.Value);
+                case AngleUnit.Milliradian:
+                    return FromMilliradians(value.Value);
+                case AngleUnit.Nanoradian:
+                    return FromNanoradians(value.Value);
+                case AngleUnit.Radian:
+                    return FromRadians(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -491,14 +682,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Angle Parse(string str, IFormatProvider formatProvider = null)
         {

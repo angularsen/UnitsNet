@@ -321,6 +321,247 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Power from nullable BoilerHorsepower.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(double? boilerhorsepower)
+        {
+            if (boilerhorsepower.HasValue)
+            {
+                return FromBoilerHorsepower(boilerhorsepower.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable ElectricalHorsepower.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(double? electricalhorsepower)
+        {
+            if (electricalhorsepower.HasValue)
+            {
+                return FromElectricalHorsepower(electricalhorsepower.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Femtowatts.
+        /// </summary>
+        public static Power? FromFemtowatts(double? femtowatts)
+        {
+            if (femtowatts.HasValue)
+            {
+                return FromFemtowatts(femtowatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Gigawatts.
+        /// </summary>
+        public static Power? FromGigawatts(double? gigawatts)
+        {
+            if (gigawatts.HasValue)
+            {
+                return FromGigawatts(gigawatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable HydraulicHorsepower.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(double? hydraulichorsepower)
+        {
+            if (hydraulichorsepower.HasValue)
+            {
+                return FromHydraulicHorsepower(hydraulichorsepower.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Kilowatts.
+        /// </summary>
+        public static Power? FromKilowatts(double? kilowatts)
+        {
+            if (kilowatts.HasValue)
+            {
+                return FromKilowatts(kilowatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MechanicalHorsepower.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(double? mechanicalhorsepower)
+        {
+            if (mechanicalhorsepower.HasValue)
+            {
+                return FromMechanicalHorsepower(mechanicalhorsepower.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Megawatts.
+        /// </summary>
+        public static Power? FromMegawatts(double? megawatts)
+        {
+            if (megawatts.HasValue)
+            {
+                return FromMegawatts(megawatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MetricHorsepower.
+        /// </summary>
+        public static Power? FromMetricHorsepower(double? metrichorsepower)
+        {
+            if (metrichorsepower.HasValue)
+            {
+                return FromMetricHorsepower(metrichorsepower.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Microwatts.
+        /// </summary>
+        public static Power? FromMicrowatts(double? microwatts)
+        {
+            if (microwatts.HasValue)
+            {
+                return FromMicrowatts(microwatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Milliwatts.
+        /// </summary>
+        public static Power? FromMilliwatts(double? milliwatts)
+        {
+            if (milliwatts.HasValue)
+            {
+                return FromMilliwatts(milliwatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Nanowatts.
+        /// </summary>
+        public static Power? FromNanowatts(double? nanowatts)
+        {
+            if (nanowatts.HasValue)
+            {
+                return FromNanowatts(nanowatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Petawatts.
+        /// </summary>
+        public static Power? FromPetawatts(double? petawatts)
+        {
+            if (petawatts.HasValue)
+            {
+                return FromPetawatts(petawatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Picowatts.
+        /// </summary>
+        public static Power? FromPicowatts(double? picowatts)
+        {
+            if (picowatts.HasValue)
+            {
+                return FromPicowatts(picowatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Terawatts.
+        /// </summary>
+        public static Power? FromTerawatts(double? terawatts)
+        {
+            if (terawatts.HasValue)
+            {
+                return FromTerawatts(terawatts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Watts.
+        /// </summary>
+        public static Power? FromWatts(double? watts)
+        {
+            if (watts.HasValue)
+            {
+                return FromWatts(watts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -362,6 +603,58 @@ namespace UnitsNet
                     return FromTerawatts(value);
                 case PowerUnit.Watt:
                     return FromWatts(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Power unit value.</returns>
+        public static Power? From(double? value, PowerUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case PowerUnit.BoilerHorsepower:
+                    return FromBoilerHorsepower(value.Value);
+                case PowerUnit.ElectricalHorsepower:
+                    return FromElectricalHorsepower(value.Value);
+                case PowerUnit.Femtowatt:
+                    return FromFemtowatts(value.Value);
+                case PowerUnit.Gigawatt:
+                    return FromGigawatts(value.Value);
+                case PowerUnit.HydraulicHorsepower:
+                    return FromHydraulicHorsepower(value.Value);
+                case PowerUnit.Kilowatt:
+                    return FromKilowatts(value.Value);
+                case PowerUnit.MechanicalHorsepower:
+                    return FromMechanicalHorsepower(value.Value);
+                case PowerUnit.Megawatt:
+                    return FromMegawatts(value.Value);
+                case PowerUnit.MetricHorsepower:
+                    return FromMetricHorsepower(value.Value);
+                case PowerUnit.Microwatt:
+                    return FromMicrowatts(value.Value);
+                case PowerUnit.Milliwatt:
+                    return FromMilliwatts(value.Value);
+                case PowerUnit.Nanowatt:
+                    return FromNanowatts(value.Value);
+                case PowerUnit.Petawatt:
+                    return FromPetawatts(value.Value);
+                case PowerUnit.Picowatt:
+                    return FromPicowatts(value.Value);
+                case PowerUnit.Terawatt:
+                    return FromTerawatts(value.Value);
+                case PowerUnit.Watt:
+                    return FromWatts(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -551,14 +844,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Power Parse(string str, IFormatProvider formatProvider = null)
         {

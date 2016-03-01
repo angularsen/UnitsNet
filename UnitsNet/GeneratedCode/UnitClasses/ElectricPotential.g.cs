@@ -145,6 +145,82 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ElectricPotential from nullable Kilovolts.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(double? kilovolts)
+        {
+            if (kilovolts.HasValue)
+            {
+                return FromKilovolts(kilovolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Megavolts.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(double? megavolts)
+        {
+            if (megavolts.HasValue)
+            {
+                return FromMegavolts(megavolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Microvolts.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(double? microvolts)
+        {
+            if (microvolts.HasValue)
+            {
+                return FromMicrovolts(microvolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Millivolts.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(double? millivolts)
+        {
+            if (millivolts.HasValue)
+            {
+                return FromMillivolts(millivolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Volts.
+        /// </summary>
+        public static ElectricPotential? FromVolts(double? volts)
+        {
+            if (volts.HasValue)
+            {
+                return FromVolts(volts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -164,6 +240,36 @@ namespace UnitsNet
                     return FromMillivolts(value);
                 case ElectricPotentialUnit.Volt:
                     return FromVolts(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricPotential unit value.</returns>
+        public static ElectricPotential? From(double? value, ElectricPotentialUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case ElectricPotentialUnit.Kilovolt:
+                    return FromKilovolts(value.Value);
+                case ElectricPotentialUnit.Megavolt:
+                    return FromMegavolts(value.Value);
+                case ElectricPotentialUnit.Microvolt:
+                    return FromMicrovolts(value.Value);
+                case ElectricPotentialUnit.Millivolt:
+                    return FromMillivolts(value.Value);
+                case ElectricPotentialUnit.Volt:
+                    return FromVolts(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -331,14 +437,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static ElectricPotential Parse(string str, IFormatProvider formatProvider = null)
         {

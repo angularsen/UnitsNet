@@ -113,6 +113,52 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMicrovolts(double? decibelmicrovolts)
+        {
+            if (decibelmicrovolts.HasValue)
+            {
+                return FromDecibelMicrovolts(decibelmicrovolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMillivolts(double? decibelmillivolts)
+        {
+            if (decibelmillivolts.HasValue)
+            {
+                return FromDecibelMillivolts(decibelmillivolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelVolts(double? decibelvolts)
+        {
+            if (decibelvolts.HasValue)
+            {
+                return FromDecibelVolts(decibelvolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -128,6 +174,32 @@ namespace UnitsNet
                     return FromDecibelMillivolts(value);
                 case AmplitudeRatioUnit.DecibelVolt:
                     return FromDecibelVolts(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>AmplitudeRatio unit value.</returns>
+        public static AmplitudeRatio? From(double? value, AmplitudeRatioUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case AmplitudeRatioUnit.DecibelMicrovolt:
+                    return FromDecibelMicrovolts(value.Value);
+                case AmplitudeRatioUnit.DecibelMillivolt:
+                    return FromDecibelMillivolts(value.Value);
+                case AmplitudeRatioUnit.DecibelVolt:
+                    return FromDecibelVolts(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -299,14 +371,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static AmplitudeRatio Parse(string str, IFormatProvider formatProvider = null)
         {

@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(double? centigramspersecond)
+        {
+            if (centigramspersecond.HasValue)
+            {
+                return FromCentigramsPerSecond(centigramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(double? decagramspersecond)
+        {
+            if (decagramspersecond.HasValue)
+            {
+                return FromDecagramsPerSecond(decagramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(double? decigramspersecond)
+        {
+            if (decigramspersecond.HasValue)
+            {
+                return FromDecigramsPerSecond(decigramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable GramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(double? gramspersecond)
+        {
+            if (gramspersecond.HasValue)
+            {
+                return FromGramsPerSecond(gramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(double? hectogramspersecond)
+        {
+            if (hectogramspersecond.HasValue)
+            {
+                return FromHectogramsPerSecond(hectogramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(double? kilogramspersecond)
+        {
+            if (kilogramspersecond.HasValue)
+            {
+                return FromKilogramsPerSecond(kilogramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(double? microgramspersecond)
+        {
+            if (microgramspersecond.HasValue)
+            {
+                return FromMicrogramsPerSecond(microgramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(double? milligramspersecond)
+        {
+            if (milligramspersecond.HasValue)
+            {
+                return FromMilligramsPerSecond(milligramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(double? nanogramspersecond)
+        {
+            if (nanogramspersecond.HasValue)
+            {
+                return FromNanogramsPerSecond(nanogramspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerDay.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(double? tonnesperday)
+        {
+            if (tonnesperday.HasValue)
+            {
+                return FromTonnesPerDay(tonnesperday.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -254,6 +405,46 @@ namespace UnitsNet
                     return FromNanogramsPerSecond(value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MassFlow unit value.</returns>
+        public static MassFlow? From(double? value, MassFlowUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case MassFlowUnit.CentigramPerSecond:
+                    return FromCentigramsPerSecond(value.Value);
+                case MassFlowUnit.DecagramPerSecond:
+                    return FromDecagramsPerSecond(value.Value);
+                case MassFlowUnit.DecigramPerSecond:
+                    return FromDecigramsPerSecond(value.Value);
+                case MassFlowUnit.GramPerSecond:
+                    return FromGramsPerSecond(value.Value);
+                case MassFlowUnit.HectogramPerSecond:
+                    return FromHectogramsPerSecond(value.Value);
+                case MassFlowUnit.KilogramPerSecond:
+                    return FromKilogramsPerSecond(value.Value);
+                case MassFlowUnit.MicrogramPerSecond:
+                    return FromMicrogramsPerSecond(value.Value);
+                case MassFlowUnit.MilligramPerSecond:
+                    return FromMilligramsPerSecond(value.Value);
+                case MassFlowUnit.NanogramPerSecond:
+                    return FromNanogramsPerSecond(value.Value);
+                case MassFlowUnit.TonnePerDay:
+                    return FromTonnesPerDay(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -431,14 +622,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static MassFlow Parse(string str, IFormatProvider formatProvider = null)
         {

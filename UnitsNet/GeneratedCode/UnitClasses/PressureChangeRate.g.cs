@@ -129,6 +129,67 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromAtmospheresPerSecond(double? atmospherespersecond)
+        {
+            if (atmospherespersecond.HasValue)
+            {
+                return FromAtmospheresPerSecond(atmospherespersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromKilopascalsPerSecond(double? kilopascalspersecond)
+        {
+            if (kilopascalspersecond.HasValue)
+            {
+                return FromKilopascalsPerSecond(kilopascalspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromMegapascalsPerSecond(double? megapascalspersecond)
+        {
+            if (megapascalspersecond.HasValue)
+            {
+                return FromMegapascalsPerSecond(megapascalspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromPascalsPerSecond(double? pascalspersecond)
+        {
+            if (pascalspersecond.HasValue)
+            {
+                return FromPascalsPerSecond(pascalspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -146,6 +207,34 @@ namespace UnitsNet
                     return FromMegapascalsPerSecond(value);
                 case PressureChangeRateUnit.PascalPerSecond:
                     return FromPascalsPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>PressureChangeRate unit value.</returns>
+        public static PressureChangeRate? From(double? value, PressureChangeRateUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case PressureChangeRateUnit.AtmospherePerSecond:
+                    return FromAtmospheresPerSecond(value.Value);
+                case PressureChangeRateUnit.KilopascalPerSecond:
+                    return FromKilopascalsPerSecond(value.Value);
+                case PressureChangeRateUnit.MegapascalPerSecond:
+                    return FromMegapascalsPerSecond(value.Value);
+                case PressureChangeRateUnit.PascalPerSecond:
+                    return FromPascalsPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -311,14 +400,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static PressureChangeRate Parse(string str, IFormatProvider formatProvider = null)
         {

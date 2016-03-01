@@ -257,6 +257,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromCentiradiansPerSecond(double? centiradianspersecond)
+        {
+            if (centiradianspersecond.HasValue)
+            {
+                return FromCentiradiansPerSecond(centiradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromDeciradiansPerSecond(double? deciradianspersecond)
+        {
+            if (deciradianspersecond.HasValue)
+            {
+                return FromDeciradiansPerSecond(deciradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMicroradiansPerSecond(double? microradianspersecond)
+        {
+            if (microradianspersecond.HasValue)
+            {
+                return FromMicroradiansPerSecond(microradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMilliradiansPerSecond(double? milliradianspersecond)
+        {
+            if (milliradianspersecond.HasValue)
+            {
+                return FromMilliradiansPerSecond(milliradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromNanoradiansPerSecond(double? nanoradianspersecond)
+        {
+            if (nanoradianspersecond.HasValue)
+            {
+                return FromNanoradiansPerSecond(nanoradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRadiansPerSecond(double? radianspersecond)
+        {
+            if (radianspersecond.HasValue)
+            {
+                return FromRadiansPerSecond(radianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerMinute(double? revolutionsperminute)
+        {
+            if (revolutionsperminute.HasValue)
+            {
+                return FromRevolutionsPerMinute(revolutionsperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerSecond(double? revolutionspersecond)
+        {
+            if (revolutionspersecond.HasValue)
+            {
+                return FromRevolutionsPerSecond(revolutionspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -290,6 +411,42 @@ namespace UnitsNet
                     return FromRevolutionsPerMinute(value);
                 case RotationalSpeedUnit.RevolutionPerSecond:
                     return FromRevolutionsPerSecond(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>RotationalSpeed unit value.</returns>
+        public static RotationalSpeed? From(double? value, RotationalSpeedUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case RotationalSpeedUnit.CentiradianPerSecond:
+                    return FromCentiradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.DeciradianPerSecond:
+                    return FromDeciradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.MicroradianPerSecond:
+                    return FromMicroradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.MilliradianPerSecond:
+                    return FromMilliradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.NanoradianPerSecond:
+                    return FromNanoradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.RadianPerSecond:
+                    return FromRadiansPerSecond(value.Value);
+                case RotationalSpeedUnit.RevolutionPerMinute:
+                    return FromRevolutionsPerMinute(value.Value);
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    return FromRevolutionsPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -471,14 +628,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static RotationalSpeed Parse(string str, IFormatProvider formatProvider = null)
         {

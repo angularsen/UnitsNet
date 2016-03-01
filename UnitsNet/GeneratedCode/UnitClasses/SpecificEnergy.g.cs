@@ -193,6 +193,127 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
+        /// </summary>
+        public static SpecificEnergy? FromCaloriesPerGram(double? caloriespergram)
+        {
+            if (caloriespergram.HasValue)
+            {
+                return FromCaloriesPerGram(caloriespergram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromJoulesPerKilogram(double? joulesperkilogram)
+        {
+            if (joulesperkilogram.HasValue)
+            {
+                return FromJoulesPerKilogram(joulesperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
+        /// </summary>
+        public static SpecificEnergy? FromKilocaloriesPerGram(double? kilocaloriespergram)
+        {
+            if (kilocaloriespergram.HasValue)
+            {
+                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromKilojoulesPerKilogram(double? kilojoulesperkilogram)
+        {
+            if (kilojoulesperkilogram.HasValue)
+            {
+                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromKilowattHoursPerKilogram(double? kilowatthoursperkilogram)
+        {
+            if (kilowatthoursperkilogram.HasValue)
+            {
+                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromMegajoulesPerKilogram(double? megajoulesperkilogram)
+        {
+            if (megajoulesperkilogram.HasValue)
+            {
+                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromMegawattHoursPerKilogram(double? megawatthoursperkilogram)
+        {
+            if (megawatthoursperkilogram.HasValue)
+            {
+                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
+        /// </summary>
+        public static SpecificEnergy? FromWattHoursPerKilogram(double? watthoursperkilogram)
+        {
+            if (watthoursperkilogram.HasValue)
+            {
+                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -218,6 +339,42 @@ namespace UnitsNet
                     return FromMegawattHoursPerKilogram(value);
                 case SpecificEnergyUnit.WattHourPerKilogram:
                     return FromWattHoursPerKilogram(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>SpecificEnergy unit value.</returns>
+        public static SpecificEnergy? From(double? value, SpecificEnergyUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case SpecificEnergyUnit.CaloriePerGram:
+                    return FromCaloriesPerGram(value.Value);
+                case SpecificEnergyUnit.JoulePerKilogram:
+                    return FromJoulesPerKilogram(value.Value);
+                case SpecificEnergyUnit.KilocaloriePerGram:
+                    return FromKilocaloriesPerGram(value.Value);
+                case SpecificEnergyUnit.KilojoulePerKilogram:
+                    return FromKilojoulesPerKilogram(value.Value);
+                case SpecificEnergyUnit.KilowattHourPerKilogram:
+                    return FromKilowattHoursPerKilogram(value.Value);
+                case SpecificEnergyUnit.MegajoulePerKilogram:
+                    return FromMegajoulesPerKilogram(value.Value);
+                case SpecificEnergyUnit.MegawattHourPerKilogram:
+                    return FromMegawattHoursPerKilogram(value.Value);
+                case SpecificEnergyUnit.WattHourPerKilogram:
+                    return FromWattHoursPerKilogram(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -391,14 +548,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static SpecificEnergy Parse(string str, IFormatProvider formatProvider = null)
         {

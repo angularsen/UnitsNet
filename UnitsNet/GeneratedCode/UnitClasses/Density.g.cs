@@ -225,6 +225,157 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicCentimeter(double? kilogramspercubiccentimeter)
+        {
+            if (kilogramspercubiccentimeter.HasValue)
+            {
+                return FromKilogramsPerCubicCentimeter(kilogramspercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMeter(double? kilogramspercubicmeter)
+        {
+            if (kilogramspercubicmeter.HasValue)
+            {
+                return FromKilogramsPerCubicMeter(kilogramspercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMillimeter(double? kilogramspercubicmillimeter)
+        {
+            if (kilogramspercubicmillimeter.HasValue)
+            {
+                return FromKilogramsPerCubicMillimeter(kilogramspercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicFoot(double? kilopoundspercubicfoot)
+        {
+            if (kilopoundspercubicfoot.HasValue)
+            {
+                return FromKilopoundsPerCubicFoot(kilopoundspercubicfoot.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicInch(double? kilopoundspercubicinch)
+        {
+            if (kilopoundspercubicinch.HasValue)
+            {
+                return FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromPoundsPerCubicFoot(double? poundspercubicfoot)
+        {
+            if (poundspercubicfoot.HasValue)
+            {
+                return FromPoundsPerCubicFoot(poundspercubicfoot.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromPoundsPerCubicInch(double? poundspercubicinch)
+        {
+            if (poundspercubicinch.HasValue)
+            {
+                return FromPoundsPerCubicInch(poundspercubicinch.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicCentimeter(double? tonnespercubiccentimeter)
+        {
+            if (tonnespercubiccentimeter.HasValue)
+            {
+                return FromTonnesPerCubicCentimeter(tonnespercubiccentimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMeter(double? tonnespercubicmeter)
+        {
+            if (tonnespercubicmeter.HasValue)
+            {
+                return FromTonnesPerCubicMeter(tonnespercubicmeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMillimeter(double? tonnespercubicmillimeter)
+        {
+            if (tonnespercubicmillimeter.HasValue)
+            {
+                return FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -254,6 +405,46 @@ namespace UnitsNet
                     return FromTonnesPerCubicMeter(value);
                 case DensityUnit.TonnePerCubicMillimeter:
                     return FromTonnesPerCubicMillimeter(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Density unit value.</returns>
+        public static Density? From(double? value, DensityUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case DensityUnit.KilogramPerCubicCentimeter:
+                    return FromKilogramsPerCubicCentimeter(value.Value);
+                case DensityUnit.KilogramPerCubicMeter:
+                    return FromKilogramsPerCubicMeter(value.Value);
+                case DensityUnit.KilogramPerCubicMillimeter:
+                    return FromKilogramsPerCubicMillimeter(value.Value);
+                case DensityUnit.KilopoundPerCubicFoot:
+                    return FromKilopoundsPerCubicFoot(value.Value);
+                case DensityUnit.KilopoundPerCubicInch:
+                    return FromKilopoundsPerCubicInch(value.Value);
+                case DensityUnit.PoundPerCubicFoot:
+                    return FromPoundsPerCubicFoot(value.Value);
+                case DensityUnit.PoundPerCubicInch:
+                    return FromPoundsPerCubicInch(value.Value);
+                case DensityUnit.TonnePerCubicCentimeter:
+                    return FromTonnesPerCubicCentimeter(value.Value);
+                case DensityUnit.TonnePerCubicMeter:
+                    return FromTonnesPerCubicMeter(value.Value);
+                case DensityUnit.TonnePerCubicMillimeter:
+                    return FromTonnesPerCubicMillimeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -431,14 +622,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Density Parse(string str, IFormatProvider formatProvider = null)
         {

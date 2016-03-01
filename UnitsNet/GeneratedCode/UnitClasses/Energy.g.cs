@@ -273,6 +273,202 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Energy from nullable BritishThermalUnits.
+        /// </summary>
+        public static Energy? FromBritishThermalUnits(double? britishthermalunits)
+        {
+            if (britishthermalunits.HasValue)
+            {
+                return FromBritishThermalUnits(britishthermalunits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Calories.
+        /// </summary>
+        public static Energy? FromCalories(double? calories)
+        {
+            if (calories.HasValue)
+            {
+                return FromCalories(calories.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable ElectronVolts.
+        /// </summary>
+        public static Energy? FromElectronVolts(double? electronvolts)
+        {
+            if (electronvolts.HasValue)
+            {
+                return FromElectronVolts(electronvolts.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Ergs.
+        /// </summary>
+        public static Energy? FromErgs(double? ergs)
+        {
+            if (ergs.HasValue)
+            {
+                return FromErgs(ergs.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable FootPounds.
+        /// </summary>
+        public static Energy? FromFootPounds(double? footpounds)
+        {
+            if (footpounds.HasValue)
+            {
+                return FromFootPounds(footpounds.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable GigawattHours.
+        /// </summary>
+        public static Energy? FromGigawattHours(double? gigawatthours)
+        {
+            if (gigawatthours.HasValue)
+            {
+                return FromGigawattHours(gigawatthours.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Joules.
+        /// </summary>
+        public static Energy? FromJoules(double? joules)
+        {
+            if (joules.HasValue)
+            {
+                return FromJoules(joules.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Kilocalories.
+        /// </summary>
+        public static Energy? FromKilocalories(double? kilocalories)
+        {
+            if (kilocalories.HasValue)
+            {
+                return FromKilocalories(kilocalories.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Kilojoules.
+        /// </summary>
+        public static Energy? FromKilojoules(double? kilojoules)
+        {
+            if (kilojoules.HasValue)
+            {
+                return FromKilojoules(kilojoules.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable KilowattHours.
+        /// </summary>
+        public static Energy? FromKilowattHours(double? kilowatthours)
+        {
+            if (kilowatthours.HasValue)
+            {
+                return FromKilowattHours(kilowatthours.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable Megajoules.
+        /// </summary>
+        public static Energy? FromMegajoules(double? megajoules)
+        {
+            if (megajoules.HasValue)
+            {
+                return FromMegajoules(megajoules.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable MegawattHours.
+        /// </summary>
+        public static Energy? FromMegawattHours(double? megawatthours)
+        {
+            if (megawatthours.HasValue)
+            {
+                return FromMegawattHours(megawatthours.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable WattHours.
+        /// </summary>
+        public static Energy? FromWattHours(double? watthours)
+        {
+            if (watthours.HasValue)
+            {
+                return FromWattHours(watthours.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -308,6 +504,52 @@ namespace UnitsNet
                     return FromMegawattHours(value);
                 case EnergyUnit.WattHour:
                     return FromWattHours(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Energy unit value.</returns>
+        public static Energy? From(double? value, EnergyUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case EnergyUnit.BritishThermalUnit:
+                    return FromBritishThermalUnits(value.Value);
+                case EnergyUnit.Calorie:
+                    return FromCalories(value.Value);
+                case EnergyUnit.ElectronVolt:
+                    return FromElectronVolts(value.Value);
+                case EnergyUnit.Erg:
+                    return FromErgs(value.Value);
+                case EnergyUnit.FootPound:
+                    return FromFootPounds(value.Value);
+                case EnergyUnit.GigawattHour:
+                    return FromGigawattHours(value.Value);
+                case EnergyUnit.Joule:
+                    return FromJoules(value.Value);
+                case EnergyUnit.Kilocalorie:
+                    return FromKilocalories(value.Value);
+                case EnergyUnit.Kilojoule:
+                    return FromKilojoules(value.Value);
+                case EnergyUnit.KilowattHour:
+                    return FromKilowattHours(value.Value);
+                case EnergyUnit.Megajoule:
+                    return FromMegajoules(value.Value);
+                case EnergyUnit.MegawattHour:
+                    return FromMegawattHours(value.Value);
+                case EnergyUnit.WattHour:
+                    return FromWattHours(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -491,14 +733,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Energy Parse(string str, IFormatProvider formatProvider = null)
         {

@@ -481,6 +481,397 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Information from nullable Bits.
+        /// </summary>
+        public static Information? FromBits(double? bits)
+        {
+            if (bits.HasValue)
+            {
+                return FromBits(bits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Bytes.
+        /// </summary>
+        public static Information? FromBytes(double? bytes)
+        {
+            if (bytes.HasValue)
+            {
+                return FromBytes(bytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabits.
+        /// </summary>
+        public static Information? FromExabits(double? exabits)
+        {
+            if (exabits.HasValue)
+            {
+                return FromExabits(exabits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabytes.
+        /// </summary>
+        public static Information? FromExabytes(double? exabytes)
+        {
+            if (exabytes.HasValue)
+            {
+                return FromExabytes(exabytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibits.
+        /// </summary>
+        public static Information? FromExbibits(double? exbibits)
+        {
+            if (exbibits.HasValue)
+            {
+                return FromExbibits(exbibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibytes.
+        /// </summary>
+        public static Information? FromExbibytes(double? exbibytes)
+        {
+            if (exbibytes.HasValue)
+            {
+                return FromExbibytes(exbibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibits.
+        /// </summary>
+        public static Information? FromGibibits(double? gibibits)
+        {
+            if (gibibits.HasValue)
+            {
+                return FromGibibits(gibibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibytes.
+        /// </summary>
+        public static Information? FromGibibytes(double? gibibytes)
+        {
+            if (gibibytes.HasValue)
+            {
+                return FromGibibytes(gibibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabits.
+        /// </summary>
+        public static Information? FromGigabits(double? gigabits)
+        {
+            if (gigabits.HasValue)
+            {
+                return FromGigabits(gigabits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabytes.
+        /// </summary>
+        public static Information? FromGigabytes(double? gigabytes)
+        {
+            if (gigabytes.HasValue)
+            {
+                return FromGigabytes(gigabytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibits.
+        /// </summary>
+        public static Information? FromKibibits(double? kibibits)
+        {
+            if (kibibits.HasValue)
+            {
+                return FromKibibits(kibibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibytes.
+        /// </summary>
+        public static Information? FromKibibytes(double? kibibytes)
+        {
+            if (kibibytes.HasValue)
+            {
+                return FromKibibytes(kibibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobits.
+        /// </summary>
+        public static Information? FromKilobits(double? kilobits)
+        {
+            if (kilobits.HasValue)
+            {
+                return FromKilobits(kilobits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobytes.
+        /// </summary>
+        public static Information? FromKilobytes(double? kilobytes)
+        {
+            if (kilobytes.HasValue)
+            {
+                return FromKilobytes(kilobytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibits.
+        /// </summary>
+        public static Information? FromMebibits(double? mebibits)
+        {
+            if (mebibits.HasValue)
+            {
+                return FromMebibits(mebibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibytes.
+        /// </summary>
+        public static Information? FromMebibytes(double? mebibytes)
+        {
+            if (mebibytes.HasValue)
+            {
+                return FromMebibytes(mebibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabits.
+        /// </summary>
+        public static Information? FromMegabits(double? megabits)
+        {
+            if (megabits.HasValue)
+            {
+                return FromMegabits(megabits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabytes.
+        /// </summary>
+        public static Information? FromMegabytes(double? megabytes)
+        {
+            if (megabytes.HasValue)
+            {
+                return FromMegabytes(megabytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibits.
+        /// </summary>
+        public static Information? FromPebibits(double? pebibits)
+        {
+            if (pebibits.HasValue)
+            {
+                return FromPebibits(pebibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibytes.
+        /// </summary>
+        public static Information? FromPebibytes(double? pebibytes)
+        {
+            if (pebibytes.HasValue)
+            {
+                return FromPebibytes(pebibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabits.
+        /// </summary>
+        public static Information? FromPetabits(double? petabits)
+        {
+            if (petabits.HasValue)
+            {
+                return FromPetabits(petabits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabytes.
+        /// </summary>
+        public static Information? FromPetabytes(double? petabytes)
+        {
+            if (petabytes.HasValue)
+            {
+                return FromPetabytes(petabytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibits.
+        /// </summary>
+        public static Information? FromTebibits(double? tebibits)
+        {
+            if (tebibits.HasValue)
+            {
+                return FromTebibits(tebibits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibytes.
+        /// </summary>
+        public static Information? FromTebibytes(double? tebibytes)
+        {
+            if (tebibytes.HasValue)
+            {
+                return FromTebibytes(tebibytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabits.
+        /// </summary>
+        public static Information? FromTerabits(double? terabits)
+        {
+            if (terabits.HasValue)
+            {
+                return FromTerabits(terabits.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabytes.
+        /// </summary>
+        public static Information? FromTerabytes(double? terabytes)
+        {
+            if (terabytes.HasValue)
+            {
+                return FromTerabytes(terabytes.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -542,6 +933,78 @@ namespace UnitsNet
                     return FromTerabits(value);
                 case InformationUnit.Terabyte:
                     return FromTerabytes(value);
+
+                default:
+                    throw new NotImplementedException("fromUnit: " + fromUnit);
+            }
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Information unit value.</returns>
+        public static Information? From(double? value, InformationUnit fromUnit)
+        {
+            if (!value.HasValue)
+            {
+                return null;
+            }
+            switch (fromUnit)
+            {
+                case InformationUnit.Bit:
+                    return FromBits(value.Value);
+                case InformationUnit.Byte:
+                    return FromBytes(value.Value);
+                case InformationUnit.Exabit:
+                    return FromExabits(value.Value);
+                case InformationUnit.Exabyte:
+                    return FromExabytes(value.Value);
+                case InformationUnit.Exbibit:
+                    return FromExbibits(value.Value);
+                case InformationUnit.Exbibyte:
+                    return FromExbibytes(value.Value);
+                case InformationUnit.Gibibit:
+                    return FromGibibits(value.Value);
+                case InformationUnit.Gibibyte:
+                    return FromGibibytes(value.Value);
+                case InformationUnit.Gigabit:
+                    return FromGigabits(value.Value);
+                case InformationUnit.Gigabyte:
+                    return FromGigabytes(value.Value);
+                case InformationUnit.Kibibit:
+                    return FromKibibits(value.Value);
+                case InformationUnit.Kibibyte:
+                    return FromKibibytes(value.Value);
+                case InformationUnit.Kilobit:
+                    return FromKilobits(value.Value);
+                case InformationUnit.Kilobyte:
+                    return FromKilobytes(value.Value);
+                case InformationUnit.Mebibit:
+                    return FromMebibits(value.Value);
+                case InformationUnit.Mebibyte:
+                    return FromMebibytes(value.Value);
+                case InformationUnit.Megabit:
+                    return FromMegabits(value.Value);
+                case InformationUnit.Megabyte:
+                    return FromMegabytes(value.Value);
+                case InformationUnit.Pebibit:
+                    return FromPebibits(value.Value);
+                case InformationUnit.Pebibyte:
+                    return FromPebibytes(value.Value);
+                case InformationUnit.Petabit:
+                    return FromPetabits(value.Value);
+                case InformationUnit.Petabyte:
+                    return FromPetabytes(value.Value);
+                case InformationUnit.Tebibit:
+                    return FromTebibits(value.Value);
+                case InformationUnit.Tebibyte:
+                    return FromTebibytes(value.Value);
+                case InformationUnit.Terabit:
+                    return FromTerabits(value.Value);
+                case InformationUnit.Terabyte:
+                    return FromTerabytes(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -751,14 +1214,14 @@ namespace UnitsNet
         ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
-		///     More than one unit is represented by the specified unit abbreviation.
-		///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
-		///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">
-		///     If anything else goes wrong, typically due to a bug or unhandled case.
-		///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-		///     Units.NET exceptions from other exceptions.
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Information Parse(string str, IFormatProvider formatProvider = null)
         {
