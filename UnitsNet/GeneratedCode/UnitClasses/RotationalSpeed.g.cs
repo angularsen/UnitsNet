@@ -287,6 +287,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromDegreesPerSecond(double? degreespersecond)
+        {
+            if (degreespersecond.HasValue)
+            {
+                return FromDegreesPerSecond(degreespersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MicrodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMicrodegreesPerSecond(double? microdegreespersecond)
+        {
+            if (microdegreespersecond.HasValue)
+            {
+                return FromMicrodegreesPerSecond(microdegreespersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMicroradiansPerSecond(double? microradianspersecond)
@@ -302,6 +332,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MillidegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMillidegreesPerSecond(double? millidegreespersecond)
+        {
+            if (millidegreespersecond.HasValue)
+            {
+                return FromMillidegreesPerSecond(millidegreespersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMilliradiansPerSecond(double? milliradianspersecond)
@@ -309,6 +354,21 @@ namespace UnitsNet
             if (milliradianspersecond.HasValue)
             {
                 return FromMilliradiansPerSecond(milliradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable NanodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromNanodegreesPerSecond(double? nanodegreespersecond)
+        {
+            if (nanodegreespersecond.HasValue)
+            {
+                return FromNanodegreesPerSecond(nanodegreespersecond.Value);
             }
             else
             {
@@ -435,10 +495,18 @@ namespace UnitsNet
                     return FromCentiradiansPerSecond(value.Value);
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return FromDeciradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.DegreePerSecond:
+                    return FromDegreesPerSecond(value.Value);
+                case RotationalSpeedUnit.MicrodegreePerSecond:
+                    return FromMicrodegreesPerSecond(value.Value);
                 case RotationalSpeedUnit.MicroradianPerSecond:
                     return FromMicroradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.MillidegreePerSecond:
+                    return FromMillidegreesPerSecond(value.Value);
                 case RotationalSpeedUnit.MilliradianPerSecond:
                     return FromMilliradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.NanodegreePerSecond:
+                    return FromNanodegreesPerSecond(value.Value);
                 case RotationalSpeedUnit.NanoradianPerSecond:
                     return FromNanoradiansPerSecond(value.Value);
                 case RotationalSpeedUnit.RadianPerSecond:

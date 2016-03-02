@@ -363,6 +363,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Angle from nullable Microdegrees.
+        /// </summary>
+        public static Angle? FromMicrodegrees(double? microdegrees)
+        {
+            if (microdegrees.HasValue)
+            {
+                return FromMicrodegrees(microdegrees.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Angle from nullable Microradians.
         /// </summary>
         public static Angle? FromMicroradians(double? microradians)
@@ -378,6 +393,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Angle from nullable Millidegrees.
+        /// </summary>
+        public static Angle? FromMillidegrees(double? millidegrees)
+        {
+            if (millidegrees.HasValue)
+            {
+                return FromMillidegrees(millidegrees.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Angle from nullable Milliradians.
         /// </summary>
         public static Angle? FromMilliradians(double? milliradians)
@@ -385,6 +415,21 @@ namespace UnitsNet
             if (milliradians.HasValue)
             {
                 return FromMilliradians(milliradians.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Angle from nullable Nanodegrees.
+        /// </summary>
+        public static Angle? FromNanodegrees(double? nanodegrees)
+        {
+            if (nanodegrees.HasValue)
+            {
+                return FromNanodegrees(nanodegrees.Value);
             }
             else
             {
@@ -491,10 +536,16 @@ namespace UnitsNet
                     return FromDegrees(value.Value);
                 case AngleUnit.Gradian:
                     return FromGradians(value.Value);
+                case AngleUnit.Microdegree:
+                    return FromMicrodegrees(value.Value);
                 case AngleUnit.Microradian:
                     return FromMicroradians(value.Value);
+                case AngleUnit.Millidegree:
+                    return FromMillidegrees(value.Value);
                 case AngleUnit.Milliradian:
                     return FromMilliradians(value.Value);
+                case AngleUnit.Nanodegree:
+                    return FromNanodegrees(value.Value);
                 case AngleUnit.Nanoradian:
                     return FromNanoradians(value.Value);
                 case AngleUnit.Radian:

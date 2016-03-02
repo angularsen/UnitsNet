@@ -177,6 +177,96 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromCentinewtonsPerSecond(double? centinewtonspersecond)
+        {
+            if (centinewtonspersecond.HasValue)
+            {
+                return FromCentinewtonsPerSecond(centinewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromDecinewtonsPerSecond(double? decinewtonspersecond)
+        {
+            if (decinewtonspersecond.HasValue)
+            {
+                return FromDecinewtonsPerSecond(decinewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromKilonewtonsPerSecond(double? kilonewtonspersecond)
+        {
+            if (kilonewtonspersecond.HasValue)
+            {
+                return FromKilonewtonsPerSecond(kilonewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromMicronewtonsPerSecond(double? micronewtonspersecond)
+        {
+            if (micronewtonspersecond.HasValue)
+            {
+                return FromMicronewtonsPerSecond(micronewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromMillinewtonsPerSecond(double? millinewtonspersecond)
+        {
+            if (millinewtonspersecond.HasValue)
+            {
+                return FromMillinewtonsPerSecond(millinewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
+        /// </summary>
+        public static ForceChangeRate? FromNanonewtonsPerSecond(double? nanonewtonspersecond)
+        {
+            if (nanonewtonspersecond.HasValue)
+            {
+                return FromNanonewtonsPerSecond(nanonewtonspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
         /// </summary>
         public static ForceChangeRate? FromNewtonsPerSecond(double? newtonspersecond)
@@ -236,6 +326,18 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case ForceChangeRateUnit.CentinewtonPerSecond:
+                    return FromCentinewtonsPerSecond(value.Value);
+                case ForceChangeRateUnit.DecinewtonPerSecond:
+                    return FromDecinewtonsPerSecond(value.Value);
+                case ForceChangeRateUnit.KilonewtonPerSecond:
+                    return FromKilonewtonsPerSecond(value.Value);
+                case ForceChangeRateUnit.MicronewtonPerSecond:
+                    return FromMicronewtonsPerSecond(value.Value);
+                case ForceChangeRateUnit.MillinewtonPerSecond:
+                    return FromMillinewtonsPerSecond(value.Value);
+                case ForceChangeRateUnit.NanonewtonPerSecond:
+                    return FromNanonewtonsPerSecond(value.Value);
                 case ForceChangeRateUnit.NewtonPerSecond:
                     return FromNewtonsPerSecond(value.Value);
 

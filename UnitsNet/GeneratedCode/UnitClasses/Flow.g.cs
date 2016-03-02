@@ -257,6 +257,21 @@ namespace UnitsNet
 
 
         /// <summary>
+        ///     Get nullable Flow from nullable CentilitersPerMinute.
+        /// </summary>
+        public static Flow? FromCentilitersPerMinute(double? centilitersperminute)
+        {
+            if (centilitersperminute.HasValue)
+            {
+                return FromCentilitersPerMinute(centilitersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerSecond.
         /// </summary>
         public static Flow? FromCubicFeetPerSecond(double? cubicfeetpersecond)
@@ -302,6 +317,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable DecilitersPerMinute.
+        /// </summary>
+        public static Flow? FromDecilitersPerMinute(double? decilitersperminute)
+        {
+            if (decilitersperminute.HasValue)
+            {
+                return FromDecilitersPerMinute(decilitersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable KilolitersPerMinute.
+        /// </summary>
+        public static Flow? FromKilolitersPerMinute(double? kilolitersperminute)
+        {
+            if (kilolitersperminute.HasValue)
+            {
+                return FromKilolitersPerMinute(kilolitersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerMinute.
         /// </summary>
         public static Flow? FromLitersPerMinute(double? litersperminute)
@@ -317,6 +362,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable MicrolitersPerMinute.
+        /// </summary>
+        public static Flow? FromMicrolitersPerMinute(double? microlitersperminute)
+        {
+            if (microlitersperminute.HasValue)
+            {
+                return FromMicrolitersPerMinute(microlitersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable MillilitersPerMinute.
+        /// </summary>
+        public static Flow? FromMillilitersPerMinute(double? millilitersperminute)
+        {
+            if (millilitersperminute.HasValue)
+            {
+                return FromMillilitersPerMinute(millilitersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
         /// </summary>
         public static Flow? FromMillionUsGallonsPerDay(double? millionusgallonsperday)
@@ -324,6 +399,21 @@ namespace UnitsNet
             if (millionusgallonsperday.HasValue)
             {
                 return FromMillionUsGallonsPerDay(millionusgallonsperday.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable NanolitersPerMinute.
+        /// </summary>
+        public static Flow? FromNanolitersPerMinute(double? nanolitersperminute)
+        {
+            if (nanolitersperminute.HasValue)
+            {
+                return FromNanolitersPerMinute(nanolitersperminute.Value);
             }
             else
             {
@@ -401,16 +491,28 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case FlowUnit.CentilitersPerMinute:
+                    return FromCentilitersPerMinute(value.Value);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(value.Value);
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value.Value);
                 case FlowUnit.CubicMeterPerSecond:
                     return FromCubicMetersPerSecond(value.Value);
+                case FlowUnit.DecilitersPerMinute:
+                    return FromDecilitersPerMinute(value.Value);
+                case FlowUnit.KilolitersPerMinute:
+                    return FromKilolitersPerMinute(value.Value);
                 case FlowUnit.LitersPerMinute:
                     return FromLitersPerMinute(value.Value);
+                case FlowUnit.MicrolitersPerMinute:
+                    return FromMicrolitersPerMinute(value.Value);
+                case FlowUnit.MillilitersPerMinute:
+                    return FromMillilitersPerMinute(value.Value);
                 case FlowUnit.MillionUsGallonsPerDay:
                     return FromMillionUsGallonsPerDay(value.Value);
+                case FlowUnit.NanolitersPerMinute:
+                    return FromNanolitersPerMinute(value.Value);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(value.Value);
 
