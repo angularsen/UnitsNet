@@ -1,6 +1,6 @@
 @echo off
 SET ROOT=%~dp0..
-rmdir /Q /S %ROOT%\Artifacts
+if exist %ROOT%\Artifacts rmdir /Q /S %ROOT%\Artifacts
 
 call powershell -NoProfile %ROOT%\Build\UpdateAssemblyInfo.ps1
 call powershell -ExecutionPolicy Bypass -NoProfile -File %ROOT%\UnitsNet\Scripts\GenerateUnits.ps1
