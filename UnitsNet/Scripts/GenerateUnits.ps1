@@ -7,7 +7,7 @@ function ToCamelCase($str)
 function GetUnits($unitClass)
 {
     $units = @();
-    
+
     foreach ($unit in $unitClass.Units)
     {
         $units += $unit;
@@ -47,66 +47,66 @@ function GetUnits($unitClass)
                 "Tebi" { "Ti", "(1024d * 1024 * 1024 * 1024)"; break; }
                 "Pebi" { "Pi", "(1024d * 1024 * 1024 * 1024 * 1024)"; break; }
                 "Exbi" { "Ei", "(1024d * 1024 * 1024 * 1024 * 1024 * 1024)"; break; }
-            }            
-            
+            }
+
             $prefixAbbreviation = $prefixInfo[0];
             $prefixFactor = $prefixInfo[1];
 
-            $u = New-Object PsObject -Property @{ 
-                SingularName=$prefix + $(ToCamelCase $unit.SingularName); 
+            $u = New-Object PsObject -Property @{
+                SingularName=$prefix + $(ToCamelCase $unit.SingularName);
                 PluralName=$prefix + $(ToCamelCase $unit.PluralName);
                 FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor";
                 FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor";
-                Localization=$unit.Localization | % { 
+                Localization=$unit.Localization | % {
                     $abbrev = $prefixAbbreviation + $_.Abbreviations[0];
                     if ($_.AbbreviationsWithPrefixes) {
                         $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex++];
                     }
-                    
+
                 New-Object PsObject -Property @{
                     Culture=$_.Culture;
                     Abbreviations= $abbrev;
                 }};
             }
-            
+
             $units += $u;
         }
     }
-    
+
     foreach ($u in $units) {
         # Use decimal for internal calculations if base type is not double, such as for long or int.
         if ($unitClass.BaseType -ne "double") {
             $u.FromUnitToBaseFunc = $u.FromUnitToBaseFunc -replace "m", "d";
             $u.FromBaseToUnitFunc = $u.FromBaseToUnitFunc -replace "d", "m";
         }
-        
+
         # Convert to/from double for other base types
         if ($unitClass.BaseType -eq "decimal") {
             $u.FromUnitToBaseFunc = "Convert.ToDecimal($($u.FromUnitToBaseFunc))";
             $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))";
-        } else { 
+        } else {
             if ($unitClass.BaseType -eq "long") {
               $u.FromUnitToBaseFunc = "Convert.ToInt64($($u.FromUnitToBaseFunc))";
               $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))";
             }
         }
     }
-    
+
     return $units | sort SingularName;
 }
 
 function GenerateUnitClass($unitClass)
 {
-    Write-Host "Generate unit for: " + $unitClass.Name;    
-    
+    Write-Host "Generate unit for: " + $unitClass.Name;
+
     $outFileName = "$PSScriptRoot/../GeneratedCode/UnitClasses/$($unitClass.Name).g.cs";
     GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
 
 function GenerateUnitTestBaseClass($unitClass)
 {
-    Write-Host "Generate test base for: " + $unitClass.Name;    
-    
+    Write-Host "Generate test base for: " + $unitClass.Name;
+
     $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode/$($unitClass.Name)TestsBase.g.cs";
     GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
 }
@@ -114,11 +114,11 @@ function GenerateUnitTestBaseClass($unitClass)
 function GenerateUnitTestClassIfNotExists($unitClass)
 {
     $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode/$($unitClass.Name)Tests.cs";
-    if (Test-Path $outFileName) 
+    if (Test-Path $outFileName)
     {
         return;
-    } 
-    else 
+    }
+    else
     {
         Write-Host "Generate test placeholder for: " + $unitClass.Name;
         GenerateUnitTestPlaceholderSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
@@ -131,9 +131,9 @@ function GenerateUnitEnum($unitClass)
 
     $outDir = "$PSScriptRoot/../GeneratedCode/Enums";
     $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs";
-    
+
     New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
-    
+
     $result = GenerateUnitEnumSourceCode $unitClass;
     $result | Out-File -Encoding "UTF8" $outFileName;
 }
@@ -146,12 +146,14 @@ function GenerateUnitSystemDefault($unitClasses)
     $outFileName = "$outDir/UnitSystem.Default.g.cs";
 
     New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
-    
+
     $result = GenerateUnitSystemDefaultSourceCode $unitClasses;
     $result | Out-File -Encoding "UTF8" $outFileName;
 }
 
 # Load external generator functions with same name as file
+. "$PSScriptRoot/Include-GenerateTemplates.ps1"
+. "$PSScriptRoot/Include-GenerateLogarithmicCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
@@ -177,15 +179,15 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     if (!$unitClass.LogarithmicScalingFactor) {
         $unitClass | Add-Member LogarithmicScalingFactor "1"
     }
-  
+
     # Expand unit prefixes into units
     $unitClass.Units = GetUnits $unitClass;
-    
+
     GenerateUnitClass $unitClass
     GenerateUnitEnum $unitClass
     GenerateUnitTestBaseClass $unitClass
     GenerateUnitTestClassIfNotExists $unitClass
-    
+
     $unitClasses += $unitClass;
 }
 

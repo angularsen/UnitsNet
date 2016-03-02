@@ -14,12 +14,12 @@ The data type of the backing field used to store the unit's value.
 .PARAMETER scalingFactor
 The scaling factor used in logarithmic calculations. In most cases this is equal to 1.
 #>
-function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$scalingFactor)
+function GenerateLogarithmicArithmeticOperators([string]$className, [string]$baseUnitFieldName, [string]$baseType, [int]$scalingFactor)
 {
     # Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to
     # use 20 instead of 10.
     $x = 10 * $scalingFactor;
-    
+
 @"
 
         #region Logarithmic Arithmetic Operators
@@ -38,7 +38,7 @@ function GenerateUnitClassSourceCode([string]$className, [string]$baseUnitFieldN
 
         public static $className operator -($className left, $className right)
         {
-            // Logarithmic subtraction 
+            // Logarithmic subtraction
             // Formula: $x*log10(10^(x/$x) - 10^(y/$x))
             return new $className($x*Math.Log10(Math.Pow(10, left.$baseUnitFieldName/$x) - Math.Pow(10, right.$baseUnitFieldName/$x)));
         }
@@ -85,7 +85,7 @@ The plural name of the backing field used to store the unit's value.
 .PARAMETER unit
 The actual unit type.
 #>
-function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit)
+function GenerateLogarithmicTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit)
 {
 @"
         [Test]
@@ -100,9 +100,9 @@ function GenerateTestBaseClassSourceCode([string]$className, [string]$baseUnitPl
             Assert.AreEqual(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             Assert.AreEqual(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
         }
-        
+
         protected abstract void AssertLogarithmicAddition();
-        
+
         protected abstract void AssertLogarithmicSubtraction();
 "@;
 }

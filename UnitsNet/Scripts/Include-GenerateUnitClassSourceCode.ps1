@@ -1,5 +1,3 @@
-. ".\Include-GenerateTemplates.ps1"
-
 function GenerateUnitClassSourceCode($unitClass)
 {
     $className = $unitClass.Name;
@@ -15,17 +13,17 @@ function GenerateUnitClassSourceCode($unitClass)
 @"
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/anjdreas/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -89,7 +87,7 @@ namespace UnitsNet
 
         #endregion
 
-        #region Static 
+        #region Static
 
         public static $className Zero
         {
@@ -187,10 +185,8 @@ namespace UnitsNet
 
         #endregion
 "@; if ($unitClass.Logarithmic -eq $true) {
-        # Dot into the script to load its functions into the global scope so we can access them.
-        . .\Include-GenerateLogarithmicCode.ps1; 
         # Call another script function to generate logarithm-specific arithmetic operator code.
-        GenerateUnitClassSourceCode -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
+        GenerateLogarithmicArithmeticOperators -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
     }
     else {@"
 
@@ -333,11 +329,11 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
         ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in" 
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">
         ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of 
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
         /// <exception cref="UnitsNetException">

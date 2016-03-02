@@ -11,17 +11,17 @@ function GenerateUnitTestBaseClassSourceCode($unitClass)
 @"
 // Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/anjdreas/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -93,10 +93,8 @@ namespace UnitsNet.Tests
         }
 
 "@; if ($unitClass.Logarithmic -eq $true) {
-        # Dot into the script to load its functions into the global scope so we can access them.
-        . .\Include-GenerateLogarithmicCode.ps1; 
         # Call another script function to generate logarithm-specific arithmetic operator test code.
-        GenerateTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit
+        GenerateLogarithmicTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit
     }
     else {@"
         [Test]
@@ -151,7 +149,7 @@ namespace UnitsNet.Tests
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void CompareToThrowsOnNull()
-        { 
+        {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
 // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             $baseUnitVariableName.CompareTo(null);
@@ -165,7 +163,7 @@ namespace UnitsNet.Tests
             $className b = $className.From$baseUnitPluralName(2);
 
 // ReSharper disable EqualExpressionComparison
-            Assert.True(a == a); 
+            Assert.True(a == a);
             Assert.True(a != b);
 
             Assert.False(a == b);
