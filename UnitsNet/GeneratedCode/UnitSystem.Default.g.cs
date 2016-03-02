@@ -2115,6 +2115,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", ""),
                                 new AbbreviationsForCulture("nb-NO", ""),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.Microliter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μl"),
+                                new AbbreviationsForCulture("ru-RU", "мкл"),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.Milliliter,
                             new[]
                             {

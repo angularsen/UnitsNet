@@ -56,7 +56,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
 
         protected override double LitersInOneCubicMeter => 1E3;
-        
+
+        protected override double MicrolitersInOneCubicMeter => 1E9;
+
         protected override double MillilitersInOneCubicMeter => 1E6;
 
         protected override double AuTablespoonsInOneCubicMeter => 50000;
