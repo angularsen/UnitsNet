@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9BEB42C6
 		Build\UnitsNet.Serialization.JsonNet.nuspec = Build\UnitsNet.Serialization.JsonNet.nuspec
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{222FA466-52B9-4C04-916E-6D36B99559B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Uap", "UnitsNet\UnitsNet.Uap.csproj", "{2DA428CA-BFE1-43FA-86D2-7CB42289D596}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +98,22 @@ Global
 		{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}.Release|x64.Build.0 = Release|Any CPU
 		{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}.Release|x86.ActiveCfg = Release|Any CPU
 		{2A76FC53-E331-4CFA-83C0-93A212FD8F6E}.Release|x86.Build.0 = Release|Any CPU
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|ARM.ActiveCfg = Debug|ARM
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|ARM.Build.0 = Debug|ARM
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|x64.ActiveCfg = Debug|x64
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|x64.Build.0 = Debug|x64
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|x86.ActiveCfg = Debug|x86
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Debug|x86.Build.0 = Debug|x86
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|ARM.ActiveCfg = Release|ARM
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|ARM.Build.0 = Release|ARM
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|x64.ActiveCfg = Release|x64
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|x64.Build.0 = Release|x64
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|x86.ActiveCfg = Release|x86
+		{2DA428CA-BFE1-43FA-86D2-7CB42289D596}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
