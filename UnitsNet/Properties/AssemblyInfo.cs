@@ -27,15 +27,12 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("UnitsNet")]
-[assembly:
-    AssemblyDescription(
-        "Data structures and helper methods to convert values between units, parse value and unit from text or get textual representation."
-        )]
+[assembly: AssemblyTitle("Units.NET")]
+[assembly: AssemblyDescription("Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Initial Force AS")]
-[assembly: AssemblyProduct("UnitsNet")]
-[assembly: AssemblyCopyright("Copyright © 2007-2016 Initial Force AS")]
+[assembly: AssemblyCompany("Andreas Gullberg Larsen")]
+[assembly: AssemblyProduct("Units.NET")]
+[assembly: AssemblyCopyright("Copyright © 2007 Andreas Gullberg Larsen")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
