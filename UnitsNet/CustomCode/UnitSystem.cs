@@ -26,17 +26,30 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
+#if WINDOWS_UWP
+using System.Reflection;
+#endif
+
 // ReSharper disable once CheckNamespace
-
-
-
 namespace UnitsNet
 {
     [PublicAPI]
-    public partial class UnitSystem
+    public sealed partial class UnitSystem
     {
         private static readonly Dictionary<IFormatProvider, UnitSystem> CultureToInstance;
-        private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+        /// <summary>
+        ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnit}" /> and
+        ///     <see cref="GetDefaultAbbreviation{TUnit}(TUnit,CultureInfo)" />
+        ///     if no abbreviations are found with current <see cref="Culture" />.
+        /// </summary>
+        /// <example>
+        ///     User wants to call <see cref="Parse{TUnit}(string,CultureInfo)" /> or <see cref="object.ToString" /> with Russian
+        ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
+        ///     defined there either, an exception is thrown.
+        /// </example>
+        private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
+
         private static readonly object LockUnitSystemCache = new object();
 
         /// <summary>
@@ -54,7 +67,7 @@ namespace UnitsNet
         /// <summary>
         ///     The culture of which this unit system is based on. Either passed in to constructor or the default culture.
         /// </summary>
-        [NotNull] [PublicAPI] public readonly IFormatProvider Culture;
+        [NotNull] [PublicAPI] internal readonly IFormatProvider Culture;
 
         static UnitSystem()
         {
@@ -62,14 +75,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Create unit system for parsing and generating strings with the English US culture.
+        /// </summary>
+        public UnitSystem() : this(DefaultCulture)
+        {
+        }
+
+        /// <summary>
         ///     Create unit system for parsing and generating strings of the specified culture.
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
-        public UnitSystem([CanBeNull] IFormatProvider cultureInfo = null)
+        public UnitSystem([CanBeNull] string cultureInfo) : this(cultureInfo != null ? new CultureInfo(cultureInfo) : DefaultCulture)
+        {
+        }
+
+        /// <summary>
+        ///     Create unit system for parsing and generating strings of the specified culture.
+        ///     If null is specified, the default English US culture will be used.
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+#if WINDOWS_UWP
+        internal
+#else
+        public 
+#endif
+            UnitSystem([CanBeNull] IFormatProvider cultureInfo)
         {
             if (cultureInfo == null)
-                cultureInfo = new CultureInfo(DefaultCulture.Name);
+                cultureInfo = DefaultCulture;
 
             Culture = cultureInfo;
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
@@ -78,7 +112,13 @@ namespace UnitsNet
             LoadDefaultAbbreviatons(cultureInfo);
         }
 
-        public bool IsDefaultCulture => Culture.Equals(DefaultCulture);
+        /// <summary>
+        ///     Default culture if none is specified in constructor or <see cref="GetCached()" /> is always
+        ///     <see cref="CultureInfo.CurrentUICulture" />.
+        /// </summary>
+        private static IFormatProvider DefaultCulture => CultureInfo.CurrentUICulture;
+
+        public bool IsFallbackCulture => Culture.Equals(FallbackCulture);
 
         [PublicAPI]
         public static void ClearCache()
@@ -94,13 +134,36 @@ namespace UnitsNet
         ///     Creating can be a little expensive, so it will use a static cache.
         ///     To always create, use the constructor.
         /// </summary>
-        /// <param name="cultureInfo">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
         /// <returns></returns>
         [PublicAPI]
-        public static UnitSystem GetCached(IFormatProvider cultureInfo = null)
+        public static UnitSystem GetCached()
+        {
+            return GetCached((CultureInfo)null);
+        }
+
+        /// <summary>
+        ///     Get or create a unit system for parsing and presenting numbers, units and abbreviations.
+        ///     Creating can be a little expensive, so it will use a static cache.
+        ///     To always create, use the constructor.
+        /// </summary>
+        /// <param name="cultureName">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
+        /// <returns></returns>
+        [PublicAPI]
+        public static UnitSystem GetCached([CanBeNull] string cultureName)
+        {
+            var cultureInfo = cultureName == null ? DefaultCulture : new CultureInfo(cultureName);
+            return GetCached(cultureInfo);
+        }
+
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            static UnitSystem GetCached([CanBeNull] IFormatProvider cultureInfo)
         {
             if (cultureInfo == null)
-                cultureInfo = CultureInfo.CurrentUICulture;
+                cultureInfo = DefaultCulture;
 
             lock (LockUnitSystemCache)
             {
@@ -113,62 +176,92 @@ namespace UnitsNet
         }
 
         [PublicAPI]
-        public static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetCached(culture).Parse<TUnit>(unitAbbreviation);
         }
 
         [PublicAPI]
-        public TUnit Parse<TUnit>(string unitAbbreviation)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        TUnit Parse<TUnit>(string unitAbbreviation)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            Type unitType = typeof (TUnit);
+            return (TUnit) Parse(unitAbbreviation, typeof (TUnit));
+        }
+
+        [PublicAPI]
+        public object Parse(string unitAbbreviation, Type unitType)
+        {
             AbbreviationMap abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
                 throw new NotImplementedException(
                     $"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
-            List<int> unitValues;
-            List<TUnit> units;
+            List<int> unitIntValues;
+            List<object> unitValues = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitIntValues)
+                ? unitIntValues.Distinct().Cast<object>().ToList()
+                : new List<object>();
 
-            if (abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValues))
-            {
-                units = unitValues.Cast<TUnit>().Distinct().ToList();
-            }
-            else
-            {
-                units = new List<TUnit>();
-            }
-
-            switch (units.Count)
+            switch (unitValues.Count)
             {
                 case 1:
-                    return units[0];
+                    return unitValues[0];
                 case 0:
-                    return default(TUnit);
+                    return 0;
                 default:
-                    var unitsCsv = String.Join(", ", units.Select(x => x.ToString()).ToArray());
-                    throw new AmbiguousUnitParseException($"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
+                    var unitsCsv = string.Join(", ", unitValues.Select(x => x.ToString()).ToArray());
+                    throw new AmbiguousUnitParseException(
+                        $"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
             }
         }
 
         [PublicAPI]
-        public static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetCached(culture).GetDefaultAbbreviation(unit);
         }
 
         [PublicAPI]
-        public string GetDefaultAbbreviation<TUnit>(TUnit unit)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        string GetDefaultAbbreviation<TUnit>(TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetAllAbbreviations(unit).First();
         }
 
         [PublicAPI]
-        public void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
+        public string GetDefaultAbbreviation(Type unitType, int unitValue)
+        {
+            return GetAllAbbreviations(unitType, unitValue).First();
+        }
+
+        [PublicAPI]
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             // Assuming TUnit is an enum, this conversion is safe. Seems not possible to enforce this today.
@@ -180,9 +273,18 @@ namespace UnitsNet
         }
 
         [PublicAPI]
-        public void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
+#if WINDOWS_UWP
+            if (!unitType.GetTypeInfo().IsEnum)
+#else
             if (!unitType.IsEnum)
+#endif
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
             if (abbreviations == null)
@@ -220,36 +322,38 @@ namespace UnitsNet
         }
 
         [PublicAPI]
-        public bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            Type unitType = typeof (TUnit);
-
-            AbbreviationMap abbrevToUnitValue;
-            List<int> unitValues;
-
-            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue) ||
-                !abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitValues))
+            try
             {
-                if (IsDefaultCulture)
-                {
-                    unit = default(TUnit);
-                    return false;
-                }
-
-                // Fall back to default culture
-                return GetCached(DefaultCulture).TryParse(unitAbbreviation, out unit);
+                unit = (TUnit)Parse(unitAbbreviation, typeof (TUnit));
+                return true;
             }
-
-            var maps = (List<TUnit>) (object) unitValues;
-
-            switch (maps.Count)
+            catch
             {
-                case 1: unit = maps[0];
-                    return true;
-                default:
-                    unit = default(TUnit);
-                    return false;
+                unit = default(TUnit);
+                return false;
+            }
+        }
+
+        [PublicAPI]
+        public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
+        {
+            try
+            {
+                unit = Parse(unitAbbreviation, unitType);
+                return true;
+            }
+            catch
+            {
+                unit = GetDefault(unitType);
+                return false;
             }
         }
 
@@ -260,28 +364,50 @@ namespace UnitsNet
         /// <param name="unit">Enum value for unit.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
-        public string[] GetAllAbbreviations<TUnit>(TUnit unit)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        string[] GetAllAbbreviations<TUnit>(TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            Type unitType = typeof (TUnit);
-            int unitValue = Convert.ToInt32(unit);
-
             Dictionary<int, List<string>> unitValueToAbbrevs;
             List<string> abbrevs;
 
-            if (!_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs) ||
-                !unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
+            if (_unitTypeToUnitValueToAbbrevs.TryGetValue(typeof(TUnit), out unitValueToAbbrevs) &&
+                unitValueToAbbrevs.TryGetValue((int)(object)unit, out abbrevs))
             {
-                if (IsDefaultCulture)
-                {
-                    return new[] {$"(no abbreviation for {unitType.Name}.{unit})"};
-                }
-
-                // Fall back to default culture
-                return GetCached(DefaultCulture).GetAllAbbreviations(unit);
+                return abbrevs.ToArray();
             }
 
-            return abbrevs.ToArray();
+            return IsFallbackCulture
+                ? new[] {$"(no abbreviation for {typeof(TUnit).Name}.{unit})"}
+                : GetCached(FallbackCulture).GetAllAbbreviations(unit);
+        }
+
+        /// <summary>
+        ///     Get all abbreviations for unit.
+        /// </summary>
+        /// <param name="unitType">Enum type for unit.</param>
+        /// <param name="unitValue">Enum value for unit.</param>
+        /// <returns>Unit abbreviations associated with unit.</returns>
+        [PublicAPI]
+        public string[] GetAllAbbreviations(Type unitType, int unitValue)
+        {
+            Dictionary<int, List<string>> unitValueToAbbrevs;
+            List<string> abbrevs;
+
+            if (_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs) &&
+                unitValueToAbbrevs.TryGetValue(unitValue, out abbrevs))
+            {
+                return abbrevs.ToArray();
+            }
+
+            // Fall back to default culture
+            return IsFallbackCulture
+                ? new[] {$"(no abbreviation for {unitType.Name} with numeric value {unitValue})"}
+                : GetCached(FallbackCulture).GetAllAbbreviations(unitType, unitValue);
         }
 
         private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
@@ -311,9 +437,24 @@ namespace UnitsNet
         /// <summary>
         /// Avoids having too many nested generics for code clarity
         /// </summary>
-        class AbbreviationMap : Dictionary<string, List<int>>
+        private class AbbreviationMap : Dictionary<string, List<int>>
         {
 
+        }
+
+        /// <summary>
+        ///     Get default(Type) of <param name="type"></param>.
+        ///     Null for reference types, 0 for numeric types and default constructor for the rest.
+        /// </summary>
+        private static object GetDefault(Type type)
+        {
+            return type
+#if WINDOWS_UWP
+                .GetTypeInfo()
+#endif
+                .IsValueType
+                ? Activator.CreateInstance(type)
+                : null;
         }
     }
 }
