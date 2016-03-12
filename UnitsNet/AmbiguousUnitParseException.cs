@@ -23,14 +23,21 @@ using System;
 
 namespace UnitsNet
 {
-    public class AmbiguousUnitParseException : UnitsNetException
+#if WINDOWS_UWP
+    internal
+#else
+    public 
+#endif
+        class AmbiguousUnitParseException : UnitsNetException
     {
         public AmbiguousUnitParseException(string message) : base(message)
         {
+            HResult = 2;
         }
 
         public AmbiguousUnitParseException(string message, Exception innerException) : base(message, innerException)
         {
+            HResult = 2;
         }
     }
 }
