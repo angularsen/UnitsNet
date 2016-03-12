@@ -20,15 +20,17 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace UnitsNet
 {
     /// <summary>
     ///     Utility class for formatting units and values.
     /// </summary>
-    public static class UnitFormatter
+    internal static class UnitFormatter
     {
         /// <summary>
         ///     Gets the default ToString format for the specified value.
@@ -88,11 +90,11 @@ namespace UnitsNet
         /// <param name="culture">The current culture.</param>
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
-        public static object[] GetFormatArgs<TUnit>(TUnit unit, double value, CultureInfo culture, object[] args)
+        public static object[] GetFormatArgs<TUnit>(TUnit unit, double value, [CanBeNull] CultureInfo culture, IEnumerable<object> args)
             where TUnit : struct, IComparable, IFormattable
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
-            return new object[] {value, abbreviation}.Concat(args).ToArray();
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnit), Convert.ToInt32(unit));
+            return new object[] { value, abbreviation }.Concat(args).ToArray();
         }
     }
 }

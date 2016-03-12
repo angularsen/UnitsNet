@@ -21,7 +21,7 @@
 
 namespace UnitsNet
 {
-    public static class Constants
+    internal static class Constants
     {
         public const double Gravity = 9.80665002864;
     }
