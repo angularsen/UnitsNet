@@ -24,6 +24,13 @@ using System.Collections.Generic;
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public struct Vector2
+    {
+        public double X;
+        public double Y;
+    }
+#else
     public struct Vector2 : IEquatable<Vector2>
     {
         public readonly double X;
@@ -41,7 +48,7 @@ namespace UnitsNet
             Y = xy;
         }
 
-        #region Equality
+#region Equality
 
         private static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
 
@@ -90,11 +97,12 @@ namespace UnitsNet
             }
         }
 
-        #endregion
+#endregion
 
         public override string ToString()
         {
             return $"[{X:0.####}, {Y:0.####}]";
         }
     }
+#endif
 }
