@@ -110,3 +110,4 @@ UpgradeLog*.XML
 Artifacts
 Thumbs.db
 /Build/nuget-apikey.txt
+/.nuget
