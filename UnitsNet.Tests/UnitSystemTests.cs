@@ -150,12 +150,12 @@ namespace UnitsNet.Tests
         }
 
         // Switzerland uses an apostrophe for digit grouping
-        [Ignore("Fails on Win 8.1 due to a bug in .NET framework.")]
-        [TestCase("fr-CH")]
-        public void ApostropheDigitGroupingCultureFormatting(string culture)
-        {
-            Assert.AreEqual("1'111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
-        }
+//        [Ignore("Fails on Win 8.1 and Win10 due to a bug in .NET framework.")]
+//        [TestCase("fr-CH")]
+//        public void ApostropheDigitGroupingCultureFormatting(string culture)
+//        {
+//            Assert.AreEqual("1'111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+//        }
 
         // These cultures all use a decimal point in digit grouping
         [TestCase("de-DE")]
