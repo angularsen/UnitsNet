@@ -78,7 +78,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 10.0\r\n}";
 
                 string json = SerializeObject(nullableMass);
-                Console.WriteLine(json);
+//                Console.WriteLine(json);
 
                 // There shouldn't be any change in the JSON for the non-null nullable value.
                 Assert.That(json, Is.EqualTo(expectedJson));
@@ -106,7 +106,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                                       "}";
 
                 string json = SerializeObject(testObj);
-                Console.WriteLine(json);
+//                Console.WriteLine(json);
 
                 Assert.That(json, Is.EqualTo(expectedJson));
             }
@@ -118,7 +118,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var expectedJson = "null";
 
                 string json = SerializeObject(nullMass);
-                Console.WriteLine(json);
+//                Console.WriteLine(json);
 
                 Assert.That(expectedJson, Is.EqualTo(json));
             }
