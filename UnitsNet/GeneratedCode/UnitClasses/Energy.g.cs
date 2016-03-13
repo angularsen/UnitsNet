@@ -27,6 +27,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+#else
+using Culture = System.IFormatProvider;
+#endif
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,16 +41,49 @@ namespace UnitsNet
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+#if WINDOWS_UWP
+    public sealed partial class Energy
+#else
     public partial struct Energy : IComparable, IComparable<Energy>
+#endif
     {
         /// <summary>
         ///     Base unit of Energy.
         /// </summary>
         private readonly double _joules;
 
-        public Energy(double joules) : this()
+#if WINDOWS_UWP
+        public Energy() : this(0)
         {
-            _joules = joules;
+        }
+#endif
+
+        public Energy(double joules)
+        {
+            _joules = Convert.ToDouble(joules);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Energy(long joules)
+        {
+            _joules = Convert.ToDouble(joules);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Energy(decimal joules)
+        {
+            _joules = Convert.ToDouble(joules);
         }
 
         #region Properties
@@ -271,7 +310,7 @@ namespace UnitsNet
             return new Energy(watthours*3600d);
         }
 
-
+#if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Energy from nullable BritishThermalUnits.
         /// </summary>
@@ -283,7 +322,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -298,7 +337,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -313,7 +352,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -328,7 +367,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -343,7 +382,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -358,7 +397,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -373,7 +412,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -388,7 +427,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -403,7 +442,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -418,7 +457,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -433,7 +472,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -448,7 +487,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -463,53 +502,55 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
+#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>
-        /// <param name="value">Value to convert from.</param>
+        /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Energy unit value.</returns>
-        public static Energy From(double value, EnergyUnit fromUnit)
+        public static Energy From(double val, EnergyUnit fromUnit)
         {
             switch (fromUnit)
             {
                 case EnergyUnit.BritishThermalUnit:
-                    return FromBritishThermalUnits(value);
+                    return FromBritishThermalUnits(val);
                 case EnergyUnit.Calorie:
-                    return FromCalories(value);
+                    return FromCalories(val);
                 case EnergyUnit.ElectronVolt:
-                    return FromElectronVolts(value);
+                    return FromElectronVolts(val);
                 case EnergyUnit.Erg:
-                    return FromErgs(value);
+                    return FromErgs(val);
                 case EnergyUnit.FootPound:
-                    return FromFootPounds(value);
+                    return FromFootPounds(val);
                 case EnergyUnit.GigawattHour:
-                    return FromGigawattHours(value);
+                    return FromGigawattHours(val);
                 case EnergyUnit.Joule:
-                    return FromJoules(value);
+                    return FromJoules(val);
                 case EnergyUnit.Kilocalorie:
-                    return FromKilocalories(value);
+                    return FromKilocalories(val);
                 case EnergyUnit.Kilojoule:
-                    return FromKilojoules(value);
+                    return FromKilojoules(val);
                 case EnergyUnit.KilowattHour:
-                    return FromKilowattHours(value);
+                    return FromKilowattHours(val);
                 case EnergyUnit.Megajoule:
-                    return FromMegajoules(value);
+                    return FromMegajoules(val);
                 case EnergyUnit.MegawattHour:
-                    return FromMegawattHours(value);
+                    return FromMegawattHours(val);
                 case EnergyUnit.WattHour:
-                    return FromWattHours(value);
+                    return FromWattHours(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>
@@ -555,6 +596,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+#endif
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(EnergyUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -563,7 +616,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(EnergyUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -572,6 +625,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static Energy operator -(Energy right)
         {
             return new Energy(-right._joules);
@@ -606,6 +660,7 @@ namespace UnitsNet
         {
             return Convert.ToDouble(left._joules/right._joules);
         }
+#endif
 
         #endregion
 
@@ -618,11 +673,17 @@ namespace UnitsNet
             return CompareTo((Energy) obj);
         }
 
-        public int CompareTo(Energy other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(Energy other)
         {
             return _joules.CompareTo(other._joules);
         }
 
+#if !WINDOWS_UWP
         public static bool operator <=(Energy left, Energy right)
         {
             return left._joules <= right._joules;
@@ -654,6 +715,7 @@ namespace UnitsNet
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._joules != right._joules;
         }
+#endif
 
         public override bool Equals(object obj)
         {
@@ -723,7 +785,6 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -742,10 +803,43 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Energy Parse(string str, IFormatProvider formatProvider = null)
+        public static Energy Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Energy Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
@@ -769,7 +863,7 @@ namespace UnitsNet
                     "Expected string to have at least one pair of quantity and unit in the format"
                     + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
-            return quantities.Aggregate((x, y) => x + y);
+            return quantities.Aggregate((x, y) => Energy.FromJoules(x.Joules + y.Joules));
         }
 
         /// <summary>
@@ -806,7 +900,7 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch(AmbiguousUnitParseException ambiguousException)
+                catch(AmbiguousUnitParseException)
                 {
                     throw;
                 }
@@ -831,18 +925,49 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static EnergyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static EnergyUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static EnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static EnergyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            var unitSystem = UnitSystem.GetCached(formatProvider);
 
+            var unitSystem = UnitSystem.GetCached(formatProvider);
             var unit = unitSystem.Parse<EnergyUnit>(str.Trim());
 
             if (unit == EnergyUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized EnergyUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -866,6 +991,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(EnergyUnit unit)
+        {
+            return ToString(unit, null, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture)
+        {
+            return ToString(unit, culture, 2);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
@@ -873,9 +1019,11 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EnergyUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, culture, format);
         }
 
         /// <summary>
@@ -887,9 +1035,20 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EnergyUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+            [NotNull] params object[] args)
         {
-            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
+            return string.Format(formatProvider, format, formatArgs);
         }
     }
 }

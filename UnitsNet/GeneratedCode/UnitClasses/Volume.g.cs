@@ -27,6 +27,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+#else
+using Culture = System.IFormatProvider;
+#endif
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,16 +41,49 @@ namespace UnitsNet
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+#if WINDOWS_UWP
+    public sealed partial class Volume
+#else
     public partial struct Volume : IComparable, IComparable<Volume>
+#endif
     {
         /// <summary>
         ///     Base unit of Volume.
         /// </summary>
         private readonly double _cubicMeters;
 
-        public Volume(double cubicmeters) : this()
+#if WINDOWS_UWP
+        public Volume() : this(0)
         {
-            _cubicMeters = cubicmeters;
+        }
+#endif
+
+        public Volume(double cubicmeters)
+        {
+            _cubicMeters = Convert.ToDouble(cubicmeters);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Volume(long cubicmeters)
+        {
+            _cubicMeters = Convert.ToDouble(cubicmeters);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Volume(decimal cubicmeters)
+        {
+            _cubicMeters = Convert.ToDouble(cubicmeters);
         }
 
         #region Properties
@@ -545,7 +584,7 @@ namespace UnitsNet
             return new Volume(usteaspoons*4.92892159375e-6);
         }
 
-
+#if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Volume from nullable AuTablespoons.
         /// </summary>
@@ -557,7 +596,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -572,7 +611,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -587,7 +626,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -602,7 +641,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -617,7 +656,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -632,7 +671,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -647,7 +686,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -662,7 +701,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -677,7 +716,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -692,7 +731,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -707,7 +746,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -722,7 +761,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -737,7 +776,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -752,7 +791,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -767,7 +806,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -782,7 +821,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -797,7 +836,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -812,7 +851,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -827,7 +866,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -842,7 +881,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -857,7 +896,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -872,7 +911,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -887,7 +926,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -902,7 +941,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -917,7 +956,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -932,7 +971,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -947,7 +986,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -962,7 +1001,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -977,7 +1016,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -992,87 +1031,89 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
+#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.
         /// </summary>
-        /// <param name="value">Value to convert from.</param>
+        /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Volume unit value.</returns>
-        public static Volume From(double value, VolumeUnit fromUnit)
+        public static Volume From(double val, VolumeUnit fromUnit)
         {
             switch (fromUnit)
             {
                 case VolumeUnit.AuTablespoon:
-                    return FromAuTablespoons(value);
+                    return FromAuTablespoons(val);
                 case VolumeUnit.Centiliter:
-                    return FromCentiliters(value);
+                    return FromCentiliters(val);
                 case VolumeUnit.CubicCentimeter:
-                    return FromCubicCentimeters(value);
+                    return FromCubicCentimeters(val);
                 case VolumeUnit.CubicDecimeter:
-                    return FromCubicDecimeters(value);
+                    return FromCubicDecimeters(val);
                 case VolumeUnit.CubicFoot:
-                    return FromCubicFeet(value);
+                    return FromCubicFeet(val);
                 case VolumeUnit.CubicInch:
-                    return FromCubicInches(value);
+                    return FromCubicInches(val);
                 case VolumeUnit.CubicKilometer:
-                    return FromCubicKilometers(value);
+                    return FromCubicKilometers(val);
                 case VolumeUnit.CubicMeter:
-                    return FromCubicMeters(value);
+                    return FromCubicMeters(val);
                 case VolumeUnit.CubicMicrometer:
-                    return FromCubicMicrometers(value);
+                    return FromCubicMicrometers(val);
                 case VolumeUnit.CubicMile:
-                    return FromCubicMiles(value);
+                    return FromCubicMiles(val);
                 case VolumeUnit.CubicMillimeter:
-                    return FromCubicMillimeters(value);
+                    return FromCubicMillimeters(val);
                 case VolumeUnit.CubicYard:
-                    return FromCubicYards(value);
+                    return FromCubicYards(val);
                 case VolumeUnit.Deciliter:
-                    return FromDeciliters(value);
+                    return FromDeciliters(val);
                 case VolumeUnit.Hectoliter:
-                    return FromHectoliters(value);
+                    return FromHectoliters(val);
                 case VolumeUnit.ImperialGallon:
-                    return FromImperialGallons(value);
+                    return FromImperialGallons(val);
                 case VolumeUnit.ImperialOunce:
-                    return FromImperialOunces(value);
+                    return FromImperialOunces(val);
                 case VolumeUnit.Liter:
-                    return FromLiters(value);
+                    return FromLiters(val);
                 case VolumeUnit.MetricCup:
-                    return FromMetricCups(value);
+                    return FromMetricCups(val);
                 case VolumeUnit.MetricTeaspoon:
-                    return FromMetricTeaspoons(value);
+                    return FromMetricTeaspoons(val);
                 case VolumeUnit.Microliter:
-                    return FromMicroliters(value);
+                    return FromMicroliters(val);
                 case VolumeUnit.Milliliter:
-                    return FromMilliliters(value);
+                    return FromMilliliters(val);
                 case VolumeUnit.Tablespoon:
-                    return FromTablespoons(value);
+                    return FromTablespoons(val);
                 case VolumeUnit.Teaspoon:
-                    return FromTeaspoons(value);
+                    return FromTeaspoons(val);
                 case VolumeUnit.UkTablespoon:
-                    return FromUkTablespoons(value);
+                    return FromUkTablespoons(val);
                 case VolumeUnit.UsCustomaryCup:
-                    return FromUsCustomaryCups(value);
+                    return FromUsCustomaryCups(val);
                 case VolumeUnit.UsGallon:
-                    return FromUsGallons(value);
+                    return FromUsGallons(val);
                 case VolumeUnit.UsLegalCup:
-                    return FromUsLegalCups(value);
+                    return FromUsLegalCups(val);
                 case VolumeUnit.UsOunce:
-                    return FromUsOunces(value);
+                    return FromUsOunces(val);
                 case VolumeUnit.UsTablespoon:
-                    return FromUsTablespoons(value);
+                    return FromUsTablespoons(val);
                 case VolumeUnit.UsTeaspoon:
-                    return FromUsTeaspoons(value);
+                    return FromUsTeaspoons(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.
         /// </summary>
@@ -1152,6 +1193,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+#endif
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(VolumeUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -1160,7 +1213,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(VolumeUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(VolumeUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -1169,6 +1222,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static Volume operator -(Volume right)
         {
             return new Volume(-right._cubicMeters);
@@ -1203,6 +1257,7 @@ namespace UnitsNet
         {
             return Convert.ToDouble(left._cubicMeters/right._cubicMeters);
         }
+#endif
 
         #endregion
 
@@ -1215,11 +1270,17 @@ namespace UnitsNet
             return CompareTo((Volume) obj);
         }
 
-        public int CompareTo(Volume other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(Volume other)
         {
             return _cubicMeters.CompareTo(other._cubicMeters);
         }
 
+#if !WINDOWS_UWP
         public static bool operator <=(Volume left, Volume right)
         {
             return left._cubicMeters <= right._cubicMeters;
@@ -1251,6 +1312,7 @@ namespace UnitsNet
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._cubicMeters != right._cubicMeters;
         }
+#endif
 
         public override bool Equals(object obj)
         {
@@ -1354,7 +1416,6 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1373,10 +1434,43 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Volume Parse(string str, IFormatProvider formatProvider = null)
+        public static Volume Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Volume Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
@@ -1400,7 +1494,7 @@ namespace UnitsNet
                     "Expected string to have at least one pair of quantity and unit in the format"
                     + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
-            return quantities.Aggregate((x, y) => x + y);
+            return quantities.Aggregate((x, y) => Volume.FromCubicMeters(x.CubicMeters + y.CubicMeters));
         }
 
         /// <summary>
@@ -1437,7 +1531,7 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch(AmbiguousUnitParseException ambiguousException)
+                catch(AmbiguousUnitParseException)
                 {
                     throw;
                 }
@@ -1462,18 +1556,49 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static VolumeUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static VolumeUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static VolumeUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static VolumeUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            var unitSystem = UnitSystem.GetCached(formatProvider);
 
+            var unitSystem = UnitSystem.GetCached(formatProvider);
             var unit = unitSystem.Parse<VolumeUnit>(str.Trim());
 
             if (unit == VolumeUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized VolumeUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1497,6 +1622,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(VolumeUnit unit)
+        {
+            return ToString(unit, null, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(VolumeUnit unit, [CanBeNull] Culture culture)
+        {
+            return ToString(unit, culture, 2);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
@@ -1504,9 +1650,11 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(VolumeUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(VolumeUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, culture, format);
         }
 
         /// <summary>
@@ -1518,9 +1666,20 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(VolumeUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(VolumeUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+            [NotNull] params object[] args)
         {
-            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
+            return string.Format(formatProvider, format, formatArgs);
         }
     }
 }

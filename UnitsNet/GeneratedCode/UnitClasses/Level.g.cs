@@ -27,6 +27,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+#else
+using Culture = System.IFormatProvider;
+#endif
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,16 +41,49 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q0, expressed in dimensionless units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+#if WINDOWS_UWP
+    public sealed partial class Level
+#else
     public partial struct Level : IComparable, IComparable<Level>
+#endif
     {
         /// <summary>
         ///     Base unit of Level.
         /// </summary>
         private readonly double _decibels;
 
-        public Level(double decibels) : this()
+#if WINDOWS_UWP
+        public Level() : this(0)
         {
-            _decibels = decibels;
+        }
+#endif
+
+        public Level(double decibels)
+        {
+            _decibels = Convert.ToDouble(decibels);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Level(long decibels)
+        {
+            _decibels = Convert.ToDouble(decibels);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Level(decimal decibels)
+        {
+            _decibels = Convert.ToDouble(decibels);
         }
 
         #region Properties
@@ -95,7 +134,7 @@ namespace UnitsNet
             return new Level((1/0.115129254)*nepers);
         }
 
-
+#if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Level from nullable Decibels.
         /// </summary>
@@ -107,7 +146,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -122,31 +161,33 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
+#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
         /// </summary>
-        /// <param name="value">Value to convert from.</param>
+        /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(double value, LevelUnit fromUnit)
+        public static Level From(double val, LevelUnit fromUnit)
         {
             switch (fromUnit)
             {
                 case LevelUnit.Decibel:
-                    return FromDecibels(value);
+                    return FromDecibels(val);
                 case LevelUnit.Neper:
-                    return FromNepers(value);
+                    return FromNepers(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
         /// </summary>
@@ -170,6 +211,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+#endif
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(LevelUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -178,7 +231,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(LevelUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(LevelUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -187,6 +240,7 @@ namespace UnitsNet
 
         #region Logarithmic Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static Level operator -(Level right)
         {
             return new Level(-right._decibels);
@@ -229,6 +283,7 @@ namespace UnitsNet
             // Logarithmic division = subtraction
             return Convert.ToDouble(left._decibels - right._decibels);
         }
+#endif
 
         #endregion
 
@@ -241,11 +296,17 @@ namespace UnitsNet
             return CompareTo((Level) obj);
         }
 
-        public int CompareTo(Level other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(Level other)
         {
             return _decibels.CompareTo(other._decibels);
         }
 
+#if !WINDOWS_UWP
         public static bool operator <=(Level left, Level right)
         {
             return left._decibels <= right._decibels;
@@ -277,6 +338,7 @@ namespace UnitsNet
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._decibels != right._decibels;
         }
+#endif
 
         public override bool Equals(object obj)
         {
@@ -324,7 +386,6 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -343,10 +404,43 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Level Parse(string str, IFormatProvider formatProvider = null)
+        public static Level Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Level Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
@@ -370,7 +464,7 @@ namespace UnitsNet
                     "Expected string to have at least one pair of quantity and unit in the format"
                     + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
-            return quantities.Aggregate((x, y) => x + y);
+            return quantities.Aggregate((x, y) => Level.FromDecibels(x.Decibels + y.Decibels));
         }
 
         /// <summary>
@@ -407,7 +501,7 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch(AmbiguousUnitParseException ambiguousException)
+                catch(AmbiguousUnitParseException)
                 {
                     throw;
                 }
@@ -432,18 +526,49 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static LevelUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static LevelUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static LevelUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static LevelUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            var unitSystem = UnitSystem.GetCached(formatProvider);
 
+            var unitSystem = UnitSystem.GetCached(formatProvider);
             var unit = unitSystem.Parse<LevelUnit>(str.Trim());
 
             if (unit == LevelUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized LevelUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -467,6 +592,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(LevelUnit unit)
+        {
+            return ToString(unit, null, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(LevelUnit unit, [CanBeNull] Culture culture)
+        {
+            return ToString(unit, culture, 2);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
@@ -474,9 +620,11 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(LevelUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(LevelUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, culture, format);
         }
 
         /// <summary>
@@ -488,9 +636,20 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(LevelUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(LevelUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+            [NotNull] params object[] args)
         {
-            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
+            return string.Format(formatProvider, format, formatArgs);
         }
     }
 }

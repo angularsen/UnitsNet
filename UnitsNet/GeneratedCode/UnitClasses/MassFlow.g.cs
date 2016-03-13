@@ -27,6 +27,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+#else
+using Culture = System.IFormatProvider;
+#endif
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,16 +41,49 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+#if WINDOWS_UWP
+    public sealed partial class MassFlow
+#else
     public partial struct MassFlow : IComparable, IComparable<MassFlow>
+#endif
     {
         /// <summary>
         ///     Base unit of MassFlow.
         /// </summary>
         private readonly double _gramsPerSecond;
 
-        public MassFlow(double gramspersecond) : this()
+#if WINDOWS_UWP
+        public MassFlow() : this(0)
         {
-            _gramsPerSecond = gramspersecond;
+        }
+#endif
+
+        public MassFlow(double gramspersecond)
+        {
+            _gramsPerSecond = Convert.ToDouble(gramspersecond);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        MassFlow(long gramspersecond)
+        {
+            _gramsPerSecond = Convert.ToDouble(gramspersecond);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        MassFlow(decimal gramspersecond)
+        {
+            _gramsPerSecond = Convert.ToDouble(gramspersecond);
         }
 
         #region Properties
@@ -223,7 +262,7 @@ namespace UnitsNet
             return new MassFlow(tonnesperday/0.0864000);
         }
 
-
+#if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable MassFlow from nullable CentigramsPerSecond.
         /// </summary>
@@ -235,7 +274,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -250,7 +289,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -265,7 +304,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -280,7 +319,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -295,7 +334,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -310,7 +349,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -325,7 +364,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -340,7 +379,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -355,7 +394,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -370,47 +409,49 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
+#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>
-        /// <param name="value">Value to convert from.</param>
+        /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFlow unit value.</returns>
-        public static MassFlow From(double value, MassFlowUnit fromUnit)
+        public static MassFlow From(double val, MassFlowUnit fromUnit)
         {
             switch (fromUnit)
             {
                 case MassFlowUnit.CentigramPerSecond:
-                    return FromCentigramsPerSecond(value);
+                    return FromCentigramsPerSecond(val);
                 case MassFlowUnit.DecagramPerSecond:
-                    return FromDecagramsPerSecond(value);
+                    return FromDecagramsPerSecond(val);
                 case MassFlowUnit.DecigramPerSecond:
-                    return FromDecigramsPerSecond(value);
+                    return FromDecigramsPerSecond(val);
                 case MassFlowUnit.GramPerSecond:
-                    return FromGramsPerSecond(value);
+                    return FromGramsPerSecond(val);
                 case MassFlowUnit.HectogramPerSecond:
-                    return FromHectogramsPerSecond(value);
+                    return FromHectogramsPerSecond(val);
                 case MassFlowUnit.KilogramPerSecond:
-                    return FromKilogramsPerSecond(value);
+                    return FromKilogramsPerSecond(val);
                 case MassFlowUnit.MicrogramPerSecond:
-                    return FromMicrogramsPerSecond(value);
+                    return FromMicrogramsPerSecond(val);
                 case MassFlowUnit.MilligramPerSecond:
-                    return FromMilligramsPerSecond(value);
+                    return FromMilligramsPerSecond(val);
                 case MassFlowUnit.NanogramPerSecond:
-                    return FromNanogramsPerSecond(value);
+                    return FromNanogramsPerSecond(val);
                 case MassFlowUnit.TonnePerDay:
-                    return FromTonnesPerDay(value);
+                    return FromTonnesPerDay(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>
@@ -450,6 +491,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+#endif
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(MassFlowUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -458,7 +511,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MassFlowUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(MassFlowUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -467,6 +520,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static MassFlow operator -(MassFlow right)
         {
             return new MassFlow(-right._gramsPerSecond);
@@ -501,6 +555,7 @@ namespace UnitsNet
         {
             return Convert.ToDouble(left._gramsPerSecond/right._gramsPerSecond);
         }
+#endif
 
         #endregion
 
@@ -513,11 +568,17 @@ namespace UnitsNet
             return CompareTo((MassFlow) obj);
         }
 
-        public int CompareTo(MassFlow other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(MassFlow other)
         {
             return _gramsPerSecond.CompareTo(other._gramsPerSecond);
         }
 
+#if !WINDOWS_UWP
         public static bool operator <=(MassFlow left, MassFlow right)
         {
             return left._gramsPerSecond <= right._gramsPerSecond;
@@ -549,6 +610,7 @@ namespace UnitsNet
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._gramsPerSecond != right._gramsPerSecond;
         }
+#endif
 
         public override bool Equals(object obj)
         {
@@ -612,7 +674,6 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -631,10 +692,43 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MassFlow Parse(string str, IFormatProvider formatProvider = null)
+        public static MassFlow Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static MassFlow Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
@@ -658,7 +752,7 @@ namespace UnitsNet
                     "Expected string to have at least one pair of quantity and unit in the format"
                     + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
-            return quantities.Aggregate((x, y) => x + y);
+            return quantities.Aggregate((x, y) => MassFlow.FromGramsPerSecond(x.GramsPerSecond + y.GramsPerSecond));
         }
 
         /// <summary>
@@ -695,7 +789,7 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch(AmbiguousUnitParseException ambiguousException)
+                catch(AmbiguousUnitParseException)
                 {
                     throw;
                 }
@@ -720,18 +814,49 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFlowUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static MassFlowUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static MassFlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static MassFlowUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            var unitSystem = UnitSystem.GetCached(formatProvider);
 
+            var unitSystem = UnitSystem.GetCached(formatProvider);
             var unit = unitSystem.Parse<MassFlowUnit>(str.Trim());
 
             if (unit == MassFlowUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MassFlowUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -755,6 +880,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(MassFlowUnit unit)
+        {
+            return ToString(unit, null, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture)
+        {
+            return ToString(unit, culture, 2);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
@@ -762,9 +908,11 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, culture, format);
         }
 
         /// <summary>
@@ -776,9 +924,20 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+            [NotNull] params object[] args)
         {
-            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
+            return string.Format(formatProvider, format, formatArgs);
         }
     }
 }
