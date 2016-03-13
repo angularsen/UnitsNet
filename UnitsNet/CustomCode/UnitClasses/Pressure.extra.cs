@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
 namespace UnitsNet
 {
     public partial struct Pressure
@@ -34,3 +36,4 @@ namespace UnitsNet
         }
     }
 }
+#endif

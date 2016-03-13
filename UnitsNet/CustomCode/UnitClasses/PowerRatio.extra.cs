@@ -23,63 +23,22 @@ using System;
 
 namespace UnitsNet
 {
-    /// <summary>
-    ///     Extension methods for <see cref="PowerRatio" />.
-    /// </summary>
-    public static class PowerRatioExtensions
-    {
-        /// <summary>
-        ///     Gets a <see cref="Power" /> from a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <remarks>
-        ///     Provides a nicer syntax for converting a power ratio back to a power.
-        ///     <example>
-        ///         <c>var power = powerRatio.ToPower();</c>
-        ///     </example>
-        /// </remarks>
-        public static Power ToPower(this PowerRatio powerRatio)
-        {
-            return PowerRatio.ToPower(powerRatio);
-        }
-
-        /// <summary>
-        ///     Gets a <see cref="AmplitudeRatio" /> from a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="powerRatio">The power ratio.</param>
-        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
-        public static AmplitudeRatio ToAmplitudeRatio(this PowerRatio powerRatio, ElectricResistance impedance)
-        {
-            return PowerRatio.ToAmplitudeRatio(powerRatio, impedance);
-        }
-    }
-
-    /// <summary>
-    ///     Extension methods for <see cref="Power" />.
-    /// </summary>
-    public static class PowerExtensions
-    {
-        /// <summary>
-        ///     Gets a <see cref="PowerRatio" /> from a <see cref="Power" /> relative to one watt.
-        /// </summary>
-        /// <remarks>
-        ///     Provides a nicer syntax for converting a power to a power ratio (relative to 1 watt).
-        ///     <example>
-        ///         <c>var powerRatio = power.ToPowerRatio();</c>
-        ///     </example>
-        /// </remarks>
-        public static PowerRatio ToPowerRatio(this Power power)
-        {
-            return PowerRatio.FromPower(power);
-        }
-    }
-
+#if WINDOWS_UWP
+    public sealed partial class PowerRatio
+#else
     public partial struct PowerRatio
+#endif
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="PowerRatio" /> struct from the specified power referenced to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
-        public PowerRatio(Power power)
+#if WINDOWS_UWP
+        internal
+#else
+        public 
+#endif
+        PowerRatio(Power power)
             : this()
         {
             if (power.Watts <= 0)
@@ -87,7 +46,7 @@ namespace UnitsNet
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _decibelWatts = 10*Math.Log10(power/Power.FromWatts(1));
+            _decibelWatts = 10*Math.Log10(power.Watts/1);
         }
 
         /// <summary>

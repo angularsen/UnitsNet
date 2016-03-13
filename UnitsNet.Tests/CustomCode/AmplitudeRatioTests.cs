@@ -21,6 +21,7 @@
 
 using System;
 using NUnit.Framework;
+using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
 {

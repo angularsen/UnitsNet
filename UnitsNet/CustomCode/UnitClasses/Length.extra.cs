@@ -20,8 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using System.Diagnostics;
-using System.Globalization;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -31,7 +30,11 @@ namespace UnitsNet
     ///     Makes it easier to work with Feet/Inches combinations, which are customarily used in the US and UK
     ///     to express body height. For example, someone is 5 feet 3 inches tall.
     /// </summary>
+#if WINDOWS_UWP
+    public sealed partial class Length
+#else
     public partial struct Length
+#endif
     {
         private const double FeetToInches = 12;
 
@@ -58,6 +61,8 @@ namespace UnitsNet
             return FromInches(FeetToInches*feet + inches);
         }
 
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
         public static Speed operator /(Length length, TimeSpan timeSpan)
         {
             return Speed.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);
@@ -102,9 +107,10 @@ namespace UnitsNet
         {
             return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
         }
+#endif
     }
 
-    public class FeetInches
+    public sealed class FeetInches
     {
         public FeetInches(double feet, double inches)
         {
@@ -115,17 +121,26 @@ namespace UnitsNet
         public double Feet { get; }
         public double Inches { get; }
 
-        public string ToString(IFormatProvider cultureInfo = null)
+        public override string ToString()
         {
-            // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
-            // So inches are rounded when converting from base units to feet/inches.
-
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
-            string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
-            string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
-
-            return string.Format(cultureInfo == null ? CultureInfo.CurrentCulture : cultureInfo, "{0:n0} {1} {2:n0} {3}",
-                Feet, footUnit, Math.Round(Inches), inchUnit);
+            return ToString(null);
         }
+
+        #if WINDOWS_UWP
+                internal
+        #else
+                public
+        #endif
+                string ToString([CanBeNull] IFormatProvider cultureInfo)
+                {
+                    // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
+                    // So inches are rounded when converting from base units to feet/inches.
+                    UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+                    string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
+                    string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
+
+                    return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
+                        inchUnit);
+                }
     }
 }
