@@ -120,7 +120,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = SerializeObject(nullMass);
                 Console.WriteLine(json);
 
-                Assert.That(expectedJson, Is.EqualTo(expectedJson));
+                Assert.That(expectedJson, Is.EqualTo(json));
             }
 
             [Test]
