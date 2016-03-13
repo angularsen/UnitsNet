@@ -35,7 +35,11 @@ namespace UnitsNet.Tests
         [SetUp]
         public void Setup()
         {
-            _originalUICulture = Thread.CurrentThread.CurrentUICulture;
+            // We want to have a consistent test setup without being affected by the environment we are running in.
+            // These tests will fail if this is not done:
+            // PositiveInfinityFormatting
+            // NegativeInfinityFormatting
+            _originalUiCulture = Thread.CurrentThread.CurrentUICulture;
             _originalCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -44,12 +48,12 @@ namespace UnitsNet.Tests
         [TearDown]
         public void Teardown()
         {
-            Thread.CurrentThread.CurrentUICulture = _originalUICulture;
+            Thread.CurrentThread.CurrentUICulture = _originalUiCulture;
             Thread.CurrentThread.CurrentCulture = _originalCulture;
         }
 
         private CultureInfo _originalCulture;
-        private CultureInfo _originalUICulture;
+        private CultureInfo _originalUiCulture;
 
         // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
         [TestCase(0, Result = "0 m")]
@@ -73,8 +77,8 @@ namespace UnitsNet.Tests
 
         private UnitSystem GetCachedUnitSystem()
         {
-            var cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            var unitSystem = UnitSystem.GetCached(cultureInfo);
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
             return unitSystem;
         }
 
@@ -168,32 +172,11 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
         }
 
-        [Test]
-        public void Parse_UnambiguousUnitsDoesNotThrow()
-        {
-            var unitSystem = GetCachedUnitSystem();
-            var unit = Volume.Parse("1 l");
-
-            Assert.AreEqual(Volume.FromLiters(1), unit);
-        }
-
-        [Test]
-        public void Parse_AmbiguousUnitsThrowsException()
-        {
-            var unitSystem = GetCachedUnitSystem();
-
-            // Act 1
-            Assert.Throws<AmbiguousUnitParseException>( ()=>unitSystem.Parse<VolumeUnit>("tsp"));
-
-            // Act 2
-            Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
-        }
-
         [TestCase("m^2", Result = AreaUnit.SquareMeter)]
         [TestCase("cm^2", Result = AreaUnit.Undefined)]
         public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
         {
-            var unitSystem = GetCachedUnitSystem();
+            UnitSystem unitSystem = GetCachedUnitSystem();
             unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
 
             return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
@@ -321,7 +304,6 @@ namespace UnitsNet.Tests
         [Test]
         public void AllUnitsImplementToStringForNorwegian()
         {
-            CultureInfo originalCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("nb-NO");
 
             Assert.AreEqual("1 °", Angle.FromDegrees(1).ToString());
@@ -409,6 +391,26 @@ namespace UnitsNet.Tests
         {
             Assert.That(Length.FromMeters(double.NaN).ToString(),
                 Is.EqualTo("NaN m"));
+        }
+
+        [Test]
+        public void Parse_AmbiguousUnitsThrowsException()
+        {
+            UnitSystem unitSystem = GetCachedUnitSystem();
+
+            // Act 1
+            Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<VolumeUnit>("tsp"));
+
+            // Act 2
+            Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
+        }
+
+        [Test]
+        public void Parse_UnambiguousUnitsDoesNotThrow()
+        {
+            Volume unit = Volume.Parse("1 l");
+
+            Assert.AreEqual(Volume.FromLiters(1), unit);
         }
 
         [Test]
