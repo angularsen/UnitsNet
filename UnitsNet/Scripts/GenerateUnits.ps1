@@ -95,60 +95,74 @@ function GetUnits($unitClass)
     return $units | sort SingularName;
 }
 
-function GenerateUnitClass($unitClass)
+function GenerateUnitClass($unitClass, $outDir)
 {
-    Write-Host "Generate unit for: " + $unitClass.Name;
-
-    $outFileName = "$PSScriptRoot/../GeneratedCode/UnitClasses/$($unitClass.Name).g.cs";
-    GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
+    $outFileName = "$outDir/$($unitClass.Name).g.cs";
+    GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+	if (!$?) {
+		exit 1
+	}
+	Write-Host -NoNewline "class(OK) "
 }
 
-function GenerateUnitTestBaseClass($unitClass)
+function GenerateUnitTestBaseClass($unitClass, $outDir)
 {
-    Write-Host "Generate test base for: " + $unitClass.Name;
-
-    $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode/$($unitClass.Name)TestsBase.g.cs";
-    GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
+    $outFileName = "$outDir/$($unitClass.Name)TestsBase.g.cs";
+    GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+	if (!$?) {
+		exit 1
+	}
+	Write-Host -NoNewline "test base(OK) "
 }
 
-function GenerateUnitTestClassIfNotExists($unitClass)
+function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
 {
-    $outFileName = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode/$($unitClass.Name)Tests.cs";
+	Write-Host -NoNewline "test stub"
+    $outFileName = "$outDir/$($unitClass.Name)Tests.cs";
     if (Test-Path $outFileName)
     {
+		Write-Host -NoNewline "(skip) "
         return;
     }
     else
     {
-        Write-Host "Generate test placeholder for: " + $unitClass.Name;
-        GenerateUnitTestPlaceholderSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName
+        GenerateUnitTestPlaceholderSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+		if (!$?) {
+			exit 1
+		}
+		Write-Host -NoNewline "(OK) "
     }
 }
 
-function GenerateUnitEnum($unitClass)
+function GenerateUnitEnum($unitClass, $outDir)
 {
-    Write-Host "Generate unit enum for: " + $unitClass.Name;
-
-    $outDir = "$PSScriptRoot/../GeneratedCode/Enums";
     $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs";
 
-    New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
-
-    $result = GenerateUnitEnumSourceCode $unitClass;
-    $result | Out-File -Encoding "UTF8" $outFileName;
+    GenerateUnitEnumSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+	if (!$?) {
+		exit 1
+	}
+	Write-Host -NoNewline "enum(OK) "
 }
 
-function GenerateUnitSystemDefault($unitClasses)
+function GenerateUnitSystemDefault($unitClasses, $outDir)
 {
-    Write-Host "Generate UnitSystem.Default.g.cs.";
-
-    $outDir = "$PSScriptRoot/../GeneratedCode";
+    Write-Host -NoNewline "UnitSystem.Default.g.cs: "; 
     $outFileName = "$outDir/UnitSystem.Default.g.cs";
 
-    New-Item -ItemType Directory -Force -Path $outDir; # Make sure directory exists
+    GenerateUnitSystemDefaultSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+	if (!$?) {
+		Write-Host "(error) "
+		exit 1
+	}
+	Write-Host "(OK) "
+}
 
-    $result = GenerateUnitSystemDefaultSourceCode $unitClasses;
-    $result | Out-File -Encoding "UTF8" $outFileName;
+function EnsureDirExists([String] $dirPath) {
+    New-Item -ItemType Directory -Force -Path $dirPath | Out-Null;
+	if (!$?) {
+		exit 1
+	}
 }
 
 # Load external generator functions with same name as file
@@ -160,9 +174,17 @@ function GenerateUnitSystemDefault($unitClasses)
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
 
-$templatesDir = "$PSScriptRoot/UnitDefinitions";
+EnsureDirExists ($unitClassDir = "$PSScriptRoot/../GeneratedCode/UnitClasses")
+EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Enums")
+EnsureDirExists ($unitSystemDir = "$PSScriptRoot/../GeneratedCode")
+EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
+EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
+
+$templatesDir = "$PSScriptRoot/UnitDefinitions"
 $unitClasses = @();
 
+$pad = 25
+$unitCounter = 0;
 get-childitem -path $templatesDir -filter "*.json" | % {
     $templateFile = $_.FullName
     $json = (Get-Content $templateFile | Out-String)
@@ -182,13 +204,21 @@ get-childitem -path $templatesDir -filter "*.json" | % {
 
     # Expand unit prefixes into units
     $unitClass.Units = GetUnits $unitClass;
+	$unitCounter += $unitClass.Units.Count
 
-    GenerateUnitClass $unitClass
-    GenerateUnitEnum $unitClass
-    GenerateUnitTestBaseClass $unitClass
-    GenerateUnitTestClassIfNotExists $unitClass
+	Write-Host -NoNewline "$($unitClass.Name):".PadRight($pad)
+    GenerateUnitClass $unitClass $unitClassDir
+    GenerateUnitEnum $unitClass $unitEnumDir
+    GenerateUnitTestBaseClass $unitClass $testsDir
+    GenerateUnitTestClassIfNotExists $unitClass $testsCustomCodeDir
 
     $unitClasses += $unitClass;
+	Write-Host ""
 }
 
-GenerateUnitSystemDefault $unitClasses
+Write-Host ""
+GenerateUnitSystemDefault $unitClasses $unitSystemDir
+
+Write-Host ""
+Write-Host ""
+Write-Host "Summary: $($unitCounter) units in $($unitClasses.Count) classes".PadRight($pad)
