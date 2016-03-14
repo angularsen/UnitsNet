@@ -7,7 +7,7 @@ SET NuGetOutDir=%ROOT%\Artifacts\NuGet
 
 mkdir "%NuGetOutDir%"
 
-%NuGetExe% pack %MainNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
+%NuGetExe% pack %MainLibNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
 if %errorlevel% neq 0 exit /b %errorlevel%
-%NuGetExe% pack %SerializationNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
+%NuGetExe% pack %SerializationLibNuspec% -Verbosity detailed -OutputDirectory "%NuGetOutDir%" -BasePath "%ROOT%" -Symbols
 if %errorlevel% neq 0 exit /b %errorlevel%
