@@ -14,20 +14,18 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 
 Build Targets:
 * Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
-* Portable 4.5 Profile259 (.NET 4.5, Win8, WinPhone 8.1 + WP Silverlight 8)
 * .NET 3.5 Client
-* .NET 4.5.1 
 
 Features
 ===
-* [28 units of measurement](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
+* [370 units of measurement in 35 classes](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
 * Generated code for uniform implementations and fewer bugs
 * Immutable structs implementing IEquatable, IComparable and operator overloads
 * Parse unit abbreviations in multiple cultures
 * ToString() variants for custom cultures and format patterns
 * Extensible with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Serializable with JSON.NET](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet)
-* Over 500 unit tests to ensure conversions and localizations are in order
+* 688 unit tests to ensure conversions and localizations are in order
 
 Static Typing
 ---
