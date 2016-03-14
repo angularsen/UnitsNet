@@ -142,8 +142,8 @@ Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefin
 
 Continuous Integration
 ===
-A [TeamCity build server](http://dev.swingcatalyst.com/TeamCity/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
+A [TeamCity build server](http://teamcity.anj.no/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
-* Build and test master branch.
+* Build, test and deploy nuget on master branch.
 
 [Contact me](https://github.com/anjdreas) if you have any questions.
