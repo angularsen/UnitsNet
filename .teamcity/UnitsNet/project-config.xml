@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="1e86d2a3-eb7c-4eae-915a-24efdb97717e" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/9.0/project-config.xsd">
+  <name>Units.NET</name>
+  <description>Makes life working with units of measurement just a little bit better</description>
+  <parameters />
+  <cleanup />
+</project>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="8e366386-63fa-4913-a888-73b60387617a" type="jetbrains.git" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/9.0/project-config.xsd">
+  <name>GitHub</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PRIVATE_KEY_FILE" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="privateKeyPath" value="C:\Users\Andreas\.ssh\id_rsa" />
+  <param name="reportTagRevisions" value="true" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="teamcity:branchSpec"><![CDATA[+:refs/heads/(master)
++:refs/heads/feature/(*)
++:refs/heads/fix/(*)
++:refs/pull/(*/merge)
++:refs/tags/(*)]]></param>
+  <param name="url" value="git@github.com:anjdreas/UnitsNet.git" />
+  <param name="useAlternates" value="true" />
+  <param name="userForTags" value="TeamCity &lt;anjdreas+teamcity@gmail.com&gt;" />
+  <param name="usernameStyle" value="EMAIL" />
+</vcs-root>
+

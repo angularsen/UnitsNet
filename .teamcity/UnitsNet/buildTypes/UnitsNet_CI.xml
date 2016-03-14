@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="4b2cb864-c6d0-42ae-8f89-3ed7b89957b4" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/9.0/project-config.xsd">
+  <name>CI</name>
+  <description />
+  <settings>
+    <options>
+      <option name="artifactRules" value="Artifacts" />
+      <option name="executionTimeoutMin" value="5" />
+    </options>
+    <disabled-settings>
+      <setting-ref ref="RUNNER_11" />
+    </disabled-settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_4" name="build.bat" type="simpleRunner">
+        <parameters>
+          <param name="command.executable" value="Build/build.bat" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_11" name="nuget-publish.bat" type="simpleRunner">
+        <parameters>
+          <param name="command.executable" value="Build/nuget-publish.bat" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="UnitsNet_GitHub" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="branchFilter"><![CDATA[+:*
+-:<default>]]></param>
+          <param name="groupCheckinsByCommitter" value="true" />
+          <param name="perCheckinTriggering" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <build-extensions>
+      <extension id="swabra" type="swabra">
+        <parameters>
+          <param name="swabra.enabled" value="swabra.before.build" />
+        </parameters>
+      </extension>
+      <extension id="BUILD_EXT_1" type="teamcity.github.status">
+        <parameters>
+          <param name="guthub_comments" value="true" />
+          <param name="guthub_host" value="https://api.github.com" />
+          <param name="guthub_owner" value="anjdreas" />
+          <param name="guthub_repo" value="UnitsNet" />
+          <param name="guthub_username" value="anjdreas" />
+          <param name="secure:guthub_username" value="zxxd7e15d90e47ece86e06421da2f70371c" />
+        </parameters>
+      </extension>
+      <extension id="BUILD_EXT_5" type="xml-report-plugin">
+        <parameters>
+          <param name="xmlReportParsing.reportDirs" value="Artifacts/Logs/*.xml" />
+          <param name="xmlReportParsing.reportType" value="nunit" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <cleanup />
+  </settings>
+</build-type>
+
