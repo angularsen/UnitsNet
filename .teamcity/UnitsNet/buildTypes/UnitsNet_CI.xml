@@ -73,6 +73,16 @@
           <param name="withBuildAnchor" value="true" />
         </parameters>
       </extension>
+      <extension id="BUILD_EXT_9" type="BuildFailureOnMetric">
+        <parameters>
+          <param name="anchorBuild" value="lastSuccessful" />
+          <param name="metricKey" value="VisibleArtifactsSize" />
+          <param name="metricThreshold" value="10" />
+          <param name="metricUnits" value="metricUnitsPercents" />
+          <param name="moreOrLess" value="less" />
+          <param name="withBuildAnchor" value="true" />
+        </parameters>
+      </extension>
     </build-extensions>
     <cleanup />
   </settings>
