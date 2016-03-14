@@ -63,6 +63,16 @@
           <param name="xmlReportParsing.reportType" value="nunit" />
         </parameters>
       </extension>
+      <extension id="BUILD_EXT_8" type="BuildFailureOnMetric">
+        <parameters>
+          <param name="anchorBuild" value="lastSuccessful" />
+          <param name="metricKey" value="buildTestCount" />
+          <param name="metricThreshold" value="20" />
+          <param name="metricUnits" value="metricUnitsPercents" />
+          <param name="moreOrLess" value="less" />
+          <param name="withBuildAnchor" value="true" />
+        </parameters>
+      </extension>
     </build-extensions>
     <cleanup />
   </settings>
