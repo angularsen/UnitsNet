@@ -1,4 +1,4 @@
-[![Build Status](http://teamcity.anj.no/app/rest/builds/buildType:(id:UnitsNet_CI)/statusIcon)](http://teamcity.anj.no/viewType.html?buildTypeId=UnitsNet_CI&guest=1 "Build Status")
+[![Build Status](http://teamcity.anj.no/app/rest/builds/buildType:(id:UnitsNet_Master)/statusIcon)](http://teamcity.anj.no/viewType.html?buildTypeId=UnitsNet_Master&guest=1 "Build Status")
 Units.NET
 ===
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
