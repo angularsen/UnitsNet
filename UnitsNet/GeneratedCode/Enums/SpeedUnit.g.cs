@@ -25,17 +25,24 @@ namespace UnitsNet.Units
     public enum SpeedUnit
     {
         Undefined = 0,
+        CentimeterPerMinute,
         CentimeterPerSecond,
+        DecimeterPerMinute,
         DecimeterPerSecond,
         FootPerSecond,
         KilometerPerHour,
+        KilometerPerMinute,
         KilometerPerSecond,
         Knot,
         MeterPerHour,
+        MeterPerMinute,
         MeterPerSecond,
+        MicrometerPerMinute,
         MicrometerPerSecond,
         MilePerHour,
+        MillimeterPerMinute,
         MillimeterPerSecond,
+        NanometerPerMinute,
         NanometerPerSecond,
     }
 }
