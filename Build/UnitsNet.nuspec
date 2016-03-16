@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet</id>
-    <version>3.28.1</version>
+    <version>3.29.0</version>
     <title>Units.NET</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
@@ -14,7 +14,7 @@
     <summary>Simplifies working with units of measurement.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
-* Fix missing generated code due to merging multiple PRs
+* Add MeterPerMinute Speed units (@tongbong)
     </releaseNotes>
     <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
     <language>en-US</language>
