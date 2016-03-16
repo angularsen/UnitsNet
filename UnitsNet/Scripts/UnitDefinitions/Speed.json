@@ -17,6 +17,19 @@
       ]
     },
     {
+      "SingularName": "MeterPerMinute",
+      "PluralName": "MetersPerMinutes",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/min" ]
+        }
+      ]
+    },
+    {
       "SingularName": "MeterPerHour",
       "PluralName": "MetersPerHour",
       "FromUnitToBaseFunc": "x/3600",

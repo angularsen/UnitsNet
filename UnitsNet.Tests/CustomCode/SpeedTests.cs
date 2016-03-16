@@ -50,6 +50,20 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MetersPerHourInOneMeterPerSecond => 3600.0;
 
+        protected override double NanometersPerMinutesInOneMeterPerSecond => 60000000000;
+
+        protected override double MicrometersPerMinutesInOneMeterPerSecond => 60000000;
+
+        protected override double MillimetersPerMinutesInOneMeterPerSecond => 60000;
+
+        protected override double CentimetersPerMinutesInOneMeterPerSecond => 6000;
+
+        protected override double DecimetersPerMinutesInOneMeterPerSecond => 600;
+
+        protected override double MetersPerMinutesInOneMeterPerSecond => 60;
+
+        protected override double KilometersPerMinutesInOneMeterPerSecond => 0.06;
+
         [Test]
         public void DurationSpeedTimesEqualsLength()
         {
