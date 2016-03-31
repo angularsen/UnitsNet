@@ -91,6 +91,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void LengthDividedBySpeedEqualsDuration()
+        {
+            Duration duration = Length.FromMeters(20) / Speed.FromMetersPerSecond(2);
+            Assert.AreEqual(Duration.FromSeconds(10), duration);
+        }
+
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             Length.ToStringDefaultUnit = LengthUnit.Meter;

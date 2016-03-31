@@ -68,6 +68,11 @@ namespace UnitsNet
             return Speed.FromMetersPerSecond(length.Meters/duration.Seconds);
         }
 
+        public static Duration operator /(Length length, Speed speed)
+        {
+            return Duration.FromSeconds(length.Meters / speed.MetersPerSecond);
+        }
+
         public static Area operator *(Length length1, Length length2)
         {
             return Area.FromSquareMeters(length1.Meters*length2.Meters);
