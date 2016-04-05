@@ -33,7 +33,6 @@
       <build-trigger id="vcsTrigger" type="vcsTrigger">
         <parameters>
           <param name="branchFilter"><![CDATA[+:*
--:<default>
 -:refs/tags/*]]></param>
           <param name="groupCheckinsByCommitter" value="true" />
           <param name="perCheckinTriggering" value="true" />
