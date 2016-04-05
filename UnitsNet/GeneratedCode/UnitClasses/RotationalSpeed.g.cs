@@ -71,6 +71,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get RotationalSpeed in DegreesPerMinute.
+        /// </summary>
+        public double DegreesPerMinute
+        {
+            get { return (180*60/Math.PI)*_radiansPerSecond; }
+        }
+
+        /// <summary>
         ///     Get RotationalSpeed in DegreesPerSecond.
         /// </summary>
         public double DegreesPerSecond
@@ -173,6 +181,14 @@ namespace UnitsNet
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
         {
             return new RotationalSpeed((deciradianspersecond) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get RotationalSpeed from DegreesPerMinute.
+        /// </summary>
+        public static RotationalSpeed FromDegreesPerMinute(double degreesperminute)
+        {
+            return new RotationalSpeed((Math.PI/(180*60))*degreesperminute);
         }
 
         /// <summary>
@@ -279,6 +295,21 @@ namespace UnitsNet
             if (deciradianspersecond.HasValue)
             {
                 return FromDeciradiansPerSecond(deciradianspersecond.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DegreesPerMinute.
+        /// </summary>
+        public static RotationalSpeed? FromDegreesPerMinute(double? degreesperminute)
+        {
+            if (degreesperminute.HasValue)
+            {
+                return FromDegreesPerMinute(degreesperminute.Value);
             }
             else
             {
@@ -451,6 +482,8 @@ namespace UnitsNet
                     return FromCentiradiansPerSecond(value);
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return FromDeciradiansPerSecond(value);
+                case RotationalSpeedUnit.DegreePerMinute:
+                    return FromDegreesPerMinute(value);
                 case RotationalSpeedUnit.DegreePerSecond:
                     return FromDegreesPerSecond(value);
                 case RotationalSpeedUnit.MicrodegreePerSecond:
@@ -495,6 +528,8 @@ namespace UnitsNet
                     return FromCentiradiansPerSecond(value.Value);
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return FromDeciradiansPerSecond(value.Value);
+                case RotationalSpeedUnit.DegreePerMinute:
+                    return FromDegreesPerMinute(value.Value);
                 case RotationalSpeedUnit.DegreePerSecond:
                     return FromDegreesPerSecond(value.Value);
                 case RotationalSpeedUnit.MicrodegreePerSecond:
@@ -652,6 +687,8 @@ namespace UnitsNet
                     return CentiradiansPerSecond;
                 case RotationalSpeedUnit.DeciradianPerSecond:
                     return DeciradiansPerSecond;
+                case RotationalSpeedUnit.DegreePerMinute:
+                    return DegreesPerMinute;
                 case RotationalSpeedUnit.DegreePerSecond:
                     return DegreesPerSecond;
                 case RotationalSpeedUnit.MicrodegreePerSecond:

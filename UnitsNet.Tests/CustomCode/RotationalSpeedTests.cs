@@ -50,6 +50,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanodegreesPerSecondInOneRadianPerSecond => 57295779513.08232087;
 
+        protected override double DegreesPerMinuteInOneRadianPerSecond => 3437.74677;
 
         [Test]
         public void DurationTimesRotationalSpeedEqualsAngle()
