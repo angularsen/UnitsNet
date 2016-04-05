@@ -38,6 +38,7 @@ namespace UnitsNet.Tests
     {
         protected abstract double CentiradiansPerSecondInOneRadianPerSecond { get; }
         protected abstract double DeciradiansPerSecondInOneRadianPerSecond { get; }
+        protected abstract double DegreesPerMinuteInOneRadianPerSecond { get; }
         protected abstract double DegreesPerSecondInOneRadianPerSecond { get; }
         protected abstract double MicrodegreesPerSecondInOneRadianPerSecond { get; }
         protected abstract double MicroradiansPerSecondInOneRadianPerSecond { get; }
@@ -52,6 +53,7 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentiradiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DeciradiansPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DegreesPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double DegreesPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrodegreesPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicroradiansPerSecondTolerance { get { return 1e-5; } }
@@ -70,6 +72,7 @@ namespace UnitsNet.Tests
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.AreEqual(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
             Assert.AreEqual(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
+            Assert.AreEqual(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.DegreesPerMinute, DegreesPerMinuteTolerance);
             Assert.AreEqual(DegreesPerSecondInOneRadianPerSecond, radianpersecond.DegreesPerSecond, DegreesPerSecondTolerance);
             Assert.AreEqual(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
             Assert.AreEqual(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
@@ -87,6 +90,7 @@ namespace UnitsNet.Tests
         {
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond).CentiradiansPerSecond, CentiradiansPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond).DeciradiansPerSecond, DeciradiansPerSecondTolerance);
+            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute).DegreesPerMinute, DegreesPerMinuteTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond).DegreesPerSecond, DegreesPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond).MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond).MicroradiansPerSecond, MicroradiansPerSecondTolerance);
@@ -105,6 +109,7 @@ namespace UnitsNet.Tests
             var radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.AreEqual(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.CentiradianPerSecond), CentiradiansPerSecondTolerance);
             Assert.AreEqual(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DeciradianPerSecond), DeciradiansPerSecondTolerance);
+            Assert.AreEqual(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerMinute), DegreesPerMinuteTolerance);
             Assert.AreEqual(DegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerSecond), DegreesPerSecondTolerance);
             Assert.AreEqual(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicrodegreePerSecond), MicrodegreesPerSecondTolerance);
             Assert.AreEqual(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicroradianPerSecond), MicroradiansPerSecondTolerance);
@@ -123,6 +128,7 @@ namespace UnitsNet.Tests
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.AreEqual(1, RotationalSpeed.FromCentiradiansPerSecond(radianpersecond.CentiradiansPerSecond).RadiansPerSecond, CentiradiansPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromDeciradiansPerSecond(radianpersecond.DeciradiansPerSecond).RadiansPerSecond, DeciradiansPerSecondTolerance);
+            Assert.AreEqual(1, RotationalSpeed.FromDegreesPerMinute(radianpersecond.DegreesPerMinute).RadiansPerSecond, DegreesPerMinuteTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromDegreesPerSecond(radianpersecond.DegreesPerSecond).RadiansPerSecond, DegreesPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromMicrodegreesPerSecond(radianpersecond.MicrodegreesPerSecond).RadiansPerSecond, MicrodegreesPerSecondTolerance);
             Assert.AreEqual(1, RotationalSpeed.FromMicroradiansPerSecond(radianpersecond.MicroradiansPerSecond).RadiansPerSecond, MicroradiansPerSecondTolerance);

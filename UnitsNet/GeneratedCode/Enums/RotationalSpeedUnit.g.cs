@@ -27,6 +27,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         CentiradianPerSecond,
         DeciradianPerSecond,
+        DegreePerMinute,
         DegreePerSecond,
         MicrodegreePerSecond,
         MicroradianPerSecond,

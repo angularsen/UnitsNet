@@ -37,6 +37,18 @@
           }
         ]
       },
+      {
+        "SingularName": "DegreePerMinute",
+        "PluralName": "DegreesPerMinute",
+        "FromUnitToBaseFunc": "(Math.PI/(180*60))*x",
+        "FromBaseToUnitFunc": "(180*60/Math.PI)*x",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "°/min", "deg/min" ]
+          }
+        ]
+      },
     {
       "SingularName": "RevolutionPerSecond",
       "PluralName": "RevolutionsPerSecond",

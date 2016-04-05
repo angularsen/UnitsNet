@@ -1556,6 +1556,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "drad/s"),
                                 new AbbreviationsForCulture("ru-RU", "dрад/с"),
                             }),
+                        new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°/min", "deg/min"),
+                            }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerSecond,
                             new[]
                             {
