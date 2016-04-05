@@ -38,6 +38,7 @@
           <param name="groupCheckinsByCommitter" value="true" />
           <param name="perCheckinTriggering" value="true" />
           <param name="quietPeriodMode" value="DO_NOT_USE" />
+          <param name="triggerRules" value="-:.teamcity/**" />
         </parameters>
       </build-trigger>
     </build-triggers>
