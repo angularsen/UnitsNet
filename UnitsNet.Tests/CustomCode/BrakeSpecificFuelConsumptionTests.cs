@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,23 +19,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace UnitsNet
+
+using NUnit.Framework;
+using System;
+
+namespace UnitsNet.Tests.CustomCode
 {
-    public partial struct SpecificEnergy
+    public class BrakeSpecificFuelConsumptionTests : BrakeSpecificFuelConsumptionTestsBase
     {
-        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
+        protected override double GramsPerKiloWattHourInOneKilogramPerJoule => 3600000000;
+
+        protected override double KilogramsPerJouleInOneKilogramPerJoule => 1.0;
+
+        protected override double PoundsPerHorsepowerHourInOneKilogramPerJoule => 5918352.5016;
+
+        [Test]
+        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
+            MassFlow massFlow = BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0) * Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
+            Assert.AreEqual(20.0, massFlow.TonnesPerDay, 1e-11);
         }
 
-        public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
+        [Test]
+        public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
-        }
-
-        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy  bsfc)
-        {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / bsfc.JoulesPerKilogram);
+            SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
+            Assert.AreEqual(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
     }
 }

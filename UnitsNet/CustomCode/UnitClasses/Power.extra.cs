@@ -64,5 +64,10 @@ namespace UnitsNet
         {
             return RotationalSpeed.FromRadiansPerSecond(power.Watts/torque.NewtonMeters);
         }
+
+        public static MassFlow operator *(Power power, BrakeSpecificFuelConsumption bsfc)
+        {
+            return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule * power.Watts);
+        }
     }
 }

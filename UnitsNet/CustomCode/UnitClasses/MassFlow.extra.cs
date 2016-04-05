@@ -44,5 +44,15 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(massFlow.KilogramsPerSecond*duration.Seconds);
         }
+
+        public static Power operator /(MassFlow massFlow, BrakeSpecificFuelConsumption bsfc)
+        {
+            return Power.FromWatts(massFlow.KilogramsPerSecond / bsfc.KilogramsPerJoule);
+        }
+
+        public static BrakeSpecificFuelConsumption operator /(MassFlow massFlow, Power power)
+        {
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / power.Watts);
+        }
     }
 }

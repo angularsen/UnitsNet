@@ -55,5 +55,12 @@ namespace UnitsNet.Tests.CustomCode
             Energy energy = SpecificEnergy.FromJoulesPerKilogram(10.0)*Mass.FromKilograms(20.0);
             Assert.AreEqual(energy, Energy.FromJoules(200.0));
         }
+
+        [Test]
+        public void DoubleDividedBySpecificEnergyEqualsBrakeSpecificFuelConsumption()
+        {
+            BrakeSpecificFuelConsumption bsfc = 2.0 / SpecificEnergy.FromJoulesPerKilogram(4.0);
+            Assert.AreEqual(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
+        }
     }
 }

@@ -1,16 +1,16 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
 // https://github.com/anjdreas/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,23 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace UnitsNet
+// ReSharper disable once CheckNamespace
+namespace UnitsNet.Units
 {
-    public partial struct SpecificEnergy
+    public enum BrakeSpecificFuelConsumptionUnit
     {
-        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
-        {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
-        }
-
-        public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
-        {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
-        }
-
-        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy  bsfc)
-        {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / bsfc.JoulesPerKilogram);
-        }
+        Undefined = 0,
+        GramPerKiloWattHour,
+        KilogramPerJoule,
+        PoundPerHorsepowerHour,
     }
 }
