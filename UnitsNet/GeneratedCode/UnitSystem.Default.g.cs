@@ -247,7 +247,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.KilogramPerJoule,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kg/W"),
+                                new AbbreviationsForCulture("en-US", "kg/J"),
                             }),
                         new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.PoundPerHorsepowerHour,
                             new[]
