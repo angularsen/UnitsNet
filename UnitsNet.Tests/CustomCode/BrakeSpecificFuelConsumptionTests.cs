@@ -31,7 +31,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerJouleInOneKilogramPerJoule => 1.0;
 
-        protected override double PoundsPerHorsepowerHourInOneKilogramPerJoule => 5918352.5016;
+        protected override double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule => 5918352.5016;
 
         [Test]
         public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()

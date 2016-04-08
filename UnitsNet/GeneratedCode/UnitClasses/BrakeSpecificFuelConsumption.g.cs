@@ -71,9 +71,9 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in PoundsPerHorsepowerHour.
+        ///     Get BrakeSpecificFuelConsumption in PoundsPerMechanicalHorsepowerHour.
         /// </summary>
-        public double PoundsPerHorsepowerHour
+        public double PoundsPerMechanicalHorsepowerHour
         {
             get { return _kilogramsPerJoule/1.689659410672e-7; }
         }
@@ -104,11 +104,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from PoundsPerHorsepowerHour.
+        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
         /// </summary>
-        public static BrakeSpecificFuelConsumption FromPoundsPerHorsepowerHour(double poundsperhorsepowerhour)
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double poundspermechanicalhorsepowerhour)
         {
-            return new BrakeSpecificFuelConsumption(poundsperhorsepowerhour*1.689659410672e-7);
+            return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour*1.689659410672e-7);
         }
 
 
@@ -143,13 +143,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerHorsepowerHour.
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerMechanicalHorsepowerHour.
         /// </summary>
-        public static BrakeSpecificFuelConsumption? FromPoundsPerHorsepowerHour(double? poundsperhorsepowerhour)
+        public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(double? poundspermechanicalhorsepowerhour)
         {
-            if (poundsperhorsepowerhour.HasValue)
+            if (poundspermechanicalhorsepowerhour.HasValue)
             {
-                return FromPoundsPerHorsepowerHour(poundsperhorsepowerhour.Value);
+                return FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value);
             }
             else
             {
@@ -172,8 +172,8 @@ namespace UnitsNet
                     return FromGramsPerKiloWattHour(value);
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
                     return FromKilogramsPerJoule(value);
-                case BrakeSpecificFuelConsumptionUnit.PoundPerHorsepowerHour:
-                    return FromPoundsPerHorsepowerHour(value);
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
+                    return FromPoundsPerMechanicalHorsepowerHour(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -198,8 +198,8 @@ namespace UnitsNet
                     return FromGramsPerKiloWattHour(value.Value);
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
                     return FromKilogramsPerJoule(value.Value);
-                case BrakeSpecificFuelConsumptionUnit.PoundPerHorsepowerHour:
-                    return FromPoundsPerHorsepowerHour(value.Value);
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
+                    return FromPoundsPerMechanicalHorsepowerHour(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -337,8 +337,8 @@ namespace UnitsNet
                     return GramsPerKiloWattHour;
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
                     return KilogramsPerJoule;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerHorsepowerHour:
-                    return PoundsPerHorsepowerHour;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
+                    return PoundsPerMechanicalHorsepowerHour;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

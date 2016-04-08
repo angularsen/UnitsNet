@@ -27,6 +27,10 @@ namespace UnitsNet.Units
         Undefined = 0,
         GramPerKiloWattHour,
         KilogramPerJoule,
-        PoundPerHorsepowerHour,
+
+        /// <summary>
+        ///     The pound per horse power hour uses mechanical horse power and the imperial pound
+        /// </summary>
+        PoundPerMechanicalHorsepowerHour,
     }
 }

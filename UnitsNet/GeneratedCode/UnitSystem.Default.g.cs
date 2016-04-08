@@ -249,7 +249,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kg/J"),
                             }),
-                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.PoundPerHorsepowerHour,
+                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb/hph"),
