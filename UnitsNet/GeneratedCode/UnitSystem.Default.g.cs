@@ -236,6 +236,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
                     }),
+                new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/kWh"),
+                            }),
+                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.KilogramPerJoule,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/J"),
+                            }),
+                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb/hph"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (DensityUnit),
                     new[]
                     {

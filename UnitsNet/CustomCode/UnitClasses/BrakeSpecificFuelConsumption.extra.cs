@@ -21,21 +21,16 @@
 
 namespace UnitsNet
 {
-    public partial struct SpecificEnergy
+    public partial struct BrakeSpecificFuelConsumption
     {
-        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
+        public static MassFlow operator *(BrakeSpecificFuelConsumption bsfc, Power power)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
+            return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule * power.Watts);
         }
 
-        public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
+        public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption bsfc)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
-        }
-
-        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy  bsfc)
-        {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / bsfc.JoulesPerKilogram);
+            return SpecificEnergy.FromJoulesPerKilogram(value / bsfc.KilogramsPerJoule);
         }
     }
 }

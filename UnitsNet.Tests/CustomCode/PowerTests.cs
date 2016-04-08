@@ -106,5 +106,12 @@ namespace UnitsNet.Tests.CustomCode
             Energy energy = TimeSpan.FromSeconds(8.0)*Power.FromWatts(5.0);
             Assert.AreEqual(energy, Energy.FromJoules(40.0));
         }
+
+        [Test]
+        public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
+        {
+            MassFlow massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
+            Assert.AreEqual(massFlow.TonnesPerDay, 20.0, 1e-11);
+        }
     }
 }
