@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>UnitsNet.TestApps.Uwp.JavaScript</title>
+
+    <!-- WinJS references -->
+    <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+    <script src="WinJS/js/base.js"></script>
+    <script src="WinJS/js/ui.js"></script>
+
+    <!-- UnitsNet.TestApps.Uwp.JavaScript references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <!-- ReSharper disable UnknownCssVendorExtension -->
+    <style>
+        #label-container {
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            width: 100%;
+            height: 100%;
+        }
+        #label {
+            font-size: 3em;
+            vertical-align: top;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            top: 50%;
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
+    <!-- ReSharper restore UnknownCssVendorExtension -->
+</head>
+<body class="win-type-body">
+    <div id="label-container">
+        <p id="label">Content goes here</p>
+    </div>
+</body>
+</html>
