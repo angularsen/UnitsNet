@@ -6,7 +6,7 @@
 .EXAMPLE
   Set new version.
   powershell UpdateAssemblyInfo.ps1 1.2.3.4
-  
+
 .NOTES
     Author: Andreas Gullberg Larsen
     Date:   May 2, 2014
@@ -40,37 +40,38 @@ function Get-VersionFromNuspec ([string] $nuspecFilePath) {
 }
 
 #-------------------------------------------------------------------------------
-# Description: Sets the AssemblyVersion and AssemblyFileVersion of 
+# Description: Sets the AssemblyVersion and AssemblyFileVersion of
 #              AssemblyInfo.cs files.
 #
 # Author: Andreas Larsen
 # Version: 1.0
 #-------------------------------------------------------------------------------
-function Update-AssemblyInfoFiles ([string] $libName) {
+function Update-AssemblyInfoFiles ([string] $nuspecFilePath, [string] $assemblyInfoFilePath) {
 
-    [Version]$version = Get-VersionFromNuspec "$root\Build\$libName.nuspec"
+    [Version]$version = Get-VersionFromNuspec "$root\$nuspecFilePath"
 
     $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
     $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
     $assemblyVersion = 'AssemblyVersion("' + $version + '")';
     $fileVersion = 'AssemblyFileVersion("' + $version + '")';
-    
-    Get-ChildItem "$root\$libName\Properties" | Where { $_.PSChildName -match "^AssemblyInfo\.cs$"} | ForEach-Object {
+
+    Get-ChildItem "$root\$assemblyInfoFilePath" | ForEach-Object {
         $filename = $_.Directory.ToString() + '\' + $_.Name
         $filename + ' -> ' + $version
-        
+
         (Get-Content $filename -Encoding UTF8) | ForEach-Object {
             % {$_ -replace $assemblyVersionPattern, $assemblyVersion } |
             % {$_ -replace $fileVersionPattern, $fileVersion }
         } | Set-Content $filename -Encoding UTF8
-    }    
+    }
 }
 
 try {
   "Updating assembly info to version: $setVersion"
   ""
-  Update-AssemblyInfoFiles "UnitsNet"
-  Update-AssemblyInfoFiles "UnitsNet.Serialization.JsonNet"
+  Update-AssemblyInfoFiles "Build\UnitsNet.nuspec" "UnitsNet\Properties\AssemblyInfo.cs"
+  Update-AssemblyInfoFiles "Build\UnitsNet.WindowsRuntimeComponent.nuspec" "UnitsNet\Properties\AssemblyInfo.WindowsRuntimeComponent.cs"
+  Update-AssemblyInfoFiles "Build\UnitsNet.Serialization.JsonNet.nuspec" "UnitsNet.Serialization.JsonNet\Properties\AssemblyInfo.cs"
 }
 catch {
   $myError = $_.Exception.ToString()

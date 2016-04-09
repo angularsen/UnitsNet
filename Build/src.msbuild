@@ -20,6 +20,7 @@
     <MSBuild Projects="
 $(SrcPath)\UnitsNet.Net35.csproj;
 $(SrcPath)\UnitsNet.Portable40.csproj;
+$(SrcPath)\UnitsNet.WindowsRuntimeComponent.csproj;
 $(SerializationSrcPath)\UnitsNet.Serialization.JsonNet.Net35.csproj"
        Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);AllowUnsafeBlocks=true;Retries=15;RetryDelayMilliseconds=5"
        Targets="Build">
