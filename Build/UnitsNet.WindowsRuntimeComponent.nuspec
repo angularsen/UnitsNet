@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UnitsNet.WindowsRuntimeComponent</id>
+    <version>3.30.0-alpha7</version>
+    <title>Units.NET - Windows Runtime Component</title>
+    <authors>Andreas Gullberg Larsen</authors>
+    <owners>Andreas Gullberg Larsen</owners>
+    <licenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/anjdreas/UnitsNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>For C#/VB Universal Windows code (UWP), use UnitsNet instead. This is a Windows Runtime Component with reduced functionality to support all UWP languages, such as JavaScript and C++, and other runtime components.</description>
+    <summary>For C#/VB Universal Windows code (UWP), use UnitsNet instead.</summary>
+    <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <releaseNotes>
+* Add nuget with Windows Runtime Component for Universal Windows apps (UWP)
+    </releaseNotes>
+    <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
+    <language>en-US</language>
+    <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component</tags>
+  </metadata>
+  <files>
+    <file src="Artifacts\Bin\Src\AnyCPU_Release\uap10.0\UnitsNet.*" target="lib/uap10.0" />
+    <file src="UnitsNet\**\*.cs" exclude="UnitsNet\**\obj\**\*.cs" target="src" />
+  </files>
+</package>
