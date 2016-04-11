@@ -19,6 +19,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using NUnit.Framework;
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class DurationTests : DurationTestsBase
@@ -42,5 +45,71 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WeeksInOneSecond => 1.6534e-6;
 
         protected override double YearsInOneSecond => 3.1689e-8;
+
+        [Test]
+        public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds + 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
+        }
+
+        [Test]
+        public static void ToTimeSpanShouldThrowExceptionOnValuesSmallerThanTimeSpanMin()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds - 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
+        }
+
+        [Test]
+        public static void ToTimeSpanShouldNotThrowExceptionOnValuesSlightlyLargerThanTimeSpanMin()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds + 1);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds,1e-3);
+        }
+
+        [Test]
+        public static void ToTimeSpanShouldNotThrowExceptionOnValuesSlightlySmallerThanTimeSpanMax()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds - 1);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
+        }
+
+        [Test]
+        public static void ExplicitCastToTimeSpanShouldReturnSameValue()
+        {
+            Duration duration = Duration.FromSeconds(60);
+            TimeSpan timeSpan = (TimeSpan)duration;
+            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds, 1e-10);
+        }
+
+        [Test]
+        public static void ExplicitCastToDurationShouldReturnSameValue()
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(60);
+            Duration duration = (Duration)timeSpan;
+            Assert.AreEqual(timeSpan.TotalSeconds, duration.Seconds, 1e-10);
+        }
+
+        [Test]
+        public static void DateTimePlusDurationReturnsDateTime()
+        {
+            DateTime dateTime = new DateTime(2016, 1, 1);
+            Duration oneDay = Duration.FromDays(1);
+            DateTime result = dateTime + oneDay;
+            DateTime expected = new DateTime(2016, 1, 2);
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public static void DateTimeMinusDurationReturnsDateTime()
+        {
+            DateTime dateTime = new DateTime(2016, 1, 2);
+            Duration oneDay = Duration.FromDays(1);
+            DateTime result = dateTime - oneDay;
+            DateTime expected = new DateTime(2016, 1, 1);
+            Assert.AreEqual(expected, result);
+        }
     }
 }
