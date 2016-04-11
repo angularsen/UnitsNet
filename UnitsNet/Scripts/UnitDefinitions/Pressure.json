@@ -260,6 +260,18 @@
       ]
     },
     {
+      "SingularName": "TonneForcePerSquareCentimeter",
+      "PluralName": "TonnesForcePerSquareCentimeter",
+      "FromUnitToBaseFunc": "x*98066501.9960652",
+      "FromBaseToUnitFunc": "x*1.01971619222242E-08",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf/cm²" ]
+        }
+      ]
+    },
+    {
       "SingularName": "MeterOfHead",
       "PluralName": "MetersOfHead",
       "FromUnitToBaseFunc": "x*9804.139432",
@@ -272,14 +284,14 @@
       ]
     },
     {
-      "SingularName": "TonneForcePerSquareCentimeter",
-      "PluralName": "TonnesForcePerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*98066501.9960652",
-      "FromBaseToUnitFunc": "x*1.01971619222242E-08",
+      "SingularName": "FootOfHead",
+      "PluralName": "FeetOfHead",
+      "FromUnitToBaseFunc": "x*2989.0669",
+      "FromBaseToUnitFunc": "x*0.000334552565551",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/cm²" ]
+          "Abbreviations": [ "ft" ]
         }
       ]
     }

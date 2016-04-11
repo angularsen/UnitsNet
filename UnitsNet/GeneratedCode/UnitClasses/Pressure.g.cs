@@ -95,6 +95,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in FeetOfHead.
+        /// </summary>
+        public double FeetOfHead
+        {
+            get { return _pascals*0.000334552565551; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Gigapascals.
         /// </summary>
         public double Gigapascals
@@ -373,6 +381,14 @@ namespace UnitsNet
         public static Pressure FromDecibars(double decibars)
         {
             return new Pressure((decibars*1e5) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from FeetOfHead.
+        /// </summary>
+        public static Pressure FromFeetOfHead(double feetofhead)
+        {
+            return new Pressure(feetofhead*2989.0669);
         }
 
         /// <summary>
@@ -676,6 +692,21 @@ namespace UnitsNet
             if (decibars.HasValue)
             {
                 return FromDecibars(decibars.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable FeetOfHead.
+        /// </summary>
+        public static Pressure? FromFeetOfHead(double? feetofhead)
+        {
+            if (feetofhead.HasValue)
+            {
+                return FromFeetOfHead(feetofhead.Value);
             }
             else
             {
@@ -1139,6 +1170,8 @@ namespace UnitsNet
                     return FromDecapascals(value);
                 case PressureUnit.Decibar:
                     return FromDecibars(value);
+                case PressureUnit.FootOfHead:
+                    return FromFeetOfHead(value);
                 case PressureUnit.Gigapascal:
                     return FromGigapascals(value);
                 case PressureUnit.Hectopascal:
@@ -1227,6 +1260,8 @@ namespace UnitsNet
                     return FromDecapascals(value.Value);
                 case PressureUnit.Decibar:
                     return FromDecibars(value.Value);
+                case PressureUnit.FootOfHead:
+                    return FromFeetOfHead(value.Value);
                 case PressureUnit.Gigapascal:
                     return FromGigapascals(value.Value);
                 case PressureUnit.Hectopascal:
@@ -1428,6 +1463,8 @@ namespace UnitsNet
                     return Decapascals;
                 case PressureUnit.Decibar:
                     return Decibars;
+                case PressureUnit.FootOfHead:
+                    return FeetOfHead;
                 case PressureUnit.Gigapascal:
                     return Gigapascals;
                 case PressureUnit.Hectopascal:

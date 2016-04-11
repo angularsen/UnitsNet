@@ -594,10 +594,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kLPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.LitersPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPH"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "LPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.LitersPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPS"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.MicrolitersPerMinute,
                             new[]
@@ -1335,6 +1345,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dbar"),
                                 new AbbreviationsForCulture("ru-RU", "dбар"),
+                            }),
+                        new CulturesForEnumValue((int) PressureUnit.FootOfHead,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Gigapascal,
                             new[]

@@ -60,16 +60,42 @@
       ]
     },
     {
+      "SingularName": "LitersPerHour",
+      "PluralName": "LitersPerHour",
+      "FromUnitToBaseFunc": "x/3600000.00000",
+      "FromBaseToUnitFunc": "x*3600000.00000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "LPH" ],
+          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+        }
+      ]
+    },
+    {
       "SingularName": "LitersPerMinute",
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "x/60000.00000",
       "FromBaseToUnitFunc": "x*60000.00000",
-	  "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo"],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "LPM" ],
-		  "AbbreviationsWithPrefixes": ["nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM"]
+          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LitersPerSecond",
+      "PluralName": "LitersPerSecond",
+      "FromUnitToBaseFunc": "x/1000.00000",
+      "FromBaseToUnitFunc": "x*1000.00000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "LPS" ],
+          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
         }
       ]
     },

@@ -103,11 +103,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in LitersPerHour.
+        /// </summary>
+        public double LitersPerHour
+        {
+            get { return _cubicMetersPerSecond*3600000.00000; }
+        }
+
+        /// <summary>
         ///     Get Flow in LitersPerMinute.
         /// </summary>
         public double LitersPerMinute
         {
             get { return _cubicMetersPerSecond*60000.00000; }
+        }
+
+        /// <summary>
+        ///     Get Flow in LitersPerSecond.
+        /// </summary>
+        public double LitersPerSecond
+        {
+            get { return _cubicMetersPerSecond*1000.00000; }
         }
 
         /// <summary>
@@ -208,11 +224,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow from LitersPerHour.
+        /// </summary>
+        public static Flow FromLitersPerHour(double litersperhour)
+        {
+            return new Flow(litersperhour/3600000.00000);
+        }
+
+        /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
         public static Flow FromLitersPerMinute(double litersperminute)
         {
             return new Flow(litersperminute/60000.00000);
+        }
+
+        /// <summary>
+        ///     Get Flow from LitersPerSecond.
+        /// </summary>
+        public static Flow FromLitersPerSecond(double literspersecond)
+        {
+            return new Flow(literspersecond/1000.00000);
         }
 
         /// <summary>
@@ -347,6 +379,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable LitersPerHour.
+        /// </summary>
+        public static Flow? FromLitersPerHour(double? litersperhour)
+        {
+            if (litersperhour.HasValue)
+            {
+                return FromLitersPerHour(litersperhour.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerMinute.
         /// </summary>
         public static Flow? FromLitersPerMinute(double? litersperminute)
@@ -354,6 +401,21 @@ namespace UnitsNet
             if (litersperminute.HasValue)
             {
                 return FromLitersPerMinute(litersperminute.Value);
+            }
+            else
+            {
+            	return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable LitersPerSecond.
+        /// </summary>
+        public static Flow? FromLitersPerSecond(double? literspersecond)
+        {
+            if (literspersecond.HasValue)
+            {
+                return FromLitersPerSecond(literspersecond.Value);
             }
             else
             {
@@ -459,8 +521,12 @@ namespace UnitsNet
                     return FromDecilitersPerMinute(value);
                 case FlowUnit.KilolitersPerMinute:
                     return FromKilolitersPerMinute(value);
+                case FlowUnit.LitersPerHour:
+                    return FromLitersPerHour(value);
                 case FlowUnit.LitersPerMinute:
                     return FromLitersPerMinute(value);
+                case FlowUnit.LitersPerSecond:
+                    return FromLitersPerSecond(value);
                 case FlowUnit.MicrolitersPerMinute:
                     return FromMicrolitersPerMinute(value);
                 case FlowUnit.MillilitersPerMinute:
@@ -503,8 +569,12 @@ namespace UnitsNet
                     return FromDecilitersPerMinute(value.Value);
                 case FlowUnit.KilolitersPerMinute:
                     return FromKilolitersPerMinute(value.Value);
+                case FlowUnit.LitersPerHour:
+                    return FromLitersPerHour(value.Value);
                 case FlowUnit.LitersPerMinute:
                     return FromLitersPerMinute(value.Value);
+                case FlowUnit.LitersPerSecond:
+                    return FromLitersPerSecond(value.Value);
                 case FlowUnit.MicrolitersPerMinute:
                     return FromMicrolitersPerMinute(value.Value);
                 case FlowUnit.MillilitersPerMinute:
@@ -660,8 +730,12 @@ namespace UnitsNet
                     return DecilitersPerMinute;
                 case FlowUnit.KilolitersPerMinute:
                     return KilolitersPerMinute;
+                case FlowUnit.LitersPerHour:
+                    return LitersPerHour;
                 case FlowUnit.LitersPerMinute:
                     return LitersPerMinute;
+                case FlowUnit.LitersPerSecond:
+                    return LitersPerSecond;
                 case FlowUnit.MicrolitersPerMinute:
                     return MicrolitersPerMinute;
                 case FlowUnit.MillilitersPerMinute:

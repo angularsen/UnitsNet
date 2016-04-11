@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         Centibar,
         Decapascal,
         Decibar,
+        FootOfHead,
         Gigapascal,
         Hectopascal,
         Kilobar,
