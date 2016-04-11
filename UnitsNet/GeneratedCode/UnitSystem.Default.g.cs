@@ -1418,6 +1418,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "MPa"),
                                 new AbbreviationsForCulture("ru-RU", "МПа"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.MeterOfHead,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.Micropascal,
                             new[]
                             {

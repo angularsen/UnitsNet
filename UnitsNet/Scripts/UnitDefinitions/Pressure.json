@@ -260,6 +260,18 @@
       ]
     },
     {
+      "SingularName": "MeterOfHead",
+      "PluralName": "MetersOfHead",
+      "FromUnitToBaseFunc": "x*9804.139432",
+      "FromBaseToUnitFunc": "x*0.0001019977334",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m" ]
+        }
+      ]
+    },
+    {
       "SingularName": "TonneForcePerSquareCentimeter",
       "PluralName": "TonnesForcePerSquareCentimeter",
       "FromUnitToBaseFunc": "x*98066501.9960652",

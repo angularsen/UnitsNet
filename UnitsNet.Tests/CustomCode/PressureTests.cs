@@ -48,6 +48,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilopoundsForcePerSquareInchInOnePascal => 1.45e-7;
 
         protected override double MegapascalsInOnePascal => 1E-6;
+        protected override double MetersOfHeadInOnePascal => 0.00010199773339984054;
 
         protected override double NewtonsPerSquareCentimeterInOnePascal => 1E-4;
 
