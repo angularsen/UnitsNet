@@ -119,5 +119,12 @@ namespace UnitsNet.Tests.CustomCode
             Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
             Assert.AreEqual(length, Length.FromMeters(40));
         }
+
+        [Test]
+        public void SpeedTimesLengthEqualsKinematicViscosity()
+        {
+            KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
+            Assert.AreEqual(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+        }
     }
 }
