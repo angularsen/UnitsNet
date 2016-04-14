@@ -119,5 +119,13 @@ namespace UnitsNet.Tests.CustomCode
             Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
             Assert.AreEqual(length, Length.FromMeters(40));
         }
+
+        [Test]
+        public void SpeedTimesSpeedEqualsSpecificEnergy()
+        {
+            //m^2/s^2 = kg*m*m/(s^2*kg) = J/kg
+            SpecificEnergy length = Speed.FromMetersPerSecond(2) * Speed.FromMetersPerSecond(20);
+            Assert.AreEqual(length, SpecificEnergy.FromJoulesPerKilogram(40));
+        }
     }
 }
