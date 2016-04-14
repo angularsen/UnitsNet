@@ -49,5 +49,10 @@ namespace UnitsNet
         {
             return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond*duration.Seconds);
         }
+
+        public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
+        {
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
     }
 }

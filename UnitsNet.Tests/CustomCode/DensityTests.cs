@@ -58,5 +58,12 @@ namespace UnitsNet.Tests.CustomCode
             Mass mass = Volume.FromCubicMeters(3)*Density.FromKilogramsPerCubicMeter(2);
             Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
+
+        [Test]
+        public static void DensityTimesKinematicViscosityEqualsDynamicViscosity()
+        {
+            DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
+            Assert.AreEqual(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+        }
     }
 }

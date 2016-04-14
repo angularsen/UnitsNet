@@ -1,4 +1,4 @@
-﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
+﻿// Copyright(c) 2007 Andreas Gullberg Larsen
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,25 +19,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 using System;
-using NUnit.Framework;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet
 {
-    public class DynamicViscosityTests : DynamicViscosityTestsBase
+    public partial struct DynamicViscosity
     {
-        protected override double CentipoiseInOneNewtonSecondPerMeterSquared => 1e3;
-        protected override double MillipascalSecondsInOneNewtonSecondPerMeterSquared => 1e3;
-        protected override double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared => 1;
-        protected override double PascalSecondsInOneNewtonSecondPerMeterSquared => 1;
-        protected override double PoiseInOneNewtonSecondPerMeterSquared => 10;
-
-        [Test]
-        public static void DynamicViscosityDividedByDensityEqualsKinematicViscosity()
+        public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)
         {
-            KinematicViscosity kinematicViscosity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / Density.FromKilogramsPerCubicMeter(2);
-            Assert.AreEqual(kinematicViscosity, KinematicViscosity.FromSquareMetersPerSecond(5));
+            return KinematicViscosity.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);
         }
     }
 }
