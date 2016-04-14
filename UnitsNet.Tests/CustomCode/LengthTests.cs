@@ -98,6 +98,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void LengthTimesSpeedEqualsKinematicViscosity()
+        {
+            KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
+            Assert.AreEqual(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+        }
+
+        [Test]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             Length.ToStringDefaultUnit = LengthUnit.Meter;

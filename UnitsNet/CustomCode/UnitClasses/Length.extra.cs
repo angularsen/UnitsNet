@@ -97,6 +97,11 @@ namespace UnitsNet
         {
             return Torque.FromNewtonMeters(force.Newtons*length.Meters);
         }
+
+        public static KinematicViscosity operator *(Length length, Speed speed)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+        }
     }
 
     public class FeetInches
