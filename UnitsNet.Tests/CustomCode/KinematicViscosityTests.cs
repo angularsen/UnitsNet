@@ -76,5 +76,12 @@ namespace UnitsNet.Tests.CustomCode
             Area area = TimeSpan.FromSeconds(2)*KinematicViscosity.FromSquareMetersPerSecond(4);
             Assert.AreEqual(area, Area.FromSquareMeters(8));
         }
+
+        [Test]
+        public static void KinematicViscosityTimesDensityEqualsDynamicViscosity()
+        {
+            DynamicViscosity dynamicViscosity = KinematicViscosity.FromSquareMetersPerSecond(10) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.AreEqual(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+        }
     }
 }

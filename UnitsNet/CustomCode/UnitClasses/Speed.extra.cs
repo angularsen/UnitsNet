@@ -54,5 +54,10 @@ namespace UnitsNet
         {
             return Length.FromMeters(speed.MetersPerSecond*duration.Seconds);
         }
+
+        public static KinematicViscosity operator *(Speed speed, Length length)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+        }
     }
 }
