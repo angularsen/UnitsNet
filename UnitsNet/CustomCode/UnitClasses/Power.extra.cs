@@ -69,5 +69,15 @@ namespace UnitsNet
         {
             return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule * power.Watts);
         }
+
+        public static SpecificEnergy operator /(Power power, MassFlow massFlow)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(power.Watts / massFlow.KilogramsPerSecond);
+        }
+
+        public static MassFlow operator /(Power power, SpecificEnergy specificEnergy)
+        {
+            return MassFlow.FromKilogramsPerSecond(power.Watts / specificEnergy.JoulesPerKilogram);
+        }
     }
 }

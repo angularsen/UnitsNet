@@ -46,5 +46,12 @@ namespace UnitsNet.Tests.CustomCode
             SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
             Assert.AreEqual(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
+
+        [Test]
+        public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
+        {
+            double value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
+            Assert.AreEqual(value, 200.0);
+        }
     }
 }

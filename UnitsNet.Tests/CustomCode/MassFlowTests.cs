@@ -87,5 +87,12 @@ namespace UnitsNet.Tests.CustomCode
             BrakeSpecificFuelConsumption bsfc = MassFlow.FromTonnesPerDay(20) / Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
             Assert.AreEqual(bsfc.GramsPerKiloWattHour, 180.0, 1e-11);
         }
+
+        [Test]
+        public void MassFlowTimesSpecificEnergyEqualsPower()
+        {
+            Power power = MassFlow.FromKilogramsPerSecond(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
+            Assert.AreEqual(power, Power.FromWatts(200.0));
+        }
     }
 }
