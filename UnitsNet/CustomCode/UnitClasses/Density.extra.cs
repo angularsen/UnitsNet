@@ -32,5 +32,10 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(density.KilogramsPerCubicMeter*volume.CubicMeters);
         }
+
+        public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
+        {
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
     }
 }

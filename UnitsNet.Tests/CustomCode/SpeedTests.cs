@@ -121,6 +121,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void SpeedTimesLengthEqualsKinematicViscosity()
+        {
+            KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
+            Assert.AreEqual(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+        }
+
+        [Test]
         public void SpeedTimesSpeedEqualsSpecificEnergy()
         {
             //m^2/s^2 = kg*m*m/(s^2*kg) = J/kg
