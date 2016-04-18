@@ -32,5 +32,10 @@ namespace UnitsNet
         {
             return SpecificEnergy.FromJoulesPerKilogram(value / bsfc.KilogramsPerJoule);
         }
+
+        public static double operator *(BrakeSpecificFuelConsumption bsfc, SpecificEnergy specificEnergy)
+        {
+            return specificEnergy.JoulesPerKilogram * bsfc.KilogramsPerJoule;
+        }
     }
 }

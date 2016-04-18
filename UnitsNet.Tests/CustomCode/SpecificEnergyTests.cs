@@ -62,5 +62,19 @@ namespace UnitsNet.Tests.CustomCode
             BrakeSpecificFuelConsumption bsfc = 2.0 / SpecificEnergy.FromJoulesPerKilogram(4.0);
             Assert.AreEqual(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
         }
+
+        [Test]
+        public void SpecificEnergyTimesMassFlowEqualsPower()
+        {
+            Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
+            Assert.AreEqual(power, Power.FromWatts(200.0));
+        }
+
+        [Test]
+        public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
+        {
+            double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
+            Assert.AreEqual(value, 200.0);
+        }
     }
 }

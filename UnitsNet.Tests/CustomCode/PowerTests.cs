@@ -113,5 +113,19 @@ namespace UnitsNet.Tests.CustomCode
             MassFlow massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
             Assert.AreEqual(massFlow.TonnesPerDay, 20.0, 1e-11);
         }
+
+        [Test]
+        public void PowerDividedByMassFlowEqualsSpecificEnergy()
+        {
+            SpecificEnergy specificEnergy = Power.FromWatts(15.0) / MassFlow.FromKilogramsPerSecond(3);
+            Assert.AreEqual(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(5));
+        }
+
+        [Test]
+        public void PowerDividedBySpecificEnergyEqualsMassFlow()
+        {
+            MassFlow massFlow = Power.FromWatts(15.0) / SpecificEnergy.FromJoulesPerKilogram(3);
+            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(5));
+        }
     }
 }
