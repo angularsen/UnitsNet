@@ -55,5 +55,5 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("UnitsNet.Tests")]
 [assembly: InternalsVisibleTo("UnitsNet.WindowsRuntimeComponent.Tests")]
 
-[assembly: AssemblyVersion("3.30.0")]
-[assembly: AssemblyFileVersion("3.30.0")]
+[assembly: AssemblyVersion("3.33.0")]
+[assembly: AssemblyFileVersion("3.33.0")]

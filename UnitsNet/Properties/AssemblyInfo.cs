@@ -49,5 +49,5 @@ using System.Runtime.CompilerServices;
 //      Revision
 //
 
-[assembly: AssemblyVersion("3.28.1")]
-[assembly: AssemblyFileVersion("3.28.1")]
+[assembly: AssemblyVersion("3.33.0")]
+[assembly: AssemblyFileVersion("3.33.0")]
