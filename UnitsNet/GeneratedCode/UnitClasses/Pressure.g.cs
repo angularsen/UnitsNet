@@ -27,6 +27,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+#else
+using Culture = System.IFormatProvider;
+#endif
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -35,16 +41,49 @@ namespace UnitsNet
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+#if WINDOWS_UWP
+    public sealed partial class Pressure
+#else
     public partial struct Pressure : IComparable, IComparable<Pressure>
+#endif
     {
         /// <summary>
         ///     Base unit of Pressure.
         /// </summary>
         private readonly double _pascals;
 
-        public Pressure(double pascals) : this()
+#if WINDOWS_UWP
+        public Pressure() : this(0)
         {
-            _pascals = pascals;
+        }
+#endif
+
+        public Pressure(double pascals)
+        {
+            _pascals = Convert.ToDouble(pascals);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Pressure(long pascals)
+        {
+            _pascals = Convert.ToDouble(pascals);
+        }
+
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        Pressure(decimal pascals)
+        {
+            _pascals = Convert.ToDouble(pascals);
         }
 
         #region Properties
@@ -591,7 +630,7 @@ namespace UnitsNet
             return new Pressure(torrs*1.3332266752*1e2);
         }
 
-
+#if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Pressure from nullable Atmospheres.
         /// </summary>
@@ -603,7 +642,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -618,7 +657,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -633,7 +672,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -648,7 +687,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -663,7 +702,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -678,7 +717,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -693,7 +732,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -708,7 +747,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -723,7 +762,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -738,7 +777,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -753,7 +792,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -768,7 +807,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -783,7 +822,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -798,7 +837,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -813,7 +852,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -828,7 +867,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -843,7 +882,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -858,7 +897,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -873,7 +912,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -888,7 +927,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -903,7 +942,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -918,7 +957,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -933,7 +972,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -948,7 +987,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -963,7 +1002,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -978,7 +1017,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -993,7 +1032,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1008,7 +1047,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1023,7 +1062,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1038,7 +1077,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1053,7 +1092,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1068,7 +1107,7 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
@@ -1083,93 +1122,95 @@ namespace UnitsNet
             }
             else
             {
-            	return null;
+                return null;
             }
         }
 
+#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>
-        /// <param name="value">Value to convert from.</param>
+        /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Pressure unit value.</returns>
-        public static Pressure From(double value, PressureUnit fromUnit)
+        public static Pressure From(double val, PressureUnit fromUnit)
         {
             switch (fromUnit)
             {
                 case PressureUnit.Atmosphere:
-                    return FromAtmospheres(value);
+                    return FromAtmospheres(val);
                 case PressureUnit.Bar:
-                    return FromBars(value);
+                    return FromBars(val);
                 case PressureUnit.Centibar:
-                    return FromCentibars(value);
+                    return FromCentibars(val);
                 case PressureUnit.Decapascal:
-                    return FromDecapascals(value);
+                    return FromDecapascals(val);
                 case PressureUnit.Decibar:
-                    return FromDecibars(value);
+                    return FromDecibars(val);
                 case PressureUnit.Gigapascal:
-                    return FromGigapascals(value);
+                    return FromGigapascals(val);
                 case PressureUnit.Hectopascal:
-                    return FromHectopascals(value);
+                    return FromHectopascals(val);
                 case PressureUnit.Kilobar:
-                    return FromKilobars(value);
+                    return FromKilobars(val);
                 case PressureUnit.KilogramForcePerSquareCentimeter:
-                    return FromKilogramsForcePerSquareCentimeter(value);
+                    return FromKilogramsForcePerSquareCentimeter(val);
                 case PressureUnit.KilogramForcePerSquareMeter:
-                    return FromKilogramsForcePerSquareMeter(value);
+                    return FromKilogramsForcePerSquareMeter(val);
                 case PressureUnit.KilogramForcePerSquareMillimeter:
-                    return FromKilogramsForcePerSquareMillimeter(value);
+                    return FromKilogramsForcePerSquareMillimeter(val);
                 case PressureUnit.KilonewtonPerSquareCentimeter:
-                    return FromKilonewtonsPerSquareCentimeter(value);
+                    return FromKilonewtonsPerSquareCentimeter(val);
                 case PressureUnit.KilonewtonPerSquareMeter:
-                    return FromKilonewtonsPerSquareMeter(value);
+                    return FromKilonewtonsPerSquareMeter(val);
                 case PressureUnit.KilonewtonPerSquareMillimeter:
-                    return FromKilonewtonsPerSquareMillimeter(value);
+                    return FromKilonewtonsPerSquareMillimeter(val);
                 case PressureUnit.Kilopascal:
-                    return FromKilopascals(value);
+                    return FromKilopascals(val);
                 case PressureUnit.KilopoundForcePerSquareFoot:
-                    return FromKilopoundsForcePerSquareFoot(value);
+                    return FromKilopoundsForcePerSquareFoot(val);
                 case PressureUnit.KilopoundForcePerSquareInch:
-                    return FromKilopoundsForcePerSquareInch(value);
+                    return FromKilopoundsForcePerSquareInch(val);
                 case PressureUnit.Megabar:
-                    return FromMegabars(value);
+                    return FromMegabars(val);
                 case PressureUnit.Megapascal:
-                    return FromMegapascals(value);
+                    return FromMegapascals(val);
                 case PressureUnit.Micropascal:
-                    return FromMicropascals(value);
+                    return FromMicropascals(val);
                 case PressureUnit.Millibar:
-                    return FromMillibars(value);
+                    return FromMillibars(val);
                 case PressureUnit.NewtonPerSquareCentimeter:
-                    return FromNewtonsPerSquareCentimeter(value);
+                    return FromNewtonsPerSquareCentimeter(val);
                 case PressureUnit.NewtonPerSquareMeter:
-                    return FromNewtonsPerSquareMeter(value);
+                    return FromNewtonsPerSquareMeter(val);
                 case PressureUnit.NewtonPerSquareMillimeter:
-                    return FromNewtonsPerSquareMillimeter(value);
+                    return FromNewtonsPerSquareMillimeter(val);
                 case PressureUnit.Pascal:
-                    return FromPascals(value);
+                    return FromPascals(val);
                 case PressureUnit.PoundForcePerSquareFoot:
-                    return FromPoundsForcePerSquareFoot(value);
+                    return FromPoundsForcePerSquareFoot(val);
                 case PressureUnit.PoundForcePerSquareInch:
-                    return FromPoundsForcePerSquareInch(value);
+                    return FromPoundsForcePerSquareInch(val);
                 case PressureUnit.Psi:
-                    return FromPsi(value);
+                    return FromPsi(val);
                 case PressureUnit.TechnicalAtmosphere:
-                    return FromTechnicalAtmospheres(value);
+                    return FromTechnicalAtmospheres(val);
                 case PressureUnit.TonneForcePerSquareCentimeter:
-                    return FromTonnesForcePerSquareCentimeter(value);
+                    return FromTonnesForcePerSquareCentimeter(val);
                 case PressureUnit.TonneForcePerSquareMeter:
-                    return FromTonnesForcePerSquareMeter(value);
+                    return FromTonnesForcePerSquareMeter(val);
                 case PressureUnit.TonneForcePerSquareMillimeter:
-                    return FromTonnesForcePerSquareMillimeter(value);
+                    return FromTonnesForcePerSquareMillimeter(val);
                 case PressureUnit.Torr:
-                    return FromTorrs(value);
+                    return FromTorrs(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>
@@ -1255,6 +1296,18 @@ namespace UnitsNet
                     throw new NotImplementedException("fromUnit: " + fromUnit);
             }
         }
+#endif
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(PressureUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -1263,7 +1316,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(PressureUnit unit, CultureInfo culture = null)
+        public static string GetAbbreviation(PressureUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -1272,6 +1325,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static Pressure operator -(Pressure right)
         {
             return new Pressure(-right._pascals);
@@ -1306,6 +1360,7 @@ namespace UnitsNet
         {
             return Convert.ToDouble(left._pascals/right._pascals);
         }
+#endif
 
         #endregion
 
@@ -1318,11 +1373,17 @@ namespace UnitsNet
             return CompareTo((Pressure) obj);
         }
 
-        public int CompareTo(Pressure other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(Pressure other)
         {
             return _pascals.CompareTo(other._pascals);
         }
 
+#if !WINDOWS_UWP
         public static bool operator <=(Pressure left, Pressure right)
         {
             return left._pascals <= right._pascals;
@@ -1354,6 +1415,7 @@ namespace UnitsNet
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._pascals != right._pascals;
         }
+#endif
 
         public override bool Equals(object obj)
         {
@@ -1463,7 +1525,6 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="formatProvider">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1482,10 +1543,43 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Pressure Parse(string str, IFormatProvider formatProvider = null)
+        public static Pressure Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Pressure Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
             var numFormat = formatProvider != null ?
                 (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
                 NumberFormatInfo.CurrentInfo;
@@ -1509,7 +1603,7 @@ namespace UnitsNet
                     "Expected string to have at least one pair of quantity and unit in the format"
                     + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
             }
-            return quantities.Aggregate((x, y) => x + y);
+            return quantities.Aggregate((x, y) => Pressure.FromPascals(x.Pascals + y.Pascals));
         }
 
         /// <summary>
@@ -1546,7 +1640,7 @@ namespace UnitsNet
 
                     converted.Add(From(value, unit));
                 }
-                catch(AmbiguousUnitParseException ambiguousException)
+                catch(AmbiguousUnitParseException)
                 {
                     throw;
                 }
@@ -1571,18 +1665,49 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static PressureUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        public static PressureUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static PressureUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static PressureUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
-            var unitSystem = UnitSystem.GetCached(formatProvider);
 
+            var unitSystem = UnitSystem.GetCached(formatProvider);
             var unit = unitSystem.Parse<PressureUnit>(str.Trim());
 
             if (unit == PressureUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PressureUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
+                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1606,6 +1731,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(PressureUnit unit)
+        {
+            return ToString(unit, null, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="culture">Culture to use for localization and number formatting.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(PressureUnit unit, [CanBeNull] Culture culture)
+        {
+            return ToString(unit, culture, 2);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
@@ -1613,9 +1759,11 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PressureUnit unit, CultureInfo culture = null, int significantDigitsAfterRadix = 2)
+        public string ToString(PressureUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
-            return ToString(unit, culture, UnitFormatter.GetFormat(As(unit), significantDigitsAfterRadix));
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, culture, format);
         }
 
         /// <summary>
@@ -1627,9 +1775,20 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PressureUnit unit, CultureInfo culture, string format, params object[] args)
+        public string ToString(PressureUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+            [NotNull] params object[] args)
         {
-            return string.Format(culture, format, UnitFormatter.GetFormatArgs(unit, As(unit), culture, args));
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+#if WINDOWS_UWP
+            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+#else
+            IFormatProvider formatProvider = culture;
+#endif
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
+            return string.Format(formatProvider, format, formatArgs);
         }
     }
 }

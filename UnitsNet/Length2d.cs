@@ -19,15 +19,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if !WINDOWS_UWP
 using System;
 using System.Collections.Generic;
 using UnitsNet.Units;
+#endif
 
 namespace UnitsNet
 {
     /// <summary>
     ///     A class for representing position in two dimensions.
     /// </summary>
+#if WINDOWS_UWP
+    public struct Length2d
+    {
+        /// <summary>
+        ///     Returns a point represented in meters.
+        /// </summary>
+        public Vector2 Meters;
+    }
+#else
     public struct Length2d : IEquatable<Length2d>
     {
         /// <summary>
@@ -244,4 +255,5 @@ namespace UnitsNet
 
         #endregion
     }
+#endif
 }

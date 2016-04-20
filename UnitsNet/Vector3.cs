@@ -24,6 +24,14 @@ using System.Collections.Generic;
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public struct Vector3
+    {
+        public double X;
+        public double Y;
+        public double Z;
+    }
+#else
     public struct Vector3 : IEquatable<Vector3>
     {
         public readonly double X;
@@ -96,4 +104,5 @@ namespace UnitsNet
             return $"[{X:0.####}, {Y:0.####}, {Z:0.####}]";
         }
     }
+#endif
 }

@@ -24,6 +24,7 @@ function GenerateLogarithmicArithmeticOperators([string]$className, [string]$bas
 
         #region Logarithmic Arithmetic Operators
 
+#if !WINDOWS_UWP
         public static $className operator -($className right)
         {
             return new $className(-right.$baseUnitFieldName);
@@ -66,6 +67,7 @@ function GenerateLogarithmicArithmeticOperators([string]$className, [string]$bas
             // Logarithmic division = subtraction
             return Convert.ToDouble(left.$baseUnitFieldName - right.$baseUnitFieldName);
         }
+#endif
 
         #endregion
 "@;

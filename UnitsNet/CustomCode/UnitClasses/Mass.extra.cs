@@ -21,11 +21,16 @@
 
 using System;
 using System.Globalization;
+using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public sealed partial class Mass
+#else
     public partial struct Mass
+#endif
     {
         public static Mass FromGravitationalForce(Force f)
         {
@@ -61,6 +66,8 @@ namespace UnitsNet
             return FromPounds(StoneToPounds*stone + pounds);
         }
 
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
         public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
         {
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
@@ -85,9 +92,10 @@ namespace UnitsNet
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MeterPerSecondSquared);
         }
+#endif
     }
 
-    public class StonePounds
+    public sealed class StonePounds
     {
         public StonePounds(double stone, double pounds)
         {
@@ -98,7 +106,17 @@ namespace UnitsNet
         public double Stone { get; }
         public double Pounds { get; }
 
-        public string ToString(IFormatProvider cultureInfo = null)
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
@@ -107,7 +125,7 @@ namespace UnitsNet
             string stoneUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Stone);
             string poundUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Pound);
 
-            return string.Format(cultureInfo == null ? CultureInfo.CurrentCulture : cultureInfo, "{0:n0} {1} {2:n0} {3}",
+            return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}",
                 Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }

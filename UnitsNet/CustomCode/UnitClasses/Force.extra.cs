@@ -21,8 +21,14 @@
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public sealed partial class Force
+#else
     public partial struct Force
+#endif
     {
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
         public static Power operator *(Force force, Speed speed)
         {
             return Power.FromWatts(force.Newtons*speed.MetersPerSecond);
@@ -42,13 +48,17 @@ namespace UnitsNet
         {
             return Pressure.FromPascals(force.Newtons/area.SquareMeters);
         }
+#endif
 
+        // Method overloads with same number of argumnets not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
         public static Force FromPressureByArea(Pressure p, Length2d area)
         {
             double metersSquared = area.Meters.X*area.Meters.Y;
             double newtons = p.Pascals*metersSquared;
             return new Force(newtons);
         }
+#endif
 
         public static Force FromPressureByArea(Pressure p, Area area)
         {

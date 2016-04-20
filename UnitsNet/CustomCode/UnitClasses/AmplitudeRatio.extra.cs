@@ -23,60 +23,11 @@ using System;
 
 namespace UnitsNet
 {
-    /// <summary>
-    ///     Extension methods for <see cref="AmplitudeRatio" />.
-    /// </summary>
-    public static class AmplitudeRatioExtensions
-    {
-        /// <summary>
-        ///     Gets an <see cref="ElectricPotential" /> from <see cref="AmplitudeRatio" />.
-        /// </summary>
-        /// <paramref name="amplitudeRatio">The amplitude ratio to convert.</paramref>
-        /// <remarks>
-        ///     Provides a nicer syntax for converting an amplitude ratio back to a voltage.
-        ///     <example>
-        ///         <c>var voltage = voltageRatio.ToElectricPotential();</c>
-        ///     </example>
-        /// </remarks>
-        public static ElectricPotential ToElectricPotential(this AmplitudeRatio amplitudeRatio)
-        {
-            return AmplitudeRatio.ToElectricPotential(amplitudeRatio);
-        }
-
-        /// <summary>
-        ///     Converts a <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="amplitudeRatio">The amplitude ratio to convert.</param>
-        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
-        /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
-        public static PowerRatio ToPowerRatio(this AmplitudeRatio amplitudeRatio, ElectricResistance impedance)
-        {
-            return AmplitudeRatio.ToPowerRatio(amplitudeRatio, impedance);
-        }
-    }
-
-    /// <summary>
-    ///     Extension methods for <see cref="ElectricPotential" />.
-    /// </summary>
-    public static class ElectricPotentialExtensions
-    {
-        /// <summary>
-        ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from an
-        ///     <see cref="ElectricPotential" />.
-        /// </summary>
-        /// <remarks>
-        ///     Provides a nicer syntax for converting a voltage to an amplitude ratio (relative to 1 volt RMS).
-        ///     <example>
-        ///         <c>var voltageRatio = voltage.ToAmplitudeRatio();</c>
-        ///     </example>
-        /// </remarks>
-        public static AmplitudeRatio ToAmplitudeRatio(this ElectricPotential voltage)
-        {
-            return AmplitudeRatio.FromElectricPotential(voltage);
-        }
-    }
-
+#if WINDOWS_UWP
+    public sealed partial class AmplitudeRatio
+#else
     public partial struct AmplitudeRatio
+#endif
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="AmplitudeRatio" /> struct from the specified electric potential
@@ -85,7 +36,13 @@ namespace UnitsNet
         ///     resistance.
         /// </summary>
         /// <param name="voltage">The electric potential referenced to one volt.</param>
-        public AmplitudeRatio(ElectricPotential voltage)
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if WINDOWS_UWP
+        internal
+#else
+        public 
+#endif
+            AmplitudeRatio(ElectricPotential voltage)
             : this()
         {
             if (voltage.Volts <= 0)
@@ -94,7 +51,7 @@ namespace UnitsNet
                     "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _decibelVolts = 20*Math.Log10(voltage/ElectricPotential.FromVolts(1));
+            _decibelVolts = 20*Math.Log10(voltage.Volts/1);
         }
 
         /// <summary>

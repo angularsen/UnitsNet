@@ -23,18 +23,26 @@ using System;
 
 namespace UnitsNet
 {
-    public class UnitsNetException : Exception
+#if WINDOWS_UWP
+    internal
+#else
+    public 
+#endif
+        class UnitsNetException : Exception
     {
         public UnitsNetException()
         {
+            HResult = 1;
         }
 
         public UnitsNetException(string message) : base(message)
         {
+            HResult = 1;
         }
 
         public UnitsNetException(string message, Exception innerException) : base(message, innerException)
         {
+            HResult = 1;
         }
     }
 }

@@ -27,6 +27,12 @@ using System.Threading;
 using NUnit.Framework;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture=System.String;
+#else
+using Culture=System.IFormatProvider;
+#endif
+
 namespace UnitsNet.Tests
 {
     [TestFixture]
@@ -112,7 +118,7 @@ namespace UnitsNet.Tests
         [TestCase("it-IT")]
         public void CommaRadixPointCultureFormatting(string culture)
         {
-            Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+            Assert.AreEqual("0,12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, GetCulture(culture)));
         }
 
         // These cultures all use a decimal point for the radix point
@@ -123,7 +129,7 @@ namespace UnitsNet.Tests
         [TestCase("es-MX")]
         public void DecimalRadixPointCultureFormatting(string culture)
         {
-            Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+            Assert.AreEqual("0.12 m", Length.FromMeters(0.12).ToString(LengthUnit.Meter, GetCulture(culture)));
         }
 
         // These cultures all use a comma in digit grouping
@@ -134,7 +140,7 @@ namespace UnitsNet.Tests
         [TestCase("es-MX")]
         public void CommaDigitGroupingCultureFormatting(string culture)
         {
-            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
 
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
@@ -150,7 +156,7 @@ namespace UnitsNet.Tests
         public void SpaceDigitGroupingCultureFormatting(string culture)
         {
             // Note: the space used in digit groupings is actually a "thin space" Unicode character U+2009
-            Assert.AreEqual("1 111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+            Assert.AreEqual("1 111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
         }
 
         // Switzerland uses an apostrophe for digit grouping
@@ -169,7 +175,7 @@ namespace UnitsNet.Tests
         [TestCase("it-IT")]
         public void DecimalPointDigitGroupingCultureFormatting(string culture)
         {
-            Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, new CultureInfo(culture)));
+            Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
         }
 
         [TestCase("m^2", Result = AreaUnit.SquareMeter)]
@@ -418,6 +424,19 @@ namespace UnitsNet.Tests
         {
             Assert.That(Length.FromMeters(double.PositiveInfinity).ToString(),
                 Is.EqualTo("Infinity m"));
+        }
+
+        /// <summary>
+        ///     Convenience method to use the proper culture parameter type.
+        ///     The UWP lib uses culture name string instead of CultureInfo.
+        /// </summary>
+        private static Culture GetCulture(string cultureName)
+        {
+#if WINDOWS_UWP
+            return cultureName;
+#else
+            return new CultureInfo(cultureName);
+#endif
         }
     }
 }

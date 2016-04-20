@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 
@@ -90,10 +89,10 @@ namespace UnitsNet
         /// <param name="culture">The current culture.</param>
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
-        public static object[] GetFormatArgs<TUnit>(TUnit unit, double value, [CanBeNull] CultureInfo culture, IEnumerable<object> args)
+        public static object[] GetFormatArgs<TUnit>(TUnit unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
             where TUnit : struct, IComparable, IFormattable
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnit), Convert.ToInt32(unit));
             return new object[] { value, abbreviation }.Concat(args).ToArray();
         }
     }

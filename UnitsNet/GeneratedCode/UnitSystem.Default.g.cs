@@ -29,7 +29,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public partial class UnitSystem
+    public sealed partial class UnitSystem
     {
         private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>

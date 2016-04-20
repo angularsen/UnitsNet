@@ -23,8 +23,14 @@ using System;
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public sealed partial class Duration
+#else
     public partial struct Duration
+#endif
     {
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if !WINDOWS_UWP
         public static DateTime operator +(DateTime time, Duration duration)
         {
             return time.AddSeconds(duration.Seconds);
@@ -34,6 +40,17 @@ namespace UnitsNet
         {
             return time.AddSeconds(-duration.Seconds);
         }
+
+        public static explicit operator TimeSpan(Duration duration)
+        {
+            return duration.ToTimeSpan();
+        }
+
+        public static explicit operator Duration(TimeSpan duration)
+        {
+            return FromSeconds(duration.TotalSeconds);
+        }
+#endif
 
         /// <summary>
         /// Convert a Duration to a TimeSpan.
@@ -48,16 +65,6 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(Duration), "The duration is too large or small to fit in a TimeSpan");
             }
             return TimeSpan.FromSeconds(Seconds);
-        }
-
-        public static explicit operator TimeSpan(Duration duration)
-        {
-            return duration.ToTimeSpan();
-        }
-
-        public static explicit operator Duration(TimeSpan duration)
-        {
-            return FromSeconds(duration.TotalSeconds);
         }
     }
 }

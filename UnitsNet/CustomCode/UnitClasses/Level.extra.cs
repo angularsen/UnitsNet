@@ -23,7 +23,11 @@ using System;
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public sealed partial class Level
+#else
     public partial struct Level
+#endif
     {
         /// <summary>
         ///     Initializes a new instance of the logarithmic <see cref="Level" /> struct which is the ratio of a quantity Q to a
