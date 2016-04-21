@@ -902,5 +902,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of TemperatureChangeRate
+        /// </summary>
+        public static TemperatureChangeRate MaxValue
+        {
+            get
+            {
+                return new TemperatureChangeRate(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of TemperatureChangeRate
+        /// </summary>
+        public static TemperatureChangeRate MinValue
+        {
+            get
+            {
+                return new TemperatureChangeRate(double.MinValue);
+            }
+        }
     }
 }

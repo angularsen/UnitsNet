@@ -84,5 +84,17 @@ namespace UnitsNet.Tests.CustomCode
         {
             Assert.AreEqual(1000, Information.FromKilobytes(1).Bytes);
         }
+
+        [Test]
+        public void MaxValueIsCorrectForUnitWithBaseTypeDecimal()
+        {
+            Assert.AreEqual(decimal.MaxValue, Information.MaxValue.Bits);
+        }
+
+        [Test]
+        public void MinValueIsCorrectForUnitWithBaseTypeDecimal()
+        {
+            Assert.AreEqual(decimal.MinValue, Information.MinValue.Bits);
+        }
     }
 }

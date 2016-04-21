@@ -828,5 +828,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Acceleration
+        /// </summary>
+        public static Acceleration MaxValue
+        {
+            get
+            {
+                return new Acceleration(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Acceleration
+        /// </summary>
+        public static Acceleration MinValue
+        {
+            get
+            {
+                return new Acceleration(double.MinValue);
+            }
+        }
     }
 }

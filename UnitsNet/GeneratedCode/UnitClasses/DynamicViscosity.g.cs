@@ -754,5 +754,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of DynamicViscosity
+        /// </summary>
+        public static DynamicViscosity MaxValue
+        {
+            get
+            {
+                return new DynamicViscosity(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of DynamicViscosity
+        /// </summary>
+        public static DynamicViscosity MinValue
+        {
+            get
+            {
+                return new DynamicViscosity(double.MinValue);
+            }
+        }
     }
 }

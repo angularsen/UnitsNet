@@ -1198,5 +1198,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Mass
+        /// </summary>
+        public static Mass MaxValue
+        {
+            get
+            {
+                return new Mass(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Mass
+        /// </summary>
+        public static Mass MinValue
+        {
+            get
+            {
+                return new Mass(double.MinValue);
+            }
+        }
     }
 }

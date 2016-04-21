@@ -1013,5 +1013,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Flow
+        /// </summary>
+        public static Flow MaxValue
+        {
+            get
+            {
+                return new Flow(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Flow
+        /// </summary>
+        public static Flow MinValue
+        {
+            get
+            {
+                return new Flow(double.MinValue);
+            }
+        }
     }
 }

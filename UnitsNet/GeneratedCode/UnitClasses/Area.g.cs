@@ -939,5 +939,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Area
+        /// </summary>
+        public static Area MaxValue
+        {
+            get
+            {
+                return new Area(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Area
+        /// </summary>
+        public static Area MinValue
+        {
+            get
+            {
+                return new Area(double.MinValue);
+            }
+        }
     }
 }

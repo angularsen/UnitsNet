@@ -865,5 +865,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Frequency
+        /// </summary>
+        public static Frequency MaxValue
+        {
+            get
+            {
+                return new Frequency(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Frequency
+        /// </summary>
+        public static Frequency MinValue
+        {
+            get
+            {
+                return new Frequency(double.MinValue);
+            }
+        }
     }
 }

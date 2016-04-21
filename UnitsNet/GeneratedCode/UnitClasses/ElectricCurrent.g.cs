@@ -791,5 +791,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of ElectricCurrent
+        /// </summary>
+        public static ElectricCurrent MaxValue
+        {
+            get
+            {
+                return new ElectricCurrent(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of ElectricCurrent
+        /// </summary>
+        public static ElectricCurrent MinValue
+        {
+            get
+            {
+                return new ElectricCurrent(double.MinValue);
+            }
+        }
     }
 }

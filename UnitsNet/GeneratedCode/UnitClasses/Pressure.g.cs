@@ -1790,5 +1790,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Pressure
+        /// </summary>
+        public static Pressure MaxValue
+        {
+            get
+            {
+                return new Pressure(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Pressure
+        /// </summary>
+        public static Pressure MinValue
+        {
+            get
+            {
+                return new Pressure(double.MinValue);
+            }
+        }
     }
 }

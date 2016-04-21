@@ -1681,5 +1681,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Volume
+        /// </summary>
+        public static Volume MaxValue
+        {
+            get
+            {
+                return new Volume(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Volume
+        /// </summary>
+        public static Volume MinValue
+        {
+            get
+            {
+                return new Volume(double.MinValue);
+            }
+        }
     }
 }

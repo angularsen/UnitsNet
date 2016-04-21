@@ -1050,5 +1050,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Energy
+        /// </summary>
+        public static Energy MaxValue
+        {
+            get
+            {
+                return new Energy(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Energy
+        /// </summary>
+        public static Energy MinValue
+        {
+            get
+            {
+                return new Energy(double.MinValue);
+            }
+        }
     }
 }

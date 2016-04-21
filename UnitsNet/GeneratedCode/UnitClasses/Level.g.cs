@@ -651,5 +651,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Level
+        /// </summary>
+        public static Level MaxValue
+        {
+            get
+            {
+                return new Level(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Level
+        /// </summary>
+        public static Level MinValue
+        {
+            get
+            {
+                return new Level(double.MinValue);
+            }
+        }
     }
 }

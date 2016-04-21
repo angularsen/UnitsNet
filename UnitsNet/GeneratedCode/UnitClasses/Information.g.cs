@@ -1531,5 +1531,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Information
+        /// </summary>
+        public static Information MaxValue
+        {
+            get
+            {
+                return new Information(decimal.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Information
+        /// </summary>
+        public static Information MinValue
+        {
+            get
+            {
+                return new Information(decimal.MinValue);
+            }
+        }
     }
 }
