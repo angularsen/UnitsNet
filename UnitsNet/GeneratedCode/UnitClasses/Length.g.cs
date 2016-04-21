@@ -1087,5 +1087,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Length
+        /// </summary>
+        public static Length MaxValue
+        {
+            get
+            {
+                return new Length(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Length
+        /// </summary>
+        public static Length MinValue
+        {
+            get
+            {
+                return new Length(double.MinValue);
+            }
+        }
     }
 }

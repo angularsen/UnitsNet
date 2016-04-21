@@ -1161,5 +1161,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Power
+        /// </summary>
+        public static Power MaxValue
+        {
+            get
+            {
+                return new Power(decimal.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Power
+        /// </summary>
+        public static Power MinValue
+        {
+            get
+            {
+                return new Power(decimal.MinValue);
+            }
+        }
     }
 }

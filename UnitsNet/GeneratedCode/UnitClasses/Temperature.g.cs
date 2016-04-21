@@ -865,5 +865,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Temperature
+        /// </summary>
+        public static Temperature MaxValue
+        {
+            get
+            {
+                return new Temperature(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Temperature
+        /// </summary>
+        public static Temperature MinValue
+        {
+            get
+            {
+                return new Temperature(double.MinValue);
+            }
+        }
     }
 }

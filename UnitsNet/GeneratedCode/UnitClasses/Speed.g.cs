@@ -1272,5 +1272,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Speed
+        /// </summary>
+        public static Speed MaxValue
+        {
+            get
+            {
+                return new Speed(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Speed
+        /// </summary>
+        public static Speed MinValue
+        {
+            get
+            {
+                return new Speed(double.MinValue);
+            }
+        }
     }
 }

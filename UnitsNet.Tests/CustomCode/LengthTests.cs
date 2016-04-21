@@ -123,5 +123,17 @@ namespace UnitsNet.Tests.CustomCode
             Length.ToStringDefaultUnit = oldUnit;
             Assert.AreEqual("2 cm", valueString);
         }
+
+        [Test]
+        public void MaxValueIsCorrectForUnitWithBaseTypeDouble()
+        {
+            Assert.AreEqual(double.MaxValue, Length.MaxValue.Meters);
+        }
+
+        [Test]
+        public void MinValueIsCorrectForUnitWithBaseTypeDouble()
+        {
+            Assert.AreEqual(double.MinValue, Length.MinValue.Meters);
+        }
     }
 }

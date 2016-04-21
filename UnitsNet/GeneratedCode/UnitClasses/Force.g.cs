@@ -865,5 +865,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Force
+        /// </summary>
+        public static Force MaxValue
+        {
+            get
+            {
+                return new Force(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Force
+        /// </summary>
+        public static Force MinValue
+        {
+            get
+            {
+                return new Force(double.MinValue);
+            }
+        }
     }
 }

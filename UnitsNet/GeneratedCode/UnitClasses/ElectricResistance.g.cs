@@ -680,5 +680,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of ElectricResistance
+        /// </summary>
+        public static ElectricResistance MaxValue
+        {
+            get
+            {
+                return new ElectricResistance(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of ElectricResistance
+        /// </summary>
+        public static ElectricResistance MinValue
+        {
+            get
+            {
+                return new ElectricResistance(double.MinValue);
+            }
+        }
     }
 }

@@ -666,6 +666,28 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of $className
+        /// </summary>
+        public static $className MaxValue
+        {
+            get
+            {
+                return new $className($baseType.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of $className
+        /// </summary>
+        public static $className MinValue
+        {
+            get
+            {
+                return new $className($baseType.MinValue);
+            }
+        }
     }
 }
 "@;

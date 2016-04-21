@@ -939,5 +939,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of Duration
+        /// </summary>
+        public static Duration MaxValue
+        {
+            get
+            {
+                return new Duration(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of Duration
+        /// </summary>
+        public static Duration MinValue
+        {
+            get
+            {
+                return new Duration(double.MinValue);
+            }
+        }
     }
 }

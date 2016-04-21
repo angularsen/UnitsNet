@@ -651,5 +651,27 @@ namespace UnitsNet
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
             return string.Format(formatProvider, format, formatArgs);
         }
+
+        /// <summary>
+        /// Represents the largest possible value of PowerRatio
+        /// </summary>
+        public static PowerRatio MaxValue
+        {
+            get
+            {
+                return new PowerRatio(double.MaxValue);
+            }
+        }
+
+        /// <summary>
+        /// Represents the smallest possible value of PowerRatio
+        /// </summary>
+        public static PowerRatio MinValue
+        {
+            get
+            {
+                return new PowerRatio(double.MinValue);
+            }
+        }
     }
 }
