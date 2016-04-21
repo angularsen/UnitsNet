@@ -7,13 +7,11 @@
   <param name="branch" value="refs/heads/master" />
   <param name="ignoreKnownHosts" value="true" />
   <param name="privateKeyPath" value="C:\Users\Andreas\.ssh\id_rsa" />
-  <param name="reportTagRevisions" value="true" />
   <param name="submoduleCheckout" value="CHECKOUT" />
   <param name="teamcity:branchSpec"><![CDATA[+:refs/heads/(master)
 +:refs/heads/feature/(*)
 +:refs/heads/fix/(*)
-+:refs/pull/(*/merge)
-+:refs/tags/(*)]]></param>
++:refs/pull/(*/merge)]]></param>
   <param name="url" value="git@github.com:anjdreas/UnitsNet.git" />
   <param name="useAlternates" value="true" />
   <param name="userForTags" value="TeamCity &lt;anjdreas+teamcity@gmail.com&gt;" />
