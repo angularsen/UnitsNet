@@ -1179,6 +1179,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "hg/S"),
                             }),
+                        new CulturesForEnumValue((int) MassFlowUnit.KilogramPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/h"),
+                                new AbbreviationsForCulture("ru-RU", "кг/ч"),
+                            }),
                         new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
                             new[]
                             {

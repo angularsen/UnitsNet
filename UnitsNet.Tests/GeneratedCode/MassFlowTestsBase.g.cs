@@ -41,6 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double DecigramsPerSecondInOneGramPerSecond { get; }
         protected abstract double GramsPerSecondInOneGramPerSecond { get; }
         protected abstract double HectogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double KilogramsPerHourInOneGramPerSecond { get; }
         protected abstract double KilogramsPerSecondInOneGramPerSecond { get; }
         protected abstract double MicrogramsPerSecondInOneGramPerSecond { get; }
         protected abstract double MilligramsPerSecondInOneGramPerSecond { get; }
@@ -53,6 +54,7 @@ namespace UnitsNet.Tests
         protected virtual double DecigramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerSecondTolerance { get { return 1e-5; } }
@@ -69,6 +71,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DecigramsPerSecondInOneGramPerSecond, grampersecond.DecigramsPerSecond, DecigramsPerSecondTolerance);
             Assert.AreEqual(GramsPerSecondInOneGramPerSecond, grampersecond.GramsPerSecond, GramsPerSecondTolerance);
             Assert.AreEqual(HectogramsPerSecondInOneGramPerSecond, grampersecond.HectogramsPerSecond, HectogramsPerSecondTolerance);
+            Assert.AreEqual(KilogramsPerHourInOneGramPerSecond, grampersecond.KilogramsPerHour, KilogramsPerHourTolerance);
             Assert.AreEqual(KilogramsPerSecondInOneGramPerSecond, grampersecond.KilogramsPerSecond, KilogramsPerSecondTolerance);
             Assert.AreEqual(MicrogramsPerSecondInOneGramPerSecond, grampersecond.MicrogramsPerSecond, MicrogramsPerSecondTolerance);
             Assert.AreEqual(MilligramsPerSecondInOneGramPerSecond, grampersecond.MilligramsPerSecond, MilligramsPerSecondTolerance);
@@ -84,6 +87,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.DecigramPerSecond).DecigramsPerSecond, DecigramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.GramPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.HectogramPerSecond).HectogramsPerSecond, HectogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.KilogramPerHour).KilogramsPerHour, KilogramsPerHourTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.KilogramPerSecond).KilogramsPerSecond, KilogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.MicrogramPerSecond).MicrogramsPerSecond, MicrogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.From(1, MassFlowUnit.MilligramPerSecond).MilligramsPerSecond, MilligramsPerSecondTolerance);
@@ -100,6 +104,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(DecigramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.DecigramPerSecond), DecigramsPerSecondTolerance);
             Assert.AreEqual(GramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerSecond), GramsPerSecondTolerance);
             Assert.AreEqual(HectogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.HectogramPerSecond), HectogramsPerSecondTolerance);
+            Assert.AreEqual(KilogramsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerHour), KilogramsPerHourTolerance);
             Assert.AreEqual(KilogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerSecond), KilogramsPerSecondTolerance);
             Assert.AreEqual(MicrogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MicrogramPerSecond), MicrogramsPerSecondTolerance);
             Assert.AreEqual(MilligramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MilligramPerSecond), MilligramsPerSecondTolerance);
@@ -116,6 +121,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, MassFlow.FromDecigramsPerSecond(grampersecond.DecigramsPerSecond).GramsPerSecond, DecigramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.FromGramsPerSecond(grampersecond.GramsPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.FromHectogramsPerSecond(grampersecond.HectogramsPerSecond).GramsPerSecond, HectogramsPerSecondTolerance);
+            Assert.AreEqual(1, MassFlow.FromKilogramsPerHour(grampersecond.KilogramsPerHour).GramsPerSecond, KilogramsPerHourTolerance);
             Assert.AreEqual(1, MassFlow.FromKilogramsPerSecond(grampersecond.KilogramsPerSecond).GramsPerSecond, KilogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.FromMicrogramsPerSecond(grampersecond.MicrogramsPerSecond).GramsPerSecond, MicrogramsPerSecondTolerance);
             Assert.AreEqual(1, MassFlow.FromMilligramsPerSecond(grampersecond.MilligramsPerSecond).GramsPerSecond, MilligramsPerSecondTolerance);

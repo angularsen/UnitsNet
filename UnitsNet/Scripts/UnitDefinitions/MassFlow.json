@@ -1,4 +1,4 @@
-{
+﻿{
   "Name": "MassFlow",
   "BaseUnit": "GramPerSecond",
   "XmlDoc": "Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).",
@@ -13,6 +13,22 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "g/S" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerHour",
+      "PluralName": "KilogramsPerHour",
+      "FromUnitToBaseFunc": "x*0.277778",
+      "FromBaseToUnitFunc": "x/0.277778",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/h" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кг/ч" ]
         }
       ]
     },
