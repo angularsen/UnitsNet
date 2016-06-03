@@ -567,6 +567,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "cLPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicDecimeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm³/min"),
+                                new AbbreviationsForCulture("ru-RU", "дм³/мин"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
                             {

@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CentilitersPerMinute,
+        CubicDecimeterPerMinute,
         CubicFootPerSecond,
         CubicMeterPerHour,
         CubicMeterPerSecond,

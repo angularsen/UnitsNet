@@ -25,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3600.0;
 
+        protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 60000.00000;
+
         protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666213;
 
         protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
