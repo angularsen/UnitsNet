@@ -19,8 +19,8 @@
     {
       "SingularName": "KilogramPerHour",
       "PluralName": "KilogramsPerHour",
-      "FromUnitToBaseFunc": "x*3.6",
-      "FromBaseToUnitFunc": "x/3.6",
+      "FromUnitToBaseFunc": "x/3.6",
+      "FromBaseToUnitFunc": "x*3.6",
       "Localization": [
         {
           "Culture": "en-US",

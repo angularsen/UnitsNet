@@ -138,7 +138,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerHour
         {
-            get { return _gramsPerSecond/3.6; }
+            get { return _gramsPerSecond*3.6; }
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
         {
-            return new MassFlow(kilogramsperhour*3.6);
+            return new MassFlow(kilogramsperhour/3.6);
         }
 
         /// <summary>
