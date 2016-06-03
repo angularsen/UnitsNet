@@ -32,6 +32,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double HectogramsPerSecondInOneGramPerSecond => 1E-2;
 
+        protected override double KilogramsPerHourInOneGramPerSecond => 3.6;
+
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
         protected override double DecigramsPerSecondInOneGramPerSecond => 1E1;

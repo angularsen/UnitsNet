@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         DecigramPerSecond,
         GramPerSecond,
         HectogramPerSecond,
+        KilogramPerHour,
         KilogramPerSecond,
         MicrogramPerSecond,
         MilligramPerSecond,

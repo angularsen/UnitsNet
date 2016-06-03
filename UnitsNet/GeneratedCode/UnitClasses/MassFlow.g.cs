@@ -134,6 +134,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow in KilogramsPerHour.
+        /// </summary>
+        public double KilogramsPerHour
+        {
+            get { return _gramsPerSecond*3.6; }
+        }
+
+        /// <summary>
         ///     Get MassFlow in KilogramsPerSecond.
         /// </summary>
         public double KilogramsPerSecond
@@ -220,6 +228,14 @@ namespace UnitsNet
         public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
         {
             return new MassFlow((hectogramspersecond) * 1e2d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from KilogramsPerHour.
+        /// </summary>
+        public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
+        {
+            return new MassFlow(kilogramsperhour/3.6);
         }
 
         /// <summary>
@@ -339,6 +355,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerHour.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerHour(double? kilogramsperhour)
+        {
+            if (kilogramsperhour.HasValue)
+            {
+                return FromKilogramsPerHour(kilogramsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerSecond.
         /// </summary>
         public static MassFlow? FromKilogramsPerSecond(double? kilogramspersecond)
@@ -435,6 +466,8 @@ namespace UnitsNet
                     return FromGramsPerSecond(val);
                 case MassFlowUnit.HectogramPerSecond:
                     return FromHectogramsPerSecond(val);
+                case MassFlowUnit.KilogramPerHour:
+                    return FromKilogramsPerHour(val);
                 case MassFlowUnit.KilogramPerSecond:
                     return FromKilogramsPerSecond(val);
                 case MassFlowUnit.MicrogramPerSecond:
@@ -476,6 +509,8 @@ namespace UnitsNet
                     return FromGramsPerSecond(value.Value);
                 case MassFlowUnit.HectogramPerSecond:
                     return FromHectogramsPerSecond(value.Value);
+                case MassFlowUnit.KilogramPerHour:
+                    return FromKilogramsPerHour(value.Value);
                 case MassFlowUnit.KilogramPerSecond:
                     return FromKilogramsPerSecond(value.Value);
                 case MassFlowUnit.MicrogramPerSecond:
@@ -650,6 +685,8 @@ namespace UnitsNet
                     return GramsPerSecond;
                 case MassFlowUnit.HectogramPerSecond:
                     return HectogramsPerSecond;
+                case MassFlowUnit.KilogramPerHour:
+                    return KilogramsPerHour;
                 case MassFlowUnit.KilogramPerSecond:
                     return KilogramsPerSecond;
                 case MassFlowUnit.MicrogramPerSecond:
