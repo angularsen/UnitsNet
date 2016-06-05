@@ -1,4 +1,4 @@
-[![Build Status](http://teamcity.anj.no/app/rest/builds/buildType:(id:UnitsNet_Master)/statusIcon)](http://teamcity.anj.no/viewType.html?buildTypeId=UnitsNet_Master&guest=1 "Build Status")
+[![Build Status](http://teamcity.tjomp.com/app/rest/builds/buildType:(id:UnitsNet_Master)/statusIcon)](http://teamcity.tjomp.com/viewType.html?buildTypeId=UnitsNet_Master&guest=1 "Build Status")
 Units.NET
 ===
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
@@ -142,7 +142,7 @@ Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefin
 
 Continuous Integration
 ===
-A [TeamCity build server](http://teamcity.anj.no/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
+A [TeamCity build server](http://teamcity.tjomp.com/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
 * Build, test and deploy nuget on master branch.
 
