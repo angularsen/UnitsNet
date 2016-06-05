@@ -23,7 +23,7 @@ Features
 * Immutable structs implementing IEquatable, IComparable and operator overloads
 * Parse unit abbreviations in multiple cultures
 * ToString() variants for custom cultures and format patterns
-* Extensible with [custom units](https://github.com/InitialForce/UnitsNet/wiki/Extending-with-Custom-Units)
+* Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Serializable with JSON.NET](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet)
 * 688 unit tests to ensure conversions and localizations are in order
 
@@ -112,7 +112,7 @@ Units.NET was intended for convenience and ease of use, not highly accurate conv
 
 The tests accept an error up to 1E-5 for most units added so far. Exceptions include units like Teaspoon, where the base unit cubic meter is a lot bigger. In many usecases this is sufficient, but for others this may be a showstopper and something you need to be aware of.
 
-For more details, see [Precision](https://github.com/InitialForce/UnitsNet/wiki/Precision).
+For more details, see [Precision](https://github.com/anjdreas/UnitsNet/wiki/Precision).
 
 Serialization
 ===
@@ -130,9 +130,9 @@ What It Is Not
 
 Want To Contribute?
 ==
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/InitialForce/UnitsNet/issues) by creating an issue.
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/anjdreas/UnitsNet/issues) by creating an issue.
 
-Please read the wiki on [Adding a New Unit](https://github.com/InitialForce/UnitsNet/wiki/Adding-a-New-Unit).
+Please read the wiki on [Adding a New Unit](https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit).
 
 Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefinitions\*.json` files and running `UnitsNet\Scripts\GenerateUnits.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
 
