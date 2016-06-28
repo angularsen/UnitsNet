@@ -50,6 +50,66 @@ namespace UnitsNet
         {
             return FromSeconds(duration.TotalSeconds);
         }
+
+        public static bool operator <(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds < timeSpan.TotalSeconds;
+        }
+
+        public static bool operator >(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds > timeSpan.TotalSeconds;
+        }
+
+        public static bool operator <=(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds <= timeSpan.TotalSeconds;
+        }
+
+        public static bool operator >=(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds >= timeSpan.TotalSeconds;
+        }
+
+        public static bool operator ==(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds == timeSpan.TotalSeconds;
+        }
+
+        public static bool operator !=(Duration duration, TimeSpan timeSpan)
+        {
+            return duration.Seconds != timeSpan.TotalSeconds;
+        }
+
+        public static bool operator <(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds < duration.Seconds;
+        }
+
+        public static bool operator >(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds > duration.Seconds;
+        }
+
+        public static bool operator <=(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds <= duration.Seconds;
+        }
+
+        public static bool operator >=(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds >= duration.Seconds;
+        }
+
+        public static bool operator ==(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds == duration.Seconds;
+        }
+
+        public static bool operator !=(TimeSpan timeSpan, Duration duration)
+        {
+            return timeSpan.TotalSeconds != duration.Seconds;
+        }
 #endif
 
         /// <summary>
