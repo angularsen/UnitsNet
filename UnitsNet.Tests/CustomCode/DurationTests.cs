@@ -141,7 +141,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(12);
-            Assert.IsTrue(duration > timeSpan, "duraiton should be greater than timeSpan");
+            Assert.IsTrue(duration > timeSpan, "duration should be greater than timeSpan");
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(12);
-            Assert.IsTrue(duration >= timeSpan, "duraiton should be greater than timeSpan");
+            Assert.IsTrue(duration >= timeSpan, "duration should be greater than timeSpan");
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(duration == timeSpan, "duraiton should equal to timeSpan");
+            Assert.IsTrue(duration == timeSpan, "duration should be equal to timeSpan");
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan == duration, "timeSpan should equal to duraiton");
+            Assert.IsTrue(timeSpan == duration, "timeSpan should be equal to duration");
         }
 
         [Test]
@@ -197,7 +197,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(duration != timeSpan, "duraiton should equal to timeSpan");
+            Assert.IsTrue(duration != timeSpan, "duration should not be equal to timeSpan");
         }
 
         [Test]
@@ -205,7 +205,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan != duration, "timeSpan should equal to duraiton");
+            Assert.IsTrue(timeSpan != duration, "timeSpan should not be equal to duration");
         }
     }
 }
