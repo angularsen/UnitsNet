@@ -7,8 +7,8 @@
     {
       "SingularName": "KilogramPerCubicMillimeter",
       "PluralName": "KilogramsPerCubicMillimeter",
-      "FromUnitToBaseFunc": "x*1000000000000",
-      "FromBaseToUnitFunc": "x*0.000000000001",
+      "FromUnitToBaseFunc": "x*1e+9",
+      "FromBaseToUnitFunc": "x*1e-9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -19,8 +19,8 @@
     {
       "SingularName": "KilogramPerCubicCentimeter",
       "PluralName": "KilogramsPerCubicCentimeter",
-      "FromUnitToBaseFunc": "x*100000000",
-      "FromBaseToUnitFunc": "x*0.00000001",
+      "FromUnitToBaseFunc": "x*1e+6",
+      "FromBaseToUnitFunc": "x*1e-6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -75,8 +75,8 @@
     {
       "SingularName": "TonnePerCubicMillimeter",
       "PluralName": "TonnesPerCubicMillimeter",
-      "FromUnitToBaseFunc": "x*1000000000000000",
-      "FromBaseToUnitFunc": "x*0.000000000000001",
+      "FromUnitToBaseFunc": "x*1e+12",
+      "FromBaseToUnitFunc": "x*1e-12",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +87,8 @@
     {
       "SingularName": "TonnePerCubicCentimeter",
       "PluralName": "TonnesPerCubicCentimeter",
-      "FromUnitToBaseFunc": "x*100000000000",
-      "FromBaseToUnitFunc": "x*0.00000000001",
+      "FromUnitToBaseFunc": "x*1e+9",
+      "FromBaseToUnitFunc": "x*1e-9",
       "Localization": [
         {
           "Culture": "en-US",

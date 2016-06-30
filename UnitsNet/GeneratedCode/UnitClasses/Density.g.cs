@@ -98,7 +98,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerCubicCentimeter
         {
-            get { return _kilogramsPerCubicMeter*0.00000001; }
+            get { return _kilogramsPerCubicMeter*1e-6; }
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerCubicMillimeter
         {
-            get { return _kilogramsPerCubicMeter*0.000000000001; }
+            get { return _kilogramsPerCubicMeter*1e-9; }
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerCubicCentimeter
         {
-            get { return _kilogramsPerCubicMeter*0.00000000001; }
+            get { return _kilogramsPerCubicMeter*1e-9; }
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerCubicMillimeter
         {
-            get { return _kilogramsPerCubicMeter*0.000000000000001; }
+            get { return _kilogramsPerCubicMeter*1e-12; }
         }
 
         #endregion
@@ -187,7 +187,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter)
         {
-            return new Density(kilogramspercubiccentimeter*100000000);
+            return new Density(kilogramspercubiccentimeter*1e+6);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter)
         {
-            return new Density(kilogramspercubicmillimeter*1000000000000);
+            return new Density(kilogramspercubicmillimeter*1e+9);
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromTonnesPerCubicCentimeter(double tonnespercubiccentimeter)
         {
-            return new Density(tonnespercubiccentimeter*100000000000);
+            return new Density(tonnespercubiccentimeter*1e+9);
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter)
         {
-            return new Density(tonnespercubicmillimeter*1000000000000000);
+            return new Density(tonnespercubicmillimeter*1e+12);
         }
 
 #if !WINDOWS_UWP
