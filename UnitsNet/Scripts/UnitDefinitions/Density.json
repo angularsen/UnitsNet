@@ -75,7 +75,7 @@
     {
       "SingularName": "TonnePerCubicMillimeter",
       "PluralName": "TonnesPerCubicMillimeter",
-      "FromUnitToBaseFunc": "x/1e-9",
+      "FromUnitToBaseFunc": "x/1e-12",
       "FromBaseToUnitFunc": "x*1e-12",
       "Localization": [
         {

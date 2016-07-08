@@ -259,7 +259,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter)
         {
-            return new Density(tonnespercubicmillimeter/1e-9);
+            return new Density(tonnespercubicmillimeter/1e-12);
         }
 
 #if !WINDOWS_UWP
