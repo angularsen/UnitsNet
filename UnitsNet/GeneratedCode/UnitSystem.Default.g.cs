@@ -294,6 +294,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lb/in³"),
                             }),
+                        new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug/ft³"),
+                            }),
                         new CulturesForEnumValue((int) DensityUnit.TonnePerCubicCentimeter,
                             new[]
                             {
@@ -614,6 +619,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mLPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.MillionStandardCubicFeetPerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MMSCFD"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
                             new[]

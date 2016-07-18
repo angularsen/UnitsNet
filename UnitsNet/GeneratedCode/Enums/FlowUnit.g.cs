@@ -35,6 +35,7 @@ namespace UnitsNet.Units
         LitersPerMinute,
         MicrolitersPerMinute,
         MillilitersPerMinute,
+        MillionStandardCubicFeetPerDay,
         MillionUsGallonsPerDay,
         NanolitersPerMinute,
         UsGallonsPerMinute,
