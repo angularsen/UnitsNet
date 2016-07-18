@@ -45,17 +45,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-12;
 
+        protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032;
+
         [Test]
         public static void DensityTimesVolumeEqualsMass()
         {
-            Mass mass = Density.FromKilogramsPerCubicMeter(2)*Volume.FromCubicMeters(3);
+            Mass mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
             Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
 
         [Test]
         public static void VolumeTimesDensityEqualsMass()
         {
-            Mass mass = Volume.FromCubicMeters(3)*Density.FromKilogramsPerCubicMeter(2);
+            Mass mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
             Assert.AreEqual(mass, Mass.FromKilograms(6));
         }
 

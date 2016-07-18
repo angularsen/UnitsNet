@@ -150,6 +150,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density in SlugsPerCubicFoot.
+        /// </summary>
+        public double SlugsPerCubicFoot
+        {
+            get { return _kilogramsPerCubicMeter*0.00194032033; }
+        }
+
+        /// <summary>
         ///     Get Density in TonnesPerCubicCentimeter.
         /// </summary>
         public double TonnesPerCubicCentimeter
@@ -236,6 +244,14 @@ namespace UnitsNet
         public static Density FromPoundsPerCubicInch(double poundspercubicinch)
         {
             return new Density(poundspercubicinch/3.6127298147753e-5);
+        }
+
+        /// <summary>
+        ///     Get Density from SlugsPerCubicFoot.
+        /// </summary>
+        public static Density FromSlugsPerCubicFoot(double slugspercubicfoot)
+        {
+            return new Density(slugspercubicfoot*515.378818);
         }
 
         /// <summary>
@@ -369,6 +385,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Density from nullable SlugsPerCubicFoot.
+        /// </summary>
+        public static Density? FromSlugsPerCubicFoot(double? slugspercubicfoot)
+        {
+            if (slugspercubicfoot.HasValue)
+            {
+                return FromSlugsPerCubicFoot(slugspercubicfoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
         /// </summary>
         public static Density? FromTonnesPerCubicCentimeter(double? tonnespercubiccentimeter)
@@ -439,6 +470,8 @@ namespace UnitsNet
                     return FromPoundsPerCubicFoot(val);
                 case DensityUnit.PoundPerCubicInch:
                     return FromPoundsPerCubicInch(val);
+                case DensityUnit.SlugPerCubicFoot:
+                    return FromSlugsPerCubicFoot(val);
                 case DensityUnit.TonnePerCubicCentimeter:
                     return FromTonnesPerCubicCentimeter(val);
                 case DensityUnit.TonnePerCubicMeter:
@@ -480,6 +513,8 @@ namespace UnitsNet
                     return FromPoundsPerCubicFoot(value.Value);
                 case DensityUnit.PoundPerCubicInch:
                     return FromPoundsPerCubicInch(value.Value);
+                case DensityUnit.SlugPerCubicFoot:
+                    return FromSlugsPerCubicFoot(value.Value);
                 case DensityUnit.TonnePerCubicCentimeter:
                     return FromTonnesPerCubicCentimeter(value.Value);
                 case DensityUnit.TonnePerCubicMeter:
@@ -654,6 +689,8 @@ namespace UnitsNet
                     return PoundsPerCubicFoot;
                 case DensityUnit.PoundPerCubicInch:
                     return PoundsPerCubicInch;
+                case DensityUnit.SlugPerCubicFoot:
+                    return SlugsPerCubicFoot;
                 case DensityUnit.TonnePerCubicCentimeter:
                     return TonnesPerCubicCentimeter;
                 case DensityUnit.TonnePerCubicMeter:

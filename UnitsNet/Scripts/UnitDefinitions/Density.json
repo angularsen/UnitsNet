@@ -107,6 +107,18 @@
           "Abbreviations": [ "t/m³" ]
         }
       ]
+    },
+    {
+      "SingularName": "SlugPerCubicFoot",
+      "PluralName": "SlugsPerCubicFoot",
+      "FromUnitToBaseFunc": "x*515.378818",
+      "FromBaseToUnitFunc": "x*0.00194032033",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/ft³" ]
+        }
+      ]
     }
   ]
 }

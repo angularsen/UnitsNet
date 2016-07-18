@@ -174,6 +174,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in MillionStandardCubicFeetPerDay.
+        /// </summary>
+        public double MillionStandardCubicFeetPerDay
+        {
+            get { return _cubicMetersPerSecond/0.326992313; }
+        }
+
+        /// <summary>
         ///     Get Flow in MillionUsGallonsPerDay.
         /// </summary>
         public double MillionUsGallonsPerDay
@@ -284,6 +292,14 @@ namespace UnitsNet
         public static Flow FromMillilitersPerMinute(double millilitersperminute)
         {
             return new Flow((millilitersperminute/60000.00000) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Flow from MillionStandardCubicFeetPerDay.
+        /// </summary>
+        public static Flow FromMillionStandardCubicFeetPerDay(double millionstandardcubicfeetperday)
+        {
+            return new Flow(millionstandardcubicfeetperday*0.326992313);
         }
 
         /// <summary>
@@ -462,6 +478,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable MillionStandardCubicFeetPerDay.
+        /// </summary>
+        public static Flow? FromMillionStandardCubicFeetPerDay(double? millionstandardcubicfeetperday)
+        {
+            if (millionstandardcubicfeetperday.HasValue)
+            {
+                return FromMillionStandardCubicFeetPerDay(millionstandardcubicfeetperday.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
         /// </summary>
         public static Flow? FromMillionUsGallonsPerDay(double? millionusgallonsperday)
@@ -538,6 +569,8 @@ namespace UnitsNet
                     return FromMicrolitersPerMinute(val);
                 case FlowUnit.MillilitersPerMinute:
                     return FromMillilitersPerMinute(val);
+                case FlowUnit.MillionStandardCubicFeetPerDay:
+                    return FromMillionStandardCubicFeetPerDay(val);
                 case FlowUnit.MillionUsGallonsPerDay:
                     return FromMillionUsGallonsPerDay(val);
                 case FlowUnit.NanolitersPerMinute:
@@ -585,6 +618,8 @@ namespace UnitsNet
                     return FromMicrolitersPerMinute(value.Value);
                 case FlowUnit.MillilitersPerMinute:
                     return FromMillilitersPerMinute(value.Value);
+                case FlowUnit.MillionStandardCubicFeetPerDay:
+                    return FromMillionStandardCubicFeetPerDay(value.Value);
                 case FlowUnit.MillionUsGallonsPerDay:
                     return FromMillionUsGallonsPerDay(value.Value);
                 case FlowUnit.NanolitersPerMinute:
@@ -765,6 +800,8 @@ namespace UnitsNet
                     return MicrolitersPerMinute;
                 case FlowUnit.MillilitersPerMinute:
                     return MillilitersPerMinute;
+                case FlowUnit.MillionStandardCubicFeetPerDay:
+                    return MillionStandardCubicFeetPerDay;
                 case FlowUnit.MillionUsGallonsPerDay:
                     return MillionUsGallonsPerDay;
                 case FlowUnit.NanolitersPerMinute:
