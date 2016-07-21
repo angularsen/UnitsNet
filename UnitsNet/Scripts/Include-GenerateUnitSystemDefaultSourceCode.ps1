@@ -1,7 +1,7 @@
 function GenerateUnitSystemDefaultSourceCode($unitClasses)
 {
 @"
-// Copyright © 2007 by Initial Force AS.  All rights reserved.
+// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
