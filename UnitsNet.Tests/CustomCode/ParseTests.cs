@@ -104,5 +104,17 @@ namespace UnitsNet.Tests.CustomCode
 
             return Length.ParseUnit(s, usEnglish);
         }
+
+        [TestCase("1 m", Result = true)]
+        [TestCase("1 m 50 cm", Result = true)]
+        [TestCase("2 kg", Result = false)]
+        [TestCase(null, Result = false)]
+        [TestCase("foo", Result = false)]
+        public bool TryParseLengthUnitUsEnglish(string s)
+        {
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
+            Length result;
+            return Length.TryParse(s, usEnglish, out result);
+        }
     }
 }
