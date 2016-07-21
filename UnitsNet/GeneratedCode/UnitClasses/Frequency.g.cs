@@ -1,4 +1,4 @@
-﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
+﻿// Copyright Â© 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -655,81 +655,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            var numFormat = formatProvider != null ?
-                (NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)) :
-                NumberFormatInfo.CurrentInfo;
-
-            var numRegex = string.Format(@"[\d., {0}{1}]*\d",  // allows digits, dots, commas, and spaces in the quantity (must end in digit)
-                            numFormat.NumberGroupSeparator,    // adds provided (or current) culture's group separator
-                            numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
-            var exponentialRegex = @"(?:[eE][-+]?\d+)?)";
-            var regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
-                            numRegex,                // capture base (integral) Quantity value
-                            exponentialRegex,        // capture exponential (if any), end of Quantity capturing
-                            @"\s?",                  // ignore whitespace (allows both "1kg", "1 kg")
-                            @"(?<unit>[^\s\d,]+)",   // capture Unit (non-whitespace) input
-                            @"(and)?,?",             // allow "and" & "," separators between quantities
-                            @"(?<invalid>[a-z]*)?"); // capture invalid input
-
-            var quantities = ParseWithRegex(regexString, str, formatProvider);
-            if (quantities.Count == 0)
-            {
-                throw new ArgumentException(
-                    "Expected string to have at least one pair of quantity and unit in the format"
-                    + " \"&lt;quantity&gt; &lt;unit&gt;\". Eg. \"5.5 m\" or \"1ft 2in\"");
-            }
-            return quantities.Aggregate((x, y) => Frequency.FromHertz(x.Hertz + y.Hertz));
-        }
-
-        /// <summary>
-        ///     Parse a string given a particular regular expression.
-        /// </summary>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<Frequency> ParseWithRegex(string regexString, string str, IFormatProvider formatProvider = null)
-        {
-            var regex = new Regex(regexString);
-            MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<Frequency>();
-
-            foreach (Match match in matches)
-            {
-                GroupCollection groups = match.Groups;
-
-                var valueString = groups["value"].Value;
-                var unitString = groups["unit"].Value;
-                if (groups["invalid"].Value != "")
+            return UnitParser.ParseUnit<Frequency>(str, formatProvider,
+                delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
-                    var newEx = new UnitsNetException("Invalid string detected: " + groups["invalid"].Value);
-                    newEx.Data["input"] = str;
-                    newEx.Data["matched value"] = valueString;
-                    newEx.Data["matched unit"] = unitString;
-                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                    throw newEx;
-                }
-                if (valueString == "" && unitString == "") continue;
-
-                try
-                {
-                    FrequencyUnit unit = ParseUnit(unitString, formatProvider);
-                    double value = double.Parse(valueString, formatProvider);
-
-                    converted.Add(From(value, unit));
-                }
-                catch(AmbiguousUnitParseException)
-                {
-                    throw;
-                }
-                catch(Exception ex)
-                {
-                    var newEx = new UnitsNetException("Error parsing string.", ex);
-                    newEx.Data["input"] = str;
-                    newEx.Data["matched value"] = valueString;
-                    newEx.Data["matched unit"] = unitString;
-                    newEx.Data["formatprovider"] = formatProvider == null ? null : formatProvider.ToString();
-                    throw newEx;
-                }
-            }
-            return converted;
+                    double parsedValue = double.Parse(value, formatProvider2);
+                    FrequencyUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    return From(parsedValue, parsedUnit);
+                }, (x, y) => FromHertz(x.Hertz + y.Hertz));
         }
 
         /// <summary>
