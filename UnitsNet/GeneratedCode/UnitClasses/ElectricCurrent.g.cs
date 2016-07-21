@@ -591,6 +591,42 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool Parse([CanBeNull] string str, out ElectricCurrent result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricCurrent result)
+        {
+            try
+            {
+                result = Parse(str, culture);
+                return true;
+            }
+            catch
+            {
+                result = default(ElectricCurrent);
+                return false;
+            }
+        }
+
+        /// <summary>
         ///     Parse a unit string.
         /// </summary>
         /// <example>
