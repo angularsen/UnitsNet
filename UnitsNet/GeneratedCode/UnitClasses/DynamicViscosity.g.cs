@@ -561,7 +561,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool Parse([CanBeNull] string str, out DynamicViscosity result)
+        public static bool TryParse([CanBeNull] string str, out DynamicViscosity result)
         {
             return TryParse(str, null, out result);
         }

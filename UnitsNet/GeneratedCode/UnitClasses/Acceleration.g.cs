@@ -635,7 +635,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool Parse([CanBeNull] string str, out Acceleration result)
+        public static bool TryParse([CanBeNull] string str, out Acceleration result)
         {
             return TryParse(str, null, out result);
         }
