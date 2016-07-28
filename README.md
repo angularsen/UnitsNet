@@ -146,4 +146,14 @@ A [TeamCity build server](http://teamcity.chump.work/viewType.html?buildTypeId=U
 * Build and test pull requests. Notifies on success or error.
 * Build, test and deploy nuget on master branch.
 
-[Contact me](https://github.com/anjdreas) if you have any questions.
+Who are Using This?
+===
+It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/anjdreas/UnitsNet/issues) or edit the [README.md](https://github.com/anjdreas/UnitsNet/edit/master/README.md) and send a pull request.
+
+![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
+
+**Motion Catalyst**
+> Sports performance applications for Windows and iOS, combining high-speed video synchronized with sensor data to bring facts into the training and visualize the invisible forces at work.
+
+[Swing Catalyst](https://www.swingcatalyst.com/) for golf, [Motion Catalyst](https://www.motioncatalyst.com/) for everything else.
+
