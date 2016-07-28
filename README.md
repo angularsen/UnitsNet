@@ -152,9 +152,10 @@ It would be awesome to know who are using this library. If you would like your p
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
-**Motion Catalyst**
+#### Motion Catalyst
+https://www.swingcatalyst.com (for golf)<br>
+https://www.motioncatalyst.com (everything else)
+
 > Sports performance applications for Windows and iOS, combining high-speed video synchronized with sensor data to bring facts into the training and visualize the invisible forces at work.
 
-[Swing Catalyst](https://www.swingcatalyst.com/) for golf, [Motion Catalyst](https://www.motioncatalyst.com/) for everything else.
-
-Andreas Gullberg Larsen, CTO, andreas@motioncatalyst.com
+*- Andreas Gullberg Larsen, CTO (andreas@motioncatalyst.com)*
