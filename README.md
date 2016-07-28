@@ -150,12 +150,13 @@ Who are Using This?
 ===
 It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/anjdreas/UnitsNet/issues) or edit the [README.md](https://github.com/anjdreas/UnitsNet/edit/master/README.md) and send a pull request.
 
+![Swing Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/SwingCatalyst_orangeblack_35p.png "Swing Catalyst logo")
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
-#### Motion Catalyst
+#### Swing Catalyst and Motion Catalyst
+> Sports performance applications for Windows and iOS, combining high-speed video synchronized with sensor data to bring facts into the training and visualize the invisible forces at work.
+
 https://www.swingcatalyst.com (for golf)<br>
 https://www.motioncatalyst.com (everything else)
-
-> Sports performance applications for Windows and iOS, combining high-speed video synchronized with sensor data to bring facts into the training and visualize the invisible forces at work.
 
 *- Andreas Gullberg Larsen, CTO (andreas@motioncatalyst.com)*
