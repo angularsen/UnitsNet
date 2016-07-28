@@ -157,3 +157,4 @@ It would be awesome to know who are using this library. If you would like your p
 
 [Swing Catalyst](https://www.swingcatalyst.com/) for golf, [Motion Catalyst](https://www.motioncatalyst.com/) for everything else.
 
+Andreas Gullberg Larsen, CTO, andreas@motioncatalyst.com
