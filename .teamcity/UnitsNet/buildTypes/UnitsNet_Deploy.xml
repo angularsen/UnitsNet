@@ -91,6 +91,12 @@
         </parameters>
       </extension>
     </build-extensions>
+    <artifact-dependencies>
+      <dependency sourceBuildTypeId="UnitsNet_CI" cleanDestination="true">
+        <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
+        <artifact sourcePath="+NuGet" />
+      </dependency>
+    </artifact-dependencies>
     <dependencies>
       <depend-on sourceBuildTypeId="UnitsNet_CI">
         <options>
