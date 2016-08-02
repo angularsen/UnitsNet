@@ -95,7 +95,7 @@
     <artifact-dependencies>
       <dependency sourceBuildTypeId="UnitsNet_CI" cleanDestination="true">
         <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
-        <artifact sourcePath="+NuGet=&gt;Artifacts\NuGet" />
+        <artifact sourcePath="+:NuGet=&gt;Artifacts\NuGet" />
       </dependency>
     </artifact-dependencies>
     <dependencies>
