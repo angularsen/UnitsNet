@@ -5,6 +5,7 @@
   <settings>
     <options>
       <option name="artifactRules" value="Artifacts" />
+      <option name="buildNumberPattern" value="%dep.UnitsNet_CI.build.number%" />
       <option name="executionTimeoutMin" value="5" />
     </options>
     <disabled-settings>
