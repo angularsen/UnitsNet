@@ -91,6 +91,15 @@
         </parameters>
       </extension>
     </build-extensions>
+    <dependencies>
+      <depend-on sourceBuildTypeId="UnitsNet_CI">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
     <cleanup />
   </settings>
 </build-type>
