@@ -8,6 +8,7 @@
       <option name="executionTimeoutMin" value="5" />
     </options>
     <disabled-settings>
+      <setting-ref ref="RUNNER_4" />
       <setting-ref ref="vcsTrigger" />
     </disabled-settings>
     <parameters />
