@@ -7,6 +7,9 @@
       <option name="artifactRules" value="Artifacts" />
       <option name="executionTimeoutMin" value="5" />
     </options>
+    <disabled-settings>
+      <setting-ref ref="vcsTrigger" />
+    </disabled-settings>
     <parameters />
     <build-runners>
       <runner id="RUNNER_4" name="build.bat" type="simpleRunner">
