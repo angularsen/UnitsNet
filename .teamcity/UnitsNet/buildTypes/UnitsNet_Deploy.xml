@@ -5,7 +5,7 @@
   <settings>
     <options>
       <option name="artifactRules" value="Artifacts" />
-      <option name="buildNumberPattern" value="%dep.UnitsNet_CI.build.number%" />
+      <option name="buildNumberPattern" value="%dep.UnitsNet_BuildTest.build.number%" />
       <option name="executionTimeoutMin" value="5" />
     </options>
     <disabled-settings>
@@ -46,7 +46,7 @@
         <parameters>
           <param name="afterSuccessfulBuildOnly" value="true" />
           <param name="branchFilter" value="+:&lt;default&gt;" />
-          <param name="dependsOn" value="UnitsNet_CI" />
+          <param name="dependsOn" value="UnitsNet_BuildTest" />
         </parameters>
       </build-trigger>
     </build-triggers>
@@ -95,13 +95,13 @@
       </extension>
     </build-extensions>
     <artifact-dependencies>
-      <dependency sourceBuildTypeId="UnitsNet_CI" cleanDestination="true">
+      <dependency sourceBuildTypeId="UnitsNet_BuildTest" cleanDestination="true">
         <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
         <artifact sourcePath="+:NuGet=&gt;Artifacts\NuGet" />
       </dependency>
     </artifact-dependencies>
     <dependencies>
-      <depend-on sourceBuildTypeId="UnitsNet_CI">
+      <depend-on sourceBuildTypeId="UnitsNet_BuildTest">
         <options>
           <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
           <option name="take-started-build-with-same-revisions" value="true" />
