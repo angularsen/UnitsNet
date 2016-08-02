@@ -9,6 +9,7 @@
       <option name="executionTimeoutMin" value="5" />
     </options>
     <disabled-settings>
+      <setting-ref ref="BUILD_EXT_6" />
       <setting-ref ref="RUNNER_4" />
       <setting-ref ref="vcsTrigger" />
     </disabled-settings>
