@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnitsNet">
-      <HintPath>..\packages\UnitsNet.WindowsRuntimeComponent.3.39.1\lib\uap10.0\UnitsNet.winmd</HintPath>
+      <HintPath>..\packages\UnitsNet.WindowsRuntimeComponent.3.40.0\lib\uap10.0\UnitsNet.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
       <CopyLocal>True</CopyLocal>
       <SpecificVersion>True</SpecificVersion>
