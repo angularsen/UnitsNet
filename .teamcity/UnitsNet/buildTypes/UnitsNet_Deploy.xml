@@ -10,6 +10,7 @@
     </options>
     <disabled-settings>
       <setting-ref ref="BUILD_EXT_6" />
+      <setting-ref ref="BUILD_EXT_7" />
       <setting-ref ref="RUNNER_4" />
       <setting-ref ref="vcsTrigger" />
     </disabled-settings>
