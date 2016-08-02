@@ -39,6 +39,13 @@
           <param name="triggerRules" value="-:.teamcity/**" />
         </parameters>
       </build-trigger>
+      <build-trigger id="TRIGGER_2" type="buildDependencyTrigger">
+        <parameters>
+          <param name="afterSuccessfulBuildOnly" value="true" />
+          <param name="branchFilter" value="+:&lt;default&gt;" />
+          <param name="dependsOn" value="UnitsNet_CI" />
+        </parameters>
+      </build-trigger>
     </build-triggers>
     <build-extensions>
       <extension id="swabra" type="swabra">
