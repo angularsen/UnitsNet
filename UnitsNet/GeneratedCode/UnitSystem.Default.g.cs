@@ -600,6 +600,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kLPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.LitersPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPH"),
+                                new AbbreviationsForCulture("ru-RU", "л/ч"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
                             new[]
                             {

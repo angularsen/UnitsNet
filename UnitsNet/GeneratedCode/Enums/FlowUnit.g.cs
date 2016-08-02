@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         CubicMeterPerSecond,
         DecilitersPerMinute,
         KilolitersPerMinute,
+        LitersPerHour,
         LitersPerMinute,
         MicrolitersPerMinute,
         MillilitersPerMinute,

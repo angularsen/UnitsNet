@@ -74,6 +74,22 @@
       ]
     },
     {
+      "SingularName": "LitersPerHour",
+      "PluralName": "LitersPerHour",
+      "FromUnitToBaseFunc": "x/3600000.000",
+      "FromBaseToUnitFunc": "x*3600000.000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "LPH" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "л/ч" ]
+        }
+      ]
+    },
+    {
       "SingularName": "UsGallonsPerMinute",
       "PluralName": "UsGallonsPerMinute",
       "FromUnitToBaseFunc": "x/15850.323141489",
