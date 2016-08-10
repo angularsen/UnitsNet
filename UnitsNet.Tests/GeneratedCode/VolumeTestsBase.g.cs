@@ -49,6 +49,7 @@ namespace UnitsNet.Tests
         protected abstract double CubicMillimetersInOneCubicMeter { get; }
         protected abstract double CubicYardsInOneCubicMeter { get; }
         protected abstract double DecilitersInOneCubicMeter { get; }
+        protected abstract double DrumsInOneCubicMeter { get; }
         protected abstract double HectolitersInOneCubicMeter { get; }
         protected abstract double ImperialGallonsInOneCubicMeter { get; }
         protected abstract double ImperialOuncesInOneCubicMeter { get; }
@@ -59,6 +60,7 @@ namespace UnitsNet.Tests
         protected abstract double MillilitersInOneCubicMeter { get; }
         protected abstract double TablespoonsInOneCubicMeter { get; }
         protected abstract double TeaspoonsInOneCubicMeter { get; }
+        protected abstract double TotesInOneCubicMeter { get; }
         protected abstract double UkTablespoonsInOneCubicMeter { get; }
         protected abstract double UsCustomaryCupsInOneCubicMeter { get; }
         protected abstract double UsGallonsInOneCubicMeter { get; }
@@ -81,6 +83,7 @@ namespace UnitsNet.Tests
         protected virtual double CubicMillimetersTolerance { get { return 1e-5; } }
         protected virtual double CubicYardsTolerance { get { return 1e-5; } }
         protected virtual double DecilitersTolerance { get { return 1e-5; } }
+        protected virtual double DrumsTolerance { get { return 1e-5; } }
         protected virtual double HectolitersTolerance { get { return 1e-5; } }
         protected virtual double ImperialGallonsTolerance { get { return 1e-5; } }
         protected virtual double ImperialOuncesTolerance { get { return 1e-5; } }
@@ -91,6 +94,7 @@ namespace UnitsNet.Tests
         protected virtual double MillilitersTolerance { get { return 1e-5; } }
         protected virtual double TablespoonsTolerance { get { return 1e-5; } }
         protected virtual double TeaspoonsTolerance { get { return 1e-5; } }
+        protected virtual double TotesTolerance { get { return 1e-5; } }
         protected virtual double UkTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsCustomaryCupsTolerance { get { return 1e-5; } }
         protected virtual double UsGallonsTolerance { get { return 1e-5; } }
@@ -117,6 +121,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.CubicMillimeters, CubicMillimetersTolerance);
             Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, CubicYardsTolerance);
             Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.Deciliters, DecilitersTolerance);
+            Assert.AreEqual(DrumsInOneCubicMeter, cubicmeter.Drums, DrumsTolerance);
             Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, HectolitersTolerance);
             Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, ImperialGallonsTolerance);
             Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, ImperialOuncesTolerance);
@@ -127,6 +132,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.Milliliters, MillilitersTolerance);
             Assert.AreEqual(TablespoonsInOneCubicMeter, cubicmeter.Tablespoons, TablespoonsTolerance);
             Assert.AreEqual(TeaspoonsInOneCubicMeter, cubicmeter.Teaspoons, TeaspoonsTolerance);
+            Assert.AreEqual(TotesInOneCubicMeter, cubicmeter.Totes, TotesTolerance);
             Assert.AreEqual(UkTablespoonsInOneCubicMeter, cubicmeter.UkTablespoons, UkTablespoonsTolerance);
             Assert.AreEqual(UsCustomaryCupsInOneCubicMeter, cubicmeter.UsCustomaryCups, UsCustomaryCupsTolerance);
             Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, UsGallonsTolerance);
@@ -152,6 +158,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicMillimeter).CubicMillimeters, CubicMillimetersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, CubicYardsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.Deciliter).Deciliters, DecilitersTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Drum).Drums, DrumsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.Hectoliter).Hectoliters, HectolitersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialGallon).ImperialGallons, ImperialGallonsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.ImperialOunce).ImperialOunces, ImperialOuncesTolerance);
@@ -162,6 +169,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.Milliliter).Milliliters, MillilitersTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.Tablespoon).Tablespoons, TablespoonsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.Teaspoon).Teaspoons, TeaspoonsTolerance);
+            Assert.AreEqual(1, Volume.From(1, VolumeUnit.Tote).Totes, TotesTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.UkTablespoon).UkTablespoons, UkTablespoonsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsCustomaryCup).UsCustomaryCups, UsCustomaryCupsTolerance);
             Assert.AreEqual(1, Volume.From(1, VolumeUnit.UsGallon).UsGallons, UsGallonsTolerance);
@@ -188,6 +196,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CubicMillimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicMillimeter), CubicMillimetersTolerance);
             Assert.AreEqual(CubicYardsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicYard), CubicYardsTolerance);
             Assert.AreEqual(DecilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Deciliter), DecilitersTolerance);
+            Assert.AreEqual(DrumsInOneCubicMeter, cubicmeter.As(VolumeUnit.Drum), DrumsTolerance);
             Assert.AreEqual(HectolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Hectoliter), HectolitersTolerance);
             Assert.AreEqual(ImperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialGallon), ImperialGallonsTolerance);
             Assert.AreEqual(ImperialOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialOunce), ImperialOuncesTolerance);
@@ -198,6 +207,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Milliliter), MillilitersTolerance);
             Assert.AreEqual(TablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Tablespoon), TablespoonsTolerance);
             Assert.AreEqual(TeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Teaspoon), TeaspoonsTolerance);
+            Assert.AreEqual(TotesInOneCubicMeter, cubicmeter.As(VolumeUnit.Tote), TotesTolerance);
             Assert.AreEqual(UkTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UkTablespoon), UkTablespoonsTolerance);
             Assert.AreEqual(UsCustomaryCupsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsCustomaryCup), UsCustomaryCupsTolerance);
             Assert.AreEqual(UsGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsGallon), UsGallonsTolerance);
@@ -224,6 +234,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.FromCubicMillimeters(cubicmeter.CubicMillimeters).CubicMeters, CubicMillimetersTolerance);
             Assert.AreEqual(1, Volume.FromCubicYards(cubicmeter.CubicYards).CubicMeters, CubicYardsTolerance);
             Assert.AreEqual(1, Volume.FromDeciliters(cubicmeter.Deciliters).CubicMeters, DecilitersTolerance);
+            Assert.AreEqual(1, Volume.FromDrums(cubicmeter.Drums).CubicMeters, DrumsTolerance);
             Assert.AreEqual(1, Volume.FromHectoliters(cubicmeter.Hectoliters).CubicMeters, HectolitersTolerance);
             Assert.AreEqual(1, Volume.FromImperialGallons(cubicmeter.ImperialGallons).CubicMeters, ImperialGallonsTolerance);
             Assert.AreEqual(1, Volume.FromImperialOunces(cubicmeter.ImperialOunces).CubicMeters, ImperialOuncesTolerance);
@@ -234,6 +245,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Volume.FromMilliliters(cubicmeter.Milliliters).CubicMeters, MillilitersTolerance);
             Assert.AreEqual(1, Volume.FromTablespoons(cubicmeter.Tablespoons).CubicMeters, TablespoonsTolerance);
             Assert.AreEqual(1, Volume.FromTeaspoons(cubicmeter.Teaspoons).CubicMeters, TeaspoonsTolerance);
+            Assert.AreEqual(1, Volume.FromTotes(cubicmeter.Totes).CubicMeters, TotesTolerance);
             Assert.AreEqual(1, Volume.FromUkTablespoons(cubicmeter.UkTablespoons).CubicMeters, UkTablespoonsTolerance);
             Assert.AreEqual(1, Volume.FromUsCustomaryCups(cubicmeter.UsCustomaryCups).CubicMeters, UsCustomaryCupsTolerance);
             Assert.AreEqual(1, Volume.FromUsGallons(cubicmeter.UsGallons).CubicMeters, UsGallonsTolerance);

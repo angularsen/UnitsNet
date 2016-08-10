@@ -49,6 +49,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecilitersInOneCubicMeter => 1E4;
 
+        protected override double DrumsInOneCubicMeter => 4.80312818132;
+
         protected override double HectolitersInOneCubicMeter => 1E1;
 
         protected override double ImperialGallonsInOneCubicMeter => 219.96924;
@@ -74,6 +76,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double UsTeaspoonsInOneCubicMeter => 202884.13621105801;
 
         protected override double TeaspoonsInOneCubicMeter => 202884.13621105801;
+
+        protected override double TotesInOneCubicMeter => 0.9606256824;
 
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 

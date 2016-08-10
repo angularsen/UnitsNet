@@ -162,6 +162,30 @@
           "Abbreviations": [ "дюйм²" ]
         }
       ]
+    },
+	{
+      "SingularName": "Acre",
+      "PluralName": "Acres",
+      "FromUnitToBaseFunc": "x*4046.85642",
+      "FromBaseToUnitFunc": "x/4046.85642",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ac" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "Hectare",
+      "PluralName": "Hectares",
+      "FromUnitToBaseFunc": "x*1e4",
+      "FromBaseToUnitFunc": "x/1e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ha" ]
+        }
+      ]
     }
   ]
 }

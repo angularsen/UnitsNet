@@ -29,6 +29,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 
         protected override double SquareMetersInOneSquareMeter => 1;
+
+        protected override double AcresInOneSquareMeter => 2.471053816137*1E-4;
+
+        protected override double HectaresInOneSquareMeter => 1E-4;
+
         protected override double SquareCentimetersInOneSquareMeter => 1E4;
 
         protected override double SquareDecimetersInOneSquareMeter => 1E2;

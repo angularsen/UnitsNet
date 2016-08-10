@@ -38,6 +38,7 @@ namespace UnitsNet.Units
         CubicMillimeter,
         CubicYard,
         Deciliter,
+        Drum,
         Hectoliter,
         ImperialGallon,
         ImperialOunce,
@@ -50,6 +51,7 @@ namespace UnitsNet.Units
         Tablespoon,
         [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         Teaspoon,
+        Tote,
         UkTablespoon,
         UsCustomaryCup,
         UsGallon,

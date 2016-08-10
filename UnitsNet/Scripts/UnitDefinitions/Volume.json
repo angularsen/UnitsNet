@@ -422,6 +422,30 @@
           "Abbreviations": [ ]
         }
       ]
+    },
+	{
+      "SingularName": "Drum",
+      "PluralName": "Drums",
+      "FromUnitToBaseFunc": "x*0.20819765",
+      "FromBaseToUnitFunc": "x/0.20819765",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ ]
+        }
+      ]
+    },
+	{
+      "SingularName": "Tote",
+      "PluralName": "Totes",
+      "FromUnitToBaseFunc": "x*1.0409882",
+      "FromBaseToUnitFunc": "x/1.0409882",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ ]
+        }
+      ]
     }
   ]
 }

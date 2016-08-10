@@ -94,6 +94,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Area in Acres.
+        /// </summary>
+        public double Acres
+        {
+            get { return _squareMeters/4046.85642; }
+        }
+
+        /// <summary>
+        ///     Get Area in Hectares.
+        /// </summary>
+        public double Hectares
+        {
+            get { return _squareMeters/1e4; }
+        }
+
+        /// <summary>
         ///     Get Area in SquareCentimeters.
         /// </summary>
         public double SquareCentimeters
@@ -183,6 +199,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Area from Acres.
+        /// </summary>
+        public static Area FromAcres(double acres)
+        {
+            return new Area(acres*4046.85642);
+        }
+
+        /// <summary>
+        ///     Get Area from Hectares.
+        /// </summary>
+        public static Area FromHectares(double hectares)
+        {
+            return new Area(hectares*1e4);
+        }
+
+        /// <summary>
         ///     Get Area from SquareCentimeters.
         /// </summary>
         public static Area FromSquareCentimeters(double squarecentimeters)
@@ -263,6 +295,36 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Area from nullable Acres.
+        /// </summary>
+        public static Area? FromAcres(double? acres)
+        {
+            if (acres.HasValue)
+            {
+                return FromAcres(acres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable Hectares.
+        /// </summary>
+        public static Area? FromHectares(double? hectares)
+        {
+            if (hectares.HasValue)
+            {
+                return FromHectares(hectares.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Area from nullable SquareCentimeters.
         /// </summary>
@@ -425,6 +487,10 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case AreaUnit.Acre:
+                    return FromAcres(val);
+                case AreaUnit.Hectare:
+                    return FromHectares(val);
                 case AreaUnit.SquareCentimeter:
                     return FromSquareCentimeters(val);
                 case AreaUnit.SquareDecimeter:
@@ -466,6 +532,10 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case AreaUnit.Acre:
+                    return FromAcres(value.Value);
+                case AreaUnit.Hectare:
+                    return FromHectares(value.Value);
                 case AreaUnit.SquareCentimeter:
                     return FromSquareCentimeters(value.Value);
                 case AreaUnit.SquareDecimeter:
@@ -640,6 +710,10 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case AreaUnit.Acre:
+                    return Acres;
+                case AreaUnit.Hectare:
+                    return Hectares;
                 case AreaUnit.SquareCentimeter:
                     return SquareCentimeters;
                 case AreaUnit.SquareDecimeter:
