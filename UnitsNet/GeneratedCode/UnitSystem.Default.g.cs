@@ -2166,11 +2166,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dl"),
                                 new AbbreviationsForCulture("ru-RU", "дл"),
                             }),
-                        new CulturesForEnumValue((int) VolumeUnit.Drum,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
                         new CulturesForEnumValue((int) VolumeUnit.Hectoliter,
                             new[]
                             {
@@ -2232,11 +2227,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"),
                                 new AbbreviationsForCulture("ru-RU", "чайная ложка"),
                                 new AbbreviationsForCulture("nb-NO", "ts", "ts."),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Tote,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UkTablespoon,
                             new[]

@@ -198,14 +198,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Volume in Drums.
-        /// </summary>
-        public double Drums
-        {
-            get { return _cubicMeters/0.20819765; }
-        }
-
-        /// <summary>
         ///     Get Volume in Hectoliters.
         /// </summary>
         public double Hectoliters
@@ -285,14 +277,6 @@ namespace UnitsNet
         public double Teaspoons
         {
             get { return _cubicMeters/4.92892159375e-6; }
-        }
-
-        /// <summary>
-        ///     Get Volume in Totes.
-        /// </summary>
-        public double Totes
-        {
-            get { return _cubicMeters/1.0409882; }
         }
 
         /// <summary>
