@@ -175,6 +175,16 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AreaUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) AreaUnit.Acre,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ac"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.Hectare,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ha"),
+                            }),
                         new CulturesForEnumValue((int) AreaUnit.SquareCentimeter,
                             new[]
                             {

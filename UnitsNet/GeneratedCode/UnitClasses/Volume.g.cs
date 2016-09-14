@@ -449,6 +449,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from Drums.
+        /// </summary>
+        public static Volume FromDrums(double drums)
+        {
+            return new Volume(drums*0.20819765);
+        }
+
+        /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
         public static Volume FromHectoliters(double hectoliters)
@@ -526,6 +534,14 @@ namespace UnitsNet
         public static Volume FromTeaspoons(double teaspoons)
         {
             return new Volume(teaspoons*4.92892159375e-6);
+        }
+
+        /// <summary>
+        ///     Get Volume from Totes.
+        /// </summary>
+        public static Volume FromTotes(double totes)
+        {
+            return new Volume(totes*1.0409882);
         }
 
         /// <summary>
@@ -781,6 +797,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable Drums.
+        /// </summary>
+        public static Volume? FromDrums(double? drums)
+        {
+            if (drums.HasValue)
+            {
+                return FromDrums(drums.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable Hectoliters.
         /// </summary>
         public static Volume? FromHectoliters(double? hectoliters)
@@ -931,6 +962,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable Totes.
+        /// </summary>
+        public static Volume? FromTotes(double? totes)
+        {
+            if (totes.HasValue)
+            {
+                return FromTotes(totes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable UkTablespoons.
         /// </summary>
         public static Volume? FromUkTablespoons(double? uktablespoons)
@@ -1073,6 +1119,8 @@ namespace UnitsNet
                     return FromCubicYards(val);
                 case VolumeUnit.Deciliter:
                     return FromDeciliters(val);
+                case VolumeUnit.Drum:
+                    return FromDrums(val);
                 case VolumeUnit.Hectoliter:
                     return FromHectoliters(val);
                 case VolumeUnit.ImperialGallon:
@@ -1093,6 +1141,8 @@ namespace UnitsNet
                     return FromTablespoons(val);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(val);
+                case VolumeUnit.Tote:
+                    return FromTotes(val);
                 case VolumeUnit.UkTablespoon:
                     return FromUkTablespoons(val);
                 case VolumeUnit.UsCustomaryCup:
@@ -1154,6 +1204,8 @@ namespace UnitsNet
                     return FromCubicYards(value.Value);
                 case VolumeUnit.Deciliter:
                     return FromDeciliters(value.Value);
+                case VolumeUnit.Drum:
+                    return FromDrums(value.Value);
                 case VolumeUnit.Hectoliter:
                     return FromHectoliters(value.Value);
                 case VolumeUnit.ImperialGallon:
@@ -1174,6 +1226,8 @@ namespace UnitsNet
                     return FromTablespoons(value.Value);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(value.Value);
+                case VolumeUnit.Tote:
+                    return FromTotes(value.Value);
                 case VolumeUnit.UkTablespoon:
                     return FromUkTablespoons(value.Value);
                 case VolumeUnit.UsCustomaryCup:
@@ -1368,6 +1422,8 @@ namespace UnitsNet
                     return CubicYards;
                 case VolumeUnit.Deciliter:
                     return Deciliters;
+                case VolumeUnit.Drum:
+                    return Drums;
                 case VolumeUnit.Hectoliter:
                     return Hectoliters;
                 case VolumeUnit.ImperialGallon:
@@ -1388,6 +1444,8 @@ namespace UnitsNet
                     return Tablespoons;
                 case VolumeUnit.Teaspoon:
                     return Teaspoons;
+                case VolumeUnit.Tote:
+                    return Totes;
                 case VolumeUnit.UkTablespoon:
                     return UkTablespoons;
                 case VolumeUnit.UsCustomaryCup:
