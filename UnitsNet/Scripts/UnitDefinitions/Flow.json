@@ -116,6 +116,18 @@
           "Abbreviations": [ "дм³/мин" ]
         }
       ]
-    }
+    },
+    {
+      "SingularName": "OilBarrelsPerDay",
+      "PluralName": "OilBarrelsPerDay",
+      "FromUnitToBaseFunc": "x*1.8401307283333333333333333333333e-6",
+      "FromBaseToUnitFunc": "x/1.8401307283333333333333333333333e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/d", "BOPD" ]
+        }
+      ]
+    }    
   ]
 }

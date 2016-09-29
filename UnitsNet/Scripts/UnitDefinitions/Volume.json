@@ -422,6 +422,18 @@
           "Abbreviations": [ ]
         }
       ]
+    },
+    {
+      "SingularName": "OilBarrel",
+      "PluralName": "OilBarrels",
+      "FromUnitToBaseFunc": "x*0.158987294928",
+      "FromBaseToUnitFunc": "x/0.158987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl" ]
+        }
+      ]
     }
   ]
 }

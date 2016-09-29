@@ -50,5 +50,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecilitersPerMinuteInOneCubicMeterPerSecond => 600000.00000;
 
         protected override double KilolitersPerMinuteInOneCubicMeterPerSecond => 60.00000;
+
+        protected override double OilBarrelsPerDayInOneCubicMeterPerSecond => 543439.65056533388306722269588172;
     }
 }

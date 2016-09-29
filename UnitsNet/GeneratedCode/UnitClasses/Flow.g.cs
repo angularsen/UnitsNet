@@ -198,6 +198,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in OilBarrelsPerDay.
+        /// </summary>
+        public double OilBarrelsPerDay
+        {
+            get { return _cubicMetersPerSecond/1.8401307283333333333333333333333e-6; }
+        }
+
+        /// <summary>
         ///     Get Flow in UsGallonsPerMinute.
         /// </summary>
         public double UsGallonsPerMinute
@@ -316,6 +324,14 @@ namespace UnitsNet
         public static Flow FromNanolitersPerMinute(double nanolitersperminute)
         {
             return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Flow from OilBarrelsPerDay.
+        /// </summary>
+        public static Flow FromOilBarrelsPerDay(double oilbarrelsperday)
+        {
+            return new Flow(oilbarrelsperday*1.8401307283333333333333333333333e-6);
         }
 
         /// <summary>
@@ -523,6 +539,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable OilBarrelsPerDay.
+        /// </summary>
+        public static Flow? FromOilBarrelsPerDay(double? oilbarrelsperday)
+        {
+            if (oilbarrelsperday.HasValue)
+            {
+                return FromOilBarrelsPerDay(oilbarrelsperday.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerMinute.
         /// </summary>
         public static Flow? FromUsGallonsPerMinute(double? usgallonsperminute)
@@ -575,6 +606,8 @@ namespace UnitsNet
                     return FromMillionUsGallonsPerDay(val);
                 case FlowUnit.NanolitersPerMinute:
                     return FromNanolitersPerMinute(val);
+                case FlowUnit.OilBarrelsPerDay:
+                    return FromOilBarrelsPerDay(val);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(val);
 
@@ -624,6 +657,8 @@ namespace UnitsNet
                     return FromMillionUsGallonsPerDay(value.Value);
                 case FlowUnit.NanolitersPerMinute:
                     return FromNanolitersPerMinute(value.Value);
+                case FlowUnit.OilBarrelsPerDay:
+                    return FromOilBarrelsPerDay(value.Value);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(value.Value);
 
@@ -806,6 +841,8 @@ namespace UnitsNet
                     return MillionUsGallonsPerDay;
                 case FlowUnit.NanolitersPerMinute:
                     return NanolitersPerMinute;
+                case FlowUnit.OilBarrelsPerDay:
+                    return OilBarrelsPerDay;
                 case FlowUnit.UsGallonsPerMinute:
                     return UsGallonsPerMinute;
 

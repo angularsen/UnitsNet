@@ -38,6 +38,7 @@ namespace UnitsNet.Units
         MillilitersPerMinute,
         MillionUsGallonsPerDay,
         NanolitersPerMinute,
+        OilBarrelsPerDay,
         UsGallonsPerMinute,
     }
 }
