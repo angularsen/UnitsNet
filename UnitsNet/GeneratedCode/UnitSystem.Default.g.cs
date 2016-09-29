@@ -641,6 +641,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "nLPM"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.OilBarrelsPerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
                             new[]
                             {
@@ -2213,6 +2218,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "ml"),
                                 new AbbreviationsForCulture("ru-RU", "мл"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.OilBarrel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.Tablespoon,
                             new[]
