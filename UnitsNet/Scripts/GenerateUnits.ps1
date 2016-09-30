@@ -158,6 +158,19 @@ function GenerateUnitSystemDefault($unitClasses, $outDir)
 	Write-Host "(OK) "
 }
 
+function GenerateUnitClassEnum($unitClasses, $outDir)
+{
+    Write-Host -NoNewline "UnitClass.g.cs: "; 
+    $outFileName = "$outDir/UnitClass.g.cs";
+
+    GenerateUnitClassEnumSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+	if (!$?) {
+		Write-Host "(error) "
+		exit 1
+	}
+	Write-Host "(OK) "
+}
+
 function EnsureDirExists([String] $dirPath) {
     New-Item -ItemType Directory -Force -Path $dirPath | Out-Null;
 	if (!$?) {
@@ -169,6 +182,7 @@ function EnsureDirExists([String] $dirPath) {
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
 . "$PSScriptRoot/Include-GenerateLogarithmicCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateUnitClassEnumSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
@@ -218,6 +232,9 @@ get-childitem -path $templatesDir -filter "*.json" | % {
 
 Write-Host ""
 GenerateUnitSystemDefault $unitClasses $unitSystemDir
+
+Write-Host ""
+GenerateUnitClassEnum $unitClasses $unitSystemDir
 
 Write-Host ""
 Write-Host ""
