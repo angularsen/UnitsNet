@@ -152,10 +152,22 @@ It would be awesome to know who are using this library. If you would like your p
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
-#### Swing Catalyst and Motion Catalyst
-> Sports performance applications for Windows and iOS, combining high-speed video synchronized with sensor data to bring facts into the training and visualize the invisible forces at work.
+#### Swing Catalyst and Motion Catalyst, Norway
+> Sports performance applications for Windows and iOS, that combine high-speed video with sensor data to bring facts into your training and visualize the invisible forces at work
+> 
+> Units.NET started here in 2007 when reading strain gauge measurements from force plates and has been very useful in integrating a number of different sensor types into our software and presenting the data in the user's preferred culture and units.
 
 https://www.swingcatalyst.com (for golf)<br>
 https://www.motioncatalyst.com (everything else)
 
 *- Andreas Gullberg Larsen, CTO (andreas@motioncatalyst.com)*
+
+#### PK Sound, Canada
+> Award-winning performers and composers put everything they’ve got into their music. PK Sound makes sure their fans will hear it all – brilliantly, precisely, consistently.
+>
+> PK Sound uses UnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
+
+http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/
+http://www.pksound.ca/trinity/
+
+*-Jules LaPrairie, Kontrol software team member*
