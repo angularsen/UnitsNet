@@ -170,4 +170,4 @@ https://www.motioncatalyst.com (everything else)
 http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/
 http://www.pksound.ca/trinity/
 
-*-Jules LaPrairie, Kontrol software team member*
+*- Jules LaPrairie, Kontrol software team member*
