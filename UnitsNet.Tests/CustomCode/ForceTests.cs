@@ -68,6 +68,13 @@ namespace UnitsNet.Tests.CustomCode
             Acceleration acceleration = Force.FromNewtons(27)/Mass.FromKilograms(9);
             Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(3));
         }
+    
+        [Test]
+        public void ForceDividedByAccelerationEqualsMass()
+        {
+          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMeterPerSecondSquared(50);
+          Assert.AreEqual(acceleration, Mass.FromKilograms(4));
+        }
 
         [Test]
         public void MassByAccelerationEqualsForceUsingDouble()
