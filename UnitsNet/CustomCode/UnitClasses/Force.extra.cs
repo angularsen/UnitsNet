@@ -58,17 +58,17 @@ namespace UnitsNet
             double newtons = p.Pascals*metersSquared;
             return new Force(newtons);
         }
+
+        public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
+        {
+          return new Force(mass.Kilograms * metersPerSecondSquared);
+        }
 #endif
 
         public static Force FromPressureByArea(Pressure p, Area area)
         {
             double newtons = p.Pascals*area.SquareMeters;
             return new Force(newtons);
-        }
-
-        public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
-        {
-            return new Force(mass.Kilograms*metersPerSecondSquared);
         }
 
         public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
