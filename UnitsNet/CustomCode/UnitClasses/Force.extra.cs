@@ -70,5 +70,10 @@ namespace UnitsNet
         {
             return new Force(mass.Kilograms*metersPerSecondSquared);
         }
+
+        public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
+        {
+            return new Force(mass.Kilograms * acceleration.MeterPerSecondSquared);
+        }
     }
 }
