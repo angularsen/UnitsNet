@@ -162,12 +162,14 @@ https://www.motioncatalyst.com (everything else)
 
 *- Andreas Gullberg Larsen, CTO (andreas@motioncatalyst.com)*
 
+![PK Sound logo](https://cloud.githubusercontent.com/assets/17773454/19447800/5c6ec76c-945c-11e6-90f8-3f410e8157b9.jpg)
 #### PK Sound, Canada
 > Award-winning performers and composers put everything they’ve got into their music. PK Sound makes sure their fans will hear it all – brilliantly, precisely, consistently.
 >
 > PK Sound uses UnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
 
-http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/
-http://www.pksound.ca/trinity/
+http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/ (for an idea of what the Kontrol project is)<br>
+http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)<br>
+http://www.pksound.ca/ (everything else)
 
 *- Jules LaPrairie, Kontrol software team member*
