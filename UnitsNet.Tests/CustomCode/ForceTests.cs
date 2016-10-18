@@ -56,6 +56,16 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void MassByAccelerationEqualsForce()
+        {
+            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(9), Acceleration.FromMeterPerSecondSquared(3));
+            Assert.AreEqual(force, Force.FromNewtons(27));
+
+            force = Force.FromMassByAcceleration(Mass.FromKilograms(9), 3);
+            Assert.AreEqual(force, Force.FromNewtons(27));
+        }
+
+        [Test]
         public void ForceTimesSpeedEqualsPower()
         {
             Power power = Force.FromNewtons(27.0)*Speed.FromMetersPerSecond(10.0);
