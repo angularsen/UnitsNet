@@ -40,7 +40,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         internal
 #else
-        public 
+        public
 #endif
             AmplitudeRatio(ElectricPotential voltage)
             : this()

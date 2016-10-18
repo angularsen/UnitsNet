@@ -113,14 +113,14 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        /// Convert a Duration to a TimeSpan.
+        ///     Convert a Duration to a TimeSpan.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">Throws if the TimeSpan can't represent the Duration exactly </exception>
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            if (Seconds > TimeSpan.MaxValue.TotalSeconds ||
-                Seconds < TimeSpan.MinValue.TotalSeconds)
+            if ((Seconds > TimeSpan.MaxValue.TotalSeconds) ||
+                (Seconds < TimeSpan.MinValue.TotalSeconds))
             {
                 throw new ArgumentOutOfRangeException(nameof(Duration), "The duration is too large or small to fit in a TimeSpan");
             }

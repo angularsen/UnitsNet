@@ -19,8 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 #if !WINDOWS_UWP
+// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 using System;
 
 namespace UnitsNet
@@ -49,18 +49,19 @@ namespace UnitsNet
 
         public static Power operator /(MassFlow massFlow, BrakeSpecificFuelConsumption bsfc)
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond / bsfc.KilogramsPerJoule);
+            return Power.FromWatts(massFlow.KilogramsPerSecond/bsfc.KilogramsPerJoule);
         }
 
         public static BrakeSpecificFuelConsumption operator /(MassFlow massFlow, Power power)
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / power.Watts);
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond/power.Watts);
         }
 
         public static Power operator *(MassFlow massFlow, SpecificEnergy specificEnergy)
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
+            return Power.FromWatts(massFlow.KilogramsPerSecond*specificEnergy.JoulesPerKilogram);
         }
     }
 }
+
 #endif

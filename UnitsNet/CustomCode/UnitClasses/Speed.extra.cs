@@ -19,8 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 #if !WINDOWS_UWP
+// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 using System;
 
 namespace UnitsNet
@@ -59,13 +59,14 @@ namespace UnitsNet
 
         public static KinematicViscosity operator *(Speed speed, Length length)
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
         }
 
         public static SpecificEnergy operator *(Speed left, Speed right)
         {
-            return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
+            return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond*right.MetersPerSecond);
         }
     }
 }
+
 #endif

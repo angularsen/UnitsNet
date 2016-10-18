@@ -1,4 +1,4 @@
-// Copyright(c) 2007 Andreas Gullberg Larsen
+// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -48,7 +48,7 @@ namespace UnitsNet
             Y = xy;
         }
 
-#region Equality
+        #region Equality
 
         private static IEqualityComparer<Vector2> XyComparer { get; } = new XyEqualityComparer();
 
@@ -97,7 +97,7 @@ namespace UnitsNet
             }
         }
 
-#endregion
+        #endregion
 
         public override string ToString()
         {

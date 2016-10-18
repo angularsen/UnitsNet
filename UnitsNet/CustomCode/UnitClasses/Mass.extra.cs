@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -116,7 +115,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        string ToString([CanBeNull] IFormatProvider cultureInfo)
+            string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.

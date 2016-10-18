@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -43,7 +43,7 @@ namespace UnitsNet
             if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
             if (add == null) throw new ArgumentNullException(nameof(add));
 
-            var numFormat = formatProvider != null
+            NumberFormatInfo numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
                 : NumberFormatInfo.CurrentInfo;
 
@@ -87,8 +87,8 @@ namespace UnitsNet
             {
                 GroupCollection groups = match.Groups;
 
-                var valueString = groups["value"].Value;
-                var unitString = groups["unit"].Value;
+                string valueString = groups["value"].Value;
+                string unitString = groups["unit"].Value;
                 if (groups["invalid"].Value != "")
                 {
                     var newEx = new UnitsNetException("Invalid string detected: " + groups["invalid"].Value);
@@ -98,7 +98,7 @@ namespace UnitsNet
                     newEx.Data["formatprovider"] = formatProvider?.ToString();
                     throw newEx;
                 }
-                if (valueString == "" && unitString == "") continue;
+                if ((valueString == "") && (unitString == "")) continue;
 
                 try
                 {

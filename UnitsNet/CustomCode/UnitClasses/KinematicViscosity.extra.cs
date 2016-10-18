@@ -19,8 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 #if !WINDOWS_UWP
+// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 using System;
 
 namespace UnitsNet
@@ -54,8 +54,9 @@ namespace UnitsNet
 
         public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
         {
-            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond*density.KilogramsPerCubicMeter);
         }
     }
 }
+
 #endif

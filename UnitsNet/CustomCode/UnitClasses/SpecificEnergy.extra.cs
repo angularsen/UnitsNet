@@ -19,8 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
+
 #if !WINDOWS_UWP
+// Operator overloads not supported in Universal Windows Platform (WinRT Components)
+
 namespace UnitsNet
 {
     public partial struct SpecificEnergy
@@ -37,18 +39,19 @@ namespace UnitsNet
 
         public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value/specificEnergy.JoulesPerKilogram);
         }
 
         public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption bsfc)
         {
-            return specificEnergy.JoulesPerKilogram * bsfc.KilogramsPerJoule;
+            return specificEnergy.JoulesPerKilogram*bsfc.KilogramsPerJoule;
         }
 
         public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
+            return Power.FromWatts(massFlow.KilogramsPerSecond*specificEnergy.JoulesPerKilogram);
         }
     }
 }
+
 #endif

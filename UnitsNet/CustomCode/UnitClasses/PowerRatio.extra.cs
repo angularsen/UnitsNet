@@ -36,9 +36,9 @@ namespace UnitsNet
 #if WINDOWS_UWP
         internal
 #else
-        public 
+        public
 #endif
-        PowerRatio(Power power)
+            PowerRatio(Power power)
             : this()
         {
             if (power.Watts <= 0)

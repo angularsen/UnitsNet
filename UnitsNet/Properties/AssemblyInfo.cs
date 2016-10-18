@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,9 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Units.NET")]
-[assembly: AssemblyDescription("Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]
+[assembly:
+    AssemblyDescription(
+        "Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andreas Gullberg Larsen")]
 [assembly: AssemblyProduct("Units.NET")]
@@ -40,6 +42,7 @@ using System.Runtime.CompilerServices;
 [assembly: CLSCompliant(true)]
 
 // Give access to internal members for testing
+
 [assembly: InternalsVisibleTo("UnitsNet.Tests")]
 // Version information for an assembly consists of the following four values:
 //

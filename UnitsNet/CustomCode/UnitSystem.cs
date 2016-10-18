@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,7 @@ using System.Reflection;
 #endif
 
 // ReSharper disable once CheckNamespace
+
 namespace UnitsNet
 {
     [PublicAPI]
@@ -98,7 +99,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         internal
 #else
-        public 
+        public
 #endif
             UnitSystem([CanBeNull] IFormatProvider cultureInfo)
         {
@@ -138,7 +139,7 @@ namespace UnitsNet
         [PublicAPI]
         public static UnitSystem GetCached()
         {
-            return GetCached((CultureInfo)null);
+            return GetCached((CultureInfo) null);
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace UnitsNet
         [PublicAPI]
         public static UnitSystem GetCached([CanBeNull] string cultureName)
         {
-            var cultureInfo = cultureName == null ? DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider cultureInfo = cultureName == null ? DefaultCulture : new CultureInfo(cultureName);
             return GetCached(cultureInfo);
         }
 
@@ -181,7 +182,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
+            static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetCached(culture).Parse<TUnit>(unitAbbreviation);
@@ -193,10 +194,10 @@ namespace UnitsNet
 #else
         public
 #endif
-        TUnit Parse<TUnit>(string unitAbbreviation)
+            TUnit Parse<TUnit>(string unitAbbreviation)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            return (TUnit) Parse(unitAbbreviation, typeof (TUnit));
+            return (TUnit) Parse(unitAbbreviation, typeof(TUnit));
         }
 
         [PublicAPI]
@@ -219,7 +220,7 @@ namespace UnitsNet
                 case 0:
                     return 0;
                 default:
-                    var unitsCsv = string.Join(", ", unitValues.Select(x => x.ToString()).ToArray());
+                    string unitsCsv = string.Join(", ", unitValues.Select(x => x.ToString()).ToArray());
                     throw new AmbiguousUnitParseException(
                         $"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
             }
@@ -243,7 +244,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        string GetDefaultAbbreviation<TUnit>(TUnit unit)
+            string GetDefaultAbbreviation<TUnit>(TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetAllAbbreviations(unit).First();
@@ -261,14 +262,14 @@ namespace UnitsNet
 #else
         public
 #endif
-        void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
+            void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             // Assuming TUnit is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
             // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
             int unitValue = Convert.ToInt32(unit);
-            Type unitType = typeof (TUnit);
+            Type unitType = typeof(TUnit);
             MapUnitToAbbreviation(unitType, unitValue, abbreviations);
         }
 
@@ -278,7 +279,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
+            void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
 #if WINDOWS_UWP
             if (!unitType.GetTypeInfo().IsEnum)
@@ -327,12 +328,12 @@ namespace UnitsNet
 #else
         public
 #endif
-        bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
+            bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             try
             {
-                unit = (TUnit)Parse(unitAbbreviation, typeof (TUnit));
+                unit = (TUnit) Parse(unitAbbreviation, typeof(TUnit));
                 return true;
             }
             catch
@@ -369,14 +370,14 @@ namespace UnitsNet
 #else
         public
 #endif
-        string[] GetAllAbbreviations<TUnit>(TUnit unit)
+            string[] GetAllAbbreviations<TUnit>(TUnit unit)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Dictionary<int, List<string>> unitValueToAbbrevs;
             List<string> abbrevs;
 
             if (_unitTypeToUnitValueToAbbrevs.TryGetValue(typeof(TUnit), out unitValueToAbbrevs) &&
-                unitValueToAbbrevs.TryGetValue((int)(object)unit, out abbrevs))
+                unitValueToAbbrevs.TryGetValue((int) (object) unit, out abbrevs))
             {
                 return abbrevs.ToArray();
             }
@@ -433,17 +434,18 @@ namespace UnitsNet
                 }
             }
         }
-        
+
         /// <summary>
-        /// Avoids having too many nested generics for code clarity
+        ///     Avoids having too many nested generics for code clarity
         /// </summary>
         private class AbbreviationMap : Dictionary<string, List<int>>
         {
-
         }
 
         /// <summary>
-        ///     Get default(Type) of <param name="type"></param>.
+        ///     Get default(Type) of
+        ///     <param name="type"></param>
+        ///     .
         ///     Null for reference types, 0 for numeric types and default constructor for the rest.
         /// </summary>
         private static object GetDefault(Type type)

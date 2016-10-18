@@ -75,7 +75,7 @@ namespace UnitsNet
 
         public static Duration operator /(Length length, Speed speed)
         {
-            return Duration.FromSeconds(length.Meters / speed.MetersPerSecond);
+            return Duration.FromSeconds(length.Meters/speed.MetersPerSecond);
         }
 
         public static Area operator *(Length length1, Length length2)
@@ -105,7 +105,7 @@ namespace UnitsNet
 
         public static KinematicViscosity operator *(Length length, Speed speed)
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
         }
 #endif
     }
@@ -126,21 +126,21 @@ namespace UnitsNet
             return ToString(null);
         }
 
-        #if WINDOWS_UWP
+#if WINDOWS_UWP
                 internal
         #else
-                public
-        #endif
-                string ToString([CanBeNull] IFormatProvider cultureInfo)
-                {
-                    // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
-                    // So inches are rounded when converting from base units to feet/inches.
-                    UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
-                    string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
-                    string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
+        public
+#endif
+            string ToString([CanBeNull] IFormatProvider cultureInfo)
+        {
+            // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
+            // So inches are rounded when converting from base units to feet/inches.
+            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
+            string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
 
-                    return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
-                        inchUnit);
-                }
+            return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
+                inchUnit);
+        }
     }
 }

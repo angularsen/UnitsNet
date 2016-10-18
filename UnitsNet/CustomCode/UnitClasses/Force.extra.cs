@@ -41,15 +41,15 @@ namespace UnitsNet
 
         public static Acceleration operator /(Force force, Mass mass)
         {
-          return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
+            return Acceleration.FromMeterPerSecondSquared(force.Newtons/mass.Kilograms);
         }
 
         public static Mass operator /(Force force, Acceleration mass)
         {
-          return Mass.FromKilograms(force.Newtons / mass.MeterPerSecondSquared);
+            return Mass.FromKilograms(force.Newtons/mass.MeterPerSecondSquared);
         }
 
-    public static Pressure operator /(Force force, Area area)
+        public static Pressure operator /(Force force, Area area)
         {
             return Pressure.FromPascals(force.Newtons/area.SquareMeters);
         }
@@ -66,7 +66,7 @@ namespace UnitsNet
 
         public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
         {
-          return new Force(mass.Kilograms * metersPerSecondSquared);
+            return new Force(mass.Kilograms*metersPerSecondSquared);
         }
 #endif
 
@@ -78,7 +78,7 @@ namespace UnitsNet
 
         public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
         {
-            return new Force(mass.Kilograms * acceleration.MeterPerSecondSquared);
+            return new Force(mass.Kilograms*acceleration.MeterPerSecondSquared);
         }
     }
 }

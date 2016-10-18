@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,12 +56,12 @@ namespace UnitsNet
                 format = "{0:0." + sigDigitsAfterRadixStr + "e-00} {1}";
             }
             // Values from 1e-3 to 1 use fixed point notation.
-            else if (v > 1e-4 && v < 1)
+            else if ((v > 1e-4) && (v < 1))
             {
                 format = "{0:g" + significantDigitsAfterRadix + "} {1}";
             }
             // Values between 1 and 1e5 use fixed point notation with digit grouping.
-            else if (v >= 1 && v < 1e6)
+            else if ((v >= 1) && (v < 1e6))
             {
                 // The comma will be automatically replaced with the correct digit separator if a different culture is used.
                 format = "{0:#,0." + sigDigitsAfterRadixStr + "} {1}";
@@ -93,7 +93,7 @@ namespace UnitsNet
             where TUnit : struct, IComparable, IFormattable
         {
             string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnit), Convert.ToInt32(unit));
-            return new object[] { value, abbreviation }.Concat(args).ToArray();
+            return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }
 }

@@ -41,9 +41,9 @@ namespace UnitsNet
             string errorMessage =
                 $"The base-10 logarithm of a number ≤ 0 is undefined ({quantity}/{reference}).";
 
-            if (quantity == 0 || (quantity < 0 && reference > 0))
+            if ((quantity == 0) || ((quantity < 0) && (reference > 0)))
                 throw new ArgumentOutOfRangeException(nameof(quantity), errorMessage);
-            if (reference == 0 || quantity > 0 && reference < 0)
+            if ((reference == 0) || ((quantity > 0) && (reference < 0)))
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
 
             _decibels = 10*Math.Log10(quantity/reference);

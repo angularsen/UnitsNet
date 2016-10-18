@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +26,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     internal
 #else
-    public 
+    public
 #endif
         class UnitsNetException : Exception
     {
