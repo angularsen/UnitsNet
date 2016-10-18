@@ -169,7 +169,7 @@ https://www.motioncatalyst.com (everything else)
 > PK Sound uses UnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
 
 http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/ (for an idea of what the Kontrol project is)<br>
-http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)
+http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)<br>
 http://www.pksound.ca/ (everything else)
 
 *- Jules LaPrairie, Kontrol software team member*
