@@ -61,8 +61,7 @@ namespace UnitsNet.Tests.CustomCode
             var force = Force.FromPressureByArea(Pressure.FromNewtonsPerSquareMeter(6), Length2d.FromMeters(5, 2));
             Assert.AreEqual(force, Force.FromNewtons(60));
         }
-
-
+    
         [Test]
         public void ForceDividedByMassEqualsAcceleration()
         {
@@ -71,13 +70,16 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void MassByAccelerationEqualsForceUsingDouble()
+        {
+            var force = Force.FromMassByAcceleration(Mass.FromKilograms(9), 3);
+            Assert.AreEqual(force, Force.FromNewtons(27));
+        }
+        [Test]
         public void MassByAccelerationEqualsForce()
         {
-            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(9), Acceleration.FromMeterPerSecondSquared(3));
-            Assert.AreEqual(force, Force.FromNewtons(27));
-
-            force = Force.FromMassByAcceleration(Mass.FromKilograms(9), 3);
-            Assert.AreEqual(force, Force.FromNewtons(27));
+            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMeterPerSecondSquared(-4));
+            Assert.AreEqual(force, Force.FromNewtons(-340));
         }
 
         [Test]
