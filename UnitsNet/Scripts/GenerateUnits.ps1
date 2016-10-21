@@ -1,4 +1,8 @@
-﻿# DaddyCool => daddyCool
+﻿# Set Write-Output used by Include- files to UTF8 encoding to fix copyright character
+[Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
+$OutputEncoding = [Text.UTF8Encoding]::UTF8
+
+# DaddyCool => daddyCool
 function ToCamelCase($str)
 {
     return $str.Substring(0,1).ToLowerInvariant() + $str.Substring(1);
