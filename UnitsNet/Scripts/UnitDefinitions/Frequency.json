@@ -21,6 +21,7 @@
       "PluralName": "RadiansPerSecond",
       "FromUnitToBaseFunc": "x/6.2831853072",
       "FromBaseToUnitFunc": "x*6.2831853072",
+      "OmitExtensionMethod": true, 
       "Localization": [
         {
           "Culture": "en-US",
