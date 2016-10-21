@@ -58,7 +58,7 @@ There is probably a better way to achieve this?
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**\*.cs;" Exclude="obj\**;Properties\AssemblyInfo.cs" />
-    <None Include="packages.UnitsNet.WindowsRuntimeComponent-Net45.config" />
+    <None Include="UnitsNet.WindowsRuntimeComponent-Net45.project.json" />
     <None Include="Scripts\**\*.*" />
   </ItemGroup>
   <ItemGroup>
