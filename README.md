@@ -27,7 +27,7 @@ Overview
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Enumerate units](#enumerate-units) for user selection
 * [Precision and accuracy](#precision)
-* [Serializable with JSON.NET](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet)
+* [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
