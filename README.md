@@ -19,9 +19,8 @@ Build Targets:
 
 Overview
 ===
-* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums)
+* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/Scripts/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
 * [826 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
-* [Generated code](UnitsNet/GeneratedCode) for uniform implementations and fewer bugs
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
