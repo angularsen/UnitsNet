@@ -13,21 +13,28 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 ![Install-Package UnitsNet](https://raw.githubusercontent.com/anjdreas/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
+* .NET Standard 1.0
 * Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
 * .NET 3.5 Client
 
-Features
+Overview
 ===
-* [370 units of measurement in 35 classes](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet/GeneratedCode/Enums)
-* Generated code for uniform implementations and fewer bugs
-* Immutable structs implementing IEquatable, IComparable and operator overloads
-* Parse unit abbreviations in multiple cultures
-* ToString() variants for custom cultures and format patterns
-* Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
+* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums)
+* [826 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
+* [Generated code](UnitsNet/GeneratedCode) for uniform implementations and fewer bugs
+* Immutable structs that implement IEquatable, IComparable
+* [Static typing](#static-typing) to avoid ambiguous values or units
+* [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
+* [Parse and ToString()](#culture) supports cultures and localization
+* [Enumerate units](#enumerate-units) for user selection
+* [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet)
-* 688 unit tests to ensure conversions and localizations are in order
+* Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
+* [Contribute](#contribute) if you are missing some units
+* [Continuous integration](#ci) posts status reports to pull requests and commits
+* [Who are using this?](#who-are-using)
 
-Static Typing
+<a name="static-typing"></a>Static Typing
 ---
 ```C#
 // Convert to the unit of choice - when you need it
@@ -45,25 +52,22 @@ double feet = meter.Feet; // 3.28084
 double inches = meter.Inches; // 39.3701
 ```
 
-Unit Enumeration
+<a name="operator-overloads"></a>Operator Overloads
 ---
-All units have a corresponding unit enum value. This is useful when selecting the unit representation at runtime, such as presenting a choice of units to the user.
 ```C#
-/// <summary>Convert the previous height to the new unit.</summary>
-void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit newUnit)
-{
-    // Construct from dynamic unit and value
-    var prevHeight = Length.From(prevValue, prevUnit);
+// Arithmetic
+Length l1 = 2 * Length.FromMeters(1);
+Length l2 = Length.FromMeters(1) / 2;
+Length l3 = l1 + l2;
 
-    // Convert to the new unit
-    double newHeightValue = prevHeight.As(newUnit);
-
-    // Update UI with the converted value and the newly selected unit
-    UpdateHeightUI(newHeightValue, newUnit);
-}
+// Construct between units
+Length distance = Speed.FromKilometersPerHour(80) * TimeSpan.FromMinutes(30);
+Acceleration a1 = Speed.FromKilometersPerHour(80) / TimeSpan.FromSeconds(2);
+Acceleration a2 = Force.FromNewtons(100) / Mass.FromKilograms(20);
+RotationalSpeed r = Angle.FromDegrees(90) / TimeSpan.FromSeconds(2);
 ```
 
-Culture and Localization
+<a name="culture"></a>Culture and Localization
 ---
 The culture for abbreviations defaults to Thread.CurrentUICulture and falls back to US English if not defined. Thread.CurrentCulture affects number formatting unless a custom culture is specified. The relevant methods are:
 
@@ -96,15 +100,25 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 "kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
 ```
 
-Helper Construction Methods
+<a name="enumerate-units"></a>Enumerate Units
 ---
-Construct measurements with various helper methods for convenience and readability.
+All units have a unit enum value. Let the user decide what unit of measurement to present the numbers in.
 ```C#
-Force.FromPressureByArea(Pressure p, Length2d area)
-Force.FromMassAcceleration(Mass mass, double metersPerSecondSquared)
+/// <summary>Convert the previous height to the new unit.</summary>
+void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit newUnit)
+{
+    // Construct from dynamic unit and value
+    var prevHeight = Length.From(prevValue, prevUnit);
+
+    // Convert to the new unit
+    double newHeightValue = prevHeight.As(newUnit);
+
+    // Update UI with the converted value and the newly selected unit
+    UpdateHeightUI(newHeightValue, newUnit);
+}
 ```
 
-Precision and Accuracy
+<a name="precision"></a>Precision and Accuracy
 ===
 A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units.
 
@@ -114,7 +128,8 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/anjdreas/UnitsNet/wiki/Precision).
 
-Serialization
+
+<a name="serialization"></a>Serialization
 ===
 * `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
@@ -123,12 +138,8 @@ We cannot guarantee backwards compatibility, although we will strive to do that 
 
 The base unit of any unit should be be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
 
-What It Is Not
-===
-* It is not an equation solver
-* It does not figure out the units after a calculation
 
-Want To Contribute?
+<a name="contribute"></a>Want To Contribute?
 ==
 This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/anjdreas/UnitsNet/issues) by creating an issue.
 
@@ -140,13 +151,13 @@ Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefin
   * Do work on branches such as **feature/add-myunit** and **fix/34**
   * [Create a pull request](https://help.github.com/articles/using-pull-requests)
 
-Continuous Integration
+<a name="ci"></a>Continuous Integration
 ===
 A [TeamCity build server](http://teamcity.chump.work/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
 * Build, test and deploy nuget on master branch.
 
-Who are Using This?
+<a name="who-are-using"></a>Who are Using This?
 ===
 It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/anjdreas/UnitsNet/issues) or edit the [README.md](https://github.com/anjdreas/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
