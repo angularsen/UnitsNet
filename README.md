@@ -7,7 +7,7 @@ Stop littering your code with unnecessary calculations. Units.NET gives you all 
 
 
 Installing
-===
+---
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
 
 ![Install-Package UnitsNet](https://raw.githubusercontent.com/anjdreas/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
@@ -18,7 +18,7 @@ Build Targets:
 * .NET 3.5 Client
 
 Overview
-===
+---
 * [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/Scripts/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
 * [826 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
