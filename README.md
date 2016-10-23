@@ -20,10 +20,11 @@ Build Targets:
 Overview
 ---
 * [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/Scripts/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [826 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
+* [827 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
+* [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Enumerate units](#enumerate-units) for user selection
 * [Precision and accuracy](#precision)
@@ -64,6 +65,21 @@ Length distance = Speed.FromKilometersPerHour(80) * TimeSpan.FromMinutes(30);
 Acceleration a1 = Speed.FromKilometersPerHour(80) / TimeSpan.FromSeconds(2);
 Acceleration a2 = Force.FromNewtons(100) / Mass.FromKilograms(20);
 RotationalSpeed r = Angle.FromDegrees(90) / TimeSpan.FromSeconds(2);
+```
+
+<a name="extension-methods"></a>Extension Methods
+---
+All units have associated extension methods for a really compact, expressive way to construct values or do arithmetic.
+```C#
+using UnitsNet.Extensions.NumberToDuration;
+using UnitsNet.Extensions.NumberToLength;
+using UnitsNet.Extensions.NumberToTimeSpan;
+
+Speed speed = 30.Kilometers() / 1.Hours(); // 30 km/h (using Duration type)
+Length distance = speed * 2.h(); // 60 km (using TimeSpan type)
+
+Acceleration stdGravity = 9.80665.MeterPerSecondSquared();
+Force weight = 80.Kilograms() * stdGravity; // 80 kilograms-force or 784.532 newtons
 ```
 
 <a name="culture"></a>Culture and Localization
