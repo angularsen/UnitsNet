@@ -23,7 +23,7 @@
 // Extension methods/overloads not supported in Universal Windows Platform (WinRT Components)
 using System;
 
-namespace UnitsNet.Extensions.Number
+namespace UnitsNet.Extensions.NumberToTimeSpan
 {
     public static class NumberToTimeSpanExtensions
     {

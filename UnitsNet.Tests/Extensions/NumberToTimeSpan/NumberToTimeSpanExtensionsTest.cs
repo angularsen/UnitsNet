@@ -21,9 +21,9 @@
 
 using System;
 using NUnit.Framework;
-using UnitsNet.Extensions.Number;
+using UnitsNet.Extensions.NumberToTimeSpan;
 
-namespace UnitsNet.Tests.Extensions.Number
+namespace UnitsNet.Tests.Extensions.NumberToTimeSpan
 {
     [TestFixture]
     public class NumberToTimeSpanExtensionsTest
