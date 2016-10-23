@@ -28,9 +28,9 @@ using System;
 
 #if !WINDOWS_UWP
 // Extension methods/overloads not supported in Universal Windows Platform (WinRT Components)
-namespace UnitsNet.Extensions
+namespace UnitsNet.Extensions.NumberTo$className
 {
-    public static partial class NumberExtensions
+    public static class NumberTo$($className)Extensions
     {
 "@; foreach ($unit in $units) {
         # A few units share the exact same name across unit classes, which give extension method name conflicts.

@@ -20,7 +20,10 @@
 // THE SOFTWARE.
 
 using NUnit.Framework;
-using UnitsNet.Extensions;
+using UnitsNet.Extensions.NumberToAngle;
+using UnitsNet.Extensions.NumberToForce;
+using UnitsNet.Extensions.NumberToLength;
+using UnitsNet.Extensions.NumberToMass;
 
 namespace UnitsNet.Tests
 {

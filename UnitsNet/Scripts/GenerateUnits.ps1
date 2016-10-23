@@ -175,10 +175,12 @@ function GenerateUnitClassEnum($unitClasses, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateNumberExtensions($unitClass, $outDir)
+function GenerateNumberExtensions($unitClass, $numberExtensionsDir)
 {
-    $fileName = "NumberExtensions.$($unitClass.Name).g.cs"
+	$outDir = "$numberExtensionsDir"
+    $fileName = "NumberTo$($unitClass.Name)Extensions.g.cs"
     $outFilePath = "$outDir/$fileName";
+	EnsureDirExists $outDir
     Write-Host -NoNewline "NumberExtensions"; 
 
     GenerateNumberExtensionsSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null;
@@ -210,8 +212,8 @@ function EnsureDirExists([String] $dirPath) {
 EnsureDirExists ($unitClassDir = "$PSScriptRoot/../GeneratedCode/UnitClasses")
 EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Enums")
 EnsureDirExists ($unitSystemDir = "$PSScriptRoot/../GeneratedCode")
-EnsureDirExists ($extensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions")
 EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
+EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
 EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
 
 $templatesDir = "$PSScriptRoot/UnitDefinitions"
@@ -243,7 +245,7 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     Write-Host -NoNewline "$($unitClass.Name):".PadRight($pad)
     GenerateUnitClass $unitClass $unitClassDir
     GenerateUnitEnum $unitClass $unitEnumDir
-    GenerateNumberExtensions $unitClass $extensionsDir
+    GenerateNumberExtensions $unitClass $numberExtensionsDir
     GenerateUnitTestBaseClass $unitClass $testsDir
     GenerateUnitTestClassIfNotExists $unitClass $testsCustomCodeDir
 
