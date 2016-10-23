@@ -24,14 +24,8 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-
 [assembly: AssemblyTitle("Units.NET")]
-[assembly:
-    AssemblyDescription(
-        "Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]
+[assembly: AssemblyDescription("Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andreas Gullberg Larsen")]
 [assembly: AssemblyProduct("Units.NET")]
@@ -40,17 +34,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
 [assembly: CLSCompliant(true)]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Give access to internal members for testing
-
 [assembly: InternalsVisibleTo("UnitsNet.Tests")]
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-
-[assembly: AssemblyVersion("3.33.0")]
-[assembly: AssemblyFileVersion("3.33.0")]
