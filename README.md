@@ -134,7 +134,7 @@ void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit n
 ```
 
 <a name="precision"></a>Precision and Accuracy
-===
+---
 A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units.
 
 Units.NET was intended for convenience and ease of use, not highly accurate conversions, but I am open to suggestions for improvements.
@@ -145,7 +145,7 @@ For more details, see [Precision](https://github.com/anjdreas/UnitsNet/wiki/Prec
 
 
 <a name="serialization"></a>Serialization
-===
+---
 * `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
 **Important!** 
@@ -155,7 +155,7 @@ The base unit of any unit should be be treated as volatile as we have changed th
 
 
 <a name="contribute"></a>Want To Contribute?
-==
+---
 This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/anjdreas/UnitsNet/issues) by creating an issue.
 
 Please read the wiki on [Adding a New Unit](https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit).
@@ -167,13 +167,13 @@ Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefin
   * [Create a pull request](https://help.github.com/articles/using-pull-requests)
 
 <a name="ci"></a>Continuous Integration
-===
+---
 A [TeamCity build server](http://teamcity.chump.work/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
 * Build and test pull requests. Notifies on success or error.
 * Build, test and deploy nuget on master branch.
 
 <a name="who-are-using"></a>Who are Using This?
-===
+---
 It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/anjdreas/UnitsNet/issues) or edit the [README.md](https://github.com/anjdreas/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
