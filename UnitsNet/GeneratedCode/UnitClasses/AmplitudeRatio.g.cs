@@ -110,6 +110,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get AmplitudeRatio in DecibelsUnloaded.
+        /// </summary>
+        public double DecibelsUnloaded
+        {
+            get { return _decibelVolts + 2.218487499; }
+        }
+
+        /// <summary>
         ///     Get AmplitudeRatio in DecibelVolts.
         /// </summary>
         public double DecibelVolts
@@ -140,6 +148,14 @@ namespace UnitsNet
         public static AmplitudeRatio FromDecibelMillivolts(double decibelmillivolts)
         {
             return new AmplitudeRatio(decibelmillivolts - 60);
+        }
+
+        /// <summary>
+        ///     Get AmplitudeRatio from DecibelsUnloaded.
+        /// </summary>
+        public static AmplitudeRatio FromDecibelsUnloaded(double decibelsunloaded)
+        {
+            return new AmplitudeRatio(decibelsunloaded - 2.218487499);
         }
 
         /// <summary>
@@ -182,6 +198,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelsUnloaded(double? decibelsunloaded)
+        {
+            if (decibelsunloaded.HasValue)
+            {
+                return FromDecibelsUnloaded(decibelsunloaded.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelVolts(double? decibelvolts)
@@ -212,6 +243,8 @@ namespace UnitsNet
                     return FromDecibelMicrovolts(val);
                 case AmplitudeRatioUnit.DecibelMillivolt:
                     return FromDecibelMillivolts(val);
+                case AmplitudeRatioUnit.DecibelUnloaded:
+                    return FromDecibelsUnloaded(val);
                 case AmplitudeRatioUnit.DecibelVolt:
                     return FromDecibelVolts(val);
 
@@ -239,6 +272,8 @@ namespace UnitsNet
                     return FromDecibelMicrovolts(value.Value);
                 case AmplitudeRatioUnit.DecibelMillivolt:
                     return FromDecibelMillivolts(value.Value);
+                case AmplitudeRatioUnit.DecibelUnloaded:
+                    return FromDecibelsUnloaded(value.Value);
                 case AmplitudeRatioUnit.DecibelVolt:
                     return FromDecibelVolts(value.Value);
 
@@ -407,6 +442,8 @@ namespace UnitsNet
                     return DecibelMicrovolts;
                 case AmplitudeRatioUnit.DecibelMillivolt:
                     return DecibelMillivolts;
+                case AmplitudeRatioUnit.DecibelUnloaded:
+                    return DecibelsUnloaded;
                 case AmplitudeRatioUnit.DecibelVolt:
                     return DecibelVolts;
 

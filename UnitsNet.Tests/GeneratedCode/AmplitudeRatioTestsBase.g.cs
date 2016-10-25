@@ -38,11 +38,13 @@ namespace UnitsNet.Tests
     {
         protected abstract double DecibelMicrovoltsInOneDecibelVolt { get; }
         protected abstract double DecibelMillivoltsInOneDecibelVolt { get; }
+        protected abstract double DecibelsUnloadedInOneDecibelVolt { get; }
         protected abstract double DecibelVoltsInOneDecibelVolt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecibelMicrovoltsTolerance { get { return 1e-5; } }
         protected virtual double DecibelMillivoltsTolerance { get { return 1e-5; } }
+        protected virtual double DecibelsUnloadedTolerance { get { return 1e-5; } }
         protected virtual double DecibelVoltsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -52,6 +54,7 @@ namespace UnitsNet.Tests
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.AreEqual(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.DecibelMicrovolts, DecibelMicrovoltsTolerance);
             Assert.AreEqual(DecibelMillivoltsInOneDecibelVolt, decibelvolt.DecibelMillivolts, DecibelMillivoltsTolerance);
+            Assert.AreEqual(DecibelsUnloadedInOneDecibelVolt, decibelvolt.DecibelsUnloaded, DecibelsUnloadedTolerance);
             Assert.AreEqual(DecibelVoltsInOneDecibelVolt, decibelvolt.DecibelVolts, DecibelVoltsTolerance);
         }
 
@@ -60,6 +63,7 @@ namespace UnitsNet.Tests
         {
             Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt).DecibelMicrovolts, DecibelMicrovoltsTolerance);
             Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt).DecibelMillivolts, DecibelMillivoltsTolerance);
+            Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded).DecibelsUnloaded, DecibelsUnloadedTolerance);
             Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt).DecibelVolts, DecibelVoltsTolerance);
         }
 
@@ -69,6 +73,7 @@ namespace UnitsNet.Tests
             var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.AreEqual(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMicrovolt), DecibelMicrovoltsTolerance);
             Assert.AreEqual(DecibelMillivoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMillivolt), DecibelMillivoltsTolerance);
+            Assert.AreEqual(DecibelsUnloadedInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelUnloaded), DecibelsUnloadedTolerance);
             Assert.AreEqual(DecibelVoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelVolt), DecibelVoltsTolerance);
         }
 
@@ -78,6 +83,7 @@ namespace UnitsNet.Tests
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.AreEqual(1, AmplitudeRatio.FromDecibelMicrovolts(decibelvolt.DecibelMicrovolts).DecibelVolts, DecibelMicrovoltsTolerance);
             Assert.AreEqual(1, AmplitudeRatio.FromDecibelMillivolts(decibelvolt.DecibelMillivolts).DecibelVolts, DecibelMillivoltsTolerance);
+            Assert.AreEqual(1, AmplitudeRatio.FromDecibelsUnloaded(decibelvolt.DecibelsUnloaded).DecibelVolts, DecibelsUnloadedTolerance);
             Assert.AreEqual(1, AmplitudeRatio.FromDecibelVolts(decibelvolt.DecibelVolts).DecibelVolts, DecibelVoltsTolerance);
         }
 

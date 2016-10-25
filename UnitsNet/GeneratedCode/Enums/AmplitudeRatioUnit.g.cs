@@ -27,6 +27,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         DecibelMicrovolt,
         DecibelMillivolt,
+        DecibelUnloaded,
         DecibelVolt,
     }
 }
