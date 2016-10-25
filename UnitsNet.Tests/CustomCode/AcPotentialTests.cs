@@ -33,20 +33,20 @@ namespace UnitsNet.Tests.CustomCode
     [Test]
     public void FromElectricPotential()
     {
-      Assert.AreEqual(2.5, AcPotential.FromPeakElectricalPotential(ElectricPotential.FromMillivolts(2500)).VoltsPeak);
-      Assert.AreEqual(102.5, AcPotential.FromRMSElectricalPotential(ElectricPotential.FromVolts(102.5)).VoltsRMS);
+      Assert.AreEqual(2.5, AcPotential.FromPeakElectricalPotential(ElectricPotential.FromMillivolts(2500)).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(102.5, AcPotential.FromRMSElectricalPotential(ElectricPotential.FromVolts(102.5)).VoltsRMS, VoltsRMSTolerance);
     }
 
     [Test]
     public void TakesAbsoluteValueOfInput()
     {
-      Assert.AreEqual(1.4, new AcPotential((decimal) -1.4).VoltsPeak);
-      Assert.AreEqual(12,new AcPotential((long) -12).VoltsPeak);
-      Assert.AreEqual(1.2,new AcPotential(-1.2).VoltsPeak);
-      Assert.AreEqual(15,new AcPotential(-15).VoltsPeak);
-      Assert.AreEqual(2,AcPotential.FromVoltsPeak(-2).VoltsPeak);
-      Assert.AreEqual(2.45,AcPotential.FromVoltsPeakToPeak(-2.45).VoltsPeakToPeak);
-      Assert.AreEqual(2.78,AcPotential.FromVoltsRMS(-2.78).VoltsRMS);
+      Assert.AreEqual(1.4, new AcPotential((decimal) -1.4).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(12,new AcPotential((long) -12).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(1.2,new AcPotential(-1.2).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(15,new AcPotential(-15).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(2,AcPotential.FromVoltsPeak(-2).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(2.45,AcPotential.FromVoltsPeakToPeak(-2.45).VoltsPeakToPeak, VoltsPeakToPeakTolerance);
+      Assert.AreEqual(2.78, AcPotential.FromVoltsRMS(-2.78).VoltsRMS, VoltsRMSTolerance);
     }
   }
 }
