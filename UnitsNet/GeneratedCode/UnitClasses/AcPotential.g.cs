@@ -38,7 +38,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
+    ///     A sinusoidally time-varying representation of ElectricPotential.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
@@ -95,7 +95,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get AcPotential in VoltsPeak.
+        ///     Get peak value of AcPotential.
         /// </summary>
         public double VoltsPeak
         {
@@ -103,7 +103,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get AcPotential in VoltsPeakToPeak.
+        ///     Get peak to peak value of AcPotential.
         /// </summary>
         public double VoltsPeakToPeak
         {
@@ -111,7 +111,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get AcPotential in VoltsRMS.
+        ///     Get RMS value of AcPotential.
         /// </summary>
         public double VoltsRMS
         {
