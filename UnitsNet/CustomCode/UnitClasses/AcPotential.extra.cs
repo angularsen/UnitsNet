@@ -19,49 +19,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using System;
 
 namespace UnitsNet
 {
-    public enum UnitClass
+#if WINDOWS_UWP
+    public sealed partial class AcPotential
+#else
+    public partial struct AcPotential
+#endif
     {
-        Undefined = 0,
-        Acceleration,
-        AcPotential,
-        AmplitudeRatio,
-        Angle,
-        Area,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricResistance,
-        Energy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        Frequency,
-        Information,
-        KinematicViscosity,
-        Length,
-        Level,
-        Mass,
-        MassFlow,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        Torque,
-        VitaminA,
-        Volume,
+      public static AcPotential FromPeakElectricalPotential(ElectricPotential voltsPeak)
+      {
+        return AcPotential.FromVoltsPeak(voltsPeak.Volts);
+      }
+
+      public static AcPotential FromRMSElectricalPotential(ElectricPotential voltsRMS)
+      { 
+        return AcPotential.FromVoltsRMS(voltsRMS.Volts);
+      }
     }
 }

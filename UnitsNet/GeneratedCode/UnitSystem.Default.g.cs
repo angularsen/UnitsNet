@@ -73,6 +73,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "nm/s²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AcPotentialUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AcPotentialUnit.VoltPeak,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Vp"),
+                            }),
+                        new CulturesForEnumValue((int) AcPotentialUnit.VoltPeakToPeak,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Vpp"),
+                            }),
+                        new CulturesForEnumValue((int) AcPotentialUnit.VoltRMS,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Vrms"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
                     new[]
                     {

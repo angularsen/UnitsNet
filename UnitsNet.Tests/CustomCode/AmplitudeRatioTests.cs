@@ -68,6 +68,18 @@ namespace UnitsNet.Tests.CustomCode
             return AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
         }
 
+        [TestCase(1, Result = 0)]
+        [TestCase(10, Result = 20)]
+        [TestCase(100, Result = 40)]
+        [TestCase(1000, Result = 60)]
+        public double ExpectAcVoltageConvertedToAmplitudeRatioCorrectly(double voltage)
+        {
+          // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
+          AcPotential v = AcPotential.FromVoltsRMS(voltage);
+
+          return AmplitudeRatio.FromAcPotential(v).DecibelVolts;
+        }
+
         [TestCase(-40, Result = 0.01)]
         [TestCase(-20, Result = 0.1)]
         [TestCase(0, Result = 1)]
@@ -79,6 +91,20 @@ namespace UnitsNet.Tests.CustomCode
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
             return AmplitudeRatio.ToElectricPotential(ar).Volts;
+        }
+
+
+        [TestCase(-40, Result = 0.01)]
+        [TestCase(-20, Result = 0.1)]
+        [TestCase(0, Result = 1)]
+        [TestCase(20, Result = 10)]
+        [TestCase(40, Result = 100)]
+        public double ExpectAmplitudeRatioConvertedToAcPotentialCorrectly(double amplitudeRatio)
+        {
+          // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
+          AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
+
+          return AmplitudeRatio.ToAcPotential(ar).VoltsRMS;
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808

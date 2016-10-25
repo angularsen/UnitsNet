@@ -42,6 +42,21 @@ namespace UnitsNet.CustomCode.Extensions
         }
 
         /// <summary>
+        ///     Gets an <see cref="ElectricPotential" /> from <see cref="AcPotential" />.
+        /// </summary>
+        /// <paramref name="amplitudeRatio">The amplitude ratio to convert.</paramref>
+        /// <remarks>
+        ///     Provides a nicer syntax for converting an amplitude ratio back to an ac voltage.
+        ///     <example>
+        ///         <c>var voltage = voltageRatio.ToAcPotential();</c>
+        ///     </example>
+        /// </remarks>
+        public static AcPotential ToAcPotential(this AmplitudeRatio amplitudeRatio)
+        {
+          return AmplitudeRatio.ToAcPotential(amplitudeRatio);
+        }
+
+        /// <summary>
         ///     Converts a <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.
         /// </summary>
         /// <param name="amplitudeRatio">The amplitude ratio to convert.</param>
