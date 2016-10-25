@@ -58,9 +58,9 @@ namespace UnitsNet
         }
 #endif
 
-        public AcPotential(double voltsPeak)
+        public AcPotential(double voltspeak)
         {
-          _voltsPeak = Math.Abs(Convert.ToDouble(voltsPeak));
+            _voltsPeak = Convert.ToDouble(voltspeak);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -69,22 +69,21 @@ namespace UnitsNet
 #else
         public
 #endif
-        AcPotential(long voltsPeak)
+        AcPotential(long voltspeak)
         {
-          this._voltsPeak = Math.Abs(Convert.ToDouble(voltsPeak));
+            _voltsPeak = Convert.ToDouble(voltspeak);
         }
 
-
-      // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
         // Decimal type not supported in Universal Windows Platform (WinRT Components).
 #if WINDOWS_UWP
         private
 #else
         public
 #endif
-        AcPotential(decimal voltsPeak)
+        AcPotential(decimal voltspeak)
         {
-          _voltsPeak = Math.Abs(Convert.ToDouble(voltsPeak));
+            _voltsPeak = Convert.ToDouble(voltspeak);
         }
 
         #region Properties
@@ -95,27 +94,27 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get peak value of AcPotential.
+        ///     Get AcPotential in VoltsPeak.
         /// </summary>
         public double VoltsPeak
         {
-            get { return _voltsPeak; }
+            get { return Math.Abs(_voltsPeak); }
         }
 
         /// <summary>
-        ///     Get peak to peak value of AcPotential.
+        ///     Get AcPotential in VoltsPeakToPeak.
         /// </summary>
         public double VoltsPeakToPeak
         {
-            get { return 2*_voltsPeak; }
+            get { return 2*Math.Abs(_voltsPeak); }
         }
 
         /// <summary>
-        ///     Get RMS value of AcPotential.
+        ///     Get AcPotential in VoltsRMS.
         /// </summary>
         public double VoltsRMS
         {
-            get { return _voltsPeak/Math.Sqrt(2); }
+            get { return Math.Abs(_voltsPeak)/Math.Sqrt(2); }
         }
 
         #endregion
@@ -130,9 +129,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AcPotential from VoltsPeak.
         /// </summary>
-        public static AcPotential FromVoltsPeak(double voltsPeak)
+        public static AcPotential FromVoltsPeak(double voltspeak)
         {
-            return new AcPotential(voltsPeak);
+            return new AcPotential(Math.Abs(voltspeak));
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         public static AcPotential FromVoltsPeakToPeak(double voltspeaktopeak)
         {
-            return new AcPotential(voltspeaktopeak/2);
+            return new AcPotential(Math.Abs(voltspeaktopeak)/2);
         }
 
         /// <summary>
@@ -148,18 +147,18 @@ namespace UnitsNet
         /// </summary>
         public static AcPotential FromVoltsRMS(double voltsrms)
         {
-            return new AcPotential(Math.Sqrt(2)*voltsrms);
+            return new AcPotential(Math.Sqrt(2)*Math.Abs(voltsrms));
         }
 
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable AcPotential from nullable VoltsPeak.
         /// </summary>
-        public static AcPotential? FromVoltsPeak(double? voltsPeak)
+        public static AcPotential? FromVoltsPeak(double? voltspeak)
         {
-            if (voltsPeak.HasValue)
+            if (voltspeak.HasValue)
             {
-                return FromVoltsPeak(voltsPeak.Value);
+                return FromVoltsPeak(voltspeak.Value);
             }
             else
             {

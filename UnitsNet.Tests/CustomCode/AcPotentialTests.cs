@@ -41,11 +41,11 @@ namespace UnitsNet.Tests.CustomCode
     public void TakesAbsoluteValueOfInput()
     {
       Assert.AreEqual(1.4, new AcPotential((decimal) -1.4).VoltsPeak, VoltsPeakTolerance);
-      Assert.AreEqual(12,new AcPotential((long) -12).VoltsPeak, VoltsPeakTolerance);
-      Assert.AreEqual(1.2,new AcPotential(-1.2).VoltsPeak, VoltsPeakTolerance);
-      Assert.AreEqual(15,new AcPotential(-15).VoltsPeak, VoltsPeakTolerance);
-      Assert.AreEqual(2,AcPotential.FromVoltsPeak(-2).VoltsPeak, VoltsPeakTolerance);
-      Assert.AreEqual(2.45,AcPotential.FromVoltsPeakToPeak(-2.45).VoltsPeakToPeak, VoltsPeakToPeakTolerance);
+      Assert.AreEqual(12, new AcPotential(-12).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(1.2, new AcPotential(-1.2).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(15, new AcPotential(-15).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(2, AcPotential.FromVoltsPeak(-2).VoltsPeak, VoltsPeakTolerance);
+      Assert.AreEqual(2.45, AcPotential.FromVoltsPeakToPeak(-2.45).VoltsPeakToPeak, VoltsPeakToPeakTolerance);
       Assert.AreEqual(2.78, AcPotential.FromVoltsRMS(-2.78).VoltsRMS, VoltsRMSTolerance);
     }
   }

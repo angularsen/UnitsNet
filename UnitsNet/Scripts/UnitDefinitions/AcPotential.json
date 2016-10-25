@@ -1,13 +1,13 @@
 ﻿{
   "Name": "AcPotential",
   "BaseUnit": "VoltPeak",
-  "XmlDoc": "In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.",
+  "XmlDoc": "A sinusoidally time-varying representation of ElectricPotential.",
   "Units": [
      {
       "SingularName": "VoltPeak",
       "PluralName": "VoltsPeak",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "Math.Abs(x)",
+      "FromBaseToUnitFunc": "Math.Abs(x)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -18,8 +18,8 @@
     {
       "SingularName": "VoltPeakToPeak",
       "PluralName": "VoltsPeakToPeak",
-      "FromUnitToBaseFunc": "x/2",
-      "FromBaseToUnitFunc": "2*x",
+      "FromUnitToBaseFunc": "Math.Abs(x)/2",
+      "FromBaseToUnitFunc": "2*Math.Abs(x)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,8 +30,8 @@
     {
       "SingularName": "VoltRMS",
       "PluralName": "VoltsRMS",
-      "FromUnitToBaseFunc": "Math.Sqrt(2)*x",
-      "FromBaseToUnitFunc": "x/Math.Sqrt(2)",
+      "FromUnitToBaseFunc": "Math.Sqrt(2)*Math.Abs(x)",
+      "FromBaseToUnitFunc": "Math.Abs(x)/Math.Sqrt(2)",
       "Localization": [
         {
           "Culture": "en-US",
