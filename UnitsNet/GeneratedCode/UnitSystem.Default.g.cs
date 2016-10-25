@@ -86,6 +86,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dBmV"),
                             }),
+                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelUnloaded,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dBu"),
+                            }),
                         new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelVolt,
                             new[]
                             {

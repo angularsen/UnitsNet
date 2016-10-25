@@ -95,6 +95,40 @@ namespace UnitsNet.Extensions.NumberToAmplitudeRatio
 
         #endregion
 
+        #region DecibelUnloaded
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)"/>
+        public static AmplitudeRatio DecibelsUnloaded(this int value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double?)"/>
+        public static AmplitudeRatio? DecibelsUnloaded(this int? value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)"/>
+        public static AmplitudeRatio DecibelsUnloaded(this long value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double?)"/>
+        public static AmplitudeRatio? DecibelsUnloaded(this long? value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)"/>
+        public static AmplitudeRatio DecibelsUnloaded(this double value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double?)"/>
+        public static AmplitudeRatio? DecibelsUnloaded(this double? value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)"/>
+        public static AmplitudeRatio DecibelsUnloaded(this float value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double?)"/>
+        public static AmplitudeRatio? DecibelsUnloaded(this float? value) => AmplitudeRatio.FromDecibelsUnloaded(value);
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)"/>
+        public static AmplitudeRatio DecibelsUnloaded(this decimal value) => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double?)"/>
+        public static AmplitudeRatio? DecibelsUnloaded(this decimal? value) => AmplitudeRatio.FromDecibelsUnloaded(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DecibelVolt
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(double)"/>

@@ -31,6 +31,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecibelMillivoltsInOneDecibelVolt => 61;
 
+        protected override double DecibelsUnloadedInOneDecibelVolt => 3.218487499;
+
         protected override double DecibelVoltsInOneDecibelVolt => 1;
 
         protected override void AssertLogarithmicAddition()
