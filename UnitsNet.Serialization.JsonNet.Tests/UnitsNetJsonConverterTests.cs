@@ -226,12 +226,95 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 //  still deserializable, and the correct value of 1000 g is obtained.
                 Assert.That(deserializedMass.Grams, Is.EqualTo(1000));
             }
+
+            [Test]
+            public void UnitInIComparable_ExpectUnitCorrectlyDeserialized()
+            {
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                {
+                    Value = Power.FromWatts(10)
+                };
+                var jsonSerializerSettings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Objects
+                };
+                jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+
+                string json = JsonConvert.SerializeObject(testObjWithIComparable,jsonSerializerSettings);
+
+                jsonSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+                var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
+               
+                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(Power)));
+                Assert.That((Power)deserializedTestObject.Value, Is.EqualTo(Power.FromWatts(10)));
+            }
+
+            [Test]
+            public void DoubleInIComparable_ExpectUnitCorrectlyDeserialized()
+            {
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                {
+                    Value = 10.0
+                };
+                var jsonSerializerSettings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Objects
+                };
+                jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+
+                string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
+
+                jsonSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+                var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
+
+                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(double)));
+                Assert.That((double)deserializedTestObject.Value, Is.EqualTo(10.0));
+            }
+
+            [Test]
+            public void ClassInIComparable_ExpectUnitCorrectlyDeserialized()
+            {
+                TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
+                {
+                    Value = new ComparableClass() { Value = 10 }
+                };
+                var jsonSerializerSettings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Objects
+                };
+                jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+
+                string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
+
+                jsonSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+                var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
+
+                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(ComparableClass)));
+                Assert.That(((ComparableClass)(deserializedTestObject.Value)).Value, Is.EqualTo(10.0));
+            }
         }
 
         internal class TestObj
         {
             public Frequency? NullableFrequency { get; set; }
             public Frequency NonNullableFrequency { get; set; }
+        }
+
+        internal class ComparableClass : IComparable
+        {
+            public int Value { get; set; }
+            public int CompareTo(object obj)
+            {
+                return Value.CompareTo(obj);
+            }
+        }
+
+        internal class TestObjWithIComparable
+        {
+            public IComparable Value { get; set; }
         }
     }
 }
