@@ -10,6 +10,13 @@ function GenerateNumberExtensionsSourceCode($unitClass)
 //     Changes to this file will be lost when the code is regenerated.
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
+//
+//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//
+//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
+//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
+//     Add Scripts\UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//
 // </auto-generated>
 //------------------------------------------------------------------------------
 
