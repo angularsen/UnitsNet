@@ -1,3 +1,4 @@
 @echo off
-powershell -ExecutionPolicy Bypass -NoProfile -File .\UnitsNet\Scripts\GenerateUnits.ps1
+SET scriptdir=%~dp0
+powershell -ExecutionPolicy Bypass -NoProfile -File %scriptdir%UnitsNet\Scripts\GenerateUnits.ps1
 pause
