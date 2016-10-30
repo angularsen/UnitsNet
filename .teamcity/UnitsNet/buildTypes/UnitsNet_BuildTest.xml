@@ -7,20 +7,11 @@
       <option name="artifactRules" value="Artifacts" />
       <option name="executionTimeoutMin" value="5" />
     </options>
-    <disabled-settings>
-      <setting-ref ref="RUNNER_11" />
-    </disabled-settings>
     <parameters />
     <build-runners>
       <runner id="RUNNER_4" name="build.bat" type="simpleRunner">
         <parameters>
           <param name="command.executable" value="Build/build.bat" />
-          <param name="teamcity.step.mode" value="default" />
-        </parameters>
-      </runner>
-      <runner id="RUNNER_11" name="nuget-publish.bat" type="simpleRunner">
-        <parameters>
-          <param name="command.executable" value="Build/nuget-publish.bat" />
           <param name="teamcity.step.mode" value="default" />
         </parameters>
       </runner>
