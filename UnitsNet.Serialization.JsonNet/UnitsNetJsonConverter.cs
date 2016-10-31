@@ -117,7 +117,7 @@ namespace UnitsNet.Serialization.JsonNet
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
-            if (!token.HasValues || token["Unit"] == null || token["Value"] == null)
+            if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
                 JsonSerializer localSerializer = new JsonSerializer()
                 {
@@ -129,8 +129,8 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 return new ValueUnit()
                 {
-                    Unit = token["Unit"].ToString(),
-                    Value = token["Value"].ToObject<double>()
+                    Unit = token[nameof(ValueUnit.Unit)].ToString(),
+                    Value = token[nameof(ValueUnit.Value)].ToObject<double>()
                 };
             }
         }
@@ -225,12 +225,11 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
             }
 
-            return objectType.Namespace != null && 
-                (objectType.Namespace.Equals("UnitsNet") || 
-                objectType == typeof(ValueUnit) || 
+            return objectType.Namespace != null &&
+                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
-                objectType==typeof(IComparable) ||
-                objectType.FullName.StartsWith("System." + nameof(IComparable)));
+                objectType == typeof(IComparable));
         }
 
         /// <summary>
@@ -252,7 +251,7 @@ namespace UnitsNet.Serialization.JsonNet
         {
             // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
             // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
-            return objectType.FullName != null && objectType.FullName.Contains("UnitsNet.");
+            return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
         #endregion
