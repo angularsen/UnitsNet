@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet.Serialization.JsonNet</id>
-    <version>1.0.0-alpha3</version>
+    <version>1.0.0-alpha4</version>
     <title>Units.NET Serialization</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
@@ -14,7 +14,7 @@
     <summary>Simplifies working with the serialization and deserialization of units of measurement using Json.NET.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>
+    <copyright>Copyright © 2007 Andreas Gullberg Larsen</copyright>
     <language>en-US</language>
     <tags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</tags>
     <dependencies>
