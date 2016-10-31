@@ -359,10 +359,15 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public Frequency NonNullableFrequency { get; set; }
         }
 
-        internal class TestObjWithValueAndUnit
+        internal class TestObjWithValueAndUnit : IComparable
         {
             public double Value { get; set; }
             public string Unit { get; set; }
+
+            public int CompareTo(object obj)
+            {
+                return Value.CompareTo(obj);
+            }
         }
 
         internal class ComparableClass : IComparable
