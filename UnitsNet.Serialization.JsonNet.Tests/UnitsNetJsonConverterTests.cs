@@ -296,49 +296,26 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.That(deserializedTestObject.Unit, Is.EqualTo("Test"));
             }
 
-            [Test, TestCaseSource(nameof(TestObjectsForThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized))]
-            public void ThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized(
-                IComparable comparable1,
-                IComparable comparable2,
-                IComparable comparable3)
+            [Test]
+            public void ThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized()
             {
                 TestObjWithThreeIComparable testObjWithIComparable = new TestObjWithThreeIComparable()
                 {
-                    Value1 = comparable1,
-                    Value2 = comparable2,
-                    Value3 = comparable3,
+                    Value1 = 10.0,
+                    Value2 = Power.FromWatts(19),
+                    Value3 = new ComparableClass() { Value = 10 },
                 };
                 JsonSerializerSettings jsonSerializerSettings = CreateJsonSerializerSettings();
 
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithThreeIComparable>(json, jsonSerializerSettings);
 
-                Assert.That(deserializedTestObject.Value1.GetType(), Is.EqualTo(comparable1.GetType()));
-                Assert.That((deserializedTestObject.Value1), Is.EqualTo(comparable1));
-                Assert.That(deserializedTestObject.Value2.GetType(), Is.EqualTo(comparable2.GetType()));
-                Assert.That((deserializedTestObject.Value2), Is.EqualTo(comparable2));
-                Assert.That(deserializedTestObject.Value3.GetType(), Is.EqualTo(comparable3.GetType()));
-                Assert.That((deserializedTestObject.Value3), Is.EqualTo(comparable3));
-            }
-
-            private static object[] TestObjectsForThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized
-            {
-                get
-                {
-                    List<object> result = new List<object>();
-                    var objects = new object[] { 10.0, Power.FromWatts(19), new ComparableClass() { Value = 10 } };
-                    for (int i = 0; i < objects.Length; i++)
-                    {
-                        for (int j = 0; j < objects.Length; j++)
-                        {
-                            for (int k = 0; k < objects.Length; k++)
-                            {
-                                result.Add(new object[] { objects[i], objects[j], objects[k]});
-                            }
-                        }
-                    }
-                    return result.ToArray();
-                }
+                Assert.That(deserializedTestObject.Value1.GetType(), Is.EqualTo(typeof(double)));
+                Assert.That((deserializedTestObject.Value1), Is.EqualTo(10.0));
+                Assert.That(deserializedTestObject.Value2.GetType(), Is.EqualTo(typeof(Power)));
+                Assert.That((deserializedTestObject.Value2), Is.EqualTo(Power.FromWatts(19)));
+                Assert.That(deserializedTestObject.Value3.GetType(), Is.EqualTo(typeof(ComparableClass)));
+                Assert.That((deserializedTestObject.Value3), Is.EqualTo(testObjWithIComparable.Value3));
             }
 
             private static JsonSerializerSettings CreateJsonSerializerSettings()
