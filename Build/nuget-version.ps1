@@ -147,6 +147,6 @@ foreach ($path in $nuspecPaths) {
 
 git add UnitsNet.nuspec UnitsNet.WindowsRuntimeComponent.nuspec
 git commit -m "UnitsNet: $newSemVer"
-git tag $newSemVer
+git tag -a $newSemVer -m "$newSemVer" -m "TODO List changes here"
 
 Write-Host "New tag: $newSemVer"
