@@ -25,6 +25,7 @@ using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -55,10 +56,17 @@ namespace UnitsNet.Serialization.JsonNet
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            var vu = serializer.Deserialize<ValueUnit>(reader);
-            // A null System.Nullable value was deserialized so just return null.
+            if (reader.ValueType != null)
+            {
+                return reader.Value;
+            }
+            object obj = TryDeserializeIComparable(reader, serializer);
+            var vu = obj as ValueUnit;
+            // A null System.Nullable value or a comparable type was deserialized so return this
             if (vu == null)
-                return null;
+            {
+                return obj;
+            }
 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
@@ -102,8 +110,29 @@ namespace UnitsNet.Serialization.JsonNet
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
             // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
             // will likely return a very different result. Not sure how we can handle this?
-            return fromMethod.Invoke(null, BindingFlags.Static, null, new[] {vu.Value, unit},
+            return fromMethod.Invoke(null, BindingFlags.Static, null, new[] { vu.Value, unit },
                 CultureInfo.InvariantCulture);
+        }
+
+        private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
+        {
+            JToken token = JToken.Load(reader);
+            if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
+            {
+                JsonSerializer localSerializer = new JsonSerializer()
+                {
+                    TypeNameHandling = serializer.TypeNameHandling,
+                };
+                return token.ToObject<IComparable>(localSerializer);
+            }
+            else
+            {
+                return new ValueUnit()
+                {
+                    Unit = token[nameof(ValueUnit.Unit)].ToString(),
+                    Value = token[nameof(ValueUnit.Value)].ToObject<double>()
+                };
+            }
         }
 
         /// <summary>
@@ -117,6 +146,18 @@ namespace UnitsNet.Serialization.JsonNet
         {
             Type unitType = value.GetType();
 
+            // ValueUnit should be written as usual (but read in a custom way)
+            if(unitType == typeof(ValueUnit))
+            {
+                JsonSerializer localSerializer = new JsonSerializer()
+                {
+                    TypeNameHandling = serializer.TypeNameHandling,
+                };
+                JToken t = JToken.FromObject(value, localSerializer);
+                
+                t.WriteTo(writer);
+                return;
+            }
             FieldInfo[] fields =
                 unitType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             if (fields.Length == 0)
@@ -184,7 +225,11 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
             }
 
-            return objectType.Namespace != null && objectType.Namespace.Equals("UnitsNet");
+            return objectType.Namespace != null &&
+                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                objectType == typeof(ValueUnit) ||
+                // All unit types implement IComparable
+                objectType == typeof(IComparable));
         }
 
         /// <summary>
@@ -206,7 +251,7 @@ namespace UnitsNet.Serialization.JsonNet
         {
             // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
             // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
-            return objectType.FullName != null && objectType.FullName.Contains("UnitsNet.");
+            return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
         #endregion
