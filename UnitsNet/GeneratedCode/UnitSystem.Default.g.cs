@@ -734,10 +734,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "cN/s"),
                             }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daN/m"),
+                            }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.DecinewtonPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kN/m"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerSecond,
                             new[]
@@ -758,6 +768,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nN/s"),
+                            }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N/m"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
                             new[]

@@ -43,11 +43,14 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CentinewtonPerSecond,
+        DecanewtonPerMinute,
         DecinewtonPerSecond,
+        KilonewtonPerMinute,
         KilonewtonPerSecond,
         MicronewtonPerSecond,
         MillinewtonPerSecond,
         NanonewtonPerSecond,
+        NewtonPerMinute,
         NewtonPerSecond,
     }
 }
