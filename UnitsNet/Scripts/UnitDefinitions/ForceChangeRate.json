@@ -6,8 +6,8 @@
 {
       "SingularName": "NewtonPerMinute",
       "PluralName": "NewtonsPerMinute",
-      "FromUnitToBaseFunc": "x*60",
-      "FromBaseToUnitFunc": "x/60",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
       "Prefixes": [ "Deca", "Kilo" ],
       "Localization": [
         {

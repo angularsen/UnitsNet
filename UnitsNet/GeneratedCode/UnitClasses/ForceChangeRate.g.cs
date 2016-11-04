@@ -123,7 +123,7 @@ namespace UnitsNet
         /// </summary>
         public double DecanewtonsPerMinute
         {
-            get { return (_newtonsPerSecond/60) / 1e1d; }
+            get { return (_newtonsPerSecond*60) / 1e1d; }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         public double KilonewtonsPerMinute
         {
-            get { return (_newtonsPerSecond/60) / 1e3d; }
+            get { return (_newtonsPerSecond*60) / 1e3d; }
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace UnitsNet
         /// </summary>
         public double NewtonsPerMinute
         {
-            get { return _newtonsPerSecond/60; }
+            get { return _newtonsPerSecond*60; }
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace UnitsNet
         /// </summary>
         public static ForceChangeRate FromDecanewtonsPerMinute(double decanewtonsperminute)
         {
-            return new ForceChangeRate((decanewtonsperminute*60) * 1e1d);
+            return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace UnitsNet
         /// </summary>
         public static ForceChangeRate FromKilonewtonsPerMinute(double kilonewtonsperminute)
         {
-            return new ForceChangeRate((kilonewtonsperminute*60) * 1e3d);
+            return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace UnitsNet
         /// </summary>
         public static ForceChangeRate FromNewtonsPerMinute(double newtonsperminute)
         {
-            return new ForceChangeRate(newtonsperminute*60);
+            return new ForceChangeRate(newtonsperminute/60);
         }
 
         /// <summary>
