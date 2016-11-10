@@ -53,6 +53,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class DensityTestsBase
     {
+        protected abstract double GramsPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
+        protected abstract double GramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
+        protected abstract double GramsPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
         protected abstract double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
         protected abstract double KilogramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
         protected abstract double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
@@ -65,6 +68,9 @@ namespace UnitsNet.Tests
         protected abstract double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double GramsPerCubicCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerCubicMillimeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerCubicCentimeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerCubicMillimeterTolerance { get { return 1e-5; } }
@@ -81,6 +87,9 @@ namespace UnitsNet.Tests
         public void KilogramPerCubicMeterToDensityUnits()
         {
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
+            Assert.AreEqual(GramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
+            Assert.AreEqual(GramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+            Assert.AreEqual(GramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
             Assert.AreEqual(KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
             Assert.AreEqual(KilogramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
             Assert.AreEqual(KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
@@ -96,6 +105,9 @@ namespace UnitsNet.Tests
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, Density.From(1, DensityUnit.GramPerCubicCentimeter).GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
+            Assert.AreEqual(1, Density.From(1, DensityUnit.GramPerCubicMeter).GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+            Assert.AreEqual(1, Density.From(1, DensityUnit.GramPerCubicMillimeter).GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
             Assert.AreEqual(1, Density.From(1, DensityUnit.KilogramPerCubicCentimeter).KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
             Assert.AreEqual(1, Density.From(1, DensityUnit.KilogramPerCubicMeter).KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
             Assert.AreEqual(1, Density.From(1, DensityUnit.KilogramPerCubicMillimeter).KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
@@ -112,6 +124,9 @@ namespace UnitsNet.Tests
         public void As()
         {
             var kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
+            Assert.AreEqual(GramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicCentimeter), GramsPerCubicCentimeterTolerance);
+            Assert.AreEqual(GramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicMeter), GramsPerCubicMeterTolerance);
+            Assert.AreEqual(GramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicMillimeter), GramsPerCubicMillimeterTolerance);
             Assert.AreEqual(KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilogramPerCubicCentimeter), KilogramsPerCubicCentimeterTolerance);
             Assert.AreEqual(KilogramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilogramPerCubicMeter), KilogramsPerCubicMeterTolerance);
             Assert.AreEqual(KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilogramPerCubicMillimeter), KilogramsPerCubicMillimeterTolerance);
@@ -128,6 +143,9 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
+            Assert.AreEqual(1, Density.FromGramsPerCubicCentimeter(kilogrampercubicmeter.GramsPerCubicCentimeter).KilogramsPerCubicMeter, GramsPerCubicCentimeterTolerance);
+            Assert.AreEqual(1, Density.FromGramsPerCubicMeter(kilogrampercubicmeter.GramsPerCubicMeter).KilogramsPerCubicMeter, GramsPerCubicMeterTolerance);
+            Assert.AreEqual(1, Density.FromGramsPerCubicMillimeter(kilogrampercubicmeter.GramsPerCubicMillimeter).KilogramsPerCubicMeter, GramsPerCubicMillimeterTolerance);
             Assert.AreEqual(1, Density.FromKilogramsPerCubicCentimeter(kilogrampercubicmeter.KilogramsPerCubicCentimeter).KilogramsPerCubicMeter, KilogramsPerCubicCentimeterTolerance);
             Assert.AreEqual(1, Density.FromKilogramsPerCubicMeter(kilogrampercubicmeter.KilogramsPerCubicMeter).KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
             Assert.AreEqual(1, Density.FromKilogramsPerCubicMillimeter(kilogrampercubicmeter.KilogramsPerCubicMillimeter).KilogramsPerCubicMeter, KilogramsPerCubicMillimeterTolerance);
