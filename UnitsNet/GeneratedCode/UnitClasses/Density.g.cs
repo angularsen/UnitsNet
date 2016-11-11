@@ -111,11 +111,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density in GramsPerCubicCentimeter.
+        /// </summary>
+        public double GramsPerCubicCentimeter
+        {
+            get { return _kilogramsPerCubicMeter*1e-3; }
+        }
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicMeter.
+        /// </summary>
+        public double GramsPerCubicMeter
+        {
+            get { return _kilogramsPerCubicMeter*1e3; }
+        }
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicMillimeter.
+        /// </summary>
+        public double GramsPerCubicMillimeter
+        {
+            get { return _kilogramsPerCubicMeter*1e-6; }
+        }
+
+        /// <summary>
         ///     Get Density in KilogramsPerCubicCentimeter.
         /// </summary>
         public double KilogramsPerCubicCentimeter
         {
-            get { return _kilogramsPerCubicMeter*1e-6; }
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e3d; }
         }
 
         /// <summary>
@@ -123,7 +147,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerCubicMeter
         {
-            get { return _kilogramsPerCubicMeter; }
+            get { return (_kilogramsPerCubicMeter*1e3) / 1e3d; }
         }
 
         /// <summary>
@@ -131,7 +155,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerCubicMillimeter
         {
-            get { return _kilogramsPerCubicMeter*1e-9; }
+            get { return (_kilogramsPerCubicMeter*1e-6) / 1e3d; }
         }
 
         /// <summary>
@@ -200,11 +224,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density from GramsPerCubicCentimeter.
+        /// </summary>
+        public static Density FromGramsPerCubicCentimeter(double gramspercubiccentimeter)
+        {
+            return new Density(gramspercubiccentimeter/1e-3);
+        }
+
+        /// <summary>
+        ///     Get Density from GramsPerCubicMeter.
+        /// </summary>
+        public static Density FromGramsPerCubicMeter(double gramspercubicmeter)
+        {
+            return new Density(gramspercubicmeter/1e3);
+        }
+
+        /// <summary>
+        ///     Get Density from GramsPerCubicMillimeter.
+        /// </summary>
+        public static Density FromGramsPerCubicMillimeter(double gramspercubicmillimeter)
+        {
+            return new Density(gramspercubicmillimeter/1e-6);
+        }
+
+        /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
         public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter)
         {
-            return new Density(kilogramspercubiccentimeter/1e-6);
+            return new Density((kilogramspercubiccentimeter/1e-3) * 1e3d);
         }
 
         /// <summary>
@@ -212,7 +260,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromKilogramsPerCubicMeter(double kilogramspercubicmeter)
         {
-            return new Density(kilogramspercubicmeter);
+            return new Density((kilogramspercubicmeter/1e3) * 1e3d);
         }
 
         /// <summary>
@@ -220,7 +268,7 @@ namespace UnitsNet
         /// </summary>
         public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter)
         {
-            return new Density(kilogramspercubicmillimeter/1e-9);
+            return new Density((kilogramspercubicmillimeter/1e-6) * 1e3d);
         }
 
         /// <summary>
@@ -280,6 +328,51 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicCentimeter(double? gramspercubiccentimeter)
+        {
+            if (gramspercubiccentimeter.HasValue)
+            {
+                return FromGramsPerCubicCentimeter(gramspercubiccentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicMeter(double? gramspercubicmeter)
+        {
+            if (gramspercubicmeter.HasValue)
+            {
+                return FromGramsPerCubicMeter(gramspercubicmeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicMillimeter(double? gramspercubicmillimeter)
+        {
+            if (gramspercubicmillimeter.HasValue)
+            {
+                return FromGramsPerCubicMillimeter(gramspercubicmillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
         /// </summary>
@@ -442,6 +535,12 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case DensityUnit.GramPerCubicCentimeter:
+                    return FromGramsPerCubicCentimeter(val);
+                case DensityUnit.GramPerCubicMeter:
+                    return FromGramsPerCubicMeter(val);
+                case DensityUnit.GramPerCubicMillimeter:
+                    return FromGramsPerCubicMillimeter(val);
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return FromKilogramsPerCubicCentimeter(val);
                 case DensityUnit.KilogramPerCubicMeter:
@@ -483,6 +582,12 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case DensityUnit.GramPerCubicCentimeter:
+                    return FromGramsPerCubicCentimeter(value.Value);
+                case DensityUnit.GramPerCubicMeter:
+                    return FromGramsPerCubicMeter(value.Value);
+                case DensityUnit.GramPerCubicMillimeter:
+                    return FromGramsPerCubicMillimeter(value.Value);
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return FromKilogramsPerCubicCentimeter(value.Value);
                 case DensityUnit.KilogramPerCubicMeter:
@@ -657,6 +762,12 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case DensityUnit.GramPerCubicCentimeter:
+                    return GramsPerCubicCentimeter;
+                case DensityUnit.GramPerCubicMeter:
+                    return GramsPerCubicMeter;
+                case DensityUnit.GramPerCubicMillimeter:
+                    return GramsPerCubicMillimeter;
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return KilogramsPerCubicCentimeter;
                 case DensityUnit.KilogramPerCubicMeter:

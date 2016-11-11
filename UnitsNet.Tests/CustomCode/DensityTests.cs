@@ -25,6 +25,9 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
+        protected override double GramsPerCubicMeterInOneKilogramPerCubicMeter => 1e3;
+        protected override double GramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-6;
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
 
         protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;

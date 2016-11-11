@@ -5,42 +5,45 @@
   "XmlDocRemarks": "http://en.wikipedia.org/wiki/Density",
   "Units": [
     {
-      "SingularName": "KilogramPerCubicMillimeter",
-      "PluralName": "KilogramsPerCubicMillimeter",
-      "FromUnitToBaseFunc": "x/1e-9",
-      "FromBaseToUnitFunc": "x*1e-9",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "kg/mm³" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "KilogramPerCubicCentimeter",
-      "PluralName": "KilogramsPerCubicCentimeter",
+      "SingularName": "GramPerCubicMillimeter",
+      "PluralName": "GramsPerCubicMillimeter",
       "FromUnitToBaseFunc": "x/1e-6",
       "FromBaseToUnitFunc": "x*1e-6",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/cm³" ]
+          "Abbreviations": [ "g/mm³" ]
         }
       ]
     },
     {
-      "SingularName": "KilogramPerCubicMeter",
-      "PluralName": "KilogramsPerCubicMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "SingularName": "GramPerCubicCentimeter",
+      "PluralName": "GramsPerCubicCentimeter",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/m³" ]
+          "Abbreviations": [ "g/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicMeter",
+      "PluralName": "GramsPerCubicMeter",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/m³" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кг/м³" ]
+          "Abbreviations": [ "г/м³" ]
         }
       ]
     },

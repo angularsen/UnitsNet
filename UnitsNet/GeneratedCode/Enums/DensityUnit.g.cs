@@ -42,6 +42,9 @@ namespace UnitsNet.Units
     public enum DensityUnit
     {
         Undefined = 0,
+        GramPerCubicCentimeter,
+        GramPerCubicMeter,
+        GramPerCubicMillimeter,
         KilogramPerCubicCentimeter,
         KilogramPerCubicMeter,
         KilogramPerCubicMillimeter,

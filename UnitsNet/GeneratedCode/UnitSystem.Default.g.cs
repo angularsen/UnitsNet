@@ -290,6 +290,22 @@ namespace UnitsNet
                 new UnitLocalization(typeof (DensityUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/cm³"),
+                            }),
+                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/m³"),
+                                new AbbreviationsForCulture("ru-RU", "г/м³"),
+                            }),
+                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/mm³"),
+                            }),
                         new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicCentimeter,
                             new[]
                             {
@@ -299,7 +315,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kg/m³"),
-                                new AbbreviationsForCulture("ru-RU", "кг/м³"),
+                                new AbbreviationsForCulture("ru-RU", "kг/м³"),
                             }),
                         new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicMillimeter,
                             new[]
