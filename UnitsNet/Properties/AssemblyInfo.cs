@@ -36,6 +36,3 @@ using System.Runtime.CompilerServices;
 [assembly: CLSCompliant(true)]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-// Give access to internal members for testing
-[assembly: InternalsVisibleTo("UnitsNet.Tests")]
