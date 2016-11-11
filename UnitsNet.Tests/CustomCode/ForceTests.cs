@@ -27,11 +27,11 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double DyneInOneNewton => 1E5;
 
-        protected override double KilogramsForceInOneNewton => 1/Constants.Gravity;
+        protected override double KilogramsForceInOneNewton => 0.101972;
 
         protected override double KilonewtonsInOneNewton => 1E-3;
 
-        protected override double KiloPondsInOneNewton => 1/Constants.Gravity;
+        protected override double KiloPondsInOneNewton => 0.101972;
 
         protected override double NewtonsInOneNewton => 1;
 

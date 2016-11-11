@@ -123,7 +123,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsForce
         {
-            get { return _newtons/Constants.Gravity; }
+            get { return _newtons/9.80665002864; }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         public double KiloPonds
         {
-            get { return _newtons/Constants.Gravity; }
+            get { return _newtons/9.80665002864; }
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace UnitsNet
         /// </summary>
         public double TonnesForce
         {
-            get { return _newtons/Constants.Gravity/1000; }
+            get { return _newtons/9.80665002864/1000; }
         }
 
         #endregion
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// </summary>
         public static Force FromKilogramsForce(double kilogramsforce)
         {
-            return new Force(kilogramsforce*Constants.Gravity);
+            return new Force(kilogramsforce*9.80665002864);
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace UnitsNet
         /// </summary>
         public static Force FromKiloPonds(double kiloponds)
         {
-            return new Force(kiloponds*Constants.Gravity);
+            return new Force(kiloponds*9.80665002864);
         }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace UnitsNet
         /// </summary>
         public static Force FromTonnesForce(double tonnesforce)
         {
-            return new Force(tonnesforce*Constants.Gravity*1000);
+            return new Force(tonnesforce*9.80665002864*1000);
         }
 
 #if !WINDOWS_UWP
