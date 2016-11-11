@@ -1,5 +1,6 @@
 @echo off
-SET ROOT=%~dp0..
+set StrongNameSignFile=%1
+set ROOT=%~dp0..
 
 if exist %ROOT%\Artifacts rmdir /Q /S %ROOT%\Artifacts
 
@@ -9,7 +10,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 call %ROOT%\Build\nuget-restore.bat
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-call %ROOT%\Build\build-all-release.bat
+call %ROOT%\Build\build-all-release.bat "%StrongNameSignFile%"
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 call %ROOT%\Build\run-tests.bat
