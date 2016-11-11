@@ -23,12 +23,6 @@ using System;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-#if WINDOWS_UWP
-using Culture=System.String;
-#else
-using Culture=System.IFormatProvider;
-#endif
-
 namespace UnitsNet
 {
     /// <summary>
@@ -132,7 +126,12 @@ namespace UnitsNet
             return ToString(null);
         }
 
-        public string ToString([CanBeNull] Culture cultureInfo)
+#if WINDOWS_UWP
+                internal
+        #else
+        public
+#endif
+            string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
