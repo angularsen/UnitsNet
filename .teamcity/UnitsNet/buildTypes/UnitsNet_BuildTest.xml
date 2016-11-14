@@ -12,6 +12,7 @@
       <runner id="RUNNER_4" name="build.bat" type="simpleRunner">
         <parameters>
           <param name="command.executable" value="Build/build.bat" />
+          <param name="command.parameters" value="C:\Users\Andreas\TeamCity\UnitsNet.pfx" />
           <param name="teamcity.step.mode" value="default" />
         </parameters>
       </runner>

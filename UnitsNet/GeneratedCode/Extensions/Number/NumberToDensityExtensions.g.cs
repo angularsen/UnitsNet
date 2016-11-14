@@ -44,6 +44,108 @@ namespace UnitsNet.Extensions.NumberToDensity
 {
     public static class NumberToDensityExtensions
     {
+        #region GramPerCubicCentimeter
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
+        public static Density GramsPerCubicCentimeter(this int value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double?)"/>
+        public static Density? GramsPerCubicCentimeter(this int? value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
+        public static Density GramsPerCubicCentimeter(this long value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double?)"/>
+        public static Density? GramsPerCubicCentimeter(this long? value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
+        public static Density GramsPerCubicCentimeter(this double value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double?)"/>
+        public static Density? GramsPerCubicCentimeter(this double? value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
+        public static Density GramsPerCubicCentimeter(this float value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double?)"/>
+        public static Density? GramsPerCubicCentimeter(this float? value) => Density.FromGramsPerCubicCentimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
+        public static Density GramsPerCubicCentimeter(this decimal value) => Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double?)"/>
+        public static Density? GramsPerCubicCentimeter(this decimal? value) => Density.FromGramsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerCubicMeter
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)"/>
+        public static Density GramsPerCubicMeter(this int value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double?)"/>
+        public static Density? GramsPerCubicMeter(this int? value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)"/>
+        public static Density GramsPerCubicMeter(this long value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double?)"/>
+        public static Density? GramsPerCubicMeter(this long? value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)"/>
+        public static Density GramsPerCubicMeter(this double value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double?)"/>
+        public static Density? GramsPerCubicMeter(this double? value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)"/>
+        public static Density GramsPerCubicMeter(this float value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double?)"/>
+        public static Density? GramsPerCubicMeter(this float? value) => Density.FromGramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)"/>
+        public static Density GramsPerCubicMeter(this decimal value) => Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double?)"/>
+        public static Density? GramsPerCubicMeter(this decimal? value) => Density.FromGramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerCubicMillimeter
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)"/>
+        public static Density GramsPerCubicMillimeter(this int value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
+        public static Density? GramsPerCubicMillimeter(this int? value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)"/>
+        public static Density GramsPerCubicMillimeter(this long value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
+        public static Density? GramsPerCubicMillimeter(this long? value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)"/>
+        public static Density GramsPerCubicMillimeter(this double value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
+        public static Density? GramsPerCubicMillimeter(this double? value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)"/>
+        public static Density GramsPerCubicMillimeter(this float value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
+        public static Density? GramsPerCubicMillimeter(this float? value) => Density.FromGramsPerCubicMillimeter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)"/>
+        public static Density GramsPerCubicMillimeter(this decimal value) => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
+        public static Density? GramsPerCubicMillimeter(this decimal? value) => Density.FromGramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilogramPerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(double)"/>
