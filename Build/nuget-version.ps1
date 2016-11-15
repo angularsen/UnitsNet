@@ -139,13 +139,13 @@
 	}
 
 
-$nuspecPaths = "UnitsNet.nuspec", "UnitsNet.WindowsRuntimeComponent.nuspec"
+$nuspecPaths = "UnitsNet.nuspec", "UnitsNet.Signed.nuspec", "UnitsNet.WindowsRuntimeComponent.nuspec" 
 $newSemVer = $null
 foreach ($path in $nuspecPaths) { 
 	$newSemVer = Update-NuspecFile $path
 }
 
-git add UnitsNet.nuspec UnitsNet.WindowsRuntimeComponent.nuspec
+git add UnitsNet.nuspec UnitsNet.Signed.nuspec UnitsNet.WindowsRuntimeComponent.nuspec
 git commit -m "UnitsNet: $newSemVer"
 git tag -a $newSemVer -m "$newSemVer" -m "TODO List changes here"
 
