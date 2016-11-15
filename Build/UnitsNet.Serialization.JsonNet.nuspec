@@ -4,14 +4,14 @@
   <metadata>
     <id>UnitsNet.Serialization.JsonNet</id>
     <version>1.0.0-alpha5</version>
-    <title>Units.NET Serialization</title>
+    <title>Units.NET JSON Serializer</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
     <licenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/anjdreas/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Simplifies working with the serialization and deserialization of units of measurement using Json.NET.</description>
-    <summary>Simplifies working with the serialization and deserialization of units of measurement using Json.NET.</summary>
+    <description>Serialize and deserialize quantities by unit and value using JSON.NET.</description>
+    <summary>JSON.NET based serializer.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright © 2007 Andreas Gullberg Larsen</copyright>
