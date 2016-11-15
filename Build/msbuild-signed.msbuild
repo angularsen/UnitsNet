@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="CompileProjects" ToolsVersion="14.0">
+
+  <PropertyGroup>
+    <Platform>AnyCPU</Platform>
+    <Configuration>Release</Configuration>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
+  </PropertyGroup>
+
+  <Target Name="CleanAndBuild" DependsOnTargets="Clean;Build" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="@(AllProjects)" Targets="Clean" />
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild Projects="
+        $(RootPath)\UnitsNet\UnitsNet.Net35.csproj"
+
+      Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);SkipGenerateUnits=True"
+      Targets="Build">
+    </MSBuild>
+  </Target>
+
+</Project>

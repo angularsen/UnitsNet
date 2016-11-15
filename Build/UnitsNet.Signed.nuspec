@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>UnitsNet</id>
-    <version>3.48.0</version>
-    <title>Units.NET</title>
+    <id>UnitsNet.Signed</id>
+    <version>3.48.1</version>
+    <title>Units.NET (signed)</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
     <licenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/anjdreas/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.</description>
-    <summary>Simplifies working with units of measurement.</summary>
+    <description>Strong name signed edition of Units.NET. Only use this if you need a signed version.</description>
+    <summary>Strong name signed edition of Units.NET.</summary>
     <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
@@ -19,7 +19,7 @@
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</tags>
   </metadata>
   <files>
-    <file src="Artifacts\Bin\Src-unsigned\AnyCPU_Release\**\UnitsNet.dll" target="lib" />
+    <file src="Artifacts\Bin\Src-signed\AnyCPU_Release\**\UnitsNet.dll" target="lib" />
     <file src="UnitsNet\**\*.cs" exclude="UnitsNet\**\obj\**\*.cs" target="src" />
   </files>
 </package>

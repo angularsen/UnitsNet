@@ -23,7 +23,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Artifacts\Bin\Src\AnyCPU_Release\**\UnitsNet.Serialization.JsonNet.dll" target="lib" />
+    <file src="Artifacts\Bin\Src-unsigned\AnyCPU_Release\**\UnitsNet.Serialization.JsonNet.dll" target="lib" />
     <file src="UnitsNet.Serialization.JsonNet\**\*.cs" exclude="UnitsNet.Serialization.JsonNet\**\obj\**\*.cs"
           target="src" />
   </files>

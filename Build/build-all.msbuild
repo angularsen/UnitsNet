@@ -6,17 +6,7 @@
     <Configuration>Release</Configuration>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
-  </PropertyGroup>
-
-  <Target Name="CleanAndBuild" DependsOnTargets="Clean;CompileProjects" />
-
-  <Target Name="Clean">
-    <MSBuild Projects="@(AllProjects)" Targets="Clean" />
-    <RemoveDir Directories="$(SrcBinPath)" />
-  </Target>
-
-  <Target Name="CompileProjects">
-    <MSBuild Projects="
+    <Projects>
         $(RootPath)\UnitsNet\UnitsNet.Net35.csproj;
         $(RootPath)\UnitsNet\UnitsNet.Portable40.csproj;
         $(RootPath)\UnitsNet\UnitsNet.NetStandard10.csproj;
@@ -24,11 +14,29 @@
         $(RootPath)\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Net35.csproj;
         $(RootPath)\UnitsNet.Tests\UnitsNet.Tests.csproj;
         $(RootPath)\UnitsNet.Tests\UnitsNet.WindowsRuntimeComponent.Tests.csproj;
-        $(RootPath)\UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj"
+        $(RootPath)\UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj
+    </Projects>
+  </PropertyGroup>
 
-      Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion)"
-      Targets="Build">
-    </MSBuild>
+  <Target Name="Clean">
+    <MSBuild
+      Projects="$(Projects)"
+      Targets="Clean" />
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild
+      Projects="$(Projects)"
+      Targets="Build"
+      Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);SkipGenerateUnits=True" />
+  </Target>
+
+  <Target Name="Rebuild">
+    <MSBuild
+      Projects="$(Projects)"
+      Targets="Rebuild"
+      Properties="Platform=$(Platform);Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion);SkipGenerateUnits=True"
+      />
   </Target>
 
 </Project>

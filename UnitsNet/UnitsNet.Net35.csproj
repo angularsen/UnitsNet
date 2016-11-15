@@ -48,7 +48,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
+  <PropertyGroup Condition="$(SkipGenerateUnits) == '' Or $(SkipGenerateUnits) == '*Undefined*'">
     <PreBuildEvent>call $(ProjectDir)..\GenerateUnits.bat</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

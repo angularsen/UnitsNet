@@ -83,8 +83,8 @@ namespace UnitsNet.Tests
 
         private UnitSystem GetCachedUnitSystem()
         {
-            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
+            Culture culture = GetCulture("en-US");
+            UnitSystem unitSystem = UnitSystem.GetCached(culture);
             return unitSystem;
         }
 
@@ -92,14 +92,18 @@ namespace UnitsNet.Tests
             IEnumerable<TUnit> unitValues)
             where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            UnitSystem unitSystem = UnitSystem.GetCached(new CultureInfo(cultureName));
+            UnitSystem unitSystem = UnitSystem.GetCached(GetCulture(cultureName));
 
             var unitsMissingAbbreviations = new List<TUnit>();
             foreach (TUnit unit in unitValues)
             {
                 try
                 {
+#if WINDOWS_UWP
+                    unitSystem.GetDefaultAbbreviation(unit.GetType(), Convert.ToInt32(unit));
+#else
                     unitSystem.GetDefaultAbbreviation(unit);
+#endif
                 }
                 catch
                 {
@@ -138,16 +142,17 @@ namespace UnitsNet.Tests
         [TestCase("ar-EG")]
         [TestCase("en-GB")]
         [TestCase("es-MX")]
-        public void CommaDigitGroupingCultureFormatting(string culture)
+        public void CommaDigitGroupingCultureFormatting(string cultureName)
         {
-            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
+            Culture culture = GetCulture(cultureName);
+            Assert.AreEqual("1,111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, culture));
 
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for SonePounds.
             Assert.AreEqual("2,222 ft 3 in",
-                Length.FromFeetInches(2222, 3).FeetInches.ToString(new CultureInfo(culture)));
+                Length.FromFeetInches(2222, 3).FeetInches.ToString(culture));
             Assert.AreEqual("3,333 st 7 lb",
-                Mass.FromStonePounds(3333, 7).StonePounds.ToString(new CultureInfo(culture)));
+                Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
 
         // These cultures use a thin space in digit grouping
@@ -178,15 +183,16 @@ namespace UnitsNet.Tests
             Assert.AreEqual("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
         }
 
+#if !WINDOWS_UWP
         [TestCase("m^2", Result = AreaUnit.SquareMeter)]
         [TestCase("cm^2", Result = AreaUnit.Undefined)]
         public AreaUnit Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse)
         {
             UnitSystem unitSystem = GetCachedUnitSystem();
             unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
-
             return unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
         }
+#endif
 
         [TestCase(1, Result = "1.1 m")]
         [TestCase(2, Result = "1.12 m")]
@@ -348,13 +354,18 @@ namespace UnitsNet.Tests
         [Test]
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
-            UnitSystem usUnits = UnitSystem.GetCached(CultureInfo.GetCultureInfo("en-US"));
+            UnitSystem usUnits = UnitSystem.GetCached(GetCulture("en-US"));
 
+#if WINDOWS_UWP
+            string abbreviation = usUnits.GetDefaultAbbreviation(typeof(CustomUnit), (int)CustomUnit.Unit1);
+            Assert.AreEqual("(no abbreviation for CustomUnit with numeric value 1)", abbreviation);
+#else
             string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
-
             Assert.AreEqual("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+#endif
         }
 
+#if !WINDOWS_UWP
         [Test]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
@@ -374,7 +385,9 @@ namespace UnitsNet.Tests
             // Assert
             Assert.AreEqual("US english abbreviation for Unit1", abbreviation);
         }
+#endif
 
+#if !WINDOWS_UWP
         [Test]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
@@ -384,6 +397,7 @@ namespace UnitsNet.Tests
 
             Assert.AreEqual("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
+#endif
 
         [Test]
         public void NegativeInfinityFormatting()
@@ -399,6 +413,7 @@ namespace UnitsNet.Tests
                 Is.EqualTo("NaN m"));
         }
 
+#if !WINDOWS_UWP
         [Test]
         public void Parse_AmbiguousUnitsThrowsException()
         {
@@ -410,6 +425,7 @@ namespace UnitsNet.Tests
             // Act 2
             Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
         }
+#endif
 
         [Test]
         public void Parse_UnambiguousUnitsDoesNotThrow()
