@@ -1,0 +1,35 @@
+﻿{
+  "Name": "ForcePerLength",
+  "BaseUnit": "NewtonPerMeter",
+  "XmlDoc": "Force per length is the amount of change applied per length.",
+  "Units": [{
+      "SingularName": "NewtonPerMeter",
+      "PluralName": "NewtonsPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForcePerMeter",
+      "PluralName": "KilogramsForcePerMeter",
+      "FromUnitToBaseFunc": "x*9.80665002864",
+      "FromBaseToUnitFunc": "x/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf/m" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс/м" ]
+        }
+      ]
+    }
+  ]
+}
