@@ -36,8 +36,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-using System;
+using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -51,5 +50,26 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
         protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;
         protected override double NewtonsPerMeterInOneNewtonPerMeter => 1;
+
+        [Test]
+        public void ForcePerLengthDividedByLengthEqualsPressure()
+        {
+            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(81) / Length.FromMeters(9);
+            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(9));
+        }
+
+        [Test]
+        public void ForceDividedByForcePerLengthEqualsLength()
+        {
+            Length length = Force.FromNewtons(10) / ForcePerLength.FromNewtonsPerMeter(2);
+            Assert.AreEqual(length, Length.FromMeters(5));
+        }
+
+        [Test]
+        public void ForcePerLenghTimesLengthEqualForce()
+        {
+            Force force = ForcePerLength.FromNewtonsPerMeter(9) * Length.FromMeters(9);
+            Assert.AreEqual(force, Force.FromNewtons(9));
+        }
     }
 }

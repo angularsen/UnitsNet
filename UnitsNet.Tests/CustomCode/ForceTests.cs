@@ -77,6 +77,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Test]
+        public void ForceDividedByLengthEqualsForcePerLength()
+        {
+            ForcePerLength forcePerLength = Force.FromNewtons(200) / Length.FromMeters(50);
+            Assert.AreEqual(forcePerLength, ForcePerLength.FromNewtonsPerMeter(4));
+        }
+
+        [Test]
         public void MassByAccelerationEqualsForceUsingDouble()
         {
             var force = Force.FromMassByAcceleration(Mass.FromKilograms(9), 3);
