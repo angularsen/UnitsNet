@@ -53,6 +53,11 @@ namespace UnitsNet
         {
             return Pressure.FromPascals(force.Newtons/area.SquareMeters);
         }
+
+        public static ForcePerLength operator /(Force force, Length length)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons/length.Meters);
+        }
 #endif
 
         // Method overloads with same number of argumnets not supported in Universal Windows Platform (WinRT Components)
