@@ -69,7 +69,7 @@ namespace UnitsNet.Tests.CustomCode
         public void ForcePerLenghTimesLengthEqualForce()
         {
             Force force = ForcePerLength.FromNewtonsPerMeter(9) * Length.FromMeters(9);
-            Assert.AreEqual(force, Force.FromNewtons(9));
+            Assert.AreEqual(force, Force.FromNewtons(81));
         }
     }
 }
