@@ -54,8 +54,8 @@ namespace UnitsNet.Tests.CustomCode
         [Test]
         public void ForcePerLengthDividedByLengthEqualsPressure()
         {
-            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(81) / Length.FromMeters(9);
-            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(9));
+            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(90) / Length.FromMeters(9);
+            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(10));
         }
 
         [Test]
@@ -68,8 +68,8 @@ namespace UnitsNet.Tests.CustomCode
         [Test]
         public void ForcePerLenghTimesLengthEqualForce()
         {
-            Force force = ForcePerLength.FromNewtonsPerMeter(9) * Length.FromMeters(9);
-            Assert.AreEqual(force, Force.FromNewtons(81));
+            Force force = ForcePerLength.FromNewtonsPerMeter(10) * Length.FromMeters(9);
+            Assert.AreEqual(force, Force.FromNewtons(90));
         }
     }
 }
