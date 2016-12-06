@@ -55,7 +55,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Force per length is the amount of change applied per length.
+    ///     The magnitude of force per unit length.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP

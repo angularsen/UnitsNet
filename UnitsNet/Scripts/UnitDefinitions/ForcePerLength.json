@@ -1,7 +1,7 @@
 ﻿{
   "Name": "ForcePerLength",
   "BaseUnit": "NewtonPerMeter",
-  "XmlDoc": "Force per length is the amount of change applied per length.",
+  "XmlDoc": "The magnitude of force per unit length.",
   "Units": [{
       "SingularName": "NewtonPerMeter",
       "PluralName": "NewtonsPerMeter",
