@@ -36,49 +36,40 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using NUnit.Framework;
 
-namespace UnitsNet
+namespace UnitsNet.Tests.CustomCode
 {
-    public enum UnitClass
+    public class ForcePerLengthTests : ForcePerLengthTestsBase
     {
-        Undefined = 0,
-        Acceleration,
-        AmplitudeRatio,
-        Angle,
-        Area,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricResistance,
-        Energy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Information,
-        KinematicViscosity,
-        Length,
-        Level,
-        Mass,
-        MassFlow,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        Torque,
-        VitaminA,
-        Volume,
+        protected override double CentinewtonsPerMeterInOneNewtonPerMeter => 1E2;
+        protected override double DecinewtonsPerMeterInOneNewtonPerMeter => 1E1;
+        protected override double KilogramsForcePerMeterInOneNewtonPerMeter => 0.101972;
+        protected override double KilonewtonsPerMeterInOneNewtonPerMeter => 1E-3;
+        protected override double MicronewtonsPerMeterInOneNewtonPerMeter => 1E6;
+        protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
+        protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;
+        protected override double NewtonsPerMeterInOneNewtonPerMeter => 1;
+
+        [Test]
+        public void ForcePerLengthDividedByLengthEqualsPressure()
+        {
+            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(90) / Length.FromMeters(9);
+            Assert.AreEqual(pressure, Pressure.FromNewtonsPerSquareMeter(10));
+        }
+
+        [Test]
+        public void ForceDividedByForcePerLengthEqualsLength()
+        {
+            Length length = Force.FromNewtons(10) / ForcePerLength.FromNewtonsPerMeter(2);
+            Assert.AreEqual(length, Length.FromMeters(5));
+        }
+
+        [Test]
+        public void ForcePerLenghTimesLengthEqualForce()
+        {
+            Force force = ForcePerLength.FromNewtonsPerMeter(10) * Length.FromMeters(9);
+            Assert.AreEqual(force, Force.FromNewtons(90));
+        }
     }
 }

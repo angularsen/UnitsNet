@@ -796,6 +796,51 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "N/s"),
                             }),
                     }),
+                new UnitLocalization(typeof (ForcePerLengthUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.CentinewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.DecinewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.KilogramForcePerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kgf/m"),
+                                new AbbreviationsForCulture("ru-RU", "кгс/м"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.KilonewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.MicronewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.MillinewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.NanonewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nN/m"),
+                            }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.NewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
