@@ -1152,6 +1152,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "NM"),
                                 new AbbreviationsForCulture("ru-RU", "мил"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.USSurveyFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ftUS"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Yard,
                             new[]
                             {

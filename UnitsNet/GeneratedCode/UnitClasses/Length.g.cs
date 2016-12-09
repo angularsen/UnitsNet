@@ -215,6 +215,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in USSurveyFeet.
+        /// </summary>
+        public double USSurveyFeet
+        {
+            get { return _meters/0.3048006096; }
+        }
+
+        /// <summary>
         ///     Get Length in Yards.
         /// </summary>
         public double Yards
@@ -333,6 +341,14 @@ namespace UnitsNet
         public static Length FromNauticalMiles(double nauticalmiles)
         {
             return new Length(nauticalmiles*1852);
+        }
+
+        /// <summary>
+        ///     Get Length from USSurveyFeet.
+        /// </summary>
+        public static Length FromUSSurveyFeet(double ussurveyfeet)
+        {
+            return new Length(ussurveyfeet*0.3048006096);
         }
 
         /// <summary>
@@ -540,6 +556,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable USSurveyFeet.
+        /// </summary>
+        public static Length? FromUSSurveyFeet(double? ussurveyfeet)
+        {
+            if (ussurveyfeet.HasValue)
+            {
+                return FromUSSurveyFeet(ussurveyfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Yards.
         /// </summary>
         public static Length? FromYards(double? yards)
@@ -592,6 +623,8 @@ namespace UnitsNet
                     return FromNanometers(val);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(val);
+                case LengthUnit.USSurveyFoot:
+                    return FromUSSurveyFeet(val);
                 case LengthUnit.Yard:
                     return FromYards(val);
 
@@ -641,6 +674,8 @@ namespace UnitsNet
                     return FromNanometers(value.Value);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(value.Value);
+                case LengthUnit.USSurveyFoot:
+                    return FromUSSurveyFeet(value.Value);
                 case LengthUnit.Yard:
                     return FromYards(value.Value);
 
@@ -823,6 +858,8 @@ namespace UnitsNet
                     return Nanometers;
                 case LengthUnit.NauticalMile:
                     return NauticalMiles;
+                case LengthUnit.USSurveyFoot:
+                    return USSurveyFeet;
                 case LengthUnit.Yard:
                     return Yards;
 

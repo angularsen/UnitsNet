@@ -70,6 +70,18 @@
       ]
     },
     {
+      "SingularName": "USSurveyFoot",
+      "PluralName": "USSurveyFeet",
+      "FromUnitToBaseFunc": "x*0.3048006096",
+      "FromBaseToUnitFunc": "x/0.3048006096",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ftUS" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Inch",
       "PluralName": "Inches",
       "FromUnitToBaseFunc": "x*2.54e-2",

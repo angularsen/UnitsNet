@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using NUnit.Framework;
 using UnitsNet.Units;
 
@@ -31,6 +32,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecimetersInOneMeter => 10;
 
         protected override double FeetInOneMeter => 3.28084;
+
+        protected override double USSurveyFeetInOneMeter => 3.2808333333465;
 
         protected override double InchesInOneMeter => 39.37007874;
 
