@@ -72,8 +72,8 @@
     {
       "SingularName": "USSurveyFoot",
       "PluralName": "USSurveyFeet",
-      "FromUnitToBaseFunc": "x*0.3048006096",
-      "FromBaseToUnitFunc": "x/0.3048006096",
+      "FromUnitToBaseFunc": "x*1200/3937",
+      "FromBaseToUnitFunc": "x*3937/1200",
       "Localization": [
         {
           "Culture": "en-US",
