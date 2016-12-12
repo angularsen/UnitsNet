@@ -33,7 +33,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double FeetInOneMeter => 3.28084;
 
-        protected override double USSurveyFeetInOneMeter => 3937/1200;
+        protected override double USSurveyFeetInOneMeter => 3937.0/1200.0;
 
         protected override double InchesInOneMeter => 39.37007874;
 
