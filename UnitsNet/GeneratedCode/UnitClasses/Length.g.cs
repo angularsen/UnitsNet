@@ -219,7 +219,7 @@ namespace UnitsNet
         /// </summary>
         public double USSurveyFeet
         {
-            get { return _meters/0.3048006096; }
+            get { return _meters*3937/1200; }
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromUSSurveyFeet(double ussurveyfeet)
         {
-            return new Length(ussurveyfeet*0.3048006096);
+            return new Length(ussurveyfeet*1200/3937);
         }
 
         /// <summary>
