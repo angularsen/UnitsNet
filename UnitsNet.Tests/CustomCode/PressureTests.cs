@@ -59,7 +59,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForcePerSquareFootInOnePascal => 0.0208854342;
 
-        protected override double PoundsForcePerSquareInchInOnePascal => 0.000145037738;
+        protected override double PoundsForcePerSquareInchInOnePascal => 0.000145037737730209;
 
         protected override double PsiInOnePascal => 1.450377*1E-4;
 

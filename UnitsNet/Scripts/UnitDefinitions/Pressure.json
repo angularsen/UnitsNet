@@ -162,6 +162,7 @@
     {
       "SingularName": "Psi",
       "PluralName": "Psi",
+      "ObsoleteText": "Deprecated due to github issue #215, please use PoundForcePerSquareInch instead",      
       "FromUnitToBaseFunc": "x*6.89464975179*1e3",
       "FromBaseToUnitFunc": "x/(6.89464975179*1e3)",
       "Localization": [
@@ -210,13 +211,13 @@
     {
       "SingularName": "PoundForcePerSquareInch",
       "PluralName": "PoundsForcePerSquareInch",
-      "FromUnitToBaseFunc": "x*6894.75788951576",
-      "FromBaseToUnitFunc": "x*0.000145037725185479",
+      "FromUnitToBaseFunc": "x*6894.75729316836",
+      "FromBaseToUnitFunc": "x*0.000145037737730209",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/in²" ],
+          "Abbreviations": [ "psi", "lb/in²" ],
           "AbbreviationsWithPrefixes": [ "kipf/in²" ]
         }
       ]
