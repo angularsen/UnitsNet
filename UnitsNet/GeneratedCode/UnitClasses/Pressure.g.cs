@@ -243,7 +243,7 @@ namespace UnitsNet
         /// </summary>
         public double KilopoundsForcePerSquareInch
         {
-            get { return (_pascals*0.000145037725185479) / 1e3d; }
+            get { return (_pascals*0.000145037737730209) / 1e3d; }
         }
 
         /// <summary>
@@ -323,12 +323,13 @@ namespace UnitsNet
         /// </summary>
         public double PoundsForcePerSquareInch
         {
-            get { return _pascals*0.000145037725185479; }
+            get { return _pascals*0.000145037737730209; }
         }
 
         /// <summary>
         ///     Get Pressure in Psi.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
         public double Psi
         {
             get { return _pascals/(6.89464975179*1e3); }
@@ -516,7 +517,7 @@ namespace UnitsNet
         /// </summary>
         public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch)
         {
-            return new Pressure((kilopoundsforcepersquareinch*6894.75788951576) * 1e3d);
+            return new Pressure((kilopoundsforcepersquareinch*6894.75729316836) * 1e3d);
         }
 
         /// <summary>
@@ -596,7 +597,7 @@ namespace UnitsNet
         /// </summary>
         public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch)
         {
-            return new Pressure(poundsforcepersquareinch*6894.75788951576);
+            return new Pressure(poundsforcepersquareinch*6894.75729316836);
         }
 
         /// <summary>

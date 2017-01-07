@@ -1593,7 +1593,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) PressureUnit.PoundForcePerSquareInch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lb/in²"),
+                                new AbbreviationsForCulture("en-US", "psi", "lb/in²"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Psi,
                             new[]
