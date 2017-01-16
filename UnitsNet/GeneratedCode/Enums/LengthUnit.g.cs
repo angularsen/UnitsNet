@@ -55,7 +55,7 @@ namespace UnitsNet.Units
         Millimeter,
         Nanometer,
         NauticalMile,
-        USSurveyFoot,
+        UsSurveyFoot,
         Yard,
     }
 }
