@@ -486,6 +486,40 @@ namespace UnitsNet.Extensions.NumberToLength
 
         #endregion
 
+        #region UsSurveyFoot
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)"/>
+        public static Length UsSurveyFeet(this int value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double?)"/>
+        public static Length? UsSurveyFeet(this int? value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)"/>
+        public static Length UsSurveyFeet(this long value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double?)"/>
+        public static Length? UsSurveyFeet(this long? value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)"/>
+        public static Length UsSurveyFeet(this double value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double?)"/>
+        public static Length? UsSurveyFeet(this double? value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)"/>
+        public static Length UsSurveyFeet(this float value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double?)"/>
+        public static Length? UsSurveyFeet(this float? value) => Length.FromUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)"/>
+        public static Length UsSurveyFeet(this decimal value) => Length.FromUsSurveyFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double?)"/>
+        public static Length? UsSurveyFeet(this decimal? value) => Length.FromUsSurveyFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Yard
 
         /// <inheritdoc cref="Length.FromYards(double)"/>
