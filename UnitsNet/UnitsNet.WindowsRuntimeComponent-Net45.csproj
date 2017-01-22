@@ -56,6 +56,7 @@ There is probably a better way to achieve this?
     <Compile Include="**\*.cs;" Exclude="obj\**;Properties\AssemblyInfo.cs" />
     <None Include="UnitsNet.WindowsRuntimeComponent-Net45.project.json" />
     <None Include="Scripts\**\*.*" />
+    <None Include="UnitDefinitions\**\*.*" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

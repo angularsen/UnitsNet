@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="**\*.cs;" Exclude="obj\**;**\*.WindowsRuntimeComponent.cs" />
     <None Include="Scripts\**\*.*" />
+    <None Include="UnitDefinitions\**\*.*" />
     <None Include="UnitsNet.Net35.project.json" />
   </ItemGroup>
   <ItemGroup>

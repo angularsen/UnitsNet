@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="**\*.cs;" Exclude="obj\**;Properties\AssemblyInfo.cs" />
     <None Include="Scripts\**\*.*" />
+    <None Include="UnitDefinitions\**\*.*" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
