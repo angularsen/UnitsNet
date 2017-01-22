@@ -220,7 +220,6 @@ $templatesDir = "$PSScriptRoot/../UnitDefinitions"
 $unitClasses = @();
 
 $pad = 25
-$unitCounter = 0;
 get-childitem -path $templatesDir -filter "*.json" | % {
     $templateFile = $_.FullName
     $json = (Get-Content $templateFile | Out-String)
@@ -240,7 +239,6 @@ get-childitem -path $templatesDir -filter "*.json" | % {
 
     # Expand unit prefixes into units
     $unitClass.Units = GetUnits $unitClass;
-    $unitCounter += $unitClass.Units.Count
 
     Write-Host -NoNewline "$($unitClass.Name):".PadRight($pad)
     GenerateUnitClass $unitClass $unitClassDir
@@ -256,6 +254,9 @@ get-childitem -path $templatesDir -filter "*.json" | % {
 Write-Host ""
 GenerateUnitSystemDefault $unitClasses $unitSystemDir
 GenerateUnitClassEnum $unitClasses $unitSystemDir
+
+$unitCount = ($unitClasses | %{$_.Units.Count} | Measure -Sum).Sum
+
 Write-Host ""
 Write-Host ""
-Write-Host "Summary: $($unitCounter) units in $($unitClasses.Count) classes".PadRight($pad)
+Write-Host "Summary: $unitCount units in $($unitClasses.Count) classes".PadRight($pad)
