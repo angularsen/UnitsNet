@@ -275,7 +275,7 @@ namespace UnitsNet
         # Call another script function to generate logarithm-specific arithmetic operator code.
         GenerateLogarithmicArithmeticOperators -className $className -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $unitClass.LogarithmicScalingFactor
     }
-    else {@"
+    elseif ($unitClass.GenerateArithmetic -eq $true) {@"
 
         #region Arithmetic Operators
 
