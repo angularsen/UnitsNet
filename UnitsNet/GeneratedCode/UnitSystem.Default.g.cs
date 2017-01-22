@@ -2097,6 +2097,50 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "n°C/s"),
                             }),
                     }),
+                new UnitLocalization(typeof (TemperatureDeltaUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeCelsiusDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°C"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeDelisleDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°De"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeFahrenheitDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°F"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeNewtonDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°N"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRankineDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°R"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeReaumurDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°Ré"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRoemerDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲°Rø"),
+                            }),
+                        new CulturesForEnumValue((int) TemperatureDeltaUnit.KelvinDelta,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "▲K"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (TorqueUnit),
                     new[]
                     {

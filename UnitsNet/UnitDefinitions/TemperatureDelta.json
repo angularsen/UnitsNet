@@ -1,0 +1,103 @@
+﻿{
+  "Name": "TemperatureDelta",
+  "BaseUnit": "KelvinDelta",
+  "XmlDoc": "Difference between two temperatures. The conversions are different than for Temperature.",
+  "Units": [
+    {
+      "SingularName": "KelvinDelta",
+      "PluralName": "KelvinsDelta",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusDelta",
+      "PluralName": "DegreesCelsiusDelta",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeDelisleDelta",
+      "PluralName": "DegreesDelisleDelta",
+      "FromUnitToBaseFunc": "x*-2/3",
+      "FromBaseToUnitFunc": "x*-3/2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°De" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheitDelta",
+      "PluralName": "DegreesFahrenheitDelta",
+      "FromUnitToBaseFunc": "x*5/9",
+      "FromBaseToUnitFunc": "x*9/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°F" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeNewtonDelta",
+      "PluralName": "DegreesNewtonDelta",
+      "FromUnitToBaseFunc": "x*100/33",
+      "FromBaseToUnitFunc": "x*33/100",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°N" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeRankineDelta",
+      "PluralName": "DegreesRankineDelta",
+      "FromUnitToBaseFunc": "x*5/9",
+      "FromBaseToUnitFunc": "x*9/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°R" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeReaumurDelta",
+      "PluralName": "DegreesReaumurDelta",
+      "FromUnitToBaseFunc": "x*5/4",
+      "FromBaseToUnitFunc": "x*4/5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°Ré" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeRoemerDelta",
+      "PluralName": "DegreesRoemerDelta",
+      "FromUnitToBaseFunc": "x*40/21",
+      "FromBaseToUnitFunc": "x*21/40",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "▲°Rø" ]
+        }
+      ]
+    }
+  ]
+}
