@@ -128,18 +128,6 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Temperature.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
         }
 
-        [Test]
-        public void ArithmeticOperators()
-        {
-            Temperature v = Temperature.FromKelvins(1);
-            Assert.AreEqual(-1, -v.Kelvins, KelvinsTolerance);
-            Assert.AreEqual(2, (Temperature.FromKelvins(3)-v).Kelvins, KelvinsTolerance);
-            Assert.AreEqual(2, (v + v).Kelvins, KelvinsTolerance);
-            Assert.AreEqual(10, (v*10).Kelvins, KelvinsTolerance);
-            Assert.AreEqual(10, (10*v).Kelvins, KelvinsTolerance);
-            Assert.AreEqual(2, (Temperature.FromKelvins(10)/5).Kelvins, KelvinsTolerance);
-            Assert.AreEqual(2, Temperature.FromKelvins(10)/Temperature.FromKelvins(5), KelvinsTolerance);
-        }
 
         [Test]
         public void ComparisonOperators()
