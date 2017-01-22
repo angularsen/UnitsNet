@@ -234,7 +234,7 @@ get-childitem -path $templatesDir -filter "*.json" | % {
     if (!$unitClass.Logarithmic) {
         $unitClass | Add-Member Logarithmic "False"
     }
-    if (!$unitClass.LogarithmicScalingFactor) {
+    elseif (!$unitClass.LogarithmicScalingFactor) {
         $unitClass | Add-Member LogarithmicScalingFactor "1"
     }
 
