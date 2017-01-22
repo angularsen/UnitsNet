@@ -21,7 +21,7 @@ if exist %ROOT%\Artifacts rmdir /Q /S %ROOT%\Artifacts
 rem Regenerate all source code and test stubs before building
 rem since there is no guarantee that merged pull requests
 rem have properly regenerated code.
-call %ROOT%\GenerateUnits.bat
+call %ROOT%\generate-code.bat
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 rem Update AsseemblyInfo.cs versions from .nuspec files
