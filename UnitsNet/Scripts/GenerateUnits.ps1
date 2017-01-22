@@ -5,7 +5,7 @@ $OutputEncoding = [Text.UTF8Encoding]::UTF8
 # DaddyCool => daddyCool
 function ToCamelCase($str)
 {
-    return $str.Substring(0,1).ToLowerInvariant() + $str.Substring(1);
+    return $str.Substring(0,1).ToLowerInvariant() + $str.Substring(1)
 }
 
 function GetUnits($unitClass)
@@ -101,7 +101,7 @@ function GetUnits($unitClass)
 
 function GenerateUnitClass($unitClass, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name).g.cs";
+    $outFileName = "$outDir/$($unitClass.Name).g.cs"
     GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
@@ -111,7 +111,7 @@ function GenerateUnitClass($unitClass, $outDir)
 
 function GenerateUnitTestBaseClass($unitClass, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name)TestsBase.g.cs";
+    $outFileName = "$outDir/$($unitClass.Name)TestsBase.g.cs"
     GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
@@ -122,11 +122,11 @@ function GenerateUnitTestBaseClass($unitClass, $outDir)
 function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
 {
     Write-Host -NoNewline "test stub"
-    $outFileName = "$outDir/$($unitClass.Name)Tests.cs";
+    $outFileName = "$outDir/$($unitClass.Name)Tests.cs"
     if (Test-Path $outFileName)
     {
         Write-Host -NoNewline "(skip) "
-        return;
+        return
     }
     else
     {
@@ -140,9 +140,9 @@ function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
 
 function GenerateUnitEnum($unitClass, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs";
+    $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs"
 
-    GenerateUnitEnumSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+    GenerateUnitEnumSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
@@ -151,10 +151,10 @@ function GenerateUnitEnum($unitClass, $outDir)
 
 function GenerateUnitSystemDefault($unitClasses, $outDir)
 {
-    Write-Host -NoNewline "UnitSystem.Default.g.cs: ";
-    $outFileName = "$outDir/UnitSystem.Default.g.cs";
+    Write-Host -NoNewline "UnitSystem.Default.g.cs: "
+    $outFileName = "$outDir/UnitSystem.Default.g.cs"
 
-    GenerateUnitSystemDefaultSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+    GenerateUnitSystemDefaultSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         Write-Host "(error) "
         exit 1
@@ -164,10 +164,10 @@ function GenerateUnitSystemDefault($unitClasses, $outDir)
 
 function GenerateUnitClassEnum($unitClasses, $outDir)
 {
-    Write-Host -NoNewline "UnitClass.g.cs: ";
-    $outFileName = "$outDir/UnitClass.g.cs";
+    Write-Host -NoNewline "UnitClass.g.cs: "
+    $outFileName = "$outDir/UnitClass.g.cs"
 
-    GenerateUnitClassEnumSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
+    GenerateUnitClassEnumSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         Write-Host "(error) "
         exit 1
@@ -179,20 +179,20 @@ function GenerateNumberExtensions($unitClass, $numberExtensionsDir)
 {
 	$outDir = "$numberExtensionsDir"
     $fileName = "NumberTo$($unitClass.Name)Extensions.g.cs"
-    $outFilePath = "$outDir/$fileName";
+    $outFilePath = "$outDir/$fileName"
 	EnsureDirExists $outDir
-    Write-Host -NoNewline "NumberExtensions";
+    Write-Host -NoNewline "NumberExtensions"
 
-    GenerateNumberExtensionsSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null;
+    GenerateNumberExtensionsSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
     if (!$?) {
-        Write-Host "(error) "
+        Write-Host -NoNewline "(error) "
         exit 1
     }
-    Write-Host "(OK) "
+    Write-Host -NoNewline "(OK) "
 }
 
 function EnsureDirExists([String] $dirPath) {
-    New-Item -ItemType Directory -Force -Path $dirPath | Out-Null;
+    New-Item -ItemType Directory -Force -Path $dirPath | Out-Null
     if (!$?) {
         exit 1
     }
