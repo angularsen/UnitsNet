@@ -19,7 +19,7 @@ Build Targets:
 
 Overview
 ---
-* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/Scripts/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
+* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
 * [827 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
@@ -160,7 +160,7 @@ This project is still early and many units and conversions are not yet covered. 
 
 Please read the wiki on [Adding a New Unit](https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit).
 
-Generally adding a unit involves adding or modifying `UnitsNet\Scripts\UnitDefinitions\*.json` files and running `generate-code.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
+Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*.json` files and running `generate-code.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
 
   * [Fork the repo](https://help.github.com/articles/fork-a-repo)
   * Do work on branches such as **feature/add-myunit** and **fix/34**

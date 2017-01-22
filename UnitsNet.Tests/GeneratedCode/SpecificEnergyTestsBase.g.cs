@@ -10,7 +10,7 @@
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add Scripts\UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------

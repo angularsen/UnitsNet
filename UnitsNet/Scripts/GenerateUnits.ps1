@@ -151,7 +151,7 @@ function GenerateUnitEnum($unitClass, $outDir)
 
 function GenerateUnitSystemDefault($unitClasses, $outDir)
 {
-    Write-Host -NoNewline "UnitSystem.Default.g.cs: "; 
+    Write-Host -NoNewline "UnitSystem.Default.g.cs: ";
     $outFileName = "$outDir/UnitSystem.Default.g.cs";
 
     GenerateUnitSystemDefaultSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
@@ -164,7 +164,7 @@ function GenerateUnitSystemDefault($unitClasses, $outDir)
 
 function GenerateUnitClassEnum($unitClasses, $outDir)
 {
-    Write-Host -NoNewline "UnitClass.g.cs: "; 
+    Write-Host -NoNewline "UnitClass.g.cs: ";
     $outFileName = "$outDir/UnitClass.g.cs";
 
     GenerateUnitClassEnumSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null;
@@ -181,7 +181,7 @@ function GenerateNumberExtensions($unitClass, $numberExtensionsDir)
     $fileName = "NumberTo$($unitClass.Name)Extensions.g.cs"
     $outFilePath = "$outDir/$fileName";
 	EnsureDirExists $outDir
-    Write-Host -NoNewline "NumberExtensions"; 
+    Write-Host -NoNewline "NumberExtensions";
 
     GenerateNumberExtensionsSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null;
     if (!$?) {
@@ -216,7 +216,7 @@ EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
 EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
 EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
 
-$templatesDir = "$PSScriptRoot/UnitDefinitions"
+$templatesDir = "$PSScriptRoot/../UnitDefinitions"
 $unitClasses = @();
 
 $pad = 25
