@@ -1,6 +1,8 @@
 [![Build Status](http://teamcity.chump.work/app/rest/builds/buildType:(id:UnitsNet_Master)/statusIcon)](http://teamcity.chump.work/viewType.html?buildTypeId=UnitsNet_Master&guest=1 "Build Status")
 Units.NET
 ===
+
+[![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports [PCL](http://msdn.microsoft.com/en-us/library/gg597391.aspx "MSDN PCL").
