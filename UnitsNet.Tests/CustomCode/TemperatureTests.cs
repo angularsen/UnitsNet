@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,6 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using NUnit.Framework;
+using UnitsNet.Units;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureTests : TemperatureTestsBase
@@ -38,5 +43,56 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesRoemerInOneKelvin => -135.378750000;
 
         protected override double KelvinsInOneKelvin => 1;
+
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 0, ExpectedResult = "-10 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 10, ExpectedResult = "0 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 20, ExpectedResult = "10 °C")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 0, ExpectedResult = "-10 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 10, ExpectedResult = "0 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 20, ExpectedResult = "10 °F")]
+        public string TemperatureDeltaPlusTemperatureEqualsTemperature(TemperatureUnit unit, int deltaVal, int temperatureVal)
+        {
+            Temperature temperature = Temperature.From(temperatureVal, unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+
+            // Act
+            Temperature resultTemp = delta + temperature;
+
+            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+        }
+
+        [TestCase(TemperatureUnit.DegreeCelsius, 20, 10, ExpectedResult = "10 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 20, 20, ExpectedResult = "0 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 20, 30, ExpectedResult = "-10 °C")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 10, ExpectedResult = "10 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 20, ExpectedResult = "0 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 30, ExpectedResult = "-10 °F")]
+        public string TemperatureMinusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal)
+        {
+            Temperature temperature = Temperature.From(temperatureVal, unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+
+            // Act
+            Temperature resultTemp = temperature - delta;
+
+            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+        }
+
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 0, ExpectedResult = "-10 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 10, ExpectedResult = "0 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, -10, 20, ExpectedResult = "10 °C")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 0, ExpectedResult = "-10 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 10, ExpectedResult = "0 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 20, ExpectedResult = "10 °F")]
+        public string TemperaturePlusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal)
+        {
+            Temperature temperature = Temperature.From(temperatureVal, unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+
+            // Act
+            Temperature resultTemp = temperature + delta;
+
+            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+        }
     }
 }
