@@ -44,6 +44,42 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KelvinsInOneKelvin => 1;
 
+        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
+            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, 1, ExpectedResult = "10 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, 5, ExpectedResult = "2 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, -10, ExpectedResult = "-1 °C")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 1, ExpectedResult = "10 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 5, ExpectedResult = "2 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, -10, ExpectedResult = "-1 °F")]
+        public string DividedByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int divisor)
+        {
+            Temperature temperature = Temperature.From(temperatureVal, unit);
+
+            // Act
+            Temperature resultTemp = temperature.Divide(divisor, unit);
+
+            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+        }
+
+        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
+            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, 0, ExpectedResult = "0 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, 5, ExpectedResult = "50 °C")]
+        [TestCase(TemperatureUnit.DegreeCelsius, 10, -5, ExpectedResult = "-50 °C")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 0, ExpectedResult = "0 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 5, ExpectedResult = "50 °F")]
+        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, -5, ExpectedResult = "-50 °F")]
+        public string MultiplyByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int factor)
+        {
+            Temperature temperature = Temperature.From(temperatureVal, unit);
+
+            // Act
+            Temperature resultTemp = temperature.Multiply(factor, unit);
+
+            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+        }
+
         [TestCase(TemperatureUnit.DegreeCelsius, -10, 0, ExpectedResult = "-10 °C")]
         [TestCase(TemperatureUnit.DegreeCelsius, -10, 10, ExpectedResult = "0 °C")]
         [TestCase(TemperatureUnit.DegreeCelsius, -10, 20, ExpectedResult = "10 °C")]
