@@ -17,17 +17,17 @@
 
 // Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,49 +37,18 @@
 // THE SOFTWARE.
 
 // ReSharper disable once CheckNamespace
-
-namespace UnitsNet
+namespace UnitsNet.Units
 {
-    public enum UnitClass
+    public enum TemperatureDeltaUnit
     {
         Undefined = 0,
-        Acceleration,
-        AmplitudeRatio,
-        Angle,
-        Area,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricResistance,
-        Energy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Information,
-        KinematicViscosity,
-        Length,
-        Level,
-        Mass,
-        MassFlow,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        Torque,
-        VitaminA,
-        Volume,
+        DegreeCelsiusDelta,
+        DegreeDelisleDelta,
+        DegreeFahrenheitDelta,
+        DegreeNewtonDelta,
+        DegreeRankineDelta,
+        DegreeReaumurDelta,
+        DegreeRoemerDelta,
+        KelvinDelta,
     }
 }

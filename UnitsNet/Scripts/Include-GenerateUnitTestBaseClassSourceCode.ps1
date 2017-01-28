@@ -113,7 +113,7 @@ namespace UnitsNet.Tests
         # Call another script function to generate logarithm-specific arithmetic operator test code.
         GenerateLogarithmicTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit
     }
-    else {@"
+    elseif ($unitClass.GenerateArithmetic -eq $true) {@"
         [Test]
         public void ArithmeticOperators()
         {

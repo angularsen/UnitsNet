@@ -465,47 +465,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-#if !WINDOWS_UWP
-        public static Temperature operator -(Temperature right)
-        {
-            return new Temperature(-right._kelvins);
-        }
-
-        public static Temperature operator +(Temperature left, Temperature right)
-        {
-            return new Temperature(left._kelvins + right._kelvins);
-        }
-
-        public static Temperature operator -(Temperature left, Temperature right)
-        {
-            return new Temperature(left._kelvins - right._kelvins);
-        }
-
-        public static Temperature operator *(double left, Temperature right)
-        {
-            return new Temperature(left*right._kelvins);
-        }
-
-        public static Temperature operator *(Temperature left, double right)
-        {
-            return new Temperature(left._kelvins*(double)right);
-        }
-
-        public static Temperature operator /(Temperature left, double right)
-        {
-            return new Temperature(left._kelvins/(double)right);
-        }
-
-        public static double operator /(Temperature left, Temperature right)
-        {
-            return Convert.ToDouble(left._kelvins/right._kelvins);
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
