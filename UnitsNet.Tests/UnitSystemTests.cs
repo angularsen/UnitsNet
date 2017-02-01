@@ -257,6 +257,64 @@ namespace UnitsNet.Tests
         }
 
         [Test]
+        public void ShouldUseCorrectMicroSign()
+        {
+            // "\u00b5" = Micro sign
+            Assert.AreEqual(AccelerationUnit.MicrometerPerSecondSquared, Acceleration.ParseUnit("\u00b5m/s²"));
+            Assert.AreEqual(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatio.ParseUnit("dB\u00b5V"));
+            Assert.AreEqual(AngleUnit.Microdegree, Angle.ParseUnit("\u00b5°"));
+            Assert.AreEqual(AngleUnit.Microradian, Angle.ParseUnit("\u00b5rad"));
+            Assert.AreEqual(AreaUnit.SquareMicrometer, Area.ParseUnit("\u00b5m²"));
+            Assert.AreEqual(DurationUnit.Microsecond, Duration.ParseUnit("\u00b5s"));
+            Assert.AreEqual(ElectricCurrentUnit.Microampere, ElectricCurrent.ParseUnit("\u00b5A"));
+            Assert.AreEqual(ElectricPotentialUnit.Microvolt, ElectricPotential.ParseUnit("\u00b5V"));
+            Assert.AreEqual(FlowUnit.MicrolitersPerMinute, Flow.ParseUnit("\u00b5LPM"));
+            Assert.AreEqual(ForceChangeRateUnit.MicronewtonPerSecond, ForceChangeRate.ParseUnit("\u00b5N/s"));
+            Assert.AreEqual(ForcePerLengthUnit.MicronewtonPerMeter, ForcePerLength.ParseUnit("\u00b5N/m"));
+            Assert.AreEqual(KinematicViscosityUnit.Microstokes, KinematicViscosity.ParseUnit("\u00b5St"));
+            Assert.AreEqual(LengthUnit.Microinch, Length.ParseUnit("\u00b5in"));
+            Assert.AreEqual(LengthUnit.Micrometer, Length.ParseUnit("\u00b5m"));
+            Assert.AreEqual(MassFlowUnit.MicrogramPerSecond, MassFlow.ParseUnit("\u00b5g/S"));
+            Assert.AreEqual(MassUnit.Microgram, Mass.ParseUnit("\u00b5g"));
+            Assert.AreEqual(PowerUnit.Microwatt, Power.ParseUnit("\u00b5W"));
+            Assert.AreEqual(PressureUnit.Micropascal, Pressure.ParseUnit("\u00b5Pa"));
+            Assert.AreEqual(RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeed.ParseUnit("\u00b5°/s"));
+            Assert.AreEqual(RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeed.ParseUnit("\u00b5rad/s"));
+            Assert.AreEqual(SpeedUnit.MicrometerPerMinute, Speed.ParseUnit("\u00b5m/min"));
+            Assert.AreEqual(SpeedUnit.MicrometerPerSecond, Speed.ParseUnit("\u00b5m/s"));
+            Assert.AreEqual(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRate.ParseUnit("\u00b5°C/s"));
+            Assert.AreEqual(VolumeUnit.Microliter, Volume.ParseUnit("\u00b5l"));
+            Assert.AreEqual(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
+
+            // "\u03bc" = Lower case greek letter 'Mu' 
+            Assert.Throws<UnitsNetException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
+            Assert.Throws<UnitsNetException>(() => AmplitudeRatio.ParseUnit("dB\u03bcV"));
+            Assert.Throws<UnitsNetException>(() => Angle.ParseUnit("\u03bc°"));
+            Assert.Throws<UnitsNetException>(() => Angle.ParseUnit("\u03bcrad"));
+            Assert.Throws<UnitsNetException>(() => Area.ParseUnit("\u03bcm²"));
+            Assert.Throws<UnitsNetException>(() => Duration.ParseUnit("\u03bcs"));
+            Assert.Throws<UnitsNetException>(() => ElectricCurrent.ParseUnit("\u03bcA"));
+            Assert.Throws<UnitsNetException>(() => ElectricPotential.ParseUnit("\u03bcV"));
+            Assert.Throws<UnitsNetException>(() => Flow.ParseUnit("\u03bcLPM"));
+            Assert.Throws<UnitsNetException>(() => ForceChangeRate.ParseUnit("\u03bcN/s"));
+            Assert.Throws<UnitsNetException>(() => ForcePerLength.ParseUnit("\u03bcN/m"));
+            Assert.Throws<UnitsNetException>(() => KinematicViscosity.ParseUnit("\u03bcSt"));
+            Assert.Throws<UnitsNetException>(() => Length.ParseUnit("\u03bcin"));
+            Assert.Throws<UnitsNetException>(() => Length.ParseUnit("\u03bcm"));
+            Assert.Throws<UnitsNetException>(() => MassFlow.ParseUnit("\u03bcg/S"));
+            Assert.Throws<UnitsNetException>(() => Mass.ParseUnit("\u03bcg"));
+            Assert.Throws<UnitsNetException>(() => Power.ParseUnit("\u03bcW"));
+            Assert.Throws<UnitsNetException>(() => Pressure.ParseUnit("\u03bcPa"));
+            Assert.Throws<UnitsNetException>(() => RotationalSpeed.ParseUnit("\u03bc°/s"));
+            Assert.Throws<UnitsNetException>(() => RotationalSpeed.ParseUnit("\u03bcrad/s"));
+            Assert.Throws<UnitsNetException>(() => Speed.ParseUnit("\u03bcm/min"));
+            Assert.Throws<UnitsNetException>(() => Speed.ParseUnit("\u03bcm/s"));
+            Assert.Throws<UnitsNetException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
+            Assert.Throws<UnitsNetException>(() => Volume.ParseUnit("\u03bcl"));
+            Assert.Throws<UnitsNetException>(() => Volume.ParseUnit("\u03bcm³"));
+        }
+
+        [Test]
         public void AllUnitAbbreviationsImplemented([Values("en-US", "nb-NO", "ru-RU")] string cultureName)
         {
             List<object> unitValuesMissingAbbreviations = new List<object>()
