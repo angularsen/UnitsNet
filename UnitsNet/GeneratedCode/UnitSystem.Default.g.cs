@@ -77,7 +77,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerSecondSquared,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μm/s²"),
+                                new AbbreviationsForCulture("en-US", "µm/s²"),
                             }),
                         new CulturesForEnumValue((int) AccelerationUnit.MillimeterPerSecondSquared,
                             new[]
@@ -154,14 +154,14 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) AngleUnit.Microdegree,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μ°"),
-                                new AbbreviationsForCulture("ru-RU", "μ°"),
+                                new AbbreviationsForCulture("en-US", "µ°"),
+                                new AbbreviationsForCulture("ru-RU", "µ°"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Microradian,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μrad"),
-                                new AbbreviationsForCulture("ru-RU", "μрад"),
+                                new AbbreviationsForCulture("en-US", "µrad"),
+                                new AbbreviationsForCulture("ru-RU", "µрад"),
                             }),
                         new CulturesForEnumValue((int) AngleUnit.Millidegree,
                             new[]
@@ -472,7 +472,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Microampere,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μA"),
+                                new AbbreviationsForCulture("en-US", "µA"),
                             }),
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Milliampere,
                             new[]
@@ -503,8 +503,8 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricPotentialUnit.Microvolt,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μV"),
-                                new AbbreviationsForCulture("ru-RU", "μВ"),
+                                new AbbreviationsForCulture("en-US", "µV"),
+                                new AbbreviationsForCulture("ru-RU", "µВ"),
                             }),
                         new CulturesForEnumValue((int) ElectricPotentialUnit.Millivolt,
                             new[]
@@ -662,7 +662,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.MicrolitersPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μLPM"),
+                                new AbbreviationsForCulture("en-US", "µLPM"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.MillilitersPerMinute,
                             new[]
@@ -773,7 +773,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForceChangeRateUnit.MicronewtonPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μN/s"),
+                                new AbbreviationsForCulture("en-US", "µN/s"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.MillinewtonPerSecond,
                             new[]
@@ -823,7 +823,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForcePerLengthUnit.MicronewtonPerMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μN/m"),
+                                new AbbreviationsForCulture("en-US", "µN/m"),
                             }),
                         new CulturesForEnumValue((int) ForcePerLengthUnit.MillinewtonPerMeter,
                             new[]
@@ -1043,7 +1043,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) KinematicViscosityUnit.Microstokes,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μSt"),
+                                new AbbreviationsForCulture("en-US", "µSt"),
                                 new AbbreviationsForCulture("ru-RU", "мкСт"),
                             }),
                         new CulturesForEnumValue((int) KinematicViscosityUnit.Millistokes,
@@ -1113,13 +1113,13 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) LengthUnit.Microinch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μin"),
+                                new AbbreviationsForCulture("en-US", "µin"),
                                 new AbbreviationsForCulture("ru-RU", "микродюйм"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Micrometer,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μm"),
+                                new AbbreviationsForCulture("en-US", "µm"),
                                 new AbbreviationsForCulture("ru-RU", "мкм"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Mil,
@@ -1238,7 +1238,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Microgram,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μg"),
+                                new AbbreviationsForCulture("en-US", "µg"),
                                 new AbbreviationsForCulture("ru-RU", "мкг"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.Milligram,
@@ -1323,7 +1323,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μg/S"),
+                                new AbbreviationsForCulture("en-US", "µg/S"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.MilligramPerSecond,
                             new[]
@@ -1392,7 +1392,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) PowerUnit.Microwatt,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μW"),
+                                new AbbreviationsForCulture("en-US", "µW"),
                             }),
                         new CulturesForEnumValue((int) PowerUnit.Milliwatt,
                             new[]
@@ -1557,7 +1557,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) PressureUnit.Micropascal,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μPa"),
+                                new AbbreviationsForCulture("en-US", "µPa"),
                                 new AbbreviationsForCulture("ru-RU", "мкПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Millibar,
@@ -1725,14 +1725,14 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MicrodegreePerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μ°/s"),
-                                new AbbreviationsForCulture("ru-RU", "μ°/с"),
+                                new AbbreviationsForCulture("en-US", "µ°/s"),
+                                new AbbreviationsForCulture("ru-RU", "µ°/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μrad/s"),
-                                new AbbreviationsForCulture("ru-RU", "μрад/с"),
+                                new AbbreviationsForCulture("en-US", "µrad/s"),
+                                new AbbreviationsForCulture("ru-RU", "µрад/с"),
                             }),
                         new CulturesForEnumValue((int) RotationalSpeedUnit.MillidegreePerSecond,
                             new[]
@@ -1971,12 +1971,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) SpeedUnit.MicrometerPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μm/min"),
+                                new AbbreviationsForCulture("en-US", "µm/min"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.MicrometerPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μm/s"),
+                                new AbbreviationsForCulture("en-US", "µm/s"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.MilePerHour,
                             new[]
@@ -2084,7 +2084,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μ°C/s"),
+                                new AbbreviationsForCulture("en-US", "µ°C/s"),
                             }),
                         new CulturesForEnumValue((int) TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond,
                             new[]
@@ -2357,7 +2357,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) VolumeUnit.Microliter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μl"),
+                                new AbbreviationsForCulture("en-US", "µl"),
                                 new AbbreviationsForCulture("ru-RU", "мкл"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.Milliliter,
