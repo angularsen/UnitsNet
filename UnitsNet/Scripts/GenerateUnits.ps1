@@ -173,7 +173,7 @@ function Add-PrefixUnits {
                     "Deci" { "d", "1e-1d"; break; }
                     "Centi" { "c", "1e-2d"; break; }
                     "Milli" { "m", "1e-3d"; break; }
-                    "Micro" { "μ", "1e-6d"; break; }
+                    "Micro" { "µ", "1e-6d"; break; }
                     "Nano" { "n", "1e-9d"; break; }
 
                     # Optimization, move less frequently used prefixes to the end

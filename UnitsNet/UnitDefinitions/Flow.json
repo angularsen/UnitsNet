@@ -69,7 +69,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "LPM" ],
-          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+          "AbbreviationsWithPrefixes": [ "nLPM", "µLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
         }
       ]
     },
