@@ -1,0 +1,20 @@
+﻿{
+  "Name": "AcElectricPotential",
+  "BaseUnit": "VoltAc",
+  "XmlDoc": "The Electrict Potential of a system known to use Alternating Current.",
+  "Units": [
+    {
+      "SingularName": "VoltAc",
+      "PluralName": "VoltAcs",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Vac" ]
+        }
+      ]
+    }
+  ]
+}
