@@ -252,3 +252,6 @@ paket-files/
 # Custom for this repo
 Artifacts
 **/Thumbs.db
+
+# Build server tooling
+/secure-file
