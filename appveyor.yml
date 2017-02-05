@@ -5,56 +5,36 @@ environment:
   UnitsNetPfxSecret:
     secure: Dibuvlff8E8XYIVHZFh+y632RN23ZamvKEJE9NNf/GM=
 install:
-- ps: >-
+- ps: |
     Write-Host -ForegroundColor Yellow "Install 'secure-file' tool..."
-
     nuget install secure-file -ExcludeVersion
 
-
     Write-Host -ForegroundColor Yellow "Decrypt UnitsNet.pfx..."
-
     .\secure-file\tools\secure-file -decrypt Build\UnitsNet.pfx.enc -secret $env:UnitsNetPfxEncSecret
 
-
     $pfx = Resolve-Path "Build\UnitsNet.pfx"
-
     $password = $env:UnitsNetPfxSecret
-
     $keyContainerName = "VS_KEY_53797375DF3695DD"
 
-
     # Import certificate
-
     Write-Host -ForegroundColor Yellow "Import $pfx ..."
-
     $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-
     $cert.Import($pfx, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
-
     $exportPrivateKeyInformation = $true
-
     $certXml = $cert.PrivateKey.ToXmlString($exportPrivateKeyInformation)
 
-
     $csp = New-Object System.Security.Cryptography.CspParameters
-
     $csp.KeyContainerName = $keyContainerName
-
     $csp.Flags = [System.Security.Cryptography.CspProviderFlags]::UseMachineKeyStore -bor [System.Security.Cryptography.CspProviderFlags]::NoPrompt # -bor is biwise or
-
     $csp.KeyNumber = [System.Security.Cryptography.KeyNumber]::Signature
 
-
     $rsa = New-Object System.Security.Cryptography.RSACryptoServiceProvider $csp
-
     $rsa.FromXmlString($certXml)
-
     $rsa.Clear()
-
 
     Write-Output "Sucesfully imported $pfx into StrongName CSP store"
 build_script:
-- ps: >-
+- ps: |
     #####################################
     # Build, test, pack and deploy nugets
     #####################################
