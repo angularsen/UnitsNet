@@ -20,8 +20,8 @@ Build Targets:
 
 Overview
 ---
-* [387 units in 36 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [827 unit tests](http://teamcity.chump.work/viewType.html?guest=1&buildTypeId=UnitsNet_BuildTest) on conversions and localizations
+* [411 units in 38 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
+* [888 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
@@ -169,9 +169,10 @@ Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*
 
 <a name="ci"></a>Continuous Integration
 ---
-A [TeamCity build server](http://teamcity.chump.work/viewType.html?buildTypeId=UnitsNet&guest=1) performs the following:
-* Build and test pull requests. Notifies on success or error.
-* Build, test and deploy nuget on master branch.
+[AppVeyor](https://ci.appveyor.com/project/anjdreas/unitsnet) performs the following:
+* Build and test all branches
+* Build and test pull requests, notifies on success or error
+* Deploy nugets on master branch, if nuspec versions changed
 
 <a name="who-are-using"></a>Who are Using This?
 ---
