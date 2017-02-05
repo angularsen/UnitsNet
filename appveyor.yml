@@ -50,7 +50,7 @@ build_script:
     $wc = New-Object 'System.Net.WebClient'
 
     Get-ChildItem .\\Artifacts\\Logs\\*Test*.xml | %{
-      $wc.UploadFile(\"https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)\", $_.FullName)
+      $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName)
     }
 test: off
 artifacts:
