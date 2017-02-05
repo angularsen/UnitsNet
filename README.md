@@ -1,4 +1,4 @@
-[![Build Status](http://teamcity.chump.work/app/rest/builds/buildType:(id:UnitsNet_Master)/statusIcon)](http://teamcity.chump.work/viewType.html?buildTypeId=UnitsNet_Master&guest=1 "Build Status") [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k?svg=true)](https://ci.appveyor.com/project/anjdreas/unitsnet) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Units.NET
 ===
 
