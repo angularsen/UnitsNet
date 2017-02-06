@@ -54,7 +54,7 @@ build_script:
     }
 test: off
 artifacts:
-- path: Artifacts\UnitsNet.zip
+- path: Artifacts
   name: UnitsNet.zip
 deploy:
 - provider: NuGet
