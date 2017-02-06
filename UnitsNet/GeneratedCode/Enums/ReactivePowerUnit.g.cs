@@ -42,8 +42,8 @@ namespace UnitsNet.Units
     public enum ReactivePowerUnit
     {
         Undefined = 0,
-        KilovoltAmpereReactive,
-        MegavoltAmpereReactive,
-        VoltAmpereReactive,
+        KilovoltampereReactive,
+        MegavoltampereReactive,
+        VoltampereReactive,
     }
 }

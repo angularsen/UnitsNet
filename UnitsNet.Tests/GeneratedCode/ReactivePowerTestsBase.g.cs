@@ -53,85 +53,85 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ReactivePowerTestsBase
     {
-        protected abstract double KilovoltAmpereReactivesInOneVoltAmpereReactive { get; }
-        protected abstract double MegavoltAmpereReactivesInOneVoltAmpereReactive { get; }
-        protected abstract double VoltAmpereReactivesInOneVoltAmpereReactive { get; }
+        protected abstract double KilovoltamperesReactiveInOneVoltampereReactive { get; }
+        protected abstract double MegavoltamperesReactiveInOneVoltampereReactive { get; }
+        protected abstract double VoltamperesReactiveInOneVoltampereReactive { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilovoltAmpereReactivesTolerance { get { return 1e-5; } }
-        protected virtual double MegavoltAmpereReactivesTolerance { get { return 1e-5; } }
-        protected virtual double VoltAmpereReactivesTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltamperesReactiveTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltamperesReactiveTolerance { get { return 1e-5; } }
+        protected virtual double VoltamperesReactiveTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Test]
-        public void VoltAmpereReactiveToReactivePowerUnits()
+        public void VoltampereReactiveToReactivePowerUnits()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
-            Assert.AreEqual(KilovoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.KilovoltAmpereReactives, KilovoltAmpereReactivesTolerance);
-            Assert.AreEqual(MegavoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.MegavoltAmpereReactives, MegavoltAmpereReactivesTolerance);
-            Assert.AreEqual(VoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.VoltAmpereReactives, VoltAmpereReactivesTolerance);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            Assert.AreEqual(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+            Assert.AreEqual(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+            Assert.AreEqual(VoltamperesReactiveInOneVoltampereReactive, voltamperereactive.VoltamperesReactive, VoltamperesReactiveTolerance);
         }
 
         [Test]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.KilovoltAmpereReactive).KilovoltAmpereReactives, KilovoltAmpereReactivesTolerance);
-            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.MegavoltAmpereReactive).MegavoltAmpereReactives, MegavoltAmpereReactivesTolerance);
-            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.VoltAmpereReactive).VoltAmpereReactives, VoltAmpereReactivesTolerance);
+            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.KilovoltampereReactive).KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.MegavoltampereReactive).MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+            Assert.AreEqual(1, ReactivePower.From(1, ReactivePowerUnit.VoltampereReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
         }
 
         [Test]
         public void As()
         {
-            var voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
-            Assert.AreEqual(KilovoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.As(ReactivePowerUnit.KilovoltAmpereReactive), KilovoltAmpereReactivesTolerance);
-            Assert.AreEqual(MegavoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.As(ReactivePowerUnit.MegavoltAmpereReactive), MegavoltAmpereReactivesTolerance);
-            Assert.AreEqual(VoltAmpereReactivesInOneVoltAmpereReactive, voltamperereactive.As(ReactivePowerUnit.VoltAmpereReactive), VoltAmpereReactivesTolerance);
+            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            Assert.AreEqual(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.KilovoltampereReactive), KilovoltamperesReactiveTolerance);
+            Assert.AreEqual(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.MegavoltampereReactive), MegavoltamperesReactiveTolerance);
+            Assert.AreEqual(VoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.VoltampereReactive), VoltamperesReactiveTolerance);
         }
 
         [Test]
         public void ConversionRoundTrip()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
-            Assert.AreEqual(1, ReactivePower.FromKilovoltAmpereReactives(voltamperereactive.KilovoltAmpereReactives).VoltAmpereReactives, KilovoltAmpereReactivesTolerance);
-            Assert.AreEqual(1, ReactivePower.FromMegavoltAmpereReactives(voltamperereactive.MegavoltAmpereReactives).VoltAmpereReactives, MegavoltAmpereReactivesTolerance);
-            Assert.AreEqual(1, ReactivePower.FromVoltAmpereReactives(voltamperereactive.VoltAmpereReactives).VoltAmpereReactives, VoltAmpereReactivesTolerance);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            Assert.AreEqual(1, ReactivePower.FromKilovoltamperesReactive(voltamperereactive.KilovoltamperesReactive).VoltamperesReactive, KilovoltamperesReactiveTolerance);
+            Assert.AreEqual(1, ReactivePower.FromMegavoltamperesReactive(voltamperereactive.MegavoltamperesReactive).VoltamperesReactive, MegavoltamperesReactiveTolerance);
+            Assert.AreEqual(1, ReactivePower.FromVoltamperesReactive(voltamperereactive.VoltamperesReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
         }
 
         [Test]
         public void ArithmeticOperators()
         {
-            ReactivePower v = ReactivePower.FromVoltAmpereReactives(1);
-            Assert.AreEqual(-1, -v.VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(2, (ReactivePower.FromVoltAmpereReactives(3)-v).VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(2, (v + v).VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(10, (v*10).VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(10, (10*v).VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(2, (ReactivePower.FromVoltAmpereReactives(10)/5).VoltAmpereReactives, VoltAmpereReactivesTolerance);
-            Assert.AreEqual(2, ReactivePower.FromVoltAmpereReactives(10)/ReactivePower.FromVoltAmpereReactives(5), VoltAmpereReactivesTolerance);
+            ReactivePower v = ReactivePower.FromVoltamperesReactive(1);
+            Assert.AreEqual(-1, -v.VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(2, (ReactivePower.FromVoltamperesReactive(3)-v).VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(2, (v + v).VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(10, (v*10).VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(10, (10*v).VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(2, (ReactivePower.FromVoltamperesReactive(10)/5).VoltamperesReactive, VoltamperesReactiveTolerance);
+            Assert.AreEqual(2, ReactivePower.FromVoltamperesReactive(10)/ReactivePower.FromVoltamperesReactive(5), VoltamperesReactiveTolerance);
         }
 
         [Test]
         public void ComparisonOperators()
         {
-            ReactivePower oneVoltAmpereReactive = ReactivePower.FromVoltAmpereReactives(1);
-            ReactivePower twoVoltAmpereReactives = ReactivePower.FromVoltAmpereReactives(2);
+            ReactivePower oneVoltampereReactive = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower twoVoltamperesReactive = ReactivePower.FromVoltamperesReactive(2);
 
-            Assert.True(oneVoltAmpereReactive < twoVoltAmpereReactives);
-            Assert.True(oneVoltAmpereReactive <= twoVoltAmpereReactives);
-            Assert.True(twoVoltAmpereReactives > oneVoltAmpereReactive);
-            Assert.True(twoVoltAmpereReactives >= oneVoltAmpereReactive);
+            Assert.True(oneVoltampereReactive < twoVoltamperesReactive);
+            Assert.True(oneVoltampereReactive <= twoVoltamperesReactive);
+            Assert.True(twoVoltamperesReactive > oneVoltampereReactive);
+            Assert.True(twoVoltamperesReactive >= oneVoltampereReactive);
 
-            Assert.False(oneVoltAmpereReactive > twoVoltAmpereReactives);
-            Assert.False(oneVoltAmpereReactive >= twoVoltAmpereReactives);
-            Assert.False(twoVoltAmpereReactives < oneVoltAmpereReactive);
-            Assert.False(twoVoltAmpereReactives <= oneVoltAmpereReactive);
+            Assert.False(oneVoltampereReactive > twoVoltamperesReactive);
+            Assert.False(oneVoltampereReactive >= twoVoltamperesReactive);
+            Assert.False(twoVoltamperesReactive < oneVoltampereReactive);
+            Assert.False(twoVoltamperesReactive <= oneVoltampereReactive);
         }
 
         [Test]
         public void CompareToIsImplemented()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
             Assert.AreEqual(0, voltamperereactive.CompareTo(voltamperereactive));
             Assert.Greater(voltamperereactive.CompareTo(ReactivePower.Zero), 0);
             Assert.Less(ReactivePower.Zero.CompareTo(voltamperereactive), 0);
@@ -141,7 +141,7 @@ namespace UnitsNet.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
 // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             voltamperereactive.CompareTo(new object());
         }
@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CompareToThrowsOnNull()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
 // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             voltamperereactive.CompareTo(null);
         }
@@ -159,8 +159,8 @@ namespace UnitsNet.Tests
         [Test]
         public void EqualityOperators()
         {
-            ReactivePower a = ReactivePower.FromVoltAmpereReactives(1);
-            ReactivePower b = ReactivePower.FromVoltAmpereReactives(2);
+            ReactivePower a = ReactivePower.FromVoltamperesReactive(1);
+            ReactivePower b = ReactivePower.FromVoltamperesReactive(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -174,22 +174,22 @@ namespace UnitsNet.Tests
         [Test]
         public void EqualsIsImplemented()
         {
-            ReactivePower v = ReactivePower.FromVoltAmpereReactives(1);
-            Assert.IsTrue(v.Equals(ReactivePower.FromVoltAmpereReactives(1)));
+            ReactivePower v = ReactivePower.FromVoltamperesReactive(1);
+            Assert.IsTrue(v.Equals(ReactivePower.FromVoltamperesReactive(1)));
             Assert.IsFalse(v.Equals(ReactivePower.Zero));
         }
 
         [Test]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
             Assert.IsFalse(voltamperereactive.Equals(new object()));
         }
 
         [Test]
         public void EqualsReturnsFalseOnNull()
         {
-            ReactivePower voltamperereactive = ReactivePower.FromVoltAmpereReactives(1);
+            ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
             Assert.IsFalse(voltamperereactive.Equals(null));
         }
     }

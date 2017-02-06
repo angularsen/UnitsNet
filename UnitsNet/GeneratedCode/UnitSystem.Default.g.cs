@@ -90,35 +90,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "nm/s²"),
                             }),
                     }),
-                new UnitLocalization(typeof (AcElectricPotentialUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AcElectricPotentialUnit.KilovoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVac"),
-                            }),
-                        new CulturesForEnumValue((int) AcElectricPotentialUnit.MegavoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVac"),
-                            }),
-                        new CulturesForEnumValue((int) AcElectricPotentialUnit.MicrovoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µVac"),
-                            }),
-                        new CulturesForEnumValue((int) AcElectricPotentialUnit.MillivoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mVac"),
-                            }),
-                        new CulturesForEnumValue((int) AcElectricPotentialUnit.VoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Vac"),
-                            }),
-                    }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
                     new[]
                     {
@@ -333,35 +304,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb/hph"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (DcElectricPotentialUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) DcElectricPotentialUnit.KilovoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVdc"),
-                            }),
-                        new CulturesForEnumValue((int) DcElectricPotentialUnit.MegavoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVdc"),
-                            }),
-                        new CulturesForEnumValue((int) DcElectricPotentialUnit.MicrovoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µVdc"),
-                            }),
-                        new CulturesForEnumValue((int) DcElectricPotentialUnit.MillivoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mVdc"),
-                            }),
-                        new CulturesForEnumValue((int) DcElectricPotentialUnit.VoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Vdc"),
                             }),
                     }),
                 new UnitLocalization(typeof (DensityUnit),
@@ -594,6 +536,64 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "V"),
                                 new AbbreviationsForCulture("ru-RU", "В"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricPotentialAcUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.KilovoltAc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kVac"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MegavoltAc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MVac"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MicrovoltAc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μVac"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MillivoltAc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mVac"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.VoltAc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Vac"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricPotentialDcUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.KilovoltDc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kVdc"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MegavoltDc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MVdc"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MicrovoltDc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μVdc"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MillivoltDc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mVdc"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.VoltDc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Vdc"),
                             }),
                     }),
                 new UnitLocalization(typeof (ElectricResistanceUnit),
@@ -1776,17 +1776,17 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ReactivePowerUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) ReactivePowerUnit.KilovoltAmpereReactive,
+                        new CulturesForEnumValue((int) ReactivePowerUnit.KilovoltampereReactive,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kvar"),
                             }),
-                        new CulturesForEnumValue((int) ReactivePowerUnit.MegavoltAmpereReactive,
+                        new CulturesForEnumValue((int) ReactivePowerUnit.MegavoltampereReactive,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Mvar"),
                             }),
-                        new CulturesForEnumValue((int) ReactivePowerUnit.VoltAmpereReactive,
+                        new CulturesForEnumValue((int) ReactivePowerUnit.VoltampereReactive,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "var"),

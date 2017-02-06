@@ -39,7 +39,7 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum AcElectricPotentialUnit
+    public enum ElectricPotentialAcUnit
     {
         Undefined = 0,
         KilovoltAc,

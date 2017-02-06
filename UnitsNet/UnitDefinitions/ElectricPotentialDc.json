@@ -1,11 +1,11 @@
 ﻿{
-  "Name": "DcElectricPotential",
+  "Name": "ElectricPotentialDc",
   "BaseUnit": "VoltDc",
-  "XmlDoc": "The Electrict Potential of a system known to use Direct Current.",
+  "XmlDoc": "The Electric Potential of a system known to use Direct Current.",
   "Units": [
     {
       "SingularName": "VoltDc",
-      "PluralName": "VoltDcs",
+      "PluralName": "VoltsDc",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],

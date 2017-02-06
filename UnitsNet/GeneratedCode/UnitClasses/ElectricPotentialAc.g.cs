@@ -55,29 +55,29 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The Electrict Potential of a system known to use Direct Current.
+    ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
-    public sealed partial class DcElectricPotential
+    public sealed partial class ElectricPotentialAc
 #else
-    public partial struct DcElectricPotential : IComparable, IComparable<DcElectricPotential>
+    public partial struct ElectricPotentialAc : IComparable, IComparable<ElectricPotentialAc>
 #endif
     {
         /// <summary>
-        ///     Base unit of DcElectricPotential.
+        ///     Base unit of ElectricPotentialAc.
         /// </summary>
-        private readonly double _voltDcs;
+        private readonly double _voltsAc;
 
 #if WINDOWS_UWP
-        public DcElectricPotential() : this(0)
+        public ElectricPotentialAc() : this(0)
         {
         }
 #endif
 
-        public DcElectricPotential(double voltdcs)
+        public ElectricPotentialAc(double voltsac)
         {
-            _voltDcs = Convert.ToDouble(voltdcs);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        DcElectricPotential(long voltdcs)
+        ElectricPotentialAc(long voltsac)
         {
-            _voltDcs = Convert.ToDouble(voltdcs);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,116 +98,116 @@ namespace UnitsNet
 #else
         public
 #endif
-        DcElectricPotential(decimal voltdcs)
+        ElectricPotentialAc(decimal voltsac)
         {
-            _voltDcs = Convert.ToDouble(voltdcs);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         #region Properties
 
-        public static DcElectricPotentialUnit BaseUnit
+        public static ElectricPotentialAcUnit BaseUnit
         {
-            get { return DcElectricPotentialUnit.VoltDc; }
+            get { return ElectricPotentialAcUnit.VoltAc; }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential in KilovoltDcs.
+        ///     Get ElectricPotentialAc in KilovoltsAc.
         /// </summary>
-        public double KilovoltDcs
+        public double KilovoltsAc
         {
-            get { return (_voltDcs) / 1e3d; }
+            get { return (_voltsAc) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential in MegavoltDcs.
+        ///     Get ElectricPotentialAc in MegavoltsAc.
         /// </summary>
-        public double MegavoltDcs
+        public double MegavoltsAc
         {
-            get { return (_voltDcs) / 1e6d; }
+            get { return (_voltsAc) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential in MicrovoltDcs.
+        ///     Get ElectricPotentialAc in MicrovoltsAc.
         /// </summary>
-        public double MicrovoltDcs
+        public double MicrovoltsAc
         {
-            get { return (_voltDcs) / 1e-6d; }
+            get { return (_voltsAc) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential in MillivoltDcs.
+        ///     Get ElectricPotentialAc in MillivoltsAc.
         /// </summary>
-        public double MillivoltDcs
+        public double MillivoltsAc
         {
-            get { return (_voltDcs) / 1e-3d; }
+            get { return (_voltsAc) / 1e-3d; }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential in VoltDcs.
+        ///     Get ElectricPotentialAc in VoltsAc.
         /// </summary>
-        public double VoltDcs
+        public double VoltsAc
         {
-            get { return _voltDcs; }
+            get { return _voltsAc; }
         }
 
         #endregion
 
         #region Static
 
-        public static DcElectricPotential Zero
+        public static ElectricPotentialAc Zero
         {
-            get { return new DcElectricPotential(); }
+            get { return new ElectricPotentialAc(); }
         }
 
         /// <summary>
-        ///     Get DcElectricPotential from KilovoltDcs.
+        ///     Get ElectricPotentialAc from KilovoltsAc.
         /// </summary>
-        public static DcElectricPotential FromKilovoltDcs(double kilovoltdcs)
+        public static ElectricPotentialAc FromKilovoltsAc(double kilovoltsac)
         {
-            return new DcElectricPotential((kilovoltdcs) * 1e3d);
+            return new ElectricPotentialAc((kilovoltsac) * 1e3d);
         }
 
         /// <summary>
-        ///     Get DcElectricPotential from MegavoltDcs.
+        ///     Get ElectricPotentialAc from MegavoltsAc.
         /// </summary>
-        public static DcElectricPotential FromMegavoltDcs(double megavoltdcs)
+        public static ElectricPotentialAc FromMegavoltsAc(double megavoltsac)
         {
-            return new DcElectricPotential((megavoltdcs) * 1e6d);
+            return new ElectricPotentialAc((megavoltsac) * 1e6d);
         }
 
         /// <summary>
-        ///     Get DcElectricPotential from MicrovoltDcs.
+        ///     Get ElectricPotentialAc from MicrovoltsAc.
         /// </summary>
-        public static DcElectricPotential FromMicrovoltDcs(double microvoltdcs)
+        public static ElectricPotentialAc FromMicrovoltsAc(double microvoltsac)
         {
-            return new DcElectricPotential((microvoltdcs) * 1e-6d);
+            return new ElectricPotentialAc((microvoltsac) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get DcElectricPotential from MillivoltDcs.
+        ///     Get ElectricPotentialAc from MillivoltsAc.
         /// </summary>
-        public static DcElectricPotential FromMillivoltDcs(double millivoltdcs)
+        public static ElectricPotentialAc FromMillivoltsAc(double millivoltsac)
         {
-            return new DcElectricPotential((millivoltdcs) * 1e-3d);
+            return new ElectricPotentialAc((millivoltsac) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get DcElectricPotential from VoltDcs.
+        ///     Get ElectricPotentialAc from VoltsAc.
         /// </summary>
-        public static DcElectricPotential FromVoltDcs(double voltdcs)
+        public static ElectricPotentialAc FromVoltsAc(double voltsac)
         {
-            return new DcElectricPotential(voltdcs);
+            return new ElectricPotentialAc(voltsac);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable DcElectricPotential from nullable KilovoltDcs.
+        ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
         /// </summary>
-        public static DcElectricPotential? FromKilovoltDcs(double? kilovoltdcs)
+        public static ElectricPotentialAc? FromKilovoltsAc(double? kilovoltsac)
         {
-            if (kilovoltdcs.HasValue)
+            if (kilovoltsac.HasValue)
             {
-                return FromKilovoltDcs(kilovoltdcs.Value);
+                return FromKilovoltsAc(kilovoltsac.Value);
             }
             else
             {
@@ -216,13 +216,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable DcElectricPotential from nullable MegavoltDcs.
+        ///     Get nullable ElectricPotentialAc from nullable MegavoltsAc.
         /// </summary>
-        public static DcElectricPotential? FromMegavoltDcs(double? megavoltdcs)
+        public static ElectricPotentialAc? FromMegavoltsAc(double? megavoltsac)
         {
-            if (megavoltdcs.HasValue)
+            if (megavoltsac.HasValue)
             {
-                return FromMegavoltDcs(megavoltdcs.Value);
+                return FromMegavoltsAc(megavoltsac.Value);
             }
             else
             {
@@ -231,13 +231,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable DcElectricPotential from nullable MicrovoltDcs.
+        ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
         /// </summary>
-        public static DcElectricPotential? FromMicrovoltDcs(double? microvoltdcs)
+        public static ElectricPotentialAc? FromMicrovoltsAc(double? microvoltsac)
         {
-            if (microvoltdcs.HasValue)
+            if (microvoltsac.HasValue)
             {
-                return FromMicrovoltDcs(microvoltdcs.Value);
+                return FromMicrovoltsAc(microvoltsac.Value);
             }
             else
             {
@@ -246,13 +246,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable DcElectricPotential from nullable MillivoltDcs.
+        ///     Get nullable ElectricPotentialAc from nullable MillivoltsAc.
         /// </summary>
-        public static DcElectricPotential? FromMillivoltDcs(double? millivoltdcs)
+        public static ElectricPotentialAc? FromMillivoltsAc(double? millivoltsac)
         {
-            if (millivoltdcs.HasValue)
+            if (millivoltsac.HasValue)
             {
-                return FromMillivoltDcs(millivoltdcs.Value);
+                return FromMillivoltsAc(millivoltsac.Value);
             }
             else
             {
@@ -261,13 +261,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable DcElectricPotential from nullable VoltDcs.
+        ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
         /// </summary>
-        public static DcElectricPotential? FromVoltDcs(double? voltdcs)
+        public static ElectricPotentialAc? FromVoltsAc(double? voltsac)
         {
-            if (voltdcs.HasValue)
+            if (voltsac.HasValue)
             {
-                return FromVoltDcs(voltdcs.Value);
+                return FromVoltsAc(voltsac.Value);
             }
             else
             {
@@ -278,25 +278,25 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="DcElectricPotentialUnit" /> to <see cref="DcElectricPotential" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>DcElectricPotential unit value.</returns>
-        public static DcElectricPotential From(double val, DcElectricPotentialUnit fromUnit)
+        /// <returns>ElectricPotentialAc unit value.</returns>
+        public static ElectricPotentialAc From(double val, ElectricPotentialAcUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case DcElectricPotentialUnit.KilovoltDc:
-                    return FromKilovoltDcs(val);
-                case DcElectricPotentialUnit.MegavoltDc:
-                    return FromMegavoltDcs(val);
-                case DcElectricPotentialUnit.MicrovoltDc:
-                    return FromMicrovoltDcs(val);
-                case DcElectricPotentialUnit.MillivoltDc:
-                    return FromMillivoltDcs(val);
-                case DcElectricPotentialUnit.VoltDc:
-                    return FromVoltDcs(val);
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return FromKilovoltsAc(val);
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return FromMegavoltsAc(val);
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return FromMicrovoltsAc(val);
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return FromMillivoltsAc(val);
+                case ElectricPotentialAcUnit.VoltAc:
+                    return FromVoltsAc(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -305,12 +305,12 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="DcElectricPotentialUnit" /> to <see cref="DcElectricPotential" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>DcElectricPotential unit value.</returns>
-        public static DcElectricPotential? From(double? value, DcElectricPotentialUnit fromUnit)
+        /// <returns>ElectricPotentialAc unit value.</returns>
+        public static ElectricPotentialAc? From(double? value, ElectricPotentialAcUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -318,16 +318,16 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case DcElectricPotentialUnit.KilovoltDc:
-                    return FromKilovoltDcs(value.Value);
-                case DcElectricPotentialUnit.MegavoltDc:
-                    return FromMegavoltDcs(value.Value);
-                case DcElectricPotentialUnit.MicrovoltDc:
-                    return FromMicrovoltDcs(value.Value);
-                case DcElectricPotentialUnit.MillivoltDc:
-                    return FromMillivoltDcs(value.Value);
-                case DcElectricPotentialUnit.VoltDc:
-                    return FromVoltDcs(value.Value);
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return FromKilovoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return FromMegavoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return FromMicrovoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return FromMillivoltsAc(value.Value);
+                case ElectricPotentialAcUnit.VoltAc:
+                    return FromVoltsAc(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -341,7 +341,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(DcElectricPotentialUnit unit)
+        public static string GetAbbreviation(ElectricPotentialAcUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -353,7 +353,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(DcElectricPotentialUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -363,39 +363,39 @@ namespace UnitsNet
         #region Arithmetic Operators
 
 #if !WINDOWS_UWP
-        public static DcElectricPotential operator -(DcElectricPotential right)
+        public static ElectricPotentialAc operator -(ElectricPotentialAc right)
         {
-            return new DcElectricPotential(-right._voltDcs);
+            return new ElectricPotentialAc(-right._voltsAc);
         }
 
-        public static DcElectricPotential operator +(DcElectricPotential left, DcElectricPotential right)
+        public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new DcElectricPotential(left._voltDcs + right._voltDcs);
+            return new ElectricPotentialAc(left._voltsAc + right._voltsAc);
         }
 
-        public static DcElectricPotential operator -(DcElectricPotential left, DcElectricPotential right)
+        public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new DcElectricPotential(left._voltDcs - right._voltDcs);
+            return new ElectricPotentialAc(left._voltsAc - right._voltsAc);
         }
 
-        public static DcElectricPotential operator *(double left, DcElectricPotential right)
+        public static ElectricPotentialAc operator *(double left, ElectricPotentialAc right)
         {
-            return new DcElectricPotential(left*right._voltDcs);
+            return new ElectricPotentialAc(left*right._voltsAc);
         }
 
-        public static DcElectricPotential operator *(DcElectricPotential left, double right)
+        public static ElectricPotentialAc operator *(ElectricPotentialAc left, double right)
         {
-            return new DcElectricPotential(left._voltDcs*(double)right);
+            return new ElectricPotentialAc(left._voltsAc*(double)right);
         }
 
-        public static DcElectricPotential operator /(DcElectricPotential left, double right)
+        public static ElectricPotentialAc operator /(ElectricPotentialAc left, double right)
         {
-            return new DcElectricPotential(left._voltDcs/(double)right);
+            return new ElectricPotentialAc(left._voltsAc/(double)right);
         }
 
-        public static double operator /(DcElectricPotential left, DcElectricPotential right)
+        public static double operator /(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return Convert.ToDouble(left._voltDcs/right._voltDcs);
+            return Convert.ToDouble(left._voltsAc/right._voltsAc);
         }
 #endif
 
@@ -406,8 +406,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is DcElectricPotential)) throw new ArgumentException("Expected type DcElectricPotential.", "obj");
-            return CompareTo((DcElectricPotential) obj);
+            if (!(obj is ElectricPotentialAc)) throw new ArgumentException("Expected type ElectricPotentialAc.", "obj");
+            return CompareTo((ElectricPotentialAc) obj);
         }
 
 #if WINDOWS_UWP
@@ -415,42 +415,42 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(DcElectricPotential other)
+        int CompareTo(ElectricPotentialAc other)
         {
-            return _voltDcs.CompareTo(other._voltDcs);
+            return _voltsAc.CompareTo(other._voltsAc);
         }
 
 #if !WINDOWS_UWP
-        public static bool operator <=(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator <=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._voltDcs <= right._voltDcs;
+            return left._voltsAc <= right._voltsAc;
         }
 
-        public static bool operator >=(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator >=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._voltDcs >= right._voltDcs;
+            return left._voltsAc >= right._voltsAc;
         }
 
-        public static bool operator <(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator <(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._voltDcs < right._voltDcs;
+            return left._voltsAc < right._voltsAc;
         }
 
-        public static bool operator >(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator >(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._voltDcs > right._voltDcs;
+            return left._voltsAc > right._voltsAc;
         }
 
-        public static bool operator ==(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltDcs == right._voltDcs;
+            return left._voltsAc == right._voltsAc;
         }
 
-        public static bool operator !=(DcElectricPotential left, DcElectricPotential right)
+        public static bool operator !=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltDcs != right._voltDcs;
+            return left._voltsAc != right._voltsAc;
         }
 #endif
 
@@ -461,12 +461,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _voltDcs.Equals(((DcElectricPotential) obj)._voltDcs);
+            return _voltsAc.Equals(((ElectricPotentialAc) obj)._voltsAc);
         }
 
         public override int GetHashCode()
         {
-            return _voltDcs.GetHashCode();
+            return _voltsAc.GetHashCode();
         }
 
         #endregion
@@ -478,20 +478,20 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(DcElectricPotentialUnit unit)
+        public double As(ElectricPotentialAcUnit unit)
         {
             switch (unit)
             {
-                case DcElectricPotentialUnit.KilovoltDc:
-                    return KilovoltDcs;
-                case DcElectricPotentialUnit.MegavoltDc:
-                    return MegavoltDcs;
-                case DcElectricPotentialUnit.MicrovoltDc:
-                    return MicrovoltDcs;
-                case DcElectricPotentialUnit.MillivoltDc:
-                    return MillivoltDcs;
-                case DcElectricPotentialUnit.VoltDc:
-                    return VoltDcs;
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return KilovoltsAc;
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return MegavoltsAc;
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return MicrovoltsAc;
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return MillivoltsAc;
+                case ElectricPotentialAcUnit.VoltAc:
+                    return VoltsAc;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -524,7 +524,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static DcElectricPotential Parse(string str)
+        public static ElectricPotentialAc Parse(string str)
         {
             return Parse(str, null);
         }
@@ -552,7 +552,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static DcElectricPotential Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricPotentialAc Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -561,13 +561,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<DcElectricPotential>(str, formatProvider,
+            return UnitParser.ParseUnit<ElectricPotentialAc>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    DcElectricPotentialUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    ElectricPotentialAcUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltDcs(x.VoltDcs + y.VoltDcs));
+                }, (x, y) => FromVoltsAc(x.VoltsAc + y.VoltsAc));
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out DcElectricPotential result)
+        public static bool TryParse([CanBeNull] string str, out ElectricPotentialAc result)
         {
             return TryParse(str, null, out result);
         }
@@ -592,7 +592,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out DcElectricPotential result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricPotentialAc result)
         {
             try
             {
@@ -601,7 +601,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(DcElectricPotential);
+                result = default(ElectricPotentialAc);
                 return false;
             }
         }
@@ -614,7 +614,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static DcElectricPotentialUnit ParseUnit(string str)
+        public static ElectricPotentialAcUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -627,7 +627,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static DcElectricPotentialUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ElectricPotentialAcUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -645,16 +645,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static DcElectricPotentialUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricPotentialAcUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<DcElectricPotentialUnit>(str.Trim());
+            var unit = unitSystem.Parse<ElectricPotentialAcUnit>(str.Trim());
 
-            if (unit == DcElectricPotentialUnit.Undefined)
+            if (unit == ElectricPotentialAcUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized DcElectricPotentialUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricPotentialAcUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -666,9 +666,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is VoltDc
+        ///     Set the default unit used by ToString(). Default is VoltAc
         /// </summary>
-        public static DcElectricPotentialUnit ToStringDefaultUnit { get; set; } = DcElectricPotentialUnit.VoltDc;
+        public static ElectricPotentialAcUnit ToStringDefaultUnit { get; set; } = ElectricPotentialAcUnit.VoltAc;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -684,7 +684,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(DcElectricPotentialUnit unit)
+        public string ToString(ElectricPotentialAcUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -695,7 +695,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(DcElectricPotentialUnit unit, [CanBeNull] Culture culture)
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -708,7 +708,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(DcElectricPotentialUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -724,7 +724,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(DcElectricPotentialUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -741,24 +741,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of DcElectricPotential
+        /// Represents the largest possible value of ElectricPotentialAc
         /// </summary>
-        public static DcElectricPotential MaxValue
+        public static ElectricPotentialAc MaxValue
         {
             get
             {
-                return new DcElectricPotential(double.MaxValue);
+                return new ElectricPotentialAc(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of DcElectricPotential
+        /// Represents the smallest possible value of ElectricPotentialAc
         /// </summary>
-        public static DcElectricPotential MinValue
+        public static ElectricPotentialAc MinValue
         {
             get
             {
-                return new DcElectricPotential(double.MinValue);
+                return new ElectricPotentialAc(double.MinValue);
             }
         }
     }

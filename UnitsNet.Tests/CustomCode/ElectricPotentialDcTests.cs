@@ -44,16 +44,16 @@ using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class AcElectricPotentialTests : AcElectricPotentialTestsBase
+    public class ElectricPotentialDcTests : ElectricPotentialDcTestsBase
     {
-        protected override double KilovoltAcsInOneVoltAc => 1e-3;
+        protected override double KilovoltsDcInOneVoltDc => 1e-3;
 
-        protected override double MegavoltAcsInOneVoltAc => 1e-6;
+        protected override double MegavoltsDcInOneVoltDc => 1e-6;
 
-        protected override double MicrovoltAcsInOneVoltAc => 1e+6;
+        protected override double MicrovoltsDcInOneVoltDc => 1e+6;
 
-        protected override double MillivoltAcsInOneVoltAc => 1000;
+        protected override double MillivoltsDcInOneVoltDc => 1000;
 
-        protected override double VoltAcsInOneVoltAc => 1;
+        protected override double VoltsDcInOneVoltDc => 1;
     }
 }

@@ -67,7 +67,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ReactivePower.
         /// </summary>
-        private readonly double _voltAmpereReactives;
+        private readonly double _voltamperesReactive;
 
 #if WINDOWS_UWP
         public ReactivePower() : this(0)
@@ -75,9 +75,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ReactivePower(double voltamperereactives)
+        public ReactivePower(double voltamperesreactive)
         {
-            _voltAmpereReactives = Convert.ToDouble(voltamperereactives);
+            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ReactivePower(long voltamperereactives)
+        ReactivePower(long voltamperesreactive)
         {
-            _voltAmpereReactives = Convert.ToDouble(voltamperereactives);
+            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,40 +98,40 @@ namespace UnitsNet
 #else
         public
 #endif
-        ReactivePower(decimal voltamperereactives)
+        ReactivePower(decimal voltamperesreactive)
         {
-            _voltAmpereReactives = Convert.ToDouble(voltamperereactives);
+            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
         }
 
         #region Properties
 
         public static ReactivePowerUnit BaseUnit
         {
-            get { return ReactivePowerUnit.VoltAmpereReactive; }
+            get { return ReactivePowerUnit.VoltampereReactive; }
         }
 
         /// <summary>
-        ///     Get ReactivePower in KilovoltAmpereReactives.
+        ///     Get ReactivePower in KilovoltamperesReactive.
         /// </summary>
-        public double KilovoltAmpereReactives
+        public double KilovoltamperesReactive
         {
-            get { return (_voltAmpereReactives) / 1e3d; }
+            get { return (_voltamperesReactive) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get ReactivePower in MegavoltAmpereReactives.
+        ///     Get ReactivePower in MegavoltamperesReactive.
         /// </summary>
-        public double MegavoltAmpereReactives
+        public double MegavoltamperesReactive
         {
-            get { return (_voltAmpereReactives) / 1e6d; }
+            get { return (_voltamperesReactive) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get ReactivePower in VoltAmpereReactives.
+        ///     Get ReactivePower in VoltamperesReactive.
         /// </summary>
-        public double VoltAmpereReactives
+        public double VoltamperesReactive
         {
-            get { return _voltAmpereReactives; }
+            get { return _voltamperesReactive; }
         }
 
         #endregion
@@ -144,38 +144,38 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get ReactivePower from KilovoltAmpereReactives.
+        ///     Get ReactivePower from KilovoltamperesReactive.
         /// </summary>
-        public static ReactivePower FromKilovoltAmpereReactives(double kilovoltamperereactives)
+        public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive)
         {
-            return new ReactivePower((kilovoltamperereactives) * 1e3d);
+            return new ReactivePower((kilovoltamperesreactive) * 1e3d);
         }
 
         /// <summary>
-        ///     Get ReactivePower from MegavoltAmpereReactives.
+        ///     Get ReactivePower from MegavoltamperesReactive.
         /// </summary>
-        public static ReactivePower FromMegavoltAmpereReactives(double megavoltamperereactives)
+        public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive)
         {
-            return new ReactivePower((megavoltamperereactives) * 1e6d);
+            return new ReactivePower((megavoltamperesreactive) * 1e6d);
         }
 
         /// <summary>
-        ///     Get ReactivePower from VoltAmpereReactives.
+        ///     Get ReactivePower from VoltamperesReactive.
         /// </summary>
-        public static ReactivePower FromVoltAmpereReactives(double voltamperereactives)
+        public static ReactivePower FromVoltamperesReactive(double voltamperesreactive)
         {
-            return new ReactivePower(voltamperereactives);
+            return new ReactivePower(voltamperesreactive);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ReactivePower from nullable KilovoltAmpereReactives.
+        ///     Get nullable ReactivePower from nullable KilovoltamperesReactive.
         /// </summary>
-        public static ReactivePower? FromKilovoltAmpereReactives(double? kilovoltamperereactives)
+        public static ReactivePower? FromKilovoltamperesReactive(double? kilovoltamperesreactive)
         {
-            if (kilovoltamperereactives.HasValue)
+            if (kilovoltamperesreactive.HasValue)
             {
-                return FromKilovoltAmpereReactives(kilovoltamperereactives.Value);
+                return FromKilovoltamperesReactive(kilovoltamperesreactive.Value);
             }
             else
             {
@@ -184,13 +184,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ReactivePower from nullable MegavoltAmpereReactives.
+        ///     Get nullable ReactivePower from nullable MegavoltamperesReactive.
         /// </summary>
-        public static ReactivePower? FromMegavoltAmpereReactives(double? megavoltamperereactives)
+        public static ReactivePower? FromMegavoltamperesReactive(double? megavoltamperesreactive)
         {
-            if (megavoltamperereactives.HasValue)
+            if (megavoltamperesreactive.HasValue)
             {
-                return FromMegavoltAmpereReactives(megavoltamperereactives.Value);
+                return FromMegavoltamperesReactive(megavoltamperesreactive.Value);
             }
             else
             {
@@ -199,13 +199,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ReactivePower from nullable VoltAmpereReactives.
+        ///     Get nullable ReactivePower from nullable VoltamperesReactive.
         /// </summary>
-        public static ReactivePower? FromVoltAmpereReactives(double? voltamperereactives)
+        public static ReactivePower? FromVoltamperesReactive(double? voltamperesreactive)
         {
-            if (voltamperereactives.HasValue)
+            if (voltamperesreactive.HasValue)
             {
-                return FromVoltAmpereReactives(voltamperereactives.Value);
+                return FromVoltamperesReactive(voltamperesreactive.Value);
             }
             else
             {
@@ -225,12 +225,12 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case ReactivePowerUnit.KilovoltAmpereReactive:
-                    return FromKilovoltAmpereReactives(val);
-                case ReactivePowerUnit.MegavoltAmpereReactive:
-                    return FromMegavoltAmpereReactives(val);
-                case ReactivePowerUnit.VoltAmpereReactive:
-                    return FromVoltAmpereReactives(val);
+                case ReactivePowerUnit.KilovoltampereReactive:
+                    return FromKilovoltamperesReactive(val);
+                case ReactivePowerUnit.MegavoltampereReactive:
+                    return FromMegavoltamperesReactive(val);
+                case ReactivePowerUnit.VoltampereReactive:
+                    return FromVoltamperesReactive(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -252,12 +252,12 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ReactivePowerUnit.KilovoltAmpereReactive:
-                    return FromKilovoltAmpereReactives(value.Value);
-                case ReactivePowerUnit.MegavoltAmpereReactive:
-                    return FromMegavoltAmpereReactives(value.Value);
-                case ReactivePowerUnit.VoltAmpereReactive:
-                    return FromVoltAmpereReactives(value.Value);
+                case ReactivePowerUnit.KilovoltampereReactive:
+                    return FromKilovoltamperesReactive(value.Value);
+                case ReactivePowerUnit.MegavoltampereReactive:
+                    return FromMegavoltamperesReactive(value.Value);
+                case ReactivePowerUnit.VoltampereReactive:
+                    return FromVoltamperesReactive(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -295,37 +295,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ReactivePower operator -(ReactivePower right)
         {
-            return new ReactivePower(-right._voltAmpereReactives);
+            return new ReactivePower(-right._voltamperesReactive);
         }
 
         public static ReactivePower operator +(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left._voltAmpereReactives + right._voltAmpereReactives);
+            return new ReactivePower(left._voltamperesReactive + right._voltamperesReactive);
         }
 
         public static ReactivePower operator -(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left._voltAmpereReactives - right._voltAmpereReactives);
+            return new ReactivePower(left._voltamperesReactive - right._voltamperesReactive);
         }
 
         public static ReactivePower operator *(double left, ReactivePower right)
         {
-            return new ReactivePower(left*right._voltAmpereReactives);
+            return new ReactivePower(left*right._voltamperesReactive);
         }
 
         public static ReactivePower operator *(ReactivePower left, double right)
         {
-            return new ReactivePower(left._voltAmpereReactives*(double)right);
+            return new ReactivePower(left._voltamperesReactive*(double)right);
         }
 
         public static ReactivePower operator /(ReactivePower left, double right)
         {
-            return new ReactivePower(left._voltAmpereReactives/(double)right);
+            return new ReactivePower(left._voltamperesReactive/(double)right);
         }
 
         public static double operator /(ReactivePower left, ReactivePower right)
         {
-            return Convert.ToDouble(left._voltAmpereReactives/right._voltAmpereReactives);
+            return Convert.ToDouble(left._voltamperesReactive/right._voltamperesReactive);
         }
 #endif
 
@@ -347,40 +347,40 @@ namespace UnitsNet
 #endif
         int CompareTo(ReactivePower other)
         {
-            return _voltAmpereReactives.CompareTo(other._voltAmpereReactives);
+            return _voltamperesReactive.CompareTo(other._voltamperesReactive);
         }
 
 #if !WINDOWS_UWP
         public static bool operator <=(ReactivePower left, ReactivePower right)
         {
-            return left._voltAmpereReactives <= right._voltAmpereReactives;
+            return left._voltamperesReactive <= right._voltamperesReactive;
         }
 
         public static bool operator >=(ReactivePower left, ReactivePower right)
         {
-            return left._voltAmpereReactives >= right._voltAmpereReactives;
+            return left._voltamperesReactive >= right._voltamperesReactive;
         }
 
         public static bool operator <(ReactivePower left, ReactivePower right)
         {
-            return left._voltAmpereReactives < right._voltAmpereReactives;
+            return left._voltamperesReactive < right._voltamperesReactive;
         }
 
         public static bool operator >(ReactivePower left, ReactivePower right)
         {
-            return left._voltAmpereReactives > right._voltAmpereReactives;
+            return left._voltamperesReactive > right._voltamperesReactive;
         }
 
         public static bool operator ==(ReactivePower left, ReactivePower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltAmpereReactives == right._voltAmpereReactives;
+            return left._voltamperesReactive == right._voltamperesReactive;
         }
 
         public static bool operator !=(ReactivePower left, ReactivePower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltAmpereReactives != right._voltAmpereReactives;
+            return left._voltamperesReactive != right._voltamperesReactive;
         }
 #endif
 
@@ -391,12 +391,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _voltAmpereReactives.Equals(((ReactivePower) obj)._voltAmpereReactives);
+            return _voltamperesReactive.Equals(((ReactivePower) obj)._voltamperesReactive);
         }
 
         public override int GetHashCode()
         {
-            return _voltAmpereReactives.GetHashCode();
+            return _voltamperesReactive.GetHashCode();
         }
 
         #endregion
@@ -412,12 +412,12 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case ReactivePowerUnit.KilovoltAmpereReactive:
-                    return KilovoltAmpereReactives;
-                case ReactivePowerUnit.MegavoltAmpereReactive:
-                    return MegavoltAmpereReactives;
-                case ReactivePowerUnit.VoltAmpereReactive:
-                    return VoltAmpereReactives;
+                case ReactivePowerUnit.KilovoltampereReactive:
+                    return KilovoltamperesReactive;
+                case ReactivePowerUnit.MegavoltampereReactive:
+                    return MegavoltamperesReactive;
+                case ReactivePowerUnit.VoltampereReactive:
+                    return VoltamperesReactive;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -493,7 +493,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ReactivePowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltAmpereReactives(x.VoltAmpereReactives + y.VoltAmpereReactives));
+                }, (x, y) => FromVoltamperesReactive(x.VoltamperesReactive + y.VoltamperesReactive));
         }
 
         /// <summary>
@@ -592,9 +592,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is VoltAmpereReactive
+        ///     Set the default unit used by ToString(). Default is VoltampereReactive
         /// </summary>
-        public static ReactivePowerUnit ToStringDefaultUnit { get; set; } = ReactivePowerUnit.VoltAmpereReactive;
+        public static ReactivePowerUnit ToStringDefaultUnit { get; set; } = ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
         ///     Get default string representation of value and unit.

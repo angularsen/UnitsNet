@@ -44,105 +44,105 @@ namespace UnitsNet.Extensions.NumberToReactivePower
 {
     public static class NumberToReactivePowerExtensions
     {
-        #region KilovoltAmpereReactive
+        #region KilovoltampereReactive
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double)"/>
-        public static ReactivePower KilovoltAmpereReactives(this int value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>
+        public static ReactivePower KilovoltamperesReactive(this int value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double?)"/>
-        public static ReactivePower? KilovoltAmpereReactives(this int? value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double?)"/>
+        public static ReactivePower? KilovoltamperesReactive(this int? value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double)"/>
-        public static ReactivePower KilovoltAmpereReactives(this long value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>
+        public static ReactivePower KilovoltamperesReactive(this long value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double?)"/>
-        public static ReactivePower? KilovoltAmpereReactives(this long? value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double?)"/>
+        public static ReactivePower? KilovoltamperesReactive(this long? value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double)"/>
-        public static ReactivePower KilovoltAmpereReactives(this double value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>
+        public static ReactivePower KilovoltamperesReactive(this double value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double?)"/>
-        public static ReactivePower? KilovoltAmpereReactives(this double? value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double?)"/>
+        public static ReactivePower? KilovoltamperesReactive(this double? value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double)"/>
-        public static ReactivePower KilovoltAmpereReactives(this float value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>
+        public static ReactivePower KilovoltamperesReactive(this float value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double?)"/>
-        public static ReactivePower? KilovoltAmpereReactives(this float? value) => ReactivePower.FromKilovoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double?)"/>
+        public static ReactivePower? KilovoltamperesReactive(this float? value) => ReactivePower.FromKilovoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double)"/>
-        public static ReactivePower KilovoltAmpereReactives(this decimal value) => ReactivePower.FromKilovoltAmpereReactives(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>
+        public static ReactivePower KilovoltamperesReactive(this decimal value) => ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltAmpereReactives(double?)"/>
-        public static ReactivePower? KilovoltAmpereReactives(this decimal? value) => ReactivePower.FromKilovoltAmpereReactives(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegavoltAmpereReactive
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double)"/>
-        public static ReactivePower MegavoltAmpereReactives(this int value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double?)"/>
-        public static ReactivePower? MegavoltAmpereReactives(this int? value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double)"/>
-        public static ReactivePower MegavoltAmpereReactives(this long value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double?)"/>
-        public static ReactivePower? MegavoltAmpereReactives(this long? value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double)"/>
-        public static ReactivePower MegavoltAmpereReactives(this double value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double?)"/>
-        public static ReactivePower? MegavoltAmpereReactives(this double? value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double)"/>
-        public static ReactivePower MegavoltAmpereReactives(this float value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double?)"/>
-        public static ReactivePower? MegavoltAmpereReactives(this float? value) => ReactivePower.FromMegavoltAmpereReactives(value);
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double)"/>
-        public static ReactivePower MegavoltAmpereReactives(this decimal value) => ReactivePower.FromMegavoltAmpereReactives(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ReactivePower.FromMegavoltAmpereReactives(double?)"/>
-        public static ReactivePower? MegavoltAmpereReactives(this decimal? value) => ReactivePower.FromMegavoltAmpereReactives(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double?)"/>
+        public static ReactivePower? KilovoltamperesReactive(this decimal? value) => ReactivePower.FromKilovoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
-        #region VoltAmpereReactive
+        #region MegavoltampereReactive
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double)"/>
-        public static ReactivePower VoltAmpereReactives(this int value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)"/>
+        public static ReactivePower MegavoltamperesReactive(this int value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double?)"/>
-        public static ReactivePower? VoltAmpereReactives(this int? value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double?)"/>
+        public static ReactivePower? MegavoltamperesReactive(this int? value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double)"/>
-        public static ReactivePower VoltAmpereReactives(this long value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)"/>
+        public static ReactivePower MegavoltamperesReactive(this long value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double?)"/>
-        public static ReactivePower? VoltAmpereReactives(this long? value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double?)"/>
+        public static ReactivePower? MegavoltamperesReactive(this long? value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double)"/>
-        public static ReactivePower VoltAmpereReactives(this double value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)"/>
+        public static ReactivePower MegavoltamperesReactive(this double value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double?)"/>
-        public static ReactivePower? VoltAmpereReactives(this double? value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double?)"/>
+        public static ReactivePower? MegavoltamperesReactive(this double? value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double)"/>
-        public static ReactivePower VoltAmpereReactives(this float value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)"/>
+        public static ReactivePower MegavoltamperesReactive(this float value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double?)"/>
-        public static ReactivePower? VoltAmpereReactives(this float? value) => ReactivePower.FromVoltAmpereReactives(value);
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double?)"/>
+        public static ReactivePower? MegavoltamperesReactive(this float? value) => ReactivePower.FromMegavoltamperesReactive(value);
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double)"/>
-        public static ReactivePower VoltAmpereReactives(this decimal value) => ReactivePower.FromVoltAmpereReactives(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)"/>
+        public static ReactivePower MegavoltamperesReactive(this decimal value) => ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromVoltAmpereReactives(double?)"/>
-        public static ReactivePower? VoltAmpereReactives(this decimal? value) => ReactivePower.FromVoltAmpereReactives(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double?)"/>
+        public static ReactivePower? MegavoltamperesReactive(this decimal? value) => ReactivePower.FromMegavoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region VoltampereReactive
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)"/>
+        public static ReactivePower VoltamperesReactive(this int value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double?)"/>
+        public static ReactivePower? VoltamperesReactive(this int? value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)"/>
+        public static ReactivePower VoltamperesReactive(this long value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double?)"/>
+        public static ReactivePower? VoltamperesReactive(this long? value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)"/>
+        public static ReactivePower VoltamperesReactive(this double value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double?)"/>
+        public static ReactivePower? VoltamperesReactive(this double? value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)"/>
+        public static ReactivePower VoltamperesReactive(this float value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double?)"/>
+        public static ReactivePower? VoltamperesReactive(this float? value) => ReactivePower.FromVoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)"/>
+        public static ReactivePower VoltamperesReactive(this decimal value) => ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double?)"/>
+        public static ReactivePower? VoltamperesReactive(this decimal? value) => ReactivePower.FromVoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
