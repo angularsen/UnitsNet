@@ -54,8 +54,8 @@ build_script:
     }
 test: off
 artifacts:
-- path: Artifacts
-  name: UnitsNet.zip
+- path: Artifacts\UnitsNet.zip
+- path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
 deploy:
 - provider: NuGet
   api_key:
