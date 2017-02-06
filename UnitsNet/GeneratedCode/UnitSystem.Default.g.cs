@@ -470,6 +470,30 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "P"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricAdmittanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Microsiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "μS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Millisiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Nanosiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Siemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "S"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),
                     new[]
                     {
