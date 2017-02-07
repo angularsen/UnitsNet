@@ -633,6 +633,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "MΩ"),
                             }),
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Milliohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mΩ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Ohm,
                             new[]
                             {

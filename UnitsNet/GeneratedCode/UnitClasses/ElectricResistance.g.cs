@@ -127,6 +127,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ElectricResistance in Milliohms.
+        /// </summary>
+        public double Milliohms
+        {
+            get { return (_ohms) / 1e-3d; }
+        }
+
+        /// <summary>
         ///     Get ElectricResistance in Ohms.
         /// </summary>
         public double Ohms
@@ -157,6 +165,14 @@ namespace UnitsNet
         public static ElectricResistance FromMegaohms(double megaohms)
         {
             return new ElectricResistance((megaohms) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get ElectricResistance from Milliohms.
+        /// </summary>
+        public static ElectricResistance FromMilliohms(double milliohms)
+        {
+            return new ElectricResistance((milliohms) * 1e-3d);
         }
 
         /// <summary>
@@ -199,6 +215,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ElectricResistance from nullable Milliohms.
+        /// </summary>
+        public static ElectricResistance? FromMilliohms(double? milliohms)
+        {
+            if (milliohms.HasValue)
+            {
+                return FromMilliohms(milliohms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable ElectricResistance from nullable Ohms.
         /// </summary>
         public static ElectricResistance? FromOhms(double? ohms)
@@ -229,6 +260,8 @@ namespace UnitsNet
                     return FromKiloohms(val);
                 case ElectricResistanceUnit.Megaohm:
                     return FromMegaohms(val);
+                case ElectricResistanceUnit.Milliohm:
+                    return FromMilliohms(val);
                 case ElectricResistanceUnit.Ohm:
                     return FromOhms(val);
 
@@ -256,6 +289,8 @@ namespace UnitsNet
                     return FromKiloohms(value.Value);
                 case ElectricResistanceUnit.Megaohm:
                     return FromMegaohms(value.Value);
+                case ElectricResistanceUnit.Milliohm:
+                    return FromMilliohms(value.Value);
                 case ElectricResistanceUnit.Ohm:
                     return FromOhms(value.Value);
 
@@ -416,6 +451,8 @@ namespace UnitsNet
                     return Kiloohms;
                 case ElectricResistanceUnit.Megaohm:
                     return Megaohms;
+                case ElectricResistanceUnit.Milliohm:
+                    return Milliohms;
                 case ElectricResistanceUnit.Ohm:
                     return Ohms;
 
