@@ -55,11 +55,13 @@ namespace UnitsNet.Tests
     {
         protected abstract double KiloohmsInOneOhm { get; }
         protected abstract double MegaohmsInOneOhm { get; }
+        protected abstract double MilliohmsInOneOhm { get; }
         protected abstract double OhmsInOneOhm { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KiloohmsTolerance { get { return 1e-5; } }
         protected virtual double MegaohmsTolerance { get { return 1e-5; } }
+        protected virtual double MilliohmsTolerance { get { return 1e-5; } }
         protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -69,6 +71,7 @@ namespace UnitsNet.Tests
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             Assert.AreEqual(KiloohmsInOneOhm, ohm.Kiloohms, KiloohmsTolerance);
             Assert.AreEqual(MegaohmsInOneOhm, ohm.Megaohms, MegaohmsTolerance);
+            Assert.AreEqual(MilliohmsInOneOhm, ohm.Milliohms, MilliohmsTolerance);
             Assert.AreEqual(OhmsInOneOhm, ohm.Ohms, OhmsTolerance);
         }
 
@@ -77,6 +80,7 @@ namespace UnitsNet.Tests
         {
             Assert.AreEqual(1, ElectricResistance.From(1, ElectricResistanceUnit.Kiloohm).Kiloohms, KiloohmsTolerance);
             Assert.AreEqual(1, ElectricResistance.From(1, ElectricResistanceUnit.Megaohm).Megaohms, MegaohmsTolerance);
+            Assert.AreEqual(1, ElectricResistance.From(1, ElectricResistanceUnit.Milliohm).Milliohms, MilliohmsTolerance);
             Assert.AreEqual(1, ElectricResistance.From(1, ElectricResistanceUnit.Ohm).Ohms, OhmsTolerance);
         }
 
@@ -86,6 +90,7 @@ namespace UnitsNet.Tests
             var ohm = ElectricResistance.FromOhms(1);
             Assert.AreEqual(KiloohmsInOneOhm, ohm.As(ElectricResistanceUnit.Kiloohm), KiloohmsTolerance);
             Assert.AreEqual(MegaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Megaohm), MegaohmsTolerance);
+            Assert.AreEqual(MilliohmsInOneOhm, ohm.As(ElectricResistanceUnit.Milliohm), MilliohmsTolerance);
             Assert.AreEqual(OhmsInOneOhm, ohm.As(ElectricResistanceUnit.Ohm), OhmsTolerance);
         }
 
@@ -95,6 +100,7 @@ namespace UnitsNet.Tests
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             Assert.AreEqual(1, ElectricResistance.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
             Assert.AreEqual(1, ElectricResistance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
+            Assert.AreEqual(1, ElectricResistance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
             Assert.AreEqual(1, ElectricResistance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
         }
 

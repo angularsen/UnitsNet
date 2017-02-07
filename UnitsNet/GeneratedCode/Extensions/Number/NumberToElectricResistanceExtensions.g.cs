@@ -112,6 +112,40 @@ namespace UnitsNet.Extensions.NumberToElectricResistance
 
         #endregion
 
+        #region Milliohm
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)"/>
+        public static ElectricResistance Milliohms(this int value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double?)"/>
+        public static ElectricResistance? Milliohms(this int? value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)"/>
+        public static ElectricResistance Milliohms(this long value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double?)"/>
+        public static ElectricResistance? Milliohms(this long? value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)"/>
+        public static ElectricResistance Milliohms(this double value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double?)"/>
+        public static ElectricResistance? Milliohms(this double? value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)"/>
+        public static ElectricResistance Milliohms(this float value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double?)"/>
+        public static ElectricResistance? Milliohms(this float? value) => ElectricResistance.FromMilliohms(value);
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)"/>
+        public static ElectricResistance Milliohms(this decimal value) => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(double?)"/>
+        public static ElectricResistance? Milliohms(this decimal? value) => ElectricResistance.FromMilliohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Ohm
 
         /// <inheritdoc cref="ElectricResistance.FromOhms(double)"/>
