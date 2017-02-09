@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         Kiloohm,
         Megaohm,
+        Milliohm,
         Ohm,
     }
 }

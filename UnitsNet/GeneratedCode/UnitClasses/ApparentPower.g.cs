@@ -55,29 +55,29 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
-    public sealed partial class ElectricResistance
+    public sealed partial class ApparentPower
 #else
-    public partial struct ElectricResistance : IComparable, IComparable<ElectricResistance>
+    public partial struct ApparentPower : IComparable, IComparable<ApparentPower>
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricResistance.
+        ///     Base unit of ApparentPower.
         /// </summary>
-        private readonly double _ohms;
+        private readonly double _voltamperes;
 
 #if WINDOWS_UWP
-        public ElectricResistance() : this(0)
+        public ApparentPower() : this(0)
         {
         }
 #endif
 
-        public ElectricResistance(double ohms)
+        public ApparentPower(double voltamperes)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltamperes = Convert.ToDouble(voltamperes);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(long ohms)
+        ApparentPower(long voltamperes)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltamperes = Convert.ToDouble(voltamperes);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,100 +98,84 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(decimal ohms)
+        ApparentPower(decimal voltamperes)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltamperes = Convert.ToDouble(voltamperes);
         }
 
         #region Properties
 
-        public static ElectricResistanceUnit BaseUnit
+        public static ApparentPowerUnit BaseUnit
         {
-            get { return ElectricResistanceUnit.Ohm; }
+            get { return ApparentPowerUnit.Voltampere; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Get ApparentPower in Kilovoltamperes.
         /// </summary>
-        public double Kiloohms
+        public double Kilovoltamperes
         {
-            get { return (_ohms) / 1e3d; }
+            get { return (_voltamperes) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Get ApparentPower in Megavoltamperes.
         /// </summary>
-        public double Megaohms
+        public double Megavoltamperes
         {
-            get { return (_ohms) / 1e6d; }
+            get { return (_voltamperes) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Get ApparentPower in Voltamperes.
         /// </summary>
-        public double Milliohms
+        public double Voltamperes
         {
-            get { return (_ohms) / 1e-3d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance in Ohms.
-        /// </summary>
-        public double Ohms
-        {
-            get { return _ohms; }
+            get { return _voltamperes; }
         }
 
         #endregion
 
         #region Static
 
-        public static ElectricResistance Zero
+        public static ApparentPower Zero
         {
-            get { return new ElectricResistance(); }
+            get { return new ApparentPower(); }
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Get ApparentPower from Kilovoltamperes.
         /// </summary>
-        public static ElectricResistance FromKiloohms(double kiloohms)
+        public static ApparentPower FromKilovoltamperes(double kilovoltamperes)
         {
-            return new ElectricResistance((kiloohms) * 1e3d);
+            return new ApparentPower((kilovoltamperes) * 1e3d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Get ApparentPower from Megavoltamperes.
         /// </summary>
-        public static ElectricResistance FromMegaohms(double megaohms)
+        public static ApparentPower FromMegavoltamperes(double megavoltamperes)
         {
-            return new ElectricResistance((megaohms) * 1e6d);
+            return new ApparentPower((megavoltamperes) * 1e6d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Get ApparentPower from Voltamperes.
         /// </summary>
-        public static ElectricResistance FromMilliohms(double milliohms)
+        public static ApparentPower FromVoltamperes(double voltamperes)
         {
-            return new ElectricResistance((milliohms) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance from Ohms.
-        /// </summary>
-        public static ElectricResistance FromOhms(double ohms)
-        {
-            return new ElectricResistance(ohms);
+            return new ApparentPower(voltamperes);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
+        ///     Get nullable ApparentPower from nullable Kilovoltamperes.
         /// </summary>
-        public static ElectricResistance? FromKiloohms(double? kiloohms)
+        public static ApparentPower? FromKilovoltamperes(double? kilovoltamperes)
         {
-            if (kiloohms.HasValue)
+            if (kilovoltamperes.HasValue)
             {
-                return FromKiloohms(kiloohms.Value);
+                return FromKilovoltamperes(kilovoltamperes.Value);
             }
             else
             {
@@ -200,13 +184,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
+        ///     Get nullable ApparentPower from nullable Megavoltamperes.
         /// </summary>
-        public static ElectricResistance? FromMegaohms(double? megaohms)
+        public static ApparentPower? FromMegavoltamperes(double? megavoltamperes)
         {
-            if (megaohms.HasValue)
+            if (megavoltamperes.HasValue)
             {
-                return FromMegaohms(megaohms.Value);
+                return FromMegavoltamperes(megavoltamperes.Value);
             }
             else
             {
@@ -215,28 +199,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
+        ///     Get nullable ApparentPower from nullable Voltamperes.
         /// </summary>
-        public static ElectricResistance? FromMilliohms(double? milliohms)
+        public static ApparentPower? FromVoltamperes(double? voltamperes)
         {
-            if (milliohms.HasValue)
+            if (voltamperes.HasValue)
             {
-                return FromMilliohms(milliohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
-        /// </summary>
-        public static ElectricResistance? FromOhms(double? ohms)
-        {
-            if (ohms.HasValue)
-            {
-                return FromOhms(ohms.Value);
+                return FromVoltamperes(voltamperes.Value);
             }
             else
             {
@@ -247,23 +216,21 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(double val, ElectricResistanceUnit fromUnit)
+        /// <returns>ApparentPower unit value.</returns>
+        public static ApparentPower From(double val, ApparentPowerUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(val);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(val);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(val);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(val);
+                case ApparentPowerUnit.Kilovoltampere:
+                    return FromKilovoltamperes(val);
+                case ApparentPowerUnit.Megavoltampere:
+                    return FromMegavoltamperes(val);
+                case ApparentPowerUnit.Voltampere:
+                    return FromVoltamperes(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -272,12 +239,12 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance? From(double? value, ElectricResistanceUnit fromUnit)
+        /// <returns>ApparentPower unit value.</returns>
+        public static ApparentPower? From(double? value, ApparentPowerUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -285,14 +252,12 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(value.Value);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(value.Value);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(value.Value);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(value.Value);
+                case ApparentPowerUnit.Kilovoltampere:
+                    return FromKilovoltamperes(value.Value);
+                case ApparentPowerUnit.Megavoltampere:
+                    return FromMegavoltamperes(value.Value);
+                case ApparentPowerUnit.Voltampere:
+                    return FromVoltamperes(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -306,7 +271,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit)
+        public static string GetAbbreviation(ApparentPowerUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -318,7 +283,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(ApparentPowerUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -328,39 +293,39 @@ namespace UnitsNet
         #region Arithmetic Operators
 
 #if !WINDOWS_UWP
-        public static ElectricResistance operator -(ElectricResistance right)
+        public static ApparentPower operator -(ApparentPower right)
         {
-            return new ElectricResistance(-right._ohms);
+            return new ApparentPower(-right._voltamperes);
         }
 
-        public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
+        public static ApparentPower operator +(ApparentPower left, ApparentPower right)
         {
-            return new ElectricResistance(left._ohms + right._ohms);
+            return new ApparentPower(left._voltamperes + right._voltamperes);
         }
 
-        public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
+        public static ApparentPower operator -(ApparentPower left, ApparentPower right)
         {
-            return new ElectricResistance(left._ohms - right._ohms);
+            return new ApparentPower(left._voltamperes - right._voltamperes);
         }
 
-        public static ElectricResistance operator *(double left, ElectricResistance right)
+        public static ApparentPower operator *(double left, ApparentPower right)
         {
-            return new ElectricResistance(left*right._ohms);
+            return new ApparentPower(left*right._voltamperes);
         }
 
-        public static ElectricResistance operator *(ElectricResistance left, double right)
+        public static ApparentPower operator *(ApparentPower left, double right)
         {
-            return new ElectricResistance(left._ohms*(double)right);
+            return new ApparentPower(left._voltamperes*(double)right);
         }
 
-        public static ElectricResistance operator /(ElectricResistance left, double right)
+        public static ApparentPower operator /(ApparentPower left, double right)
         {
-            return new ElectricResistance(left._ohms/(double)right);
+            return new ApparentPower(left._voltamperes/(double)right);
         }
 
-        public static double operator /(ElectricResistance left, ElectricResistance right)
+        public static double operator /(ApparentPower left, ApparentPower right)
         {
-            return Convert.ToDouble(left._ohms/right._ohms);
+            return Convert.ToDouble(left._voltamperes/right._voltamperes);
         }
 #endif
 
@@ -371,8 +336,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is ElectricResistance)) throw new ArgumentException("Expected type ElectricResistance.", "obj");
-            return CompareTo((ElectricResistance) obj);
+            if (!(obj is ApparentPower)) throw new ArgumentException("Expected type ApparentPower.", "obj");
+            return CompareTo((ApparentPower) obj);
         }
 
 #if WINDOWS_UWP
@@ -380,42 +345,42 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(ElectricResistance other)
+        int CompareTo(ApparentPower other)
         {
-            return _ohms.CompareTo(other._ohms);
+            return _voltamperes.CompareTo(other._voltamperes);
         }
 
 #if !WINDOWS_UWP
-        public static bool operator <=(ElectricResistance left, ElectricResistance right)
+        public static bool operator <=(ApparentPower left, ApparentPower right)
         {
-            return left._ohms <= right._ohms;
+            return left._voltamperes <= right._voltamperes;
         }
 
-        public static bool operator >=(ElectricResistance left, ElectricResistance right)
+        public static bool operator >=(ApparentPower left, ApparentPower right)
         {
-            return left._ohms >= right._ohms;
+            return left._voltamperes >= right._voltamperes;
         }
 
-        public static bool operator <(ElectricResistance left, ElectricResistance right)
+        public static bool operator <(ApparentPower left, ApparentPower right)
         {
-            return left._ohms < right._ohms;
+            return left._voltamperes < right._voltamperes;
         }
 
-        public static bool operator >(ElectricResistance left, ElectricResistance right)
+        public static bool operator >(ApparentPower left, ApparentPower right)
         {
-            return left._ohms > right._ohms;
+            return left._voltamperes > right._voltamperes;
         }
 
-        public static bool operator ==(ElectricResistance left, ElectricResistance right)
+        public static bool operator ==(ApparentPower left, ApparentPower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms == right._ohms;
+            return left._voltamperes == right._voltamperes;
         }
 
-        public static bool operator !=(ElectricResistance left, ElectricResistance right)
+        public static bool operator !=(ApparentPower left, ApparentPower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms != right._ohms;
+            return left._voltamperes != right._voltamperes;
         }
 #endif
 
@@ -426,12 +391,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohms.Equals(((ElectricResistance) obj)._ohms);
+            return _voltamperes.Equals(((ApparentPower) obj)._voltamperes);
         }
 
         public override int GetHashCode()
         {
-            return _ohms.GetHashCode();
+            return _voltamperes.GetHashCode();
         }
 
         #endregion
@@ -443,18 +408,16 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(ElectricResistanceUnit unit)
+        public double As(ApparentPowerUnit unit)
         {
             switch (unit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return Kiloohms;
-                case ElectricResistanceUnit.Megaohm:
-                    return Megaohms;
-                case ElectricResistanceUnit.Milliohm:
-                    return Milliohms;
-                case ElectricResistanceUnit.Ohm:
-                    return Ohms;
+                case ApparentPowerUnit.Kilovoltampere:
+                    return Kilovoltamperes;
+                case ApparentPowerUnit.Megavoltampere:
+                    return Megavoltamperes;
+                case ApparentPowerUnit.Voltampere:
+                    return Voltamperes;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -487,7 +450,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str)
+        public static ApparentPower Parse(string str)
         {
             return Parse(str, null);
         }
@@ -515,7 +478,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str, [CanBeNull] Culture culture)
+        public static ApparentPower Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -524,13 +487,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricResistance>(str, formatProvider,
+            return UnitParser.ParseUnit<ApparentPower>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    ElectricResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    ApparentPowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhms(x.Ohms + y.Ohms));
+                }, (x, y) => FromVoltamperes(x.Voltamperes + y.Voltamperes));
         }
 
         /// <summary>
@@ -541,7 +504,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, out ApparentPower result)
         {
             return TryParse(str, null, out result);
         }
@@ -555,7 +518,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ApparentPower result)
         {
             try
             {
@@ -564,7 +527,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(ElectricResistance);
+                result = default(ApparentPower);
                 return false;
             }
         }
@@ -577,7 +540,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str)
+        public static ApparentPowerUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -590,7 +553,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ApparentPowerUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -608,16 +571,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricResistanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ApparentPowerUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<ElectricResistanceUnit>(str.Trim());
+            var unit = unitSystem.Parse<ApparentPowerUnit>(str.Trim());
 
-            if (unit == ElectricResistanceUnit.Undefined)
+            if (unit == ApparentPowerUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricResistanceUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ApparentPowerUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -629,9 +592,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is Ohm
+        ///     Set the default unit used by ToString(). Default is Voltampere
         /// </summary>
-        public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
+        public static ApparentPowerUnit ToStringDefaultUnit { get; set; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -647,7 +610,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit)
+        public string ToString(ApparentPowerUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -658,7 +621,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(ApparentPowerUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -671,7 +634,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(ApparentPowerUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -687,7 +650,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(ApparentPowerUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -704,24 +667,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of ElectricResistance
+        /// Represents the largest possible value of ApparentPower
         /// </summary>
-        public static ElectricResistance MaxValue
+        public static ApparentPower MaxValue
         {
             get
             {
-                return new ElectricResistance(double.MaxValue);
+                return new ApparentPower(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricResistance
+        /// Represents the smallest possible value of ApparentPower
         /// </summary>
-        public static ElectricResistance MinValue
+        public static ApparentPower MinValue
         {
             get
             {
-                return new ElectricResistance(double.MinValue);
+                return new ApparentPower(double.MinValue);
             }
         }
     }

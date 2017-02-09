@@ -55,29 +55,29 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
-    public sealed partial class ElectricResistance
+    public sealed partial class ElectricPotentialAc
 #else
-    public partial struct ElectricResistance : IComparable, IComparable<ElectricResistance>
+    public partial struct ElectricPotentialAc : IComparable, IComparable<ElectricPotentialAc>
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricResistance.
+        ///     Base unit of ElectricPotentialAc.
         /// </summary>
-        private readonly double _ohms;
+        private readonly double _voltsAc;
 
 #if WINDOWS_UWP
-        public ElectricResistance() : this(0)
+        public ElectricPotentialAc() : this(0)
         {
         }
 #endif
 
-        public ElectricResistance(double ohms)
+        public ElectricPotentialAc(double voltsac)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(long ohms)
+        ElectricPotentialAc(long voltsac)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,100 +98,116 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(decimal ohms)
+        ElectricPotentialAc(decimal voltsac)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _voltsAc = Convert.ToDouble(voltsac);
         }
 
         #region Properties
 
-        public static ElectricResistanceUnit BaseUnit
+        public static ElectricPotentialAcUnit BaseUnit
         {
-            get { return ElectricResistanceUnit.Ohm; }
+            get { return ElectricPotentialAcUnit.VoltAc; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Get ElectricPotentialAc in KilovoltsAc.
         /// </summary>
-        public double Kiloohms
+        public double KilovoltsAc
         {
-            get { return (_ohms) / 1e3d; }
+            get { return (_voltsAc) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Get ElectricPotentialAc in MegavoltsAc.
         /// </summary>
-        public double Megaohms
+        public double MegavoltsAc
         {
-            get { return (_ohms) / 1e6d; }
+            get { return (_voltsAc) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Get ElectricPotentialAc in MicrovoltsAc.
         /// </summary>
-        public double Milliohms
+        public double MicrovoltsAc
         {
-            get { return (_ohms) / 1e-3d; }
+            get { return (_voltsAc) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Ohms.
+        ///     Get ElectricPotentialAc in MillivoltsAc.
         /// </summary>
-        public double Ohms
+        public double MillivoltsAc
         {
-            get { return _ohms; }
+            get { return (_voltsAc) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc in VoltsAc.
+        /// </summary>
+        public double VoltsAc
+        {
+            get { return _voltsAc; }
         }
 
         #endregion
 
         #region Static
 
-        public static ElectricResistance Zero
+        public static ElectricPotentialAc Zero
         {
-            get { return new ElectricResistance(); }
+            get { return new ElectricPotentialAc(); }
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Get ElectricPotentialAc from KilovoltsAc.
         /// </summary>
-        public static ElectricResistance FromKiloohms(double kiloohms)
+        public static ElectricPotentialAc FromKilovoltsAc(double kilovoltsac)
         {
-            return new ElectricResistance((kiloohms) * 1e3d);
+            return new ElectricPotentialAc((kilovoltsac) * 1e3d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Get ElectricPotentialAc from MegavoltsAc.
         /// </summary>
-        public static ElectricResistance FromMegaohms(double megaohms)
+        public static ElectricPotentialAc FromMegavoltsAc(double megavoltsac)
         {
-            return new ElectricResistance((megaohms) * 1e6d);
+            return new ElectricPotentialAc((megavoltsac) * 1e6d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Get ElectricPotentialAc from MicrovoltsAc.
         /// </summary>
-        public static ElectricResistance FromMilliohms(double milliohms)
+        public static ElectricPotentialAc FromMicrovoltsAc(double microvoltsac)
         {
-            return new ElectricResistance((milliohms) * 1e-3d);
+            return new ElectricPotentialAc((microvoltsac) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Ohms.
+        ///     Get ElectricPotentialAc from MillivoltsAc.
         /// </summary>
-        public static ElectricResistance FromOhms(double ohms)
+        public static ElectricPotentialAc FromMillivoltsAc(double millivoltsac)
         {
-            return new ElectricResistance(ohms);
+            return new ElectricPotentialAc((millivoltsac) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromVoltsAc(double voltsac)
+        {
+            return new ElectricPotentialAc(voltsac);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
+        ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
         /// </summary>
-        public static ElectricResistance? FromKiloohms(double? kiloohms)
+        public static ElectricPotentialAc? FromKilovoltsAc(double? kilovoltsac)
         {
-            if (kiloohms.HasValue)
+            if (kilovoltsac.HasValue)
             {
-                return FromKiloohms(kiloohms.Value);
+                return FromKilovoltsAc(kilovoltsac.Value);
             }
             else
             {
@@ -200,13 +216,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
+        ///     Get nullable ElectricPotentialAc from nullable MegavoltsAc.
         /// </summary>
-        public static ElectricResistance? FromMegaohms(double? megaohms)
+        public static ElectricPotentialAc? FromMegavoltsAc(double? megavoltsac)
         {
-            if (megaohms.HasValue)
+            if (megavoltsac.HasValue)
             {
-                return FromMegaohms(megaohms.Value);
+                return FromMegavoltsAc(megavoltsac.Value);
             }
             else
             {
@@ -215,13 +231,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
+        ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
         /// </summary>
-        public static ElectricResistance? FromMilliohms(double? milliohms)
+        public static ElectricPotentialAc? FromMicrovoltsAc(double? microvoltsac)
         {
-            if (milliohms.HasValue)
+            if (microvoltsac.HasValue)
             {
-                return FromMilliohms(milliohms.Value);
+                return FromMicrovoltsAc(microvoltsac.Value);
             }
             else
             {
@@ -230,13 +246,28 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
+        ///     Get nullable ElectricPotentialAc from nullable MillivoltsAc.
         /// </summary>
-        public static ElectricResistance? FromOhms(double? ohms)
+        public static ElectricPotentialAc? FromMillivoltsAc(double? millivoltsac)
         {
-            if (ohms.HasValue)
+            if (millivoltsac.HasValue)
             {
-                return FromOhms(ohms.Value);
+                return FromMillivoltsAc(millivoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromVoltsAc(double? voltsac)
+        {
+            if (voltsac.HasValue)
+            {
+                return FromVoltsAc(voltsac.Value);
             }
             else
             {
@@ -247,23 +278,25 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(double val, ElectricResistanceUnit fromUnit)
+        /// <returns>ElectricPotentialAc unit value.</returns>
+        public static ElectricPotentialAc From(double val, ElectricPotentialAcUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(val);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(val);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(val);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(val);
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return FromKilovoltsAc(val);
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return FromMegavoltsAc(val);
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return FromMicrovoltsAc(val);
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return FromMillivoltsAc(val);
+                case ElectricPotentialAcUnit.VoltAc:
+                    return FromVoltsAc(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -272,12 +305,12 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance? From(double? value, ElectricResistanceUnit fromUnit)
+        /// <returns>ElectricPotentialAc unit value.</returns>
+        public static ElectricPotentialAc? From(double? value, ElectricPotentialAcUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -285,14 +318,16 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(value.Value);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(value.Value);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(value.Value);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(value.Value);
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return FromKilovoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return FromMegavoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return FromMicrovoltsAc(value.Value);
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return FromMillivoltsAc(value.Value);
+                case ElectricPotentialAcUnit.VoltAc:
+                    return FromVoltsAc(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -306,7 +341,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit)
+        public static string GetAbbreviation(ElectricPotentialAcUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -318,7 +353,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -328,39 +363,39 @@ namespace UnitsNet
         #region Arithmetic Operators
 
 #if !WINDOWS_UWP
-        public static ElectricResistance operator -(ElectricResistance right)
+        public static ElectricPotentialAc operator -(ElectricPotentialAc right)
         {
-            return new ElectricResistance(-right._ohms);
+            return new ElectricPotentialAc(-right._voltsAc);
         }
 
-        public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
+        public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricResistance(left._ohms + right._ohms);
+            return new ElectricPotentialAc(left._voltsAc + right._voltsAc);
         }
 
-        public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
+        public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricResistance(left._ohms - right._ohms);
+            return new ElectricPotentialAc(left._voltsAc - right._voltsAc);
         }
 
-        public static ElectricResistance operator *(double left, ElectricResistance right)
+        public static ElectricPotentialAc operator *(double left, ElectricPotentialAc right)
         {
-            return new ElectricResistance(left*right._ohms);
+            return new ElectricPotentialAc(left*right._voltsAc);
         }
 
-        public static ElectricResistance operator *(ElectricResistance left, double right)
+        public static ElectricPotentialAc operator *(ElectricPotentialAc left, double right)
         {
-            return new ElectricResistance(left._ohms*(double)right);
+            return new ElectricPotentialAc(left._voltsAc*(double)right);
         }
 
-        public static ElectricResistance operator /(ElectricResistance left, double right)
+        public static ElectricPotentialAc operator /(ElectricPotentialAc left, double right)
         {
-            return new ElectricResistance(left._ohms/(double)right);
+            return new ElectricPotentialAc(left._voltsAc/(double)right);
         }
 
-        public static double operator /(ElectricResistance left, ElectricResistance right)
+        public static double operator /(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return Convert.ToDouble(left._ohms/right._ohms);
+            return Convert.ToDouble(left._voltsAc/right._voltsAc);
         }
 #endif
 
@@ -371,8 +406,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is ElectricResistance)) throw new ArgumentException("Expected type ElectricResistance.", "obj");
-            return CompareTo((ElectricResistance) obj);
+            if (!(obj is ElectricPotentialAc)) throw new ArgumentException("Expected type ElectricPotentialAc.", "obj");
+            return CompareTo((ElectricPotentialAc) obj);
         }
 
 #if WINDOWS_UWP
@@ -380,42 +415,42 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(ElectricResistance other)
+        int CompareTo(ElectricPotentialAc other)
         {
-            return _ohms.CompareTo(other._ohms);
+            return _voltsAc.CompareTo(other._voltsAc);
         }
 
 #if !WINDOWS_UWP
-        public static bool operator <=(ElectricResistance left, ElectricResistance right)
+        public static bool operator <=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._ohms <= right._ohms;
+            return left._voltsAc <= right._voltsAc;
         }
 
-        public static bool operator >=(ElectricResistance left, ElectricResistance right)
+        public static bool operator >=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._ohms >= right._ohms;
+            return left._voltsAc >= right._voltsAc;
         }
 
-        public static bool operator <(ElectricResistance left, ElectricResistance right)
+        public static bool operator <(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._ohms < right._ohms;
+            return left._voltsAc < right._voltsAc;
         }
 
-        public static bool operator >(ElectricResistance left, ElectricResistance right)
+        public static bool operator >(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left._ohms > right._ohms;
+            return left._voltsAc > right._voltsAc;
         }
 
-        public static bool operator ==(ElectricResistance left, ElectricResistance right)
+        public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms == right._ohms;
+            return left._voltsAc == right._voltsAc;
         }
 
-        public static bool operator !=(ElectricResistance left, ElectricResistance right)
+        public static bool operator !=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms != right._ohms;
+            return left._voltsAc != right._voltsAc;
         }
 #endif
 
@@ -426,12 +461,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohms.Equals(((ElectricResistance) obj)._ohms);
+            return _voltsAc.Equals(((ElectricPotentialAc) obj)._voltsAc);
         }
 
         public override int GetHashCode()
         {
-            return _ohms.GetHashCode();
+            return _voltsAc.GetHashCode();
         }
 
         #endregion
@@ -443,18 +478,20 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(ElectricResistanceUnit unit)
+        public double As(ElectricPotentialAcUnit unit)
         {
             switch (unit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return Kiloohms;
-                case ElectricResistanceUnit.Megaohm:
-                    return Megaohms;
-                case ElectricResistanceUnit.Milliohm:
-                    return Milliohms;
-                case ElectricResistanceUnit.Ohm:
-                    return Ohms;
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return KilovoltsAc;
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return MegavoltsAc;
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return MicrovoltsAc;
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return MillivoltsAc;
+                case ElectricPotentialAcUnit.VoltAc:
+                    return VoltsAc;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -487,7 +524,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str)
+        public static ElectricPotentialAc Parse(string str)
         {
             return Parse(str, null);
         }
@@ -515,7 +552,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricPotentialAc Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -524,13 +561,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricResistance>(str, formatProvider,
+            return UnitParser.ParseUnit<ElectricPotentialAc>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    ElectricResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    ElectricPotentialAcUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhms(x.Ohms + y.Ohms));
+                }, (x, y) => FromVoltsAc(x.VoltsAc + y.VoltsAc));
         }
 
         /// <summary>
@@ -541,7 +578,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, out ElectricPotentialAc result)
         {
             return TryParse(str, null, out result);
         }
@@ -555,7 +592,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricPotentialAc result)
         {
             try
             {
@@ -564,7 +601,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(ElectricResistance);
+                result = default(ElectricPotentialAc);
                 return false;
             }
         }
@@ -577,7 +614,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str)
+        public static ElectricPotentialAcUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -590,7 +627,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ElectricPotentialAcUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -608,16 +645,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricResistanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricPotentialAcUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<ElectricResistanceUnit>(str.Trim());
+            var unit = unitSystem.Parse<ElectricPotentialAcUnit>(str.Trim());
 
-            if (unit == ElectricResistanceUnit.Undefined)
+            if (unit == ElectricPotentialAcUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricResistanceUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricPotentialAcUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -629,9 +666,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is Ohm
+        ///     Set the default unit used by ToString(). Default is VoltAc
         /// </summary>
-        public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
+        public static ElectricPotentialAcUnit ToStringDefaultUnit { get; set; } = ElectricPotentialAcUnit.VoltAc;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -647,7 +684,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit)
+        public string ToString(ElectricPotentialAcUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -658,7 +695,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -671,7 +708,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -687,7 +724,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(ElectricPotentialAcUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -704,24 +741,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of ElectricResistance
+        /// Represents the largest possible value of ElectricPotentialAc
         /// </summary>
-        public static ElectricResistance MaxValue
+        public static ElectricPotentialAc MaxValue
         {
             get
             {
-                return new ElectricResistance(double.MaxValue);
+                return new ElectricPotentialAc(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricResistance
+        /// Represents the smallest possible value of ElectricPotentialAc
         /// </summary>
-        public static ElectricResistance MinValue
+        public static ElectricPotentialAc MinValue
         {
             get
             {
-                return new ElectricResistance(double.MinValue);
+                return new ElectricPotentialAc(double.MinValue);
             }
         }
     }

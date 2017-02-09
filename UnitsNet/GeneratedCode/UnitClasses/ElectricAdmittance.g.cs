@@ -55,29 +55,29 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
-    public sealed partial class ElectricResistance
+    public sealed partial class ElectricAdmittance
 #else
-    public partial struct ElectricResistance : IComparable, IComparable<ElectricResistance>
+    public partial struct ElectricAdmittance : IComparable, IComparable<ElectricAdmittance>
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricResistance.
+        ///     Base unit of ElectricAdmittance.
         /// </summary>
-        private readonly double _ohms;
+        private readonly double _siemens;
 
 #if WINDOWS_UWP
-        public ElectricResistance() : this(0)
+        public ElectricAdmittance() : this(0)
         {
         }
 #endif
 
-        public ElectricResistance(double ohms)
+        public ElectricAdmittance(double siemens)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _siemens = Convert.ToDouble(siemens);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(long ohms)
+        ElectricAdmittance(long siemens)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _siemens = Convert.ToDouble(siemens);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,100 +98,100 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistance(decimal ohms)
+        ElectricAdmittance(decimal siemens)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _siemens = Convert.ToDouble(siemens);
         }
 
         #region Properties
 
-        public static ElectricResistanceUnit BaseUnit
+        public static ElectricAdmittanceUnit BaseUnit
         {
-            get { return ElectricResistanceUnit.Ohm; }
+            get { return ElectricAdmittanceUnit.Siemens; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Get ElectricAdmittance in Microsiemens.
         /// </summary>
-        public double Kiloohms
+        public double Microsiemens
         {
-            get { return (_ohms) / 1e3d; }
+            get { return (_siemens) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Get ElectricAdmittance in Millisiemens.
         /// </summary>
-        public double Megaohms
+        public double Millisiemens
         {
-            get { return (_ohms) / 1e6d; }
+            get { return (_siemens) / 1e-3d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Get ElectricAdmittance in Nanosiemens.
         /// </summary>
-        public double Milliohms
+        public double Nanosiemens
         {
-            get { return (_ohms) / 1e-3d; }
+            get { return (_siemens) / 1e-9d; }
         }
 
         /// <summary>
-        ///     Get ElectricResistance in Ohms.
+        ///     Get ElectricAdmittance in Siemens.
         /// </summary>
-        public double Ohms
+        public double Siemens
         {
-            get { return _ohms; }
+            get { return _siemens; }
         }
 
         #endregion
 
         #region Static
 
-        public static ElectricResistance Zero
+        public static ElectricAdmittance Zero
         {
-            get { return new ElectricResistance(); }
+            get { return new ElectricAdmittance(); }
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Get ElectricAdmittance from Microsiemens.
         /// </summary>
-        public static ElectricResistance FromKiloohms(double kiloohms)
+        public static ElectricAdmittance FromMicrosiemens(double microsiemens)
         {
-            return new ElectricResistance((kiloohms) * 1e3d);
+            return new ElectricAdmittance((microsiemens) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Get ElectricAdmittance from Millisiemens.
         /// </summary>
-        public static ElectricResistance FromMegaohms(double megaohms)
+        public static ElectricAdmittance FromMillisiemens(double millisiemens)
         {
-            return new ElectricResistance((megaohms) * 1e6d);
+            return new ElectricAdmittance((millisiemens) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Get ElectricAdmittance from Nanosiemens.
         /// </summary>
-        public static ElectricResistance FromMilliohms(double milliohms)
+        public static ElectricAdmittance FromNanosiemens(double nanosiemens)
         {
-            return new ElectricResistance((milliohms) * 1e-3d);
+            return new ElectricAdmittance((nanosiemens) * 1e-9d);
         }
 
         /// <summary>
-        ///     Get ElectricResistance from Ohms.
+        ///     Get ElectricAdmittance from Siemens.
         /// </summary>
-        public static ElectricResistance FromOhms(double ohms)
+        public static ElectricAdmittance FromSiemens(double siemens)
         {
-            return new ElectricResistance(ohms);
+            return new ElectricAdmittance(siemens);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
+        ///     Get nullable ElectricAdmittance from nullable Microsiemens.
         /// </summary>
-        public static ElectricResistance? FromKiloohms(double? kiloohms)
+        public static ElectricAdmittance? FromMicrosiemens(double? microsiemens)
         {
-            if (kiloohms.HasValue)
+            if (microsiemens.HasValue)
             {
-                return FromKiloohms(kiloohms.Value);
+                return FromMicrosiemens(microsiemens.Value);
             }
             else
             {
@@ -200,13 +200,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
+        ///     Get nullable ElectricAdmittance from nullable Millisiemens.
         /// </summary>
-        public static ElectricResistance? FromMegaohms(double? megaohms)
+        public static ElectricAdmittance? FromMillisiemens(double? millisiemens)
         {
-            if (megaohms.HasValue)
+            if (millisiemens.HasValue)
             {
-                return FromMegaohms(megaohms.Value);
+                return FromMillisiemens(millisiemens.Value);
             }
             else
             {
@@ -215,13 +215,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
+        ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
         /// </summary>
-        public static ElectricResistance? FromMilliohms(double? milliohms)
+        public static ElectricAdmittance? FromNanosiemens(double? nanosiemens)
         {
-            if (milliohms.HasValue)
+            if (nanosiemens.HasValue)
             {
-                return FromMilliohms(milliohms.Value);
+                return FromNanosiemens(nanosiemens.Value);
             }
             else
             {
@@ -230,13 +230,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
+        ///     Get nullable ElectricAdmittance from nullable Siemens.
         /// </summary>
-        public static ElectricResistance? FromOhms(double? ohms)
+        public static ElectricAdmittance? FromSiemens(double? siemens)
         {
-            if (ohms.HasValue)
+            if (siemens.HasValue)
             {
-                return FromOhms(ohms.Value);
+                return FromSiemens(siemens.Value);
             }
             else
             {
@@ -247,23 +247,23 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(double val, ElectricResistanceUnit fromUnit)
+        /// <returns>ElectricAdmittance unit value.</returns>
+        public static ElectricAdmittance From(double val, ElectricAdmittanceUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(val);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(val);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(val);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(val);
+                case ElectricAdmittanceUnit.Microsiemens:
+                    return FromMicrosiemens(val);
+                case ElectricAdmittanceUnit.Millisiemens:
+                    return FromMillisiemens(val);
+                case ElectricAdmittanceUnit.Nanosiemens:
+                    return FromNanosiemens(val);
+                case ElectricAdmittanceUnit.Siemens:
+                    return FromSiemens(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -272,12 +272,12 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance? From(double? value, ElectricResistanceUnit fromUnit)
+        /// <returns>ElectricAdmittance unit value.</returns>
+        public static ElectricAdmittance? From(double? value, ElectricAdmittanceUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -285,14 +285,14 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(value.Value);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(value.Value);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(value.Value);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(value.Value);
+                case ElectricAdmittanceUnit.Microsiemens:
+                    return FromMicrosiemens(value.Value);
+                case ElectricAdmittanceUnit.Millisiemens:
+                    return FromMillisiemens(value.Value);
+                case ElectricAdmittanceUnit.Nanosiemens:
+                    return FromNanosiemens(value.Value);
+                case ElectricAdmittanceUnit.Siemens:
+                    return FromSiemens(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -306,7 +306,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit)
+        public static string GetAbbreviation(ElectricAdmittanceUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -318,7 +318,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(ElectricAdmittanceUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -328,39 +328,39 @@ namespace UnitsNet
         #region Arithmetic Operators
 
 #if !WINDOWS_UWP
-        public static ElectricResistance operator -(ElectricResistance right)
+        public static ElectricAdmittance operator -(ElectricAdmittance right)
         {
-            return new ElectricResistance(-right._ohms);
+            return new ElectricAdmittance(-right._siemens);
         }
 
-        public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
+        public static ElectricAdmittance operator +(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return new ElectricResistance(left._ohms + right._ohms);
+            return new ElectricAdmittance(left._siemens + right._siemens);
         }
 
-        public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
+        public static ElectricAdmittance operator -(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return new ElectricResistance(left._ohms - right._ohms);
+            return new ElectricAdmittance(left._siemens - right._siemens);
         }
 
-        public static ElectricResistance operator *(double left, ElectricResistance right)
+        public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
         {
-            return new ElectricResistance(left*right._ohms);
+            return new ElectricAdmittance(left*right._siemens);
         }
 
-        public static ElectricResistance operator *(ElectricResistance left, double right)
+        public static ElectricAdmittance operator *(ElectricAdmittance left, double right)
         {
-            return new ElectricResistance(left._ohms*(double)right);
+            return new ElectricAdmittance(left._siemens*(double)right);
         }
 
-        public static ElectricResistance operator /(ElectricResistance left, double right)
+        public static ElectricAdmittance operator /(ElectricAdmittance left, double right)
         {
-            return new ElectricResistance(left._ohms/(double)right);
+            return new ElectricAdmittance(left._siemens/(double)right);
         }
 
-        public static double operator /(ElectricResistance left, ElectricResistance right)
+        public static double operator /(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return Convert.ToDouble(left._ohms/right._ohms);
+            return Convert.ToDouble(left._siemens/right._siemens);
         }
 #endif
 
@@ -371,8 +371,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is ElectricResistance)) throw new ArgumentException("Expected type ElectricResistance.", "obj");
-            return CompareTo((ElectricResistance) obj);
+            if (!(obj is ElectricAdmittance)) throw new ArgumentException("Expected type ElectricAdmittance.", "obj");
+            return CompareTo((ElectricAdmittance) obj);
         }
 
 #if WINDOWS_UWP
@@ -380,42 +380,42 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(ElectricResistance other)
+        int CompareTo(ElectricAdmittance other)
         {
-            return _ohms.CompareTo(other._ohms);
+            return _siemens.CompareTo(other._siemens);
         }
 
 #if !WINDOWS_UWP
-        public static bool operator <=(ElectricResistance left, ElectricResistance right)
+        public static bool operator <=(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left._ohms <= right._ohms;
+            return left._siemens <= right._siemens;
         }
 
-        public static bool operator >=(ElectricResistance left, ElectricResistance right)
+        public static bool operator >=(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left._ohms >= right._ohms;
+            return left._siemens >= right._siemens;
         }
 
-        public static bool operator <(ElectricResistance left, ElectricResistance right)
+        public static bool operator <(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left._ohms < right._ohms;
+            return left._siemens < right._siemens;
         }
 
-        public static bool operator >(ElectricResistance left, ElectricResistance right)
+        public static bool operator >(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left._ohms > right._ohms;
+            return left._siemens > right._siemens;
         }
 
-        public static bool operator ==(ElectricResistance left, ElectricResistance right)
+        public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms == right._ohms;
+            return left._siemens == right._siemens;
         }
 
-        public static bool operator !=(ElectricResistance left, ElectricResistance right)
+        public static bool operator !=(ElectricAdmittance left, ElectricAdmittance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms != right._ohms;
+            return left._siemens != right._siemens;
         }
 #endif
 
@@ -426,12 +426,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohms.Equals(((ElectricResistance) obj)._ohms);
+            return _siemens.Equals(((ElectricAdmittance) obj)._siemens);
         }
 
         public override int GetHashCode()
         {
-            return _ohms.GetHashCode();
+            return _siemens.GetHashCode();
         }
 
         #endregion
@@ -443,18 +443,18 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(ElectricResistanceUnit unit)
+        public double As(ElectricAdmittanceUnit unit)
         {
             switch (unit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return Kiloohms;
-                case ElectricResistanceUnit.Megaohm:
-                    return Megaohms;
-                case ElectricResistanceUnit.Milliohm:
-                    return Milliohms;
-                case ElectricResistanceUnit.Ohm:
-                    return Ohms;
+                case ElectricAdmittanceUnit.Microsiemens:
+                    return Microsiemens;
+                case ElectricAdmittanceUnit.Millisiemens:
+                    return Millisiemens;
+                case ElectricAdmittanceUnit.Nanosiemens:
+                    return Nanosiemens;
+                case ElectricAdmittanceUnit.Siemens:
+                    return Siemens;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -487,7 +487,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str)
+        public static ElectricAdmittance Parse(string str)
         {
             return Parse(str, null);
         }
@@ -515,7 +515,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricAdmittance Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -524,13 +524,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricResistance>(str, formatProvider,
+            return UnitParser.ParseUnit<ElectricAdmittance>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    ElectricResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    ElectricAdmittanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhms(x.Ohms + y.Ohms));
+                }, (x, y) => FromSiemens(x.Siemens + y.Siemens));
         }
 
         /// <summary>
@@ -541,7 +541,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, out ElectricAdmittance result)
         {
             return TryParse(str, null, out result);
         }
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricResistance result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricAdmittance result)
         {
             try
             {
@@ -564,7 +564,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(ElectricResistance);
+                result = default(ElectricAdmittance);
                 return false;
             }
         }
@@ -577,7 +577,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str)
+        public static ElectricAdmittanceUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -590,7 +590,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ElectricAdmittanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -608,16 +608,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricResistanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricAdmittanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<ElectricResistanceUnit>(str.Trim());
+            var unit = unitSystem.Parse<ElectricAdmittanceUnit>(str.Trim());
 
-            if (unit == ElectricResistanceUnit.Undefined)
+            if (unit == ElectricAdmittanceUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricResistanceUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricAdmittanceUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -629,9 +629,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is Ohm
+        ///     Set the default unit used by ToString(). Default is Siemens
         /// </summary>
-        public static ElectricResistanceUnit ToStringDefaultUnit { get; set; } = ElectricResistanceUnit.Ohm;
+        public static ElectricAdmittanceUnit ToStringDefaultUnit { get; set; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -647,7 +647,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit)
+        public string ToString(ElectricAdmittanceUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -658,7 +658,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(ElectricAdmittanceUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -671,7 +671,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(ElectricAdmittanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -687,7 +687,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(ElectricAdmittanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -704,24 +704,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of ElectricResistance
+        /// Represents the largest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricResistance MaxValue
+        public static ElectricAdmittance MaxValue
         {
             get
             {
-                return new ElectricResistance(double.MaxValue);
+                return new ElectricAdmittance(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of ElectricResistance
+        /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricResistance MinValue
+        public static ElectricAdmittance MinValue
         {
             get
             {
-                return new ElectricResistance(double.MinValue);
+                return new ElectricAdmittance(double.MinValue);
             }
         }
     }
