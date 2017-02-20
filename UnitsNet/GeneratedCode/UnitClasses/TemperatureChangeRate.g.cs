@@ -475,6 +475,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within TemperatureChangeRateUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be TemperatureChangeRateUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be TemperatureChangeRateUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (TemperatureChangeRateUnit)fromUnit).As((TemperatureChangeRateUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

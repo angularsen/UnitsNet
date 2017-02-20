@@ -476,7 +476,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricAdmittanceUnit.Microsiemens,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μS"),
+                                new AbbreviationsForCulture("en-US", "µS"),
                             }),
                         new CulturesForEnumValue((int) ElectricAdmittanceUnit.Millisiemens,
                             new[]
@@ -578,7 +578,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricPotentialAcUnit.MicrovoltAc,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μVac"),
+                                new AbbreviationsForCulture("en-US", "µVac"),
                             }),
                         new CulturesForEnumValue((int) ElectricPotentialAcUnit.MillivoltAc,
                             new[]
@@ -607,7 +607,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ElectricPotentialDcUnit.MicrovoltDc,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "μVdc"),
+                                new AbbreviationsForCulture("en-US", "µVdc"),
                             }),
                         new CulturesForEnumValue((int) ElectricPotentialDcUnit.MillivoltDc,
                             new[]

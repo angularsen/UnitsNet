@@ -335,6 +335,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within ElectricPotentialAcUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be ElectricPotentialAcUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be ElectricPotentialAcUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (ElectricPotentialAcUnit)fromUnit).As((ElectricPotentialAcUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
