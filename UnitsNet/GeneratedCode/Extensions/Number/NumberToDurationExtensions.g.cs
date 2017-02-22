@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToDuration
 {
     public static class NumberToDurationExtensions
     {
+        #region Cycle
+
+        /// <inheritdoc cref="Duration.FromCycles(double)"/>
+        public static Duration Cycles(this int value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double?)"/>
+        public static Duration? Cycles(this int? value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double)"/>
+        public static Duration Cycles(this long value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double?)"/>
+        public static Duration? Cycles(this long? value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double)"/>
+        public static Duration Cycles(this double value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double?)"/>
+        public static Duration? Cycles(this double? value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double)"/>
+        public static Duration Cycles(this float value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double?)"/>
+        public static Duration? Cycles(this float? value) => Duration.FromCycles(value);
+
+        /// <inheritdoc cref="Duration.FromCycles(double)"/>
+        public static Duration Cycles(this decimal value) => Duration.FromCycles(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Duration.FromCycles(double?)"/>
+        public static Duration? Cycles(this decimal? value) => Duration.FromCycles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Day
 
         /// <inheritdoc cref="Duration.FromDays(double)"/>

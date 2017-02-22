@@ -380,6 +380,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (DurationUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) DurationUnit.Cycle,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cycle", "cycles"),
+                            }),
                         new CulturesForEnumValue((int) DurationUnit.Day,
                             new[]
                             {

@@ -111,6 +111,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Duration in Cycles.
+        /// </summary>
+        public double Cycles
+        {
+            get { return _seconds/0.02; }
+        }
+
+        /// <summary>
         ///     Get Duration in Days.
         /// </summary>
         public double Days
@@ -200,6 +208,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Duration from Cycles.
+        /// </summary>
+        public static Duration FromCycles(double cycles)
+        {
+            return new Duration(cycles*0.02);
+        }
+
+        /// <summary>
         ///     Get Duration from Days.
         /// </summary>
         public static Duration FromDays(double days)
@@ -280,6 +296,21 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Duration from nullable Cycles.
+        /// </summary>
+        public static Duration? FromCycles(double? cycles)
+        {
+            if (cycles.HasValue)
+            {
+                return FromCycles(cycles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Duration from nullable Days.
         /// </summary>
@@ -442,6 +473,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case DurationUnit.Cycle:
+                    return FromCycles(val);
                 case DurationUnit.Day:
                     return FromDays(val);
                 case DurationUnit.Hour:
@@ -483,6 +516,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case DurationUnit.Cycle:
+                    return FromCycles(value.Value);
                 case DurationUnit.Day:
                     return FromDays(value.Value);
                 case DurationUnit.Hour:
@@ -657,6 +692,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case DurationUnit.Cycle:
+                    return Cycles;
                 case DurationUnit.Day:
                     return Days;
                 case DurationUnit.Hour:
