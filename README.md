@@ -201,3 +201,9 @@ http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)<br
 http://www.pksound.ca/ (everything else)
 
 *- Jules LaPrairie, Kontrol software team member*
+
+#### Microsoft.IoT.Devices
+> Microsoft.IoT.Devices extends Windows IoT Core and makes it easier to support devices like sensors and displays. It provides event-driven access for many digital and analog devices and even provides specialized wrappers for devices like joystick, rotary encoder and graphics display.
+
+http://aka.ms/iotdevices (home page including docs)<br>
+http://www.nuget.org/packages/Microsoft.IoT.Devices (NuGet package)
