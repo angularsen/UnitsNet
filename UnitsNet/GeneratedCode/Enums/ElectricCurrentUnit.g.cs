@@ -48,5 +48,6 @@ namespace UnitsNet.Units
         Microampere,
         Milliampere,
         Nanoampere,
+        Picoampere,
     }
 }

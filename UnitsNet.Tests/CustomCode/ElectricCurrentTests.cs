@@ -19,10 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentTests : ElectricCurrentTestsBase
     {
+        protected override double PicoamperesInOneAmpere => 1e12;
+
         protected override double NanoamperesInOneAmpere => 1e9;
 
         protected override double MicroamperesInOneAmpere => 1e6;
@@ -34,5 +38,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KiloamperesInOneAmpere => 1e-3;
 
         protected override double MegaamperesInOneAmpere => 1e-6;
+
     }
 }

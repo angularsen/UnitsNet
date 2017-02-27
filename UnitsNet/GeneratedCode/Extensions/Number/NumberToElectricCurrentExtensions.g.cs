@@ -248,6 +248,40 @@ namespace UnitsNet.Extensions.NumberToElectricCurrent
 
         #endregion
 
+        #region Picoampere
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)"/>
+        public static ElectricCurrent Picoamperes(this int value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double?)"/>
+        public static ElectricCurrent? Picoamperes(this int? value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)"/>
+        public static ElectricCurrent Picoamperes(this long value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double?)"/>
+        public static ElectricCurrent? Picoamperes(this long? value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)"/>
+        public static ElectricCurrent Picoamperes(this double value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double?)"/>
+        public static ElectricCurrent? Picoamperes(this double? value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)"/>
+        public static ElectricCurrent Picoamperes(this float value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double?)"/>
+        public static ElectricCurrent? Picoamperes(this float? value) => ElectricCurrent.FromPicoamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)"/>
+        public static ElectricCurrent Picoamperes(this decimal value) => ElectricCurrent.FromPicoamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double?)"/>
+        public static ElectricCurrent? Picoamperes(this decimal? value) => ElectricCurrent.FromPicoamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif
