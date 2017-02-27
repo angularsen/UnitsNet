@@ -690,6 +690,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region MeterOfHead
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this int value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this int? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this long value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this long? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this double value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this double? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this float value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this float? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this decimal value) => Pressure.FromMetersOfHead(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this decimal? value) => Pressure.FromMetersOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Micropascal
 
         /// <inheritdoc cref="Pressure.FromMicropascals(double)"/>

@@ -162,7 +162,7 @@
     {
       "SingularName": "Psi",
       "PluralName": "Psi",
-      "ObsoleteText": "Deprecated due to github issue #215, please use PoundForcePerSquareInch instead",      
+      "ObsoleteText": "Deprecated due to github issue #215, please use PoundForcePerSquareInch instead",
       "FromUnitToBaseFunc": "x*6.89464975179*1e3",
       "FromBaseToUnitFunc": "x/(6.89464975179*1e3)",
       "Localization": [
@@ -257,6 +257,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "tf/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterOfHead",
+      "PluralName": "MetersOfHead",
+      "FromUnitToBaseFunc": "x*9804.139432",
+      "FromBaseToUnitFunc": "x*0.0001019977334",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m" ]
         }
       ]
     },

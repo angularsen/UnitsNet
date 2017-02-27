@@ -263,6 +263,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in MetersOfHead.
+        /// </summary>
+        public double MetersOfHead
+        {
+            get { return _pascals*0.0001019977334; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Micropascals.
         /// </summary>
         public double Micropascals
@@ -534,6 +542,14 @@ namespace UnitsNet
         public static Pressure FromMegapascals(double megapascals)
         {
             return new Pressure((megapascals) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from MetersOfHead.
+        /// </summary>
+        public static Pressure FromMetersOfHead(double metersofhead)
+        {
+            return new Pressure(metersofhead*9804.139432);
         }
 
         /// <summary>
@@ -935,6 +951,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable MetersOfHead.
+        /// </summary>
+        public static Pressure? FromMetersOfHead(double? metersofhead)
+        {
+            if (metersofhead.HasValue)
+            {
+                return FromMetersOfHead(metersofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable Micropascals.
         /// </summary>
         public static Pressure? FromMicropascals(double? micropascals)
@@ -1194,6 +1225,8 @@ namespace UnitsNet
                     return FromMegabars(val);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(val);
+                case PressureUnit.MeterOfHead:
+                    return FromMetersOfHead(val);
                 case PressureUnit.Micropascal:
                     return FromMicropascals(val);
                 case PressureUnit.Millibar:
@@ -1281,6 +1314,8 @@ namespace UnitsNet
                     return FromMegabars(value.Value);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(value.Value);
+                case PressureUnit.MeterOfHead:
+                    return FromMetersOfHead(value.Value);
                 case PressureUnit.Micropascal:
                     return FromMicropascals(value.Value);
                 case PressureUnit.Millibar:
@@ -1501,6 +1536,8 @@ namespace UnitsNet
                     return Megabars;
                 case PressureUnit.Megapascal:
                     return Megapascals;
+                case PressureUnit.MeterOfHead:
+                    return MetersOfHead;
                 case PressureUnit.Micropascal:
                     return Micropascals;
                 case PressureUnit.Millibar:
