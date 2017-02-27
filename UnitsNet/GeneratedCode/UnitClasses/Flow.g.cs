@@ -187,7 +187,7 @@ namespace UnitsNet
         /// </summary>
         public double LitersPerSecond
         {
-            get { return _cubicMetersPerSecond*1000.00000; }
+            get { return _cubicMetersPerSecond*1000; }
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace UnitsNet
         /// </summary>
         public static Flow FromLitersPerSecond(double literspersecond)
         {
-            return new Flow(literspersecond/1000.00000);
+            return new Flow(literspersecond/1000);
         }
 
         /// <summary>

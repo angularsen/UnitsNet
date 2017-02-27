@@ -1586,7 +1586,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) PressureUnit.FootOfHead,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft"),
+                                new AbbreviationsForCulture("en-US", "ft of head"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Gigapascal,
                             new[]
@@ -1673,7 +1673,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) PressureUnit.MeterOfHead,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "m"),
+                                new AbbreviationsForCulture("en-US", "m of head"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Micropascal,
                             new[]

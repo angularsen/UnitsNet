@@ -268,7 +268,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m" ]
+          "Abbreviations": [ "m of head" ]
         }
       ]
     },
@@ -292,7 +292,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft" ]
+          "Abbreviations": [ "ft of head" ]
         }
       ]
     }

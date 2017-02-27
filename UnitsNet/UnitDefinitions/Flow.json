@@ -62,8 +62,8 @@
     {
       "SingularName": "LitersPerSecond",
       "PluralName": "LitersPerSecond",
-      "FromUnitToBaseFunc": "x/1000.00000",
-      "FromBaseToUnitFunc": "x*1000.00000",
+      "FromUnitToBaseFunc": "x/1000",
+      "FromBaseToUnitFunc": "x*1000",
       "Localization": [
         {
           "Culture": "en-US",
