@@ -283,6 +283,18 @@
           "Abbreviations": [ "tf/cm²" ]
         }
       ]
+    },
+    {
+      "SingularName": "FootOfHead",
+      "PluralName": "FeetOfHead",
+      "FromUnitToBaseFunc": "x*2989.0669",
+      "FromBaseToUnitFunc": "x*0.000334552565551",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft" ]
+        }
+      ]
     }
   ]
 }

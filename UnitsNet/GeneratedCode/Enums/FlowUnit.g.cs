@@ -51,6 +51,7 @@ namespace UnitsNet.Units
         KilolitersPerMinute,
         LitersPerHour,
         LitersPerMinute,
+        LitersPerSecond,
         MicrolitersPerMinute,
         MillilitersPerMinute,
         MillionUsGallonsPerDay,

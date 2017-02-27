@@ -58,6 +58,7 @@ namespace UnitsNet.Tests
         protected abstract double CentibarsInOnePascal { get; }
         protected abstract double DecapascalsInOnePascal { get; }
         protected abstract double DecibarsInOnePascal { get; }
+        protected abstract double FeetOfHeadInOnePascal { get; }
         protected abstract double GigapascalsInOnePascal { get; }
         protected abstract double HectopascalsInOnePascal { get; }
         protected abstract double KilobarsInOnePascal { get; }
@@ -94,6 +95,7 @@ namespace UnitsNet.Tests
         protected virtual double CentibarsTolerance { get { return 1e-5; } }
         protected virtual double DecapascalsTolerance { get { return 1e-5; } }
         protected virtual double DecibarsTolerance { get { return 1e-5; } }
+        protected virtual double FeetOfHeadTolerance { get { return 1e-5; } }
         protected virtual double GigapascalsTolerance { get { return 1e-5; } }
         protected virtual double HectopascalsTolerance { get { return 1e-5; } }
         protected virtual double KilobarsTolerance { get { return 1e-5; } }
@@ -134,6 +136,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CentibarsInOnePascal, pascal.Centibars, CentibarsTolerance);
             Assert.AreEqual(DecapascalsInOnePascal, pascal.Decapascals, DecapascalsTolerance);
             Assert.AreEqual(DecibarsInOnePascal, pascal.Decibars, DecibarsTolerance);
+            Assert.AreEqual(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
             Assert.AreEqual(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
             Assert.AreEqual(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
             Assert.AreEqual(KilobarsInOnePascal, pascal.Kilobars, KilobarsTolerance);
@@ -173,6 +176,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Centibar).Centibars, CentibarsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Decapascal).Decapascals, DecapascalsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Decibar).Decibars, DecibarsTolerance);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Kilobar).Kilobars, KilobarsTolerance);
@@ -213,6 +217,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(CentibarsInOnePascal, pascal.As(PressureUnit.Centibar), CentibarsTolerance);
             Assert.AreEqual(DecapascalsInOnePascal, pascal.As(PressureUnit.Decapascal), DecapascalsTolerance);
             Assert.AreEqual(DecibarsInOnePascal, pascal.As(PressureUnit.Decibar), DecibarsTolerance);
+            Assert.AreEqual(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
             Assert.AreEqual(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
             Assert.AreEqual(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
             Assert.AreEqual(KilobarsInOnePascal, pascal.As(PressureUnit.Kilobar), KilobarsTolerance);
@@ -253,6 +258,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Pressure.FromCentibars(pascal.Centibars).Pascals, CentibarsTolerance);
             Assert.AreEqual(1, Pressure.FromDecapascals(pascal.Decapascals).Pascals, DecapascalsTolerance);
             Assert.AreEqual(1, Pressure.FromDecibars(pascal.Decibars).Pascals, DecibarsTolerance);
+            Assert.AreEqual(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
             Assert.AreEqual(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
             Assert.AreEqual(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
             Assert.AreEqual(1, Pressure.FromKilobars(pascal.Kilobars).Pascals, KilobarsTolerance);

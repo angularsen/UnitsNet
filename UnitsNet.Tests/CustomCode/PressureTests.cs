@@ -80,6 +80,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecapascalsInOnePascal => 1e-1;
 
         protected override double DecibarsInOnePascal => 1e-4;
+        protected override double FeetOfHeadInOnePascal => 0.000334552565551;
 
         protected override double GigapascalsInOnePascal => 1e-9;
 

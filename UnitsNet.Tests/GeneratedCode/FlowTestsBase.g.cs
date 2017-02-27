@@ -62,6 +62,7 @@ namespace UnitsNet.Tests
         protected abstract double KilolitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerMinuteInOneCubicMeterPerSecond { get; }
+        protected abstract double LitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double MicrolitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double MillilitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double MillionUsGallonsPerDayInOneCubicMeterPerSecond { get; }
@@ -79,6 +80,7 @@ namespace UnitsNet.Tests
         protected virtual double KilolitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double LitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double LitersPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double LitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MillilitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MillionUsGallonsPerDayTolerance { get { return 1e-5; } }
@@ -100,6 +102,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerMinute, KilolitersPerMinuteTolerance);
             Assert.AreEqual(LitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerHour, LitersPerHourTolerance);
             Assert.AreEqual(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerMinute, LitersPerMinuteTolerance);
+            Assert.AreEqual(LitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerSecond, LitersPerSecondTolerance);
             Assert.AreEqual(MicrolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
             Assert.AreEqual(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.MillilitersPerMinute, MillilitersPerMinuteTolerance);
             Assert.AreEqual(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
@@ -120,6 +123,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Flow.From(1, FlowUnit.KilolitersPerMinute).KilolitersPerMinute, KilolitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.LitersPerHour).LitersPerHour, LitersPerHourTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.LitersPerMinute).LitersPerMinute, LitersPerMinuteTolerance);
+            Assert.AreEqual(1, Flow.From(1, FlowUnit.LitersPerSecond).LitersPerSecond, LitersPerSecondTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.MicrolitersPerMinute).MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.MillilitersPerMinute).MillilitersPerMinute, MillilitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.From(1, FlowUnit.MillionUsGallonsPerDay).MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
@@ -141,6 +145,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.KilolitersPerMinute), KilolitersPerMinuteTolerance);
             Assert.AreEqual(LitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.LitersPerHour), LitersPerHourTolerance);
             Assert.AreEqual(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.LitersPerMinute), LitersPerMinuteTolerance);
+            Assert.AreEqual(LitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.LitersPerSecond), LitersPerSecondTolerance);
             Assert.AreEqual(MicrolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.MicrolitersPerMinute), MicrolitersPerMinuteTolerance);
             Assert.AreEqual(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.MillilitersPerMinute), MillilitersPerMinuteTolerance);
             Assert.AreEqual(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(FlowUnit.MillionUsGallonsPerDay), MillionUsGallonsPerDayTolerance);
@@ -162,6 +167,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Flow.FromKilolitersPerMinute(cubicmeterpersecond.KilolitersPerMinute).CubicMetersPerSecond, KilolitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.FromLitersPerHour(cubicmeterpersecond.LitersPerHour).CubicMetersPerSecond, LitersPerHourTolerance);
             Assert.AreEqual(1, Flow.FromLitersPerMinute(cubicmeterpersecond.LitersPerMinute).CubicMetersPerSecond, LitersPerMinuteTolerance);
+            Assert.AreEqual(1, Flow.FromLitersPerSecond(cubicmeterpersecond.LitersPerSecond).CubicMetersPerSecond, LitersPerSecondTolerance);
             Assert.AreEqual(1, Flow.FromMicrolitersPerMinute(cubicmeterpersecond.MicrolitersPerMinute).CubicMetersPerSecond, MicrolitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.FromMillilitersPerMinute(cubicmeterpersecond.MillilitersPerMinute).CubicMetersPerSecond, MillilitersPerMinuteTolerance);
             Assert.AreEqual(1, Flow.FromMillionUsGallonsPerDay(cubicmeterpersecond.MillionUsGallonsPerDay).CubicMetersPerSecond, MillionUsGallonsPerDayTolerance);

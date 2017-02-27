@@ -214,6 +214,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region FootOfHead
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this int value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this int? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this long value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this long? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this double value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this double? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this float value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this float? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this decimal value) => Pressure.FromFeetOfHead(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this decimal? value) => Pressure.FromFeetOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Gigapascal
 
         /// <inheritdoc cref="Pressure.FromGigapascals(double)"/>
