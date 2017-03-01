@@ -524,8 +524,14 @@ namespace UnitsNet
                             }),
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Nanoampere,
                             new[]
+
                             {
                                 new AbbreviationsForCulture("en-US", "nA"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Picoampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pA"),
                             }),
                     }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
