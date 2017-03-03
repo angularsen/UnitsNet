@@ -524,7 +524,6 @@ namespace UnitsNet
                             }),
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Nanoampere,
                             new[]
-
                             {
                                 new AbbreviationsForCulture("en-US", "nA"),
                             }),
