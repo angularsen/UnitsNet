@@ -361,6 +361,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lb/in³"),
                             }),
+                        new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug/ft³"),
+                            }),
                         new CulturesForEnumValue((int) DensityUnit.TonnePerCubicCentimeter,
                             new[]
                             {

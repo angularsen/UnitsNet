@@ -52,6 +52,7 @@ namespace UnitsNet.Units
         KilopoundPerCubicInch,
         PoundPerCubicFoot,
         PoundPerCubicInch,
+        SlugPerCubicFoot,
         TonnePerCubicCentimeter,
         TonnePerCubicMeter,
         TonnePerCubicMillimeter,
