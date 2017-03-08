@@ -70,15 +70,5 @@ namespace UnitsNet.Tests.CustomCode
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
             Assert.AreEqual(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
-
-        private static double SlugsPerCubicFootTolerance { get { return 1e-5; } }
-
-        [Test]
-        public static void KilogramPerCubicMeterToDensityUnits()
-        {
-            double SlugsPerCubicFootInOneKilogramPerCubicMeter = 0.00194032;
-            Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
-            Assert.AreEqual(SlugsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
-        }
     }
 }
