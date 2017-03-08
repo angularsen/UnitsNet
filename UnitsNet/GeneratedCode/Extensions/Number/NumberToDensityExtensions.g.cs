@@ -384,6 +384,40 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         #endregion
 
+        #region SlugPerCubicFoot
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>
+        public static Density SlugsPerCubicFoot(this int value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double?)"/>
+        public static Density? SlugsPerCubicFoot(this int? value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>
+        public static Density SlugsPerCubicFoot(this long value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double?)"/>
+        public static Density? SlugsPerCubicFoot(this long? value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>
+        public static Density SlugsPerCubicFoot(this double value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double?)"/>
+        public static Density? SlugsPerCubicFoot(this double? value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>
+        public static Density SlugsPerCubicFoot(this float value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double?)"/>
+        public static Density? SlugsPerCubicFoot(this float? value) => Density.FromSlugsPerCubicFoot(value);
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>
+        public static Density SlugsPerCubicFoot(this decimal value) => Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double?)"/>
+        public static Density? SlugsPerCubicFoot(this decimal? value) => Density.FromSlugsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region TonnePerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(double)"/>
