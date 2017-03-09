@@ -60,6 +60,19 @@
       ]
     },
     {
+      "SingularName": "LitersPerSecond",
+      "PluralName": "LitersPerSecond",
+      "FromUnitToBaseFunc": "x/1000",
+      "FromBaseToUnitFunc": "x*1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "LPS" ],
+          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+        }
+      ]
+    },
+    {
       "SingularName": "LitersPerMinute",
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "x/60000.00000",
@@ -128,6 +141,6 @@
           "Abbreviations": [ "bbl/d", "BOPD" ]
         }
       ]
-    }    
+    }
   ]
 }

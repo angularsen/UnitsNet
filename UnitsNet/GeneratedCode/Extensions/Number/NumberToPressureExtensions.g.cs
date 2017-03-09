@@ -214,6 +214,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region FootOfHead
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this int value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this int? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this long value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this long? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this double value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this double? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this float value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this float? value) => Pressure.FromFeetOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)"/>
+        public static Pressure FeetOfHead(this decimal value) => Pressure.FromFeetOfHead(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double?)"/>
+        public static Pressure? FeetOfHead(this decimal? value) => Pressure.FromFeetOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Gigapascal
 
         /// <inheritdoc cref="Pressure.FromGigapascals(double)"/>
@@ -687,6 +721,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         /// <inheritdoc cref="Pressure.FromMegapascals(double?)"/>
         public static Pressure? Megapascals(this decimal? value) => Pressure.FromMegapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MeterOfHead
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this int value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this int? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this long value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this long? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this double value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this double? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this float value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this float? value) => Pressure.FromMetersOfHead(value);
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)"/>
+        public static Pressure MetersOfHead(this decimal value) => Pressure.FromMetersOfHead(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double?)"/>
+        public static Pressure? MetersOfHead(this decimal? value) => Pressure.FromMetersOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

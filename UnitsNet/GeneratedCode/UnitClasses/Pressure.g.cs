@@ -151,6 +151,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in FeetOfHead.
+        /// </summary>
+        public double FeetOfHead
+        {
+            get { return _pascals*0.000334552565551; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Gigapascals.
         /// </summary>
         public double Gigapascals
@@ -260,6 +268,14 @@ namespace UnitsNet
         public double Megapascals
         {
             get { return (_pascals) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Pressure in MetersOfHead.
+        /// </summary>
+        public double MetersOfHead
+        {
+            get { return _pascals*0.0001019977334; }
         }
 
         /// <summary>
@@ -425,6 +441,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from FeetOfHead.
+        /// </summary>
+        public static Pressure FromFeetOfHead(double feetofhead)
+        {
+            return new Pressure(feetofhead*2989.0669);
+        }
+
+        /// <summary>
         ///     Get Pressure from Gigapascals.
         /// </summary>
         public static Pressure FromGigapascals(double gigapascals)
@@ -534,6 +558,14 @@ namespace UnitsNet
         public static Pressure FromMegapascals(double megapascals)
         {
             return new Pressure((megapascals) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from MetersOfHead.
+        /// </summary>
+        public static Pressure FromMetersOfHead(double metersofhead)
+        {
+            return new Pressure(metersofhead*9804.139432);
         }
 
         /// <summary>
@@ -717,6 +749,21 @@ namespace UnitsNet
             if (decibars.HasValue)
             {
                 return FromDecibars(decibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable FeetOfHead.
+        /// </summary>
+        public static Pressure? FromFeetOfHead(double? feetofhead)
+        {
+            if (feetofhead.HasValue)
+            {
+                return FromFeetOfHead(feetofhead.Value);
             }
             else
             {
@@ -927,6 +974,21 @@ namespace UnitsNet
             if (megapascals.HasValue)
             {
                 return FromMegapascals(megapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable MetersOfHead.
+        /// </summary>
+        public static Pressure? FromMetersOfHead(double? metersofhead)
+        {
+            if (metersofhead.HasValue)
+            {
+                return FromMetersOfHead(metersofhead.Value);
             }
             else
             {
@@ -1166,6 +1228,8 @@ namespace UnitsNet
                     return FromDecapascals(val);
                 case PressureUnit.Decibar:
                     return FromDecibars(val);
+                case PressureUnit.FootOfHead:
+                    return FromFeetOfHead(val);
                 case PressureUnit.Gigapascal:
                     return FromGigapascals(val);
                 case PressureUnit.Hectopascal:
@@ -1194,6 +1258,8 @@ namespace UnitsNet
                     return FromMegabars(val);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(val);
+                case PressureUnit.MeterOfHead:
+                    return FromMetersOfHead(val);
                 case PressureUnit.Micropascal:
                     return FromMicropascals(val);
                 case PressureUnit.Millibar:
@@ -1253,6 +1319,8 @@ namespace UnitsNet
                     return FromDecapascals(value.Value);
                 case PressureUnit.Decibar:
                     return FromDecibars(value.Value);
+                case PressureUnit.FootOfHead:
+                    return FromFeetOfHead(value.Value);
                 case PressureUnit.Gigapascal:
                     return FromGigapascals(value.Value);
                 case PressureUnit.Hectopascal:
@@ -1281,6 +1349,8 @@ namespace UnitsNet
                     return FromMegabars(value.Value);
                 case PressureUnit.Megapascal:
                     return FromMegapascals(value.Value);
+                case PressureUnit.MeterOfHead:
+                    return FromMetersOfHead(value.Value);
                 case PressureUnit.Micropascal:
                     return FromMicropascals(value.Value);
                 case PressureUnit.Millibar:
@@ -1473,6 +1543,8 @@ namespace UnitsNet
                     return Decapascals;
                 case PressureUnit.Decibar:
                     return Decibars;
+                case PressureUnit.FootOfHead:
+                    return FeetOfHead;
                 case PressureUnit.Gigapascal:
                     return Gigapascals;
                 case PressureUnit.Hectopascal:
@@ -1501,6 +1573,8 @@ namespace UnitsNet
                     return Megabars;
                 case PressureUnit.Megapascal:
                     return Megapascals;
+                case PressureUnit.MeterOfHead:
+                    return MetersOfHead;
                 case PressureUnit.Micropascal:
                     return Micropascals;
                 case PressureUnit.Millibar:

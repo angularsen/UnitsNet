@@ -350,6 +350,40 @@ namespace UnitsNet.Extensions.NumberToFlow
 
         #endregion
 
+        #region LitersPerSecond
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double)"/>
+        public static Flow LitersPerSecond(this int value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double?)"/>
+        public static Flow? LitersPerSecond(this int? value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double)"/>
+        public static Flow LitersPerSecond(this long value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double?)"/>
+        public static Flow? LitersPerSecond(this long? value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double)"/>
+        public static Flow LitersPerSecond(this double value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double?)"/>
+        public static Flow? LitersPerSecond(this double? value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double)"/>
+        public static Flow LitersPerSecond(this float value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double?)"/>
+        public static Flow? LitersPerSecond(this float? value) => Flow.FromLitersPerSecond(value);
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double)"/>
+        public static Flow LitersPerSecond(this decimal value) => Flow.FromLitersPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Flow.FromLitersPerSecond(double?)"/>
+        public static Flow? LitersPerSecond(this decimal? value) => Flow.FromLitersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicrolitersPerMinute
 
         /// <inheritdoc cref="Flow.FromMicrolitersPerMinute(double)"/>
