@@ -52,6 +52,7 @@ namespace UnitsNet.Units
         MicrogramPerSecond,
         MilligramPerSecond,
         NanogramPerSecond,
+        PoundPerHour,
         TonnePerDay,
     }
 }

@@ -384,6 +384,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region PoundPerHour
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)"/>
+        public static MassFlow PoundsPerHour(this int value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double?)"/>
+        public static MassFlow? PoundsPerHour(this int? value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)"/>
+        public static MassFlow PoundsPerHour(this long value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double?)"/>
+        public static MassFlow? PoundsPerHour(this long? value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)"/>
+        public static MassFlow PoundsPerHour(this double value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double?)"/>
+        public static MassFlow? PoundsPerHour(this double? value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)"/>
+        public static MassFlow PoundsPerHour(this float value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double?)"/>
+        public static MassFlow? PoundsPerHour(this float? value) => MassFlow.FromPoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)"/>
+        public static MassFlow PoundsPerHour(this decimal value) => MassFlow.FromPoundsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double?)"/>
+        public static MassFlow? PoundsPerHour(this decimal? value) => MassFlow.FromPoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region TonnePerDay
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double)"/>

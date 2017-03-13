@@ -155,7 +155,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerHour
         {
-            get { return _gramsPerSecond*3.6; }
+            get { return _gramsPerSecond*0.277778; }
         }
 
         /// <summary>
@@ -188,6 +188,14 @@ namespace UnitsNet
         public double NanogramsPerSecond
         {
             get { return (_gramsPerSecond) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in PoundsPerHour.
+        /// </summary>
+        public double PoundsPerHour
+        {
+            get { return _gramsPerSecond*0.125998; }
         }
 
         /// <summary>
@@ -252,7 +260,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
         {
-            return new MassFlow(kilogramsperhour/3.6);
+            return new MassFlow(kilogramsperhour/0.277778);
         }
 
         /// <summary>
@@ -285,6 +293,14 @@ namespace UnitsNet
         public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
         {
             return new MassFlow((nanogramspersecond) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from PoundsPerHour.
+        /// </summary>
+        public static MassFlow FromPoundsPerHour(double poundsperhour)
+        {
+            return new MassFlow(poundsperhour/0.125998);
         }
 
         /// <summary>
@@ -447,6 +463,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromPoundsPerHour(double? poundsperhour)
+        {
+            if (poundsperhour.HasValue)
+            {
+                return FromPoundsPerHour(poundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerDay.
         /// </summary>
         public static MassFlow? FromTonnesPerDay(double? tonnesperday)
@@ -493,6 +524,8 @@ namespace UnitsNet
                     return FromMilligramsPerSecond(val);
                 case MassFlowUnit.NanogramPerSecond:
                     return FromNanogramsPerSecond(val);
+                case MassFlowUnit.PoundPerHour:
+                    return FromPoundsPerHour(val);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(val);
 
@@ -536,6 +569,8 @@ namespace UnitsNet
                     return FromMilligramsPerSecond(value.Value);
                 case MassFlowUnit.NanogramPerSecond:
                     return FromNanogramsPerSecond(value.Value);
+                case MassFlowUnit.PoundPerHour:
+                    return FromPoundsPerHour(value.Value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value.Value);
 
@@ -712,6 +747,8 @@ namespace UnitsNet
                     return MilligramsPerSecond;
                 case MassFlowUnit.NanogramPerSecond:
                     return NanogramsPerSecond;
+                case MassFlowUnit.PoundPerHour:
+                    return PoundsPerHour;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
 
