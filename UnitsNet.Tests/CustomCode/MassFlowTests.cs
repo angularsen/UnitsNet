@@ -48,6 +48,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
 
+        protected override double PoundsPerHourInOneGramPerSecond => 0.125998;
+
         [Test]
         public void DurationTimesMassFlowEqualsMass()
         {
