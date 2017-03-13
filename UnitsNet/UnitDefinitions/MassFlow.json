@@ -32,6 +32,18 @@
         }
       ]
     },
+	{
+      "SingularName": "PoundPerHour",
+      "PluralName": "PoundsPerHour",
+      "FromUnitToBaseFunc": "x/7.93664",
+      "FromBaseToUnitFunc": "x*7.93664",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/h" ]
+        }
+      ]
+    },
     {
       "SingularName": "TonnePerDay",
       "PluralName": "TonnesPerDay",
