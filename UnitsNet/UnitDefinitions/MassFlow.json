@@ -19,8 +19,8 @@
     {
       "SingularName": "KilogramPerHour",
       "PluralName": "KilogramsPerHour",
-      "FromUnitToBaseFunc": "x/0.277778",
-      "FromBaseToUnitFunc": "x*0.277778",
+      "FromUnitToBaseFunc": "x/3.6",
+      "FromBaseToUnitFunc": "x*3.6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -35,8 +35,8 @@
 	{
       "SingularName": "PoundPerHour",
       "PluralName": "PoundsPerHour",
-      "FromUnitToBaseFunc": "x/0.125998",
-      "FromBaseToUnitFunc": "x*0.125998",
+      "FromUnitToBaseFunc": "x/7.93664",
+      "FromBaseToUnitFunc": "x*7.93664",
       "Localization": [
         {
           "Culture": "en-US",

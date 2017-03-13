@@ -155,7 +155,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerHour
         {
-            get { return _gramsPerSecond*0.277778; }
+            get { return _gramsPerSecond*3.6; }
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace UnitsNet
         /// </summary>
         public double PoundsPerHour
         {
-            get { return _gramsPerSecond*0.125998; }
+            get { return _gramsPerSecond*7.93664; }
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
         {
-            return new MassFlow(kilogramsperhour/0.277778);
+            return new MassFlow(kilogramsperhour/3.6);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// </summary>
         public static MassFlow FromPoundsPerHour(double poundsperhour)
         {
-            return new MassFlow(poundsperhour/0.125998);
+            return new MassFlow(poundsperhour/7.93664);
         }
 
         /// <summary>
