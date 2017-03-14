@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToForce
 {
     public static class NumberToForceExtensions
     {
+        #region Decanewton
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double)"/>
+        public static Force Decanewtons(this int value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double?)"/>
+        public static Force? Decanewtons(this int? value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double)"/>
+        public static Force Decanewtons(this long value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double?)"/>
+        public static Force? Decanewtons(this long? value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double)"/>
+        public static Force Decanewtons(this double value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double?)"/>
+        public static Force? Decanewtons(this double? value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double)"/>
+        public static Force Decanewtons(this float value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double?)"/>
+        public static Force? Decanewtons(this float? value) => Force.FromDecanewtons(value);
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double)"/>
+        public static Force Decanewtons(this decimal value) => Force.FromDecanewtons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromDecanewtons(double?)"/>
+        public static Force? Decanewtons(this decimal? value) => Force.FromDecanewtons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Dyn
 
         /// <inheritdoc cref="Force.FromDyne(double)"/>
