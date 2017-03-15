@@ -814,6 +814,12 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ForceUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ForceUnit.Decanewton,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daN"),
+                                new AbbreviationsForCulture("ru-RU", "даН"),
+                            }),
                         new CulturesForEnumValue((int) ForceUnit.Dyn,
                             new[]
                             {

@@ -53,6 +53,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ForceTestsBase
     {
+        protected abstract double DecanewtonsInOneNewton { get; }
         protected abstract double DyneInOneNewton { get; }
         protected abstract double KilogramsForceInOneNewton { get; }
         protected abstract double KilonewtonsInOneNewton { get; }
@@ -63,6 +64,7 @@ namespace UnitsNet.Tests
         protected abstract double TonnesForceInOneNewton { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double DecanewtonsTolerance { get { return 1e-5; } }
         protected virtual double DyneTolerance { get { return 1e-5; } }
         protected virtual double KilogramsForceTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsTolerance { get { return 1e-5; } }
@@ -77,6 +79,7 @@ namespace UnitsNet.Tests
         public void NewtonToForceUnits()
         {
             Force newton = Force.FromNewtons(1);
+            Assert.AreEqual(DecanewtonsInOneNewton, newton.Decanewtons, DecanewtonsTolerance);
             Assert.AreEqual(DyneInOneNewton, newton.Dyne, DyneTolerance);
             Assert.AreEqual(KilogramsForceInOneNewton, newton.KilogramsForce, KilogramsForceTolerance);
             Assert.AreEqual(KilonewtonsInOneNewton, newton.Kilonewtons, KilonewtonsTolerance);
@@ -90,6 +93,7 @@ namespace UnitsNet.Tests
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, Force.From(1, ForceUnit.Decanewton).Decanewtons, DecanewtonsTolerance);
             Assert.AreEqual(1, Force.From(1, ForceUnit.Dyn).Dyne, DyneTolerance);
             Assert.AreEqual(1, Force.From(1, ForceUnit.KilogramForce).KilogramsForce, KilogramsForceTolerance);
             Assert.AreEqual(1, Force.From(1, ForceUnit.Kilonewton).Kilonewtons, KilonewtonsTolerance);
@@ -104,6 +108,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var newton = Force.FromNewtons(1);
+            Assert.AreEqual(DecanewtonsInOneNewton, newton.As(ForceUnit.Decanewton), DecanewtonsTolerance);
             Assert.AreEqual(DyneInOneNewton, newton.As(ForceUnit.Dyn), DyneTolerance);
             Assert.AreEqual(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), KilogramsForceTolerance);
             Assert.AreEqual(KilonewtonsInOneNewton, newton.As(ForceUnit.Kilonewton), KilonewtonsTolerance);
@@ -118,6 +123,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Force newton = Force.FromNewtons(1);
+            Assert.AreEqual(1, Force.FromDecanewtons(newton.Decanewtons).Newtons, DecanewtonsTolerance);
             Assert.AreEqual(1, Force.FromDyne(newton.Dyne).Newtons, DyneTolerance);
             Assert.AreEqual(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, KilogramsForceTolerance);
             Assert.AreEqual(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, KilonewtonsTolerance);

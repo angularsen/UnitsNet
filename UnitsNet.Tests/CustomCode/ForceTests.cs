@@ -25,6 +25,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceTests : ForceTestsBase
     {
+        protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
         protected override double KilogramsForceInOneNewton => 0.101972;

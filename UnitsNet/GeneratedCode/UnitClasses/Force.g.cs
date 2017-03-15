@@ -111,6 +111,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Force in Decanewtons.
+        /// </summary>
+        public double Decanewtons
+        {
+            get { return (_newtons) / 1e1d; }
+        }
+
+        /// <summary>
         ///     Get Force in Dyne.
         /// </summary>
         public double Dyne
@@ -184,6 +192,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Force from Decanewtons.
+        /// </summary>
+        public static Force FromDecanewtons(double decanewtons)
+        {
+            return new Force((decanewtons) * 1e1d);
+        }
+
+        /// <summary>
         ///     Get Force from Dyne.
         /// </summary>
         public static Force FromDyne(double dyne)
@@ -248,6 +264,21 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Force from nullable Decanewtons.
+        /// </summary>
+        public static Force? FromDecanewtons(double? decanewtons)
+        {
+            if (decanewtons.HasValue)
+            {
+                return FromDecanewtons(decanewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Force from nullable Dyne.
         /// </summary>
@@ -380,6 +411,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ForceUnit.Decanewton:
+                    return FromDecanewtons(val);
                 case ForceUnit.Dyn:
                     return FromDyne(val);
                 case ForceUnit.KilogramForce:
@@ -417,6 +450,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case ForceUnit.Decanewton:
+                    return FromDecanewtons(value.Value);
                 case ForceUnit.Dyn:
                     return FromDyne(value.Value);
                 case ForceUnit.KilogramForce:
@@ -587,6 +622,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case ForceUnit.Decanewton:
+                    return Decanewtons;
                 case ForceUnit.Dyn:
                     return Dyne;
                 case ForceUnit.KilogramForce:
