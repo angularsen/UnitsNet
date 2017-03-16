@@ -1350,6 +1350,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kt"),
                                 new AbbreviationsForCulture("ru-RU", "кт"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.LongHundredweight,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cwt"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.LongTon,
                             new[]
                             {
@@ -1389,6 +1394,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb"),
+                            }),
+                        new CulturesForEnumValue((int) MassUnit.ShortHundredweight,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cwt"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.ShortTon,
                             new[]

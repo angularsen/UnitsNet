@@ -115,6 +115,34 @@
           "Abbreviations": [ "st" ]
         }
       ]
+    },
+    {
+      "SingularName": "ShortHundredweight",
+      "PluralName": "ShortHundredweight",
+      "FromUnitToBaseFunc": "x/0.022046226218487758",
+      "FromBaseToUnitFunc": "x*0.022046226218487758",
+      "XmlDocSummary": "The short hundredweight (abbreviation cwt) is a unit of mass equal to 100 pounds in US and Canada. In British English, the short hundredweight is referred to as the \"cental\".",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Hundredweight",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cwt" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LongHundredweight",
+      "PluralName": "LongHundredweight",
+      "FromUnitToBaseFunc": "x/0.01968413055222121",
+      "FromBaseToUnitFunc": "x*0.01968413055222121",
+      "XmlDocSummary": "The long or imperial hundredweight (abbreviation cwt) is a unit of mass equal to 112 pounds in US and Canada.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Hundredweight",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cwt" ]
+        }
+      ]
     }
   ]
 }
