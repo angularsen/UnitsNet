@@ -167,6 +167,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass in LongHundredweight.
+        /// </summary>
+        public double LongHundredweight
+        {
+            get { return _kilograms*0.01968413055222121; }
+        }
+
+        /// <summary>
         ///     Get Mass in LongTons.
         /// </summary>
         public double LongTons
@@ -220,6 +228,14 @@ namespace UnitsNet
         public double Pounds
         {
             get { return _kilograms/0.45359237; }
+        }
+
+        /// <summary>
+        ///     Get Mass in ShortHundredweight.
+        /// </summary>
+        public double ShortHundredweight
+        {
+            get { return _kilograms*0.022046226218487758; }
         }
 
         /// <summary>
@@ -312,6 +328,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass from LongHundredweight.
+        /// </summary>
+        public static Mass FromLongHundredweight(double longhundredweight)
+        {
+            return new Mass(longhundredweight/0.01968413055222121);
+        }
+
+        /// <summary>
         ///     Get Mass from LongTons.
         /// </summary>
         public static Mass FromLongTons(double longtons)
@@ -365,6 +389,14 @@ namespace UnitsNet
         public static Mass FromPounds(double pounds)
         {
             return new Mass(pounds*0.45359237);
+        }
+
+        /// <summary>
+        ///     Get Mass from ShortHundredweight.
+        /// </summary>
+        public static Mass FromShortHundredweight(double shorthundredweight)
+        {
+            return new Mass(shorthundredweight/0.022046226218487758);
         }
 
         /// <summary>
@@ -498,6 +530,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Mass from nullable LongHundredweight.
+        /// </summary>
+        public static Mass? FromLongHundredweight(double? longhundredweight)
+        {
+            if (longhundredweight.HasValue)
+            {
+                return FromLongHundredweight(longhundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Mass from nullable LongTons.
         /// </summary>
         public static Mass? FromLongTons(double? longtons)
@@ -603,6 +650,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Mass from nullable ShortHundredweight.
+        /// </summary>
+        public static Mass? FromShortHundredweight(double? shorthundredweight)
+        {
+            if (shorthundredweight.HasValue)
+            {
+                return FromShortHundredweight(shorthundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Mass from nullable ShortTons.
         /// </summary>
         public static Mass? FromShortTons(double? shorttons)
@@ -673,6 +735,8 @@ namespace UnitsNet
                     return FromKilograms(val);
                 case MassUnit.Kilotonne:
                     return FromKilotonnes(val);
+                case MassUnit.LongHundredweight:
+                    return FromLongHundredweight(val);
                 case MassUnit.LongTon:
                     return FromLongTons(val);
                 case MassUnit.Megatonne:
@@ -687,6 +751,8 @@ namespace UnitsNet
                     return FromOunces(val);
                 case MassUnit.Pound:
                     return FromPounds(val);
+                case MassUnit.ShortHundredweight:
+                    return FromShortHundredweight(val);
                 case MassUnit.ShortTon:
                     return FromShortTons(val);
                 case MassUnit.Stone:
@@ -728,6 +794,8 @@ namespace UnitsNet
                     return FromKilograms(value.Value);
                 case MassUnit.Kilotonne:
                     return FromKilotonnes(value.Value);
+                case MassUnit.LongHundredweight:
+                    return FromLongHundredweight(value.Value);
                 case MassUnit.LongTon:
                     return FromLongTons(value.Value);
                 case MassUnit.Megatonne:
@@ -742,6 +810,8 @@ namespace UnitsNet
                     return FromOunces(value.Value);
                 case MassUnit.Pound:
                     return FromPounds(value.Value);
+                case MassUnit.ShortHundredweight:
+                    return FromShortHundredweight(value.Value);
                 case MassUnit.ShortTon:
                     return FromShortTons(value.Value);
                 case MassUnit.Stone:
@@ -916,6 +986,8 @@ namespace UnitsNet
                     return Kilograms;
                 case MassUnit.Kilotonne:
                     return Kilotonnes;
+                case MassUnit.LongHundredweight:
+                    return LongHundredweight;
                 case MassUnit.LongTon:
                     return LongTons;
                 case MassUnit.Megatonne:
@@ -930,6 +1002,8 @@ namespace UnitsNet
                     return Ounces;
                 case MassUnit.Pound:
                     return Pounds;
+                case MassUnit.ShortHundredweight:
+                    return ShortHundredweight;
                 case MassUnit.ShortTon:
                     return ShortTons;
                 case MassUnit.Stone:
