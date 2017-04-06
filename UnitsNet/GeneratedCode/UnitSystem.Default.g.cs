@@ -968,6 +968,35 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "N/m"),
                             }),
                     }),
+                new UnitLocalization(typeof (FoulingFactorUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) FoulingFactorUnit.HourSquareFeetDegreefahrenheitPerBtu,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hr*ft2°F/Btu"),
+                            }),
+                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareCentimeterHourDegreeCentigradePerKilloCalorie,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm2Hr°C/kcal"),
+                            }),
+                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareCentimeterKelvinPerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm2K/W"),
+                            }),
+                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareMeterDegreeCentigradePerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m2°C/W"),
+                            }),
+                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareMeterKelvinPerKilloWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m2K/kW"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
