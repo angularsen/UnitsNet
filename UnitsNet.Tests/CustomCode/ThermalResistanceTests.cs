@@ -44,13 +44,13 @@ using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class FoulingFactorTests : FoulingFactorTestsBase
+    public class ThermalResistanceTests : ThermalResistanceTestsBase
     {
-        protected override double HourSquareFeetDegreefahrenheitsPerBtuInOneHourSquareFeetDegreefahrenheitPerBtu => 1;
-        protected override double SquareCentimeterHourDegreeCentigradesPerKilloCalorieInOneHourSquareFeetDegreefahrenheitPerBtu => 2048.340843916428d;
-        protected override double SquareCentimeterKelvinsPerWattInOneHourSquareFeetDegreefahrenheitPerBtu => 1761.183515322297d;
-        protected override double SquareMeterDegreeCentigradesPerWattInOneHourSquareFeetDegreefahrenheitPerBtu => 0.1760966418370402d;
-        protected override double SquareMeterKelvinsPerKilloWattInOneHourSquareFeetDegreefahrenheitPerBtu => 176.1121482159839;
+        protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneHourSquareFeetDegreeFahrenheitPerBtu => 1;
+        protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneHourSquareFeetDegreeFahrenheitPerBtu => 2048.340843916428d;
+        protected override double SquareCentimeterKelvinsPerWattInOneHourSquareFeetDegreeFahrenheitPerBtu => 1761.183515322297d;
+        protected override double SquareMeterDegreesCelsiusPerWattInOneHourSquareFeetDegreeFahrenheitPerBtu => 0.1760966418370402d;
+        protected override double SquareMeterKelvinsPerKilowattInOneHourSquareFeetDegreeFahrenheitPerBtu => 176.1121482159839;
 
     }
 }

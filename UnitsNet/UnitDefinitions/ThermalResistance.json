@@ -1,11 +1,11 @@
 {
-  "Name": "FoulingFactor",
-  "BaseUnit": "HourSquareFeetDegreefahrenheitPerBtu",
+  "Name": "ThermalResistance",
+  "BaseUnit": "HourSquareFeetDegreeFahrenheitPerBtu",
   "XmlDoc": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
   "Units": [
     {
-      "SingularName": "HourSquareFeetDegreefahrenheitPerBtu",
-      "PluralName": "HourSquareFeetDegreefahrenheitsPerBtu",
+      "SingularName": "HourSquareFeetDegreeFahrenheitPerBtu",
+      "PluralName": "HourSquareFeetDegreesFahrenheitPerBtu",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
@@ -16,8 +16,8 @@
       ]
     },
     {
-      "SingularName": "SquareMeterDegreeCentigradePerWatt",
-      "PluralName": "SquareMeterDegreeCentigradesPerWatt",
+      "SingularName": "SquareMeterDegreeCelsiusPerWatt",
+      "PluralName": "SquareMeterDegreesCelsiusPerWatt",
       "FromUnitToBaseFunc": "x/5.6787",
       "FromBaseToUnitFunc": "x*5.6787",
       "Localization": [
@@ -40,8 +40,8 @@
       ]
     },
     {
-      "SingularName": "SquareCentimeterHourDegreeCentigradePerKilloCalorie",
-      "PluralName": "SquareCentimeterHourDegreeCentigradesPerKilloCalorie",
+      "SingularName": "SquareCentimeterHourDegreeCelsiusPerKilocalorie",
+      "PluralName": "SquareCentimeterHourDegreesCelsiusPerKilocalorie",
       "FromUnitToBaseFunc": "x/0.0004882",
       "FromBaseToUnitFunc": "x*0.0004882",
       "Localization": [
@@ -52,8 +52,8 @@
       ]
     },
     {
-      "SingularName": "SquareMeterKelvinPerKilloWatt",
-      "PluralName": "SquareMeterKelvinsPerKilloWatt",
+      "SingularName": "SquareMeterKelvinPerKilowatt",
+      "PluralName": "SquareMeterKelvinsPerKilowatt",
       "FromUnitToBaseFunc": "x/0.0056782",
       "FromBaseToUnitFunc": "x*0.0056782",
       "Localization": [

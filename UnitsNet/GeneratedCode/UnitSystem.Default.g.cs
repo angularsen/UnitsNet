@@ -968,35 +968,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "N/m"),
                             }),
                     }),
-                new UnitLocalization(typeof (FoulingFactorUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) FoulingFactorUnit.HourSquareFeetDegreefahrenheitPerBtu,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hr*ft2°F/Btu"),
-                            }),
-                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareCentimeterHourDegreeCentigradePerKilloCalorie,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm2Hr°C/kcal"),
-                            }),
-                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareCentimeterKelvinPerWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm2K/W"),
-                            }),
-                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareMeterDegreeCentigradePerWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m2°C/W"),
-                            }),
-                        new CulturesForEnumValue((int) FoulingFactorUnit.SquareMeterKelvinPerKilloWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m2K/kW"),
-                            }),
-                    }),
                 new UnitLocalization(typeof (FrequencyUnit),
                     new[]
                     {
@@ -2339,6 +2310,35 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "▲K"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ThermalResistanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hr*ft2°F/Btu"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm2Hr°C/kcal"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterKelvinPerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm2K/W"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m2°C/W"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterKelvinPerKilowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m2K/kW"),
                             }),
                     }),
                 new UnitLocalization(typeof (TorqueUnit),
