@@ -46,11 +46,11 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ThermalResistanceTests : ThermalResistanceTestsBase
     {
-        protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneHourSquareFeetDegreeFahrenheitPerBtu => 1;
-        protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneHourSquareFeetDegreeFahrenheitPerBtu => 2048.340843916428d;
-        protected override double SquareCentimeterKelvinsPerWattInOneHourSquareFeetDegreeFahrenheitPerBtu => 1761.183515322297d;
-        protected override double SquareMeterDegreesCelsiusPerWattInOneHourSquareFeetDegreeFahrenheitPerBtu => 0.1760966418370402d;
-        protected override double SquareMeterKelvinsPerKilowattInOneHourSquareFeetDegreeFahrenheitPerBtu => 176.1121482159839;
+        protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt => 0.0056782d;
+        protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt => 11.63088897992627d;
+        protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 10.00035223670306d;
+        protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt => 9.999119516790815e-4;
+        protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt => 1;
 
     }
 }

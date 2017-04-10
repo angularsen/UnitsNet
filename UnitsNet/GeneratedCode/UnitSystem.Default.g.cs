@@ -2318,27 +2318,27 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "hr*ft2°F/Btu"),
+                                new AbbreviationsForCulture("en-US", "hrft²°F/Btu"),
                             }),
                         new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cm2Hr°C/kcal"),
+                                new AbbreviationsForCulture("en-US", "cm²Hr°C/kcal"),
                             }),
                         new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterKelvinPerWatt,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cm2K/W"),
+                                new AbbreviationsForCulture("en-US", "cm²K/W"),
                             }),
                         new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "m2°C/W"),
+                                new AbbreviationsForCulture("en-US", "m²°C/W"),
                             }),
                         new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterKelvinPerKilowatt,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "m2K/kW"),
+                                new AbbreviationsForCulture("en-US", "m²K/kW"),
                             }),
                     }),
                 new UnitLocalization(typeof (TorqueUnit),

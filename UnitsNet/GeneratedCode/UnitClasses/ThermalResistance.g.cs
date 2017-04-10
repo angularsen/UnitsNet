@@ -67,7 +67,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ThermalResistance.
         /// </summary>
-        private readonly double _hourSquareFeetDegreesFahrenheitPerBtu;
+        private readonly double _squareMeterKelvinsPerKilowatt;
 
 #if WINDOWS_UWP
         public ThermalResistance() : this(0)
@@ -75,9 +75,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ThermalResistance(double hoursquarefeetdegreesfahrenheitperbtu)
+        public ThermalResistance(double squaremeterkelvinsperkilowatt)
         {
-            _hourSquareFeetDegreesFahrenheitPerBtu = Convert.ToDouble(hoursquarefeetdegreesfahrenheitperbtu);
+            _squareMeterKelvinsPerKilowatt = Convert.ToDouble(squaremeterkelvinsperkilowatt);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ThermalResistance(long hoursquarefeetdegreesfahrenheitperbtu)
+        ThermalResistance(long squaremeterkelvinsperkilowatt)
         {
-            _hourSquareFeetDegreesFahrenheitPerBtu = Convert.ToDouble(hoursquarefeetdegreesfahrenheitperbtu);
+            _squareMeterKelvinsPerKilowatt = Convert.ToDouble(squaremeterkelvinsperkilowatt);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,16 +98,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        ThermalResistance(decimal hoursquarefeetdegreesfahrenheitperbtu)
+        ThermalResistance(decimal squaremeterkelvinsperkilowatt)
         {
-            _hourSquareFeetDegreesFahrenheitPerBtu = Convert.ToDouble(hoursquarefeetdegreesfahrenheitperbtu);
+            _squareMeterKelvinsPerKilowatt = Convert.ToDouble(squaremeterkelvinsperkilowatt);
         }
 
         #region Properties
 
         public static ThermalResistanceUnit BaseUnit
         {
-            get { return ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu; }
+            get { return ThermalResistanceUnit.SquareMeterKelvinPerKilowatt; }
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace UnitsNet
         /// </summary>
         public double HourSquareFeetDegreesFahrenheitPerBtu
         {
-            get { return _hourSquareFeetDegreesFahrenheitPerBtu; }
+            get { return _squareMeterKelvinsPerKilowatt*176.1121482159839; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareCentimeterHourDegreesCelsiusPerKilocalorie
         {
-            get { return _hourSquareFeetDegreesFahrenheitPerBtu*0.0004882; }
+            get { return _squareMeterKelvinsPerKilowatt*0.0859779507590433; }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareCentimeterKelvinsPerWatt
         {
-            get { return _hourSquareFeetDegreesFahrenheitPerBtu*0.0005678; }
+            get { return _squareMeterKelvinsPerKilowatt*0.0999964777570357; }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareMeterDegreesCelsiusPerWatt
         {
-            get { return _hourSquareFeetDegreesFahrenheitPerBtu*5.6787; }
+            get { return _squareMeterKelvinsPerKilowatt*1000.088056074108; }
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareMeterKelvinsPerKilowatt
         {
-            get { return _hourSquareFeetDegreesFahrenheitPerBtu*0.0056782; }
+            get { return _squareMeterKelvinsPerKilowatt; }
         }
 
         #endregion
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double hoursquarefeetdegreesfahrenheitperbtu)
         {
-            return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu);
+            return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu/176.1121482159839);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double squarecentimeterhourdegreescelsiusperkilocalorie)
         {
-            return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie/0.0004882);
+            return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie/0.0859779507590433);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double squarecentimeterkelvinsperwatt)
         {
-            return new ThermalResistance(squarecentimeterkelvinsperwatt/0.0005678);
+            return new ThermalResistance(squarecentimeterkelvinsperwatt/0.0999964777570357);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double squaremeterdegreescelsiusperwatt)
         {
-            return new ThermalResistance(squaremeterdegreescelsiusperwatt/5.6787);
+            return new ThermalResistance(squaremeterdegreescelsiusperwatt/1000.088056074108);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(double squaremeterkelvinsperkilowatt)
         {
-            return new ThermalResistance(squaremeterkelvinsperkilowatt/0.0056782);
+            return new ThermalResistance(squaremeterkelvinsperkilowatt);
         }
 
 #if !WINDOWS_UWP
@@ -365,37 +365,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ThermalResistance operator -(ThermalResistance right)
         {
-            return new ThermalResistance(-right._hourSquareFeetDegreesFahrenheitPerBtu);
+            return new ThermalResistance(-right._squareMeterKelvinsPerKilowatt);
         }
 
         public static ThermalResistance operator +(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left._hourSquareFeetDegreesFahrenheitPerBtu + right._hourSquareFeetDegreesFahrenheitPerBtu);
+            return new ThermalResistance(left._squareMeterKelvinsPerKilowatt + right._squareMeterKelvinsPerKilowatt);
         }
 
         public static ThermalResistance operator -(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left._hourSquareFeetDegreesFahrenheitPerBtu - right._hourSquareFeetDegreesFahrenheitPerBtu);
+            return new ThermalResistance(left._squareMeterKelvinsPerKilowatt - right._squareMeterKelvinsPerKilowatt);
         }
 
         public static ThermalResistance operator *(double left, ThermalResistance right)
         {
-            return new ThermalResistance(left*right._hourSquareFeetDegreesFahrenheitPerBtu);
+            return new ThermalResistance(left*right._squareMeterKelvinsPerKilowatt);
         }
 
         public static ThermalResistance operator *(ThermalResistance left, double right)
         {
-            return new ThermalResistance(left._hourSquareFeetDegreesFahrenheitPerBtu*(double)right);
+            return new ThermalResistance(left._squareMeterKelvinsPerKilowatt*(double)right);
         }
 
         public static ThermalResistance operator /(ThermalResistance left, double right)
         {
-            return new ThermalResistance(left._hourSquareFeetDegreesFahrenheitPerBtu/(double)right);
+            return new ThermalResistance(left._squareMeterKelvinsPerKilowatt/(double)right);
         }
 
         public static double operator /(ThermalResistance left, ThermalResistance right)
         {
-            return Convert.ToDouble(left._hourSquareFeetDegreesFahrenheitPerBtu/right._hourSquareFeetDegreesFahrenheitPerBtu);
+            return Convert.ToDouble(left._squareMeterKelvinsPerKilowatt/right._squareMeterKelvinsPerKilowatt);
         }
 #endif
 
@@ -417,40 +417,40 @@ namespace UnitsNet
 #endif
         int CompareTo(ThermalResistance other)
         {
-            return _hourSquareFeetDegreesFahrenheitPerBtu.CompareTo(other._hourSquareFeetDegreesFahrenheitPerBtu);
+            return _squareMeterKelvinsPerKilowatt.CompareTo(other._squareMeterKelvinsPerKilowatt);
         }
 
 #if !WINDOWS_UWP
         public static bool operator <=(ThermalResistance left, ThermalResistance right)
         {
-            return left._hourSquareFeetDegreesFahrenheitPerBtu <= right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt <= right._squareMeterKelvinsPerKilowatt;
         }
 
         public static bool operator >=(ThermalResistance left, ThermalResistance right)
         {
-            return left._hourSquareFeetDegreesFahrenheitPerBtu >= right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt >= right._squareMeterKelvinsPerKilowatt;
         }
 
         public static bool operator <(ThermalResistance left, ThermalResistance right)
         {
-            return left._hourSquareFeetDegreesFahrenheitPerBtu < right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt < right._squareMeterKelvinsPerKilowatt;
         }
 
         public static bool operator >(ThermalResistance left, ThermalResistance right)
         {
-            return left._hourSquareFeetDegreesFahrenheitPerBtu > right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt > right._squareMeterKelvinsPerKilowatt;
         }
 
         public static bool operator ==(ThermalResistance left, ThermalResistance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._hourSquareFeetDegreesFahrenheitPerBtu == right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt == right._squareMeterKelvinsPerKilowatt;
         }
 
         public static bool operator !=(ThermalResistance left, ThermalResistance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._hourSquareFeetDegreesFahrenheitPerBtu != right._hourSquareFeetDegreesFahrenheitPerBtu;
+            return left._squareMeterKelvinsPerKilowatt != right._squareMeterKelvinsPerKilowatt;
         }
 #endif
 
@@ -461,12 +461,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _hourSquareFeetDegreesFahrenheitPerBtu.Equals(((ThermalResistance) obj)._hourSquareFeetDegreesFahrenheitPerBtu);
+            return _squareMeterKelvinsPerKilowatt.Equals(((ThermalResistance) obj)._squareMeterKelvinsPerKilowatt);
         }
 
         public override int GetHashCode()
         {
-            return _hourSquareFeetDegreesFahrenheitPerBtu.GetHashCode();
+            return _squareMeterKelvinsPerKilowatt.GetHashCode();
         }
 
         #endregion
@@ -567,7 +567,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ThermalResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromHourSquareFeetDegreesFahrenheitPerBtu(x.HourSquareFeetDegreesFahrenheitPerBtu + y.HourSquareFeetDegreesFahrenheitPerBtu));
+                }, (x, y) => FromSquareMeterKelvinsPerKilowatt(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt));
         }
 
         /// <summary>
@@ -666,9 +666,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is HourSquareFeetDegreeFahrenheitPerBtu
+        ///     Set the default unit used by ToString(). Default is SquareMeterKelvinPerKilowatt
         /// </summary>
-        public static ThermalResistanceUnit ToStringDefaultUnit { get; set; } = ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu;
+        public static ThermalResistanceUnit ToStringDefaultUnit { get; set; } = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
 
         /// <summary>
         ///     Get default string representation of value and unit.
