@@ -42,50 +42,7 @@
     <Compile Include="**\*.cs;" Exclude="obj\**;**\*.WindowsRuntimeComponent.cs" />
     <None Include="UnitsNet.Portable40.project.json" />
     <None Include="Scripts\**\*.*" />
-    <None Include="UnitDefinitions\Acceleration.json" />
-    <None Include="UnitDefinitions\AmplitudeRatio.json" />
-    <None Include="UnitDefinitions\Angle.json" />
-    <None Include="UnitDefinitions\ApparentPower.json" />
-    <None Include="UnitDefinitions\Area.json" />
-    <None Include="UnitDefinitions\BrakeSpecificFuelConsumption.json" />
-    <None Include="UnitDefinitions\Density.json" />
-    <None Include="UnitDefinitions\Duration.json" />
-    <None Include="UnitDefinitions\DynamicViscosity.json" />
-    <None Include="UnitDefinitions\ElectricAdmittance.json" />
-    <None Include="UnitDefinitions\ElectricCurrent.json" />
-    <None Include="UnitDefinitions\ElectricPotential.json" />
-    <None Include="UnitDefinitions\ElectricPotentialAc.json" />
-    <None Include="UnitDefinitions\ElectricPotentialDc.json" />
-    <None Include="UnitDefinitions\ElectricResistance.json" />
-    <None Include="UnitDefinitions\Energy.json" />
-    <None Include="UnitDefinitions\Flow.json" />
-    <None Include="UnitDefinitions\Force.json" />
-    <None Include="UnitDefinitions\ForceChangeRate.json" />
-    <None Include="UnitDefinitions\ForcePerLength.json" />
-    <None Include="UnitDefinitions\Frequency.json" />
-    <None Include="UnitDefinitions\Information.json" />
-    <None Include="UnitDefinitions\KinematicViscosity.json" />
-    <None Include="UnitDefinitions\Length.json" />
-    <None Include="UnitDefinitions\Level.json" />
-    <None Include="UnitDefinitions\Mass.json" />
-    <None Include="UnitDefinitions\MassFlow.json" />
-    <None Include="UnitDefinitions\Power.json" />
-    <None Include="UnitDefinitions\PowerRatio.json" />
-    <None Include="UnitDefinitions\Pressure.json" />
-    <None Include="UnitDefinitions\PressureChangeRate.json" />
-    <None Include="UnitDefinitions\Ratio.json" />
-    <None Include="UnitDefinitions\ReactivePower.json" />
-    <None Include="UnitDefinitions\RotationalSpeed.json" />
-    <None Include="UnitDefinitions\SpecificEnergy.json" />
-    <None Include="UnitDefinitions\SpecificWeight.json" />
-    <None Include="UnitDefinitions\Speed.json" />
-    <None Include="UnitDefinitions\Temperature.json" />
-    <None Include="UnitDefinitions\TemperatureChangeRate.json" />
-    <None Include="UnitDefinitions\TemperatureDelta.json" />
-    <None Include="UnitDefinitions\ThermalResistance.json" />
-    <None Include="UnitDefinitions\Torque.json" />
-    <None Include="UnitDefinitions\VitaminA.json" />
-    <None Include="UnitDefinitions\Volume.json" />
+    <None Include="UnitDefinitions\**\*.*" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
