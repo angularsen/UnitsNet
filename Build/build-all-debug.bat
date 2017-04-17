@@ -4,7 +4,7 @@ set SrcDir="%ROOT%\Artifacts\Bin\Src"
 set SrcUnsignedDir="%ROOT%\Artifacts\Bin\Src-unsigned"
 
 echo Build unsigned binaries.
-"C:\Program Files (x86)\MSBuild\14.0\Bin\MsBuild.exe" %ROOT%\Build\build-all.msbuild /verbosity:normal /p:Configuration=Debug /target:Clean;Rebuild /p:RestorePackages=false
+"C:\Program Files (x86)\MSBuild\14.0\Bin\MsBuild.exe" %ROOT%\Build\build-all.msbuild /verbosity:minimal /p:Configuration=Debug /target:Clean;Rebuild /p:RestorePackages=false
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo Move unsigned binaries to: %SrcUnsignedDir%
