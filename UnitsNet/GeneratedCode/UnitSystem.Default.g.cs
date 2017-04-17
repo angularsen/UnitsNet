@@ -2318,7 +2318,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "hrft²°F/Btu"),
+                                new AbbreviationsForCulture("en-US", "Hrft²°F/Btu"),
                             }),
                         new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie,
                             new[]

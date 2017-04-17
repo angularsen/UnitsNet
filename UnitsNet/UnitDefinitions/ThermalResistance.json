@@ -18,8 +18,8 @@
     {
       "SingularName": "SquareMeterDegreeCelsiusPerWatt",
       "PluralName": "SquareMeterDegreesCelsiusPerWatt",
-      "FromUnitToBaseFunc": "x/1000.088056074108",
-      "FromBaseToUnitFunc": "x*1000.088056074108",
+      "FromUnitToBaseFunc": "x*1000.088056074108",
+      "FromBaseToUnitFunc": "x/1000.088056074108",
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,8 +30,8 @@
     {
       "SingularName": "SquareCentimeterKelvinPerWatt",
       "PluralName": "SquareCentimeterKelvinsPerWatt",
-      "FromUnitToBaseFunc": "x/0.0999964777570357",
-      "FromBaseToUnitFunc": "x*0.0999964777570357",
+      "FromUnitToBaseFunc": "x*0.0999964777570357",
+      "FromBaseToUnitFunc": "x/0.0999964777570357",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +42,8 @@
     {
       "SingularName": "SquareCentimeterHourDegreeCelsiusPerKilocalorie",
       "PluralName": "SquareCentimeterHourDegreesCelsiusPerKilocalorie",
-      "FromUnitToBaseFunc": "x/0.0859779507590433",
-      "FromBaseToUnitFunc": "x*0.0859779507590433",
+      "FromUnitToBaseFunc": "x*0.0859779507590433",
+      "FromBaseToUnitFunc": "x/0.0859779507590433",
       "Localization": [
         {
           "Culture": "en-US",
@@ -54,8 +54,8 @@
     {
       "SingularName": "HourSquareFeetDegreeFahrenheitPerBtu",
       "PluralName": "HourSquareFeetDegreesFahrenheitPerBtu",
-      "FromUnitToBaseFunc": "x/176.1121482159839",
-      "FromBaseToUnitFunc": "x*176.1121482159839",
+      "FromUnitToBaseFunc": "x*176.1121482159839",
+      "FromBaseToUnitFunc": "x/176.1121482159839",
       "Localization": [
         {
           "Culture": "en-US",

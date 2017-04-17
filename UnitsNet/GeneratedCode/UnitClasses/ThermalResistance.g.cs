@@ -115,7 +115,7 @@ namespace UnitsNet
         /// </summary>
         public double HourSquareFeetDegreesFahrenheitPerBtu
         {
-            get { return _squareMeterKelvinsPerKilowatt*176.1121482159839; }
+            get { return _squareMeterKelvinsPerKilowatt/176.1121482159839; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareCentimeterHourDegreesCelsiusPerKilocalorie
         {
-            get { return _squareMeterKelvinsPerKilowatt*0.0859779507590433; }
+            get { return _squareMeterKelvinsPerKilowatt/0.0859779507590433; }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareCentimeterKelvinsPerWatt
         {
-            get { return _squareMeterKelvinsPerKilowatt*0.0999964777570357; }
+            get { return _squareMeterKelvinsPerKilowatt/0.0999964777570357; }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         public double SquareMeterDegreesCelsiusPerWatt
         {
-            get { return _squareMeterKelvinsPerKilowatt*1000.088056074108; }
+            get { return _squareMeterKelvinsPerKilowatt/1000.088056074108; }
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double hoursquarefeetdegreesfahrenheitperbtu)
         {
-            return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu/176.1121482159839);
+            return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu*176.1121482159839);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double squarecentimeterhourdegreescelsiusperkilocalorie)
         {
-            return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie/0.0859779507590433);
+            return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie*0.0859779507590433);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double squarecentimeterkelvinsperwatt)
         {
-            return new ThermalResistance(squarecentimeterkelvinsperwatt/0.0999964777570357);
+            return new ThermalResistance(squarecentimeterkelvinsperwatt*0.0999964777570357);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace UnitsNet
         /// </summary>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double squaremeterdegreescelsiusperwatt)
         {
-            return new ThermalResistance(squaremeterdegreescelsiusperwatt/1000.088056074108);
+            return new ThermalResistance(squaremeterdegreescelsiusperwatt*1000.088056074108);
         }
 
         /// <summary>
