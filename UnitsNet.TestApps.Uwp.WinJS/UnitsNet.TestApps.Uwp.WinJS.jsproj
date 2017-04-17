@@ -54,6 +54,7 @@
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>UnitsNet.TestApps.Uwp.WinJS_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>F79EE2A7A1921D57274DB52A21F4E8BB90FAC024</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
