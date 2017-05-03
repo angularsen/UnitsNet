@@ -35,22 +35,30 @@ install:
     Write-Output "Sucesfully imported $pfx into StrongName CSP store"
 build_script:
 - ps: |
-    #####################################
+    ##################################### 
     # Build, test, pack and deploy nugets
     #####################################
 
     pushd Build
     .\\build.bat %CD%\\UnitsNet.pfx
+    $BuildExitCode = $LASTEXITCODE
     popd
 
-    #####################################
+    ##################################### 
     # Upload test results to AppVeyor
     #####################################
 
     $wc = New-Object 'System.Net.WebClient'
 
-    Get-ChildItem .\\Artifacts\\Logs\\*Test*.xml | %{
-      $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName)
+    if (Test-Path .\\Artifacts\\Logs\\) {
+        Get-ChildItem .\\Artifacts\\Logs\\*Test*.xml | %{
+            $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName)
+        }
+    }
+
+    if ($BuildExitCode -ne 0) { 
+        Write-Host "Build failed with exit code $BuildExitCode."
+        exit $BuildExitCode
     }
 test: off
 artifacts:

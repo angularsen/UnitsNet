@@ -84,6 +84,7 @@ namespace UnitsNet
         Temperature,
         TemperatureChangeRate,
         TemperatureDelta,
+        ThermalResistance,
         Torque,
         VitaminA,
         Volume,

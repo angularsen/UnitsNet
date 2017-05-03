@@ -282,6 +282,40 @@ namespace UnitsNet.Extensions.NumberToMass
 
         #endregion
 
+        #region LongHundredweight
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)"/>
+        public static Mass LongHundredweight(this int value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double?)"/>
+        public static Mass? LongHundredweight(this int? value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)"/>
+        public static Mass LongHundredweight(this long value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double?)"/>
+        public static Mass? LongHundredweight(this long? value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)"/>
+        public static Mass LongHundredweight(this double value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double?)"/>
+        public static Mass? LongHundredweight(this double? value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)"/>
+        public static Mass LongHundredweight(this float value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double?)"/>
+        public static Mass? LongHundredweight(this float? value) => Mass.FromLongHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)"/>
+        public static Mass LongHundredweight(this decimal value) => Mass.FromLongHundredweight(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double?)"/>
+        public static Mass? LongHundredweight(this decimal? value) => Mass.FromLongHundredweight(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region LongTon
 
         /// <inheritdoc cref="Mass.FromLongTons(double)"/>
@@ -517,6 +551,40 @@ namespace UnitsNet.Extensions.NumberToMass
 
         /// <inheritdoc cref="Mass.FromPounds(double?)"/>
         public static Mass? Pounds(this decimal? value) => Mass.FromPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region ShortHundredweight
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)"/>
+        public static Mass ShortHundredweight(this int value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double?)"/>
+        public static Mass? ShortHundredweight(this int? value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)"/>
+        public static Mass ShortHundredweight(this long value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double?)"/>
+        public static Mass? ShortHundredweight(this long? value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)"/>
+        public static Mass ShortHundredweight(this double value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double?)"/>
+        public static Mass? ShortHundredweight(this double? value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)"/>
+        public static Mass ShortHundredweight(this float value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double?)"/>
+        public static Mass? ShortHundredweight(this float? value) => Mass.FromShortHundredweight(value);
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)"/>
+        public static Mass ShortHundredweight(this decimal value) => Mass.FromShortHundredweight(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double?)"/>
+        public static Mass? ShortHundredweight(this decimal? value) => Mass.FromShortHundredweight(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

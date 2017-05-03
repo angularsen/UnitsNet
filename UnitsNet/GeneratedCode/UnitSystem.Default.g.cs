@@ -1350,6 +1350,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kt"),
                                 new AbbreviationsForCulture("ru-RU", "кт"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.LongHundredweight,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cwt"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.LongTon,
                             new[]
                             {
@@ -1389,6 +1394,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb"),
+                            }),
+                        new CulturesForEnumValue((int) MassUnit.ShortHundredweight,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cwt"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.ShortTon,
                             new[]
@@ -2314,6 +2324,35 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "▲K"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ThermalResistanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Hrft²°F/Btu"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm²Hr°C/kcal"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterKelvinPerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm²K/W"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m²°C/W"),
+                            }),
+                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterKelvinPerKilowatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m²K/kW"),
                             }),
                     }),
                 new UnitLocalization(typeof (TorqueUnit),

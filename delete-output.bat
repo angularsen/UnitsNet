@@ -16,6 +16,8 @@ echo.
 
 rmdir /s /q artifacts
 
+@FOR /F "tokens=*" %%G IN ('DIR /B /S *.lock.json 2^>NUL') DO (DEL "%%G")
+
 echo.
 IF %remaining% == 0 exit
 
