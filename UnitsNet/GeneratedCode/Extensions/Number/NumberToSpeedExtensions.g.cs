@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToSpeed
 {
     public static class NumberToSpeedExtensions
     {
+        #region CentimeterPerHour
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)"/>
+        public static Speed CentimetersPerHour(this int value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double?)"/>
+        public static Speed? CentimetersPerHour(this int? value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)"/>
+        public static Speed CentimetersPerHour(this long value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double?)"/>
+        public static Speed? CentimetersPerHour(this long? value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)"/>
+        public static Speed CentimetersPerHour(this double value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double?)"/>
+        public static Speed? CentimetersPerHour(this double? value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)"/>
+        public static Speed CentimetersPerHour(this float value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double?)"/>
+        public static Speed? CentimetersPerHour(this float? value) => Speed.FromCentimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)"/>
+        public static Speed CentimetersPerHour(this decimal value) => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double?)"/>
+        public static Speed? CentimetersPerHour(this decimal? value) => Speed.FromCentimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region CentimeterPerMinute
 
         /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(double)"/>
@@ -551,6 +585,40 @@ namespace UnitsNet.Extensions.NumberToSpeed
 
         /// <inheritdoc cref="Speed.FromMilesPerHour(double?)"/>
         public static Speed? MilesPerHour(this decimal? value) => Speed.FromMilesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MillimeterPerHour
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)"/>
+        public static Speed MillimetersPerHour(this int value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double?)"/>
+        public static Speed? MillimetersPerHour(this int? value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)"/>
+        public static Speed MillimetersPerHour(this long value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double?)"/>
+        public static Speed? MillimetersPerHour(this long? value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)"/>
+        public static Speed MillimetersPerHour(this double value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double?)"/>
+        public static Speed? MillimetersPerHour(this double? value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)"/>
+        public static Speed MillimetersPerHour(this float value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double?)"/>
+        public static Speed? MillimetersPerHour(this float? value) => Speed.FromMillimetersPerHour(value);
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)"/>
+        public static Speed MillimetersPerHour(this decimal value) => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double?)"/>
+        public static Speed? MillimetersPerHour(this decimal? value) => Speed.FromMillimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
