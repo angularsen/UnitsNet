@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         CentinewtonPerSecond,
         DecanewtonPerMinute,
+        DecanewtonPerSecond,
         DecinewtonPerSecond,
         KilonewtonPerMinute,
         KilonewtonPerSecond,

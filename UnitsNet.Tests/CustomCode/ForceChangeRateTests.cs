@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class ForceChangeRateTests : ForceChangeRateTestsBase
@@ -27,6 +29,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DecanewtonsPerMinuteInOneNewtonPerSecond => 6;
         protected override double KilonewtonsPerMinuteInOneNewtonPerSecond => 0.06;
         protected override double KilonewtonsPerSecondInOneNewtonPerSecond => 1E-3;
+        protected override double DecanewtonsPerSecondInOneNewtonPerSecond => 1E-1;
         protected override double NewtonsPerSecondInOneNewtonPerSecond => 1;
         protected override double DecinewtonsPerSecondInOneNewtonPerSecond => 1E1;
         protected override double CentinewtonsPerSecondInOneNewtonPerSecond => 1E2;
