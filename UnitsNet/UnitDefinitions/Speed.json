@@ -34,6 +34,7 @@
       "PluralName": "MetersPerHour",
       "FromUnitToBaseFunc": "x/3600",
       "FromBaseToUnitFunc": "x*3600",
+      "Prefixes": [ "Milli", "Centi", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -50,18 +51,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft/s" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "KilometerPerHour",
-      "PluralName": "KilometersPerHour",
-      "FromUnitToBaseFunc": "x/3.6",
-      "FromBaseToUnitFunc": "x*3.6",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "km/h", "kph" ]
         }
       ]
     },

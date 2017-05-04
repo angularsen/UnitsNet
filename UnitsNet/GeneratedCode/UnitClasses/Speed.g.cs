@@ -111,6 +111,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in CentimetersPerHour.
+        /// </summary>
+        public double CentimetersPerHour
+        {
+            get { return (_metersPerSecond*3600) / 1e-2d; }
+        }
+
+        /// <summary>
         ///     Get Speed in CentimetersPerMinutes.
         /// </summary>
         public double CentimetersPerMinutes
@@ -155,7 +163,7 @@ namespace UnitsNet
         /// </summary>
         public double KilometersPerHour
         {
-            get { return _metersPerSecond*3.6; }
+            get { return (_metersPerSecond*3600) / 1e3d; }
         }
 
         /// <summary>
@@ -231,6 +239,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in MillimetersPerHour.
+        /// </summary>
+        public double MillimetersPerHour
+        {
+            get { return (_metersPerSecond*3600) / 1e-3d; }
+        }
+
+        /// <summary>
         ///     Get Speed in MillimetersPerMinutes.
         /// </summary>
         public double MillimetersPerMinutes
@@ -269,6 +285,14 @@ namespace UnitsNet
         public static Speed Zero
         {
             get { return new Speed(); }
+        }
+
+        /// <summary>
+        ///     Get Speed from CentimetersPerHour.
+        /// </summary>
+        public static Speed FromCentimetersPerHour(double centimetersperhour)
+        {
+            return new Speed((centimetersperhour/3600) * 1e-2d);
         }
 
         /// <summary>
@@ -316,7 +340,7 @@ namespace UnitsNet
         /// </summary>
         public static Speed FromKilometersPerHour(double kilometersperhour)
         {
-            return new Speed(kilometersperhour/3.6);
+            return new Speed((kilometersperhour/3600) * 1e3d);
         }
 
         /// <summary>
@@ -392,6 +416,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed from MillimetersPerHour.
+        /// </summary>
+        public static Speed FromMillimetersPerHour(double millimetersperhour)
+        {
+            return new Speed((millimetersperhour/3600) * 1e-3d);
+        }
+
+        /// <summary>
         ///     Get Speed from MillimetersPerMinutes.
         /// </summary>
         public static Speed FromMillimetersPerMinutes(double millimetersperminutes)
@@ -424,6 +456,21 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerHour.
+        /// </summary>
+        public static Speed? FromCentimetersPerHour(double? centimetersperhour)
+        {
+            if (centimetersperhour.HasValue)
+            {
+                return FromCentimetersPerHour(centimetersperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerMinutes.
         /// </summary>
@@ -650,6 +697,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerHour.
+        /// </summary>
+        public static Speed? FromMillimetersPerHour(double? millimetersperhour)
+        {
+            if (millimetersperhour.HasValue)
+            {
+                return FromMillimetersPerHour(millimetersperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerMinutes.
         /// </summary>
         public static Speed? FromMillimetersPerMinutes(double? millimetersperminutes)
@@ -721,6 +783,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case SpeedUnit.CentimeterPerHour:
+                    return FromCentimetersPerHour(val);
                 case SpeedUnit.CentimeterPerMinute:
                     return FromCentimetersPerMinutes(val);
                 case SpeedUnit.CentimeterPerSecond:
@@ -751,6 +815,8 @@ namespace UnitsNet
                     return FromMicrometersPerSecond(val);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(val);
+                case SpeedUnit.MillimeterPerHour:
+                    return FromMillimetersPerHour(val);
                 case SpeedUnit.MillimeterPerMinute:
                     return FromMillimetersPerMinutes(val);
                 case SpeedUnit.MillimeterPerSecond:
@@ -780,6 +846,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case SpeedUnit.CentimeterPerHour:
+                    return FromCentimetersPerHour(value.Value);
                 case SpeedUnit.CentimeterPerMinute:
                     return FromCentimetersPerMinutes(value.Value);
                 case SpeedUnit.CentimeterPerSecond:
@@ -810,6 +878,8 @@ namespace UnitsNet
                     return FromMicrometersPerSecond(value.Value);
                 case SpeedUnit.MilePerHour:
                     return FromMilesPerHour(value.Value);
+                case SpeedUnit.MillimeterPerHour:
+                    return FromMillimetersPerHour(value.Value);
                 case SpeedUnit.MillimeterPerMinute:
                     return FromMillimetersPerMinutes(value.Value);
                 case SpeedUnit.MillimeterPerSecond:
@@ -972,6 +1042,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case SpeedUnit.CentimeterPerHour:
+                    return CentimetersPerHour;
                 case SpeedUnit.CentimeterPerMinute:
                     return CentimetersPerMinutes;
                 case SpeedUnit.CentimeterPerSecond:
@@ -1002,6 +1074,8 @@ namespace UnitsNet
                     return MicrometersPerSecond;
                 case SpeedUnit.MilePerHour:
                     return MilesPerHour;
+                case SpeedUnit.MillimeterPerHour:
+                    return MillimetersPerHour;
                 case SpeedUnit.MillimeterPerMinute:
                     return MillimetersPerMinutes;
                 case SpeedUnit.MillimeterPerSecond:
