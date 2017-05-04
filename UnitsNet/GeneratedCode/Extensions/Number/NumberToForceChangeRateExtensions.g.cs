@@ -112,6 +112,40 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
 
         #endregion
 
+        #region DecanewtonPerSecond
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)"/>
+        public static ForceChangeRate DecanewtonsPerSecond(this int value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double?)"/>
+        public static ForceChangeRate? DecanewtonsPerSecond(this int? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)"/>
+        public static ForceChangeRate DecanewtonsPerSecond(this long value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double?)"/>
+        public static ForceChangeRate? DecanewtonsPerSecond(this long? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)"/>
+        public static ForceChangeRate DecanewtonsPerSecond(this double value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double?)"/>
+        public static ForceChangeRate? DecanewtonsPerSecond(this double? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)"/>
+        public static ForceChangeRate DecanewtonsPerSecond(this float value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double?)"/>
+        public static ForceChangeRate? DecanewtonsPerSecond(this float? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)"/>
+        public static ForceChangeRate DecanewtonsPerSecond(this decimal value) => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double?)"/>
+        public static ForceChangeRate? DecanewtonsPerSecond(this decimal? value) => ForceChangeRate.FromDecanewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DecinewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)"/>
