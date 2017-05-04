@@ -882,6 +882,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "daN/m"),
                             }),
+                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daN/s"),
+                            }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.DecinewtonPerSecond,
                             new[]
                             {

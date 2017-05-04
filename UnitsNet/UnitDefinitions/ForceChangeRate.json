@@ -21,7 +21,7 @@
       "PluralName": "NewtonsPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
