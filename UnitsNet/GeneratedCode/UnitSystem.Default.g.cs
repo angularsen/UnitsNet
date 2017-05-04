@@ -1718,6 +1718,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "mbar"),
                                 new AbbreviationsForCulture("ru-RU", "mбар"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.MillimeterOfMercury,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mmHg"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareCentimeter,
                             new[]
                             {

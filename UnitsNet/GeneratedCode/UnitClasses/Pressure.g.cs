@@ -295,6 +295,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in MillimetersOfMercury.
+        /// </summary>
+        public double MillimetersOfMercury
+        {
+            get { return _pascals*7.50061561302643e-3; }
+        }
+
+        /// <summary>
         ///     Get Pressure in NewtonsPerSquareCentimeter.
         /// </summary>
         public double NewtonsPerSquareCentimeter
@@ -582,6 +590,14 @@ namespace UnitsNet
         public static Pressure FromMillibars(double millibars)
         {
             return new Pressure((millibars*1e5) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from MillimetersOfMercury.
+        /// </summary>
+        public static Pressure FromMillimetersOfMercury(double millimetersofmercury)
+        {
+            return new Pressure(millimetersofmercury/7.50061561302643e-3);
         }
 
         /// <summary>
@@ -1027,6 +1043,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable MillimetersOfMercury.
+        /// </summary>
+        public static Pressure? FromMillimetersOfMercury(double? millimetersofmercury)
+        {
+            if (millimetersofmercury.HasValue)
+            {
+                return FromMillimetersOfMercury(millimetersofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
         /// </summary>
         public static Pressure? FromNewtonsPerSquareCentimeter(double? newtonspersquarecentimeter)
@@ -1264,6 +1295,8 @@ namespace UnitsNet
                     return FromMicropascals(val);
                 case PressureUnit.Millibar:
                     return FromMillibars(val);
+                case PressureUnit.MillimeterOfMercury:
+                    return FromMillimetersOfMercury(val);
                 case PressureUnit.NewtonPerSquareCentimeter:
                     return FromNewtonsPerSquareCentimeter(val);
                 case PressureUnit.NewtonPerSquareMeter:
@@ -1355,6 +1388,8 @@ namespace UnitsNet
                     return FromMicropascals(value.Value);
                 case PressureUnit.Millibar:
                     return FromMillibars(value.Value);
+                case PressureUnit.MillimeterOfMercury:
+                    return FromMillimetersOfMercury(value.Value);
                 case PressureUnit.NewtonPerSquareCentimeter:
                     return FromNewtonsPerSquareCentimeter(value.Value);
                 case PressureUnit.NewtonPerSquareMeter:
@@ -1579,6 +1614,8 @@ namespace UnitsNet
                     return Micropascals;
                 case PressureUnit.Millibar:
                     return Millibars;
+                case PressureUnit.MillimeterOfMercury:
+                    return MillimetersOfMercury;
                 case PressureUnit.NewtonPerSquareCentimeter:
                     return NewtonsPerSquareCentimeter;
                 case PressureUnit.NewtonPerSquareMeter:
