@@ -19,7 +19,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using NUnit.Framework;
+using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -50,6 +52,48 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032;
 
+        protected override double CentigramsPerDeciLiterInOneKilogramPerCubicMeter => 1e1;
+
+        protected override double CentigramsPerLiterInOneKilogramPerCubicMeter => 1e2;
+
+        protected override double CentigramsPerMilliLiterInOneKilogramPerCubicMeter => 1e-1;
+
+        protected override double DecigramsPerDeciLiterInOneKilogramPerCubicMeter => 1;
+
+        protected override double DecigramsPerLiterInOneKilogramPerCubicMeter => 1e1;
+
+        protected override double DecigramsPerMilliLiterInOneKilogramPerCubicMeter => 1e-2;
+
+        protected override double GramsPerDeciLiterInOneKilogramPerCubicMeter => 1e-1;
+
+        protected override double GramsPerLiterInOneKilogramPerCubicMeter => 1;
+
+        protected override double GramsPerMilliLiterInOneKilogramPerCubicMeter => 1e-3;
+
+        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5; 
+
+        protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6; 
+
+        protected override double MicrogramsPerMilliLiterInOneKilogramPerCubicMeter => 1e3;
+
+        protected override double MilligramsPerDeciLiterInOneKilogramPerCubicMeter => 1e2;
+
+        protected override double MilligramsPerLiterInOneKilogramPerCubicMeter => 1e3;
+
+        protected override double MilligramsPerMilliLiterInOneKilogramPerCubicMeter => 1;
+
+        protected override double NanogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e8;
+
+        protected override double NanogramsPerLiterInOneKilogramPerCubicMeter => 1e9;
+
+        protected override double NanogramsPerMilliLiterInOneKilogramPerCubicMeter => 1e6;
+
+        protected override double PicogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e11;
+
+        protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
+
+        protected override double PicogramsPerMilliLiterInOneKilogramPerCubicMeter => 1e9;
+
         [Test]
         public static void DensityTimesVolumeEqualsMass()
         {
@@ -69,6 +113,24 @@ namespace UnitsNet.Tests.CustomCode
         {
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
             Assert.AreEqual(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+        }
+
+        [Test]
+        public void ExpectMolarityConvertedToDensityCorrectly()
+        {
+            var molarity = Molarity.FromMolesPerLiter(1.02698355);
+            var mw = Mass.FromGrams(58.443);
+            var density = Density.FromMolarity(molarity, mw).KilogramsPerCubicMeter;
+            Assert.AreEqual(60.02, density, KilogramsPerCubicMeterTolerance);
+        }
+
+        [Test]
+        public void ExpectDensityConvertedToMolarityCorrectly()
+        {
+            var density = Density.FromKilogramsPerCubicMeter(60.02);
+            var mw = Mass.FromGrams(58.443);
+            var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
+            Assert.AreEqual(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
         }
     }
 }

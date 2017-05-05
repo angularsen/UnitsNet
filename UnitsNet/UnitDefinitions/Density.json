@@ -122,6 +122,45 @@
           "Abbreviations": [ "slug/ft³" ]
         }
       ]
+    },
+    {
+      "SingularName": "GramPerLiter",
+      "PluralName": "GramsPerLiter",
+      "FromUnitToBaseFunc": "x/1",
+      "FromBaseToUnitFunc": "x*1",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/L" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerDeciLiter",
+      "PluralName": "GramsPerDeciLiter",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/dL" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerMilliLiter",
+      "PluralName": "GramsPerMilliLiter",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mL" ]
+        }
+      ]
     }
   ]
 }

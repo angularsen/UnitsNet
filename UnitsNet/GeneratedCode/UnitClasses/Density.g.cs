@@ -111,6 +111,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density in CentigramsPerDeciLiter.
+        /// </summary>
+        public double CentigramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Density in CentigramsPerLiter.
+        /// </summary>
+        public double CentigramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Density in CentigramsPerMilliLiter.
+        /// </summary>
+        public double CentigramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-2d; }
+        }
+
+        /// <summary>
+        ///     Get Density in DecigramsPerDeciLiter.
+        /// </summary>
+        public double DecigramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Density in DecigramsPerLiter.
+        /// </summary>
+        public double DecigramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-1d; }
+        }
+
+        /// <summary>
+        ///     Get Density in DecigramsPerMilliLiter.
+        /// </summary>
+        public double DecigramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-1d; }
+        }
+
+        /// <summary>
         ///     Get Density in GramsPerCubicCentimeter.
         /// </summary>
         public double GramsPerCubicCentimeter
@@ -132,6 +180,30 @@ namespace UnitsNet
         public double GramsPerCubicMillimeter
         {
             get { return _kilogramsPerCubicMeter*1e-6; }
+        }
+
+        /// <summary>
+        ///     Get Density in GramsPerDeciLiter.
+        /// </summary>
+        public double GramsPerDeciLiter
+        {
+            get { return _kilogramsPerCubicMeter*1e-1; }
+        }
+
+        /// <summary>
+        ///     Get Density in GramsPerLiter.
+        /// </summary>
+        public double GramsPerLiter
+        {
+            get { return _kilogramsPerCubicMeter*1; }
+        }
+
+        /// <summary>
+        ///     Get Density in GramsPerMilliLiter.
+        /// </summary>
+        public double GramsPerMilliLiter
+        {
+            get { return _kilogramsPerCubicMeter*1e-3; }
         }
 
         /// <summary>
@@ -172,6 +244,102 @@ namespace UnitsNet
         public double KilopoundsPerCubicInch
         {
             get { return (_kilogramsPerCubicMeter*3.6127298147753e-5) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerDeciLiter.
+        /// </summary>
+        public double MicrogramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerLiter.
+        /// </summary>
+        public double MicrogramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerMilliLiter.
+        /// </summary>
+        public double MicrogramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MilligramsPerDeciLiter.
+        /// </summary>
+        public double MilligramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MilligramsPerLiter.
+        /// </summary>
+        public double MilligramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in MilligramsPerMilliLiter.
+        /// </summary>
+        public double MilligramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get Density in NanogramsPerDeciLiter.
+        /// </summary>
+        public double NanogramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get Density in NanogramsPerLiter.
+        /// </summary>
+        public double NanogramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get Density in NanogramsPerMilliLiter.
+        /// </summary>
+        public double NanogramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get Density in PicogramsPerDeciLiter.
+        /// </summary>
+        public double PicogramsPerDeciLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-1) / 1e-12d; }
+        }
+
+        /// <summary>
+        ///     Get Density in PicogramsPerLiter.
+        /// </summary>
+        public double PicogramsPerLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1) / 1e-12d; }
+        }
+
+        /// <summary>
+        ///     Get Density in PicogramsPerMilliLiter.
+        /// </summary>
+        public double PicogramsPerMilliLiter
+        {
+            get { return (_kilogramsPerCubicMeter*1e-3) / 1e-12d; }
         }
 
         /// <summary>
@@ -232,6 +400,54 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density from CentigramsPerDeciLiter.
+        /// </summary>
+        public static Density FromCentigramsPerDeciLiter(double centigramsperdeciliter)
+        {
+            return new Density((centigramsperdeciliter/1e-1) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Density from CentigramsPerLiter.
+        /// </summary>
+        public static Density FromCentigramsPerLiter(double centigramsperliter)
+        {
+            return new Density((centigramsperliter/1) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Density from CentigramsPerMilliLiter.
+        /// </summary>
+        public static Density FromCentigramsPerMilliLiter(double centigramspermilliliter)
+        {
+            return new Density((centigramspermilliliter/1e-3) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Density from DecigramsPerDeciLiter.
+        /// </summary>
+        public static Density FromDecigramsPerDeciLiter(double decigramsperdeciliter)
+        {
+            return new Density((decigramsperdeciliter/1e-1) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Density from DecigramsPerLiter.
+        /// </summary>
+        public static Density FromDecigramsPerLiter(double decigramsperliter)
+        {
+            return new Density((decigramsperliter/1) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Density from DecigramsPerMilliLiter.
+        /// </summary>
+        public static Density FromDecigramsPerMilliLiter(double decigramspermilliliter)
+        {
+            return new Density((decigramspermilliliter/1e-3) * 1e-1d);
+        }
+
+        /// <summary>
         ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
         public static Density FromGramsPerCubicCentimeter(double gramspercubiccentimeter)
@@ -253,6 +469,30 @@ namespace UnitsNet
         public static Density FromGramsPerCubicMillimeter(double gramspercubicmillimeter)
         {
             return new Density(gramspercubicmillimeter/1e-6);
+        }
+
+        /// <summary>
+        ///     Get Density from GramsPerDeciLiter.
+        /// </summary>
+        public static Density FromGramsPerDeciLiter(double gramsperdeciliter)
+        {
+            return new Density(gramsperdeciliter/1e-1);
+        }
+
+        /// <summary>
+        ///     Get Density from GramsPerLiter.
+        /// </summary>
+        public static Density FromGramsPerLiter(double gramsperliter)
+        {
+            return new Density(gramsperliter/1);
+        }
+
+        /// <summary>
+        ///     Get Density from GramsPerMilliLiter.
+        /// </summary>
+        public static Density FromGramsPerMilliLiter(double gramspermilliliter)
+        {
+            return new Density(gramspermilliliter/1e-3);
         }
 
         /// <summary>
@@ -293,6 +533,102 @@ namespace UnitsNet
         public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch)
         {
             return new Density((kilopoundspercubicinch/3.6127298147753e-5) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Density from MicrogramsPerDeciLiter.
+        /// </summary>
+        public static Density FromMicrogramsPerDeciLiter(double microgramsperdeciliter)
+        {
+            return new Density((microgramsperdeciliter/1e-1) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Density from MicrogramsPerLiter.
+        /// </summary>
+        public static Density FromMicrogramsPerLiter(double microgramsperliter)
+        {
+            return new Density((microgramsperliter/1) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Density from MicrogramsPerMilliLiter.
+        /// </summary>
+        public static Density FromMicrogramsPerMilliLiter(double microgramspermilliliter)
+        {
+            return new Density((microgramspermilliliter/1e-3) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Density from MilligramsPerDeciLiter.
+        /// </summary>
+        public static Density FromMilligramsPerDeciLiter(double milligramsperdeciliter)
+        {
+            return new Density((milligramsperdeciliter/1e-1) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Density from MilligramsPerLiter.
+        /// </summary>
+        public static Density FromMilligramsPerLiter(double milligramsperliter)
+        {
+            return new Density((milligramsperliter/1) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Density from MilligramsPerMilliLiter.
+        /// </summary>
+        public static Density FromMilligramsPerMilliLiter(double milligramspermilliliter)
+        {
+            return new Density((milligramspermilliliter/1e-3) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Density from NanogramsPerDeciLiter.
+        /// </summary>
+        public static Density FromNanogramsPerDeciLiter(double nanogramsperdeciliter)
+        {
+            return new Density((nanogramsperdeciliter/1e-1) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Density from NanogramsPerLiter.
+        /// </summary>
+        public static Density FromNanogramsPerLiter(double nanogramsperliter)
+        {
+            return new Density((nanogramsperliter/1) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Density from NanogramsPerMilliLiter.
+        /// </summary>
+        public static Density FromNanogramsPerMilliLiter(double nanogramspermilliliter)
+        {
+            return new Density((nanogramspermilliliter/1e-3) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Density from PicogramsPerDeciLiter.
+        /// </summary>
+        public static Density FromPicogramsPerDeciLiter(double picogramsperdeciliter)
+        {
+            return new Density((picogramsperdeciliter/1e-1) * 1e-12d);
+        }
+
+        /// <summary>
+        ///     Get Density from PicogramsPerLiter.
+        /// </summary>
+        public static Density FromPicogramsPerLiter(double picogramsperliter)
+        {
+            return new Density((picogramsperliter/1) * 1e-12d);
+        }
+
+        /// <summary>
+        ///     Get Density from PicogramsPerMilliLiter.
+        /// </summary>
+        public static Density FromPicogramsPerMilliLiter(double picogramspermilliliter)
+        {
+            return new Density((picogramspermilliliter/1e-3) * 1e-12d);
         }
 
         /// <summary>
@@ -345,6 +681,96 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromCentigramsPerDeciLiter(double? centigramsperdeciliter)
+        {
+            if (centigramsperdeciliter.HasValue)
+            {
+                return FromCentigramsPerDeciLiter(centigramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerLiter.
+        /// </summary>
+        public static Density? FromCentigramsPerLiter(double? centigramsperliter)
+        {
+            if (centigramsperliter.HasValue)
+            {
+                return FromCentigramsPerLiter(centigramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromCentigramsPerMilliLiter(double? centigramspermilliliter)
+        {
+            if (centigramspermilliliter.HasValue)
+            {
+                return FromCentigramsPerMilliLiter(centigramspermilliliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromDecigramsPerDeciLiter(double? decigramsperdeciliter)
+        {
+            if (decigramsperdeciliter.HasValue)
+            {
+                return FromDecigramsPerDeciLiter(decigramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerLiter.
+        /// </summary>
+        public static Density? FromDecigramsPerLiter(double? decigramsperliter)
+        {
+            if (decigramsperliter.HasValue)
+            {
+                return FromDecigramsPerLiter(decigramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromDecigramsPerMilliLiter(double? decigramspermilliliter)
+        {
+            if (decigramspermilliliter.HasValue)
+            {
+                return FromDecigramsPerMilliLiter(decigramspermilliliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicCentimeter.
         /// </summary>
         public static Density? FromGramsPerCubicCentimeter(double? gramspercubiccentimeter)
@@ -382,6 +808,51 @@ namespace UnitsNet
             if (gramspercubicmillimeter.HasValue)
             {
                 return FromGramsPerCubicMillimeter(gramspercubicmillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromGramsPerDeciLiter(double? gramsperdeciliter)
+        {
+            if (gramsperdeciliter.HasValue)
+            {
+                return FromGramsPerDeciLiter(gramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerLiter.
+        /// </summary>
+        public static Density? FromGramsPerLiter(double? gramsperliter)
+        {
+            if (gramsperliter.HasValue)
+            {
+                return FromGramsPerLiter(gramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromGramsPerMilliLiter(double? gramspermilliliter)
+        {
+            if (gramspermilliliter.HasValue)
+            {
+                return FromGramsPerMilliLiter(gramspermilliliter.Value);
             }
             else
             {
@@ -457,6 +928,186 @@ namespace UnitsNet
             if (kilopoundspercubicinch.HasValue)
             {
                 return FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromMicrogramsPerDeciLiter(double? microgramsperdeciliter)
+        {
+            if (microgramsperdeciliter.HasValue)
+            {
+                return FromMicrogramsPerDeciLiter(microgramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerLiter.
+        /// </summary>
+        public static Density? FromMicrogramsPerLiter(double? microgramsperliter)
+        {
+            if (microgramsperliter.HasValue)
+            {
+                return FromMicrogramsPerLiter(microgramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromMicrogramsPerMilliLiter(double? microgramspermilliliter)
+        {
+            if (microgramspermilliliter.HasValue)
+            {
+                return FromMicrogramsPerMilliLiter(microgramspermilliliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromMilligramsPerDeciLiter(double? milligramsperdeciliter)
+        {
+            if (milligramsperdeciliter.HasValue)
+            {
+                return FromMilligramsPerDeciLiter(milligramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerLiter.
+        /// </summary>
+        public static Density? FromMilligramsPerLiter(double? milligramsperliter)
+        {
+            if (milligramsperliter.HasValue)
+            {
+                return FromMilligramsPerLiter(milligramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromMilligramsPerMilliLiter(double? milligramspermilliliter)
+        {
+            if (milligramspermilliliter.HasValue)
+            {
+                return FromMilligramsPerMilliLiter(milligramspermilliliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromNanogramsPerDeciLiter(double? nanogramsperdeciliter)
+        {
+            if (nanogramsperdeciliter.HasValue)
+            {
+                return FromNanogramsPerDeciLiter(nanogramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerLiter.
+        /// </summary>
+        public static Density? FromNanogramsPerLiter(double? nanogramsperliter)
+        {
+            if (nanogramsperliter.HasValue)
+            {
+                return FromNanogramsPerLiter(nanogramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromNanogramsPerMilliLiter(double? nanogramspermilliliter)
+        {
+            if (nanogramspermilliliter.HasValue)
+            {
+                return FromNanogramsPerMilliLiter(nanogramspermilliliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromPicogramsPerDeciLiter(double? picogramsperdeciliter)
+        {
+            if (picogramsperdeciliter.HasValue)
+            {
+                return FromPicogramsPerDeciLiter(picogramsperdeciliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerLiter.
+        /// </summary>
+        public static Density? FromPicogramsPerLiter(double? picogramsperliter)
+        {
+            if (picogramsperliter.HasValue)
+            {
+                return FromPicogramsPerLiter(picogramsperliter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerMilliLiter.
+        /// </summary>
+        public static Density? FromPicogramsPerMilliLiter(double? picogramspermilliliter)
+        {
+            if (picogramspermilliliter.HasValue)
+            {
+                return FromPicogramsPerMilliLiter(picogramspermilliliter.Value);
             }
             else
             {
@@ -566,12 +1217,30 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case DensityUnit.CentigramPerDeciLiter:
+                    return FromCentigramsPerDeciLiter(val);
+                case DensityUnit.CentigramPerLiter:
+                    return FromCentigramsPerLiter(val);
+                case DensityUnit.CentigramPerMilliLiter:
+                    return FromCentigramsPerMilliLiter(val);
+                case DensityUnit.DecigramPerDeciLiter:
+                    return FromDecigramsPerDeciLiter(val);
+                case DensityUnit.DecigramPerLiter:
+                    return FromDecigramsPerLiter(val);
+                case DensityUnit.DecigramPerMilliLiter:
+                    return FromDecigramsPerMilliLiter(val);
                 case DensityUnit.GramPerCubicCentimeter:
                     return FromGramsPerCubicCentimeter(val);
                 case DensityUnit.GramPerCubicMeter:
                     return FromGramsPerCubicMeter(val);
                 case DensityUnit.GramPerCubicMillimeter:
                     return FromGramsPerCubicMillimeter(val);
+                case DensityUnit.GramPerDeciLiter:
+                    return FromGramsPerDeciLiter(val);
+                case DensityUnit.GramPerLiter:
+                    return FromGramsPerLiter(val);
+                case DensityUnit.GramPerMilliLiter:
+                    return FromGramsPerMilliLiter(val);
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return FromKilogramsPerCubicCentimeter(val);
                 case DensityUnit.KilogramPerCubicMeter:
@@ -582,6 +1251,30 @@ namespace UnitsNet
                     return FromKilopoundsPerCubicFoot(val);
                 case DensityUnit.KilopoundPerCubicInch:
                     return FromKilopoundsPerCubicInch(val);
+                case DensityUnit.MicrogramPerDeciLiter:
+                    return FromMicrogramsPerDeciLiter(val);
+                case DensityUnit.MicrogramPerLiter:
+                    return FromMicrogramsPerLiter(val);
+                case DensityUnit.MicrogramPerMilliLiter:
+                    return FromMicrogramsPerMilliLiter(val);
+                case DensityUnit.MilligramPerDeciLiter:
+                    return FromMilligramsPerDeciLiter(val);
+                case DensityUnit.MilligramPerLiter:
+                    return FromMilligramsPerLiter(val);
+                case DensityUnit.MilligramPerMilliLiter:
+                    return FromMilligramsPerMilliLiter(val);
+                case DensityUnit.NanogramPerDeciLiter:
+                    return FromNanogramsPerDeciLiter(val);
+                case DensityUnit.NanogramPerLiter:
+                    return FromNanogramsPerLiter(val);
+                case DensityUnit.NanogramPerMilliLiter:
+                    return FromNanogramsPerMilliLiter(val);
+                case DensityUnit.PicogramPerDeciLiter:
+                    return FromPicogramsPerDeciLiter(val);
+                case DensityUnit.PicogramPerLiter:
+                    return FromPicogramsPerLiter(val);
+                case DensityUnit.PicogramPerMilliLiter:
+                    return FromPicogramsPerMilliLiter(val);
                 case DensityUnit.PoundPerCubicFoot:
                     return FromPoundsPerCubicFoot(val);
                 case DensityUnit.PoundPerCubicInch:
@@ -615,12 +1308,30 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case DensityUnit.CentigramPerDeciLiter:
+                    return FromCentigramsPerDeciLiter(value.Value);
+                case DensityUnit.CentigramPerLiter:
+                    return FromCentigramsPerLiter(value.Value);
+                case DensityUnit.CentigramPerMilliLiter:
+                    return FromCentigramsPerMilliLiter(value.Value);
+                case DensityUnit.DecigramPerDeciLiter:
+                    return FromDecigramsPerDeciLiter(value.Value);
+                case DensityUnit.DecigramPerLiter:
+                    return FromDecigramsPerLiter(value.Value);
+                case DensityUnit.DecigramPerMilliLiter:
+                    return FromDecigramsPerMilliLiter(value.Value);
                 case DensityUnit.GramPerCubicCentimeter:
                     return FromGramsPerCubicCentimeter(value.Value);
                 case DensityUnit.GramPerCubicMeter:
                     return FromGramsPerCubicMeter(value.Value);
                 case DensityUnit.GramPerCubicMillimeter:
                     return FromGramsPerCubicMillimeter(value.Value);
+                case DensityUnit.GramPerDeciLiter:
+                    return FromGramsPerDeciLiter(value.Value);
+                case DensityUnit.GramPerLiter:
+                    return FromGramsPerLiter(value.Value);
+                case DensityUnit.GramPerMilliLiter:
+                    return FromGramsPerMilliLiter(value.Value);
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return FromKilogramsPerCubicCentimeter(value.Value);
                 case DensityUnit.KilogramPerCubicMeter:
@@ -631,6 +1342,30 @@ namespace UnitsNet
                     return FromKilopoundsPerCubicFoot(value.Value);
                 case DensityUnit.KilopoundPerCubicInch:
                     return FromKilopoundsPerCubicInch(value.Value);
+                case DensityUnit.MicrogramPerDeciLiter:
+                    return FromMicrogramsPerDeciLiter(value.Value);
+                case DensityUnit.MicrogramPerLiter:
+                    return FromMicrogramsPerLiter(value.Value);
+                case DensityUnit.MicrogramPerMilliLiter:
+                    return FromMicrogramsPerMilliLiter(value.Value);
+                case DensityUnit.MilligramPerDeciLiter:
+                    return FromMilligramsPerDeciLiter(value.Value);
+                case DensityUnit.MilligramPerLiter:
+                    return FromMilligramsPerLiter(value.Value);
+                case DensityUnit.MilligramPerMilliLiter:
+                    return FromMilligramsPerMilliLiter(value.Value);
+                case DensityUnit.NanogramPerDeciLiter:
+                    return FromNanogramsPerDeciLiter(value.Value);
+                case DensityUnit.NanogramPerLiter:
+                    return FromNanogramsPerLiter(value.Value);
+                case DensityUnit.NanogramPerMilliLiter:
+                    return FromNanogramsPerMilliLiter(value.Value);
+                case DensityUnit.PicogramPerDeciLiter:
+                    return FromPicogramsPerDeciLiter(value.Value);
+                case DensityUnit.PicogramPerLiter:
+                    return FromPicogramsPerLiter(value.Value);
+                case DensityUnit.PicogramPerMilliLiter:
+                    return FromPicogramsPerMilliLiter(value.Value);
                 case DensityUnit.PoundPerCubicFoot:
                     return FromPoundsPerCubicFoot(value.Value);
                 case DensityUnit.PoundPerCubicInch:
@@ -797,12 +1532,30 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case DensityUnit.CentigramPerDeciLiter:
+                    return CentigramsPerDeciLiter;
+                case DensityUnit.CentigramPerLiter:
+                    return CentigramsPerLiter;
+                case DensityUnit.CentigramPerMilliLiter:
+                    return CentigramsPerMilliLiter;
+                case DensityUnit.DecigramPerDeciLiter:
+                    return DecigramsPerDeciLiter;
+                case DensityUnit.DecigramPerLiter:
+                    return DecigramsPerLiter;
+                case DensityUnit.DecigramPerMilliLiter:
+                    return DecigramsPerMilliLiter;
                 case DensityUnit.GramPerCubicCentimeter:
                     return GramsPerCubicCentimeter;
                 case DensityUnit.GramPerCubicMeter:
                     return GramsPerCubicMeter;
                 case DensityUnit.GramPerCubicMillimeter:
                     return GramsPerCubicMillimeter;
+                case DensityUnit.GramPerDeciLiter:
+                    return GramsPerDeciLiter;
+                case DensityUnit.GramPerLiter:
+                    return GramsPerLiter;
+                case DensityUnit.GramPerMilliLiter:
+                    return GramsPerMilliLiter;
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return KilogramsPerCubicCentimeter;
                 case DensityUnit.KilogramPerCubicMeter:
@@ -813,6 +1566,30 @@ namespace UnitsNet
                     return KilopoundsPerCubicFoot;
                 case DensityUnit.KilopoundPerCubicInch:
                     return KilopoundsPerCubicInch;
+                case DensityUnit.MicrogramPerDeciLiter:
+                    return MicrogramsPerDeciLiter;
+                case DensityUnit.MicrogramPerLiter:
+                    return MicrogramsPerLiter;
+                case DensityUnit.MicrogramPerMilliLiter:
+                    return MicrogramsPerMilliLiter;
+                case DensityUnit.MilligramPerDeciLiter:
+                    return MilligramsPerDeciLiter;
+                case DensityUnit.MilligramPerLiter:
+                    return MilligramsPerLiter;
+                case DensityUnit.MilligramPerMilliLiter:
+                    return MilligramsPerMilliLiter;
+                case DensityUnit.NanogramPerDeciLiter:
+                    return NanogramsPerDeciLiter;
+                case DensityUnit.NanogramPerLiter:
+                    return NanogramsPerLiter;
+                case DensityUnit.NanogramPerMilliLiter:
+                    return NanogramsPerMilliLiter;
+                case DensityUnit.PicogramPerDeciLiter:
+                    return PicogramsPerDeciLiter;
+                case DensityUnit.PicogramPerLiter:
+                    return PicogramsPerLiter;
+                case DensityUnit.PicogramPerMilliLiter:
+                    return PicogramsPerMilliLiter;
                 case DensityUnit.PoundPerCubicFoot:
                     return PoundsPerCubicFoot;
                 case DensityUnit.PoundPerCubicInch:
