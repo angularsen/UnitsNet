@@ -42,13 +42,13 @@ namespace UnitsNet.Units
     public enum MolarityUnit
     {
         Undefined = 0,
-        CentimolesPerLitre,
-        DecimolesPerLitre,
-        MicromolesPerLitre,
-        MillimolesPerLitre,
+        CentimolesPerLiter,
+        DecimolesPerLiter,
+        MicromolesPerLiter,
+        MillimolesPerLiter,
         MolesPerCubicMeter,
-        MolesPerLitre,
-        NanomolesPerLitre,
-        PicomolesPerLitre,
+        MolesPerLiter,
+        NanomolesPerLiter,
+        PicomolesPerLiter,
     }
 }

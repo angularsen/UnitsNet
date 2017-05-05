@@ -1486,22 +1486,22 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MolarityUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) MolarityUnit.CentimolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.CentimolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "cmol/L"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.DecimolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.DecimolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dmol/L"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.MicromolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.MicromolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "µmol/L"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.MillimolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.MillimolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mmol/L"),
@@ -1511,17 +1511,17 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "mol/m³"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.MolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.MolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mol/L"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.NanomolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.NanomolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nmol/L"),
                             }),
-                        new CulturesForEnumValue((int) MolarityUnit.PicomolesPerLitre,
+                        new CulturesForEnumValue((int) MolarityUnit.PicomolesPerLiter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "pmol/L"),

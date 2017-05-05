@@ -48,13 +48,13 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarityTests : MolarityTestsBase
     {
-        protected override double CentimolesPerLitreInOneMolesPerCubicMeter => 1e-1;
-        protected override double DecimolesPerLitreInOneMolesPerCubicMeter => 1e-2;
-        protected override double MicromolesPerLitreInOneMolesPerCubicMeter => 1e3;
-        protected override double MillimolesPerLitreInOneMolesPerCubicMeter => 1;
-        protected override double MolesPerLitreInOneMolesPerCubicMeter => 1e-3;
-        protected override double NanomolesPerLitreInOneMolesPerCubicMeter => 1e6;
-        protected override double PicomolesPerLitreInOneMolesPerCubicMeter => 1e9;
+        protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
+        protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
+        protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
+        protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
+        protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
+        protected override double NanomolesPerLiterInOneMolesPerCubicMeter => 1e6;
+        protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
         protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
 
         [Test]
@@ -69,7 +69,7 @@ namespace UnitsNet.Tests.CustomCode
         [Test]
         public void ExpectMolarityConvertedToDensityCorrectly()
         {
-            var molarity = Molarity.FromMolesPerLitre(1.02698355);
+            var molarity = Molarity.FromMolesPerLiter(1.02698355);
             var mw = Mass.FromGrams(58.443);
             var density = molarity.ToDensity(mw).KilogramsPerCubicMeter;
             Assert.AreEqual(60.02, density, MolesPerCubicMeterTolerance);
