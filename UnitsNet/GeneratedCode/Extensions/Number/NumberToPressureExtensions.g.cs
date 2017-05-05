@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region InchesOfMercury
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this int value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this int? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this long value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this long? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this double value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this double? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this float value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this float? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this decimal value) => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this decimal? value) => Pressure.FromInchesOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kilobar
 
         /// <inheritdoc cref="Pressure.FromKilobars(double)"/>

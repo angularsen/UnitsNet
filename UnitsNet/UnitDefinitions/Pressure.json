@@ -307,6 +307,18 @@
           "Abbreviations": [ "mmHg" ]
         }
       ]
+    },
+    {
+      "SingularName": "InchesOfMercury",
+      "PluralName": "InchesOfMercury",
+      "FromUnitToBaseFunc": "x/2.95299830714159e-4",
+      "FromBaseToUnitFunc": "x*2.95299830714159e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "inHg" ]
+        }
+      ]
     }
   ]
 }

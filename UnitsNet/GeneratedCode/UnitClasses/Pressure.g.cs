@@ -175,6 +175,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure in InchesOfMercury.
+        /// </summary>
+        public double InchesOfMercury
+        {
+            get { return _pascals*2.95299830714159e-4; }
+        }
+
+        /// <summary>
         ///     Get Pressure in Kilobars.
         /// </summary>
         public double Kilobars
@@ -470,6 +478,14 @@ namespace UnitsNet
         public static Pressure FromHectopascals(double hectopascals)
         {
             return new Pressure((hectopascals) * 1e2d);
+        }
+
+        /// <summary>
+        ///     Get Pressure from InchesOfMercury.
+        /// </summary>
+        public static Pressure FromInchesOfMercury(double inchesofmercury)
+        {
+            return new Pressure(inchesofmercury/2.95299830714159e-4);
         }
 
         /// <summary>
@@ -810,6 +826,21 @@ namespace UnitsNet
             if (hectopascals.HasValue)
             {
                 return FromHectopascals(hectopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable InchesOfMercury.
+        /// </summary>
+        public static Pressure? FromInchesOfMercury(double? inchesofmercury)
+        {
+            if (inchesofmercury.HasValue)
+            {
+                return FromInchesOfMercury(inchesofmercury.Value);
             }
             else
             {
@@ -1265,6 +1296,8 @@ namespace UnitsNet
                     return FromGigapascals(val);
                 case PressureUnit.Hectopascal:
                     return FromHectopascals(val);
+                case PressureUnit.InchesOfMercury:
+                    return FromInchesOfMercury(val);
                 case PressureUnit.Kilobar:
                     return FromKilobars(val);
                 case PressureUnit.KilogramForcePerSquareCentimeter:
@@ -1358,6 +1391,8 @@ namespace UnitsNet
                     return FromGigapascals(value.Value);
                 case PressureUnit.Hectopascal:
                     return FromHectopascals(value.Value);
+                case PressureUnit.InchesOfMercury:
+                    return FromInchesOfMercury(value.Value);
                 case PressureUnit.Kilobar:
                     return FromKilobars(value.Value);
                 case PressureUnit.KilogramForcePerSquareCentimeter:
@@ -1584,6 +1619,8 @@ namespace UnitsNet
                     return Gigapascals;
                 case PressureUnit.Hectopascal:
                     return Hectopascals;
+                case PressureUnit.InchesOfMercury:
+                    return InchesOfMercury;
                 case PressureUnit.Kilobar:
                     return Kilobars;
                 case PressureUnit.KilogramForcePerSquareCentimeter:

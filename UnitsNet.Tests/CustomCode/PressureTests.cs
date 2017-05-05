@@ -97,6 +97,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
+        protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
+
         [Test]
         public void AreaTimesPressureEqualsForce()
         {
