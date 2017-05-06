@@ -30,18 +30,6 @@ namespace UnitsNet
     public partial struct Density
 #endif
     {
-
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            Density(Molarity molarity, Mass molecularWeight)
-                : this()
-        {
-            _kilogramsPerCubicMeter = molarity.MolesPerCubicMeter * molecularWeight.Kilograms;
-        }
-
         /// <summary>
         ///     Get <see cref="Density"/> from <see cref="Molarity"/>.
         /// </summary>
@@ -49,7 +37,7 @@ namespace UnitsNet
         /// <param name="molecularWeight"></param>
         public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
         {
-            return new Density(molarity, molecularWeight);
+            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
         }
 
         public static Molarity ToMolarity(Density density, Mass molecularWeight)
