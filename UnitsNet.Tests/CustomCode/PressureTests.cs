@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using NUnit.Framework;
 
 namespace UnitsNet.Tests.CustomCode
@@ -93,6 +94,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicropascalsInOnePascal => 1e6;
 
         protected override double MillibarsInOnePascal => 1e-2;
+
+        protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
+
+        protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
         [Test]
         public void AreaTimesPressureEqualsForce()

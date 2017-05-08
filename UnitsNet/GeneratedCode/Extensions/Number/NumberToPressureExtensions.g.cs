@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region InchOfMercury
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this int value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this int? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this long value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this long? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this double value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this double? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this float value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this float? value) => Pressure.FromInchesOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
+        public static Pressure InchesOfMercury(this decimal value) => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double?)"/>
+        public static Pressure? InchesOfMercury(this decimal? value) => Pressure.FromInchesOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kilobar
 
         /// <inheritdoc cref="Pressure.FromKilobars(double)"/>
@@ -823,6 +857,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         /// <inheritdoc cref="Pressure.FromMillibars(double?)"/>
         public static Pressure? Millibars(this decimal? value) => Pressure.FromMillibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MillimeterOfMercury
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)"/>
+        public static Pressure MillimetersOfMercury(this int value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double?)"/>
+        public static Pressure? MillimetersOfMercury(this int? value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)"/>
+        public static Pressure MillimetersOfMercury(this long value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double?)"/>
+        public static Pressure? MillimetersOfMercury(this long? value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)"/>
+        public static Pressure MillimetersOfMercury(this double value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double?)"/>
+        public static Pressure? MillimetersOfMercury(this double? value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)"/>
+        public static Pressure MillimetersOfMercury(this float value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double?)"/>
+        public static Pressure? MillimetersOfMercury(this float? value) => Pressure.FromMillimetersOfMercury(value);
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)"/>
+        public static Pressure MillimetersOfMercury(this decimal value) => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double?)"/>
+        public static Pressure? MillimetersOfMercury(this decimal? value) => Pressure.FromMillimetersOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
