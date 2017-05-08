@@ -309,7 +309,7 @@
       ]
     },
     {
-      "SingularName": "InchesOfMercury",
+      "SingularName": "InchOfMercury",
       "PluralName": "InchesOfMercury",
       "FromUnitToBaseFunc": "x/2.95299830714159e-4",
       "FromBaseToUnitFunc": "x*2.95299830714159e-4",

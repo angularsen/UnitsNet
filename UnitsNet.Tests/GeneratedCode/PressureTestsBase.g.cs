@@ -185,7 +185,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.InchesOfMercury).InchesOfMercury, InchesOfMercuryTolerance);
+            Assert.AreEqual(1, Pressure.From(1, PressureUnit.InchOfMercury).InchesOfMercury, InchesOfMercuryTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.Kilobar).Kilobars, KilobarsTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter).KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
             Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter).KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
             Assert.AreEqual(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
             Assert.AreEqual(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
-            Assert.AreEqual(InchesOfMercuryInOnePascal, pascal.As(PressureUnit.InchesOfMercury), InchesOfMercuryTolerance);
+            Assert.AreEqual(InchesOfMercuryInOnePascal, pascal.As(PressureUnit.InchOfMercury), InchesOfMercuryTolerance);
             Assert.AreEqual(KilobarsInOnePascal, pascal.As(PressureUnit.Kilobar), KilobarsTolerance);
             Assert.AreEqual(KilogramsForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareCentimeter), KilogramsForcePerSquareCentimeterTolerance);
             Assert.AreEqual(KilogramsForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareMeter), KilogramsForcePerSquareMeterTolerance);

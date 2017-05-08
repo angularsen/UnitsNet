@@ -316,7 +316,7 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
-        #region InchesOfMercury
+        #region InchOfMercury
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>
         public static Pressure InchesOfMercury(this int value) => Pressure.FromInchesOfMercury(value);

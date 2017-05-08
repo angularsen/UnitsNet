@@ -50,7 +50,7 @@ namespace UnitsNet.Units
         FootOfHead,
         Gigapascal,
         Hectopascal,
-        InchesOfMercury,
+        InchOfMercury,
         Kilobar,
         KilogramForcePerSquareCentimeter,
         KilogramForcePerSquareMeter,

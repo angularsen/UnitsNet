@@ -1631,7 +1631,7 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "hPa"),
                                 new AbbreviationsForCulture("ru-RU", "гПа"),
                             }),
-                        new CulturesForEnumValue((int) PressureUnit.InchesOfMercury,
+                        new CulturesForEnumValue((int) PressureUnit.InchOfMercury,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "inHg"),

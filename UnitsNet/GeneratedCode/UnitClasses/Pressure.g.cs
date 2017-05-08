@@ -1296,7 +1296,7 @@ namespace UnitsNet
                     return FromGigapascals(val);
                 case PressureUnit.Hectopascal:
                     return FromHectopascals(val);
-                case PressureUnit.InchesOfMercury:
+                case PressureUnit.InchOfMercury:
                     return FromInchesOfMercury(val);
                 case PressureUnit.Kilobar:
                     return FromKilobars(val);
@@ -1391,7 +1391,7 @@ namespace UnitsNet
                     return FromGigapascals(value.Value);
                 case PressureUnit.Hectopascal:
                     return FromHectopascals(value.Value);
-                case PressureUnit.InchesOfMercury:
+                case PressureUnit.InchOfMercury:
                     return FromInchesOfMercury(value.Value);
                 case PressureUnit.Kilobar:
                     return FromKilobars(value.Value);
@@ -1619,7 +1619,7 @@ namespace UnitsNet
                     return Gigapascals;
                 case PressureUnit.Hectopascal:
                     return Hectopascals;
-                case PressureUnit.InchesOfMercury:
+                case PressureUnit.InchOfMercury:
                     return InchesOfMercury;
                 case PressureUnit.Kilobar:
                     return Kilobars;
