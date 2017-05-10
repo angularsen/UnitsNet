@@ -39,19 +39,16 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum ForceChangeRateUnit
+    public enum MolarityUnit
     {
         Undefined = 0,
-        CentinewtonPerSecond,
-        DecanewtonPerMinute,
-        DecanewtonPerSecond,
-        DecinewtonPerSecond,
-        KilonewtonPerMinute,
-        KilonewtonPerSecond,
-        MicronewtonPerSecond,
-        MillinewtonPerSecond,
-        NanonewtonPerSecond,
-        NewtonPerMinute,
-        NewtonPerSecond,
+        CentimolesPerLiter,
+        DecimolesPerLiter,
+        MicromolesPerLiter,
+        MillimolesPerLiter,
+        MolesPerCubicMeter,
+        MolesPerLiter,
+        NanomolesPerLiter,
+        PicomolesPerLiter,
     }
 }

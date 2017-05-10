@@ -44,6 +44,210 @@ namespace UnitsNet.Extensions.NumberToDensity
 {
     public static class NumberToDensityExtensions
     {
+        #region CentigramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double)"/>
+        public static Density CentigramsPerDeciLiter(this int value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double?)"/>
+        public static Density? CentigramsPerDeciLiter(this int? value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double)"/>
+        public static Density CentigramsPerDeciLiter(this long value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double?)"/>
+        public static Density? CentigramsPerDeciLiter(this long? value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double)"/>
+        public static Density CentigramsPerDeciLiter(this double value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double?)"/>
+        public static Density? CentigramsPerDeciLiter(this double? value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double)"/>
+        public static Density CentigramsPerDeciLiter(this float value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double?)"/>
+        public static Density? CentigramsPerDeciLiter(this float? value) => Density.FromCentigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double)"/>
+        public static Density CentigramsPerDeciLiter(this decimal value) => Density.FromCentigramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(double?)"/>
+        public static Density? CentigramsPerDeciLiter(this decimal? value) => Density.FromCentigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region CentigramPerLiter
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)"/>
+        public static Density CentigramsPerLiter(this int value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double?)"/>
+        public static Density? CentigramsPerLiter(this int? value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)"/>
+        public static Density CentigramsPerLiter(this long value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double?)"/>
+        public static Density? CentigramsPerLiter(this long? value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)"/>
+        public static Density CentigramsPerLiter(this double value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double?)"/>
+        public static Density? CentigramsPerLiter(this double? value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)"/>
+        public static Density CentigramsPerLiter(this float value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double?)"/>
+        public static Density? CentigramsPerLiter(this float? value) => Density.FromCentigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)"/>
+        public static Density CentigramsPerLiter(this decimal value) => Density.FromCentigramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double?)"/>
+        public static Density? CentigramsPerLiter(this decimal? value) => Density.FromCentigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region CentigramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)"/>
+        public static Density CentigramsPerMilliliter(this int value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double?)"/>
+        public static Density? CentigramsPerMilliliter(this int? value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)"/>
+        public static Density CentigramsPerMilliliter(this long value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double?)"/>
+        public static Density? CentigramsPerMilliliter(this long? value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)"/>
+        public static Density CentigramsPerMilliliter(this double value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double?)"/>
+        public static Density? CentigramsPerMilliliter(this double? value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)"/>
+        public static Density CentigramsPerMilliliter(this float value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double?)"/>
+        public static Density? CentigramsPerMilliliter(this float? value) => Density.FromCentigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)"/>
+        public static Density CentigramsPerMilliliter(this decimal value) => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double?)"/>
+        public static Density? CentigramsPerMilliliter(this decimal? value) => Density.FromCentigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecigramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double)"/>
+        public static Density DecigramsPerDeciLiter(this int value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double?)"/>
+        public static Density? DecigramsPerDeciLiter(this int? value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double)"/>
+        public static Density DecigramsPerDeciLiter(this long value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double?)"/>
+        public static Density? DecigramsPerDeciLiter(this long? value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double)"/>
+        public static Density DecigramsPerDeciLiter(this double value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double?)"/>
+        public static Density? DecigramsPerDeciLiter(this double? value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double)"/>
+        public static Density DecigramsPerDeciLiter(this float value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double?)"/>
+        public static Density? DecigramsPerDeciLiter(this float? value) => Density.FromDecigramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double)"/>
+        public static Density DecigramsPerDeciLiter(this decimal value) => Density.FromDecigramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(double?)"/>
+        public static Density? DecigramsPerDeciLiter(this decimal? value) => Density.FromDecigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecigramPerLiter
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)"/>
+        public static Density DecigramsPerLiter(this int value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double?)"/>
+        public static Density? DecigramsPerLiter(this int? value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)"/>
+        public static Density DecigramsPerLiter(this long value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double?)"/>
+        public static Density? DecigramsPerLiter(this long? value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)"/>
+        public static Density DecigramsPerLiter(this double value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double?)"/>
+        public static Density? DecigramsPerLiter(this double? value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)"/>
+        public static Density DecigramsPerLiter(this float value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double?)"/>
+        public static Density? DecigramsPerLiter(this float? value) => Density.FromDecigramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)"/>
+        public static Density DecigramsPerLiter(this decimal value) => Density.FromDecigramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double?)"/>
+        public static Density? DecigramsPerLiter(this decimal? value) => Density.FromDecigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecigramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)"/>
+        public static Density DecigramsPerMilliliter(this int value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double?)"/>
+        public static Density? DecigramsPerMilliliter(this int? value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)"/>
+        public static Density DecigramsPerMilliliter(this long value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double?)"/>
+        public static Density? DecigramsPerMilliliter(this long? value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)"/>
+        public static Density DecigramsPerMilliliter(this double value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double?)"/>
+        public static Density? DecigramsPerMilliliter(this double? value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)"/>
+        public static Density DecigramsPerMilliliter(this float value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double?)"/>
+        public static Density? DecigramsPerMilliliter(this float? value) => Density.FromDecigramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)"/>
+        public static Density DecigramsPerMilliliter(this decimal value) => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double?)"/>
+        public static Density? DecigramsPerMilliliter(this decimal? value) => Density.FromDecigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region GramPerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)"/>
@@ -143,6 +347,108 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double?)"/>
         public static Density? GramsPerCubicMillimeter(this decimal? value) => Density.FromGramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double)"/>
+        public static Density GramsPerDeciLiter(this int value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double?)"/>
+        public static Density? GramsPerDeciLiter(this int? value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double)"/>
+        public static Density GramsPerDeciLiter(this long value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double?)"/>
+        public static Density? GramsPerDeciLiter(this long? value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double)"/>
+        public static Density GramsPerDeciLiter(this double value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double?)"/>
+        public static Density? GramsPerDeciLiter(this double? value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double)"/>
+        public static Density GramsPerDeciLiter(this float value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double?)"/>
+        public static Density? GramsPerDeciLiter(this float? value) => Density.FromGramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double)"/>
+        public static Density GramsPerDeciLiter(this decimal value) => Density.FromGramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(double?)"/>
+        public static Density? GramsPerDeciLiter(this decimal? value) => Density.FromGramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerLiter
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)"/>
+        public static Density GramsPerLiter(this int value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double?)"/>
+        public static Density? GramsPerLiter(this int? value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)"/>
+        public static Density GramsPerLiter(this long value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double?)"/>
+        public static Density? GramsPerLiter(this long? value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)"/>
+        public static Density GramsPerLiter(this double value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double?)"/>
+        public static Density? GramsPerLiter(this double? value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)"/>
+        public static Density GramsPerLiter(this float value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double?)"/>
+        public static Density? GramsPerLiter(this float? value) => Density.FromGramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)"/>
+        public static Density GramsPerLiter(this decimal value) => Density.FromGramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double?)"/>
+        public static Density? GramsPerLiter(this decimal? value) => Density.FromGramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)"/>
+        public static Density GramsPerMilliliter(this int value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double?)"/>
+        public static Density? GramsPerMilliliter(this int? value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)"/>
+        public static Density GramsPerMilliliter(this long value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double?)"/>
+        public static Density? GramsPerMilliliter(this long? value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)"/>
+        public static Density GramsPerMilliliter(this double value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double?)"/>
+        public static Density? GramsPerMilliliter(this double? value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)"/>
+        public static Density GramsPerMilliliter(this float value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double?)"/>
+        public static Density? GramsPerMilliliter(this float? value) => Density.FromGramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)"/>
+        public static Density GramsPerMilliliter(this decimal value) => Density.FromGramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double?)"/>
+        public static Density? GramsPerMilliliter(this decimal? value) => Density.FromGramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -313,6 +619,414 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(double?)"/>
         public static Density? KilopoundsPerCubicInch(this decimal? value) => Density.FromKilopoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MicrogramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
+        public static Density MicrogramsPerDeciLiter(this int value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double?)"/>
+        public static Density? MicrogramsPerDeciLiter(this int? value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
+        public static Density MicrogramsPerDeciLiter(this long value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double?)"/>
+        public static Density? MicrogramsPerDeciLiter(this long? value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
+        public static Density MicrogramsPerDeciLiter(this double value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double?)"/>
+        public static Density? MicrogramsPerDeciLiter(this double? value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
+        public static Density MicrogramsPerDeciLiter(this float value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double?)"/>
+        public static Density? MicrogramsPerDeciLiter(this float? value) => Density.FromMicrogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
+        public static Density MicrogramsPerDeciLiter(this decimal value) => Density.FromMicrogramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double?)"/>
+        public static Density? MicrogramsPerDeciLiter(this decimal? value) => Density.FromMicrogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MicrogramPerLiter
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)"/>
+        public static Density MicrogramsPerLiter(this int value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double?)"/>
+        public static Density? MicrogramsPerLiter(this int? value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)"/>
+        public static Density MicrogramsPerLiter(this long value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double?)"/>
+        public static Density? MicrogramsPerLiter(this long? value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)"/>
+        public static Density MicrogramsPerLiter(this double value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double?)"/>
+        public static Density? MicrogramsPerLiter(this double? value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)"/>
+        public static Density MicrogramsPerLiter(this float value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double?)"/>
+        public static Density? MicrogramsPerLiter(this float? value) => Density.FromMicrogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)"/>
+        public static Density MicrogramsPerLiter(this decimal value) => Density.FromMicrogramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double?)"/>
+        public static Density? MicrogramsPerLiter(this decimal? value) => Density.FromMicrogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MicrogramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)"/>
+        public static Density MicrogramsPerMilliliter(this int value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
+        public static Density? MicrogramsPerMilliliter(this int? value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)"/>
+        public static Density MicrogramsPerMilliliter(this long value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
+        public static Density? MicrogramsPerMilliliter(this long? value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)"/>
+        public static Density MicrogramsPerMilliliter(this double value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
+        public static Density? MicrogramsPerMilliliter(this double? value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)"/>
+        public static Density MicrogramsPerMilliliter(this float value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
+        public static Density? MicrogramsPerMilliliter(this float? value) => Density.FromMicrogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)"/>
+        public static Density MicrogramsPerMilliliter(this decimal value) => Density.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
+        public static Density? MicrogramsPerMilliliter(this decimal? value) => Density.FromMicrogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MilligramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double)"/>
+        public static Density MilligramsPerDeciLiter(this int value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double?)"/>
+        public static Density? MilligramsPerDeciLiter(this int? value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double)"/>
+        public static Density MilligramsPerDeciLiter(this long value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double?)"/>
+        public static Density? MilligramsPerDeciLiter(this long? value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double)"/>
+        public static Density MilligramsPerDeciLiter(this double value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double?)"/>
+        public static Density? MilligramsPerDeciLiter(this double? value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double)"/>
+        public static Density MilligramsPerDeciLiter(this float value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double?)"/>
+        public static Density? MilligramsPerDeciLiter(this float? value) => Density.FromMilligramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double)"/>
+        public static Density MilligramsPerDeciLiter(this decimal value) => Density.FromMilligramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(double?)"/>
+        public static Density? MilligramsPerDeciLiter(this decimal? value) => Density.FromMilligramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MilligramPerLiter
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)"/>
+        public static Density MilligramsPerLiter(this int value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double?)"/>
+        public static Density? MilligramsPerLiter(this int? value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)"/>
+        public static Density MilligramsPerLiter(this long value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double?)"/>
+        public static Density? MilligramsPerLiter(this long? value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)"/>
+        public static Density MilligramsPerLiter(this double value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double?)"/>
+        public static Density? MilligramsPerLiter(this double? value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)"/>
+        public static Density MilligramsPerLiter(this float value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double?)"/>
+        public static Density? MilligramsPerLiter(this float? value) => Density.FromMilligramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)"/>
+        public static Density MilligramsPerLiter(this decimal value) => Density.FromMilligramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double?)"/>
+        public static Density? MilligramsPerLiter(this decimal? value) => Density.FromMilligramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MilligramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)"/>
+        public static Density MilligramsPerMilliliter(this int value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double?)"/>
+        public static Density? MilligramsPerMilliliter(this int? value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)"/>
+        public static Density MilligramsPerMilliliter(this long value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double?)"/>
+        public static Density? MilligramsPerMilliliter(this long? value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)"/>
+        public static Density MilligramsPerMilliliter(this double value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double?)"/>
+        public static Density? MilligramsPerMilliliter(this double? value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)"/>
+        public static Density MilligramsPerMilliliter(this float value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double?)"/>
+        public static Density? MilligramsPerMilliliter(this float? value) => Density.FromMilligramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)"/>
+        public static Density MilligramsPerMilliliter(this decimal value) => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double?)"/>
+        public static Density? MilligramsPerMilliliter(this decimal? value) => Density.FromMilligramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region NanogramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double)"/>
+        public static Density NanogramsPerDeciLiter(this int value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double?)"/>
+        public static Density? NanogramsPerDeciLiter(this int? value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double)"/>
+        public static Density NanogramsPerDeciLiter(this long value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double?)"/>
+        public static Density? NanogramsPerDeciLiter(this long? value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double)"/>
+        public static Density NanogramsPerDeciLiter(this double value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double?)"/>
+        public static Density? NanogramsPerDeciLiter(this double? value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double)"/>
+        public static Density NanogramsPerDeciLiter(this float value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double?)"/>
+        public static Density? NanogramsPerDeciLiter(this float? value) => Density.FromNanogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double)"/>
+        public static Density NanogramsPerDeciLiter(this decimal value) => Density.FromNanogramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(double?)"/>
+        public static Density? NanogramsPerDeciLiter(this decimal? value) => Density.FromNanogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region NanogramPerLiter
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)"/>
+        public static Density NanogramsPerLiter(this int value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double?)"/>
+        public static Density? NanogramsPerLiter(this int? value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)"/>
+        public static Density NanogramsPerLiter(this long value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double?)"/>
+        public static Density? NanogramsPerLiter(this long? value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)"/>
+        public static Density NanogramsPerLiter(this double value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double?)"/>
+        public static Density? NanogramsPerLiter(this double? value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)"/>
+        public static Density NanogramsPerLiter(this float value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double?)"/>
+        public static Density? NanogramsPerLiter(this float? value) => Density.FromNanogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)"/>
+        public static Density NanogramsPerLiter(this decimal value) => Density.FromNanogramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double?)"/>
+        public static Density? NanogramsPerLiter(this decimal? value) => Density.FromNanogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region NanogramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)"/>
+        public static Density NanogramsPerMilliliter(this int value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double?)"/>
+        public static Density? NanogramsPerMilliliter(this int? value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)"/>
+        public static Density NanogramsPerMilliliter(this long value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double?)"/>
+        public static Density? NanogramsPerMilliliter(this long? value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)"/>
+        public static Density NanogramsPerMilliliter(this double value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double?)"/>
+        public static Density? NanogramsPerMilliliter(this double? value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)"/>
+        public static Density NanogramsPerMilliliter(this float value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double?)"/>
+        public static Density? NanogramsPerMilliliter(this float? value) => Density.FromNanogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)"/>
+        public static Density NanogramsPerMilliliter(this decimal value) => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double?)"/>
+        public static Density? NanogramsPerMilliliter(this decimal? value) => Density.FromNanogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PicogramPerDeciliter
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double)"/>
+        public static Density PicogramsPerDeciLiter(this int value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double?)"/>
+        public static Density? PicogramsPerDeciLiter(this int? value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double)"/>
+        public static Density PicogramsPerDeciLiter(this long value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double?)"/>
+        public static Density? PicogramsPerDeciLiter(this long? value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double)"/>
+        public static Density PicogramsPerDeciLiter(this double value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double?)"/>
+        public static Density? PicogramsPerDeciLiter(this double? value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double)"/>
+        public static Density PicogramsPerDeciLiter(this float value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double?)"/>
+        public static Density? PicogramsPerDeciLiter(this float? value) => Density.FromPicogramsPerDeciLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double)"/>
+        public static Density PicogramsPerDeciLiter(this decimal value) => Density.FromPicogramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(double?)"/>
+        public static Density? PicogramsPerDeciLiter(this decimal? value) => Density.FromPicogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PicogramPerLiter
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)"/>
+        public static Density PicogramsPerLiter(this int value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double?)"/>
+        public static Density? PicogramsPerLiter(this int? value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)"/>
+        public static Density PicogramsPerLiter(this long value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double?)"/>
+        public static Density? PicogramsPerLiter(this long? value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)"/>
+        public static Density PicogramsPerLiter(this double value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double?)"/>
+        public static Density? PicogramsPerLiter(this double? value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)"/>
+        public static Density PicogramsPerLiter(this float value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double?)"/>
+        public static Density? PicogramsPerLiter(this float? value) => Density.FromPicogramsPerLiter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)"/>
+        public static Density PicogramsPerLiter(this decimal value) => Density.FromPicogramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double?)"/>
+        public static Density? PicogramsPerLiter(this decimal? value) => Density.FromPicogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PicogramPerMilliliter
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)"/>
+        public static Density PicogramsPerMilliliter(this int value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double?)"/>
+        public static Density? PicogramsPerMilliliter(this int? value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)"/>
+        public static Density PicogramsPerMilliliter(this long value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double?)"/>
+        public static Density? PicogramsPerMilliliter(this long? value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)"/>
+        public static Density PicogramsPerMilliliter(this double value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double?)"/>
+        public static Density? PicogramsPerMilliliter(this double? value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)"/>
+        public static Density PicogramsPerMilliliter(this float value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double?)"/>
+        public static Density? PicogramsPerMilliliter(this float? value) => Density.FromPicogramsPerMilliliter(value);
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)"/>
+        public static Density PicogramsPerMilliliter(this decimal value) => Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double?)"/>
+        public static Density? PicogramsPerMilliliter(this decimal? value) => Density.FromPicogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

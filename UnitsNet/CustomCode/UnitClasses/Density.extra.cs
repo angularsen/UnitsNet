@@ -20,28 +20,49 @@
 // THE SOFTWARE.
 
 
-#if !WINDOWS_UWP
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
+
 
 namespace UnitsNet
 {
+#if WINDOWS_UWP
+    public sealed partial class Density
+#else
     public partial struct Density
+#endif
     {
+        /// <summary>
+        ///     Get <see cref="Density"/> from <see cref="Molarity"/>.
+        /// </summary>
+        /// <param name="molarity"></param>
+        /// <param name="molecularWeight"></param>
+        public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
+        {
+            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
+        }
+
+        public static Molarity ToMolarity(Density density, Mass molecularWeight)
+        {
+            return Molarity.FromMolesPerCubicMeter(density.KilogramsPerCubicMeter / molecularWeight.Kilograms);
+        }
+
+#if !WINDOWS_UWP
+        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+
         public static Mass operator *(Density density, Volume volume)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter*volume.CubicMeters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
         public static Mass operator *(Volume volume, Density density)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter*volume.CubicMeters);
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
         public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
         {
-            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond*density.KilogramsPerCubicMeter);
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
         }
+#endif
+
     }
 }
-
-#endif

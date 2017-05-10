@@ -55,29 +55,29 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).
+    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 #if WINDOWS_UWP
-    public sealed partial class ForceChangeRate
+    public sealed partial class Molarity
 #else
-    public partial struct ForceChangeRate : IComparable, IComparable<ForceChangeRate>
+    public partial struct Molarity : IComparable, IComparable<Molarity>
 #endif
     {
         /// <summary>
-        ///     Base unit of ForceChangeRate.
+        ///     Base unit of Molarity.
         /// </summary>
-        private readonly double _newtonsPerSecond;
+        private readonly double _molesPerCubicMeter;
 
 #if WINDOWS_UWP
-        public ForceChangeRate() : this(0)
+        public Molarity() : this(0)
         {
         }
 #endif
 
-        public ForceChangeRate(double newtonspersecond)
+        public Molarity(double molespercubicmeter)
         {
-            _newtonsPerSecond = Convert.ToDouble(newtonspersecond);
+            _molesPerCubicMeter = Convert.ToDouble(molespercubicmeter);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -86,9 +86,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ForceChangeRate(long newtonspersecond)
+        Molarity(long molespercubicmeter)
         {
-            _newtonsPerSecond = Convert.ToDouble(newtonspersecond);
+            _molesPerCubicMeter = Convert.ToDouble(molespercubicmeter);
         }
 
         // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
@@ -98,212 +98,164 @@ namespace UnitsNet
 #else
         public
 #endif
-        ForceChangeRate(decimal newtonspersecond)
+        Molarity(decimal molespercubicmeter)
         {
-            _newtonsPerSecond = Convert.ToDouble(newtonspersecond);
+            _molesPerCubicMeter = Convert.ToDouble(molespercubicmeter);
         }
 
         #region Properties
 
-        public static ForceChangeRateUnit BaseUnit
+        public static MolarityUnit BaseUnit
         {
-            get { return ForceChangeRateUnit.NewtonPerSecond; }
+            get { return MolarityUnit.MolesPerCubicMeter; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in CentinewtonsPerSecond.
+        ///     Get Molarity in CentimolesPerLiter.
         /// </summary>
-        public double CentinewtonsPerSecond
+        public double CentimolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e-2d; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-2d; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in DecanewtonsPerMinute.
+        ///     Get Molarity in DecimolesPerLiter.
         /// </summary>
-        public double DecanewtonsPerMinute
+        public double DecimolesPerLiter
         {
-            get { return (_newtonsPerSecond*60) / 1e1d; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-1d; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in DecanewtonsPerSecond.
+        ///     Get Molarity in MicromolesPerLiter.
         /// </summary>
-        public double DecanewtonsPerSecond
+        public double MicromolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e1d; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in DecinewtonsPerSecond.
+        ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
-        public double DecinewtonsPerSecond
+        public double MillimolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e-1d; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-3d; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in KilonewtonsPerMinute.
+        ///     Get Molarity in MolesPerCubicMeter.
         /// </summary>
-        public double KilonewtonsPerMinute
+        public double MolesPerCubicMeter
         {
-            get { return (_newtonsPerSecond*60) / 1e3d; }
+            get { return _molesPerCubicMeter; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in KilonewtonsPerSecond.
+        ///     Get Molarity in MolesPerLiter.
         /// </summary>
-        public double KilonewtonsPerSecond
+        public double MolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e3d; }
+            get { return _molesPerCubicMeter*1e-3; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in MicronewtonsPerSecond.
+        ///     Get Molarity in NanomolesPerLiter.
         /// </summary>
-        public double MicronewtonsPerSecond
+        public double NanomolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e-6d; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-9d; }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate in MillinewtonsPerSecond.
+        ///     Get Molarity in PicomolesPerLiter.
         /// </summary>
-        public double MillinewtonsPerSecond
+        public double PicomolesPerLiter
         {
-            get { return (_newtonsPerSecond) / 1e-3d; }
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate in NanonewtonsPerSecond.
-        /// </summary>
-        public double NanonewtonsPerSecond
-        {
-            get { return (_newtonsPerSecond) / 1e-9d; }
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate in NewtonsPerMinute.
-        /// </summary>
-        public double NewtonsPerMinute
-        {
-            get { return _newtonsPerSecond*60; }
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate in NewtonsPerSecond.
-        /// </summary>
-        public double NewtonsPerSecond
-        {
-            get { return _newtonsPerSecond; }
+            get { return (_molesPerCubicMeter*1e-3) / 1e-12d; }
         }
 
         #endregion
 
         #region Static
 
-        public static ForceChangeRate Zero
+        public static Molarity Zero
         {
-            get { return new ForceChangeRate(); }
+            get { return new Molarity(); }
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from CentinewtonsPerSecond.
+        ///     Get Molarity from CentimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromCentinewtonsPerSecond(double centinewtonspersecond)
+        public static Molarity FromCentimolesPerLiter(double centimolesperliter)
         {
-            return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
+            return new Molarity((centimolesperliter/1e-3) * 1e-2d);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerMinute.
+        ///     Get Molarity from DecimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerMinute(double decanewtonsperminute)
+        public static Molarity FromDecimolesPerLiter(double decimolesperliter)
         {
-            return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
+            return new Molarity((decimolesperliter/1e-3) * 1e-1d);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerSecond.
+        ///     Get Molarity from MicromolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerSecond(double decanewtonspersecond)
+        public static Molarity FromMicromolesPerLiter(double micromolesperliter)
         {
-            return new ForceChangeRate((decanewtonspersecond) * 1e1d);
+            return new Molarity((micromolesperliter/1e-3) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from DecinewtonsPerSecond.
+        ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromDecinewtonsPerSecond(double decinewtonspersecond)
+        public static Molarity FromMillimolesPerLiter(double millimolesperliter)
         {
-            return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
+            return new Molarity((millimolesperliter/1e-3) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerMinute.
+        ///     Get Molarity from MolesPerCubicMeter.
         /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerMinute(double kilonewtonsperminute)
+        public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
         {
-            return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
+            return new Molarity(molespercubicmeter);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerSecond.
+        ///     Get Molarity from MolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerSecond(double kilonewtonspersecond)
+        public static Molarity FromMolesPerLiter(double molesperliter)
         {
-            return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
+            return new Molarity(molesperliter/1e-3);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from MicronewtonsPerSecond.
+        ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromMicronewtonsPerSecond(double micronewtonspersecond)
+        public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
         {
-            return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
+            return new Molarity((nanomolesperliter/1e-3) * 1e-9d);
         }
 
         /// <summary>
-        ///     Get ForceChangeRate from MillinewtonsPerSecond.
+        ///     Get Molarity from PicomolesPerLiter.
         /// </summary>
-        public static ForceChangeRate FromMillinewtonsPerSecond(double millinewtonspersecond)
+        public static Molarity FromPicomolesPerLiter(double picomolesperliter)
         {
-            return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNanonewtonsPerSecond(double nanonewtonspersecond)
-        {
-            return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerMinute(double newtonsperminute)
-        {
-            return new ForceChangeRate(newtonsperminute/60);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerSecond(double newtonspersecond)
-        {
-            return new ForceChangeRate(newtonspersecond);
+            return new Molarity((picomolesperliter/1e-3) * 1e-12d);
         }
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
+        ///     Get nullable Molarity from nullable CentimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromCentinewtonsPerSecond(double? centinewtonspersecond)
+        public static Molarity? FromCentimolesPerLiter(double? centimolesperliter)
         {
-            if (centinewtonspersecond.HasValue)
+            if (centimolesperliter.HasValue)
             {
-                return FromCentinewtonsPerSecond(centinewtonspersecond.Value);
+                return FromCentimolesPerLiter(centimolesperliter.Value);
             }
             else
             {
@@ -312,13 +264,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerMinute.
+        ///     Get nullable Molarity from nullable DecimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerMinute(double? decanewtonsperminute)
+        public static Molarity? FromDecimolesPerLiter(double? decimolesperliter)
         {
-            if (decanewtonsperminute.HasValue)
+            if (decimolesperliter.HasValue)
             {
-                return FromDecanewtonsPerMinute(decanewtonsperminute.Value);
+                return FromDecimolesPerLiter(decimolesperliter.Value);
             }
             else
             {
@@ -327,13 +279,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerSecond.
+        ///     Get nullable Molarity from nullable MicromolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerSecond(double? decanewtonspersecond)
+        public static Molarity? FromMicromolesPerLiter(double? micromolesperliter)
         {
-            if (decanewtonspersecond.HasValue)
+            if (micromolesperliter.HasValue)
             {
-                return FromDecanewtonsPerSecond(decanewtonspersecond.Value);
+                return FromMicromolesPerLiter(micromolesperliter.Value);
             }
             else
             {
@@ -342,13 +294,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
+        ///     Get nullable Molarity from nullable MillimolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromDecinewtonsPerSecond(double? decinewtonspersecond)
+        public static Molarity? FromMillimolesPerLiter(double? millimolesperliter)
         {
-            if (decinewtonspersecond.HasValue)
+            if (millimolesperliter.HasValue)
             {
-                return FromDecinewtonsPerSecond(decinewtonspersecond.Value);
+                return FromMillimolesPerLiter(millimolesperliter.Value);
             }
             else
             {
@@ -357,13 +309,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerMinute.
+        ///     Get nullable Molarity from nullable MolesPerCubicMeter.
         /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerMinute(double? kilonewtonsperminute)
+        public static Molarity? FromMolesPerCubicMeter(double? molespercubicmeter)
         {
-            if (kilonewtonsperminute.HasValue)
+            if (molespercubicmeter.HasValue)
             {
-                return FromKilonewtonsPerMinute(kilonewtonsperminute.Value);
+                return FromMolesPerCubicMeter(molespercubicmeter.Value);
             }
             else
             {
@@ -372,13 +324,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
+        ///     Get nullable Molarity from nullable MolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerSecond(double? kilonewtonspersecond)
+        public static Molarity? FromMolesPerLiter(double? molesperliter)
         {
-            if (kilonewtonspersecond.HasValue)
+            if (molesperliter.HasValue)
             {
-                return FromKilonewtonsPerSecond(kilonewtonspersecond.Value);
+                return FromMolesPerLiter(molesperliter.Value);
             }
             else
             {
@@ -387,13 +339,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
+        ///     Get nullable Molarity from nullable NanomolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromMicronewtonsPerSecond(double? micronewtonspersecond)
+        public static Molarity? FromNanomolesPerLiter(double? nanomolesperliter)
         {
-            if (micronewtonspersecond.HasValue)
+            if (nanomolesperliter.HasValue)
             {
-                return FromMicronewtonsPerSecond(micronewtonspersecond.Value);
+                return FromNanomolesPerLiter(nanomolesperliter.Value);
             }
             else
             {
@@ -402,58 +354,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
+        ///     Get nullable Molarity from nullable PicomolesPerLiter.
         /// </summary>
-        public static ForceChangeRate? FromMillinewtonsPerSecond(double? millinewtonspersecond)
+        public static Molarity? FromPicomolesPerLiter(double? picomolesperliter)
         {
-            if (millinewtonspersecond.HasValue)
+            if (picomolesperliter.HasValue)
             {
-                return FromMillinewtonsPerSecond(millinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNanonewtonsPerSecond(double? nanonewtonspersecond)
-        {
-            if (nanonewtonspersecond.HasValue)
-            {
-                return FromNanonewtonsPerSecond(nanonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerMinute(double? newtonsperminute)
-        {
-            if (newtonsperminute.HasValue)
-            {
-                return FromNewtonsPerMinute(newtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerSecond(double? newtonspersecond)
-        {
-            if (newtonspersecond.HasValue)
-            {
-                return FromNewtonsPerSecond(newtonspersecond.Value);
+                return FromPicomolesPerLiter(picomolesperliter.Value);
             }
             else
             {
@@ -464,37 +371,31 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ForceChangeRateUnit" /> to <see cref="ForceChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ForceChangeRate unit value.</returns>
-        public static ForceChangeRate From(double val, ForceChangeRateUnit fromUnit)
+        /// <returns>Molarity unit value.</returns>
+        public static Molarity From(double val, MolarityUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case ForceChangeRateUnit.CentinewtonPerSecond:
-                    return FromCentinewtonsPerSecond(val);
-                case ForceChangeRateUnit.DecanewtonPerMinute:
-                    return FromDecanewtonsPerMinute(val);
-                case ForceChangeRateUnit.DecanewtonPerSecond:
-                    return FromDecanewtonsPerSecond(val);
-                case ForceChangeRateUnit.DecinewtonPerSecond:
-                    return FromDecinewtonsPerSecond(val);
-                case ForceChangeRateUnit.KilonewtonPerMinute:
-                    return FromKilonewtonsPerMinute(val);
-                case ForceChangeRateUnit.KilonewtonPerSecond:
-                    return FromKilonewtonsPerSecond(val);
-                case ForceChangeRateUnit.MicronewtonPerSecond:
-                    return FromMicronewtonsPerSecond(val);
-                case ForceChangeRateUnit.MillinewtonPerSecond:
-                    return FromMillinewtonsPerSecond(val);
-                case ForceChangeRateUnit.NanonewtonPerSecond:
-                    return FromNanonewtonsPerSecond(val);
-                case ForceChangeRateUnit.NewtonPerMinute:
-                    return FromNewtonsPerMinute(val);
-                case ForceChangeRateUnit.NewtonPerSecond:
-                    return FromNewtonsPerSecond(val);
+                case MolarityUnit.CentimolesPerLiter:
+                    return FromCentimolesPerLiter(val);
+                case MolarityUnit.DecimolesPerLiter:
+                    return FromDecimolesPerLiter(val);
+                case MolarityUnit.MicromolesPerLiter:
+                    return FromMicromolesPerLiter(val);
+                case MolarityUnit.MillimolesPerLiter:
+                    return FromMillimolesPerLiter(val);
+                case MolarityUnit.MolesPerCubicMeter:
+                    return FromMolesPerCubicMeter(val);
+                case MolarityUnit.MolesPerLiter:
+                    return FromMolesPerLiter(val);
+                case MolarityUnit.NanomolesPerLiter:
+                    return FromNanomolesPerLiter(val);
+                case MolarityUnit.PicomolesPerLiter:
+                    return FromPicomolesPerLiter(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -503,12 +404,12 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ForceChangeRateUnit" /> to <see cref="ForceChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ForceChangeRate unit value.</returns>
-        public static ForceChangeRate? From(double? value, ForceChangeRateUnit fromUnit)
+        /// <returns>Molarity unit value.</returns>
+        public static Molarity? From(double? value, MolarityUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -516,28 +417,22 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ForceChangeRateUnit.CentinewtonPerSecond:
-                    return FromCentinewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.DecanewtonPerMinute:
-                    return FromDecanewtonsPerMinute(value.Value);
-                case ForceChangeRateUnit.DecanewtonPerSecond:
-                    return FromDecanewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.DecinewtonPerSecond:
-                    return FromDecinewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.KilonewtonPerMinute:
-                    return FromKilonewtonsPerMinute(value.Value);
-                case ForceChangeRateUnit.KilonewtonPerSecond:
-                    return FromKilonewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.MicronewtonPerSecond:
-                    return FromMicronewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.MillinewtonPerSecond:
-                    return FromMillinewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.NanonewtonPerSecond:
-                    return FromNanonewtonsPerSecond(value.Value);
-                case ForceChangeRateUnit.NewtonPerMinute:
-                    return FromNewtonsPerMinute(value.Value);
-                case ForceChangeRateUnit.NewtonPerSecond:
-                    return FromNewtonsPerSecond(value.Value);
+                case MolarityUnit.CentimolesPerLiter:
+                    return FromCentimolesPerLiter(value.Value);
+                case MolarityUnit.DecimolesPerLiter:
+                    return FromDecimolesPerLiter(value.Value);
+                case MolarityUnit.MicromolesPerLiter:
+                    return FromMicromolesPerLiter(value.Value);
+                case MolarityUnit.MillimolesPerLiter:
+                    return FromMillimolesPerLiter(value.Value);
+                case MolarityUnit.MolesPerCubicMeter:
+                    return FromMolesPerCubicMeter(value.Value);
+                case MolarityUnit.MolesPerLiter:
+                    return FromMolesPerLiter(value.Value);
+                case MolarityUnit.NanomolesPerLiter:
+                    return FromNanomolesPerLiter(value.Value);
+                case MolarityUnit.PicomolesPerLiter:
+                    return FromPicomolesPerLiter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -551,7 +446,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ForceChangeRateUnit unit)
+        public static string GetAbbreviation(MolarityUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -563,7 +458,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ForceChangeRateUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(MolarityUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -573,39 +468,39 @@ namespace UnitsNet
         #region Arithmetic Operators
 
 #if !WINDOWS_UWP
-        public static ForceChangeRate operator -(ForceChangeRate right)
+        public static Molarity operator -(Molarity right)
         {
-            return new ForceChangeRate(-right._newtonsPerSecond);
+            return new Molarity(-right._molesPerCubicMeter);
         }
 
-        public static ForceChangeRate operator +(ForceChangeRate left, ForceChangeRate right)
+        public static Molarity operator +(Molarity left, Molarity right)
         {
-            return new ForceChangeRate(left._newtonsPerSecond + right._newtonsPerSecond);
+            return new Molarity(left._molesPerCubicMeter + right._molesPerCubicMeter);
         }
 
-        public static ForceChangeRate operator -(ForceChangeRate left, ForceChangeRate right)
+        public static Molarity operator -(Molarity left, Molarity right)
         {
-            return new ForceChangeRate(left._newtonsPerSecond - right._newtonsPerSecond);
+            return new Molarity(left._molesPerCubicMeter - right._molesPerCubicMeter);
         }
 
-        public static ForceChangeRate operator *(double left, ForceChangeRate right)
+        public static Molarity operator *(double left, Molarity right)
         {
-            return new ForceChangeRate(left*right._newtonsPerSecond);
+            return new Molarity(left*right._molesPerCubicMeter);
         }
 
-        public static ForceChangeRate operator *(ForceChangeRate left, double right)
+        public static Molarity operator *(Molarity left, double right)
         {
-            return new ForceChangeRate(left._newtonsPerSecond*(double)right);
+            return new Molarity(left._molesPerCubicMeter*(double)right);
         }
 
-        public static ForceChangeRate operator /(ForceChangeRate left, double right)
+        public static Molarity operator /(Molarity left, double right)
         {
-            return new ForceChangeRate(left._newtonsPerSecond/(double)right);
+            return new Molarity(left._molesPerCubicMeter/(double)right);
         }
 
-        public static double operator /(ForceChangeRate left, ForceChangeRate right)
+        public static double operator /(Molarity left, Molarity right)
         {
-            return Convert.ToDouble(left._newtonsPerSecond/right._newtonsPerSecond);
+            return Convert.ToDouble(left._molesPerCubicMeter/right._molesPerCubicMeter);
         }
 #endif
 
@@ -616,8 +511,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is ForceChangeRate)) throw new ArgumentException("Expected type ForceChangeRate.", "obj");
-            return CompareTo((ForceChangeRate) obj);
+            if (!(obj is Molarity)) throw new ArgumentException("Expected type Molarity.", "obj");
+            return CompareTo((Molarity) obj);
         }
 
 #if WINDOWS_UWP
@@ -625,42 +520,42 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(ForceChangeRate other)
+        int CompareTo(Molarity other)
         {
-            return _newtonsPerSecond.CompareTo(other._newtonsPerSecond);
+            return _molesPerCubicMeter.CompareTo(other._molesPerCubicMeter);
         }
 
 #if !WINDOWS_UWP
-        public static bool operator <=(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator <=(Molarity left, Molarity right)
         {
-            return left._newtonsPerSecond <= right._newtonsPerSecond;
+            return left._molesPerCubicMeter <= right._molesPerCubicMeter;
         }
 
-        public static bool operator >=(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator >=(Molarity left, Molarity right)
         {
-            return left._newtonsPerSecond >= right._newtonsPerSecond;
+            return left._molesPerCubicMeter >= right._molesPerCubicMeter;
         }
 
-        public static bool operator <(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator <(Molarity left, Molarity right)
         {
-            return left._newtonsPerSecond < right._newtonsPerSecond;
+            return left._molesPerCubicMeter < right._molesPerCubicMeter;
         }
 
-        public static bool operator >(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator >(Molarity left, Molarity right)
         {
-            return left._newtonsPerSecond > right._newtonsPerSecond;
+            return left._molesPerCubicMeter > right._molesPerCubicMeter;
         }
 
-        public static bool operator ==(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator ==(Molarity left, Molarity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerSecond == right._newtonsPerSecond;
+            return left._molesPerCubicMeter == right._molesPerCubicMeter;
         }
 
-        public static bool operator !=(ForceChangeRate left, ForceChangeRate right)
+        public static bool operator !=(Molarity left, Molarity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerSecond != right._newtonsPerSecond;
+            return left._molesPerCubicMeter != right._molesPerCubicMeter;
         }
 #endif
 
@@ -671,12 +566,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtonsPerSecond.Equals(((ForceChangeRate) obj)._newtonsPerSecond);
+            return _molesPerCubicMeter.Equals(((Molarity) obj)._molesPerCubicMeter);
         }
 
         public override int GetHashCode()
         {
-            return _newtonsPerSecond.GetHashCode();
+            return _molesPerCubicMeter.GetHashCode();
         }
 
         #endregion
@@ -688,32 +583,26 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(ForceChangeRateUnit unit)
+        public double As(MolarityUnit unit)
         {
             switch (unit)
             {
-                case ForceChangeRateUnit.CentinewtonPerSecond:
-                    return CentinewtonsPerSecond;
-                case ForceChangeRateUnit.DecanewtonPerMinute:
-                    return DecanewtonsPerMinute;
-                case ForceChangeRateUnit.DecanewtonPerSecond:
-                    return DecanewtonsPerSecond;
-                case ForceChangeRateUnit.DecinewtonPerSecond:
-                    return DecinewtonsPerSecond;
-                case ForceChangeRateUnit.KilonewtonPerMinute:
-                    return KilonewtonsPerMinute;
-                case ForceChangeRateUnit.KilonewtonPerSecond:
-                    return KilonewtonsPerSecond;
-                case ForceChangeRateUnit.MicronewtonPerSecond:
-                    return MicronewtonsPerSecond;
-                case ForceChangeRateUnit.MillinewtonPerSecond:
-                    return MillinewtonsPerSecond;
-                case ForceChangeRateUnit.NanonewtonPerSecond:
-                    return NanonewtonsPerSecond;
-                case ForceChangeRateUnit.NewtonPerMinute:
-                    return NewtonsPerMinute;
-                case ForceChangeRateUnit.NewtonPerSecond:
-                    return NewtonsPerSecond;
+                case MolarityUnit.CentimolesPerLiter:
+                    return CentimolesPerLiter;
+                case MolarityUnit.DecimolesPerLiter:
+                    return DecimolesPerLiter;
+                case MolarityUnit.MicromolesPerLiter:
+                    return MicromolesPerLiter;
+                case MolarityUnit.MillimolesPerLiter:
+                    return MillimolesPerLiter;
+                case MolarityUnit.MolesPerCubicMeter:
+                    return MolesPerCubicMeter;
+                case MolarityUnit.MolesPerLiter:
+                    return MolesPerLiter;
+                case MolarityUnit.NanomolesPerLiter:
+                    return NanomolesPerLiter;
+                case MolarityUnit.PicomolesPerLiter:
+                    return PicomolesPerLiter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -746,7 +635,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ForceChangeRate Parse(string str)
+        public static Molarity Parse(string str)
         {
             return Parse(str, null);
         }
@@ -774,7 +663,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ForceChangeRate Parse(string str, [CanBeNull] Culture culture)
+        public static Molarity Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -783,13 +672,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ForceChangeRate>(str, formatProvider,
+            return UnitParser.ParseUnit<Molarity>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    ForceChangeRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    MolarityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerSecond(x.NewtonsPerSecond + y.NewtonsPerSecond));
+                }, (x, y) => FromMolesPerCubicMeter(x.MolesPerCubicMeter + y.MolesPerCubicMeter));
         }
 
         /// <summary>
@@ -800,7 +689,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ForceChangeRate result)
+        public static bool TryParse([CanBeNull] string str, out Molarity result)
         {
             return TryParse(str, null, out result);
         }
@@ -814,7 +703,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ForceChangeRate result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Molarity result)
         {
             try
             {
@@ -823,7 +712,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(ForceChangeRate);
+                result = default(Molarity);
                 return false;
             }
         }
@@ -836,7 +725,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ForceChangeRateUnit ParseUnit(string str)
+        public static MolarityUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -849,7 +738,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ForceChangeRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static MolarityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -867,16 +756,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ForceChangeRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static MolarityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<ForceChangeRateUnit>(str.Trim());
+            var unit = unitSystem.Parse<MolarityUnit>(str.Trim());
 
-            if (unit == ForceChangeRateUnit.Undefined)
+            if (unit == MolarityUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ForceChangeRateUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MolarityUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -888,9 +777,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is NewtonPerSecond
+        ///     Set the default unit used by ToString(). Default is MolesPerCubicMeter
         /// </summary>
-        public static ForceChangeRateUnit ToStringDefaultUnit { get; set; } = ForceChangeRateUnit.NewtonPerSecond;
+        public static MolarityUnit ToStringDefaultUnit { get; set; } = MolarityUnit.MolesPerCubicMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -906,7 +795,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ForceChangeRateUnit unit)
+        public string ToString(MolarityUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -917,7 +806,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(ForceChangeRateUnit unit, [CanBeNull] Culture culture)
+        public string ToString(MolarityUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -930,7 +819,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForceChangeRateUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(MolarityUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -946,7 +835,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForceChangeRateUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(MolarityUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -963,24 +852,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of ForceChangeRate
+        /// Represents the largest possible value of Molarity
         /// </summary>
-        public static ForceChangeRate MaxValue
+        public static Molarity MaxValue
         {
             get
             {
-                return new ForceChangeRate(double.MaxValue);
+                return new Molarity(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of ForceChangeRate
+        /// Represents the smallest possible value of Molarity
         /// </summary>
-        public static ForceChangeRate MinValue
+        public static Molarity MinValue
         {
             get
             {
-                return new ForceChangeRate(double.MinValue);
+                return new Molarity(double.MinValue);
             }
         }
     }

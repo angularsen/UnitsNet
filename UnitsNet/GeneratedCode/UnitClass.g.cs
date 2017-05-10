@@ -70,6 +70,7 @@ namespace UnitsNet
         Level,
         Mass,
         MassFlow,
+        Molarity,
         Power,
         PowerRatio,
         Pressure,

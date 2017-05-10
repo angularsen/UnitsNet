@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
+﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
 // https://github.com/anjdreas/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,22 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.CustomCode.Extensions
 {
-    public class ForceChangeRateTests : ForceChangeRateTestsBase
+    /// <summary>
+    ///     Extension methods for <see cref="Density" />.
+    /// </summary>
+    public static class DensityExtensions
     {
-        protected override double NewtonsPerMinuteInOneNewtonPerSecond => 60;
-        protected override double DecanewtonsPerMinuteInOneNewtonPerSecond => 6;
-        protected override double KilonewtonsPerMinuteInOneNewtonPerSecond => 0.06;
-        protected override double KilonewtonsPerSecondInOneNewtonPerSecond => 1E-3;
-        protected override double DecanewtonsPerSecondInOneNewtonPerSecond => 1E-1;
-        protected override double NewtonsPerSecondInOneNewtonPerSecond => 1;
-        protected override double DecinewtonsPerSecondInOneNewtonPerSecond => 1E1;
-        protected override double CentinewtonsPerSecondInOneNewtonPerSecond => 1E2;
-        protected override double MillinewtonsPerSecondInOneNewtonPerSecond => 1E3;
-        protected override double MicronewtonsPerSecondInOneNewtonPerSecond => 1E6;
-        protected override double NanonewtonsPerSecondInOneNewtonPerSecond => 1E9;
+        /// <summary>
+        ///     Gets <see cref="Molarity" /> from <see cref="Density" />.
+        /// </summary>
+        public static Molarity ToMolarity(this Density density, Mass molecularWeight)
+        {
+            return Density.ToMolarity(density, molecularWeight);
+        }
     }
 }
