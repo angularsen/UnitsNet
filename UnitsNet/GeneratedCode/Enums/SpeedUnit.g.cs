@@ -48,6 +48,7 @@ namespace UnitsNet.Units
         DecimeterPerMinute,
         DecimeterPerSecond,
         FootPerSecond,
+        InchPerSecond,
         KilometerPerHour,
         KilometerPerMinute,
         KilometerPerSecond,
@@ -63,5 +64,7 @@ namespace UnitsNet.Units
         MillimeterPerSecond,
         NanometerPerMinute,
         NanometerPerSecond,
+        YardPerMinute,
+        YardPerSecond,
     }
 }

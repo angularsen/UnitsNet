@@ -159,6 +159,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in InchesPerSecond.
+        /// </summary>
+        public double InchesPerSecond
+        {
+            get { return _metersPerSecond/2.54e-2; }
+        }
+
+        /// <summary>
         ///     Get Speed in KilometersPerHour.
         /// </summary>
         public double KilometersPerHour
@@ -278,6 +286,22 @@ namespace UnitsNet
             get { return (_metersPerSecond) / 1e-9d; }
         }
 
+        /// <summary>
+        ///     Get Speed in YardsPerMinute.
+        /// </summary>
+        public double YardsPerMinute
+        {
+            get { return _metersPerSecond/0.9144*60; }
+        }
+
+        /// <summary>
+        ///     Get Speed in YardsPerSecond.
+        /// </summary>
+        public double YardsPerSecond
+        {
+            get { return _metersPerSecond/0.9144; }
+        }
+
         #endregion
 
         #region Static
@@ -333,6 +357,14 @@ namespace UnitsNet
         public static Speed FromFeetPerSecond(double feetpersecond)
         {
             return new Speed(feetpersecond*0.3048);
+        }
+
+        /// <summary>
+        ///     Get Speed from InchesPerSecond.
+        /// </summary>
+        public static Speed FromInchesPerSecond(double inchespersecond)
+        {
+            return new Speed(inchespersecond*2.54e-2);
         }
 
         /// <summary>
@@ -455,6 +487,22 @@ namespace UnitsNet
             return new Speed((nanometerspersecond) * 1e-9d);
         }
 
+        /// <summary>
+        ///     Get Speed from YardsPerMinute.
+        /// </summary>
+        public static Speed FromYardsPerMinute(double yardsperminute)
+        {
+            return new Speed(yardsperminute*0.9144/60);
+        }
+
+        /// <summary>
+        ///     Get Speed from YardsPerSecond.
+        /// </summary>
+        public static Speed FromYardsPerSecond(double yardspersecond)
+        {
+            return new Speed(yardspersecond*0.9144);
+        }
+
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerHour.
@@ -539,6 +587,21 @@ namespace UnitsNet
             if (feetpersecond.HasValue)
             {
                 return FromFeetPerSecond(feetpersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerSecond.
+        /// </summary>
+        public static Speed? FromInchesPerSecond(double? inchespersecond)
+        {
+            if (inchespersecond.HasValue)
+            {
+                return FromInchesPerSecond(inchespersecond.Value);
             }
             else
             {
@@ -771,6 +834,36 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerMinute.
+        /// </summary>
+        public static Speed? FromYardsPerMinute(double? yardsperminute)
+        {
+            if (yardsperminute.HasValue)
+            {
+                return FromYardsPerMinute(yardsperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerSecond.
+        /// </summary>
+        public static Speed? FromYardsPerSecond(double? yardspersecond)
+        {
+            if (yardspersecond.HasValue)
+            {
+                return FromYardsPerSecond(yardspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -795,6 +888,8 @@ namespace UnitsNet
                     return FromDecimetersPerSecond(val);
                 case SpeedUnit.FootPerSecond:
                     return FromFeetPerSecond(val);
+                case SpeedUnit.InchPerSecond:
+                    return FromInchesPerSecond(val);
                 case SpeedUnit.KilometerPerHour:
                     return FromKilometersPerHour(val);
                 case SpeedUnit.KilometerPerMinute:
@@ -825,6 +920,10 @@ namespace UnitsNet
                     return FromNanometersPerMinutes(val);
                 case SpeedUnit.NanometerPerSecond:
                     return FromNanometersPerSecond(val);
+                case SpeedUnit.YardPerMinute:
+                    return FromYardsPerMinute(val);
+                case SpeedUnit.YardPerSecond:
+                    return FromYardsPerSecond(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -858,6 +957,8 @@ namespace UnitsNet
                     return FromDecimetersPerSecond(value.Value);
                 case SpeedUnit.FootPerSecond:
                     return FromFeetPerSecond(value.Value);
+                case SpeedUnit.InchPerSecond:
+                    return FromInchesPerSecond(value.Value);
                 case SpeedUnit.KilometerPerHour:
                     return FromKilometersPerHour(value.Value);
                 case SpeedUnit.KilometerPerMinute:
@@ -888,6 +989,10 @@ namespace UnitsNet
                     return FromNanometersPerMinutes(value.Value);
                 case SpeedUnit.NanometerPerSecond:
                     return FromNanometersPerSecond(value.Value);
+                case SpeedUnit.YardPerMinute:
+                    return FromYardsPerMinute(value.Value);
+                case SpeedUnit.YardPerSecond:
+                    return FromYardsPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1054,6 +1159,8 @@ namespace UnitsNet
                     return DecimetersPerSecond;
                 case SpeedUnit.FootPerSecond:
                     return FeetPerSecond;
+                case SpeedUnit.InchPerSecond:
+                    return InchesPerSecond;
                 case SpeedUnit.KilometerPerHour:
                     return KilometersPerHour;
                 case SpeedUnit.KilometerPerMinute:
@@ -1084,6 +1191,10 @@ namespace UnitsNet
                     return NanometersPerMinutes;
                 case SpeedUnit.NanometerPerSecond:
                     return NanometersPerSecond;
+                case SpeedUnit.YardPerMinute:
+                    return YardsPerMinute;
+                case SpeedUnit.YardPerSecond:
+                    return YardsPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
