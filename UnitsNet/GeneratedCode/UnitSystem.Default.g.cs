@@ -2273,6 +2273,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "ft/s"),
                             }),
+                        new CulturesForEnumValue((int) SpeedUnit.InchPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in/s"),
+                            }),
                         new CulturesForEnumValue((int) SpeedUnit.KilometerPerHour,
                             new[]
                             {
@@ -2347,6 +2352,16 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nm/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.YardPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd/min"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.YardPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (TemperatureUnit),

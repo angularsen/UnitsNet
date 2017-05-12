@@ -248,6 +248,40 @@ namespace UnitsNet.Extensions.NumberToSpeed
 
         #endregion
 
+        #region InchPerSecond
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)"/>
+        public static Speed InchesPerSecond(this int value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double?)"/>
+        public static Speed? InchesPerSecond(this int? value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)"/>
+        public static Speed InchesPerSecond(this long value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double?)"/>
+        public static Speed? InchesPerSecond(this long? value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)"/>
+        public static Speed InchesPerSecond(this double value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double?)"/>
+        public static Speed? InchesPerSecond(this double? value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)"/>
+        public static Speed InchesPerSecond(this float value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double?)"/>
+        public static Speed? InchesPerSecond(this float? value) => Speed.FromInchesPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)"/>
+        public static Speed InchesPerSecond(this decimal value) => Speed.FromInchesPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double?)"/>
+        public static Speed? InchesPerSecond(this decimal? value) => Speed.FromInchesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilometerPerHour
 
         /// <inheritdoc cref="Speed.FromKilometersPerHour(double)"/>
@@ -755,6 +789,74 @@ namespace UnitsNet.Extensions.NumberToSpeed
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(double?)"/>
         public static Speed? NanometersPerSecond(this decimal? value) => Speed.FromNanometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region YardPerMinute
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)"/>
+        public static Speed YardsPerMinute(this int value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double?)"/>
+        public static Speed? YardsPerMinute(this int? value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)"/>
+        public static Speed YardsPerMinute(this long value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double?)"/>
+        public static Speed? YardsPerMinute(this long? value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)"/>
+        public static Speed YardsPerMinute(this double value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double?)"/>
+        public static Speed? YardsPerMinute(this double? value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)"/>
+        public static Speed YardsPerMinute(this float value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double?)"/>
+        public static Speed? YardsPerMinute(this float? value) => Speed.FromYardsPerMinute(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)"/>
+        public static Speed YardsPerMinute(this decimal value) => Speed.FromYardsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double?)"/>
+        public static Speed? YardsPerMinute(this decimal? value) => Speed.FromYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region YardPerSecond
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)"/>
+        public static Speed YardsPerSecond(this int value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double?)"/>
+        public static Speed? YardsPerSecond(this int? value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)"/>
+        public static Speed YardsPerSecond(this long value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double?)"/>
+        public static Speed? YardsPerSecond(this long? value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)"/>
+        public static Speed YardsPerSecond(this double value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double?)"/>
+        public static Speed? YardsPerSecond(this double? value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)"/>
+        public static Speed YardsPerSecond(this float value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double?)"/>
+        public static Speed? YardsPerSecond(this float? value) => Speed.FromYardsPerSecond(value);
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)"/>
+        public static Speed YardsPerSecond(this decimal value) => Speed.FromYardsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double?)"/>
+        public static Speed? YardsPerSecond(this decimal? value) => Speed.FromYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

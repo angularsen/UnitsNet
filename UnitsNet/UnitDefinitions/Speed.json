@@ -77,6 +77,42 @@
           "Abbreviations": [ "mph" ]
         }
       ]
+    },
+    {
+      "SingularName": "InchPerSecond",
+      "PluralName": "InchesPerSecond",
+      "FromUnitToBaseFunc": "x*2.54e-2",
+      "FromBaseToUnitFunc": "x/2.54e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "YardPerSecond",
+      "PluralName": "YardsPerSecond",
+      "FromUnitToBaseFunc": "x*0.9144",
+      "FromBaseToUnitFunc": "x/0.9144",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "YardPerMinute",
+      "PluralName": "YardsPerMinute",
+      "FromUnitToBaseFunc": "x*0.9144/60",
+      "FromBaseToUnitFunc": "x/0.9144*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd/min" ]
+        }
+      ]
     }
   ]
 }
