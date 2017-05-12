@@ -54,13 +54,14 @@ namespace UnitsNet
 
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
-            string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+            string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?",
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
-                @"(?<unit>[^\s\d,]+)", // capture Unit (non-whitespace) input
-                @"(and)?,?", // allow "and" & "," separators between quantities
-                @"(?<invalid>[a-z]*)?"); // capture invalid input
+                @"(?<unit>[^\d]+)"); // capture Unit (non-numeric)
+
+            //remove separators
+            str = str.Replace("and", ""); 
 
             List<TUnit> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
             if (quantities.Count == 0)
@@ -89,15 +90,7 @@ namespace UnitsNet
 
                 string valueString = groups["value"].Value;
                 string unitString = groups["unit"].Value;
-                if (groups["invalid"].Value != "")
-                {
-                    var newEx = new UnitsNetException("Invalid string detected: " + groups["invalid"].Value);
-                    newEx.Data["input"] = str;
-                    newEx.Data["matched value"] = valueString;
-                    newEx.Data["matched unit"] = unitString;
-                    newEx.Data["formatprovider"] = formatProvider?.ToString();
-                    throw newEx;
-                }
+
                 if ((valueString == "") && (unitString == "")) continue;
 
                 try

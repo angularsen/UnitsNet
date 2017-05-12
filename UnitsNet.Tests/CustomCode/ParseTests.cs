@@ -42,7 +42,7 @@ namespace UnitsNet.Tests.CustomCode
         [TestCase("500,005 m", Result = 500005)]
         [TestCase(null, ExpectedExceptionName = "System.ArgumentNullException")]
         [TestCase("1", ExpectedExceptionName = "System.ArgumentException")]
-        [TestCase("km", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
+        [TestCase("km", ExpectedExceptionName = "System.ArgumentException")]
         [TestCase("1 kg", ExpectedExceptionName = "UnitsNet.UnitsNetException")]
         public double ParseLengthToMetersUsEnglish(string s)
         {
@@ -115,6 +115,17 @@ namespace UnitsNet.Tests.CustomCode
             CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             Length result;
             return Length.TryParse(s, usEnglish, out result);
+        }
+
+        [TestCase("333 short tn", Result = 333)]
+        public double ParseMassShortTon(string s)
+        {
+            return Mass.Parse(s).ShortTons;
+        }
+        [TestCase("333 long tn", Result = 333)]
+        public double ParseMassLongTon(string s)
+        {
+            return Mass.Parse(s).LongTons;
         }
     }
 }
