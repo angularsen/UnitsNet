@@ -21,6 +21,6 @@
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="UnitsNet" Version="3.62.0" />
-    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard14.csproj"/>
+    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj"/>
   </ItemGroup>
 </Project>
