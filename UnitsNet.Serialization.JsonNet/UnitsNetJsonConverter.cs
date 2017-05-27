@@ -101,17 +101,16 @@ namespace UnitsNet.Serialization.JsonNet
             object unit = Enum.Parse(reflectedUnitEnumType, unitEnumValue);
 
             // Mass.From() method, assume no overloads exist
-            MethodInfo fromMethod = (from m in reflectedUnitType.GetMethods()
-                                     where m.Name.Equals("From", StringComparison.InvariantCulture) &&
-                                     !m.ReturnType.IsGenericType  // we want the non nullable type
-                                     select m).Single();
-
+            var fromMethod = reflectedUnitType
+                .GetTypeInfo()
+                .GetDeclaredMethods("From")
+                .Single(m => !m.ReturnType.IsConstructedGenericType);
+            
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
             // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
             // will likely return a very different result. Not sure how we can handle this?
-            return fromMethod.Invoke(null, BindingFlags.Static, null, new[] { vu.Value, unit },
-                CultureInfo.InvariantCulture);
+            return fromMethod.Invoke(null, new[] {vu.Value, unit});
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
@@ -158,29 +157,32 @@ namespace UnitsNet.Serialization.JsonNet
                 t.WriteTo(writer);
                 return;
             }
-            FieldInfo[] fields =
-                unitType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            if (fields.Length == 0)
+            FieldInfo baseValueField;
+            try
             {
-                var ex = new UnitsNetException("No private fields found in type.");
-                ex.Data["type"] = unitType;
-                throw ex;
+                baseValueField = unitType.GetTypeInfo()
+                    .DeclaredFields
+                    .SingleOrDefault(f => !f.IsPublic && !f.IsStatic);
             }
-            if (fields.Length > 1)
+            catch (InvalidOperationException)
             {
                 var ex = new UnitsNetException("Expected exactly 1 private field, but found multiple.");
                 ex.Data["type"] = unitType;
                 throw ex;
             }
-
+            if (baseValueField == null)
+            {
+                var ex = new UnitsNetException("No private fields found in type.");
+                ex.Data["type"] = unitType;
+                throw ex;
+            }
             // Unit base type can be double, long or decimal,
             // so make sure we serialize the real type to avoid
             // loss of precision
-            FieldInfo baseValueField = fields.First();
             object baseValue = baseValueField.GetValue(value);
 
             // Mass => "MassUnit.Kilogram"
-            PropertyInfo baseUnitPropInfo = unitType.GetProperty("BaseUnit");
+            PropertyInfo baseUnitPropInfo = unitType.GetTypeInfo().GetDeclaredProperty("BaseUnit");
 
             // Read static BaseUnit property value
             var baseUnitEnumValue = (Enum) baseUnitPropInfo.GetValue(null, null);
