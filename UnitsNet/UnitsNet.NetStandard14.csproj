@@ -1,14 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <OutputPath>..\Artifacts\Bin\Src\$(Platform)_$(Configuration)</OutputPath>
     <AssemblyName>UnitsNet</AssemblyName>
+    <PackageId>UnitsNet</PackageId>
+    <Version>3.62.0</Version>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Description>Simplifies working with units of measurement.</Description>
+    <Copyright>opyright © 2015 Andreas Gullberg Larsen</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/anjdreas/UnitsNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Properties\AssemblyInfo.WindowsRuntimeComponent.cs" />
+    <Compile Remove="Properties\AssemblyInfo*.cs" />
   </ItemGroup>
 </Project>

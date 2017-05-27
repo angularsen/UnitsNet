@@ -1,17 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
+    <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
+    <Version>1.0.0-alpha6</Version>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Description>A helper library for serializing and deserializing types in Units.NET using JSON.NET</Description>
+    <Copyright>Copyright © 2007 Andreas Gullberg Larsen</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/anjdreas/UnitsNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup>
     <OutputPath>..\Artifacts\Bin\Src\$(Platform)_$(Configuration)</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard14.csproj">
-        <Name>UnitsNet</Name>
-    </ProjectReference>
+    <PackageReference Include="UnitsNet" Version="3.62.0" />
+    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard14.csproj"/>
   </ItemGroup>
 </Project>
