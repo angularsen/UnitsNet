@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.WindowsRuntimeComp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.WindowsRuntimeComponent-Net45", "UnitsNet\UnitsNet.WindowsRuntimeComponent-Net45.csproj", "{6A476F62-CA62-4A90-A866-1094BEC1D23B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.NetStandard14", "UnitsNet\UnitsNet.NetStandard14.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
@@ -113,22 +111,6 @@ Global
 		{6A476F62-CA62-4A90-A866-1094BEC1D23B}.Release|x64.Build.0 = Release|Any CPU
 		{6A476F62-CA62-4A90-A866-1094BEC1D23B}.Release|x86.ActiveCfg = Release|Any CPU
 		{6A476F62-CA62-4A90-A866-1094BEC1D23B}.Release|x86.Build.0 = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|ARM.Build.0 = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|x64.Build.0 = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Debug|x86.Build.0 = Debug|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|ARM.ActiveCfg = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|ARM.Build.0 = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|x64.ActiveCfg = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|x64.Build.0 = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|x86.ActiveCfg = Release|Any CPU
-		{C0049669-1DD1-47DC-B3B5-E1E1A3D8B17D}.Release|x86.Build.0 = Release|Any CPU
 		{CBEAD842-07BC-4B08-9D9D-D6659813776F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CBEAD842-07BC-4B08-9D9D-D6659813776F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBEAD842-07BC-4B08-9D9D-D6659813776F}.Debug|ARM.ActiveCfg = Debug|ARM
