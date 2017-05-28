@@ -4,7 +4,7 @@
     <OutputPath>..\Artifacts\Bin\Src\$(Platform)_$(Configuration)</OutputPath>
     <AssemblyName>UnitsNet</AssemblyName>
     <PackageId>UnitsNet</PackageId>
-    <Version>3.62.0</Version>
+    <Version>3.63.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Description>Simplifies working with units of measurement.</Description>
     <Copyright>opyright © 2015 Andreas Gullberg Larsen</Copyright>
