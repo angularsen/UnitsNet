@@ -130,6 +130,38 @@
       ]
     },
     {
+      "SingularName": "Fathom",
+      "PluralName": "Fathoms",
+      "FromUnitToBaseFunc": "x*1.8288",
+      "FromBaseToUnitFunc": "x/1.8288",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "fathom" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "fathom" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Shackle",
+      "PluralName": "Shackles",
+      "FromUnitToBaseFunc": "x*27.432",
+      "FromBaseToUnitFunc": "x/27.432",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "shackle" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "shackle" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Microinch",
       "PluralName": "Microinches",
       "FromUnitToBaseFunc": "x*2.54e-8",

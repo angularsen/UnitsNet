@@ -55,6 +55,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double YardsInOneMeter => 1.09361;
 
+        private const double fathomsInOneMeter = 1.0 / 1.8288;
+        protected override double FathomsInOneMeter => fathomsInOneMeter;
+
+        private const double shacklesInOneMeter = 1.0 / 27.432;
+        protected override double ShacklesInOneMeter => shacklesInOneMeter;
+
 
         protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
@@ -138,5 +144,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             Assert.AreEqual(double.MinValue, Length.MinValue.Meters);
         }
+
+        
     }
 }

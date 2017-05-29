@@ -115,7 +115,7 @@ namespace UnitsNet
         /// </summary>
         public double CyclesPerHour
         {
-            get { return _hertz/3600; }
+            get { return _hertz*3600; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace UnitsNet
         /// </summary>
         public double CyclesPerMinute
         {
-            get { return _hertz/60; }
+            get { return _hertz*60; }
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace UnitsNet
         /// </summary>
         public static Frequency FromCyclesPerHour(double cyclesperhour)
         {
-            return new Frequency(cyclesperhour*3600);
+            return new Frequency(cyclesperhour/3600);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// </summary>
         public static Frequency FromCyclesPerMinute(double cyclesperminute)
         {
-            return new Frequency(cyclesperminute*60);
+            return new Frequency(cyclesperminute/60);
         }
 
         /// <summary>

@@ -127,6 +127,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in Fathoms.
+        /// </summary>
+        public double Fathoms
+        {
+            get { return _meters/1.8288; }
+        }
+
+        /// <summary>
         ///     Get Length in Feet.
         /// </summary>
         public double Feet
@@ -215,6 +223,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in Shackles.
+        /// </summary>
+        public double Shackles
+        {
+            get { return _meters/27.432; }
+        }
+
+        /// <summary>
         ///     Get Length in UsSurveyFeet.
         /// </summary>
         public double UsSurveyFeet
@@ -253,6 +269,14 @@ namespace UnitsNet
         public static Length FromDecimeters(double decimeters)
         {
             return new Length((decimeters) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Length from Fathoms.
+        /// </summary>
+        public static Length FromFathoms(double fathoms)
+        {
+            return new Length(fathoms*1.8288);
         }
 
         /// <summary>
@@ -344,6 +368,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length from Shackles.
+        /// </summary>
+        public static Length FromShackles(double shackles)
+        {
+            return new Length(shackles*27.432);
+        }
+
+        /// <summary>
         ///     Get Length from UsSurveyFeet.
         /// </summary>
         public static Length FromUsSurveyFeet(double ussurveyfeet)
@@ -383,6 +415,21 @@ namespace UnitsNet
             if (decimeters.HasValue)
             {
                 return FromDecimeters(decimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Fathoms.
+        /// </summary>
+        public static Length? FromFathoms(double? fathoms)
+        {
+            if (fathoms.HasValue)
+            {
+                return FromFathoms(fathoms.Value);
             }
             else
             {
@@ -556,6 +603,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Shackles.
+        /// </summary>
+        public static Length? FromShackles(double? shackles)
+        {
+            if (shackles.HasValue)
+            {
+                return FromShackles(shackles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable UsSurveyFeet.
         /// </summary>
         public static Length? FromUsSurveyFeet(double? ussurveyfeet)
@@ -601,6 +663,8 @@ namespace UnitsNet
                     return FromCentimeters(val);
                 case LengthUnit.Decimeter:
                     return FromDecimeters(val);
+                case LengthUnit.Fathom:
+                    return FromFathoms(val);
                 case LengthUnit.Foot:
                     return FromFeet(val);
                 case LengthUnit.Inch:
@@ -623,6 +687,8 @@ namespace UnitsNet
                     return FromNanometers(val);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(val);
+                case LengthUnit.Shackle:
+                    return FromShackles(val);
                 case LengthUnit.UsSurveyFoot:
                     return FromUsSurveyFeet(val);
                 case LengthUnit.Yard:
@@ -652,6 +718,8 @@ namespace UnitsNet
                     return FromCentimeters(value.Value);
                 case LengthUnit.Decimeter:
                     return FromDecimeters(value.Value);
+                case LengthUnit.Fathom:
+                    return FromFathoms(value.Value);
                 case LengthUnit.Foot:
                     return FromFeet(value.Value);
                 case LengthUnit.Inch:
@@ -674,6 +742,8 @@ namespace UnitsNet
                     return FromNanometers(value.Value);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(value.Value);
+                case LengthUnit.Shackle:
+                    return FromShackles(value.Value);
                 case LengthUnit.UsSurveyFoot:
                     return FromUsSurveyFeet(value.Value);
                 case LengthUnit.Yard:
@@ -836,6 +906,8 @@ namespace UnitsNet
                     return Centimeters;
                 case LengthUnit.Decimeter:
                     return Decimeters;
+                case LengthUnit.Fathom:
+                    return Fathoms;
                 case LengthUnit.Foot:
                     return Feet;
                 case LengthUnit.Inch:
@@ -858,6 +930,8 @@ namespace UnitsNet
                     return Nanometers;
                 case LengthUnit.NauticalMile:
                     return NauticalMiles;
+                case LengthUnit.Shackle:
+                    return Shackles;
                 case LengthUnit.UsSurveyFoot:
                     return UsSurveyFeet;
                 case LengthUnit.Yard:

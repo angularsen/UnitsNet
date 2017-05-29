@@ -55,6 +55,7 @@ namespace UnitsNet.Tests
     {
         protected abstract double CentimetersInOneMeter { get; }
         protected abstract double DecimetersInOneMeter { get; }
+        protected abstract double FathomsInOneMeter { get; }
         protected abstract double FeetInOneMeter { get; }
         protected abstract double InchesInOneMeter { get; }
         protected abstract double KilometersInOneMeter { get; }
@@ -66,12 +67,14 @@ namespace UnitsNet.Tests
         protected abstract double MillimetersInOneMeter { get; }
         protected abstract double NanometersInOneMeter { get; }
         protected abstract double NauticalMilesInOneMeter { get; }
+        protected abstract double ShacklesInOneMeter { get; }
         protected abstract double UsSurveyFeetInOneMeter { get; }
         protected abstract double YardsInOneMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimetersTolerance { get { return 1e-5; } }
         protected virtual double DecimetersTolerance { get { return 1e-5; } }
+        protected virtual double FathomsTolerance { get { return 1e-5; } }
         protected virtual double FeetTolerance { get { return 1e-5; } }
         protected virtual double InchesTolerance { get { return 1e-5; } }
         protected virtual double KilometersTolerance { get { return 1e-5; } }
@@ -83,6 +86,7 @@ namespace UnitsNet.Tests
         protected virtual double MillimetersTolerance { get { return 1e-5; } }
         protected virtual double NanometersTolerance { get { return 1e-5; } }
         protected virtual double NauticalMilesTolerance { get { return 1e-5; } }
+        protected virtual double ShacklesTolerance { get { return 1e-5; } }
         protected virtual double UsSurveyFeetTolerance { get { return 1e-5; } }
         protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -93,6 +97,7 @@ namespace UnitsNet.Tests
             Length meter = Length.FromMeters(1);
             Assert.AreEqual(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
             Assert.AreEqual(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
+            Assert.AreEqual(FathomsInOneMeter, meter.Fathoms, FathomsTolerance);
             Assert.AreEqual(FeetInOneMeter, meter.Feet, FeetTolerance);
             Assert.AreEqual(InchesInOneMeter, meter.Inches, InchesTolerance);
             Assert.AreEqual(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
@@ -104,6 +109,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, MillimetersTolerance);
             Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, NanometersTolerance);
             Assert.AreEqual(NauticalMilesInOneMeter, meter.NauticalMiles, NauticalMilesTolerance);
+            Assert.AreEqual(ShacklesInOneMeter, meter.Shackles, ShacklesTolerance);
             Assert.AreEqual(UsSurveyFeetInOneMeter, meter.UsSurveyFeet, UsSurveyFeetTolerance);
             Assert.AreEqual(YardsInOneMeter, meter.Yards, YardsTolerance);
         }
@@ -113,6 +119,7 @@ namespace UnitsNet.Tests
         {
             Assert.AreEqual(1, Length.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Fathom).Fathoms, FathomsTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
@@ -124,6 +131,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
+            Assert.AreEqual(1, Length.From(1, LengthUnit.Shackle).Shackles, ShacklesTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
             Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
         }
@@ -134,6 +142,7 @@ namespace UnitsNet.Tests
             var meter = Length.FromMeters(1);
             Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
             Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
+            Assert.AreEqual(FathomsInOneMeter, meter.As(LengthUnit.Fathom), FathomsTolerance);
             Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
             Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
             Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
@@ -145,6 +154,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), MillimetersTolerance);
             Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), NanometersTolerance);
             Assert.AreEqual(NauticalMilesInOneMeter, meter.As(LengthUnit.NauticalMile), NauticalMilesTolerance);
+            Assert.AreEqual(ShacklesInOneMeter, meter.As(LengthUnit.Shackle), ShacklesTolerance);
             Assert.AreEqual(UsSurveyFeetInOneMeter, meter.As(LengthUnit.UsSurveyFoot), UsSurveyFeetTolerance);
             Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), YardsTolerance);
         }
@@ -155,6 +165,7 @@ namespace UnitsNet.Tests
             Length meter = Length.FromMeters(1);
             Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
             Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
+            Assert.AreEqual(1, Length.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
             Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
             Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
             Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
@@ -166,6 +177,7 @@ namespace UnitsNet.Tests
             Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
             Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
             Assert.AreEqual(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
+            Assert.AreEqual(1, Length.FromShackles(meter.Shackles).Meters, ShacklesTolerance);
             Assert.AreEqual(1, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
             Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
         }
