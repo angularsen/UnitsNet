@@ -1327,7 +1327,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "fathom"),
-                                new AbbreviationsForCulture("ru-RU", "fathom"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Foot,
                             new[]
@@ -1399,7 +1398,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "shackle"),
-                                new AbbreviationsForCulture("ru-RU", "shackle"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.UsSurveyFoot,
                             new[]

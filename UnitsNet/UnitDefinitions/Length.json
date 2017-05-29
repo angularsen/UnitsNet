@@ -138,10 +138,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "fathom" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "fathom" ]
         }
       ]
     },
@@ -153,10 +149,6 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "shackle" ]
-        },
-        {
-          "Culture": "ru-RU",
           "Abbreviations": [ "shackle" ]
         }
       ]
