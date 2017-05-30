@@ -39,7 +39,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         protected string SerializeObject(object obj)
         {
-            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\n", "\n");
+            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
         }
 
         protected T DeserializeObject<T>(string json)
