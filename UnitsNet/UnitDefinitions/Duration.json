@@ -162,6 +162,18 @@
           "Abbreviations": [ "нс" ]
         }
       ]
+    },
+    {
+      "SingularName": "Cycle",
+      "PluralName": "Cycles",
+      "FromUnitToBaseFunc": "x*0.02",
+      "FromBaseToUnitFunc": "x/0.02",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cycle", "cycles" ]
+        }
+      ]
     }
   ]
 }

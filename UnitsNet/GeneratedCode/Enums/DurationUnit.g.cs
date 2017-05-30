@@ -42,6 +42,7 @@ namespace UnitsNet.Units
     public enum DurationUnit
     {
         Undefined = 0,
+        Cycle,
         Day,
         Hour,
         Microsecond,

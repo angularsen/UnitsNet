@@ -53,6 +53,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class DurationTestsBase
     {
+        protected abstract double CyclesInOneSecond { get; }
         protected abstract double DaysInOneSecond { get; }
         protected abstract double HoursInOneSecond { get; }
         protected abstract double MicrosecondsInOneSecond { get; }
@@ -65,6 +66,7 @@ namespace UnitsNet.Tests
         protected abstract double YearsInOneSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CyclesTolerance { get { return 1e-5; } }
         protected virtual double DaysTolerance { get { return 1e-5; } }
         protected virtual double HoursTolerance { get { return 1e-5; } }
         protected virtual double MicrosecondsTolerance { get { return 1e-5; } }
@@ -81,6 +83,7 @@ namespace UnitsNet.Tests
         public void SecondToDurationUnits()
         {
             Duration second = Duration.FromSeconds(1);
+            Assert.AreEqual(CyclesInOneSecond, second.Cycles, CyclesTolerance);
             Assert.AreEqual(DaysInOneSecond, second.Days, DaysTolerance);
             Assert.AreEqual(HoursInOneSecond, second.Hours, HoursTolerance);
             Assert.AreEqual(MicrosecondsInOneSecond, second.Microseconds, MicrosecondsTolerance);
@@ -96,6 +99,7 @@ namespace UnitsNet.Tests
         [Test]
         public void FromValueAndUnit()
         {
+            Assert.AreEqual(1, Duration.From(1, DurationUnit.Cycle).Cycles, CyclesTolerance);
             Assert.AreEqual(1, Duration.From(1, DurationUnit.Day).Days, DaysTolerance);
             Assert.AreEqual(1, Duration.From(1, DurationUnit.Hour).Hours, HoursTolerance);
             Assert.AreEqual(1, Duration.From(1, DurationUnit.Microsecond).Microseconds, MicrosecondsTolerance);
@@ -112,6 +116,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var second = Duration.FromSeconds(1);
+            Assert.AreEqual(CyclesInOneSecond, second.As(DurationUnit.Cycle), CyclesTolerance);
             Assert.AreEqual(DaysInOneSecond, second.As(DurationUnit.Day), DaysTolerance);
             Assert.AreEqual(HoursInOneSecond, second.As(DurationUnit.Hour), HoursTolerance);
             Assert.AreEqual(MicrosecondsInOneSecond, second.As(DurationUnit.Microsecond), MicrosecondsTolerance);
@@ -128,6 +133,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Duration second = Duration.FromSeconds(1);
+            Assert.AreEqual(1, Duration.FromCycles(second.Cycles).Seconds, CyclesTolerance);
             Assert.AreEqual(1, Duration.FromDays(second.Days).Seconds, DaysTolerance);
             Assert.AreEqual(1, Duration.FromHours(second.Hours).Seconds, HoursTolerance);
             Assert.AreEqual(1, Duration.FromMicroseconds(second.Microseconds).Seconds, MicrosecondsTolerance);
