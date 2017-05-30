@@ -68,6 +68,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersPerHourInOneMeterPerSecond => 3600000;
 
+        protected override double InchesPerSecondInOneMeterPerSecond => 39.3700787;
+
+        protected override double YardsPerMinuteInOneMeterPerSecond => 65.6167979;
+
+        protected override double YardsPerSecondInOneMeterPerSecond => 1.09361330;
+
         [Test]
         public void DurationSpeedTimesEqualsLength()
         {
