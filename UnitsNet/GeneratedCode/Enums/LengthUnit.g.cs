@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         Centimeter,
         Decimeter,
+        Fathom,
         Foot,
         Inch,
         Kilometer,
@@ -55,6 +56,7 @@ namespace UnitsNet.Units
         Millimeter,
         Nanometer,
         NauticalMile,
+        Shackle,
         UsSurveyFoot,
         Yard,
     }

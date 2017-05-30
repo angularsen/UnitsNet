@@ -112,6 +112,40 @@ namespace UnitsNet.Extensions.NumberToLength
 
         #endregion
 
+        #region Fathom
+
+        /// <inheritdoc cref="Length.FromFathoms(double)"/>
+        public static Length Fathoms(this int value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double?)"/>
+        public static Length? Fathoms(this int? value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double)"/>
+        public static Length Fathoms(this long value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double?)"/>
+        public static Length? Fathoms(this long? value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double)"/>
+        public static Length Fathoms(this double value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double?)"/>
+        public static Length? Fathoms(this double? value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double)"/>
+        public static Length Fathoms(this float value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double?)"/>
+        public static Length? Fathoms(this float? value) => Length.FromFathoms(value);
+
+        /// <inheritdoc cref="Length.FromFathoms(double)"/>
+        public static Length Fathoms(this decimal value) => Length.FromFathoms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromFathoms(double?)"/>
+        public static Length? Fathoms(this decimal? value) => Length.FromFathoms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Foot
 
         /// <inheritdoc cref="Length.FromFeet(double)"/>
@@ -483,6 +517,40 @@ namespace UnitsNet.Extensions.NumberToLength
 
         /// <inheritdoc cref="Length.FromNauticalMiles(double?)"/>
         public static Length? NauticalMiles(this decimal? value) => Length.FromNauticalMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Shackle
+
+        /// <inheritdoc cref="Length.FromShackles(double)"/>
+        public static Length Shackles(this int value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double?)"/>
+        public static Length? Shackles(this int? value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double)"/>
+        public static Length Shackles(this long value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double?)"/>
+        public static Length? Shackles(this long? value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double)"/>
+        public static Length Shackles(this double value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double?)"/>
+        public static Length? Shackles(this double? value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double)"/>
+        public static Length Shackles(this float value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double?)"/>
+        public static Length? Shackles(this float? value) => Length.FromShackles(value);
+
+        /// <inheritdoc cref="Length.FromShackles(double)"/>
+        public static Length Shackles(this decimal value) => Length.FromShackles(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromShackles(double?)"/>
+        public static Length? Shackles(this decimal? value) => Length.FromShackles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
