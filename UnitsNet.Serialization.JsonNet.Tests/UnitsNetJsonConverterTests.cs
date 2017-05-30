@@ -39,7 +39,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         protected string SerializeObject(object obj)
         {
-            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings);
+            return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
         }
 
         protected T DeserializeObject<T>(string json)
@@ -54,7 +54,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Information_CanSerializeVeryLargeValues()
             {
                 Information i = Information.FromExabytes(1E+9);
-                var expectedJson = "{\r\n  \"Unit\": \"InformationUnit.Bit\",\r\n  \"Value\": 8E+27\r\n}";
+                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Bit\",\n  \"Value\": 8E+27\n}";
 
                 string json = SerializeObject(i);
 
@@ -65,7 +65,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
             {
                 Mass mass = Mass.FromPounds(200);
-                var expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 90.718474\r\n}";
+                var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 90.718474\n}";
 
                 string json = SerializeObject(mass);
 
@@ -76,7 +76,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void NonNullNullableValue_ExpectJsonUnaffected()
             {
                 Mass? nullableMass = Mass.FromKilograms(10);
-                var expectedJson = "{\r\n  \"Unit\": \"MassUnit.Kilogram\",\r\n  \"Value\": 10.0\r\n}";
+                var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 10.0\n}";
 
                 string json = SerializeObject(nullableMass);
 //                Console.WriteLine(json);
@@ -94,16 +94,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                     NonNullableFrequency = Frequency.FromHertz(10)
                 };
                 // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
-                //  on the build server (i.e. the build server uses '\r' instead of '\r\n')
-                string expectedJson = "{\r\n" +
-                                      "  \"NullableFrequency\": {\r\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\r\n" +
-                                      "    \"Value\": 10.0\r\n" +
-                                      "  },\r\n" +
-                                      "  \"NonNullableFrequency\": {\r\n" +
-                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\r\n" +
-                                      "    \"Value\": 10.0\r\n" +
-                                      "  }\r\n" +
+                //  on the build server (i.e. the build server uses '\r' instead of '\n')
+                string expectedJson = "{\n" +
+                                      "  \"NullableFrequency\": {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  },\n" +
+                                      "  \"NonNullableFrequency\": {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  }\n" +
                                       "}";
 
                 string json = SerializeObject(testObj);
@@ -128,7 +128,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
-                var expectedJson = "{\r\n  \"Unit\": \"RatioUnit.DecimalFraction\",\r\n  \"Value\": 0.25\r\n}";
+                var expectedJson = "{\n  \"Unit\": \"RatioUnit.DecimalFraction\",\n  \"Value\": 0.25\n}";
 
                 string json = SerializeObject(ratio);
 
@@ -343,7 +343,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             public int CompareTo(object obj)
             {
-                return Value.CompareTo(obj);
+                return ((IComparable)Value).CompareTo(obj);
             }
         }
 
@@ -352,7 +352,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public int Value { get; set; }
             public int CompareTo(object obj)
             {
-                return Value.CompareTo(obj);
+                return ((IComparable)Value).CompareTo(obj);
             }
 
             // Needed for virfying that the deserialized object is the same, should not affect the serilization code
