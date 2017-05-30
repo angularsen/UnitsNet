@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard1.0;net35</TargetFrameworks>
     <OutputPath>..\Artifacts\Bin\Src\$(Platform)_$(Configuration)</OutputPath>
     <AssemblyName>UnitsNet</AssemblyName>
     <PackageId>UnitsNet</PackageId>

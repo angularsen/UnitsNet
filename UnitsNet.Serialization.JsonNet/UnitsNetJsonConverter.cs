@@ -102,10 +102,16 @@ namespace UnitsNet.Serialization.JsonNet
 
             // Mass.From() method, assume no overloads exist
             var fromMethod = reflectedUnitType
-                .GetTypeInfo()
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
                 .GetDeclaredMethods("From")
                 .Single(m => !m.ReturnType.IsConstructedGenericType);
-            
+#else
+                .GetMethods()
+                .Single(m => m.Name.Equals("From", StringComparison.InvariantCulture) &&
+                    !m.ReturnType.IsGenericType);
+#endif
+
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
             // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
@@ -160,9 +166,16 @@ namespace UnitsNet.Serialization.JsonNet
             FieldInfo baseValueField;
             try
             {
-                baseValueField = unitType.GetTypeInfo()
+                baseValueField = unitType
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
+
                     .DeclaredFields
                     .SingleOrDefault(f => !f.IsPublic && !f.IsStatic);
+#else
+                    .GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                    .SingleOrDefault();
+#endif
             }
             catch (InvalidOperationException)
             {
@@ -182,7 +195,13 @@ namespace UnitsNet.Serialization.JsonNet
             object baseValue = baseValueField.GetValue(value);
 
             // Mass => "MassUnit.Kilogram"
-            PropertyInfo baseUnitPropInfo = unitType.GetTypeInfo().GetDeclaredProperty("BaseUnit");
+            PropertyInfo baseUnitPropInfo = unitType
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
+                    .GetDeclaredProperty("BaseUnit");
+#else
+                .GetProperty("BaseUnit");
+#endif
 
             // Read static BaseUnit property value
             var baseUnitEnumValue = (Enum) baseUnitPropInfo.GetValue(null, null);
@@ -213,7 +232,7 @@ namespace UnitsNet.Serialization.JsonNet
             public double Value { get; [UsedImplicitly] set; }
         }
 
-        #region Can Convert
+#region Can Convert
 
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -256,6 +275,6 @@ namespace UnitsNet.Serialization.JsonNet
             return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
-        #endregion
+#endregion
     }
 }

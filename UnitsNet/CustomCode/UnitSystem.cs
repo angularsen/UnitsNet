@@ -26,7 +26,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
-#if (WINDOWS_UWP || NETSTANDARD1_0 || NETSTANDARD1_4)
+#if (WINDOWS_UWP || NETSTANDARD1_0)
 using System.Reflection;
 #endif
 
@@ -281,7 +281,7 @@ namespace UnitsNet
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
-#if (WINDOWS_UWP || NETSTANDARD1_0 || NETSTANDARD1_4)
+#if (WINDOWS_UWP || NETSTANDARD1_0)
             if (!unitType.GetTypeInfo().IsEnum)
 #else
             if (!unitType.IsEnum)
@@ -451,7 +451,7 @@ namespace UnitsNet
         private static object GetDefault(Type type)
         {
             return type
-#if (WINDOWS_UWP || NETSTANDARD1_0 || NETSTANDARD1_4)
+#if (WINDOWS_UWP || NETSTANDARD1_0)
                 .GetTypeInfo()
 #endif
                 .IsValueType

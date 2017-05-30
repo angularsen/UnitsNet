@@ -1,7 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard1.0;net35</TargetFrameworks>
     <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
     <Version>1.0.0-alpha6</Version>
@@ -13,14 +12,12 @@
     <PackageLicenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
-  </PropertyGroup>
-  <PropertyGroup>
     <OutputPath>..\Artifacts\Bin\Src\$(Platform)_$(Configuration)</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="UnitsNet" Version="3.63.0" />
-    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj"/>
+    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj" />
   </ItemGroup>
 </Project>
