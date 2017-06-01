@@ -301,3 +301,4 @@ $unitCount = ($unitClasses | %{$_.Units.Count} | Measure -Sum).Sum
 Write-Host "`n`n"
 Write-Host -Foreground Yellow "Summary: $unitCount units in $($unitClasses.Count) classes".PadRight($pad)
 Write-Host "`n`n"
+exit 0
