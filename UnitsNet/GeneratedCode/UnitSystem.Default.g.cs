@@ -2022,6 +2022,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "%"),
                             }),
                     }),
+                new UnitLocalization(typeof (RatioChangeRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) RatioChangeRateUnit.DecimalFractionPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", ""),
+                            }),
+                        new CulturesForEnumValue((int) RatioChangeRateUnit.PercentPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "%/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ReactivePowerUnit),
                     new[]
                     {
