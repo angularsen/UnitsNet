@@ -440,6 +440,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within SpecificEnergyUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be SpecificEnergyUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be SpecificEnergyUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (SpecificEnergyUnit)fromUnit).As((SpecificEnergyUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

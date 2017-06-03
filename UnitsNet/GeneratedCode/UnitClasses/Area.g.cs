@@ -580,6 +580,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within AreaUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be AreaUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be AreaUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (AreaUnit)fromUnit).As((AreaUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

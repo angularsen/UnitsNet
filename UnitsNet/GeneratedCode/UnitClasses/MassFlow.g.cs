@@ -580,6 +580,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within MassFlowUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be MassFlowUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be MassFlowUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (MassFlowUnit)fromUnit).As((MassFlowUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

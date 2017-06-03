@@ -512,5 +512,29 @@ namespace UnitsNet.Tests
             return new CultureInfo(cultureName);
 #endif
         }
+
+        [Test]
+        public void TryConvert_RuntimeConversion()
+        {
+            Assert.That(UnitSystem.TryConvert(1, LengthUnit.Meter, LengthUnit.Foot), 
+                Is.EqualTo(Length.FromMeters(1).As(LengthUnit.Foot)));
+
+            Assert.That(UnitSystem.TryConvert(10, PressureUnit.Hectopascal, PressureUnit.PoundForcePerSquareInch), 
+                Is.EqualTo(Pressure.From(10, PressureUnit.Hectopascal).As(PressureUnit.PoundForcePerSquareInch)));
+        }
+
+        [Test]
+        public void Convert_RuntimeConversion()
+        {
+            Assert.That(UnitSystem.Convert(123, MassUnit.Pound, MassUnit.Kilogram), 
+                Is.EqualTo(Mass.From(123, MassUnit.Pound).As(MassUnit.Kilogram)));
+        }
+
+        [Test]
+        public void RuntimeConversionsNotAllowedBetweenUnitClasses()
+        {
+            Assert.That(UnitSystem.TryConvert(1, LengthUnit.Meter, VolumeUnit.CubicMeter), Is.Null);
+            Assert.Throws<ArgumentException>(() => UnitSystem.Convert(1, LengthUnit.Meter, VolumeUnit.CubicMeter));
+        }
     }
 }

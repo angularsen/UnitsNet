@@ -1385,6 +1385,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within DensityUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be DensityUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be DensityUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (DensityUnit)fromUnit).As((DensityUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

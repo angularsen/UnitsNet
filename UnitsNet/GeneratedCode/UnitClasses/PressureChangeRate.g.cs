@@ -300,6 +300,19 @@ namespace UnitsNet
         }
 #endif
 
+		
+        /// <summary>
+		/// Convert a value with unit specified at runtime to another unit within PressureChangeRateUnit.
+		/// This exists to facilitate UnitSystem.Convert
+        /// </summary>
+        /// <param name="value">Unit to convert from, must be PressureChangeRateUnit</param>
+        /// <param name="fromUnit">Unit to convert to, must be PressureChangeRateUnit</param>
+        /// <returns>The converted value.</returns>
+		internal static double DynamicConvert(double value, Enum fromUnit, Enum toUnit)
+		{
+			return From(value, (PressureChangeRateUnit)fromUnit).As((PressureChangeRateUnit)toUnit);
+		}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

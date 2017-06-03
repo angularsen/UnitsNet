@@ -268,7 +268,7 @@ namespace UnitsNet
             // Assuming TUnit is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
             // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
-            int unitValue = Convert.ToInt32(unit);
+            int unitValue = System.Convert.ToInt32(unit);
             Type unitType = typeof(TUnit);
             MapUnitToAbbreviation(unitType, unitValue, abbreviations);
         }
@@ -458,5 +458,42 @@ namespace UnitsNet
                 ? Activator.CreateInstance(type)
                 : null;
         }
+
+#if !(NETSTANDARD1_0)
+        /// <summary>
+        /// Perform a runtime conversion between units within the same unit class.
+        /// This version will throw an exception if no conversion exists between the units specified,
+        /// such as attempting to convert between different unit classes.
+        /// </summary>
+        /// <param name="fromValue">The numeric value of fromUnits to be converted.</param>
+        /// <param name="fromUnit">The unit to convert from. That is, the unit of fromValue.</param>
+        /// <param name="toUnit">The unit to convert to.</param>
+        /// <returns>The numeric value converted to toUnit.</returns>
+        public static double Convert(double fromValue, Enum fromUnit, Enum toUnit)
+        {
+            return DynamicConverter.Convert(fromValue, fromUnit, toUnit);
+        }
+
+        /// <summary>
+        /// Perform a runtime conversion between units within the same unit class.
+        /// This version will return null instead of propagating an exception if no conversion
+        /// exists between the units specified.
+        /// </summary>
+        /// <param name="fromValue">The numeric value of fromUnits to be converted.</param>
+        /// <param name="fromUnit">The unit to convert from. That is, the unit of fromValue.</param>
+        /// <param name="toUnit">The unit to convert to.</param>
+        /// <returns>The numeric value converted to toUnit.</returns>
+        public static double? TryConvert(double fromValue, Enum fromUnit, Enum toUnit)
+        {
+            try
+            {
+                return DynamicConverter.Convert(fromValue, fromUnit, toUnit);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+#endif
     }
 }
