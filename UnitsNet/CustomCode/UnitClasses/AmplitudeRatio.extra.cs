@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet
 {
@@ -29,21 +30,37 @@ namespace UnitsNet
     public partial struct AmplitudeRatio
 #endif
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AmplitudeRatio" /> struct from the specified electric potential
-        ///     referenced to one volt RMS. This assumes both the specified electric potential and the one volt reference have the
-        ///     same
-        ///     resistance.
-        /// </summary>
-        /// <param name="voltage">The electric potential referenced to one volt.</param>
-        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="AmplitudeRatio" /> struct from the specified <see cref="AcPotential" />.
+    /// </summary>
+    /// <param name="acVoltage">AC voltage signal.</param>
+    // Operator overloads not supported in Universal Windows Platform (WinRT Components)
 #if WINDOWS_UWP
         internal
 #else
-        public
+    public
 #endif
-            AmplitudeRatio(ElectricPotential voltage)
-            : this()
+        AmplitudeRatio(AcPotential acVoltage) : this()
+        {
+          // E(dBV) = 20*log10(value(V)/reference(V))
+          _decibelVolts = 20 * Math.Log10(acVoltage.VoltsRMS / 1);
+        }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="AmplitudeRatio" /> struct from the specified <see cref="ElectricPotential" />
+    ///     referenced to one volt RMS. This assumes both the specified electric potential and the one volt reference have the
+    ///     same
+    ///     resistance.
+    /// </summary>
+    /// <param name="voltage">The electric potential referenced to one volt.</param>
+    // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+#if WINDOWS_UWP
+        internal
+#else
+    public
+#endif
+        AmplitudeRatio(ElectricPotential voltage) : this()
         {
             if (voltage.Volts <= 0)
                 throw new ArgumentOutOfRangeException(
@@ -58,14 +75,24 @@ namespace UnitsNet
         ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from an
         ///     <see cref="ElectricPotential" />.
         /// </summary>
-        /// <param name="voltage">The voltage (electric potential) relative to one volt RMS.</param>
+        /// <param name="voltage">The voltage (electric potential) to express as an amplitude.</param>
         public static AmplitudeRatio FromElectricPotential(ElectricPotential voltage)
         {
             return new AmplitudeRatio(voltage);
         }
 
         /// <summary>
-        ///     Gets an <see cref="ElectricPotential" /> from <see cref="AmplitudeRatio" />.
+        ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from an
+        ///     <see cref="AcPotential" />.
+        /// </summary>
+        /// <param name="acVoltage">The voltage (ac potential) signal to express as an amplitude.</param>
+        public static AmplitudeRatio FromAcPotential(AcPotential acVoltage)
+        {
+          return new AmplitudeRatio(acVoltage);
+        }
+
+        /// <summary>
+        ///     Gets an <see cref="ElectricPotential" /> from <see cref="AmplitudeRatio" /> as RMS.
         /// </summary>
         /// <param name="voltageRatio">The voltage ratio to convert to voltage (electric potential).</param>
         public static ElectricPotential ToElectricPotential(AmplitudeRatio voltageRatio)
@@ -73,6 +100,17 @@ namespace UnitsNet
             // E(V) = 1V * 10^(E(dBV)/20)
             return ElectricPotential.FromVolts(Math.Pow(10, voltageRatio._decibelVolts/20));
         }
+
+        /// <summary>
+        ///     Gets an <see cref="AcPotential" /> from <see cref="AmplitudeRatio" />.
+        /// </summary>
+        /// <param name="voltageRatio">The voltage ratio to convert to voltage (ac potential).</param>
+        public static AcPotential ToAcPotential(AmplitudeRatio voltageRatio)
+        {
+          ElectricPotential electricPotential = voltageRatio.ToElectricPotential();
+          return AcPotential.FromVoltsRMS(electricPotential.Volts);
+        }
+
 
         /// <summary>
         ///     Converts a <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.

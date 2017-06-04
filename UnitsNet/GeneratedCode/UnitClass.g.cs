@@ -44,6 +44,7 @@ namespace UnitsNet
     {
         Undefined = 0,
         Acceleration,
+        AcPotential,
         AmplitudeRatio,
         Angle,
         ApparentPower,

@@ -1,0 +1,43 @@
+﻿{
+  "Name": "AcPotential",
+  "BaseUnit": "VoltPeak",
+  "XmlDoc": "A sinusoidally time-varying representation of ElectricPotential.",
+  "Units": [
+     {
+      "SingularName": "VoltPeak",
+      "PluralName": "VoltsPeak",
+      "FromUnitToBaseFunc": "Math.Abs(x)",
+      "FromBaseToUnitFunc": "Math.Abs(x)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Vp" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltPeakToPeak",
+      "PluralName": "VoltsPeakToPeak",
+      "FromUnitToBaseFunc": "Math.Abs(x)/2",
+      "FromBaseToUnitFunc": "2*Math.Abs(x)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Vpp" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "VoltRMS",
+      "PluralName": "VoltsRMS",
+      "FromUnitToBaseFunc": "Math.Sqrt(2)*Math.Abs(x)",
+      "FromBaseToUnitFunc": "Math.Abs(x)/Math.Sqrt(2)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Vrms" ]
+        }
+      ]
+    }
+  ]
+}
