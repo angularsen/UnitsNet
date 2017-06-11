@@ -19,47 +19,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if !WINDOWS_UWP
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.Extensions.NumberToTimeSpan;
 
 namespace UnitsNet.Tests.Extensions.NumberToTimeSpan
 {
-    [TestFixture]
     public class NumberToTimeSpanExtensionsTest
     {
-        [Test]
+        [Fact]
         public void ExtensionMethodsReturnTimeSpanOfSameValue()
         {
-            Assert.AreEqual(TimeSpan.FromDays(1), 1.d());
-            Assert.AreEqual(TimeSpan.FromDays(1), 1L.d());
-            Assert.AreEqual(TimeSpan.FromDays(1), 1f.d());
-            Assert.AreEqual(TimeSpan.FromDays(1), 1d.d());
-            Assert.AreEqual(TimeSpan.FromDays(1), 1m.d());
+            Assert.Equal(TimeSpan.FromDays(1), 1.d());
+            Assert.Equal(TimeSpan.FromDays(1), 1L.d());
+            Assert.Equal(TimeSpan.FromDays(1), 1f.d());
+            Assert.Equal(TimeSpan.FromDays(1), 1d.d());
+            Assert.Equal(TimeSpan.FromDays(1), 1m.d());
 
-            Assert.AreEqual(TimeSpan.FromHours(1), 1.h());
-            Assert.AreEqual(TimeSpan.FromHours(1), 1L.h());
-            Assert.AreEqual(TimeSpan.FromHours(1), 1f.h());
-            Assert.AreEqual(TimeSpan.FromHours(1), 1d.h());
-            Assert.AreEqual(TimeSpan.FromHours(1), 1m.h());
+            Assert.Equal(TimeSpan.FromHours(1), 1.h());
+            Assert.Equal(TimeSpan.FromHours(1), 1L.h());
+            Assert.Equal(TimeSpan.FromHours(1), 1f.h());
+            Assert.Equal(TimeSpan.FromHours(1), 1d.h());
+            Assert.Equal(TimeSpan.FromHours(1), 1m.h());
 
-            Assert.AreEqual(TimeSpan.FromMinutes(1), 1.m());
-            Assert.AreEqual(TimeSpan.FromMinutes(1), 1L.m());
-            Assert.AreEqual(TimeSpan.FromMinutes(1), 1f.m());
-            Assert.AreEqual(TimeSpan.FromMinutes(1), 1d.m());
-            Assert.AreEqual(TimeSpan.FromMinutes(1), 1m.m());
+            Assert.Equal(TimeSpan.FromMinutes(1), 1.m());
+            Assert.Equal(TimeSpan.FromMinutes(1), 1L.m());
+            Assert.Equal(TimeSpan.FromMinutes(1), 1f.m());
+            Assert.Equal(TimeSpan.FromMinutes(1), 1d.m());
+            Assert.Equal(TimeSpan.FromMinutes(1), 1m.m());
 
-            Assert.AreEqual(TimeSpan.FromSeconds(1), 1.s());
-            Assert.AreEqual(TimeSpan.FromSeconds(1), 1L.s());
-            Assert.AreEqual(TimeSpan.FromSeconds(1), 1f.s());
-            Assert.AreEqual(TimeSpan.FromSeconds(1), 1d.s());
-            Assert.AreEqual(TimeSpan.FromSeconds(1), 1m.s());
+            Assert.Equal(TimeSpan.FromSeconds(1), 1.s());
+            Assert.Equal(TimeSpan.FromSeconds(1), 1L.s());
+            Assert.Equal(TimeSpan.FromSeconds(1), 1f.s());
+            Assert.Equal(TimeSpan.FromSeconds(1), 1d.s());
+            Assert.Equal(TimeSpan.FromSeconds(1), 1m.s());
 
-            Assert.AreEqual(TimeSpan.FromMilliseconds(1), 1.ms());
-            Assert.AreEqual(TimeSpan.FromMilliseconds(1), 1L.ms());
-            Assert.AreEqual(TimeSpan.FromMilliseconds(1), 1f.ms());
-            Assert.AreEqual(TimeSpan.FromMilliseconds(1), 1d.ms());
-            Assert.AreEqual(TimeSpan.FromMilliseconds(1), 1m.ms());
+            Assert.Equal(TimeSpan.FromMilliseconds(1), 1.ms());
+            Assert.Equal(TimeSpan.FromMilliseconds(1), 1L.ms());
+            Assert.Equal(TimeSpan.FromMilliseconds(1), 1f.ms());
+            Assert.Equal(TimeSpan.FromMilliseconds(1), 1d.ms());
+            Assert.Equal(TimeSpan.FromMilliseconds(1), 1m.ms());
         }
     }
 }
+#endif

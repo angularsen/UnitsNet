@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -91,25 +91,25 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double OilBarrelsInOneCubicMeter => 6.2898107704321051280928552764086;
 
-        [Test]
+        [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
             Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);
-            Assert.AreEqual(length, Length.FromMeters(3));
+            Assert.Equal(length, Length.FromMeters(3));
         }
 
-        [Test]
+        [Fact]
         public void VolumeDividedByLengthEqualsArea()
         {
             Area area = Volume.FromCubicMeters(15)/Length.FromMeters(5);
-            Assert.AreEqual(area, Area.FromSquareMeters(3));
+            Assert.Equal(area, Area.FromSquareMeters(3));
         }
 
-        [Test]
+        [Fact]
         public void VolumeTimesDensityEqualsMass()
         {
             Mass mass = Volume.FromCubicMeters(2)*Density.FromKilogramsPerCubicMeter(3);
-            Assert.AreEqual(mass, Mass.FromKilograms(6));
+            Assert.Equal(mass, Mass.FromKilograms(6));
         }
     }
 }

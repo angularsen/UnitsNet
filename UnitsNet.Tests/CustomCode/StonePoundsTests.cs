@@ -19,11 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    [TestFixture]
     public class StonePoundsTests
     {
         private const double StoneInOneKilogram = 0.1574731728702698;
@@ -31,21 +30,21 @@ namespace UnitsNet.Tests.CustomCode
         private const double StoneTolerance = 1e-4;
         private const double PoundsTolerance = 1e-4;
 
-        [Test]
+        [Fact]
         public void StonePoundsFrom()
         {
             Mass m = Mass.FromStonePounds(2, 3);
             double expectedKg = 2/StoneInOneKilogram + 3/PoundsInOneKilogram;
-            Assert.AreEqual(expectedKg, m.Kilograms, StoneTolerance);
+            AssertEx.EqualTolerance(expectedKg, m.Kilograms, StoneTolerance);
         }
 
-        [Test]
+        [Fact]
         public void StonePoundsRoundTrip()
         {
             Mass m = Mass.FromStonePounds(2, 3);
             StonePounds stonePounds = m.StonePounds;
-            Assert.AreEqual(2, stonePounds.Stone, StoneTolerance);
-            Assert.AreEqual(3, stonePounds.Pounds, PoundsTolerance);
+            AssertEx.EqualTolerance(2, stonePounds.Stone, StoneTolerance);
+            AssertEx.EqualTolerance(3, stonePounds.Pounds, PoundsTolerance);
         }
     }
 }

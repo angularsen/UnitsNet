@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -33,25 +33,27 @@ namespace UnitsNet.Tests.CustomCode
         protected override void AssertLogarithmicAddition()
         {
             Level v = Level.FromDecibels(40);
-            Assert.AreEqual(43.0102999566, (v + v).Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(43.0102999566, (v + v).Decibels, DecibelsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
             Level v = Level.FromDecibels(40);
-            Assert.AreEqual(49.5424250944, (Level.FromDecibels(50) - v).Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(49.5424250944, (Level.FromDecibels(50) - v).Decibels, DecibelsTolerance);
         }
 
-        [TestCase(0, 1)]
-        [TestCase(-1, 1)]
+        [Theory]
+        [InlineData(0, 1)]
+        [InlineData(-1, 1)]
         public void InvalidQuantity_ExpectArgumentOutOfRangeException(double quantity, double reference)
         {
             // quantity can't be zero or less than zero if reference is positive.
             Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
         }
 
-        [TestCase(1, 0)]
-        [TestCase(10, -1)]
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(10, -1)]
         public void InvalidReference_ExpectArgumentOutOfRangeException(double quantity, double reference)
         {
             // reference can't be zero or less than zero if quantity is postive.

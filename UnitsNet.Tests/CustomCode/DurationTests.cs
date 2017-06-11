@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 using System;
 
 namespace UnitsNet.Tests.CustomCode
@@ -46,166 +46,166 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double YearsInOneSecond => 3.1689e-8;
 
-        [Test]
+        [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
         {
             Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds + 1);
             Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
         }
 
-        [Test]
+        [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesSmallerThanTimeSpanMin()
         {
             Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds - 1);
             Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
         }
 
-        [Test]
+        [Fact]
         public static void ToTimeSpanShouldNotThrowExceptionOnValuesSlightlyLargerThanTimeSpanMin()
         {
             Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds + 1);
             TimeSpan timeSpan = duration.ToTimeSpan();
-            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
+            AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
         }
 
-        [Test]
+        [Fact]
         public static void ToTimeSpanShouldNotThrowExceptionOnValuesSlightlySmallerThanTimeSpanMax()
         {
             Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds - 1);
             TimeSpan timeSpan = duration.ToTimeSpan();
-            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
+            AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
         }
 
-        [Test]
+        [Fact]
         public static void ExplicitCastToTimeSpanShouldReturnSameValue()
         {
             Duration duration = Duration.FromSeconds(60);
             TimeSpan timeSpan = (TimeSpan)duration;
-            Assert.AreEqual(duration.Seconds, timeSpan.TotalSeconds, 1e-10);
+            AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-10);
         }
 
-        [Test]
+        [Fact]
         public static void ExplicitCastToDurationShouldReturnSameValue()
         {
             TimeSpan timeSpan = TimeSpan.FromSeconds(60);
             Duration duration = (Duration)timeSpan;
-            Assert.AreEqual(timeSpan.TotalSeconds, duration.Seconds, 1e-10);
+            AssertEx.EqualTolerance(timeSpan.TotalSeconds, duration.Seconds, 1e-10);
         }
 
-        [Test]
+        [Fact]
         public static void DateTimePlusDurationReturnsDateTime()
         {
             DateTime dateTime = new DateTime(2016, 1, 1);
             Duration oneDay = Duration.FromDays(1);
             DateTime result = dateTime + oneDay;
             DateTime expected = new DateTime(2016, 1, 2);
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [Test]
+        [Fact]
         public static void DateTimeMinusDurationReturnsDateTime()
         {
             DateTime dateTime = new DateTime(2016, 1, 2);
             Duration oneDay = Duration.FromDays(1);
             DateTime result = dateTime - oneDay;
             DateTime expected = new DateTime(2016, 1, 1);
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanLessThanDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(10);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan < duration, "timeSpan should be less than duration");
+            Assert.True(timeSpan < duration, "timeSpan should be less than duration");
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanGreaterThanDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan > duration, "timeSpan should be greater than duration");
+            Assert.True(timeSpan > duration, "timeSpan should be greater than duration");
         }
 
-        [Test]
+        [Fact]
         public static void DurationLessThanTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(10);
-            Assert.IsTrue(duration < timeSpan, "duration should be less than timeSpan");
+            Assert.True(duration < timeSpan, "duration should be less than timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void DurationGreaterThanTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(12);
-            Assert.IsTrue(duration > timeSpan, "duration should be greater than timeSpan");
+            Assert.True(duration > timeSpan, "duration should be greater than timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanLessOrEqualThanDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(10);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan <= duration, "timeSpan should be less than duration");
+            Assert.True(timeSpan <= duration, "timeSpan should be less than duration");
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanGreaterThanOrEqualDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan >= duration, "timeSpan should be greater than duration");
+            Assert.True(timeSpan >= duration, "timeSpan should be greater than duration");
         }
 
-        [Test]
+        [Fact]
         public static void DurationLessThanOrEqualTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(10);
-            Assert.IsTrue(duration <= timeSpan, "duration should be less than timeSpan");
+            Assert.True(duration <= timeSpan, "duration should be less than timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void DurationGreaterThanOrEqualTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(12);
-            Assert.IsTrue(duration >= timeSpan, "duration should be greater than timeSpan");
+            Assert.True(duration >= timeSpan, "duration should be greater than timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void DurationEqualToTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(duration == timeSpan, "duration should be equal to timeSpan");
+            Assert.True(duration == timeSpan, "duration should be equal to timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanEqualToDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(11);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan == duration, "timeSpan should be equal to duration");
+            Assert.True(timeSpan == duration, "timeSpan should be equal to duration");
         }
 
-        [Test]
+        [Fact]
         public static void DurationNotEqualToTimeSpanShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(duration != timeSpan, "duration should not be equal to timeSpan");
+            Assert.True(duration != timeSpan, "duration should not be equal to timeSpan");
         }
 
-        [Test]
+        [Fact]
         public static void TimeSpanNotEqualToDurationShouldReturnCorrectly()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(12);
             Duration duration = Duration.FromHours(11);
-            Assert.IsTrue(timeSpan != duration, "timeSpan should not be equal to duration");
+            Assert.True(timeSpan != duration, "timeSpan should not be equal to duration");
         }
     }
 }

@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Power.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerTestsBase
     {
@@ -89,107 +88,107 @@ namespace UnitsNet.Tests
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void WattToPowerUnits()
         {
             Power watt = Power.FromWatts(1);
-            Assert.AreEqual(BoilerHorsepowerInOneWatt, watt.BoilerHorsepower, BoilerHorsepowerTolerance);
-            Assert.AreEqual(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
-            Assert.AreEqual(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
-            Assert.AreEqual(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
-            Assert.AreEqual(HydraulicHorsepowerInOneWatt, watt.HydraulicHorsepower, HydraulicHorsepowerTolerance);
-            Assert.AreEqual(KilowattsInOneWatt, watt.Kilowatts, KilowattsTolerance);
-            Assert.AreEqual(MechanicalHorsepowerInOneWatt, watt.MechanicalHorsepower, MechanicalHorsepowerTolerance);
-            Assert.AreEqual(MegawattsInOneWatt, watt.Megawatts, MegawattsTolerance);
-            Assert.AreEqual(MetricHorsepowerInOneWatt, watt.MetricHorsepower, MetricHorsepowerTolerance);
-            Assert.AreEqual(MicrowattsInOneWatt, watt.Microwatts, MicrowattsTolerance);
-            Assert.AreEqual(MilliwattsInOneWatt, watt.Milliwatts, MilliwattsTolerance);
-            Assert.AreEqual(NanowattsInOneWatt, watt.Nanowatts, NanowattsTolerance);
-            Assert.AreEqual(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
-            Assert.AreEqual(PicowattsInOneWatt, watt.Picowatts, PicowattsTolerance);
-            Assert.AreEqual(TerawattsInOneWatt, watt.Terawatts, TerawattsTolerance);
-            Assert.AreEqual(WattsInOneWatt, watt.Watts, WattsTolerance);
+            AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.BoilerHorsepower, BoilerHorsepowerTolerance);
+            AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
+            AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.HydraulicHorsepower, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(KilowattsInOneWatt, watt.Kilowatts, KilowattsTolerance);
+            AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.MechanicalHorsepower, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(MegawattsInOneWatt, watt.Megawatts, MegawattsTolerance);
+            AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.MetricHorsepower, MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.Microwatts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.Milliwatts, MilliwattsTolerance);
+            AssertEx.EqualTolerance(NanowattsInOneWatt, watt.Nanowatts, NanowattsTolerance);
+            AssertEx.EqualTolerance(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
+            AssertEx.EqualTolerance(PicowattsInOneWatt, watt.Picowatts, PicowattsTolerance);
+            AssertEx.EqualTolerance(TerawattsInOneWatt, watt.Terawatts, TerawattsTolerance);
+            AssertEx.EqualTolerance(WattsInOneWatt, watt.Watts, WattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Power.From(1, PowerUnit.BoilerHorsepower).BoilerHorsepower, BoilerHorsepowerTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.ElectricalHorsepower).ElectricalHorsepower, ElectricalHorsepowerTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Femtowatt).Femtowatts, FemtowattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Gigawatt).Gigawatts, GigawattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.HydraulicHorsepower).HydraulicHorsepower, HydraulicHorsepowerTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Kilowatt).Kilowatts, KilowattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.MechanicalHorsepower).MechanicalHorsepower, MechanicalHorsepowerTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Megawatt).Megawatts, MegawattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.MetricHorsepower).MetricHorsepower, MetricHorsepowerTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Microwatt).Microwatts, MicrowattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Milliwatt).Milliwatts, MilliwattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Nanowatt).Nanowatts, NanowattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Petawatt).Petawatts, PetawattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Picowatt).Picowatts, PicowattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Terawatt).Terawatts, TerawattsTolerance);
-            Assert.AreEqual(1, Power.From(1, PowerUnit.Watt).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.BoilerHorsepower).BoilerHorsepower, BoilerHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.ElectricalHorsepower).ElectricalHorsepower, ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Femtowatt).Femtowatts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Gigawatt).Gigawatts, GigawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.HydraulicHorsepower).HydraulicHorsepower, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Kilowatt).Kilowatts, KilowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MechanicalHorsepower).MechanicalHorsepower, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Megawatt).Megawatts, MegawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.MetricHorsepower).MetricHorsepower, MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Microwatt).Microwatts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Milliwatt).Milliwatts, MilliwattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Nanowatt).Nanowatts, NanowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Petawatt).Petawatts, PetawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Picowatt).Picowatts, PicowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Terawatt).Terawatts, TerawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Watt).Watts, WattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var watt = Power.FromWatts(1);
-            Assert.AreEqual(BoilerHorsepowerInOneWatt, watt.As(PowerUnit.BoilerHorsepower), BoilerHorsepowerTolerance);
-            Assert.AreEqual(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
-            Assert.AreEqual(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
-            Assert.AreEqual(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
-            Assert.AreEqual(HydraulicHorsepowerInOneWatt, watt.As(PowerUnit.HydraulicHorsepower), HydraulicHorsepowerTolerance);
-            Assert.AreEqual(KilowattsInOneWatt, watt.As(PowerUnit.Kilowatt), KilowattsTolerance);
-            Assert.AreEqual(MechanicalHorsepowerInOneWatt, watt.As(PowerUnit.MechanicalHorsepower), MechanicalHorsepowerTolerance);
-            Assert.AreEqual(MegawattsInOneWatt, watt.As(PowerUnit.Megawatt), MegawattsTolerance);
-            Assert.AreEqual(MetricHorsepowerInOneWatt, watt.As(PowerUnit.MetricHorsepower), MetricHorsepowerTolerance);
-            Assert.AreEqual(MicrowattsInOneWatt, watt.As(PowerUnit.Microwatt), MicrowattsTolerance);
-            Assert.AreEqual(MilliwattsInOneWatt, watt.As(PowerUnit.Milliwatt), MilliwattsTolerance);
-            Assert.AreEqual(NanowattsInOneWatt, watt.As(PowerUnit.Nanowatt), NanowattsTolerance);
-            Assert.AreEqual(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
-            Assert.AreEqual(PicowattsInOneWatt, watt.As(PowerUnit.Picowatt), PicowattsTolerance);
-            Assert.AreEqual(TerawattsInOneWatt, watt.As(PowerUnit.Terawatt), TerawattsTolerance);
-            Assert.AreEqual(WattsInOneWatt, watt.As(PowerUnit.Watt), WattsTolerance);
+            AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.As(PowerUnit.BoilerHorsepower), BoilerHorsepowerTolerance);
+            AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
+            AssertEx.EqualTolerance(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
+            AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.As(PowerUnit.HydraulicHorsepower), HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(KilowattsInOneWatt, watt.As(PowerUnit.Kilowatt), KilowattsTolerance);
+            AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.As(PowerUnit.MechanicalHorsepower), MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(MegawattsInOneWatt, watt.As(PowerUnit.Megawatt), MegawattsTolerance);
+            AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.As(PowerUnit.MetricHorsepower), MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.As(PowerUnit.Microwatt), MicrowattsTolerance);
+            AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.As(PowerUnit.Milliwatt), MilliwattsTolerance);
+            AssertEx.EqualTolerance(NanowattsInOneWatt, watt.As(PowerUnit.Nanowatt), NanowattsTolerance);
+            AssertEx.EqualTolerance(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
+            AssertEx.EqualTolerance(PicowattsInOneWatt, watt.As(PowerUnit.Picowatt), PicowattsTolerance);
+            AssertEx.EqualTolerance(TerawattsInOneWatt, watt.As(PowerUnit.Terawatt), TerawattsTolerance);
+            AssertEx.EqualTolerance(WattsInOneWatt, watt.As(PowerUnit.Watt), WattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Power watt = Power.FromWatts(1);
-            Assert.AreEqual(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
-            Assert.AreEqual(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
-            Assert.AreEqual(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
-            Assert.AreEqual(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
-            Assert.AreEqual(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
-            Assert.AreEqual(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
-            Assert.AreEqual(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
-            Assert.AreEqual(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
-            Assert.AreEqual(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
-            Assert.AreEqual(1, Power.FromMicrowatts(watt.Microwatts).Watts, MicrowattsTolerance);
-            Assert.AreEqual(1, Power.FromMilliwatts(watt.Milliwatts).Watts, MilliwattsTolerance);
-            Assert.AreEqual(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
-            Assert.AreEqual(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
-            Assert.AreEqual(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
-            Assert.AreEqual(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
-            Assert.AreEqual(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMicrowatts(watt.Microwatts).Watts, MicrowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMilliwatts(watt.Milliwatts).Watts, MilliwattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Power v = Power.FromWatts(1);
-            Assert.AreEqual(-1, -v.Watts, WattsTolerance);
-            Assert.AreEqual(2, (Power.FromWatts(3)-v).Watts, WattsTolerance);
-            Assert.AreEqual(2, (v + v).Watts, WattsTolerance);
-            Assert.AreEqual(10, (v*10).Watts, WattsTolerance);
-            Assert.AreEqual(10, (10*v).Watts, WattsTolerance);
-            Assert.AreEqual(2, (Power.FromWatts(10)/5).Watts, WattsTolerance);
-            Assert.AreEqual(2, Power.FromWatts(10)/Power.FromWatts(5), WattsTolerance);
+            AssertEx.EqualTolerance(-1, -v.Watts, WattsTolerance);
+            AssertEx.EqualTolerance(2, (Power.FromWatts(3)-v).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(2, (Power.FromWatts(10)/5).Watts, WattsTolerance);
+            AssertEx.EqualTolerance(2, Power.FromWatts(10)/Power.FromWatts(5), WattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             Power oneWatt = Power.FromWatts(1);
@@ -206,35 +205,31 @@ namespace UnitsNet.Tests
             Assert.False(twoWatts <= oneWatt);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Power watt = Power.FromWatts(1);
-            Assert.AreEqual(0, watt.CompareTo(watt));
-            Assert.Greater(watt.CompareTo(Power.Zero), 0);
-            Assert.Less(Power.Zero.CompareTo(watt), 0);
+            Assert.Equal(0, watt.CompareTo(watt));
+            Assert.True(watt.CompareTo(Power.Zero) > 0);
+            Assert.True(Power.Zero.CompareTo(watt) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Power watt = Power.FromWatts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            watt.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => watt.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Power watt = Power.FromWatts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            watt.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => watt.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Power a = Power.FromWatts(1);
@@ -249,26 +244,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Power v = Power.FromWatts(1);
-            Assert.IsTrue(v.Equals(Power.FromWatts(1)));
-            Assert.IsFalse(v.Equals(Power.Zero));
+            Assert.True(v.Equals(Power.FromWatts(1)));
+            Assert.False(v.Equals(Power.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Power watt = Power.FromWatts(1);
-            Assert.IsFalse(watt.Equals(new object()));
+            Assert.False(watt.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Power watt = Power.FromWatts(1);
-            Assert.IsFalse(watt.Equals(null));
+            Assert.False(watt.Equals(null));
         }
     }
 }

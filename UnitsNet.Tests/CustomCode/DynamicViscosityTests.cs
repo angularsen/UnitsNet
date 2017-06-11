@@ -21,7 +21,7 @@
 
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -33,11 +33,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PascalSecondsInOneNewtonSecondPerMeterSquared => 1;
         protected override double PoiseInOneNewtonSecondPerMeterSquared => 10;
 
-        [Test]
+        [Fact]
         public static void DynamicViscosityDividedByDensityEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(10) / Density.FromKilogramsPerCubicMeter(2);
-            Assert.AreEqual(kinematicViscosity, KinematicViscosity.FromSquareMetersPerSecond(5));
+            Assert.Equal(kinematicViscosity, KinematicViscosity.FromSquareMetersPerSecond(5));
         }
     }
 }

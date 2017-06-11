@@ -40,7 +40,7 @@
 // THE SOFTWARE.
 
 
-using NUnit.Framework;
+using Xunit;
 using System;
 using UnitsNet.CustomCode.Extensions;
 
@@ -57,22 +57,22 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
         protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
 
-        [Test]
+        [Fact]
         public void ExpectDensityConvertedToMolarityCorrectly()
         {
             var density = Density.FromKilogramsPerCubicMeter(60.02);
             var mw = Mass.FromGrams(58.443); 
             var molarity = Molarity.FromDensity(density, mw).MolesPerCubicMeter;
-            Assert.AreEqual(1026.98355, molarity, MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1026.98355, molarity, MolesPerCubicMeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ExpectMolarityConvertedToDensityCorrectly()
         {
             var molarity = Molarity.FromMolesPerLiter(1.02698355);
             var mw = Mass.FromGrams(58.443);
             var density = molarity.ToDensity(mw).KilogramsPerCubicMeter;
-            Assert.AreEqual(60.02, density, MolesPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(60.02, density, MolesPerCubicMeterTolerance);
         }
 
     }

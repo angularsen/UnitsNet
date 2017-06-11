@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Pressure.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PressureTestsBase
     {
@@ -131,191 +130,191 @@ namespace UnitsNet.Tests
         protected virtual double TorrsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void PascalToPressureUnits()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.AreEqual(AtmospheresInOnePascal, pascal.Atmospheres, AtmospheresTolerance);
-            Assert.AreEqual(BarsInOnePascal, pascal.Bars, BarsTolerance);
-            Assert.AreEqual(CentibarsInOnePascal, pascal.Centibars, CentibarsTolerance);
-            Assert.AreEqual(DecapascalsInOnePascal, pascal.Decapascals, DecapascalsTolerance);
-            Assert.AreEqual(DecibarsInOnePascal, pascal.Decibars, DecibarsTolerance);
-            Assert.AreEqual(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
-            Assert.AreEqual(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
-            Assert.AreEqual(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
-            Assert.AreEqual(InchesOfMercuryInOnePascal, pascal.InchesOfMercury, InchesOfMercuryTolerance);
-            Assert.AreEqual(KilobarsInOnePascal, pascal.Kilobars, KilobarsTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareCentimeterInOnePascal, pascal.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareMeterInOnePascal, pascal.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareMillimeterInOnePascal, pascal.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareCentimeterInOnePascal, pascal.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareMeterInOnePascal, pascal.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareMillimeterInOnePascal, pascal.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(KilopascalsInOnePascal, pascal.Kilopascals, KilopascalsTolerance);
-            Assert.AreEqual(KilopoundsForcePerSquareFootInOnePascal, pascal.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(KilopoundsForcePerSquareInchInOnePascal, pascal.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(MegabarsInOnePascal, pascal.Megabars, MegabarsTolerance);
-            Assert.AreEqual(MegapascalsInOnePascal, pascal.Megapascals, MegapascalsTolerance);
-            Assert.AreEqual(MetersOfHeadInOnePascal, pascal.MetersOfHead, MetersOfHeadTolerance);
-            Assert.AreEqual(MicropascalsInOnePascal, pascal.Micropascals, MicropascalsTolerance);
-            Assert.AreEqual(MillibarsInOnePascal, pascal.Millibars, MillibarsTolerance);
-            Assert.AreEqual(MillimetersOfMercuryInOnePascal, pascal.MillimetersOfMercury, MillimetersOfMercuryTolerance);
-            Assert.AreEqual(NewtonsPerSquareCentimeterInOnePascal, pascal.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(NewtonsPerSquareMeterInOnePascal, pascal.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(NewtonsPerSquareMillimeterInOnePascal, pascal.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(PascalsInOnePascal, pascal.Pascals, PascalsTolerance);
-            Assert.AreEqual(PoundsForcePerSquareFootInOnePascal, pascal.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(PoundsForcePerSquareInchInOnePascal, pascal.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(PsiInOnePascal, pascal.Psi, PsiTolerance);
-            Assert.AreEqual(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
-            Assert.AreEqual(TonnesForcePerSquareCentimeterInOnePascal, pascal.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(TonnesForcePerSquareMeterInOnePascal, pascal.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
-            Assert.AreEqual(TonnesForcePerSquareMillimeterInOnePascal, pascal.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(TorrsInOnePascal, pascal.Torrs, TorrsTolerance);
+            AssertEx.EqualTolerance(AtmospheresInOnePascal, pascal.Atmospheres, AtmospheresTolerance);
+            AssertEx.EqualTolerance(BarsInOnePascal, pascal.Bars, BarsTolerance);
+            AssertEx.EqualTolerance(CentibarsInOnePascal, pascal.Centibars, CentibarsTolerance);
+            AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.Decapascals, DecapascalsTolerance);
+            AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.Decibars, DecibarsTolerance);
+            AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
+            AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
+            AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(InchesOfMercuryInOnePascal, pascal.InchesOfMercury, InchesOfMercuryTolerance);
+            AssertEx.EqualTolerance(KilobarsInOnePascal, pascal.Kilobars, KilobarsTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareCentimeterInOnePascal, pascal.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareMeterInOnePascal, pascal.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareMillimeterInOnePascal, pascal.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareCentimeterInOnePascal, pascal.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareMeterInOnePascal, pascal.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareMillimeterInOnePascal, pascal.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(KilopascalsInOnePascal, pascal.Kilopascals, KilopascalsTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSquareFootInOnePascal, pascal.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSquareInchInOnePascal, pascal.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.Megabars, MegabarsTolerance);
+            AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.Megapascals, MegapascalsTolerance);
+            AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.MetersOfHead, MetersOfHeadTolerance);
+            AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.Micropascals, MicropascalsTolerance);
+            AssertEx.EqualTolerance(MillibarsInOnePascal, pascal.Millibars, MillibarsTolerance);
+            AssertEx.EqualTolerance(MillimetersOfMercuryInOnePascal, pascal.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareCentimeterInOnePascal, pascal.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareMeterInOnePascal, pascal.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareMillimeterInOnePascal, pascal.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(PascalsInOnePascal, pascal.Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(PsiInOnePascal, pascal.Psi, PsiTolerance);
+            AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareMeterInOnePascal, pascal.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareMillimeterInOnePascal, pascal.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(TorrsInOnePascal, pascal.Torrs, TorrsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Atmosphere).Atmospheres, AtmospheresTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Bar).Bars, BarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Centibar).Centibars, CentibarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Decapascal).Decapascals, DecapascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Decibar).Decibars, DecibarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.InchOfMercury).InchesOfMercury, InchesOfMercuryTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Kilobar).Kilobars, KilobarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter).KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter).KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter).KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter).KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter).KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter).KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Kilopascal).Kilopascals, KilopascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot).KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch).KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Megabar).Megabars, MegabarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Megapascal).Megapascals, MegapascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.MeterOfHead).MetersOfHead, MetersOfHeadTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Micropascal).Micropascals, MicropascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Millibar).Millibars, MillibarsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.MillimeterOfMercury).MillimetersOfMercury, MillimetersOfMercuryTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter).NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareMeter).NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter).NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Pascal).Pascals, PascalsTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.PoundForcePerSquareFoot).PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.PoundForcePerSquareInch).PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Psi).Psi, PsiTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.TechnicalAtmosphere).TechnicalAtmospheres, TechnicalAtmospheresTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter).TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMeter).TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter).TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.From(1, PressureUnit.Torr).Torrs, TorrsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Atmosphere).Atmospheres, AtmospheresTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Bar).Bars, BarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Centibar).Centibars, CentibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Decapascal).Decapascals, DecapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Decibar).Decibars, DecibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.InchOfMercury).InchesOfMercury, InchesOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Kilobar).Kilobars, KilobarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter).KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareMeter).KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareMillimeter).KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareCentimeter).KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareMeter).KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilonewtonPerSquareMillimeter).KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Kilopascal).Kilopascals, KilopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot).KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch).KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Megabar).Megabars, MegabarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Megapascal).Megapascals, MegapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.MeterOfHead).MetersOfHead, MetersOfHeadTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Micropascal).Micropascals, MicropascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Millibar).Millibars, MillibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.MillimeterOfMercury).MillimetersOfMercury, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter).NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareMeter).NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter).NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Pascal).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareFoot).PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareInch).PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Psi).Psi, PsiTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TechnicalAtmosphere).TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter).TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMeter).TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter).TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Torr).Torrs, TorrsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var pascal = Pressure.FromPascals(1);
-            Assert.AreEqual(AtmospheresInOnePascal, pascal.As(PressureUnit.Atmosphere), AtmospheresTolerance);
-            Assert.AreEqual(BarsInOnePascal, pascal.As(PressureUnit.Bar), BarsTolerance);
-            Assert.AreEqual(CentibarsInOnePascal, pascal.As(PressureUnit.Centibar), CentibarsTolerance);
-            Assert.AreEqual(DecapascalsInOnePascal, pascal.As(PressureUnit.Decapascal), DecapascalsTolerance);
-            Assert.AreEqual(DecibarsInOnePascal, pascal.As(PressureUnit.Decibar), DecibarsTolerance);
-            Assert.AreEqual(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
-            Assert.AreEqual(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
-            Assert.AreEqual(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
-            Assert.AreEqual(InchesOfMercuryInOnePascal, pascal.As(PressureUnit.InchOfMercury), InchesOfMercuryTolerance);
-            Assert.AreEqual(KilobarsInOnePascal, pascal.As(PressureUnit.Kilobar), KilobarsTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareCentimeter), KilogramsForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareMeter), KilogramsForcePerSquareMeterTolerance);
-            Assert.AreEqual(KilogramsForcePerSquareMillimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareMillimeter), KilogramsForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareCentimeter), KilonewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareMeter), KilonewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(KilonewtonsPerSquareMillimeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareMillimeter), KilonewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(KilopascalsInOnePascal, pascal.As(PressureUnit.Kilopascal), KilopascalsTolerance);
-            Assert.AreEqual(KilopoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareFoot), KilopoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(KilopoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareInch), KilopoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(MegabarsInOnePascal, pascal.As(PressureUnit.Megabar), MegabarsTolerance);
-            Assert.AreEqual(MegapascalsInOnePascal, pascal.As(PressureUnit.Megapascal), MegapascalsTolerance);
-            Assert.AreEqual(MetersOfHeadInOnePascal, pascal.As(PressureUnit.MeterOfHead), MetersOfHeadTolerance);
-            Assert.AreEqual(MicropascalsInOnePascal, pascal.As(PressureUnit.Micropascal), MicropascalsTolerance);
-            Assert.AreEqual(MillibarsInOnePascal, pascal.As(PressureUnit.Millibar), MillibarsTolerance);
-            Assert.AreEqual(MillimetersOfMercuryInOnePascal, pascal.As(PressureUnit.MillimeterOfMercury), MillimetersOfMercuryTolerance);
-            Assert.AreEqual(NewtonsPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareCentimeter), NewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(NewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMeter), NewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(NewtonsPerSquareMillimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMillimeter), NewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(PascalsInOnePascal, pascal.As(PressureUnit.Pascal), PascalsTolerance);
-            Assert.AreEqual(PoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareFoot), PoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(PoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareInch), PoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(PsiInOnePascal, pascal.As(PressureUnit.Psi), PsiTolerance);
-            Assert.AreEqual(TechnicalAtmospheresInOnePascal, pascal.As(PressureUnit.TechnicalAtmosphere), TechnicalAtmospheresTolerance);
-            Assert.AreEqual(TonnesForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareCentimeter), TonnesForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(TonnesForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareMeter), TonnesForcePerSquareMeterTolerance);
-            Assert.AreEqual(TonnesForcePerSquareMillimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareMillimeter), TonnesForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(TorrsInOnePascal, pascal.As(PressureUnit.Torr), TorrsTolerance);
+            AssertEx.EqualTolerance(AtmospheresInOnePascal, pascal.As(PressureUnit.Atmosphere), AtmospheresTolerance);
+            AssertEx.EqualTolerance(BarsInOnePascal, pascal.As(PressureUnit.Bar), BarsTolerance);
+            AssertEx.EqualTolerance(CentibarsInOnePascal, pascal.As(PressureUnit.Centibar), CentibarsTolerance);
+            AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.As(PressureUnit.Decapascal), DecapascalsTolerance);
+            AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.As(PressureUnit.Decibar), DecibarsTolerance);
+            AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
+            AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
+            AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
+            AssertEx.EqualTolerance(InchesOfMercuryInOnePascal, pascal.As(PressureUnit.InchOfMercury), InchesOfMercuryTolerance);
+            AssertEx.EqualTolerance(KilobarsInOnePascal, pascal.As(PressureUnit.Kilobar), KilobarsTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareCentimeter), KilogramsForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareMeter), KilogramsForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerSquareMillimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareMillimeter), KilogramsForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareCentimeter), KilonewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareMeter), KilonewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerSquareMillimeterInOnePascal, pascal.As(PressureUnit.KilonewtonPerSquareMillimeter), KilonewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(KilopascalsInOnePascal, pascal.As(PressureUnit.Kilopascal), KilopascalsTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareFoot), KilopoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareInch), KilopoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.As(PressureUnit.Megabar), MegabarsTolerance);
+            AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.As(PressureUnit.Megapascal), MegapascalsTolerance);
+            AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.As(PressureUnit.MeterOfHead), MetersOfHeadTolerance);
+            AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.As(PressureUnit.Micropascal), MicropascalsTolerance);
+            AssertEx.EqualTolerance(MillibarsInOnePascal, pascal.As(PressureUnit.Millibar), MillibarsTolerance);
+            AssertEx.EqualTolerance(MillimetersOfMercuryInOnePascal, pascal.As(PressureUnit.MillimeterOfMercury), MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareCentimeter), NewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMeter), NewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerSquareMillimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMillimeter), NewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(PascalsInOnePascal, pascal.As(PressureUnit.Pascal), PascalsTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareFoot), PoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareInch), PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(PsiInOnePascal, pascal.As(PressureUnit.Psi), PsiTolerance);
+            AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.As(PressureUnit.TechnicalAtmosphere), TechnicalAtmospheresTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareCentimeter), TonnesForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareMeter), TonnesForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerSquareMillimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareMillimeter), TonnesForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(TorrsInOnePascal, pascal.As(PressureUnit.Torr), TorrsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.AreEqual(1, Pressure.FromAtmospheres(pascal.Atmospheres).Pascals, AtmospheresTolerance);
-            Assert.AreEqual(1, Pressure.FromBars(pascal.Bars).Pascals, BarsTolerance);
-            Assert.AreEqual(1, Pressure.FromCentibars(pascal.Centibars).Pascals, CentibarsTolerance);
-            Assert.AreEqual(1, Pressure.FromDecapascals(pascal.Decapascals).Pascals, DecapascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromDecibars(pascal.Decibars).Pascals, DecibarsTolerance);
-            Assert.AreEqual(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
-            Assert.AreEqual(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromInchesOfMercury(pascal.InchesOfMercury).Pascals, InchesOfMercuryTolerance);
-            Assert.AreEqual(1, Pressure.FromKilobars(pascal.Kilobars).Pascals, KilobarsTolerance);
-            Assert.AreEqual(1, Pressure.FromKilogramsForcePerSquareCentimeter(pascal.KilogramsForcePerSquareCentimeter).Pascals, KilogramsForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilogramsForcePerSquareMeter(pascal.KilogramsForcePerSquareMeter).Pascals, KilogramsForcePerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilogramsForcePerSquareMillimeter(pascal.KilogramsForcePerSquareMillimeter).Pascals, KilogramsForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilonewtonsPerSquareCentimeter(pascal.KilonewtonsPerSquareCentimeter).Pascals, KilonewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilonewtonsPerSquareMeter(pascal.KilonewtonsPerSquareMeter).Pascals, KilonewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilonewtonsPerSquareMillimeter(pascal.KilonewtonsPerSquareMillimeter).Pascals, KilonewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromKilopascals(pascal.Kilopascals).Pascals, KilopascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromKilopoundsForcePerSquareFoot(pascal.KilopoundsForcePerSquareFoot).Pascals, KilopoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(1, Pressure.FromKilopoundsForcePerSquareInch(pascal.KilopoundsForcePerSquareInch).Pascals, KilopoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(1, Pressure.FromMegabars(pascal.Megabars).Pascals, MegabarsTolerance);
-            Assert.AreEqual(1, Pressure.FromMegapascals(pascal.Megapascals).Pascals, MegapascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromMetersOfHead(pascal.MetersOfHead).Pascals, MetersOfHeadTolerance);
-            Assert.AreEqual(1, Pressure.FromMicropascals(pascal.Micropascals).Pascals, MicropascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromMillibars(pascal.Millibars).Pascals, MillibarsTolerance);
-            Assert.AreEqual(1, Pressure.FromMillimetersOfMercury(pascal.MillimetersOfMercury).Pascals, MillimetersOfMercuryTolerance);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareCentimeter(pascal.NewtonsPerSquareCentimeter).Pascals, NewtonsPerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMeter(pascal.NewtonsPerSquareMeter).Pascals, NewtonsPerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.FromNewtonsPerSquareMillimeter(pascal.NewtonsPerSquareMillimeter).Pascals, NewtonsPerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromPascals(pascal.Pascals).Pascals, PascalsTolerance);
-            Assert.AreEqual(1, Pressure.FromPoundsForcePerSquareFoot(pascal.PoundsForcePerSquareFoot).Pascals, PoundsForcePerSquareFootTolerance);
-            Assert.AreEqual(1, Pressure.FromPoundsForcePerSquareInch(pascal.PoundsForcePerSquareInch).Pascals, PoundsForcePerSquareInchTolerance);
-            Assert.AreEqual(1, Pressure.FromPsi(pascal.Psi).Pascals, PsiTolerance);
-            Assert.AreEqual(1, Pressure.FromTechnicalAtmospheres(pascal.TechnicalAtmospheres).Pascals, TechnicalAtmospheresTolerance);
-            Assert.AreEqual(1, Pressure.FromTonnesForcePerSquareCentimeter(pascal.TonnesForcePerSquareCentimeter).Pascals, TonnesForcePerSquareCentimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromTonnesForcePerSquareMeter(pascal.TonnesForcePerSquareMeter).Pascals, TonnesForcePerSquareMeterTolerance);
-            Assert.AreEqual(1, Pressure.FromTonnesForcePerSquareMillimeter(pascal.TonnesForcePerSquareMillimeter).Pascals, TonnesForcePerSquareMillimeterTolerance);
-            Assert.AreEqual(1, Pressure.FromTorrs(pascal.Torrs).Pascals, TorrsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromAtmospheres(pascal.Atmospheres).Pascals, AtmospheresTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromBars(pascal.Bars).Pascals, BarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromCentibars(pascal.Centibars).Pascals, CentibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromDecapascals(pascal.Decapascals).Pascals, DecapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromDecibars(pascal.Decibars).Pascals, DecibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromInchesOfMercury(pascal.InchesOfMercury).Pascals, InchesOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilobars(pascal.Kilobars).Pascals, KilobarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilogramsForcePerSquareCentimeter(pascal.KilogramsForcePerSquareCentimeter).Pascals, KilogramsForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilogramsForcePerSquareMeter(pascal.KilogramsForcePerSquareMeter).Pascals, KilogramsForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilogramsForcePerSquareMillimeter(pascal.KilogramsForcePerSquareMillimeter).Pascals, KilogramsForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilonewtonsPerSquareCentimeter(pascal.KilonewtonsPerSquareCentimeter).Pascals, KilonewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilonewtonsPerSquareMeter(pascal.KilonewtonsPerSquareMeter).Pascals, KilonewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilonewtonsPerSquareMillimeter(pascal.KilonewtonsPerSquareMillimeter).Pascals, KilonewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilopascals(pascal.Kilopascals).Pascals, KilopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilopoundsForcePerSquareFoot(pascal.KilopoundsForcePerSquareFoot).Pascals, KilopoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromKilopoundsForcePerSquareInch(pascal.KilopoundsForcePerSquareInch).Pascals, KilopoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMegabars(pascal.Megabars).Pascals, MegabarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMegapascals(pascal.Megapascals).Pascals, MegapascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMetersOfHead(pascal.MetersOfHead).Pascals, MetersOfHeadTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMicropascals(pascal.Micropascals).Pascals, MicropascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMillibars(pascal.Millibars).Pascals, MillibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMillimetersOfMercury(pascal.MillimetersOfMercury).Pascals, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareCentimeter(pascal.NewtonsPerSquareCentimeter).Pascals, NewtonsPerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareMeter(pascal.NewtonsPerSquareMeter).Pascals, NewtonsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareMillimeter(pascal.NewtonsPerSquareMillimeter).Pascals, NewtonsPerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromPascals(pascal.Pascals).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareFoot(pascal.PoundsForcePerSquareFoot).Pascals, PoundsForcePerSquareFootTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareInch(pascal.PoundsForcePerSquareInch).Pascals, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromPsi(pascal.Psi).Pascals, PsiTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromTechnicalAtmospheres(pascal.TechnicalAtmospheres).Pascals, TechnicalAtmospheresTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareCentimeter(pascal.TonnesForcePerSquareCentimeter).Pascals, TonnesForcePerSquareCentimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareMeter(pascal.TonnesForcePerSquareMeter).Pascals, TonnesForcePerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareMillimeter(pascal.TonnesForcePerSquareMillimeter).Pascals, TonnesForcePerSquareMillimeterTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromTorrs(pascal.Torrs).Pascals, TorrsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Pressure v = Pressure.FromPascals(1);
-            Assert.AreEqual(-1, -v.Pascals, PascalsTolerance);
-            Assert.AreEqual(2, (Pressure.FromPascals(3)-v).Pascals, PascalsTolerance);
-            Assert.AreEqual(2, (v + v).Pascals, PascalsTolerance);
-            Assert.AreEqual(10, (v*10).Pascals, PascalsTolerance);
-            Assert.AreEqual(10, (10*v).Pascals, PascalsTolerance);
-            Assert.AreEqual(2, (Pressure.FromPascals(10)/5).Pascals, PascalsTolerance);
-            Assert.AreEqual(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), PascalsTolerance);
+            AssertEx.EqualTolerance(-1, -v.Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(2, (Pressure.FromPascals(3)-v).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(2, (Pressure.FromPascals(10)/5).Pascals, PascalsTolerance);
+            AssertEx.EqualTolerance(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), PascalsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             Pressure onePascal = Pressure.FromPascals(1);
@@ -332,35 +331,31 @@ namespace UnitsNet.Tests
             Assert.False(twoPascals <= onePascal);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.AreEqual(0, pascal.CompareTo(pascal));
-            Assert.Greater(pascal.CompareTo(Pressure.Zero), 0);
-            Assert.Less(Pressure.Zero.CompareTo(pascal), 0);
+            Assert.Equal(0, pascal.CompareTo(pascal));
+            Assert.True(pascal.CompareTo(Pressure.Zero) > 0);
+            Assert.True(Pressure.Zero.CompareTo(pascal) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Pressure pascal = Pressure.FromPascals(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            pascal.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => pascal.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Pressure pascal = Pressure.FromPascals(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            pascal.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => pascal.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Pressure a = Pressure.FromPascals(1);
@@ -375,26 +370,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Pressure v = Pressure.FromPascals(1);
-            Assert.IsTrue(v.Equals(Pressure.FromPascals(1)));
-            Assert.IsFalse(v.Equals(Pressure.Zero));
+            Assert.True(v.Equals(Pressure.FromPascals(1)));
+            Assert.False(v.Equals(Pressure.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.IsFalse(pascal.Equals(new object()));
+            Assert.False(pascal.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Pressure pascal = Pressure.FromPascals(1);
-            Assert.IsFalse(pascal.Equals(null));
+            Assert.False(pascal.Equals(null));
         }
     }
 }

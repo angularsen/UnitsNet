@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
@@ -38,18 +38,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override void AssertLogarithmicAddition()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
-            Assert.AreEqual(46.0205999133, (v + v).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(46.0205999133, (v + v).DecibelVolts, DecibelVoltsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
-            Assert.AreEqual(46.6982292275, (AmplitudeRatio.FromDecibelVolts(50) - v).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(46.6982292275, (AmplitudeRatio.FromDecibelVolts(50) - v).DecibelVolts, DecibelVoltsTolerance);
         }
 
-        [TestCase(0)]
-        [TestCase(-1)]
-        [TestCase(-10)]
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
         public void InvalidVoltage_ExpectArgumentOutOfRangeException(double voltage)
         {
             ElectricPotential invalidVoltage = ElectricPotential.FromVolts(voltage);
@@ -58,53 +59,61 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Throws<ArgumentOutOfRangeException>(() => new AmplitudeRatio(invalidVoltage));
         }
 
-        [TestCase(1, Result = 0)]
-        [TestCase(10, Result = 20)]
-        [TestCase(100, Result = 40)]
-        [TestCase(1000, Result = 60)]
-        public double ExpectVoltageConvertedToAmplitudeRatioCorrectly(double voltage)
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(10, 20)]
+        [InlineData(100, 40)]
+        [InlineData(1000, 60)]
+        public void ExpectVoltageConvertedToAmplitudeRatioCorrectly(double voltage, double expected)
         {
             // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
             ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
-            return AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
+            double actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(-40, Result = 0.01)]
-        [TestCase(-20, Result = 0.1)]
-        [TestCase(0, Result = 1)]
-        [TestCase(20, Result = 10)]
-        [TestCase(40, Result = 100)]
-        public double ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio)
+        [Theory]
+        [InlineData(-40, 0.01)]
+        [InlineData(-20, 0.1)]
+        [InlineData(0, 1)]
+        [InlineData(20, 10)]
+        [InlineData(40, 100)]
+        public void ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio, double expected)
         {
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
-            return AmplitudeRatio.ToElectricPotential(ar).Volts;
+            double actual = AmplitudeRatio.ToElectricPotential(ar).Volts;
+            Assert.Equal(expected, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
 
-        [TestCase(8, Result = -38.99)]
-        [TestCase(20, Result = -26.99)]
-        [TestCase(40, Result = -6.99)]
-        [TestCase(60, Result = 13.01)]
-        public double AmplitudeRatioToPowerRatio_50OhmImpedance(double dBmV)
+        [Theory]
+        [InlineData(8, -38.99)]
+        [InlineData(20, -26.99)]
+        [InlineData(40, -6.99)]
+        [InlineData(60, 13.01)]
+        public void AmplitudeRatioToPowerRatio_50OhmImpedance(double dBmV, double expected)
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            return Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
+            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(8, Result = -40.75)]
-        [TestCase(20, Result = -28.75)]
-        [TestCase(40, Result = -8.75)]
-        [TestCase(60, Result = 11.25)]
-        public double AmplitudeRatioToPowerRatio_75OhmImpedance(double dBmV)
+        [Theory]
+        [InlineData(8, -40.75)]
+        [InlineData(20, -28.75)]
+        [InlineData(40, -8.75)]
+        [InlineData(60, 11.25)]
+        public void AmplitudeRatioToPowerRatio_75OhmImpedance(double dBmV, double expected)
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            return Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
+            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
+            Assert.Equal(expected, actual);
         }
     }
 }

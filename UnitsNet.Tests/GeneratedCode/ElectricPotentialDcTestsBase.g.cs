@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of ElectricPotentialDc.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialDcTestsBase
     {
@@ -67,63 +66,63 @@ namespace UnitsNet.Tests
         protected virtual double VoltsDcTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void VoltDcToElectricPotentialDcUnits()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.AreEqual(KilovoltsDcInOneVoltDc, voltdc.KilovoltsDc, KilovoltsDcTolerance);
-            Assert.AreEqual(MegavoltsDcInOneVoltDc, voltdc.MegavoltsDc, MegavoltsDcTolerance);
-            Assert.AreEqual(MicrovoltsDcInOneVoltDc, voltdc.MicrovoltsDc, MicrovoltsDcTolerance);
-            Assert.AreEqual(MillivoltsDcInOneVoltDc, voltdc.MillivoltsDc, MillivoltsDcTolerance);
-            Assert.AreEqual(VoltsDcInOneVoltDc, voltdc.VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(KilovoltsDcInOneVoltDc, voltdc.KilovoltsDc, KilovoltsDcTolerance);
+            AssertEx.EqualTolerance(MegavoltsDcInOneVoltDc, voltdc.MegavoltsDc, MegavoltsDcTolerance);
+            AssertEx.EqualTolerance(MicrovoltsDcInOneVoltDc, voltdc.MicrovoltsDc, MicrovoltsDcTolerance);
+            AssertEx.EqualTolerance(MillivoltsDcInOneVoltDc, voltdc.MillivoltsDc, MillivoltsDcTolerance);
+            AssertEx.EqualTolerance(VoltsDcInOneVoltDc, voltdc.VoltsDc, VoltsDcTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.KilovoltDc).KilovoltsDc, KilovoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MegavoltDc).MegavoltsDc, MegavoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MicrovoltDc).MicrovoltsDc, MicrovoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MillivoltDc).MillivoltsDc, MillivoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.VoltDc).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.KilovoltDc).KilovoltsDc, KilovoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MegavoltDc).MegavoltsDc, MegavoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MicrovoltDc).MicrovoltsDc, MicrovoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MillivoltDc).MillivoltsDc, MillivoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.VoltDc).VoltsDc, VoltsDcTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.AreEqual(KilovoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.KilovoltDc), KilovoltsDcTolerance);
-            Assert.AreEqual(MegavoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MegavoltDc), MegavoltsDcTolerance);
-            Assert.AreEqual(MicrovoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MicrovoltDc), MicrovoltsDcTolerance);
-            Assert.AreEqual(MillivoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MillivoltDc), MillivoltsDcTolerance);
-            Assert.AreEqual(VoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.VoltDc), VoltsDcTolerance);
+            AssertEx.EqualTolerance(KilovoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.KilovoltDc), KilovoltsDcTolerance);
+            AssertEx.EqualTolerance(MegavoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MegavoltDc), MegavoltsDcTolerance);
+            AssertEx.EqualTolerance(MicrovoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MicrovoltDc), MicrovoltsDcTolerance);
+            AssertEx.EqualTolerance(MillivoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.MillivoltDc), MillivoltsDcTolerance);
+            AssertEx.EqualTolerance(VoltsDcInOneVoltDc, voltdc.As(ElectricPotentialDcUnit.VoltDc), VoltsDcTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.AreEqual(1, ElectricPotentialDc.FromKilovoltsDc(voltdc.KilovoltsDc).VoltsDc, KilovoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.FromMegavoltsDc(voltdc.MegavoltsDc).VoltsDc, MegavoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.FromMicrovoltsDc(voltdc.MicrovoltsDc).VoltsDc, MicrovoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.FromMillivoltsDc(voltdc.MillivoltsDc).VoltsDc, MillivoltsDcTolerance);
-            Assert.AreEqual(1, ElectricPotentialDc.FromVoltsDc(voltdc.VoltsDc).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.FromKilovoltsDc(voltdc.KilovoltsDc).VoltsDc, KilovoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.FromMegavoltsDc(voltdc.MegavoltsDc).VoltsDc, MegavoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.FromMicrovoltsDc(voltdc.MicrovoltsDc).VoltsDc, MicrovoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.FromMillivoltsDc(voltdc.MillivoltsDc).VoltsDc, MillivoltsDcTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotentialDc.FromVoltsDc(voltdc.VoltsDc).VoltsDc, VoltsDcTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             ElectricPotentialDc v = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.AreEqual(-1, -v.VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(2, (ElectricPotentialDc.FromVoltsDc(3)-v).VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(2, (v + v).VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(10, (v*10).VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(10, (10*v).VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(2, (ElectricPotentialDc.FromVoltsDc(10)/5).VoltsDc, VoltsDcTolerance);
-            Assert.AreEqual(2, ElectricPotentialDc.FromVoltsDc(10)/ElectricPotentialDc.FromVoltsDc(5), VoltsDcTolerance);
+            AssertEx.EqualTolerance(-1, -v.VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(2, (ElectricPotentialDc.FromVoltsDc(3)-v).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(2, (v + v).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(10, (v*10).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(10, (10*v).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(2, (ElectricPotentialDc.FromVoltsDc(10)/5).VoltsDc, VoltsDcTolerance);
+            AssertEx.EqualTolerance(2, ElectricPotentialDc.FromVoltsDc(10)/ElectricPotentialDc.FromVoltsDc(5), VoltsDcTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             ElectricPotentialDc oneVoltDc = ElectricPotentialDc.FromVoltsDc(1);
@@ -140,35 +139,31 @@ namespace UnitsNet.Tests
             Assert.False(twoVoltsDc <= oneVoltDc);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.AreEqual(0, voltdc.CompareTo(voltdc));
-            Assert.Greater(voltdc.CompareTo(ElectricPotentialDc.Zero), 0);
-            Assert.Less(ElectricPotentialDc.Zero.CompareTo(voltdc), 0);
+            Assert.Equal(0, voltdc.CompareTo(voltdc));
+            Assert.True(voltdc.CompareTo(ElectricPotentialDc.Zero) > 0);
+            Assert.True(ElectricPotentialDc.Zero.CompareTo(voltdc) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            voltdc.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => voltdc.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            voltdc.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => voltdc.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             ElectricPotentialDc a = ElectricPotentialDc.FromVoltsDc(1);
@@ -183,26 +178,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             ElectricPotentialDc v = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.IsTrue(v.Equals(ElectricPotentialDc.FromVoltsDc(1)));
-            Assert.IsFalse(v.Equals(ElectricPotentialDc.Zero));
+            Assert.True(v.Equals(ElectricPotentialDc.FromVoltsDc(1)));
+            Assert.False(v.Equals(ElectricPotentialDc.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.IsFalse(voltdc.Equals(new object()));
+            Assert.False(voltdc.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             ElectricPotentialDc voltdc = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.IsFalse(voltdc.Equals(null));
+            Assert.False(voltdc.Equals(null));
         }
     }
 }

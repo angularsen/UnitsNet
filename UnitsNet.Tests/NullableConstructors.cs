@@ -20,71 +20,71 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests
 {
     public class NullableConstructors 
     {
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullReturnsNullWhenBackingTypeIsDouble()
         {
             Length? meter = Length.FromMeters(null);
-            Assert.IsFalse(meter.HasValue);
+            Assert.False(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullAndEnumReturnsNullWhenBackingTypeIsDouble()
         {
             Length? meter = Length.From(null, LengthUnit.Meter);
-            Assert.IsFalse(meter.HasValue);
+            Assert.False(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValueWhenBackingTypeIsDouble()
         {
             double? value = 1.0;
             Length? meter = Length.From(value, LengthUnit.Meter);
-            Assert.IsTrue(meter.HasValue);
+            Assert.True(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValueWhenBackingTypeIsDouble()
         {
             double? value = 1.0;
             Length? meter = Length.FromMeters(value);
-            Assert.IsTrue(meter.HasValue);
+            Assert.True(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullReturnsNullWhenBackingTypeIsDecimal()
         {
             Information? meter = Information.FromBytes(null);
-            Assert.IsFalse(meter.HasValue);
+            Assert.False(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullAndEnumReturnsNullWhenBackingTypeIsDecimal()
         {
             Information? meter = Information.From(null, InformationUnit.Byte);
-            Assert.IsFalse(meter.HasValue);
+            Assert.False(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullAndEnumArgumentReturnsValueWhenInputArgumentHasValueWhenBackingTypeIsDecimal()
         {
             double? value = 1.0;
             Information? meter = Information.From(value, InformationUnit.Byte);
-            Assert.IsTrue(meter.HasValue);
+            Assert.True(meter.HasValue);
         }
 
-        [Test]
+        [Fact]
         public void StaticConstructorWithNullArgumentReturnsValueWhenInputArgumentHasValueWhenBackingTypeIsDecimal()
         {
             double? value = 1.0;
             Information? meter = Information.FromBytes(value);
-            Assert.IsTrue(meter.HasValue);
+            Assert.True(meter.HasValue);
         }
     }
 }

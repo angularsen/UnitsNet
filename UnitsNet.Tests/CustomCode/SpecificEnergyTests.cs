@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -42,39 +42,39 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
 
-        [Test]
+        [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {
             Energy energy = Mass.FromKilograms(20.0)*SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.AreEqual(energy, Energy.FromJoules(200.0));
+            Assert.Equal(200d, energy.Joules);
         }
 
-        [Test]
+        [Fact]
         public void SpecificEnergyTimesMassEqualsEnergy()
         {
             Energy energy = SpecificEnergy.FromJoulesPerKilogram(10.0)*Mass.FromKilograms(20.0);
-            Assert.AreEqual(energy, Energy.FromJoules(200.0));
+            Assert.Equal(200d, energy.Joules);
         }
 
-        [Test]
+        [Fact]
         public void DoubleDividedBySpecificEnergyEqualsBrakeSpecificFuelConsumption()
         {
             BrakeSpecificFuelConsumption bsfc = 2.0 / SpecificEnergy.FromJoulesPerKilogram(4.0);
-            Assert.AreEqual(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
+            Assert.Equal(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(0.5), bsfc);
         }
 
-        [Test]
+        [Fact]
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
             Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.AreEqual(power, Power.FromWatts(200.0));
+            Assert.Equal(200d, power.Watts);
         }
 
-        [Test]
+        [Fact]
         public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
         {
             double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
-            Assert.AreEqual(value, 200.0);
+            Assert.Equal(200d, value);
         }
     }
 }

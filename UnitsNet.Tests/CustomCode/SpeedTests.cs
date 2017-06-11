@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -68,75 +68,75 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersPerHourInOneMeterPerSecond => 3600000;
 
-        [Test]
+        [Fact]
         public void DurationSpeedTimesEqualsLength()
         {
             Length length = Duration.FromSeconds(2)*Speed.FromMetersPerSecond(20);
-            Assert.AreEqual(length, Length.FromMeters(40));
+            Assert.Equal(length, Length.FromMeters(40));
         }
 
-        [Test]
+        [Fact]
         public void LengthDividedByDurationEqualsSpeed()
         {
             Speed speed = Length.FromMeters(20)/Duration.FromSeconds(2);
-            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
+            Assert.Equal(speed, Speed.FromMetersPerSecond(10));
         }
 
-        [Test]
+        [Fact]
         public void LengthDividedByTimeSpanEqualsSpeed()
         {
             Speed speed = Length.FromMeters(20)/TimeSpan.FromSeconds(2);
-            Assert.AreEqual(speed, Speed.FromMetersPerSecond(10));
+            Assert.Equal(speed, Speed.FromMetersPerSecond(10));
         }
 
-        [Test]
+        [Fact]
         public void SpeedDividedByDurationEqualsAcceleration()
         {
             Acceleration acceleration = Speed.FromMetersPerSecond(20)/Duration.FromSeconds(2);
-            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
+            Assert.Equal(acceleration, Acceleration.FromMeterPerSecondSquared(10));
         }
 
-        [Test]
+        [Fact]
         public void SpeedDividedByTimeSpanEqualsAcceleration()
         {
             Acceleration acceleration = Speed.FromMetersPerSecond(20)/TimeSpan.FromSeconds(2);
-            Assert.AreEqual(acceleration, Acceleration.FromMeterPerSecondSquared(10));
+            Assert.Equal(acceleration, Acceleration.FromMeterPerSecondSquared(10));
         }
 
-        [Test]
+        [Fact]
         public void SpeedTimesDurationEqualsLength()
         {
             Length length = Speed.FromMetersPerSecond(20)*Duration.FromSeconds(2);
-            Assert.AreEqual(length, Length.FromMeters(40));
+            Assert.Equal(length, Length.FromMeters(40));
         }
 
-        [Test]
+        [Fact]
         public void SpeedTimesTimeSpanEqualsLength()
         {
             Length length = Speed.FromMetersPerSecond(20)*TimeSpan.FromSeconds(2);
-            Assert.AreEqual(length, Length.FromMeters(40));
+            Assert.Equal(length, Length.FromMeters(40));
         }
 
-        [Test]
+        [Fact]
         public void TimeSpanTimesSpeedEqualsLength()
         {
             Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
-            Assert.AreEqual(length, Length.FromMeters(40));
+            Assert.Equal(length, Length.FromMeters(40));
         }
 
-        [Test]
+        [Fact]
         public void SpeedTimesLengthEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
-            Assert.AreEqual(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+            Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
         }
 
-        [Test]
+        [Fact]
         public void SpeedTimesSpeedEqualsSpecificEnergy()
         {
             //m^2/s^2 = kg*m*m/(s^2*kg) = J/kg
             SpecificEnergy length = Speed.FromMetersPerSecond(2) * Speed.FromMetersPerSecond(20);
-            Assert.AreEqual(length, SpecificEnergy.FromJoulesPerKilogram(40));
+            Assert.Equal(length, SpecificEnergy.FromJoulesPerKilogram(40));
         }
     }
 }
