@@ -21,7 +21,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
@@ -46,47 +46,52 @@ namespace UnitsNet.Tests.CustomCode
 
         [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
             Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, 1, ExpectedResult = "10 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, 5, ExpectedResult = "2 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, -10, ExpectedResult = "-1 °C")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 1, ExpectedResult = "10 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 5, ExpectedResult = "2 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, -10, ExpectedResult = "-1 °F")]
-        public string DividedByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int divisor)
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, 1, "10 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, 5, "2 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, -10, "-1 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 1, "10 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 5, "2 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, -10, "-1 °F")]
+        public void DividedByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int divisor, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
 
             // Act
             Temperature resultTemp = temperature.Divide(divisor, unit);
 
-            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            Assert.Equal(expected, actual);
         }
 
         [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
             Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, 0, ExpectedResult = "0 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, 5, ExpectedResult = "50 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 10, -5, ExpectedResult = "-50 °C")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 0, ExpectedResult = "0 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, 5, ExpectedResult = "50 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 10, -5, ExpectedResult = "-50 °F")]
-        public string MultiplyByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int factor)
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, 0, "0 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, 5, "50 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, -5, "-50 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 0, "0 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 5, "50 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, -5, "-50 °F")]
+        public void MultiplyByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int factor, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
 
             // Act
             Temperature resultTemp = temperature.Multiply(factor, unit);
 
-            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 0, ExpectedResult = "-10 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 10, ExpectedResult = "0 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 20, ExpectedResult = "10 °C")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 0, ExpectedResult = "-10 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 10, ExpectedResult = "0 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 20, ExpectedResult = "10 °F")]
-        public string TemperatureDeltaPlusTemperatureEqualsTemperature(TemperatureUnit unit, int deltaVal, int temperatureVal)
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 0, "-10 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 10, "0 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 20, "10 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 0, "-10 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 10, "0 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 20, "10 °F")]
+        public void TemperatureDeltaPlusTemperatureEqualsTemperature(TemperatureUnit unit, int deltaVal, int temperatureVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
             TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
@@ -94,16 +99,18 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = delta + temperature;
 
-            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(TemperatureUnit.DegreeCelsius, 20, 10, ExpectedResult = "10 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 20, 20, ExpectedResult = "0 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, 20, 30, ExpectedResult = "-10 °C")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 10, ExpectedResult = "10 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 20, ExpectedResult = "0 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, 20, 30, ExpectedResult = "-10 °F")]
-        public string TemperatureMinusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal)
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 20, 10, "10 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 20, 20, "0 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 20, 30, "-10 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 20, 10, "10 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 20, 20, "0 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 20, 30, "-10 °F")]
+        public void TemperatureMinusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
             TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
@@ -111,16 +118,18 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature - delta;
 
-            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 0, ExpectedResult = "-10 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 10, ExpectedResult = "0 °C")]
-        [TestCase(TemperatureUnit.DegreeCelsius, -10, 20, ExpectedResult = "10 °C")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 0, ExpectedResult = "-10 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 10, ExpectedResult = "0 °F")]
-        [TestCase(TemperatureUnit.DegreeFahrenheit, -10, 20, ExpectedResult = "10 °F")]
-        public string TemperaturePlusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal)
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 0, "-10 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 10, "0 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, -10, 20, "10 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 0, "-10 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 10, "0 °F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, -10, 20, "10 °F")]
+        public void TemperaturePlusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
             TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
@@ -128,7 +137,8 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature + delta;
 
-            return resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            Assert.Equal(expected, actual);
         }
     }
 }

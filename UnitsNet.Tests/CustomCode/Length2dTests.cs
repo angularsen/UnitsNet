@@ -19,60 +19,59 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
 // ReSharper disable once InconsistentNaming
-    [TestFixture]
     public class Length2dTests
     {
         private const double Delta = 1E-5;
 
         private void AssertAreEqual(Vector2 expected, Vector2 actual, double delta)
         {
-            Assert.AreEqual(expected.X, actual.X, Delta);
-            Assert.AreEqual(expected.Y, actual.Y, Delta);
+            AssertEx.EqualTolerance(expected.X, actual.X, Delta);
+            AssertEx.EqualTolerance(expected.Y, actual.Y, Delta);
         }
 
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Length2d v = Length2d.FromMeters(1, 2);
-            Assert.AreEqual(-1, -v.Meters.X, Delta);
-            Assert.AreEqual(-2, -v.Meters.Y, Delta);
-            Assert.AreEqual(2, (Length2d.FromMeters(3, 3) - v).Meters.X, Delta);
-            Assert.AreEqual(1, (Length2d.FromMeters(3, 3) - v).Meters.Y, Delta);
-            Assert.AreEqual(2, (v + v).Meters.X, Delta);
-            Assert.AreEqual(4, (v + v).Meters.Y, Delta);
-            Assert.AreEqual(10, (v*10).Meters.X, Delta);
-            Assert.AreEqual(20, (v*10).Meters.Y, Delta);
-            Assert.AreEqual(10, (10*v).Meters.X, Delta);
-            Assert.AreEqual(20, (10*v).Meters.Y, Delta);
-            Assert.AreEqual(2, (Length2d.FromMeters(2, 2)*v).Meters.X, Delta);
-            Assert.AreEqual(4, (Length2d.FromMeters(2, 2)*v).Meters.Y, Delta);
-            Assert.AreEqual(2, (Length2d.FromMeters(10, 20)/5).Meters.X, Delta);
-            Assert.AreEqual(4, (Length2d.FromMeters(10, 20)/5).Meters.Y, Delta);
-            Assert.AreEqual(2, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).X, Delta);
-            Assert.AreEqual(4, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).Y, Delta);
+            AssertEx.EqualTolerance(-1, -v.Meters.X, Delta);
+            AssertEx.EqualTolerance(-2, -v.Meters.Y, Delta);
+            AssertEx.EqualTolerance(2, (Length2d.FromMeters(3, 3) - v).Meters.X, Delta);
+            AssertEx.EqualTolerance(1, (Length2d.FromMeters(3, 3) - v).Meters.Y, Delta);
+            AssertEx.EqualTolerance(2, (v + v).Meters.X, Delta);
+            AssertEx.EqualTolerance(4, (v + v).Meters.Y, Delta);
+            AssertEx.EqualTolerance(10, (v*10).Meters.X, Delta);
+            AssertEx.EqualTolerance(20, (v*10).Meters.Y, Delta);
+            AssertEx.EqualTolerance(10, (10*v).Meters.X, Delta);
+            AssertEx.EqualTolerance(20, (10*v).Meters.Y, Delta);
+            AssertEx.EqualTolerance(2, (Length2d.FromMeters(2, 2)*v).Meters.X, Delta);
+            AssertEx.EqualTolerance(4, (Length2d.FromMeters(2, 2)*v).Meters.Y, Delta);
+            AssertEx.EqualTolerance(2, (Length2d.FromMeters(10, 20)/5).Meters.X, Delta);
+            AssertEx.EqualTolerance(4, (Length2d.FromMeters(10, 20)/5).Meters.Y, Delta);
+            AssertEx.EqualTolerance(2, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).X, Delta);
+            AssertEx.EqualTolerance(4, (Length2d.FromMeters(10, 20)/Length2d.FromMeters(5, 5)).Y, Delta);
         }
 
-        [Test]
+        [Fact]
         public void DistanceUnitsRoundTrip()
         {
             Length meter = Length.FromMeters(1);
 
-            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, Delta);
-            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, Delta);
-            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromDecimeters(meter.Decimeters).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromCentimeters(meter.Centimeters).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromMillimeters(meter.Millimeters).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromMicrometers(meter.Micrometers).Meters, Delta);
+            AssertEx.EqualTolerance(1, Length.FromNanometers(meter.Nanometers).Meters, Delta);
         }
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Length2d a = Length2d.FromMeters(1, 2);
@@ -90,29 +89,29 @@ namespace UnitsNet.Tests.CustomCode
             // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Length2d v = Length2d.FromMeters(1, 2);
-            Assert.IsTrue(v.Equals(Length2d.FromMeters(1, 2)));
-            Assert.IsFalse(v.Equals(Length2d.Zero));
+            Assert.True(v.Equals(Length2d.FromMeters(1, 2)));
+            Assert.False(v.Equals(Length2d.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Length2d newton = Length2d.FromMeters(1, 2);
-            Assert.IsFalse(newton.Equals(null));
+            Assert.False(newton.Equals(null));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Length2d newton = Length2d.FromMeters(1, 2);
-            Assert.IsFalse(newton.Equals(new object()));
+            Assert.False(newton.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void MetersToDistanceUnits()
         {
             Length2d meter = Length2d.FromMeters(1, 1);
@@ -128,21 +127,21 @@ namespace UnitsNet.Tests.CustomCode
             AssertAreEqual(new Vector2(1E6), meter.Micrometers, Delta);
             AssertAreEqual(new Vector2(1E9), meter.Nanometers, Delta);
 
-            Assert.AreEqual(0.000621371, meter.Miles.X, Delta);
-            Assert.AreEqual(0.000621371, meter.Miles.Y, Delta);
-            Assert.AreEqual(1.09361, meter.Yards.X, Delta);
-            Assert.AreEqual(1.09361, meter.Yards.Y, Delta);
-            Assert.AreEqual(3.28084, meter.Feet.X, Delta);
-            Assert.AreEqual(3.28084, meter.Feet.Y, Delta);
-            Assert.AreEqual(39.37007874, meter.Inches.X, Delta);
-            Assert.AreEqual(39.37007874, meter.Inches.Y, Delta);
+            AssertEx.EqualTolerance(0.000621371, meter.Miles.X, Delta);
+            AssertEx.EqualTolerance(0.000621371, meter.Miles.Y, Delta);
+            AssertEx.EqualTolerance(1.09361, meter.Yards.X, Delta);
+            AssertEx.EqualTolerance(1.09361, meter.Yards.Y, Delta);
+            AssertEx.EqualTolerance(3.28084, meter.Feet.X, Delta);
+            AssertEx.EqualTolerance(3.28084, meter.Feet.Y, Delta);
+            AssertEx.EqualTolerance(39.37007874, meter.Inches.X, Delta);
+            AssertEx.EqualTolerance(39.37007874, meter.Inches.Y, Delta);
         }
 
-        [Test]
+        [Fact]
         public void VectorLength()
         {
             var v = new Length2d(3, 4);
-            Assert.AreEqual(5, v.Length.Meters);
+            Assert.Equal(5, v.Length.Meters);
         }
     }
 }

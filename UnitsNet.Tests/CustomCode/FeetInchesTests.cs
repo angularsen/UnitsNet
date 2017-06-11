@@ -19,11 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    [TestFixture]
     public class FeetInchesTests
     {
         private const double FeetInOneMeter = 3.28084;
@@ -31,21 +30,21 @@ namespace UnitsNet.Tests.CustomCode
         private const double FeetTolerance = 1e-5;
         private const double InchesTolerance = 1e-5;
 
-        [Test]
+        [Fact]
         public void FeetInchesFrom()
         {
             Length meter = Length.FromFeetInches(2, 3);
             double expectedMeters = 2/FeetInOneMeter + 3/InchesInOneMeter;
-            Assert.AreEqual(expectedMeters, meter.Meters, FeetTolerance);
+            AssertEx.EqualTolerance(expectedMeters, meter.Meters, FeetTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FeetInchesRoundTrip()
         {
             Length meter = Length.FromFeetInches(2, 3);
             FeetInches feetInches = meter.FeetInches;
-            Assert.AreEqual(2, feetInches.Feet, FeetTolerance);
-            Assert.AreEqual(3, feetInches.Inches, InchesTolerance);
+            AssertEx.EqualTolerance(2, feetInches.Feet, FeetTolerance);
+            AssertEx.EqualTolerance(3, feetInches.Inches, InchesTolerance);
         }
     }
 }

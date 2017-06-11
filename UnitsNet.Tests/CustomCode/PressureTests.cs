@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -99,18 +99,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
-        [Test]
+        [Fact]
         public void AreaTimesPressureEqualsForce()
         {
             Force force = Area.FromSquareMeters(3)*Pressure.FromPascals(20);
-            Assert.AreEqual(force, Force.FromNewtons(60));
+            Assert.Equal(force, Force.FromNewtons(60));
         }
 
-        [Test]
+        [Fact]
         public void PressureTimesAreaEqualsForce()
         {
             Force force = Pressure.FromPascals(20)*Area.FromSquareMeters(3);
-            Assert.AreEqual(force, Force.FromNewtons(60));
+            Assert.Equal(force, Force.FromNewtons(60));
         }
     }
 }

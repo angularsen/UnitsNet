@@ -19,7 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+#if !WINDOWS_UWP
+using Xunit;
 using UnitsNet.Extensions.NumberToAngle;
 using UnitsNet.Extensions.NumberToForce;
 using UnitsNet.Extensions.NumberToLength;
@@ -27,16 +28,16 @@ using UnitsNet.Extensions.NumberToMass;
 
 namespace UnitsNet.Tests
 {
-    [TestFixture]
     public class NumberExtensionsTest
     {
-        [Test]
+        [Fact]
         public void SomeArbitraryExtensionMethods_CreatesCorrectValue()
         {
-            Assert.AreEqual(Length.FromMeters(1), 1.Meters());
-            Assert.AreEqual(Mass.FromTonnes(2), 2.Tonnes());
-            Assert.AreEqual(Force.FromKiloPonds(3), 3.KiloPonds());
-            Assert.AreEqual(Angle.FromRadians(3), 3.Radians());
+            Assert.Equal(Length.FromMeters(1), 1.Meters());
+            Assert.Equal(Mass.FromTonnes(2), 2.Tonnes());
+            Assert.Equal(Force.FromKiloPonds(3), 3.KiloPonds());
+            Assert.Equal(Angle.FromRadians(3), 3.Radians());
         }
     }
 }
+#endif

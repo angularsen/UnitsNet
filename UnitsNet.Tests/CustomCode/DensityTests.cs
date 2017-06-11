@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
@@ -94,43 +94,43 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
 
-        [Test]
+        [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
             Mass mass = Density.FromKilogramsPerCubicMeter(2) * Volume.FromCubicMeters(3);
-            Assert.AreEqual(mass, Mass.FromKilograms(6));
+            Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
-        [Test]
+        [Fact]
         public static void VolumeTimesDensityEqualsMass()
         {
             Mass mass = Volume.FromCubicMeters(3) * Density.FromKilogramsPerCubicMeter(2);
-            Assert.AreEqual(mass, Mass.FromKilograms(6));
+            Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
-        [Test]
+        [Fact]
         public static void DensityTimesKinematicViscosityEqualsDynamicViscosity()
         {
             DynamicViscosity dynamicViscosity = Density.FromKilogramsPerCubicMeter(2) * KinematicViscosity.FromSquareMetersPerSecond(10);
-            Assert.AreEqual(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
+            Assert.Equal(dynamicViscosity, DynamicViscosity.FromNewtonSecondsPerMeterSquared(20));
         }
 
-        [Test]
+        [Fact]
         public void ExpectMolarityConvertedToDensityCorrectly()
         {
             var molarity = Molarity.FromMolesPerLiter(1.02698355);
             var mw = Mass.FromGrams(58.443);
             var density = Density.FromMolarity(molarity, mw).KilogramsPerCubicMeter;
-            Assert.AreEqual(60.02, density, KilogramsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(60.02, density, KilogramsPerCubicMeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ExpectDensityConvertedToMolarityCorrectly()
         {
             var density = Density.FromKilogramsPerCubicMeter(60.02);
             var mw = Mass.FromGrams(58.443);
             var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
-            Assert.AreEqual(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
         }
     }
 }

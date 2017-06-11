@@ -21,36 +21,33 @@
 
 using System;
 using Newtonsoft.Json;
-using NUnit.Framework;
-using System.Collections.Generic;
+using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public class UnitsNetJsonConverterTests
     {
-        private JsonSerializerSettings _jsonSerializerSettings;
+        private readonly JsonSerializerSettings _jsonSerializerSettings;
 
-        [SetUp]
-        public void Setup()
+        protected UnitsNetJsonConverterTests()
         {
             _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
             _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
         }
 
-        protected string SerializeObject(object obj)
+        private string SerializeObject(object obj)
         {
             return JsonConvert.SerializeObject(obj, _jsonSerializerSettings).Replace("\r\n", "\n");
         }
 
-        protected T DeserializeObject<T>(string json)
+        private T DeserializeObject<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
         }
 
-        [TestFixture]
         public class Serialize : UnitsNetJsonConverterTests
         {
-            [Test]
+            [Fact]
             public void Information_CanSerializeVeryLargeValues()
             {
                 Information i = Information.FromExabytes(1E+9);
@@ -58,10 +55,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 string json = SerializeObject(i);
 
-                Assert.That(json, Is.EqualTo(expectedJson));
+                Assert.Equal(expectedJson, json);
             }
 
-            [Test]
+            [Fact]
             public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
             {
                 Mass mass = Mass.FromPounds(200);
@@ -69,23 +66,22 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 string json = SerializeObject(mass);
 
-                Assert.That(json, Is.EqualTo(expectedJson));
+                Assert.Equal(expectedJson, json);
             }
 
-            [Test]
+            [Fact]
             public void NonNullNullableValue_ExpectJsonUnaffected()
             {
                 Mass? nullableMass = Mass.FromKilograms(10);
                 var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 10.0\n}";
 
                 string json = SerializeObject(nullableMass);
-//                Console.WriteLine(json);
 
                 // There shouldn't be any change in the JSON for the non-null nullable value.
-                Assert.That(json, Is.EqualTo(expectedJson));
+                Assert.Equal(expectedJson, json);
             }
 
-            [Test]
+            [Fact]
             public void NonNullNullableValueNestedInObject_ExpectJsonUnaffected()
             {
                 var testObj = new TestObj
@@ -107,24 +103,22 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                                       "}";
 
                 string json = SerializeObject(testObj);
-//                Console.WriteLine(json);
 
-                Assert.That(json, Is.EqualTo(expectedJson));
+                Assert.Equal(expectedJson, json);
             }
 
-            [Test]
+            [Fact]
             public void NullValue_ExpectJsonContainsNullString()
             {
                 Mass? nullMass = null;
                 var expectedJson = "null";
 
                 string json = SerializeObject(nullMass);
-//                Console.WriteLine(json);
 
-                Assert.That(expectedJson, Is.EqualTo(json));
+                Assert.Equal(expectedJson, json);
             }
 
-            [Test]
+            [Fact]
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
@@ -132,24 +126,23 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 string json = SerializeObject(ratio);
 
-                Assert.That(json, Is.EqualTo(expectedJson));
+                Assert.Equal(expectedJson, json);
             }
         }
 
-        [TestFixture]
         public class Deserialize : UnitsNetJsonConverterTests
         {
-            [Test]
+            [Fact]
             public void Information_CanDeserializeVeryLargeValues()
             {
                 Information original = Information.FromExabytes(1E+9);
                 string json = SerializeObject(original);
                 var deserialized = DeserializeObject<Information>(json);
 
-                Assert.AreEqual(original, deserialized);
+                Assert.Equal(original, deserialized);
             }
 
-            [Test]
+            [Fact]
             public void Mass_ExpectJsonCorrectlyDeserialized()
             {
                 Mass originalMass = Mass.FromKilograms(33.33);
@@ -157,21 +150,21 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedMass = DeserializeObject<Mass>(json);
 
-                Assert.That(deserializedMass, Is.EqualTo(originalMass));
+                Assert.Equal(originalMass, deserializedMass);
             }
 
-            [Test]
+            [Fact]
             public void NonNullNullableValue_ExpectValueDeserializedCorrectly()
             {
                 Mass? nullableMass = Mass.FromKilograms(10);
                 string json = SerializeObject(nullableMass);
 
-                var deserializedNullableMass = DeserializeObject<Mass?>(json);
+                Mass? deserializedNullableMass = DeserializeObject<Mass?>(json);
 
-                Assert.That(deserializedNullableMass.Value, Is.EqualTo(nullableMass.Value));
+                Assert.Equal(nullableMass.Value, deserializedNullableMass);
             }
 
-            [Test]
+            [Fact]
             public void NonNullNullableValueNestedInObject_ExpectValueDeserializedCorrectly()
             {
                 var testObj = new TestObj
@@ -183,21 +176,19 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedTestObj = DeserializeObject<TestObj>(json);
 
-                Assert.That(deserializedTestObj.NullableFrequency, Is.EqualTo(testObj.NullableFrequency));
+                Assert.Equal(testObj.NullableFrequency, deserializedTestObj.NullableFrequency);
             }
 
-            [Test]
+            [Fact]
             public void NullValue_ExpectNullReturned()
             {
-                Mass? nullMass = null;
-                string json = SerializeObject(nullMass);
-
+                string json = SerializeObject(null);
                 var deserializedNullMass = DeserializeObject<Mass?>(json);
 
-                Assert.That(deserializedNullMass, Is.Null);
+                Assert.Null(deserializedNullMass);
             }
 
-            [Test]
+            [Fact]
             public void NullValueNestedInObject_ExpectValueDeserializedToNullCorrectly()
             {
                 var testObj = new TestObj
@@ -209,10 +200,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedTestObj = DeserializeObject<TestObj>(json);
 
-                Assert.That(deserializedTestObj.NullableFrequency, Is.Null);
+                Assert.Null(deserializedTestObj.NullableFrequency);
             }
 
-            [Test]
+            [Fact]
             public void UnitEnumChangedAfterSerialization_ExpectUnitCorrectlyDeserialized()
             {
                 Mass originalMass = Mass.FromKilograms(33.33);
@@ -225,10 +216,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 // The original value serialized was 33.33 kg, but someone edited the JSON to be 1000 g. We expect the JSON is
                 //  still deserializable, and the correct value of 1000 g is obtained.
-                Assert.That(deserializedMass.Grams, Is.EqualTo(1000));
+                Assert.Equal(1000, deserializedMass.Grams);
             }
 
-            [Test]
+            [Fact]
             public void UnitInIComparable_ExpectUnitCorrectlyDeserialized()
             {
                 TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
@@ -241,11 +232,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
                
-                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(Power)));
-                Assert.That((Power)deserializedTestObject.Value, Is.EqualTo(Power.FromWatts(10)));
+                Assert.Equal(typeof(Power), deserializedTestObject.Value.GetType());
+                Assert.Equal(Power.FromWatts(10), (Power)deserializedTestObject.Value);
             }
 
-            [Test]
+            [Fact]
             public void DoubleInIComparable_ExpectUnitCorrectlyDeserialized()
             {
                 TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
@@ -258,11 +249,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
 
-                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(double)));
-                Assert.That((double)deserializedTestObject.Value, Is.EqualTo(10.0));
+                Assert.Equal(typeof(double), deserializedTestObject.Value.GetType());
+                Assert.Equal(10d, (double)deserializedTestObject.Value);
             }
 
-            [Test]
+            [Fact]
             public void ClassInIComparable_ExpectUnitCorrectlyDeserialized()
             {
                 TestObjWithIComparable testObjWithIComparable = new TestObjWithIComparable()
@@ -274,11 +265,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json, jsonSerializerSettings);
 
-                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(ComparableClass)));
-                Assert.That(((ComparableClass)(deserializedTestObject.Value)).Value, Is.EqualTo(10.0));
+                Assert.Equal(typeof(ComparableClass), deserializedTestObject.Value.GetType());
+                Assert.Equal(10d, ((ComparableClass) deserializedTestObject.Value).Value);
             }
 
-            [Test]
+            [Fact]
             public void OtherObjectWithUnitAndValue_ExpectCorrectResturnValues()
             {
                 TestObjWithValueAndUnit testObjWithValueAndUnit = new TestObjWithValueAndUnit()
@@ -291,12 +282,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = JsonConvert.SerializeObject(testObjWithValueAndUnit, jsonSerializerSettings);
                 TestObjWithValueAndUnit deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithValueAndUnit>(json, jsonSerializerSettings);
 
-                Assert.That(deserializedTestObject.Value.GetType(), Is.EqualTo(typeof(double)));
-                Assert.That(deserializedTestObject.Value, Is.EqualTo(5.0));
-                Assert.That(deserializedTestObject.Unit, Is.EqualTo("Test"));
+                Assert.Equal(typeof(double), deserializedTestObject.Value.GetType());
+                Assert.Equal(5d, deserializedTestObject.Value);
+                Assert.Equal("Test", deserializedTestObject.Unit);
             }
 
-            [Test]
+            [Fact]
             public void ThreeObjectsInIComparableWithDifferentValues_ExpectAllCorrectlyDeserialized()
             {
                 TestObjWithThreeIComparable testObjWithIComparable = new TestObjWithThreeIComparable()
@@ -310,12 +301,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithThreeIComparable>(json, jsonSerializerSettings);
 
-                Assert.That(deserializedTestObject.Value1.GetType(), Is.EqualTo(typeof(double)));
-                Assert.That((deserializedTestObject.Value1), Is.EqualTo(10.0));
-                Assert.That(deserializedTestObject.Value2.GetType(), Is.EqualTo(typeof(Power)));
-                Assert.That((deserializedTestObject.Value2), Is.EqualTo(Power.FromWatts(19)));
-                Assert.That(deserializedTestObject.Value3.GetType(), Is.EqualTo(typeof(ComparableClass)));
-                Assert.That((deserializedTestObject.Value3), Is.EqualTo(testObjWithIComparable.Value3));
+                Assert.Equal(typeof(double), deserializedTestObject.Value1.GetType());
+                Assert.Equal(10d, deserializedTestObject.Value1);
+                Assert.Equal(typeof(Power), deserializedTestObject.Value2.GetType());
+                Assert.Equal(Power.FromWatts(19), deserializedTestObject.Value2);
+                Assert.Equal(typeof(ComparableClass), deserializedTestObject.Value3.GetType());
+                Assert.Equal(testObjWithIComparable.Value3, deserializedTestObject.Value3);
             }
 
             private static JsonSerializerSettings CreateJsonSerializerSettings()

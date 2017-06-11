@@ -48,8 +48,8 @@ function GenerateUnitTestBaseClassSourceCode($unitClass)
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -60,7 +60,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of $className.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class $($className)TestsBase
     {
@@ -74,61 +73,76 @@ namespace UnitsNet.Tests
 "@; }@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void $($baseUnit.SingularName)To$($className)Units()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
-            Assert.AreEqual($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.$($unit.PluralName), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.$($unit.PluralName), $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
 "@; foreach ($unit in $units) {@"
-            Assert.AreEqual(1, $className.From(1, $unitEnumName.$($unit.SingularName)).$($unit.PluralName), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(1, $className.From(1, $unitEnumName.$($unit.SingularName)).$($unit.PluralName), $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var $baseUnitVariableName = $className.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
-            Assert.AreEqual($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.As($($className)Unit.$($unit.SingularName)), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.As($($className)Unit.$($unit.SingularName)), $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
-            Assert.AreEqual(1, $className.From$($unit.PluralName)($baseUnitVariableName.$($unit.PluralName)).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(1, $className.From$($unit.PluralName)($baseUnitVariableName.$($unit.PluralName)).$baseUnitPluralName, $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
-"@; if ($unitClass.Logarithmic -eq $true) {
-        # Call another script function to generate logarithm-specific arithmetic operator test code.
-        GenerateLogarithmicTestBaseClassSourceCode -className $className -baseUnitPluralName $baseUnitPluralName -unit $unit
-    }
+"@; if ($unitClass.Logarithmic -eq $true) {@"
+        [Fact]
+        public void LogarithmicArithmeticOperators()
+        {
+            $className v = $className.From$baseUnitPluralName(40);
+            AssertEx.EqualTolerance(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertLogarithmicAddition();
+            AssertLogarithmicSubtraction();
+            AssertEx.EqualTolerance(50, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(50, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
+        }
+
+        protected abstract void AssertLogarithmicAddition();
+
+        protected abstract void AssertLogarithmicSubtraction();
+
+"@; }
     elseif ($unitClass.GenerateArithmetic -eq $true) {@"
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             $className v = $className.From$baseUnitPluralName(1);
-            Assert.AreEqual(-1, -v.$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(2, ($className.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(2, (v + v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(10, (v*10).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(10, (10*v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            Assert.AreEqual(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(-1, -v.$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, ($className.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, (v + v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(10, (v*10).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(10, (10*v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($baseUnit.PluralName)Tolerance);
         }
 "@; }@"
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             $className one$($baseUnit.SingularName) = $className.From$baseUnitPluralName(1);
@@ -145,35 +159,31 @@ namespace UnitsNet.Tests
             Assert.False(two$baseUnitPluralName <= one$($baseUnit.SingularName));
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
-            Assert.AreEqual(0, $baseUnitVariableName.CompareTo($baseUnitVariableName));
-            Assert.Greater($baseUnitVariableName.CompareTo($className.Zero), 0);
-            Assert.Less($className.Zero.CompareTo($baseUnitVariableName), 0);
+            Assert.Equal(0, $baseUnitVariableName.CompareTo($baseUnitVariableName));
+            Assert.True($baseUnitVariableName.CompareTo($className.Zero) > 0);
+            Assert.True($className.Zero.CompareTo($baseUnitVariableName) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            $baseUnitVariableName.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => $baseUnitVariableName.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            $baseUnitVariableName.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => $baseUnitVariableName.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             $className a = $className.From$baseUnitPluralName(1);
@@ -188,26 +198,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             $className v = $className.From$baseUnitPluralName(1);
-            Assert.IsTrue(v.Equals($className.From$baseUnitPluralName(1)));
-            Assert.IsFalse(v.Equals($className.Zero));
+            Assert.True(v.Equals($className.From$baseUnitPluralName(1)));
+            Assert.False(v.Equals($className.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
-            Assert.IsFalse($baseUnitVariableName.Equals(new object()));
+            Assert.False($baseUnitVariableName.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
-            Assert.IsFalse($baseUnitVariableName.Equals(null));
+            Assert.False($baseUnitVariableName.Equals(null));
         }
     }
 }

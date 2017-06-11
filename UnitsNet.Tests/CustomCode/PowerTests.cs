@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -58,74 +58,74 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425;
 
-        [Test]
+        [Fact]
         public void DurationTimesPowerEqualsEnergy()
         {
             Energy energy = Duration.FromSeconds(8.0)*Power.FromWatts(5.0);
-            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+            Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
-        [Test]
+        [Fact]
         public void PowerDividedByRotationalSpeedEqualsForce()
         {
             Torque torque = Power.FromWatts(15.0)/RotationalSpeed.FromRadiansPerSecond(3);
-            Assert.AreEqual(torque, Torque.FromNewtonMeters(5));
+            Assert.Equal(torque, Torque.FromNewtonMeters(5));
         }
 
-        [Test]
+        [Fact]
         public void PowerDividedBySpeedEqualsForce()
         {
             Force force = Power.FromWatts(15.0)/Speed.FromMetersPerSecond(3);
-            Assert.AreEqual(force, Force.FromNewtons(5));
+            Assert.Equal(force, Force.FromNewtons(5));
         }
 
-        [Test]
+        [Fact]
         public void PowerDividedByTorqueEqualsRotationalSpeed()
         {
             RotationalSpeed rotationalSpeed = Power.FromWatts(15.0)/Torque.FromNewtonMeters(3);
-            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
+            Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
         }
 
-        [Test]
+        [Fact]
         public void PowerTimesDurationEqualsEnergy()
         {
             Energy energy = Power.FromWatts(5.0)*Duration.FromSeconds(8.0);
-            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+            Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
-        [Test]
+        [Fact]
         public void PowerTimesTimeSpanEqualsEnergy()
         {
             Energy energy = Power.FromWatts(5.0)*TimeSpan.FromSeconds(8.0);
-            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+            Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
-        [Test]
+        [Fact]
         public void TimeSpanTimesPowerEqualsEnergy()
         {
             Energy energy = TimeSpan.FromSeconds(8.0)*Power.FromWatts(5.0);
-            Assert.AreEqual(energy, Energy.FromJoules(40.0));
+            Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
-        [Test]
+        [Fact]
         public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
             MassFlow massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            Assert.AreEqual(massFlow.TonnesPerDay, 20.0, 1e-11);
+            AssertEx.EqualTolerance(massFlow.TonnesPerDay, 20.0, 1e-11);
         }
 
-        [Test]
+        [Fact]
         public void PowerDividedByMassFlowEqualsSpecificEnergy()
         {
             SpecificEnergy specificEnergy = Power.FromWatts(15.0) / MassFlow.FromKilogramsPerSecond(3);
-            Assert.AreEqual(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(5));
+            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(5));
         }
 
-        [Test]
+        [Fact]
         public void PowerDividedBySpecificEnergyEqualsMassFlow()
         {
             MassFlow massFlow = Power.FromWatts(15.0) / SpecificEnergy.FromJoulesPerKilogram(3);
-            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(5));
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(5));
         }
     }
 }

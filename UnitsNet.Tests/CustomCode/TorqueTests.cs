@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -57,18 +57,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TonneForceMillimetersInOneNewtonMeter => 1.01972e-1;
 
-        [Test]
+        [Fact]
         public void TorqueDividedByForceEqualsLength()
         {
             Length length = Torque.FromNewtonMeters(4)/Force.FromNewtons(2);
-            Assert.AreEqual(length, Length.FromMeters(2));
+            Assert.Equal(length, Length.FromMeters(2));
         }
 
-        [Test]
+        [Fact]
         public void TorqueDividedByLengthEqualsForce()
         {
             Force force = Torque.FromNewtonMeters(4)/Length.FromMeters(2);
-            Assert.AreEqual(force, Force.FromNewtons(2));
+            Assert.Equal(force, Force.FromNewtons(2));
         }
     }
 }

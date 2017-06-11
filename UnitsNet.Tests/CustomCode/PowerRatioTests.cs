@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
@@ -34,67 +34,74 @@ namespace UnitsNet.Tests.CustomCode
         protected override void AssertLogarithmicAddition()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(40);
-            Assert.AreEqual(43.0102999566, (v + v).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(43.0102999566, (v + v).DecibelWatts, DecibelWattsTolerance);
         }
 
         protected override void AssertLogarithmicSubtraction()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(40);
-            Assert.AreEqual(49.5424250944, (PowerRatio.FromDecibelWatts(50) - v).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(49.5424250944, (PowerRatio.FromDecibelWatts(50) - v).DecibelWatts, DecibelWattsTolerance);
         }
 
-        [TestCase(0)]
-        [TestCase(-1)]
-        [TestCase(-10)]
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
         public void InvalidPower_ExpectArgumentOutOfRangeException(double power)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => PowerRatio.FromPower(Power.FromWatts(power)));
         }
 
-        [TestCase(1, Result = 0)]
-        [TestCase(10, Result = 10)]
-        [TestCase(100, Result = 20)]
-        public double ExpectPowerConvertedCorrectly(double power)
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(10, 10)]
+        [InlineData(100, 20)]
+        public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
             Power p = Power.FromWatts(power);
-
-            return PowerRatio.FromPower(p).DecibelWatts;
+            double actual = PowerRatio.FromPower(p).DecibelWatts;
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(-20, Result = 0.01)]
-        [TestCase(-10, Result = 0.1)]
-        [TestCase(0, Result = 1)]
-        [TestCase(10, Result = 10)]
-        [TestCase(20, Result = 100)]
-        public double ExpectPowerRatioConvertedCorrectly(double powerRatio)
+        [Theory]
+        [InlineData(-20, 0.01)]
+        [InlineData(-10, 0.1)]
+        [InlineData(0, 1)]
+        [InlineData(10, 10)]
+        [InlineData(20, 100)]
+        public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
-
-            return PowerRatio.ToPower(pr).Watts;
+            double actual = PowerRatio.ToPower(pr).Watts;
+            Assert.Equal(expected, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
 
-        [TestCase(-36.99, Result = 10)]
-        [TestCase(-26.99, Result = 20)]
-        [TestCase(-16.99, Result = 30)]
-        [TestCase(-6.99, Result = 40)]
-        public double PowerRatioToAmplitudeRatio_50OhmImpedance(double dBmW)
+        [Theory]
+        [InlineData(-36.99, 10)]
+        [InlineData(-26.99, 20)]
+        [InlineData(-16.99, 30)]
+        [InlineData(-6.99, 40)]
+        public void PowerRatioToAmplitudeRatio_50OhmImpedance(double dBmW, double expected)
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+            Assert.Equal(expected, actual);
         }
 
-        [TestCase(-38.75, Result = 10)]
-        [TestCase(-28.75, Result = 20)]
-        [TestCase(-18.75, Result = 30)]
-        [TestCase(-8.75, Result = 40)]
-        public double PowerRatioToAmplitudeRatio_75OhmImpedance(double dBmW)
+        [Theory]
+        [InlineData(-38.75, 10)]
+        [InlineData(-28.75, 20)]
+        [InlineData(-18.75, 30)]
+        [InlineData(-8.75, 40)]
+        public void PowerRatioToAmplitudeRatio_75OhmImpedance(double dBmW, double expected)
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            return Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+            Assert.Equal(expected, actual);
         }
     }
 }

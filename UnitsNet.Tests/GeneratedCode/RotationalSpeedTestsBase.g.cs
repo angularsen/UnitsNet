@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of RotationalSpeed.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RotationalSpeedTestsBase
     {
@@ -83,95 +82,95 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void RadianPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.AreEqual(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-            Assert.AreEqual(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-            Assert.AreEqual(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.DegreesPerMinute, DegreesPerMinuteTolerance);
-            Assert.AreEqual(DegreesPerSecondInOneRadianPerSecond, radianpersecond.DegreesPerSecond, DegreesPerSecondTolerance);
-            Assert.AreEqual(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-            Assert.AreEqual(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-            Assert.AreEqual(MillidegreesPerSecondInOneRadianPerSecond, radianpersecond.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-            Assert.AreEqual(MilliradiansPerSecondInOneRadianPerSecond, radianpersecond.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-            Assert.AreEqual(NanodegreesPerSecondInOneRadianPerSecond, radianpersecond.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-            Assert.AreEqual(NanoradiansPerSecondInOneRadianPerSecond, radianpersecond.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-            Assert.AreEqual(RadiansPerSecondInOneRadianPerSecond, radianpersecond.RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(RevolutionsPerMinuteInOneRadianPerSecond, radianpersecond.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-            Assert.AreEqual(RevolutionsPerSecondInOneRadianPerSecond, radianpersecond.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            AssertEx.EqualTolerance(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.DegreesPerMinute, DegreesPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesPerSecondInOneRadianPerSecond, radianpersecond.DegreesPerSecond, DegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(MillidegreesPerSecondInOneRadianPerSecond, radianpersecond.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MilliradiansPerSecondInOneRadianPerSecond, radianpersecond.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(NanodegreesPerSecondInOneRadianPerSecond, radianpersecond.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(NanoradiansPerSecondInOneRadianPerSecond, radianpersecond.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(RadiansPerSecondInOneRadianPerSecond, radianpersecond.RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerMinuteInOneRadianPerSecond, radianpersecond.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerSecondInOneRadianPerSecond, radianpersecond.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond).CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond).DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute).DegreesPerMinute, DegreesPerMinuteTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond).DegreesPerSecond, DegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond).MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond).MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MillidegreePerSecond).MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond).MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.NanodegreePerSecond).NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond).NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-            Assert.AreEqual(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond).CentiradiansPerSecond, CentiradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond).DeciradiansPerSecond, DeciradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute).DegreesPerMinute, DegreesPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond).DegreesPerSecond, DegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond).MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond).MicroradiansPerSecond, MicroradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.MillidegreePerSecond).MillidegreesPerSecond, MillidegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond).MilliradiansPerSecond, MilliradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.NanodegreePerSecond).NanodegreesPerSecond, NanodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond).NanoradiansPerSecond, NanoradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.AreEqual(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.CentiradianPerSecond), CentiradiansPerSecondTolerance);
-            Assert.AreEqual(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DeciradianPerSecond), DeciradiansPerSecondTolerance);
-            Assert.AreEqual(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerMinute), DegreesPerMinuteTolerance);
-            Assert.AreEqual(DegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerSecond), DegreesPerSecondTolerance);
-            Assert.AreEqual(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicrodegreePerSecond), MicrodegreesPerSecondTolerance);
-            Assert.AreEqual(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicroradianPerSecond), MicroradiansPerSecondTolerance);
-            Assert.AreEqual(MillidegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MillidegreePerSecond), MillidegreesPerSecondTolerance);
-            Assert.AreEqual(MilliradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MilliradianPerSecond), MilliradiansPerSecondTolerance);
-            Assert.AreEqual(NanodegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.NanodegreePerSecond), NanodegreesPerSecondTolerance);
-            Assert.AreEqual(NanoradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.NanoradianPerSecond), NanoradiansPerSecondTolerance);
-            Assert.AreEqual(RadiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RadianPerSecond), RadiansPerSecondTolerance);
-            Assert.AreEqual(RevolutionsPerMinuteInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), RevolutionsPerMinuteTolerance);
-            Assert.AreEqual(RevolutionsPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), RevolutionsPerSecondTolerance);
+            AssertEx.EqualTolerance(CentiradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.CentiradianPerSecond), CentiradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(DeciradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DeciradianPerSecond), DeciradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesPerMinuteInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerMinute), DegreesPerMinuteTolerance);
+            AssertEx.EqualTolerance(DegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.DegreePerSecond), DegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MicrodegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicrodegreePerSecond), MicrodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MicroradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MicroradianPerSecond), MicroradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(MillidegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MillidegreePerSecond), MillidegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(MilliradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.MilliradianPerSecond), MilliradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(NanodegreesPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.NanodegreePerSecond), NanodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(NanoradiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.NanoradianPerSecond), NanoradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(RadiansPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RadianPerSecond), RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerMinuteInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RevolutionPerMinute), RevolutionsPerMinuteTolerance);
+            AssertEx.EqualTolerance(RevolutionsPerSecondInOneRadianPerSecond, radianpersecond.As(RotationalSpeedUnit.RevolutionPerSecond), RevolutionsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.AreEqual(1, RotationalSpeed.FromCentiradiansPerSecond(radianpersecond.CentiradiansPerSecond).RadiansPerSecond, CentiradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromDeciradiansPerSecond(radianpersecond.DeciradiansPerSecond).RadiansPerSecond, DeciradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromDegreesPerMinute(radianpersecond.DegreesPerMinute).RadiansPerSecond, DegreesPerMinuteTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromDegreesPerSecond(radianpersecond.DegreesPerSecond).RadiansPerSecond, DegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromMicrodegreesPerSecond(radianpersecond.MicrodegreesPerSecond).RadiansPerSecond, MicrodegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromMicroradiansPerSecond(radianpersecond.MicroradiansPerSecond).RadiansPerSecond, MicroradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromMillidegreesPerSecond(radianpersecond.MillidegreesPerSecond).RadiansPerSecond, MillidegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromMilliradiansPerSecond(radianpersecond.MilliradiansPerSecond).RadiansPerSecond, MilliradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromNanodegreesPerSecond(radianpersecond.NanodegreesPerSecond).RadiansPerSecond, NanodegreesPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromNanoradiansPerSecond(radianpersecond.NanoradiansPerSecond).RadiansPerSecond, NanoradiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromRadiansPerSecond(radianpersecond.RadiansPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerMinute(radianpersecond.RevolutionsPerMinute).RadiansPerSecond, RevolutionsPerMinuteTolerance);
-            Assert.AreEqual(1, RotationalSpeed.FromRevolutionsPerSecond(radianpersecond.RevolutionsPerSecond).RadiansPerSecond, RevolutionsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromCentiradiansPerSecond(radianpersecond.CentiradiansPerSecond).RadiansPerSecond, CentiradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromDeciradiansPerSecond(radianpersecond.DeciradiansPerSecond).RadiansPerSecond, DeciradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromDegreesPerMinute(radianpersecond.DegreesPerMinute).RadiansPerSecond, DegreesPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromDegreesPerSecond(radianpersecond.DegreesPerSecond).RadiansPerSecond, DegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromMicrodegreesPerSecond(radianpersecond.MicrodegreesPerSecond).RadiansPerSecond, MicrodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromMicroradiansPerSecond(radianpersecond.MicroradiansPerSecond).RadiansPerSecond, MicroradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromMillidegreesPerSecond(radianpersecond.MillidegreesPerSecond).RadiansPerSecond, MillidegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromMilliradiansPerSecond(radianpersecond.MilliradiansPerSecond).RadiansPerSecond, MilliradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromNanodegreesPerSecond(radianpersecond.NanodegreesPerSecond).RadiansPerSecond, NanodegreesPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromNanoradiansPerSecond(radianpersecond.NanoradiansPerSecond).RadiansPerSecond, NanoradiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromRadiansPerSecond(radianpersecond.RadiansPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromRevolutionsPerMinute(radianpersecond.RevolutionsPerMinute).RadiansPerSecond, RevolutionsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, RotationalSpeed.FromRevolutionsPerSecond(radianpersecond.RevolutionsPerSecond).RadiansPerSecond, RevolutionsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             RotationalSpeed v = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.AreEqual(-1, -v.RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(2, (RotationalSpeed.FromRadiansPerSecond(3)-v).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(2, (v + v).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(10, (v*10).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(10, (10*v).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(2, (RotationalSpeed.FromRadiansPerSecond(10)/5).RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.AreEqual(2, RotationalSpeed.FromRadiansPerSecond(10)/RotationalSpeed.FromRadiansPerSecond(5), RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(-1, -v.RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (RotationalSpeed.FromRadiansPerSecond(3)-v).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (v + v).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (v*10).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (10*v).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (RotationalSpeed.FromRadiansPerSecond(10)/5).RadiansPerSecond, RadiansPerSecondTolerance);
+            AssertEx.EqualTolerance(2, RotationalSpeed.FromRadiansPerSecond(10)/RotationalSpeed.FromRadiansPerSecond(5), RadiansPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             RotationalSpeed oneRadianPerSecond = RotationalSpeed.FromRadiansPerSecond(1);
@@ -188,35 +187,31 @@ namespace UnitsNet.Tests
             Assert.False(twoRadiansPerSecond <= oneRadianPerSecond);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.AreEqual(0, radianpersecond.CompareTo(radianpersecond));
-            Assert.Greater(radianpersecond.CompareTo(RotationalSpeed.Zero), 0);
-            Assert.Less(RotationalSpeed.Zero.CompareTo(radianpersecond), 0);
+            Assert.Equal(0, radianpersecond.CompareTo(radianpersecond));
+            Assert.True(radianpersecond.CompareTo(RotationalSpeed.Zero) > 0);
+            Assert.True(RotationalSpeed.Zero.CompareTo(radianpersecond) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            radianpersecond.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => radianpersecond.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            radianpersecond.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => radianpersecond.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             RotationalSpeed a = RotationalSpeed.FromRadiansPerSecond(1);
@@ -231,26 +226,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             RotationalSpeed v = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.IsTrue(v.Equals(RotationalSpeed.FromRadiansPerSecond(1)));
-            Assert.IsFalse(v.Equals(RotationalSpeed.Zero));
+            Assert.True(v.Equals(RotationalSpeed.FromRadiansPerSecond(1)));
+            Assert.False(v.Equals(RotationalSpeed.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.IsFalse(radianpersecond.Equals(new object()));
+            Assert.False(radianpersecond.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.IsFalse(radianpersecond.Equals(null));
+            Assert.False(radianpersecond.Equals(null));
         }
     }
 }

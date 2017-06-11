@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of PressureChangeRate.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PressureChangeRateTestsBase
     {
@@ -65,59 +64,59 @@ namespace UnitsNet.Tests
         protected virtual double PascalsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void PascalPerSecondToPressureChangeRateUnits()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.AreEqual(AtmospheresPerSecondInOnePascalPerSecond, pascalpersecond.AtmospheresPerSecond, AtmospheresPerSecondTolerance);
-            Assert.AreEqual(KilopascalsPerSecondInOnePascalPerSecond, pascalpersecond.KilopascalsPerSecond, KilopascalsPerSecondTolerance);
-            Assert.AreEqual(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.MegapascalsPerSecond, MegapascalsPerSecondTolerance);
-            Assert.AreEqual(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(AtmospheresPerSecondInOnePascalPerSecond, pascalpersecond.AtmospheresPerSecond, AtmospheresPerSecondTolerance);
+            AssertEx.EqualTolerance(KilopascalsPerSecondInOnePascalPerSecond, pascalpersecond.KilopascalsPerSecond, KilopascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.MegapascalsPerSecond, MegapascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.PascalsPerSecond, PascalsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, PressureChangeRate.From(1, PressureChangeRateUnit.AtmospherePerSecond).AtmospheresPerSecond, AtmospheresPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerSecond).KilopascalsPerSecond, KilopascalsPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerSecond).MegapascalsPerSecond, MegapascalsPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.AtmospherePerSecond).AtmospheresPerSecond, AtmospheresPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.KilopascalPerSecond).KilopascalsPerSecond, KilopascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.MegapascalPerSecond).MegapascalsPerSecond, MegapascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.AreEqual(AtmospheresPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.AtmospherePerSecond), AtmospheresPerSecondTolerance);
-            Assert.AreEqual(KilopascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.KilopascalPerSecond), KilopascalsPerSecondTolerance);
-            Assert.AreEqual(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MegapascalPerSecond), MegapascalsPerSecondTolerance);
-            Assert.AreEqual(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.PascalPerSecond), PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(AtmospheresPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.AtmospherePerSecond), AtmospheresPerSecondTolerance);
+            AssertEx.EqualTolerance(KilopascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.KilopascalPerSecond), KilopascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MegapascalPerSecond), MegapascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.PascalPerSecond), PascalsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.AreEqual(1, PressureChangeRate.FromAtmospheresPerSecond(pascalpersecond.AtmospheresPerSecond).PascalsPerSecond, AtmospheresPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.FromKilopascalsPerSecond(pascalpersecond.KilopascalsPerSecond).PascalsPerSecond, KilopascalsPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.FromMegapascalsPerSecond(pascalpersecond.MegapascalsPerSecond).PascalsPerSecond, MegapascalsPerSecondTolerance);
-            Assert.AreEqual(1, PressureChangeRate.FromPascalsPerSecond(pascalpersecond.PascalsPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.FromAtmospheresPerSecond(pascalpersecond.AtmospheresPerSecond).PascalsPerSecond, AtmospheresPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.FromKilopascalsPerSecond(pascalpersecond.KilopascalsPerSecond).PascalsPerSecond, KilopascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapascalsPerSecond(pascalpersecond.MegapascalsPerSecond).PascalsPerSecond, MegapascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.FromPascalsPerSecond(pascalpersecond.PascalsPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             PressureChangeRate v = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.AreEqual(-1, -v.PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(2, (PressureChangeRate.FromPascalsPerSecond(3)-v).PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(2, (v + v).PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(10, (v*10).PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(10, (10*v).PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(2, (PressureChangeRate.FromPascalsPerSecond(10)/5).PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.AreEqual(2, PressureChangeRate.FromPascalsPerSecond(10)/PressureChangeRate.FromPascalsPerSecond(5), PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(-1, -v.PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (PressureChangeRate.FromPascalsPerSecond(3)-v).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (v + v).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (v*10).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(10, (10*v).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, (PressureChangeRate.FromPascalsPerSecond(10)/5).PascalsPerSecond, PascalsPerSecondTolerance);
+            AssertEx.EqualTolerance(2, PressureChangeRate.FromPascalsPerSecond(10)/PressureChangeRate.FromPascalsPerSecond(5), PascalsPerSecondTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             PressureChangeRate onePascalPerSecond = PressureChangeRate.FromPascalsPerSecond(1);
@@ -134,35 +133,31 @@ namespace UnitsNet.Tests
             Assert.False(twoPascalsPerSecond <= onePascalPerSecond);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.AreEqual(0, pascalpersecond.CompareTo(pascalpersecond));
-            Assert.Greater(pascalpersecond.CompareTo(PressureChangeRate.Zero), 0);
-            Assert.Less(PressureChangeRate.Zero.CompareTo(pascalpersecond), 0);
+            Assert.Equal(0, pascalpersecond.CompareTo(pascalpersecond));
+            Assert.True(pascalpersecond.CompareTo(PressureChangeRate.Zero) > 0);
+            Assert.True(PressureChangeRate.Zero.CompareTo(pascalpersecond) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            pascalpersecond.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => pascalpersecond.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            pascalpersecond.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => pascalpersecond.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             PressureChangeRate a = PressureChangeRate.FromPascalsPerSecond(1);
@@ -177,26 +172,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             PressureChangeRate v = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.IsTrue(v.Equals(PressureChangeRate.FromPascalsPerSecond(1)));
-            Assert.IsFalse(v.Equals(PressureChangeRate.Zero));
+            Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1)));
+            Assert.False(v.Equals(PressureChangeRate.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.IsFalse(pascalpersecond.Equals(new object()));
+            Assert.False(pascalpersecond.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.IsFalse(pascalpersecond.Equals(null));
+            Assert.False(pascalpersecond.Equals(null));
         }
     }
 }

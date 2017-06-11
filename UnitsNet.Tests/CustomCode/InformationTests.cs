@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -79,22 +79,22 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TerabytesInOneBit => 0.125d*1e-12d;
 
 // ReSharper disable once InconsistentNaming
-        [Test]
+        [Fact]
         public void OneKBHas1000Bytes()
         {
-            Assert.AreEqual(1000, Information.FromKilobytes(1).Bytes);
+            Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
         }
 
-        [Test]
+        [Fact]
         public void MaxValueIsCorrectForUnitWithBaseTypeDecimal()
         {
-            Assert.AreEqual(decimal.MaxValue, Information.MaxValue.Bits);
+            Assert.Equal((double) decimal.MaxValue, Information.MaxValue.Bits);
         }
 
-        [Test]
+        [Fact]
         public void MinValueIsCorrectForUnitWithBaseTypeDecimal()
         {
-            Assert.AreEqual(decimal.MinValue, Information.MinValue.Bits);
+            Assert.Equal((double) decimal.MinValue, Information.MinValue.Bits);
         }
     }
 }

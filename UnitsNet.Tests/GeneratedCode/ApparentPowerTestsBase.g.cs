@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of ApparentPower.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ApparentPowerTestsBase
     {
@@ -63,55 +62,55 @@ namespace UnitsNet.Tests
         protected virtual double VoltamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void VoltampereToApparentPowerUnits()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.AreEqual(KilovoltamperesInOneVoltampere, voltampere.Kilovoltamperes, KilovoltamperesTolerance);
-            Assert.AreEqual(MegavoltamperesInOneVoltampere, voltampere.Megavoltamperes, MegavoltamperesTolerance);
-            Assert.AreEqual(VoltamperesInOneVoltampere, voltampere.Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, voltampere.Kilovoltamperes, KilovoltamperesTolerance);
+            AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, voltampere.Megavoltamperes, MegavoltamperesTolerance);
+            AssertEx.EqualTolerance(VoltamperesInOneVoltampere, voltampere.Voltamperes, VoltamperesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, ApparentPower.From(1, ApparentPowerUnit.Kilovoltampere).Kilovoltamperes, KilovoltamperesTolerance);
-            Assert.AreEqual(1, ApparentPower.From(1, ApparentPowerUnit.Megavoltampere).Megavoltamperes, MegavoltamperesTolerance);
-            Assert.AreEqual(1, ApparentPower.From(1, ApparentPowerUnit.Voltampere).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Kilovoltampere).Kilovoltamperes, KilovoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Megavoltampere).Megavoltamperes, MegavoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.From(1, ApparentPowerUnit.Voltampere).Voltamperes, VoltamperesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.AreEqual(KilovoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Kilovoltampere), KilovoltamperesTolerance);
-            Assert.AreEqual(MegavoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Megavoltampere), MegavoltamperesTolerance);
-            Assert.AreEqual(VoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Voltampere), VoltamperesTolerance);
+            AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Kilovoltampere), KilovoltamperesTolerance);
+            AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Megavoltampere), MegavoltamperesTolerance);
+            AssertEx.EqualTolerance(VoltamperesInOneVoltampere, voltampere.As(ApparentPowerUnit.Voltampere), VoltamperesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.AreEqual(1, ApparentPower.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes, KilovoltamperesTolerance);
-            Assert.AreEqual(1, ApparentPower.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes, MegavoltamperesTolerance);
-            Assert.AreEqual(1, ApparentPower.FromVoltamperes(voltampere.Voltamperes).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.FromKilovoltamperes(voltampere.Kilovoltamperes).Voltamperes, KilovoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.FromMegavoltamperes(voltampere.Megavoltamperes).Voltamperes, MegavoltamperesTolerance);
+            AssertEx.EqualTolerance(1, ApparentPower.FromVoltamperes(voltampere.Voltamperes).Voltamperes, VoltamperesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             ApparentPower v = ApparentPower.FromVoltamperes(1);
-            Assert.AreEqual(-1, -v.Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(2, (ApparentPower.FromVoltamperes(3)-v).Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(2, (v + v).Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(10, (v*10).Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(10, (10*v).Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(2, (ApparentPower.FromVoltamperes(10)/5).Voltamperes, VoltamperesTolerance);
-            Assert.AreEqual(2, ApparentPower.FromVoltamperes(10)/ApparentPower.FromVoltamperes(5), VoltamperesTolerance);
+            AssertEx.EqualTolerance(-1, -v.Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, (ApparentPower.FromVoltamperes(3)-v).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, (ApparentPower.FromVoltamperes(10)/5).Voltamperes, VoltamperesTolerance);
+            AssertEx.EqualTolerance(2, ApparentPower.FromVoltamperes(10)/ApparentPower.FromVoltamperes(5), VoltamperesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             ApparentPower oneVoltampere = ApparentPower.FromVoltamperes(1);
@@ -128,35 +127,31 @@ namespace UnitsNet.Tests
             Assert.False(twoVoltamperes <= oneVoltampere);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.AreEqual(0, voltampere.CompareTo(voltampere));
-            Assert.Greater(voltampere.CompareTo(ApparentPower.Zero), 0);
-            Assert.Less(ApparentPower.Zero.CompareTo(voltampere), 0);
+            Assert.Equal(0, voltampere.CompareTo(voltampere));
+            Assert.True(voltampere.CompareTo(ApparentPower.Zero) > 0);
+            Assert.True(ApparentPower.Zero.CompareTo(voltampere) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            voltampere.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => voltampere.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            voltampere.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => voltampere.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             ApparentPower a = ApparentPower.FromVoltamperes(1);
@@ -171,26 +166,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             ApparentPower v = ApparentPower.FromVoltamperes(1);
-            Assert.IsTrue(v.Equals(ApparentPower.FromVoltamperes(1)));
-            Assert.IsFalse(v.Equals(ApparentPower.Zero));
+            Assert.True(v.Equals(ApparentPower.FromVoltamperes(1)));
+            Assert.False(v.Equals(ApparentPower.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.IsFalse(voltampere.Equals(new object()));
+            Assert.False(voltampere.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
-            Assert.IsFalse(voltampere.Equals(null));
+            Assert.False(voltampere.Equals(null));
         }
     }
 }
