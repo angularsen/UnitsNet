@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UnitsNet.WindowsRuntimeComponent</id>
@@ -19,7 +19,7 @@
     <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component</tags>
   </metadata>
   <files>
-    <file src="Artifacts\Bin\Src-unsigned\AnyCPU_Release\uap10.0\UnitsNet.*" target="lib/uap10.0" />
-    <file src="UnitsNet\**\*.cs" exclude="UnitsNet\**\obj\**\*.cs" target="src" />
+    <file src="..\Artifacts\UnitsNet.WindowsRuntimeComponent\*.*" target="lib\uap10.0" />
+    <file src="**\*.cs" exclude="**\obj\**\*.cs" target="src" />
   </files>
 </package>
