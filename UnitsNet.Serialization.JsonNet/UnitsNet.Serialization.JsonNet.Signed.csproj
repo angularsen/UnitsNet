@@ -2,12 +2,18 @@
   <Import Project="UnitsNet.Serialization.JsonNet.Common.props" />
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;net35</TargetFrameworks>
+    <PackageId>UnitsNet.Serialization.JsonNet.Signed</PackageId>
+    <Title>Units.NET Serialization with Json.NET (signed)</Title>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Workaround for building with dotnet CLI
-         https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352
-    -->
+         https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352 -->
     <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Enable strong name signing -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="obj\**" />
@@ -17,6 +23,6 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    <PackageReference Include="UnitsNet" Version="3.65.0-alpha3" />
+    <PackageReference Include="UnitsNet.Signed" Version="3.65.0-alpha3" />
   </ItemGroup>
 </Project>
