@@ -1,4 +1,5 @@
 version: '{build}'
+image: Visual Studio 2017
 environment:
   UnitsNetPfxEncSecret:
     secure: hU9+bykqjFP/sx5GWxRofg==
@@ -35,7 +36,7 @@ install:
     Write-Output "Sucesfully imported $pfx into StrongName CSP store"
 build_script:
 - ps: |
-    ##################################### 
+    #####################################
     # Build, test, pack and deploy nugets
     #####################################
 
@@ -44,7 +45,7 @@ build_script:
     $BuildExitCode = $LASTEXITCODE
     popd
 
-    ##################################### 
+    #####################################
     # Upload test results to AppVeyor
     #####################################
 
@@ -56,7 +57,7 @@ build_script:
         }
     }
 
-    if ($BuildExitCode -ne 0) { 
+    if ($BuildExitCode -ne 0) {
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
