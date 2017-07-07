@@ -2041,6 +2041,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "var"),
                             }),
                     }),
+                new UnitLocalization(typeof (RotationalAccelerationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) RotationalAccelerationUnit.DegreePerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°/s²", "deg/s²"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RadianPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rad/s²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
                     {
