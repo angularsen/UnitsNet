@@ -23,7 +23,7 @@ Build Targets:
 Overview
 ---
 * [484 units in 46 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [888 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
+* [996 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
