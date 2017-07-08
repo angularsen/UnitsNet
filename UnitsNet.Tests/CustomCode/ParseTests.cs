@@ -164,6 +164,29 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("10 m^2", true)]
+        public void TryParseLengthUnitAbbreviationWithNumbers(string s, bool expected)
+        {
+            UnitSystem.ClearCache();
+            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, "m^2");
+            Length result;
+            bool actual = Length.TryParse(s, out result);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("10 m2")]
+        public void ParseLengthUnitAbbreviationWithNumbers(string s)
+        {
+            UnitSystem.ClearCache();
+            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, "m2");
+            Length actual = Length.Parse(s);
+            Assert.Equal(new Length(10), actual);
+        }
+
         private static string AssertExceptionAndGetFullTypeName(Action code)
         {
             var exception = Assert.ThrowsAny<Exception>(code);
