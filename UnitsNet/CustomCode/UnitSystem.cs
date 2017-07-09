@@ -429,13 +429,13 @@ namespace UnitsNet
                 {
                     abbrevs.AddRange(item.Value);
                 }
+                return abbrevs.ToArray();
             }
-            return abbrevs.ToArray();
 
             // Fall back to default culture
-            // return IsFallbackCulture
-            //     ? new[] {$"(no abbreviation for {unitType.Name} with numeric value {unitValue})"}
-            //     : GetCached(FallbackCulture).GetAllAbbreviations(unitType, unitValue);
+            return IsFallbackCulture
+                ? new[] {$"(no abbreviations for {unitType.Name})"}
+                : GetCached(FallbackCulture).GetAllAbbreviations(unitType);
         }
 
         private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
