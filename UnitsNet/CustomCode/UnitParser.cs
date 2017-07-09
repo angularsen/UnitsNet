@@ -69,8 +69,7 @@ namespace UnitsNet
                     unitAbbreviations[i] = unitAbbreviations[i].Replace(specialCharacter, @"\" + specialCharacter);
                 }
             }
-            // Technically, any number of matches are possible in the correct order ("10yardmmft")
-            string unitsRegex = $"({String.Join(")?(", unitAbbreviations)})?";
+            string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
             string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
                 numRegex, // capture base (integral) Quantity value
@@ -92,7 +91,7 @@ namespace UnitsNet
 
         /// <summary>
         ///     Parse a string given a particular regular expression.
-        /// </summary>
+        /// </summary>  
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         private static List<TUnit> ParseWithRegex<TUnit>(string regexString, string str, ParseUnit<TUnit> parseUnit,
             IFormatProvider formatProvider = null)
