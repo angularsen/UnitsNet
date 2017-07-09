@@ -37,7 +37,8 @@ namespace UnitsNet
         internal static TUnit ParseUnit<TUnit>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
             [NotNull] ParseUnit<TUnit> parseUnit,
-            [NotNull] Func<TUnit, TUnit, TUnit> add)
+            [NotNull] Func<TUnit, TUnit, TUnit> add,
+            Type unitType)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
@@ -54,11 +55,28 @@ namespace UnitsNet
 
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
+            // Special regex characters that need escaping
+            string[] regexSpecialCharacters = {"$","^","*","?"};
+            string[] unitAbbreviations = UnitSystem.GetCached(formatProvider)
+                .GetAllAbbreviations(unitType)
+                .OrderByDescending(s => s.Length) // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
+                .ToArray();
+            // Escape special regex characters
+            for (int i = 0; i < unitAbbreviations.Length; i++)
+            {
+                foreach (string specialCharacter in regexSpecialCharacters)
+                {
+                    unitAbbreviations[i] = unitAbbreviations[i].Replace(specialCharacter, @"\" + specialCharacter);
+                }
+            }
+            // Technically, any number of matches are possible in the correct order ("10yardmmft")
+            string unitsRegex = $"({String.Join(")?(", unitAbbreviations)})?";
+
             string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
-                @"(?<unit>[^\s\d,]+)", // capture Unit (non-whitespace) input
+                $@"(?<unit>{unitsRegex})", // capture Unit (non-whitespace) input
                 @"(and)?,?", // allow "and" & "," separators between quantities
                 @"(?<invalid>[a-z]*)?"); // capture invalid input
 

@@ -479,7 +479,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     $unitEnumName parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => From$baseUnitPluralName(x.$baseUnitPluralName + y.$baseUnitPluralName));
+                }, (x, y) => From$baseUnitPluralName(x.$baseUnitPluralName + y.$baseUnitPluralName), typeof($unitEnumName));
         }
 
         /// <summary>

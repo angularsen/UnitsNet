@@ -411,6 +411,33 @@ namespace UnitsNet
                 : GetCached(FallbackCulture).GetAllAbbreviations(unitType, unitValue);
         }
 
+        /// <summary>
+        ///     Get all abbreviations for unit.
+        /// </summary>
+        /// <param name="unitType">Enum type for unit.</param>
+        /// <param name="unitValue">Enum value for unit.</param>
+        /// <returns>Unit abbreviations associated with unit.</returns>
+        [PublicAPI]
+        public string[] GetAllAbbreviations(Type unitType)
+        {
+            Dictionary<int, List<string>> unitValueToAbbrevs;
+            List<string> abbrevs = new List<string>();
+
+            if (_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
+            {
+                foreach (var item in unitValueToAbbrevs)
+                {
+                    abbrevs.AddRange(item.Value);
+                }
+            }
+            return abbrevs.ToArray();
+
+            // Fall back to default culture
+            // return IsFallbackCulture
+            //     ? new[] {$"(no abbreviation for {unitType.Name} with numeric value {unitValue})"}
+            //     : GetCached(FallbackCulture).GetAllAbbreviations(unitType, unitValue);
+        }
+
         private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
         {
             foreach (UnitLocalization localization in DefaultLocalizations)

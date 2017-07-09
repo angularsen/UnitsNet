@@ -165,26 +165,50 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("10 m^2", true)]
-        public void TryParseLengthUnitAbbreviationWithNumbers(string s, bool expected)
+        [InlineData("!")]
+        [InlineData("@")]
+        [InlineData("#")]
+        [InlineData("$")]
+        [InlineData("%")]
+        [InlineData("^")]
+        [InlineData("&")]
+        [InlineData("*")]
+        [InlineData("-")]
+        [InlineData("_")]
+        [InlineData("?")]
+        [InlineData("123")]
+        public void TryParseLengthUnitAbbreviation(string s)
         {
-            UnitSystem.ClearCache();
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
-            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, "m^2");
-            Length result;
-            bool actual = Length.TryParse(s, out result);
-            Assert.Equal(expected, actual);
+            string abbrev = $"m{s}s";
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
+            UnitsNet.Units.LengthUnit result;
+            bool actual = unitSystem.TryParse<UnitsNet.Units.LengthUnit>(abbrev, out result);
+            Assert.Equal(true, actual);
+            Assert.Equal(UnitsNet.Units.LengthUnit.Meter, result);
         }
 
         [Theory]
-        [InlineData("10 m2")]
-        public void ParseLengthUnitAbbreviationWithNumbers(string s)
+        [InlineData("!")]
+        [InlineData("@")]
+        [InlineData("#")]
+        [InlineData("$")]
+        [InlineData("%")]
+        [InlineData("^")]
+        [InlineData("&")]
+        [InlineData("*")]
+        [InlineData("-")]
+        [InlineData("_")]
+        [InlineData("?")]
+        [InlineData("123")]
+        public void TryParseLengthUnitAbbreviationWithNumbers(string s)
         {
-            UnitSystem.ClearCache();
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
-            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, "m2");
-            Length actual = Length.Parse(s);
-            Assert.Equal(new Length(10), actual);
+            string abbrev = $"m{s}s";
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
+            bool actual = Length.TryParse($"10 {abbrev}", out Length result);
+            Assert.Equal(true, actual);
+            Assert.Equal(Length.FromMeters(10d), result);
         }
 
         private static string AssertExceptionAndGetFullTypeName(Action code)
