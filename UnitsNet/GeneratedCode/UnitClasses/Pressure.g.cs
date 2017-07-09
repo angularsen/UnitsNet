@@ -1752,7 +1752,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     PressureUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromPascals(x.Pascals + y.Pascals));
+                }, (x, y) => FromPascals(x.Pascals + y.Pascals), typeof(PressureUnit));
         }
 
         /// <summary>

@@ -678,7 +678,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForcePerLengthUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerMeter(x.NewtonsPerMeter + y.NewtonsPerMeter));
+                }, (x, y) => FromNewtonsPerMeter(x.NewtonsPerMeter + y.NewtonsPerMeter), typeof(ForcePerLengthUnit));
         }
 
         /// <summary>

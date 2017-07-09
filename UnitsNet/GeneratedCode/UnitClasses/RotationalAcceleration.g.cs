@@ -456,7 +456,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     RotationalAccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromRadiansPerSecondSquared(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared));
+                }, (x, y) => FromRadiansPerSecondSquared(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared), typeof(RotationalAccelerationUnit));
         }
 
         /// <summary>

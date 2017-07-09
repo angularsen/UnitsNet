@@ -863,7 +863,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AngleUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDegrees(x.Degrees + y.Degrees));
+                }, (x, y) => FromDegrees(x.Degrees + y.Degrees), typeof(AngleUnit));
         }
 
         /// <summary>

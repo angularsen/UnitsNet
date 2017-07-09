@@ -678,7 +678,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     KinematicViscosityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSquareMetersPerSecond(x.SquareMetersPerSecond + y.SquareMetersPerSecond));
+                }, (x, y) => FromSquareMetersPerSecond(x.SquareMetersPerSecond + y.SquareMetersPerSecond), typeof(KinematicViscosityUnit));
         }
 
         /// <summary>

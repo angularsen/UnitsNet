@@ -715,7 +715,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     TemperatureChangeRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDegreesCelsiusPerSecond(x.DegreesCelsiusPerSecond + y.DegreesCelsiusPerSecond));
+                }, (x, y) => FromDegreesCelsiusPerSecond(x.DegreesCelsiusPerSecond + y.DegreesCelsiusPerSecond), typeof(TemperatureChangeRateUnit));
         }
 
         /// <summary>

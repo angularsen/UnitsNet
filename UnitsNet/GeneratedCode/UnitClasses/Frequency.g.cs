@@ -678,7 +678,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     FrequencyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromHertz(x.Hertz + y.Hertz));
+                }, (x, y) => FromHertz(x.Hertz + y.Hertz), typeof(FrequencyUnit));
         }
 
         /// <summary>

@@ -1159,7 +1159,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpeedUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMetersPerSecond(x.MetersPerSecond + y.MetersPerSecond));
+                }, (x, y) => FromMetersPerSecond(x.MetersPerSecond + y.MetersPerSecond), typeof(SpeedUnit));
         }
 
         /// <summary>

@@ -1011,7 +1011,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     LengthUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMeters(x.Meters + y.Meters));
+                }, (x, y) => FromMeters(x.Meters + y.Meters), typeof(LengthUnit));
         }
 
         /// <summary>

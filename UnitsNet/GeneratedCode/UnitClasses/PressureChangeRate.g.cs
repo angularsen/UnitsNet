@@ -530,7 +530,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     PressureChangeRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromPascalsPerSecond(x.PascalsPerSecond + y.PascalsPerSecond));
+                }, (x, y) => FromPascalsPerSecond(x.PascalsPerSecond + y.PascalsPerSecond), typeof(PressureChangeRateUnit));
         }
 
         /// <summary>

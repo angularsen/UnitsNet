@@ -1344,7 +1344,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     InformationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromBits(x.Bits + y.Bits));
+                }, (x, y) => FromBits(x.Bits + y.Bits), typeof(InformationUnit));
         }
 
         /// <summary>

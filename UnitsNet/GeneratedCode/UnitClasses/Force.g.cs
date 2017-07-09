@@ -715,7 +715,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtons(x.Newtons + y.Newtons));
+                }, (x, y) => FromNewtons(x.Newtons + y.Newtons), typeof(ForceUnit));
         }
 
         /// <summary>

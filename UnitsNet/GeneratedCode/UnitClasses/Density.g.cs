@@ -1677,7 +1677,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     DensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter));
+                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter), typeof(DensityUnit));
         }
 
         /// <summary>

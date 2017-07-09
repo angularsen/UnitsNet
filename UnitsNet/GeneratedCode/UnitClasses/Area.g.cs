@@ -826,7 +826,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AreaUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSquareMeters(x.SquareMeters + y.SquareMeters));
+                }, (x, y) => FromSquareMeters(x.SquareMeters + y.SquareMeters), typeof(AreaUnit));
         }
 
         /// <summary>

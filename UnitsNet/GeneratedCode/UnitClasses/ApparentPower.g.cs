@@ -493,7 +493,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ApparentPowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltamperes(x.Voltamperes + y.Voltamperes));
+                }, (x, y) => FromVoltamperes(x.Voltamperes + y.Voltamperes), typeof(ApparentPowerUnit));
         }
 
         /// <summary>

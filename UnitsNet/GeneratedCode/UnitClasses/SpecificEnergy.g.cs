@@ -678,7 +678,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpecificEnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoulesPerKilogram(x.JoulesPerKilogram + y.JoulesPerKilogram));
+                }, (x, y) => FromJoulesPerKilogram(x.JoulesPerKilogram + y.JoulesPerKilogram), typeof(SpecificEnergyUnit));
         }
 
         /// <summary>

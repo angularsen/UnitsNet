@@ -530,7 +530,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhms(x.Ohms + y.Ohms));
+                }, (x, y) => FromOhms(x.Ohms + y.Ohms), typeof(ElectricResistanceUnit));
         }
 
         /// <summary>

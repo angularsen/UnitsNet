@@ -863,7 +863,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     EnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoules(x.Joules + y.Joules));
+                }, (x, y) => FromJoules(x.Joules + y.Joules), typeof(EnergyUnit));
         }
 
         /// <summary>

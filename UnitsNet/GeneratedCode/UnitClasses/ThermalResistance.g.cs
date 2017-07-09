@@ -567,7 +567,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ThermalResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSquareMeterKelvinsPerKilowatt(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt));
+                }, (x, y) => FromSquareMeterKelvinsPerKilowatt(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt), typeof(ThermalResistanceUnit));
         }
 
         /// <summary>

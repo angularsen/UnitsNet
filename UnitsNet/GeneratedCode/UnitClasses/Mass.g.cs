@@ -1085,7 +1085,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     MassUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilograms(x.Kilograms + y.Kilograms));
+                }, (x, y) => FromKilograms(x.Kilograms + y.Kilograms), typeof(MassUnit));
         }
 
         /// <summary>

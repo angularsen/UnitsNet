@@ -826,7 +826,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     MassFlowUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromGramsPerSecond(x.GramsPerSecond + y.GramsPerSecond));
+                }, (x, y) => FromGramsPerSecond(x.GramsPerSecond + y.GramsPerSecond), typeof(MassFlowUnit));
         }
 
         /// <summary>

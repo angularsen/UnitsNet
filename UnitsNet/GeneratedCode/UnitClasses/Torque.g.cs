@@ -974,7 +974,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     TorqueUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonMeters(x.NewtonMeters + y.NewtonMeters));
+                }, (x, y) => FromNewtonMeters(x.NewtonMeters + y.NewtonMeters), typeof(TorqueUnit));
         }
 
         /// <summary>

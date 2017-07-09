@@ -752,7 +752,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     DurationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSeconds(x.Seconds + y.Seconds));
+                }, (x, y) => FromSeconds(x.Seconds + y.Seconds), typeof(DurationUnit));
         }
 
         /// <summary>

@@ -637,7 +637,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     TemperatureUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins));
+                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins), typeof(TemperatureUnit));
         }
 
         /// <summary>

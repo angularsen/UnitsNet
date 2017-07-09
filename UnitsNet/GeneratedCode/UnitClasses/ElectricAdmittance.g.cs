@@ -530,7 +530,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricAdmittanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSiemens(x.Siemens + y.Siemens));
+                }, (x, y) => FromSiemens(x.Siemens + y.Siemens), typeof(ElectricAdmittanceUnit));
         }
 
         /// <summary>

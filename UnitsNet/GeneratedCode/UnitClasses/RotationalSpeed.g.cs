@@ -863,7 +863,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     RotationalSpeedUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromRadiansPerSecond(x.RadiansPerSecond + y.RadiansPerSecond));
+                }, (x, y) => FromRadiansPerSecond(x.RadiansPerSecond + y.RadiansPerSecond), typeof(RotationalSpeedUnit));
         }
 
         /// <summary>

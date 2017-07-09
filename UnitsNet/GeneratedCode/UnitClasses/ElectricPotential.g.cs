@@ -567,7 +567,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricPotentialUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVolts(x.Volts + y.Volts));
+                }, (x, y) => FromVolts(x.Volts + y.Volts), typeof(ElectricPotentialUnit));
         }
 
         /// <summary>

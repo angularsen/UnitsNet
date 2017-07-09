@@ -678,7 +678,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     MolarityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMolesPerCubicMeter(x.MolesPerCubicMeter + y.MolesPerCubicMeter));
+                }, (x, y) => FromMolesPerCubicMeter(x.MolesPerCubicMeter + y.MolesPerCubicMeter), typeof(MolarityUnit));
         }
 
         /// <summary>

@@ -464,7 +464,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     PowerRatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibelWatts(x.DecibelWatts + y.DecibelWatts));
+                }, (x, y) => FromDecibelWatts(x.DecibelWatts + y.DecibelWatts), typeof(PowerRatioUnit));
         }
 
         /// <summary>

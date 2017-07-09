@@ -641,7 +641,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMeterPerSecondSquared(x.MeterPerSecondSquared + y.MeterPerSecondSquared));
+                }, (x, y) => FromMeterPerSecondSquared(x.MeterPerSecondSquared + y.MeterPerSecondSquared), typeof(AccelerationUnit));
         }
 
         /// <summary>

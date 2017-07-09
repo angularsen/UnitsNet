@@ -464,7 +464,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     LevelUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibels(x.Decibels + y.Decibels));
+                }, (x, y) => FromDecibels(x.Decibels + y.Decibels), typeof(LevelUnit));
         }
 
         /// <summary>

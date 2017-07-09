@@ -419,7 +419,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     VitaminAUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromInternationalUnits(x.InternationalUnits + y.InternationalUnits));
+                }, (x, y) => FromInternationalUnits(x.InternationalUnits + y.InternationalUnits), typeof(VitaminAUnit));
         }
 
         /// <summary>

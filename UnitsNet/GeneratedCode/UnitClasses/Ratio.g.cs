@@ -604,7 +604,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     RatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecimalFractions(x.DecimalFractions + y.DecimalFractions));
+                }, (x, y) => FromDecimalFractions(x.DecimalFractions + y.DecimalFractions), typeof(RatioUnit));
         }
 
         /// <summary>

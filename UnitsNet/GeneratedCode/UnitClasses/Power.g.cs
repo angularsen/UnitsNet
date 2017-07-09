@@ -974,7 +974,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     PowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromWatts(x.Watts + y.Watts));
+                }, (x, y) => FromWatts(x.Watts + y.Watts), typeof(PowerUnit));
         }
 
         /// <summary>

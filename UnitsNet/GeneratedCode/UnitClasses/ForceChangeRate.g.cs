@@ -789,7 +789,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForceChangeRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerSecond(x.NewtonsPerSecond + y.NewtonsPerSecond));
+                }, (x, y) => FromNewtonsPerSecond(x.NewtonsPerSecond + y.NewtonsPerSecond), typeof(ForceChangeRateUnit));
         }
 
         /// <summary>

@@ -974,7 +974,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpecificWeightUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerCubicMeter(x.NewtonsPerCubicMeter + y.NewtonsPerCubicMeter));
+                }, (x, y) => FromNewtonsPerCubicMeter(x.NewtonsPerCubicMeter + y.NewtonsPerCubicMeter), typeof(SpecificWeightUnit));
         }
 
         /// <summary>

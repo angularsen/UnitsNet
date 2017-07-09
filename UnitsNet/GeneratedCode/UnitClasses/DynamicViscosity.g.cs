@@ -567,7 +567,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     DynamicViscosityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonSecondsPerMeterSquared(x.NewtonSecondsPerMeterSquared + y.NewtonSecondsPerMeterSquared));
+                }, (x, y) => FromNewtonSecondsPerMeterSquared(x.NewtonSecondsPerMeterSquared + y.NewtonSecondsPerMeterSquared), typeof(DynamicViscosityUnit));
         }
 
         /// <summary>

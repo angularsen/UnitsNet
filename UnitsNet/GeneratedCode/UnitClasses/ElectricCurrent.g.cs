@@ -641,7 +641,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricCurrentUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromAmperes(x.Amperes + y.Amperes));
+                }, (x, y) => FromAmperes(x.Amperes + y.Amperes), typeof(ElectricCurrentUnit));
         }
 
         /// <summary>

@@ -493,7 +493,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     BrakeSpecificFuelConsumptionUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerJoule(x.KilogramsPerJoule + y.KilogramsPerJoule));
+                }, (x, y) => FromKilogramsPerJoule(x.KilogramsPerJoule + y.KilogramsPerJoule), typeof(BrakeSpecificFuelConsumptionUnit));
         }
 
         /// <summary>

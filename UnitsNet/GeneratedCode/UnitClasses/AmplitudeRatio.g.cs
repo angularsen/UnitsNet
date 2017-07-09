@@ -538,7 +538,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AmplitudeRatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibelVolts(x.DecibelVolts + y.DecibelVolts));
+                }, (x, y) => FromDecibelVolts(x.DecibelVolts + y.DecibelVolts), typeof(AmplitudeRatioUnit));
         }
 
         /// <summary>
