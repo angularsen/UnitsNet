@@ -177,6 +177,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("_")]
         [InlineData("?")]
         [InlineData("123")]
+        [InlineData("od to")]
         public void TryParseLengthUnitAbbreviation(string s)
         {
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
@@ -201,6 +202,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("_")]
         [InlineData("?")]
         [InlineData("123")]
+        [InlineData("od to")]
         public void TryParseLengthUnitAbbreviationWithNumbers(string s)
         {
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
