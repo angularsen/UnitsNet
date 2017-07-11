@@ -19,39 +19,43 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-#if !WINDOWS_UWP
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
-
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
+    public sealed partial class SpecificEnergy
+#else
     public partial struct SpecificEnergy
+#endif
     {
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
         public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
         }
 
         public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
         {
-            return Energy.FromJoules(specificEnergy.JoulesPerKilogram*mass.Kilograms);
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
         }
 
         public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value/specificEnergy.JoulesPerKilogram);
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
         }
 
         public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption bsfc)
         {
-            return specificEnergy.JoulesPerKilogram*bsfc.KilogramsPerJoule;
+            return specificEnergy.JoulesPerKilogram * bsfc.KilogramsPerJoule;
         }
 
         public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
         {
-            return Power.FromWatts(massFlow.KilogramsPerSecond*specificEnergy.JoulesPerKilogram);
+            return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
         }
+#endif
     }
 }
-
-#endif

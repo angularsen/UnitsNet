@@ -26,6 +26,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
+// Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
 using System.Reflection;
 #endif
@@ -96,6 +97,7 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -156,6 +158,7 @@ namespace UnitsNet
             return GetCached(cultureInfo);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -177,6 +180,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -189,6 +193,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -227,6 +232,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -239,6 +245,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -257,6 +264,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -274,6 +282,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -281,6 +290,7 @@ namespace UnitsNet
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
+            // Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
             if (!unitType.GetTypeInfo().IsEnum)
 #else
@@ -323,6 +333,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -365,6 +376,7 @@ namespace UnitsNet
         /// <param name="unit">Enum value for unit.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -451,6 +463,7 @@ namespace UnitsNet
         private static object GetDefault(Type type)
         {
             return type
+                // Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
                 .GetTypeInfo()
 #endif

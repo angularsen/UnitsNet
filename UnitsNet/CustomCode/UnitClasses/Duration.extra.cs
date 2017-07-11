@@ -23,13 +23,16 @@ using System;
 
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Duration
 #else
     public partial struct Duration
 #endif
     {
-        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static DateTime operator +(DateTime time, Duration duration)
         {
@@ -119,11 +122,9 @@ namespace UnitsNet
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            if ((Seconds > TimeSpan.MaxValue.TotalSeconds) ||
-                (Seconds < TimeSpan.MinValue.TotalSeconds))
-            {
+            if (Seconds > TimeSpan.MaxValue.TotalSeconds ||
+                Seconds < TimeSpan.MinValue.TotalSeconds)
                 throw new ArgumentOutOfRangeException(nameof(Duration), "The duration is too large or small to fit in a TimeSpan");
-            }
             return TimeSpan.FromSeconds(Seconds);
         }
     }

@@ -19,14 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-#if !WINDOWS_UWP
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
-
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
+    public sealed partial class BrakeSpecificFuelConsumption
+#else
     public partial struct BrakeSpecificFuelConsumption
+#endif
     {
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
         public static MassFlow operator *(BrakeSpecificFuelConsumption bsfc, Power power)
         {
             return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule*power.Watts);
@@ -41,7 +46,6 @@ namespace UnitsNet
         {
             return specificEnergy.JoulesPerKilogram*bsfc.KilogramsPerJoule;
         }
+#endif
     }
 }
-
-#endif
