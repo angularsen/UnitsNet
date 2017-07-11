@@ -110,7 +110,7 @@ namespace UnitsNet
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, AbbreviationMap>();
 
-            LoadDefaultAbbreviatons(cultureInfo);
+            LoadDefaultAbbreviations(cultureInfo);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace UnitsNet
                 : GetCached(FallbackCulture).GetAllAbbreviations(unitType, unitValue);
         }
 
-        private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
+        private void LoadDefaultAbbreviations([NotNull] IFormatProvider culture)
         {
             foreach (UnitLocalization localization in DefaultLocalizations)
             {
