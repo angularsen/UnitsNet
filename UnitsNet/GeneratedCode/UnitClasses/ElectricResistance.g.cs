@@ -384,7 +384,7 @@ namespace UnitsNet
             return CompareTo((ElectricResistance) obj);
         }
 
-		// TODO Not sure why this method is not supported by Windows Runtime Component? Test me.
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -616,7 +616,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
 
-        // TODO Not sure why this is excluded from Windows Runtime Component, seem compatible. Test me!
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
