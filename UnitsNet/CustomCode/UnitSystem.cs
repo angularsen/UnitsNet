@@ -97,13 +97,18 @@ namespace UnitsNet
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
+        /// <param name="loadDefaultAbbreviations">
+        ///     If <c>true</c> (default), loads abbreviations per unit defined in
+        ///     /UnitsNet/UnitDefinitions/*.json files. Otherwise, creates an empty instance.
+        /// </param>
+
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
         public
 #endif
-            UnitSystem([CanBeNull] IFormatProvider cultureInfo)
+            UnitSystem([CanBeNull] IFormatProvider cultureInfo, bool loadDefaultAbbreviations = true)
         {
             if (cultureInfo == null)
                 cultureInfo = DefaultCulture;
@@ -112,7 +117,8 @@ namespace UnitsNet
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, AbbreviationMap>();
 
-            LoadDefaultAbbreviations(cultureInfo);
+            if (loadDefaultAbbreviations)
+                LoadDefaultAbbreviations(cultureInfo);
         }
 
         /// <summary>
