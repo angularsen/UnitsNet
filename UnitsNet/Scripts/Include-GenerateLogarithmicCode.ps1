@@ -24,6 +24,7 @@ function GenerateLogarithmicArithmeticOperators([string]$className, [string]$bas
 
         #region Logarithmic Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static $className operator -($className right)
         {
