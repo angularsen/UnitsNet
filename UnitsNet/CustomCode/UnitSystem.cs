@@ -459,11 +459,7 @@ namespace UnitsNet
 
             if (_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
             {
-                foreach (var item in unitValueToAbbrevs)
-                {
-                    abbrevs.AddRange(item.Value);
-                }
-                return abbrevs.ToArray();
+                return unitValueToAbbrevs.Values.SelectMany(x => x).ToArray();
             }
 
             // Fall back to default culture
