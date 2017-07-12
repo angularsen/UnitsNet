@@ -55,8 +55,6 @@ namespace UnitsNet
 
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
-            // Special regex characters that need escaping
-            string[] regexSpecialCharacters = {"$","^","*","?"};
             string[] unitAbbreviations = UnitSystem.GetCached(formatProvider)
                 .GetAllAbbreviations(unitType)
                 .OrderByDescending(s => s.Length) // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
@@ -64,10 +62,7 @@ namespace UnitsNet
             // Escape special regex characters
             for (int i = 0; i < unitAbbreviations.Length; i++)
             {
-                foreach (string specialCharacter in regexSpecialCharacters)
-                {
-                    unitAbbreviations[i] = unitAbbreviations[i].Replace(specialCharacter, @"\" + specialCharacter);
-                }
+                unitAbbreviations[i] = Regex.Escape(unitAbbreviations[i]);
             }
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
@@ -75,7 +70,7 @@ namespace UnitsNet
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
-                $@"(?<unit>{unitsRegex})", // capture Unit (non-whitespace) input
+                $@"(?<unit>{unitsRegex})", // capture Unit by list of abbreviations
                 @"(and)?,?", // allow "and" & "," separators between quantities
                 @"(?<invalid>[a-z]*)?"); // capture invalid input
 
