@@ -472,7 +472,7 @@ namespace UnitsNet
                 : GetCached(FallbackCulture).GetAllAbbreviations(unitType);
         }
 
-        private void LoadDefaultAbbreviatons([NotNull] IFormatProvider culture)
+        private void LoadDefaultAbbreviations([NotNull] IFormatProvider culture)
         {
             foreach (UnitLocalization localization in DefaultLocalizations)
             {
