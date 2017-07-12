@@ -23,6 +23,9 @@ using System;
 
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class PowerRatio
 #else
@@ -33,6 +36,8 @@ namespace UnitsNet
         ///     Initializes a new instance of the <see cref="PowerRatio" /> struct from the specified power referenced to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -46,7 +51,7 @@ namespace UnitsNet
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _decibelWatts = 10*Math.Log10(power.Watts/1);
+            _decibelWatts = 10 * Math.Log10(power.Watts / 1);
         }
 
         /// <summary>
@@ -65,7 +70,7 @@ namespace UnitsNet
         public static Power ToPower(PowerRatio powerRatio)
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts/10));
+            return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts / 10));
         }
 
         /// <summary>
@@ -77,7 +82,7 @@ namespace UnitsNet
         public static AmplitudeRatio ToAmplitudeRatio(PowerRatio powerRatio, ElectricResistance impedance)
         {
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(10*Math.Log10(impedance.Ohms/1) + powerRatio.DecibelWatts);
+            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + powerRatio.DecibelWatts);
         }
     }
 }

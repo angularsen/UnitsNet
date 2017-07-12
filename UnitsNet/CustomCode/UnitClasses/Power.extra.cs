@@ -20,68 +20,72 @@
 // THE SOFTWARE.
 
 #if !WINDOWS_UWP
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
 using System;
+
+#endif
 
 namespace UnitsNet
 {
-    /// <summary>
-    ///     Extension to the generated Length struct.
-    ///     Makes it easier to work with Feet/Inches combinations, which are customarily used in the US and UK
-    ///     to express body height. For example, someone is 5 feet 3 inches tall.
-    /// </summary>
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
+    public sealed partial class Power
+#else
     public partial struct Power
+#endif
     {
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
         public static Energy operator *(Power power, TimeSpan time)
         {
-            return Energy.FromJoules(power.Watts*time.TotalSeconds);
+            return Energy.FromJoules(power.Watts * time.TotalSeconds);
         }
 
         public static Energy operator *(TimeSpan time, Power power)
         {
-            return Energy.FromJoules(power.Watts*time.TotalSeconds);
+            return Energy.FromJoules(power.Watts * time.TotalSeconds);
         }
 
         public static Energy operator *(Power power, Duration duration)
         {
-            return Energy.FromJoules(power.Watts*duration.Seconds);
+            return Energy.FromJoules(power.Watts * duration.Seconds);
         }
 
         public static Energy operator *(Duration duration, Power power)
         {
-            return Energy.FromJoules(power.Watts*duration.Seconds);
+            return Energy.FromJoules(power.Watts * duration.Seconds);
         }
 
         public static Force operator /(Power power, Speed speed)
         {
-            return Force.FromNewtons(power.Watts/speed.MetersPerSecond);
+            return Force.FromNewtons(power.Watts / speed.MetersPerSecond);
         }
 
         public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
         {
-            return Torque.FromNewtonMeters(power.Watts/rotationalSpeed.RadiansPerSecond);
+            return Torque.FromNewtonMeters(power.Watts / rotationalSpeed.RadiansPerSecond);
         }
 
         public static RotationalSpeed operator /(Power power, Torque torque)
         {
-            return RotationalSpeed.FromRadiansPerSecond(power.Watts/torque.NewtonMeters);
+            return RotationalSpeed.FromRadiansPerSecond(power.Watts / torque.NewtonMeters);
         }
 
         public static MassFlow operator *(Power power, BrakeSpecificFuelConsumption bsfc)
         {
-            return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule*power.Watts);
+            return MassFlow.FromKilogramsPerSecond(bsfc.KilogramsPerJoule * power.Watts);
         }
 
         public static SpecificEnergy operator /(Power power, MassFlow massFlow)
         {
-            return SpecificEnergy.FromJoulesPerKilogram(power.Watts/massFlow.KilogramsPerSecond);
+            return SpecificEnergy.FromJoulesPerKilogram(power.Watts / massFlow.KilogramsPerSecond);
         }
 
         public static MassFlow operator /(Power power, SpecificEnergy specificEnergy)
         {
-            return MassFlow.FromKilogramsPerSecond(power.Watts/specificEnergy.JoulesPerKilogram);
+            return MassFlow.FromKilogramsPerSecond(power.Watts / specificEnergy.JoulesPerKilogram);
         }
+#endif
     }
 }
-
-#endif

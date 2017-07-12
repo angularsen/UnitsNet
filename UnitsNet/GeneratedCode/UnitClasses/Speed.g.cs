@@ -44,6 +44,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
 #else
@@ -58,6 +59,10 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Speed
 #else
@@ -69,6 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _metersPerSecond;
 
+		// Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Speed() : this(0)
         {
@@ -80,7 +86,7 @@ namespace UnitsNet
             _metersPerSecond = Convert.ToDouble(meterspersecond);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
@@ -91,8 +97,8 @@ namespace UnitsNet
             _metersPerSecond = Convert.ToDouble(meterspersecond);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
-        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
@@ -455,6 +461,7 @@ namespace UnitsNet
             return new Speed((nanometerspersecond) * 1e-9d);
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerHour.
@@ -831,6 +838,7 @@ namespace UnitsNet
             }
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
@@ -922,6 +930,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Speed operator -(Speed right)
         {
@@ -970,6 +979,7 @@ namespace UnitsNet
             return CompareTo((Speed) obj);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -980,6 +990,7 @@ namespace UnitsNet
             return _metersPerSecond.CompareTo(other._metersPerSecond);
         }
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Speed left, Speed right)
         {
@@ -1148,6 +1159,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else
@@ -1232,6 +1244,8 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -1322,6 +1336,7 @@ namespace UnitsNet
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else

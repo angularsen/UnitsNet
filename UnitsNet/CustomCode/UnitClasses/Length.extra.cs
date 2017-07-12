@@ -31,11 +31,9 @@ using Culture=System.IFormatProvider;
 
 namespace UnitsNet
 {
-    /// <summary>
-    ///     Extension to the generated Length struct.
-    ///     Makes it easier to work with Feet/Inches combinations, which are customarily used in the US and UK
-    ///     to express body height. For example, someone is 5 feet 3 inches tall.
-    /// </summary>
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Length
 #else
@@ -67,7 +65,7 @@ namespace UnitsNet
             return FromInches(FeetToInches*feet + inches);
         }
 
-        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Speed operator /(Length length, TimeSpan timeSpan)
         {

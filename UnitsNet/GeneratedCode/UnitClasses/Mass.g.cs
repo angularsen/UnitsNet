@@ -44,6 +44,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
 #else
@@ -58,6 +59,10 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Mass
 #else
@@ -69,6 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _kilograms;
 
+		// Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Mass() : this(0)
         {
@@ -80,7 +86,7 @@ namespace UnitsNet
             _kilograms = Convert.ToDouble(kilograms);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
@@ -91,8 +97,8 @@ namespace UnitsNet
             _kilograms = Convert.ToDouble(kilograms);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
-        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
@@ -423,6 +429,7 @@ namespace UnitsNet
             return new Mass(tonnes*1e3);
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Mass from nullable Centigrams.
@@ -765,6 +772,7 @@ namespace UnitsNet
             }
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.
@@ -852,6 +860,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Mass operator -(Mass right)
         {
@@ -900,6 +909,7 @@ namespace UnitsNet
             return CompareTo((Mass) obj);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -910,6 +920,7 @@ namespace UnitsNet
             return _kilograms.CompareTo(other._kilograms);
         }
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Mass left, Mass right)
         {
@@ -1074,6 +1085,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else
@@ -1158,6 +1170,8 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -1248,6 +1262,7 @@ namespace UnitsNet
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else

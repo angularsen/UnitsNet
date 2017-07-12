@@ -43,8 +43,8 @@ function GenerateNumberExtensionsSourceCode($unitClass)
 
 using System;
 
+// Windows Runtime Component does not support extension methods and method overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-// Extension methods/overloads not supported in Universal Windows Platform (WinRT Components)
 namespace UnitsNet.Extensions.NumberTo$className
 {
     public static class NumberTo$($className)Extensions

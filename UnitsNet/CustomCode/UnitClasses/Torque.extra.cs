@@ -20,23 +20,28 @@
 // THE SOFTWARE.
 
 
-#if !WINDOWS_UWP
-// Operator overloads not supported in Universal Windows Platform (WinRT Components)
-
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
+    public sealed partial class Torque
+#else
     public partial struct Torque
+#endif
     {
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
         public static Force operator /(Torque torque, Length length)
         {
-            return Force.FromNewtons(torque.NewtonMeters/length.Meters);
+            return Force.FromNewtons(torque.NewtonMeters / length.Meters);
         }
 
         public static Length operator /(Torque torque, Force force)
         {
-            return Length.FromMeters(torque.NewtonMeters/force.Newtons);
+            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
         }
+#endif
     }
 }
-
-#endif

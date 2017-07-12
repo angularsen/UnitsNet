@@ -26,6 +26,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 
+// Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
 using System.Reflection;
 #endif
@@ -82,6 +83,8 @@ namespace UnitsNet
         {
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+#if WINDOWS_UWP
         /// <summary>
         ///     Create unit system for parsing and generating strings of the specified culture.
         ///     If null is specified, the default English US culture will be used.
@@ -90,18 +93,38 @@ namespace UnitsNet
         public UnitSystem([CanBeNull] string cultureInfo) : this(cultureInfo != null ? new CultureInfo(cultureInfo) : DefaultCulture)
         {
         }
+#else
+        /// <summary>
+        ///     Create unit system for parsing and generating strings of the specified culture.
+        ///     If null is specified, the default English US culture will be used.
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <param name="loadDefaultAbbreviations">
+        ///     If <c>true</c> (default), loads abbreviations per unit defined in
+        ///     /UnitsNet/UnitDefinitions/*.json files. Otherwise, creates an empty instance.
+        /// </param>
+        public UnitSystem([CanBeNull] string cultureInfo, bool loadDefaultAbbreviations = true) : this(cultureInfo != null ? new CultureInfo(cultureInfo) : DefaultCulture)
+        {
+        }
+#endif
 
         /// <summary>
         ///     Create unit system for parsing and generating strings of the specified culture.
         ///     If null is specified, the default English US culture will be used.
         /// </summary>
         /// <param name="cultureInfo"></param>
+        /// <param name="loadDefaultAbbreviations">
+        ///     If <c>true</c> (default), loads abbreviations per unit defined in
+        ///     /UnitsNet/UnitDefinitions/*.json files. Otherwise, creates an empty instance.
+        /// </param>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
         public
 #endif
-            UnitSystem([CanBeNull] IFormatProvider cultureInfo)
+            UnitSystem([CanBeNull] IFormatProvider cultureInfo, bool loadDefaultAbbreviations = true)
         {
             if (cultureInfo == null)
                 cultureInfo = DefaultCulture;
@@ -110,7 +133,8 @@ namespace UnitsNet
             _unitTypeToUnitValueToAbbrevs = new Dictionary<Type, Dictionary<int, List<string>>>();
             _unitTypeToAbbrevToUnitValue = new Dictionary<Type, AbbreviationMap>();
 
-            LoadDefaultAbbreviatons(cultureInfo);
+            if (loadDefaultAbbreviations)
+                LoadDefaultAbbreviations(cultureInfo);
         }
 
         /// <summary>
@@ -156,6 +180,7 @@ namespace UnitsNet
             return GetCached(cultureInfo);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -177,6 +202,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -189,6 +215,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -227,6 +254,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -239,6 +267,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -257,6 +286,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -274,6 +304,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -281,6 +312,7 @@ namespace UnitsNet
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
+            // Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
             if (!unitType.GetTypeInfo().IsEnum)
 #else
@@ -323,6 +355,7 @@ namespace UnitsNet
         }
 
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -365,6 +398,7 @@ namespace UnitsNet
         /// <param name="unit">Enum value for unit.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -478,6 +512,7 @@ namespace UnitsNet
         private static object GetDefault(Type type)
         {
             return type
+                // Reflection API is different for .NET frameworks
 #if (WINDOWS_UWP || NETSTANDARD1_0)
                 .GetTypeInfo()
 #endif
