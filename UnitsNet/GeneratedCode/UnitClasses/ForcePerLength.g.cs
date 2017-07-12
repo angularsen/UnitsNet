@@ -672,13 +672,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ForcePerLength>(str, formatProvider,
+            return UnitParser.ParseUnit<ForcePerLengthUnit, ForcePerLength>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForcePerLengthUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerMeter(x.NewtonsPerMeter + y.NewtonsPerMeter), typeof(ForcePerLengthUnit));
+                }, (x, y) => FromNewtonsPerMeter(x.NewtonsPerMeter + y.NewtonsPerMeter));
         }
 
         /// <summary>

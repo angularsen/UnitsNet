@@ -968,13 +968,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<SpecificWeight>(str, formatProvider,
+            return UnitParser.ParseUnit<SpecificWeightUnit, SpecificWeight>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpecificWeightUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerCubicMeter(x.NewtonsPerCubicMeter + y.NewtonsPerCubicMeter), typeof(SpecificWeightUnit));
+                }, (x, y) => FromNewtonsPerCubicMeter(x.NewtonsPerCubicMeter + y.NewtonsPerCubicMeter));
         }
 
         /// <summary>

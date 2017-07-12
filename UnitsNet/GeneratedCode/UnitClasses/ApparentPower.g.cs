@@ -487,13 +487,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ApparentPower>(str, formatProvider,
+            return UnitParser.ParseUnit<ApparentPowerUnit, ApparentPower>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ApparentPowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltamperes(x.Voltamperes + y.Voltamperes), typeof(ApparentPowerUnit));
+                }, (x, y) => FromVoltamperes(x.Voltamperes + y.Voltamperes));
         }
 
         /// <summary>

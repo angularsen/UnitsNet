@@ -561,13 +561,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ThermalResistance>(str, formatProvider,
+            return UnitParser.ParseUnit<ThermalResistanceUnit, ThermalResistance>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ThermalResistanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSquareMeterKelvinsPerKilowatt(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt), typeof(ThermalResistanceUnit));
+                }, (x, y) => FromSquareMeterKelvinsPerKilowatt(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt));
         }
 
         /// <summary>

@@ -672,13 +672,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<KinematicViscosity>(str, formatProvider,
+            return UnitParser.ParseUnit<KinematicViscosityUnit, KinematicViscosity>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     KinematicViscosityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSquareMetersPerSecond(x.SquareMetersPerSecond + y.SquareMetersPerSecond), typeof(KinematicViscosityUnit));
+                }, (x, y) => FromSquareMetersPerSecond(x.SquareMetersPerSecond + y.SquareMetersPerSecond));
         }
 
         /// <summary>

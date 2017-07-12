@@ -1079,13 +1079,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Mass>(str, formatProvider,
+            return UnitParser.ParseUnit<MassUnit, Mass>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     MassUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilograms(x.Kilograms + y.Kilograms), typeof(MassUnit));
+                }, (x, y) => FromKilograms(x.Kilograms + y.Kilograms));
         }
 
         /// <summary>

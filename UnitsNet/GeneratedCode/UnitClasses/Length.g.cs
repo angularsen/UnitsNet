@@ -1005,13 +1005,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Length>(str, formatProvider,
+            return UnitParser.ParseUnit<LengthUnit, Length>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     LengthUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMeters(x.Meters + y.Meters), typeof(LengthUnit));
+                }, (x, y) => FromMeters(x.Meters + y.Meters));
         }
 
         /// <summary>

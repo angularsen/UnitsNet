@@ -631,13 +631,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Temperature>(str, formatProvider,
+            return UnitParser.ParseUnit<TemperatureUnit, Temperature>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     TemperatureUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins), typeof(TemperatureUnit));
+                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins));
         }
 
         /// <summary>

@@ -487,13 +487,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<BrakeSpecificFuelConsumption>(str, formatProvider,
+            return UnitParser.ParseUnit<BrakeSpecificFuelConsumptionUnit, BrakeSpecificFuelConsumption>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     BrakeSpecificFuelConsumptionUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerJoule(x.KilogramsPerJoule + y.KilogramsPerJoule), typeof(BrakeSpecificFuelConsumptionUnit));
+                }, (x, y) => FromKilogramsPerJoule(x.KilogramsPerJoule + y.KilogramsPerJoule));
         }
 
         /// <summary>

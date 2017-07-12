@@ -709,13 +709,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Force>(str, formatProvider,
+            return UnitParser.ParseUnit<ForceUnit, Force>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtons(x.Newtons + y.Newtons), typeof(ForceUnit));
+                }, (x, y) => FromNewtons(x.Newtons + y.Newtons));
         }
 
         /// <summary>

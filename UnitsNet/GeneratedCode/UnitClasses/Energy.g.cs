@@ -857,13 +857,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Energy>(str, formatProvider,
+            return UnitParser.ParseUnit<EnergyUnit, Energy>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     EnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoules(x.Joules + y.Joules), typeof(EnergyUnit));
+                }, (x, y) => FromJoules(x.Joules + y.Joules));
         }
 
         /// <summary>

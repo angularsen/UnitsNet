@@ -1671,13 +1671,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Density>(str, formatProvider,
+            return UnitParser.ParseUnit<DensityUnit, Density>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     DensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter), typeof(DensityUnit));
+                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter));
         }
 
         /// <summary>

@@ -561,13 +561,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<DynamicViscosity>(str, formatProvider,
+            return UnitParser.ParseUnit<DynamicViscosityUnit, DynamicViscosity>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     DynamicViscosityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonSecondsPerMeterSquared(x.NewtonSecondsPerMeterSquared + y.NewtonSecondsPerMeterSquared), typeof(DynamicViscosityUnit));
+                }, (x, y) => FromNewtonSecondsPerMeterSquared(x.NewtonSecondsPerMeterSquared + y.NewtonSecondsPerMeterSquared));
         }
 
         /// <summary>

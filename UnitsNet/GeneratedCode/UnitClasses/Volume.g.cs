@@ -1525,13 +1525,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Volume>(str, formatProvider,
+            return UnitParser.ParseUnit<VolumeUnit, Volume>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     VolumeUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromCubicMeters(x.CubicMeters + y.CubicMeters), typeof(VolumeUnit));
+                }, (x, y) => FromCubicMeters(x.CubicMeters + y.CubicMeters));
         }
 
         /// <summary>

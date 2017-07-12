@@ -561,13 +561,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricPotentialAc>(str, formatProvider,
+            return UnitParser.ParseUnit<ElectricPotentialAcUnit, ElectricPotentialAc>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricPotentialAcUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltsAc(x.VoltsAc + y.VoltsAc), typeof(ElectricPotentialAcUnit));
+                }, (x, y) => FromVoltsAc(x.VoltsAc + y.VoltsAc));
         }
 
         /// <summary>

@@ -524,13 +524,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricAdmittance>(str, formatProvider,
+            return UnitParser.ParseUnit<ElectricAdmittanceUnit, ElectricAdmittance>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricAdmittanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSiemens(x.Siemens + y.Siemens), typeof(ElectricAdmittanceUnit));
+                }, (x, y) => FromSiemens(x.Siemens + y.Siemens));
         }
 
         /// <summary>

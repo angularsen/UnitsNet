@@ -857,13 +857,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Angle>(str, formatProvider,
+            return UnitParser.ParseUnit<AngleUnit, Angle>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     AngleUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDegrees(x.Degrees + y.Degrees), typeof(AngleUnit));
+                }, (x, y) => FromDegrees(x.Degrees + y.Degrees));
         }
 
         /// <summary>

@@ -672,13 +672,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<SpecificEnergy>(str, formatProvider,
+            return UnitParser.ParseUnit<SpecificEnergyUnit, SpecificEnergy>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpecificEnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoulesPerKilogram(x.JoulesPerKilogram + y.JoulesPerKilogram), typeof(SpecificEnergyUnit));
+                }, (x, y) => FromJoulesPerKilogram(x.JoulesPerKilogram + y.JoulesPerKilogram));
         }
 
         /// <summary>

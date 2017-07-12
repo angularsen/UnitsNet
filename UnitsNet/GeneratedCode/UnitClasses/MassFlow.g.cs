@@ -820,13 +820,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<MassFlow>(str, formatProvider,
+            return UnitParser.ParseUnit<MassFlowUnit, MassFlow>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     MassFlowUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromGramsPerSecond(x.GramsPerSecond + y.GramsPerSecond), typeof(MassFlowUnit));
+                }, (x, y) => FromGramsPerSecond(x.GramsPerSecond + y.GramsPerSecond));
         }
 
         /// <summary>

@@ -1338,13 +1338,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Information>(str, formatProvider,
+            return UnitParser.ParseUnit<InformationUnit, Information>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     InformationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromBits(x.Bits + y.Bits), typeof(InformationUnit));
+                }, (x, y) => FromBits(x.Bits + y.Bits));
         }
 
         /// <summary>

@@ -672,13 +672,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Frequency>(str, formatProvider,
+            return UnitParser.ParseUnit<FrequencyUnit, Frequency>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     FrequencyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromHertz(x.Hertz + y.Hertz), typeof(FrequencyUnit));
+                }, (x, y) => FromHertz(x.Hertz + y.Hertz));
         }
 
         /// <summary>

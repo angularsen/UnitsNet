@@ -968,13 +968,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Power>(str, formatProvider,
+            return UnitParser.ParseUnit<PowerUnit, Power>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     PowerUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromWatts(x.Watts + y.Watts), typeof(PowerUnit));
+                }, (x, y) => FromWatts(x.Watts + y.Watts));
         }
 
         /// <summary>

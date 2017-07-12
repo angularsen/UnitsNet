@@ -746,13 +746,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Duration>(str, formatProvider,
+            return UnitParser.ParseUnit<DurationUnit, Duration>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     DurationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromSeconds(x.Seconds + y.Seconds), typeof(DurationUnit));
+                }, (x, y) => FromSeconds(x.Seconds + y.Seconds));
         }
 
         /// <summary>

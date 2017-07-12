@@ -968,13 +968,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Torque>(str, formatProvider,
+            return UnitParser.ParseUnit<TorqueUnit, Torque>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     TorqueUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonMeters(x.NewtonMeters + y.NewtonMeters), typeof(TorqueUnit));
+                }, (x, y) => FromNewtonMeters(x.NewtonMeters + y.NewtonMeters));
         }
 
         /// <summary>

@@ -1153,13 +1153,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Speed>(str, formatProvider,
+            return UnitParser.ParseUnit<SpeedUnit, Speed>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     SpeedUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMetersPerSecond(x.MetersPerSecond + y.MetersPerSecond), typeof(SpeedUnit));
+                }, (x, y) => FromMetersPerSecond(x.MetersPerSecond + y.MetersPerSecond));
         }
 
         /// <summary>

@@ -598,13 +598,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Ratio>(str, formatProvider,
+            return UnitParser.ParseUnit<RatioUnit, Ratio>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     RatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecimalFractions(x.DecimalFractions + y.DecimalFractions), typeof(RatioUnit));
+                }, (x, y) => FromDecimalFractions(x.DecimalFractions + y.DecimalFractions));
         }
 
         /// <summary>

@@ -473,13 +473,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<$className>(str, formatProvider,
+            return UnitParser.ParseUnit<$unitEnumName, $className>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     $unitEnumName parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => From$baseUnitPluralName(x.$baseUnitPluralName + y.$baseUnitPluralName), typeof($unitEnumName));
+                }, (x, y) => From$baseUnitPluralName(x.$baseUnitPluralName + y.$baseUnitPluralName));
         }
 
         /// <summary>

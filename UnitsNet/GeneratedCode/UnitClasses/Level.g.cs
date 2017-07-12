@@ -458,13 +458,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Level>(str, formatProvider,
+            return UnitParser.ParseUnit<LevelUnit, Level>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     LevelUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibels(x.Decibels + y.Decibels), typeof(LevelUnit));
+                }, (x, y) => FromDecibels(x.Decibels + y.Decibels));
         }
 
         /// <summary>

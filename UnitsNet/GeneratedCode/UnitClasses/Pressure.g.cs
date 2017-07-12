@@ -1746,13 +1746,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Pressure>(str, formatProvider,
+            return UnitParser.ParseUnit<PressureUnit, Pressure>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     PressureUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromPascals(x.Pascals + y.Pascals), typeof(PressureUnit));
+                }, (x, y) => FromPascals(x.Pascals + y.Pascals));
         }
 
         /// <summary>

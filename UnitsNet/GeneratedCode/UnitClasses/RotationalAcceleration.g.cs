@@ -450,13 +450,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<RotationalAcceleration>(str, formatProvider,
+            return UnitParser.ParseUnit<RotationalAccelerationUnit, RotationalAcceleration>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     RotationalAccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromRadiansPerSecondSquared(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared), typeof(RotationalAccelerationUnit));
+                }, (x, y) => FromRadiansPerSecondSquared(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared));
         }
 
         /// <summary>

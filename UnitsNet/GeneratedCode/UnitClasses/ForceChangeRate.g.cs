@@ -783,13 +783,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ForceChangeRate>(str, formatProvider,
+            return UnitParser.ParseUnit<ForceChangeRateUnit, ForceChangeRate>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ForceChangeRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonsPerSecond(x.NewtonsPerSecond + y.NewtonsPerSecond), typeof(ForceChangeRateUnit));
+                }, (x, y) => FromNewtonsPerSecond(x.NewtonsPerSecond + y.NewtonsPerSecond));
         }
 
         /// <summary>

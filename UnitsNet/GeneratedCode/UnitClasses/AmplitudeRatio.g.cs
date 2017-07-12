@@ -532,13 +532,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<AmplitudeRatio>(str, formatProvider,
+            return UnitParser.ParseUnit<AmplitudeRatioUnit, AmplitudeRatio>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     AmplitudeRatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibelVolts(x.DecibelVolts + y.DecibelVolts), typeof(AmplitudeRatioUnit));
+                }, (x, y) => FromDecibelVolts(x.DecibelVolts + y.DecibelVolts));
         }
 
         /// <summary>

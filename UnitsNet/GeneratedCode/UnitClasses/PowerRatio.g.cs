@@ -458,13 +458,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<PowerRatio>(str, formatProvider,
+            return UnitParser.ParseUnit<PowerRatioUnit, PowerRatio>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     PowerRatioUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromDecibelWatts(x.DecibelWatts + y.DecibelWatts), typeof(PowerRatioUnit));
+                }, (x, y) => FromDecibelWatts(x.DecibelWatts + y.DecibelWatts));
         }
 
         /// <summary>
