@@ -455,8 +455,6 @@ namespace UnitsNet
         public string[] GetAllAbbreviations(Type unitType)
         {
             Dictionary<int, List<string>> unitValueToAbbrevs;
-            List<string> abbrevs = new List<string>();
-
             if (_unitTypeToUnitValueToAbbrevs.TryGetValue(unitType, out unitValueToAbbrevs))
             {
                 return unitValueToAbbrevs.Values.SelectMany(x => x).ToArray();
