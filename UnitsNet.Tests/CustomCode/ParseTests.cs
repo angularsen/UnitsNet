@@ -159,8 +159,7 @@ namespace UnitsNet.Tests.CustomCode
         public void TryParseLengthUnitUsEnglish(string s, bool expected)
         {
             CultureInfo usEnglish = new CultureInfo("en-US");
-            Length result;
-            bool actual = Length.TryParse(s, usEnglish, out result);
+            bool actual = Length.TryParse(s, usEnglish, out Length _);
             Assert.Equal(expected, actual);
         }
 
@@ -182,11 +181,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
             string abbrev = $"m{s}s";
-            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
-            UnitsNet.Units.LengthUnit result;
-            bool actual = unitSystem.TryParse<UnitsNet.Units.LengthUnit>(abbrev, out result);
-            Assert.Equal(true, actual);
-            Assert.Equal(UnitsNet.Units.LengthUnit.Meter, result);
+            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            bool actual = unitSystem.TryParse(abbrev, out LengthUnit result);
+            Assert.True(actual);
+            Assert.Equal(LengthUnit.Meter, result);
         }
 
         [Theory]
@@ -207,10 +205,9 @@ namespace UnitsNet.Tests.CustomCode
         {
             UnitSystem unitSystem = UnitSystem.GetCached("en-US");
             string abbrev = $"m{s}s";
-            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
-            bool actual = Length.TryParse($"10 {abbrev}", out Length result);
-            Assert.Equal(true, actual);
-            Assert.Equal(Length.FromMeters(10d), result);
+            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            Assert.True(Length.TryParse($"10 {abbrev}", out Length result), $"TryParse \"10 {abbrev}\"");
+            Assert.Equal(10, result.Meters);
         }
 
         private static string AssertExceptionAndGetFullTypeName(Action code)
