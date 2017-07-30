@@ -119,6 +119,13 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void ParseMultiWordAbbreviations()
+        {
+            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn"));
+            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn"));
+        }
+
         [Theory]
         [InlineData("500 005 m", "UnitsNet.UnitsNetException")] // Quantity doesn't match number format.
         public void ParseWithCultureUsingDotAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, string expected)
