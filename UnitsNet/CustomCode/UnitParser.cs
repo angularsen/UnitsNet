@@ -56,13 +56,10 @@ namespace UnitsNet
 
             string[] unitAbbreviations = UnitSystem.GetCached(formatProvider)
                 .GetAllAbbreviations(typeof(TQuantity))
-                .OrderByDescending(s => s.Length) // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
+                .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
+                .Select(Regex.Escape)                   // Escape special regex characters
                 .ToArray();
-            // Escape special regex characters
-            for (int i = 0; i < unitAbbreviations.Length; i++)
-            {
-                unitAbbreviations[i] = Regex.Escape(unitAbbreviations[i]);
-            }
+            
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
             string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
