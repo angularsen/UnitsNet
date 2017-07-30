@@ -573,7 +573,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ThermalResistance>(str, formatProvider,
+            return UnitParser.ParseUnit<ThermalResistanceUnit, ThermalResistance>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

@@ -499,7 +499,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ReactivePower>(str, formatProvider,
+            return UnitParser.ParseUnit<ReactivePowerUnit, ReactivePower>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

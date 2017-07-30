@@ -164,6 +164,55 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("!")]
+        [InlineData("@")]
+        [InlineData("#")]
+        [InlineData("$")]
+        [InlineData("%")]
+        [InlineData("^")]
+        [InlineData("&")]
+        [InlineData("*")]
+        [InlineData("-")]
+        [InlineData("_")]
+        [InlineData("?")]
+        [InlineData("123")]
+        [InlineData(" ")]
+        public void TryParseLengthUnitAbbreviationSpecialCharacters(string s)
+        {
+            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
+            string abbrev = $"m{s}s";
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
+            UnitsNet.Units.LengthUnit result;
+            bool actual = unitSystem.TryParse<UnitsNet.Units.LengthUnit>(abbrev, out result);
+            Assert.Equal(true, actual);
+            Assert.Equal(UnitsNet.Units.LengthUnit.Meter, result);
+        }
+
+        [Theory]
+        [InlineData("!")]
+        [InlineData("@")]
+        [InlineData("#")]
+        [InlineData("$")]
+        [InlineData("%")]
+        [InlineData("^")]
+        [InlineData("&")]
+        [InlineData("*")]
+        [InlineData("-")]
+        [InlineData("_")]
+        [InlineData("?")]
+        [InlineData("123")]
+        [InlineData(" ")]
+        public void TryParseLengthSpecialCharacters(string s)
+        {
+            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
+            string abbrev = $"m{s}s";
+            unitSystem.MapUnitToAbbreviation(UnitsNet.Units.LengthUnit.Meter, abbrev);
+            bool actual = Length.TryParse($"10 {abbrev}", out Length result);
+            Assert.Equal(true, actual);
+            Assert.Equal(Length.FromMeters(10d), result);
+        }
+
         private static string AssertExceptionAndGetFullTypeName(Action code)
         {
             var exception = Assert.ThrowsAny<Exception>(code);

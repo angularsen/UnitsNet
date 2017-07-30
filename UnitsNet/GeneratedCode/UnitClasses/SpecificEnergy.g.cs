@@ -684,7 +684,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<SpecificEnergy>(str, formatProvider,
+            return UnitParser.ParseUnit<SpecificEnergyUnit, SpecificEnergy>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
