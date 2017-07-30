@@ -29,15 +29,15 @@ using JetBrains.Annotations;
 
 namespace UnitsNet
 {
-    internal delegate TUnit ParseUnit<out TUnit>(string value, string unit, IFormatProvider formatProvider = null);
+    internal delegate TQuantity ParseUnit<out TQuantity>(string value, string unit, IFormatProvider formatProvider = null);
 
     internal static class UnitParser
     {
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal static TUnit ParseUnit<TQuantityEnum, TUnit>([NotNull] string str,
+        internal static TQuantity ParseUnit<TQuantityEnum, TQuantity>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
-            [NotNull] ParseUnit<TUnit> parseUnit,
-            [NotNull] Func<TUnit, TUnit, TUnit> add)
+            [NotNull] ParseUnit<TQuantity> parseUnit,
+            [NotNull] Func<TQuantity, TQuantity, TQuantity> add)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
@@ -70,7 +70,7 @@ namespace UnitsNet
                 @"(and)?,?", // allow "and" & "," separators between quantities
                 @"(?<invalid>[a-z]*)?"); // capture invalid input
 
-            List<TUnit> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
+            List<TQuantity> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
             if (quantities.Count == 0)
             {
                 throw new ArgumentException(
@@ -84,12 +84,12 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>  
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static List<TUnit> ParseWithRegex<TUnit>(string regexString, string str, ParseUnit<TUnit> parseUnit,
+        private static List<TQuantity> ParseWithRegex<TQuantity>(string regexString, string str, ParseUnit<TQuantity> parseUnit,
             IFormatProvider formatProvider = null)
         {
             var regex = new Regex(regexString);
             MatchCollection matches = regex.Matches(str.Trim());
-            var converted = new List<TUnit>();
+            var converted = new List<TQuantity>();
 
             foreach (Match match in matches)
             {
