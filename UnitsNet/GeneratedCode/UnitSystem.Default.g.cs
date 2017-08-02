@@ -287,6 +287,40 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.CentimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm⁴"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.DecimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm⁴"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.FootToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft⁴"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.InchToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in⁴"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m⁴"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MillimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm⁴"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
                     new[]
                     {
