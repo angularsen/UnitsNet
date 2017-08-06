@@ -50,9 +50,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecimetersToTheFourthInOneMeterToTheFourth => 1e4;
 
-        protected override double FeetToTheFourthInOneMeterToTheFourth => 1/Math.Pow(0.3048, 4);
+        protected override double FeetToTheFourthInOneMeterToTheFourth => 115.861767;
 
-        protected override double InchesToTheFourthInOneMeterToTheFourth => 1/Math.Pow(2.54e-2, 4);
+        protected override double InchesToTheFourthInOneMeterToTheFourth => 2402509.61003;
 
         protected override double MetersToTheFourthInOneMeterToTheFourth => 1;
 
