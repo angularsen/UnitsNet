@@ -46,14 +46,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassMomentOfInertiaTests : MassMomentOfInertiaTestsBase
     {
-        protected override double CentigramSquareCentimetersInOneKilogramSquareMeter => 1e9;
-
-        protected override double CentigramSquareDecimetersInOneKilogramSquareMeter => 1e7;
-
-        protected override double CentigramSquareMetersInOneKilogramSquareMeter => 1e5;
-
-        protected override double CentigramSquareMillimetersInOneKilogramSquareMeter => 1e11;
-
         protected override double GramSquareCentimetersInOneKilogramSquareMeter => 1e7;
 
         protected override double GramSquareDecimetersInOneKilogramSquareMeter => 1e5;

@@ -1640,26 +1640,6 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MassMomentOfInertiaUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.CentigramSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.CentigramSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.CentigramSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.CentigramSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg·mm²"),
-                            }),
                         new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareCentimeter,
                             new[]
                             {

@@ -42,10 +42,6 @@ namespace UnitsNet.Units
     public enum MassMomentOfInertiaUnit
     {
         Undefined = 0,
-        CentigramSquareCentimeter,
-        CentigramSquareDecimeter,
-        CentigramSquareMeter,
-        CentigramSquareMillimeter,
         GramSquareCentimeter,
         GramSquareDecimeter,
         GramSquareMeter,

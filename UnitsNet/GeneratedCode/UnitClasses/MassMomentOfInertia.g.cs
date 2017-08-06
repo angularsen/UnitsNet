@@ -117,38 +117,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get MassMomentOfInertia in CentigramSquareCentimeters.
-        /// </summary>
-        public double CentigramSquareCentimeters
-        {
-            get { return (_kilogramSquareMeters*1e7) / 1e-2d; }
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia in CentigramSquareDecimeters.
-        /// </summary>
-        public double CentigramSquareDecimeters
-        {
-            get { return (_kilogramSquareMeters*1e5) / 1e-2d; }
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia in CentigramSquareMeters.
-        /// </summary>
-        public double CentigramSquareMeters
-        {
-            get { return (_kilogramSquareMeters*1e3) / 1e-2d; }
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia in CentigramSquareMillimeters.
-        /// </summary>
-        public double CentigramSquareMillimeters
-        {
-            get { return (_kilogramSquareMeters*1e9) / 1e-2d; }
-        }
-
-        /// <summary>
         ///     Get MassMomentOfInertia in GramSquareCentimeters.
         /// </summary>
         public double GramSquareCentimeters
@@ -270,38 +238,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get MassMomentOfInertia from CentigramSquareCentimeters.
-        /// </summary>
-        public static MassMomentOfInertia FromCentigramSquareCentimeters(double centigramsquarecentimeters)
-        {
-            return new MassMomentOfInertia((centigramsquarecentimeters/1e7) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia from CentigramSquareDecimeters.
-        /// </summary>
-        public static MassMomentOfInertia FromCentigramSquareDecimeters(double centigramsquaredecimeters)
-        {
-            return new MassMomentOfInertia((centigramsquaredecimeters/1e5) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia from CentigramSquareMeters.
-        /// </summary>
-        public static MassMomentOfInertia FromCentigramSquareMeters(double centigramsquaremeters)
-        {
-            return new MassMomentOfInertia((centigramsquaremeters/1e3) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get MassMomentOfInertia from CentigramSquareMillimeters.
-        /// </summary>
-        public static MassMomentOfInertia FromCentigramSquareMillimeters(double centigramsquaremillimeters)
-        {
-            return new MassMomentOfInertia((centigramsquaremillimeters/1e9) * 1e-2d);
-        }
-
-        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareCentimeters(double gramsquarecentimeters)
@@ -415,66 +351,6 @@ namespace UnitsNet
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable MassMomentOfInertia from nullable CentigramSquareCentimeters.
-        /// </summary>
-        public static MassMomentOfInertia? FromCentigramSquareCentimeters(double? centigramsquarecentimeters)
-        {
-            if (centigramsquarecentimeters.HasValue)
-            {
-                return FromCentigramSquareCentimeters(centigramsquarecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MassMomentOfInertia from nullable CentigramSquareDecimeters.
-        /// </summary>
-        public static MassMomentOfInertia? FromCentigramSquareDecimeters(double? centigramsquaredecimeters)
-        {
-            if (centigramsquaredecimeters.HasValue)
-            {
-                return FromCentigramSquareDecimeters(centigramsquaredecimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MassMomentOfInertia from nullable CentigramSquareMeters.
-        /// </summary>
-        public static MassMomentOfInertia? FromCentigramSquareMeters(double? centigramsquaremeters)
-        {
-            if (centigramsquaremeters.HasValue)
-            {
-                return FromCentigramSquareMeters(centigramsquaremeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MassMomentOfInertia from nullable CentigramSquareMillimeters.
-        /// </summary>
-        public static MassMomentOfInertia? FromCentigramSquareMillimeters(double? centigramsquaremillimeters)
-        {
-            if (centigramsquaremillimeters.HasValue)
-            {
-                return FromCentigramSquareMillimeters(centigramsquaremillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareCentimeters.
         /// </summary>
@@ -697,14 +573,6 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case MassMomentOfInertiaUnit.CentigramSquareCentimeter:
-                    return FromCentigramSquareCentimeters(val);
-                case MassMomentOfInertiaUnit.CentigramSquareDecimeter:
-                    return FromCentigramSquareDecimeters(val);
-                case MassMomentOfInertiaUnit.CentigramSquareMeter:
-                    return FromCentigramSquareMeters(val);
-                case MassMomentOfInertiaUnit.CentigramSquareMillimeter:
-                    return FromCentigramSquareMillimeters(val);
                 case MassMomentOfInertiaUnit.GramSquareCentimeter:
                     return FromGramSquareCentimeters(val);
                 case MassMomentOfInertiaUnit.GramSquareDecimeter:
@@ -755,14 +623,6 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case MassMomentOfInertiaUnit.CentigramSquareCentimeter:
-                    return FromCentigramSquareCentimeters(value.Value);
-                case MassMomentOfInertiaUnit.CentigramSquareDecimeter:
-                    return FromCentigramSquareDecimeters(value.Value);
-                case MassMomentOfInertiaUnit.CentigramSquareMeter:
-                    return FromCentigramSquareMeters(value.Value);
-                case MassMomentOfInertiaUnit.CentigramSquareMillimeter:
-                    return FromCentigramSquareMillimeters(value.Value);
                 case MassMomentOfInertiaUnit.GramSquareCentimeter:
                     return FromGramSquareCentimeters(value.Value);
                 case MassMomentOfInertiaUnit.GramSquareDecimeter:
@@ -948,14 +808,6 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case MassMomentOfInertiaUnit.CentigramSquareCentimeter:
-                    return CentigramSquareCentimeters;
-                case MassMomentOfInertiaUnit.CentigramSquareDecimeter:
-                    return CentigramSquareDecimeters;
-                case MassMomentOfInertiaUnit.CentigramSquareMeter:
-                    return CentigramSquareMeters;
-                case MassMomentOfInertiaUnit.CentigramSquareMillimeter:
-                    return CentigramSquareMillimeters;
                 case MassMomentOfInertiaUnit.GramSquareCentimeter:
                     return GramSquareCentimeters;
                 case MassMomentOfInertiaUnit.GramSquareDecimeter:

@@ -8,7 +8,7 @@
       "PluralName": "GramSquareMeters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Milli", "Centi", "Kilo" ],
+      "Prefixes": [ "Milli", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -21,7 +21,7 @@
       "PluralName": "GramSquareDecimeters",
       "FromUnitToBaseFunc": "x/1e5",
       "FromBaseToUnitFunc": "x*1e5",
-      "Prefixes": [ "Milli", "Centi", "Kilo" ],
+      "Prefixes": [ "Milli", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,7 +34,7 @@
       "PluralName": "GramSquareCentimeters",
       "FromUnitToBaseFunc": "x/1e7",
       "FromBaseToUnitFunc": "x*1e7",
-      "Prefixes": [ "Milli", "Centi", "Kilo" ],
+      "Prefixes": [ "Milli", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -47,7 +47,7 @@
       "PluralName": "GramSquareMillimeters",
       "FromUnitToBaseFunc": "x/1e9",
       "FromBaseToUnitFunc": "x*1e9",
-      "Prefixes": [ "Milli", "Centi", "Kilo" ],
+      "Prefixes": [ "Milli", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
