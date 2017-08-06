@@ -287,6 +287,40 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.CentimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cm⁴", "cm^4"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.DecimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm⁴", "dm^4"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.FootToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft⁴", "ft^4"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.InchToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in⁴", "in^4"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m⁴", "m^4"),
+                            }),
+                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MillimeterToTheFourth,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm⁴", "mm^4"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
                     new[]
                     {
@@ -1601,6 +1635,80 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "t/d"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MassMomentOfInertiaUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g·mm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg·mm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg·mm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.PoundSquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb·ft²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.PoundSquareInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb·in²"),
                             }),
                     }),
                 new UnitLocalization(typeof (MolarityUnit),
