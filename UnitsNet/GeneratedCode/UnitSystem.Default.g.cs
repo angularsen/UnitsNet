@@ -293,32 +293,32 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.CentimeterToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cm⁴"),
+                                new AbbreviationsForCulture("en-US", "cm⁴", "cm^4"),
                             }),
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.DecimeterToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "dm⁴"),
+                                new AbbreviationsForCulture("en-US", "dm⁴", "dm^4"),
                             }),
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.FootToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft⁴"),
+                                new AbbreviationsForCulture("en-US", "ft⁴", "ft^4"),
                             }),
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.InchToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "in⁴"),
+                                new AbbreviationsForCulture("en-US", "in⁴", "in^4"),
                             }),
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MeterToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "m⁴"),
+                                new AbbreviationsForCulture("en-US", "m⁴", "m^4"),
                             }),
                         new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MillimeterToTheFourth,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "mm⁴"),
+                                new AbbreviationsForCulture("en-US", "mm⁴", "mm^4"),
                             }),
                     }),
                 new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
