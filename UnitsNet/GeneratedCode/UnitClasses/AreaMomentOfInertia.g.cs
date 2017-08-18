@@ -610,7 +610,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<AreaMomentOfInertiaUnit, AreaMomentOfInertia>(str, formatProvider,
+            return QuantityParser.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

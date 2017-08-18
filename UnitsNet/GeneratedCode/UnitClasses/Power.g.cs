@@ -980,7 +980,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<PowerUnit, Power>(str, formatProvider,
+            return QuantityParser.Parse<Power, PowerUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

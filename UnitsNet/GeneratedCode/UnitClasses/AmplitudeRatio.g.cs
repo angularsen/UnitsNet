@@ -544,7 +544,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<AmplitudeRatioUnit, AmplitudeRatio>(str, formatProvider,
+            return QuantityParser.Parse<AmplitudeRatio, AmplitudeRatioUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

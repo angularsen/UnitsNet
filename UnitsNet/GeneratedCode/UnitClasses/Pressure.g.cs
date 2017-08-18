@@ -1758,7 +1758,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<PressureUnit, Pressure>(str, formatProvider,
+            return QuantityParser.Parse<Pressure, PressureUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

@@ -795,7 +795,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ForceChangeRateUnit, ForceChangeRate>(str, formatProvider,
+            return QuantityParser.Parse<ForceChangeRate, ForceChangeRateUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

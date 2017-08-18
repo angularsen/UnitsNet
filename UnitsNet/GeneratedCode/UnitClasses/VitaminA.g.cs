@@ -425,7 +425,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<VitaminAUnit, VitaminA>(str, formatProvider,
+            return QuantityParser.Parse<VitaminA, VitaminAUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

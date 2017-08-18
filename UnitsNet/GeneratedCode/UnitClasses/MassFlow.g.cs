@@ -832,7 +832,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<MassFlowUnit, MassFlow>(str, formatProvider,
+            return QuantityParser.Parse<MassFlow, MassFlowUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

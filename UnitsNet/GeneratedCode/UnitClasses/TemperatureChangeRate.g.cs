@@ -721,7 +721,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<TemperatureChangeRateUnit, TemperatureChangeRate>(str, formatProvider,
+            return QuantityParser.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

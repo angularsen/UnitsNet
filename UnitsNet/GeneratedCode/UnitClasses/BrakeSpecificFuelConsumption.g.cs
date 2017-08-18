@@ -499,7 +499,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<BrakeSpecificFuelConsumptionUnit, BrakeSpecificFuelConsumption>(str, formatProvider,
+            return QuantityParser.Parse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

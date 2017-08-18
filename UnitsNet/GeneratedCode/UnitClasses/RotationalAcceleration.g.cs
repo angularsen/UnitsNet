@@ -462,7 +462,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<RotationalAccelerationUnit, RotationalAcceleration>(str, formatProvider,
+            return QuantityParser.Parse<RotationalAcceleration, RotationalAccelerationUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

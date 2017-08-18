@@ -573,7 +573,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<DynamicViscosityUnit, DynamicViscosity>(str, formatProvider,
+            return QuantityParser.Parse<DynamicViscosity, DynamicViscosityUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

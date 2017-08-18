@@ -31,10 +31,10 @@ namespace UnitsNet
 {
     internal delegate TQuantity ParseUnit<out TQuantity>(string value, string unit, IFormatProvider formatProvider = null);
 
-    internal static class UnitParser
+    internal static class QuantityParser
     {
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal static TQuantity ParseUnit<TUnitType, TQuantity>([NotNull] string str,
+        internal static TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
             [NotNull] ParseUnit<TQuantity> parseUnit,
             [NotNull] Func<TQuantity, TQuantity, TQuantity> add)

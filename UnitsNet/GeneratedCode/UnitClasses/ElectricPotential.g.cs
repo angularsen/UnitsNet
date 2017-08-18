@@ -573,7 +573,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ElectricPotentialUnit, ElectricPotential>(str, formatProvider,
+            return QuantityParser.Parse<ElectricPotential, ElectricPotentialUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);

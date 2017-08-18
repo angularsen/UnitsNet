@@ -684,7 +684,7 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ForcePerLengthUnit, ForcePerLength>(str, formatProvider,
+            return QuantityParser.Parse<ForcePerLength, ForcePerLengthUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
