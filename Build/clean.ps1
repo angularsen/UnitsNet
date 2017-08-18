@@ -1,6 +1,8 @@
-if (test-path .\Artifacts) {
+$root = "$PSScriptRoot\.."
+$artifactsDir = "$root\Artifacts"
+if (test-path $artifactsDir) {
   write-host -foreground blue "Delete Artifacts dir"
-  rm -r -fo .\Artifacts -ErrorAction Continue
+  rm -r -fo $artifactsDir -ErrorAction Continue
 }
 write-host -foreground blue "Delete dirs: bin, obj"
-ls . -inc bin,obj -r -fo | ri -r -fo -ErrorAction SilentlyContinue
+ls $root -inc bin,obj -r -fo | ri -r -fo -ErrorAction SilentlyContinue
