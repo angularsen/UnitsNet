@@ -78,14 +78,14 @@ namespace UnitsNet.Tests
         }
 #endif
 
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnit>(string cultureName,
-            IEnumerable<TUnit> unitValues)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnitType>(string cultureName,
+            IEnumerable<TUnitType> unitValues)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             UnitSystem unitSystem = UnitSystem.GetCached(GetCulture(cultureName));
 
-            var unitsMissingAbbreviations = new List<TUnit>();
-            foreach (TUnit unit in unitValues)
+            var unitsMissingAbbreviations = new List<TUnitType>();
+            foreach (TUnitType unit in unitValues)
             {
                 try
                 {

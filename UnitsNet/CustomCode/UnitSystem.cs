@@ -41,12 +41,12 @@ namespace UnitsNet
         private static readonly Dictionary<IFormatProvider, UnitSystem> CultureToInstance;
 
         /// <summary>
-        ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnit}" /> and
-        ///     <see cref="GetDefaultAbbreviation{TUnit}(TUnit,CultureInfo)" />
+        ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnitType}" /> and
+        ///     <see cref="GetDefaultAbbreviation{TUnitType}(TUnitType,CultureInfo)" />
         ///     if no abbreviations are found with current <see cref="Culture" />.
         /// </summary>
         /// <example>
-        ///     User wants to call <see cref="Parse{TUnit}(string,CultureInfo)" /> or <see cref="object.ToString" /> with Russian
+        ///     User wants to call <see cref="Parse{TUnitType}(string,CultureInfo)" /> or <see cref="object.ToString" /> with Russian
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
@@ -208,10 +208,10 @@ namespace UnitsNet
 #else
         public
 #endif
-            static TUnit Parse<TUnit>(string unitAbbreviation, CultureInfo culture)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            static TUnitType Parse<TUnitType>(string unitAbbreviation, CultureInfo culture)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            return GetCached(culture).Parse<TUnit>(unitAbbreviation);
+            return GetCached(culture).Parse<TUnitType>(unitAbbreviation);
         }
 
         [PublicAPI]
@@ -221,10 +221,10 @@ namespace UnitsNet
 #else
         public
 #endif
-            TUnit Parse<TUnit>(string unitAbbreviation)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            TUnitType Parse<TUnitType>(string unitAbbreviation)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            return (TUnit) Parse(unitAbbreviation, typeof(TUnit));
+            return (TUnitType) Parse(unitAbbreviation, typeof(TUnitType));
         }
 
         [PublicAPI]
@@ -260,8 +260,8 @@ namespace UnitsNet
 #else
         public
 #endif
-            static string GetDefaultAbbreviation<TUnit>(TUnit unit, CultureInfo culture)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            static string GetDefaultAbbreviation<TUnitType>(TUnitType unit, CultureInfo culture)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -273,8 +273,8 @@ namespace UnitsNet
 #else
         public
 #endif
-            string GetDefaultAbbreviation<TUnit>(TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            string GetDefaultAbbreviation<TUnitType>(TUnitType unit)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetAllAbbreviations(unit).First();
         }
@@ -292,14 +292,14 @@ namespace UnitsNet
 #else
         public
 #endif
-            void MapUnitToAbbreviation<TUnit>(TUnit unit, params string[] abbreviations)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            // Assuming TUnit is an enum, this conversion is safe. Seems not possible to enforce this today.
+            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
             // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
             int unitValue = Convert.ToInt32(unit);
-            Type unitType = typeof(TUnit);
+            Type unitType = typeof(TUnitType);
             MapUnitToAbbreviation(unitType, unitValue, abbreviations);
         }
 
@@ -361,17 +361,17 @@ namespace UnitsNet
 #else
         public
 #endif
-            bool TryParse<TUnit>(string unitAbbreviation, out TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             try
             {
-                unit = (TUnit) Parse(unitAbbreviation, typeof(TUnit));
+                unit = (TUnitType) Parse(unitAbbreviation, typeof(TUnitType));
                 return true;
             }
             catch
             {
-                unit = default(TUnit);
+                unit = default(TUnitType);
                 return false;
             }
         }
@@ -394,7 +394,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get all abbreviations for unit.
         /// </summary>
-        /// <typeparam name="TUnit">Enum type for units.</typeparam>
+        /// <typeparam name="TUnitType">Enum type for units.</typeparam>
         /// <param name="unit">Enum value for unit.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
@@ -404,20 +404,20 @@ namespace UnitsNet
 #else
         public
 #endif
-            string[] GetAllAbbreviations<TUnit>(TUnit unit)
-            where TUnit : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            string[] GetAllAbbreviations<TUnitType>(TUnitType unit)
+            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             Dictionary<int, List<string>> unitValueToAbbrevs;
             List<string> abbrevs;
 
-            if (_unitTypeToUnitValueToAbbrevs.TryGetValue(typeof(TUnit), out unitValueToAbbrevs) &&
+            if (_unitTypeToUnitValueToAbbrevs.TryGetValue(typeof(TUnitType), out unitValueToAbbrevs) &&
                 unitValueToAbbrevs.TryGetValue((int) (object) unit, out abbrevs))
             {
                 return abbrevs.ToArray();
             }
 
             return IsFallbackCulture
-                ? new[] {$"(no abbreviation for {typeof(TUnit).Name}.{unit})"}
+                ? new[] {$"(no abbreviation for {typeof(TUnitType).Name}.{unit})"}
                 : GetCached(FallbackCulture).GetAllAbbreviations(unit);
         }
 

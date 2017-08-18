@@ -83,16 +83,16 @@ namespace UnitsNet
         /// <summary>
         ///     Gets ToString format arguments.
         /// </summary>
-        /// <typeparam name="TUnit">The type of units to format.</typeparam>
+        /// <typeparam name="TUnitType">The type of units to format.</typeparam>
         /// <param name="unit">The units</param>
         /// <param name="value">The unit value to format.</param>
         /// <param name="culture">The current culture.</param>
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
-        public static object[] GetFormatArgs<TUnit>(TUnit unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
-            where TUnit : struct, IComparable, IFormattable
+        public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
+            where TUnitType : struct, IComparable, IFormattable
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnit), Convert.ToInt32(unit));
+            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit));
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }
