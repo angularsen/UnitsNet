@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the AmplitudeRatio quantity.
+        /// </summary>
+        public static AmplitudeRatioUnit[] Units { get; } = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().ToArray();
+
+        /// <summary>
         ///     Get AmplitudeRatio in DecibelMicrovolts.
         /// </summary>
         public double DecibelMicrovolts

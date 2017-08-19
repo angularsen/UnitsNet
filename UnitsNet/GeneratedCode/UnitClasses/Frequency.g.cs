@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Frequency quantity.
+        /// </summary>
+        public static FrequencyUnit[] Units { get; } = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().ToArray();
+
+        /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>
         public double CyclesPerHour

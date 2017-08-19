@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the RotationalSpeed quantity.
+        /// </summary>
+        public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().ToArray();
+
+        /// <summary>
         ///     Get RotationalSpeed in CentiradiansPerSecond.
         /// </summary>
         public double CentiradiansPerSecond

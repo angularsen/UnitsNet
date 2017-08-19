@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Duration quantity.
+        /// </summary>
+        public static DurationUnit[] Units { get; } = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().ToArray();
+
+        /// <summary>
         ///     Get Duration in Days.
         /// </summary>
         public double Days

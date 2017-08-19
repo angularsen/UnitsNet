@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the MassFlow quantity.
+        /// </summary>
+        public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
+
+        /// <summary>
         ///     Get MassFlow in CentigramsPerSecond.
         /// </summary>
         public double CentigramsPerSecond

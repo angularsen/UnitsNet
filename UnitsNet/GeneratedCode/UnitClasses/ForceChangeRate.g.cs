@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ForceChangeRate quantity.
+        /// </summary>
+        public static ForceChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().ToArray();
+
+        /// <summary>
         ///     Get ForceChangeRate in CentinewtonsPerSecond.
         /// </summary>
         public double CentinewtonsPerSecond

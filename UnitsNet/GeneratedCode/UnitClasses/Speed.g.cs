@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Speed quantity.
+        /// </summary>
+        public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().ToArray();
+
+        /// <summary>
         ///     Get Speed in CentimetersPerHour.
         /// </summary>
         public double CentimetersPerHour

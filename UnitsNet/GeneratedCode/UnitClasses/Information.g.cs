@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Information quantity.
+        /// </summary>
+        public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().ToArray();
+
+        /// <summary>
         ///     Get Information in Bits.
         /// </summary>
         public double Bits

@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ReactivePower quantity.
+        /// </summary>
+        public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().ToArray();
+
+        /// <summary>
         ///     Get ReactivePower in KilovoltamperesReactive.
         /// </summary>
         public double KilovoltamperesReactive

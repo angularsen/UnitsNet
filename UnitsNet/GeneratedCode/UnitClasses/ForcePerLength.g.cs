@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ForcePerLength quantity.
+        /// </summary>
+        public static ForcePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
+
+        /// <summary>
         ///     Get ForcePerLength in CentinewtonsPerMeter.
         /// </summary>
         public double CentinewtonsPerMeter

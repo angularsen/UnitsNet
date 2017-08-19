@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Torque quantity.
+        /// </summary>
+        public static TorqueUnit[] Units { get; } = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>().ToArray();
+
+        /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
         /// </summary>
         public double KilogramForceCentimeters

@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Volume quantity.
+        /// </summary>
+        public static VolumeUnit[] Units { get; } = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().ToArray();
+
+        /// <summary>
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons

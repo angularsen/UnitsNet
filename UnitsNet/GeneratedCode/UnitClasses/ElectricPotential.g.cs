@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ElectricPotential quantity.
+        /// </summary>
+        public static ElectricPotentialUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().ToArray();
+
+        /// <summary>
         ///     Get ElectricPotential in Kilovolts.
         /// </summary>
         public double Kilovolts

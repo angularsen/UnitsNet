@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the KinematicViscosity quantity.
+        /// </summary>
+        public static KinematicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().ToArray();
+
+        /// <summary>
         ///     Get KinematicViscosity in Centistokes.
         /// </summary>
         public double Centistokes

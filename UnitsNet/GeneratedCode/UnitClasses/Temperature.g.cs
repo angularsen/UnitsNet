@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Temperature quantity.
+        /// </summary>
+        public static TemperatureUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().ToArray();
+
+        /// <summary>
         ///     Get Temperature in DegreesCelsius.
         /// </summary>
         public double DegreesCelsius

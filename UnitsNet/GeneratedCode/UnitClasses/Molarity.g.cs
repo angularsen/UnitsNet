@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Molarity quantity.
+        /// </summary>
+        public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().ToArray();
+
+        /// <summary>
         ///     Get Molarity in CentimolesPerLiter.
         /// </summary>
         public double CentimolesPerLiter

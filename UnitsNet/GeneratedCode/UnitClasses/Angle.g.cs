@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Angle quantity.
+        /// </summary>
+        public static AngleUnit[] Units { get; } = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().ToArray();
+
+        /// <summary>
         ///     Get Angle in Arcminutes.
         /// </summary>
         public double Arcminutes

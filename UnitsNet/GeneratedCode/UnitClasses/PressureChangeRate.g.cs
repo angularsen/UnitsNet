@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the PressureChangeRate quantity.
+        /// </summary>
+        public static PressureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().ToArray();
+
+        /// <summary>
         ///     Get PressureChangeRate in AtmospheresPerSecond.
         /// </summary>
         public double AtmospheresPerSecond

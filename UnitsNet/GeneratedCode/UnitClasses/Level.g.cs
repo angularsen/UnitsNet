@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Level quantity.
+        /// </summary>
+        public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().ToArray();
+
+        /// <summary>
         ///     Get Level in Decibels.
         /// </summary>
         public double Decibels

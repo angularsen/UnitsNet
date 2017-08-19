@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Area quantity.
+        /// </summary>
+        public static AreaUnit[] Units { get; } = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().ToArray();
+
+        /// <summary>
         ///     Get Area in Acres.
         /// </summary>
         public double Acres

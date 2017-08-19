@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Power quantity.
+        /// </summary>
+        public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().ToArray();
+
+        /// <summary>
         ///     Get Power in BoilerHorsepower.
         /// </summary>
         public double BoilerHorsepower

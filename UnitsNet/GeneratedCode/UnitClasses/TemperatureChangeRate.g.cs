@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the TemperatureChangeRate quantity.
+        /// </summary>
+        public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().ToArray();
+
+        /// <summary>
         ///     Get TemperatureChangeRate in CentidegreesCelsiusPerSecond.
         /// </summary>
         public double CentidegreesCelsiusPerSecond

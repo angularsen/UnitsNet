@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the SpecificWeight quantity.
+        /// </summary>
+        public static SpecificWeightUnit[] Units { get; } = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().ToArray();
+
+        /// <summary>
         ///     Get SpecificWeight in KilogramsForcePerCubicCentimeter.
         /// </summary>
         public double KilogramsForcePerCubicCentimeter

@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the RotationalAcceleration quantity.
+        /// </summary>
+        public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().ToArray();
+
+        /// <summary>
         ///     Get RotationalAcceleration in DegreesPerSecondSquared.
         /// </summary>
         public double DegreesPerSecondSquared

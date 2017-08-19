@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Length quantity.
+        /// </summary>
+        public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().ToArray();
+
+        /// <summary>
         ///     Get Length in Centimeters.
         /// </summary>
         public double Centimeters

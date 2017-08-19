@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the DynamicViscosity quantity.
+        /// </summary>
+        public static DynamicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().ToArray();
+
+        /// <summary>
         ///     Get DynamicViscosity in Centipoise.
         /// </summary>
         public double Centipoise

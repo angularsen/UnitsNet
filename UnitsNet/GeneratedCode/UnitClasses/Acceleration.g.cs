@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Acceleration quantity.
+        /// </summary>
+        public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
+
+        /// <summary>
         ///     Get Acceleration in CentimeterPerSecondSquared.
         /// </summary>
         public double CentimeterPerSecondSquared

@@ -145,6 +145,11 @@ namespace UnitsNet
         {
             get { return $unitEnumName.$baseUnitSingularName; }
         }
+
+        /// <summary>
+        ///     All units of measurement for the $className quantity.
+        /// </summary>
+        public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().ToArray();
 "@; foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);

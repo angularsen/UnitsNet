@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ApparentPower quantity.
+        /// </summary>
+        public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().ToArray();
+
+        /// <summary>
         ///     Get ApparentPower in Kilovoltamperes.
         /// </summary>
         public double Kilovoltamperes

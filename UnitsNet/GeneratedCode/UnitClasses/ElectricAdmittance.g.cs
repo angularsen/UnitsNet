@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ElectricAdmittance quantity.
+        /// </summary>
+        public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().ToArray();
+
+        /// <summary>
         ///     Get ElectricAdmittance in Microsiemens.
         /// </summary>
         public double Microsiemens

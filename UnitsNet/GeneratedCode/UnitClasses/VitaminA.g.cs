@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the VitaminA quantity.
+        /// </summary>
+        public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().ToArray();
+
+        /// <summary>
         ///     Get VitaminA in InternationalUnits.
         /// </summary>
         public double InternationalUnits

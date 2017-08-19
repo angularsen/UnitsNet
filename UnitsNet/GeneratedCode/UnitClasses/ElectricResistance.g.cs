@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ElectricResistance quantity.
+        /// </summary>
+        public static ElectricResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().ToArray();
+
+        /// <summary>
         ///     Get ElectricResistance in Kiloohms.
         /// </summary>
         public double Kiloohms

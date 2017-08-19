@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ThermalResistance quantity.
+        /// </summary>
+        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
+
+        /// <summary>
         ///     Get ThermalResistance in HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public double HourSquareFeetDegreesFahrenheitPerBtu

@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the MassMomentOfInertia quantity.
+        /// </summary>
+        public static MassMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().ToArray();
+
+        /// <summary>
         ///     Get MassMomentOfInertia in GramSquareCentimeters.
         /// </summary>
         public double GramSquareCentimeters

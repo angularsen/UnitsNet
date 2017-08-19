@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Force quantity.
+        /// </summary>
+        public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
+
+        /// <summary>
         ///     Get Force in Decanewtons.
         /// </summary>
         public double Decanewtons

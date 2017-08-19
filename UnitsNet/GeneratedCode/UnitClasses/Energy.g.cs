@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Energy quantity.
+        /// </summary>
+        public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
+
+        /// <summary>
         ///     Get Energy in BritishThermalUnits.
         /// </summary>
         public double BritishThermalUnits

@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Ratio quantity.
+        /// </summary>
+        public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().ToArray();
+
+        /// <summary>
         ///     Get Ratio in DecimalFractions.
         /// </summary>
         public double DecimalFractions

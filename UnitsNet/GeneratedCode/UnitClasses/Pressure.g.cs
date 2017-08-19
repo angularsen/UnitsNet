@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Pressure quantity.
+        /// </summary>
+        public static PressureUnit[] Units { get; } = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().ToArray();
+
+        /// <summary>
         ///     Get Pressure in Atmospheres.
         /// </summary>
         public double Atmospheres

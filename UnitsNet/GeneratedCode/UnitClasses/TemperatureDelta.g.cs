@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the TemperatureDelta quantity.
+        /// </summary>
+        public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().ToArray();
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesCelsiusDelta.
         /// </summary>
         public double DegreesCelsiusDelta

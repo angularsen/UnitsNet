@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the ElectricCurrent quantity.
+        /// </summary>
+        public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().ToArray();
+
+        /// <summary>
         ///     Get ElectricCurrent in Amperes.
         /// </summary>
         public double Amperes

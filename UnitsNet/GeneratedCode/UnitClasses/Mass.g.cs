@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Mass quantity.
+        /// </summary>
+        public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().ToArray();
+
+        /// <summary>
         ///     Get Mass in Centigrams.
         /// </summary>
         public double Centigrams

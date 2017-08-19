@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Flow quantity.
+        /// </summary>
+        public static FlowUnit[] Units { get; } = Enum.GetValues(typeof(FlowUnit)).Cast<FlowUnit>().ToArray();
+
+        /// <summary>
         ///     Get Flow in CentilitersPerMinute.
         /// </summary>
         public double CentilitersPerMinute

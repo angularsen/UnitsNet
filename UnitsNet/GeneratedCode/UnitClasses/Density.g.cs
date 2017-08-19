@@ -117,6 +117,11 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     All units of measurement for the Density quantity.
+        /// </summary>
+        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().ToArray();
+
+        /// <summary>
         ///     Get Density in CentigramsPerDeciLiter.
         /// </summary>
         public double CentigramsPerDeciLiter
