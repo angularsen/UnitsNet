@@ -216,7 +216,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static TUnitType Parse<TUnitType>(string unitAbbreviation, CultureInfo culture)
+            static TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider culture)
             where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
             return GetCached(culture).Parse<TUnitType>(unitAbbreviation);
