@@ -186,11 +186,16 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(" ")]
         public void TryParseLengthUnitAbbreviationSpecialCharacters(string s)
         {
-            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
             string abbrev = $"m{s}s";
+
+            UnitSystem unitSystem = UnitSystem.GetCached();
             unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
-            bool actual = unitSystem.TryParse(abbrev, out LengthUnit result);
-            Assert.True(actual);
+
+            // Act
+            bool ok = unitSystem.TryParse(abbrev, out LengthUnit result);
+
+            // Assert
+            Assert.True(ok, "TryParse " + abbrev);
             Assert.Equal(LengthUnit.Meter, result);
         }
 
@@ -210,10 +215,16 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(" ")]
         public void TryParseLengthSpecialCharacters(string s)
         {
-            UnitSystem unitSystem = UnitSystem.GetCached("en-US");
             string abbrev = $"m{s}s";
+
+            UnitSystem unitSystem = UnitSystem.GetCached();
             unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
-            Assert.True(Length.TryParse($"10 {abbrev}", out Length result), $"TryParse \"10 {abbrev}\"");
+
+            // Act
+            bool ok = Length.TryParse($"10 {abbrev}", out Length result);
+
+            // Assert
+            Assert.True(ok, $"TryParse \"10 {abbrev}\"");
             Assert.Equal(10, result.Meters);
         }
 
