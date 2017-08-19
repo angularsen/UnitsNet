@@ -111,6 +111,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.Mass;
+
         public static MassUnit BaseUnit
         {
             get { return MassUnit.Kilogram; }

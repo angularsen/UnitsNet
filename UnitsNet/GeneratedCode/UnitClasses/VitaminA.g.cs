@@ -111,6 +111,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.VitaminA;
+
         public static VitaminAUnit BaseUnit
         {
             get { return VitaminAUnit.InternationalUnit; }

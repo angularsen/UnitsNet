@@ -141,6 +141,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.$className;
+
         public static $unitEnumName BaseUnit
         {
             get { return $unitEnumName.$baseUnitSingularName; }

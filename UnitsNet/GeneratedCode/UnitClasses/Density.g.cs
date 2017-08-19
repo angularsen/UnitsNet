@@ -111,6 +111,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.Density;
+
         public static DensityUnit BaseUnit
         {
             get { return DensityUnit.KilogramPerCubicMeter; }

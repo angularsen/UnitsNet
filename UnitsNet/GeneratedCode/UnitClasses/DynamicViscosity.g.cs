@@ -111,6 +111,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.DynamicViscosity;
+
         public static DynamicViscosityUnit BaseUnit
         {
             get { return DynamicViscosityUnit.NewtonSecondPerMeterSquared; }

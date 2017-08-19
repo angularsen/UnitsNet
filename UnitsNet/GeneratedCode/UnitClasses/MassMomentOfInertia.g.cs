@@ -111,6 +111,11 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.MassMomentOfInertia;
+
         public static MassMomentOfInertiaUnit BaseUnit
         {
             get { return MassMomentOfInertiaUnit.KilogramSquareMeter; }
