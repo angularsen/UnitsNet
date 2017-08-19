@@ -25,14 +25,9 @@ using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
-
-// Reflection API is different for .NET frameworks
-#if (WINDOWS_UWP || NETSTANDARD1_0)
-using System.Reflection;
-#endif
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
-
 namespace UnitsNet
 {
     [PublicAPI]
@@ -74,6 +69,7 @@ namespace UnitsNet
         static UnitSystem()
         {
             CultureToInstance = new Dictionary<IFormatProvider, UnitSystem>();
+            Default = GetCached((CultureInfo) null);
         }
 
         /// <summary>
@@ -138,8 +134,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Default culture if none is specified in constructor or <see cref="GetCached()" /> is always
-        ///     <see cref="CultureInfo.CurrentUICulture" />.
+        ///     Defaults to <see cref="CultureInfo.CurrentUICulture" /> when creating an instance with no culture provided.
         /// </summary>
         private static IFormatProvider DefaultCulture => CultureInfo.CurrentUICulture;
 
@@ -164,7 +159,7 @@ namespace UnitsNet
         ///     If you do explicitly specify culture when parsing and calling ToString(), then just make sure to call
         ///     <see cref="GetCached(IFormatProvider)" /> with the same culture.
         /// </summary>
-        public static UnitSystem Default { get; } = GetCached((CultureInfo)null);
+        public static UnitSystem Default { get; }
 
         /// <summary>
         ///     Get or create a unit system for parsing and presenting numbers, units and abbreviations.
@@ -325,12 +320,7 @@ namespace UnitsNet
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, [NotNull] params string[] abbreviations)
         {
-            // Reflection API is different for .NET frameworks
-#if (WINDOWS_UWP || NETSTANDARD1_0)
-            if (!unitType.GetTypeInfo().IsEnum)
-#else
-            if (!unitType.IsEnum)
-#endif
+            if (!unitType.IsEnum())
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
             if (abbreviations == null)
@@ -462,7 +452,6 @@ namespace UnitsNet
         ///     Get all abbreviations for unit.
         /// </summary>
         /// <param name="unitType">Enum type for unit.</param>
-        /// <param name="unitValue">Enum value for unit.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
         public string[] GetAllAbbreviations(Type unitType)
@@ -519,11 +508,7 @@ namespace UnitsNet
         private static object GetDefault(Type type)
         {
             return type
-                // Reflection API is different for .NET frameworks
-#if (WINDOWS_UWP || NETSTANDARD1_0)
-                .GetTypeInfo()
-#endif
-                .IsValueType
+                .IsValueType()
                 ? Activator.CreateInstance(type)
                 : null;
         }
