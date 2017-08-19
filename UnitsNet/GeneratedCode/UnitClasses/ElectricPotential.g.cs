@@ -116,6 +116,9 @@ namespace UnitsNet
 		/// </summary>
         public static QuantityType QuantityType => QuantityType.ElectricPotential;
 
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static ElectricPotentialUnit BaseUnit
         {
             get { return ElectricPotentialUnit.Volt; }

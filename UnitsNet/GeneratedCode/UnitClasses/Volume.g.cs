@@ -116,6 +116,9 @@ namespace UnitsNet
 		/// </summary>
         public static QuantityType QuantityType => QuantityType.Volume;
 
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static VolumeUnit BaseUnit
         {
             get { return VolumeUnit.CubicMeter; }

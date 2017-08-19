@@ -116,6 +116,9 @@ namespace UnitsNet
 		/// </summary>
         public static QuantityType QuantityType => QuantityType.Torque;
 
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static TorqueUnit BaseUnit
         {
             get { return TorqueUnit.NewtonMeter; }
