@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <AssemblyName>UnitsNet</AssemblyName>
+    <RootNamespace>UnitsNet</RootNamespace>
     <PackageId>UnitsNet</PackageId>
     <Version>3.69.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>

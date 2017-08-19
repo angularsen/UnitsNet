@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
+    <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
     <Version>1.1.1</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
