@@ -155,12 +155,25 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     The default singleton instance based on the system default UI culture <see cref="CultureInfo.CurrentUICulture" />.
+        ///     This instance is used internally for all parsing and string formatting where culture is not explicitly specified,
+        ///     so use this if you want extend with new units via <see cref="MapUnitToAbbreviation{TUnitType}" />
+        ///     and make the new units available to methods like <see cref="Length.Parse(string)" />; when culture is not
+        ///     explicitly
+        ///     specified.
+        ///     If you do explicitly specify culture when parsing and calling ToString(), then just make sure to call
+        ///     <see cref="GetCached(IFormatProvider)" /> with the same culture.
+        /// </summary>
+        public static UnitSystem Default { get; } = GetCached((CultureInfo)null);
+
+        /// <summary>
         ///     Get or create a unit system for parsing and presenting numbers, units and abbreviations.
         ///     Creating can be a little expensive, so it will use a static cache.
         ///     To always create, use the constructor.
         /// </summary>
         /// <returns></returns>
         [PublicAPI]
+        [Obsolete("Use Default property instead. This will be removed in the future.")]
         public static UnitSystem GetCached()
         {
             return GetCached((CultureInfo) null);
