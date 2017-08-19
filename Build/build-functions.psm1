@@ -63,7 +63,7 @@ function Start-Tests {
     # https://github.com/xunit/xunit/issues/1216
     push-location $projectDir
     # -nobuild  <-- this gives an error, but might want to use this to avoid extra builds
-    dotnet xunit -configuration Release -xml $reportFile -nobuild
+    dotnet xunit -configuration Release -framework netcoreapp1.1 -xml $reportFile -nobuild
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
   }
