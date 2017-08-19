@@ -206,7 +206,7 @@ namespace UnitsNet.InternalHelpers
 //        }
 
 #if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-        internal static IEnumerable<MethodInfo> GetMethods(this Type someType)
+        internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;
             while (t != null)

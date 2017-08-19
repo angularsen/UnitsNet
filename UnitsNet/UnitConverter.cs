@@ -26,6 +26,7 @@ using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 #if WINDOWS_UWP
 using Culture = System.String;
+
 #else
 using Culture = System.IFormatProvider;
 
@@ -153,8 +154,39 @@ namespace UnitsNet
         /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev,
-            Culture culture = default(Culture))
+        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+        {
+            return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
+        }
+
+        /// <summary>
+        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+        ///     This is particularly useful for creating things like a generated unit conversion UI,
+        ///     where you list some selectors:
+        ///     a) Quantity: Length, Mass, Force etc.
+        ///     b) From unit: Meter, Centimeter etc if Length is selected
+        ///     c) To unit: Meter, Centimeter etc if Length is selected
+        /// </summary>
+        /// <param name="fromValue">
+        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+        ///     convert from.
+        /// </param>
+        /// <param name="quantityName">
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
+        ///     values.
+        /// </param>
+        /// <param name="fromUnitAbbrev">
+        ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
+        ///     <paramref name="quantityName" />.
+        /// </param>
+        /// <param name="toUnitAbbrev">
+        ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
+        ///     <paramref name="quantityName" />.
+        /// </param>
+        /// <param name="culture">Culture to parse abbreviations with.</param>
+        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+        /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
             Type quantityType = UnitsNetAssembly.GetType($"{QuantityNamespace}.{quantityName}"); // ex: UnitsNet.Length struct
             Type unitType = UnitsNetAssembly.GetType($"{UnitTypeNamespace}.{quantityName}Unit"); // ex: UnitsNet.Units.LengthUnit enum
@@ -200,8 +232,41 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
+        public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
+        {
+            return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, null);
+        }
+
+        /// <summary>
+        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+        ///     This is particularly useful for creating things like a generated unit conversion UI,
+        ///     where you list some selectors:
+        ///     a) Quantity: Length, Mass, Force etc.
+        ///     b) From unit: Meter, Centimeter etc if Length is selected
+        ///     c) To unit: Meter, Centimeter etc if Length is selected
+        /// </summary>
+        /// <param name="fromValue">
+        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+        ///     convert from.
+        /// </param>
+        /// <param name="quantityName">
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
+        ///     values.
+        /// </param>
+        /// <param name="fromUnitAbbrev">
+        ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
+        ///     <paramref name="quantityName" />.
+        /// </param>
+        /// <param name="toUnitAbbrev">
+        ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
+        ///     <paramref name="quantityName" />.
+        /// </param>
+        /// <param name="culture">Culture to parse abbreviations with.</param>
+        /// <param name="result">Result if conversion was successful, 0 if not.</param>
+        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+        /// <returns>True if conversion was successful.</returns>
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
-            Culture culture = default(Culture))
+            string culture)
         {
             try
             {
@@ -220,18 +285,19 @@ namespace UnitsNet
         {
             // Only a single As() method as of this writing, but let's safe-guard a bit for future-proofing
             // ex: double result = quantity.As(LengthUnit outputUnit);
-            return quantityType.GetMethods().Single(m => m.Name == "As" &&
-                                                         !m.IsStatic &&
-                                                         m.IsPublic &&
-                                                         HasParameterTypes(m, unitType) &&
-                                                         m.ReturnType == typeof(double));
+            return quantityType.GetDeclaredMethods()
+                .Single(m => m.Name == "As" &&
+                             !m.IsStatic &&
+                             m.IsPublic &&
+                             HasParameterTypes(m, unitType) &&
+                             m.ReturnType == typeof(double));
         }
 
         private static MethodInfo GetStaticFromMethod(Type quantityType, Type unitType)
         {
             // Want to match: Length l = UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
             // Do NOT match : Length? UnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
-            return quantityType.GetMethods()
+            return quantityType.GetDeclaredMethods()
                 .Single(m => m.Name == "From" &&
                              m.IsStatic &&
                              m.IsPublic &&
