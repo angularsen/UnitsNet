@@ -151,11 +151,12 @@ namespace UnitsNet
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
         ///     <paramref name="quantityName" />.
         /// </param>
-        /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
+            // WindowsRuntimeComponent does not support default values on public methods
+            // ReSharper disable once IntroduceOptionalParameters.Global
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
         }
 
@@ -228,7 +229,6 @@ namespace UnitsNet
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
         ///     <paramref name="quantityName" />.
         /// </param>
-        /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
