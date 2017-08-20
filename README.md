@@ -29,7 +29,7 @@ Overview
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Converting units by user choice](#enumerate-units) for user selection
+* [Converting units by user choice](#enumerate-units)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
