@@ -29,7 +29,7 @@ Overview
 * [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Enumerate units](#enumerate-units) for user selection
+* [Converting units by user choice](#enumerate-units) for user selection
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
@@ -118,22 +118,20 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 "kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
 ```
 
-<a name="enumerate-units"></a>Enumerate Units
+<a name="enumerate-units"></a>Converting units by user choice
 ---
-All units have a unit enum value. Let the user decide what unit of measurement to present the numbers in.
+This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
+
 ```C#
-/// <summary>Convert the previous height to the new unit.</summary>
-void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit newUnit)
-{
-    // Construct from dynamic unit and value
-    var prevHeight = Length.From(prevValue, prevUnit);
+// Get quantities for populating quantity UI selector
+QuantityType[] quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
 
-    // Convert to the new unit
-    double newHeightValue = prevHeight.As(newUnit);
+// If Length is selected, get length units for populating from/to UI selectors
+LengthUnit[] lengthUnits = Length.Units;
 
-    // Update UI with the converted value and the newly selected unit
-    UpdateHeightUI(newHeightValue, newUnit);
-}
+// Perform conversion by using .ToString() on the selected units
+double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimeter"); // 500
+double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
 
 <a name="precision"></a>Precision and Accuracy
