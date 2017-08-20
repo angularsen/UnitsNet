@@ -206,6 +206,7 @@ namespace UnitsNet.InternalHelpers
 //        }
 
 #if !(NET40 || NET35 || NET20 || SILVERLIGHT)
+        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
         internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;
@@ -243,6 +244,18 @@ namespace UnitsNet.InternalHelpers
 //        {
 //            return type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).Cast<Attribute>().ToArray();
 //        }
+#else
+        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
+        internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
+        {
+            Type t = someType;
+            while (t != null)
+            {
+                foreach (MethodInfo m in t.GetMethods())
+                    yield return m;
+                t = t.BaseType;
+            }
+        }
 #endif
     }
 }
