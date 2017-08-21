@@ -26,10 +26,10 @@ Overview
 * [Over 1000 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
-* [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
+* [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Converting units by user choice](#enumerate-units)
+* [Example: Creating a unit converter app](#example-app)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
@@ -118,8 +118,10 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 "kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
 ```
 
-<a name="enumerate-units"></a>Converting units by user choice
+<a name="example-app"></a>Example: Creating a unit converter app
 ---
+*TODO: Add actual sample app and link to it here with screenshot. See https://github.com/anjdreas/UnitsNet/issues/274 for details.*
+
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
 
 ```C#
