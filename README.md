@@ -120,7 +120,7 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 
 <a name="example-app"></a>Example: Creating a unit converter app
 ---
-*TODO: Add actual sample app and link to it here with screenshot. See https://github.com/anjdreas/UnitsNet/issues/274 for details.*
+*TODO: Add actual sample app and link to it here with screenshot. See #274 for details.*
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
 
