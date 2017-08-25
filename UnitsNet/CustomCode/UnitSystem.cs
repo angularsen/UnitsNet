@@ -26,6 +26,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.I18n;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -235,13 +236,24 @@ namespace UnitsNet
             return (TUnitType) Parse(unitAbbreviation, typeof(TUnitType));
         }
 
+        /// <summary>
+        ///     Parse a unit abbreviation, such as "kg" or "m", to the unit enum value of the enum type
+        ///     <paramref name="unitType" />.
+        /// </summary>
+        /// <param name="unitAbbreviation">
+        ///     Unit abbreviation, such as "kg" or "m" for <see cref="MassUnit.Kilogram" /> and
+        ///     <see cref="LengthUnit.Meter" /> respectively.
+        /// </param>
+        /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
+        /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
+        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
         [PublicAPI]
         public object Parse(string unitAbbreviation, Type unitType)
         {
             AbbreviationMap abbrevToUnitValue;
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
-                throw new NotImplementedException(
-                    $"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
+                throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
             List<int> unitIntValues;
             List<object> unitValues = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitIntValues)
@@ -253,7 +265,7 @@ namespace UnitsNet
                 case 1:
                     return unitValues[0];
                 case 0:
-                    return 0;
+                    throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");
                 default:
                     string unitsCsv = string.Join(", ", unitValues.Select(x => x.ToString()).ToArray());
                     throw new AmbiguousUnitParseException(

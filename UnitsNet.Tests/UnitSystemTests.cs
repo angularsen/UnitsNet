@@ -69,15 +69,6 @@ namespace UnitsNet.Tests
             // ReSharper restore UnusedMember.Local
         }
 
-#if !WINDOWS_UWP
-        private UnitSystem GetCachedUnitSystem()
-        {
-            Culture culture = GetCulture("en-US");
-            UnitSystem unitSystem = UnitSystem.GetCached(culture);
-            return unitSystem;
-        }
-#endif
-
         private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnitType>(string cultureName,
             IEnumerable<TUnitType> unitValues)
             where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
@@ -180,14 +171,20 @@ namespace UnitsNet.Tests
 
 #if !WINDOWS_UWP
         [Theory]
-        [InlineData("m^2", AreaUnit.SquareMeter)]
-        [InlineData("cm^2", AreaUnit.Undefined)]
-        public void Parse_ReturnsUnitMappedByCustomAbbreviationOrUndefined(string unitAbbreviationToParse, AreaUnit expected)
+        [InlineData("m^^2", AreaUnit.SquareMeter)]
+        [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
+        public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            UnitSystem unitSystem = GetCachedUnitSystem();
-            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
-            var actual = unitSystem.Parse<AreaUnit>(unitAbbreviationToParse);
+            UnitSystem unitSystem = UnitSystem.Default;
+            unitSystem.MapUnitToAbbreviation(expected, customAbbreviation);
+            var actual = unitSystem.Parse<AreaUnit>(customAbbreviation);
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitSystem.Default.Parse<AreaUnit>("nonexistingunit"));
         }
 #endif
 
@@ -296,31 +293,31 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
 
             // "\u03bc" = Lower case greek letter 'Mu' 
-            Assert.Throws<UnitsNetException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
-            Assert.Throws<UnitsNetException>(() => AmplitudeRatio.ParseUnit("dB\u03bcV"));
-            Assert.Throws<UnitsNetException>(() => Angle.ParseUnit("\u03bc°"));
-            Assert.Throws<UnitsNetException>(() => Angle.ParseUnit("\u03bcrad"));
-            Assert.Throws<UnitsNetException>(() => Area.ParseUnit("\u03bcm²"));
-            Assert.Throws<UnitsNetException>(() => Duration.ParseUnit("\u03bcs"));
-            Assert.Throws<UnitsNetException>(() => ElectricCurrent.ParseUnit("\u03bcA"));
-            Assert.Throws<UnitsNetException>(() => ElectricPotential.ParseUnit("\u03bcV"));
-            Assert.Throws<UnitsNetException>(() => Flow.ParseUnit("\u03bcLPM"));
-            Assert.Throws<UnitsNetException>(() => ForceChangeRate.ParseUnit("\u03bcN/s"));
-            Assert.Throws<UnitsNetException>(() => ForcePerLength.ParseUnit("\u03bcN/m"));
-            Assert.Throws<UnitsNetException>(() => KinematicViscosity.ParseUnit("\u03bcSt"));
-            Assert.Throws<UnitsNetException>(() => Length.ParseUnit("\u03bcin"));
-            Assert.Throws<UnitsNetException>(() => Length.ParseUnit("\u03bcm"));
-            Assert.Throws<UnitsNetException>(() => MassFlow.ParseUnit("\u03bcg/S"));
-            Assert.Throws<UnitsNetException>(() => Mass.ParseUnit("\u03bcg"));
-            Assert.Throws<UnitsNetException>(() => Power.ParseUnit("\u03bcW"));
-            Assert.Throws<UnitsNetException>(() => Pressure.ParseUnit("\u03bcPa"));
-            Assert.Throws<UnitsNetException>(() => RotationalSpeed.ParseUnit("\u03bc°/s"));
-            Assert.Throws<UnitsNetException>(() => RotationalSpeed.ParseUnit("\u03bcrad/s"));
-            Assert.Throws<UnitsNetException>(() => Speed.ParseUnit("\u03bcm/min"));
-            Assert.Throws<UnitsNetException>(() => Speed.ParseUnit("\u03bcm/s"));
-            Assert.Throws<UnitsNetException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
-            Assert.Throws<UnitsNetException>(() => Volume.ParseUnit("\u03bcl"));
-            Assert.Throws<UnitsNetException>(() => Volume.ParseUnit("\u03bcm³"));
+            Assert.Throws<UnitNotFoundException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
+            Assert.Throws<UnitNotFoundException>(() => AmplitudeRatio.ParseUnit("dB\u03bcV"));
+            Assert.Throws<UnitNotFoundException>(() => Angle.ParseUnit("\u03bc°"));
+            Assert.Throws<UnitNotFoundException>(() => Angle.ParseUnit("\u03bcrad"));
+            Assert.Throws<UnitNotFoundException>(() => Area.ParseUnit("\u03bcm²"));
+            Assert.Throws<UnitNotFoundException>(() => Duration.ParseUnit("\u03bcs"));
+            Assert.Throws<UnitNotFoundException>(() => ElectricCurrent.ParseUnit("\u03bcA"));
+            Assert.Throws<UnitNotFoundException>(() => ElectricPotential.ParseUnit("\u03bcV"));
+            Assert.Throws<UnitNotFoundException>(() => Flow.ParseUnit("\u03bcLPM"));
+            Assert.Throws<UnitNotFoundException>(() => ForceChangeRate.ParseUnit("\u03bcN/s"));
+            Assert.Throws<UnitNotFoundException>(() => ForcePerLength.ParseUnit("\u03bcN/m"));
+            Assert.Throws<UnitNotFoundException>(() => KinematicViscosity.ParseUnit("\u03bcSt"));
+            Assert.Throws<UnitNotFoundException>(() => Length.ParseUnit("\u03bcin"));
+            Assert.Throws<UnitNotFoundException>(() => Length.ParseUnit("\u03bcm"));
+            Assert.Throws<UnitNotFoundException>(() => MassFlow.ParseUnit("\u03bcg/S"));
+            Assert.Throws<UnitNotFoundException>(() => Mass.ParseUnit("\u03bcg"));
+            Assert.Throws<UnitNotFoundException>(() => Power.ParseUnit("\u03bcW"));
+            Assert.Throws<UnitNotFoundException>(() => Pressure.ParseUnit("\u03bcPa"));
+            Assert.Throws<UnitNotFoundException>(() => RotationalSpeed.ParseUnit("\u03bc°/s"));
+            Assert.Throws<UnitNotFoundException>(() => RotationalSpeed.ParseUnit("\u03bcrad/s"));
+            Assert.Throws<UnitNotFoundException>(() => Speed.ParseUnit("\u03bcm/min"));
+            Assert.Throws<UnitNotFoundException>(() => Speed.ParseUnit("\u03bcm/s"));
+            Assert.Throws<UnitNotFoundException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
+            Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcl"));
+            Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcm³"));
         }
 
         [Theory]
@@ -490,7 +487,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_AmbiguousUnitsThrowsException()
         {
-            UnitSystem unitSystem = GetCachedUnitSystem();
+            UnitSystem unitSystem = UnitSystem.Default;
 
             // Act 1
             Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<VolumeUnit>("tsp"));

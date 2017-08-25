@@ -148,7 +148,7 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("kg", "UnitsNet.UnitsNetException")]
+        [InlineData("kg", "UnitsNet.UnitNotFoundException")]
         [InlineData(null, "System.ArgumentNullException")]
         public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, string expected)
         {
