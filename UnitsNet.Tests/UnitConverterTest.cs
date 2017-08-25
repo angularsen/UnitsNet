@@ -37,6 +37,21 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData(1, "UnknownQuantity", "Meter", "Centimeter")]
+        public void ConvertByName_ThrowsQuantityNotFoundExceptionOnUnknownQuantity(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        {
+            Assert.Throws<QuantityNotFoundException>(() => UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
+        }
+
+        [Theory]
+        [InlineData(1, "Length", "UnknownFromUnit", "Centimeter")]
+        [InlineData(1, "Length", "Meter", "UnknownToUnit")]
+        public void ConvertByName_ThrowsUnitNotFoundExceptionOnUnknownFromOrToUnit(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
+        }
+
+        [Theory]
+        [InlineData(1, "UnknownQuantity", "Meter", "Centimeter")]
         [InlineData(1, "Length", "UnknownFromUnit", "Centimeter")]
         [InlineData(1, "Length", "Meter", "UnknownToUnit")]
         public void TryConvertByName_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
@@ -65,6 +80,21 @@ namespace UnitsNet.Tests
         public void ConvertByAbbreviation_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
             Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
+        }
+
+        [Theory]
+        [InlineData(1, "UnknownQuantity", "m", "cm")]
+        public void ConvertByAbbreviation_ThrowsQuantityNotFoundExceptionOnUnknownQuantity(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        {
+            Assert.Throws<QuantityNotFoundException>(() => UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
+        }
+
+        [Theory]
+        [InlineData(1, "Length", "UnknownFromUnit", "cm")]
+        [InlineData(1, "Length", "m", "UnknownToUnit")]
+        public void ConvertByAbbreviation_ThrowsUnitNotFoundExceptionOnUnknownFromOrToUnitAbbreviation(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        {
+            Assert.Throws<UnitNotFoundException>(() => UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
         }
 
         [Theory]

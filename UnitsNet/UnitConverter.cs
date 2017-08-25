@@ -69,13 +69,15 @@ namespace UnitsNet
         /// </param>
         /// <example>double centimeters = ConvertByName(5, "Length", "Meter", "Centimeter"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnit" />.</returns>
+        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
         public static double ConvertByName(double fromValue, string quantityName, string fromUnit, string toUnit)
         {
-            Type quantityType = UnitsNetAssembly.GetType($"{QuantityNamespace}.{quantityName}"); // ex: UnitsNet.Length struct
-            Type unitType = UnitsNetAssembly.GetType($"{UnitTypeNamespace}.{quantityName}Unit"); // ex: UnitsNet.Units.LengthUnit enum
+            Type quantityType = GetQuantityType(quantityName);
+            Type unitType = GetUnitType(quantityName);
 
-            object fromUnitValue = Enum.Parse(unitType, fromUnit); // ex: LengthUnit.Meter
-            object toUnitValue = Enum.Parse(unitType, toUnit); // ex: LengthUnit.Centimeter
+            object fromUnitValue = ParseUnit(unitType, fromUnit); // ex: LengthUnit.Meter
+            object toUnitValue = ParseUnit(unitType, toUnit); // ex: LengthUnit.Centimeter
 
             MethodInfo fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
             object fromResult = fromMethod.Invoke(null, new[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
@@ -117,6 +119,8 @@ namespace UnitsNet
         {
             try
             {
+                // TODO Reimplement to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating
+                // https://msdn.microsoft.com/en-us/library/ms229009(v=vs.100).aspx
                 result = ConvertByName(inputValue, quantityName, fromUnit, toUnit);
                 return true;
             }
@@ -187,10 +191,13 @@ namespace UnitsNet
         /// <param name="culture">Culture to parse abbreviations with.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+        /// <exception cref="QuantityNotFoundException">No quantity types match the <paramref name="quantityName"/>.</exception>
+        /// <exception cref="UnitNotFoundException">No unit types match the prefix of <paramref name="quantityName"/> or no units are mapped to the abbreviation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
-            Type quantityType = UnitsNetAssembly.GetType($"{QuantityNamespace}.{quantityName}"); // ex: UnitsNet.Length struct
-            Type unitType = UnitsNetAssembly.GetType($"{UnitTypeNamespace}.{quantityName}Unit"); // ex: UnitsNet.Units.LengthUnit enum
+            Type quantityType = GetQuantityType(quantityName);
+            Type unitType = GetUnitType(quantityName);
 
             UnitSystem unitSystem = UnitSystem.GetCached(culture);
             object fromUnitValue = unitSystem.Parse(fromUnitAbbrev, unitType); // ex: ("m", LengthUnit) => LengthUnit.Meter
@@ -270,6 +277,8 @@ namespace UnitsNet
         {
             try
             {
+                // TODO Reimplement to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating
+                // https://msdn.microsoft.com/en-us/library/ms229009(v=vs.100).aspx
                 result = ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture);
                 return true;
             }
@@ -320,6 +329,48 @@ namespace UnitsNet
             }
 
             return true;
+        }
+
+
+        /// <summary>
+        ///     Parse a unit by the unit enum type <paramref name="unitType" /> and a unit enum value <paramref name="unitName" />>
+        /// </summary>
+        /// <param name="unitType">Unit type, such as <see cref="LengthUnit" />.</param>
+        /// <param name="unitName">Unit name, such as "Meter" corresponding to <see cref="LengthUnit.Meter" />.</param>
+        /// <returns>Unit enum value, such as <see cref="LengthUnit.Meter" /> boxed as an object.</returns>
+        /// <exception cref="UnitNotFoundException">No unit values match the <paramref name="unitName" />.</exception>
+        private static object ParseUnit(Type unitType, string unitName)
+        {
+            object unitValue; // ex: LengthUnit.Meter
+            try
+            {
+                unitValue = Enum.Parse(unitType, unitName);
+            }
+            catch (Exception e)
+            {
+                var e2 = new UnitNotFoundException($"Unit not found [{unitName}].", e);
+                e2.Data["unitName"] = unitName;
+                throw e2;
+            }
+            return unitValue;
+        }
+
+        private static Type GetUnitType(string quantityName)
+        {
+            string unitTypeName = $"{UnitTypeNamespace}.{quantityName}Unit";
+            Type unitType = UnitsNetAssembly.GetType(unitTypeName); // ex: UnitsNet.Units.LengthUnit enum
+            if (unitType == null)
+                throw new UnitNotFoundException($"Unit type name not found: {unitTypeName}");
+            return unitType;
+        }
+
+        private static Type GetQuantityType(string quantityName)
+        {
+            string quantityTypeName = $"{QuantityNamespace}.{quantityName}";
+            Type quantityType = UnitsNetAssembly.GetType(quantityTypeName); // ex: UnitsNet.Length struct
+            if (quantityType == null)
+                throw new QuantityNotFoundException($"Quantity type name not found: {quantityTypeName}");
+            return quantityType;
         }
     }
 }
