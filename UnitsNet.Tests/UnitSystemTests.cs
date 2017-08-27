@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
         [InlineData(0.115, "0.12 m")]
         public void DefaultToStringFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString();
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -197,7 +197,7 @@ namespace UnitsNet.Tests
         [InlineData(6, "1.123457 m")]
         public void CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix, string expected)
         {
-            string actual = Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, null, significantDigitsAfterRadix);
+            string actual = Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture, significantDigitsAfterRadix);
             Assert.Equal(expected, actual);
         }
 
@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
         public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
             int maxSignificantDigitsAfterRadix, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, null, maxSignificantDigitsAfterRadix);
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture, maxSignificantDigitsAfterRadix);
             Assert.Equal(expected, actual);
         }
 
@@ -224,7 +224,7 @@ namespace UnitsNet.Tests
         [InlineData(1.99e-4, "1.99e-04 m")]
         public void ScientificNotationLowerInterval(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString();
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -235,7 +235,7 @@ namespace UnitsNet.Tests
         [InlineData(999.99, "999.99 m")]
         public void FixedPointNotationIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString();
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -247,7 +247,7 @@ namespace UnitsNet.Tests
         [InlineData(999999.99, "999,999.99 m")]
         public void FixedPointNotationWithDigitGroupingIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString();
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
         [InlineData(double.MaxValue, "1.8e+308 m")]
         public void ScientificNotationUpperIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString();
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
