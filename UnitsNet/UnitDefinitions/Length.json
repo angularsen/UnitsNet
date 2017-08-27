@@ -61,7 +61,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft", "\\\'" ]
+          "Abbreviations": [ "ft", "'" ]
         },
         {
           "Culture": "ru-RU",
@@ -166,6 +166,66 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "микродюйм" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PrinterPoint",
+      "PluralName": "PrinterPoints",
+      "FromUnitToBaseFunc": "(x/72.27)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*72.27",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pt" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DtpPoint",
+      "PluralName": "DtpPoints",
+      "FromUnitToBaseFunc": "(x/72)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*72",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pt" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PrinterPica",
+      "PluralName": "PrinterPicas",
+      "FromUnitToBaseFunc": "x/237.10630158",
+      "FromBaseToUnitFunc": "x*237.10630158",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pica" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DtpPica",
+      "PluralName": "DtpPicas",
+      "FromUnitToBaseFunc": "x/236.22047244",
+      "FromBaseToUnitFunc": "x*236.22047244",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pica" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Twip",
+      "PluralName": "Twips",
+      "FromUnitToBaseFunc": "x/56692.913386",
+      "FromBaseToUnitFunc": "x*56692.913386",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "twip" ]
         }
       ]
     }

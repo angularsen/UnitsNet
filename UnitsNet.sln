@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Signed", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj", "{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}"
 EndProject
@@ -126,5 +126,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {554906B2-5972-4EBF-9DD5-EEFA77D735D8}
 	EndGlobalSection
 EndGlobal

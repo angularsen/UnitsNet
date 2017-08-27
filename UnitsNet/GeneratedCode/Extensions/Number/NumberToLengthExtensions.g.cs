@@ -112,6 +112,74 @@ namespace UnitsNet.Extensions.NumberToLength
 
         #endregion
 
+        #region DtpPica
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double)"/>
+        public static Length DtpPicas(this int value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double?)"/>
+        public static Length? DtpPicas(this int? value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double)"/>
+        public static Length DtpPicas(this long value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double?)"/>
+        public static Length? DtpPicas(this long? value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double)"/>
+        public static Length DtpPicas(this double value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double?)"/>
+        public static Length? DtpPicas(this double? value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double)"/>
+        public static Length DtpPicas(this float value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double?)"/>
+        public static Length? DtpPicas(this float? value) => Length.FromDtpPicas(value);
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double)"/>
+        public static Length DtpPicas(this decimal value) => Length.FromDtpPicas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromDtpPicas(double?)"/>
+        public static Length? DtpPicas(this decimal? value) => Length.FromDtpPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DtpPoint
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double)"/>
+        public static Length DtpPoints(this int value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double?)"/>
+        public static Length? DtpPoints(this int? value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double)"/>
+        public static Length DtpPoints(this long value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double?)"/>
+        public static Length? DtpPoints(this long? value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double)"/>
+        public static Length DtpPoints(this double value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double?)"/>
+        public static Length? DtpPoints(this double? value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double)"/>
+        public static Length DtpPoints(this float value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double?)"/>
+        public static Length? DtpPoints(this float? value) => Length.FromDtpPoints(value);
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double)"/>
+        public static Length DtpPoints(this decimal value) => Length.FromDtpPoints(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromDtpPoints(double?)"/>
+        public static Length? DtpPoints(this decimal? value) => Length.FromDtpPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Fathom
 
         /// <inheritdoc cref="Length.FromFathoms(double)"/>
@@ -520,6 +588,74 @@ namespace UnitsNet.Extensions.NumberToLength
 
         #endregion
 
+        #region PrinterPica
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)"/>
+        public static Length PrinterPicas(this int value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double?)"/>
+        public static Length? PrinterPicas(this int? value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)"/>
+        public static Length PrinterPicas(this long value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double?)"/>
+        public static Length? PrinterPicas(this long? value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)"/>
+        public static Length PrinterPicas(this double value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double?)"/>
+        public static Length? PrinterPicas(this double? value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)"/>
+        public static Length PrinterPicas(this float value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double?)"/>
+        public static Length? PrinterPicas(this float? value) => Length.FromPrinterPicas(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)"/>
+        public static Length PrinterPicas(this decimal value) => Length.FromPrinterPicas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromPrinterPicas(double?)"/>
+        public static Length? PrinterPicas(this decimal? value) => Length.FromPrinterPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PrinterPoint
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)"/>
+        public static Length PrinterPoints(this int value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double?)"/>
+        public static Length? PrinterPoints(this int? value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)"/>
+        public static Length PrinterPoints(this long value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double?)"/>
+        public static Length? PrinterPoints(this long? value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)"/>
+        public static Length PrinterPoints(this double value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double?)"/>
+        public static Length? PrinterPoints(this double? value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)"/>
+        public static Length PrinterPoints(this float value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double?)"/>
+        public static Length? PrinterPoints(this float? value) => Length.FromPrinterPoints(value);
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)"/>
+        public static Length PrinterPoints(this decimal value) => Length.FromPrinterPoints(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromPrinterPoints(double?)"/>
+        public static Length? PrinterPoints(this decimal? value) => Length.FromPrinterPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Shackle
 
         /// <inheritdoc cref="Length.FromShackles(double)"/>
@@ -551,6 +687,40 @@ namespace UnitsNet.Extensions.NumberToLength
 
         /// <inheritdoc cref="Length.FromShackles(double?)"/>
         public static Length? Shackles(this decimal? value) => Length.FromShackles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Twip
+
+        /// <inheritdoc cref="Length.FromTwips(double)"/>
+        public static Length Twips(this int value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double?)"/>
+        public static Length? Twips(this int? value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double)"/>
+        public static Length Twips(this long value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double?)"/>
+        public static Length? Twips(this long? value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double)"/>
+        public static Length Twips(this double value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double?)"/>
+        public static Length? Twips(this double? value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double)"/>
+        public static Length Twips(this float value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double?)"/>
+        public static Length? Twips(this float? value) => Length.FromTwips(value);
+
+        /// <inheritdoc cref="Length.FromTwips(double)"/>
+        public static Length Twips(this decimal value) => Length.FromTwips(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromTwips(double?)"/>
+        public static Length? Twips(this decimal? value) => Length.FromTwips(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

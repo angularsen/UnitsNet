@@ -1357,6 +1357,16 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dm"),
                                 new AbbreviationsForCulture("ru-RU", "дм"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.DtpPica,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pica"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.DtpPoint,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pt"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Fathom,
                             new[]
                             {
@@ -1365,7 +1375,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) LengthUnit.Foot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft", "\'"),
+                                new AbbreviationsForCulture("en-US", "ft", "'"),
                                 new AbbreviationsForCulture("ru-RU", "фут"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Inch,
@@ -1428,10 +1438,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "NM"),
                                 new AbbreviationsForCulture("ru-RU", "мил"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.PrinterPica,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pica"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.PrinterPoint,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pt"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Shackle,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "shackle"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.Twip,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "twip"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.UsSurveyFoot,
                             new[]
