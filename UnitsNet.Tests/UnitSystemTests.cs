@@ -56,7 +56,12 @@ namespace UnitsNet.Tests
         [InlineData(0.115, "0.12 m")]
         public void DefaultToStringFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs);
             Assert.Equal(expected, actual);
         }
 
@@ -197,7 +202,12 @@ namespace UnitsNet.Tests
         [InlineData(6, "1.123457 m")]
         public void CustomNumberOfSignificantDigitsAfterRadixFormatting(int significantDigitsAfterRadix, string expected)
         {
-            string actual = Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture, significantDigitsAfterRadix);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(1.123456789).ToString(LengthUnit.Meter, cultureEnUs, significantDigitsAfterRadix);
             Assert.Equal(expected, actual);
         }
 
@@ -212,7 +222,12 @@ namespace UnitsNet.Tests
         public void RoundingErrorsWithSignificantDigitsAfterRadixFormatting(double value,
             int maxSignificantDigitsAfterRadix, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture, maxSignificantDigitsAfterRadix);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs, maxSignificantDigitsAfterRadix);
             Assert.Equal(expected, actual);
         }
 
@@ -224,7 +239,12 @@ namespace UnitsNet.Tests
         [InlineData(1.99e-4, "1.99e-04 m")]
         public void ScientificNotationLowerInterval(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs);
             Assert.Equal(expected, actual);
         }
 
@@ -235,7 +255,12 @@ namespace UnitsNet.Tests
         [InlineData(999.99, "999.99 m")]
         public void FixedPointNotationIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs);
             Assert.Equal(expected, actual);
         }
 
@@ -247,7 +272,12 @@ namespace UnitsNet.Tests
         [InlineData(999999.99, "999,999.99 m")]
         public void FixedPointNotationWithDigitGroupingIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs);
             Assert.Equal(expected, actual);
         }
 
@@ -258,7 +288,12 @@ namespace UnitsNet.Tests
         [InlineData(double.MaxValue, "1.8e+308 m")]
         public void ScientificNotationUpperIntervalFormatting(double value, string expected)
         {
-            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture);
+#if WINDOWS_UWP
+            Culture cultureEnUs = "en-US";
+#else
+            Culture cultureEnUs = new CultureInfo("en-US");
+#endif
+            string actual = Length.FromMeters(value).ToString(LengthUnit.Meter, cultureEnUs);
             Assert.Equal(expected, actual);
         }
 
