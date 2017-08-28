@@ -2543,6 +2543,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "d°C/s"),
                             }),
+                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°C/m"),
+                            }),
                         new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerSecond,
                             new[]
                             {

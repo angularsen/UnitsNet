@@ -55,6 +55,7 @@ namespace UnitsNet.Tests
         protected abstract double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected abstract double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
@@ -66,6 +67,7 @@ namespace UnitsNet.Tests
         protected virtual double CentidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecadegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelsiusPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double DegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double HectodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
@@ -81,6 +83,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
@@ -95,6 +98,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond).CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond).DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond).DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerMinute).DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond).HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.From(1, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond).KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
@@ -110,6 +114,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond), CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond), DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond), DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute), DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond), DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond), HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, degreecelsiuspersecond.As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond), KilodegreesCelsiusPerSecondTolerance);
@@ -125,6 +130,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(degreecelsiuspersecond.CentidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(degreecelsiuspersecond.DecadegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(degreecelsiuspersecond.DecidegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+            AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerMinute(degreecelsiuspersecond.DegreesCelsiusPerMinute).DegreesCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromDegreesCelsiusPerSecond(degreecelsiuspersecond.DegreesCelsiusPerSecond).DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(degreecelsiuspersecond.HectodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
             AssertEx.EqualTolerance(1, TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(degreecelsiuspersecond.KilodegreesCelsiusPerSecond).DegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
