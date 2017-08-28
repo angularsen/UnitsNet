@@ -15,6 +15,17 @@
           "Abbreviations": [ "°C/s" ]
         }
       ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerMinute",
+      "PluralName": "DegreesCelsiusPerMinute",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+        }
+      ]
     }
   ]
 }

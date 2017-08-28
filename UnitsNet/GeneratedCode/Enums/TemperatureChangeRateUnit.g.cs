@@ -45,6 +45,7 @@ namespace UnitsNet.Units
         CentidegreeCelsiusPerSecond,
         DecadegreeCelsiusPerSecond,
         DecidegreeCelsiusPerSecond,
+        DegreeCelsiusPerMinute,
         DegreeCelsiusPerSecond,
         HectodegreeCelsiusPerSecond,
         KilodegreeCelsiusPerSecond,

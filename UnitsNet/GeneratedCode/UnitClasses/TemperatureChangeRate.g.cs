@@ -154,6 +154,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get TemperatureChangeRate in DegreesCelsiusPerMinute.
+        /// </summary>
+        public double DegreesCelsiusPerMinute
+        {
+            get { return _degreesCelsiusPerSecond*60; }
+        }
+
+        /// <summary>
         ///     Get TemperatureChangeRate in DegreesCelsiusPerSecond.
         /// </summary>
         public double DegreesCelsiusPerSecond
@@ -232,6 +240,14 @@ namespace UnitsNet
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
+        /// </summary>
+        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double degreescelsiusperminute)
+        {
+            return new TemperatureChangeRate(degreescelsiusperminute/60);
         }
 
         /// <summary>
@@ -322,6 +338,21 @@ namespace UnitsNet
             if (decidegreescelsiuspersecond.HasValue)
             {
                 return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
+        /// </summary>
+        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(double? degreescelsiusperminute)
+        {
+            if (degreescelsiusperminute.HasValue)
+            {
+                return FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value);
             }
             else
             {
@@ -437,6 +468,8 @@ namespace UnitsNet
                     return FromDecadegreesCelsiusPerSecond(val);
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
                     return FromDecidegreesCelsiusPerSecond(val);
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
+                    return FromDegreesCelsiusPerMinute(val);
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
                     return FromDegreesCelsiusPerSecond(val);
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
@@ -477,6 +510,8 @@ namespace UnitsNet
                     return FromDecadegreesCelsiusPerSecond(value.Value);
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
                     return FromDecidegreesCelsiusPerSecond(value.Value);
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
+                    return FromDegreesCelsiusPerMinute(value.Value);
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
                     return FromDegreesCelsiusPerSecond(value.Value);
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
@@ -652,6 +687,8 @@ namespace UnitsNet
                     return DecadegreesCelsiusPerSecond;
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
                     return DecidegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
+                    return DegreesCelsiusPerMinute;
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
                     return DegreesCelsiusPerSecond;
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
