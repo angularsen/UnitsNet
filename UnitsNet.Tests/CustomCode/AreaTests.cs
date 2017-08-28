@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -42,10 +42,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareFeetInOneSquareMeter => 10.76391;
 
-        protected override double SquareMicrometersInOneSquareMeter
-        {
-            get { return 1E12; }
-        }
+        protected override double SquareMicrometersInOneSquareMeter => 1E12;
 
         protected override double SquareInchesInOneSquareMeter => 1550.003100;
 
@@ -53,11 +50,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareYardsInOneSquareMeter => 1.19599;
 
-        [Test]
+        [Fact]
         public void AreaDividedByLengthEqualsLength()
         {
             Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
-            Assert.AreEqual(length, Length.FromMeters(10));
+            Assert.Equal(length, Length.FromMeters(10));
         }
     }
 }

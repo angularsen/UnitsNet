@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
+    <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
+    <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
+    <Version>1.1.1</Version>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Title>Units.NET Serialization with Json.NET</Title>
+    <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
+    <Copyright>Copyright (c) 2015 Andreas Gullberg Larsen</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/anjdreas/UnitsNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
+    <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
+  </PropertyGroup>
+</Project>

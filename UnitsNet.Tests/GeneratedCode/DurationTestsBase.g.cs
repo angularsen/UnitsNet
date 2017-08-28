@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Duration.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class DurationTestsBase
     {
@@ -77,83 +76,83 @@ namespace UnitsNet.Tests
         protected virtual double YearsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void SecondToDurationUnits()
         {
             Duration second = Duration.FromSeconds(1);
-            Assert.AreEqual(DaysInOneSecond, second.Days, DaysTolerance);
-            Assert.AreEqual(HoursInOneSecond, second.Hours, HoursTolerance);
-            Assert.AreEqual(MicrosecondsInOneSecond, second.Microseconds, MicrosecondsTolerance);
-            Assert.AreEqual(MillisecondsInOneSecond, second.Milliseconds, MillisecondsTolerance);
-            Assert.AreEqual(MinutesInOneSecond, second.Minutes, MinutesTolerance);
-            Assert.AreEqual(MonthsInOneSecond, second.Months, MonthsTolerance);
-            Assert.AreEqual(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
-            Assert.AreEqual(SecondsInOneSecond, second.Seconds, SecondsTolerance);
-            Assert.AreEqual(WeeksInOneSecond, second.Weeks, WeeksTolerance);
-            Assert.AreEqual(YearsInOneSecond, second.Years, YearsTolerance);
+            AssertEx.EqualTolerance(DaysInOneSecond, second.Days, DaysTolerance);
+            AssertEx.EqualTolerance(HoursInOneSecond, second.Hours, HoursTolerance);
+            AssertEx.EqualTolerance(MicrosecondsInOneSecond, second.Microseconds, MicrosecondsTolerance);
+            AssertEx.EqualTolerance(MillisecondsInOneSecond, second.Milliseconds, MillisecondsTolerance);
+            AssertEx.EqualTolerance(MinutesInOneSecond, second.Minutes, MinutesTolerance);
+            AssertEx.EqualTolerance(MonthsInOneSecond, second.Months, MonthsTolerance);
+            AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
+            AssertEx.EqualTolerance(YearsInOneSecond, second.Years, YearsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Day).Days, DaysTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Hour).Hours, HoursTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Microsecond).Microseconds, MicrosecondsTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Millisecond).Milliseconds, MillisecondsTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Minute).Minutes, MinutesTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Month).Months, MonthsTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Nanosecond).Nanoseconds, NanosecondsTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Second).Seconds, SecondsTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Week).Weeks, WeeksTolerance);
-            Assert.AreEqual(1, Duration.From(1, DurationUnit.Year).Years, YearsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Day).Days, DaysTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Hour).Hours, HoursTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Microsecond).Microseconds, MicrosecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Millisecond).Milliseconds, MillisecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Minute).Minutes, MinutesTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Month).Months, MonthsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Nanosecond).Nanoseconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Second).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Week).Weeks, WeeksTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Year).Years, YearsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var second = Duration.FromSeconds(1);
-            Assert.AreEqual(DaysInOneSecond, second.As(DurationUnit.Day), DaysTolerance);
-            Assert.AreEqual(HoursInOneSecond, second.As(DurationUnit.Hour), HoursTolerance);
-            Assert.AreEqual(MicrosecondsInOneSecond, second.As(DurationUnit.Microsecond), MicrosecondsTolerance);
-            Assert.AreEqual(MillisecondsInOneSecond, second.As(DurationUnit.Millisecond), MillisecondsTolerance);
-            Assert.AreEqual(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
-            Assert.AreEqual(MonthsInOneSecond, second.As(DurationUnit.Month), MonthsTolerance);
-            Assert.AreEqual(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
-            Assert.AreEqual(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
-            Assert.AreEqual(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
-            Assert.AreEqual(YearsInOneSecond, second.As(DurationUnit.Year), YearsTolerance);
+            AssertEx.EqualTolerance(DaysInOneSecond, second.As(DurationUnit.Day), DaysTolerance);
+            AssertEx.EqualTolerance(HoursInOneSecond, second.As(DurationUnit.Hour), HoursTolerance);
+            AssertEx.EqualTolerance(MicrosecondsInOneSecond, second.As(DurationUnit.Microsecond), MicrosecondsTolerance);
+            AssertEx.EqualTolerance(MillisecondsInOneSecond, second.As(DurationUnit.Millisecond), MillisecondsTolerance);
+            AssertEx.EqualTolerance(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
+            AssertEx.EqualTolerance(MonthsInOneSecond, second.As(DurationUnit.Month), MonthsTolerance);
+            AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
+            AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
+            AssertEx.EqualTolerance(YearsInOneSecond, second.As(DurationUnit.Year), YearsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Duration second = Duration.FromSeconds(1);
-            Assert.AreEqual(1, Duration.FromDays(second.Days).Seconds, DaysTolerance);
-            Assert.AreEqual(1, Duration.FromHours(second.Hours).Seconds, HoursTolerance);
-            Assert.AreEqual(1, Duration.FromMicroseconds(second.Microseconds).Seconds, MicrosecondsTolerance);
-            Assert.AreEqual(1, Duration.FromMilliseconds(second.Milliseconds).Seconds, MillisecondsTolerance);
-            Assert.AreEqual(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
-            Assert.AreEqual(1, Duration.FromMonths(second.Months).Seconds, MonthsTolerance);
-            Assert.AreEqual(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
-            Assert.AreEqual(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
-            Assert.AreEqual(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
-            Assert.AreEqual(1, Duration.FromYears(second.Years).Seconds, YearsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromDays(second.Days).Seconds, DaysTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromHours(second.Hours).Seconds, HoursTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromMicroseconds(second.Microseconds).Seconds, MicrosecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromMilliseconds(second.Milliseconds).Seconds, MillisecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromMonths(second.Months).Seconds, MonthsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromYears(second.Years).Seconds, YearsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Duration v = Duration.FromSeconds(1);
-            Assert.AreEqual(-1, -v.Seconds, SecondsTolerance);
-            Assert.AreEqual(2, (Duration.FromSeconds(3)-v).Seconds, SecondsTolerance);
-            Assert.AreEqual(2, (v + v).Seconds, SecondsTolerance);
-            Assert.AreEqual(10, (v*10).Seconds, SecondsTolerance);
-            Assert.AreEqual(10, (10*v).Seconds, SecondsTolerance);
-            Assert.AreEqual(2, (Duration.FromSeconds(10)/5).Seconds, SecondsTolerance);
-            Assert.AreEqual(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), SecondsTolerance);
+            AssertEx.EqualTolerance(-1, -v.Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(2, (Duration.FromSeconds(3)-v).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(2, (Duration.FromSeconds(10)/5).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), SecondsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             Duration oneSecond = Duration.FromSeconds(1);
@@ -170,35 +169,31 @@ namespace UnitsNet.Tests
             Assert.False(twoSeconds <= oneSecond);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Duration second = Duration.FromSeconds(1);
-            Assert.AreEqual(0, second.CompareTo(second));
-            Assert.Greater(second.CompareTo(Duration.Zero), 0);
-            Assert.Less(Duration.Zero.CompareTo(second), 0);
+            Assert.Equal(0, second.CompareTo(second));
+            Assert.True(second.CompareTo(Duration.Zero) > 0);
+            Assert.True(Duration.Zero.CompareTo(second) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Duration second = Duration.FromSeconds(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            second.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => second.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Duration second = Duration.FromSeconds(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            second.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => second.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Duration a = Duration.FromSeconds(1);
@@ -213,26 +208,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Duration v = Duration.FromSeconds(1);
-            Assert.IsTrue(v.Equals(Duration.FromSeconds(1)));
-            Assert.IsFalse(v.Equals(Duration.Zero));
+            Assert.True(v.Equals(Duration.FromSeconds(1)));
+            Assert.False(v.Equals(Duration.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Duration second = Duration.FromSeconds(1);
-            Assert.IsFalse(second.Equals(new object()));
+            Assert.False(second.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Duration second = Duration.FromSeconds(1);
-            Assert.IsFalse(second.Equals(null));
+            Assert.False(second.Equals(null));
         }
     }
 }

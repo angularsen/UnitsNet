@@ -40,6 +40,7 @@
 
 namespace UnitsNet
 {
+    [System.Obsolete("Use QuantityType instead. This type was renamed and will be removed in the future.")]
     public enum UnitClass
     {
         Undefined = 0,
@@ -48,6 +49,7 @@ namespace UnitsNet
         Angle,
         ApparentPower,
         Area,
+        AreaMomentOfInertia,
         BrakeSpecificFuelConsumption,
         Density,
         Duration,
@@ -70,6 +72,7 @@ namespace UnitsNet
         Level,
         Mass,
         MassFlow,
+        MassMomentOfInertia,
         Molarity,
         Power,
         PowerRatio,
@@ -77,6 +80,7 @@ namespace UnitsNet
         PressureChangeRate,
         Ratio,
         ReactivePower,
+        RotationalAcceleration,
         RotationalSpeed,
         SpecificEnergy,
         SpecificWeight,

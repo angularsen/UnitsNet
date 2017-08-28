@@ -21,42 +21,45 @@
 
 namespace UnitsNet
 {
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Force
 #else
     public partial struct Force
 #endif
     {
-        // Operator overloads not supported in Universal Windows Platform (WinRT Components)
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Power operator *(Force force, Speed speed)
         {
-            return Power.FromWatts(force.Newtons*speed.MetersPerSecond);
+            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
         }
 
         public static Power operator *(Speed speed, Force force)
         {
-            return Power.FromWatts(force.Newtons*speed.MetersPerSecond);
+            return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
         }
 
         public static Acceleration operator /(Force force, Mass mass)
         {
-            return Acceleration.FromMeterPerSecondSquared(force.Newtons/mass.Kilograms);
+            return Acceleration.FromMeterPerSecondSquared(force.Newtons / mass.Kilograms);
         }
 
         public static Mass operator /(Force force, Acceleration mass)
         {
-            return Mass.FromKilograms(force.Newtons/mass.MeterPerSecondSquared);
+            return Mass.FromKilograms(force.Newtons / mass.MeterPerSecondSquared);
         }
 
         public static Pressure operator /(Force force, Area area)
         {
-            return Pressure.FromPascals(force.Newtons/area.SquareMeters);
+            return Pressure.FromPascals(force.Newtons / area.SquareMeters);
         }
 
         public static ForcePerLength operator /(Force force, Length length)
         {
-            return ForcePerLength.FromNewtonsPerMeter(force.Newtons/length.Meters);
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
         }
 #endif
 
@@ -64,26 +67,26 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Force FromPressureByArea(Pressure p, Length2d area)
         {
-            double metersSquared = area.Meters.X*area.Meters.Y;
-            double newtons = p.Pascals*metersSquared;
+            double metersSquared = area.Meters.X * area.Meters.Y;
+            double newtons = p.Pascals * metersSquared;
             return new Force(newtons);
         }
 
         public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
         {
-            return new Force(mass.Kilograms*metersPerSecondSquared);
+            return new Force(mass.Kilograms * metersPerSecondSquared);
         }
 #endif
 
         public static Force FromPressureByArea(Pressure p, Area area)
         {
-            double newtons = p.Pascals*area.SquareMeters;
+            double newtons = p.Pascals * area.SquareMeters;
             return new Force(newtons);
         }
 
         public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
         {
-            return new Force(mass.Kilograms*acceleration.MeterPerSecondSquared);
+            return new Force(mass.Kilograms * acceleration.MeterPerSecondSquared);
         }
     }
 }

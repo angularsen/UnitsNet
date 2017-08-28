@@ -22,14 +22,14 @@ Build Targets:
 
 Overview
 ---
-* [411 units in 38 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [888 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
+* [508 units in 48 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
+* [Over 1000 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
-* [Operator overloads](#operator-overloads) for arithmetic, also between compatible units
+* [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Enumerate units](#enumerate-units) for user selection
+* [Example: Creating a unit converter app](#example-app)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
@@ -118,22 +118,22 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 "kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
 ```
 
-<a name="enumerate-units"></a>Enumerate Units
+<a name="example-app"></a>Example: Creating a unit converter app
 ---
-All units have a unit enum value. Let the user decide what unit of measurement to present the numbers in.
+*TODO: Add actual sample app and link to it here with screenshot. See [#274](https://github.com/anjdreas/UnitsNet/issues/274) for details.*
+
+This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
+
 ```C#
-/// <summary>Convert the previous height to the new unit.</summary>
-void OnUserChangedHeightUnit(LengthUnit prevUnit, double prevValue, LengthUnit newUnit)
-{
-    // Construct from dynamic unit and value
-    var prevHeight = Length.From(prevValue, prevUnit);
+// Get quantities for populating quantity UI selector
+QuantityType[] quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
 
-    // Convert to the new unit
-    double newHeightValue = prevHeight.As(newUnit);
+// If Length is selected, get length units for populating from/to UI selectors
+LengthUnit[] lengthUnits = Length.Units;
 
-    // Update UI with the converted value and the newly selected unit
-    UpdateHeightUI(newHeightValue, newUnit);
-}
+// Perform conversion by using .ToString() on the selected units
+double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimeter"); // 500
+double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
 
 <a name="precision"></a>Precision and Accuracy

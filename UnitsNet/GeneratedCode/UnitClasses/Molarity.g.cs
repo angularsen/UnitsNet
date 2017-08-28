@@ -44,6 +44,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
 #else
@@ -58,6 +59,10 @@ namespace UnitsNet
     ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class Molarity
 #else
@@ -69,6 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _molesPerCubicMeter;
 
+		// Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Molarity() : this(0)
         {
@@ -80,7 +86,7 @@ namespace UnitsNet
             _molesPerCubicMeter = Convert.ToDouble(molespercubicmeter);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
@@ -91,8 +97,8 @@ namespace UnitsNet
             _molesPerCubicMeter = Convert.ToDouble(molespercubicmeter);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
-        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
@@ -105,10 +111,23 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.Molarity;
+
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static MolarityUnit BaseUnit
         {
             get { return MolarityUnit.MolesPerCubicMeter; }
         }
+
+        /// <summary>
+        ///     All units of measurement for the Molarity quantity.
+        /// </summary>
+        public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().ToArray();
 
         /// <summary>
         ///     Get Molarity in CentimolesPerLiter.
@@ -247,6 +266,7 @@ namespace UnitsNet
             return new Molarity((picomolesperliter/1e-3) * 1e-12d);
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Molarity from nullable CentimolesPerLiter.
@@ -402,6 +422,7 @@ namespace UnitsNet
             }
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
@@ -467,6 +488,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Molarity operator -(Molarity right)
         {
@@ -515,6 +537,7 @@ namespace UnitsNet
             return CompareTo((Molarity) obj);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -525,6 +548,7 @@ namespace UnitsNet
             return _molesPerCubicMeter.CompareTo(other._molesPerCubicMeter);
         }
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Molarity left, Molarity right)
         {
@@ -667,12 +691,13 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<Molarity>(str, formatProvider,
+            return QuantityParser.Parse<Molarity, MolarityUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -751,6 +776,8 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -841,6 +868,7 @@ namespace UnitsNet
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else

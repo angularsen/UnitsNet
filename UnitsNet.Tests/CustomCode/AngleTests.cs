@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -52,18 +52,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ArcsecondsInOneDegree => 3600.0;
 
-        [Test]
+        [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()
         {
             RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/Duration.FromSeconds(5);
-            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+            Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
 
-        [Test]
+        [Fact]
         public void AngleDividedByTimeSpanEqualsRotationalSpeed()
         {
             RotationalSpeed rotationalSpeed = Angle.FromRadians(10)/TimeSpan.FromSeconds(5);
-            Assert.AreEqual(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
+            Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(2));
         }
     }
 }

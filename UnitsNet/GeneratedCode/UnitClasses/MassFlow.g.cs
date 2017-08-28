@@ -44,6 +44,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
 #else
@@ -58,6 +59,10 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class MassFlow
 #else
@@ -69,6 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _gramsPerSecond;
 
+		// Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public MassFlow() : this(0)
         {
@@ -80,7 +86,7 @@ namespace UnitsNet
             _gramsPerSecond = Convert.ToDouble(gramspersecond);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
@@ -91,8 +97,8 @@ namespace UnitsNet
             _gramsPerSecond = Convert.ToDouble(gramspersecond);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
-        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
@@ -105,10 +111,23 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.MassFlow;
+
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static MassFlowUnit BaseUnit
         {
             get { return MassFlowUnit.GramPerSecond; }
         }
+
+        /// <summary>
+        ///     All units of measurement for the MassFlow quantity.
+        /// </summary>
+        public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
 
         /// <summary>
         ///     Get MassFlow in CentigramsPerSecond.
@@ -311,6 +330,7 @@ namespace UnitsNet
             return new MassFlow(tonnesperday/0.0864000);
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable MassFlow from nullable CentigramsPerSecond.
@@ -534,6 +554,7 @@ namespace UnitsNet
             }
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
@@ -607,6 +628,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static MassFlow operator -(MassFlow right)
         {
@@ -655,6 +677,7 @@ namespace UnitsNet
             return CompareTo((MassFlow) obj);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -665,6 +688,7 @@ namespace UnitsNet
             return _gramsPerSecond.CompareTo(other._gramsPerSecond);
         }
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(MassFlow left, MassFlow right)
         {
@@ -815,12 +839,13 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<MassFlow>(str, formatProvider,
+            return QuantityParser.Parse<MassFlow, MassFlowUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -899,6 +924,8 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -989,6 +1016,7 @@ namespace UnitsNet
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else

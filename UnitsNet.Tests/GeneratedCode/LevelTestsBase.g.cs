@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Level.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LevelTestsBase
     {
@@ -61,55 +60,56 @@ namespace UnitsNet.Tests
         protected virtual double NepersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void DecibelToLevelUnits()
         {
             Level decibel = Level.FromDecibels(1);
-            Assert.AreEqual(DecibelsInOneDecibel, decibel.Decibels, DecibelsTolerance);
-            Assert.AreEqual(NepersInOneDecibel, decibel.Nepers, NepersTolerance);
+            AssertEx.EqualTolerance(DecibelsInOneDecibel, decibel.Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(NepersInOneDecibel, decibel.Nepers, NepersTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Level.From(1, LevelUnit.Decibel).Decibels, DecibelsTolerance);
-            Assert.AreEqual(1, Level.From(1, LevelUnit.Neper).Nepers, NepersTolerance);
+            AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Decibel).Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Neper).Nepers, NepersTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var decibel = Level.FromDecibels(1);
-            Assert.AreEqual(DecibelsInOneDecibel, decibel.As(LevelUnit.Decibel), DecibelsTolerance);
-            Assert.AreEqual(NepersInOneDecibel, decibel.As(LevelUnit.Neper), NepersTolerance);
+            AssertEx.EqualTolerance(DecibelsInOneDecibel, decibel.As(LevelUnit.Decibel), DecibelsTolerance);
+            AssertEx.EqualTolerance(NepersInOneDecibel, decibel.As(LevelUnit.Neper), NepersTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Level decibel = Level.FromDecibels(1);
-            Assert.AreEqual(1, Level.FromDecibels(decibel.Decibels).Decibels, DecibelsTolerance);
-            Assert.AreEqual(1, Level.FromNepers(decibel.Nepers).Decibels, NepersTolerance);
+            AssertEx.EqualTolerance(1, Level.FromDecibels(decibel.Decibels).Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(1, Level.FromNepers(decibel.Nepers).Decibels, NepersTolerance);
         }
 
-        [Test]
+        [Fact]
         public void LogarithmicArithmeticOperators()
         {
             Level v = Level.FromDecibels(40);
-            Assert.AreEqual(-40, -v.Decibels, NepersTolerance);
+            AssertEx.EqualTolerance(-40, -v.Decibels, NepersTolerance);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
-            Assert.AreEqual(50, (v*10).Decibels, NepersTolerance);
-            Assert.AreEqual(50, (10*v).Decibels, NepersTolerance);
-            Assert.AreEqual(35, (v/5).Decibels, NepersTolerance);
-            Assert.AreEqual(35, v/Level.FromDecibels(5), NepersTolerance);
+            AssertEx.EqualTolerance(50, (v*10).Decibels, NepersTolerance);
+            AssertEx.EqualTolerance(50, (10*v).Decibels, NepersTolerance);
+            AssertEx.EqualTolerance(35, (v/5).Decibels, NepersTolerance);
+            AssertEx.EqualTolerance(35, v/Level.FromDecibels(5), NepersTolerance);
         }
 
         protected abstract void AssertLogarithmicAddition();
 
         protected abstract void AssertLogarithmicSubtraction();
 
-        [Test]
+
+        [Fact]
         public void ComparisonOperators()
         {
             Level oneDecibel = Level.FromDecibels(1);
@@ -126,35 +126,31 @@ namespace UnitsNet.Tests
             Assert.False(twoDecibels <= oneDecibel);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Level decibel = Level.FromDecibels(1);
-            Assert.AreEqual(0, decibel.CompareTo(decibel));
-            Assert.Greater(decibel.CompareTo(Level.Zero), 0);
-            Assert.Less(Level.Zero.CompareTo(decibel), 0);
+            Assert.Equal(0, decibel.CompareTo(decibel));
+            Assert.True(decibel.CompareTo(Level.Zero) > 0);
+            Assert.True(Level.Zero.CompareTo(decibel) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Level decibel = Level.FromDecibels(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibel.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => decibel.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Level decibel = Level.FromDecibels(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibel.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => decibel.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Level a = Level.FromDecibels(1);
@@ -169,26 +165,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Level v = Level.FromDecibels(1);
-            Assert.IsTrue(v.Equals(Level.FromDecibels(1)));
-            Assert.IsFalse(v.Equals(Level.Zero));
+            Assert.True(v.Equals(Level.FromDecibels(1)));
+            Assert.False(v.Equals(Level.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Level decibel = Level.FromDecibels(1);
-            Assert.IsFalse(decibel.Equals(new object()));
+            Assert.False(decibel.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Level decibel = Level.FromDecibels(1);
-            Assert.IsFalse(decibel.Equals(null));
+            Assert.False(decibel.Equals(null));
         }
     }
 }

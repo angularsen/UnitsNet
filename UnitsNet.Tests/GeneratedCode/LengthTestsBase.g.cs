@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,12 +49,12 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Length.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LengthTestsBase
     {
         protected abstract double CentimetersInOneMeter { get; }
         protected abstract double DecimetersInOneMeter { get; }
+        protected abstract double FathomsInOneMeter { get; }
         protected abstract double FeetInOneMeter { get; }
         protected abstract double InchesInOneMeter { get; }
         protected abstract double KilometersInOneMeter { get; }
@@ -66,12 +66,14 @@ namespace UnitsNet.Tests
         protected abstract double MillimetersInOneMeter { get; }
         protected abstract double NanometersInOneMeter { get; }
         protected abstract double NauticalMilesInOneMeter { get; }
+        protected abstract double ShacklesInOneMeter { get; }
         protected abstract double UsSurveyFeetInOneMeter { get; }
         protected abstract double YardsInOneMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimetersTolerance { get { return 1e-5; } }
         protected virtual double DecimetersTolerance { get { return 1e-5; } }
+        protected virtual double FathomsTolerance { get { return 1e-5; } }
         protected virtual double FeetTolerance { get { return 1e-5; } }
         protected virtual double InchesTolerance { get { return 1e-5; } }
         protected virtual double KilometersTolerance { get { return 1e-5; } }
@@ -83,107 +85,116 @@ namespace UnitsNet.Tests
         protected virtual double MillimetersTolerance { get { return 1e-5; } }
         protected virtual double NanometersTolerance { get { return 1e-5; } }
         protected virtual double NauticalMilesTolerance { get { return 1e-5; } }
+        protected virtual double ShacklesTolerance { get { return 1e-5; } }
         protected virtual double UsSurveyFeetTolerance { get { return 1e-5; } }
         protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
-            Assert.AreEqual(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
-            Assert.AreEqual(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
-            Assert.AreEqual(FeetInOneMeter, meter.Feet, FeetTolerance);
-            Assert.AreEqual(InchesInOneMeter, meter.Inches, InchesTolerance);
-            Assert.AreEqual(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
-            Assert.AreEqual(MetersInOneMeter, meter.Meters, MetersTolerance);
-            Assert.AreEqual(MicroinchesInOneMeter, meter.Microinches, MicroinchesTolerance);
-            Assert.AreEqual(MicrometersInOneMeter, meter.Micrometers, MicrometersTolerance);
-            Assert.AreEqual(MilsInOneMeter, meter.Mils, MilsTolerance);
-            Assert.AreEqual(MilesInOneMeter, meter.Miles, MilesTolerance);
-            Assert.AreEqual(MillimetersInOneMeter, meter.Millimeters, MillimetersTolerance);
-            Assert.AreEqual(NanometersInOneMeter, meter.Nanometers, NanometersTolerance);
-            Assert.AreEqual(NauticalMilesInOneMeter, meter.NauticalMiles, NauticalMilesTolerance);
-            Assert.AreEqual(UsSurveyFeetInOneMeter, meter.UsSurveyFeet, UsSurveyFeetTolerance);
-            Assert.AreEqual(YardsInOneMeter, meter.Yards, YardsTolerance);
+            AssertEx.EqualTolerance(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
+            AssertEx.EqualTolerance(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
+            AssertEx.EqualTolerance(FathomsInOneMeter, meter.Fathoms, FathomsTolerance);
+            AssertEx.EqualTolerance(FeetInOneMeter, meter.Feet, FeetTolerance);
+            AssertEx.EqualTolerance(InchesInOneMeter, meter.Inches, InchesTolerance);
+            AssertEx.EqualTolerance(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
+            AssertEx.EqualTolerance(MetersInOneMeter, meter.Meters, MetersTolerance);
+            AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.Microinches, MicroinchesTolerance);
+            AssertEx.EqualTolerance(MicrometersInOneMeter, meter.Micrometers, MicrometersTolerance);
+            AssertEx.EqualTolerance(MilsInOneMeter, meter.Mils, MilsTolerance);
+            AssertEx.EqualTolerance(MilesInOneMeter, meter.Miles, MilesTolerance);
+            AssertEx.EqualTolerance(MillimetersInOneMeter, meter.Millimeters, MillimetersTolerance);
+            AssertEx.EqualTolerance(NanometersInOneMeter, meter.Nanometers, NanometersTolerance);
+            AssertEx.EqualTolerance(NauticalMilesInOneMeter, meter.NauticalMiles, NauticalMilesTolerance);
+            AssertEx.EqualTolerance(ShacklesInOneMeter, meter.Shackles, ShacklesTolerance);
+            AssertEx.EqualTolerance(UsSurveyFeetInOneMeter, meter.UsSurveyFeet, UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(YardsInOneMeter, meter.Yards, YardsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Mil).Mils, MilsTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Mile).Miles, MilesTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
-            Assert.AreEqual(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Centimeter).Centimeters, CentimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Decimeter).Decimeters, DecimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Fathom).Fathoms, FathomsTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Foot).Feet, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Inch).Inches, InchesTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Kilometer).Kilometers, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Meter).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Microinch).Microinches, MicroinchesTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Micrometer).Micrometers, MicrometersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Mil).Mils, MilsTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Mile).Miles, MilesTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Millimeter).Millimeters, MillimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Nanometer).Nanometers, NanometersTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.NauticalMile).NauticalMiles, NauticalMilesTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Shackle).Shackles, ShacklesTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var meter = Length.FromMeters(1);
-            Assert.AreEqual(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
-            Assert.AreEqual(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
-            Assert.AreEqual(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
-            Assert.AreEqual(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
-            Assert.AreEqual(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
-            Assert.AreEqual(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
-            Assert.AreEqual(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), MicroinchesTolerance);
-            Assert.AreEqual(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), MicrometersTolerance);
-            Assert.AreEqual(MilsInOneMeter, meter.As(LengthUnit.Mil), MilsTolerance);
-            Assert.AreEqual(MilesInOneMeter, meter.As(LengthUnit.Mile), MilesTolerance);
-            Assert.AreEqual(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), MillimetersTolerance);
-            Assert.AreEqual(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), NanometersTolerance);
-            Assert.AreEqual(NauticalMilesInOneMeter, meter.As(LengthUnit.NauticalMile), NauticalMilesTolerance);
-            Assert.AreEqual(UsSurveyFeetInOneMeter, meter.As(LengthUnit.UsSurveyFoot), UsSurveyFeetTolerance);
-            Assert.AreEqual(YardsInOneMeter, meter.As(LengthUnit.Yard), YardsTolerance);
+            AssertEx.EqualTolerance(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
+            AssertEx.EqualTolerance(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
+            AssertEx.EqualTolerance(FathomsInOneMeter, meter.As(LengthUnit.Fathom), FathomsTolerance);
+            AssertEx.EqualTolerance(FeetInOneMeter, meter.As(LengthUnit.Foot), FeetTolerance);
+            AssertEx.EqualTolerance(InchesInOneMeter, meter.As(LengthUnit.Inch), InchesTolerance);
+            AssertEx.EqualTolerance(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
+            AssertEx.EqualTolerance(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
+            AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), MicroinchesTolerance);
+            AssertEx.EqualTolerance(MicrometersInOneMeter, meter.As(LengthUnit.Micrometer), MicrometersTolerance);
+            AssertEx.EqualTolerance(MilsInOneMeter, meter.As(LengthUnit.Mil), MilsTolerance);
+            AssertEx.EqualTolerance(MilesInOneMeter, meter.As(LengthUnit.Mile), MilesTolerance);
+            AssertEx.EqualTolerance(MillimetersInOneMeter, meter.As(LengthUnit.Millimeter), MillimetersTolerance);
+            AssertEx.EqualTolerance(NanometersInOneMeter, meter.As(LengthUnit.Nanometer), NanometersTolerance);
+            AssertEx.EqualTolerance(NauticalMilesInOneMeter, meter.As(LengthUnit.NauticalMile), NauticalMilesTolerance);
+            AssertEx.EqualTolerance(ShacklesInOneMeter, meter.As(LengthUnit.Shackle), ShacklesTolerance);
+            AssertEx.EqualTolerance(UsSurveyFeetInOneMeter, meter.As(LengthUnit.UsSurveyFoot), UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(YardsInOneMeter, meter.As(LengthUnit.Yard), YardsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Length meter = Length.FromMeters(1);
-            Assert.AreEqual(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
-            Assert.AreEqual(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
-            Assert.AreEqual(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
-            Assert.AreEqual(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
-            Assert.AreEqual(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
-            Assert.AreEqual(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
-            Assert.AreEqual(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
-            Assert.AreEqual(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
-            Assert.AreEqual(1, Length.FromMils(meter.Mils).Meters, MilsTolerance);
-            Assert.AreEqual(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
-            Assert.AreEqual(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
-            Assert.AreEqual(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
-            Assert.AreEqual(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
-            Assert.AreEqual(1, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
-            Assert.AreEqual(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
+            AssertEx.EqualTolerance(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
+            AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMils(meter.Mils).Meters, MilsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
+            AssertEx.EqualTolerance(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
+            AssertEx.EqualTolerance(1, Length.FromShackles(meter.Shackles).Meters, ShacklesTolerance);
+            AssertEx.EqualTolerance(1, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Length v = Length.FromMeters(1);
-            Assert.AreEqual(-1, -v.Meters, MetersTolerance);
-            Assert.AreEqual(2, (Length.FromMeters(3)-v).Meters, MetersTolerance);
-            Assert.AreEqual(2, (v + v).Meters, MetersTolerance);
-            Assert.AreEqual(10, (v*10).Meters, MetersTolerance);
-            Assert.AreEqual(10, (10*v).Meters, MetersTolerance);
-            Assert.AreEqual(2, (Length.FromMeters(10)/5).Meters, MetersTolerance);
-            Assert.AreEqual(2, Length.FromMeters(10)/Length.FromMeters(5), MetersTolerance);
+            AssertEx.EqualTolerance(-1, -v.Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, (Length.FromMeters(3)-v).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, (Length.FromMeters(10)/5).Meters, MetersTolerance);
+            AssertEx.EqualTolerance(2, Length.FromMeters(10)/Length.FromMeters(5), MetersTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             Length oneMeter = Length.FromMeters(1);
@@ -200,35 +211,31 @@ namespace UnitsNet.Tests
             Assert.False(twoMeters <= oneMeter);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Length meter = Length.FromMeters(1);
-            Assert.AreEqual(0, meter.CompareTo(meter));
-            Assert.Greater(meter.CompareTo(Length.Zero), 0);
-            Assert.Less(Length.Zero.CompareTo(meter), 0);
+            Assert.Equal(0, meter.CompareTo(meter));
+            Assert.True(meter.CompareTo(Length.Zero) > 0);
+            Assert.True(Length.Zero.CompareTo(meter) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Length meter = Length.FromMeters(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => meter.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Length meter = Length.FromMeters(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            meter.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Length a = Length.FromMeters(1);
@@ -243,26 +250,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Length v = Length.FromMeters(1);
-            Assert.IsTrue(v.Equals(Length.FromMeters(1)));
-            Assert.IsFalse(v.Equals(Length.Zero));
+            Assert.True(v.Equals(Length.FromMeters(1)));
+            Assert.False(v.Equals(Length.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Length meter = Length.FromMeters(1);
-            Assert.IsFalse(meter.Equals(new object()));
+            Assert.False(meter.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Length meter = Length.FromMeters(1);
-            Assert.IsFalse(meter.Equals(null));
+            Assert.False(meter.Equals(null));
         }
     }
 }

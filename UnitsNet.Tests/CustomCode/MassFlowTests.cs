@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -50,53 +50,53 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;
 
-        [Test]
+        [Fact]
         public void DurationTimesMassFlowEqualsMass()
         {
             Mass mass = Duration.FromSeconds(4.0)*MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+            Assert.Equal(mass, Mass.FromKilograms(80.0));
         }
 
-        [Test]
+        [Fact]
         public void MassFlowTimesDurationEqualsMass()
         {
             Mass mass = MassFlow.FromKilogramsPerSecond(20.0)*Duration.FromSeconds(4.0);
-            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+            Assert.Equal(mass, Mass.FromKilograms(80.0));
         }
 
-        [Test]
+        [Fact]
         public void MassFlowTimesTimeSpanEqualsMass()
         {
             Mass mass = MassFlow.FromKilogramsPerSecond(20.0)*TimeSpan.FromSeconds(4.0);
-            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+            Assert.Equal(mass, Mass.FromKilograms(80.0));
         }
 
-        [Test]
+        [Fact]
         public void TimeSpanTimesMassFlowEqualsMass()
         {
             Mass mass = TimeSpan.FromSeconds(4.0)*MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.AreEqual(mass, Mass.FromKilograms(80.0));
+            Assert.Equal(mass, Mass.FromKilograms(80.0));
         }
 
-        [Test]
+        [Fact]
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
             Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            Assert.AreEqual(power, Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0));
+            Assert.Equal(20.0 / 24.0 * 1e6 / 180.0, power.Kilowatts);
         }
 
-        [Test]
+        [Fact]
         public void MassFlowDividedByPowerEqualsBrakeSpecificFuelConsumption()
         {
             BrakeSpecificFuelConsumption bsfc = MassFlow.FromTonnesPerDay(20) / Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
-            Assert.AreEqual(bsfc.GramsPerKiloWattHour, 180.0, 1e-11);
+            AssertEx.EqualTolerance(180.0, bsfc.GramsPerKiloWattHour, 1e-11);
         }
 
-        [Test]
+        [Fact]
         public void MassFlowTimesSpecificEnergyEqualsPower()
         {
             Power power = MassFlow.FromKilogramsPerSecond(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.AreEqual(power, Power.FromWatts(200.0));
+            Assert.Equal(200, power.Watts);
         }
     }
 }

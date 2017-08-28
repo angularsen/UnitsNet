@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -66,39 +66,39 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
 
-        [Test]
+        [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
             Force force = Acceleration.FromMeterPerSecondSquared(3)*Mass.FromKilograms(18);
-            Assert.AreEqual(force, Force.FromNewtons(54));
+            Assert.Equal(force, Force.FromNewtons(54));
         }
 
-        [Test]
+        [Fact]
         public void MassDividedByDurationEqualsMassFlow()
         {
             MassFlow massFlow = Mass.FromKilograms(18.0)/Duration.FromSeconds(6);
-            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
-        [Test]
+        [Fact]
         public void MassDividedByTimeSpanEqualsMassFlow()
         {
             MassFlow massFlow = Mass.FromKilograms(18.0)/TimeSpan.FromSeconds(6);
-            Assert.AreEqual(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(3.0));
         }
 
-        [Test]
+        [Fact]
         public void MassDividedByVolumeEqualsDensity()
         {
             Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);
-            Assert.AreEqual(density, Density.FromKilogramsPerCubicMeter(6));
+            Assert.Equal(density, Density.FromKilogramsPerCubicMeter(6));
         }
 
-        [Test]
+        [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMeterPerSecondSquared(3);
-            Assert.AreEqual(force, Force.FromNewtons(54));
+            Assert.Equal(force, Force.FromNewtons(54));
         }
     }
 }

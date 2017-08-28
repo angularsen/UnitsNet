@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of SpecificWeight.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificWeightTestsBase
     {
@@ -89,107 +88,107 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void NewtonPerCubicMeterToSpecificWeightUnits()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.AreEqual(KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
-            Assert.AreEqual(KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(PoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(PoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(TonnesForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
-            Assert.AreEqual(TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMeter).KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMeter).KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicInch).KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicCentimeter).NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMillimeter).NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicFoot).PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicInch).PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMeter).TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicCentimeter).KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMeter).KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilogramForcePerCubicMillimeter).KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicCentimeter).KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMeter).KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicInch).KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicCentimeter).NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMillimeter).NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicFoot).PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.PoundForcePerCubicInch).PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicCentimeter).TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMeter).TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.AreEqual(KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicCentimeter), KilogramsForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicMeter), KilogramsForcePerCubicMeterTolerance);
-            Assert.AreEqual(KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicMillimeter), KilogramsForcePerCubicMillimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicCentimeter), KilonewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicMeter), KilonewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicMillimeter), KilonewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicFoot), KilopoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicInch), KilopoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicCentimeter), NewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMeter), NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMillimeter), NewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(PoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.PoundForcePerCubicFoot), PoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(PoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.PoundForcePerCubicInch), PoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicCentimeter), TonnesForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(TonnesForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicMeter), TonnesForcePerCubicMeterTolerance);
-            Assert.AreEqual(TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicMillimeter), TonnesForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicCentimeter), KilogramsForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicMeter), KilogramsForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilogramForcePerCubicMillimeter), KilogramsForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicCentimeter), KilonewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicMeter), KilonewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicMillimeter), KilonewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicFoot), KilopoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicInch), KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicCentimeter), NewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMeter), NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMillimeter), NewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.PoundForcePerCubicFoot), PoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.PoundForcePerCubicInch), PoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicCentimeter), TonnesForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicMeter), TonnesForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.TonneForcePerCubicMillimeter), TonnesForcePerCubicMillimeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.AreEqual(1, SpecificWeight.FromKilogramsForcePerCubicCentimeter(newtonpercubicmeter.KilogramsForcePerCubicCentimeter).NewtonsPerCubicMeter, KilogramsForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilogramsForcePerCubicMeter(newtonpercubicmeter.KilogramsForcePerCubicMeter).NewtonsPerCubicMeter, KilogramsForcePerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilogramsForcePerCubicMillimeter(newtonpercubicmeter.KilogramsForcePerCubicMillimeter).NewtonsPerCubicMeter, KilogramsForcePerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilonewtonsPerCubicCentimeter(newtonpercubicmeter.KilonewtonsPerCubicCentimeter).NewtonsPerCubicMeter, KilonewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilonewtonsPerCubicMeter(newtonpercubicmeter.KilonewtonsPerCubicMeter).NewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilonewtonsPerCubicMillimeter(newtonpercubicmeter.KilonewtonsPerCubicMillimeter).NewtonsPerCubicMeter, KilonewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilopoundsForcePerCubicFoot(newtonpercubicmeter.KilopoundsForcePerCubicFoot).NewtonsPerCubicMeter, KilopoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromKilopoundsForcePerCubicInch(newtonpercubicmeter.KilopoundsForcePerCubicInch).NewtonsPerCubicMeter, KilopoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromNewtonsPerCubicCentimeter(newtonpercubicmeter.NewtonsPerCubicCentimeter).NewtonsPerCubicMeter, NewtonsPerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromNewtonsPerCubicMeter(newtonpercubicmeter.NewtonsPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromNewtonsPerCubicMillimeter(newtonpercubicmeter.NewtonsPerCubicMillimeter).NewtonsPerCubicMeter, NewtonsPerCubicMillimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromPoundsForcePerCubicFoot(newtonpercubicmeter.PoundsForcePerCubicFoot).NewtonsPerCubicMeter, PoundsForcePerCubicFootTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromPoundsForcePerCubicInch(newtonpercubicmeter.PoundsForcePerCubicInch).NewtonsPerCubicMeter, PoundsForcePerCubicInchTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromTonnesForcePerCubicCentimeter(newtonpercubicmeter.TonnesForcePerCubicCentimeter).NewtonsPerCubicMeter, TonnesForcePerCubicCentimeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromTonnesForcePerCubicMeter(newtonpercubicmeter.TonnesForcePerCubicMeter).NewtonsPerCubicMeter, TonnesForcePerCubicMeterTolerance);
-            Assert.AreEqual(1, SpecificWeight.FromTonnesForcePerCubicMillimeter(newtonpercubicmeter.TonnesForcePerCubicMillimeter).NewtonsPerCubicMeter, TonnesForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilogramsForcePerCubicCentimeter(newtonpercubicmeter.KilogramsForcePerCubicCentimeter).NewtonsPerCubicMeter, KilogramsForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilogramsForcePerCubicMeter(newtonpercubicmeter.KilogramsForcePerCubicMeter).NewtonsPerCubicMeter, KilogramsForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilogramsForcePerCubicMillimeter(newtonpercubicmeter.KilogramsForcePerCubicMillimeter).NewtonsPerCubicMeter, KilogramsForcePerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilonewtonsPerCubicCentimeter(newtonpercubicmeter.KilonewtonsPerCubicCentimeter).NewtonsPerCubicMeter, KilonewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilonewtonsPerCubicMeter(newtonpercubicmeter.KilonewtonsPerCubicMeter).NewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilonewtonsPerCubicMillimeter(newtonpercubicmeter.KilonewtonsPerCubicMillimeter).NewtonsPerCubicMeter, KilonewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilopoundsForcePerCubicFoot(newtonpercubicmeter.KilopoundsForcePerCubicFoot).NewtonsPerCubicMeter, KilopoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromKilopoundsForcePerCubicInch(newtonpercubicmeter.KilopoundsForcePerCubicInch).NewtonsPerCubicMeter, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicCentimeter(newtonpercubicmeter.NewtonsPerCubicCentimeter).NewtonsPerCubicMeter, NewtonsPerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicMeter(newtonpercubicmeter.NewtonsPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicMillimeter(newtonpercubicmeter.NewtonsPerCubicMillimeter).NewtonsPerCubicMeter, NewtonsPerCubicMillimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromPoundsForcePerCubicFoot(newtonpercubicmeter.PoundsForcePerCubicFoot).NewtonsPerCubicMeter, PoundsForcePerCubicFootTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromPoundsForcePerCubicInch(newtonpercubicmeter.PoundsForcePerCubicInch).NewtonsPerCubicMeter, PoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromTonnesForcePerCubicCentimeter(newtonpercubicmeter.TonnesForcePerCubicCentimeter).NewtonsPerCubicMeter, TonnesForcePerCubicCentimeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromTonnesForcePerCubicMeter(newtonpercubicmeter.TonnesForcePerCubicMeter).NewtonsPerCubicMeter, TonnesForcePerCubicMeterTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromTonnesForcePerCubicMillimeter(newtonpercubicmeter.TonnesForcePerCubicMillimeter).NewtonsPerCubicMeter, TonnesForcePerCubicMillimeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             SpecificWeight v = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.AreEqual(-1, -v.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(2, (SpecificWeight.FromNewtonsPerCubicMeter(3)-v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(2, (v + v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(10, (v*10).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(10, (10*v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(2, (SpecificWeight.FromNewtonsPerCubicMeter(10)/5).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
-            Assert.AreEqual(2, SpecificWeight.FromNewtonsPerCubicMeter(10)/SpecificWeight.FromNewtonsPerCubicMeter(5), NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(-1, -v.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (SpecificWeight.FromNewtonsPerCubicMeter(3)-v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (SpecificWeight.FromNewtonsPerCubicMeter(10)/5).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, SpecificWeight.FromNewtonsPerCubicMeter(10)/SpecificWeight.FromNewtonsPerCubicMeter(5), NewtonsPerCubicMeterTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             SpecificWeight oneNewtonPerCubicMeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
@@ -206,35 +205,31 @@ namespace UnitsNet.Tests
             Assert.False(twoNewtonsPerCubicMeter <= oneNewtonPerCubicMeter);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.AreEqual(0, newtonpercubicmeter.CompareTo(newtonpercubicmeter));
-            Assert.Greater(newtonpercubicmeter.CompareTo(SpecificWeight.Zero), 0);
-            Assert.Less(SpecificWeight.Zero.CompareTo(newtonpercubicmeter), 0);
+            Assert.Equal(0, newtonpercubicmeter.CompareTo(newtonpercubicmeter));
+            Assert.True(newtonpercubicmeter.CompareTo(SpecificWeight.Zero) > 0);
+            Assert.True(SpecificWeight.Zero.CompareTo(newtonpercubicmeter) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            newtonpercubicmeter.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => newtonpercubicmeter.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            newtonpercubicmeter.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => newtonpercubicmeter.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             SpecificWeight a = SpecificWeight.FromNewtonsPerCubicMeter(1);
@@ -249,26 +244,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             SpecificWeight v = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.IsTrue(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1)));
-            Assert.IsFalse(v.Equals(SpecificWeight.Zero));
+            Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1)));
+            Assert.False(v.Equals(SpecificWeight.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.IsFalse(newtonpercubicmeter.Equals(new object()));
+            Assert.False(newtonpercubicmeter.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.IsFalse(newtonpercubicmeter.Equals(null));
+            Assert.False(newtonpercubicmeter.Equals(null));
         }
     }
 }

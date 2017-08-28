@@ -72,12 +72,12 @@ function GenerateUnitSystemDefault($unitClasses, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateUnitClassEnum($unitClasses, $outDir)
+function GenerateQuantityType($unitClasses, $outDir)
 {
-    Write-Host -NoNewline "UnitClass.g.cs: "
-    $outFileName = "$outDir/UnitClass.g.cs"
+    Write-Host -NoNewline "QuantityType.g.cs: "
+    $outFileName = "$outDir/QuantityType.g.cs"
 
-    GenerateUnitClassEnumSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+    GenerateQuantityTypeSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         Write-Host "(error) "
         exit 1
@@ -253,7 +253,7 @@ function Add-InheritedUnits($unitClass, $unitClasses) {
 . "$PSScriptRoot/Include-GenerateLogarithmicCode.ps1"
 . "$PSScriptRoot/Include-GenerateNumberExtensionsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateUnitClassEnumSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
@@ -294,10 +294,11 @@ foreach ($unitClass in $unitClasses) {
 
 Write-Host ""
 GenerateUnitSystemDefault $unitClasses $unitSystemDir
-GenerateUnitClassEnum $unitClasses $unitSystemDir
+GenerateQuantityType $unitClasses $unitSystemDir
 
 $unitCount = ($unitClasses | %{$_.Units.Count} | Measure -Sum).Sum
 
 Write-Host "`n`n"
 Write-Host -Foreground Yellow "Summary: $unitCount units in $($unitClasses.Count) classes".PadRight($pad)
 Write-Host "`n`n"
+exit 0

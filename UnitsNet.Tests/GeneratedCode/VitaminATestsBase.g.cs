@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of VitaminA.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VitaminATestsBase
     {
@@ -59,47 +58,47 @@ namespace UnitsNet.Tests
         protected virtual double InternationalUnitsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void InternationalUnitToVitaminAUnits()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.AreEqual(InternationalUnitsInOneInternationalUnit, internationalunit.InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, internationalunit.InternationalUnits, InternationalUnitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, VitaminA.From(1, VitaminAUnit.InternationalUnit).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(1, VitaminA.From(1, VitaminAUnit.InternationalUnit).InternationalUnits, InternationalUnitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.AreEqual(InternationalUnitsInOneInternationalUnit, internationalunit.As(VitaminAUnit.InternationalUnit), InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, internationalunit.As(VitaminAUnit.InternationalUnit), InternationalUnitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.AreEqual(1, VitaminA.FromInternationalUnits(internationalunit.InternationalUnits).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(1, VitaminA.FromInternationalUnits(internationalunit.InternationalUnits).InternationalUnits, InternationalUnitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             VitaminA v = VitaminA.FromInternationalUnits(1);
-            Assert.AreEqual(-1, -v.InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(2, (VitaminA.FromInternationalUnits(3)-v).InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(2, (v + v).InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(10, (v*10).InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(10, (10*v).InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(2, (VitaminA.FromInternationalUnits(10)/5).InternationalUnits, InternationalUnitsTolerance);
-            Assert.AreEqual(2, VitaminA.FromInternationalUnits(10)/VitaminA.FromInternationalUnits(5), InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(-1, -v.InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, (VitaminA.FromInternationalUnits(3)-v).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, (VitaminA.FromInternationalUnits(10)/5).InternationalUnits, InternationalUnitsTolerance);
+            AssertEx.EqualTolerance(2, VitaminA.FromInternationalUnits(10)/VitaminA.FromInternationalUnits(5), InternationalUnitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             VitaminA oneInternationalUnit = VitaminA.FromInternationalUnits(1);
@@ -116,35 +115,31 @@ namespace UnitsNet.Tests
             Assert.False(twoInternationalUnits <= oneInternationalUnit);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.AreEqual(0, internationalunit.CompareTo(internationalunit));
-            Assert.Greater(internationalunit.CompareTo(VitaminA.Zero), 0);
-            Assert.Less(VitaminA.Zero.CompareTo(internationalunit), 0);
+            Assert.Equal(0, internationalunit.CompareTo(internationalunit));
+            Assert.True(internationalunit.CompareTo(VitaminA.Zero) > 0);
+            Assert.True(VitaminA.Zero.CompareTo(internationalunit) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            internationalunit.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => internationalunit.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            internationalunit.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => internationalunit.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             VitaminA a = VitaminA.FromInternationalUnits(1);
@@ -159,26 +154,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             VitaminA v = VitaminA.FromInternationalUnits(1);
-            Assert.IsTrue(v.Equals(VitaminA.FromInternationalUnits(1)));
-            Assert.IsFalse(v.Equals(VitaminA.Zero));
+            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1)));
+            Assert.False(v.Equals(VitaminA.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.IsFalse(internationalunit.Equals(new object()));
+            Assert.False(internationalunit.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
-            Assert.IsFalse(internationalunit.Equals(null));
+            Assert.False(internationalunit.Equals(null));
         }
     }
 }

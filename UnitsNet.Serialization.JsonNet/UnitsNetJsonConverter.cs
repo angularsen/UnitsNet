@@ -101,17 +101,22 @@ namespace UnitsNet.Serialization.JsonNet
             object unit = Enum.Parse(reflectedUnitEnumType, unitEnumValue);
 
             // Mass.From() method, assume no overloads exist
-            MethodInfo fromMethod = (from m in reflectedUnitType.GetMethods()
-                                     where m.Name.Equals("From", StringComparison.InvariantCulture) &&
-                                     !m.ReturnType.IsGenericType  // we want the non nullable type
-                                     select m).Single();
+            var fromMethod = reflectedUnitType
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
+                .GetDeclaredMethods("From")
+                .Single(m => !m.ReturnType.IsConstructedGenericType);
+#else
+                .GetMethods()
+                .Single(m => m.Name.Equals("From", StringComparison.InvariantCulture) &&
+                    !m.ReturnType.IsGenericType);
+#endif
 
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
             // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
             // will likely return a very different result. Not sure how we can handle this?
-            return fromMethod.Invoke(null, BindingFlags.Static, null, new[] { vu.Value, unit },
-                CultureInfo.InvariantCulture);
+            return fromMethod.Invoke(null, new[] {vu.Value, unit});
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
@@ -158,29 +163,45 @@ namespace UnitsNet.Serialization.JsonNet
                 t.WriteTo(writer);
                 return;
             }
-            FieldInfo[] fields =
-                unitType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            if (fields.Length == 0)
+            FieldInfo baseValueField;
+            try
             {
-                var ex = new UnitsNetException("No private fields found in type.");
-                ex.Data["type"] = unitType;
-                throw ex;
+                baseValueField = unitType
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
+
+                    .DeclaredFields
+                    .SingleOrDefault(f => !f.IsPublic && !f.IsStatic);
+#else
+                    .GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                    .SingleOrDefault();
+#endif
             }
-            if (fields.Length > 1)
+            catch (InvalidOperationException)
             {
                 var ex = new UnitsNetException("Expected exactly 1 private field, but found multiple.");
                 ex.Data["type"] = unitType;
                 throw ex;
             }
-
+            if (baseValueField == null)
+            {
+                var ex = new UnitsNetException("No private fields found in type.");
+                ex.Data["type"] = unitType;
+                throw ex;
+            }
             // Unit base type can be double, long or decimal,
             // so make sure we serialize the real type to avoid
             // loss of precision
-            FieldInfo baseValueField = fields.First();
             object baseValue = baseValueField.GetValue(value);
 
             // Mass => "MassUnit.Kilogram"
-            PropertyInfo baseUnitPropInfo = unitType.GetProperty("BaseUnit");
+            PropertyInfo baseUnitPropInfo = unitType
+#if (NETSTANDARD1_0)
+                    .GetTypeInfo()
+                    .GetDeclaredProperty("BaseUnit");
+#else
+                .GetProperty("BaseUnit");
+#endif
 
             // Read static BaseUnit property value
             var baseUnitEnumValue = (Enum) baseUnitPropInfo.GetValue(null, null);
@@ -211,7 +232,7 @@ namespace UnitsNet.Serialization.JsonNet
             public double Value { get; [UsedImplicitly] set; }
         }
 
-        #region Can Convert
+#region Can Convert
 
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -254,6 +275,6 @@ namespace UnitsNet.Serialization.JsonNet
             return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
-        #endregion
+#endregion
     }
 }

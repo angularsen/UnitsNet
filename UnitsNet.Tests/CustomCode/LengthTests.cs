@@ -20,11 +20,15 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
+    // Avoid accessing static prop DefaultToString in parallel from multiple tests:
+    // UnitSystemTests.DefaultToStringFormatting()
+    // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
+    [Collection("DefaultToString")] 
     public class LengthTests : LengthTestsBase
     {
         protected override double CentimetersInOneMeter => 100;
@@ -55,68 +59,76 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double YardsInOneMeter => 1.09361;
 
+        
+        protected override double FathomsInOneMeter => 0.546806649;
+
+        
+        protected override double ShacklesInOneMeter => 0.0364538;
+
 
         protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
-        [Test]
+        [Fact]
         public void AreaTimesLengthEqualsVolume()
         {
             Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
-            Assert.AreEqual(volume, Volume.FromCubicMeters(30));
+            Assert.Equal(volume, Volume.FromCubicMeters(30));
         }
 
-        [Test]
+        [Fact]
         public void ForceTimesLengthEqualsTorque()
         {
             Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
-            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
+            Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
-        [Test]
+        [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
             Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
-            Assert.AreEqual(volume, Volume.FromCubicMeters(27));
+            Assert.Equal(volume, Volume.FromCubicMeters(27));
         }
 
-        [Test]
+        [Fact]
         public void LengthTimesForceEqualsTorque()
         {
             Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
-            Assert.AreEqual(torque, Torque.FromNewtonMeters(3));
+            Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
-        [Test]
+        [Fact]
         public void LengthTimesLengthEqualsArea()
         {
             Area area = Length.FromMeters(10)*Length.FromMeters(2);
-            Assert.AreEqual(area, Area.FromSquareMeters(20));
+            Assert.Equal(area, Area.FromSquareMeters(20));
         }
 
-        [Test]
+        [Fact]
         public void LengthDividedBySpeedEqualsDuration()
         {
             Duration duration = Length.FromMeters(20) / Speed.FromMetersPerSecond(2);
-            Assert.AreEqual(Duration.FromSeconds(10), duration);
+            Assert.Equal(Duration.FromSeconds(10), duration);
         }
 
-        [Test]
+        [Fact]
         public void LengthTimesSpeedEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
-            Assert.AreEqual(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
+            Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(40), kinematicViscosity);
         }
 
-        [Test]
+        [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
+            LengthUnit oldUnit = Length.ToStringDefaultUnit;
             Length.ToStringDefaultUnit = LengthUnit.Meter;
             Length meter = Length.FromMeters(5);
             string meterString = meter.ToString();
-            Assert.AreEqual("5 m", meterString);
+            Length.ToStringDefaultUnit = oldUnit;
+            Assert.Equal("5 m", meterString);
         }
 
-        [Test]
+        [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
             LengthUnit oldUnit = Length.ToStringDefaultUnit;
@@ -124,19 +136,21 @@ namespace UnitsNet.Tests.CustomCode
             Length value = Length.From(2, LengthUnit.Centimeter);
             string valueString = value.ToString();
             Length.ToStringDefaultUnit = oldUnit;
-            Assert.AreEqual("2 cm", valueString);
+            Assert.Equal("2 cm", valueString);
         }
 
-        [Test]
+        [Fact]
         public void MaxValueIsCorrectForUnitWithBaseTypeDouble()
         {
-            Assert.AreEqual(double.MaxValue, Length.MaxValue.Meters);
+            Assert.Equal(double.MaxValue, Length.MaxValue.Meters);
         }
 
-        [Test]
+        [Fact]
         public void MinValueIsCorrectForUnitWithBaseTypeDouble()
         {
-            Assert.AreEqual(double.MinValue, Length.MinValue.Meters);
+            Assert.Equal(double.MinValue, Length.MinValue.Meters);
         }
+
+        
     }
 }

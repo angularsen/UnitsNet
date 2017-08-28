@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of Information.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class InformationTestsBase
     {
@@ -109,147 +108,147 @@ namespace UnitsNet.Tests
         protected virtual double TerabytesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void BitToInformationUnits()
         {
             Information bit = Information.FromBits(1);
-            Assert.AreEqual(BitsInOneBit, bit.Bits, BitsTolerance);
-            Assert.AreEqual(BytesInOneBit, bit.Bytes, BytesTolerance);
-            Assert.AreEqual(ExabitsInOneBit, bit.Exabits, ExabitsTolerance);
-            Assert.AreEqual(ExabytesInOneBit, bit.Exabytes, ExabytesTolerance);
-            Assert.AreEqual(ExbibitsInOneBit, bit.Exbibits, ExbibitsTolerance);
-            Assert.AreEqual(ExbibytesInOneBit, bit.Exbibytes, ExbibytesTolerance);
-            Assert.AreEqual(GibibitsInOneBit, bit.Gibibits, GibibitsTolerance);
-            Assert.AreEqual(GibibytesInOneBit, bit.Gibibytes, GibibytesTolerance);
-            Assert.AreEqual(GigabitsInOneBit, bit.Gigabits, GigabitsTolerance);
-            Assert.AreEqual(GigabytesInOneBit, bit.Gigabytes, GigabytesTolerance);
-            Assert.AreEqual(KibibitsInOneBit, bit.Kibibits, KibibitsTolerance);
-            Assert.AreEqual(KibibytesInOneBit, bit.Kibibytes, KibibytesTolerance);
-            Assert.AreEqual(KilobitsInOneBit, bit.Kilobits, KilobitsTolerance);
-            Assert.AreEqual(KilobytesInOneBit, bit.Kilobytes, KilobytesTolerance);
-            Assert.AreEqual(MebibitsInOneBit, bit.Mebibits, MebibitsTolerance);
-            Assert.AreEqual(MebibytesInOneBit, bit.Mebibytes, MebibytesTolerance);
-            Assert.AreEqual(MegabitsInOneBit, bit.Megabits, MegabitsTolerance);
-            Assert.AreEqual(MegabytesInOneBit, bit.Megabytes, MegabytesTolerance);
-            Assert.AreEqual(PebibitsInOneBit, bit.Pebibits, PebibitsTolerance);
-            Assert.AreEqual(PebibytesInOneBit, bit.Pebibytes, PebibytesTolerance);
-            Assert.AreEqual(PetabitsInOneBit, bit.Petabits, PetabitsTolerance);
-            Assert.AreEqual(PetabytesInOneBit, bit.Petabytes, PetabytesTolerance);
-            Assert.AreEqual(TebibitsInOneBit, bit.Tebibits, TebibitsTolerance);
-            Assert.AreEqual(TebibytesInOneBit, bit.Tebibytes, TebibytesTolerance);
-            Assert.AreEqual(TerabitsInOneBit, bit.Terabits, TerabitsTolerance);
-            Assert.AreEqual(TerabytesInOneBit, bit.Terabytes, TerabytesTolerance);
+            AssertEx.EqualTolerance(BitsInOneBit, bit.Bits, BitsTolerance);
+            AssertEx.EqualTolerance(BytesInOneBit, bit.Bytes, BytesTolerance);
+            AssertEx.EqualTolerance(ExabitsInOneBit, bit.Exabits, ExabitsTolerance);
+            AssertEx.EqualTolerance(ExabytesInOneBit, bit.Exabytes, ExabytesTolerance);
+            AssertEx.EqualTolerance(ExbibitsInOneBit, bit.Exbibits, ExbibitsTolerance);
+            AssertEx.EqualTolerance(ExbibytesInOneBit, bit.Exbibytes, ExbibytesTolerance);
+            AssertEx.EqualTolerance(GibibitsInOneBit, bit.Gibibits, GibibitsTolerance);
+            AssertEx.EqualTolerance(GibibytesInOneBit, bit.Gibibytes, GibibytesTolerance);
+            AssertEx.EqualTolerance(GigabitsInOneBit, bit.Gigabits, GigabitsTolerance);
+            AssertEx.EqualTolerance(GigabytesInOneBit, bit.Gigabytes, GigabytesTolerance);
+            AssertEx.EqualTolerance(KibibitsInOneBit, bit.Kibibits, KibibitsTolerance);
+            AssertEx.EqualTolerance(KibibytesInOneBit, bit.Kibibytes, KibibytesTolerance);
+            AssertEx.EqualTolerance(KilobitsInOneBit, bit.Kilobits, KilobitsTolerance);
+            AssertEx.EqualTolerance(KilobytesInOneBit, bit.Kilobytes, KilobytesTolerance);
+            AssertEx.EqualTolerance(MebibitsInOneBit, bit.Mebibits, MebibitsTolerance);
+            AssertEx.EqualTolerance(MebibytesInOneBit, bit.Mebibytes, MebibytesTolerance);
+            AssertEx.EqualTolerance(MegabitsInOneBit, bit.Megabits, MegabitsTolerance);
+            AssertEx.EqualTolerance(MegabytesInOneBit, bit.Megabytes, MegabytesTolerance);
+            AssertEx.EqualTolerance(PebibitsInOneBit, bit.Pebibits, PebibitsTolerance);
+            AssertEx.EqualTolerance(PebibytesInOneBit, bit.Pebibytes, PebibytesTolerance);
+            AssertEx.EqualTolerance(PetabitsInOneBit, bit.Petabits, PetabitsTolerance);
+            AssertEx.EqualTolerance(PetabytesInOneBit, bit.Petabytes, PetabytesTolerance);
+            AssertEx.EqualTolerance(TebibitsInOneBit, bit.Tebibits, TebibitsTolerance);
+            AssertEx.EqualTolerance(TebibytesInOneBit, bit.Tebibytes, TebibytesTolerance);
+            AssertEx.EqualTolerance(TerabitsInOneBit, bit.Terabits, TerabitsTolerance);
+            AssertEx.EqualTolerance(TerabytesInOneBit, bit.Terabytes, TerabytesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Bit).Bits, BitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Byte).Bytes, BytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Exabit).Exabits, ExabitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Exabyte).Exabytes, ExabytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Exbibit).Exbibits, ExbibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Exbibyte).Exbibytes, ExbibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Gibibit).Gibibits, GibibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Gibibyte).Gibibytes, GibibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Gigabit).Gigabits, GigabitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Gigabyte).Gigabytes, GigabytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Kibibit).Kibibits, KibibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Kibibyte).Kibibytes, KibibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Kilobit).Kilobits, KilobitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Kilobyte).Kilobytes, KilobytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Mebibit).Mebibits, MebibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Mebibyte).Mebibytes, MebibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Megabit).Megabits, MegabitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Megabyte).Megabytes, MegabytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Pebibit).Pebibits, PebibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Pebibyte).Pebibytes, PebibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Petabit).Petabits, PetabitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Petabyte).Petabytes, PetabytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Tebibit).Tebibits, TebibitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Tebibyte).Tebibytes, TebibytesTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Terabit).Terabits, TerabitsTolerance);
-            Assert.AreEqual(1, Information.From(1, InformationUnit.Terabyte).Terabytes, TerabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Bit).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Byte).Bytes, BytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Exabit).Exabits, ExabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Exabyte).Exabytes, ExabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Exbibit).Exbibits, ExbibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Exbibyte).Exbibytes, ExbibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Gibibit).Gibibits, GibibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Gibibyte).Gibibytes, GibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Gigabit).Gigabits, GigabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Gigabyte).Gigabytes, GigabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Kibibit).Kibibits, KibibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Kibibyte).Kibibytes, KibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Kilobit).Kilobits, KilobitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Kilobyte).Kilobytes, KilobytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Mebibit).Mebibits, MebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Mebibyte).Mebibytes, MebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Megabit).Megabits, MegabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Megabyte).Megabytes, MegabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Pebibit).Pebibits, PebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Pebibyte).Pebibytes, PebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Petabit).Petabits, PetabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Petabyte).Petabytes, PetabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Tebibit).Tebibits, TebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Tebibyte).Tebibytes, TebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabit).Terabits, TerabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabyte).Terabytes, TerabytesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var bit = Information.FromBits(1);
-            Assert.AreEqual(BitsInOneBit, bit.As(InformationUnit.Bit), BitsTolerance);
-            Assert.AreEqual(BytesInOneBit, bit.As(InformationUnit.Byte), BytesTolerance);
-            Assert.AreEqual(ExabitsInOneBit, bit.As(InformationUnit.Exabit), ExabitsTolerance);
-            Assert.AreEqual(ExabytesInOneBit, bit.As(InformationUnit.Exabyte), ExabytesTolerance);
-            Assert.AreEqual(ExbibitsInOneBit, bit.As(InformationUnit.Exbibit), ExbibitsTolerance);
-            Assert.AreEqual(ExbibytesInOneBit, bit.As(InformationUnit.Exbibyte), ExbibytesTolerance);
-            Assert.AreEqual(GibibitsInOneBit, bit.As(InformationUnit.Gibibit), GibibitsTolerance);
-            Assert.AreEqual(GibibytesInOneBit, bit.As(InformationUnit.Gibibyte), GibibytesTolerance);
-            Assert.AreEqual(GigabitsInOneBit, bit.As(InformationUnit.Gigabit), GigabitsTolerance);
-            Assert.AreEqual(GigabytesInOneBit, bit.As(InformationUnit.Gigabyte), GigabytesTolerance);
-            Assert.AreEqual(KibibitsInOneBit, bit.As(InformationUnit.Kibibit), KibibitsTolerance);
-            Assert.AreEqual(KibibytesInOneBit, bit.As(InformationUnit.Kibibyte), KibibytesTolerance);
-            Assert.AreEqual(KilobitsInOneBit, bit.As(InformationUnit.Kilobit), KilobitsTolerance);
-            Assert.AreEqual(KilobytesInOneBit, bit.As(InformationUnit.Kilobyte), KilobytesTolerance);
-            Assert.AreEqual(MebibitsInOneBit, bit.As(InformationUnit.Mebibit), MebibitsTolerance);
-            Assert.AreEqual(MebibytesInOneBit, bit.As(InformationUnit.Mebibyte), MebibytesTolerance);
-            Assert.AreEqual(MegabitsInOneBit, bit.As(InformationUnit.Megabit), MegabitsTolerance);
-            Assert.AreEqual(MegabytesInOneBit, bit.As(InformationUnit.Megabyte), MegabytesTolerance);
-            Assert.AreEqual(PebibitsInOneBit, bit.As(InformationUnit.Pebibit), PebibitsTolerance);
-            Assert.AreEqual(PebibytesInOneBit, bit.As(InformationUnit.Pebibyte), PebibytesTolerance);
-            Assert.AreEqual(PetabitsInOneBit, bit.As(InformationUnit.Petabit), PetabitsTolerance);
-            Assert.AreEqual(PetabytesInOneBit, bit.As(InformationUnit.Petabyte), PetabytesTolerance);
-            Assert.AreEqual(TebibitsInOneBit, bit.As(InformationUnit.Tebibit), TebibitsTolerance);
-            Assert.AreEqual(TebibytesInOneBit, bit.As(InformationUnit.Tebibyte), TebibytesTolerance);
-            Assert.AreEqual(TerabitsInOneBit, bit.As(InformationUnit.Terabit), TerabitsTolerance);
-            Assert.AreEqual(TerabytesInOneBit, bit.As(InformationUnit.Terabyte), TerabytesTolerance);
+            AssertEx.EqualTolerance(BitsInOneBit, bit.As(InformationUnit.Bit), BitsTolerance);
+            AssertEx.EqualTolerance(BytesInOneBit, bit.As(InformationUnit.Byte), BytesTolerance);
+            AssertEx.EqualTolerance(ExabitsInOneBit, bit.As(InformationUnit.Exabit), ExabitsTolerance);
+            AssertEx.EqualTolerance(ExabytesInOneBit, bit.As(InformationUnit.Exabyte), ExabytesTolerance);
+            AssertEx.EqualTolerance(ExbibitsInOneBit, bit.As(InformationUnit.Exbibit), ExbibitsTolerance);
+            AssertEx.EqualTolerance(ExbibytesInOneBit, bit.As(InformationUnit.Exbibyte), ExbibytesTolerance);
+            AssertEx.EqualTolerance(GibibitsInOneBit, bit.As(InformationUnit.Gibibit), GibibitsTolerance);
+            AssertEx.EqualTolerance(GibibytesInOneBit, bit.As(InformationUnit.Gibibyte), GibibytesTolerance);
+            AssertEx.EqualTolerance(GigabitsInOneBit, bit.As(InformationUnit.Gigabit), GigabitsTolerance);
+            AssertEx.EqualTolerance(GigabytesInOneBit, bit.As(InformationUnit.Gigabyte), GigabytesTolerance);
+            AssertEx.EqualTolerance(KibibitsInOneBit, bit.As(InformationUnit.Kibibit), KibibitsTolerance);
+            AssertEx.EqualTolerance(KibibytesInOneBit, bit.As(InformationUnit.Kibibyte), KibibytesTolerance);
+            AssertEx.EqualTolerance(KilobitsInOneBit, bit.As(InformationUnit.Kilobit), KilobitsTolerance);
+            AssertEx.EqualTolerance(KilobytesInOneBit, bit.As(InformationUnit.Kilobyte), KilobytesTolerance);
+            AssertEx.EqualTolerance(MebibitsInOneBit, bit.As(InformationUnit.Mebibit), MebibitsTolerance);
+            AssertEx.EqualTolerance(MebibytesInOneBit, bit.As(InformationUnit.Mebibyte), MebibytesTolerance);
+            AssertEx.EqualTolerance(MegabitsInOneBit, bit.As(InformationUnit.Megabit), MegabitsTolerance);
+            AssertEx.EqualTolerance(MegabytesInOneBit, bit.As(InformationUnit.Megabyte), MegabytesTolerance);
+            AssertEx.EqualTolerance(PebibitsInOneBit, bit.As(InformationUnit.Pebibit), PebibitsTolerance);
+            AssertEx.EqualTolerance(PebibytesInOneBit, bit.As(InformationUnit.Pebibyte), PebibytesTolerance);
+            AssertEx.EqualTolerance(PetabitsInOneBit, bit.As(InformationUnit.Petabit), PetabitsTolerance);
+            AssertEx.EqualTolerance(PetabytesInOneBit, bit.As(InformationUnit.Petabyte), PetabytesTolerance);
+            AssertEx.EqualTolerance(TebibitsInOneBit, bit.As(InformationUnit.Tebibit), TebibitsTolerance);
+            AssertEx.EqualTolerance(TebibytesInOneBit, bit.As(InformationUnit.Tebibyte), TebibytesTolerance);
+            AssertEx.EqualTolerance(TerabitsInOneBit, bit.As(InformationUnit.Terabit), TerabitsTolerance);
+            AssertEx.EqualTolerance(TerabytesInOneBit, bit.As(InformationUnit.Terabyte), TerabytesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             Information bit = Information.FromBits(1);
-            Assert.AreEqual(1, Information.FromBits(bit.Bits).Bits, BitsTolerance);
-            Assert.AreEqual(1, Information.FromBytes(bit.Bytes).Bits, BytesTolerance);
-            Assert.AreEqual(1, Information.FromExabits(bit.Exabits).Bits, ExabitsTolerance);
-            Assert.AreEqual(1, Information.FromExabytes(bit.Exabytes).Bits, ExabytesTolerance);
-            Assert.AreEqual(1, Information.FromExbibits(bit.Exbibits).Bits, ExbibitsTolerance);
-            Assert.AreEqual(1, Information.FromExbibytes(bit.Exbibytes).Bits, ExbibytesTolerance);
-            Assert.AreEqual(1, Information.FromGibibits(bit.Gibibits).Bits, GibibitsTolerance);
-            Assert.AreEqual(1, Information.FromGibibytes(bit.Gibibytes).Bits, GibibytesTolerance);
-            Assert.AreEqual(1, Information.FromGigabits(bit.Gigabits).Bits, GigabitsTolerance);
-            Assert.AreEqual(1, Information.FromGigabytes(bit.Gigabytes).Bits, GigabytesTolerance);
-            Assert.AreEqual(1, Information.FromKibibits(bit.Kibibits).Bits, KibibitsTolerance);
-            Assert.AreEqual(1, Information.FromKibibytes(bit.Kibibytes).Bits, KibibytesTolerance);
-            Assert.AreEqual(1, Information.FromKilobits(bit.Kilobits).Bits, KilobitsTolerance);
-            Assert.AreEqual(1, Information.FromKilobytes(bit.Kilobytes).Bits, KilobytesTolerance);
-            Assert.AreEqual(1, Information.FromMebibits(bit.Mebibits).Bits, MebibitsTolerance);
-            Assert.AreEqual(1, Information.FromMebibytes(bit.Mebibytes).Bits, MebibytesTolerance);
-            Assert.AreEqual(1, Information.FromMegabits(bit.Megabits).Bits, MegabitsTolerance);
-            Assert.AreEqual(1, Information.FromMegabytes(bit.Megabytes).Bits, MegabytesTolerance);
-            Assert.AreEqual(1, Information.FromPebibits(bit.Pebibits).Bits, PebibitsTolerance);
-            Assert.AreEqual(1, Information.FromPebibytes(bit.Pebibytes).Bits, PebibytesTolerance);
-            Assert.AreEqual(1, Information.FromPetabits(bit.Petabits).Bits, PetabitsTolerance);
-            Assert.AreEqual(1, Information.FromPetabytes(bit.Petabytes).Bits, PetabytesTolerance);
-            Assert.AreEqual(1, Information.FromTebibits(bit.Tebibits).Bits, TebibitsTolerance);
-            Assert.AreEqual(1, Information.FromTebibytes(bit.Tebibytes).Bits, TebibytesTolerance);
-            Assert.AreEqual(1, Information.FromTerabits(bit.Terabits).Bits, TerabitsTolerance);
-            Assert.AreEqual(1, Information.FromTerabytes(bit.Terabytes).Bits, TerabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromBits(bit.Bits).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromBytes(bit.Bytes).Bits, BytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExabits(bit.Exabits).Bits, ExabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExabytes(bit.Exabytes).Bits, ExabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExbibits(bit.Exbibits).Bits, ExbibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromExbibytes(bit.Exbibytes).Bits, ExbibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGibibits(bit.Gibibits).Bits, GibibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGibibytes(bit.Gibibytes).Bits, GibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGigabits(bit.Gigabits).Bits, GigabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromGigabytes(bit.Gigabytes).Bits, GigabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKibibits(bit.Kibibits).Bits, KibibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKibibytes(bit.Kibibytes).Bits, KibibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKilobits(bit.Kilobits).Bits, KilobitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromKilobytes(bit.Kilobytes).Bits, KilobytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMebibits(bit.Mebibits).Bits, MebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMebibytes(bit.Mebibytes).Bits, MebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMegabits(bit.Megabits).Bits, MegabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromMegabytes(bit.Megabytes).Bits, MegabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPebibits(bit.Pebibits).Bits, PebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPebibytes(bit.Pebibytes).Bits, PebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPetabits(bit.Petabits).Bits, PetabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromPetabytes(bit.Petabytes).Bits, PetabytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTebibits(bit.Tebibits).Bits, TebibitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTebibytes(bit.Tebibytes).Bits, TebibytesTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTerabits(bit.Terabits).Bits, TerabitsTolerance);
+            AssertEx.EqualTolerance(1, Information.FromTerabytes(bit.Terabytes).Bits, TerabytesTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             Information v = Information.FromBits(1);
-            Assert.AreEqual(-1, -v.Bits, BitsTolerance);
-            Assert.AreEqual(2, (Information.FromBits(3)-v).Bits, BitsTolerance);
-            Assert.AreEqual(2, (v + v).Bits, BitsTolerance);
-            Assert.AreEqual(10, (v*10).Bits, BitsTolerance);
-            Assert.AreEqual(10, (10*v).Bits, BitsTolerance);
-            Assert.AreEqual(2, (Information.FromBits(10)/5).Bits, BitsTolerance);
-            Assert.AreEqual(2, Information.FromBits(10)/Information.FromBits(5), BitsTolerance);
+            AssertEx.EqualTolerance(-1, -v.Bits, BitsTolerance);
+            AssertEx.EqualTolerance(2, (Information.FromBits(3)-v).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(2, (Information.FromBits(10)/5).Bits, BitsTolerance);
+            AssertEx.EqualTolerance(2, Information.FromBits(10)/Information.FromBits(5), BitsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             Information oneBit = Information.FromBits(1);
@@ -266,35 +265,31 @@ namespace UnitsNet.Tests
             Assert.False(twoBits <= oneBit);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             Information bit = Information.FromBits(1);
-            Assert.AreEqual(0, bit.CompareTo(bit));
-            Assert.Greater(bit.CompareTo(Information.Zero), 0);
-            Assert.Less(Information.Zero.CompareTo(bit), 0);
+            Assert.Equal(0, bit.CompareTo(bit));
+            Assert.True(bit.CompareTo(Information.Zero) > 0);
+            Assert.True(Information.Zero.CompareTo(bit) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             Information bit = Information.FromBits(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            bit.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => bit.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             Information bit = Information.FromBits(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            bit.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => bit.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             Information a = Information.FromBits(1);
@@ -309,26 +304,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             Information v = Information.FromBits(1);
-            Assert.IsTrue(v.Equals(Information.FromBits(1)));
-            Assert.IsFalse(v.Equals(Information.Zero));
+            Assert.True(v.Equals(Information.FromBits(1)));
+            Assert.False(v.Equals(Information.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Information bit = Information.FromBits(1);
-            Assert.IsFalse(bit.Equals(new object()));
+            Assert.False(bit.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             Information bit = Information.FromBits(1);
-            Assert.IsFalse(bit.Equals(null));
+            Assert.False(bit.Equals(null));
         }
     }
 }

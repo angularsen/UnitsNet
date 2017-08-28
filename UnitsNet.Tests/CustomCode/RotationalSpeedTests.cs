@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -52,32 +52,32 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DegreesPerMinuteInOneRadianPerSecond => 3437.74677;
 
-        [Test]
+        [Fact]
         public void DurationTimesRotationalSpeedEqualsAngle()
         {
             Angle angle = Duration.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
-            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+            Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
-        [Test]
+        [Fact]
         public void RotationalSpeedTimesDurationEqualsAngle()
         {
             Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*Duration.FromSeconds(9.0);
-            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+            Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
-        [Test]
+        [Fact]
         public void RotationalSpeedTimesTimeSpanEqualsAngle()
         {
             Angle angle = RotationalSpeed.FromRadiansPerSecond(10.0)*TimeSpan.FromSeconds(9.0);
-            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+            Assert.Equal(angle, Angle.FromRadians(90.0));
         }
 
-        [Test]
+        [Fact]
         public void TimeSpanTimesRotationalSpeedEqualsAngle()
         {
             Angle angle = TimeSpan.FromSeconds(9.0)*RotationalSpeed.FromRadiansPerSecond(10.0);
-            Assert.AreEqual(angle, Angle.FromRadians(90.0));
+            Assert.Equal(angle, Angle.FromRadians(90.0));
         }
     }
 }

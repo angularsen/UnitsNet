@@ -44,6 +44,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
+// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
 #else
@@ -58,6 +59,10 @@ namespace UnitsNet
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
     public sealed partial class ApparentPower
 #else
@@ -69,6 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _voltamperes;
 
+		// Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ApparentPower() : this(0)
         {
@@ -80,7 +86,7 @@ namespace UnitsNet
             _voltamperes = Convert.ToDouble(voltamperes);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
@@ -91,8 +97,8 @@ namespace UnitsNet
             _voltamperes = Convert.ToDouble(voltamperes);
         }
 
-        // Method overloads and with same number of parameters not supported in Universal Windows Platform (WinRT Components).
-        // Decimal type not supported in Universal Windows Platform (WinRT Components).
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
@@ -105,10 +111,23 @@ namespace UnitsNet
 
         #region Properties
 
+		/// <summary>
+		///     The <see cref="QuantityType" /> of this quantity.
+		/// </summary>
+        public static QuantityType QuantityType => QuantityType.ApparentPower;
+
+		/// <summary>
+		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+		/// </summary>
         public static ApparentPowerUnit BaseUnit
         {
             get { return ApparentPowerUnit.Voltampere; }
         }
+
+        /// <summary>
+        ///     All units of measurement for the ApparentPower quantity.
+        /// </summary>
+        public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().ToArray();
 
         /// <summary>
         ///     Get ApparentPower in Kilovoltamperes.
@@ -167,6 +186,7 @@ namespace UnitsNet
             return new ApparentPower(voltamperes);
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable ApparentPower from nullable Kilovoltamperes.
@@ -237,6 +257,7 @@ namespace UnitsNet
             }
         }
 
+        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
@@ -292,6 +313,7 @@ namespace UnitsNet
 
         #region Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static ApparentPower operator -(ApparentPower right)
         {
@@ -340,6 +362,7 @@ namespace UnitsNet
             return CompareTo((ApparentPower) obj);
         }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -350,6 +373,7 @@ namespace UnitsNet
             return _voltamperes.CompareTo(other._voltamperes);
         }
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ApparentPower left, ApparentPower right)
         {
@@ -482,12 +506,13 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException("str");
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return UnitParser.ParseUnit<ApparentPower>(str, formatProvider,
+            return QuantityParser.Parse<ApparentPower, ApparentPowerUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -566,6 +591,8 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         internal
 #else
@@ -656,6 +683,7 @@ namespace UnitsNet
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
+        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
             IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
 #else

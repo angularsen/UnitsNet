@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of BrakeSpecificFuelConsumption.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class BrakeSpecificFuelConsumptionTestsBase
     {
@@ -63,55 +62,55 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerMechanicalHorsepowerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void KilogramPerJouleToBrakeSpecificFuelConsumptionUnits()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.AreEqual(GramsPerKiloWattHourInOneKilogramPerJoule, kilogramperjoule.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
-            Assert.AreEqual(KilogramsPerJouleInOneKilogramPerJoule, kilogramperjoule.KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, kilogramperjoule.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
+            AssertEx.EqualTolerance(GramsPerKiloWattHourInOneKilogramPerJoule, kilogramperjoule.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerJouleInOneKilogramPerJoule, kilogramperjoule.KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, kilogramperjoule.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour).GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour).PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour).GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.From(1, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour).PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.AreEqual(GramsPerKiloWattHourInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour), GramsPerKiloWattHourTolerance);
-            Assert.AreEqual(KilogramsPerJouleInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule), KilogramsPerJouleTolerance);
-            Assert.AreEqual(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour), PoundsPerMechanicalHorsepowerHourTolerance);
+            AssertEx.EqualTolerance(GramsPerKiloWattHourInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour), GramsPerKiloWattHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerJouleInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule), KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, kilogramperjoule.As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour), PoundsPerMechanicalHorsepowerHourTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(kilogramperjoule.GramsPerKiloWattHour).KilogramsPerJoule, GramsPerKiloWattHourTolerance);
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(kilogramperjoule.KilogramsPerJoule).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(1, BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(kilogramperjoule.PoundsPerMechanicalHorsepowerHour).KilogramsPerJoule, PoundsPerMechanicalHorsepowerHourTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(kilogramperjoule.GramsPerKiloWattHour).KilogramsPerJoule, GramsPerKiloWattHourTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(kilogramperjoule.KilogramsPerJoule).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(1, BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(kilogramperjoule.PoundsPerMechanicalHorsepowerHour).KilogramsPerJoule, PoundsPerMechanicalHorsepowerHourTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ArithmeticOperators()
         {
             BrakeSpecificFuelConsumption v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.AreEqual(-1, -v.KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(2, (BrakeSpecificFuelConsumption.FromKilogramsPerJoule(3)-v).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(2, (v + v).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(10, (v*10).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(10, (10*v).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(2, (BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10)/5).KilogramsPerJoule, KilogramsPerJouleTolerance);
-            Assert.AreEqual(2, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10)/BrakeSpecificFuelConsumption.FromKilogramsPerJoule(5), KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(-1, -v.KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(2, (BrakeSpecificFuelConsumption.FromKilogramsPerJoule(3)-v).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(2, (v + v).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(10, (v*10).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(10, (10*v).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(2, (BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10)/5).KilogramsPerJoule, KilogramsPerJouleTolerance);
+            AssertEx.EqualTolerance(2, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(10)/BrakeSpecificFuelConsumption.FromKilogramsPerJoule(5), KilogramsPerJouleTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ComparisonOperators()
         {
             BrakeSpecificFuelConsumption oneKilogramPerJoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
@@ -128,35 +127,31 @@ namespace UnitsNet.Tests
             Assert.False(twoKilogramsPerJoule <= oneKilogramPerJoule);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.AreEqual(0, kilogramperjoule.CompareTo(kilogramperjoule));
-            Assert.Greater(kilogramperjoule.CompareTo(BrakeSpecificFuelConsumption.Zero), 0);
-            Assert.Less(BrakeSpecificFuelConsumption.Zero.CompareTo(kilogramperjoule), 0);
+            Assert.Equal(0, kilogramperjoule.CompareTo(kilogramperjoule));
+            Assert.True(kilogramperjoule.CompareTo(BrakeSpecificFuelConsumption.Zero) > 0);
+            Assert.True(BrakeSpecificFuelConsumption.Zero.CompareTo(kilogramperjoule) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            kilogramperjoule.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => kilogramperjoule.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            kilogramperjoule.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => kilogramperjoule.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             BrakeSpecificFuelConsumption a = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
@@ -171,26 +166,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             BrakeSpecificFuelConsumption v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.IsTrue(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1)));
-            Assert.IsFalse(v.Equals(BrakeSpecificFuelConsumption.Zero));
+            Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1)));
+            Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.IsFalse(kilogramperjoule.Equals(new object()));
+            Assert.False(kilogramperjoule.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.IsFalse(kilogramperjoule.Equals(null));
+            Assert.False(kilogramperjoule.Equals(null));
         }
     }
 }

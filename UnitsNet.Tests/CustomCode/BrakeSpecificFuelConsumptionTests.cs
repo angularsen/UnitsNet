@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 
-using NUnit.Framework;
+using Xunit;
 using System;
 
 namespace UnitsNet.Tests.CustomCode
@@ -33,25 +33,25 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule => 5918352.5016;
 
-        [Test]
+        [Fact]
         public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
             MassFlow massFlow = BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0) * Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0);
-            Assert.AreEqual(20.0, massFlow.TonnesPerDay, 1e-11);
+            AssertEx.EqualTolerance(20.0, massFlow.TonnesPerDay, 1e-11);
         }
 
-        [Test]
+        [Fact]
         public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
             SpecificEnergy massFlow = 2.0 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4.0);
-            Assert.AreEqual(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
 
-        [Test]
+        [Fact]
         public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
         {
             double value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
-            Assert.AreEqual(value, 200.0);
+            Assert.Equal(200.0, value);
         }
     }
 }

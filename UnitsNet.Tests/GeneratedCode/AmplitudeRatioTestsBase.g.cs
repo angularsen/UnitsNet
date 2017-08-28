@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of AmplitudeRatio.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AmplitudeRatioTestsBase
     {
@@ -65,63 +64,64 @@ namespace UnitsNet.Tests
         protected virtual double DecibelVoltsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void DecibelVoltToAmplitudeRatioUnits()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.AreEqual(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.DecibelMicrovolts, DecibelMicrovoltsTolerance);
-            Assert.AreEqual(DecibelMillivoltsInOneDecibelVolt, decibelvolt.DecibelMillivolts, DecibelMillivoltsTolerance);
-            Assert.AreEqual(DecibelsUnloadedInOneDecibelVolt, decibelvolt.DecibelsUnloaded, DecibelsUnloadedTolerance);
-            Assert.AreEqual(DecibelVoltsInOneDecibelVolt, decibelvolt.DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.DecibelMicrovolts, DecibelMicrovoltsTolerance);
+            AssertEx.EqualTolerance(DecibelMillivoltsInOneDecibelVolt, decibelvolt.DecibelMillivolts, DecibelMillivoltsTolerance);
+            AssertEx.EqualTolerance(DecibelsUnloadedInOneDecibelVolt, decibelvolt.DecibelsUnloaded, DecibelsUnloadedTolerance);
+            AssertEx.EqualTolerance(DecibelVoltsInOneDecibelVolt, decibelvolt.DecibelVolts, DecibelVoltsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt).DecibelMicrovolts, DecibelMicrovoltsTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt).DecibelMillivolts, DecibelMillivoltsTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded).DecibelsUnloaded, DecibelsUnloadedTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt).DecibelMicrovolts, DecibelMicrovoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt).DecibelMillivolts, DecibelMillivoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded).DecibelsUnloaded, DecibelsUnloadedTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt).DecibelVolts, DecibelVoltsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.AreEqual(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMicrovolt), DecibelMicrovoltsTolerance);
-            Assert.AreEqual(DecibelMillivoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMillivolt), DecibelMillivoltsTolerance);
-            Assert.AreEqual(DecibelsUnloadedInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelUnloaded), DecibelsUnloadedTolerance);
-            Assert.AreEqual(DecibelVoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelVolt), DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(DecibelMicrovoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMicrovolt), DecibelMicrovoltsTolerance);
+            AssertEx.EqualTolerance(DecibelMillivoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelMillivolt), DecibelMillivoltsTolerance);
+            AssertEx.EqualTolerance(DecibelsUnloadedInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelUnloaded), DecibelsUnloadedTolerance);
+            AssertEx.EqualTolerance(DecibelVoltsInOneDecibelVolt, decibelvolt.As(AmplitudeRatioUnit.DecibelVolt), DecibelVoltsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.AreEqual(1, AmplitudeRatio.FromDecibelMicrovolts(decibelvolt.DecibelMicrovolts).DecibelVolts, DecibelMicrovoltsTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.FromDecibelMillivolts(decibelvolt.DecibelMillivolts).DecibelVolts, DecibelMillivoltsTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.FromDecibelsUnloaded(decibelvolt.DecibelsUnloaded).DecibelVolts, DecibelsUnloadedTolerance);
-            Assert.AreEqual(1, AmplitudeRatio.FromDecibelVolts(decibelvolt.DecibelVolts).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelMicrovolts(decibelvolt.DecibelMicrovolts).DecibelVolts, DecibelMicrovoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelMillivolts(decibelvolt.DecibelMillivolts).DecibelVolts, DecibelMillivoltsTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelsUnloaded(decibelvolt.DecibelsUnloaded).DecibelVolts, DecibelsUnloadedTolerance);
+            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelVolts(decibelvolt.DecibelVolts).DecibelVolts, DecibelVoltsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void LogarithmicArithmeticOperators()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
-            Assert.AreEqual(-40, -v.DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(-40, -v.DecibelVolts, DecibelVoltsTolerance);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
-            Assert.AreEqual(50, (v*10).DecibelVolts, DecibelVoltsTolerance);
-            Assert.AreEqual(50, (10*v).DecibelVolts, DecibelVoltsTolerance);
-            Assert.AreEqual(35, (v/5).DecibelVolts, DecibelVoltsTolerance);
-            Assert.AreEqual(35, v/AmplitudeRatio.FromDecibelVolts(5), DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(50, (v*10).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(50, (10*v).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(35, (v/5).DecibelVolts, DecibelVoltsTolerance);
+            AssertEx.EqualTolerance(35, v/AmplitudeRatio.FromDecibelVolts(5), DecibelVoltsTolerance);
         }
 
         protected abstract void AssertLogarithmicAddition();
 
         protected abstract void AssertLogarithmicSubtraction();
 
-        [Test]
+
+        [Fact]
         public void ComparisonOperators()
         {
             AmplitudeRatio oneDecibelVolt = AmplitudeRatio.FromDecibelVolts(1);
@@ -138,35 +138,31 @@ namespace UnitsNet.Tests
             Assert.False(twoDecibelVolts <= oneDecibelVolt);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.AreEqual(0, decibelvolt.CompareTo(decibelvolt));
-            Assert.Greater(decibelvolt.CompareTo(AmplitudeRatio.Zero), 0);
-            Assert.Less(AmplitudeRatio.Zero.CompareTo(decibelvolt), 0);
+            Assert.Equal(0, decibelvolt.CompareTo(decibelvolt));
+            Assert.True(decibelvolt.CompareTo(AmplitudeRatio.Zero) > 0);
+            Assert.True(AmplitudeRatio.Zero.CompareTo(decibelvolt) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibelvolt.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => decibelvolt.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibelvolt.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => decibelvolt.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             AmplitudeRatio a = AmplitudeRatio.FromDecibelVolts(1);
@@ -181,26 +177,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.IsTrue(v.Equals(AmplitudeRatio.FromDecibelVolts(1)));
-            Assert.IsFalse(v.Equals(AmplitudeRatio.Zero));
+            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1)));
+            Assert.False(v.Equals(AmplitudeRatio.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.IsFalse(decibelvolt.Equals(new object()));
+            Assert.False(decibelvolt.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.IsFalse(decibelvolt.Equals(null));
+            Assert.False(decibelvolt.Equals(null));
         }
     }
 }

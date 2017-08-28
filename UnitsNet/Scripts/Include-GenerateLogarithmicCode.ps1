@@ -24,6 +24,7 @@ function GenerateLogarithmicArithmeticOperators([string]$className, [string]$bas
 
         #region Logarithmic Arithmetic Operators
 
+        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static $className operator -($className right)
         {
@@ -70,41 +71,5 @@ function GenerateLogarithmicArithmeticOperators([string]$className, [string]$bas
 #endif
 
         #endregion
-"@;
-}
-
-
-<#
-.SYNOPSIS
-Generates the C# source code for logarithmic arithmetic operator unit tests.
-
-.PARAMETER className
-The name of the unit.
-
-.PARAMETER baseUnitPluralName
-The plural name of the backing field used to store the unit's value.
-
-.PARAMETER unit
-The actual unit type.
-#>
-function GenerateLogarithmicTestBaseClassSourceCode([string]$className, [string]$baseUnitPluralName, $unit)
-{
-@"
-        [Test]
-        public void LogarithmicArithmeticOperators()
-        {
-            $className v = $className.From$baseUnitPluralName(40);
-            Assert.AreEqual(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            AssertLogarithmicAddition();
-            AssertLogarithmicSubtraction();
-            Assert.AreEqual(50, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(50, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            Assert.AreEqual(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
-        }
-
-        protected abstract void AssertLogarithmicAddition();
-
-        protected abstract void AssertLogarithmicSubtraction();
 "@;
 }

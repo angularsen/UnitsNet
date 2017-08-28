@@ -37,8 +37,8 @@
 // THE SOFTWARE.
 
 using System;
-using NUnit.Framework;
 using UnitsNet.Units;
+using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
@@ -49,7 +49,6 @@ namespace UnitsNet.Tests
     /// <summary>
     /// Test of PowerRatio.
     /// </summary>
-    [TestFixture]
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerRatioTestsBase
     {
@@ -61,55 +60,56 @@ namespace UnitsNet.Tests
         protected virtual double DecibelWattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        [Test]
+        [Fact]
         public void DecibelWattToPowerRatioUnits()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.AreEqual(DecibelMilliwattsInOneDecibelWatt, decibelwatt.DecibelMilliwatts, DecibelMilliwattsTolerance);
-            Assert.AreEqual(DecibelWattsInOneDecibelWatt, decibelwatt.DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(DecibelMilliwattsInOneDecibelWatt, decibelwatt.DecibelMilliwatts, DecibelMilliwattsTolerance);
+            AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, decibelwatt.DecibelWatts, DecibelWattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void FromValueAndUnit()
         {
-            Assert.AreEqual(1, PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt).DecibelMilliwatts, DecibelMilliwattsTolerance);
-            Assert.AreEqual(1, PowerRatio.From(1, PowerRatioUnit.DecibelWatt).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(1, PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt).DecibelMilliwatts, DecibelMilliwattsTolerance);
+            AssertEx.EqualTolerance(1, PowerRatio.From(1, PowerRatioUnit.DecibelWatt).DecibelWatts, DecibelWattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void As()
         {
             var decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.AreEqual(DecibelMilliwattsInOneDecibelWatt, decibelwatt.As(PowerRatioUnit.DecibelMilliwatt), DecibelMilliwattsTolerance);
-            Assert.AreEqual(DecibelWattsInOneDecibelWatt, decibelwatt.As(PowerRatioUnit.DecibelWatt), DecibelWattsTolerance);
+            AssertEx.EqualTolerance(DecibelMilliwattsInOneDecibelWatt, decibelwatt.As(PowerRatioUnit.DecibelMilliwatt), DecibelMilliwattsTolerance);
+            AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, decibelwatt.As(PowerRatioUnit.DecibelWatt), DecibelWattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void ConversionRoundTrip()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.AreEqual(1, PowerRatio.FromDecibelMilliwatts(decibelwatt.DecibelMilliwatts).DecibelWatts, DecibelMilliwattsTolerance);
-            Assert.AreEqual(1, PowerRatio.FromDecibelWatts(decibelwatt.DecibelWatts).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(1, PowerRatio.FromDecibelMilliwatts(decibelwatt.DecibelMilliwatts).DecibelWatts, DecibelMilliwattsTolerance);
+            AssertEx.EqualTolerance(1, PowerRatio.FromDecibelWatts(decibelwatt.DecibelWatts).DecibelWatts, DecibelWattsTolerance);
         }
 
-        [Test]
+        [Fact]
         public void LogarithmicArithmeticOperators()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(40);
-            Assert.AreEqual(-40, -v.DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(-40, -v.DecibelWatts, DecibelWattsTolerance);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
-            Assert.AreEqual(50, (v*10).DecibelWatts, DecibelWattsTolerance);
-            Assert.AreEqual(50, (10*v).DecibelWatts, DecibelWattsTolerance);
-            Assert.AreEqual(35, (v/5).DecibelWatts, DecibelWattsTolerance);
-            Assert.AreEqual(35, v/PowerRatio.FromDecibelWatts(5), DecibelWattsTolerance);
+            AssertEx.EqualTolerance(50, (v*10).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(50, (10*v).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(35, (v/5).DecibelWatts, DecibelWattsTolerance);
+            AssertEx.EqualTolerance(35, v/PowerRatio.FromDecibelWatts(5), DecibelWattsTolerance);
         }
 
         protected abstract void AssertLogarithmicAddition();
 
         protected abstract void AssertLogarithmicSubtraction();
 
-        [Test]
+
+        [Fact]
         public void ComparisonOperators()
         {
             PowerRatio oneDecibelWatt = PowerRatio.FromDecibelWatts(1);
@@ -126,35 +126,31 @@ namespace UnitsNet.Tests
             Assert.False(twoDecibelWatts <= oneDecibelWatt);
         }
 
-        [Test]
+        [Fact]
         public void CompareToIsImplemented()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.AreEqual(0, decibelwatt.CompareTo(decibelwatt));
-            Assert.Greater(decibelwatt.CompareTo(PowerRatio.Zero), 0);
-            Assert.Less(PowerRatio.Zero.CompareTo(decibelwatt), 0);
+            Assert.Equal(0, decibelwatt.CompareTo(decibelwatt));
+            Assert.True(decibelwatt.CompareTo(PowerRatio.Zero) > 0);
+            Assert.True(PowerRatio.Zero.CompareTo(decibelwatt) < 0);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibelwatt.CompareTo(new object());
+            Assert.Throws<ArgumentException>(() => decibelwatt.CompareTo(new object()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void CompareToThrowsOnNull()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            decibelwatt.CompareTo(null);
+            Assert.Throws<ArgumentNullException>(() => decibelwatt.CompareTo(null));
         }
 
 
-        [Test]
+        [Fact]
         public void EqualityOperators()
         {
             PowerRatio a = PowerRatio.FromDecibelWatts(1);
@@ -169,26 +165,26 @@ namespace UnitsNet.Tests
 // ReSharper restore EqualExpressionComparison
         }
 
-        [Test]
+        [Fact]
         public void EqualsIsImplemented()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(1);
-            Assert.IsTrue(v.Equals(PowerRatio.FromDecibelWatts(1)));
-            Assert.IsFalse(v.Equals(PowerRatio.Zero));
+            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1)));
+            Assert.False(v.Equals(PowerRatio.Zero));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.IsFalse(decibelwatt.Equals(new object()));
+            Assert.False(decibelwatt.Equals(new object()));
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseOnNull()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
-            Assert.IsFalse(decibelwatt.Equals(null));
+            Assert.False(decibelwatt.Equals(null));
         }
     }
 }
