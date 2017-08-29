@@ -146,6 +146,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureChangeRate
 
         #endregion
 
+        #region DegreeCelsiusPerMinute
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)"/>
+        public static TemperatureChangeRate DegreesCelsiusPerMinute(this int value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double?)"/>
+        public static TemperatureChangeRate? DegreesCelsiusPerMinute(this int? value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)"/>
+        public static TemperatureChangeRate DegreesCelsiusPerMinute(this long value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double?)"/>
+        public static TemperatureChangeRate? DegreesCelsiusPerMinute(this long? value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)"/>
+        public static TemperatureChangeRate DegreesCelsiusPerMinute(this double value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double?)"/>
+        public static TemperatureChangeRate? DegreesCelsiusPerMinute(this double? value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)"/>
+        public static TemperatureChangeRate DegreesCelsiusPerMinute(this float value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double?)"/>
+        public static TemperatureChangeRate? DegreesCelsiusPerMinute(this float? value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value);
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)"/>
+        public static TemperatureChangeRate DegreesCelsiusPerMinute(this decimal value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double?)"/>
+        public static TemperatureChangeRate? DegreesCelsiusPerMinute(this decimal? value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DegreeCelsiusPerSecond
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(double)"/>
