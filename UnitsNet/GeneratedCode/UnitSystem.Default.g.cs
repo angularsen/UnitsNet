@@ -1019,7 +1019,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "daN/m"),
+                                new AbbreviationsForCulture("en-US", "daN/min"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerSecond,
                             new[]
@@ -1034,7 +1034,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kN/m"),
+                                new AbbreviationsForCulture("en-US", "kN/min"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerSecond,
                             new[]
@@ -1059,7 +1059,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "N/m"),
+                                new AbbreviationsForCulture("en-US", "N/min"),
                             }),
                         new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
                             new[]
@@ -2546,7 +2546,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "°C/m"),
+                                new AbbreviationsForCulture("en-US", "°C/min"),
                             }),
                         new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerSecond,
                             new[]
