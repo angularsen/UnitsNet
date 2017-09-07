@@ -5,4 +5,7 @@
   <ItemGroup>
     <None Remove="UnitsNet.OperatorOverloads.v3.ncrunchproject" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="newtonsoft.json" Version="10.0.3" />
+  </ItemGroup>
 </Project>

@@ -41,7 +41,7 @@ namespace UnitsNet.OperatorOverloads
         {
             if (left == default(T[]))
             {
-                throw new ArgumentNullException(nameof(left));    
+                return false;
             }
             if (right == default(T[]))
             {

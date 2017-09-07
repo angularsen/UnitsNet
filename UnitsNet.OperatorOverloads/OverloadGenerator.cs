@@ -1,14 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace UnitsNet.OperatorOverloads
 {
     public class OverloadGenerator
     {
         private readonly Quantity[] _quantities;
+
+        public OverloadGenerator(string directory)
+        {
+            var files = Directory.EnumerateFiles(directory, "*.json");
+            _quantities = files.Select(f => JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(f))).ToArray();
+            if (_quantities.Length == 0)
+            {
+                throw new InvalidOperationException($"{files}");
+            }
+        }
 
         public OverloadGenerator(Quantity[] quantities)
         {
@@ -17,8 +29,12 @@ namespace UnitsNet.OperatorOverloads
 
         public IEnumerable<Overload> GetDivisionOverloads(Quantity quantity)
         {
+            if (quantity.SiArray == null)
+                yield break;
             foreach (Quantity q in _quantities)
             {
+                if (q.SiArray == null)
+                    continue;
                 if (!quantity.Name.Equals(q.Name,StringComparison.OrdinalIgnoreCase))
                 {
                     var newSiArray = quantity.SiArray.ElementwiseSubtract(q.SiArray);
@@ -26,7 +42,7 @@ namespace UnitsNet.OperatorOverloads
                     Quantity matchingQuantity = _quantities.SingleOrDefault(x => x.SiArray.EqualContent(newSiArray));
                     if (matchingQuantity != null)
                     {
-                        yield return new Overload(matchingQuantity, q, quantity);
+                        yield return new Overload(matchingQuantity, quantity, q);
                     }
                 }
             }
@@ -34,10 +50,14 @@ namespace UnitsNet.OperatorOverloads
 
         public IEnumerable<Overload> GetMultiplicationOverloads(Quantity quantity)
         {
+            if (quantity.SiArray == null)
+                yield break;
             foreach (Quantity q in _quantities)
             {
                 if (!quantity.Name.Equals(q.Name, StringComparison.OrdinalIgnoreCase))
                 {
+                    if (q.SiArray == null)
+                        continue;
                     var newSiArray = quantity.SiArray.ElementwiseAdd(q.SiArray);
 
                     Quantity matchingQuantity = _quantities.SingleOrDefault(x => x.SiArray.EqualContent(newSiArray));
@@ -45,9 +65,20 @@ namespace UnitsNet.OperatorOverloads
                     {
                         yield return new Overload(matchingQuantity, q, quantity);
                     }
+
                 }
             }
         }
+
+        public IReadOnlyList<Quantity> Quantities => _quantities;
+
+        public int NumberOfQuantities => _quantities.Length;
+
+        public Quantity GetQuantityByName(string name)
+        {
+            return _quantities.Single(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+        }
+
 
         public IEnumerable<Overload> GetOverloads(Quantity quantity)
         {

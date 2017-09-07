@@ -11,15 +11,12 @@ namespace UnitsNet.OperatorOverloads.Tests
         public static void ShouldReturnDurationAndSpeedWhenGivenLength()
         {
             var lengthQuantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(@"C:\dev\UnitsNet\UnitsNet\UnitDefinitions\Length.json"));
-            lengthQuantity.SiArray = new[] {1, 0, 0, 0, 0, 0, 0};
             string neobj = JsonConvert.SerializeObject(lengthQuantity, new JsonSerializerSettings()
             {
                 Formatting = Formatting.Indented
             });
             var timeQuantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(@"C:\dev\UnitsNet\UnitsNet\UnitDefinitions\Duration.json"));
-            timeQuantity.SiArray = new[] { 0, 0, 1, 0, 0, 0, 0 };
             var speedQuantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(@"C:\dev\UnitsNet\UnitsNet\UnitDefinitions\Speed.json"));
-            speedQuantity.SiArray = new[] { 1, 0, -1, 0, 0, 0, 0 };
 
             var overloadGenerator = new OverloadGenerator(new[] {lengthQuantity, timeQuantity, speedQuantity});
             Overload[] actualQuantities = overloadGenerator.GetDivisionOverloads(lengthQuantity).ToArray();
@@ -45,6 +42,21 @@ namespace UnitsNet.OperatorOverloads.Tests
             var actualQuantityNames = actualQuantities.Select(x => x.Result.Name).ToArray();
             Assert.Equal(1, actualQuantities.Length);
             Assert.Contains(lengthQuantity.Name, actualQuantityNames);
+        }
+
+        [Fact]
+        public static void RunCodeINSAmeWayAsPowerShell()
+        {
+            var overloadGenerator = new OverloadGenerator(@"C:\dev\UnitsNet\UnitsNet\UnitDefinitions\");
+            foreach (var quantity in overloadGenerator.Quantities)
+            {
+                var overloads = overloadGenerator.GetOverloads(quantity);
+                Assert.NotNull(overloads);
+                foreach (Overload overload in overloads)
+                {
+                    Assert.NotNull(overload);
+                }
+            }
         }
     }
 }

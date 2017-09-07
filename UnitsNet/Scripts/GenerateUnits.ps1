@@ -19,6 +19,22 @@ function GenerateUnitClass($unitClass, $outDir)
     Write-Host -NoNewline "class(OK) "
 }
 
+function GenerateUnitClassOverloads($unitClass, $outDir, $overloadGenerator)
+{
+	if ($($unitClass.SiArray)) {
+		$outFileName = "$outDir/$($unitClass.Name).overloads.g.cs"
+		GenerateUnitClassOverloadsSourceCode $unitClass $overloadGenerator | Out-File -Encoding "UTF8" $outFileName | Out-Null
+		if (!$?) {
+			exit 1
+		}
+		Write-Host -NoNewline "overloads(OK) "
+	}
+	else{	
+		Write-Host -NoNewline "no overloads "
+	}
+    
+}
+
 function GenerateUnitTestBaseClass($unitClass, $outDir)
 {
     $outFileName = "$outDir/$($unitClass.Name)TestsBase.g.cs"
@@ -255,6 +271,7 @@ function Add-InheritedUnits($unitClass, $unitClasses) {
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateUnitClassOverloadsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
@@ -278,12 +295,17 @@ $unitClasses = Get-ChildItem -Path $templatesDir -filter "*.json" `
     | Set-ConversionFunctions `
     | Set-UnitsOrderedByName
 
+[System.Reflection.Assembly]::LoadFile("$PSScriptRoot/../../UnitsNet.OperatorOverloads/bin/Debug/net46/UnitsNet.OperatorOverloads.dll")
+[System.Reflection.Assembly]::LoadFile("$PSScriptRoot/../../UnitsNet.OperatorOverloads/bin/Debug/net46/Newtonsoft.Json.dll")
+$overloadGenerator = New-Object UnitsNet.OperatorOverloads.OverloadGenerator -ArgumentList "$PSScriptRoot/../UnitDefinitions"
+
 foreach ($unitClass in $unitClasses) {
     Write-Host -NoNewline "$($unitClass.Name):".PadRight($pad)
 
     Add-InheritedUnits $unitClass $unitClasses
 
     GenerateUnitClass $unitClass $unitClassDir
+	GenerateUnitClassOverloads $unitClass $unitClassDir $overloadGenerator
     GenerateUnitEnum $unitClass $unitEnumDir
     GenerateNumberExtensions $unitClass $numberExtensionsDir
     GenerateUnitTestBaseClass $unitClass $testsDir
