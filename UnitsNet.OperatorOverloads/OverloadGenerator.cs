@@ -15,7 +15,7 @@ namespace UnitsNet.OperatorOverloads
             _quantities = quantities;
         }
 
-        public IEnumerable<Quantity> GetDivisionOverloads(Quantity quantity)
+        public IEnumerable<Overload> GetDivisionOverloads(Quantity quantity)
         {
             foreach (Quantity q in _quantities)
             {
@@ -26,9 +26,41 @@ namespace UnitsNet.OperatorOverloads
                     Quantity matchingQuantity = _quantities.SingleOrDefault(x => x.SiArray.EqualContent(newSiArray));
                     if (matchingQuantity != null)
                     {
-                        yield return matchingQuantity;
+                        yield return new Overload(matchingQuantity, q, quantity);
                     }
                 }
+            }
+        }
+
+        public IEnumerable<Overload> GetMultiplicationOverloads(Quantity quantity)
+        {
+            foreach (Quantity q in _quantities)
+            {
+                if (!quantity.Name.Equals(q.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    var newSiArray = quantity.SiArray.ElementwiseAdd(q.SiArray);
+
+                    Quantity matchingQuantity = _quantities.SingleOrDefault(x => x.SiArray.EqualContent(newSiArray));
+                    if (matchingQuantity != null)
+                    {
+                        yield return new Overload(matchingQuantity, q, quantity);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<Overload> GetOverloads(Quantity quantity)
+        {
+            var multiplications = GetMultiplicationOverloads(quantity);
+            foreach (var multiplication in multiplications)
+            {
+                yield return multiplication;
+                yield return new Overload(multiplication.Result, multiplication.Right, multiplication.Left);
+            }
+            var divisions = GetDivisionOverloads(quantity);
+            foreach (var division in divisions)
+            {
+                yield return division;
             }
         }
     }

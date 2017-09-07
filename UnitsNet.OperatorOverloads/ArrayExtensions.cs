@@ -22,6 +22,21 @@ namespace UnitsNet.OperatorOverloads
             return result;
         }
 
+        public static int[] ElementwiseAdd(this int[] left, int[] right)
+        {
+            if (left.Length != right.Length)
+            {
+                throw new ArgumentException("Arrays must have the same length");
+            }
+            var result = new int[left.Length];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = left[i] + right[i];
+            }
+            return result;
+        }
+
+
         public static bool EqualContent<T>(this T[] left, T[] right)
         {
             if (left == default(T[]))
