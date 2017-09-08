@@ -91,6 +91,11 @@ namespace UnitsNet
             return Density.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
         }
 
+        public static Volume operator /(Mass mass, Density density)
+        {
+            return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
+        }
+
         public static Force operator *(Mass mass, Acceleration acceleration)
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MeterPerSecondSquared);
