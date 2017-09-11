@@ -68,7 +68,9 @@ namespace UnitsNet.Units
         Tablespoon,
         [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         Teaspoon,
+        UkBeerBarrel,
         UkTablespoon,
+        UsBeerBarrel,
         UsCustomaryCup,
         UsGallon,
         UsLegalCup,

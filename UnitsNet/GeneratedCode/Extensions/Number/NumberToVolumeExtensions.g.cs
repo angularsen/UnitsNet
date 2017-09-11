@@ -860,6 +860,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region UkBeerBarrel
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double)"/>
+        public static Volume UkBeerBarrels(this int value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double?)"/>
+        public static Volume? UkBeerBarrels(this int? value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double)"/>
+        public static Volume UkBeerBarrels(this long value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double?)"/>
+        public static Volume? UkBeerBarrels(this long? value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double)"/>
+        public static Volume UkBeerBarrels(this double value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double?)"/>
+        public static Volume? UkBeerBarrels(this double? value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double)"/>
+        public static Volume UkBeerBarrels(this float value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double?)"/>
+        public static Volume? UkBeerBarrels(this float? value) => Volume.FromUkBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double)"/>
+        public static Volume UkBeerBarrels(this decimal value) => Volume.FromUkBeerBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUkBeerBarrels(double?)"/>
+        public static Volume? UkBeerBarrels(this decimal? value) => Volume.FromUkBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region UkTablespoon
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(double)"/>
@@ -891,6 +925,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(double?)"/>
         public static Volume? UkTablespoons(this decimal? value) => Volume.FromUkTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsBeerBarrel
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this int value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this int? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this long value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this long? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this double value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this double? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this float value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this float? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this decimal value) => Volume.FromUsBeerBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this decimal? value) => Volume.FromUsBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
