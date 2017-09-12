@@ -443,13 +443,13 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bl (US)" ]
+          "Abbreviations": [ "bl (U.S.)" ]
         }
       ]
     },
     {
-      "SingularName": "UkBeerBarrel",
-      "PluralName": "UkBeerBarrels",
+      "SingularName": "ImperialBeerBarrel",
+      "PluralName": "ImperialBeerBarrels",
       "FromUnitToBaseFunc": "x*0.16365924",
       "FromBaseToUnitFunc": "x/0.16365924",
       "Localization": [

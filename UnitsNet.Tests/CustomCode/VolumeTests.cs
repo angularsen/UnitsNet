@@ -75,7 +75,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TeaspoonsInOneCubicMeter => 202884.13621105801;
 
-        protected override double UkBeerBarrelsInOneCubicMeter => 6.1102568972;
+        protected override double ImperialBeerBarrelsInOneCubicMeter => 6.1102568972;
 
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 

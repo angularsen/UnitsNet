@@ -2896,7 +2896,7 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "чайная ложка"),
                                 new AbbreviationsForCulture("nb-NO", "ts", "ts."),
                             }),
-                        new CulturesForEnumValue((int) VolumeUnit.UkBeerBarrel,
+                        new CulturesForEnumValue((int) VolumeUnit.ImperialBeerBarrel,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bl (imp.)"),
@@ -2911,7 +2911,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) VolumeUnit.UsBeerBarrel,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "bl (US)"),
+                                new AbbreviationsForCulture("en-US", "bl (U.S.)"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UsCustomaryCup,
                             new[]
