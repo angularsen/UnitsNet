@@ -34,6 +34,7 @@
       "PluralName": "BritishThermalUnits",
       "FromUnitToBaseFunc": "x*1055.05585262",
       "FromBaseToUnitFunc": "x/1055.05585262",
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,6 +88,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "Wh" ]
+        },
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Вт/ч" ]
         }
       ]
     },
