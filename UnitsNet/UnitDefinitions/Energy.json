@@ -89,6 +89,57 @@
           "Abbreviations": [ "Wh" ]
         }
       ]
+    },
+    {
+      "SingularName": "EuTherm",
+      "PluralName": "EuTherms",
+      "FromUnitToBaseFunc": "x*1.05506e+8",
+      "FromBaseToUnitFunc": "x/1.05506e+8",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "thm (E.U.)" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Европейский терм" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsTherm",
+      "PluralName": "UsTherms",
+      "FromUnitToBaseFunc": "x*1.054804e+8",
+      "FromBaseToUnitFunc": "x/1.054804e+8",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "thm (U.S.)" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Американский терм" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ImperialTherm",
+      "PluralName": "ImperialTherms",
+      "FromUnitToBaseFunc": "x*1.05505585257348e+14",
+      "FromBaseToUnitFunc": "x/1,05505585257348e+14",
+      "Prefixes": [ "Deca" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "thm (imp.)" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Английский терм" ]
+        }
+      ]
     }
   ]
 }
