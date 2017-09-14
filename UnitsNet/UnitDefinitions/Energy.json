@@ -128,7 +128,7 @@
       "SingularName": "ImperialTherm",
       "PluralName": "ImperialTherms",
       "FromUnitToBaseFunc": "x*1.05505585257348e+14",
-      "FromBaseToUnitFunc": "x/1,05505585257348e+14",
+      "FromBaseToUnitFunc": "x/1.05505585257348e+14",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
