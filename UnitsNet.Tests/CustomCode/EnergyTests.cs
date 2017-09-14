@@ -35,13 +35,17 @@ namespace UnitsNet.Tests.CustomCode
         protected override double BritishThermalUnitsInOneJoule => 0.00094781712;
 
         protected override double CaloriesInOneJoule => 0.239005736;
+
         protected override double DecaeuThermsInOneJoule => 9.4781339449889105832843629746176e-10;
+
         protected override double DecaimperialThermsInOneJoule => 9.478171203551087813109937767482e-15;
+
         protected override double DecausThermsInOneJoule => 9.4804342797334860315281322406817e-10;
 
         protected override double ElectronVoltsInOneJoule => 6.241509343260179e18;
 
         protected override double ErgsInOneJoule => 10000000;
+
         protected override double EuThermsInOneJoule => 9.4781339449889105832843629746176e-9;
 
         protected override double FootPoundsInOneJoule => 0.737562149;
@@ -53,6 +57,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilowattHoursInOneJoule => 2.77777778e-7;
 
         protected override double MegawattHoursInOneJoule => 2.77777778e-10;
+
         protected override double UsThermsInOneJoule => 9.4804342797334860315281322406817e-9;
 
         protected override double WattHoursInOneJoule => 0.000277777778;
