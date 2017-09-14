@@ -806,6 +806,24 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "cal"),
                             }),
+                        new CulturesForEnumValue((int) EnergyUnit.DecaeuTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dathm (E.U.)"),
+                                new AbbreviationsForCulture("ru-RU", "daЕвропейский терм"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.DecaimperialTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dathm (imp.)"),
+                                new AbbreviationsForCulture("ru-RU", "daАнглийский терм"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.DecausTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dathm (U.S.)"),
+                                new AbbreviationsForCulture("ru-RU", "daАмериканский терм"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.ElectronVolt,
                             new[]
                             {
@@ -816,6 +834,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "erg"),
                             }),
+                        new CulturesForEnumValue((int) EnergyUnit.EuTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "thm (E.U.)"),
+                                new AbbreviationsForCulture("ru-RU", "Европейский терм"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.FootPound,
                             new[]
                             {
@@ -825,6 +849,12 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "GWh"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.ImperialTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "thm (imp.)"),
+                                new AbbreviationsForCulture("ru-RU", "Английский терм"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.Joule,
                             new[]
@@ -855,6 +885,12 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MWh"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.UsTherm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "thm (U.S.)"),
+                                new AbbreviationsForCulture("ru-RU", "Американский терм"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.WattHour,
                             new[]

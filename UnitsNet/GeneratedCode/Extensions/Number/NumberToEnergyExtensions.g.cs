@@ -112,6 +112,108 @@ namespace UnitsNet.Extensions.NumberToEnergy
 
         #endregion
 
+        #region DecaeuTherm
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double)"/>
+        public static Energy DecaeuTherms(this int value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double?)"/>
+        public static Energy? DecaeuTherms(this int? value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double)"/>
+        public static Energy DecaeuTherms(this long value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double?)"/>
+        public static Energy? DecaeuTherms(this long? value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double)"/>
+        public static Energy DecaeuTherms(this double value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double?)"/>
+        public static Energy? DecaeuTherms(this double? value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double)"/>
+        public static Energy DecaeuTherms(this float value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double?)"/>
+        public static Energy? DecaeuTherms(this float? value) => Energy.FromDecaeuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double)"/>
+        public static Energy DecaeuTherms(this decimal value) => Energy.FromDecaeuTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromDecaeuTherms(double?)"/>
+        public static Energy? DecaeuTherms(this decimal? value) => Energy.FromDecaeuTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecaimperialTherm
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double)"/>
+        public static Energy DecaimperialTherms(this int value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double?)"/>
+        public static Energy? DecaimperialTherms(this int? value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double)"/>
+        public static Energy DecaimperialTherms(this long value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double?)"/>
+        public static Energy? DecaimperialTherms(this long? value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double)"/>
+        public static Energy DecaimperialTherms(this double value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double?)"/>
+        public static Energy? DecaimperialTherms(this double? value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double)"/>
+        public static Energy DecaimperialTherms(this float value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double?)"/>
+        public static Energy? DecaimperialTherms(this float? value) => Energy.FromDecaimperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double)"/>
+        public static Energy DecaimperialTherms(this decimal value) => Energy.FromDecaimperialTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromDecaimperialTherms(double?)"/>
+        public static Energy? DecaimperialTherms(this decimal? value) => Energy.FromDecaimperialTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecausTherm
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double)"/>
+        public static Energy DecausTherms(this int value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double?)"/>
+        public static Energy? DecausTherms(this int? value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double)"/>
+        public static Energy DecausTherms(this long value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double?)"/>
+        public static Energy? DecausTherms(this long? value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double)"/>
+        public static Energy DecausTherms(this double value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double?)"/>
+        public static Energy? DecausTherms(this double? value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double)"/>
+        public static Energy DecausTherms(this float value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double?)"/>
+        public static Energy? DecausTherms(this float? value) => Energy.FromDecausTherms(value);
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double)"/>
+        public static Energy DecausTherms(this decimal value) => Energy.FromDecausTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromDecausTherms(double?)"/>
+        public static Energy? DecausTherms(this decimal? value) => Energy.FromDecausTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region ElectronVolt
 
         /// <inheritdoc cref="Energy.FromElectronVolts(double)"/>
@@ -180,6 +282,40 @@ namespace UnitsNet.Extensions.NumberToEnergy
 
         #endregion
 
+        #region EuTherm
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double)"/>
+        public static Energy EuTherms(this int value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double?)"/>
+        public static Energy? EuTherms(this int? value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double)"/>
+        public static Energy EuTherms(this long value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double?)"/>
+        public static Energy? EuTherms(this long? value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double)"/>
+        public static Energy EuTherms(this double value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double?)"/>
+        public static Energy? EuTherms(this double? value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double)"/>
+        public static Energy EuTherms(this float value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double?)"/>
+        public static Energy? EuTherms(this float? value) => Energy.FromEuTherms(value);
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double)"/>
+        public static Energy EuTherms(this decimal value) => Energy.FromEuTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromEuTherms(double?)"/>
+        public static Energy? EuTherms(this decimal? value) => Energy.FromEuTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region FootPound
 
         /// <inheritdoc cref="Energy.FromFootPounds(double)"/>
@@ -245,6 +381,40 @@ namespace UnitsNet.Extensions.NumberToEnergy
 
         /// <inheritdoc cref="Energy.FromGigawattHours(double?)"/>
         public static Energy? GigawattHours(this decimal? value) => Energy.FromGigawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region ImperialTherm
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double)"/>
+        public static Energy ImperialTherms(this int value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double?)"/>
+        public static Energy? ImperialTherms(this int? value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double)"/>
+        public static Energy ImperialTherms(this long value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double?)"/>
+        public static Energy? ImperialTherms(this long? value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double)"/>
+        public static Energy ImperialTherms(this double value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double?)"/>
+        public static Energy? ImperialTherms(this double? value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double)"/>
+        public static Energy ImperialTherms(this float value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double?)"/>
+        public static Energy? ImperialTherms(this float? value) => Energy.FromImperialTherms(value);
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double)"/>
+        public static Energy ImperialTherms(this decimal value) => Energy.FromImperialTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromImperialTherms(double?)"/>
+        public static Energy? ImperialTherms(this decimal? value) => Energy.FromImperialTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -449,6 +619,40 @@ namespace UnitsNet.Extensions.NumberToEnergy
 
         /// <inheritdoc cref="Energy.FromMegawattHours(double?)"/>
         public static Energy? MegawattHours(this decimal? value) => Energy.FromMegawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsTherm
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double)"/>
+        public static Energy UsTherms(this int value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double?)"/>
+        public static Energy? UsTherms(this int? value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double)"/>
+        public static Energy UsTherms(this long value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double?)"/>
+        public static Energy? UsTherms(this long? value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double)"/>
+        public static Energy UsTherms(this double value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double?)"/>
+        public static Energy? UsTherms(this double? value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double)"/>
+        public static Energy UsTherms(this float value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double?)"/>
+        public static Energy? UsTherms(this float? value) => Energy.FromUsTherms(value);
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double)"/>
+        public static Energy UsTherms(this decimal value) => Energy.FromUsTherms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromUsTherms(double?)"/>
+        public static Energy? UsTherms(this decimal? value) => Energy.FromUsTherms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
