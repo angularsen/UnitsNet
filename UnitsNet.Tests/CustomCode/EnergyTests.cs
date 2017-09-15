@@ -28,7 +28,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double JoulesInOneJoule => 1;
 
+        protected override double KilobritishThermalUnitsInOneJoule => 9.4781339449889105832843629746176e-7;
+
         protected override double KilojoulesInOneJoule => 1E-3;
+
+        protected override double MegabritishThermalUnitsInOneJoule => 9.4781339449889105832843629746176e-10;
 
         protected override double MegajoulesInOneJoule => 1E-6;
 

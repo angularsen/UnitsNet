@@ -64,9 +64,11 @@ namespace UnitsNet.Tests
         protected abstract double GigawattHoursInOneJoule { get; }
         protected abstract double ImperialThermsInOneJoule { get; }
         protected abstract double JoulesInOneJoule { get; }
+        protected abstract double KilobritishThermalUnitsInOneJoule { get; }
         protected abstract double KilocaloriesInOneJoule { get; }
         protected abstract double KilojoulesInOneJoule { get; }
         protected abstract double KilowattHoursInOneJoule { get; }
+        protected abstract double MegabritishThermalUnitsInOneJoule { get; }
         protected abstract double MegajoulesInOneJoule { get; }
         protected abstract double MegawattHoursInOneJoule { get; }
         protected abstract double UsThermsInOneJoule { get; }
@@ -85,9 +87,11 @@ namespace UnitsNet.Tests
         protected virtual double GigawattHoursTolerance { get { return 1e-5; } }
         protected virtual double ImperialThermsTolerance { get { return 1e-5; } }
         protected virtual double JoulesTolerance { get { return 1e-5; } }
+        protected virtual double KilobritishThermalUnitsTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesTolerance { get { return 1e-5; } }
         protected virtual double KilojoulesTolerance { get { return 1e-5; } }
         protected virtual double KilowattHoursTolerance { get { return 1e-5; } }
+        protected virtual double MegabritishThermalUnitsTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesTolerance { get { return 1e-5; } }
         protected virtual double MegawattHoursTolerance { get { return 1e-5; } }
         protected virtual double UsThermsTolerance { get { return 1e-5; } }
@@ -110,9 +114,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigawattHoursInOneJoule, joule.GigawattHours, GigawattHoursTolerance);
             AssertEx.EqualTolerance(ImperialThermsInOneJoule, joule.ImperialTherms, ImperialThermsTolerance);
             AssertEx.EqualTolerance(JoulesInOneJoule, joule.Joules, JoulesTolerance);
+            AssertEx.EqualTolerance(KilobritishThermalUnitsInOneJoule, joule.KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(KilocaloriesInOneJoule, joule.Kilocalories, KilocaloriesTolerance);
             AssertEx.EqualTolerance(KilojoulesInOneJoule, joule.Kilojoules, KilojoulesTolerance);
             AssertEx.EqualTolerance(KilowattHoursInOneJoule, joule.KilowattHours, KilowattHoursTolerance);
+            AssertEx.EqualTolerance(MegabritishThermalUnitsInOneJoule, joule.MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(MegajoulesInOneJoule, joule.Megajoules, MegajoulesTolerance);
             AssertEx.EqualTolerance(MegawattHoursInOneJoule, joule.MegawattHours, MegawattHoursTolerance);
             AssertEx.EqualTolerance(UsThermsInOneJoule, joule.UsTherms, UsThermsTolerance);
@@ -134,9 +140,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.GigawattHour).GigawattHours, GigawattHoursTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ImperialTherm).ImperialTherms, ImperialThermsTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Joule).Joules, JoulesTolerance);
+            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.KilobritishThermalUnit).KilobritishThermalUnits, KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Kilocalorie).Kilocalories, KilocaloriesTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Kilojoule).Kilojoules, KilojoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.KilowattHour).KilowattHours, KilowattHoursTolerance);
+            AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.MegabritishThermalUnit).MegabritishThermalUnits, MegabritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.Megajoule).Megajoules, MegajoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.MegawattHour).MegawattHours, MegawattHoursTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.UsTherm).UsTherms, UsThermsTolerance);
@@ -159,9 +167,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigawattHoursInOneJoule, joule.As(EnergyUnit.GigawattHour), GigawattHoursTolerance);
             AssertEx.EqualTolerance(ImperialThermsInOneJoule, joule.As(EnergyUnit.ImperialTherm), ImperialThermsTolerance);
             AssertEx.EqualTolerance(JoulesInOneJoule, joule.As(EnergyUnit.Joule), JoulesTolerance);
+            AssertEx.EqualTolerance(KilobritishThermalUnitsInOneJoule, joule.As(EnergyUnit.KilobritishThermalUnit), KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(KilocaloriesInOneJoule, joule.As(EnergyUnit.Kilocalorie), KilocaloriesTolerance);
             AssertEx.EqualTolerance(KilojoulesInOneJoule, joule.As(EnergyUnit.Kilojoule), KilojoulesTolerance);
             AssertEx.EqualTolerance(KilowattHoursInOneJoule, joule.As(EnergyUnit.KilowattHour), KilowattHoursTolerance);
+            AssertEx.EqualTolerance(MegabritishThermalUnitsInOneJoule, joule.As(EnergyUnit.MegabritishThermalUnit), MegabritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(MegajoulesInOneJoule, joule.As(EnergyUnit.Megajoule), MegajoulesTolerance);
             AssertEx.EqualTolerance(MegawattHoursInOneJoule, joule.As(EnergyUnit.MegawattHour), MegawattHoursTolerance);
             AssertEx.EqualTolerance(UsThermsInOneJoule, joule.As(EnergyUnit.UsTherm), UsThermsTolerance);
@@ -184,9 +194,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Energy.FromGigawattHours(joule.GigawattHours).Joules, GigawattHoursTolerance);
             AssertEx.EqualTolerance(1, Energy.FromImperialTherms(joule.ImperialTherms).Joules, ImperialThermsTolerance);
             AssertEx.EqualTolerance(1, Energy.FromJoules(joule.Joules).Joules, JoulesTolerance);
+            AssertEx.EqualTolerance(1, Energy.FromKilobritishThermalUnits(joule.KilobritishThermalUnits).Joules, KilobritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(1, Energy.FromKilocalories(joule.Kilocalories).Joules, KilocaloriesTolerance);
             AssertEx.EqualTolerance(1, Energy.FromKilojoules(joule.Kilojoules).Joules, KilojoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.FromKilowattHours(joule.KilowattHours).Joules, KilowattHoursTolerance);
+            AssertEx.EqualTolerance(1, Energy.FromMegabritishThermalUnits(joule.MegabritishThermalUnits).Joules, MegabritishThermalUnitsTolerance);
             AssertEx.EqualTolerance(1, Energy.FromMegajoules(joule.Megajoules).Joules, MegajoulesTolerance);
             AssertEx.EqualTolerance(1, Energy.FromMegawattHours(joule.MegawattHours).Joules, MegawattHoursTolerance);
             AssertEx.EqualTolerance(1, Energy.FromUsTherms(joule.UsTherms).Joules, UsThermsTolerance);

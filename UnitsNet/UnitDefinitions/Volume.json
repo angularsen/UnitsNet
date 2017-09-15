@@ -26,7 +26,7 @@
       "PluralName": "CubicMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
+      "Prefixes": [ "Hecto", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
