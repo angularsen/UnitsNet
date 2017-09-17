@@ -1,0 +1,16 @@
+﻿<Project DefaultTargets="Build;NCrunchOutputDataQuery" Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="UnitsNet.OperatorOverloads.Tests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="newtonsoft.json" Version="10.0.3" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UnitsNet.OperatorOverloads\UnitsNet.OperatorOverloads.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Signed", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj", "{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests.NetCore", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.NetCore.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests.NetCore", "UnitsNet.Tests\UnitsNet.Tests.NetCore.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.OperatorOverloads", "UnitsNet.OperatorOverloads\UnitsNet.OperatorOverloads.csproj", "{8758EDF0-0965-4928-A5D2-192F4ECD5810}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.OperatorOverloads.Tests", "UnitsNet.OperatorOverloads.Tests\UnitsNet.OperatorOverloads.Tests.csproj", "{905C728D-7228-4F85-9202-B27006ADC024}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,8 +127,43 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x64.Build.0 = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.Build.0 = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|x64.Build.0 = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Debug|x86.Build.0 = Debug|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|ARM.Build.0 = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|x64.ActiveCfg = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|x64.Build.0 = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|x86.ActiveCfg = Release|Any CPU
+		{8758EDF0-0965-4928-A5D2-192F4ECD5810}.Release|x86.Build.0 = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|ARM.Build.0 = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|x64.Build.0 = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Debug|x86.Build.0 = Debug|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|ARM.ActiveCfg = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|ARM.Build.0 = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|x64.ActiveCfg = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|x64.Build.0 = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|x86.ActiveCfg = Release|Any CPU
+		{905C728D-7228-4F85-9202-B27006ADC024}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {154B9C1C-39AA-4A5A-9923-3B575AA6F335}
 	EndGlobalSection
 EndGlobal
