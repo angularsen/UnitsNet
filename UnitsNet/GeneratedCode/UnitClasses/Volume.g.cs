@@ -324,11 +324,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in ImperialBeerBarrels.
+        /// </summary>
+        public double ImperialBeerBarrels
+        {
+            get { return _cubicMeters/0.16365924; }
+        }
+
+        /// <summary>
         ///     Get Volume in UkTablespoons.
         /// </summary>
         public double UkTablespoons
         {
             get { return _cubicMeters/1.5e-5; }
+        }
+
+        /// <summary>
+        ///     Get Volume in UsBeerBarrels.
+        /// </summary>
+        public double UsBeerBarrels
+        {
+            get { return _cubicMeters/0.1173477658; }
         }
 
         /// <summary>
@@ -581,11 +597,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from ImperialBeerBarrels.
+        /// </summary>
+        public static Volume FromImperialBeerBarrels(double ukbeerbarrels)
+        {
+            return new Volume(ukbeerbarrels*0.16365924);
+        }
+
+        /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
         public static Volume FromUkTablespoons(double uktablespoons)
         {
             return new Volume(uktablespoons*1.5e-5);
+        }
+
+        /// <summary>
+        ///     Get Volume from UsBeerBarrels.
+        /// </summary>
+        public static Volume FromUsBeerBarrels(double usbeerbarrels)
+        {
+            return new Volume(usbeerbarrels*0.1173477658);
         }
 
         /// <summary>
@@ -999,6 +1031,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable ImperialBeerBarrels.
+        /// </summary>
+        public static Volume? FromImperialBeerBarrels(double? ukbeerbarrels)
+        {
+            if (ukbeerbarrels.HasValue)
+            {
+                return FromImperialBeerBarrels(ukbeerbarrels.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable UkTablespoons.
         /// </summary>
         public static Volume? FromUkTablespoons(double? uktablespoons)
@@ -1006,6 +1053,21 @@ namespace UnitsNet
             if (uktablespoons.HasValue)
             {
                 return FromUkTablespoons(uktablespoons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsBeerBarrels.
+        /// </summary>
+        public static Volume? FromUsBeerBarrels(double? usbeerbarrels)
+        {
+            if (usbeerbarrels.HasValue)
+            {
+                return FromUsBeerBarrels(usbeerbarrels.Value);
             }
             else
             {
@@ -1163,8 +1225,12 @@ namespace UnitsNet
                     return FromTablespoons(val);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(val);
+                case VolumeUnit.ImperialBeerBarrel:
+                    return FromImperialBeerBarrels(val);
                 case VolumeUnit.UkTablespoon:
                     return FromUkTablespoons(val);
+                case VolumeUnit.UsBeerBarrel:
+                    return FromUsBeerBarrels(val);
                 case VolumeUnit.UsCustomaryCup:
                     return FromUsCustomaryCups(val);
                 case VolumeUnit.UsGallon:
@@ -1247,8 +1313,12 @@ namespace UnitsNet
                     return FromTablespoons(value.Value);
                 case VolumeUnit.Teaspoon:
                     return FromTeaspoons(value.Value);
+                case VolumeUnit.ImperialBeerBarrel:
+                    return FromImperialBeerBarrels(value.Value);
                 case VolumeUnit.UkTablespoon:
                     return FromUkTablespoons(value.Value);
+                case VolumeUnit.UsBeerBarrel:
+                    return FromUsBeerBarrels(value.Value);
                 case VolumeUnit.UsCustomaryCup:
                     return FromUsCustomaryCups(value.Value);
                 case VolumeUnit.UsGallon:
@@ -1466,8 +1536,12 @@ namespace UnitsNet
                     return Tablespoons;
                 case VolumeUnit.Teaspoon:
                     return Teaspoons;
+                case VolumeUnit.ImperialBeerBarrel:
+                    return ImperialBeerBarrels;
                 case VolumeUnit.UkTablespoon:
                     return UkTablespoons;
+                case VolumeUnit.UsBeerBarrel:
+                    return UsBeerBarrels;
                 case VolumeUnit.UsCustomaryCup:
                     return UsCustomaryCups;
                 case VolumeUnit.UsGallon:
