@@ -172,8 +172,8 @@
     {
       "SingularName": "PrinterPoint",
       "PluralName": "PrinterPoints",
-      "FromUnitToBaseFunc": "(x/72.27)*2.54e-2",
-      "FromBaseToUnitFunc": "(x/2.54e-2)*72.27",
+      "FromUnitToBaseFunc": "x*3.514598035-4",
+      "FromBaseToUnitFunc": "x*2845.275590551",
       "Localization": [
         {
           "Culture": "en-US",
@@ -184,8 +184,8 @@
     {
       "SingularName": "DtpPoint",
       "PluralName": "DtpPoints",
-      "FromUnitToBaseFunc": "(x/72)*2.54e-2",
-      "FromBaseToUnitFunc": "(x/2.54e-2)*72",
+      "FromUnitToBaseFunc": "x*3.527777778e-4",
+      "FromBaseToUnitFunc": "x*2834.645669291",
       "Localization": [
         {
           "Culture": "en-US",
@@ -196,8 +196,8 @@
     {
       "SingularName": "PrinterPica",
       "PluralName": "PrinterPicas",
-      "FromUnitToBaseFunc": "x/237.10630158",
-      "FromBaseToUnitFunc": "x*237.10630158",
+      "FromUnitToBaseFunc": "x/237.106301584",
+      "FromBaseToUnitFunc": "x*237.106301584",
       "Localization": [
         {
           "Culture": "en-US",
@@ -208,8 +208,8 @@
     {
       "SingularName": "DtpPica",
       "PluralName": "DtpPicas",
-      "FromUnitToBaseFunc": "x/236.22047244",
-      "FromBaseToUnitFunc": "x*236.22047244",
+      "FromUnitToBaseFunc": "x/236.220472441",
+      "FromBaseToUnitFunc": "x*236.220472441",
       "Localization": [
         {
           "Culture": "en-US",
@@ -220,8 +220,8 @@
     {
       "SingularName": "Twip",
       "PluralName": "Twips",
-      "FromUnitToBaseFunc": "x/56692.913386",
-      "FromBaseToUnitFunc": "x*56692.913386",
+      "FromUnitToBaseFunc": "x/56692.913385826",
+      "FromBaseToUnitFunc": "x*56692.913385826",
       "Localization": [
         {
           "Culture": "en-US",
