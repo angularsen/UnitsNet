@@ -172,8 +172,8 @@
     {
       "SingularName": "PrinterPoint",
       "PluralName": "PrinterPoints",
-      "FromUnitToBaseFunc": "x*3.514598035145980-4",
-      "FromBaseToUnitFunc": "x*2845.275590551181102",
+      "FromUnitToBaseFunc": "(x/72.27)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*72.27",
       "Localization": [
         {
           "Culture": "en-US",
@@ -184,8 +184,8 @@
     {
       "SingularName": "DtpPoint",
       "PluralName": "DtpPoints",
-      "FromUnitToBaseFunc": "x*3.527777777777778e-4",
-      "FromBaseToUnitFunc": "x*2834.645669291338583",
+      "FromUnitToBaseFunc": "(x/72)*2.54e-2",
+      "FromBaseToUnitFunc": "(x/2.54e-2)*72",
       "Localization": [
         {
           "Culture": "en-US",
