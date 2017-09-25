@@ -96,53 +96,59 @@
       ]
     },
     {
-      "SingularName": "EuTherm",
-      "PluralName": "EuTherms",
+      "SingularName": "ThermEc",
+      "PluralName": "ThermsEc",
       "FromUnitToBaseFunc": "x*1.05506e+8",
       "FromBaseToUnitFunc": "x/1.05506e+8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "thm (E.U.)" ]
+          "Abbreviations": [ "th (E.C.)" ],
+          "AbbreviationsWithPrefixes": [ "Dth (E.C.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Европейский терм" ]
+          "Abbreviations": [ "Европейский терм" ],
+          "AbbreviationsWithPrefixes": [ "Европейский декатерм" ]
         }
       ]
     },
     {
-      "SingularName": "UsTherm",
-      "PluralName": "UsTherms",
+      "SingularName": "ThermUs",
+      "PluralName": "ThermsUs",
       "FromUnitToBaseFunc": "x*1.054804e+8",
       "FromBaseToUnitFunc": "x/1.054804e+8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "thm (U.S.)" ]
+          "Abbreviations": [ "th (U.S.)" ],
+          "AbbreviationsWithPrefixes": [ "Dth (U.S.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Американский терм" ]
+          "Abbreviations": [ "Американский терм" ],
+          "AbbreviationsWithPrefixes": [ "Американский декатерм" ]
         }
       ]
     },
     {
-      "SingularName": "ImperialTherm",
-      "PluralName": "ImperialTherms",
+      "SingularName": "ThermImperial",
+      "PluralName": "ThermsImperial",
       "FromUnitToBaseFunc": "x*1.05505585257348e+14",
       "FromBaseToUnitFunc": "x/1.05505585257348e+14",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "thm (imp.)" ]
+          "Abbreviations": [ "th (imp.)" ],
+          "AbbreviationsWithPrefixes": [ "Dth (imp.)" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Английский терм" ]
+          "Abbreviations": [ "Английский терм" ],
+          "AbbreviationsWithPrefixes": [ "Английский декатерм" ]
         }
       ]
     }
