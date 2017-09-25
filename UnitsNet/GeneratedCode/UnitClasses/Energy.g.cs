@@ -146,25 +146,25 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy in DecaeuTherms.
+        ///     Get Energy in DecathermsEc.
         /// </summary>
-        public double DecaeuTherms
+        public double DecathermsEc
         {
             get { return (_joules/1.05506e+8) / 1e1d; }
         }
 
         /// <summary>
-        ///     Get Energy in DecaimperialTherms.
+        ///     Get Energy in DecathermsImperial.
         /// </summary>
-        public double DecaimperialTherms
+        public double DecathermsImperial
         {
             get { return (_joules/1.05505585257348e+14) / 1e1d; }
         }
 
         /// <summary>
-        ///     Get Energy in DecausTherms.
+        ///     Get Energy in DecathermsUs.
         /// </summary>
-        public double DecausTherms
+        public double DecathermsUs
         {
             get { return (_joules/1.054804e+8) / 1e1d; }
         }
@@ -186,14 +186,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy in EuTherms.
-        /// </summary>
-        public double EuTherms
-        {
-            get { return _joules/1.05506e+8; }
-        }
-
-        /// <summary>
         ///     Get Energy in FootPounds.
         /// </summary>
         public double FootPounds
@@ -207,14 +199,6 @@ namespace UnitsNet
         public double GigawattHours
         {
             get { return (_joules/3600d) / 1e9d; }
-        }
-
-        /// <summary>
-        ///     Get Energy in ImperialTherms.
-        /// </summary>
-        public double ImperialTherms
-        {
-            get { return _joules/1.05505585257348e+14; }
         }
 
         /// <summary>
@@ -266,9 +250,25 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy in UsTherms.
+        ///     Get Energy in ThermsEc.
         /// </summary>
-        public double UsTherms
+        public double ThermsEc
+        {
+            get { return _joules/1.05506e+8; }
+        }
+
+        /// <summary>
+        ///     Get Energy in ThermsImperial.
+        /// </summary>
+        public double ThermsImperial
+        {
+            get { return _joules/1.05505585257348e+14; }
+        }
+
+        /// <summary>
+        ///     Get Energy in ThermsUs.
+        /// </summary>
+        public double ThermsUs
         {
             get { return _joules/1.054804e+8; }
         }
@@ -307,27 +307,27 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy from DecaeuTherms.
+        ///     Get Energy from DecathermsEc.
         /// </summary>
-        public static Energy FromDecaeuTherms(double decaeutherms)
+        public static Energy FromDecathermsEc(double decathermsec)
         {
-            return new Energy((decaeutherms*1.05506e+8) * 1e1d);
+            return new Energy((decathermsec*1.05506e+8) * 1e1d);
         }
 
         /// <summary>
-        ///     Get Energy from DecaimperialTherms.
+        ///     Get Energy from DecathermsImperial.
         /// </summary>
-        public static Energy FromDecaimperialTherms(double decaimperialtherms)
+        public static Energy FromDecathermsImperial(double decathermsimperial)
         {
-            return new Energy((decaimperialtherms*1.05505585257348e+14) * 1e1d);
+            return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
         }
 
         /// <summary>
-        ///     Get Energy from DecausTherms.
+        ///     Get Energy from DecathermsUs.
         /// </summary>
-        public static Energy FromDecausTherms(double decaustherms)
+        public static Energy FromDecathermsUs(double decathermsus)
         {
-            return new Energy((decaustherms*1.054804e+8) * 1e1d);
+            return new Energy((decathermsus*1.054804e+8) * 1e1d);
         }
 
         /// <summary>
@@ -347,14 +347,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy from EuTherms.
-        /// </summary>
-        public static Energy FromEuTherms(double eutherms)
-        {
-            return new Energy(eutherms*1.05506e+8);
-        }
-
-        /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
         public static Energy FromFootPounds(double footpounds)
@@ -368,14 +360,6 @@ namespace UnitsNet
         public static Energy FromGigawattHours(double gigawatthours)
         {
             return new Energy((gigawatthours*3600d) * 1e9d);
-        }
-
-        /// <summary>
-        ///     Get Energy from ImperialTherms.
-        /// </summary>
-        public static Energy FromImperialTherms(double imperialtherms)
-        {
-            return new Energy(imperialtherms*1.05505585257348e+14);
         }
 
         /// <summary>
@@ -427,11 +411,27 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy from UsTherms.
+        ///     Get Energy from ThermsEc.
         /// </summary>
-        public static Energy FromUsTherms(double ustherms)
+        public static Energy FromThermsEc(double thermsec)
         {
-            return new Energy(ustherms*1.054804e+8);
+            return new Energy(thermsec*1.05506e+8);
+        }
+
+        /// <summary>
+        ///     Get Energy from ThermsImperial.
+        /// </summary>
+        public static Energy FromThermsImperial(double thermsimperial)
+        {
+            return new Energy(thermsimperial*1.05505585257348e+14);
+        }
+
+        /// <summary>
+        ///     Get Energy from ThermsUs.
+        /// </summary>
+        public static Energy FromThermsUs(double thermsus)
+        {
+            return new Energy(thermsus*1.054804e+8);
         }
 
         /// <summary>
@@ -475,13 +475,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable DecaeuTherms.
+        ///     Get nullable Energy from nullable DecathermsEc.
         /// </summary>
-        public static Energy? FromDecaeuTherms(double? decaeutherms)
+        public static Energy? FromDecathermsEc(double? decathermsec)
         {
-            if (decaeutherms.HasValue)
+            if (decathermsec.HasValue)
             {
-                return FromDecaeuTherms(decaeutherms.Value);
+                return FromDecathermsEc(decathermsec.Value);
             }
             else
             {
@@ -490,13 +490,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable DecaimperialTherms.
+        ///     Get nullable Energy from nullable DecathermsImperial.
         /// </summary>
-        public static Energy? FromDecaimperialTherms(double? decaimperialtherms)
+        public static Energy? FromDecathermsImperial(double? decathermsimperial)
         {
-            if (decaimperialtherms.HasValue)
+            if (decathermsimperial.HasValue)
             {
-                return FromDecaimperialTherms(decaimperialtherms.Value);
+                return FromDecathermsImperial(decathermsimperial.Value);
             }
             else
             {
@@ -505,13 +505,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable DecausTherms.
+        ///     Get nullable Energy from nullable DecathermsUs.
         /// </summary>
-        public static Energy? FromDecausTherms(double? decaustherms)
+        public static Energy? FromDecathermsUs(double? decathermsus)
         {
-            if (decaustherms.HasValue)
+            if (decathermsus.HasValue)
             {
-                return FromDecausTherms(decaustherms.Value);
+                return FromDecathermsUs(decathermsus.Value);
             }
             else
             {
@@ -550,21 +550,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable EuTherms.
-        /// </summary>
-        public static Energy? FromEuTherms(double? eutherms)
-        {
-            if (eutherms.HasValue)
-            {
-                return FromEuTherms(eutherms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         ///     Get nullable Energy from nullable FootPounds.
         /// </summary>
         public static Energy? FromFootPounds(double? footpounds)
@@ -587,21 +572,6 @@ namespace UnitsNet
             if (gigawatthours.HasValue)
             {
                 return FromGigawattHours(gigawatthours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Energy from nullable ImperialTherms.
-        /// </summary>
-        public static Energy? FromImperialTherms(double? imperialtherms)
-        {
-            if (imperialtherms.HasValue)
-            {
-                return FromImperialTherms(imperialtherms.Value);
             }
             else
             {
@@ -700,13 +670,43 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable UsTherms.
+        ///     Get nullable Energy from nullable ThermsEc.
         /// </summary>
-        public static Energy? FromUsTherms(double? ustherms)
+        public static Energy? FromThermsEc(double? thermsec)
         {
-            if (ustherms.HasValue)
+            if (thermsec.HasValue)
             {
-                return FromUsTherms(ustherms.Value);
+                return FromThermsEc(thermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable ThermsImperial.
+        /// </summary>
+        public static Energy? FromThermsImperial(double? thermsimperial)
+        {
+            if (thermsimperial.HasValue)
+            {
+                return FromThermsImperial(thermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable ThermsUs.
+        /// </summary>
+        public static Energy? FromThermsUs(double? thermsus)
+        {
+            if (thermsus.HasValue)
+            {
+                return FromThermsUs(thermsus.Value);
             }
             else
             {
@@ -745,24 +745,20 @@ namespace UnitsNet
                     return FromBritishThermalUnits(val);
                 case EnergyUnit.Calorie:
                     return FromCalories(val);
-                case EnergyUnit.DecaeuTherm:
-                    return FromDecaeuTherms(val);
-                case EnergyUnit.DecaimperialTherm:
-                    return FromDecaimperialTherms(val);
-                case EnergyUnit.DecausTherm:
-                    return FromDecausTherms(val);
+                case EnergyUnit.DecathermEc:
+                    return FromDecathermsEc(val);
+                case EnergyUnit.DecathermImperial:
+                    return FromDecathermsImperial(val);
+                case EnergyUnit.DecathermUs:
+                    return FromDecathermsUs(val);
                 case EnergyUnit.ElectronVolt:
                     return FromElectronVolts(val);
                 case EnergyUnit.Erg:
                     return FromErgs(val);
-                case EnergyUnit.EuTherm:
-                    return FromEuTherms(val);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(val);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(val);
-                case EnergyUnit.ImperialTherm:
-                    return FromImperialTherms(val);
                 case EnergyUnit.Joule:
                     return FromJoules(val);
                 case EnergyUnit.Kilocalorie:
@@ -775,8 +771,12 @@ namespace UnitsNet
                     return FromMegajoules(val);
                 case EnergyUnit.MegawattHour:
                     return FromMegawattHours(val);
-                case EnergyUnit.UsTherm:
-                    return FromUsTherms(val);
+                case EnergyUnit.ThermEc:
+                    return FromThermsEc(val);
+                case EnergyUnit.ThermImperial:
+                    return FromThermsImperial(val);
+                case EnergyUnit.ThermUs:
+                    return FromThermsUs(val);
                 case EnergyUnit.WattHour:
                     return FromWattHours(val);
 
@@ -805,24 +805,20 @@ namespace UnitsNet
                     return FromBritishThermalUnits(value.Value);
                 case EnergyUnit.Calorie:
                     return FromCalories(value.Value);
-                case EnergyUnit.DecaeuTherm:
-                    return FromDecaeuTherms(value.Value);
-                case EnergyUnit.DecaimperialTherm:
-                    return FromDecaimperialTherms(value.Value);
-                case EnergyUnit.DecausTherm:
-                    return FromDecausTherms(value.Value);
+                case EnergyUnit.DecathermEc:
+                    return FromDecathermsEc(value.Value);
+                case EnergyUnit.DecathermImperial:
+                    return FromDecathermsImperial(value.Value);
+                case EnergyUnit.DecathermUs:
+                    return FromDecathermsUs(value.Value);
                 case EnergyUnit.ElectronVolt:
                     return FromElectronVolts(value.Value);
                 case EnergyUnit.Erg:
                     return FromErgs(value.Value);
-                case EnergyUnit.EuTherm:
-                    return FromEuTherms(value.Value);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(value.Value);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(value.Value);
-                case EnergyUnit.ImperialTherm:
-                    return FromImperialTherms(value.Value);
                 case EnergyUnit.Joule:
                     return FromJoules(value.Value);
                 case EnergyUnit.Kilocalorie:
@@ -835,8 +831,12 @@ namespace UnitsNet
                     return FromMegajoules(value.Value);
                 case EnergyUnit.MegawattHour:
                     return FromMegawattHours(value.Value);
-                case EnergyUnit.UsTherm:
-                    return FromUsTherms(value.Value);
+                case EnergyUnit.ThermEc:
+                    return FromThermsEc(value.Value);
+                case EnergyUnit.ThermImperial:
+                    return FromThermsImperial(value.Value);
+                case EnergyUnit.ThermUs:
+                    return FromThermsUs(value.Value);
                 case EnergyUnit.WattHour:
                     return FromWattHours(value.Value);
 
@@ -1000,24 +1000,20 @@ namespace UnitsNet
                     return BritishThermalUnits;
                 case EnergyUnit.Calorie:
                     return Calories;
-                case EnergyUnit.DecaeuTherm:
-                    return DecaeuTherms;
-                case EnergyUnit.DecaimperialTherm:
-                    return DecaimperialTherms;
-                case EnergyUnit.DecausTherm:
-                    return DecausTherms;
+                case EnergyUnit.DecathermEc:
+                    return DecathermsEc;
+                case EnergyUnit.DecathermImperial:
+                    return DecathermsImperial;
+                case EnergyUnit.DecathermUs:
+                    return DecathermsUs;
                 case EnergyUnit.ElectronVolt:
                     return ElectronVolts;
                 case EnergyUnit.Erg:
                     return Ergs;
-                case EnergyUnit.EuTherm:
-                    return EuTherms;
                 case EnergyUnit.FootPound:
                     return FootPounds;
                 case EnergyUnit.GigawattHour:
                     return GigawattHours;
-                case EnergyUnit.ImperialTherm:
-                    return ImperialTherms;
                 case EnergyUnit.Joule:
                     return Joules;
                 case EnergyUnit.Kilocalorie:
@@ -1030,8 +1026,12 @@ namespace UnitsNet
                     return Megajoules;
                 case EnergyUnit.MegawattHour:
                     return MegawattHours;
-                case EnergyUnit.UsTherm:
-                    return UsTherms;
+                case EnergyUnit.ThermEc:
+                    return ThermsEc;
+                case EnergyUnit.ThermImperial:
+                    return ThermsImperial;
+                case EnergyUnit.ThermUs:
+                    return ThermsUs;
                 case EnergyUnit.WattHour:
                     return WattHours;
 
