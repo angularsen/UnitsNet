@@ -46,6 +46,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanogramsPerSecondInOneGramPerSecond => 1E9;
 
+        protected override double ShortTonsPerHourInOneGramPerSecond => 3.96832e-3;
         protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;

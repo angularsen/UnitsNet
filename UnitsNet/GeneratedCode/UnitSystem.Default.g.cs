@@ -1551,7 +1551,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Kilopound,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "klb"),
+                                new AbbreviationsForCulture("en-US", "KLbs"),
                                 new AbbreviationsForCulture("ru-RU", "kфунт"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.Kilotonne,
@@ -1574,7 +1574,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Megapound,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "Mlb"),
+                                new AbbreviationsForCulture("en-US", "MLbs"),
                                 new AbbreviationsForCulture("ru-RU", "Mфунт"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.Megatonne,
@@ -1693,6 +1693,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb/h"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.ShortTonPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "short tn/h"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.TonnePerDay,
                             new[]

@@ -53,6 +53,7 @@ namespace UnitsNet.Units
         MilligramPerSecond,
         NanogramPerSecond,
         PoundPerHour,
+        ShortTonPerHour,
         TonnePerDay,
     }
 }

@@ -418,6 +418,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region ShortTonPerHour
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)"/>
+        public static MassFlow ShortTonsPerHour(this int value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double?)"/>
+        public static MassFlow? ShortTonsPerHour(this int? value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)"/>
+        public static MassFlow ShortTonsPerHour(this long value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double?)"/>
+        public static MassFlow? ShortTonsPerHour(this long? value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)"/>
+        public static MassFlow ShortTonsPerHour(this double value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double?)"/>
+        public static MassFlow? ShortTonsPerHour(this double? value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)"/>
+        public static MassFlow ShortTonsPerHour(this float value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double?)"/>
+        public static MassFlow? ShortTonsPerHour(this float? value) => MassFlow.FromShortTonsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)"/>
+        public static MassFlow ShortTonsPerHour(this decimal value) => MassFlow.FromShortTonsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double?)"/>
+        public static MassFlow? ShortTonsPerHour(this decimal? value) => MassFlow.FromShortTonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region TonnePerDay
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double)"/>

@@ -218,6 +218,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow in ShortTonsPerHour.
+        /// </summary>
+        public double ShortTonsPerHour
+        {
+            get { return _gramsPerSecond/251.9957611; }
+        }
+
+        /// <summary>
         ///     Get MassFlow in TonnesPerDay.
         /// </summary>
         public double TonnesPerDay
@@ -320,6 +328,14 @@ namespace UnitsNet
         public static MassFlow FromPoundsPerHour(double poundsperhour)
         {
             return new MassFlow(poundsperhour/7.93664);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
+        {
+            return new MassFlow(shorttonsperhour*251.9957611);
         }
 
         /// <summary>
@@ -498,6 +514,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(double? shorttonsperhour)
+        {
+            if (shorttonsperhour.HasValue)
+            {
+                return FromShortTonsPerHour(shorttonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerDay.
         /// </summary>
         public static MassFlow? FromTonnesPerDay(double? tonnesperday)
@@ -546,6 +577,8 @@ namespace UnitsNet
                     return FromNanogramsPerSecond(val);
                 case MassFlowUnit.PoundPerHour:
                     return FromPoundsPerHour(val);
+                case MassFlowUnit.ShortTonPerHour:
+                    return FromShortTonsPerHour(val);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(val);
 
@@ -592,6 +625,8 @@ namespace UnitsNet
                     return FromNanogramsPerSecond(value.Value);
                 case MassFlowUnit.PoundPerHour:
                     return FromPoundsPerHour(value.Value);
+                case MassFlowUnit.ShortTonPerHour:
+                    return FromShortTonsPerHour(value.Value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value.Value);
 
@@ -773,6 +808,8 @@ namespace UnitsNet
                     return NanogramsPerSecond;
                 case MassFlowUnit.PoundPerHour:
                     return PoundsPerHour;
+                case MassFlowUnit.ShortTonPerHour:
+                    return ShortTonsPerHour;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
 
