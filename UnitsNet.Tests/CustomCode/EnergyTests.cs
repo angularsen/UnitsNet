@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ErgsInOneJoule => 10000000;
 
-        protected override double ThermsEcInOneJoule => 9.47816988e-9;
+        protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
 
         protected override double FootPoundsInOneJoule => 0.737562149;
 

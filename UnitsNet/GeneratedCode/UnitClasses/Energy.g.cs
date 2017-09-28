@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double DecathermsEc
         {
-            get { return (_joules/1.05506e+8) / 1e1d; }
+            get { return (_joules/105505585.262) / 1e1d; }
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// </summary>
         public double ThermsEc
         {
-            get { return _joules/1.05506e+8; }
+            get { return _joules/105505585.262; }
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace UnitsNet
         /// </summary>
         public static Energy FromDecathermsEc(double decathermsec)
         {
-            return new Energy((decathermsec*1.05506e+8) * 1e1d);
+            return new Energy((decathermsec*105505585.262) * 1e1d);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace UnitsNet
         /// </summary>
         public static Energy FromThermsEc(double thermsec)
         {
-            return new Energy(thermsec*1.05506e+8);
+            return new Energy(thermsec*105505585.262);
         }
 
         /// <summary>
