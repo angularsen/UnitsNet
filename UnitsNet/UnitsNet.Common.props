@@ -3,7 +3,7 @@
     <AssemblyName>UnitsNet</AssemblyName>
     <RootNamespace>UnitsNet</RootNamespace>
     <PackageId>UnitsNet</PackageId>
-    <Version>3.74.0</Version>
+    <Version>3.75.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
