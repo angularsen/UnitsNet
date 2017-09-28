@@ -839,6 +839,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "ft·lb"),
                             }),
+                        new CulturesForEnumValue((int) EnergyUnit.GigabritishThermalUnit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mmBTU"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.GigawattHour,
                             new[]
                             {
@@ -874,7 +879,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) EnergyUnit.MegabritishThermalUnit,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MBTU"),
+                                new AbbreviationsForCulture("en-US", "mBTU"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.Megajoule,
                             new[]
@@ -1678,6 +1683,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kg/S"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MegapoundPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlb/h"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
                             new[]

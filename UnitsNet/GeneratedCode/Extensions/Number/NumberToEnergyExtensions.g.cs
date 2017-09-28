@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToEnergy
 
         #endregion
 
+        #region GigabritishThermalUnit
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)"/>
+        public static Energy GigabritishThermalUnits(this int value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double?)"/>
+        public static Energy? GigabritishThermalUnits(this int? value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)"/>
+        public static Energy GigabritishThermalUnits(this long value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double?)"/>
+        public static Energy? GigabritishThermalUnits(this long? value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)"/>
+        public static Energy GigabritishThermalUnits(this double value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double?)"/>
+        public static Energy? GigabritishThermalUnits(this double? value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)"/>
+        public static Energy GigabritishThermalUnits(this float value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double?)"/>
+        public static Energy? GigabritishThermalUnits(this float? value) => Energy.FromGigabritishThermalUnits(value);
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)"/>
+        public static Energy GigabritishThermalUnits(this decimal value) => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double?)"/>
+        public static Energy? GigabritishThermalUnits(this decimal? value) => Energy.FromGigabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region GigawattHour
 
         /// <inheritdoc cref="Energy.FromGigawattHours(double)"/>

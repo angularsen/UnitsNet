@@ -54,6 +54,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double FootPoundsInOneJoule => 0.737562149;
 
+        protected override double GigabritishThermalUnitsInOneJoule => 9.4781339449889105832843629746176e-13;
+
         protected override double GigawattHoursInOneJoule => 2.77777778e-13;
 
         protected override double KilocaloriesInOneJoule => 0.00023900573614;

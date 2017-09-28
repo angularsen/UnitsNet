@@ -36,6 +36,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
+        protected override double MegapoundsPerHourInOneGramPerSecond => 7.93664e-6;
+
         protected override double DecigramsPerSecondInOneGramPerSecond => 1E1;
 
         protected override double CentigramsPerSecondInOneGramPerSecond => 1E2;
@@ -47,6 +49,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerSecondInOneGramPerSecond => 1E9;
 
         protected override double ShortTonsPerHourInOneGramPerSecond => 3.96832e-3;
+
         protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;

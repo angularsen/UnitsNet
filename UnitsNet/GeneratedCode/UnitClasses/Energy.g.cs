@@ -194,6 +194,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Energy in GigabritishThermalUnits.
+        /// </summary>
+        public double GigabritishThermalUnits
+        {
+            get { return (_joules/1055.05585262) / 1e9d; }
+        }
+
+        /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours
@@ -368,6 +376,14 @@ namespace UnitsNet
         public static Energy FromFootPounds(double footpounds)
         {
             return new Energy(footpounds*1.355817948);
+        }
+
+        /// <summary>
+        ///     Get Energy from GigabritishThermalUnits.
+        /// </summary>
+        public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
+        {
+            return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
         }
 
         /// <summary>
@@ -589,6 +605,21 @@ namespace UnitsNet
             if (footpounds.HasValue)
             {
                 return FromFootPounds(footpounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Energy from nullable GigabritishThermalUnits.
+        /// </summary>
+        public static Energy? FromGigabritishThermalUnits(double? gigabritishthermalunits)
+        {
+            if (gigabritishthermalunits.HasValue)
+            {
+                return FromGigabritishThermalUnits(gigabritishthermalunits.Value);
             }
             else
             {
@@ -819,6 +850,8 @@ namespace UnitsNet
                     return FromErgs(val);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(val);
+                case EnergyUnit.GigabritishThermalUnit:
+                    return FromGigabritishThermalUnits(val);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(val);
                 case EnergyUnit.Joule:
@@ -883,6 +916,8 @@ namespace UnitsNet
                     return FromErgs(value.Value);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(value.Value);
+                case EnergyUnit.GigabritishThermalUnit:
+                    return FromGigabritishThermalUnits(value.Value);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(value.Value);
                 case EnergyUnit.Joule:
@@ -1082,6 +1117,8 @@ namespace UnitsNet
                     return Ergs;
                 case EnergyUnit.FootPound:
                     return FootPounds;
+                case EnergyUnit.GigabritishThermalUnit:
+                    return GigabritishThermalUnits;
                 case EnergyUnit.GigawattHour:
                     return GigawattHours;
                 case EnergyUnit.Joule:

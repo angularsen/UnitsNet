@@ -282,6 +282,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region MegapoundPerHour
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
+        public static MassFlow MegapoundsPerHour(this int value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
+        public static MassFlow? MegapoundsPerHour(this int? value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
+        public static MassFlow MegapoundsPerHour(this long value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
+        public static MassFlow? MegapoundsPerHour(this long? value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
+        public static MassFlow MegapoundsPerHour(this double value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
+        public static MassFlow? MegapoundsPerHour(this double? value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
+        public static MassFlow MegapoundsPerHour(this float value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
+        public static MassFlow? MegapoundsPerHour(this float? value) => MassFlow.FromMegapoundsPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
+        public static MassFlow MegapoundsPerHour(this decimal value) => MassFlow.FromMegapoundsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
+        public static MassFlow? MegapoundsPerHour(this decimal? value) => MassFlow.FromMegapoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicrogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(double)"/>

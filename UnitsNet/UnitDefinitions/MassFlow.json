@@ -37,10 +37,12 @@
       "PluralName": "PoundsPerHour",
       "FromUnitToBaseFunc": "x/7.93664",
       "FromBaseToUnitFunc": "x*7.93664",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/h" ]
+          "Abbreviations": [ "lb/h" ],
+          "AbbreviationsWithPrefixes": [ "Mlb/h" ]
         }
       ]
     },

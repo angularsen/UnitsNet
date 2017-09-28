@@ -49,6 +49,7 @@ namespace UnitsNet.Units
         HectogramPerSecond,
         KilogramPerHour,
         KilogramPerSecond,
+        MegapoundPerHour,
         MicrogramPerSecond,
         MilligramPerSecond,
         NanogramPerSecond,

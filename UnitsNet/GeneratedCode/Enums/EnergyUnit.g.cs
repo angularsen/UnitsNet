@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         ElectronVolt,
         Erg,
         FootPound,
+        GigabritishThermalUnit,
         GigawattHour,
         Joule,
         KilobritishThermalUnit,

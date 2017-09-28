@@ -34,11 +34,12 @@
       "PluralName": "BritishThermalUnits",
       "FromUnitToBaseFunc": "x*1055.05585262",
       "FromBaseToUnitFunc": "x/1055.05585262",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU" ]
+          "Abbreviations": [ "BTU" ],
+          "AbbreviationsWithPrefixes": [ "kBTU", "mBTU", "mmBTU" ]
         }
       ]
     },
