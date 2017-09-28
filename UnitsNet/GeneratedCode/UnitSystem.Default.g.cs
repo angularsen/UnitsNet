@@ -1831,6 +1831,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "hp(S)"),
                             }),
+                        new CulturesForEnumValue((int) PowerUnit.BritishThermalUnitPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Btu/hr"),
+                            }),
                         new CulturesForEnumValue((int) PowerUnit.ElectricalHorsepower,
                             new[]
                             {
@@ -1850,6 +1855,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "hp(H)"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.KilobritishThermalUnitPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kBtu/hr"),
                             }),
                         new CulturesForEnumValue((int) PowerUnit.Kilowatt,
                             new[]
