@@ -141,6 +141,18 @@
           "Abbreviations": [ "bbl/d", "BOPD" ]
         }
       ]
+    },
+    {
+      "SingularName": "CubicFootPerHour",
+      "PluralName": "CubicFeetPerHour",
+      "FromUnitToBaseFunc": "x*7.8657777777777777777777777777778e-6",
+      "FromBaseToUnitFunc": "x/7.8657777777777777777777777777778e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cf/hr" ]
+        }
+      ]
     }
   ]
 }

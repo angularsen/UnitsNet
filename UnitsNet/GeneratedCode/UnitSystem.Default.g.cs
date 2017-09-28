@@ -926,6 +926,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dm³/min"),
                                 new AbbreviationsForCulture("ru-RU", "дм³/мин"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cf/hr"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
                             {
