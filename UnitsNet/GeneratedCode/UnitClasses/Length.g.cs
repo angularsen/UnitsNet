@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double DtpPicas
         {
-            get { return _meters*236.22047244; }
+            get { return _meters*236.220472441; }
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace UnitsNet
         /// </summary>
         public double PrinterPicas
         {
-            get { return _meters*237.10630158; }
+            get { return _meters*237.106301584; }
         }
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// </summary>
         public double Twips
         {
-            get { return _meters*56692.913386; }
+            get { return _meters*56692.913385826; }
         }
 
         /// <summary>
@@ -335,7 +335,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromDtpPicas(double dtppicas)
         {
-            return new Length(dtppicas/236.22047244);
+            return new Length(dtppicas/236.220472441);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromPrinterPicas(double printerpicas)
         {
-            return new Length(printerpicas/237.10630158);
+            return new Length(printerpicas/237.106301584);
         }
 
         /// <summary>
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromTwips(double twips)
         {
-            return new Length(twips/56692.913386);
+            return new Length(twips/56692.913385826);
         }
 
         /// <summary>

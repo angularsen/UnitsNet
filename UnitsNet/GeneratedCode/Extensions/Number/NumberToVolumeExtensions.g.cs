@@ -520,6 +520,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region ImperialBeerBarrel
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this int value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this int? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this long value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this long? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this double value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this double? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this float value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this float? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this decimal value) => Volume.FromImperialBeerBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this decimal? value) => Volume.FromImperialBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region ImperialGallon
 
         /// <inheritdoc cref="Volume.FromImperialGallons(double)"/>
@@ -857,40 +891,6 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromTeaspoons(double?)"/>
         public static Volume? Teaspoons(this decimal? value) => Volume.FromTeaspoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ImperialBeerBarrel
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
-        public static Volume ImperialBeerBarrels(this int value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
-        public static Volume? ImperialBeerBarrels(this int? value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
-        public static Volume ImperialBeerBarrels(this long value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
-        public static Volume? ImperialBeerBarrels(this long? value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
-        public static Volume ImperialBeerBarrels(this double value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
-        public static Volume? ImperialBeerBarrels(this double? value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
-        public static Volume ImperialBeerBarrels(this float value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
-        public static Volume? ImperialBeerBarrels(this float? value) => Volume.FromImperialBeerBarrels(value);
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
-        public static Volume ImperialBeerBarrels(this decimal value) => Volume.FromImperialBeerBarrels(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
-        public static Volume? ImperialBeerBarrels(this decimal? value) => Volume.FromImperialBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

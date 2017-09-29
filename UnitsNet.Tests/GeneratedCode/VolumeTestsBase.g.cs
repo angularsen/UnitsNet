@@ -66,6 +66,7 @@ namespace UnitsNet.Tests
         protected abstract double CubicYardsInOneCubicMeter { get; }
         protected abstract double DecilitersInOneCubicMeter { get; }
         protected abstract double HectolitersInOneCubicMeter { get; }
+        protected abstract double ImperialBeerBarrelsInOneCubicMeter { get; }
         protected abstract double ImperialGallonsInOneCubicMeter { get; }
         protected abstract double ImperialOuncesInOneCubicMeter { get; }
         protected abstract double LitersInOneCubicMeter { get; }
@@ -76,7 +77,6 @@ namespace UnitsNet.Tests
         protected abstract double OilBarrelsInOneCubicMeter { get; }
         protected abstract double TablespoonsInOneCubicMeter { get; }
         protected abstract double TeaspoonsInOneCubicMeter { get; }
-        protected abstract double ImperialBeerBarrelsInOneCubicMeter { get; }
         protected abstract double UkTablespoonsInOneCubicMeter { get; }
         protected abstract double UsBeerBarrelsInOneCubicMeter { get; }
         protected abstract double UsCustomaryCupsInOneCubicMeter { get; }
@@ -101,6 +101,7 @@ namespace UnitsNet.Tests
         protected virtual double CubicYardsTolerance { get { return 1e-5; } }
         protected virtual double DecilitersTolerance { get { return 1e-5; } }
         protected virtual double HectolitersTolerance { get { return 1e-5; } }
+        protected virtual double ImperialBeerBarrelsTolerance { get { return 1e-5; } }
         protected virtual double ImperialGallonsTolerance { get { return 1e-5; } }
         protected virtual double ImperialOuncesTolerance { get { return 1e-5; } }
         protected virtual double LitersTolerance { get { return 1e-5; } }
@@ -111,7 +112,6 @@ namespace UnitsNet.Tests
         protected virtual double OilBarrelsTolerance { get { return 1e-5; } }
         protected virtual double TablespoonsTolerance { get { return 1e-5; } }
         protected virtual double TeaspoonsTolerance { get { return 1e-5; } }
-        protected virtual double ImperialBeerBarrelsTolerance { get { return 1e-5; } }
         protected virtual double UkTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsBeerBarrelsTolerance { get { return 1e-5; } }
         protected virtual double UsCustomaryCupsTolerance { get { return 1e-5; } }
@@ -140,6 +140,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsInOneCubicMeter, cubicmeter.CubicYards, CubicYardsTolerance);
             AssertEx.EqualTolerance(DecilitersInOneCubicMeter, cubicmeter.Deciliters, DecilitersTolerance);
             AssertEx.EqualTolerance(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, HectolitersTolerance);
+            AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.ImperialBeerBarrels, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, ImperialGallonsTolerance);
             AssertEx.EqualTolerance(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, ImperialOuncesTolerance);
             AssertEx.EqualTolerance(LitersInOneCubicMeter, cubicmeter.Liters, LitersTolerance);
@@ -150,7 +151,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(OilBarrelsInOneCubicMeter, cubicmeter.OilBarrels, OilBarrelsTolerance);
             AssertEx.EqualTolerance(TablespoonsInOneCubicMeter, cubicmeter.Tablespoons, TablespoonsTolerance);
             AssertEx.EqualTolerance(TeaspoonsInOneCubicMeter, cubicmeter.Teaspoons, TeaspoonsTolerance);
-            AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.ImperialBeerBarrels, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UkTablespoonsInOneCubicMeter, cubicmeter.UkTablespoons, UkTablespoonsTolerance);
             AssertEx.EqualTolerance(UsBeerBarrelsInOneCubicMeter, cubicmeter.UsBeerBarrels, UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UsCustomaryCupsInOneCubicMeter, cubicmeter.UsCustomaryCups, UsCustomaryCupsTolerance);
@@ -178,6 +178,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.CubicYard).CubicYards, CubicYardsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.Deciliter).Deciliters, DecilitersTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.Hectoliter).Hectoliters, HectolitersTolerance);
+            AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.ImperialBeerBarrel).ImperialBeerBarrels, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.ImperialGallon).ImperialGallons, ImperialGallonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.ImperialOunce).ImperialOunces, ImperialOuncesTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.Liter).Liters, LitersTolerance);
@@ -188,7 +189,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.OilBarrel).OilBarrels, OilBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.Tablespoon).Tablespoons, TablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.Teaspoon).Teaspoons, TeaspoonsTolerance);
-            AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.ImperialBeerBarrel).ImperialBeerBarrels, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UkTablespoon).UkTablespoons, UkTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsBeerBarrel).UsBeerBarrels, UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsCustomaryCup).UsCustomaryCups, UsCustomaryCupsTolerance);
@@ -217,6 +217,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicYard), CubicYardsTolerance);
             AssertEx.EqualTolerance(DecilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Deciliter), DecilitersTolerance);
             AssertEx.EqualTolerance(HectolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Hectoliter), HectolitersTolerance);
+            AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialBeerBarrel), ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(ImperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialGallon), ImperialGallonsTolerance);
             AssertEx.EqualTolerance(ImperialOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialOunce), ImperialOuncesTolerance);
             AssertEx.EqualTolerance(LitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Liter), LitersTolerance);
@@ -227,7 +228,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(OilBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.OilBarrel), OilBarrelsTolerance);
             AssertEx.EqualTolerance(TablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Tablespoon), TablespoonsTolerance);
             AssertEx.EqualTolerance(TeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.Teaspoon), TeaspoonsTolerance);
-            AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialBeerBarrel), ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UkTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UkTablespoon), UkTablespoonsTolerance);
             AssertEx.EqualTolerance(UsBeerBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsBeerBarrel), UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UsCustomaryCupsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsCustomaryCup), UsCustomaryCupsTolerance);
@@ -256,6 +256,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.FromCubicYards(cubicmeter.CubicYards).CubicMeters, CubicYardsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromDeciliters(cubicmeter.Deciliters).CubicMeters, DecilitersTolerance);
             AssertEx.EqualTolerance(1, Volume.FromHectoliters(cubicmeter.Hectoliters).CubicMeters, HectolitersTolerance);
+            AssertEx.EqualTolerance(1, Volume.FromImperialBeerBarrels(cubicmeter.ImperialBeerBarrels).CubicMeters, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromImperialGallons(cubicmeter.ImperialGallons).CubicMeters, ImperialGallonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromImperialOunces(cubicmeter.ImperialOunces).CubicMeters, ImperialOuncesTolerance);
             AssertEx.EqualTolerance(1, Volume.FromLiters(cubicmeter.Liters).CubicMeters, LitersTolerance);
@@ -266,7 +267,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.FromOilBarrels(cubicmeter.OilBarrels).CubicMeters, OilBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromTablespoons(cubicmeter.Tablespoons).CubicMeters, TablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromTeaspoons(cubicmeter.Teaspoons).CubicMeters, TeaspoonsTolerance);
-            AssertEx.EqualTolerance(1, Volume.FromImperialBeerBarrels(cubicmeter.ImperialBeerBarrels).CubicMeters, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUkTablespoons(cubicmeter.UkTablespoons).CubicMeters, UkTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsBeerBarrels(cubicmeter.UsBeerBarrels).CubicMeters, UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsCustomaryCups(cubicmeter.UsCustomaryCups).CubicMeters, UsCustomaryCupsTolerance);

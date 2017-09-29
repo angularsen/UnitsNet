@@ -56,6 +56,7 @@ namespace UnitsNet.Units
         CubicYard,
         Deciliter,
         Hectoliter,
+        ImperialBeerBarrel,
         ImperialGallon,
         ImperialOunce,
         Liter,
@@ -68,7 +69,6 @@ namespace UnitsNet.Units
         Tablespoon,
         [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         Teaspoon,
-        ImperialBeerBarrel,
         UkTablespoon,
         UsBeerBarrel,
         UsCustomaryCup,
