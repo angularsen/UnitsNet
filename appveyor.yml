@@ -36,7 +36,3 @@ deploy:
   skip_symbols: false
   on:
     branch: master
-deploy_script:
-  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-  - ps: .\nuget.exe setApiKey %api_key% -source https://www.nuget.org | out-null
-  - ps: ($artifacts.values | Where-Object { $_.path -like '*.nupkg' }) | foreach-object {nuget.exe push $_.path -Source https://www.nuget.org/api/v2/package}
