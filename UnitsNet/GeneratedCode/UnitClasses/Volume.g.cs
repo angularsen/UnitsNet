@@ -234,6 +234,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in HectocubicFeet.
+        /// </summary>
+        public double HectocubicFeet
+        {
+            get { return (_cubicMeters/0.0283168) / 1e2d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in HectocubicMeters.
+        /// </summary>
+        public double HectocubicMeters
+        {
+            get { return (_cubicMeters) / 1e2d; }
+        }
+
+        /// <summary>
         ///     Get Volume in Hectoliters.
         /// </summary>
         public double Hectoliters
@@ -258,11 +274,67 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in KilocubicFeet.
+        /// </summary>
+        public double KilocubicFeet
+        {
+            get { return (_cubicMeters/0.0283168) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in KilocubicMeters.
+        /// </summary>
+        public double KilocubicMeters
+        {
+            get { return (_cubicMeters) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in KiloimperialGallons.
+        /// </summary>
+        public double KiloimperialGallons
+        {
+            get { return (_cubicMeters/0.00454609000000181429905810072407) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in KilousGallons.
+        /// </summary>
+        public double KilousGallons
+        {
+            get { return (_cubicMeters/0.00378541) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Volume in Liters.
         /// </summary>
         public double Liters
         {
             get { return _cubicMeters*1e3; }
+        }
+
+        /// <summary>
+        ///     Get Volume in MegacubicFeet.
+        /// </summary>
+        public double MegacubicFeet
+        {
+            get { return (_cubicMeters/0.0283168) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in MegaimperialGallons.
+        /// </summary>
+        public double MegaimperialGallons
+        {
+            get { return (_cubicMeters/0.00454609000000181429905810072407) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in MegausGallons.
+        /// </summary>
+        public double MegausGallons
+        {
+            get { return (_cubicMeters/0.00378541) / 1e6d; }
         }
 
         /// <summary>
@@ -493,6 +565,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from HectocubicFeet.
+        /// </summary>
+        public static Volume FromHectocubicFeet(double hectocubicfeet)
+        {
+            return new Volume((hectocubicfeet*0.0283168) * 1e2d);
+        }
+
+        /// <summary>
+        ///     Get Volume from HectocubicMeters.
+        /// </summary>
+        public static Volume FromHectocubicMeters(double hectocubicmeters)
+        {
+            return new Volume((hectocubicmeters) * 1e2d);
+        }
+
+        /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
         public static Volume FromHectoliters(double hectoliters)
@@ -517,11 +605,67 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from KilocubicFeet.
+        /// </summary>
+        public static Volume FromKilocubicFeet(double kilocubicfeet)
+        {
+            return new Volume((kilocubicfeet*0.0283168) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Volume from KilocubicMeters.
+        /// </summary>
+        public static Volume FromKilocubicMeters(double kilocubicmeters)
+        {
+            return new Volume((kilocubicmeters) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Volume from KiloimperialGallons.
+        /// </summary>
+        public static Volume FromKiloimperialGallons(double kiloimperialgallons)
+        {
+            return new Volume((kiloimperialgallons*0.00454609000000181429905810072407) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Volume from KilousGallons.
+        /// </summary>
+        public static Volume FromKilousGallons(double kilousgallons)
+        {
+            return new Volume((kilousgallons*0.00378541) * 1e3d);
+        }
+
+        /// <summary>
         ///     Get Volume from Liters.
         /// </summary>
         public static Volume FromLiters(double liters)
         {
             return new Volume(liters/1e3);
+        }
+
+        /// <summary>
+        ///     Get Volume from MegacubicFeet.
+        /// </summary>
+        public static Volume FromMegacubicFeet(double megacubicfeet)
+        {
+            return new Volume((megacubicfeet*0.0283168) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get Volume from MegaimperialGallons.
+        /// </summary>
+        public static Volume FromMegaimperialGallons(double megaimperialgallons)
+        {
+            return new Volume((megaimperialgallons*0.00454609000000181429905810072407) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get Volume from MegausGallons.
+        /// </summary>
+        public static Volume FromMegausGallons(double megausgallons)
+        {
+            return new Volume((megausgallons*0.00378541) * 1e6d);
         }
 
         /// <summary>
@@ -834,6 +978,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable HectocubicFeet.
+        /// </summary>
+        public static Volume? FromHectocubicFeet(double? hectocubicfeet)
+        {
+            if (hectocubicfeet.HasValue)
+            {
+                return FromHectocubicFeet(hectocubicfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable HectocubicMeters.
+        /// </summary>
+        public static Volume? FromHectocubicMeters(double? hectocubicmeters)
+        {
+            if (hectocubicmeters.HasValue)
+            {
+                return FromHectocubicMeters(hectocubicmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable Hectoliters.
         /// </summary>
         public static Volume? FromHectoliters(double? hectoliters)
@@ -879,6 +1053,66 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable KilocubicFeet.
+        /// </summary>
+        public static Volume? FromKilocubicFeet(double? kilocubicfeet)
+        {
+            if (kilocubicfeet.HasValue)
+            {
+                return FromKilocubicFeet(kilocubicfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable KilocubicMeters.
+        /// </summary>
+        public static Volume? FromKilocubicMeters(double? kilocubicmeters)
+        {
+            if (kilocubicmeters.HasValue)
+            {
+                return FromKilocubicMeters(kilocubicmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable KiloimperialGallons.
+        /// </summary>
+        public static Volume? FromKiloimperialGallons(double? kiloimperialgallons)
+        {
+            if (kiloimperialgallons.HasValue)
+            {
+                return FromKiloimperialGallons(kiloimperialgallons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable KilousGallons.
+        /// </summary>
+        public static Volume? FromKilousGallons(double? kilousgallons)
+        {
+            if (kilousgallons.HasValue)
+            {
+                return FromKilousGallons(kilousgallons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable Liters.
         /// </summary>
         public static Volume? FromLiters(double? liters)
@@ -886,6 +1120,51 @@ namespace UnitsNet
             if (liters.HasValue)
             {
                 return FromLiters(liters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable MegacubicFeet.
+        /// </summary>
+        public static Volume? FromMegacubicFeet(double? megacubicfeet)
+        {
+            if (megacubicfeet.HasValue)
+            {
+                return FromMegacubicFeet(megacubicfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable MegaimperialGallons.
+        /// </summary>
+        public static Volume? FromMegaimperialGallons(double? megaimperialgallons)
+        {
+            if (megaimperialgallons.HasValue)
+            {
+                return FromMegaimperialGallons(megaimperialgallons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable MegausGallons.
+        /// </summary>
+        public static Volume? FromMegausGallons(double? megausgallons)
+        {
+            if (megausgallons.HasValue)
+            {
+                return FromMegausGallons(megausgallons.Value);
             }
             else
             {
@@ -1141,14 +1420,32 @@ namespace UnitsNet
                     return FromCubicYards(val);
                 case VolumeUnit.Deciliter:
                     return FromDeciliters(val);
+                case VolumeUnit.HectocubicFoot:
+                    return FromHectocubicFeet(val);
+                case VolumeUnit.HectocubicMeter:
+                    return FromHectocubicMeters(val);
                 case VolumeUnit.Hectoliter:
                     return FromHectoliters(val);
                 case VolumeUnit.ImperialGallon:
                     return FromImperialGallons(val);
                 case VolumeUnit.ImperialOunce:
                     return FromImperialOunces(val);
+                case VolumeUnit.KilocubicFoot:
+                    return FromKilocubicFeet(val);
+                case VolumeUnit.KilocubicMeter:
+                    return FromKilocubicMeters(val);
+                case VolumeUnit.KiloimperialGallon:
+                    return FromKiloimperialGallons(val);
+                case VolumeUnit.KilousGallon:
+                    return FromKilousGallons(val);
                 case VolumeUnit.Liter:
                     return FromLiters(val);
+                case VolumeUnit.MegacubicFoot:
+                    return FromMegacubicFeet(val);
+                case VolumeUnit.MegaimperialGallon:
+                    return FromMegaimperialGallons(val);
+                case VolumeUnit.MegausGallon:
+                    return FromMegausGallons(val);
                 case VolumeUnit.MetricCup:
                     return FromMetricCups(val);
                 case VolumeUnit.MetricTeaspoon:
@@ -1225,14 +1522,32 @@ namespace UnitsNet
                     return FromCubicYards(value.Value);
                 case VolumeUnit.Deciliter:
                     return FromDeciliters(value.Value);
+                case VolumeUnit.HectocubicFoot:
+                    return FromHectocubicFeet(value.Value);
+                case VolumeUnit.HectocubicMeter:
+                    return FromHectocubicMeters(value.Value);
                 case VolumeUnit.Hectoliter:
                     return FromHectoliters(value.Value);
                 case VolumeUnit.ImperialGallon:
                     return FromImperialGallons(value.Value);
                 case VolumeUnit.ImperialOunce:
                     return FromImperialOunces(value.Value);
+                case VolumeUnit.KilocubicFoot:
+                    return FromKilocubicFeet(value.Value);
+                case VolumeUnit.KilocubicMeter:
+                    return FromKilocubicMeters(value.Value);
+                case VolumeUnit.KiloimperialGallon:
+                    return FromKiloimperialGallons(value.Value);
+                case VolumeUnit.KilousGallon:
+                    return FromKilousGallons(value.Value);
                 case VolumeUnit.Liter:
                     return FromLiters(value.Value);
+                case VolumeUnit.MegacubicFoot:
+                    return FromMegacubicFeet(value.Value);
+                case VolumeUnit.MegaimperialGallon:
+                    return FromMegaimperialGallons(value.Value);
+                case VolumeUnit.MegausGallon:
+                    return FromMegausGallons(value.Value);
                 case VolumeUnit.MetricCup:
                     return FromMetricCups(value.Value);
                 case VolumeUnit.MetricTeaspoon:
@@ -1444,14 +1759,32 @@ namespace UnitsNet
                     return CubicYards;
                 case VolumeUnit.Deciliter:
                     return Deciliters;
+                case VolumeUnit.HectocubicFoot:
+                    return HectocubicFeet;
+                case VolumeUnit.HectocubicMeter:
+                    return HectocubicMeters;
                 case VolumeUnit.Hectoliter:
                     return Hectoliters;
                 case VolumeUnit.ImperialGallon:
                     return ImperialGallons;
                 case VolumeUnit.ImperialOunce:
                     return ImperialOunces;
+                case VolumeUnit.KilocubicFoot:
+                    return KilocubicFeet;
+                case VolumeUnit.KilocubicMeter:
+                    return KilocubicMeters;
+                case VolumeUnit.KiloimperialGallon:
+                    return KiloimperialGallons;
+                case VolumeUnit.KilousGallon:
+                    return KilousGallons;
                 case VolumeUnit.Liter:
                     return Liters;
+                case VolumeUnit.MegacubicFoot:
+                    return MegacubicFeet;
+                case VolumeUnit.MegaimperialGallon:
+                    return MegaimperialGallons;
+                case VolumeUnit.MegausGallon:
+                    return MegausGallons;
                 case VolumeUnit.MetricCup:
                     return MetricCups;
                 case VolumeUnit.MetricTeaspoon:

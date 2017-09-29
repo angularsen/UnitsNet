@@ -48,6 +48,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CubicYardsInOneCubicMeter => 1.30795062;
 
         protected override double DecilitersInOneCubicMeter => 1E4;
+        protected override double HectocubicFeetInOneCubicMeter => 3.531472e-1;
+        protected override double HectocubicMetersInOneCubicMeter => 0.01;
 
         protected override double HectolitersInOneCubicMeter => 1E1;
 
@@ -55,7 +57,15 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ImperialOuncesInOneCubicMeter => 35195.07972;
 
+        protected override double KilocubicFeetInOneCubicMeter => 3.531472e-2;
+        protected override double KilocubicMetersInOneCubicMeter => 0.001;
+        protected override double KiloimperialGallonsInOneCubicMeter => 2.1996924e-1;
+        protected override double KilousGallonsInOneCubicMeter => 2.6417217e-1;
+
         protected override double LitersInOneCubicMeter => 1E3;
+        protected override double MegacubicFeetInOneCubicMeter => 3.531472e-5;
+        protected override double MegaimperialGallonsInOneCubicMeter => 2.1996924e-4;
+        protected override double MegausGallonsInOneCubicMeter => 2.6417217e-4;
 
         protected override double MicrolitersInOneCubicMeter => 1E9;
 

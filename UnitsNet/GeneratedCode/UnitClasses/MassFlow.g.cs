@@ -186,6 +186,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow in MegapoundsPerHour.
+        /// </summary>
+        public double MegapoundsPerHour
+        {
+            get { return (_gramsPerSecond*7.93664) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get MassFlow in MicrogramsPerSecond.
         /// </summary>
         public double MicrogramsPerSecond
@@ -215,6 +223,14 @@ namespace UnitsNet
         public double PoundsPerHour
         {
             get { return _gramsPerSecond*7.93664; }
+        }
+
+        /// <summary>
+        ///     Get MassFlow in ShortTonsPerHour.
+        /// </summary>
+        public double ShortTonsPerHour
+        {
+            get { return _gramsPerSecond/251.9957611; }
         }
 
         /// <summary>
@@ -291,6 +307,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow from MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow FromMegapoundsPerHour(double megapoundsperhour)
+        {
+            return new MassFlow((megapoundsperhour/7.93664) * 1e6d);
+        }
+
+        /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
         /// </summary>
         public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
@@ -320,6 +344,14 @@ namespace UnitsNet
         public static MassFlow FromPoundsPerHour(double poundsperhour)
         {
             return new MassFlow(poundsperhour/7.93664);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
+        {
+            return new MassFlow(shorttonsperhour*251.9957611);
         }
 
         /// <summary>
@@ -438,6 +470,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerHour(double? megapoundsperhour)
+        {
+            if (megapoundsperhour.HasValue)
+            {
+                return FromMegapoundsPerHour(megapoundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
         /// </summary>
         public static MassFlow? FromMicrogramsPerSecond(double? microgramspersecond)
@@ -498,6 +545,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(double? shorttonsperhour)
+        {
+            if (shorttonsperhour.HasValue)
+            {
+                return FromShortTonsPerHour(shorttonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerDay.
         /// </summary>
         public static MassFlow? FromTonnesPerDay(double? tonnesperday)
@@ -538,6 +600,8 @@ namespace UnitsNet
                     return FromKilogramsPerHour(val);
                 case MassFlowUnit.KilogramPerSecond:
                     return FromKilogramsPerSecond(val);
+                case MassFlowUnit.MegapoundPerHour:
+                    return FromMegapoundsPerHour(val);
                 case MassFlowUnit.MicrogramPerSecond:
                     return FromMicrogramsPerSecond(val);
                 case MassFlowUnit.MilligramPerSecond:
@@ -546,6 +610,8 @@ namespace UnitsNet
                     return FromNanogramsPerSecond(val);
                 case MassFlowUnit.PoundPerHour:
                     return FromPoundsPerHour(val);
+                case MassFlowUnit.ShortTonPerHour:
+                    return FromShortTonsPerHour(val);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(val);
 
@@ -584,6 +650,8 @@ namespace UnitsNet
                     return FromKilogramsPerHour(value.Value);
                 case MassFlowUnit.KilogramPerSecond:
                     return FromKilogramsPerSecond(value.Value);
+                case MassFlowUnit.MegapoundPerHour:
+                    return FromMegapoundsPerHour(value.Value);
                 case MassFlowUnit.MicrogramPerSecond:
                     return FromMicrogramsPerSecond(value.Value);
                 case MassFlowUnit.MilligramPerSecond:
@@ -592,6 +660,8 @@ namespace UnitsNet
                     return FromNanogramsPerSecond(value.Value);
                 case MassFlowUnit.PoundPerHour:
                     return FromPoundsPerHour(value.Value);
+                case MassFlowUnit.ShortTonPerHour:
+                    return FromShortTonsPerHour(value.Value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value.Value);
 
@@ -765,6 +835,8 @@ namespace UnitsNet
                     return KilogramsPerHour;
                 case MassFlowUnit.KilogramPerSecond:
                     return KilogramsPerSecond;
+                case MassFlowUnit.MegapoundPerHour:
+                    return MegapoundsPerHour;
                 case MassFlowUnit.MicrogramPerSecond:
                     return MicrogramsPerSecond;
                 case MassFlowUnit.MilligramPerSecond:
@@ -773,6 +845,8 @@ namespace UnitsNet
                     return NanogramsPerSecond;
                 case MassFlowUnit.PoundPerHour:
                     return PoundsPerHour;
+                case MassFlowUnit.ShortTonPerHour:
+                    return ShortTonsPerHour;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
 
