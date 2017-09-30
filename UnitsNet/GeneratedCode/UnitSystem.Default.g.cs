@@ -1741,6 +1741,46 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kg·mm²"),
                             }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·mm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·mm²"),
+                            }),
                         new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareCentimeter,
                             new[]
                             {
@@ -1770,6 +1810,26 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb·in²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·mm²"),
                             }),
                     }),
                 new UnitLocalization(typeof (MolarityUnit),
