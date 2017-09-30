@@ -2,7 +2,7 @@
 
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
 
-Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, well-tested and portable.
+Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.
 
 ### Build Targets
 
