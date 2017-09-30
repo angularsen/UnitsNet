@@ -22,9 +22,9 @@ Build Targets:
 
 Overview
 ---
-* [508 units in 48 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
-* [Over 1000 unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
-* Immutable structs that implement IEquatable, IComparable
+* [48 quantities with a total of 500+ units](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Extension methods](#extension-methods) for short-hand creation and conversions
