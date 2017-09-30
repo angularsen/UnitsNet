@@ -98,24 +98,23 @@ var usEnglish = new CultureInfo("en-US");
 var russian = new CultureInfo("ru-RU");
 var oneKg = Mass.FromKilograms(1);
 
-// ToString() with Thread.CurrentUICulture as US English and Russian respectively
-"1 kg" == oneKg.ToString();
-"1 кг" == oneKg.ToString();
+// Honors Thread.CurrentUICulture
+Thread.CurrentUICulture = russian;
+string kgRu = oneKg.ToString(); // "1 кг"
 
 // ToString() with specific culture and string format pattern
-"mg 1.00" == oneKg.ToString(MassUnit.Milligram, usEnglish, "{1} {0:0.00}");
-"мг 1,00" == oneKg.ToString(MassUnit.Milligram, russian, "{1} {0:0.00}");
+string mgUs = oneKg.ToString(MassUnit.Milligram, usEnglish, "{1} {0:0.00}"); // "mg 1.00"
+string mgRu = oneKg.ToString(MassUnit.Milligram, russian, "{1} {0:0.00}"); // "мг 1,00"
 
 // Parse measurement from string
 Mass kg = Mass.Parse(usEnglish, "1.0 kg");
-Mass kg = Mass.Parse(russian, "1,0 кг");
 
 // Parse unit from string, a unit can have multiple abbreviations
-RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("rpm");
-RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
+RotationalSpeedUnit rpm1 == RotationalSpeed.ParseUnit("rpm"); // RotationalSpeedUnit.RevolutionPerMinute
+RotationalSpeedUnit rpm2 == RotationalSpeed.ParseUnit("r/min");  // RotationalSpeedUnit.RevolutionPerMinute
 
 // Get default abbreviation for a unit
-"kg" == Mass.GetAbbreviation(MassUnit.Kilogram);
+string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 ```
 
 <a name="example-app"></a>Example: Creating a unit converter app
