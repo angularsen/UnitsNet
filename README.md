@@ -1,5 +1,5 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k?svg=true)](https://ci.appveyor.com/project/anjdreas/unitsnet) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/anjdreas/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
+[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/angularsen/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
 
 Units.NET
 ===
@@ -13,7 +13,7 @@ Installing
 ---
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
 
-![Install-Package UnitsNet](https://raw.githubusercontent.com/anjdreas/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
 
 Build Targets:
 * .NET Standard 1.0
@@ -23,7 +23,7 @@ Build Targets:
 Overview
 ---
 * [508 units in 48 unit classes](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
-* [Over 1000 unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
+* [Over 1000 unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement IEquatable, IComparable
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
@@ -32,7 +32,7 @@ Overview
 * [Example: Creating a unit converter app](#example-app)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
-* Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
+* Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
@@ -120,7 +120,7 @@ RotationalSpeedUnit.RevolutionPerMinute == RotationalSpeed.ParseUnit("r/min");
 
 <a name="example-app"></a>Example: Creating a unit converter app
 ---
-*TODO: Add actual sample app and link to it here with screenshot. See [#274](https://github.com/anjdreas/UnitsNet/issues/274) for details.*
+*TODO: Add actual sample app and link to it here with screenshot. See [#274](https://github.com/angularsen/UnitsNet/issues/274) for details.*
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
 
@@ -144,12 +144,12 @@ Units.NET was intended for convenience and ease of use, not highly accurate conv
 
 The tests accept an error up to 1E-5 for most units added so far. Exceptions include units like Teaspoon, where the base unit cubic meter is a lot bigger. In many usecases this is sufficient, but for others this may be a showstopper and something you need to be aware of.
 
-For more details, see [Precision](https://github.com/anjdreas/UnitsNet/wiki/Precision).
+For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
 
 
 <a name="serialization"></a>Serialization
 ---
-* `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/anjdreas/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+* `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
 **Important!** 
 We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
@@ -159,9 +159,9 @@ The base unit of any unit should be be treated as volatile as we have changed th
 
 <a name="contribute"></a>Want To Contribute?
 ---
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/anjdreas/UnitsNet/issues) by creating an issue.
+This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/angularsen/UnitsNet/issues) by creating an issue.
 
-Please read the wiki on [Adding a New Unit](https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit).
+Please read the wiki on [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit).
 
 Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*.json` files and running `generate-code.bat` to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
 
@@ -171,14 +171,14 @@ Generally adding a unit involves adding or modifying `UnitsNet\UnitDefinitions\*
 
 <a name="ci"></a>Continuous Integration
 ---
-[AppVeyor](https://ci.appveyor.com/project/anjdreas/unitsnet) performs the following:
+[AppVeyor](https://ci.appveyor.com/project/angularsen/unitsnet) performs the following:
 * Build and test all branches
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed
 
 <a name="who-are-using"></a>Who are Using This?
 ---
-It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/anjdreas/UnitsNet/issues) or edit the [README.md](https://github.com/anjdreas/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
+It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/UnitsNet/issues) or edit the [README.md](https://github.com/angularsen/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
