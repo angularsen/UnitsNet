@@ -13,7 +13,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 ### Overview
 
 * [50+ quantities with a total of 500+ units](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [1000+ unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
+* [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Quantities as immutable structs that implement `IEquatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous quantities or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
@@ -22,7 +22,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 * [Example: Creating a unit converter app](#example-app)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
-* Extensible with [custom units](https://github.com/anjdreas/UnitsNet/wiki/Extending-with-Custom-Units)
+* Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)

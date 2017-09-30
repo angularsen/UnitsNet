@@ -1,5 +1,5 @@
-// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright © 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

@@ -5,7 +5,7 @@
 	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForOtherTypes/@EntryValue">UseVarWhenEvident</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForSimpleTypes/@EntryValue">UseVarWhenEvident</s:String>
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Copyright(c) 2007 Andreas Gullberg Larsen&#xD;
-https://github.com/anjdreas/UnitsNet&#xD;
+https://github.com/angularsen/UnitsNet&#xD;
 &#xD;
 Permission is hereby granted, free of charge, to any person obtaining a copy&#xD;
 of this software and associated documentation files (the "Software"), to deal&#xD;
