@@ -1,22 +1,17 @@
-# Units.NET
+## Units.NET
 
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
 
 Stop littering your code with unnecessary calculations. Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, well-tested and portable.
 
-## Installing
+### Build Targets
 
-Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
-
-`Install-Package UnitsNet`
-
-Build Targets:
 * .NET Standard 1.0
 * .NET 3.5 Client
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
 
-Overview
----
+### Overview
+
 * [50+ quantities with a total of 500+ units](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
 * [1000+ unit tests](https://ci.appveyor.com/project/anjdreas/unitsnet) on conversions and localizations
 * Quantities as immutable structs that implement `IEquatable`, `IComparable`
@@ -31,3 +26,11 @@ Overview
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
+
+### Installing
+
+Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
+
+```
+Install-Package UnitsNet
+```
