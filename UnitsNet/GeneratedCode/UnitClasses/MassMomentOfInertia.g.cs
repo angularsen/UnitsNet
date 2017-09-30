@@ -194,6 +194,70 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassMomentOfInertia in KilotonneSquareCentimeters.
+        /// </summary>
+        public double KilotonneSquareCentimeters
+        {
+            get { return (_kilogramSquareMeters*1e1) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in KilotonneSquareDecimeters.
+        /// </summary>
+        public double KilotonneSquareDecimeters
+        {
+            get { return (_kilogramSquareMeters*1e-1) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in KilotonneSquareMeters.
+        /// </summary>
+        public double KilotonneSquareMeters
+        {
+            get { return (_kilogramSquareMeters*1e-3) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in KilotonneSquareMilimeters.
+        /// </summary>
+        public double KilotonneSquareMilimeters
+        {
+            get { return (_kilogramSquareMeters*1e3) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in MegatonneSquareCentimeters.
+        /// </summary>
+        public double MegatonneSquareCentimeters
+        {
+            get { return (_kilogramSquareMeters*1e1) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in MegatonneSquareDecimeters.
+        /// </summary>
+        public double MegatonneSquareDecimeters
+        {
+            get { return (_kilogramSquareMeters*1e-1) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in MegatonneSquareMeters.
+        /// </summary>
+        public double MegatonneSquareMeters
+        {
+            get { return (_kilogramSquareMeters*1e-3) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in MegatonneSquareMilimeters.
+        /// </summary>
+        public double MegatonneSquareMilimeters
+        {
+            get { return (_kilogramSquareMeters*1e3) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get MassMomentOfInertia in MilligramSquareCentimeters.
         /// </summary>
         public double MilligramSquareCentimeters
@@ -239,6 +303,38 @@ namespace UnitsNet
         public double PoundSquareInches
         {
             get { return _kilogramSquareMeters/2.9263965e-4; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in TonneSquareCentimeters.
+        /// </summary>
+        public double TonneSquareCentimeters
+        {
+            get { return _kilogramSquareMeters*1e1; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in TonneSquareDecimeters.
+        /// </summary>
+        public double TonneSquareDecimeters
+        {
+            get { return _kilogramSquareMeters*1e-1; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in TonneSquareMeters.
+        /// </summary>
+        public double TonneSquareMeters
+        {
+            get { return _kilogramSquareMeters*1e-3; }
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in TonneSquareMilimeters.
+        /// </summary>
+        public double TonneSquareMilimeters
+        {
+            get { return _kilogramSquareMeters*1e3; }
         }
 
         #endregion
@@ -315,6 +411,70 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromKilotonneSquareCentimeters(double kilotonnesquarecentimeters)
+        {
+            return new MassMomentOfInertia((kilotonnesquarecentimeters/1e1) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromKilotonneSquareDecimeters(double kilotonnesquaredecimeters)
+        {
+            return new MassMomentOfInertia((kilotonnesquaredecimeters/1e-1) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from KilotonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia FromKilotonneSquareMeters(double kilotonnesquaremeters)
+        {
+            return new MassMomentOfInertia((kilotonnesquaremeters/1e-3) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromKilotonneSquareMilimeters(double kilotonnesquaremilimeters)
+        {
+            return new MassMomentOfInertia((kilotonnesquaremilimeters/1e3) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromMegatonneSquareCentimeters(double megatonnesquarecentimeters)
+        {
+            return new MassMomentOfInertia((megatonnesquarecentimeters/1e1) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromMegatonneSquareDecimeters(double megatonnesquaredecimeters)
+        {
+            return new MassMomentOfInertia((megatonnesquaredecimeters/1e-1) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from MegatonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia FromMegatonneSquareMeters(double megatonnesquaremeters)
+        {
+            return new MassMomentOfInertia((megatonnesquaremeters/1e-3) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromMegatonneSquareMilimeters(double megatonnesquaremilimeters)
+        {
+            return new MassMomentOfInertia((megatonnesquaremilimeters/1e3) * 1e6d);
+        }
+
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareCentimeters(double milligramsquarecentimeters)
@@ -360,6 +520,38 @@ namespace UnitsNet
         public static MassMomentOfInertia FromPoundSquareInches(double poundsquareinches)
         {
             return new MassMomentOfInertia(poundsquareinches*2.9263965e-4);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from TonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromTonneSquareCentimeters(double tonnesquarecentimeters)
+        {
+            return new MassMomentOfInertia(tonnesquarecentimeters/1e1);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from TonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromTonneSquareDecimeters(double tonnesquaredecimeters)
+        {
+            return new MassMomentOfInertia(tonnesquaredecimeters/1e-1);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from TonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia FromTonneSquareMeters(double tonnesquaremeters)
+        {
+            return new MassMomentOfInertia(tonnesquaremeters/1e-3);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from TonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia FromTonneSquareMilimeters(double tonnesquaremilimeters)
+        {
+            return new MassMomentOfInertia(tonnesquaremilimeters/1e3);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -485,6 +677,126 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareCentimeters(double? kilotonnesquarecentimeters)
+        {
+            if (kilotonnesquarecentimeters.HasValue)
+            {
+                return FromKilotonneSquareCentimeters(kilotonnesquarecentimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareDecimeters(double? kilotonnesquaredecimeters)
+        {
+            if (kilotonnesquaredecimeters.HasValue)
+            {
+                return FromKilotonneSquareDecimeters(kilotonnesquaredecimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareMeters(double? kilotonnesquaremeters)
+        {
+            if (kilotonnesquaremeters.HasValue)
+            {
+                return FromKilotonneSquareMeters(kilotonnesquaremeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareMilimeters(double? kilotonnesquaremilimeters)
+        {
+            if (kilotonnesquaremilimeters.HasValue)
+            {
+                return FromKilotonneSquareMilimeters(kilotonnesquaremilimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareCentimeters(double? megatonnesquarecentimeters)
+        {
+            if (megatonnesquarecentimeters.HasValue)
+            {
+                return FromMegatonneSquareCentimeters(megatonnesquarecentimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareDecimeters(double? megatonnesquaredecimeters)
+        {
+            if (megatonnesquaredecimeters.HasValue)
+            {
+                return FromMegatonneSquareDecimeters(megatonnesquaredecimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareMeters(double? megatonnesquaremeters)
+        {
+            if (megatonnesquaremeters.HasValue)
+            {
+                return FromMegatonneSquareMeters(megatonnesquaremeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareMilimeters(double? megatonnesquaremilimeters)
+        {
+            if (megatonnesquaremilimeters.HasValue)
+            {
+                return FromMegatonneSquareMilimeters(megatonnesquaremilimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareCentimeters(double? milligramsquarecentimeters)
@@ -574,6 +886,66 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareCentimeters(double? tonnesquarecentimeters)
+        {
+            if (tonnesquarecentimeters.HasValue)
+            {
+                return FromTonneSquareCentimeters(tonnesquarecentimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareDecimeters(double? tonnesquaredecimeters)
+        {
+            if (tonnesquaredecimeters.HasValue)
+            {
+                return FromTonneSquareDecimeters(tonnesquaredecimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareMeters(double? tonnesquaremeters)
+        {
+            if (tonnesquaremeters.HasValue)
+            {
+                return FromTonneSquareMeters(tonnesquaremeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareMilimeters(double? tonnesquaremilimeters)
+        {
+            if (tonnesquaremilimeters.HasValue)
+            {
+                return FromTonneSquareMilimeters(tonnesquaremilimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -602,6 +974,22 @@ namespace UnitsNet
                     return FromKilogramSquareMeters(val);
                 case MassMomentOfInertiaUnit.KilogramSquareMillimeter:
                     return FromKilogramSquareMillimeters(val);
+                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter:
+                    return FromKilotonneSquareCentimeters(val);
+                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter:
+                    return FromKilotonneSquareDecimeters(val);
+                case MassMomentOfInertiaUnit.KilotonneSquareMeter:
+                    return FromKilotonneSquareMeters(val);
+                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter:
+                    return FromKilotonneSquareMilimeters(val);
+                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter:
+                    return FromMegatonneSquareCentimeters(val);
+                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter:
+                    return FromMegatonneSquareDecimeters(val);
+                case MassMomentOfInertiaUnit.MegatonneSquareMeter:
+                    return FromMegatonneSquareMeters(val);
+                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter:
+                    return FromMegatonneSquareMilimeters(val);
                 case MassMomentOfInertiaUnit.MilligramSquareCentimeter:
                     return FromMilligramSquareCentimeters(val);
                 case MassMomentOfInertiaUnit.MilligramSquareDecimeter:
@@ -614,6 +1002,14 @@ namespace UnitsNet
                     return FromPoundSquareFeet(val);
                 case MassMomentOfInertiaUnit.PoundSquareInch:
                     return FromPoundSquareInches(val);
+                case MassMomentOfInertiaUnit.TonneSquareCentimeter:
+                    return FromTonneSquareCentimeters(val);
+                case MassMomentOfInertiaUnit.TonneSquareDecimeter:
+                    return FromTonneSquareDecimeters(val);
+                case MassMomentOfInertiaUnit.TonneSquareMeter:
+                    return FromTonneSquareMeters(val);
+                case MassMomentOfInertiaUnit.TonneSquareMilimeter:
+                    return FromTonneSquareMilimeters(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -652,6 +1048,22 @@ namespace UnitsNet
                     return FromKilogramSquareMeters(value.Value);
                 case MassMomentOfInertiaUnit.KilogramSquareMillimeter:
                     return FromKilogramSquareMillimeters(value.Value);
+                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter:
+                    return FromKilotonneSquareCentimeters(value.Value);
+                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter:
+                    return FromKilotonneSquareDecimeters(value.Value);
+                case MassMomentOfInertiaUnit.KilotonneSquareMeter:
+                    return FromKilotonneSquareMeters(value.Value);
+                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter:
+                    return FromKilotonneSquareMilimeters(value.Value);
+                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter:
+                    return FromMegatonneSquareCentimeters(value.Value);
+                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter:
+                    return FromMegatonneSquareDecimeters(value.Value);
+                case MassMomentOfInertiaUnit.MegatonneSquareMeter:
+                    return FromMegatonneSquareMeters(value.Value);
+                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter:
+                    return FromMegatonneSquareMilimeters(value.Value);
                 case MassMomentOfInertiaUnit.MilligramSquareCentimeter:
                     return FromMilligramSquareCentimeters(value.Value);
                 case MassMomentOfInertiaUnit.MilligramSquareDecimeter:
@@ -664,6 +1076,14 @@ namespace UnitsNet
                     return FromPoundSquareFeet(value.Value);
                 case MassMomentOfInertiaUnit.PoundSquareInch:
                     return FromPoundSquareInches(value.Value);
+                case MassMomentOfInertiaUnit.TonneSquareCentimeter:
+                    return FromTonneSquareCentimeters(value.Value);
+                case MassMomentOfInertiaUnit.TonneSquareDecimeter:
+                    return FromTonneSquareDecimeters(value.Value);
+                case MassMomentOfInertiaUnit.TonneSquareMeter:
+                    return FromTonneSquareMeters(value.Value);
+                case MassMomentOfInertiaUnit.TonneSquareMilimeter:
+                    return FromTonneSquareMilimeters(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -837,6 +1257,22 @@ namespace UnitsNet
                     return KilogramSquareMeters;
                 case MassMomentOfInertiaUnit.KilogramSquareMillimeter:
                     return KilogramSquareMillimeters;
+                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter:
+                    return KilotonneSquareCentimeters;
+                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter:
+                    return KilotonneSquareDecimeters;
+                case MassMomentOfInertiaUnit.KilotonneSquareMeter:
+                    return KilotonneSquareMeters;
+                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter:
+                    return KilotonneSquareMilimeters;
+                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter:
+                    return MegatonneSquareCentimeters;
+                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter:
+                    return MegatonneSquareDecimeters;
+                case MassMomentOfInertiaUnit.MegatonneSquareMeter:
+                    return MegatonneSquareMeters;
+                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter:
+                    return MegatonneSquareMilimeters;
                 case MassMomentOfInertiaUnit.MilligramSquareCentimeter:
                     return MilligramSquareCentimeters;
                 case MassMomentOfInertiaUnit.MilligramSquareDecimeter:
@@ -849,6 +1285,14 @@ namespace UnitsNet
                     return PoundSquareFeet;
                 case MassMomentOfInertiaUnit.PoundSquareInch:
                     return PoundSquareInches;
+                case MassMomentOfInertiaUnit.TonneSquareCentimeter:
+                    return TonneSquareCentimeters;
+                case MassMomentOfInertiaUnit.TonneSquareDecimeter:
+                    return TonneSquareDecimeters;
+                case MassMomentOfInertiaUnit.TonneSquareMeter:
+                    return TonneSquareMeters;
+                case MassMomentOfInertiaUnit.TonneSquareMilimeter:
+                    return TonneSquareMilimeters;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

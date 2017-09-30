@@ -56,6 +56,58 @@
       ]
     },
     {
+      "SingularName": "TonneSquareMeter",
+      "PluralName": "TonneSquareMeters",
+      "FromUnitToBaseFunc": "x/1e-3",
+      "FromBaseToUnitFunc": "x*1e-3",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareDecimeter",
+      "PluralName": "TonneSquareDecimeters",
+      "FromUnitToBaseFunc": "x/1e-1",
+      "FromBaseToUnitFunc": "x*1e-1",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·dm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareCentimeter",
+      "PluralName": "TonneSquareCentimeters",
+      "FromUnitToBaseFunc": "x/1e1",
+      "FromBaseToUnitFunc": "x*1e1",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneSquareMilimeter",
+      "PluralName": "TonneSquareMilimeters",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t·mm²" ]
+        }
+      ]
+    },
+    {
       "SingularName": "PoundSquareFoot",
       "PluralName": "PoundSquareFeet",
       "FromUnitToBaseFunc": "x*4.21401101e-2",
