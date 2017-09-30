@@ -17,8 +17,8 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 
 Build Targets:
 * .NET Standard 1.0
-* Portable 4.0 Profile328 (.NET 4, Silverlight 5, Win8, WinPhone8.1 + WP Silverlight 8)
 * .NET 3.5 Client
+* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
 
 Overview
 ---
