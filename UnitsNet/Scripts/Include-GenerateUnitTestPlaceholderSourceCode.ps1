@@ -13,7 +13,7 @@ function GenerateUnitTestPlaceholderSourceCode($unitClass)
 //     in this derived class, reminding the developer to implement the test case
 //     for the new unit.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
@@ -22,8 +22,8 @@ function GenerateUnitTestPlaceholderSourceCode($unitClass)
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

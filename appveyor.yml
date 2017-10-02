@@ -29,9 +29,16 @@ test: off
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
+environment:
+  api_key:
+    secure: Onn5DCtRxwNADYG8i4snNuUOE5qhUsUSv5unaY5SMLv4l2FbRnIUlbdVw02s39Xk
 deploy:
 - provider: NuGet
   api_key:
-    secure: 4E0S7bjDLDdCCLtRqD0mMXTg5pOwppHWS5C77acZ9HpvaN8rGmwn6ANfLrAUxxF+
+    secure: Onn5DCtRxwNADYG8i4snNuUOE5qhUsUSv5unaY5SMLv4l2FbRnIUlbdVw02s39Xk
+  skip_symbols: false
   on:
     branch: master
+deploy_script:
+  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe  
+  - ps: ($artifacts.values | Where-Object {($_.path -like '*.nupkg') -and  !($_.path -like '*.symbols.nupkg')}) | foreach-object {nuget.exe push $_.path -Source https://www.nuget.org/api/v2/package -ApiKey $env:api_key}

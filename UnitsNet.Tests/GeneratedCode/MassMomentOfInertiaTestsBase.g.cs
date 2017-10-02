@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
@@ -15,8 +15,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -60,12 +60,24 @@ namespace UnitsNet.Tests
         protected abstract double KilogramSquareDecimetersInOneKilogramSquareMeter { get; }
         protected abstract double KilogramSquareMetersInOneKilogramSquareMeter { get; }
         protected abstract double KilogramSquareMillimetersInOneKilogramSquareMeter { get; }
+        protected abstract double KilotonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected abstract double KilotonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected abstract double KilotonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected abstract double KilotonneSquareMilimetersInOneKilogramSquareMeter { get; }
+        protected abstract double MegatonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected abstract double MegatonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected abstract double MegatonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected abstract double MegatonneSquareMilimetersInOneKilogramSquareMeter { get; }
         protected abstract double MilligramSquareCentimetersInOneKilogramSquareMeter { get; }
         protected abstract double MilligramSquareDecimetersInOneKilogramSquareMeter { get; }
         protected abstract double MilligramSquareMetersInOneKilogramSquareMeter { get; }
         protected abstract double MilligramSquareMillimetersInOneKilogramSquareMeter { get; }
         protected abstract double PoundSquareFeetInOneKilogramSquareMeter { get; }
         protected abstract double PoundSquareInchesInOneKilogramSquareMeter { get; }
+        protected abstract double TonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected abstract double TonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected abstract double TonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected abstract double TonneSquareMilimetersInOneKilogramSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramSquareCentimetersTolerance { get { return 1e-5; } }
@@ -76,12 +88,24 @@ namespace UnitsNet.Tests
         protected virtual double KilogramSquareDecimetersTolerance { get { return 1e-5; } }
         protected virtual double KilogramSquareMetersTolerance { get { return 1e-5; } }
         protected virtual double KilogramSquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareMilimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareMilimetersTolerance { get { return 1e-5; } }
         protected virtual double MilligramSquareCentimetersTolerance { get { return 1e-5; } }
         protected virtual double MilligramSquareDecimetersTolerance { get { return 1e-5; } }
         protected virtual double MilligramSquareMetersTolerance { get { return 1e-5; } }
         protected virtual double MilligramSquareMillimetersTolerance { get { return 1e-5; } }
         protected virtual double PoundSquareFeetTolerance { get { return 1e-5; } }
         protected virtual double PoundSquareInchesTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareMilimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -96,12 +120,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilogramSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.KilogramSquareDecimeters, KilogramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(KilogramSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.KilogramSquareMeters, KilogramSquareMetersTolerance);
             AssertEx.EqualTolerance(KilogramSquareMillimetersInOneKilogramSquareMeter, kilogramsquaremeter.KilogramSquareMillimeters, KilogramSquareMillimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.KilotonneSquareCentimeters, KilotonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.KilotonneSquareDecimeters, KilotonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.KilotonneSquareMeters, KilotonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.KilotonneSquareMilimeters, KilotonneSquareMilimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.MegatonneSquareCentimeters, MegatonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.MegatonneSquareDecimeters, MegatonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.MegatonneSquareMeters, MegatonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.MegatonneSquareMilimeters, MegatonneSquareMilimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.MilligramSquareCentimeters, MilligramSquareCentimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.MilligramSquareDecimeters, MilligramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.MilligramSquareMeters, MilligramSquareMetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareMillimetersInOneKilogramSquareMeter, kilogramsquaremeter.MilligramSquareMillimeters, MilligramSquareMillimetersTolerance);
             AssertEx.EqualTolerance(PoundSquareFeetInOneKilogramSquareMeter, kilogramsquaremeter.PoundSquareFeet, PoundSquareFeetTolerance);
             AssertEx.EqualTolerance(PoundSquareInchesInOneKilogramSquareMeter, kilogramsquaremeter.PoundSquareInches, PoundSquareInchesTolerance);
+            AssertEx.EqualTolerance(TonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.TonneSquareCentimeters, TonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.TonneSquareDecimeters, TonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.TonneSquareMeters, TonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.TonneSquareMilimeters, TonneSquareMilimetersTolerance);
         }
 
         [Fact]
@@ -115,12 +151,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareDecimeter).KilogramSquareDecimeters, KilogramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareMeter).KilogramSquareMeters, KilogramSquareMetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilogramSquareMillimeter).KilogramSquareMillimeters, KilogramSquareMillimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareCentimeter).KilotonneSquareCentimeters, KilotonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareDecimeter).KilotonneSquareDecimeters, KilotonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareMeter).KilotonneSquareMeters, KilotonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.KilotonneSquareMilimeter).KilotonneSquareMilimeters, KilotonneSquareMilimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareCentimeter).MegatonneSquareCentimeters, MegatonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareDecimeter).MegatonneSquareDecimeters, MegatonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareMeter).MegatonneSquareMeters, MegatonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MegatonneSquareMilimeter).MegatonneSquareMilimeters, MegatonneSquareMilimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareCentimeter).MilligramSquareCentimeters, MilligramSquareCentimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareDecimeter).MilligramSquareDecimeters, MilligramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareMeter).MilligramSquareMeters, MilligramSquareMetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.MilligramSquareMillimeter).MilligramSquareMillimeters, MilligramSquareMillimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.PoundSquareFoot).PoundSquareFeet, PoundSquareFeetTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.PoundSquareInch).PoundSquareInches, PoundSquareInchesTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareCentimeter).TonneSquareCentimeters, TonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).TonneSquareDecimeters, TonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMeter).TonneSquareMeters, TonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMilimeter).TonneSquareMilimeters, TonneSquareMilimetersTolerance);
         }
 
         [Fact]
@@ -135,12 +183,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilogramSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilogramSquareDecimeter), KilogramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(KilogramSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilogramSquareMeter), KilogramSquareMetersTolerance);
             AssertEx.EqualTolerance(KilogramSquareMillimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilogramSquareMillimeter), KilogramSquareMillimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilotonneSquareCentimeter), KilotonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilotonneSquareDecimeter), KilotonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilotonneSquareMeter), KilotonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(KilotonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.KilotonneSquareMilimeter), KilotonneSquareMilimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MegatonneSquareCentimeter), MegatonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MegatonneSquareDecimeter), MegatonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MegatonneSquareMeter), MegatonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(MegatonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MegatonneSquareMilimeter), MegatonneSquareMilimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MilligramSquareCentimeter), MilligramSquareCentimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MilligramSquareDecimeter), MilligramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MilligramSquareMeter), MilligramSquareMetersTolerance);
             AssertEx.EqualTolerance(MilligramSquareMillimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.MilligramSquareMillimeter), MilligramSquareMillimetersTolerance);
             AssertEx.EqualTolerance(PoundSquareFeetInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.PoundSquareFoot), PoundSquareFeetTolerance);
             AssertEx.EqualTolerance(PoundSquareInchesInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.PoundSquareInch), PoundSquareInchesTolerance);
+            AssertEx.EqualTolerance(TonneSquareCentimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.TonneSquareCentimeter), TonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareDecimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.TonneSquareDecimeter), TonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareMetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.TonneSquareMeter), TonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(TonneSquareMilimetersInOneKilogramSquareMeter, kilogramsquaremeter.As(MassMomentOfInertiaUnit.TonneSquareMilimeter), TonneSquareMilimetersTolerance);
         }
 
         [Fact]
@@ -155,12 +215,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilogramSquareDecimeters(kilogramsquaremeter.KilogramSquareDecimeters).KilogramSquareMeters, KilogramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilogramSquareMeters(kilogramsquaremeter.KilogramSquareMeters).KilogramSquareMeters, KilogramSquareMetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilogramSquareMillimeters(kilogramsquaremeter.KilogramSquareMillimeters).KilogramSquareMeters, KilogramSquareMillimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilotonneSquareCentimeters(kilogramsquaremeter.KilotonneSquareCentimeters).KilogramSquareMeters, KilotonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilotonneSquareDecimeters(kilogramsquaremeter.KilotonneSquareDecimeters).KilogramSquareMeters, KilotonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilotonneSquareMeters(kilogramsquaremeter.KilotonneSquareMeters).KilogramSquareMeters, KilotonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromKilotonneSquareMilimeters(kilogramsquaremeter.KilotonneSquareMilimeters).KilogramSquareMeters, KilotonneSquareMilimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMegatonneSquareCentimeters(kilogramsquaremeter.MegatonneSquareCentimeters).KilogramSquareMeters, MegatonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMegatonneSquareDecimeters(kilogramsquaremeter.MegatonneSquareDecimeters).KilogramSquareMeters, MegatonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMegatonneSquareMeters(kilogramsquaremeter.MegatonneSquareMeters).KilogramSquareMeters, MegatonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMegatonneSquareMilimeters(kilogramsquaremeter.MegatonneSquareMilimeters).KilogramSquareMeters, MegatonneSquareMilimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMilligramSquareCentimeters(kilogramsquaremeter.MilligramSquareCentimeters).KilogramSquareMeters, MilligramSquareCentimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMilligramSquareDecimeters(kilogramsquaremeter.MilligramSquareDecimeters).KilogramSquareMeters, MilligramSquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMilligramSquareMeters(kilogramsquaremeter.MilligramSquareMeters).KilogramSquareMeters, MilligramSquareMetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromMilligramSquareMillimeters(kilogramsquaremeter.MilligramSquareMillimeters).KilogramSquareMeters, MilligramSquareMillimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromPoundSquareFeet(kilogramsquaremeter.PoundSquareFeet).KilogramSquareMeters, PoundSquareFeetTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.FromPoundSquareInches(kilogramsquaremeter.PoundSquareInches).KilogramSquareMeters, PoundSquareInchesTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromTonneSquareCentimeters(kilogramsquaremeter.TonneSquareCentimeters).KilogramSquareMeters, TonneSquareCentimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromTonneSquareDecimeters(kilogramsquaremeter.TonneSquareDecimeters).KilogramSquareMeters, TonneSquareDecimetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromTonneSquareMeters(kilogramsquaremeter.TonneSquareMeters).KilogramSquareMeters, TonneSquareMetersTolerance);
+            AssertEx.EqualTolerance(1, MassMomentOfInertia.FromTonneSquareMilimeters(kilogramsquaremeter.TonneSquareMilimeters).KilogramSquareMeters, TonneSquareMilimetersTolerance);
         }
 
         [Fact]

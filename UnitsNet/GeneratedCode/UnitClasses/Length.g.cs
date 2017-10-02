@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
@@ -15,8 +15,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -146,6 +146,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in DtpPicas.
+        /// </summary>
+        public double DtpPicas
+        {
+            get { return _meters*236.220472441; }
+        }
+
+        /// <summary>
+        ///     Get Length in DtpPoints.
+        /// </summary>
+        public double DtpPoints
+        {
+            get { return (_meters/2.54e-2)*72; }
+        }
+
+        /// <summary>
         ///     Get Length in Fathoms.
         /// </summary>
         public double Fathoms
@@ -242,11 +258,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length in PrinterPicas.
+        /// </summary>
+        public double PrinterPicas
+        {
+            get { return _meters*237.106301584; }
+        }
+
+        /// <summary>
+        ///     Get Length in PrinterPoints.
+        /// </summary>
+        public double PrinterPoints
+        {
+            get { return (_meters/2.54e-2)*72.27; }
+        }
+
+        /// <summary>
         ///     Get Length in Shackles.
         /// </summary>
         public double Shackles
         {
             get { return _meters/27.432; }
+        }
+
+        /// <summary>
+        ///     Get Length in Twips.
+        /// </summary>
+        public double Twips
+        {
+            get { return _meters*56692.913385826; }
         }
 
         /// <summary>
@@ -288,6 +328,22 @@ namespace UnitsNet
         public static Length FromDecimeters(double decimeters)
         {
             return new Length((decimeters) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Length from DtpPicas.
+        /// </summary>
+        public static Length FromDtpPicas(double dtppicas)
+        {
+            return new Length(dtppicas/236.220472441);
+        }
+
+        /// <summary>
+        ///     Get Length from DtpPoints.
+        /// </summary>
+        public static Length FromDtpPoints(double dtppoints)
+        {
+            return new Length((dtppoints/72)*2.54e-2);
         }
 
         /// <summary>
@@ -387,11 +443,35 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Length from PrinterPicas.
+        /// </summary>
+        public static Length FromPrinterPicas(double printerpicas)
+        {
+            return new Length(printerpicas/237.106301584);
+        }
+
+        /// <summary>
+        ///     Get Length from PrinterPoints.
+        /// </summary>
+        public static Length FromPrinterPoints(double printerpoints)
+        {
+            return new Length((printerpoints/72.27)*2.54e-2);
+        }
+
+        /// <summary>
         ///     Get Length from Shackles.
         /// </summary>
         public static Length FromShackles(double shackles)
         {
             return new Length(shackles*27.432);
+        }
+
+        /// <summary>
+        ///     Get Length from Twips.
+        /// </summary>
+        public static Length FromTwips(double twips)
+        {
+            return new Length(twips/56692.913385826);
         }
 
         /// <summary>
@@ -435,6 +515,36 @@ namespace UnitsNet
             if (decimeters.HasValue)
             {
                 return FromDecimeters(decimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPicas.
+        /// </summary>
+        public static Length? FromDtpPicas(double? dtppicas)
+        {
+            if (dtppicas.HasValue)
+            {
+                return FromDtpPicas(dtppicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPoints.
+        /// </summary>
+        public static Length? FromDtpPoints(double? dtppoints)
+        {
+            if (dtppoints.HasValue)
+            {
+                return FromDtpPoints(dtppoints.Value);
             }
             else
             {
@@ -623,6 +733,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable PrinterPicas.
+        /// </summary>
+        public static Length? FromPrinterPicas(double? printerpicas)
+        {
+            if (printerpicas.HasValue)
+            {
+                return FromPrinterPicas(printerpicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPoints.
+        /// </summary>
+        public static Length? FromPrinterPoints(double? printerpoints)
+        {
+            if (printerpoints.HasValue)
+            {
+                return FromPrinterPoints(printerpoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Shackles.
         /// </summary>
         public static Length? FromShackles(double? shackles)
@@ -630,6 +770,21 @@ namespace UnitsNet
             if (shackles.HasValue)
             {
                 return FromShackles(shackles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Twips.
+        /// </summary>
+        public static Length? FromTwips(double? twips)
+        {
+            if (twips.HasValue)
+            {
+                return FromTwips(twips.Value);
             }
             else
             {
@@ -683,6 +838,10 @@ namespace UnitsNet
                     return FromCentimeters(val);
                 case LengthUnit.Decimeter:
                     return FromDecimeters(val);
+                case LengthUnit.DtpPica:
+                    return FromDtpPicas(val);
+                case LengthUnit.DtpPoint:
+                    return FromDtpPoints(val);
                 case LengthUnit.Fathom:
                     return FromFathoms(val);
                 case LengthUnit.Foot:
@@ -707,8 +866,14 @@ namespace UnitsNet
                     return FromNanometers(val);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(val);
+                case LengthUnit.PrinterPica:
+                    return FromPrinterPicas(val);
+                case LengthUnit.PrinterPoint:
+                    return FromPrinterPoints(val);
                 case LengthUnit.Shackle:
                     return FromShackles(val);
+                case LengthUnit.Twip:
+                    return FromTwips(val);
                 case LengthUnit.UsSurveyFoot:
                     return FromUsSurveyFeet(val);
                 case LengthUnit.Yard:
@@ -739,6 +904,10 @@ namespace UnitsNet
                     return FromCentimeters(value.Value);
                 case LengthUnit.Decimeter:
                     return FromDecimeters(value.Value);
+                case LengthUnit.DtpPica:
+                    return FromDtpPicas(value.Value);
+                case LengthUnit.DtpPoint:
+                    return FromDtpPoints(value.Value);
                 case LengthUnit.Fathom:
                     return FromFathoms(value.Value);
                 case LengthUnit.Foot:
@@ -763,8 +932,14 @@ namespace UnitsNet
                     return FromNanometers(value.Value);
                 case LengthUnit.NauticalMile:
                     return FromNauticalMiles(value.Value);
+                case LengthUnit.PrinterPica:
+                    return FromPrinterPicas(value.Value);
+                case LengthUnit.PrinterPoint:
+                    return FromPrinterPoints(value.Value);
                 case LengthUnit.Shackle:
                     return FromShackles(value.Value);
+                case LengthUnit.Twip:
+                    return FromTwips(value.Value);
                 case LengthUnit.UsSurveyFoot:
                     return FromUsSurveyFeet(value.Value);
                 case LengthUnit.Yard:
@@ -930,6 +1105,10 @@ namespace UnitsNet
                     return Centimeters;
                 case LengthUnit.Decimeter:
                     return Decimeters;
+                case LengthUnit.DtpPica:
+                    return DtpPicas;
+                case LengthUnit.DtpPoint:
+                    return DtpPoints;
                 case LengthUnit.Fathom:
                     return Fathoms;
                 case LengthUnit.Foot:
@@ -954,8 +1133,14 @@ namespace UnitsNet
                     return Nanometers;
                 case LengthUnit.NauticalMile:
                     return NauticalMiles;
+                case LengthUnit.PrinterPica:
+                    return PrinterPicas;
+                case LengthUnit.PrinterPoint:
+                    return PrinterPoints;
                 case LengthUnit.Shackle:
                     return Shackles;
+                case LengthUnit.Twip:
+                    return Twips;
                 case LengthUnit.UsSurveyFoot:
                     return UsSurveyFeet;
                 case LengthUnit.Yard:

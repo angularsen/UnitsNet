@@ -299,15 +299,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "nb-NO",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -319,15 +319,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "nb-NO",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -339,15 +339,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "nb-NO",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -363,11 +363,11 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "nb-NO",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -379,15 +379,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         },
         {
           "Culture": "nb-NO",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -399,7 +399,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -411,7 +411,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -423,7 +423,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ ]
+          "Abbreviations": []
         }
       ]
     },
@@ -436,6 +436,30 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "bbl" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsBeerBarrel",
+      "PluralName": "UsBeerBarrels",
+      "FromUnitToBaseFunc": "x*0.1173477658",
+      "FromBaseToUnitFunc": "x/0.1173477658",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bl (U.S.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ImperialBeerBarrel",
+      "PluralName": "ImperialBeerBarrels",
+      "FromUnitToBaseFunc": "x*0.16365924",
+      "FromBaseToUnitFunc": "x/0.16365924",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bl (imp.)" ]
         }
       ]
     }

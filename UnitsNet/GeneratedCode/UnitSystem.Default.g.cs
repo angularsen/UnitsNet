@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
@@ -15,8 +15,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -910,6 +910,24 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "th (U.S.)"),
                                 new AbbreviationsForCulture("ru-RU", "Американский терм"),
                             }),
+                        new CulturesForEnumValue((int) EnergyUnit.ThermEc,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "th (E.C.)"),
+                                new AbbreviationsForCulture("ru-RU", "Европейский терм"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.ThermImperial,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "th (imp.)"),
+                                new AbbreviationsForCulture("ru-RU", "Английский терм"),
+                            }),
+                        new CulturesForEnumValue((int) EnergyUnit.ThermUs,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "th (U.S.)"),
+                                new AbbreviationsForCulture("ru-RU", "Американский терм"),
+                            }),
                         new CulturesForEnumValue((int) EnergyUnit.WattHour,
                             new[]
                             {
@@ -1417,6 +1435,16 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dm"),
                                 new AbbreviationsForCulture("ru-RU", "дм"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.DtpPica,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pica"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.DtpPoint,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pt"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Fathom,
                             new[]
                             {
@@ -1425,7 +1453,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) LengthUnit.Foot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ft", "\'"),
+                                new AbbreviationsForCulture("en-US", "ft", "'"),
                                 new AbbreviationsForCulture("ru-RU", "фут"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.Inch,
@@ -1488,10 +1516,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "NM"),
                                 new AbbreviationsForCulture("ru-RU", "мил"),
                             }),
+                        new CulturesForEnumValue((int) LengthUnit.PrinterPica,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pica"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.PrinterPoint,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pt"),
+                            }),
                         new CulturesForEnumValue((int) LengthUnit.Shackle,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "shackle"),
+                            }),
+                        new CulturesForEnumValue((int) LengthUnit.Twip,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "twip"),
                             }),
                         new CulturesForEnumValue((int) LengthUnit.UsSurveyFoot,
                             new[]
@@ -1763,6 +1806,46 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kg·mm²"),
                             }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kt·mm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mt·mm²"),
+                            }),
                         new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareCentimeter,
                             new[]
                             {
@@ -1792,6 +1875,26 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb·in²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·cm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareDecimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·dm²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMilimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t·mm²"),
                             }),
                     }),
                 new UnitLocalization(typeof (MolarityUnit),
@@ -2940,6 +3043,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "hl"),
                                 new AbbreviationsForCulture("ru-RU", "гл"),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.ImperialBeerBarrel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bl (imp.)"),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.ImperialGallon,
                             new[]
                             {
@@ -3049,6 +3157,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", ""),
                                 new AbbreviationsForCulture("ru-RU", ""),
                                 new AbbreviationsForCulture("nb-NO", ""),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsBeerBarrel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bl (U.S.)"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UsCustomaryCup,
                             new[]

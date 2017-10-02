@@ -1,5 +1,5 @@
 ﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -85,7 +85,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TeaspoonsInOneCubicMeter => 202884.13621105801;
 
+        protected override double ImperialBeerBarrelsInOneCubicMeter => 6.1102568972;
+
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
+
+        protected override double UsBeerBarrelsInOneCubicMeter => 8.5216790723083;
 
         protected override double TeaspoonsTolerance => 1E-3;
 

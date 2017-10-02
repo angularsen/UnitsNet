@@ -3,16 +3,16 @@
     <AssemblyName>UnitsNet</AssemblyName>
     <RootNamespace>UnitsNet</RootNamespace>
     <PackageId>UnitsNet</PackageId>
-    <Version>3.73.0</Version>
+    <Version>3.76.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
-    <Copyright>Copyright (c) 2013 Andreas Gullberg Larsen</Copyright>
-    <PackageIconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/anjdreas/UnitsNet</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright Â© 2013 Andreas Gullberg Larsen</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable</PackageTags>
+    <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
     <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
