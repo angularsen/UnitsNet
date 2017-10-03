@@ -43,12 +43,10 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         BoilerHorsepower,
-        BritishThermalUnitPerHour,
         ElectricalHorsepower,
         Femtowatt,
         Gigawatt,
         HydraulicHorsepower,
-        KilobritishThermalUnitPerHour,
         Kilowatt,
         MechanicalHorsepower,
         Megawatt,

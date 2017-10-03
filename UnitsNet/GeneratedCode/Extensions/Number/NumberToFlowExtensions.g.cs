@@ -112,40 +112,6 @@ namespace UnitsNet.Extensions.NumberToFlow
 
         #endregion
 
-        #region CubicFootPerHour
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double)"/>
-        public static Flow CubicFeetPerHour(this int value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double?)"/>
-        public static Flow? CubicFeetPerHour(this int? value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double)"/>
-        public static Flow CubicFeetPerHour(this long value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double?)"/>
-        public static Flow? CubicFeetPerHour(this long? value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double)"/>
-        public static Flow CubicFeetPerHour(this double value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double?)"/>
-        public static Flow? CubicFeetPerHour(this double? value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double)"/>
-        public static Flow CubicFeetPerHour(this float value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double?)"/>
-        public static Flow? CubicFeetPerHour(this float? value) => Flow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double)"/>
-        public static Flow CubicFeetPerHour(this decimal value) => Flow.FromCubicFeetPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(double?)"/>
-        public static Flow? CubicFeetPerHour(this decimal? value) => Flow.FromCubicFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
         #region CubicFootPerSecond
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerSecond(double)"/>

@@ -78,40 +78,6 @@ namespace UnitsNet.Extensions.NumberToPower
 
         #endregion
 
-        #region BritishThermalUnitPerHour
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)"/>
-        public static Power BritishThermalUnitsPerHour(this int value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double?)"/>
-        public static Power? BritishThermalUnitsPerHour(this int? value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)"/>
-        public static Power BritishThermalUnitsPerHour(this long value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double?)"/>
-        public static Power? BritishThermalUnitsPerHour(this long? value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)"/>
-        public static Power BritishThermalUnitsPerHour(this double value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double?)"/>
-        public static Power? BritishThermalUnitsPerHour(this double? value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)"/>
-        public static Power BritishThermalUnitsPerHour(this float value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double?)"/>
-        public static Power? BritishThermalUnitsPerHour(this float? value) => Power.FromBritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)"/>
-        public static Power BritishThermalUnitsPerHour(this decimal value) => Power.FromBritishThermalUnitsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double?)"/>
-        public static Power? BritishThermalUnitsPerHour(this decimal? value) => Power.FromBritishThermalUnitsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
         #region ElectricalHorsepower
 
         /// <inheritdoc cref="Power.FromElectricalHorsepower(double)"/>
@@ -245,40 +211,6 @@ namespace UnitsNet.Extensions.NumberToPower
 
         /// <inheritdoc cref="Power.FromHydraulicHorsepower(double?)"/>
         public static Power? HydraulicHorsepower(this decimal? value) => Power.FromHydraulicHorsepower(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilobritishThermalUnitPerHour
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)"/>
-        public static Power KilobritishThermalUnitsPerHour(this int value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double?)"/>
-        public static Power? KilobritishThermalUnitsPerHour(this int? value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)"/>
-        public static Power KilobritishThermalUnitsPerHour(this long value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double?)"/>
-        public static Power? KilobritishThermalUnitsPerHour(this long? value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)"/>
-        public static Power KilobritishThermalUnitsPerHour(this double value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double?)"/>
-        public static Power? KilobritishThermalUnitsPerHour(this double? value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)"/>
-        public static Power KilobritishThermalUnitsPerHour(this float value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double?)"/>
-        public static Power? KilobritishThermalUnitsPerHour(this float? value) => Power.FromKilobritishThermalUnitsPerHour(value);
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)"/>
-        public static Power KilobritishThermalUnitsPerHour(this decimal value) => Power.FromKilobritishThermalUnitsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double?)"/>
-        public static Power? KilobritishThermalUnitsPerHour(this decimal? value) => Power.FromKilobritishThermalUnitsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

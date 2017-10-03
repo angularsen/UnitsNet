@@ -32,17 +32,15 @@
         }
       ]
     },
-    {
+	{
       "SingularName": "PoundPerHour",
       "PluralName": "PoundsPerHour",
       "FromUnitToBaseFunc": "x/7.93664",
       "FromBaseToUnitFunc": "x*7.93664",
-      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/h" ],
-          "AbbreviationsWithPrefixes": [ "Mlb/h" ]
+          "Abbreviations": [ "lb/h" ]
         }
       ]
     },
@@ -55,18 +53,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "t/d" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "ShortTonPerHour",
-      "PluralName": "ShortTonsPerHour",
-      "FromUnitToBaseFunc": "x*251.9957611",
-      "FromBaseToUnitFunc": "x/251.9957611",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "short tn/h" ]
         }
       ]
     }
