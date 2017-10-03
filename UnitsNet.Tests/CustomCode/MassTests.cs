@@ -38,9 +38,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsInOneKilogram => 1;
 
+        protected override double KilopoundsInOneKilogram => 2.2046226218487757e-3;
+
         protected override double KilotonnesInOneKilogram => 1E-6;
 
         protected override double LongTonsInOneKilogram => 0.000984207;
+
+        protected override double MegapoundsInOneKilogram => 2.2046226218487757e-6;
 
         protected override double MegatonnesInOneKilogram => 1E-6;
 

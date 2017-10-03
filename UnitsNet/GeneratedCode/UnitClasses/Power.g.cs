@@ -138,6 +138,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power in BritishThermalUnitsPerHour.
+        /// </summary>
+        public double BritishThermalUnitsPerHour
+        {
+            get { return Convert.ToDouble(_watts/0.293071m); }
+        }
+
+        /// <summary>
         ///     Get Power in ElectricalHorsepower.
         /// </summary>
         public double ElectricalHorsepower
@@ -167,6 +175,14 @@ namespace UnitsNet
         public double HydraulicHorsepower
         {
             get { return Convert.ToDouble(_watts/745.69988145m); }
+        }
+
+        /// <summary>
+        ///     Get Power in KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public double KilobritishThermalUnitsPerHour
+        {
+            get { return Convert.ToDouble((_watts/0.293071m) / 1e3m); }
         }
 
         /// <summary>
@@ -275,6 +291,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power from BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
+        }
+
+        /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
         public static Power FromElectricalHorsepower(double electricalhorsepower)
@@ -304,6 +328,14 @@ namespace UnitsNet
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
         {
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
+        }
+
+        /// <summary>
+        ///     Get Power from KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
         }
 
         /// <summary>
@@ -412,6 +444,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromBritishThermalUnitsPerHour(double? britishthermalunitsperhour)
+        {
+            if (britishthermalunitsperhour.HasValue)
+            {
+                return FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
         public static Power? FromElectricalHorsepower(double? electricalhorsepower)
@@ -464,6 +511,21 @@ namespace UnitsNet
             if (hydraulichorsepower.HasValue)
             {
                 return FromHydraulicHorsepower(hydraulichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromKilobritishThermalUnitsPerHour(double? kilobritishthermalunitsperhour)
+        {
+            if (kilobritishthermalunitsperhour.HasValue)
+            {
+                return FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value);
             }
             else
             {
@@ -650,6 +712,8 @@ namespace UnitsNet
             {
                 case PowerUnit.BoilerHorsepower:
                     return FromBoilerHorsepower(val);
+                case PowerUnit.BritishThermalUnitPerHour:
+                    return FromBritishThermalUnitsPerHour(val);
                 case PowerUnit.ElectricalHorsepower:
                     return FromElectricalHorsepower(val);
                 case PowerUnit.Femtowatt:
@@ -658,6 +722,8 @@ namespace UnitsNet
                     return FromGigawatts(val);
                 case PowerUnit.HydraulicHorsepower:
                     return FromHydraulicHorsepower(val);
+                case PowerUnit.KilobritishThermalUnitPerHour:
+                    return FromKilobritishThermalUnitsPerHour(val);
                 case PowerUnit.Kilowatt:
                     return FromKilowatts(val);
                 case PowerUnit.MechanicalHorsepower:
@@ -704,6 +770,8 @@ namespace UnitsNet
             {
                 case PowerUnit.BoilerHorsepower:
                     return FromBoilerHorsepower(value.Value);
+                case PowerUnit.BritishThermalUnitPerHour:
+                    return FromBritishThermalUnitsPerHour(value.Value);
                 case PowerUnit.ElectricalHorsepower:
                     return FromElectricalHorsepower(value.Value);
                 case PowerUnit.Femtowatt:
@@ -712,6 +780,8 @@ namespace UnitsNet
                     return FromGigawatts(value.Value);
                 case PowerUnit.HydraulicHorsepower:
                     return FromHydraulicHorsepower(value.Value);
+                case PowerUnit.KilobritishThermalUnitPerHour:
+                    return FromKilobritishThermalUnitsPerHour(value.Value);
                 case PowerUnit.Kilowatt:
                     return FromKilowatts(value.Value);
                 case PowerUnit.MechanicalHorsepower:
@@ -893,6 +963,8 @@ namespace UnitsNet
             {
                 case PowerUnit.BoilerHorsepower:
                     return BoilerHorsepower;
+                case PowerUnit.BritishThermalUnitPerHour:
+                    return BritishThermalUnitsPerHour;
                 case PowerUnit.ElectricalHorsepower:
                     return ElectricalHorsepower;
                 case PowerUnit.Femtowatt:
@@ -901,6 +973,8 @@ namespace UnitsNet
                     return Gigawatts;
                 case PowerUnit.HydraulicHorsepower:
                     return HydraulicHorsepower;
+                case PowerUnit.KilobritishThermalUnitPerHour:
+                    return KilobritishThermalUnitsPerHour;
                 case PowerUnit.Kilowatt:
                     return Kilowatts;
                 case PowerUnit.MechanicalHorsepower:

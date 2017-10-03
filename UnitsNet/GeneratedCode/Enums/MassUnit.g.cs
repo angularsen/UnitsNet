@@ -48,6 +48,7 @@ namespace UnitsNet.Units
         Gram,
         Hectogram,
         Kilogram,
+        Kilopound,
         Kilotonne,
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         LongTon,
+        Megapound,
         Megatonne,
         Microgram,
         Milligram,
