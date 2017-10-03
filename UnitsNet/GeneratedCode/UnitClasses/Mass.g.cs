@@ -178,14 +178,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Mass in Kilopounds.
-        /// </summary>
-        public double Kilopounds
-        {
-            get { return (_kilograms/0.45359237) / 1e3d; }
-        }
-
-        /// <summary>
         ///     Get Mass in Kilotonnes.
         /// </summary>
         public double Kilotonnes
@@ -207,14 +199,6 @@ namespace UnitsNet
         public double LongTons
         {
             get { return _kilograms/1016.0469088; }
-        }
-
-        /// <summary>
-        ///     Get Mass in Megapounds.
-        /// </summary>
-        public double Megapounds
-        {
-            get { return (_kilograms/0.45359237) / 1e6d; }
         }
 
         /// <summary>
@@ -355,14 +339,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Mass from Kilopounds.
-        /// </summary>
-        public static Mass FromKilopounds(double kilopounds)
-        {
-            return new Mass((kilopounds*0.45359237) * 1e3d);
-        }
-
-        /// <summary>
         ///     Get Mass from Kilotonnes.
         /// </summary>
         public static Mass FromKilotonnes(double kilotonnes)
@@ -384,14 +360,6 @@ namespace UnitsNet
         public static Mass FromLongTons(double longtons)
         {
             return new Mass(longtons*1016.0469088);
-        }
-
-        /// <summary>
-        ///     Get Mass from Megapounds.
-        /// </summary>
-        public static Mass FromMegapounds(double megapounds)
-        {
-            return new Mass((megapounds*0.45359237) * 1e6d);
         }
 
         /// <summary>
@@ -567,21 +535,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Mass from nullable Kilopounds.
-        /// </summary>
-        public static Mass? FromKilopounds(double? kilopounds)
-        {
-            if (kilopounds.HasValue)
-            {
-                return FromKilopounds(kilopounds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         ///     Get nullable Mass from nullable Kilotonnes.
         /// </summary>
         public static Mass? FromKilotonnes(double? kilotonnes)
@@ -619,21 +572,6 @@ namespace UnitsNet
             if (longtons.HasValue)
             {
                 return FromLongTons(longtons.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Mass from nullable Megapounds.
-        /// </summary>
-        public static Mass? FromMegapounds(double? megapounds)
-        {
-            if (megapounds.HasValue)
-            {
-                return FromMegapounds(megapounds.Value);
             }
             else
             {
@@ -815,16 +753,12 @@ namespace UnitsNet
                     return FromHectograms(val);
                 case MassUnit.Kilogram:
                     return FromKilograms(val);
-                case MassUnit.Kilopound:
-                    return FromKilopounds(val);
                 case MassUnit.Kilotonne:
                     return FromKilotonnes(val);
                 case MassUnit.LongHundredweight:
                     return FromLongHundredweight(val);
                 case MassUnit.LongTon:
                     return FromLongTons(val);
-                case MassUnit.Megapound:
-                    return FromMegapounds(val);
                 case MassUnit.Megatonne:
                     return FromMegatonnes(val);
                 case MassUnit.Microgram:
@@ -879,16 +813,12 @@ namespace UnitsNet
                     return FromHectograms(value.Value);
                 case MassUnit.Kilogram:
                     return FromKilograms(value.Value);
-                case MassUnit.Kilopound:
-                    return FromKilopounds(value.Value);
                 case MassUnit.Kilotonne:
                     return FromKilotonnes(value.Value);
                 case MassUnit.LongHundredweight:
                     return FromLongHundredweight(value.Value);
                 case MassUnit.LongTon:
                     return FromLongTons(value.Value);
-                case MassUnit.Megapound:
-                    return FromMegapounds(value.Value);
                 case MassUnit.Megatonne:
                     return FromMegatonnes(value.Value);
                 case MassUnit.Microgram:
@@ -1078,16 +1008,12 @@ namespace UnitsNet
                     return Hectograms;
                 case MassUnit.Kilogram:
                     return Kilograms;
-                case MassUnit.Kilopound:
-                    return Kilopounds;
                 case MassUnit.Kilotonne:
                     return Kilotonnes;
                 case MassUnit.LongHundredweight:
                     return LongHundredweight;
                 case MassUnit.LongTon:
                     return LongTons;
-                case MassUnit.Megapound:
-                    return Megapounds;
                 case MassUnit.Megatonne:
                     return Megatonnes;
                 case MassUnit.Microgram:

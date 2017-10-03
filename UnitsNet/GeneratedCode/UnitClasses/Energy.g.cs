@@ -194,14 +194,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy in GigabritishThermalUnits.
-        /// </summary>
-        public double GigabritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e9d; }
-        }
-
-        /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours
@@ -215,14 +207,6 @@ namespace UnitsNet
         public double Joules
         {
             get { return _joules; }
-        }
-
-        /// <summary>
-        ///     Get Energy in KilobritishThermalUnits.
-        /// </summary>
-        public double KilobritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e3d; }
         }
 
         /// <summary>
@@ -247,14 +231,6 @@ namespace UnitsNet
         public double KilowattHours
         {
             get { return (_joules/3600d) / 1e3d; }
-        }
-
-        /// <summary>
-        ///     Get Energy in MegabritishThermalUnits.
-        /// </summary>
-        public double MegabritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e6d; }
         }
 
         /// <summary>
@@ -379,14 +355,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Energy from GigabritishThermalUnits.
-        /// </summary>
-        public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
-        {
-            return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
-        }
-
-        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         public static Energy FromGigawattHours(double gigawatthours)
@@ -400,14 +368,6 @@ namespace UnitsNet
         public static Energy FromJoules(double joules)
         {
             return new Energy(joules);
-        }
-
-        /// <summary>
-        ///     Get Energy from KilobritishThermalUnits.
-        /// </summary>
-        public static Energy FromKilobritishThermalUnits(double kilobritishthermalunits)
-        {
-            return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
         }
 
         /// <summary>
@@ -432,14 +392,6 @@ namespace UnitsNet
         public static Energy FromKilowattHours(double kilowatthours)
         {
             return new Energy((kilowatthours*3600d) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Energy from MegabritishThermalUnits.
-        /// </summary>
-        public static Energy FromMegabritishThermalUnits(double megabritishthermalunits)
-        {
-            return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
         }
 
         /// <summary>
@@ -613,21 +565,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable GigabritishThermalUnits.
-        /// </summary>
-        public static Energy? FromGigabritishThermalUnits(double? gigabritishthermalunits)
-        {
-            if (gigabritishthermalunits.HasValue)
-            {
-                return FromGigabritishThermalUnits(gigabritishthermalunits.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         ///     Get nullable Energy from nullable GigawattHours.
         /// </summary>
         public static Energy? FromGigawattHours(double? gigawatthours)
@@ -650,21 +587,6 @@ namespace UnitsNet
             if (joules.HasValue)
             {
                 return FromJoules(joules.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Energy from nullable KilobritishThermalUnits.
-        /// </summary>
-        public static Energy? FromKilobritishThermalUnits(double? kilobritishthermalunits)
-        {
-            if (kilobritishthermalunits.HasValue)
-            {
-                return FromKilobritishThermalUnits(kilobritishthermalunits.Value);
             }
             else
             {
@@ -710,21 +632,6 @@ namespace UnitsNet
             if (kilowatthours.HasValue)
             {
                 return FromKilowattHours(kilowatthours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Energy from nullable MegabritishThermalUnits.
-        /// </summary>
-        public static Energy? FromMegabritishThermalUnits(double? megabritishthermalunits)
-        {
-            if (megabritishthermalunits.HasValue)
-            {
-                return FromMegabritishThermalUnits(megabritishthermalunits.Value);
             }
             else
             {
@@ -850,22 +757,16 @@ namespace UnitsNet
                     return FromErgs(val);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(val);
-                case EnergyUnit.GigabritishThermalUnit:
-                    return FromGigabritishThermalUnits(val);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(val);
                 case EnergyUnit.Joule:
                     return FromJoules(val);
-                case EnergyUnit.KilobritishThermalUnit:
-                    return FromKilobritishThermalUnits(val);
                 case EnergyUnit.Kilocalorie:
                     return FromKilocalories(val);
                 case EnergyUnit.Kilojoule:
                     return FromKilojoules(val);
                 case EnergyUnit.KilowattHour:
                     return FromKilowattHours(val);
-                case EnergyUnit.MegabritishThermalUnit:
-                    return FromMegabritishThermalUnits(val);
                 case EnergyUnit.Megajoule:
                     return FromMegajoules(val);
                 case EnergyUnit.MegawattHour:
@@ -916,22 +817,16 @@ namespace UnitsNet
                     return FromErgs(value.Value);
                 case EnergyUnit.FootPound:
                     return FromFootPounds(value.Value);
-                case EnergyUnit.GigabritishThermalUnit:
-                    return FromGigabritishThermalUnits(value.Value);
                 case EnergyUnit.GigawattHour:
                     return FromGigawattHours(value.Value);
                 case EnergyUnit.Joule:
                     return FromJoules(value.Value);
-                case EnergyUnit.KilobritishThermalUnit:
-                    return FromKilobritishThermalUnits(value.Value);
                 case EnergyUnit.Kilocalorie:
                     return FromKilocalories(value.Value);
                 case EnergyUnit.Kilojoule:
                     return FromKilojoules(value.Value);
                 case EnergyUnit.KilowattHour:
                     return FromKilowattHours(value.Value);
-                case EnergyUnit.MegabritishThermalUnit:
-                    return FromMegabritishThermalUnits(value.Value);
                 case EnergyUnit.Megajoule:
                     return FromMegajoules(value.Value);
                 case EnergyUnit.MegawattHour:
@@ -1117,22 +1012,16 @@ namespace UnitsNet
                     return Ergs;
                 case EnergyUnit.FootPound:
                     return FootPounds;
-                case EnergyUnit.GigabritishThermalUnit:
-                    return GigabritishThermalUnits;
                 case EnergyUnit.GigawattHour:
                     return GigawattHours;
                 case EnergyUnit.Joule:
                     return Joules;
-                case EnergyUnit.KilobritishThermalUnit:
-                    return KilobritishThermalUnits;
                 case EnergyUnit.Kilocalorie:
                     return Kilocalories;
                 case EnergyUnit.Kilojoule:
                     return Kilojoules;
                 case EnergyUnit.KilowattHour:
                     return KilowattHours;
-                case EnergyUnit.MegabritishThermalUnit:
-                    return MegabritishThermalUnits;
                 case EnergyUnit.Megajoule:
                     return Megajoules;
                 case EnergyUnit.MegawattHour:
