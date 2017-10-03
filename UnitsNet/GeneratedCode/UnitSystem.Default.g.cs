@@ -910,24 +910,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "th (U.S.)"),
                                 new AbbreviationsForCulture("ru-RU", "Американский терм"),
                             }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermEc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (E.C.)"),
-                                new AbbreviationsForCulture("ru-RU", "Европейский терм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermImperial,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "Английский терм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermUs,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "Американский терм"),
-                            }),
                         new CulturesForEnumValue((int) EnergyUnit.WattHour,
                             new[]
                             {
