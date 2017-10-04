@@ -145,8 +145,8 @@
     {
       "SingularName": "CubicFootPerHour",
       "PluralName": "CubicFeetPerHour",
-      "FromUnitToBaseFunc": "x*7.8657777777777777777777777777778e-6",
-      "FromBaseToUnitFunc": "x/7.8657777777777777777777777777778e-6",
+      "FromUnitToBaseFunc": "x*7.8657908332578971664023576305118e-6",
+      "FromBaseToUnitFunc": "x/7.8657908332578971664023576305118e-6",
       "Localization": [
         {
           "Culture": "en-US",

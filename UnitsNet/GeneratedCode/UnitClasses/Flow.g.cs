@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double CubicFeetPerHour
         {
-            get { return _cubicMetersPerSecond/7.8657777777777777777777777777778e-6; }
+            get { return _cubicMetersPerSecond/7.8657908332578971664023576305118e-6; }
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace UnitsNet
         /// </summary>
         public static Flow FromCubicFeetPerHour(double cubicfeetperhour)
         {
-            return new Flow(cubicfeetperhour*7.8657777777777777777777777777778e-6);
+            return new Flow(cubicfeetperhour*7.8657908332578971664023576305118e-6);
         }
 
         /// <summary>
