@@ -3,11 +3,11 @@
     <AssemblyName>UnitsNet</AssemblyName>
     <RootNamespace>UnitsNet</RootNamespace>
     <PackageId>UnitsNet</PackageId>
-    <Version>3.76.0</Version>
+    <Version>3.77.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
-    <Copyright>Copyright Â© 2013 Andreas Gullberg Larsen</Copyright>
+    <Copyright>Copyright Ã‚Â© 2013 Andreas Gullberg Larsen</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
