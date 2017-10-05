@@ -146,11 +146,19 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow in CubicFeetPerHour.
+        /// </summary>
+        public double CubicFeetPerHour
+        {
+            get { return _cubicMetersPerSecond/7.8657907199999087346816086183876e-6; }
+        }
+
+        /// <summary>
         ///     Get Flow in CubicFeetPerSecond.
         /// </summary>
         public double CubicFeetPerSecond
         {
-            get { return _cubicMetersPerSecond*35.314666213; }
+            get { return _cubicMetersPerSecond*35.314666721; }
         }
 
         /// <summary>
@@ -283,11 +291,19 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Flow from CubicFeetPerHour.
+        /// </summary>
+        public static Flow FromCubicFeetPerHour(double cubicfeetperhour)
+        {
+            return new Flow(cubicfeetperhour*7.8657907199999087346816086183876e-6);
+        }
+
+        /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
         public static Flow FromCubicFeetPerSecond(double cubicfeetpersecond)
         {
-            return new Flow(cubicfeetpersecond/35.314666213);
+            return new Flow(cubicfeetpersecond/35.314666721);
         }
 
         /// <summary>
@@ -419,6 +435,21 @@ namespace UnitsNet
             if (cubicdecimetersperminute.HasValue)
             {
                 return FromCubicDecimetersPerMinute(cubicdecimetersperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerHour.
+        /// </summary>
+        public static Flow? FromCubicFeetPerHour(double? cubicfeetperhour)
+        {
+            if (cubicfeetperhour.HasValue)
+            {
+                return FromCubicFeetPerHour(cubicfeetperhour.Value);
             }
             else
             {
@@ -652,6 +683,8 @@ namespace UnitsNet
                     return FromCentilitersPerMinute(val);
                 case FlowUnit.CubicDecimeterPerMinute:
                     return FromCubicDecimetersPerMinute(val);
+                case FlowUnit.CubicFootPerHour:
+                    return FromCubicFeetPerHour(val);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(val);
                 case FlowUnit.CubicMeterPerHour:
@@ -706,6 +739,8 @@ namespace UnitsNet
                     return FromCentilitersPerMinute(value.Value);
                 case FlowUnit.CubicDecimeterPerMinute:
                     return FromCubicDecimetersPerMinute(value.Value);
+                case FlowUnit.CubicFootPerHour:
+                    return FromCubicFeetPerHour(value.Value);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(value.Value);
                 case FlowUnit.CubicMeterPerHour:
@@ -895,6 +930,8 @@ namespace UnitsNet
                     return CentilitersPerMinute;
                 case FlowUnit.CubicDecimeterPerMinute:
                     return CubicDecimetersPerMinute;
+                case FlowUnit.CubicFootPerHour:
+                    return CubicFeetPerHour;
                 case FlowUnit.CubicFootPerSecond:
                     return CubicFeetPerSecond;
                 case FlowUnit.CubicMeterPerHour:
