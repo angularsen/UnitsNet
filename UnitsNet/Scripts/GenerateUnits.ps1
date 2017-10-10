@@ -211,7 +211,7 @@ function Add-PrefixUnits {
                     Localization=$unit.Localization | % {
                         $abbrev = $prefixAbbreviation + $_.Abbreviations[0]
                         if ($_.AbbreviationsWithPrefixes) {
-                            $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex++]
+                            $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex]
                         }
 
                     New-Object PsObject -Property @{
@@ -222,6 +222,7 @@ function Add-PrefixUnits {
 
                 # Append prefix unit
                 $prefixUnits += $prefixUnit
+				$prefixIndex++;
             } # foreach prefixes
         } # foreach units
 
