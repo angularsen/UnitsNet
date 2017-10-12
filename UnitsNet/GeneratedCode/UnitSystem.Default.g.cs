@@ -810,19 +810,19 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Dth (E.C.)"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "Европейский декатерм"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.DecathermImperial,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Dth (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "Английский декатерм"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.DecathermUs,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Dth (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "Американский декатерм"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.ElectronVolt,
                             new[]
@@ -2114,19 +2114,19 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kN/cm²"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "кН/см²"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.KilonewtonPerSquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kN/m²"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "кН/м²"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.KilonewtonPerSquareMillimeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kN/mm²"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "кН/мм²"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Kilopascal,
                             new[]
