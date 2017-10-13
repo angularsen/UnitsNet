@@ -5168,8 +5168,8 @@ define('WinJS/Core/_BaseUtils',[
             if (element.id) {
                 profilerMarkIdentifier += " id='" + element.id + "'";
             }
-            if (element.className) {
-                profilerMarkIdentifier += " class='" + element.className + "'";
+            if (element.quantityName) {
+                profilerMarkIdentifier += " class='" + element.quantityName + "'";
             }
             return profilerMarkIdentifier;
         },
@@ -5443,7 +5443,7 @@ define('WinJS/Utilities/_ElementUtilities',[
     }
 
     function getClassName(e) {
-        var name = e.className || "";
+        var name = e.quantityName || "";
         if (typeof (name) === "string") {
             return name;
         } else {
@@ -5451,14 +5451,14 @@ define('WinJS/Utilities/_ElementUtilities',[
         }
     }
     function setClassName(e, value) {
-        // SVG elements (which use e.className.baseVal) are never undefined,
+        // SVG elements (which use e.quantityName.baseVal) are never undefined,
         // so this logic makes the comparison a bit more compact.
         //
-        var name = e.className || "";
+        var name = e.quantityName || "";
         if (typeof (name) === "string") {
-            e.className = value;
+            e.quantityName = value;
         } else {
-            e.className.baseVal = value;
+            e.quantityName.baseVal = value;
         }
         return e;
     }
@@ -5491,8 +5491,8 @@ define('WinJS/Utilities/_ElementUtilities',[
             }
             return e;
         } else {
-            var className = getClassName(e);
-            var names = className.split(" ");
+            var quantityName = getClassName(e);
+            var names = quantityName.split(" ");
             var l = removeEmpties(names);
             var toAdd;
 
@@ -5523,7 +5523,7 @@ define('WinJS/Utilities/_ElementUtilities',[
             }
             if (toAdd) {
                 if (l > 0 && names[0].length > 0) {
-                    setClassName(e, className + " " + toAdd);
+                    setClassName(e, quantityName + " " + toAdd);
                 } else {
                     setClassName(e, toAdd);
                 }
@@ -5614,8 +5614,8 @@ define('WinJS/Utilities/_ElementUtilities',[
             e.classList.toggle(name);
             return e;
         } else {
-            var className = getClassName(e);
-            var names = className.trim().split(" ");
+            var quantityName = getClassName(e);
+            var names = quantityName.trim().split(" ");
             var l = names.length;
             var found = false;
             for (var i = 0; i < l; i++) {
@@ -5625,9 +5625,9 @@ define('WinJS/Utilities/_ElementUtilities',[
             }
             if (!found) {
                 if (l > 0 && names[0].length > 0) {
-                    setClassName(e, className + " " + name);
+                    setClassName(e, quantityName + " " + name);
                 } else {
-                    setClassName(e, className + name);
+                    setClassName(e, quantityName + name);
                 }
             } else {
                 setClassName(e, names.reduce(function (r, e) {
@@ -6187,7 +6187,7 @@ define('WinJS/Utilities/_ElementUtilities',[
 
     // - object: The object on which GenericListener will listen for events.
     // - objectName: A string representing the name of *object*. This will be
-    //   incorporated into the names of the events and classNames created by
+    //   incorporated into the names of the events and quantityNames created by
     //   GenericListener.
     // - options
     //   - registerThruWinJSCustomEvents: If true, will register for events using
@@ -7445,8 +7445,8 @@ define('WinJS/Utilities/_ElementUtilities',[
             if (e.classList) {
                 return e.classList.contains(name);
             } else {
-                var className = getClassName(e);
-                var names = className.trim().split(" ");
+                var quantityName = getClassName(e);
+                var names = quantityName.trim().split(" ");
                 var l = names.length;
                 for (var i = 0; i < l; i++) {
                     if (names[i] === name) {
@@ -20062,8 +20062,8 @@ define('WinJS/Binding/_Declarative',[
         dest = requireSupportedForProcessing(dest);
         var value = getValue(source, sourceProperties);
         if (Array.isArray(value)) {
-            value.forEach(function (className) {
-                _ElementUtilities.addClass(dest, className);
+            value.forEach(function (quantityName) {
+                _ElementUtilities.addClass(dest, quantityName);
             });
         } else if (value) {
             _ElementUtilities.addClass(dest, value);
@@ -21801,7 +21801,7 @@ define('WinJS/BindingTemplate/_DataTemplateCompiler',[
                     // Properties which can be optimized for all element types
                     //
                     switch (targetProperty) {
-                        case "className":
+                        case "quantityName":
                             return { kind: TextBindingKind.attribute, attribute: "class" };
 
                         case "dir":

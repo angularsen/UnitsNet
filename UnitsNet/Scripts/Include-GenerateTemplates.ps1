@@ -3,11 +3,11 @@
 Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
 It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
 #>
-function GetObsoleteAttribute($unitClass)
+function GetObsoleteAttribute($quantity)
 {
-    if ($unitClass.ObsoleteText)
+    if ($quantity.ObsoleteText)
     {
-        return  "[System.Obsolete(""$($unitClass.ObsoleteText)"")]";
+        return  "[System.Obsolete(""$($quantity.ObsoleteText)"")]";
     }
     return "";
 }

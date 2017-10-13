@@ -1,4 +1,4 @@
-function GenerateUnitSystemDefaultSourceCode($unitClasses)
+function GenerateUnitSystemDefaultSourceCode($quantities)
 {
 @"
 //------------------------------------------------------------------------------
@@ -11,9 +11,9 @@ function GenerateUnitSystemDefaultSourceCode($unitClasses)
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -55,16 +55,16 @@ namespace UnitsNet
             = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
             {
 "@;
-    foreach ($unitClass in $unitClasses) 
+    foreach ($quantity in $quantities) 
     {
-        $className = $unitClass.Name;
-        $unitEnumName = "$className" + "Unit";
+        $quantityName = $quantity.Name;
+        $unitEnumName = "$quantityName" + "Unit";
 @"
                 new UnitLocalization(typeof ($unitEnumName),
                     new[]
                     {
 "@;
-        foreach ($unit in $unitClass.Units) 
+        foreach ($unit in $quantity.Units) 
         {
             $enumValue = $unit.SingularName;
 @"
