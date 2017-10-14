@@ -20,6 +20,8 @@
 // THE SOFTWARE.
 
 using Xunit;
+using UnitsNet.Extensions.NumberToAcceleration;
+using UnitsNet.Extensions.NumberToPower;
 
 namespace UnitsNet.Tests
 {
@@ -43,10 +45,35 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromNullableIntReturnsReturnsNullWhenGivenNull()
+        public static void CreatingQuantityWithDoubleBackingFieldFromNullableIntReturnsNullWhenGivenNull()
         {
             int? nullInt = null;
             Acceleration? acceleration = Acceleration.FromMeterPerSecondSquared(nullInt);
+            Assert.Null(acceleration);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithDoubleBackingFieldFromIntWithExtensionMethodReturnsCorrectValue()
+        {
+            int oneMeterPerSecondSquared = 1;
+            Acceleration acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
+            Assert.Equal(1.0, acceleration.MeterPerSecondSquared);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithDoubleBackingFieldFromNullableIntWithExtensionMethodReturnsCorrectValue()
+        {
+            int? oneMeterPerSecondSquared = 1;
+            Acceleration? acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
+            Assert.NotNull(acceleration);
+            Assert.Equal(1.0, acceleration.Value.MeterPerSecondSquared);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithDoubleBackingFieldFromNullableIntWithExtensionMethodReturnsNullWhenGivenNull()
+        {
+            int? nullInt = null;
+            Acceleration? acceleration = nullInt.MeterPerSecondSquared();
             Assert.Null(acceleration);
         }
 
@@ -68,10 +95,35 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public static void CreatingQuantityWithIntBackingFieldFromNullableIntReturnsReturnsNullWhenGivenNull()
+        public static void CreatingQuantityWithIntBackingFieldFromNullableIntReturnsNullWhenGivenNull()
         {
             int? nullInt = null;
             Power? power = Power.FromWatts(nullInt);
+            Assert.Null(power);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithIntBackingFieldFromIntWithExtensionMethodReturnsCorrectValue()
+        {
+            int oneWatt = 1;
+            Power power = oneWatt.Watts();
+            Assert.Equal(1.0, power.Watts);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithIntBackingFieldFromNullableIntWithExtensionMethodReturnsCorrectValue()
+        {
+            int? oneWatt = 1;
+            Power? power = oneWatt.Watts();
+            Assert.NotNull(power);
+            Assert.Equal(1.0, power.Value.Watts);
+        }
+
+        [Fact]
+        public static void CreatingQuantityWithIntBackingFieldFromNullableIntWithExtensionMethodReturnsNullWhenGivenNull()
+        {
+            int? nullInt = null;
+            Power? power = nullInt.Watts();
             Assert.Null(power);
         }
     }
