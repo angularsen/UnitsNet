@@ -162,6 +162,33 @@ namespace UnitsNet
             return new Level(decibels);
         }
 
+		/// <summary>
+        ///     Get Level from Decibels.
+        /// </summary>
+        public static Level FromDecibels(int decibels)
+        {
+            return new Level(decibels);
+        }
+
+		/// <summary>
+        ///     Get Level from Decibels.
+        /// </summary>
+        public static Level FromDecibels(long decibels)
+        {
+            return new Level(decibels);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Level from Decibels of type decimal.
+        /// </summary>
+        public static Level FromDecibels(decimal decibels)
+        {
+	        return new Level(Convert.ToDouble(decibels));
+        }
+#endif
+
         /// <summary>
         ///     Get Level from Nepers.
         /// </summary>
@@ -169,6 +196,33 @@ namespace UnitsNet
         {
             return new Level((1/0.115129254)*nepers);
         }
+
+		/// <summary>
+        ///     Get Level from Nepers.
+        /// </summary>
+        public static Level FromNepers(int nepers)
+        {
+            return new Level((1/0.115129254)*nepers);
+        }
+
+		/// <summary>
+        ///     Get Level from Nepers.
+        /// </summary>
+        public static Level FromNepers(long nepers)
+        {
+            return new Level((1/0.115129254)*nepers);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Level from Nepers of type decimal.
+        /// </summary>
+        public static Level FromNepers(decimal nepers)
+        {
+	        return new Level((1/0.115129254)*Convert.ToDouble(nepers));
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -187,10 +241,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Level from nullable Decibels.
+        /// </summary>
+        public static Level? FromDecibels(int? decibels)
+        {
+            if (decibels.HasValue)
+            {
+                return FromDecibels(decibels.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Level from nullable Decibels.
+        /// </summary>
+        public static Level? FromDecibels(long? decibels)
+        {
+            if (decibels.HasValue)
+            {
+                return FromDecibels(decibels.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Level from Decibels of type decimal.
+        /// </summary>
+        public static Level? FromDecibels(decimal? decibels)
+        {
+            if (decibels.HasValue)
+            {
+                return FromDecibels(decibels.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Level from nullable Nepers.
         /// </summary>
         public static Level? FromNepers(double? nepers)
+        {
+            if (nepers.HasValue)
+            {
+                return FromNepers(nepers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Level from nullable Nepers.
+        /// </summary>
+        public static Level? FromNepers(int? nepers)
+        {
+            if (nepers.HasValue)
+            {
+                return FromNepers(nepers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Level from nullable Nepers.
+        /// </summary>
+        public static Level? FromNepers(long? nepers)
+        {
+            if (nepers.HasValue)
+            {
+                return FromNepers(nepers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Level from Nepers of type decimal.
+        /// </summary>
+        public static Level? FromNepers(decimal? nepers)
         {
             if (nepers.HasValue)
             {

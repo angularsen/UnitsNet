@@ -186,6 +186,33 @@ namespace UnitsNet
             return new DynamicViscosity((centipoise/10) * 1e-2d);
         }
 
+		/// <summary>
+        ///     Get DynamicViscosity from Centipoise.
+        /// </summary>
+        public static DynamicViscosity FromCentipoise(int centipoise)
+        {
+            return new DynamicViscosity((centipoise/10) * 1e-2d);
+        }
+
+		/// <summary>
+        ///     Get DynamicViscosity from Centipoise.
+        /// </summary>
+        public static DynamicViscosity FromCentipoise(long centipoise)
+        {
+            return new DynamicViscosity((centipoise/10) * 1e-2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get DynamicViscosity from Centipoise of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromCentipoise(decimal centipoise)
+        {
+	        return new DynamicViscosity((Convert.ToDouble(centipoise)/10) * 1e-2d);
+        }
+#endif
+
         /// <summary>
         ///     Get DynamicViscosity from MillipascalSeconds.
         /// </summary>
@@ -193,6 +220,33 @@ namespace UnitsNet
         {
             return new DynamicViscosity((millipascalseconds) * 1e-3d);
         }
+
+		/// <summary>
+        ///     Get DynamicViscosity from MillipascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromMillipascalSeconds(int millipascalseconds)
+        {
+            return new DynamicViscosity((millipascalseconds) * 1e-3d);
+        }
+
+		/// <summary>
+        ///     Get DynamicViscosity from MillipascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromMillipascalSeconds(long millipascalseconds)
+        {
+            return new DynamicViscosity((millipascalseconds) * 1e-3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get DynamicViscosity from MillipascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromMillipascalSeconds(decimal millipascalseconds)
+        {
+	        return new DynamicViscosity((Convert.ToDouble(millipascalseconds)) * 1e-3d);
+        }
+#endif
 
         /// <summary>
         ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
@@ -202,6 +256,33 @@ namespace UnitsNet
             return new DynamicViscosity(newtonsecondspermetersquared);
         }
 
+		/// <summary>
+        ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
+        /// </summary>
+        public static DynamicViscosity FromNewtonSecondsPerMeterSquared(int newtonsecondspermetersquared)
+        {
+            return new DynamicViscosity(newtonsecondspermetersquared);
+        }
+
+		/// <summary>
+        ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
+        /// </summary>
+        public static DynamicViscosity FromNewtonSecondsPerMeterSquared(long newtonsecondspermetersquared)
+        {
+            return new DynamicViscosity(newtonsecondspermetersquared);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromNewtonSecondsPerMeterSquared(decimal newtonsecondspermetersquared)
+        {
+	        return new DynamicViscosity(Convert.ToDouble(newtonsecondspermetersquared));
+        }
+#endif
+
         /// <summary>
         ///     Get DynamicViscosity from PascalSeconds.
         /// </summary>
@@ -209,6 +290,33 @@ namespace UnitsNet
         {
             return new DynamicViscosity(pascalseconds);
         }
+
+		/// <summary>
+        ///     Get DynamicViscosity from PascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromPascalSeconds(int pascalseconds)
+        {
+            return new DynamicViscosity(pascalseconds);
+        }
+
+		/// <summary>
+        ///     Get DynamicViscosity from PascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromPascalSeconds(long pascalseconds)
+        {
+            return new DynamicViscosity(pascalseconds);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get DynamicViscosity from PascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromPascalSeconds(decimal pascalseconds)
+        {
+	        return new DynamicViscosity(Convert.ToDouble(pascalseconds));
+        }
+#endif
 
         /// <summary>
         ///     Get DynamicViscosity from Poise.
@@ -218,12 +326,84 @@ namespace UnitsNet
             return new DynamicViscosity(poise/10);
         }
 
+		/// <summary>
+        ///     Get DynamicViscosity from Poise.
+        /// </summary>
+        public static DynamicViscosity FromPoise(int poise)
+        {
+            return new DynamicViscosity(poise/10);
+        }
+
+		/// <summary>
+        ///     Get DynamicViscosity from Poise.
+        /// </summary>
+        public static DynamicViscosity FromPoise(long poise)
+        {
+            return new DynamicViscosity(poise/10);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get DynamicViscosity from Poise of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromPoise(decimal poise)
+        {
+	        return new DynamicViscosity(Convert.ToDouble(poise)/10);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable Centipoise.
         /// </summary>
         public static DynamicViscosity? FromCentipoise(double? centipoise)
+        {
+            if (centipoise.HasValue)
+            {
+                return FromCentipoise(centipoise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable Centipoise.
+        /// </summary>
+        public static DynamicViscosity? FromCentipoise(int? centipoise)
+        {
+            if (centipoise.HasValue)
+            {
+                return FromCentipoise(centipoise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable Centipoise.
+        /// </summary>
+        public static DynamicViscosity? FromCentipoise(long? centipoise)
+        {
+            if (centipoise.HasValue)
+            {
+                return FromCentipoise(centipoise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from Centipoise of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromCentipoise(decimal? centipoise)
         {
             if (centipoise.HasValue)
             {
@@ -250,10 +430,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable MillipascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromMillipascalSeconds(int? millipascalseconds)
+        {
+            if (millipascalseconds.HasValue)
+            {
+                return FromMillipascalSeconds(millipascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable MillipascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromMillipascalSeconds(long? millipascalseconds)
+        {
+            if (millipascalseconds.HasValue)
+            {
+                return FromMillipascalSeconds(millipascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from MillipascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromMillipascalSeconds(decimal? millipascalseconds)
+        {
+            if (millipascalseconds.HasValue)
+            {
+                return FromMillipascalSeconds(millipascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable NewtonSecondsPerMeterSquared.
         /// </summary>
         public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(double? newtonsecondspermetersquared)
+        {
+            if (newtonsecondspermetersquared.HasValue)
+            {
+                return FromNewtonSecondsPerMeterSquared(newtonsecondspermetersquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable NewtonSecondsPerMeterSquared.
+        /// </summary>
+        public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(int? newtonsecondspermetersquared)
+        {
+            if (newtonsecondspermetersquared.HasValue)
+            {
+                return FromNewtonSecondsPerMeterSquared(newtonsecondspermetersquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable NewtonSecondsPerMeterSquared.
+        /// </summary>
+        public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(long? newtonsecondspermetersquared)
+        {
+            if (newtonsecondspermetersquared.HasValue)
+            {
+                return FromNewtonSecondsPerMeterSquared(newtonsecondspermetersquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from NewtonSecondsPerMeterSquared of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(decimal? newtonsecondspermetersquared)
         {
             if (newtonsecondspermetersquared.HasValue)
             {
@@ -280,10 +550,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable PascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromPascalSeconds(int? pascalseconds)
+        {
+            if (pascalseconds.HasValue)
+            {
+                return FromPascalSeconds(pascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable PascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromPascalSeconds(long? pascalseconds)
+        {
+            if (pascalseconds.HasValue)
+            {
+                return FromPascalSeconds(pascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from PascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromPascalSeconds(decimal? pascalseconds)
+        {
+            if (pascalseconds.HasValue)
+            {
+                return FromPascalSeconds(pascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable Poise.
         /// </summary>
         public static DynamicViscosity? FromPoise(double? poise)
+        {
+            if (poise.HasValue)
+            {
+                return FromPoise(poise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable Poise.
+        /// </summary>
+        public static DynamicViscosity? FromPoise(int? poise)
+        {
+            if (poise.HasValue)
+            {
+                return FromPoise(poise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from nullable Poise.
+        /// </summary>
+        public static DynamicViscosity? FromPoise(long? poise)
+        {
+            if (poise.HasValue)
+            {
+                return FromPoise(poise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable DynamicViscosity from Poise of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromPoise(decimal? poise)
         {
             if (poise.HasValue)
             {

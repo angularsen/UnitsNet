@@ -314,6 +314,33 @@ namespace UnitsNet
             return new Mass((centigrams/1e3) * 1e-2d);
         }
 
+		/// <summary>
+        ///     Get Mass from Centigrams.
+        /// </summary>
+        public static Mass FromCentigrams(int centigrams)
+        {
+            return new Mass((centigrams/1e3) * 1e-2d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Centigrams.
+        /// </summary>
+        public static Mass FromCentigrams(long centigrams)
+        {
+            return new Mass((centigrams/1e3) * 1e-2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Centigrams of type decimal.
+        /// </summary>
+        public static Mass FromCentigrams(decimal centigrams)
+        {
+	        return new Mass((Convert.ToDouble(centigrams)/1e3) * 1e-2d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Decagrams.
         /// </summary>
@@ -321,6 +348,33 @@ namespace UnitsNet
         {
             return new Mass((decagrams/1e3) * 1e1d);
         }
+
+		/// <summary>
+        ///     Get Mass from Decagrams.
+        /// </summary>
+        public static Mass FromDecagrams(int decagrams)
+        {
+            return new Mass((decagrams/1e3) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Decagrams.
+        /// </summary>
+        public static Mass FromDecagrams(long decagrams)
+        {
+            return new Mass((decagrams/1e3) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Decagrams of type decimal.
+        /// </summary>
+        public static Mass FromDecagrams(decimal decagrams)
+        {
+	        return new Mass((Convert.ToDouble(decagrams)/1e3) * 1e1d);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Decigrams.
@@ -330,6 +384,33 @@ namespace UnitsNet
             return new Mass((decigrams/1e3) * 1e-1d);
         }
 
+		/// <summary>
+        ///     Get Mass from Decigrams.
+        /// </summary>
+        public static Mass FromDecigrams(int decigrams)
+        {
+            return new Mass((decigrams/1e3) * 1e-1d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Decigrams.
+        /// </summary>
+        public static Mass FromDecigrams(long decigrams)
+        {
+            return new Mass((decigrams/1e3) * 1e-1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Decigrams of type decimal.
+        /// </summary>
+        public static Mass FromDecigrams(decimal decigrams)
+        {
+	        return new Mass((Convert.ToDouble(decigrams)/1e3) * 1e-1d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Grams.
         /// </summary>
@@ -337,6 +418,33 @@ namespace UnitsNet
         {
             return new Mass(grams/1e3);
         }
+
+		/// <summary>
+        ///     Get Mass from Grams.
+        /// </summary>
+        public static Mass FromGrams(int grams)
+        {
+            return new Mass(grams/1e3);
+        }
+
+		/// <summary>
+        ///     Get Mass from Grams.
+        /// </summary>
+        public static Mass FromGrams(long grams)
+        {
+            return new Mass(grams/1e3);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Grams of type decimal.
+        /// </summary>
+        public static Mass FromGrams(decimal grams)
+        {
+	        return new Mass(Convert.ToDouble(grams)/1e3);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Hectograms.
@@ -346,6 +454,33 @@ namespace UnitsNet
             return new Mass((hectograms/1e3) * 1e2d);
         }
 
+		/// <summary>
+        ///     Get Mass from Hectograms.
+        /// </summary>
+        public static Mass FromHectograms(int hectograms)
+        {
+            return new Mass((hectograms/1e3) * 1e2d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Hectograms.
+        /// </summary>
+        public static Mass FromHectograms(long hectograms)
+        {
+            return new Mass((hectograms/1e3) * 1e2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Hectograms of type decimal.
+        /// </summary>
+        public static Mass FromHectograms(decimal hectograms)
+        {
+	        return new Mass((Convert.ToDouble(hectograms)/1e3) * 1e2d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Kilograms.
         /// </summary>
@@ -353,6 +488,33 @@ namespace UnitsNet
         {
             return new Mass((kilograms/1e3) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Mass from Kilograms.
+        /// </summary>
+        public static Mass FromKilograms(int kilograms)
+        {
+            return new Mass((kilograms/1e3) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Kilograms.
+        /// </summary>
+        public static Mass FromKilograms(long kilograms)
+        {
+            return new Mass((kilograms/1e3) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Kilograms of type decimal.
+        /// </summary>
+        public static Mass FromKilograms(decimal kilograms)
+        {
+	        return new Mass((Convert.ToDouble(kilograms)/1e3) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Kilopounds.
@@ -362,6 +524,33 @@ namespace UnitsNet
             return new Mass((kilopounds*0.45359237) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Mass from Kilopounds.
+        /// </summary>
+        public static Mass FromKilopounds(int kilopounds)
+        {
+            return new Mass((kilopounds*0.45359237) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Kilopounds.
+        /// </summary>
+        public static Mass FromKilopounds(long kilopounds)
+        {
+            return new Mass((kilopounds*0.45359237) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Kilopounds of type decimal.
+        /// </summary>
+        public static Mass FromKilopounds(decimal kilopounds)
+        {
+	        return new Mass((Convert.ToDouble(kilopounds)*0.45359237) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Kilotonnes.
         /// </summary>
@@ -369,6 +558,33 @@ namespace UnitsNet
         {
             return new Mass((kilotonnes*1e3) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Mass from Kilotonnes.
+        /// </summary>
+        public static Mass FromKilotonnes(int kilotonnes)
+        {
+            return new Mass((kilotonnes*1e3) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Kilotonnes.
+        /// </summary>
+        public static Mass FromKilotonnes(long kilotonnes)
+        {
+            return new Mass((kilotonnes*1e3) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Kilotonnes of type decimal.
+        /// </summary>
+        public static Mass FromKilotonnes(decimal kilotonnes)
+        {
+	        return new Mass((Convert.ToDouble(kilotonnes)*1e3) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from LongHundredweight.
@@ -378,6 +594,33 @@ namespace UnitsNet
             return new Mass(longhundredweight/0.01968413055222121);
         }
 
+		/// <summary>
+        ///     Get Mass from LongHundredweight.
+        /// </summary>
+        public static Mass FromLongHundredweight(int longhundredweight)
+        {
+            return new Mass(longhundredweight/0.01968413055222121);
+        }
+
+		/// <summary>
+        ///     Get Mass from LongHundredweight.
+        /// </summary>
+        public static Mass FromLongHundredweight(long longhundredweight)
+        {
+            return new Mass(longhundredweight/0.01968413055222121);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from LongHundredweight of type decimal.
+        /// </summary>
+        public static Mass FromLongHundredweight(decimal longhundredweight)
+        {
+	        return new Mass(Convert.ToDouble(longhundredweight)/0.01968413055222121);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from LongTons.
         /// </summary>
@@ -385,6 +628,33 @@ namespace UnitsNet
         {
             return new Mass(longtons*1016.0469088);
         }
+
+		/// <summary>
+        ///     Get Mass from LongTons.
+        /// </summary>
+        public static Mass FromLongTons(int longtons)
+        {
+            return new Mass(longtons*1016.0469088);
+        }
+
+		/// <summary>
+        ///     Get Mass from LongTons.
+        /// </summary>
+        public static Mass FromLongTons(long longtons)
+        {
+            return new Mass(longtons*1016.0469088);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from LongTons of type decimal.
+        /// </summary>
+        public static Mass FromLongTons(decimal longtons)
+        {
+	        return new Mass(Convert.ToDouble(longtons)*1016.0469088);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Megapounds.
@@ -394,6 +664,33 @@ namespace UnitsNet
             return new Mass((megapounds*0.45359237) * 1e6d);
         }
 
+		/// <summary>
+        ///     Get Mass from Megapounds.
+        /// </summary>
+        public static Mass FromMegapounds(int megapounds)
+        {
+            return new Mass((megapounds*0.45359237) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Megapounds.
+        /// </summary>
+        public static Mass FromMegapounds(long megapounds)
+        {
+            return new Mass((megapounds*0.45359237) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Megapounds of type decimal.
+        /// </summary>
+        public static Mass FromMegapounds(decimal megapounds)
+        {
+	        return new Mass((Convert.ToDouble(megapounds)*0.45359237) * 1e6d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Megatonnes.
         /// </summary>
@@ -401,6 +698,33 @@ namespace UnitsNet
         {
             return new Mass((megatonnes*1e3) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get Mass from Megatonnes.
+        /// </summary>
+        public static Mass FromMegatonnes(int megatonnes)
+        {
+            return new Mass((megatonnes*1e3) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Megatonnes.
+        /// </summary>
+        public static Mass FromMegatonnes(long megatonnes)
+        {
+            return new Mass((megatonnes*1e3) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Megatonnes of type decimal.
+        /// </summary>
+        public static Mass FromMegatonnes(decimal megatonnes)
+        {
+	        return new Mass((Convert.ToDouble(megatonnes)*1e3) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Micrograms.
@@ -410,6 +734,33 @@ namespace UnitsNet
             return new Mass((micrograms/1e3) * 1e-6d);
         }
 
+		/// <summary>
+        ///     Get Mass from Micrograms.
+        /// </summary>
+        public static Mass FromMicrograms(int micrograms)
+        {
+            return new Mass((micrograms/1e3) * 1e-6d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Micrograms.
+        /// </summary>
+        public static Mass FromMicrograms(long micrograms)
+        {
+            return new Mass((micrograms/1e3) * 1e-6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Micrograms of type decimal.
+        /// </summary>
+        public static Mass FromMicrograms(decimal micrograms)
+        {
+	        return new Mass((Convert.ToDouble(micrograms)/1e3) * 1e-6d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Milligrams.
         /// </summary>
@@ -417,6 +768,33 @@ namespace UnitsNet
         {
             return new Mass((milligrams/1e3) * 1e-3d);
         }
+
+		/// <summary>
+        ///     Get Mass from Milligrams.
+        /// </summary>
+        public static Mass FromMilligrams(int milligrams)
+        {
+            return new Mass((milligrams/1e3) * 1e-3d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Milligrams.
+        /// </summary>
+        public static Mass FromMilligrams(long milligrams)
+        {
+            return new Mass((milligrams/1e3) * 1e-3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Milligrams of type decimal.
+        /// </summary>
+        public static Mass FromMilligrams(decimal milligrams)
+        {
+	        return new Mass((Convert.ToDouble(milligrams)/1e3) * 1e-3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Nanograms.
@@ -426,6 +804,33 @@ namespace UnitsNet
             return new Mass((nanograms/1e3) * 1e-9d);
         }
 
+		/// <summary>
+        ///     Get Mass from Nanograms.
+        /// </summary>
+        public static Mass FromNanograms(int nanograms)
+        {
+            return new Mass((nanograms/1e3) * 1e-9d);
+        }
+
+		/// <summary>
+        ///     Get Mass from Nanograms.
+        /// </summary>
+        public static Mass FromNanograms(long nanograms)
+        {
+            return new Mass((nanograms/1e3) * 1e-9d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Nanograms of type decimal.
+        /// </summary>
+        public static Mass FromNanograms(decimal nanograms)
+        {
+	        return new Mass((Convert.ToDouble(nanograms)/1e3) * 1e-9d);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Ounces.
         /// </summary>
@@ -433,6 +838,33 @@ namespace UnitsNet
         {
             return new Mass(ounces/35.2739619);
         }
+
+		/// <summary>
+        ///     Get Mass from Ounces.
+        /// </summary>
+        public static Mass FromOunces(int ounces)
+        {
+            return new Mass(ounces/35.2739619);
+        }
+
+		/// <summary>
+        ///     Get Mass from Ounces.
+        /// </summary>
+        public static Mass FromOunces(long ounces)
+        {
+            return new Mass(ounces/35.2739619);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Ounces of type decimal.
+        /// </summary>
+        public static Mass FromOunces(decimal ounces)
+        {
+	        return new Mass(Convert.ToDouble(ounces)/35.2739619);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Pounds.
@@ -442,6 +874,33 @@ namespace UnitsNet
             return new Mass(pounds*0.45359237);
         }
 
+		/// <summary>
+        ///     Get Mass from Pounds.
+        /// </summary>
+        public static Mass FromPounds(int pounds)
+        {
+            return new Mass(pounds*0.45359237);
+        }
+
+		/// <summary>
+        ///     Get Mass from Pounds.
+        /// </summary>
+        public static Mass FromPounds(long pounds)
+        {
+            return new Mass(pounds*0.45359237);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Pounds of type decimal.
+        /// </summary>
+        public static Mass FromPounds(decimal pounds)
+        {
+	        return new Mass(Convert.ToDouble(pounds)*0.45359237);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from ShortHundredweight.
         /// </summary>
@@ -449,6 +908,33 @@ namespace UnitsNet
         {
             return new Mass(shorthundredweight/0.022046226218487758);
         }
+
+		/// <summary>
+        ///     Get Mass from ShortHundredweight.
+        /// </summary>
+        public static Mass FromShortHundredweight(int shorthundredweight)
+        {
+            return new Mass(shorthundredweight/0.022046226218487758);
+        }
+
+		/// <summary>
+        ///     Get Mass from ShortHundredweight.
+        /// </summary>
+        public static Mass FromShortHundredweight(long shorthundredweight)
+        {
+            return new Mass(shorthundredweight/0.022046226218487758);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from ShortHundredweight of type decimal.
+        /// </summary>
+        public static Mass FromShortHundredweight(decimal shorthundredweight)
+        {
+	        return new Mass(Convert.ToDouble(shorthundredweight)/0.022046226218487758);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from ShortTons.
@@ -458,6 +944,33 @@ namespace UnitsNet
             return new Mass(shorttons*907.18474);
         }
 
+		/// <summary>
+        ///     Get Mass from ShortTons.
+        /// </summary>
+        public static Mass FromShortTons(int shorttons)
+        {
+            return new Mass(shorttons*907.18474);
+        }
+
+		/// <summary>
+        ///     Get Mass from ShortTons.
+        /// </summary>
+        public static Mass FromShortTons(long shorttons)
+        {
+            return new Mass(shorttons*907.18474);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from ShortTons of type decimal.
+        /// </summary>
+        public static Mass FromShortTons(decimal shorttons)
+        {
+	        return new Mass(Convert.ToDouble(shorttons)*907.18474);
+        }
+#endif
+
         /// <summary>
         ///     Get Mass from Stone.
         /// </summary>
@@ -465,6 +978,33 @@ namespace UnitsNet
         {
             return new Mass(stone/0.1574731728702698);
         }
+
+		/// <summary>
+        ///     Get Mass from Stone.
+        /// </summary>
+        public static Mass FromStone(int stone)
+        {
+            return new Mass(stone/0.1574731728702698);
+        }
+
+		/// <summary>
+        ///     Get Mass from Stone.
+        /// </summary>
+        public static Mass FromStone(long stone)
+        {
+            return new Mass(stone/0.1574731728702698);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Stone of type decimal.
+        /// </summary>
+        public static Mass FromStone(decimal stone)
+        {
+	        return new Mass(Convert.ToDouble(stone)/0.1574731728702698);
+        }
+#endif
 
         /// <summary>
         ///     Get Mass from Tonnes.
@@ -474,12 +1014,84 @@ namespace UnitsNet
             return new Mass(tonnes*1e3);
         }
 
+		/// <summary>
+        ///     Get Mass from Tonnes.
+        /// </summary>
+        public static Mass FromTonnes(int tonnes)
+        {
+            return new Mass(tonnes*1e3);
+        }
+
+		/// <summary>
+        ///     Get Mass from Tonnes.
+        /// </summary>
+        public static Mass FromTonnes(long tonnes)
+        {
+            return new Mass(tonnes*1e3);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Mass from Tonnes of type decimal.
+        /// </summary>
+        public static Mass FromTonnes(decimal tonnes)
+        {
+	        return new Mass(Convert.ToDouble(tonnes)*1e3);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Mass from nullable Centigrams.
         /// </summary>
         public static Mass? FromCentigrams(double? centigrams)
+        {
+            if (centigrams.HasValue)
+            {
+                return FromCentigrams(centigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Centigrams.
+        /// </summary>
+        public static Mass? FromCentigrams(int? centigrams)
+        {
+            if (centigrams.HasValue)
+            {
+                return FromCentigrams(centigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Centigrams.
+        /// </summary>
+        public static Mass? FromCentigrams(long? centigrams)
+        {
+            if (centigrams.HasValue)
+            {
+                return FromCentigrams(centigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Centigrams of type decimal.
+        /// </summary>
+        public static Mass? FromCentigrams(decimal? centigrams)
         {
             if (centigrams.HasValue)
             {
@@ -506,10 +1118,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Decagrams.
+        /// </summary>
+        public static Mass? FromDecagrams(int? decagrams)
+        {
+            if (decagrams.HasValue)
+            {
+                return FromDecagrams(decagrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Decagrams.
+        /// </summary>
+        public static Mass? FromDecagrams(long? decagrams)
+        {
+            if (decagrams.HasValue)
+            {
+                return FromDecagrams(decagrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Decagrams of type decimal.
+        /// </summary>
+        public static Mass? FromDecagrams(decimal? decagrams)
+        {
+            if (decagrams.HasValue)
+            {
+                return FromDecagrams(decagrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Decigrams.
         /// </summary>
         public static Mass? FromDecigrams(double? decigrams)
+        {
+            if (decigrams.HasValue)
+            {
+                return FromDecigrams(decigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Decigrams.
+        /// </summary>
+        public static Mass? FromDecigrams(int? decigrams)
+        {
+            if (decigrams.HasValue)
+            {
+                return FromDecigrams(decigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Decigrams.
+        /// </summary>
+        public static Mass? FromDecigrams(long? decigrams)
+        {
+            if (decigrams.HasValue)
+            {
+                return FromDecigrams(decigrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Decigrams of type decimal.
+        /// </summary>
+        public static Mass? FromDecigrams(decimal? decigrams)
         {
             if (decigrams.HasValue)
             {
@@ -536,10 +1238,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Grams.
+        /// </summary>
+        public static Mass? FromGrams(int? grams)
+        {
+            if (grams.HasValue)
+            {
+                return FromGrams(grams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Grams.
+        /// </summary>
+        public static Mass? FromGrams(long? grams)
+        {
+            if (grams.HasValue)
+            {
+                return FromGrams(grams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Grams of type decimal.
+        /// </summary>
+        public static Mass? FromGrams(decimal? grams)
+        {
+            if (grams.HasValue)
+            {
+                return FromGrams(grams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Hectograms.
         /// </summary>
         public static Mass? FromHectograms(double? hectograms)
+        {
+            if (hectograms.HasValue)
+            {
+                return FromHectograms(hectograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Hectograms.
+        /// </summary>
+        public static Mass? FromHectograms(int? hectograms)
+        {
+            if (hectograms.HasValue)
+            {
+                return FromHectograms(hectograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Hectograms.
+        /// </summary>
+        public static Mass? FromHectograms(long? hectograms)
+        {
+            if (hectograms.HasValue)
+            {
+                return FromHectograms(hectograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Hectograms of type decimal.
+        /// </summary>
+        public static Mass? FromHectograms(decimal? hectograms)
         {
             if (hectograms.HasValue)
             {
@@ -566,10 +1358,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilograms.
+        /// </summary>
+        public static Mass? FromKilograms(int? kilograms)
+        {
+            if (kilograms.HasValue)
+            {
+                return FromKilograms(kilograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilograms.
+        /// </summary>
+        public static Mass? FromKilograms(long? kilograms)
+        {
+            if (kilograms.HasValue)
+            {
+                return FromKilograms(kilograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Kilograms of type decimal.
+        /// </summary>
+        public static Mass? FromKilograms(decimal? kilograms)
+        {
+            if (kilograms.HasValue)
+            {
+                return FromKilograms(kilograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Kilopounds.
         /// </summary>
         public static Mass? FromKilopounds(double? kilopounds)
+        {
+            if (kilopounds.HasValue)
+            {
+                return FromKilopounds(kilopounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilopounds.
+        /// </summary>
+        public static Mass? FromKilopounds(int? kilopounds)
+        {
+            if (kilopounds.HasValue)
+            {
+                return FromKilopounds(kilopounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilopounds.
+        /// </summary>
+        public static Mass? FromKilopounds(long? kilopounds)
+        {
+            if (kilopounds.HasValue)
+            {
+                return FromKilopounds(kilopounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Kilopounds of type decimal.
+        /// </summary>
+        public static Mass? FromKilopounds(decimal? kilopounds)
         {
             if (kilopounds.HasValue)
             {
@@ -596,10 +1478,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilotonnes.
+        /// </summary>
+        public static Mass? FromKilotonnes(int? kilotonnes)
+        {
+            if (kilotonnes.HasValue)
+            {
+                return FromKilotonnes(kilotonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Kilotonnes.
+        /// </summary>
+        public static Mass? FromKilotonnes(long? kilotonnes)
+        {
+            if (kilotonnes.HasValue)
+            {
+                return FromKilotonnes(kilotonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Kilotonnes of type decimal.
+        /// </summary>
+        public static Mass? FromKilotonnes(decimal? kilotonnes)
+        {
+            if (kilotonnes.HasValue)
+            {
+                return FromKilotonnes(kilotonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable LongHundredweight.
         /// </summary>
         public static Mass? FromLongHundredweight(double? longhundredweight)
+        {
+            if (longhundredweight.HasValue)
+            {
+                return FromLongHundredweight(longhundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable LongHundredweight.
+        /// </summary>
+        public static Mass? FromLongHundredweight(int? longhundredweight)
+        {
+            if (longhundredweight.HasValue)
+            {
+                return FromLongHundredweight(longhundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable LongHundredweight.
+        /// </summary>
+        public static Mass? FromLongHundredweight(long? longhundredweight)
+        {
+            if (longhundredweight.HasValue)
+            {
+                return FromLongHundredweight(longhundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from LongHundredweight of type decimal.
+        /// </summary>
+        public static Mass? FromLongHundredweight(decimal? longhundredweight)
         {
             if (longhundredweight.HasValue)
             {
@@ -626,10 +1598,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable LongTons.
+        /// </summary>
+        public static Mass? FromLongTons(int? longtons)
+        {
+            if (longtons.HasValue)
+            {
+                return FromLongTons(longtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable LongTons.
+        /// </summary>
+        public static Mass? FromLongTons(long? longtons)
+        {
+            if (longtons.HasValue)
+            {
+                return FromLongTons(longtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from LongTons of type decimal.
+        /// </summary>
+        public static Mass? FromLongTons(decimal? longtons)
+        {
+            if (longtons.HasValue)
+            {
+                return FromLongTons(longtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Megapounds.
         /// </summary>
         public static Mass? FromMegapounds(double? megapounds)
+        {
+            if (megapounds.HasValue)
+            {
+                return FromMegapounds(megapounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Megapounds.
+        /// </summary>
+        public static Mass? FromMegapounds(int? megapounds)
+        {
+            if (megapounds.HasValue)
+            {
+                return FromMegapounds(megapounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Megapounds.
+        /// </summary>
+        public static Mass? FromMegapounds(long? megapounds)
+        {
+            if (megapounds.HasValue)
+            {
+                return FromMegapounds(megapounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Megapounds of type decimal.
+        /// </summary>
+        public static Mass? FromMegapounds(decimal? megapounds)
         {
             if (megapounds.HasValue)
             {
@@ -656,10 +1718,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Megatonnes.
+        /// </summary>
+        public static Mass? FromMegatonnes(int? megatonnes)
+        {
+            if (megatonnes.HasValue)
+            {
+                return FromMegatonnes(megatonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Megatonnes.
+        /// </summary>
+        public static Mass? FromMegatonnes(long? megatonnes)
+        {
+            if (megatonnes.HasValue)
+            {
+                return FromMegatonnes(megatonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Megatonnes of type decimal.
+        /// </summary>
+        public static Mass? FromMegatonnes(decimal? megatonnes)
+        {
+            if (megatonnes.HasValue)
+            {
+                return FromMegatonnes(megatonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Micrograms.
         /// </summary>
         public static Mass? FromMicrograms(double? micrograms)
+        {
+            if (micrograms.HasValue)
+            {
+                return FromMicrograms(micrograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Micrograms.
+        /// </summary>
+        public static Mass? FromMicrograms(int? micrograms)
+        {
+            if (micrograms.HasValue)
+            {
+                return FromMicrograms(micrograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Micrograms.
+        /// </summary>
+        public static Mass? FromMicrograms(long? micrograms)
+        {
+            if (micrograms.HasValue)
+            {
+                return FromMicrograms(micrograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Micrograms of type decimal.
+        /// </summary>
+        public static Mass? FromMicrograms(decimal? micrograms)
         {
             if (micrograms.HasValue)
             {
@@ -686,10 +1838,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Milligrams.
+        /// </summary>
+        public static Mass? FromMilligrams(int? milligrams)
+        {
+            if (milligrams.HasValue)
+            {
+                return FromMilligrams(milligrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Milligrams.
+        /// </summary>
+        public static Mass? FromMilligrams(long? milligrams)
+        {
+            if (milligrams.HasValue)
+            {
+                return FromMilligrams(milligrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Milligrams of type decimal.
+        /// </summary>
+        public static Mass? FromMilligrams(decimal? milligrams)
+        {
+            if (milligrams.HasValue)
+            {
+                return FromMilligrams(milligrams.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Nanograms.
         /// </summary>
         public static Mass? FromNanograms(double? nanograms)
+        {
+            if (nanograms.HasValue)
+            {
+                return FromNanograms(nanograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Nanograms.
+        /// </summary>
+        public static Mass? FromNanograms(int? nanograms)
+        {
+            if (nanograms.HasValue)
+            {
+                return FromNanograms(nanograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Nanograms.
+        /// </summary>
+        public static Mass? FromNanograms(long? nanograms)
+        {
+            if (nanograms.HasValue)
+            {
+                return FromNanograms(nanograms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Nanograms of type decimal.
+        /// </summary>
+        public static Mass? FromNanograms(decimal? nanograms)
         {
             if (nanograms.HasValue)
             {
@@ -716,10 +1958,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Ounces.
+        /// </summary>
+        public static Mass? FromOunces(int? ounces)
+        {
+            if (ounces.HasValue)
+            {
+                return FromOunces(ounces.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Ounces.
+        /// </summary>
+        public static Mass? FromOunces(long? ounces)
+        {
+            if (ounces.HasValue)
+            {
+                return FromOunces(ounces.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Ounces of type decimal.
+        /// </summary>
+        public static Mass? FromOunces(decimal? ounces)
+        {
+            if (ounces.HasValue)
+            {
+                return FromOunces(ounces.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Pounds.
         /// </summary>
         public static Mass? FromPounds(double? pounds)
+        {
+            if (pounds.HasValue)
+            {
+                return FromPounds(pounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Pounds.
+        /// </summary>
+        public static Mass? FromPounds(int? pounds)
+        {
+            if (pounds.HasValue)
+            {
+                return FromPounds(pounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Pounds.
+        /// </summary>
+        public static Mass? FromPounds(long? pounds)
+        {
+            if (pounds.HasValue)
+            {
+                return FromPounds(pounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Pounds of type decimal.
+        /// </summary>
+        public static Mass? FromPounds(decimal? pounds)
         {
             if (pounds.HasValue)
             {
@@ -746,10 +2078,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable ShortHundredweight.
+        /// </summary>
+        public static Mass? FromShortHundredweight(int? shorthundredweight)
+        {
+            if (shorthundredweight.HasValue)
+            {
+                return FromShortHundredweight(shorthundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable ShortHundredweight.
+        /// </summary>
+        public static Mass? FromShortHundredweight(long? shorthundredweight)
+        {
+            if (shorthundredweight.HasValue)
+            {
+                return FromShortHundredweight(shorthundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from ShortHundredweight of type decimal.
+        /// </summary>
+        public static Mass? FromShortHundredweight(decimal? shorthundredweight)
+        {
+            if (shorthundredweight.HasValue)
+            {
+                return FromShortHundredweight(shorthundredweight.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable ShortTons.
         /// </summary>
         public static Mass? FromShortTons(double? shorttons)
+        {
+            if (shorttons.HasValue)
+            {
+                return FromShortTons(shorttons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable ShortTons.
+        /// </summary>
+        public static Mass? FromShortTons(int? shorttons)
+        {
+            if (shorttons.HasValue)
+            {
+                return FromShortTons(shorttons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable ShortTons.
+        /// </summary>
+        public static Mass? FromShortTons(long? shorttons)
+        {
+            if (shorttons.HasValue)
+            {
+                return FromShortTons(shorttons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from ShortTons of type decimal.
+        /// </summary>
+        public static Mass? FromShortTons(decimal? shorttons)
         {
             if (shorttons.HasValue)
             {
@@ -776,10 +2198,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Mass from nullable Stone.
+        /// </summary>
+        public static Mass? FromStone(int? stone)
+        {
+            if (stone.HasValue)
+            {
+                return FromStone(stone.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Stone.
+        /// </summary>
+        public static Mass? FromStone(long? stone)
+        {
+            if (stone.HasValue)
+            {
+                return FromStone(stone.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Stone of type decimal.
+        /// </summary>
+        public static Mass? FromStone(decimal? stone)
+        {
+            if (stone.HasValue)
+            {
+                return FromStone(stone.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Mass from nullable Tonnes.
         /// </summary>
         public static Mass? FromTonnes(double? tonnes)
+        {
+            if (tonnes.HasValue)
+            {
+                return FromTonnes(tonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Tonnes.
+        /// </summary>
+        public static Mass? FromTonnes(int? tonnes)
+        {
+            if (tonnes.HasValue)
+            {
+                return FromTonnes(tonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from nullable Tonnes.
+        /// </summary>
+        public static Mass? FromTonnes(long? tonnes)
+        {
+            if (tonnes.HasValue)
+            {
+                return FromTonnes(tonnes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Mass from Tonnes of type decimal.
+        /// </summary>
+        public static Mass? FromTonnes(decimal? tonnes)
         {
             if (tonnes.HasValue)
             {

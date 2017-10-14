@@ -354,6 +354,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bits));
         }
 
+		/// <summary>
+        ///     Get Information from Bits.
+        /// </summary>
+        public static Information FromBits(int bits)
+        {
+            return new Information(Convert.ToDecimal(bits));
+        }
+
+		/// <summary>
+        ///     Get Information from Bits.
+        /// </summary>
+        public static Information FromBits(long bits)
+        {
+            return new Information(Convert.ToDecimal(bits));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Bits of type decimal.
+        /// </summary>
+        public static Information FromBits(decimal bits)
+        {
+	        return new Information(Convert.ToDecimal(Convert.ToDouble(bits)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Bytes.
         /// </summary>
@@ -361,6 +388,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal(bytes*8d));
         }
+
+		/// <summary>
+        ///     Get Information from Bytes.
+        /// </summary>
+        public static Information FromBytes(int bytes)
+        {
+            return new Information(Convert.ToDecimal(bytes*8d));
+        }
+
+		/// <summary>
+        ///     Get Information from Bytes.
+        /// </summary>
+        public static Information FromBytes(long bytes)
+        {
+            return new Information(Convert.ToDecimal(bytes*8d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Bytes of type decimal.
+        /// </summary>
+        public static Information FromBytes(decimal bytes)
+        {
+	        return new Information(Convert.ToDecimal(Convert.ToDouble(bytes)*8d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Exabits.
@@ -370,6 +424,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabits) * 1e18d));
         }
 
+		/// <summary>
+        ///     Get Information from Exabits.
+        /// </summary>
+        public static Information FromExabits(int exabits)
+        {
+            return new Information(Convert.ToDecimal((exabits) * 1e18d));
+        }
+
+		/// <summary>
+        ///     Get Information from Exabits.
+        /// </summary>
+        public static Information FromExabits(long exabits)
+        {
+            return new Information(Convert.ToDecimal((exabits) * 1e18d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Exabits of type decimal.
+        /// </summary>
+        public static Information FromExabits(decimal exabits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(exabits)) * 1e18d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
@@ -377,6 +458,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
         }
+
+		/// <summary>
+        ///     Get Information from Exabytes.
+        /// </summary>
+        public static Information FromExabytes(int exabytes)
+        {
+            return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
+        }
+
+		/// <summary>
+        ///     Get Information from Exabytes.
+        /// </summary>
+        public static Information FromExabytes(long exabytes)
+        {
+            return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Exabytes of type decimal.
+        /// </summary>
+        public static Information FromExabytes(decimal exabytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(exabytes)*8d) * 1e18d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Exbibits.
@@ -386,6 +494,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
+		/// <summary>
+        ///     Get Information from Exbibits.
+        /// </summary>
+        public static Information FromExbibits(int exbibits)
+        {
+            return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Exbibits.
+        /// </summary>
+        public static Information FromExbibits(long exbibits)
+        {
+            return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Exbibits of type decimal.
+        /// </summary>
+        public static Information FromExbibits(decimal exbibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(exbibits)) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Exbibytes.
         /// </summary>
@@ -393,6 +528,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
+
+		/// <summary>
+        ///     Get Information from Exbibytes.
+        /// </summary>
+        public static Information FromExbibytes(int exbibytes)
+        {
+            return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Exbibytes.
+        /// </summary>
+        public static Information FromExbibytes(long exbibytes)
+        {
+            return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Exbibytes of type decimal.
+        /// </summary>
+        public static Information FromExbibytes(decimal exbibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(exbibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Gibibits.
@@ -402,6 +564,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
         }
 
+		/// <summary>
+        ///     Get Information from Gibibits.
+        /// </summary>
+        public static Information FromGibibits(int gibibits)
+        {
+            return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Gibibits.
+        /// </summary>
+        public static Information FromGibibits(long gibibits)
+        {
+            return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Gibibits of type decimal.
+        /// </summary>
+        public static Information FromGibibits(decimal gibibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(gibibits)) * (1024d * 1024 * 1024)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Gibibytes.
         /// </summary>
@@ -409,6 +598,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
         }
+
+		/// <summary>
+        ///     Get Information from Gibibytes.
+        /// </summary>
+        public static Information FromGibibytes(int gibibytes)
+        {
+            return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Gibibytes.
+        /// </summary>
+        public static Information FromGibibytes(long gibibytes)
+        {
+            return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Gibibytes of type decimal.
+        /// </summary>
+        public static Information FromGibibytes(decimal gibibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(gibibytes)*8d) * (1024d * 1024 * 1024)));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Gigabits.
@@ -418,6 +634,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabits) * 1e9d));
         }
 
+		/// <summary>
+        ///     Get Information from Gigabits.
+        /// </summary>
+        public static Information FromGigabits(int gigabits)
+        {
+            return new Information(Convert.ToDecimal((gigabits) * 1e9d));
+        }
+
+		/// <summary>
+        ///     Get Information from Gigabits.
+        /// </summary>
+        public static Information FromGigabits(long gigabits)
+        {
+            return new Information(Convert.ToDecimal((gigabits) * 1e9d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Gigabits of type decimal.
+        /// </summary>
+        public static Information FromGigabits(decimal gigabits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(gigabits)) * 1e9d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Gigabytes.
         /// </summary>
@@ -425,6 +668,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
         }
+
+		/// <summary>
+        ///     Get Information from Gigabytes.
+        /// </summary>
+        public static Information FromGigabytes(int gigabytes)
+        {
+            return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
+        }
+
+		/// <summary>
+        ///     Get Information from Gigabytes.
+        /// </summary>
+        public static Information FromGigabytes(long gigabytes)
+        {
+            return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Gigabytes of type decimal.
+        /// </summary>
+        public static Information FromGigabytes(decimal gigabytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(gigabytes)*8d) * 1e9d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Kibibits.
@@ -434,6 +704,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibits) * 1024d));
         }
 
+		/// <summary>
+        ///     Get Information from Kibibits.
+        /// </summary>
+        public static Information FromKibibits(int kibibits)
+        {
+            return new Information(Convert.ToDecimal((kibibits) * 1024d));
+        }
+
+		/// <summary>
+        ///     Get Information from Kibibits.
+        /// </summary>
+        public static Information FromKibibits(long kibibits)
+        {
+            return new Information(Convert.ToDecimal((kibibits) * 1024d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Kibibits of type decimal.
+        /// </summary>
+        public static Information FromKibibits(decimal kibibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(kibibits)) * 1024d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Kibibytes.
         /// </summary>
@@ -441,6 +738,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
         }
+
+		/// <summary>
+        ///     Get Information from Kibibytes.
+        /// </summary>
+        public static Information FromKibibytes(int kibibytes)
+        {
+            return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
+        }
+
+		/// <summary>
+        ///     Get Information from Kibibytes.
+        /// </summary>
+        public static Information FromKibibytes(long kibibytes)
+        {
+            return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Kibibytes of type decimal.
+        /// </summary>
+        public static Information FromKibibytes(decimal kibibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(kibibytes)*8d) * 1024d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Kilobits.
@@ -450,6 +774,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobits) * 1e3d));
         }
 
+		/// <summary>
+        ///     Get Information from Kilobits.
+        /// </summary>
+        public static Information FromKilobits(int kilobits)
+        {
+            return new Information(Convert.ToDecimal((kilobits) * 1e3d));
+        }
+
+		/// <summary>
+        ///     Get Information from Kilobits.
+        /// </summary>
+        public static Information FromKilobits(long kilobits)
+        {
+            return new Information(Convert.ToDecimal((kilobits) * 1e3d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Kilobits of type decimal.
+        /// </summary>
+        public static Information FromKilobits(decimal kilobits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(kilobits)) * 1e3d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Kilobytes.
         /// </summary>
@@ -457,6 +808,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
         }
+
+		/// <summary>
+        ///     Get Information from Kilobytes.
+        /// </summary>
+        public static Information FromKilobytes(int kilobytes)
+        {
+            return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
+        }
+
+		/// <summary>
+        ///     Get Information from Kilobytes.
+        /// </summary>
+        public static Information FromKilobytes(long kilobytes)
+        {
+            return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Kilobytes of type decimal.
+        /// </summary>
+        public static Information FromKilobytes(decimal kilobytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(kilobytes)*8d) * 1e3d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Mebibits.
@@ -466,6 +844,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
         }
 
+		/// <summary>
+        ///     Get Information from Mebibits.
+        /// </summary>
+        public static Information FromMebibits(int mebibits)
+        {
+            return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Mebibits.
+        /// </summary>
+        public static Information FromMebibits(long mebibits)
+        {
+            return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Mebibits of type decimal.
+        /// </summary>
+        public static Information FromMebibits(decimal mebibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(mebibits)) * (1024d * 1024)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Mebibytes.
         /// </summary>
@@ -473,6 +878,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
         }
+
+		/// <summary>
+        ///     Get Information from Mebibytes.
+        /// </summary>
+        public static Information FromMebibytes(int mebibytes)
+        {
+            return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Mebibytes.
+        /// </summary>
+        public static Information FromMebibytes(long mebibytes)
+        {
+            return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Mebibytes of type decimal.
+        /// </summary>
+        public static Information FromMebibytes(decimal mebibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(mebibytes)*8d) * (1024d * 1024)));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Megabits.
@@ -482,6 +914,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabits) * 1e6d));
         }
 
+		/// <summary>
+        ///     Get Information from Megabits.
+        /// </summary>
+        public static Information FromMegabits(int megabits)
+        {
+            return new Information(Convert.ToDecimal((megabits) * 1e6d));
+        }
+
+		/// <summary>
+        ///     Get Information from Megabits.
+        /// </summary>
+        public static Information FromMegabits(long megabits)
+        {
+            return new Information(Convert.ToDecimal((megabits) * 1e6d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Megabits of type decimal.
+        /// </summary>
+        public static Information FromMegabits(decimal megabits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(megabits)) * 1e6d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Megabytes.
         /// </summary>
@@ -489,6 +948,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
         }
+
+		/// <summary>
+        ///     Get Information from Megabytes.
+        /// </summary>
+        public static Information FromMegabytes(int megabytes)
+        {
+            return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
+        }
+
+		/// <summary>
+        ///     Get Information from Megabytes.
+        /// </summary>
+        public static Information FromMegabytes(long megabytes)
+        {
+            return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Megabytes of type decimal.
+        /// </summary>
+        public static Information FromMegabytes(decimal megabytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(megabytes)*8d) * 1e6d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Pebibits.
@@ -498,6 +984,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
+		/// <summary>
+        ///     Get Information from Pebibits.
+        /// </summary>
+        public static Information FromPebibits(int pebibits)
+        {
+            return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Pebibits.
+        /// </summary>
+        public static Information FromPebibits(long pebibits)
+        {
+            return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Pebibits of type decimal.
+        /// </summary>
+        public static Information FromPebibits(decimal pebibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(pebibits)) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Pebibytes.
         /// </summary>
@@ -505,6 +1018,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
+
+		/// <summary>
+        ///     Get Information from Pebibytes.
+        /// </summary>
+        public static Information FromPebibytes(int pebibytes)
+        {
+            return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Pebibytes.
+        /// </summary>
+        public static Information FromPebibytes(long pebibytes)
+        {
+            return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Pebibytes of type decimal.
+        /// </summary>
+        public static Information FromPebibytes(decimal pebibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(pebibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Petabits.
@@ -514,6 +1054,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabits) * 1e15d));
         }
 
+		/// <summary>
+        ///     Get Information from Petabits.
+        /// </summary>
+        public static Information FromPetabits(int petabits)
+        {
+            return new Information(Convert.ToDecimal((petabits) * 1e15d));
+        }
+
+		/// <summary>
+        ///     Get Information from Petabits.
+        /// </summary>
+        public static Information FromPetabits(long petabits)
+        {
+            return new Information(Convert.ToDecimal((petabits) * 1e15d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Petabits of type decimal.
+        /// </summary>
+        public static Information FromPetabits(decimal petabits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(petabits)) * 1e15d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Petabytes.
         /// </summary>
@@ -521,6 +1088,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
         }
+
+		/// <summary>
+        ///     Get Information from Petabytes.
+        /// </summary>
+        public static Information FromPetabytes(int petabytes)
+        {
+            return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
+        }
+
+		/// <summary>
+        ///     Get Information from Petabytes.
+        /// </summary>
+        public static Information FromPetabytes(long petabytes)
+        {
+            return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Petabytes of type decimal.
+        /// </summary>
+        public static Information FromPetabytes(decimal petabytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(petabytes)*8d) * 1e15d));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Tebibits.
@@ -530,6 +1124,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
         }
 
+		/// <summary>
+        ///     Get Information from Tebibits.
+        /// </summary>
+        public static Information FromTebibits(int tebibits)
+        {
+            return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Tebibits.
+        /// </summary>
+        public static Information FromTebibits(long tebibits)
+        {
+            return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Tebibits of type decimal.
+        /// </summary>
+        public static Information FromTebibits(decimal tebibits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(tebibits)) * (1024d * 1024 * 1024 * 1024)));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Tebibytes.
         /// </summary>
@@ -537,6 +1158,33 @@ namespace UnitsNet
         {
             return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
         }
+
+		/// <summary>
+        ///     Get Information from Tebibytes.
+        /// </summary>
+        public static Information FromTebibytes(int tebibytes)
+        {
+            return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+		/// <summary>
+        ///     Get Information from Tebibytes.
+        /// </summary>
+        public static Information FromTebibytes(long tebibytes)
+        {
+            return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Tebibytes of type decimal.
+        /// </summary>
+        public static Information FromTebibytes(decimal tebibytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(tebibytes)*8d) * (1024d * 1024 * 1024 * 1024)));
+        }
+#endif
 
         /// <summary>
         ///     Get Information from Terabits.
@@ -546,6 +1194,33 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabits) * 1e12d));
         }
 
+		/// <summary>
+        ///     Get Information from Terabits.
+        /// </summary>
+        public static Information FromTerabits(int terabits)
+        {
+            return new Information(Convert.ToDecimal((terabits) * 1e12d));
+        }
+
+		/// <summary>
+        ///     Get Information from Terabits.
+        /// </summary>
+        public static Information FromTerabits(long terabits)
+        {
+            return new Information(Convert.ToDecimal((terabits) * 1e12d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Terabits of type decimal.
+        /// </summary>
+        public static Information FromTerabits(decimal terabits)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(terabits)) * 1e12d));
+        }
+#endif
+
         /// <summary>
         ///     Get Information from Terabytes.
         /// </summary>
@@ -554,12 +1229,84 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
         }
 
+		/// <summary>
+        ///     Get Information from Terabytes.
+        /// </summary>
+        public static Information FromTerabytes(int terabytes)
+        {
+            return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
+        }
+
+		/// <summary>
+        ///     Get Information from Terabytes.
+        /// </summary>
+        public static Information FromTerabytes(long terabytes)
+        {
+            return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Information from Terabytes of type decimal.
+        /// </summary>
+        public static Information FromTerabytes(decimal terabytes)
+        {
+	        return new Information(Convert.ToDecimal((Convert.ToDouble(terabytes)*8d) * 1e12d));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Information from nullable Bits.
         /// </summary>
         public static Information? FromBits(double? bits)
+        {
+            if (bits.HasValue)
+            {
+                return FromBits(bits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Bits.
+        /// </summary>
+        public static Information? FromBits(int? bits)
+        {
+            if (bits.HasValue)
+            {
+                return FromBits(bits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Bits.
+        /// </summary>
+        public static Information? FromBits(long? bits)
+        {
+            if (bits.HasValue)
+            {
+                return FromBits(bits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Bits of type decimal.
+        /// </summary>
+        public static Information? FromBits(decimal? bits)
         {
             if (bits.HasValue)
             {
@@ -586,10 +1333,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Bytes.
+        /// </summary>
+        public static Information? FromBytes(int? bytes)
+        {
+            if (bytes.HasValue)
+            {
+                return FromBytes(bytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Bytes.
+        /// </summary>
+        public static Information? FromBytes(long? bytes)
+        {
+            if (bytes.HasValue)
+            {
+                return FromBytes(bytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Bytes of type decimal.
+        /// </summary>
+        public static Information? FromBytes(decimal? bytes)
+        {
+            if (bytes.HasValue)
+            {
+                return FromBytes(bytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Exabits.
         /// </summary>
         public static Information? FromExabits(double? exabits)
+        {
+            if (exabits.HasValue)
+            {
+                return FromExabits(exabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exabits.
+        /// </summary>
+        public static Information? FromExabits(int? exabits)
+        {
+            if (exabits.HasValue)
+            {
+                return FromExabits(exabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exabits.
+        /// </summary>
+        public static Information? FromExabits(long? exabits)
+        {
+            if (exabits.HasValue)
+            {
+                return FromExabits(exabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Exabits of type decimal.
+        /// </summary>
+        public static Information? FromExabits(decimal? exabits)
         {
             if (exabits.HasValue)
             {
@@ -616,10 +1453,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Exabytes.
+        /// </summary>
+        public static Information? FromExabytes(int? exabytes)
+        {
+            if (exabytes.HasValue)
+            {
+                return FromExabytes(exabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exabytes.
+        /// </summary>
+        public static Information? FromExabytes(long? exabytes)
+        {
+            if (exabytes.HasValue)
+            {
+                return FromExabytes(exabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Exabytes of type decimal.
+        /// </summary>
+        public static Information? FromExabytes(decimal? exabytes)
+        {
+            if (exabytes.HasValue)
+            {
+                return FromExabytes(exabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Exbibits.
         /// </summary>
         public static Information? FromExbibits(double? exbibits)
+        {
+            if (exbibits.HasValue)
+            {
+                return FromExbibits(exbibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exbibits.
+        /// </summary>
+        public static Information? FromExbibits(int? exbibits)
+        {
+            if (exbibits.HasValue)
+            {
+                return FromExbibits(exbibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exbibits.
+        /// </summary>
+        public static Information? FromExbibits(long? exbibits)
+        {
+            if (exbibits.HasValue)
+            {
+                return FromExbibits(exbibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Exbibits of type decimal.
+        /// </summary>
+        public static Information? FromExbibits(decimal? exbibits)
         {
             if (exbibits.HasValue)
             {
@@ -646,10 +1573,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Exbibytes.
+        /// </summary>
+        public static Information? FromExbibytes(int? exbibytes)
+        {
+            if (exbibytes.HasValue)
+            {
+                return FromExbibytes(exbibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Exbibytes.
+        /// </summary>
+        public static Information? FromExbibytes(long? exbibytes)
+        {
+            if (exbibytes.HasValue)
+            {
+                return FromExbibytes(exbibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Exbibytes of type decimal.
+        /// </summary>
+        public static Information? FromExbibytes(decimal? exbibytes)
+        {
+            if (exbibytes.HasValue)
+            {
+                return FromExbibytes(exbibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Gibibits.
         /// </summary>
         public static Information? FromGibibits(double? gibibits)
+        {
+            if (gibibits.HasValue)
+            {
+                return FromGibibits(gibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gibibits.
+        /// </summary>
+        public static Information? FromGibibits(int? gibibits)
+        {
+            if (gibibits.HasValue)
+            {
+                return FromGibibits(gibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gibibits.
+        /// </summary>
+        public static Information? FromGibibits(long? gibibits)
+        {
+            if (gibibits.HasValue)
+            {
+                return FromGibibits(gibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Gibibits of type decimal.
+        /// </summary>
+        public static Information? FromGibibits(decimal? gibibits)
         {
             if (gibibits.HasValue)
             {
@@ -676,10 +1693,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Gibibytes.
+        /// </summary>
+        public static Information? FromGibibytes(int? gibibytes)
+        {
+            if (gibibytes.HasValue)
+            {
+                return FromGibibytes(gibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gibibytes.
+        /// </summary>
+        public static Information? FromGibibytes(long? gibibytes)
+        {
+            if (gibibytes.HasValue)
+            {
+                return FromGibibytes(gibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Gibibytes of type decimal.
+        /// </summary>
+        public static Information? FromGibibytes(decimal? gibibytes)
+        {
+            if (gibibytes.HasValue)
+            {
+                return FromGibibytes(gibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Gigabits.
         /// </summary>
         public static Information? FromGigabits(double? gigabits)
+        {
+            if (gigabits.HasValue)
+            {
+                return FromGigabits(gigabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gigabits.
+        /// </summary>
+        public static Information? FromGigabits(int? gigabits)
+        {
+            if (gigabits.HasValue)
+            {
+                return FromGigabits(gigabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gigabits.
+        /// </summary>
+        public static Information? FromGigabits(long? gigabits)
+        {
+            if (gigabits.HasValue)
+            {
+                return FromGigabits(gigabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Gigabits of type decimal.
+        /// </summary>
+        public static Information? FromGigabits(decimal? gigabits)
         {
             if (gigabits.HasValue)
             {
@@ -706,10 +1813,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Gigabytes.
+        /// </summary>
+        public static Information? FromGigabytes(int? gigabytes)
+        {
+            if (gigabytes.HasValue)
+            {
+                return FromGigabytes(gigabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Gigabytes.
+        /// </summary>
+        public static Information? FromGigabytes(long? gigabytes)
+        {
+            if (gigabytes.HasValue)
+            {
+                return FromGigabytes(gigabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Gigabytes of type decimal.
+        /// </summary>
+        public static Information? FromGigabytes(decimal? gigabytes)
+        {
+            if (gigabytes.HasValue)
+            {
+                return FromGigabytes(gigabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Kibibits.
         /// </summary>
         public static Information? FromKibibits(double? kibibits)
+        {
+            if (kibibits.HasValue)
+            {
+                return FromKibibits(kibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kibibits.
+        /// </summary>
+        public static Information? FromKibibits(int? kibibits)
+        {
+            if (kibibits.HasValue)
+            {
+                return FromKibibits(kibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kibibits.
+        /// </summary>
+        public static Information? FromKibibits(long? kibibits)
+        {
+            if (kibibits.HasValue)
+            {
+                return FromKibibits(kibibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Kibibits of type decimal.
+        /// </summary>
+        public static Information? FromKibibits(decimal? kibibits)
         {
             if (kibibits.HasValue)
             {
@@ -736,10 +1933,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Kibibytes.
+        /// </summary>
+        public static Information? FromKibibytes(int? kibibytes)
+        {
+            if (kibibytes.HasValue)
+            {
+                return FromKibibytes(kibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kibibytes.
+        /// </summary>
+        public static Information? FromKibibytes(long? kibibytes)
+        {
+            if (kibibytes.HasValue)
+            {
+                return FromKibibytes(kibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Kibibytes of type decimal.
+        /// </summary>
+        public static Information? FromKibibytes(decimal? kibibytes)
+        {
+            if (kibibytes.HasValue)
+            {
+                return FromKibibytes(kibibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Kilobits.
         /// </summary>
         public static Information? FromKilobits(double? kilobits)
+        {
+            if (kilobits.HasValue)
+            {
+                return FromKilobits(kilobits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kilobits.
+        /// </summary>
+        public static Information? FromKilobits(int? kilobits)
+        {
+            if (kilobits.HasValue)
+            {
+                return FromKilobits(kilobits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kilobits.
+        /// </summary>
+        public static Information? FromKilobits(long? kilobits)
+        {
+            if (kilobits.HasValue)
+            {
+                return FromKilobits(kilobits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Kilobits of type decimal.
+        /// </summary>
+        public static Information? FromKilobits(decimal? kilobits)
         {
             if (kilobits.HasValue)
             {
@@ -766,10 +2053,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Kilobytes.
+        /// </summary>
+        public static Information? FromKilobytes(int? kilobytes)
+        {
+            if (kilobytes.HasValue)
+            {
+                return FromKilobytes(kilobytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Kilobytes.
+        /// </summary>
+        public static Information? FromKilobytes(long? kilobytes)
+        {
+            if (kilobytes.HasValue)
+            {
+                return FromKilobytes(kilobytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Kilobytes of type decimal.
+        /// </summary>
+        public static Information? FromKilobytes(decimal? kilobytes)
+        {
+            if (kilobytes.HasValue)
+            {
+                return FromKilobytes(kilobytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Mebibits.
         /// </summary>
         public static Information? FromMebibits(double? mebibits)
+        {
+            if (mebibits.HasValue)
+            {
+                return FromMebibits(mebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Mebibits.
+        /// </summary>
+        public static Information? FromMebibits(int? mebibits)
+        {
+            if (mebibits.HasValue)
+            {
+                return FromMebibits(mebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Mebibits.
+        /// </summary>
+        public static Information? FromMebibits(long? mebibits)
+        {
+            if (mebibits.HasValue)
+            {
+                return FromMebibits(mebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Mebibits of type decimal.
+        /// </summary>
+        public static Information? FromMebibits(decimal? mebibits)
         {
             if (mebibits.HasValue)
             {
@@ -796,10 +2173,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Mebibytes.
+        /// </summary>
+        public static Information? FromMebibytes(int? mebibytes)
+        {
+            if (mebibytes.HasValue)
+            {
+                return FromMebibytes(mebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Mebibytes.
+        /// </summary>
+        public static Information? FromMebibytes(long? mebibytes)
+        {
+            if (mebibytes.HasValue)
+            {
+                return FromMebibytes(mebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Mebibytes of type decimal.
+        /// </summary>
+        public static Information? FromMebibytes(decimal? mebibytes)
+        {
+            if (mebibytes.HasValue)
+            {
+                return FromMebibytes(mebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Megabits.
         /// </summary>
         public static Information? FromMegabits(double? megabits)
+        {
+            if (megabits.HasValue)
+            {
+                return FromMegabits(megabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Megabits.
+        /// </summary>
+        public static Information? FromMegabits(int? megabits)
+        {
+            if (megabits.HasValue)
+            {
+                return FromMegabits(megabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Megabits.
+        /// </summary>
+        public static Information? FromMegabits(long? megabits)
+        {
+            if (megabits.HasValue)
+            {
+                return FromMegabits(megabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Megabits of type decimal.
+        /// </summary>
+        public static Information? FromMegabits(decimal? megabits)
         {
             if (megabits.HasValue)
             {
@@ -826,10 +2293,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Megabytes.
+        /// </summary>
+        public static Information? FromMegabytes(int? megabytes)
+        {
+            if (megabytes.HasValue)
+            {
+                return FromMegabytes(megabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Megabytes.
+        /// </summary>
+        public static Information? FromMegabytes(long? megabytes)
+        {
+            if (megabytes.HasValue)
+            {
+                return FromMegabytes(megabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Megabytes of type decimal.
+        /// </summary>
+        public static Information? FromMegabytes(decimal? megabytes)
+        {
+            if (megabytes.HasValue)
+            {
+                return FromMegabytes(megabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Pebibits.
         /// </summary>
         public static Information? FromPebibits(double? pebibits)
+        {
+            if (pebibits.HasValue)
+            {
+                return FromPebibits(pebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Pebibits.
+        /// </summary>
+        public static Information? FromPebibits(int? pebibits)
+        {
+            if (pebibits.HasValue)
+            {
+                return FromPebibits(pebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Pebibits.
+        /// </summary>
+        public static Information? FromPebibits(long? pebibits)
+        {
+            if (pebibits.HasValue)
+            {
+                return FromPebibits(pebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Pebibits of type decimal.
+        /// </summary>
+        public static Information? FromPebibits(decimal? pebibits)
         {
             if (pebibits.HasValue)
             {
@@ -856,10 +2413,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Pebibytes.
+        /// </summary>
+        public static Information? FromPebibytes(int? pebibytes)
+        {
+            if (pebibytes.HasValue)
+            {
+                return FromPebibytes(pebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Pebibytes.
+        /// </summary>
+        public static Information? FromPebibytes(long? pebibytes)
+        {
+            if (pebibytes.HasValue)
+            {
+                return FromPebibytes(pebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Pebibytes of type decimal.
+        /// </summary>
+        public static Information? FromPebibytes(decimal? pebibytes)
+        {
+            if (pebibytes.HasValue)
+            {
+                return FromPebibytes(pebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Petabits.
         /// </summary>
         public static Information? FromPetabits(double? petabits)
+        {
+            if (petabits.HasValue)
+            {
+                return FromPetabits(petabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Petabits.
+        /// </summary>
+        public static Information? FromPetabits(int? petabits)
+        {
+            if (petabits.HasValue)
+            {
+                return FromPetabits(petabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Petabits.
+        /// </summary>
+        public static Information? FromPetabits(long? petabits)
+        {
+            if (petabits.HasValue)
+            {
+                return FromPetabits(petabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Petabits of type decimal.
+        /// </summary>
+        public static Information? FromPetabits(decimal? petabits)
         {
             if (petabits.HasValue)
             {
@@ -886,10 +2533,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Petabytes.
+        /// </summary>
+        public static Information? FromPetabytes(int? petabytes)
+        {
+            if (petabytes.HasValue)
+            {
+                return FromPetabytes(petabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Petabytes.
+        /// </summary>
+        public static Information? FromPetabytes(long? petabytes)
+        {
+            if (petabytes.HasValue)
+            {
+                return FromPetabytes(petabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Petabytes of type decimal.
+        /// </summary>
+        public static Information? FromPetabytes(decimal? petabytes)
+        {
+            if (petabytes.HasValue)
+            {
+                return FromPetabytes(petabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Tebibits.
         /// </summary>
         public static Information? FromTebibits(double? tebibits)
+        {
+            if (tebibits.HasValue)
+            {
+                return FromTebibits(tebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Tebibits.
+        /// </summary>
+        public static Information? FromTebibits(int? tebibits)
+        {
+            if (tebibits.HasValue)
+            {
+                return FromTebibits(tebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Tebibits.
+        /// </summary>
+        public static Information? FromTebibits(long? tebibits)
+        {
+            if (tebibits.HasValue)
+            {
+                return FromTebibits(tebibits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Tebibits of type decimal.
+        /// </summary>
+        public static Information? FromTebibits(decimal? tebibits)
         {
             if (tebibits.HasValue)
             {
@@ -916,6 +2653,51 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Tebibytes.
+        /// </summary>
+        public static Information? FromTebibytes(int? tebibytes)
+        {
+            if (tebibytes.HasValue)
+            {
+                return FromTebibytes(tebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Tebibytes.
+        /// </summary>
+        public static Information? FromTebibytes(long? tebibytes)
+        {
+            if (tebibytes.HasValue)
+            {
+                return FromTebibytes(tebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Tebibytes of type decimal.
+        /// </summary>
+        public static Information? FromTebibytes(decimal? tebibytes)
+        {
+            if (tebibytes.HasValue)
+            {
+                return FromTebibytes(tebibytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Terabits.
         /// </summary>
@@ -931,10 +2713,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Information from nullable Terabits.
+        /// </summary>
+        public static Information? FromTerabits(int? terabits)
+        {
+            if (terabits.HasValue)
+            {
+                return FromTerabits(terabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Terabits.
+        /// </summary>
+        public static Information? FromTerabits(long? terabits)
+        {
+            if (terabits.HasValue)
+            {
+                return FromTerabits(terabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Terabits of type decimal.
+        /// </summary>
+        public static Information? FromTerabits(decimal? terabits)
+        {
+            if (terabits.HasValue)
+            {
+                return FromTerabits(terabits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Information from nullable Terabytes.
         /// </summary>
         public static Information? FromTerabytes(double? terabytes)
+        {
+            if (terabytes.HasValue)
+            {
+                return FromTerabytes(terabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Terabytes.
+        /// </summary>
+        public static Information? FromTerabytes(int? terabytes)
+        {
+            if (terabytes.HasValue)
+            {
+                return FromTerabytes(terabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from nullable Terabytes.
+        /// </summary>
+        public static Information? FromTerabytes(long? terabytes)
+        {
+            if (terabytes.HasValue)
+            {
+                return FromTerabytes(terabytes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Information from Terabytes of type decimal.
+        /// </summary>
+        public static Information? FromTerabytes(decimal? terabytes)
         {
             if (terabytes.HasValue)
             {

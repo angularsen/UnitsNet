@@ -443,6 +443,33 @@ namespace UnitsNet
             return new Pressure(atmospheres*1.01325*1e5);
         }
 
+		/// <summary>
+        ///     Get Pressure from Atmospheres.
+        /// </summary>
+        public static Pressure FromAtmospheres(int atmospheres)
+        {
+            return new Pressure(atmospheres*1.01325*1e5);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Atmospheres.
+        /// </summary>
+        public static Pressure FromAtmospheres(long atmospheres)
+        {
+            return new Pressure(atmospheres*1.01325*1e5);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Atmospheres of type decimal.
+        /// </summary>
+        public static Pressure FromAtmospheres(decimal atmospheres)
+        {
+	        return new Pressure(Convert.ToDouble(atmospheres)*1.01325*1e5);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Bars.
         /// </summary>
@@ -450,6 +477,33 @@ namespace UnitsNet
         {
             return new Pressure(bars*1e5);
         }
+
+		/// <summary>
+        ///     Get Pressure from Bars.
+        /// </summary>
+        public static Pressure FromBars(int bars)
+        {
+            return new Pressure(bars*1e5);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Bars.
+        /// </summary>
+        public static Pressure FromBars(long bars)
+        {
+            return new Pressure(bars*1e5);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Bars of type decimal.
+        /// </summary>
+        public static Pressure FromBars(decimal bars)
+        {
+	        return new Pressure(Convert.ToDouble(bars)*1e5);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Centibars.
@@ -459,6 +513,33 @@ namespace UnitsNet
             return new Pressure((centibars*1e5) * 1e-2d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Centibars.
+        /// </summary>
+        public static Pressure FromCentibars(int centibars)
+        {
+            return new Pressure((centibars*1e5) * 1e-2d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Centibars.
+        /// </summary>
+        public static Pressure FromCentibars(long centibars)
+        {
+            return new Pressure((centibars*1e5) * 1e-2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Centibars of type decimal.
+        /// </summary>
+        public static Pressure FromCentibars(decimal centibars)
+        {
+	        return new Pressure((Convert.ToDouble(centibars)*1e5) * 1e-2d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Decapascals.
         /// </summary>
@@ -466,6 +547,33 @@ namespace UnitsNet
         {
             return new Pressure((decapascals) * 1e1d);
         }
+
+		/// <summary>
+        ///     Get Pressure from Decapascals.
+        /// </summary>
+        public static Pressure FromDecapascals(int decapascals)
+        {
+            return new Pressure((decapascals) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Decapascals.
+        /// </summary>
+        public static Pressure FromDecapascals(long decapascals)
+        {
+            return new Pressure((decapascals) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Decapascals of type decimal.
+        /// </summary>
+        public static Pressure FromDecapascals(decimal decapascals)
+        {
+	        return new Pressure((Convert.ToDouble(decapascals)) * 1e1d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Decibars.
@@ -475,6 +583,33 @@ namespace UnitsNet
             return new Pressure((decibars*1e5) * 1e-1d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Decibars.
+        /// </summary>
+        public static Pressure FromDecibars(int decibars)
+        {
+            return new Pressure((decibars*1e5) * 1e-1d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Decibars.
+        /// </summary>
+        public static Pressure FromDecibars(long decibars)
+        {
+            return new Pressure((decibars*1e5) * 1e-1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Decibars of type decimal.
+        /// </summary>
+        public static Pressure FromDecibars(decimal decibars)
+        {
+	        return new Pressure((Convert.ToDouble(decibars)*1e5) * 1e-1d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from FeetOfHead.
         /// </summary>
@@ -482,6 +617,33 @@ namespace UnitsNet
         {
             return new Pressure(feetofhead*2989.0669);
         }
+
+		/// <summary>
+        ///     Get Pressure from FeetOfHead.
+        /// </summary>
+        public static Pressure FromFeetOfHead(int feetofhead)
+        {
+            return new Pressure(feetofhead*2989.0669);
+        }
+
+		/// <summary>
+        ///     Get Pressure from FeetOfHead.
+        /// </summary>
+        public static Pressure FromFeetOfHead(long feetofhead)
+        {
+            return new Pressure(feetofhead*2989.0669);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from FeetOfHead of type decimal.
+        /// </summary>
+        public static Pressure FromFeetOfHead(decimal feetofhead)
+        {
+	        return new Pressure(Convert.ToDouble(feetofhead)*2989.0669);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Gigapascals.
@@ -491,6 +653,33 @@ namespace UnitsNet
             return new Pressure((gigapascals) * 1e9d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Gigapascals.
+        /// </summary>
+        public static Pressure FromGigapascals(int gigapascals)
+        {
+            return new Pressure((gigapascals) * 1e9d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Gigapascals.
+        /// </summary>
+        public static Pressure FromGigapascals(long gigapascals)
+        {
+            return new Pressure((gigapascals) * 1e9d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Gigapascals of type decimal.
+        /// </summary>
+        public static Pressure FromGigapascals(decimal gigapascals)
+        {
+	        return new Pressure((Convert.ToDouble(gigapascals)) * 1e9d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Hectopascals.
         /// </summary>
@@ -498,6 +687,33 @@ namespace UnitsNet
         {
             return new Pressure((hectopascals) * 1e2d);
         }
+
+		/// <summary>
+        ///     Get Pressure from Hectopascals.
+        /// </summary>
+        public static Pressure FromHectopascals(int hectopascals)
+        {
+            return new Pressure((hectopascals) * 1e2d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Hectopascals.
+        /// </summary>
+        public static Pressure FromHectopascals(long hectopascals)
+        {
+            return new Pressure((hectopascals) * 1e2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Hectopascals of type decimal.
+        /// </summary>
+        public static Pressure FromHectopascals(decimal hectopascals)
+        {
+	        return new Pressure((Convert.ToDouble(hectopascals)) * 1e2d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from InchesOfMercury.
@@ -507,6 +723,33 @@ namespace UnitsNet
             return new Pressure(inchesofmercury/2.95299830714159e-4);
         }
 
+		/// <summary>
+        ///     Get Pressure from InchesOfMercury.
+        /// </summary>
+        public static Pressure FromInchesOfMercury(int inchesofmercury)
+        {
+            return new Pressure(inchesofmercury/2.95299830714159e-4);
+        }
+
+		/// <summary>
+        ///     Get Pressure from InchesOfMercury.
+        /// </summary>
+        public static Pressure FromInchesOfMercury(long inchesofmercury)
+        {
+            return new Pressure(inchesofmercury/2.95299830714159e-4);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from InchesOfMercury of type decimal.
+        /// </summary>
+        public static Pressure FromInchesOfMercury(decimal inchesofmercury)
+        {
+	        return new Pressure(Convert.ToDouble(inchesofmercury)/2.95299830714159e-4);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Kilobars.
         /// </summary>
@@ -514,6 +757,33 @@ namespace UnitsNet
         {
             return new Pressure((kilobars*1e5) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Pressure from Kilobars.
+        /// </summary>
+        public static Pressure FromKilobars(int kilobars)
+        {
+            return new Pressure((kilobars*1e5) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Kilobars.
+        /// </summary>
+        public static Pressure FromKilobars(long kilobars)
+        {
+            return new Pressure((kilobars*1e5) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Kilobars of type decimal.
+        /// </summary>
+        public static Pressure FromKilobars(decimal kilobars)
+        {
+	        return new Pressure((Convert.ToDouble(kilobars)*1e5) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareCentimeter.
@@ -523,6 +793,33 @@ namespace UnitsNet
             return new Pressure(kilogramsforcepersquarecentimeter*9.80665*1e4);
         }
 
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareCentimeter(int kilogramsforcepersquarecentimeter)
+        {
+            return new Pressure(kilogramsforcepersquarecentimeter*9.80665*1e4);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareCentimeter(long kilogramsforcepersquarecentimeter)
+        {
+            return new Pressure(kilogramsforcepersquarecentimeter*9.80665*1e4);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareCentimeter(decimal kilogramsforcepersquarecentimeter)
+        {
+	        return new Pressure(Convert.ToDouble(kilogramsforcepersquarecentimeter)*9.80665*1e4);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMeter.
         /// </summary>
@@ -530,6 +827,33 @@ namespace UnitsNet
         {
             return new Pressure(kilogramsforcepersquaremeter*9.80665019960652);
         }
+
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMeter(int kilogramsforcepersquaremeter)
+        {
+            return new Pressure(kilogramsforcepersquaremeter*9.80665019960652);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMeter(long kilogramsforcepersquaremeter)
+        {
+            return new Pressure(kilogramsforcepersquaremeter*9.80665019960652);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMeter(decimal kilogramsforcepersquaremeter)
+        {
+	        return new Pressure(Convert.ToDouble(kilogramsforcepersquaremeter)*9.80665019960652);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMillimeter.
@@ -539,6 +863,33 @@ namespace UnitsNet
             return new Pressure(kilogramsforcepersquaremillimeter*9806650.19960652);
         }
 
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMillimeter(int kilogramsforcepersquaremillimeter)
+        {
+            return new Pressure(kilogramsforcepersquaremillimeter*9806650.19960652);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMillimeter(long kilogramsforcepersquaremillimeter)
+        {
+            return new Pressure(kilogramsforcepersquaremillimeter*9806650.19960652);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilogramsForcePerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilogramsForcePerSquareMillimeter(decimal kilogramsforcepersquaremillimeter)
+        {
+	        return new Pressure(Convert.ToDouble(kilogramsforcepersquaremillimeter)*9806650.19960652);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareCentimeter.
         /// </summary>
@@ -546,6 +897,33 @@ namespace UnitsNet
         {
             return new Pressure((kilonewtonspersquarecentimeter*1e4) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareCentimeter(int kilonewtonspersquarecentimeter)
+        {
+            return new Pressure((kilonewtonspersquarecentimeter*1e4) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareCentimeter(long kilonewtonspersquarecentimeter)
+        {
+            return new Pressure((kilonewtonspersquarecentimeter*1e4) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareCentimeter(decimal kilonewtonspersquarecentimeter)
+        {
+	        return new Pressure((Convert.ToDouble(kilonewtonspersquarecentimeter)*1e4) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMeter.
@@ -555,6 +933,33 @@ namespace UnitsNet
             return new Pressure((kilonewtonspersquaremeter) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMeter(int kilonewtonspersquaremeter)
+        {
+            return new Pressure((kilonewtonspersquaremeter) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMeter(long kilonewtonspersquaremeter)
+        {
+            return new Pressure((kilonewtonspersquaremeter) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMeter(decimal kilonewtonspersquaremeter)
+        {
+	        return new Pressure((Convert.ToDouble(kilonewtonspersquaremeter)) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMillimeter.
         /// </summary>
@@ -562,6 +967,33 @@ namespace UnitsNet
         {
             return new Pressure((kilonewtonspersquaremillimeter*1e6) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMillimeter(int kilonewtonspersquaremillimeter)
+        {
+            return new Pressure((kilonewtonspersquaremillimeter*1e6) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMillimeter(long kilonewtonspersquaremillimeter)
+        {
+            return new Pressure((kilonewtonspersquaremillimeter*1e6) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilonewtonsPerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure FromKilonewtonsPerSquareMillimeter(decimal kilonewtonspersquaremillimeter)
+        {
+	        return new Pressure((Convert.ToDouble(kilonewtonspersquaremillimeter)*1e6) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Kilopascals.
@@ -571,6 +1003,33 @@ namespace UnitsNet
             return new Pressure((kilopascals) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Kilopascals.
+        /// </summary>
+        public static Pressure FromKilopascals(int kilopascals)
+        {
+            return new Pressure((kilopascals) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Kilopascals.
+        /// </summary>
+        public static Pressure FromKilopascals(long kilopascals)
+        {
+            return new Pressure((kilopascals) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Kilopascals of type decimal.
+        /// </summary>
+        public static Pressure FromKilopascals(decimal kilopascals)
+        {
+	        return new Pressure((Convert.ToDouble(kilopascals)) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareFoot.
         /// </summary>
@@ -578,6 +1037,33 @@ namespace UnitsNet
         {
             return new Pressure((kilopoundsforcepersquarefoot*47.8802631216372) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareFoot(int kilopoundsforcepersquarefoot)
+        {
+            return new Pressure((kilopoundsforcepersquarefoot*47.8802631216372) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareFoot(long kilopoundsforcepersquarefoot)
+        {
+            return new Pressure((kilopoundsforcepersquarefoot*47.8802631216372) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareFoot of type decimal.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareFoot(decimal kilopoundsforcepersquarefoot)
+        {
+	        return new Pressure((Convert.ToDouble(kilopoundsforcepersquarefoot)*47.8802631216372) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareInch.
@@ -587,6 +1073,33 @@ namespace UnitsNet
             return new Pressure((kilopoundsforcepersquareinch*6894.75729316836) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareInch(int kilopoundsforcepersquareinch)
+        {
+            return new Pressure((kilopoundsforcepersquareinch*6894.75729316836) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareInch(long kilopoundsforcepersquareinch)
+        {
+            return new Pressure((kilopoundsforcepersquareinch*6894.75729316836) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from KilopoundsForcePerSquareInch of type decimal.
+        /// </summary>
+        public static Pressure FromKilopoundsForcePerSquareInch(decimal kilopoundsforcepersquareinch)
+        {
+	        return new Pressure((Convert.ToDouble(kilopoundsforcepersquareinch)*6894.75729316836) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Megabars.
         /// </summary>
@@ -594,6 +1107,33 @@ namespace UnitsNet
         {
             return new Pressure((megabars*1e5) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get Pressure from Megabars.
+        /// </summary>
+        public static Pressure FromMegabars(int megabars)
+        {
+            return new Pressure((megabars*1e5) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Megabars.
+        /// </summary>
+        public static Pressure FromMegabars(long megabars)
+        {
+            return new Pressure((megabars*1e5) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Megabars of type decimal.
+        /// </summary>
+        public static Pressure FromMegabars(decimal megabars)
+        {
+	        return new Pressure((Convert.ToDouble(megabars)*1e5) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Megapascals.
@@ -603,6 +1143,33 @@ namespace UnitsNet
             return new Pressure((megapascals) * 1e6d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Megapascals.
+        /// </summary>
+        public static Pressure FromMegapascals(int megapascals)
+        {
+            return new Pressure((megapascals) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Megapascals.
+        /// </summary>
+        public static Pressure FromMegapascals(long megapascals)
+        {
+            return new Pressure((megapascals) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Megapascals of type decimal.
+        /// </summary>
+        public static Pressure FromMegapascals(decimal megapascals)
+        {
+	        return new Pressure((Convert.ToDouble(megapascals)) * 1e6d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from MetersOfHead.
         /// </summary>
@@ -610,6 +1177,33 @@ namespace UnitsNet
         {
             return new Pressure(metersofhead*9804.139432);
         }
+
+		/// <summary>
+        ///     Get Pressure from MetersOfHead.
+        /// </summary>
+        public static Pressure FromMetersOfHead(int metersofhead)
+        {
+            return new Pressure(metersofhead*9804.139432);
+        }
+
+		/// <summary>
+        ///     Get Pressure from MetersOfHead.
+        /// </summary>
+        public static Pressure FromMetersOfHead(long metersofhead)
+        {
+            return new Pressure(metersofhead*9804.139432);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from MetersOfHead of type decimal.
+        /// </summary>
+        public static Pressure FromMetersOfHead(decimal metersofhead)
+        {
+	        return new Pressure(Convert.ToDouble(metersofhead)*9804.139432);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Micropascals.
@@ -619,6 +1213,33 @@ namespace UnitsNet
             return new Pressure((micropascals) * 1e-6d);
         }
 
+		/// <summary>
+        ///     Get Pressure from Micropascals.
+        /// </summary>
+        public static Pressure FromMicropascals(int micropascals)
+        {
+            return new Pressure((micropascals) * 1e-6d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Micropascals.
+        /// </summary>
+        public static Pressure FromMicropascals(long micropascals)
+        {
+            return new Pressure((micropascals) * 1e-6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Micropascals of type decimal.
+        /// </summary>
+        public static Pressure FromMicropascals(decimal micropascals)
+        {
+	        return new Pressure((Convert.ToDouble(micropascals)) * 1e-6d);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Millibars.
         /// </summary>
@@ -626,6 +1247,33 @@ namespace UnitsNet
         {
             return new Pressure((millibars*1e5) * 1e-3d);
         }
+
+		/// <summary>
+        ///     Get Pressure from Millibars.
+        /// </summary>
+        public static Pressure FromMillibars(int millibars)
+        {
+            return new Pressure((millibars*1e5) * 1e-3d);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Millibars.
+        /// </summary>
+        public static Pressure FromMillibars(long millibars)
+        {
+            return new Pressure((millibars*1e5) * 1e-3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Millibars of type decimal.
+        /// </summary>
+        public static Pressure FromMillibars(decimal millibars)
+        {
+	        return new Pressure((Convert.ToDouble(millibars)*1e5) * 1e-3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from MillimetersOfMercury.
@@ -635,6 +1283,33 @@ namespace UnitsNet
             return new Pressure(millimetersofmercury/7.50061561302643e-3);
         }
 
+		/// <summary>
+        ///     Get Pressure from MillimetersOfMercury.
+        /// </summary>
+        public static Pressure FromMillimetersOfMercury(int millimetersofmercury)
+        {
+            return new Pressure(millimetersofmercury/7.50061561302643e-3);
+        }
+
+		/// <summary>
+        ///     Get Pressure from MillimetersOfMercury.
+        /// </summary>
+        public static Pressure FromMillimetersOfMercury(long millimetersofmercury)
+        {
+            return new Pressure(millimetersofmercury/7.50061561302643e-3);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from MillimetersOfMercury of type decimal.
+        /// </summary>
+        public static Pressure FromMillimetersOfMercury(decimal millimetersofmercury)
+        {
+	        return new Pressure(Convert.ToDouble(millimetersofmercury)/7.50061561302643e-3);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareCentimeter.
         /// </summary>
@@ -642,6 +1317,33 @@ namespace UnitsNet
         {
             return new Pressure(newtonspersquarecentimeter*1e4);
         }
+
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareCentimeter(int newtonspersquarecentimeter)
+        {
+            return new Pressure(newtonspersquarecentimeter*1e4);
+        }
+
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareCentimeter(long newtonspersquarecentimeter)
+        {
+            return new Pressure(newtonspersquarecentimeter*1e4);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareCentimeter(decimal newtonspersquarecentimeter)
+        {
+	        return new Pressure(Convert.ToDouble(newtonspersquarecentimeter)*1e4);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMeter.
@@ -651,6 +1353,33 @@ namespace UnitsNet
             return new Pressure(newtonspersquaremeter);
         }
 
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMeter(int newtonspersquaremeter)
+        {
+            return new Pressure(newtonspersquaremeter);
+        }
+
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMeter(long newtonspersquaremeter)
+        {
+            return new Pressure(newtonspersquaremeter);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMeter(decimal newtonspersquaremeter)
+        {
+	        return new Pressure(Convert.ToDouble(newtonspersquaremeter));
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMillimeter.
         /// </summary>
@@ -658,6 +1387,33 @@ namespace UnitsNet
         {
             return new Pressure(newtonspersquaremillimeter*1e6);
         }
+
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMillimeter(int newtonspersquaremillimeter)
+        {
+            return new Pressure(newtonspersquaremillimeter*1e6);
+        }
+
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMillimeter(long newtonspersquaremillimeter)
+        {
+            return new Pressure(newtonspersquaremillimeter*1e6);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from NewtonsPerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure FromNewtonsPerSquareMillimeter(decimal newtonspersquaremillimeter)
+        {
+	        return new Pressure(Convert.ToDouble(newtonspersquaremillimeter)*1e6);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Pascals.
@@ -667,6 +1423,33 @@ namespace UnitsNet
             return new Pressure(pascals);
         }
 
+		/// <summary>
+        ///     Get Pressure from Pascals.
+        /// </summary>
+        public static Pressure FromPascals(int pascals)
+        {
+            return new Pressure(pascals);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Pascals.
+        /// </summary>
+        public static Pressure FromPascals(long pascals)
+        {
+            return new Pressure(pascals);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Pascals of type decimal.
+        /// </summary>
+        public static Pressure FromPascals(decimal pascals)
+        {
+	        return new Pressure(Convert.ToDouble(pascals));
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareFoot.
         /// </summary>
@@ -674,6 +1457,33 @@ namespace UnitsNet
         {
             return new Pressure(poundsforcepersquarefoot*47.8802631216372);
         }
+
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareFoot(int poundsforcepersquarefoot)
+        {
+            return new Pressure(poundsforcepersquarefoot*47.8802631216372);
+        }
+
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareFoot(long poundsforcepersquarefoot)
+        {
+            return new Pressure(poundsforcepersquarefoot*47.8802631216372);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareFoot of type decimal.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareFoot(decimal poundsforcepersquarefoot)
+        {
+	        return new Pressure(Convert.ToDouble(poundsforcepersquarefoot)*47.8802631216372);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareInch.
@@ -683,6 +1493,33 @@ namespace UnitsNet
             return new Pressure(poundsforcepersquareinch*6894.75729316836);
         }
 
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareInch(int poundsforcepersquareinch)
+        {
+            return new Pressure(poundsforcepersquareinch*6894.75729316836);
+        }
+
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareInch(long poundsforcepersquareinch)
+        {
+            return new Pressure(poundsforcepersquareinch*6894.75729316836);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from PoundsForcePerSquareInch of type decimal.
+        /// </summary>
+        public static Pressure FromPoundsForcePerSquareInch(decimal poundsforcepersquareinch)
+        {
+	        return new Pressure(Convert.ToDouble(poundsforcepersquareinch)*6894.75729316836);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from Psi.
         /// </summary>
@@ -690,6 +1527,33 @@ namespace UnitsNet
         {
             return new Pressure(psi*6.89464975179*1e3);
         }
+
+		/// <summary>
+        ///     Get Pressure from Psi.
+        /// </summary>
+        public static Pressure FromPsi(int psi)
+        {
+            return new Pressure(psi*6.89464975179*1e3);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Psi.
+        /// </summary>
+        public static Pressure FromPsi(long psi)
+        {
+            return new Pressure(psi*6.89464975179*1e3);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Psi of type decimal.
+        /// </summary>
+        public static Pressure FromPsi(decimal psi)
+        {
+	        return new Pressure(Convert.ToDouble(psi)*6.89464975179*1e3);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from TechnicalAtmospheres.
@@ -699,6 +1563,33 @@ namespace UnitsNet
             return new Pressure(technicalatmospheres*9.80680592331*1e4);
         }
 
+		/// <summary>
+        ///     Get Pressure from TechnicalAtmospheres.
+        /// </summary>
+        public static Pressure FromTechnicalAtmospheres(int technicalatmospheres)
+        {
+            return new Pressure(technicalatmospheres*9.80680592331*1e4);
+        }
+
+		/// <summary>
+        ///     Get Pressure from TechnicalAtmospheres.
+        /// </summary>
+        public static Pressure FromTechnicalAtmospheres(long technicalatmospheres)
+        {
+            return new Pressure(technicalatmospheres*9.80680592331*1e4);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from TechnicalAtmospheres of type decimal.
+        /// </summary>
+        public static Pressure FromTechnicalAtmospheres(decimal technicalatmospheres)
+        {
+	        return new Pressure(Convert.ToDouble(technicalatmospheres)*9.80680592331*1e4);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareCentimeter.
         /// </summary>
@@ -706,6 +1597,33 @@ namespace UnitsNet
         {
             return new Pressure(tonnesforcepersquarecentimeter*98066501.9960652);
         }
+
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareCentimeter(int tonnesforcepersquarecentimeter)
+        {
+            return new Pressure(tonnesforcepersquarecentimeter*98066501.9960652);
+        }
+
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareCentimeter(long tonnesforcepersquarecentimeter)
+        {
+            return new Pressure(tonnesforcepersquarecentimeter*98066501.9960652);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareCentimeter(decimal tonnesforcepersquarecentimeter)
+        {
+	        return new Pressure(Convert.ToDouble(tonnesforcepersquarecentimeter)*98066501.9960652);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMeter.
@@ -715,6 +1633,33 @@ namespace UnitsNet
             return new Pressure(tonnesforcepersquaremeter*9806.65019960653);
         }
 
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMeter(int tonnesforcepersquaremeter)
+        {
+            return new Pressure(tonnesforcepersquaremeter*9806.65019960653);
+        }
+
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMeter(long tonnesforcepersquaremeter)
+        {
+            return new Pressure(tonnesforcepersquaremeter*9806.65019960653);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMeter(decimal tonnesforcepersquaremeter)
+        {
+	        return new Pressure(Convert.ToDouble(tonnesforcepersquaremeter)*9806.65019960653);
+        }
+#endif
+
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMillimeter.
         /// </summary>
@@ -722,6 +1667,33 @@ namespace UnitsNet
         {
             return new Pressure(tonnesforcepersquaremillimeter*9806650199.60653);
         }
+
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMillimeter(int tonnesforcepersquaremillimeter)
+        {
+            return new Pressure(tonnesforcepersquaremillimeter*9806650199.60653);
+        }
+
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMillimeter(long tonnesforcepersquaremillimeter)
+        {
+            return new Pressure(tonnesforcepersquaremillimeter*9806650199.60653);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from TonnesForcePerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure FromTonnesForcePerSquareMillimeter(decimal tonnesforcepersquaremillimeter)
+        {
+	        return new Pressure(Convert.ToDouble(tonnesforcepersquaremillimeter)*9806650199.60653);
+        }
+#endif
 
         /// <summary>
         ///     Get Pressure from Torrs.
@@ -731,12 +1703,84 @@ namespace UnitsNet
             return new Pressure(torrs*1.3332266752*1e2);
         }
 
+		/// <summary>
+        ///     Get Pressure from Torrs.
+        /// </summary>
+        public static Pressure FromTorrs(int torrs)
+        {
+            return new Pressure(torrs*1.3332266752*1e2);
+        }
+
+		/// <summary>
+        ///     Get Pressure from Torrs.
+        /// </summary>
+        public static Pressure FromTorrs(long torrs)
+        {
+            return new Pressure(torrs*1.3332266752*1e2);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Pressure from Torrs of type decimal.
+        /// </summary>
+        public static Pressure FromTorrs(decimal torrs)
+        {
+	        return new Pressure(Convert.ToDouble(torrs)*1.3332266752*1e2);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Pressure from nullable Atmospheres.
         /// </summary>
         public static Pressure? FromAtmospheres(double? atmospheres)
+        {
+            if (atmospheres.HasValue)
+            {
+                return FromAtmospheres(atmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Atmospheres.
+        /// </summary>
+        public static Pressure? FromAtmospheres(int? atmospheres)
+        {
+            if (atmospheres.HasValue)
+            {
+                return FromAtmospheres(atmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Atmospheres.
+        /// </summary>
+        public static Pressure? FromAtmospheres(long? atmospheres)
+        {
+            if (atmospheres.HasValue)
+            {
+                return FromAtmospheres(atmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Atmospheres of type decimal.
+        /// </summary>
+        public static Pressure? FromAtmospheres(decimal? atmospheres)
         {
             if (atmospheres.HasValue)
             {
@@ -763,10 +1807,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Bars.
+        /// </summary>
+        public static Pressure? FromBars(int? bars)
+        {
+            if (bars.HasValue)
+            {
+                return FromBars(bars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Bars.
+        /// </summary>
+        public static Pressure? FromBars(long? bars)
+        {
+            if (bars.HasValue)
+            {
+                return FromBars(bars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Bars of type decimal.
+        /// </summary>
+        public static Pressure? FromBars(decimal? bars)
+        {
+            if (bars.HasValue)
+            {
+                return FromBars(bars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Centibars.
         /// </summary>
         public static Pressure? FromCentibars(double? centibars)
+        {
+            if (centibars.HasValue)
+            {
+                return FromCentibars(centibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Centibars.
+        /// </summary>
+        public static Pressure? FromCentibars(int? centibars)
+        {
+            if (centibars.HasValue)
+            {
+                return FromCentibars(centibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Centibars.
+        /// </summary>
+        public static Pressure? FromCentibars(long? centibars)
+        {
+            if (centibars.HasValue)
+            {
+                return FromCentibars(centibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Centibars of type decimal.
+        /// </summary>
+        public static Pressure? FromCentibars(decimal? centibars)
         {
             if (centibars.HasValue)
             {
@@ -793,10 +1927,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Decapascals.
+        /// </summary>
+        public static Pressure? FromDecapascals(int? decapascals)
+        {
+            if (decapascals.HasValue)
+            {
+                return FromDecapascals(decapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Decapascals.
+        /// </summary>
+        public static Pressure? FromDecapascals(long? decapascals)
+        {
+            if (decapascals.HasValue)
+            {
+                return FromDecapascals(decapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Decapascals of type decimal.
+        /// </summary>
+        public static Pressure? FromDecapascals(decimal? decapascals)
+        {
+            if (decapascals.HasValue)
+            {
+                return FromDecapascals(decapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Decibars.
         /// </summary>
         public static Pressure? FromDecibars(double? decibars)
+        {
+            if (decibars.HasValue)
+            {
+                return FromDecibars(decibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Decibars.
+        /// </summary>
+        public static Pressure? FromDecibars(int? decibars)
+        {
+            if (decibars.HasValue)
+            {
+                return FromDecibars(decibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Decibars.
+        /// </summary>
+        public static Pressure? FromDecibars(long? decibars)
+        {
+            if (decibars.HasValue)
+            {
+                return FromDecibars(decibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Decibars of type decimal.
+        /// </summary>
+        public static Pressure? FromDecibars(decimal? decibars)
         {
             if (decibars.HasValue)
             {
@@ -823,10 +2047,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable FeetOfHead.
+        /// </summary>
+        public static Pressure? FromFeetOfHead(int? feetofhead)
+        {
+            if (feetofhead.HasValue)
+            {
+                return FromFeetOfHead(feetofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable FeetOfHead.
+        /// </summary>
+        public static Pressure? FromFeetOfHead(long? feetofhead)
+        {
+            if (feetofhead.HasValue)
+            {
+                return FromFeetOfHead(feetofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from FeetOfHead of type decimal.
+        /// </summary>
+        public static Pressure? FromFeetOfHead(decimal? feetofhead)
+        {
+            if (feetofhead.HasValue)
+            {
+                return FromFeetOfHead(feetofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Gigapascals.
         /// </summary>
         public static Pressure? FromGigapascals(double? gigapascals)
+        {
+            if (gigapascals.HasValue)
+            {
+                return FromGigapascals(gigapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Gigapascals.
+        /// </summary>
+        public static Pressure? FromGigapascals(int? gigapascals)
+        {
+            if (gigapascals.HasValue)
+            {
+                return FromGigapascals(gigapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Gigapascals.
+        /// </summary>
+        public static Pressure? FromGigapascals(long? gigapascals)
+        {
+            if (gigapascals.HasValue)
+            {
+                return FromGigapascals(gigapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Gigapascals of type decimal.
+        /// </summary>
+        public static Pressure? FromGigapascals(decimal? gigapascals)
         {
             if (gigapascals.HasValue)
             {
@@ -853,10 +2167,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Hectopascals.
+        /// </summary>
+        public static Pressure? FromHectopascals(int? hectopascals)
+        {
+            if (hectopascals.HasValue)
+            {
+                return FromHectopascals(hectopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Hectopascals.
+        /// </summary>
+        public static Pressure? FromHectopascals(long? hectopascals)
+        {
+            if (hectopascals.HasValue)
+            {
+                return FromHectopascals(hectopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Hectopascals of type decimal.
+        /// </summary>
+        public static Pressure? FromHectopascals(decimal? hectopascals)
+        {
+            if (hectopascals.HasValue)
+            {
+                return FromHectopascals(hectopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable InchesOfMercury.
         /// </summary>
         public static Pressure? FromInchesOfMercury(double? inchesofmercury)
+        {
+            if (inchesofmercury.HasValue)
+            {
+                return FromInchesOfMercury(inchesofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable InchesOfMercury.
+        /// </summary>
+        public static Pressure? FromInchesOfMercury(int? inchesofmercury)
+        {
+            if (inchesofmercury.HasValue)
+            {
+                return FromInchesOfMercury(inchesofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable InchesOfMercury.
+        /// </summary>
+        public static Pressure? FromInchesOfMercury(long? inchesofmercury)
+        {
+            if (inchesofmercury.HasValue)
+            {
+                return FromInchesOfMercury(inchesofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from InchesOfMercury of type decimal.
+        /// </summary>
+        public static Pressure? FromInchesOfMercury(decimal? inchesofmercury)
         {
             if (inchesofmercury.HasValue)
             {
@@ -883,10 +2287,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Kilobars.
+        /// </summary>
+        public static Pressure? FromKilobars(int? kilobars)
+        {
+            if (kilobars.HasValue)
+            {
+                return FromKilobars(kilobars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Kilobars.
+        /// </summary>
+        public static Pressure? FromKilobars(long? kilobars)
+        {
+            if (kilobars.HasValue)
+            {
+                return FromKilobars(kilobars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Kilobars of type decimal.
+        /// </summary>
+        public static Pressure? FromKilobars(decimal? kilobars)
+        {
+            if (kilobars.HasValue)
+            {
+                return FromKilobars(kilobars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable KilogramsForcePerSquareCentimeter.
         /// </summary>
         public static Pressure? FromKilogramsForcePerSquareCentimeter(double? kilogramsforcepersquarecentimeter)
+        {
+            if (kilogramsforcepersquarecentimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareCentimeter(kilogramsforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareCentimeter(int? kilogramsforcepersquarecentimeter)
+        {
+            if (kilogramsforcepersquarecentimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareCentimeter(kilogramsforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareCentimeter(long? kilogramsforcepersquarecentimeter)
+        {
+            if (kilogramsforcepersquarecentimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareCentimeter(kilogramsforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilogramsForcePerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareCentimeter(decimal? kilogramsforcepersquarecentimeter)
         {
             if (kilogramsforcepersquarecentimeter.HasValue)
             {
@@ -913,10 +2407,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMeter(int? kilogramsforcepersquaremeter)
+        {
+            if (kilogramsforcepersquaremeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMeter(kilogramsforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMeter(long? kilogramsforcepersquaremeter)
+        {
+            if (kilogramsforcepersquaremeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMeter(kilogramsforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilogramsForcePerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMeter(decimal? kilogramsforcepersquaremeter)
+        {
+            if (kilogramsforcepersquaremeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMeter(kilogramsforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable KilogramsForcePerSquareMillimeter.
         /// </summary>
         public static Pressure? FromKilogramsForcePerSquareMillimeter(double? kilogramsforcepersquaremillimeter)
+        {
+            if (kilogramsforcepersquaremillimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMillimeter(kilogramsforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMillimeter(int? kilogramsforcepersquaremillimeter)
+        {
+            if (kilogramsforcepersquaremillimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMillimeter(kilogramsforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilogramsForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMillimeter(long? kilogramsforcepersquaremillimeter)
+        {
+            if (kilogramsforcepersquaremillimeter.HasValue)
+            {
+                return FromKilogramsForcePerSquareMillimeter(kilogramsforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilogramsForcePerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilogramsForcePerSquareMillimeter(decimal? kilogramsforcepersquaremillimeter)
         {
             if (kilogramsforcepersquaremillimeter.HasValue)
             {
@@ -943,10 +2527,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareCentimeter(int? kilonewtonspersquarecentimeter)
+        {
+            if (kilonewtonspersquarecentimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareCentimeter(kilonewtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareCentimeter(long? kilonewtonspersquarecentimeter)
+        {
+            if (kilonewtonspersquarecentimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareCentimeter(kilonewtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilonewtonsPerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareCentimeter(decimal? kilonewtonspersquarecentimeter)
+        {
+            if (kilonewtonspersquarecentimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareCentimeter(kilonewtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable KilonewtonsPerSquareMeter.
         /// </summary>
         public static Pressure? FromKilonewtonsPerSquareMeter(double? kilonewtonspersquaremeter)
+        {
+            if (kilonewtonspersquaremeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMeter(kilonewtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMeter(int? kilonewtonspersquaremeter)
+        {
+            if (kilonewtonspersquaremeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMeter(kilonewtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMeter(long? kilonewtonspersquaremeter)
+        {
+            if (kilonewtonspersquaremeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMeter(kilonewtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilonewtonsPerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMeter(decimal? kilonewtonspersquaremeter)
         {
             if (kilonewtonspersquaremeter.HasValue)
             {
@@ -973,10 +2647,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMillimeter(int? kilonewtonspersquaremillimeter)
+        {
+            if (kilonewtonspersquaremillimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMillimeter(kilonewtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilonewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMillimeter(long? kilonewtonspersquaremillimeter)
+        {
+            if (kilonewtonspersquaremillimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMillimeter(kilonewtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilonewtonsPerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromKilonewtonsPerSquareMillimeter(decimal? kilonewtonspersquaremillimeter)
+        {
+            if (kilonewtonspersquaremillimeter.HasValue)
+            {
+                return FromKilonewtonsPerSquareMillimeter(kilonewtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Kilopascals.
         /// </summary>
         public static Pressure? FromKilopascals(double? kilopascals)
+        {
+            if (kilopascals.HasValue)
+            {
+                return FromKilopascals(kilopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Kilopascals.
+        /// </summary>
+        public static Pressure? FromKilopascals(int? kilopascals)
+        {
+            if (kilopascals.HasValue)
+            {
+                return FromKilopascals(kilopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Kilopascals.
+        /// </summary>
+        public static Pressure? FromKilopascals(long? kilopascals)
+        {
+            if (kilopascals.HasValue)
+            {
+                return FromKilopascals(kilopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Kilopascals of type decimal.
+        /// </summary>
+        public static Pressure? FromKilopascals(decimal? kilopascals)
         {
             if (kilopascals.HasValue)
             {
@@ -1003,10 +2767,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareFoot(int? kilopoundsforcepersquarefoot)
+        {
+            if (kilopoundsforcepersquarefoot.HasValue)
+            {
+                return FromKilopoundsForcePerSquareFoot(kilopoundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareFoot(long? kilopoundsforcepersquarefoot)
+        {
+            if (kilopoundsforcepersquarefoot.HasValue)
+            {
+                return FromKilopoundsForcePerSquareFoot(kilopoundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilopoundsForcePerSquareFoot of type decimal.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareFoot(decimal? kilopoundsforcepersquarefoot)
+        {
+            if (kilopoundsforcepersquarefoot.HasValue)
+            {
+                return FromKilopoundsForcePerSquareFoot(kilopoundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable KilopoundsForcePerSquareInch.
         /// </summary>
         public static Pressure? FromKilopoundsForcePerSquareInch(double? kilopoundsforcepersquareinch)
+        {
+            if (kilopoundsforcepersquareinch.HasValue)
+            {
+                return FromKilopoundsForcePerSquareInch(kilopoundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareInch(int? kilopoundsforcepersquareinch)
+        {
+            if (kilopoundsforcepersquareinch.HasValue)
+            {
+                return FromKilopoundsForcePerSquareInch(kilopoundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable KilopoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareInch(long? kilopoundsforcepersquareinch)
+        {
+            if (kilopoundsforcepersquareinch.HasValue)
+            {
+                return FromKilopoundsForcePerSquareInch(kilopoundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from KilopoundsForcePerSquareInch of type decimal.
+        /// </summary>
+        public static Pressure? FromKilopoundsForcePerSquareInch(decimal? kilopoundsforcepersquareinch)
         {
             if (kilopoundsforcepersquareinch.HasValue)
             {
@@ -1033,10 +2887,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Megabars.
+        /// </summary>
+        public static Pressure? FromMegabars(int? megabars)
+        {
+            if (megabars.HasValue)
+            {
+                return FromMegabars(megabars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Megabars.
+        /// </summary>
+        public static Pressure? FromMegabars(long? megabars)
+        {
+            if (megabars.HasValue)
+            {
+                return FromMegabars(megabars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Megabars of type decimal.
+        /// </summary>
+        public static Pressure? FromMegabars(decimal? megabars)
+        {
+            if (megabars.HasValue)
+            {
+                return FromMegabars(megabars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Megapascals.
         /// </summary>
         public static Pressure? FromMegapascals(double? megapascals)
+        {
+            if (megapascals.HasValue)
+            {
+                return FromMegapascals(megapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Megapascals.
+        /// </summary>
+        public static Pressure? FromMegapascals(int? megapascals)
+        {
+            if (megapascals.HasValue)
+            {
+                return FromMegapascals(megapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Megapascals.
+        /// </summary>
+        public static Pressure? FromMegapascals(long? megapascals)
+        {
+            if (megapascals.HasValue)
+            {
+                return FromMegapascals(megapascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Megapascals of type decimal.
+        /// </summary>
+        public static Pressure? FromMegapascals(decimal? megapascals)
         {
             if (megapascals.HasValue)
             {
@@ -1063,10 +3007,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable MetersOfHead.
+        /// </summary>
+        public static Pressure? FromMetersOfHead(int? metersofhead)
+        {
+            if (metersofhead.HasValue)
+            {
+                return FromMetersOfHead(metersofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable MetersOfHead.
+        /// </summary>
+        public static Pressure? FromMetersOfHead(long? metersofhead)
+        {
+            if (metersofhead.HasValue)
+            {
+                return FromMetersOfHead(metersofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from MetersOfHead of type decimal.
+        /// </summary>
+        public static Pressure? FromMetersOfHead(decimal? metersofhead)
+        {
+            if (metersofhead.HasValue)
+            {
+                return FromMetersOfHead(metersofhead.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Micropascals.
         /// </summary>
         public static Pressure? FromMicropascals(double? micropascals)
+        {
+            if (micropascals.HasValue)
+            {
+                return FromMicropascals(micropascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Micropascals.
+        /// </summary>
+        public static Pressure? FromMicropascals(int? micropascals)
+        {
+            if (micropascals.HasValue)
+            {
+                return FromMicropascals(micropascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Micropascals.
+        /// </summary>
+        public static Pressure? FromMicropascals(long? micropascals)
+        {
+            if (micropascals.HasValue)
+            {
+                return FromMicropascals(micropascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Micropascals of type decimal.
+        /// </summary>
+        public static Pressure? FromMicropascals(decimal? micropascals)
         {
             if (micropascals.HasValue)
             {
@@ -1093,10 +3127,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Millibars.
+        /// </summary>
+        public static Pressure? FromMillibars(int? millibars)
+        {
+            if (millibars.HasValue)
+            {
+                return FromMillibars(millibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Millibars.
+        /// </summary>
+        public static Pressure? FromMillibars(long? millibars)
+        {
+            if (millibars.HasValue)
+            {
+                return FromMillibars(millibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Millibars of type decimal.
+        /// </summary>
+        public static Pressure? FromMillibars(decimal? millibars)
+        {
+            if (millibars.HasValue)
+            {
+                return FromMillibars(millibars.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable MillimetersOfMercury.
         /// </summary>
         public static Pressure? FromMillimetersOfMercury(double? millimetersofmercury)
+        {
+            if (millimetersofmercury.HasValue)
+            {
+                return FromMillimetersOfMercury(millimetersofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable MillimetersOfMercury.
+        /// </summary>
+        public static Pressure? FromMillimetersOfMercury(int? millimetersofmercury)
+        {
+            if (millimetersofmercury.HasValue)
+            {
+                return FromMillimetersOfMercury(millimetersofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable MillimetersOfMercury.
+        /// </summary>
+        public static Pressure? FromMillimetersOfMercury(long? millimetersofmercury)
+        {
+            if (millimetersofmercury.HasValue)
+            {
+                return FromMillimetersOfMercury(millimetersofmercury.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from MillimetersOfMercury of type decimal.
+        /// </summary>
+        public static Pressure? FromMillimetersOfMercury(decimal? millimetersofmercury)
         {
             if (millimetersofmercury.HasValue)
             {
@@ -1123,10 +3247,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareCentimeter(int? newtonspersquarecentimeter)
+        {
+            if (newtonspersquarecentimeter.HasValue)
+            {
+                return FromNewtonsPerSquareCentimeter(newtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareCentimeter(long? newtonspersquarecentimeter)
+        {
+            if (newtonspersquarecentimeter.HasValue)
+            {
+                return FromNewtonsPerSquareCentimeter(newtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from NewtonsPerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareCentimeter(decimal? newtonspersquarecentimeter)
+        {
+            if (newtonspersquarecentimeter.HasValue)
+            {
+                return FromNewtonsPerSquareCentimeter(newtonspersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareMeter.
         /// </summary>
         public static Pressure? FromNewtonsPerSquareMeter(double? newtonspersquaremeter)
+        {
+            if (newtonspersquaremeter.HasValue)
+            {
+                return FromNewtonsPerSquareMeter(newtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMeter(int? newtonspersquaremeter)
+        {
+            if (newtonspersquaremeter.HasValue)
+            {
+                return FromNewtonsPerSquareMeter(newtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMeter(long? newtonspersquaremeter)
+        {
+            if (newtonspersquaremeter.HasValue)
+            {
+                return FromNewtonsPerSquareMeter(newtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from NewtonsPerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMeter(decimal? newtonspersquaremeter)
         {
             if (newtonspersquaremeter.HasValue)
             {
@@ -1153,10 +3367,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMillimeter(int? newtonspersquaremillimeter)
+        {
+            if (newtonspersquaremillimeter.HasValue)
+            {
+                return FromNewtonsPerSquareMillimeter(newtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable NewtonsPerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMillimeter(long? newtonspersquaremillimeter)
+        {
+            if (newtonspersquaremillimeter.HasValue)
+            {
+                return FromNewtonsPerSquareMillimeter(newtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from NewtonsPerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromNewtonsPerSquareMillimeter(decimal? newtonspersquaremillimeter)
+        {
+            if (newtonspersquaremillimeter.HasValue)
+            {
+                return FromNewtonsPerSquareMillimeter(newtonspersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Pascals.
         /// </summary>
         public static Pressure? FromPascals(double? pascals)
+        {
+            if (pascals.HasValue)
+            {
+                return FromPascals(pascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Pascals.
+        /// </summary>
+        public static Pressure? FromPascals(int? pascals)
+        {
+            if (pascals.HasValue)
+            {
+                return FromPascals(pascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Pascals.
+        /// </summary>
+        public static Pressure? FromPascals(long? pascals)
+        {
+            if (pascals.HasValue)
+            {
+                return FromPascals(pascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Pascals of type decimal.
+        /// </summary>
+        public static Pressure? FromPascals(decimal? pascals)
         {
             if (pascals.HasValue)
             {
@@ -1183,10 +3487,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareFoot(int? poundsforcepersquarefoot)
+        {
+            if (poundsforcepersquarefoot.HasValue)
+            {
+                return FromPoundsForcePerSquareFoot(poundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareFoot.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareFoot(long? poundsforcepersquarefoot)
+        {
+            if (poundsforcepersquarefoot.HasValue)
+            {
+                return FromPoundsForcePerSquareFoot(poundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from PoundsForcePerSquareFoot of type decimal.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareFoot(decimal? poundsforcepersquarefoot)
+        {
+            if (poundsforcepersquarefoot.HasValue)
+            {
+                return FromPoundsForcePerSquareFoot(poundsforcepersquarefoot.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable PoundsForcePerSquareInch.
         /// </summary>
         public static Pressure? FromPoundsForcePerSquareInch(double? poundsforcepersquareinch)
+        {
+            if (poundsforcepersquareinch.HasValue)
+            {
+                return FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareInch(int? poundsforcepersquareinch)
+        {
+            if (poundsforcepersquareinch.HasValue)
+            {
+                return FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable PoundsForcePerSquareInch.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareInch(long? poundsforcepersquareinch)
+        {
+            if (poundsforcepersquareinch.HasValue)
+            {
+                return FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from PoundsForcePerSquareInch of type decimal.
+        /// </summary>
+        public static Pressure? FromPoundsForcePerSquareInch(decimal? poundsforcepersquareinch)
         {
             if (poundsforcepersquareinch.HasValue)
             {
@@ -1213,10 +3607,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable Psi.
+        /// </summary>
+        public static Pressure? FromPsi(int? psi)
+        {
+            if (psi.HasValue)
+            {
+                return FromPsi(psi.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Psi.
+        /// </summary>
+        public static Pressure? FromPsi(long? psi)
+        {
+            if (psi.HasValue)
+            {
+                return FromPsi(psi.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Psi of type decimal.
+        /// </summary>
+        public static Pressure? FromPsi(decimal? psi)
+        {
+            if (psi.HasValue)
+            {
+                return FromPsi(psi.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable TechnicalAtmospheres.
         /// </summary>
         public static Pressure? FromTechnicalAtmospheres(double? technicalatmospheres)
+        {
+            if (technicalatmospheres.HasValue)
+            {
+                return FromTechnicalAtmospheres(technicalatmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TechnicalAtmospheres.
+        /// </summary>
+        public static Pressure? FromTechnicalAtmospheres(int? technicalatmospheres)
+        {
+            if (technicalatmospheres.HasValue)
+            {
+                return FromTechnicalAtmospheres(technicalatmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TechnicalAtmospheres.
+        /// </summary>
+        public static Pressure? FromTechnicalAtmospheres(long? technicalatmospheres)
+        {
+            if (technicalatmospheres.HasValue)
+            {
+                return FromTechnicalAtmospheres(technicalatmospheres.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from TechnicalAtmospheres of type decimal.
+        /// </summary>
+        public static Pressure? FromTechnicalAtmospheres(decimal? technicalatmospheres)
         {
             if (technicalatmospheres.HasValue)
             {
@@ -1243,10 +3727,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareCentimeter(int? tonnesforcepersquarecentimeter)
+        {
+            if (tonnesforcepersquarecentimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareCentimeter(tonnesforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareCentimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareCentimeter(long? tonnesforcepersquarecentimeter)
+        {
+            if (tonnesforcepersquarecentimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareCentimeter(tonnesforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from TonnesForcePerSquareCentimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareCentimeter(decimal? tonnesforcepersquarecentimeter)
+        {
+            if (tonnesforcepersquarecentimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareCentimeter(tonnesforcepersquarecentimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable TonnesForcePerSquareMeter.
         /// </summary>
         public static Pressure? FromTonnesForcePerSquareMeter(double? tonnesforcepersquaremeter)
+        {
+            if (tonnesforcepersquaremeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMeter(tonnesforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMeter(int? tonnesforcepersquaremeter)
+        {
+            if (tonnesforcepersquaremeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMeter(tonnesforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMeter(long? tonnesforcepersquaremeter)
+        {
+            if (tonnesforcepersquaremeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMeter(tonnesforcepersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from TonnesForcePerSquareMeter of type decimal.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMeter(decimal? tonnesforcepersquaremeter)
         {
             if (tonnesforcepersquaremeter.HasValue)
             {
@@ -1273,10 +3847,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMillimeter(int? tonnesforcepersquaremillimeter)
+        {
+            if (tonnesforcepersquaremillimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMillimeter(tonnesforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable TonnesForcePerSquareMillimeter.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMillimeter(long? tonnesforcepersquaremillimeter)
+        {
+            if (tonnesforcepersquaremillimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMillimeter(tonnesforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from TonnesForcePerSquareMillimeter of type decimal.
+        /// </summary>
+        public static Pressure? FromTonnesForcePerSquareMillimeter(decimal? tonnesforcepersquaremillimeter)
+        {
+            if (tonnesforcepersquaremillimeter.HasValue)
+            {
+                return FromTonnesForcePerSquareMillimeter(tonnesforcepersquaremillimeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Pressure from nullable Torrs.
         /// </summary>
         public static Pressure? FromTorrs(double? torrs)
+        {
+            if (torrs.HasValue)
+            {
+                return FromTorrs(torrs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Torrs.
+        /// </summary>
+        public static Pressure? FromTorrs(int? torrs)
+        {
+            if (torrs.HasValue)
+            {
+                return FromTorrs(torrs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from nullable Torrs.
+        /// </summary>
+        public static Pressure? FromTorrs(long? torrs)
+        {
+            if (torrs.HasValue)
+            {
+                return FromTorrs(torrs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Pressure from Torrs of type decimal.
+        /// </summary>
+        public static Pressure? FromTorrs(decimal? torrs)
         {
             if (torrs.HasValue)
             {

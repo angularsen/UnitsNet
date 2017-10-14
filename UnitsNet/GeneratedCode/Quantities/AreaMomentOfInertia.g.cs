@@ -194,6 +194,33 @@ namespace UnitsNet
             return new AreaMomentOfInertia(centimeterstothefourth/1e8);
         }
 
+		/// <summary>
+        ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromCentimetersToTheFourth(int centimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(centimeterstothefourth/1e8);
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromCentimetersToTheFourth(long centimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(centimeterstothefourth/1e8);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from CentimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromCentimetersToTheFourth(decimal centimeterstothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(centimeterstothefourth)/1e8);
+        }
+#endif
+
         /// <summary>
         ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
         /// </summary>
@@ -201,6 +228,33 @@ namespace UnitsNet
         {
             return new AreaMomentOfInertia(decimeterstothefourth/1e4);
         }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromDecimetersToTheFourth(int decimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(decimeterstothefourth/1e4);
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromDecimetersToTheFourth(long decimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(decimeterstothefourth/1e4);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from DecimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromDecimetersToTheFourth(decimal decimeterstothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(decimeterstothefourth)/1e4);
+        }
+#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from FeetToTheFourth.
@@ -210,6 +264,33 @@ namespace UnitsNet
             return new AreaMomentOfInertia(feettothefourth*Math.Pow(0.3048, 4));
         }
 
+		/// <summary>
+        ///     Get AreaMomentOfInertia from FeetToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromFeetToTheFourth(int feettothefourth)
+        {
+            return new AreaMomentOfInertia(feettothefourth*Math.Pow(0.3048, 4));
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from FeetToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromFeetToTheFourth(long feettothefourth)
+        {
+            return new AreaMomentOfInertia(feettothefourth*Math.Pow(0.3048, 4));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from FeetToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromFeetToTheFourth(decimal feettothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(feettothefourth)*Math.Pow(0.3048, 4));
+        }
+#endif
+
         /// <summary>
         ///     Get AreaMomentOfInertia from InchesToTheFourth.
         /// </summary>
@@ -217,6 +298,33 @@ namespace UnitsNet
         {
             return new AreaMomentOfInertia(inchestothefourth*Math.Pow(2.54e-2, 4));
         }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from InchesToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromInchesToTheFourth(int inchestothefourth)
+        {
+            return new AreaMomentOfInertia(inchestothefourth*Math.Pow(2.54e-2, 4));
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from InchesToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromInchesToTheFourth(long inchestothefourth)
+        {
+            return new AreaMomentOfInertia(inchestothefourth*Math.Pow(2.54e-2, 4));
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from InchesToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromInchesToTheFourth(decimal inchestothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(inchestothefourth)*Math.Pow(2.54e-2, 4));
+        }
+#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from MetersToTheFourth.
@@ -226,6 +334,33 @@ namespace UnitsNet
             return new AreaMomentOfInertia(meterstothefourth);
         }
 
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromMetersToTheFourth(int meterstothefourth)
+        {
+            return new AreaMomentOfInertia(meterstothefourth);
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromMetersToTheFourth(long meterstothefourth)
+        {
+            return new AreaMomentOfInertia(meterstothefourth);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromMetersToTheFourth(decimal meterstothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(meterstothefourth));
+        }
+#endif
+
         /// <summary>
         ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
         /// </summary>
@@ -234,12 +369,84 @@ namespace UnitsNet
             return new AreaMomentOfInertia(millimeterstothefourth/1e12);
         }
 
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromMillimetersToTheFourth(int millimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(millimeterstothefourth/1e12);
+        }
+
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia FromMillimetersToTheFourth(long millimeterstothefourth)
+        {
+            return new AreaMomentOfInertia(millimeterstothefourth/1e12);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get AreaMomentOfInertia from MillimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia FromMillimetersToTheFourth(decimal millimeterstothefourth)
+        {
+	        return new AreaMomentOfInertia(Convert.ToDouble(millimeterstothefourth)/1e12);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable CentimetersToTheFourth.
         /// </summary>
         public static AreaMomentOfInertia? FromCentimetersToTheFourth(double? centimeterstothefourth)
+        {
+            if (centimeterstothefourth.HasValue)
+            {
+                return FromCentimetersToTheFourth(centimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable CentimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromCentimetersToTheFourth(int? centimeterstothefourth)
+        {
+            if (centimeterstothefourth.HasValue)
+            {
+                return FromCentimetersToTheFourth(centimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable CentimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromCentimetersToTheFourth(long? centimeterstothefourth)
+        {
+            if (centimeterstothefourth.HasValue)
+            {
+                return FromCentimetersToTheFourth(centimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from CentimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromCentimetersToTheFourth(decimal? centimeterstothefourth)
         {
             if (centimeterstothefourth.HasValue)
             {
@@ -266,10 +473,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable DecimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromDecimetersToTheFourth(int? decimeterstothefourth)
+        {
+            if (decimeterstothefourth.HasValue)
+            {
+                return FromDecimetersToTheFourth(decimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable DecimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromDecimetersToTheFourth(long? decimeterstothefourth)
+        {
+            if (decimeterstothefourth.HasValue)
+            {
+                return FromDecimetersToTheFourth(decimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from DecimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromDecimetersToTheFourth(decimal? decimeterstothefourth)
+        {
+            if (decimeterstothefourth.HasValue)
+            {
+                return FromDecimetersToTheFourth(decimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable FeetToTheFourth.
         /// </summary>
         public static AreaMomentOfInertia? FromFeetToTheFourth(double? feettothefourth)
+        {
+            if (feettothefourth.HasValue)
+            {
+                return FromFeetToTheFourth(feettothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable FeetToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromFeetToTheFourth(int? feettothefourth)
+        {
+            if (feettothefourth.HasValue)
+            {
+                return FromFeetToTheFourth(feettothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable FeetToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromFeetToTheFourth(long? feettothefourth)
+        {
+            if (feettothefourth.HasValue)
+            {
+                return FromFeetToTheFourth(feettothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from FeetToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromFeetToTheFourth(decimal? feettothefourth)
         {
             if (feettothefourth.HasValue)
             {
@@ -296,6 +593,51 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable InchesToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromInchesToTheFourth(int? inchestothefourth)
+        {
+            if (inchestothefourth.HasValue)
+            {
+                return FromInchesToTheFourth(inchestothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable InchesToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromInchesToTheFourth(long? inchestothefourth)
+        {
+            if (inchestothefourth.HasValue)
+            {
+                return FromInchesToTheFourth(inchestothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from InchesToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromInchesToTheFourth(decimal? inchestothefourth)
+        {
+            if (inchestothefourth.HasValue)
+            {
+                return FromInchesToTheFourth(inchestothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable MetersToTheFourth.
         /// </summary>
@@ -311,10 +653,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable MetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMetersToTheFourth(int? meterstothefourth)
+        {
+            if (meterstothefourth.HasValue)
+            {
+                return FromMetersToTheFourth(meterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable MetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMetersToTheFourth(long? meterstothefourth)
+        {
+            if (meterstothefourth.HasValue)
+            {
+                return FromMetersToTheFourth(meterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from MetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMetersToTheFourth(decimal? meterstothefourth)
+        {
+            if (meterstothefourth.HasValue)
+            {
+                return FromMetersToTheFourth(meterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable MillimetersToTheFourth.
         /// </summary>
         public static AreaMomentOfInertia? FromMillimetersToTheFourth(double? millimeterstothefourth)
+        {
+            if (millimeterstothefourth.HasValue)
+            {
+                return FromMillimetersToTheFourth(millimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable MillimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMillimetersToTheFourth(int? millimeterstothefourth)
+        {
+            if (millimeterstothefourth.HasValue)
+            {
+                return FromMillimetersToTheFourth(millimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from nullable MillimetersToTheFourth.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMillimetersToTheFourth(long? millimeterstothefourth)
+        {
+            if (millimeterstothefourth.HasValue)
+            {
+                return FromMillimetersToTheFourth(millimeterstothefourth.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable AreaMomentOfInertia from MillimetersToTheFourth of type decimal.
+        /// </summary>
+        public static AreaMomentOfInertia? FromMillimetersToTheFourth(decimal? millimeterstothefourth)
         {
             if (millimeterstothefourth.HasValue)
             {

@@ -322,6 +322,33 @@ namespace UnitsNet
             return new Energy(britishthermalunits*1055.05585262);
         }
 
+		/// <summary>
+        ///     Get Energy from BritishThermalUnits.
+        /// </summary>
+        public static Energy FromBritishThermalUnits(int britishthermalunits)
+        {
+            return new Energy(britishthermalunits*1055.05585262);
+        }
+
+		/// <summary>
+        ///     Get Energy from BritishThermalUnits.
+        /// </summary>
+        public static Energy FromBritishThermalUnits(long britishthermalunits)
+        {
+            return new Energy(britishthermalunits*1055.05585262);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from BritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy FromBritishThermalUnits(decimal britishthermalunits)
+        {
+	        return new Energy(Convert.ToDouble(britishthermalunits)*1055.05585262);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
@@ -329,6 +356,33 @@ namespace UnitsNet
         {
             return new Energy(calories*4.184);
         }
+
+		/// <summary>
+        ///     Get Energy from Calories.
+        /// </summary>
+        public static Energy FromCalories(int calories)
+        {
+            return new Energy(calories*4.184);
+        }
+
+		/// <summary>
+        ///     Get Energy from Calories.
+        /// </summary>
+        public static Energy FromCalories(long calories)
+        {
+            return new Energy(calories*4.184);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Calories of type decimal.
+        /// </summary>
+        public static Energy FromCalories(decimal calories)
+        {
+	        return new Energy(Convert.ToDouble(calories)*4.184);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from DecathermsEc.
@@ -338,6 +392,33 @@ namespace UnitsNet
             return new Energy((decathermsec*105505585.262) * 1e1d);
         }
 
+		/// <summary>
+        ///     Get Energy from DecathermsEc.
+        /// </summary>
+        public static Energy FromDecathermsEc(int decathermsec)
+        {
+            return new Energy((decathermsec*105505585.262) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Energy from DecathermsEc.
+        /// </summary>
+        public static Energy FromDecathermsEc(long decathermsec)
+        {
+            return new Energy((decathermsec*105505585.262) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from DecathermsEc of type decimal.
+        /// </summary>
+        public static Energy FromDecathermsEc(decimal decathermsec)
+        {
+	        return new Energy((Convert.ToDouble(decathermsec)*105505585.262) * 1e1d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from DecathermsImperial.
         /// </summary>
@@ -345,6 +426,33 @@ namespace UnitsNet
         {
             return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
         }
+
+		/// <summary>
+        ///     Get Energy from DecathermsImperial.
+        /// </summary>
+        public static Energy FromDecathermsImperial(int decathermsimperial)
+        {
+            return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Energy from DecathermsImperial.
+        /// </summary>
+        public static Energy FromDecathermsImperial(long decathermsimperial)
+        {
+            return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from DecathermsImperial of type decimal.
+        /// </summary>
+        public static Energy FromDecathermsImperial(decimal decathermsimperial)
+        {
+	        return new Energy((Convert.ToDouble(decathermsimperial)*1.05505585257348e+14) * 1e1d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from DecathermsUs.
@@ -354,6 +462,33 @@ namespace UnitsNet
             return new Energy((decathermsus*1.054804e+8) * 1e1d);
         }
 
+		/// <summary>
+        ///     Get Energy from DecathermsUs.
+        /// </summary>
+        public static Energy FromDecathermsUs(int decathermsus)
+        {
+            return new Energy((decathermsus*1.054804e+8) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Energy from DecathermsUs.
+        /// </summary>
+        public static Energy FromDecathermsUs(long decathermsus)
+        {
+            return new Energy((decathermsus*1.054804e+8) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from DecathermsUs of type decimal.
+        /// </summary>
+        public static Energy FromDecathermsUs(decimal decathermsus)
+        {
+	        return new Energy((Convert.ToDouble(decathermsus)*1.054804e+8) * 1e1d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from ElectronVolts.
         /// </summary>
@@ -361,6 +496,33 @@ namespace UnitsNet
         {
             return new Energy(electronvolts*1.602176565e-19);
         }
+
+		/// <summary>
+        ///     Get Energy from ElectronVolts.
+        /// </summary>
+        public static Energy FromElectronVolts(int electronvolts)
+        {
+            return new Energy(electronvolts*1.602176565e-19);
+        }
+
+		/// <summary>
+        ///     Get Energy from ElectronVolts.
+        /// </summary>
+        public static Energy FromElectronVolts(long electronvolts)
+        {
+            return new Energy(electronvolts*1.602176565e-19);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from ElectronVolts of type decimal.
+        /// </summary>
+        public static Energy FromElectronVolts(decimal electronvolts)
+        {
+	        return new Energy(Convert.ToDouble(electronvolts)*1.602176565e-19);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from Ergs.
@@ -370,6 +532,33 @@ namespace UnitsNet
             return new Energy(ergs*1e-7);
         }
 
+		/// <summary>
+        ///     Get Energy from Ergs.
+        /// </summary>
+        public static Energy FromErgs(int ergs)
+        {
+            return new Energy(ergs*1e-7);
+        }
+
+		/// <summary>
+        ///     Get Energy from Ergs.
+        /// </summary>
+        public static Energy FromErgs(long ergs)
+        {
+            return new Energy(ergs*1e-7);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Ergs of type decimal.
+        /// </summary>
+        public static Energy FromErgs(decimal ergs)
+        {
+	        return new Energy(Convert.ToDouble(ergs)*1e-7);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
@@ -377,6 +566,33 @@ namespace UnitsNet
         {
             return new Energy(footpounds*1.355817948);
         }
+
+		/// <summary>
+        ///     Get Energy from FootPounds.
+        /// </summary>
+        public static Energy FromFootPounds(int footpounds)
+        {
+            return new Energy(footpounds*1.355817948);
+        }
+
+		/// <summary>
+        ///     Get Energy from FootPounds.
+        /// </summary>
+        public static Energy FromFootPounds(long footpounds)
+        {
+            return new Energy(footpounds*1.355817948);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from FootPounds of type decimal.
+        /// </summary>
+        public static Energy FromFootPounds(decimal footpounds)
+        {
+	        return new Energy(Convert.ToDouble(footpounds)*1.355817948);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
@@ -386,6 +602,33 @@ namespace UnitsNet
             return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
         }
 
+		/// <summary>
+        ///     Get Energy from GigabritishThermalUnits.
+        /// </summary>
+        public static Energy FromGigabritishThermalUnits(int gigabritishthermalunits)
+        {
+            return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
+        }
+
+		/// <summary>
+        ///     Get Energy from GigabritishThermalUnits.
+        /// </summary>
+        public static Energy FromGigabritishThermalUnits(long gigabritishthermalunits)
+        {
+            return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from GigabritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy FromGigabritishThermalUnits(decimal gigabritishthermalunits)
+        {
+	        return new Energy((Convert.ToDouble(gigabritishthermalunits)*1055.05585262) * 1e9d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
@@ -393,6 +636,33 @@ namespace UnitsNet
         {
             return new Energy((gigawatthours*3600d) * 1e9d);
         }
+
+		/// <summary>
+        ///     Get Energy from GigawattHours.
+        /// </summary>
+        public static Energy FromGigawattHours(int gigawatthours)
+        {
+            return new Energy((gigawatthours*3600d) * 1e9d);
+        }
+
+		/// <summary>
+        ///     Get Energy from GigawattHours.
+        /// </summary>
+        public static Energy FromGigawattHours(long gigawatthours)
+        {
+            return new Energy((gigawatthours*3600d) * 1e9d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from GigawattHours of type decimal.
+        /// </summary>
+        public static Energy FromGigawattHours(decimal gigawatthours)
+        {
+	        return new Energy((Convert.ToDouble(gigawatthours)*3600d) * 1e9d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from Joules.
@@ -402,6 +672,33 @@ namespace UnitsNet
             return new Energy(joules);
         }
 
+		/// <summary>
+        ///     Get Energy from Joules.
+        /// </summary>
+        public static Energy FromJoules(int joules)
+        {
+            return new Energy(joules);
+        }
+
+		/// <summary>
+        ///     Get Energy from Joules.
+        /// </summary>
+        public static Energy FromJoules(long joules)
+        {
+            return new Energy(joules);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Joules of type decimal.
+        /// </summary>
+        public static Energy FromJoules(decimal joules)
+        {
+	        return new Energy(Convert.ToDouble(joules));
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
@@ -409,6 +706,33 @@ namespace UnitsNet
         {
             return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Energy from KilobritishThermalUnits.
+        /// </summary>
+        public static Energy FromKilobritishThermalUnits(int kilobritishthermalunits)
+        {
+            return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Energy from KilobritishThermalUnits.
+        /// </summary>
+        public static Energy FromKilobritishThermalUnits(long kilobritishthermalunits)
+        {
+            return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from KilobritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy FromKilobritishThermalUnits(decimal kilobritishthermalunits)
+        {
+	        return new Energy((Convert.ToDouble(kilobritishthermalunits)*1055.05585262) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from Kilocalories.
@@ -418,6 +742,33 @@ namespace UnitsNet
             return new Energy((kilocalories*4.184) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Energy from Kilocalories.
+        /// </summary>
+        public static Energy FromKilocalories(int kilocalories)
+        {
+            return new Energy((kilocalories*4.184) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Energy from Kilocalories.
+        /// </summary>
+        public static Energy FromKilocalories(long kilocalories)
+        {
+            return new Energy((kilocalories*4.184) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Kilocalories of type decimal.
+        /// </summary>
+        public static Energy FromKilocalories(decimal kilocalories)
+        {
+	        return new Energy((Convert.ToDouble(kilocalories)*4.184) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
@@ -425,6 +776,33 @@ namespace UnitsNet
         {
             return new Energy((kilojoules) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Energy from Kilojoules.
+        /// </summary>
+        public static Energy FromKilojoules(int kilojoules)
+        {
+            return new Energy((kilojoules) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Energy from Kilojoules.
+        /// </summary>
+        public static Energy FromKilojoules(long kilojoules)
+        {
+            return new Energy((kilojoules) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Kilojoules of type decimal.
+        /// </summary>
+        public static Energy FromKilojoules(decimal kilojoules)
+        {
+	        return new Energy((Convert.ToDouble(kilojoules)) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from KilowattHours.
@@ -434,6 +812,33 @@ namespace UnitsNet
             return new Energy((kilowatthours*3600d) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get Energy from KilowattHours.
+        /// </summary>
+        public static Energy FromKilowattHours(int kilowatthours)
+        {
+            return new Energy((kilowatthours*3600d) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Energy from KilowattHours.
+        /// </summary>
+        public static Energy FromKilowattHours(long kilowatthours)
+        {
+            return new Energy((kilowatthours*3600d) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from KilowattHours of type decimal.
+        /// </summary>
+        public static Energy FromKilowattHours(decimal kilowatthours)
+        {
+	        return new Energy((Convert.ToDouble(kilowatthours)*3600d) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
@@ -441,6 +846,33 @@ namespace UnitsNet
         {
             return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get Energy from MegabritishThermalUnits.
+        /// </summary>
+        public static Energy FromMegabritishThermalUnits(int megabritishthermalunits)
+        {
+            return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Energy from MegabritishThermalUnits.
+        /// </summary>
+        public static Energy FromMegabritishThermalUnits(long megabritishthermalunits)
+        {
+            return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from MegabritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy FromMegabritishThermalUnits(decimal megabritishthermalunits)
+        {
+	        return new Energy((Convert.ToDouble(megabritishthermalunits)*1055.05585262) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from Megajoules.
@@ -450,6 +882,33 @@ namespace UnitsNet
             return new Energy((megajoules) * 1e6d);
         }
 
+		/// <summary>
+        ///     Get Energy from Megajoules.
+        /// </summary>
+        public static Energy FromMegajoules(int megajoules)
+        {
+            return new Energy((megajoules) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Energy from Megajoules.
+        /// </summary>
+        public static Energy FromMegajoules(long megajoules)
+        {
+            return new Energy((megajoules) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from Megajoules of type decimal.
+        /// </summary>
+        public static Energy FromMegajoules(decimal megajoules)
+        {
+	        return new Energy((Convert.ToDouble(megajoules)) * 1e6d);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from MegawattHours.
         /// </summary>
@@ -457,6 +916,33 @@ namespace UnitsNet
         {
             return new Energy((megawatthours*3600d) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get Energy from MegawattHours.
+        /// </summary>
+        public static Energy FromMegawattHours(int megawatthours)
+        {
+            return new Energy((megawatthours*3600d) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get Energy from MegawattHours.
+        /// </summary>
+        public static Energy FromMegawattHours(long megawatthours)
+        {
+            return new Energy((megawatthours*3600d) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from MegawattHours of type decimal.
+        /// </summary>
+        public static Energy FromMegawattHours(decimal megawatthours)
+        {
+	        return new Energy((Convert.ToDouble(megawatthours)*3600d) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from ThermsEc.
@@ -466,6 +952,33 @@ namespace UnitsNet
             return new Energy(thermsec*105505585.262);
         }
 
+		/// <summary>
+        ///     Get Energy from ThermsEc.
+        /// </summary>
+        public static Energy FromThermsEc(int thermsec)
+        {
+            return new Energy(thermsec*105505585.262);
+        }
+
+		/// <summary>
+        ///     Get Energy from ThermsEc.
+        /// </summary>
+        public static Energy FromThermsEc(long thermsec)
+        {
+            return new Energy(thermsec*105505585.262);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from ThermsEc of type decimal.
+        /// </summary>
+        public static Energy FromThermsEc(decimal thermsec)
+        {
+	        return new Energy(Convert.ToDouble(thermsec)*105505585.262);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from ThermsImperial.
         /// </summary>
@@ -473,6 +986,33 @@ namespace UnitsNet
         {
             return new Energy(thermsimperial*1.05505585257348e+14);
         }
+
+		/// <summary>
+        ///     Get Energy from ThermsImperial.
+        /// </summary>
+        public static Energy FromThermsImperial(int thermsimperial)
+        {
+            return new Energy(thermsimperial*1.05505585257348e+14);
+        }
+
+		/// <summary>
+        ///     Get Energy from ThermsImperial.
+        /// </summary>
+        public static Energy FromThermsImperial(long thermsimperial)
+        {
+            return new Energy(thermsimperial*1.05505585257348e+14);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from ThermsImperial of type decimal.
+        /// </summary>
+        public static Energy FromThermsImperial(decimal thermsimperial)
+        {
+	        return new Energy(Convert.ToDouble(thermsimperial)*1.05505585257348e+14);
+        }
+#endif
 
         /// <summary>
         ///     Get Energy from ThermsUs.
@@ -482,6 +1022,33 @@ namespace UnitsNet
             return new Energy(thermsus*1.054804e+8);
         }
 
+		/// <summary>
+        ///     Get Energy from ThermsUs.
+        /// </summary>
+        public static Energy FromThermsUs(int thermsus)
+        {
+            return new Energy(thermsus*1.054804e+8);
+        }
+
+		/// <summary>
+        ///     Get Energy from ThermsUs.
+        /// </summary>
+        public static Energy FromThermsUs(long thermsus)
+        {
+            return new Energy(thermsus*1.054804e+8);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from ThermsUs of type decimal.
+        /// </summary>
+        public static Energy FromThermsUs(decimal thermsus)
+        {
+	        return new Energy(Convert.ToDouble(thermsus)*1.054804e+8);
+        }
+#endif
+
         /// <summary>
         ///     Get Energy from WattHours.
         /// </summary>
@@ -490,12 +1057,84 @@ namespace UnitsNet
             return new Energy(watthours*3600d);
         }
 
+		/// <summary>
+        ///     Get Energy from WattHours.
+        /// </summary>
+        public static Energy FromWattHours(int watthours)
+        {
+            return new Energy(watthours*3600d);
+        }
+
+		/// <summary>
+        ///     Get Energy from WattHours.
+        /// </summary>
+        public static Energy FromWattHours(long watthours)
+        {
+            return new Energy(watthours*3600d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Energy from WattHours of type decimal.
+        /// </summary>
+        public static Energy FromWattHours(decimal watthours)
+        {
+	        return new Energy(Convert.ToDouble(watthours)*3600d);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Energy from nullable BritishThermalUnits.
         /// </summary>
         public static Energy? FromBritishThermalUnits(double? britishthermalunits)
+        {
+            if (britishthermalunits.HasValue)
+            {
+                return FromBritishThermalUnits(britishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable BritishThermalUnits.
+        /// </summary>
+        public static Energy? FromBritishThermalUnits(int? britishthermalunits)
+        {
+            if (britishthermalunits.HasValue)
+            {
+                return FromBritishThermalUnits(britishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable BritishThermalUnits.
+        /// </summary>
+        public static Energy? FromBritishThermalUnits(long? britishthermalunits)
+        {
+            if (britishthermalunits.HasValue)
+            {
+                return FromBritishThermalUnits(britishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from BritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy? FromBritishThermalUnits(decimal? britishthermalunits)
         {
             if (britishthermalunits.HasValue)
             {
@@ -522,10 +1161,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable Calories.
+        /// </summary>
+        public static Energy? FromCalories(int? calories)
+        {
+            if (calories.HasValue)
+            {
+                return FromCalories(calories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Calories.
+        /// </summary>
+        public static Energy? FromCalories(long? calories)
+        {
+            if (calories.HasValue)
+            {
+                return FromCalories(calories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Calories of type decimal.
+        /// </summary>
+        public static Energy? FromCalories(decimal? calories)
+        {
+            if (calories.HasValue)
+            {
+                return FromCalories(calories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable DecathermsEc.
         /// </summary>
         public static Energy? FromDecathermsEc(double? decathermsec)
+        {
+            if (decathermsec.HasValue)
+            {
+                return FromDecathermsEc(decathermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsEc.
+        /// </summary>
+        public static Energy? FromDecathermsEc(int? decathermsec)
+        {
+            if (decathermsec.HasValue)
+            {
+                return FromDecathermsEc(decathermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsEc.
+        /// </summary>
+        public static Energy? FromDecathermsEc(long? decathermsec)
+        {
+            if (decathermsec.HasValue)
+            {
+                return FromDecathermsEc(decathermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from DecathermsEc of type decimal.
+        /// </summary>
+        public static Energy? FromDecathermsEc(decimal? decathermsec)
         {
             if (decathermsec.HasValue)
             {
@@ -552,10 +1281,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsImperial.
+        /// </summary>
+        public static Energy? FromDecathermsImperial(int? decathermsimperial)
+        {
+            if (decathermsimperial.HasValue)
+            {
+                return FromDecathermsImperial(decathermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsImperial.
+        /// </summary>
+        public static Energy? FromDecathermsImperial(long? decathermsimperial)
+        {
+            if (decathermsimperial.HasValue)
+            {
+                return FromDecathermsImperial(decathermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from DecathermsImperial of type decimal.
+        /// </summary>
+        public static Energy? FromDecathermsImperial(decimal? decathermsimperial)
+        {
+            if (decathermsimperial.HasValue)
+            {
+                return FromDecathermsImperial(decathermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable DecathermsUs.
         /// </summary>
         public static Energy? FromDecathermsUs(double? decathermsus)
+        {
+            if (decathermsus.HasValue)
+            {
+                return FromDecathermsUs(decathermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsUs.
+        /// </summary>
+        public static Energy? FromDecathermsUs(int? decathermsus)
+        {
+            if (decathermsus.HasValue)
+            {
+                return FromDecathermsUs(decathermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable DecathermsUs.
+        /// </summary>
+        public static Energy? FromDecathermsUs(long? decathermsus)
+        {
+            if (decathermsus.HasValue)
+            {
+                return FromDecathermsUs(decathermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from DecathermsUs of type decimal.
+        /// </summary>
+        public static Energy? FromDecathermsUs(decimal? decathermsus)
         {
             if (decathermsus.HasValue)
             {
@@ -582,10 +1401,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable ElectronVolts.
+        /// </summary>
+        public static Energy? FromElectronVolts(int? electronvolts)
+        {
+            if (electronvolts.HasValue)
+            {
+                return FromElectronVolts(electronvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable ElectronVolts.
+        /// </summary>
+        public static Energy? FromElectronVolts(long? electronvolts)
+        {
+            if (electronvolts.HasValue)
+            {
+                return FromElectronVolts(electronvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from ElectronVolts of type decimal.
+        /// </summary>
+        public static Energy? FromElectronVolts(decimal? electronvolts)
+        {
+            if (electronvolts.HasValue)
+            {
+                return FromElectronVolts(electronvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable Ergs.
         /// </summary>
         public static Energy? FromErgs(double? ergs)
+        {
+            if (ergs.HasValue)
+            {
+                return FromErgs(ergs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Ergs.
+        /// </summary>
+        public static Energy? FromErgs(int? ergs)
+        {
+            if (ergs.HasValue)
+            {
+                return FromErgs(ergs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Ergs.
+        /// </summary>
+        public static Energy? FromErgs(long? ergs)
+        {
+            if (ergs.HasValue)
+            {
+                return FromErgs(ergs.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Ergs of type decimal.
+        /// </summary>
+        public static Energy? FromErgs(decimal? ergs)
         {
             if (ergs.HasValue)
             {
@@ -612,10 +1521,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable FootPounds.
+        /// </summary>
+        public static Energy? FromFootPounds(int? footpounds)
+        {
+            if (footpounds.HasValue)
+            {
+                return FromFootPounds(footpounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable FootPounds.
+        /// </summary>
+        public static Energy? FromFootPounds(long? footpounds)
+        {
+            if (footpounds.HasValue)
+            {
+                return FromFootPounds(footpounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from FootPounds of type decimal.
+        /// </summary>
+        public static Energy? FromFootPounds(decimal? footpounds)
+        {
+            if (footpounds.HasValue)
+            {
+                return FromFootPounds(footpounds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable GigabritishThermalUnits.
         /// </summary>
         public static Energy? FromGigabritishThermalUnits(double? gigabritishthermalunits)
+        {
+            if (gigabritishthermalunits.HasValue)
+            {
+                return FromGigabritishThermalUnits(gigabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable GigabritishThermalUnits.
+        /// </summary>
+        public static Energy? FromGigabritishThermalUnits(int? gigabritishthermalunits)
+        {
+            if (gigabritishthermalunits.HasValue)
+            {
+                return FromGigabritishThermalUnits(gigabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable GigabritishThermalUnits.
+        /// </summary>
+        public static Energy? FromGigabritishThermalUnits(long? gigabritishthermalunits)
+        {
+            if (gigabritishthermalunits.HasValue)
+            {
+                return FromGigabritishThermalUnits(gigabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from GigabritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy? FromGigabritishThermalUnits(decimal? gigabritishthermalunits)
         {
             if (gigabritishthermalunits.HasValue)
             {
@@ -642,10 +1641,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable GigawattHours.
+        /// </summary>
+        public static Energy? FromGigawattHours(int? gigawatthours)
+        {
+            if (gigawatthours.HasValue)
+            {
+                return FromGigawattHours(gigawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable GigawattHours.
+        /// </summary>
+        public static Energy? FromGigawattHours(long? gigawatthours)
+        {
+            if (gigawatthours.HasValue)
+            {
+                return FromGigawattHours(gigawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from GigawattHours of type decimal.
+        /// </summary>
+        public static Energy? FromGigawattHours(decimal? gigawatthours)
+        {
+            if (gigawatthours.HasValue)
+            {
+                return FromGigawattHours(gigawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable Joules.
         /// </summary>
         public static Energy? FromJoules(double? joules)
+        {
+            if (joules.HasValue)
+            {
+                return FromJoules(joules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Joules.
+        /// </summary>
+        public static Energy? FromJoules(int? joules)
+        {
+            if (joules.HasValue)
+            {
+                return FromJoules(joules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Joules.
+        /// </summary>
+        public static Energy? FromJoules(long? joules)
+        {
+            if (joules.HasValue)
+            {
+                return FromJoules(joules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Joules of type decimal.
+        /// </summary>
+        public static Energy? FromJoules(decimal? joules)
         {
             if (joules.HasValue)
             {
@@ -672,10 +1761,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable KilobritishThermalUnits.
+        /// </summary>
+        public static Energy? FromKilobritishThermalUnits(int? kilobritishthermalunits)
+        {
+            if (kilobritishthermalunits.HasValue)
+            {
+                return FromKilobritishThermalUnits(kilobritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable KilobritishThermalUnits.
+        /// </summary>
+        public static Energy? FromKilobritishThermalUnits(long? kilobritishthermalunits)
+        {
+            if (kilobritishthermalunits.HasValue)
+            {
+                return FromKilobritishThermalUnits(kilobritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from KilobritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy? FromKilobritishThermalUnits(decimal? kilobritishthermalunits)
+        {
+            if (kilobritishthermalunits.HasValue)
+            {
+                return FromKilobritishThermalUnits(kilobritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable Kilocalories.
         /// </summary>
         public static Energy? FromKilocalories(double? kilocalories)
+        {
+            if (kilocalories.HasValue)
+            {
+                return FromKilocalories(kilocalories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Kilocalories.
+        /// </summary>
+        public static Energy? FromKilocalories(int? kilocalories)
+        {
+            if (kilocalories.HasValue)
+            {
+                return FromKilocalories(kilocalories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Kilocalories.
+        /// </summary>
+        public static Energy? FromKilocalories(long? kilocalories)
+        {
+            if (kilocalories.HasValue)
+            {
+                return FromKilocalories(kilocalories.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Kilocalories of type decimal.
+        /// </summary>
+        public static Energy? FromKilocalories(decimal? kilocalories)
         {
             if (kilocalories.HasValue)
             {
@@ -702,10 +1881,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable Kilojoules.
+        /// </summary>
+        public static Energy? FromKilojoules(int? kilojoules)
+        {
+            if (kilojoules.HasValue)
+            {
+                return FromKilojoules(kilojoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Kilojoules.
+        /// </summary>
+        public static Energy? FromKilojoules(long? kilojoules)
+        {
+            if (kilojoules.HasValue)
+            {
+                return FromKilojoules(kilojoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Kilojoules of type decimal.
+        /// </summary>
+        public static Energy? FromKilojoules(decimal? kilojoules)
+        {
+            if (kilojoules.HasValue)
+            {
+                return FromKilojoules(kilojoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable KilowattHours.
         /// </summary>
         public static Energy? FromKilowattHours(double? kilowatthours)
+        {
+            if (kilowatthours.HasValue)
+            {
+                return FromKilowattHours(kilowatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable KilowattHours.
+        /// </summary>
+        public static Energy? FromKilowattHours(int? kilowatthours)
+        {
+            if (kilowatthours.HasValue)
+            {
+                return FromKilowattHours(kilowatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable KilowattHours.
+        /// </summary>
+        public static Energy? FromKilowattHours(long? kilowatthours)
+        {
+            if (kilowatthours.HasValue)
+            {
+                return FromKilowattHours(kilowatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from KilowattHours of type decimal.
+        /// </summary>
+        public static Energy? FromKilowattHours(decimal? kilowatthours)
         {
             if (kilowatthours.HasValue)
             {
@@ -732,10 +2001,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable MegabritishThermalUnits.
+        /// </summary>
+        public static Energy? FromMegabritishThermalUnits(int? megabritishthermalunits)
+        {
+            if (megabritishthermalunits.HasValue)
+            {
+                return FromMegabritishThermalUnits(megabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable MegabritishThermalUnits.
+        /// </summary>
+        public static Energy? FromMegabritishThermalUnits(long? megabritishthermalunits)
+        {
+            if (megabritishthermalunits.HasValue)
+            {
+                return FromMegabritishThermalUnits(megabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from MegabritishThermalUnits of type decimal.
+        /// </summary>
+        public static Energy? FromMegabritishThermalUnits(decimal? megabritishthermalunits)
+        {
+            if (megabritishthermalunits.HasValue)
+            {
+                return FromMegabritishThermalUnits(megabritishthermalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable Megajoules.
         /// </summary>
         public static Energy? FromMegajoules(double? megajoules)
+        {
+            if (megajoules.HasValue)
+            {
+                return FromMegajoules(megajoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Megajoules.
+        /// </summary>
+        public static Energy? FromMegajoules(int? megajoules)
+        {
+            if (megajoules.HasValue)
+            {
+                return FromMegajoules(megajoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable Megajoules.
+        /// </summary>
+        public static Energy? FromMegajoules(long? megajoules)
+        {
+            if (megajoules.HasValue)
+            {
+                return FromMegajoules(megajoules.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from Megajoules of type decimal.
+        /// </summary>
+        public static Energy? FromMegajoules(decimal? megajoules)
         {
             if (megajoules.HasValue)
             {
@@ -762,10 +2121,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable MegawattHours.
+        /// </summary>
+        public static Energy? FromMegawattHours(int? megawatthours)
+        {
+            if (megawatthours.HasValue)
+            {
+                return FromMegawattHours(megawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable MegawattHours.
+        /// </summary>
+        public static Energy? FromMegawattHours(long? megawatthours)
+        {
+            if (megawatthours.HasValue)
+            {
+                return FromMegawattHours(megawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from MegawattHours of type decimal.
+        /// </summary>
+        public static Energy? FromMegawattHours(decimal? megawatthours)
+        {
+            if (megawatthours.HasValue)
+            {
+                return FromMegawattHours(megawatthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable ThermsEc.
         /// </summary>
         public static Energy? FromThermsEc(double? thermsec)
+        {
+            if (thermsec.HasValue)
+            {
+                return FromThermsEc(thermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsEc.
+        /// </summary>
+        public static Energy? FromThermsEc(int? thermsec)
+        {
+            if (thermsec.HasValue)
+            {
+                return FromThermsEc(thermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsEc.
+        /// </summary>
+        public static Energy? FromThermsEc(long? thermsec)
+        {
+            if (thermsec.HasValue)
+            {
+                return FromThermsEc(thermsec.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from ThermsEc of type decimal.
+        /// </summary>
+        public static Energy? FromThermsEc(decimal? thermsec)
         {
             if (thermsec.HasValue)
             {
@@ -792,6 +2241,51 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsImperial.
+        /// </summary>
+        public static Energy? FromThermsImperial(int? thermsimperial)
+        {
+            if (thermsimperial.HasValue)
+            {
+                return FromThermsImperial(thermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsImperial.
+        /// </summary>
+        public static Energy? FromThermsImperial(long? thermsimperial)
+        {
+            if (thermsimperial.HasValue)
+            {
+                return FromThermsImperial(thermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from ThermsImperial of type decimal.
+        /// </summary>
+        public static Energy? FromThermsImperial(decimal? thermsimperial)
+        {
+            if (thermsimperial.HasValue)
+            {
+                return FromThermsImperial(thermsimperial.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable ThermsUs.
         /// </summary>
@@ -807,10 +2301,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsUs.
+        /// </summary>
+        public static Energy? FromThermsUs(int? thermsus)
+        {
+            if (thermsus.HasValue)
+            {
+                return FromThermsUs(thermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable ThermsUs.
+        /// </summary>
+        public static Energy? FromThermsUs(long? thermsus)
+        {
+            if (thermsus.HasValue)
+            {
+                return FromThermsUs(thermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from ThermsUs of type decimal.
+        /// </summary>
+        public static Energy? FromThermsUs(decimal? thermsus)
+        {
+            if (thermsus.HasValue)
+            {
+                return FromThermsUs(thermsus.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Energy from nullable WattHours.
         /// </summary>
         public static Energy? FromWattHours(double? watthours)
+        {
+            if (watthours.HasValue)
+            {
+                return FromWattHours(watthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable WattHours.
+        /// </summary>
+        public static Energy? FromWattHours(int? watthours)
+        {
+            if (watthours.HasValue)
+            {
+                return FromWattHours(watthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from nullable WattHours.
+        /// </summary>
+        public static Energy? FromWattHours(long? watthours)
+        {
+            if (watthours.HasValue)
+            {
+                return FromWattHours(watthours.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Energy from WattHours of type decimal.
+        /// </summary>
+        public static Energy? FromWattHours(decimal? watthours)
         {
             if (watthours.HasValue)
             {

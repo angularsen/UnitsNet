@@ -218,6 +218,33 @@ namespace UnitsNet
             return new Force((decanewtons) * 1e1d);
         }
 
+		/// <summary>
+        ///     Get Force from Decanewtons.
+        /// </summary>
+        public static Force FromDecanewtons(int decanewtons)
+        {
+            return new Force((decanewtons) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get Force from Decanewtons.
+        /// </summary>
+        public static Force FromDecanewtons(long decanewtons)
+        {
+            return new Force((decanewtons) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from Decanewtons of type decimal.
+        /// </summary>
+        public static Force FromDecanewtons(decimal decanewtons)
+        {
+	        return new Force((Convert.ToDouble(decanewtons)) * 1e1d);
+        }
+#endif
+
         /// <summary>
         ///     Get Force from Dyne.
         /// </summary>
@@ -225,6 +252,33 @@ namespace UnitsNet
         {
             return new Force(dyne/1e5);
         }
+
+		/// <summary>
+        ///     Get Force from Dyne.
+        /// </summary>
+        public static Force FromDyne(int dyne)
+        {
+            return new Force(dyne/1e5);
+        }
+
+		/// <summary>
+        ///     Get Force from Dyne.
+        /// </summary>
+        public static Force FromDyne(long dyne)
+        {
+            return new Force(dyne/1e5);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from Dyne of type decimal.
+        /// </summary>
+        public static Force FromDyne(decimal dyne)
+        {
+	        return new Force(Convert.ToDouble(dyne)/1e5);
+        }
+#endif
 
         /// <summary>
         ///     Get Force from KilogramsForce.
@@ -234,6 +288,33 @@ namespace UnitsNet
             return new Force(kilogramsforce*9.80665002864);
         }
 
+		/// <summary>
+        ///     Get Force from KilogramsForce.
+        /// </summary>
+        public static Force FromKilogramsForce(int kilogramsforce)
+        {
+            return new Force(kilogramsforce*9.80665002864);
+        }
+
+		/// <summary>
+        ///     Get Force from KilogramsForce.
+        /// </summary>
+        public static Force FromKilogramsForce(long kilogramsforce)
+        {
+            return new Force(kilogramsforce*9.80665002864);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from KilogramsForce of type decimal.
+        /// </summary>
+        public static Force FromKilogramsForce(decimal kilogramsforce)
+        {
+	        return new Force(Convert.ToDouble(kilogramsforce)*9.80665002864);
+        }
+#endif
+
         /// <summary>
         ///     Get Force from Kilonewtons.
         /// </summary>
@@ -241,6 +322,33 @@ namespace UnitsNet
         {
             return new Force((kilonewtons) * 1e3d);
         }
+
+		/// <summary>
+        ///     Get Force from Kilonewtons.
+        /// </summary>
+        public static Force FromKilonewtons(int kilonewtons)
+        {
+            return new Force((kilonewtons) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get Force from Kilonewtons.
+        /// </summary>
+        public static Force FromKilonewtons(long kilonewtons)
+        {
+            return new Force((kilonewtons) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from Kilonewtons of type decimal.
+        /// </summary>
+        public static Force FromKilonewtons(decimal kilonewtons)
+        {
+	        return new Force((Convert.ToDouble(kilonewtons)) * 1e3d);
+        }
+#endif
 
         /// <summary>
         ///     Get Force from KiloPonds.
@@ -250,6 +358,33 @@ namespace UnitsNet
             return new Force(kiloponds*9.80665002864);
         }
 
+		/// <summary>
+        ///     Get Force from KiloPonds.
+        /// </summary>
+        public static Force FromKiloPonds(int kiloponds)
+        {
+            return new Force(kiloponds*9.80665002864);
+        }
+
+		/// <summary>
+        ///     Get Force from KiloPonds.
+        /// </summary>
+        public static Force FromKiloPonds(long kiloponds)
+        {
+            return new Force(kiloponds*9.80665002864);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from KiloPonds of type decimal.
+        /// </summary>
+        public static Force FromKiloPonds(decimal kiloponds)
+        {
+	        return new Force(Convert.ToDouble(kiloponds)*9.80665002864);
+        }
+#endif
+
         /// <summary>
         ///     Get Force from Newtons.
         /// </summary>
@@ -257,6 +392,33 @@ namespace UnitsNet
         {
             return new Force(newtons);
         }
+
+		/// <summary>
+        ///     Get Force from Newtons.
+        /// </summary>
+        public static Force FromNewtons(int newtons)
+        {
+            return new Force(newtons);
+        }
+
+		/// <summary>
+        ///     Get Force from Newtons.
+        /// </summary>
+        public static Force FromNewtons(long newtons)
+        {
+            return new Force(newtons);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from Newtons of type decimal.
+        /// </summary>
+        public static Force FromNewtons(decimal newtons)
+        {
+	        return new Force(Convert.ToDouble(newtons));
+        }
+#endif
 
         /// <summary>
         ///     Get Force from Poundals.
@@ -266,6 +428,33 @@ namespace UnitsNet
             return new Force(poundals*0.13825502798973041652092282466083);
         }
 
+		/// <summary>
+        ///     Get Force from Poundals.
+        /// </summary>
+        public static Force FromPoundals(int poundals)
+        {
+            return new Force(poundals*0.13825502798973041652092282466083);
+        }
+
+		/// <summary>
+        ///     Get Force from Poundals.
+        /// </summary>
+        public static Force FromPoundals(long poundals)
+        {
+            return new Force(poundals*0.13825502798973041652092282466083);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from Poundals of type decimal.
+        /// </summary>
+        public static Force FromPoundals(decimal poundals)
+        {
+	        return new Force(Convert.ToDouble(poundals)*0.13825502798973041652092282466083);
+        }
+#endif
+
         /// <summary>
         ///     Get Force from PoundsForce.
         /// </summary>
@@ -273,6 +462,33 @@ namespace UnitsNet
         {
             return new Force(poundsforce*4.4482216152605095551842641431421);
         }
+
+		/// <summary>
+        ///     Get Force from PoundsForce.
+        /// </summary>
+        public static Force FromPoundsForce(int poundsforce)
+        {
+            return new Force(poundsforce*4.4482216152605095551842641431421);
+        }
+
+		/// <summary>
+        ///     Get Force from PoundsForce.
+        /// </summary>
+        public static Force FromPoundsForce(long poundsforce)
+        {
+            return new Force(poundsforce*4.4482216152605095551842641431421);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from PoundsForce of type decimal.
+        /// </summary>
+        public static Force FromPoundsForce(decimal poundsforce)
+        {
+	        return new Force(Convert.ToDouble(poundsforce)*4.4482216152605095551842641431421);
+        }
+#endif
 
         /// <summary>
         ///     Get Force from TonnesForce.
@@ -282,12 +498,84 @@ namespace UnitsNet
             return new Force(tonnesforce*9.80665002864*1000);
         }
 
+		/// <summary>
+        ///     Get Force from TonnesForce.
+        /// </summary>
+        public static Force FromTonnesForce(int tonnesforce)
+        {
+            return new Force(tonnesforce*9.80665002864*1000);
+        }
+
+		/// <summary>
+        ///     Get Force from TonnesForce.
+        /// </summary>
+        public static Force FromTonnesForce(long tonnesforce)
+        {
+            return new Force(tonnesforce*9.80665002864*1000);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get Force from TonnesForce of type decimal.
+        /// </summary>
+        public static Force FromTonnesForce(decimal tonnesforce)
+        {
+	        return new Force(Convert.ToDouble(tonnesforce)*9.80665002864*1000);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable Force from nullable Decanewtons.
         /// </summary>
         public static Force? FromDecanewtons(double? decanewtons)
+        {
+            if (decanewtons.HasValue)
+            {
+                return FromDecanewtons(decanewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Decanewtons.
+        /// </summary>
+        public static Force? FromDecanewtons(int? decanewtons)
+        {
+            if (decanewtons.HasValue)
+            {
+                return FromDecanewtons(decanewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Decanewtons.
+        /// </summary>
+        public static Force? FromDecanewtons(long? decanewtons)
+        {
+            if (decanewtons.HasValue)
+            {
+                return FromDecanewtons(decanewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from Decanewtons of type decimal.
+        /// </summary>
+        public static Force? FromDecanewtons(decimal? decanewtons)
         {
             if (decanewtons.HasValue)
             {
@@ -314,10 +602,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Force from nullable Dyne.
+        /// </summary>
+        public static Force? FromDyne(int? dyne)
+        {
+            if (dyne.HasValue)
+            {
+                return FromDyne(dyne.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Dyne.
+        /// </summary>
+        public static Force? FromDyne(long? dyne)
+        {
+            if (dyne.HasValue)
+            {
+                return FromDyne(dyne.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from Dyne of type decimal.
+        /// </summary>
+        public static Force? FromDyne(decimal? dyne)
+        {
+            if (dyne.HasValue)
+            {
+                return FromDyne(dyne.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Force from nullable KilogramsForce.
         /// </summary>
         public static Force? FromKilogramsForce(double? kilogramsforce)
+        {
+            if (kilogramsforce.HasValue)
+            {
+                return FromKilogramsForce(kilogramsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable KilogramsForce.
+        /// </summary>
+        public static Force? FromKilogramsForce(int? kilogramsforce)
+        {
+            if (kilogramsforce.HasValue)
+            {
+                return FromKilogramsForce(kilogramsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable KilogramsForce.
+        /// </summary>
+        public static Force? FromKilogramsForce(long? kilogramsforce)
+        {
+            if (kilogramsforce.HasValue)
+            {
+                return FromKilogramsForce(kilogramsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from KilogramsForce of type decimal.
+        /// </summary>
+        public static Force? FromKilogramsForce(decimal? kilogramsforce)
         {
             if (kilogramsforce.HasValue)
             {
@@ -344,10 +722,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Force from nullable Kilonewtons.
+        /// </summary>
+        public static Force? FromKilonewtons(int? kilonewtons)
+        {
+            if (kilonewtons.HasValue)
+            {
+                return FromKilonewtons(kilonewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Kilonewtons.
+        /// </summary>
+        public static Force? FromKilonewtons(long? kilonewtons)
+        {
+            if (kilonewtons.HasValue)
+            {
+                return FromKilonewtons(kilonewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from Kilonewtons of type decimal.
+        /// </summary>
+        public static Force? FromKilonewtons(decimal? kilonewtons)
+        {
+            if (kilonewtons.HasValue)
+            {
+                return FromKilonewtons(kilonewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Force from nullable KiloPonds.
         /// </summary>
         public static Force? FromKiloPonds(double? kiloponds)
+        {
+            if (kiloponds.HasValue)
+            {
+                return FromKiloPonds(kiloponds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable KiloPonds.
+        /// </summary>
+        public static Force? FromKiloPonds(int? kiloponds)
+        {
+            if (kiloponds.HasValue)
+            {
+                return FromKiloPonds(kiloponds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable KiloPonds.
+        /// </summary>
+        public static Force? FromKiloPonds(long? kiloponds)
+        {
+            if (kiloponds.HasValue)
+            {
+                return FromKiloPonds(kiloponds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from KiloPonds of type decimal.
+        /// </summary>
+        public static Force? FromKiloPonds(decimal? kiloponds)
         {
             if (kiloponds.HasValue)
             {
@@ -374,10 +842,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Force from nullable Newtons.
+        /// </summary>
+        public static Force? FromNewtons(int? newtons)
+        {
+            if (newtons.HasValue)
+            {
+                return FromNewtons(newtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Newtons.
+        /// </summary>
+        public static Force? FromNewtons(long? newtons)
+        {
+            if (newtons.HasValue)
+            {
+                return FromNewtons(newtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from Newtons of type decimal.
+        /// </summary>
+        public static Force? FromNewtons(decimal? newtons)
+        {
+            if (newtons.HasValue)
+            {
+                return FromNewtons(newtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Force from nullable Poundals.
         /// </summary>
         public static Force? FromPoundals(double? poundals)
+        {
+            if (poundals.HasValue)
+            {
+                return FromPoundals(poundals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Poundals.
+        /// </summary>
+        public static Force? FromPoundals(int? poundals)
+        {
+            if (poundals.HasValue)
+            {
+                return FromPoundals(poundals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable Poundals.
+        /// </summary>
+        public static Force? FromPoundals(long? poundals)
+        {
+            if (poundals.HasValue)
+            {
+                return FromPoundals(poundals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from Poundals of type decimal.
+        /// </summary>
+        public static Force? FromPoundals(decimal? poundals)
         {
             if (poundals.HasValue)
             {
@@ -404,10 +962,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable Force from nullable PoundsForce.
+        /// </summary>
+        public static Force? FromPoundsForce(int? poundsforce)
+        {
+            if (poundsforce.HasValue)
+            {
+                return FromPoundsForce(poundsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable PoundsForce.
+        /// </summary>
+        public static Force? FromPoundsForce(long? poundsforce)
+        {
+            if (poundsforce.HasValue)
+            {
+                return FromPoundsForce(poundsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from PoundsForce of type decimal.
+        /// </summary>
+        public static Force? FromPoundsForce(decimal? poundsforce)
+        {
+            if (poundsforce.HasValue)
+            {
+                return FromPoundsForce(poundsforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Force from nullable TonnesForce.
         /// </summary>
         public static Force? FromTonnesForce(double? tonnesforce)
+        {
+            if (tonnesforce.HasValue)
+            {
+                return FromTonnesForce(tonnesforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable TonnesForce.
+        /// </summary>
+        public static Force? FromTonnesForce(int? tonnesforce)
+        {
+            if (tonnesforce.HasValue)
+            {
+                return FromTonnesForce(tonnesforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from nullable TonnesForce.
+        /// </summary>
+        public static Force? FromTonnesForce(long? tonnesforce)
+        {
+            if (tonnesforce.HasValue)
+            {
+                return FromTonnesForce(tonnesforce.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable Force from TonnesForce of type decimal.
+        /// </summary>
+        public static Force? FromTonnesForce(decimal? tonnesforce)
         {
             if (tonnesforce.HasValue)
             {

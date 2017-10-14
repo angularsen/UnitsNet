@@ -154,12 +154,84 @@ namespace UnitsNet
             return new VitaminA(internationalunits);
         }
 
+		/// <summary>
+        ///     Get VitaminA from InternationalUnits.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(int internationalunits)
+        {
+            return new VitaminA(internationalunits);
+        }
+
+		/// <summary>
+        ///     Get VitaminA from InternationalUnits.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(long internationalunits)
+        {
+            return new VitaminA(internationalunits);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get VitaminA from InternationalUnits of type decimal.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(decimal internationalunits)
+        {
+	        return new VitaminA(Convert.ToDouble(internationalunits));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
         public static VitaminA? FromInternationalUnits(double? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable VitaminA from nullable InternationalUnits.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(int? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable VitaminA from nullable InternationalUnits.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(long? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable VitaminA from InternationalUnits of type decimal.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(decimal? internationalunits)
         {
             if (internationalunits.HasValue)
             {

@@ -186,6 +186,33 @@ namespace UnitsNet
             return new ElectricPotential((kilovolts) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get ElectricPotential from Kilovolts.
+        /// </summary>
+        public static ElectricPotential FromKilovolts(int kilovolts)
+        {
+            return new ElectricPotential((kilovolts) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get ElectricPotential from Kilovolts.
+        /// </summary>
+        public static ElectricPotential FromKilovolts(long kilovolts)
+        {
+            return new ElectricPotential((kilovolts) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get ElectricPotential from Kilovolts of type decimal.
+        /// </summary>
+        public static ElectricPotential FromKilovolts(decimal kilovolts)
+        {
+	        return new ElectricPotential((Convert.ToDouble(kilovolts)) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get ElectricPotential from Megavolts.
         /// </summary>
@@ -193,6 +220,33 @@ namespace UnitsNet
         {
             return new ElectricPotential((megavolts) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get ElectricPotential from Megavolts.
+        /// </summary>
+        public static ElectricPotential FromMegavolts(int megavolts)
+        {
+            return new ElectricPotential((megavolts) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get ElectricPotential from Megavolts.
+        /// </summary>
+        public static ElectricPotential FromMegavolts(long megavolts)
+        {
+            return new ElectricPotential((megavolts) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get ElectricPotential from Megavolts of type decimal.
+        /// </summary>
+        public static ElectricPotential FromMegavolts(decimal megavolts)
+        {
+	        return new ElectricPotential((Convert.ToDouble(megavolts)) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get ElectricPotential from Microvolts.
@@ -202,6 +256,33 @@ namespace UnitsNet
             return new ElectricPotential((microvolts) * 1e-6d);
         }
 
+		/// <summary>
+        ///     Get ElectricPotential from Microvolts.
+        /// </summary>
+        public static ElectricPotential FromMicrovolts(int microvolts)
+        {
+            return new ElectricPotential((microvolts) * 1e-6d);
+        }
+
+		/// <summary>
+        ///     Get ElectricPotential from Microvolts.
+        /// </summary>
+        public static ElectricPotential FromMicrovolts(long microvolts)
+        {
+            return new ElectricPotential((microvolts) * 1e-6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get ElectricPotential from Microvolts of type decimal.
+        /// </summary>
+        public static ElectricPotential FromMicrovolts(decimal microvolts)
+        {
+	        return new ElectricPotential((Convert.ToDouble(microvolts)) * 1e-6d);
+        }
+#endif
+
         /// <summary>
         ///     Get ElectricPotential from Millivolts.
         /// </summary>
@@ -209,6 +290,33 @@ namespace UnitsNet
         {
             return new ElectricPotential((millivolts) * 1e-3d);
         }
+
+		/// <summary>
+        ///     Get ElectricPotential from Millivolts.
+        /// </summary>
+        public static ElectricPotential FromMillivolts(int millivolts)
+        {
+            return new ElectricPotential((millivolts) * 1e-3d);
+        }
+
+		/// <summary>
+        ///     Get ElectricPotential from Millivolts.
+        /// </summary>
+        public static ElectricPotential FromMillivolts(long millivolts)
+        {
+            return new ElectricPotential((millivolts) * 1e-3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get ElectricPotential from Millivolts of type decimal.
+        /// </summary>
+        public static ElectricPotential FromMillivolts(decimal millivolts)
+        {
+	        return new ElectricPotential((Convert.ToDouble(millivolts)) * 1e-3d);
+        }
+#endif
 
         /// <summary>
         ///     Get ElectricPotential from Volts.
@@ -218,12 +326,84 @@ namespace UnitsNet
             return new ElectricPotential(volts);
         }
 
+		/// <summary>
+        ///     Get ElectricPotential from Volts.
+        /// </summary>
+        public static ElectricPotential FromVolts(int volts)
+        {
+            return new ElectricPotential(volts);
+        }
+
+		/// <summary>
+        ///     Get ElectricPotential from Volts.
+        /// </summary>
+        public static ElectricPotential FromVolts(long volts)
+        {
+            return new ElectricPotential(volts);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get ElectricPotential from Volts of type decimal.
+        /// </summary>
+        public static ElectricPotential FromVolts(decimal volts)
+        {
+	        return new ElectricPotential(Convert.ToDouble(volts));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Kilovolts.
         /// </summary>
         public static ElectricPotential? FromKilovolts(double? kilovolts)
+        {
+            if (kilovolts.HasValue)
+            {
+                return FromKilovolts(kilovolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Kilovolts.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(int? kilovolts)
+        {
+            if (kilovolts.HasValue)
+            {
+                return FromKilovolts(kilovolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Kilovolts.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(long? kilovolts)
+        {
+            if (kilovolts.HasValue)
+            {
+                return FromKilovolts(kilovolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from Kilovolts of type decimal.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(decimal? kilovolts)
         {
             if (kilovolts.HasValue)
             {
@@ -250,10 +430,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Megavolts.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(int? megavolts)
+        {
+            if (megavolts.HasValue)
+            {
+                return FromMegavolts(megavolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Megavolts.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(long? megavolts)
+        {
+            if (megavolts.HasValue)
+            {
+                return FromMegavolts(megavolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from Megavolts of type decimal.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(decimal? megavolts)
+        {
+            if (megavolts.HasValue)
+            {
+                return FromMegavolts(megavolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Microvolts.
         /// </summary>
         public static ElectricPotential? FromMicrovolts(double? microvolts)
+        {
+            if (microvolts.HasValue)
+            {
+                return FromMicrovolts(microvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Microvolts.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(int? microvolts)
+        {
+            if (microvolts.HasValue)
+            {
+                return FromMicrovolts(microvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Microvolts.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(long? microvolts)
+        {
+            if (microvolts.HasValue)
+            {
+                return FromMicrovolts(microvolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from Microvolts of type decimal.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(decimal? microvolts)
         {
             if (microvolts.HasValue)
             {
@@ -280,10 +550,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Millivolts.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(int? millivolts)
+        {
+            if (millivolts.HasValue)
+            {
+                return FromMillivolts(millivolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Millivolts.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(long? millivolts)
+        {
+            if (millivolts.HasValue)
+            {
+                return FromMillivolts(millivolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from Millivolts of type decimal.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(decimal? millivolts)
+        {
+            if (millivolts.HasValue)
+            {
+                return FromMillivolts(millivolts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Volts.
         /// </summary>
         public static ElectricPotential? FromVolts(double? volts)
+        {
+            if (volts.HasValue)
+            {
+                return FromVolts(volts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Volts.
+        /// </summary>
+        public static ElectricPotential? FromVolts(int? volts)
+        {
+            if (volts.HasValue)
+            {
+                return FromVolts(volts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from nullable Volts.
+        /// </summary>
+        public static ElectricPotential? FromVolts(long? volts)
+        {
+            if (volts.HasValue)
+            {
+                return FromVolts(volts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable ElectricPotential from Volts of type decimal.
+        /// </summary>
+        public static ElectricPotential? FromVolts(decimal? volts)
         {
             if (volts.HasValue)
             {

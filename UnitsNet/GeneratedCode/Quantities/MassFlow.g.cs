@@ -258,6 +258,33 @@ namespace UnitsNet
             return new MassFlow((centigramspersecond) * 1e-2d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromCentigramsPerSecond(int centigramspersecond)
+        {
+            return new MassFlow((centigramspersecond) * 1e-2d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromCentigramsPerSecond(long centigramspersecond)
+        {
+            return new MassFlow((centigramspersecond) * 1e-2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from CentigramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromCentigramsPerSecond(decimal centigramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(centigramspersecond)) * 1e-2d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from DecagramsPerSecond.
         /// </summary>
@@ -265,6 +292,33 @@ namespace UnitsNet
         {
             return new MassFlow((decagramspersecond) * 1e1d);
         }
+
+		/// <summary>
+        ///     Get MassFlow from DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecagramsPerSecond(int decagramspersecond)
+        {
+            return new MassFlow((decagramspersecond) * 1e1d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecagramsPerSecond(long decagramspersecond)
+        {
+            return new MassFlow((decagramspersecond) * 1e1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from DecagramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromDecagramsPerSecond(decimal decagramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(decagramspersecond)) * 1e1d);
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from DecigramsPerSecond.
@@ -274,6 +328,33 @@ namespace UnitsNet
             return new MassFlow((decigramspersecond) * 1e-1d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecigramsPerSecond(int decigramspersecond)
+        {
+            return new MassFlow((decigramspersecond) * 1e-1d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow FromDecigramsPerSecond(long decigramspersecond)
+        {
+            return new MassFlow((decigramspersecond) * 1e-1d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from DecigramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromDecigramsPerSecond(decimal decigramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(decigramspersecond)) * 1e-1d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
         /// </summary>
@@ -281,6 +362,33 @@ namespace UnitsNet
         {
             return new MassFlow(gramspersecond);
         }
+
+		/// <summary>
+        ///     Get MassFlow from GramsPerSecond.
+        /// </summary>
+        public static MassFlow FromGramsPerSecond(int gramspersecond)
+        {
+            return new MassFlow(gramspersecond);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from GramsPerSecond.
+        /// </summary>
+        public static MassFlow FromGramsPerSecond(long gramspersecond)
+        {
+            return new MassFlow(gramspersecond);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from GramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromGramsPerSecond(decimal gramspersecond)
+        {
+	        return new MassFlow(Convert.ToDouble(gramspersecond));
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from HectogramsPerSecond.
@@ -290,6 +398,33 @@ namespace UnitsNet
             return new MassFlow((hectogramspersecond) * 1e2d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromHectogramsPerSecond(int hectogramspersecond)
+        {
+            return new MassFlow((hectogramspersecond) * 1e2d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromHectogramsPerSecond(long hectogramspersecond)
+        {
+            return new MassFlow((hectogramspersecond) * 1e2d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from HectogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromHectogramsPerSecond(decimal hectogramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(hectogramspersecond)) * 1e2d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from KilogramsPerHour.
         /// </summary>
@@ -297,6 +432,33 @@ namespace UnitsNet
         {
             return new MassFlow(kilogramsperhour/3.6);
         }
+
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerHour.
+        /// </summary>
+        public static MassFlow FromKilogramsPerHour(int kilogramsperhour)
+        {
+            return new MassFlow(kilogramsperhour/3.6);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerHour.
+        /// </summary>
+        public static MassFlow FromKilogramsPerHour(long kilogramsperhour)
+        {
+            return new MassFlow(kilogramsperhour/3.6);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow FromKilogramsPerHour(decimal kilogramsperhour)
+        {
+	        return new MassFlow(Convert.ToDouble(kilogramsperhour)/3.6);
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from KilogramsPerSecond.
@@ -306,6 +468,33 @@ namespace UnitsNet
             return new MassFlow((kilogramspersecond) * 1e3d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromKilogramsPerSecond(int kilogramspersecond)
+        {
+            return new MassFlow((kilogramspersecond) * 1e3d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromKilogramsPerSecond(long kilogramspersecond)
+        {
+            return new MassFlow((kilogramspersecond) * 1e3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from KilogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromKilogramsPerSecond(decimal kilogramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(kilogramspersecond)) * 1e3d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from MegapoundsPerHour.
         /// </summary>
@@ -313,6 +502,33 @@ namespace UnitsNet
         {
             return new MassFlow((megapoundsperhour/7.93664) * 1e6d);
         }
+
+		/// <summary>
+        ///     Get MassFlow from MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow FromMegapoundsPerHour(int megapoundsperhour)
+        {
+            return new MassFlow((megapoundsperhour/7.93664) * 1e6d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow FromMegapoundsPerHour(long megapoundsperhour)
+        {
+            return new MassFlow((megapoundsperhour/7.93664) * 1e6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from MegapoundsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow FromMegapoundsPerHour(decimal megapoundsperhour)
+        {
+	        return new MassFlow((Convert.ToDouble(megapoundsperhour)/7.93664) * 1e6d);
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
@@ -322,6 +538,33 @@ namespace UnitsNet
             return new MassFlow((microgramspersecond) * 1e-6d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMicrogramsPerSecond(int microgramspersecond)
+        {
+            return new MassFlow((microgramspersecond) * 1e-6d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMicrogramsPerSecond(long microgramspersecond)
+        {
+            return new MassFlow((microgramspersecond) * 1e-6d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from MicrogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromMicrogramsPerSecond(decimal microgramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(microgramspersecond)) * 1e-6d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from MilligramsPerSecond.
         /// </summary>
@@ -329,6 +572,33 @@ namespace UnitsNet
         {
             return new MassFlow((milligramspersecond) * 1e-3d);
         }
+
+		/// <summary>
+        ///     Get MassFlow from MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMilligramsPerSecond(int milligramspersecond)
+        {
+            return new MassFlow((milligramspersecond) * 1e-3d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow FromMilligramsPerSecond(long milligramspersecond)
+        {
+            return new MassFlow((milligramspersecond) * 1e-3d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from MilligramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromMilligramsPerSecond(decimal milligramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(milligramspersecond)) * 1e-3d);
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from NanogramsPerSecond.
@@ -338,6 +608,33 @@ namespace UnitsNet
             return new MassFlow((nanogramspersecond) * 1e-9d);
         }
 
+		/// <summary>
+        ///     Get MassFlow from NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromNanogramsPerSecond(int nanogramspersecond)
+        {
+            return new MassFlow((nanogramspersecond) * 1e-9d);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow FromNanogramsPerSecond(long nanogramspersecond)
+        {
+            return new MassFlow((nanogramspersecond) * 1e-9d);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from NanogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow FromNanogramsPerSecond(decimal nanogramspersecond)
+        {
+	        return new MassFlow((Convert.ToDouble(nanogramspersecond)) * 1e-9d);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from PoundsPerHour.
         /// </summary>
@@ -345,6 +642,33 @@ namespace UnitsNet
         {
             return new MassFlow(poundsperhour/7.93664);
         }
+
+		/// <summary>
+        ///     Get MassFlow from PoundsPerHour.
+        /// </summary>
+        public static MassFlow FromPoundsPerHour(int poundsperhour)
+        {
+            return new MassFlow(poundsperhour/7.93664);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from PoundsPerHour.
+        /// </summary>
+        public static MassFlow FromPoundsPerHour(long poundsperhour)
+        {
+            return new MassFlow(poundsperhour/7.93664);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from PoundsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow FromPoundsPerHour(decimal poundsperhour)
+        {
+	        return new MassFlow(Convert.ToDouble(poundsperhour)/7.93664);
+        }
+#endif
 
         /// <summary>
         ///     Get MassFlow from ShortTonsPerHour.
@@ -354,6 +678,33 @@ namespace UnitsNet
             return new MassFlow(shorttonsperhour*251.9957611);
         }
 
+		/// <summary>
+        ///     Get MassFlow from ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow FromShortTonsPerHour(int shorttonsperhour)
+        {
+            return new MassFlow(shorttonsperhour*251.9957611);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow FromShortTonsPerHour(long shorttonsperhour)
+        {
+            return new MassFlow(shorttonsperhour*251.9957611);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from ShortTonsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow FromShortTonsPerHour(decimal shorttonsperhour)
+        {
+	        return new MassFlow(Convert.ToDouble(shorttonsperhour)*251.9957611);
+        }
+#endif
+
         /// <summary>
         ///     Get MassFlow from TonnesPerDay.
         /// </summary>
@@ -362,12 +713,84 @@ namespace UnitsNet
             return new MassFlow(tonnesperday/0.0864000);
         }
 
+		/// <summary>
+        ///     Get MassFlow from TonnesPerDay.
+        /// </summary>
+        public static MassFlow FromTonnesPerDay(int tonnesperday)
+        {
+            return new MassFlow(tonnesperday/0.0864000);
+        }
+
+		/// <summary>
+        ///     Get MassFlow from TonnesPerDay.
+        /// </summary>
+        public static MassFlow FromTonnesPerDay(long tonnesperday)
+        {
+            return new MassFlow(tonnesperday/0.0864000);
+        }
+
+		// Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+		/// <summary>
+        ///     Get MassFlow from TonnesPerDay of type decimal.
+        /// </summary>
+        public static MassFlow FromTonnesPerDay(decimal tonnesperday)
+        {
+	        return new MassFlow(Convert.ToDouble(tonnesperday)/0.0864000);
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
         ///     Get nullable MassFlow from nullable CentigramsPerSecond.
         /// </summary>
         public static MassFlow? FromCentigramsPerSecond(double? centigramspersecond)
+        {
+            if (centigramspersecond.HasValue)
+            {
+                return FromCentigramsPerSecond(centigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(int? centigramspersecond)
+        {
+            if (centigramspersecond.HasValue)
+            {
+                return FromCentigramsPerSecond(centigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(long? centigramspersecond)
+        {
+            if (centigramspersecond.HasValue)
+            {
+                return FromCentigramsPerSecond(centigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from CentigramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(decimal? centigramspersecond)
         {
             if (centigramspersecond.HasValue)
             {
@@ -394,10 +817,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(int? decagramspersecond)
+        {
+            if (decagramspersecond.HasValue)
+            {
+                return FromDecagramsPerSecond(decagramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(long? decagramspersecond)
+        {
+            if (decagramspersecond.HasValue)
+            {
+                return FromDecagramsPerSecond(decagramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from DecagramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(decimal? decagramspersecond)
+        {
+            if (decagramspersecond.HasValue)
+            {
+                return FromDecagramsPerSecond(decagramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable DecigramsPerSecond.
         /// </summary>
         public static MassFlow? FromDecigramsPerSecond(double? decigramspersecond)
+        {
+            if (decigramspersecond.HasValue)
+            {
+                return FromDecigramsPerSecond(decigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(int? decigramspersecond)
+        {
+            if (decigramspersecond.HasValue)
+            {
+                return FromDecigramsPerSecond(decigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(long? decigramspersecond)
+        {
+            if (decigramspersecond.HasValue)
+            {
+                return FromDecigramsPerSecond(decigramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from DecigramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(decimal? decigramspersecond)
         {
             if (decigramspersecond.HasValue)
             {
@@ -424,10 +937,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable GramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(int? gramspersecond)
+        {
+            if (gramspersecond.HasValue)
+            {
+                return FromGramsPerSecond(gramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable GramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(long? gramspersecond)
+        {
+            if (gramspersecond.HasValue)
+            {
+                return FromGramsPerSecond(gramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from GramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(decimal? gramspersecond)
+        {
+            if (gramspersecond.HasValue)
+            {
+                return FromGramsPerSecond(gramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable HectogramsPerSecond.
         /// </summary>
         public static MassFlow? FromHectogramsPerSecond(double? hectogramspersecond)
+        {
+            if (hectogramspersecond.HasValue)
+            {
+                return FromHectogramsPerSecond(hectogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(int? hectogramspersecond)
+        {
+            if (hectogramspersecond.HasValue)
+            {
+                return FromHectogramsPerSecond(hectogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(long? hectogramspersecond)
+        {
+            if (hectogramspersecond.HasValue)
+            {
+                return FromHectogramsPerSecond(hectogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from HectogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(decimal? hectogramspersecond)
         {
             if (hectogramspersecond.HasValue)
             {
@@ -454,10 +1057,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerHour.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerHour(int? kilogramsperhour)
+        {
+            if (kilogramsperhour.HasValue)
+            {
+                return FromKilogramsPerHour(kilogramsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerHour.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerHour(long? kilogramsperhour)
+        {
+            if (kilogramsperhour.HasValue)
+            {
+                return FromKilogramsPerHour(kilogramsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from KilogramsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerHour(decimal? kilogramsperhour)
+        {
+            if (kilogramsperhour.HasValue)
+            {
+                return FromKilogramsPerHour(kilogramsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerSecond.
         /// </summary>
         public static MassFlow? FromKilogramsPerSecond(double? kilogramspersecond)
+        {
+            if (kilogramspersecond.HasValue)
+            {
+                return FromKilogramsPerSecond(kilogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(int? kilogramspersecond)
+        {
+            if (kilogramspersecond.HasValue)
+            {
+                return FromKilogramsPerSecond(kilogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(long? kilogramspersecond)
+        {
+            if (kilogramspersecond.HasValue)
+            {
+                return FromKilogramsPerSecond(kilogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from KilogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(decimal? kilogramspersecond)
         {
             if (kilogramspersecond.HasValue)
             {
@@ -484,10 +1177,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerHour(int? megapoundsperhour)
+        {
+            if (megapoundsperhour.HasValue)
+            {
+                return FromMegapoundsPerHour(megapoundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerHour(long? megapoundsperhour)
+        {
+            if (megapoundsperhour.HasValue)
+            {
+                return FromMegapoundsPerHour(megapoundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from MegapoundsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerHour(decimal? megapoundsperhour)
+        {
+            if (megapoundsperhour.HasValue)
+            {
+                return FromMegapoundsPerHour(megapoundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
         /// </summary>
         public static MassFlow? FromMicrogramsPerSecond(double? microgramspersecond)
+        {
+            if (microgramspersecond.HasValue)
+            {
+                return FromMicrogramsPerSecond(microgramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(int? microgramspersecond)
+        {
+            if (microgramspersecond.HasValue)
+            {
+                return FromMicrogramsPerSecond(microgramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(long? microgramspersecond)
+        {
+            if (microgramspersecond.HasValue)
+            {
+                return FromMicrogramsPerSecond(microgramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from MicrogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(decimal? microgramspersecond)
         {
             if (microgramspersecond.HasValue)
             {
@@ -514,10 +1297,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(int? milligramspersecond)
+        {
+            if (milligramspersecond.HasValue)
+            {
+                return FromMilligramsPerSecond(milligramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(long? milligramspersecond)
+        {
+            if (milligramspersecond.HasValue)
+            {
+                return FromMilligramsPerSecond(milligramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from MilligramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(decimal? milligramspersecond)
+        {
+            if (milligramspersecond.HasValue)
+            {
+                return FromMilligramsPerSecond(milligramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable NanogramsPerSecond.
         /// </summary>
         public static MassFlow? FromNanogramsPerSecond(double? nanogramspersecond)
+        {
+            if (nanogramspersecond.HasValue)
+            {
+                return FromNanogramsPerSecond(nanogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(int? nanogramspersecond)
+        {
+            if (nanogramspersecond.HasValue)
+            {
+                return FromNanogramsPerSecond(nanogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(long? nanogramspersecond)
+        {
+            if (nanogramspersecond.HasValue)
+            {
+                return FromNanogramsPerSecond(nanogramspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from NanogramsPerSecond of type decimal.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(decimal? nanogramspersecond)
         {
             if (nanogramspersecond.HasValue)
             {
@@ -544,6 +1417,51 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromPoundsPerHour(int? poundsperhour)
+        {
+            if (poundsperhour.HasValue)
+            {
+                return FromPoundsPerHour(poundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromPoundsPerHour(long? poundsperhour)
+        {
+            if (poundsperhour.HasValue)
+            {
+                return FromPoundsPerHour(poundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from PoundsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow? FromPoundsPerHour(decimal? poundsperhour)
+        {
+            if (poundsperhour.HasValue)
+            {
+                return FromPoundsPerHour(poundsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable ShortTonsPerHour.
         /// </summary>
@@ -559,10 +1477,100 @@ namespace UnitsNet
             }
         }
 
+		/// <summary>
+        ///     Get nullable MassFlow from nullable ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(int? shorttonsperhour)
+        {
+            if (shorttonsperhour.HasValue)
+            {
+                return FromShortTonsPerHour(shorttonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(long? shorttonsperhour)
+        {
+            if (shorttonsperhour.HasValue)
+            {
+                return FromShortTonsPerHour(shorttonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from ShortTonsPerHour of type decimal.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(decimal? shorttonsperhour)
+        {
+            if (shorttonsperhour.HasValue)
+            {
+                return FromShortTonsPerHour(shorttonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerDay.
         /// </summary>
         public static MassFlow? FromTonnesPerDay(double? tonnesperday)
+        {
+            if (tonnesperday.HasValue)
+            {
+                return FromTonnesPerDay(tonnesperday.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerDay.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(int? tonnesperday)
+        {
+            if (tonnesperday.HasValue)
+            {
+                return FromTonnesPerDay(tonnesperday.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerDay.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(long? tonnesperday)
+        {
+            if (tonnesperday.HasValue)
+            {
+                return FromTonnesPerDay(tonnesperday.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+		/// <summary>
+        ///     Get nullable MassFlow from TonnesPerDay of type decimal.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(decimal? tonnesperday)
         {
             if (tonnesperday.HasValue)
             {
