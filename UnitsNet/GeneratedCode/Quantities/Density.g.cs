@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _kilogramsPerCubicMeter;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Density() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Density;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static DensityUnit BaseUnit
         {
             get { return DensityUnit.KilogramPerCubicMeter; }
@@ -426,7 +426,7 @@ namespace UnitsNet
             return new Density((centigramsperdeciliter/1e-1) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>
         public static Density FromCentigramsPerDeciLiter(int centigramsperdeciliter)
@@ -434,7 +434,7 @@ namespace UnitsNet
             return new Density((centigramsperdeciliter/1e-1) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>
         public static Density FromCentigramsPerDeciLiter(long centigramsperdeciliter)
@@ -442,14 +442,14 @@ namespace UnitsNet
             return new Density((centigramsperdeciliter/1e-1) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromCentigramsPerDeciLiter(decimal centigramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(centigramsperdeciliter)/1e-1) * 1e-2d);
+            return new Density((Convert.ToDouble(centigramsperdeciliter)/1e-1) * 1e-2d);
         }
 #endif
 
@@ -461,7 +461,7 @@ namespace UnitsNet
             return new Density((centigramsperliter/1) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerLiter.
         /// </summary>
         public static Density FromCentigramsPerLiter(int centigramsperliter)
@@ -469,7 +469,7 @@ namespace UnitsNet
             return new Density((centigramsperliter/1) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerLiter.
         /// </summary>
         public static Density FromCentigramsPerLiter(long centigramsperliter)
@@ -477,14 +477,14 @@ namespace UnitsNet
             return new Density((centigramsperliter/1) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerLiter of type decimal.
         /// </summary>
         public static Density FromCentigramsPerLiter(decimal centigramsperliter)
         {
-	        return new Density((Convert.ToDouble(centigramsperliter)/1) * 1e-2d);
+            return new Density((Convert.ToDouble(centigramsperliter)/1) * 1e-2d);
         }
 #endif
 
@@ -496,7 +496,7 @@ namespace UnitsNet
             return new Density((centigramspermilliliter/1e-3) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerMilliliter.
         /// </summary>
         public static Density FromCentigramsPerMilliliter(int centigramspermilliliter)
@@ -504,7 +504,7 @@ namespace UnitsNet
             return new Density((centigramspermilliliter/1e-3) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerMilliliter.
         /// </summary>
         public static Density FromCentigramsPerMilliliter(long centigramspermilliliter)
@@ -512,14 +512,14 @@ namespace UnitsNet
             return new Density((centigramspermilliliter/1e-3) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from CentigramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromCentigramsPerMilliliter(decimal centigramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(centigramspermilliliter)/1e-3) * 1e-2d);
+            return new Density((Convert.ToDouble(centigramspermilliliter)/1e-3) * 1e-2d);
         }
 #endif
 
@@ -531,7 +531,7 @@ namespace UnitsNet
             return new Density((decigramsperdeciliter/1e-1) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerDeciLiter.
         /// </summary>
         public static Density FromDecigramsPerDeciLiter(int decigramsperdeciliter)
@@ -539,7 +539,7 @@ namespace UnitsNet
             return new Density((decigramsperdeciliter/1e-1) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerDeciLiter.
         /// </summary>
         public static Density FromDecigramsPerDeciLiter(long decigramsperdeciliter)
@@ -547,14 +547,14 @@ namespace UnitsNet
             return new Density((decigramsperdeciliter/1e-1) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromDecigramsPerDeciLiter(decimal decigramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(decigramsperdeciliter)/1e-1) * 1e-1d);
+            return new Density((Convert.ToDouble(decigramsperdeciliter)/1e-1) * 1e-1d);
         }
 #endif
 
@@ -566,7 +566,7 @@ namespace UnitsNet
             return new Density((decigramsperliter/1) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerLiter.
         /// </summary>
         public static Density FromDecigramsPerLiter(int decigramsperliter)
@@ -574,7 +574,7 @@ namespace UnitsNet
             return new Density((decigramsperliter/1) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerLiter.
         /// </summary>
         public static Density FromDecigramsPerLiter(long decigramsperliter)
@@ -582,14 +582,14 @@ namespace UnitsNet
             return new Density((decigramsperliter/1) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerLiter of type decimal.
         /// </summary>
         public static Density FromDecigramsPerLiter(decimal decigramsperliter)
         {
-	        return new Density((Convert.ToDouble(decigramsperliter)/1) * 1e-1d);
+            return new Density((Convert.ToDouble(decigramsperliter)/1) * 1e-1d);
         }
 #endif
 
@@ -601,7 +601,7 @@ namespace UnitsNet
             return new Density((decigramspermilliliter/1e-3) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerMilliliter.
         /// </summary>
         public static Density FromDecigramsPerMilliliter(int decigramspermilliliter)
@@ -609,7 +609,7 @@ namespace UnitsNet
             return new Density((decigramspermilliliter/1e-3) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerMilliliter.
         /// </summary>
         public static Density FromDecigramsPerMilliliter(long decigramspermilliliter)
@@ -617,14 +617,14 @@ namespace UnitsNet
             return new Density((decigramspermilliliter/1e-3) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from DecigramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromDecigramsPerMilliliter(decimal decigramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(decigramspermilliliter)/1e-3) * 1e-1d);
+            return new Density((Convert.ToDouble(decigramspermilliliter)/1e-3) * 1e-1d);
         }
 #endif
 
@@ -636,7 +636,7 @@ namespace UnitsNet
             return new Density(gramspercubiccentimeter/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
         public static Density FromGramsPerCubicCentimeter(int gramspercubiccentimeter)
@@ -644,7 +644,7 @@ namespace UnitsNet
             return new Density(gramspercubiccentimeter/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
         public static Density FromGramsPerCubicCentimeter(long gramspercubiccentimeter)
@@ -652,14 +652,14 @@ namespace UnitsNet
             return new Density(gramspercubiccentimeter/1e-3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density FromGramsPerCubicCentimeter(decimal gramspercubiccentimeter)
         {
-	        return new Density(Convert.ToDouble(gramspercubiccentimeter)/1e-3);
+            return new Density(Convert.ToDouble(gramspercubiccentimeter)/1e-3);
         }
 #endif
 
@@ -671,7 +671,7 @@ namespace UnitsNet
             return new Density(gramspercubicmeter/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMeter.
         /// </summary>
         public static Density FromGramsPerCubicMeter(int gramspercubicmeter)
@@ -679,7 +679,7 @@ namespace UnitsNet
             return new Density(gramspercubicmeter/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMeter.
         /// </summary>
         public static Density FromGramsPerCubicMeter(long gramspercubicmeter)
@@ -687,14 +687,14 @@ namespace UnitsNet
             return new Density(gramspercubicmeter/1e3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMeter of type decimal.
         /// </summary>
         public static Density FromGramsPerCubicMeter(decimal gramspercubicmeter)
         {
-	        return new Density(Convert.ToDouble(gramspercubicmeter)/1e3);
+            return new Density(Convert.ToDouble(gramspercubicmeter)/1e3);
         }
 #endif
 
@@ -706,7 +706,7 @@ namespace UnitsNet
             return new Density(gramspercubicmillimeter/1e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMillimeter.
         /// </summary>
         public static Density FromGramsPerCubicMillimeter(int gramspercubicmillimeter)
@@ -714,7 +714,7 @@ namespace UnitsNet
             return new Density(gramspercubicmillimeter/1e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMillimeter.
         /// </summary>
         public static Density FromGramsPerCubicMillimeter(long gramspercubicmillimeter)
@@ -722,14 +722,14 @@ namespace UnitsNet
             return new Density(gramspercubicmillimeter/1e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density FromGramsPerCubicMillimeter(decimal gramspercubicmillimeter)
         {
-	        return new Density(Convert.ToDouble(gramspercubicmillimeter)/1e-6);
+            return new Density(Convert.ToDouble(gramspercubicmillimeter)/1e-6);
         }
 #endif
 
@@ -741,7 +741,7 @@ namespace UnitsNet
             return new Density(gramsperdeciliter/1e-1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerDeciLiter.
         /// </summary>
         public static Density FromGramsPerDeciLiter(int gramsperdeciliter)
@@ -749,7 +749,7 @@ namespace UnitsNet
             return new Density(gramsperdeciliter/1e-1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerDeciLiter.
         /// </summary>
         public static Density FromGramsPerDeciLiter(long gramsperdeciliter)
@@ -757,14 +757,14 @@ namespace UnitsNet
             return new Density(gramsperdeciliter/1e-1);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromGramsPerDeciLiter(decimal gramsperdeciliter)
         {
-	        return new Density(Convert.ToDouble(gramsperdeciliter)/1e-1);
+            return new Density(Convert.ToDouble(gramsperdeciliter)/1e-1);
         }
 #endif
 
@@ -776,7 +776,7 @@ namespace UnitsNet
             return new Density(gramsperliter/1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerLiter.
         /// </summary>
         public static Density FromGramsPerLiter(int gramsperliter)
@@ -784,7 +784,7 @@ namespace UnitsNet
             return new Density(gramsperliter/1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerLiter.
         /// </summary>
         public static Density FromGramsPerLiter(long gramsperliter)
@@ -792,14 +792,14 @@ namespace UnitsNet
             return new Density(gramsperliter/1);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerLiter of type decimal.
         /// </summary>
         public static Density FromGramsPerLiter(decimal gramsperliter)
         {
-	        return new Density(Convert.ToDouble(gramsperliter)/1);
+            return new Density(Convert.ToDouble(gramsperliter)/1);
         }
 #endif
 
@@ -811,7 +811,7 @@ namespace UnitsNet
             return new Density(gramspermilliliter/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerMilliliter.
         /// </summary>
         public static Density FromGramsPerMilliliter(int gramspermilliliter)
@@ -819,7 +819,7 @@ namespace UnitsNet
             return new Density(gramspermilliliter/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerMilliliter.
         /// </summary>
         public static Density FromGramsPerMilliliter(long gramspermilliliter)
@@ -827,14 +827,14 @@ namespace UnitsNet
             return new Density(gramspermilliliter/1e-3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from GramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromGramsPerMilliliter(decimal gramspermilliliter)
         {
-	        return new Density(Convert.ToDouble(gramspermilliliter)/1e-3);
+            return new Density(Convert.ToDouble(gramspermilliliter)/1e-3);
         }
 #endif
 
@@ -846,7 +846,7 @@ namespace UnitsNet
             return new Density((kilogramspercubiccentimeter/1e-3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
         public static Density FromKilogramsPerCubicCentimeter(int kilogramspercubiccentimeter)
@@ -854,7 +854,7 @@ namespace UnitsNet
             return new Density((kilogramspercubiccentimeter/1e-3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
         public static Density FromKilogramsPerCubicCentimeter(long kilogramspercubiccentimeter)
@@ -862,14 +862,14 @@ namespace UnitsNet
             return new Density((kilogramspercubiccentimeter/1e-3) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density FromKilogramsPerCubicCentimeter(decimal kilogramspercubiccentimeter)
         {
-	        return new Density((Convert.ToDouble(kilogramspercubiccentimeter)/1e-3) * 1e3d);
+            return new Density((Convert.ToDouble(kilogramspercubiccentimeter)/1e-3) * 1e3d);
         }
 #endif
 
@@ -881,7 +881,7 @@ namespace UnitsNet
             return new Density((kilogramspercubicmeter/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMeter.
         /// </summary>
         public static Density FromKilogramsPerCubicMeter(int kilogramspercubicmeter)
@@ -889,7 +889,7 @@ namespace UnitsNet
             return new Density((kilogramspercubicmeter/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMeter.
         /// </summary>
         public static Density FromKilogramsPerCubicMeter(long kilogramspercubicmeter)
@@ -897,14 +897,14 @@ namespace UnitsNet
             return new Density((kilogramspercubicmeter/1e3) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMeter of type decimal.
         /// </summary>
         public static Density FromKilogramsPerCubicMeter(decimal kilogramspercubicmeter)
         {
-	        return new Density((Convert.ToDouble(kilogramspercubicmeter)/1e3) * 1e3d);
+            return new Density((Convert.ToDouble(kilogramspercubicmeter)/1e3) * 1e3d);
         }
 #endif
 
@@ -916,7 +916,7 @@ namespace UnitsNet
             return new Density((kilogramspercubicmillimeter/1e-6) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMillimeter.
         /// </summary>
         public static Density FromKilogramsPerCubicMillimeter(int kilogramspercubicmillimeter)
@@ -924,7 +924,7 @@ namespace UnitsNet
             return new Density((kilogramspercubicmillimeter/1e-6) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMillimeter.
         /// </summary>
         public static Density FromKilogramsPerCubicMillimeter(long kilogramspercubicmillimeter)
@@ -932,14 +932,14 @@ namespace UnitsNet
             return new Density((kilogramspercubicmillimeter/1e-6) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilogramsPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density FromKilogramsPerCubicMillimeter(decimal kilogramspercubicmillimeter)
         {
-	        return new Density((Convert.ToDouble(kilogramspercubicmillimeter)/1e-6) * 1e3d);
+            return new Density((Convert.ToDouble(kilogramspercubicmillimeter)/1e-6) * 1e3d);
         }
 #endif
 
@@ -951,7 +951,7 @@ namespace UnitsNet
             return new Density((kilopoundspercubicfoot/0.062427961) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
         /// </summary>
         public static Density FromKilopoundsPerCubicFoot(int kilopoundspercubicfoot)
@@ -959,7 +959,7 @@ namespace UnitsNet
             return new Density((kilopoundspercubicfoot/0.062427961) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
         /// </summary>
         public static Density FromKilopoundsPerCubicFoot(long kilopoundspercubicfoot)
@@ -967,14 +967,14 @@ namespace UnitsNet
             return new Density((kilopoundspercubicfoot/0.062427961) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot of type decimal.
         /// </summary>
         public static Density FromKilopoundsPerCubicFoot(decimal kilopoundspercubicfoot)
         {
-	        return new Density((Convert.ToDouble(kilopoundspercubicfoot)/0.062427961) * 1e3d);
+            return new Density((Convert.ToDouble(kilopoundspercubicfoot)/0.062427961) * 1e3d);
         }
 #endif
 
@@ -986,7 +986,7 @@ namespace UnitsNet
             return new Density((kilopoundspercubicinch/3.6127298147753e-5) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicInch.
         /// </summary>
         public static Density FromKilopoundsPerCubicInch(int kilopoundspercubicinch)
@@ -994,7 +994,7 @@ namespace UnitsNet
             return new Density((kilopoundspercubicinch/3.6127298147753e-5) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicInch.
         /// </summary>
         public static Density FromKilopoundsPerCubicInch(long kilopoundspercubicinch)
@@ -1002,14 +1002,14 @@ namespace UnitsNet
             return new Density((kilopoundspercubicinch/3.6127298147753e-5) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from KilopoundsPerCubicInch of type decimal.
         /// </summary>
         public static Density FromKilopoundsPerCubicInch(decimal kilopoundspercubicinch)
         {
-	        return new Density((Convert.ToDouble(kilopoundspercubicinch)/3.6127298147753e-5) * 1e3d);
+            return new Density((Convert.ToDouble(kilopoundspercubicinch)/3.6127298147753e-5) * 1e3d);
         }
 #endif
 
@@ -1021,7 +1021,7 @@ namespace UnitsNet
             return new Density((microgramsperdeciliter/1e-1) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter.
         /// </summary>
         public static Density FromMicrogramsPerDeciLiter(int microgramsperdeciliter)
@@ -1029,7 +1029,7 @@ namespace UnitsNet
             return new Density((microgramsperdeciliter/1e-1) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter.
         /// </summary>
         public static Density FromMicrogramsPerDeciLiter(long microgramsperdeciliter)
@@ -1037,14 +1037,14 @@ namespace UnitsNet
             return new Density((microgramsperdeciliter/1e-1) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromMicrogramsPerDeciLiter(decimal microgramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(microgramsperdeciliter)/1e-1) * 1e-6d);
+            return new Density((Convert.ToDouble(microgramsperdeciliter)/1e-1) * 1e-6d);
         }
 #endif
 
@@ -1056,7 +1056,7 @@ namespace UnitsNet
             return new Density((microgramsperliter/1) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerLiter.
         /// </summary>
         public static Density FromMicrogramsPerLiter(int microgramsperliter)
@@ -1064,7 +1064,7 @@ namespace UnitsNet
             return new Density((microgramsperliter/1) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerLiter.
         /// </summary>
         public static Density FromMicrogramsPerLiter(long microgramsperliter)
@@ -1072,14 +1072,14 @@ namespace UnitsNet
             return new Density((microgramsperliter/1) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerLiter of type decimal.
         /// </summary>
         public static Density FromMicrogramsPerLiter(decimal microgramsperliter)
         {
-	        return new Density((Convert.ToDouble(microgramsperliter)/1) * 1e-6d);
+            return new Density((Convert.ToDouble(microgramsperliter)/1) * 1e-6d);
         }
 #endif
 
@@ -1091,7 +1091,7 @@ namespace UnitsNet
             return new Density((microgramspermilliliter/1e-3) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerMilliliter.
         /// </summary>
         public static Density FromMicrogramsPerMilliliter(int microgramspermilliliter)
@@ -1099,7 +1099,7 @@ namespace UnitsNet
             return new Density((microgramspermilliliter/1e-3) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerMilliliter.
         /// </summary>
         public static Density FromMicrogramsPerMilliliter(long microgramspermilliliter)
@@ -1107,14 +1107,14 @@ namespace UnitsNet
             return new Density((microgramspermilliliter/1e-3) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MicrogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromMicrogramsPerMilliliter(decimal microgramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(microgramspermilliliter)/1e-3) * 1e-6d);
+            return new Density((Convert.ToDouble(microgramspermilliliter)/1e-3) * 1e-6d);
         }
 #endif
 
@@ -1126,7 +1126,7 @@ namespace UnitsNet
             return new Density((milligramsperdeciliter/1e-1) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerDeciLiter.
         /// </summary>
         public static Density FromMilligramsPerDeciLiter(int milligramsperdeciliter)
@@ -1134,7 +1134,7 @@ namespace UnitsNet
             return new Density((milligramsperdeciliter/1e-1) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerDeciLiter.
         /// </summary>
         public static Density FromMilligramsPerDeciLiter(long milligramsperdeciliter)
@@ -1142,14 +1142,14 @@ namespace UnitsNet
             return new Density((milligramsperdeciliter/1e-1) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromMilligramsPerDeciLiter(decimal milligramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(milligramsperdeciliter)/1e-1) * 1e-3d);
+            return new Density((Convert.ToDouble(milligramsperdeciliter)/1e-1) * 1e-3d);
         }
 #endif
 
@@ -1161,7 +1161,7 @@ namespace UnitsNet
             return new Density((milligramsperliter/1) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerLiter.
         /// </summary>
         public static Density FromMilligramsPerLiter(int milligramsperliter)
@@ -1169,7 +1169,7 @@ namespace UnitsNet
             return new Density((milligramsperliter/1) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerLiter.
         /// </summary>
         public static Density FromMilligramsPerLiter(long milligramsperliter)
@@ -1177,14 +1177,14 @@ namespace UnitsNet
             return new Density((milligramsperliter/1) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerLiter of type decimal.
         /// </summary>
         public static Density FromMilligramsPerLiter(decimal milligramsperliter)
         {
-	        return new Density((Convert.ToDouble(milligramsperliter)/1) * 1e-3d);
+            return new Density((Convert.ToDouble(milligramsperliter)/1) * 1e-3d);
         }
 #endif
 
@@ -1196,7 +1196,7 @@ namespace UnitsNet
             return new Density((milligramspermilliliter/1e-3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerMilliliter.
         /// </summary>
         public static Density FromMilligramsPerMilliliter(int milligramspermilliliter)
@@ -1204,7 +1204,7 @@ namespace UnitsNet
             return new Density((milligramspermilliliter/1e-3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerMilliliter.
         /// </summary>
         public static Density FromMilligramsPerMilliliter(long milligramspermilliliter)
@@ -1212,14 +1212,14 @@ namespace UnitsNet
             return new Density((milligramspermilliliter/1e-3) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from MilligramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromMilligramsPerMilliliter(decimal milligramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(milligramspermilliliter)/1e-3) * 1e-3d);
+            return new Density((Convert.ToDouble(milligramspermilliliter)/1e-3) * 1e-3d);
         }
 #endif
 
@@ -1231,7 +1231,7 @@ namespace UnitsNet
             return new Density((nanogramsperdeciliter/1e-1) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerDeciLiter.
         /// </summary>
         public static Density FromNanogramsPerDeciLiter(int nanogramsperdeciliter)
@@ -1239,7 +1239,7 @@ namespace UnitsNet
             return new Density((nanogramsperdeciliter/1e-1) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerDeciLiter.
         /// </summary>
         public static Density FromNanogramsPerDeciLiter(long nanogramsperdeciliter)
@@ -1247,14 +1247,14 @@ namespace UnitsNet
             return new Density((nanogramsperdeciliter/1e-1) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromNanogramsPerDeciLiter(decimal nanogramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(nanogramsperdeciliter)/1e-1) * 1e-9d);
+            return new Density((Convert.ToDouble(nanogramsperdeciliter)/1e-1) * 1e-9d);
         }
 #endif
 
@@ -1266,7 +1266,7 @@ namespace UnitsNet
             return new Density((nanogramsperliter/1) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerLiter.
         /// </summary>
         public static Density FromNanogramsPerLiter(int nanogramsperliter)
@@ -1274,7 +1274,7 @@ namespace UnitsNet
             return new Density((nanogramsperliter/1) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerLiter.
         /// </summary>
         public static Density FromNanogramsPerLiter(long nanogramsperliter)
@@ -1282,14 +1282,14 @@ namespace UnitsNet
             return new Density((nanogramsperliter/1) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerLiter of type decimal.
         /// </summary>
         public static Density FromNanogramsPerLiter(decimal nanogramsperliter)
         {
-	        return new Density((Convert.ToDouble(nanogramsperliter)/1) * 1e-9d);
+            return new Density((Convert.ToDouble(nanogramsperliter)/1) * 1e-9d);
         }
 #endif
 
@@ -1301,7 +1301,7 @@ namespace UnitsNet
             return new Density((nanogramspermilliliter/1e-3) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerMilliliter.
         /// </summary>
         public static Density FromNanogramsPerMilliliter(int nanogramspermilliliter)
@@ -1309,7 +1309,7 @@ namespace UnitsNet
             return new Density((nanogramspermilliliter/1e-3) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerMilliliter.
         /// </summary>
         public static Density FromNanogramsPerMilliliter(long nanogramspermilliliter)
@@ -1317,14 +1317,14 @@ namespace UnitsNet
             return new Density((nanogramspermilliliter/1e-3) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from NanogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromNanogramsPerMilliliter(decimal nanogramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(nanogramspermilliliter)/1e-3) * 1e-9d);
+            return new Density((Convert.ToDouble(nanogramspermilliliter)/1e-3) * 1e-9d);
         }
 #endif
 
@@ -1336,7 +1336,7 @@ namespace UnitsNet
             return new Density((picogramsperdeciliter/1e-1) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerDeciLiter.
         /// </summary>
         public static Density FromPicogramsPerDeciLiter(int picogramsperdeciliter)
@@ -1344,7 +1344,7 @@ namespace UnitsNet
             return new Density((picogramsperdeciliter/1e-1) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerDeciLiter.
         /// </summary>
         public static Density FromPicogramsPerDeciLiter(long picogramsperdeciliter)
@@ -1352,14 +1352,14 @@ namespace UnitsNet
             return new Density((picogramsperdeciliter/1e-1) * 1e-12d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density FromPicogramsPerDeciLiter(decimal picogramsperdeciliter)
         {
-	        return new Density((Convert.ToDouble(picogramsperdeciliter)/1e-1) * 1e-12d);
+            return new Density((Convert.ToDouble(picogramsperdeciliter)/1e-1) * 1e-12d);
         }
 #endif
 
@@ -1371,7 +1371,7 @@ namespace UnitsNet
             return new Density((picogramsperliter/1) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerLiter.
         /// </summary>
         public static Density FromPicogramsPerLiter(int picogramsperliter)
@@ -1379,7 +1379,7 @@ namespace UnitsNet
             return new Density((picogramsperliter/1) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerLiter.
         /// </summary>
         public static Density FromPicogramsPerLiter(long picogramsperliter)
@@ -1387,14 +1387,14 @@ namespace UnitsNet
             return new Density((picogramsperliter/1) * 1e-12d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerLiter of type decimal.
         /// </summary>
         public static Density FromPicogramsPerLiter(decimal picogramsperliter)
         {
-	        return new Density((Convert.ToDouble(picogramsperliter)/1) * 1e-12d);
+            return new Density((Convert.ToDouble(picogramsperliter)/1) * 1e-12d);
         }
 #endif
 
@@ -1406,7 +1406,7 @@ namespace UnitsNet
             return new Density((picogramspermilliliter/1e-3) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerMilliliter.
         /// </summary>
         public static Density FromPicogramsPerMilliliter(int picogramspermilliliter)
@@ -1414,7 +1414,7 @@ namespace UnitsNet
             return new Density((picogramspermilliliter/1e-3) * 1e-12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerMilliliter.
         /// </summary>
         public static Density FromPicogramsPerMilliliter(long picogramspermilliliter)
@@ -1422,14 +1422,14 @@ namespace UnitsNet
             return new Density((picogramspermilliliter/1e-3) * 1e-12d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from PicogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density FromPicogramsPerMilliliter(decimal picogramspermilliliter)
         {
-	        return new Density((Convert.ToDouble(picogramspermilliliter)/1e-3) * 1e-12d);
+            return new Density((Convert.ToDouble(picogramspermilliliter)/1e-3) * 1e-12d);
         }
 #endif
 
@@ -1441,7 +1441,7 @@ namespace UnitsNet
             return new Density(poundspercubicfoot/0.062427961);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
         public static Density FromPoundsPerCubicFoot(int poundspercubicfoot)
@@ -1449,7 +1449,7 @@ namespace UnitsNet
             return new Density(poundspercubicfoot/0.062427961);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
         public static Density FromPoundsPerCubicFoot(long poundspercubicfoot)
@@ -1457,14 +1457,14 @@ namespace UnitsNet
             return new Density(poundspercubicfoot/0.062427961);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicFoot of type decimal.
         /// </summary>
         public static Density FromPoundsPerCubicFoot(decimal poundspercubicfoot)
         {
-	        return new Density(Convert.ToDouble(poundspercubicfoot)/0.062427961);
+            return new Density(Convert.ToDouble(poundspercubicfoot)/0.062427961);
         }
 #endif
 
@@ -1476,7 +1476,7 @@ namespace UnitsNet
             return new Density(poundspercubicinch/3.6127298147753e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicInch.
         /// </summary>
         public static Density FromPoundsPerCubicInch(int poundspercubicinch)
@@ -1484,7 +1484,7 @@ namespace UnitsNet
             return new Density(poundspercubicinch/3.6127298147753e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicInch.
         /// </summary>
         public static Density FromPoundsPerCubicInch(long poundspercubicinch)
@@ -1492,14 +1492,14 @@ namespace UnitsNet
             return new Density(poundspercubicinch/3.6127298147753e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from PoundsPerCubicInch of type decimal.
         /// </summary>
         public static Density FromPoundsPerCubicInch(decimal poundspercubicinch)
         {
-	        return new Density(Convert.ToDouble(poundspercubicinch)/3.6127298147753e-5);
+            return new Density(Convert.ToDouble(poundspercubicinch)/3.6127298147753e-5);
         }
 #endif
 
@@ -1511,7 +1511,7 @@ namespace UnitsNet
             return new Density(slugspercubicfoot*515.378818);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
         public static Density FromSlugsPerCubicFoot(int slugspercubicfoot)
@@ -1519,7 +1519,7 @@ namespace UnitsNet
             return new Density(slugspercubicfoot*515.378818);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
         public static Density FromSlugsPerCubicFoot(long slugspercubicfoot)
@@ -1527,14 +1527,14 @@ namespace UnitsNet
             return new Density(slugspercubicfoot*515.378818);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from SlugsPerCubicFoot of type decimal.
         /// </summary>
         public static Density FromSlugsPerCubicFoot(decimal slugspercubicfoot)
         {
-	        return new Density(Convert.ToDouble(slugspercubicfoot)*515.378818);
+            return new Density(Convert.ToDouble(slugspercubicfoot)*515.378818);
         }
 #endif
 
@@ -1546,7 +1546,7 @@ namespace UnitsNet
             return new Density(tonnespercubiccentimeter/1e-9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter.
         /// </summary>
         public static Density FromTonnesPerCubicCentimeter(int tonnespercubiccentimeter)
@@ -1554,7 +1554,7 @@ namespace UnitsNet
             return new Density(tonnespercubiccentimeter/1e-9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter.
         /// </summary>
         public static Density FromTonnesPerCubicCentimeter(long tonnespercubiccentimeter)
@@ -1562,14 +1562,14 @@ namespace UnitsNet
             return new Density(tonnespercubiccentimeter/1e-9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density FromTonnesPerCubicCentimeter(decimal tonnespercubiccentimeter)
         {
-	        return new Density(Convert.ToDouble(tonnespercubiccentimeter)/1e-9);
+            return new Density(Convert.ToDouble(tonnespercubiccentimeter)/1e-9);
         }
 #endif
 
@@ -1581,7 +1581,7 @@ namespace UnitsNet
             return new Density(tonnespercubicmeter/0.001);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMeter.
         /// </summary>
         public static Density FromTonnesPerCubicMeter(int tonnespercubicmeter)
@@ -1589,7 +1589,7 @@ namespace UnitsNet
             return new Density(tonnespercubicmeter/0.001);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMeter.
         /// </summary>
         public static Density FromTonnesPerCubicMeter(long tonnespercubicmeter)
@@ -1597,14 +1597,14 @@ namespace UnitsNet
             return new Density(tonnespercubicmeter/0.001);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMeter of type decimal.
         /// </summary>
         public static Density FromTonnesPerCubicMeter(decimal tonnespercubicmeter)
         {
-	        return new Density(Convert.ToDouble(tonnespercubicmeter)/0.001);
+            return new Density(Convert.ToDouble(tonnespercubicmeter)/0.001);
         }
 #endif
 
@@ -1616,7 +1616,7 @@ namespace UnitsNet
             return new Density(tonnespercubicmillimeter/1e-12);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMillimeter.
         /// </summary>
         public static Density FromTonnesPerCubicMillimeter(int tonnespercubicmillimeter)
@@ -1624,7 +1624,7 @@ namespace UnitsNet
             return new Density(tonnespercubicmillimeter/1e-12);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMillimeter.
         /// </summary>
         public static Density FromTonnesPerCubicMillimeter(long tonnespercubicmillimeter)
@@ -1632,14 +1632,14 @@ namespace UnitsNet
             return new Density(tonnespercubicmillimeter/1e-12);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Density from TonnesPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density FromTonnesPerCubicMillimeter(decimal tonnespercubicmillimeter)
         {
-	        return new Density(Convert.ToDouble(tonnespercubicmillimeter)/1e-12);
+            return new Density(Convert.ToDouble(tonnespercubicmillimeter)/1e-12);
         }
 #endif
 
@@ -1660,7 +1660,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerDeciLiter.
         /// </summary>
         public static Density? FromCentigramsPerDeciLiter(int? centigramsperdeciliter)
@@ -1675,7 +1675,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerDeciLiter.
         /// </summary>
         public static Density? FromCentigramsPerDeciLiter(long? centigramsperdeciliter)
@@ -1690,7 +1690,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from CentigramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromCentigramsPerDeciLiter(decimal? centigramsperdeciliter)
@@ -1720,7 +1720,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerLiter.
         /// </summary>
         public static Density? FromCentigramsPerLiter(int? centigramsperliter)
@@ -1735,7 +1735,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerLiter.
         /// </summary>
         public static Density? FromCentigramsPerLiter(long? centigramsperliter)
@@ -1750,7 +1750,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from CentigramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromCentigramsPerLiter(decimal? centigramsperliter)
@@ -1780,7 +1780,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerMilliliter.
         /// </summary>
         public static Density? FromCentigramsPerMilliliter(int? centigramspermilliliter)
@@ -1795,7 +1795,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable CentigramsPerMilliliter.
         /// </summary>
         public static Density? FromCentigramsPerMilliliter(long? centigramspermilliliter)
@@ -1810,7 +1810,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from CentigramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromCentigramsPerMilliliter(decimal? centigramspermilliliter)
@@ -1840,7 +1840,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerDeciLiter.
         /// </summary>
         public static Density? FromDecigramsPerDeciLiter(int? decigramsperdeciliter)
@@ -1855,7 +1855,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerDeciLiter.
         /// </summary>
         public static Density? FromDecigramsPerDeciLiter(long? decigramsperdeciliter)
@@ -1870,7 +1870,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from DecigramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromDecigramsPerDeciLiter(decimal? decigramsperdeciliter)
@@ -1900,7 +1900,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerLiter.
         /// </summary>
         public static Density? FromDecigramsPerLiter(int? decigramsperliter)
@@ -1915,7 +1915,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerLiter.
         /// </summary>
         public static Density? FromDecigramsPerLiter(long? decigramsperliter)
@@ -1930,7 +1930,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from DecigramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromDecigramsPerLiter(decimal? decigramsperliter)
@@ -1960,7 +1960,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerMilliliter.
         /// </summary>
         public static Density? FromDecigramsPerMilliliter(int? decigramspermilliliter)
@@ -1975,7 +1975,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable DecigramsPerMilliliter.
         /// </summary>
         public static Density? FromDecigramsPerMilliliter(long? decigramspermilliliter)
@@ -1990,7 +1990,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from DecigramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromDecigramsPerMilliliter(decimal? decigramspermilliliter)
@@ -2020,7 +2020,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicCentimeter.
         /// </summary>
         public static Density? FromGramsPerCubicCentimeter(int? gramspercubiccentimeter)
@@ -2035,7 +2035,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicCentimeter.
         /// </summary>
         public static Density? FromGramsPerCubicCentimeter(long? gramspercubiccentimeter)
@@ -2050,7 +2050,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density? FromGramsPerCubicCentimeter(decimal? gramspercubiccentimeter)
@@ -2080,7 +2080,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMeter.
         /// </summary>
         public static Density? FromGramsPerCubicMeter(int? gramspercubicmeter)
@@ -2095,7 +2095,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMeter.
         /// </summary>
         public static Density? FromGramsPerCubicMeter(long? gramspercubicmeter)
@@ -2110,7 +2110,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerCubicMeter of type decimal.
         /// </summary>
         public static Density? FromGramsPerCubicMeter(decimal? gramspercubicmeter)
@@ -2140,7 +2140,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMillimeter.
         /// </summary>
         public static Density? FromGramsPerCubicMillimeter(int? gramspercubicmillimeter)
@@ -2155,7 +2155,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMillimeter.
         /// </summary>
         public static Density? FromGramsPerCubicMillimeter(long? gramspercubicmillimeter)
@@ -2170,7 +2170,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density? FromGramsPerCubicMillimeter(decimal? gramspercubicmillimeter)
@@ -2200,7 +2200,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerDeciLiter.
         /// </summary>
         public static Density? FromGramsPerDeciLiter(int? gramsperdeciliter)
@@ -2215,7 +2215,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerDeciLiter.
         /// </summary>
         public static Density? FromGramsPerDeciLiter(long? gramsperdeciliter)
@@ -2230,7 +2230,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromGramsPerDeciLiter(decimal? gramsperdeciliter)
@@ -2260,7 +2260,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerLiter.
         /// </summary>
         public static Density? FromGramsPerLiter(int? gramsperliter)
@@ -2275,7 +2275,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerLiter.
         /// </summary>
         public static Density? FromGramsPerLiter(long? gramsperliter)
@@ -2290,7 +2290,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromGramsPerLiter(decimal? gramsperliter)
@@ -2320,7 +2320,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerMilliliter.
         /// </summary>
         public static Density? FromGramsPerMilliliter(int? gramspermilliliter)
@@ -2335,7 +2335,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable GramsPerMilliliter.
         /// </summary>
         public static Density? FromGramsPerMilliliter(long? gramspermilliliter)
@@ -2350,7 +2350,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from GramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromGramsPerMilliliter(decimal? gramspermilliliter)
@@ -2380,7 +2380,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicCentimeter(int? kilogramspercubiccentimeter)
@@ -2395,7 +2395,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicCentimeter(long? kilogramspercubiccentimeter)
@@ -2410,7 +2410,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from KilogramsPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density? FromKilogramsPerCubicCentimeter(decimal? kilogramspercubiccentimeter)
@@ -2440,7 +2440,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicMeter(int? kilogramspercubicmeter)
@@ -2455,7 +2455,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicMeter(long? kilogramspercubicmeter)
@@ -2470,7 +2470,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from KilogramsPerCubicMeter of type decimal.
         /// </summary>
         public static Density? FromKilogramsPerCubicMeter(decimal? kilogramspercubicmeter)
@@ -2500,7 +2500,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicMillimeter(int? kilogramspercubicmillimeter)
@@ -2515,7 +2515,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
         /// </summary>
         public static Density? FromKilogramsPerCubicMillimeter(long? kilogramspercubicmillimeter)
@@ -2530,7 +2530,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from KilogramsPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density? FromKilogramsPerCubicMillimeter(decimal? kilogramspercubicmillimeter)
@@ -2560,7 +2560,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
         /// </summary>
         public static Density? FromKilopoundsPerCubicFoot(int? kilopoundspercubicfoot)
@@ -2575,7 +2575,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
         /// </summary>
         public static Density? FromKilopoundsPerCubicFoot(long? kilopoundspercubicfoot)
@@ -2590,7 +2590,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from KilopoundsPerCubicFoot of type decimal.
         /// </summary>
         public static Density? FromKilopoundsPerCubicFoot(decimal? kilopoundspercubicfoot)
@@ -2620,7 +2620,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicInch.
         /// </summary>
         public static Density? FromKilopoundsPerCubicInch(int? kilopoundspercubicinch)
@@ -2635,7 +2635,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicInch.
         /// </summary>
         public static Density? FromKilopoundsPerCubicInch(long? kilopoundspercubicinch)
@@ -2650,7 +2650,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from KilopoundsPerCubicInch of type decimal.
         /// </summary>
         public static Density? FromKilopoundsPerCubicInch(decimal? kilopoundspercubicinch)
@@ -2680,7 +2680,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
         /// </summary>
         public static Density? FromMicrogramsPerDeciLiter(int? microgramsperdeciliter)
@@ -2695,7 +2695,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
         /// </summary>
         public static Density? FromMicrogramsPerDeciLiter(long? microgramsperdeciliter)
@@ -2710,7 +2710,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MicrogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromMicrogramsPerDeciLiter(decimal? microgramsperdeciliter)
@@ -2740,7 +2740,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerLiter.
         /// </summary>
         public static Density? FromMicrogramsPerLiter(int? microgramsperliter)
@@ -2755,7 +2755,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerLiter.
         /// </summary>
         public static Density? FromMicrogramsPerLiter(long? microgramsperliter)
@@ -2770,7 +2770,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MicrogramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromMicrogramsPerLiter(decimal? microgramsperliter)
@@ -2800,7 +2800,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerMilliliter.
         /// </summary>
         public static Density? FromMicrogramsPerMilliliter(int? microgramspermilliliter)
@@ -2815,7 +2815,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerMilliliter.
         /// </summary>
         public static Density? FromMicrogramsPerMilliliter(long? microgramspermilliliter)
@@ -2830,7 +2830,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MicrogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromMicrogramsPerMilliliter(decimal? microgramspermilliliter)
@@ -2860,7 +2860,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerDeciLiter.
         /// </summary>
         public static Density? FromMilligramsPerDeciLiter(int? milligramsperdeciliter)
@@ -2875,7 +2875,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerDeciLiter.
         /// </summary>
         public static Density? FromMilligramsPerDeciLiter(long? milligramsperdeciliter)
@@ -2890,7 +2890,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MilligramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromMilligramsPerDeciLiter(decimal? milligramsperdeciliter)
@@ -2920,7 +2920,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerLiter.
         /// </summary>
         public static Density? FromMilligramsPerLiter(int? milligramsperliter)
@@ -2935,7 +2935,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerLiter.
         /// </summary>
         public static Density? FromMilligramsPerLiter(long? milligramsperliter)
@@ -2950,7 +2950,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MilligramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromMilligramsPerLiter(decimal? milligramsperliter)
@@ -2980,7 +2980,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerMilliliter.
         /// </summary>
         public static Density? FromMilligramsPerMilliliter(int? milligramspermilliliter)
@@ -2995,7 +2995,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerMilliliter.
         /// </summary>
         public static Density? FromMilligramsPerMilliliter(long? milligramspermilliliter)
@@ -3010,7 +3010,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from MilligramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromMilligramsPerMilliliter(decimal? milligramspermilliliter)
@@ -3040,7 +3040,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerDeciLiter.
         /// </summary>
         public static Density? FromNanogramsPerDeciLiter(int? nanogramsperdeciliter)
@@ -3055,7 +3055,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerDeciLiter.
         /// </summary>
         public static Density? FromNanogramsPerDeciLiter(long? nanogramsperdeciliter)
@@ -3070,7 +3070,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from NanogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromNanogramsPerDeciLiter(decimal? nanogramsperdeciliter)
@@ -3100,7 +3100,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerLiter.
         /// </summary>
         public static Density? FromNanogramsPerLiter(int? nanogramsperliter)
@@ -3115,7 +3115,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerLiter.
         /// </summary>
         public static Density? FromNanogramsPerLiter(long? nanogramsperliter)
@@ -3130,7 +3130,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from NanogramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromNanogramsPerLiter(decimal? nanogramsperliter)
@@ -3160,7 +3160,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerMilliliter.
         /// </summary>
         public static Density? FromNanogramsPerMilliliter(int? nanogramspermilliliter)
@@ -3175,7 +3175,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable NanogramsPerMilliliter.
         /// </summary>
         public static Density? FromNanogramsPerMilliliter(long? nanogramspermilliliter)
@@ -3190,7 +3190,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from NanogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromNanogramsPerMilliliter(decimal? nanogramspermilliliter)
@@ -3220,7 +3220,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerDeciLiter.
         /// </summary>
         public static Density? FromPicogramsPerDeciLiter(int? picogramsperdeciliter)
@@ -3235,7 +3235,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerDeciLiter.
         /// </summary>
         public static Density? FromPicogramsPerDeciLiter(long? picogramsperdeciliter)
@@ -3250,7 +3250,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from PicogramsPerDeciLiter of type decimal.
         /// </summary>
         public static Density? FromPicogramsPerDeciLiter(decimal? picogramsperdeciliter)
@@ -3280,7 +3280,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerLiter.
         /// </summary>
         public static Density? FromPicogramsPerLiter(int? picogramsperliter)
@@ -3295,7 +3295,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerLiter.
         /// </summary>
         public static Density? FromPicogramsPerLiter(long? picogramsperliter)
@@ -3310,7 +3310,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from PicogramsPerLiter of type decimal.
         /// </summary>
         public static Density? FromPicogramsPerLiter(decimal? picogramsperliter)
@@ -3340,7 +3340,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerMilliliter.
         /// </summary>
         public static Density? FromPicogramsPerMilliliter(int? picogramspermilliliter)
@@ -3355,7 +3355,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PicogramsPerMilliliter.
         /// </summary>
         public static Density? FromPicogramsPerMilliliter(long? picogramspermilliliter)
@@ -3370,7 +3370,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from PicogramsPerMilliliter of type decimal.
         /// </summary>
         public static Density? FromPicogramsPerMilliliter(decimal? picogramspermilliliter)
@@ -3400,7 +3400,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicFoot.
         /// </summary>
         public static Density? FromPoundsPerCubicFoot(int? poundspercubicfoot)
@@ -3415,7 +3415,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicFoot.
         /// </summary>
         public static Density? FromPoundsPerCubicFoot(long? poundspercubicfoot)
@@ -3430,7 +3430,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from PoundsPerCubicFoot of type decimal.
         /// </summary>
         public static Density? FromPoundsPerCubicFoot(decimal? poundspercubicfoot)
@@ -3460,7 +3460,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicInch.
         /// </summary>
         public static Density? FromPoundsPerCubicInch(int? poundspercubicinch)
@@ -3475,7 +3475,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicInch.
         /// </summary>
         public static Density? FromPoundsPerCubicInch(long? poundspercubicinch)
@@ -3490,7 +3490,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from PoundsPerCubicInch of type decimal.
         /// </summary>
         public static Density? FromPoundsPerCubicInch(decimal? poundspercubicinch)
@@ -3520,7 +3520,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable SlugsPerCubicFoot.
         /// </summary>
         public static Density? FromSlugsPerCubicFoot(int? slugspercubicfoot)
@@ -3535,7 +3535,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable SlugsPerCubicFoot.
         /// </summary>
         public static Density? FromSlugsPerCubicFoot(long? slugspercubicfoot)
@@ -3550,7 +3550,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from SlugsPerCubicFoot of type decimal.
         /// </summary>
         public static Density? FromSlugsPerCubicFoot(decimal? slugspercubicfoot)
@@ -3580,7 +3580,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
         /// </summary>
         public static Density? FromTonnesPerCubicCentimeter(int? tonnespercubiccentimeter)
@@ -3595,7 +3595,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
         /// </summary>
         public static Density? FromTonnesPerCubicCentimeter(long? tonnespercubiccentimeter)
@@ -3610,7 +3610,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from TonnesPerCubicCentimeter of type decimal.
         /// </summary>
         public static Density? FromTonnesPerCubicCentimeter(decimal? tonnespercubiccentimeter)
@@ -3640,7 +3640,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMeter.
         /// </summary>
         public static Density? FromTonnesPerCubicMeter(int? tonnespercubicmeter)
@@ -3655,7 +3655,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMeter.
         /// </summary>
         public static Density? FromTonnesPerCubicMeter(long? tonnespercubicmeter)
@@ -3670,7 +3670,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from TonnesPerCubicMeter of type decimal.
         /// </summary>
         public static Density? FromTonnesPerCubicMeter(decimal? tonnespercubicmeter)
@@ -3700,7 +3700,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
         /// </summary>
         public static Density? FromTonnesPerCubicMillimeter(int? tonnespercubicmillimeter)
@@ -3715,7 +3715,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
         /// </summary>
         public static Density? FromTonnesPerCubicMillimeter(long? tonnespercubicmillimeter)
@@ -3730,7 +3730,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Density from TonnesPerCubicMillimeter of type decimal.
         /// </summary>
         public static Density? FromTonnesPerCubicMillimeter(decimal? tonnespercubicmillimeter)

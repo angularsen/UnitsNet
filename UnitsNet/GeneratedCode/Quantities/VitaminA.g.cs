@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _internationalUnits;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public VitaminA() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.VitaminA;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static VitaminAUnit BaseUnit
         {
             get { return VitaminAUnit.InternationalUnit; }
@@ -154,7 +154,7 @@ namespace UnitsNet
             return new VitaminA(internationalunits);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get VitaminA from InternationalUnits.
         /// </summary>
         public static VitaminA FromInternationalUnits(int internationalunits)
@@ -162,7 +162,7 @@ namespace UnitsNet
             return new VitaminA(internationalunits);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get VitaminA from InternationalUnits.
         /// </summary>
         public static VitaminA FromInternationalUnits(long internationalunits)
@@ -170,14 +170,14 @@ namespace UnitsNet
             return new VitaminA(internationalunits);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get VitaminA from InternationalUnits of type decimal.
         /// </summary>
         public static VitaminA FromInternationalUnits(decimal internationalunits)
         {
-	        return new VitaminA(Convert.ToDouble(internationalunits));
+            return new VitaminA(Convert.ToDouble(internationalunits));
         }
 #endif
 
@@ -198,7 +198,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
         public static VitaminA? FromInternationalUnits(int? internationalunits)
@@ -213,7 +213,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
         public static VitaminA? FromInternationalUnits(long? internationalunits)
@@ -228,7 +228,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable VitaminA from InternationalUnits of type decimal.
         /// </summary>
         public static VitaminA? FromInternationalUnits(decimal? internationalunits)

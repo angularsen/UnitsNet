@@ -104,7 +104,7 @@ namespace UnitsNet
         /// </summary>
         private readonly $baseType $baseUnitFieldName;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public $quantityName() : this(0)
         {
@@ -141,14 +141,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.$quantityName;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static $unitEnumName BaseUnit
         {
             get { return $unitEnumName.$baseUnitSingularName; }
@@ -189,7 +189,7 @@ namespace UnitsNet
 "@; foreach ($unit in $units) {
     $valueParamName = $unit.PluralName.ToLowerInvariant();
         $func = $unit.FromUnitToBaseFunc.Replace("x", $valueParamName);
-		$decimalFunc = $unit.FromUnitToBaseFunc.Replace("x","Convert.ToDouble(" + $valueParamName + ")"); @"
+        $decimalFunc = $unit.FromUnitToBaseFunc.Replace("x","Convert.ToDouble(" + $valueParamName + ")"); @"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
@@ -198,7 +198,7 @@ namespace UnitsNet
             return new $quantityName($func);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
         public static $quantityName From$($unit.PluralName)(int $valueParamName)
@@ -206,7 +206,7 @@ namespace UnitsNet
             return new $quantityName($($func));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
         public static $quantityName From$($unit.PluralName)(long $valueParamName)
@@ -214,14 +214,14 @@ namespace UnitsNet
             return new $quantityName($($func));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get $quantityName from $($unit.PluralName) of type decimal.
         /// </summary>
         public static $($quantityName) From$($unit.PluralName)(decimal $valueParamName)
         {
-	        return new $quantityName($($decimalFunc));
+            return new $quantityName($($decimalFunc));
         }
 #endif
 
@@ -246,7 +246,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable $quantityName from nullable $($unit.PluralName).
         /// </summary>
         public static $($quantityName)? From$($unit.PluralName)(int? $valueParamName)
@@ -261,7 +261,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable $quantityName from nullable $($unit.PluralName).
         /// </summary>
         public static $($quantityName)? From$($unit.PluralName)(long? $valueParamName)
@@ -276,7 +276,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable $quantityName from $($unit.PluralName) of type decimal.
         /// </summary>
         public static $($quantityName)? From$($unit.PluralName)(decimal? $valueParamName)

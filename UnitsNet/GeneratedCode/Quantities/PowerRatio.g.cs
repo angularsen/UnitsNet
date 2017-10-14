@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _decibelWatts;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public PowerRatio() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.PowerRatio;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static PowerRatioUnit BaseUnit
         {
             get { return PowerRatioUnit.DecibelWatt; }
@@ -162,7 +162,7 @@ namespace UnitsNet
             return new PowerRatio(decibelmilliwatts - 30);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelMilliwatts.
         /// </summary>
         public static PowerRatio FromDecibelMilliwatts(int decibelmilliwatts)
@@ -170,7 +170,7 @@ namespace UnitsNet
             return new PowerRatio(decibelmilliwatts - 30);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelMilliwatts.
         /// </summary>
         public static PowerRatio FromDecibelMilliwatts(long decibelmilliwatts)
@@ -178,14 +178,14 @@ namespace UnitsNet
             return new PowerRatio(decibelmilliwatts - 30);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelMilliwatts of type decimal.
         /// </summary>
         public static PowerRatio FromDecibelMilliwatts(decimal decibelmilliwatts)
         {
-	        return new PowerRatio(Convert.ToDouble(decibelmilliwatts) - 30);
+            return new PowerRatio(Convert.ToDouble(decibelmilliwatts) - 30);
         }
 #endif
 
@@ -197,7 +197,7 @@ namespace UnitsNet
             return new PowerRatio(decibelwatts);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelWatts.
         /// </summary>
         public static PowerRatio FromDecibelWatts(int decibelwatts)
@@ -205,7 +205,7 @@ namespace UnitsNet
             return new PowerRatio(decibelwatts);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelWatts.
         /// </summary>
         public static PowerRatio FromDecibelWatts(long decibelwatts)
@@ -213,14 +213,14 @@ namespace UnitsNet
             return new PowerRatio(decibelwatts);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PowerRatio from DecibelWatts of type decimal.
         /// </summary>
         public static PowerRatio FromDecibelWatts(decimal decibelwatts)
         {
-	        return new PowerRatio(Convert.ToDouble(decibelwatts));
+            return new PowerRatio(Convert.ToDouble(decibelwatts));
         }
 #endif
 
@@ -241,7 +241,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
         /// </summary>
         public static PowerRatio? FromDecibelMilliwatts(int? decibelmilliwatts)
@@ -256,7 +256,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
         /// </summary>
         public static PowerRatio? FromDecibelMilliwatts(long? decibelmilliwatts)
@@ -271,7 +271,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from DecibelMilliwatts of type decimal.
         /// </summary>
         public static PowerRatio? FromDecibelMilliwatts(decimal? decibelmilliwatts)
@@ -301,7 +301,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from nullable DecibelWatts.
         /// </summary>
         public static PowerRatio? FromDecibelWatts(int? decibelwatts)
@@ -316,7 +316,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from nullable DecibelWatts.
         /// </summary>
         public static PowerRatio? FromDecibelWatts(long? decibelwatts)
@@ -331,7 +331,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PowerRatio from DecibelWatts of type decimal.
         /// </summary>
         public static PowerRatio? FromDecibelWatts(decimal? decibelwatts)

@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _pascalsPerSecond;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public PressureChangeRate() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.PressureChangeRate;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static PressureChangeRateUnit BaseUnit
         {
             get { return PressureChangeRateUnit.PascalPerSecond; }
@@ -178,7 +178,7 @@ namespace UnitsNet
             return new PressureChangeRate(atmospherespersecond * 1.01325*1e5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
         /// </summary>
         public static PressureChangeRate FromAtmospheresPerSecond(int atmospherespersecond)
@@ -186,7 +186,7 @@ namespace UnitsNet
             return new PressureChangeRate(atmospherespersecond * 1.01325*1e5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
         /// </summary>
         public static PressureChangeRate FromAtmospheresPerSecond(long atmospherespersecond)
@@ -194,14 +194,14 @@ namespace UnitsNet
             return new PressureChangeRate(atmospherespersecond * 1.01325*1e5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate FromAtmospheresPerSecond(decimal atmospherespersecond)
         {
-	        return new PressureChangeRate(Convert.ToDouble(atmospherespersecond) * 1.01325*1e5);
+            return new PressureChangeRate(Convert.ToDouble(atmospherespersecond) * 1.01325*1e5);
         }
 #endif
 
@@ -213,7 +213,7 @@ namespace UnitsNet
             return new PressureChangeRate((kilopascalspersecond) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from KilopascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromKilopascalsPerSecond(int kilopascalspersecond)
@@ -221,7 +221,7 @@ namespace UnitsNet
             return new PressureChangeRate((kilopascalspersecond) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from KilopascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromKilopascalsPerSecond(long kilopascalspersecond)
@@ -229,14 +229,14 @@ namespace UnitsNet
             return new PressureChangeRate((kilopascalspersecond) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from KilopascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate FromKilopascalsPerSecond(decimal kilopascalspersecond)
         {
-	        return new PressureChangeRate((Convert.ToDouble(kilopascalspersecond)) * 1e3d);
+            return new PressureChangeRate((Convert.ToDouble(kilopascalspersecond)) * 1e3d);
         }
 #endif
 
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new PressureChangeRate((megapascalspersecond) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromMegapascalsPerSecond(int megapascalspersecond)
@@ -256,7 +256,7 @@ namespace UnitsNet
             return new PressureChangeRate((megapascalspersecond) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromMegapascalsPerSecond(long megapascalspersecond)
@@ -264,14 +264,14 @@ namespace UnitsNet
             return new PressureChangeRate((megapascalspersecond) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate FromMegapascalsPerSecond(decimal megapascalspersecond)
         {
-	        return new PressureChangeRate((Convert.ToDouble(megapascalspersecond)) * 1e6d);
+            return new PressureChangeRate((Convert.ToDouble(megapascalspersecond)) * 1e6d);
         }
 #endif
 
@@ -283,7 +283,7 @@ namespace UnitsNet
             return new PressureChangeRate(pascalspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from PascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromPascalsPerSecond(int pascalspersecond)
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new PressureChangeRate(pascalspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from PascalsPerSecond.
         /// </summary>
         public static PressureChangeRate FromPascalsPerSecond(long pascalspersecond)
@@ -299,14 +299,14 @@ namespace UnitsNet
             return new PressureChangeRate(pascalspersecond);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get PressureChangeRate from PascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate FromPascalsPerSecond(decimal pascalspersecond)
         {
-	        return new PressureChangeRate(Convert.ToDouble(pascalspersecond));
+            return new PressureChangeRate(Convert.ToDouble(pascalspersecond));
         }
 #endif
 
@@ -327,7 +327,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
         /// </summary>
         public static PressureChangeRate? FromAtmospheresPerSecond(int? atmospherespersecond)
@@ -342,7 +342,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
         /// </summary>
         public static PressureChangeRate? FromAtmospheresPerSecond(long? atmospherespersecond)
@@ -357,7 +357,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from AtmospheresPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate? FromAtmospheresPerSecond(decimal? atmospherespersecond)
@@ -387,7 +387,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromKilopascalsPerSecond(int? kilopascalspersecond)
@@ -402,7 +402,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromKilopascalsPerSecond(long? kilopascalspersecond)
@@ -417,7 +417,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from KilopascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate? FromKilopascalsPerSecond(decimal? kilopascalspersecond)
@@ -447,7 +447,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromMegapascalsPerSecond(int? megapascalspersecond)
@@ -462,7 +462,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromMegapascalsPerSecond(long? megapascalspersecond)
@@ -477,7 +477,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from MegapascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate? FromMegapascalsPerSecond(decimal? megapascalspersecond)
@@ -507,7 +507,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromPascalsPerSecond(int? pascalspersecond)
@@ -522,7 +522,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
         /// </summary>
         public static PressureChangeRate? FromPascalsPerSecond(long? pascalspersecond)
@@ -537,7 +537,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable PressureChangeRate from PascalsPerSecond of type decimal.
         /// </summary>
         public static PressureChangeRate? FromPascalsPerSecond(decimal? pascalspersecond)

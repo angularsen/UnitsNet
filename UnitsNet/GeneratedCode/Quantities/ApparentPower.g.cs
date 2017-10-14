@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _voltamperes;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ApparentPower() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.ApparentPower;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static ApparentPowerUnit BaseUnit
         {
             get { return ApparentPowerUnit.Voltampere; }
@@ -170,7 +170,7 @@ namespace UnitsNet
             return new ApparentPower((kilovoltamperes) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Kilovoltamperes.
         /// </summary>
         public static ApparentPower FromKilovoltamperes(int kilovoltamperes)
@@ -178,7 +178,7 @@ namespace UnitsNet
             return new ApparentPower((kilovoltamperes) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Kilovoltamperes.
         /// </summary>
         public static ApparentPower FromKilovoltamperes(long kilovoltamperes)
@@ -186,14 +186,14 @@ namespace UnitsNet
             return new ApparentPower((kilovoltamperes) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Kilovoltamperes of type decimal.
         /// </summary>
         public static ApparentPower FromKilovoltamperes(decimal kilovoltamperes)
         {
-	        return new ApparentPower((Convert.ToDouble(kilovoltamperes)) * 1e3d);
+            return new ApparentPower((Convert.ToDouble(kilovoltamperes)) * 1e3d);
         }
 #endif
 
@@ -205,7 +205,7 @@ namespace UnitsNet
             return new ApparentPower((megavoltamperes) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Megavoltamperes.
         /// </summary>
         public static ApparentPower FromMegavoltamperes(int megavoltamperes)
@@ -213,7 +213,7 @@ namespace UnitsNet
             return new ApparentPower((megavoltamperes) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Megavoltamperes.
         /// </summary>
         public static ApparentPower FromMegavoltamperes(long megavoltamperes)
@@ -221,14 +221,14 @@ namespace UnitsNet
             return new ApparentPower((megavoltamperes) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Megavoltamperes of type decimal.
         /// </summary>
         public static ApparentPower FromMegavoltamperes(decimal megavoltamperes)
         {
-	        return new ApparentPower((Convert.ToDouble(megavoltamperes)) * 1e6d);
+            return new ApparentPower((Convert.ToDouble(megavoltamperes)) * 1e6d);
         }
 #endif
 
@@ -240,7 +240,7 @@ namespace UnitsNet
             return new ApparentPower(voltamperes);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Voltamperes.
         /// </summary>
         public static ApparentPower FromVoltamperes(int voltamperes)
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new ApparentPower(voltamperes);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Voltamperes.
         /// </summary>
         public static ApparentPower FromVoltamperes(long voltamperes)
@@ -256,14 +256,14 @@ namespace UnitsNet
             return new ApparentPower(voltamperes);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ApparentPower from Voltamperes of type decimal.
         /// </summary>
         public static ApparentPower FromVoltamperes(decimal voltamperes)
         {
-	        return new ApparentPower(Convert.ToDouble(voltamperes));
+            return new ApparentPower(Convert.ToDouble(voltamperes));
         }
 #endif
 
@@ -284,7 +284,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Kilovoltamperes.
         /// </summary>
         public static ApparentPower? FromKilovoltamperes(int? kilovoltamperes)
@@ -299,7 +299,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Kilovoltamperes.
         /// </summary>
         public static ApparentPower? FromKilovoltamperes(long? kilovoltamperes)
@@ -314,7 +314,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from Kilovoltamperes of type decimal.
         /// </summary>
         public static ApparentPower? FromKilovoltamperes(decimal? kilovoltamperes)
@@ -344,7 +344,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Megavoltamperes.
         /// </summary>
         public static ApparentPower? FromMegavoltamperes(int? megavoltamperes)
@@ -359,7 +359,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Megavoltamperes.
         /// </summary>
         public static ApparentPower? FromMegavoltamperes(long? megavoltamperes)
@@ -374,7 +374,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from Megavoltamperes of type decimal.
         /// </summary>
         public static ApparentPower? FromMegavoltamperes(decimal? megavoltamperes)
@@ -404,7 +404,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Voltamperes.
         /// </summary>
         public static ApparentPower? FromVoltamperes(int? voltamperes)
@@ -419,7 +419,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from nullable Voltamperes.
         /// </summary>
         public static ApparentPower? FromVoltamperes(long? voltamperes)
@@ -434,7 +434,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ApparentPower from Voltamperes of type decimal.
         /// </summary>
         public static ApparentPower? FromVoltamperes(decimal? voltamperes)

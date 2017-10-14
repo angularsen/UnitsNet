@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _radiansPerSecond;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public RotationalSpeed() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.RotationalSpeed;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static RotationalSpeedUnit BaseUnit
         {
             get { return RotationalSpeedUnit.RadianPerSecond; }
@@ -250,7 +250,7 @@ namespace UnitsNet
             return new RotationalSpeed((centiradianspersecond) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromCentiradiansPerSecond(int centiradianspersecond)
@@ -258,7 +258,7 @@ namespace UnitsNet
             return new RotationalSpeed((centiradianspersecond) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromCentiradiansPerSecond(long centiradianspersecond)
@@ -266,14 +266,14 @@ namespace UnitsNet
             return new RotationalSpeed((centiradianspersecond) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromCentiradiansPerSecond(decimal centiradianspersecond)
         {
-	        return new RotationalSpeed((Convert.ToDouble(centiradianspersecond)) * 1e-2d);
+            return new RotationalSpeed((Convert.ToDouble(centiradianspersecond)) * 1e-2d);
         }
 #endif
 
@@ -285,7 +285,7 @@ namespace UnitsNet
             return new RotationalSpeed((deciradianspersecond) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromDeciradiansPerSecond(int deciradianspersecond)
@@ -293,7 +293,7 @@ namespace UnitsNet
             return new RotationalSpeed((deciradianspersecond) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromDeciradiansPerSecond(long deciradianspersecond)
@@ -301,14 +301,14 @@ namespace UnitsNet
             return new RotationalSpeed((deciradianspersecond) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromDeciradiansPerSecond(decimal deciradianspersecond)
         {
-	        return new RotationalSpeed((Convert.ToDouble(deciradianspersecond)) * 1e-1d);
+            return new RotationalSpeed((Convert.ToDouble(deciradianspersecond)) * 1e-1d);
         }
 #endif
 
@@ -320,7 +320,7 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/(180*60))*degreesperminute);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute.
         /// </summary>
         public static RotationalSpeed FromDegreesPerMinute(int degreesperminute)
@@ -328,7 +328,7 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/(180*60))*degreesperminute);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute.
         /// </summary>
         public static RotationalSpeed FromDegreesPerMinute(long degreesperminute)
@@ -336,14 +336,14 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/(180*60))*degreesperminute);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute of type decimal.
         /// </summary>
         public static RotationalSpeed FromDegreesPerMinute(decimal degreesperminute)
         {
-	        return new RotationalSpeed((Math.PI/(180*60))*Convert.ToDouble(degreesperminute));
+            return new RotationalSpeed((Math.PI/(180*60))*Convert.ToDouble(degreesperminute));
         }
 #endif
 
@@ -355,7 +355,7 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/180)*degreespersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromDegreesPerSecond(int degreespersecond)
@@ -363,7 +363,7 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/180)*degreespersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromDegreesPerSecond(long degreespersecond)
@@ -371,14 +371,14 @@ namespace UnitsNet
             return new RotationalSpeed((Math.PI/180)*degreespersecond);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromDegreesPerSecond(decimal degreespersecond)
         {
-	        return new RotationalSpeed((Math.PI/180)*Convert.ToDouble(degreespersecond));
+            return new RotationalSpeed((Math.PI/180)*Convert.ToDouble(degreespersecond));
         }
 #endif
 
@@ -390,7 +390,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*microdegreespersecond) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicrodegreesPerSecond(int microdegreespersecond)
@@ -398,7 +398,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*microdegreespersecond) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicrodegreesPerSecond(long microdegreespersecond)
@@ -406,14 +406,14 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*microdegreespersecond) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromMicrodegreesPerSecond(decimal microdegreespersecond)
         {
-	        return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(microdegreespersecond)) * 1e-6d);
+            return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(microdegreespersecond)) * 1e-6d);
         }
 #endif
 
@@ -425,7 +425,7 @@ namespace UnitsNet
             return new RotationalSpeed((microradianspersecond) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(int microradianspersecond)
@@ -433,7 +433,7 @@ namespace UnitsNet
             return new RotationalSpeed((microradianspersecond) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(long microradianspersecond)
@@ -441,14 +441,14 @@ namespace UnitsNet
             return new RotationalSpeed((microradianspersecond) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromMicroradiansPerSecond(decimal microradianspersecond)
         {
-	        return new RotationalSpeed((Convert.ToDouble(microradianspersecond)) * 1e-6d);
+            return new RotationalSpeed((Convert.ToDouble(microradianspersecond)) * 1e-6d);
         }
 #endif
 
@@ -460,7 +460,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*millidegreespersecond) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromMillidegreesPerSecond(int millidegreespersecond)
@@ -468,7 +468,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*millidegreespersecond) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromMillidegreesPerSecond(long millidegreespersecond)
@@ -476,14 +476,14 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*millidegreespersecond) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromMillidegreesPerSecond(decimal millidegreespersecond)
         {
-	        return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(millidegreespersecond)) * 1e-3d);
+            return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(millidegreespersecond)) * 1e-3d);
         }
 #endif
 
@@ -495,7 +495,7 @@ namespace UnitsNet
             return new RotationalSpeed((milliradianspersecond) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(int milliradianspersecond)
@@ -503,7 +503,7 @@ namespace UnitsNet
             return new RotationalSpeed((milliradianspersecond) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(long milliradianspersecond)
@@ -511,14 +511,14 @@ namespace UnitsNet
             return new RotationalSpeed((milliradianspersecond) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(decimal milliradianspersecond)
         {
-	        return new RotationalSpeed((Convert.ToDouble(milliradianspersecond)) * 1e-3d);
+            return new RotationalSpeed((Convert.ToDouble(milliradianspersecond)) * 1e-3d);
         }
 #endif
 
@@ -530,7 +530,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*nanodegreespersecond) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromNanodegreesPerSecond(int nanodegreespersecond)
@@ -538,7 +538,7 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*nanodegreespersecond) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed FromNanodegreesPerSecond(long nanodegreespersecond)
@@ -546,14 +546,14 @@ namespace UnitsNet
             return new RotationalSpeed(((Math.PI/180)*nanodegreespersecond) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromNanodegreesPerSecond(decimal nanodegreespersecond)
         {
-	        return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(nanodegreespersecond)) * 1e-9d);
+            return new RotationalSpeed(((Math.PI/180)*Convert.ToDouble(nanodegreespersecond)) * 1e-9d);
         }
 #endif
 
@@ -565,7 +565,7 @@ namespace UnitsNet
             return new RotationalSpeed((nanoradianspersecond) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromNanoradiansPerSecond(int nanoradianspersecond)
@@ -573,7 +573,7 @@ namespace UnitsNet
             return new RotationalSpeed((nanoradianspersecond) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromNanoradiansPerSecond(long nanoradianspersecond)
@@ -581,14 +581,14 @@ namespace UnitsNet
             return new RotationalSpeed((nanoradianspersecond) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromNanoradiansPerSecond(decimal nanoradianspersecond)
         {
-	        return new RotationalSpeed((Convert.ToDouble(nanoradianspersecond)) * 1e-9d);
+            return new RotationalSpeed((Convert.ToDouble(nanoradianspersecond)) * 1e-9d);
         }
 #endif
 
@@ -600,7 +600,7 @@ namespace UnitsNet
             return new RotationalSpeed(radianspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromRadiansPerSecond(int radianspersecond)
@@ -608,7 +608,7 @@ namespace UnitsNet
             return new RotationalSpeed(radianspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond.
         /// </summary>
         public static RotationalSpeed FromRadiansPerSecond(long radianspersecond)
@@ -616,14 +616,14 @@ namespace UnitsNet
             return new RotationalSpeed(radianspersecond);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromRadiansPerSecond(decimal radianspersecond)
         {
-	        return new RotationalSpeed(Convert.ToDouble(radianspersecond));
+            return new RotationalSpeed(Convert.ToDouble(radianspersecond));
         }
 #endif
 
@@ -635,7 +635,7 @@ namespace UnitsNet
             return new RotationalSpeed((revolutionsperminute*6.2831853072)/60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerMinute(int revolutionsperminute)
@@ -643,7 +643,7 @@ namespace UnitsNet
             return new RotationalSpeed((revolutionsperminute*6.2831853072)/60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerMinute(long revolutionsperminute)
@@ -651,14 +651,14 @@ namespace UnitsNet
             return new RotationalSpeed((revolutionsperminute*6.2831853072)/60);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute of type decimal.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerMinute(decimal revolutionsperminute)
         {
-	        return new RotationalSpeed((Convert.ToDouble(revolutionsperminute)*6.2831853072)/60);
+            return new RotationalSpeed((Convert.ToDouble(revolutionsperminute)*6.2831853072)/60);
         }
 #endif
 
@@ -670,7 +670,7 @@ namespace UnitsNet
             return new RotationalSpeed(revolutionspersecond*6.2831853072);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerSecond(int revolutionspersecond)
@@ -678,7 +678,7 @@ namespace UnitsNet
             return new RotationalSpeed(revolutionspersecond*6.2831853072);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerSecond(long revolutionspersecond)
@@ -686,14 +686,14 @@ namespace UnitsNet
             return new RotationalSpeed(revolutionspersecond*6.2831853072);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed FromRevolutionsPerSecond(decimal revolutionspersecond)
         {
-	        return new RotationalSpeed(Convert.ToDouble(revolutionspersecond)*6.2831853072);
+            return new RotationalSpeed(Convert.ToDouble(revolutionspersecond)*6.2831853072);
         }
 #endif
 
@@ -714,7 +714,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromCentiradiansPerSecond(int? centiradianspersecond)
@@ -729,7 +729,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromCentiradiansPerSecond(long? centiradianspersecond)
@@ -744,7 +744,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from CentiradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromCentiradiansPerSecond(decimal? centiradianspersecond)
@@ -774,7 +774,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromDeciradiansPerSecond(int? deciradianspersecond)
@@ -789,7 +789,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromDeciradiansPerSecond(long? deciradianspersecond)
@@ -804,7 +804,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from DeciradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromDeciradiansPerSecond(decimal? deciradianspersecond)
@@ -834,7 +834,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerMinute.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerMinute(int? degreesperminute)
@@ -849,7 +849,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerMinute.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerMinute(long? degreesperminute)
@@ -864,7 +864,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from DegreesPerMinute of type decimal.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerMinute(decimal? degreesperminute)
@@ -894,7 +894,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerSecond(int? degreespersecond)
@@ -909,7 +909,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerSecond(long? degreespersecond)
@@ -924,7 +924,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from DegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromDegreesPerSecond(decimal? degreespersecond)
@@ -954,7 +954,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicrodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMicrodegreesPerSecond(int? microdegreespersecond)
@@ -969,7 +969,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicrodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMicrodegreesPerSecond(long? microdegreespersecond)
@@ -984,7 +984,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from MicrodegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromMicrodegreesPerSecond(decimal? microdegreespersecond)
@@ -1014,7 +1014,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMicroradiansPerSecond(int? microradianspersecond)
@@ -1029,7 +1029,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMicroradiansPerSecond(long? microradianspersecond)
@@ -1044,7 +1044,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from MicroradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromMicroradiansPerSecond(decimal? microradianspersecond)
@@ -1074,7 +1074,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MillidegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMillidegreesPerSecond(int? millidegreespersecond)
@@ -1089,7 +1089,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MillidegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMillidegreesPerSecond(long? millidegreespersecond)
@@ -1104,7 +1104,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from MillidegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromMillidegreesPerSecond(decimal? millidegreespersecond)
@@ -1134,7 +1134,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMilliradiansPerSecond(int? milliradianspersecond)
@@ -1149,7 +1149,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromMilliradiansPerSecond(long? milliradianspersecond)
@@ -1164,7 +1164,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from MilliradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromMilliradiansPerSecond(decimal? milliradianspersecond)
@@ -1194,7 +1194,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromNanodegreesPerSecond(int? nanodegreespersecond)
@@ -1209,7 +1209,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanodegreesPerSecond.
         /// </summary>
         public static RotationalSpeed? FromNanodegreesPerSecond(long? nanodegreespersecond)
@@ -1224,7 +1224,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from NanodegreesPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromNanodegreesPerSecond(decimal? nanodegreespersecond)
@@ -1254,7 +1254,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromNanoradiansPerSecond(int? nanoradianspersecond)
@@ -1269,7 +1269,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromNanoradiansPerSecond(long? nanoradianspersecond)
@@ -1284,7 +1284,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from NanoradiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromNanoradiansPerSecond(decimal? nanoradianspersecond)
@@ -1314,7 +1314,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromRadiansPerSecond(int? radianspersecond)
@@ -1329,7 +1329,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
         /// </summary>
         public static RotationalSpeed? FromRadiansPerSecond(long? radianspersecond)
@@ -1344,7 +1344,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from RadiansPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromRadiansPerSecond(decimal? radianspersecond)
@@ -1374,7 +1374,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerMinute(int? revolutionsperminute)
@@ -1389,7 +1389,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerMinute(long? revolutionsperminute)
@@ -1404,7 +1404,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from RevolutionsPerMinute of type decimal.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerMinute(decimal? revolutionsperminute)
@@ -1434,7 +1434,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerSecond(int? revolutionspersecond)
@@ -1449,7 +1449,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerSecond(long? revolutionspersecond)
@@ -1464,7 +1464,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable RotationalSpeed from RevolutionsPerSecond of type decimal.
         /// </summary>
         public static RotationalSpeed? FromRevolutionsPerSecond(decimal? revolutionspersecond)

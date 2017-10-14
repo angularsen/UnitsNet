@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _decibels;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Level() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Level;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static LevelUnit BaseUnit
         {
             get { return LevelUnit.Decibel; }
@@ -162,7 +162,7 @@ namespace UnitsNet
             return new Level(decibels);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Level from Decibels.
         /// </summary>
         public static Level FromDecibels(int decibels)
@@ -170,7 +170,7 @@ namespace UnitsNet
             return new Level(decibels);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Level from Decibels.
         /// </summary>
         public static Level FromDecibels(long decibels)
@@ -178,14 +178,14 @@ namespace UnitsNet
             return new Level(decibels);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Level from Decibels of type decimal.
         /// </summary>
         public static Level FromDecibels(decimal decibels)
         {
-	        return new Level(Convert.ToDouble(decibels));
+            return new Level(Convert.ToDouble(decibels));
         }
 #endif
 
@@ -197,7 +197,7 @@ namespace UnitsNet
             return new Level((1/0.115129254)*nepers);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Level from Nepers.
         /// </summary>
         public static Level FromNepers(int nepers)
@@ -205,7 +205,7 @@ namespace UnitsNet
             return new Level((1/0.115129254)*nepers);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Level from Nepers.
         /// </summary>
         public static Level FromNepers(long nepers)
@@ -213,14 +213,14 @@ namespace UnitsNet
             return new Level((1/0.115129254)*nepers);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Level from Nepers of type decimal.
         /// </summary>
         public static Level FromNepers(decimal nepers)
         {
-	        return new Level((1/0.115129254)*Convert.ToDouble(nepers));
+            return new Level((1/0.115129254)*Convert.ToDouble(nepers));
         }
 #endif
 
@@ -241,7 +241,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from nullable Decibels.
         /// </summary>
         public static Level? FromDecibels(int? decibels)
@@ -256,7 +256,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from nullable Decibels.
         /// </summary>
         public static Level? FromDecibels(long? decibels)
@@ -271,7 +271,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from Decibels of type decimal.
         /// </summary>
         public static Level? FromDecibels(decimal? decibels)
@@ -301,7 +301,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from nullable Nepers.
         /// </summary>
         public static Level? FromNepers(int? nepers)
@@ -316,7 +316,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from nullable Nepers.
         /// </summary>
         public static Level? FromNepers(long? nepers)
@@ -331,7 +331,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Level from Nepers of type decimal.
         /// </summary>
         public static Level? FromNepers(decimal? nepers)

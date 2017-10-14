@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _kelvinsDelta;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public TemperatureDelta() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.TemperatureDelta;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static TemperatureDeltaUnit BaseUnit
         {
             get { return TemperatureDeltaUnit.KelvinDelta; }
@@ -210,7 +210,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreescelsiusdelta);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesCelsiusDelta(int degreescelsiusdelta)
@@ -218,7 +218,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreescelsiusdelta);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesCelsiusDelta(long degreescelsiusdelta)
@@ -226,14 +226,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreescelsiusdelta);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesCelsiusDelta(decimal degreescelsiusdelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreescelsiusdelta));
+            return new TemperatureDelta(Convert.ToDouble(degreescelsiusdelta));
         }
 #endif
 
@@ -245,7 +245,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesdelisledelta*-2/3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesDelisleDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesDelisleDelta(int degreesdelisledelta)
@@ -253,7 +253,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesdelisledelta*-2/3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesDelisleDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesDelisleDelta(long degreesdelisledelta)
@@ -261,14 +261,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesdelisledelta*-2/3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesDelisleDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesDelisleDelta(decimal degreesdelisledelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesdelisledelta)*-2/3);
+            return new TemperatureDelta(Convert.ToDouble(degreesdelisledelta)*-2/3);
         }
 #endif
 
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesfahrenheitdelta*5/9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesFahrenheitDelta(int degreesfahrenheitdelta)
@@ -288,7 +288,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesfahrenheitdelta*5/9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesFahrenheitDelta(long degreesfahrenheitdelta)
@@ -296,14 +296,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesfahrenheitdelta*5/9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesFahrenheitDelta(decimal degreesfahrenheitdelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesfahrenheitdelta)*5/9);
+            return new TemperatureDelta(Convert.ToDouble(degreesfahrenheitdelta)*5/9);
         }
 #endif
 
@@ -315,7 +315,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesnewtondelta*100/33);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesNewtonDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesNewtonDelta(int degreesnewtondelta)
@@ -323,7 +323,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesnewtondelta*100/33);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesNewtonDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesNewtonDelta(long degreesnewtondelta)
@@ -331,14 +331,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesnewtondelta*100/33);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesNewtonDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesNewtonDelta(decimal degreesnewtondelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesnewtondelta)*100/33);
+            return new TemperatureDelta(Convert.ToDouble(degreesnewtondelta)*100/33);
         }
 #endif
 
@@ -350,7 +350,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesrankinedelta*5/9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesRankineDelta(int degreesrankinedelta)
@@ -358,7 +358,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesrankinedelta*5/9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesRankineDelta(long degreesrankinedelta)
@@ -366,14 +366,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesrankinedelta*5/9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesRankineDelta(decimal degreesrankinedelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesrankinedelta)*5/9);
+            return new TemperatureDelta(Convert.ToDouble(degreesrankinedelta)*5/9);
         }
 #endif
 
@@ -385,7 +385,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesreaumurdelta*5/4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesReaumurDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesReaumurDelta(int degreesreaumurdelta)
@@ -393,7 +393,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesreaumurdelta*5/4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesReaumurDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesReaumurDelta(long degreesreaumurdelta)
@@ -401,14 +401,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesreaumurdelta*5/4);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesReaumurDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesReaumurDelta(decimal degreesreaumurdelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesreaumurdelta)*5/4);
+            return new TemperatureDelta(Convert.ToDouble(degreesreaumurdelta)*5/4);
         }
 #endif
 
@@ -420,7 +420,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesroemerdelta*40/21);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesRoemerDelta(int degreesroemerdelta)
@@ -428,7 +428,7 @@ namespace UnitsNet
             return new TemperatureDelta(degreesroemerdelta*40/21);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta.
         /// </summary>
         public static TemperatureDelta FromDegreesRoemerDelta(long degreesroemerdelta)
@@ -436,14 +436,14 @@ namespace UnitsNet
             return new TemperatureDelta(degreesroemerdelta*40/21);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromDegreesRoemerDelta(decimal degreesroemerdelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(degreesroemerdelta)*40/21);
+            return new TemperatureDelta(Convert.ToDouble(degreesroemerdelta)*40/21);
         }
 #endif
 
@@ -455,7 +455,7 @@ namespace UnitsNet
             return new TemperatureDelta(kelvinsdelta);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from KelvinsDelta.
         /// </summary>
         public static TemperatureDelta FromKelvinsDelta(int kelvinsdelta)
@@ -463,7 +463,7 @@ namespace UnitsNet
             return new TemperatureDelta(kelvinsdelta);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from KelvinsDelta.
         /// </summary>
         public static TemperatureDelta FromKelvinsDelta(long kelvinsdelta)
@@ -471,14 +471,14 @@ namespace UnitsNet
             return new TemperatureDelta(kelvinsdelta);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get TemperatureDelta from KelvinsDelta of type decimal.
         /// </summary>
         public static TemperatureDelta FromKelvinsDelta(decimal kelvinsdelta)
         {
-	        return new TemperatureDelta(Convert.ToDouble(kelvinsdelta));
+            return new TemperatureDelta(Convert.ToDouble(kelvinsdelta));
         }
 #endif
 
@@ -499,7 +499,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesCelsiusDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesCelsiusDelta(int? degreescelsiusdelta)
@@ -514,7 +514,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesCelsiusDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesCelsiusDelta(long? degreescelsiusdelta)
@@ -529,7 +529,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesCelsiusDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesCelsiusDelta(decimal? degreescelsiusdelta)
@@ -559,7 +559,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesDelisleDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesDelisleDelta(int? degreesdelisledelta)
@@ -574,7 +574,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesDelisleDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesDelisleDelta(long? degreesdelisledelta)
@@ -589,7 +589,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesDelisleDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesDelisleDelta(decimal? degreesdelisledelta)
@@ -619,7 +619,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesFahrenheitDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesFahrenheitDelta(int? degreesfahrenheitdelta)
@@ -634,7 +634,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesFahrenheitDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesFahrenheitDelta(long? degreesfahrenheitdelta)
@@ -649,7 +649,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesFahrenheitDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesFahrenheitDelta(decimal? degreesfahrenheitdelta)
@@ -679,7 +679,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesNewtonDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesNewtonDelta(int? degreesnewtondelta)
@@ -694,7 +694,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesNewtonDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesNewtonDelta(long? degreesnewtondelta)
@@ -709,7 +709,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesNewtonDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesNewtonDelta(decimal? degreesnewtondelta)
@@ -739,7 +739,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRankineDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRankineDelta(int? degreesrankinedelta)
@@ -754,7 +754,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRankineDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRankineDelta(long? degreesrankinedelta)
@@ -769,7 +769,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesRankineDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesRankineDelta(decimal? degreesrankinedelta)
@@ -799,7 +799,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesReaumurDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesReaumurDelta(int? degreesreaumurdelta)
@@ -814,7 +814,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesReaumurDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesReaumurDelta(long? degreesreaumurdelta)
@@ -829,7 +829,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesReaumurDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesReaumurDelta(decimal? degreesreaumurdelta)
@@ -859,7 +859,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRoemerDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRoemerDelta(int? degreesroemerdelta)
@@ -874,7 +874,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRoemerDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRoemerDelta(long? degreesroemerdelta)
@@ -889,7 +889,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from DegreesRoemerDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromDegreesRoemerDelta(decimal? degreesroemerdelta)
@@ -919,7 +919,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable KelvinsDelta.
         /// </summary>
         public static TemperatureDelta? FromKelvinsDelta(int? kelvinsdelta)
@@ -934,7 +934,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable KelvinsDelta.
         /// </summary>
         public static TemperatureDelta? FromKelvinsDelta(long? kelvinsdelta)
@@ -949,7 +949,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable TemperatureDelta from KelvinsDelta of type decimal.
         /// </summary>
         public static TemperatureDelta? FromKelvinsDelta(decimal? kelvinsdelta)

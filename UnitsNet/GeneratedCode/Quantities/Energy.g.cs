@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _joules;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Energy() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Energy;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static EnergyUnit BaseUnit
         {
             get { return EnergyUnit.Joule; }
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new Energy(britishthermalunits*1055.05585262);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from BritishThermalUnits.
         /// </summary>
         public static Energy FromBritishThermalUnits(int britishthermalunits)
@@ -330,7 +330,7 @@ namespace UnitsNet
             return new Energy(britishthermalunits*1055.05585262);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from BritishThermalUnits.
         /// </summary>
         public static Energy FromBritishThermalUnits(long britishthermalunits)
@@ -338,14 +338,14 @@ namespace UnitsNet
             return new Energy(britishthermalunits*1055.05585262);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from BritishThermalUnits of type decimal.
         /// </summary>
         public static Energy FromBritishThermalUnits(decimal britishthermalunits)
         {
-	        return new Energy(Convert.ToDouble(britishthermalunits)*1055.05585262);
+            return new Energy(Convert.ToDouble(britishthermalunits)*1055.05585262);
         }
 #endif
 
@@ -357,7 +357,7 @@ namespace UnitsNet
             return new Energy(calories*4.184);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
         public static Energy FromCalories(int calories)
@@ -365,7 +365,7 @@ namespace UnitsNet
             return new Energy(calories*4.184);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
         public static Energy FromCalories(long calories)
@@ -373,14 +373,14 @@ namespace UnitsNet
             return new Energy(calories*4.184);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Calories of type decimal.
         /// </summary>
         public static Energy FromCalories(decimal calories)
         {
-	        return new Energy(Convert.ToDouble(calories)*4.184);
+            return new Energy(Convert.ToDouble(calories)*4.184);
         }
 #endif
 
@@ -392,7 +392,7 @@ namespace UnitsNet
             return new Energy((decathermsec*105505585.262) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsEc.
         /// </summary>
         public static Energy FromDecathermsEc(int decathermsec)
@@ -400,7 +400,7 @@ namespace UnitsNet
             return new Energy((decathermsec*105505585.262) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsEc.
         /// </summary>
         public static Energy FromDecathermsEc(long decathermsec)
@@ -408,14 +408,14 @@ namespace UnitsNet
             return new Energy((decathermsec*105505585.262) * 1e1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsEc of type decimal.
         /// </summary>
         public static Energy FromDecathermsEc(decimal decathermsec)
         {
-	        return new Energy((Convert.ToDouble(decathermsec)*105505585.262) * 1e1d);
+            return new Energy((Convert.ToDouble(decathermsec)*105505585.262) * 1e1d);
         }
 #endif
 
@@ -427,7 +427,7 @@ namespace UnitsNet
             return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsImperial.
         /// </summary>
         public static Energy FromDecathermsImperial(int decathermsimperial)
@@ -435,7 +435,7 @@ namespace UnitsNet
             return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsImperial.
         /// </summary>
         public static Energy FromDecathermsImperial(long decathermsimperial)
@@ -443,14 +443,14 @@ namespace UnitsNet
             return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsImperial of type decimal.
         /// </summary>
         public static Energy FromDecathermsImperial(decimal decathermsimperial)
         {
-	        return new Energy((Convert.ToDouble(decathermsimperial)*1.05505585257348e+14) * 1e1d);
+            return new Energy((Convert.ToDouble(decathermsimperial)*1.05505585257348e+14) * 1e1d);
         }
 #endif
 
@@ -462,7 +462,7 @@ namespace UnitsNet
             return new Energy((decathermsus*1.054804e+8) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsUs.
         /// </summary>
         public static Energy FromDecathermsUs(int decathermsus)
@@ -470,7 +470,7 @@ namespace UnitsNet
             return new Energy((decathermsus*1.054804e+8) * 1e1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsUs.
         /// </summary>
         public static Energy FromDecathermsUs(long decathermsus)
@@ -478,14 +478,14 @@ namespace UnitsNet
             return new Energy((decathermsus*1.054804e+8) * 1e1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from DecathermsUs of type decimal.
         /// </summary>
         public static Energy FromDecathermsUs(decimal decathermsus)
         {
-	        return new Energy((Convert.ToDouble(decathermsus)*1.054804e+8) * 1e1d);
+            return new Energy((Convert.ToDouble(decathermsus)*1.054804e+8) * 1e1d);
         }
 #endif
 
@@ -497,7 +497,7 @@ namespace UnitsNet
             return new Energy(electronvolts*1.602176565e-19);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ElectronVolts.
         /// </summary>
         public static Energy FromElectronVolts(int electronvolts)
@@ -505,7 +505,7 @@ namespace UnitsNet
             return new Energy(electronvolts*1.602176565e-19);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ElectronVolts.
         /// </summary>
         public static Energy FromElectronVolts(long electronvolts)
@@ -513,14 +513,14 @@ namespace UnitsNet
             return new Energy(electronvolts*1.602176565e-19);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ElectronVolts of type decimal.
         /// </summary>
         public static Energy FromElectronVolts(decimal electronvolts)
         {
-	        return new Energy(Convert.ToDouble(electronvolts)*1.602176565e-19);
+            return new Energy(Convert.ToDouble(electronvolts)*1.602176565e-19);
         }
 #endif
 
@@ -532,7 +532,7 @@ namespace UnitsNet
             return new Energy(ergs*1e-7);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Ergs.
         /// </summary>
         public static Energy FromErgs(int ergs)
@@ -540,7 +540,7 @@ namespace UnitsNet
             return new Energy(ergs*1e-7);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Ergs.
         /// </summary>
         public static Energy FromErgs(long ergs)
@@ -548,14 +548,14 @@ namespace UnitsNet
             return new Energy(ergs*1e-7);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Ergs of type decimal.
         /// </summary>
         public static Energy FromErgs(decimal ergs)
         {
-	        return new Energy(Convert.ToDouble(ergs)*1e-7);
+            return new Energy(Convert.ToDouble(ergs)*1e-7);
         }
 #endif
 
@@ -567,7 +567,7 @@ namespace UnitsNet
             return new Energy(footpounds*1.355817948);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
         public static Energy FromFootPounds(int footpounds)
@@ -575,7 +575,7 @@ namespace UnitsNet
             return new Energy(footpounds*1.355817948);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
         public static Energy FromFootPounds(long footpounds)
@@ -583,14 +583,14 @@ namespace UnitsNet
             return new Energy(footpounds*1.355817948);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from FootPounds of type decimal.
         /// </summary>
         public static Energy FromFootPounds(decimal footpounds)
         {
-	        return new Energy(Convert.ToDouble(footpounds)*1.355817948);
+            return new Energy(Convert.ToDouble(footpounds)*1.355817948);
         }
 #endif
 
@@ -602,7 +602,7 @@ namespace UnitsNet
             return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
         /// </summary>
         public static Energy FromGigabritishThermalUnits(int gigabritishthermalunits)
@@ -610,7 +610,7 @@ namespace UnitsNet
             return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
         /// </summary>
         public static Energy FromGigabritishThermalUnits(long gigabritishthermalunits)
@@ -618,14 +618,14 @@ namespace UnitsNet
             return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigabritishThermalUnits of type decimal.
         /// </summary>
         public static Energy FromGigabritishThermalUnits(decimal gigabritishthermalunits)
         {
-	        return new Energy((Convert.ToDouble(gigabritishthermalunits)*1055.05585262) * 1e9d);
+            return new Energy((Convert.ToDouble(gigabritishthermalunits)*1055.05585262) * 1e9d);
         }
 #endif
 
@@ -637,7 +637,7 @@ namespace UnitsNet
             return new Energy((gigawatthours*3600d) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         public static Energy FromGigawattHours(int gigawatthours)
@@ -645,7 +645,7 @@ namespace UnitsNet
             return new Energy((gigawatthours*3600d) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
         public static Energy FromGigawattHours(long gigawatthours)
@@ -653,14 +653,14 @@ namespace UnitsNet
             return new Energy((gigawatthours*3600d) * 1e9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from GigawattHours of type decimal.
         /// </summary>
         public static Energy FromGigawattHours(decimal gigawatthours)
         {
-	        return new Energy((Convert.ToDouble(gigawatthours)*3600d) * 1e9d);
+            return new Energy((Convert.ToDouble(gigawatthours)*3600d) * 1e9d);
         }
 #endif
 
@@ -672,7 +672,7 @@ namespace UnitsNet
             return new Energy(joules);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Joules.
         /// </summary>
         public static Energy FromJoules(int joules)
@@ -680,7 +680,7 @@ namespace UnitsNet
             return new Energy(joules);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Joules.
         /// </summary>
         public static Energy FromJoules(long joules)
@@ -688,14 +688,14 @@ namespace UnitsNet
             return new Energy(joules);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Joules of type decimal.
         /// </summary>
         public static Energy FromJoules(decimal joules)
         {
-	        return new Energy(Convert.ToDouble(joules));
+            return new Energy(Convert.ToDouble(joules));
         }
 #endif
 
@@ -707,7 +707,7 @@ namespace UnitsNet
             return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
         public static Energy FromKilobritishThermalUnits(int kilobritishthermalunits)
@@ -715,7 +715,7 @@ namespace UnitsNet
             return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
         public static Energy FromKilobritishThermalUnits(long kilobritishthermalunits)
@@ -723,14 +723,14 @@ namespace UnitsNet
             return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilobritishThermalUnits of type decimal.
         /// </summary>
         public static Energy FromKilobritishThermalUnits(decimal kilobritishthermalunits)
         {
-	        return new Energy((Convert.ToDouble(kilobritishthermalunits)*1055.05585262) * 1e3d);
+            return new Energy((Convert.ToDouble(kilobritishthermalunits)*1055.05585262) * 1e3d);
         }
 #endif
 
@@ -742,7 +742,7 @@ namespace UnitsNet
             return new Energy((kilocalories*4.184) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilocalories.
         /// </summary>
         public static Energy FromKilocalories(int kilocalories)
@@ -750,7 +750,7 @@ namespace UnitsNet
             return new Energy((kilocalories*4.184) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilocalories.
         /// </summary>
         public static Energy FromKilocalories(long kilocalories)
@@ -758,14 +758,14 @@ namespace UnitsNet
             return new Energy((kilocalories*4.184) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilocalories of type decimal.
         /// </summary>
         public static Energy FromKilocalories(decimal kilocalories)
         {
-	        return new Energy((Convert.ToDouble(kilocalories)*4.184) * 1e3d);
+            return new Energy((Convert.ToDouble(kilocalories)*4.184) * 1e3d);
         }
 #endif
 
@@ -777,7 +777,7 @@ namespace UnitsNet
             return new Energy((kilojoules) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
         public static Energy FromKilojoules(int kilojoules)
@@ -785,7 +785,7 @@ namespace UnitsNet
             return new Energy((kilojoules) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
         public static Energy FromKilojoules(long kilojoules)
@@ -793,14 +793,14 @@ namespace UnitsNet
             return new Energy((kilojoules) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Kilojoules of type decimal.
         /// </summary>
         public static Energy FromKilojoules(decimal kilojoules)
         {
-	        return new Energy((Convert.ToDouble(kilojoules)) * 1e3d);
+            return new Energy((Convert.ToDouble(kilojoules)) * 1e3d);
         }
 #endif
 
@@ -812,7 +812,7 @@ namespace UnitsNet
             return new Energy((kilowatthours*3600d) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilowattHours.
         /// </summary>
         public static Energy FromKilowattHours(int kilowatthours)
@@ -820,7 +820,7 @@ namespace UnitsNet
             return new Energy((kilowatthours*3600d) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilowattHours.
         /// </summary>
         public static Energy FromKilowattHours(long kilowatthours)
@@ -828,14 +828,14 @@ namespace UnitsNet
             return new Energy((kilowatthours*3600d) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from KilowattHours of type decimal.
         /// </summary>
         public static Energy FromKilowattHours(decimal kilowatthours)
         {
-	        return new Energy((Convert.ToDouble(kilowatthours)*3600d) * 1e3d);
+            return new Energy((Convert.ToDouble(kilowatthours)*3600d) * 1e3d);
         }
 #endif
 
@@ -847,7 +847,7 @@ namespace UnitsNet
             return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
         public static Energy FromMegabritishThermalUnits(int megabritishthermalunits)
@@ -855,7 +855,7 @@ namespace UnitsNet
             return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
         public static Energy FromMegabritishThermalUnits(long megabritishthermalunits)
@@ -863,14 +863,14 @@ namespace UnitsNet
             return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegabritishThermalUnits of type decimal.
         /// </summary>
         public static Energy FromMegabritishThermalUnits(decimal megabritishthermalunits)
         {
-	        return new Energy((Convert.ToDouble(megabritishthermalunits)*1055.05585262) * 1e6d);
+            return new Energy((Convert.ToDouble(megabritishthermalunits)*1055.05585262) * 1e6d);
         }
 #endif
 
@@ -882,7 +882,7 @@ namespace UnitsNet
             return new Energy((megajoules) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
         public static Energy FromMegajoules(int megajoules)
@@ -890,7 +890,7 @@ namespace UnitsNet
             return new Energy((megajoules) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
         public static Energy FromMegajoules(long megajoules)
@@ -898,14 +898,14 @@ namespace UnitsNet
             return new Energy((megajoules) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from Megajoules of type decimal.
         /// </summary>
         public static Energy FromMegajoules(decimal megajoules)
         {
-	        return new Energy((Convert.ToDouble(megajoules)) * 1e6d);
+            return new Energy((Convert.ToDouble(megajoules)) * 1e6d);
         }
 #endif
 
@@ -917,7 +917,7 @@ namespace UnitsNet
             return new Energy((megawatthours*3600d) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegawattHours.
         /// </summary>
         public static Energy FromMegawattHours(int megawatthours)
@@ -925,7 +925,7 @@ namespace UnitsNet
             return new Energy((megawatthours*3600d) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegawattHours.
         /// </summary>
         public static Energy FromMegawattHours(long megawatthours)
@@ -933,14 +933,14 @@ namespace UnitsNet
             return new Energy((megawatthours*3600d) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from MegawattHours of type decimal.
         /// </summary>
         public static Energy FromMegawattHours(decimal megawatthours)
         {
-	        return new Energy((Convert.ToDouble(megawatthours)*3600d) * 1e6d);
+            return new Energy((Convert.ToDouble(megawatthours)*3600d) * 1e6d);
         }
 #endif
 
@@ -952,7 +952,7 @@ namespace UnitsNet
             return new Energy(thermsec*105505585.262);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsEc.
         /// </summary>
         public static Energy FromThermsEc(int thermsec)
@@ -960,7 +960,7 @@ namespace UnitsNet
             return new Energy(thermsec*105505585.262);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsEc.
         /// </summary>
         public static Energy FromThermsEc(long thermsec)
@@ -968,14 +968,14 @@ namespace UnitsNet
             return new Energy(thermsec*105505585.262);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsEc of type decimal.
         /// </summary>
         public static Energy FromThermsEc(decimal thermsec)
         {
-	        return new Energy(Convert.ToDouble(thermsec)*105505585.262);
+            return new Energy(Convert.ToDouble(thermsec)*105505585.262);
         }
 #endif
 
@@ -987,7 +987,7 @@ namespace UnitsNet
             return new Energy(thermsimperial*1.05505585257348e+14);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsImperial.
         /// </summary>
         public static Energy FromThermsImperial(int thermsimperial)
@@ -995,7 +995,7 @@ namespace UnitsNet
             return new Energy(thermsimperial*1.05505585257348e+14);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsImperial.
         /// </summary>
         public static Energy FromThermsImperial(long thermsimperial)
@@ -1003,14 +1003,14 @@ namespace UnitsNet
             return new Energy(thermsimperial*1.05505585257348e+14);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsImperial of type decimal.
         /// </summary>
         public static Energy FromThermsImperial(decimal thermsimperial)
         {
-	        return new Energy(Convert.ToDouble(thermsimperial)*1.05505585257348e+14);
+            return new Energy(Convert.ToDouble(thermsimperial)*1.05505585257348e+14);
         }
 #endif
 
@@ -1022,7 +1022,7 @@ namespace UnitsNet
             return new Energy(thermsus*1.054804e+8);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsUs.
         /// </summary>
         public static Energy FromThermsUs(int thermsus)
@@ -1030,7 +1030,7 @@ namespace UnitsNet
             return new Energy(thermsus*1.054804e+8);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsUs.
         /// </summary>
         public static Energy FromThermsUs(long thermsus)
@@ -1038,14 +1038,14 @@ namespace UnitsNet
             return new Energy(thermsus*1.054804e+8);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from ThermsUs of type decimal.
         /// </summary>
         public static Energy FromThermsUs(decimal thermsus)
         {
-	        return new Energy(Convert.ToDouble(thermsus)*1.054804e+8);
+            return new Energy(Convert.ToDouble(thermsus)*1.054804e+8);
         }
 #endif
 
@@ -1057,7 +1057,7 @@ namespace UnitsNet
             return new Energy(watthours*3600d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from WattHours.
         /// </summary>
         public static Energy FromWattHours(int watthours)
@@ -1065,7 +1065,7 @@ namespace UnitsNet
             return new Energy(watthours*3600d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Energy from WattHours.
         /// </summary>
         public static Energy FromWattHours(long watthours)
@@ -1073,14 +1073,14 @@ namespace UnitsNet
             return new Energy(watthours*3600d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Energy from WattHours of type decimal.
         /// </summary>
         public static Energy FromWattHours(decimal watthours)
         {
-	        return new Energy(Convert.ToDouble(watthours)*3600d);
+            return new Energy(Convert.ToDouble(watthours)*3600d);
         }
 #endif
 
@@ -1101,7 +1101,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable BritishThermalUnits.
         /// </summary>
         public static Energy? FromBritishThermalUnits(int? britishthermalunits)
@@ -1116,7 +1116,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable BritishThermalUnits.
         /// </summary>
         public static Energy? FromBritishThermalUnits(long? britishthermalunits)
@@ -1131,7 +1131,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from BritishThermalUnits of type decimal.
         /// </summary>
         public static Energy? FromBritishThermalUnits(decimal? britishthermalunits)
@@ -1161,7 +1161,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Calories.
         /// </summary>
         public static Energy? FromCalories(int? calories)
@@ -1176,7 +1176,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Calories.
         /// </summary>
         public static Energy? FromCalories(long? calories)
@@ -1191,7 +1191,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Calories of type decimal.
         /// </summary>
         public static Energy? FromCalories(decimal? calories)
@@ -1221,7 +1221,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsEc.
         /// </summary>
         public static Energy? FromDecathermsEc(int? decathermsec)
@@ -1236,7 +1236,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsEc.
         /// </summary>
         public static Energy? FromDecathermsEc(long? decathermsec)
@@ -1251,7 +1251,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from DecathermsEc of type decimal.
         /// </summary>
         public static Energy? FromDecathermsEc(decimal? decathermsec)
@@ -1281,7 +1281,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsImperial.
         /// </summary>
         public static Energy? FromDecathermsImperial(int? decathermsimperial)
@@ -1296,7 +1296,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsImperial.
         /// </summary>
         public static Energy? FromDecathermsImperial(long? decathermsimperial)
@@ -1311,7 +1311,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from DecathermsImperial of type decimal.
         /// </summary>
         public static Energy? FromDecathermsImperial(decimal? decathermsimperial)
@@ -1341,7 +1341,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsUs.
         /// </summary>
         public static Energy? FromDecathermsUs(int? decathermsus)
@@ -1356,7 +1356,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable DecathermsUs.
         /// </summary>
         public static Energy? FromDecathermsUs(long? decathermsus)
@@ -1371,7 +1371,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from DecathermsUs of type decimal.
         /// </summary>
         public static Energy? FromDecathermsUs(decimal? decathermsus)
@@ -1401,7 +1401,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ElectronVolts.
         /// </summary>
         public static Energy? FromElectronVolts(int? electronvolts)
@@ -1416,7 +1416,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ElectronVolts.
         /// </summary>
         public static Energy? FromElectronVolts(long? electronvolts)
@@ -1431,7 +1431,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from ElectronVolts of type decimal.
         /// </summary>
         public static Energy? FromElectronVolts(decimal? electronvolts)
@@ -1461,7 +1461,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Ergs.
         /// </summary>
         public static Energy? FromErgs(int? ergs)
@@ -1476,7 +1476,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Ergs.
         /// </summary>
         public static Energy? FromErgs(long? ergs)
@@ -1491,7 +1491,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Ergs of type decimal.
         /// </summary>
         public static Energy? FromErgs(decimal? ergs)
@@ -1521,7 +1521,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable FootPounds.
         /// </summary>
         public static Energy? FromFootPounds(int? footpounds)
@@ -1536,7 +1536,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable FootPounds.
         /// </summary>
         public static Energy? FromFootPounds(long? footpounds)
@@ -1551,7 +1551,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from FootPounds of type decimal.
         /// </summary>
         public static Energy? FromFootPounds(decimal? footpounds)
@@ -1581,7 +1581,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable GigabritishThermalUnits.
         /// </summary>
         public static Energy? FromGigabritishThermalUnits(int? gigabritishthermalunits)
@@ -1596,7 +1596,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable GigabritishThermalUnits.
         /// </summary>
         public static Energy? FromGigabritishThermalUnits(long? gigabritishthermalunits)
@@ -1611,7 +1611,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from GigabritishThermalUnits of type decimal.
         /// </summary>
         public static Energy? FromGigabritishThermalUnits(decimal? gigabritishthermalunits)
@@ -1641,7 +1641,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable GigawattHours.
         /// </summary>
         public static Energy? FromGigawattHours(int? gigawatthours)
@@ -1656,7 +1656,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable GigawattHours.
         /// </summary>
         public static Energy? FromGigawattHours(long? gigawatthours)
@@ -1671,7 +1671,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from GigawattHours of type decimal.
         /// </summary>
         public static Energy? FromGigawattHours(decimal? gigawatthours)
@@ -1701,7 +1701,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Joules.
         /// </summary>
         public static Energy? FromJoules(int? joules)
@@ -1716,7 +1716,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Joules.
         /// </summary>
         public static Energy? FromJoules(long? joules)
@@ -1731,7 +1731,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Joules of type decimal.
         /// </summary>
         public static Energy? FromJoules(decimal? joules)
@@ -1761,7 +1761,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable KilobritishThermalUnits.
         /// </summary>
         public static Energy? FromKilobritishThermalUnits(int? kilobritishthermalunits)
@@ -1776,7 +1776,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable KilobritishThermalUnits.
         /// </summary>
         public static Energy? FromKilobritishThermalUnits(long? kilobritishthermalunits)
@@ -1791,7 +1791,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from KilobritishThermalUnits of type decimal.
         /// </summary>
         public static Energy? FromKilobritishThermalUnits(decimal? kilobritishthermalunits)
@@ -1821,7 +1821,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Kilocalories.
         /// </summary>
         public static Energy? FromKilocalories(int? kilocalories)
@@ -1836,7 +1836,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Kilocalories.
         /// </summary>
         public static Energy? FromKilocalories(long? kilocalories)
@@ -1851,7 +1851,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Kilocalories of type decimal.
         /// </summary>
         public static Energy? FromKilocalories(decimal? kilocalories)
@@ -1881,7 +1881,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Kilojoules.
         /// </summary>
         public static Energy? FromKilojoules(int? kilojoules)
@@ -1896,7 +1896,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Kilojoules.
         /// </summary>
         public static Energy? FromKilojoules(long? kilojoules)
@@ -1911,7 +1911,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Kilojoules of type decimal.
         /// </summary>
         public static Energy? FromKilojoules(decimal? kilojoules)
@@ -1941,7 +1941,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable KilowattHours.
         /// </summary>
         public static Energy? FromKilowattHours(int? kilowatthours)
@@ -1956,7 +1956,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable KilowattHours.
         /// </summary>
         public static Energy? FromKilowattHours(long? kilowatthours)
@@ -1971,7 +1971,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from KilowattHours of type decimal.
         /// </summary>
         public static Energy? FromKilowattHours(decimal? kilowatthours)
@@ -2001,7 +2001,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable MegabritishThermalUnits.
         /// </summary>
         public static Energy? FromMegabritishThermalUnits(int? megabritishthermalunits)
@@ -2016,7 +2016,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable MegabritishThermalUnits.
         /// </summary>
         public static Energy? FromMegabritishThermalUnits(long? megabritishthermalunits)
@@ -2031,7 +2031,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from MegabritishThermalUnits of type decimal.
         /// </summary>
         public static Energy? FromMegabritishThermalUnits(decimal? megabritishthermalunits)
@@ -2061,7 +2061,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Megajoules.
         /// </summary>
         public static Energy? FromMegajoules(int? megajoules)
@@ -2076,7 +2076,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable Megajoules.
         /// </summary>
         public static Energy? FromMegajoules(long? megajoules)
@@ -2091,7 +2091,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from Megajoules of type decimal.
         /// </summary>
         public static Energy? FromMegajoules(decimal? megajoules)
@@ -2121,7 +2121,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable MegawattHours.
         /// </summary>
         public static Energy? FromMegawattHours(int? megawatthours)
@@ -2136,7 +2136,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable MegawattHours.
         /// </summary>
         public static Energy? FromMegawattHours(long? megawatthours)
@@ -2151,7 +2151,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from MegawattHours of type decimal.
         /// </summary>
         public static Energy? FromMegawattHours(decimal? megawatthours)
@@ -2181,7 +2181,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsEc.
         /// </summary>
         public static Energy? FromThermsEc(int? thermsec)
@@ -2196,7 +2196,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsEc.
         /// </summary>
         public static Energy? FromThermsEc(long? thermsec)
@@ -2211,7 +2211,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from ThermsEc of type decimal.
         /// </summary>
         public static Energy? FromThermsEc(decimal? thermsec)
@@ -2241,7 +2241,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsImperial.
         /// </summary>
         public static Energy? FromThermsImperial(int? thermsimperial)
@@ -2256,7 +2256,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsImperial.
         /// </summary>
         public static Energy? FromThermsImperial(long? thermsimperial)
@@ -2271,7 +2271,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from ThermsImperial of type decimal.
         /// </summary>
         public static Energy? FromThermsImperial(decimal? thermsimperial)
@@ -2301,7 +2301,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsUs.
         /// </summary>
         public static Energy? FromThermsUs(int? thermsus)
@@ -2316,7 +2316,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable ThermsUs.
         /// </summary>
         public static Energy? FromThermsUs(long? thermsus)
@@ -2331,7 +2331,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from ThermsUs of type decimal.
         /// </summary>
         public static Energy? FromThermsUs(decimal? thermsus)
@@ -2361,7 +2361,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable WattHours.
         /// </summary>
         public static Energy? FromWattHours(int? watthours)
@@ -2376,7 +2376,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from nullable WattHours.
         /// </summary>
         public static Energy? FromWattHours(long? watthours)
@@ -2391,7 +2391,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Energy from WattHours of type decimal.
         /// </summary>
         public static Energy? FromWattHours(decimal? watthours)

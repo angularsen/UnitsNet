@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _kilogramSquareMeters;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public MassMomentOfInertia() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.MassMomentOfInertia;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static MassMomentOfInertiaUnit BaseUnit
         {
             get { return MassMomentOfInertiaUnit.KilogramSquareMeter; }
@@ -354,7 +354,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquarecentimeters/1e7);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareCentimeters(int gramsquarecentimeters)
@@ -362,7 +362,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquarecentimeters/1e7);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareCentimeters(long gramsquarecentimeters)
@@ -370,14 +370,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquarecentimeters/1e7);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareCentimeters(decimal gramsquarecentimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(gramsquarecentimeters)/1e7);
+            return new MassMomentOfInertia(Convert.ToDouble(gramsquarecentimeters)/1e7);
         }
 #endif
 
@@ -389,7 +389,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaredecimeters/1e5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareDecimeters(int gramsquaredecimeters)
@@ -397,7 +397,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaredecimeters/1e5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareDecimeters(long gramsquaredecimeters)
@@ -405,14 +405,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaredecimeters/1e5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareDecimeters(decimal gramsquaredecimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(gramsquaredecimeters)/1e5);
+            return new MassMomentOfInertia(Convert.ToDouble(gramsquaredecimeters)/1e5);
         }
 #endif
 
@@ -424,7 +424,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMeters(int gramsquaremeters)
@@ -432,7 +432,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMeters(long gramsquaremeters)
@@ -440,14 +440,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremeters/1e3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMeters(decimal gramsquaremeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(gramsquaremeters)/1e3);
+            return new MassMomentOfInertia(Convert.ToDouble(gramsquaremeters)/1e3);
         }
 #endif
 
@@ -459,7 +459,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremillimeters/1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMillimeters(int gramsquaremillimeters)
@@ -467,7 +467,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremillimeters/1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMillimeters(long gramsquaremillimeters)
@@ -475,14 +475,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(gramsquaremillimeters/1e9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromGramSquareMillimeters(decimal gramsquaremillimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(gramsquaremillimeters)/1e9);
+            return new MassMomentOfInertia(Convert.ToDouble(gramsquaremillimeters)/1e9);
         }
 #endif
 
@@ -494,7 +494,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquarecentimeters/1e7) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareCentimeters(int kilogramsquarecentimeters)
@@ -502,7 +502,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquarecentimeters/1e7) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareCentimeters(long kilogramsquarecentimeters)
@@ -510,14 +510,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquarecentimeters/1e7) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareCentimeters(decimal kilogramsquarecentimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilogramsquarecentimeters)/1e7) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilogramsquarecentimeters)/1e7) * 1e3d);
         }
 #endif
 
@@ -529,7 +529,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaredecimeters/1e5) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareDecimeters(int kilogramsquaredecimeters)
@@ -537,7 +537,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaredecimeters/1e5) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareDecimeters(long kilogramsquaredecimeters)
@@ -545,14 +545,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaredecimeters/1e5) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareDecimeters(decimal kilogramsquaredecimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaredecimeters)/1e5) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaredecimeters)/1e5) * 1e3d);
         }
 #endif
 
@@ -564,7 +564,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremeters/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMeters(int kilogramsquaremeters)
@@ -572,7 +572,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremeters/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMeters(long kilogramsquaremeters)
@@ -580,14 +580,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremeters/1e3) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMeters(decimal kilogramsquaremeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaremeters)/1e3) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaremeters)/1e3) * 1e3d);
         }
 #endif
 
@@ -599,7 +599,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremillimeters/1e9) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMillimeters(int kilogramsquaremillimeters)
@@ -607,7 +607,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremillimeters/1e9) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMillimeters(long kilogramsquaremillimeters)
@@ -615,14 +615,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilogramsquaremillimeters/1e9) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilogramSquareMillimeters(decimal kilogramsquaremillimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaremillimeters)/1e9) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilogramsquaremillimeters)/1e9) * 1e3d);
         }
 #endif
 
@@ -634,7 +634,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquarecentimeters/1e1) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(int kilotonnesquarecentimeters)
@@ -642,7 +642,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquarecentimeters/1e1) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(long kilotonnesquarecentimeters)
@@ -650,14 +650,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquarecentimeters/1e1) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(decimal kilotonnesquarecentimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquarecentimeters)/1e1) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquarecentimeters)/1e1) * 1e3d);
         }
 #endif
 
@@ -669,7 +669,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaredecimeters/1e-1) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(int kilotonnesquaredecimeters)
@@ -677,7 +677,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaredecimeters/1e-1) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(long kilotonnesquaredecimeters)
@@ -685,14 +685,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaredecimeters/1e-1) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(decimal kilotonnesquaredecimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaredecimeters)/1e-1) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaredecimeters)/1e-1) * 1e3d);
         }
 #endif
 
@@ -704,7 +704,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremeters/1e-3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMeters(int kilotonnesquaremeters)
@@ -712,7 +712,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremeters/1e-3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMeters(long kilotonnesquaremeters)
@@ -720,14 +720,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremeters/1e-3) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMeters(decimal kilotonnesquaremeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaremeters)/1e-3) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaremeters)/1e-3) * 1e3d);
         }
 #endif
 
@@ -739,7 +739,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremilimeters/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(int kilotonnesquaremilimeters)
@@ -747,7 +747,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremilimeters/1e3) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(long kilotonnesquaremilimeters)
@@ -755,14 +755,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((kilotonnesquaremilimeters/1e3) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(decimal kilotonnesquaremilimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaremilimeters)/1e3) * 1e3d);
+            return new MassMomentOfInertia((Convert.ToDouble(kilotonnesquaremilimeters)/1e3) * 1e3d);
         }
 #endif
 
@@ -774,7 +774,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquarecentimeters/1e1) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(int megatonnesquarecentimeters)
@@ -782,7 +782,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquarecentimeters/1e1) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(long megatonnesquarecentimeters)
@@ -790,14 +790,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquarecentimeters/1e1) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(decimal megatonnesquarecentimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(megatonnesquarecentimeters)/1e1) * 1e6d);
+            return new MassMomentOfInertia((Convert.ToDouble(megatonnesquarecentimeters)/1e1) * 1e6d);
         }
 #endif
 
@@ -809,7 +809,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaredecimeters/1e-1) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(int megatonnesquaredecimeters)
@@ -817,7 +817,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaredecimeters/1e-1) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(long megatonnesquaredecimeters)
@@ -825,14 +825,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaredecimeters/1e-1) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(decimal megatonnesquaredecimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaredecimeters)/1e-1) * 1e6d);
+            return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaredecimeters)/1e-1) * 1e6d);
         }
 #endif
 
@@ -844,7 +844,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremeters/1e-3) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMeters(int megatonnesquaremeters)
@@ -852,7 +852,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremeters/1e-3) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMeters(long megatonnesquaremeters)
@@ -860,14 +860,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremeters/1e-3) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMeters(decimal megatonnesquaremeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaremeters)/1e-3) * 1e6d);
+            return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaremeters)/1e-3) * 1e6d);
         }
 #endif
 
@@ -879,7 +879,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremilimeters/1e3) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(int megatonnesquaremilimeters)
@@ -887,7 +887,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremilimeters/1e3) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(long megatonnesquaremilimeters)
@@ -895,14 +895,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((megatonnesquaremilimeters/1e3) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(decimal megatonnesquaremilimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaremilimeters)/1e3) * 1e6d);
+            return new MassMomentOfInertia((Convert.ToDouble(megatonnesquaremilimeters)/1e3) * 1e6d);
         }
 #endif
 
@@ -914,7 +914,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquarecentimeters/1e7) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareCentimeters(int milligramsquarecentimeters)
@@ -922,7 +922,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquarecentimeters/1e7) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareCentimeters(long milligramsquarecentimeters)
@@ -930,14 +930,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquarecentimeters/1e7) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareCentimeters(decimal milligramsquarecentimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(milligramsquarecentimeters)/1e7) * 1e-3d);
+            return new MassMomentOfInertia((Convert.ToDouble(milligramsquarecentimeters)/1e7) * 1e-3d);
         }
 #endif
 
@@ -949,7 +949,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaredecimeters/1e5) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareDecimeters(int milligramsquaredecimeters)
@@ -957,7 +957,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaredecimeters/1e5) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareDecimeters(long milligramsquaredecimeters)
@@ -965,14 +965,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaredecimeters/1e5) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareDecimeters(decimal milligramsquaredecimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(milligramsquaredecimeters)/1e5) * 1e-3d);
+            return new MassMomentOfInertia((Convert.ToDouble(milligramsquaredecimeters)/1e5) * 1e-3d);
         }
 #endif
 
@@ -984,7 +984,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremeters/1e3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMeters(int milligramsquaremeters)
@@ -992,7 +992,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremeters/1e3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMeters(long milligramsquaremeters)
@@ -1000,14 +1000,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremeters/1e3) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMeters(decimal milligramsquaremeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(milligramsquaremeters)/1e3) * 1e-3d);
+            return new MassMomentOfInertia((Convert.ToDouble(milligramsquaremeters)/1e3) * 1e-3d);
         }
 #endif
 
@@ -1019,7 +1019,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremillimeters/1e9) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMillimeters(int milligramsquaremillimeters)
@@ -1027,7 +1027,7 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremillimeters/1e9) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMillimeters(long milligramsquaremillimeters)
@@ -1035,14 +1035,14 @@ namespace UnitsNet
             return new MassMomentOfInertia((milligramsquaremillimeters/1e9) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromMilligramSquareMillimeters(decimal milligramsquaremillimeters)
         {
-	        return new MassMomentOfInertia((Convert.ToDouble(milligramsquaremillimeters)/1e9) * 1e-3d);
+            return new MassMomentOfInertia((Convert.ToDouble(milligramsquaremillimeters)/1e9) * 1e-3d);
         }
 #endif
 
@@ -1054,7 +1054,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquarefeet*4.21401101e-2);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareFeet.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareFeet(int poundsquarefeet)
@@ -1062,7 +1062,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquarefeet*4.21401101e-2);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareFeet.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareFeet(long poundsquarefeet)
@@ -1070,14 +1070,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquarefeet*4.21401101e-2);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareFeet of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareFeet(decimal poundsquarefeet)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(poundsquarefeet)*4.21401101e-2);
+            return new MassMomentOfInertia(Convert.ToDouble(poundsquarefeet)*4.21401101e-2);
         }
 #endif
 
@@ -1089,7 +1089,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquareinches*2.9263965e-4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareInches.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareInches(int poundsquareinches)
@@ -1097,7 +1097,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquareinches*2.9263965e-4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareInches.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareInches(long poundsquareinches)
@@ -1105,14 +1105,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(poundsquareinches*2.9263965e-4);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareInches of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromPoundSquareInches(decimal poundsquareinches)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(poundsquareinches)*2.9263965e-4);
+            return new MassMomentOfInertia(Convert.ToDouble(poundsquareinches)*2.9263965e-4);
         }
 #endif
 
@@ -1124,7 +1124,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquarecentimeters/1e1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareCentimeters(int tonnesquarecentimeters)
@@ -1132,7 +1132,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquarecentimeters/1e1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareCentimeters(long tonnesquarecentimeters)
@@ -1140,14 +1140,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquarecentimeters/1e1);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareCentimeters(decimal tonnesquarecentimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(tonnesquarecentimeters)/1e1);
+            return new MassMomentOfInertia(Convert.ToDouble(tonnesquarecentimeters)/1e1);
         }
 #endif
 
@@ -1159,7 +1159,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaredecimeters/1e-1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareDecimeters(int tonnesquaredecimeters)
@@ -1167,7 +1167,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaredecimeters/1e-1);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareDecimeters(long tonnesquaredecimeters)
@@ -1175,14 +1175,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaredecimeters/1e-1);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareDecimeters(decimal tonnesquaredecimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(tonnesquaredecimeters)/1e-1);
+            return new MassMomentOfInertia(Convert.ToDouble(tonnesquaredecimeters)/1e-1);
         }
 #endif
 
@@ -1194,7 +1194,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremeters/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMeters(int tonnesquaremeters)
@@ -1202,7 +1202,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremeters/1e-3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMeters(long tonnesquaremeters)
@@ -1210,14 +1210,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremeters/1e-3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMeters(decimal tonnesquaremeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(tonnesquaremeters)/1e-3);
+            return new MassMomentOfInertia(Convert.ToDouble(tonnesquaremeters)/1e-3);
         }
 #endif
 
@@ -1229,7 +1229,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremilimeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMilimeters(int tonnesquaremilimeters)
@@ -1237,7 +1237,7 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremilimeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMilimeters(long tonnesquaremilimeters)
@@ -1245,14 +1245,14 @@ namespace UnitsNet
             return new MassMomentOfInertia(tonnesquaremilimeters/1e3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia FromTonneSquareMilimeters(decimal tonnesquaremilimeters)
         {
-	        return new MassMomentOfInertia(Convert.ToDouble(tonnesquaremilimeters)/1e3);
+            return new MassMomentOfInertia(Convert.ToDouble(tonnesquaremilimeters)/1e3);
         }
 #endif
 
@@ -1273,7 +1273,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareCentimeters(int? gramsquarecentimeters)
@@ -1288,7 +1288,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareCentimeters(long? gramsquarecentimeters)
@@ -1303,7 +1303,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from GramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareCentimeters(decimal? gramsquarecentimeters)
@@ -1333,7 +1333,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareDecimeters(int? gramsquaredecimeters)
@@ -1348,7 +1348,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareDecimeters(long? gramsquaredecimeters)
@@ -1363,7 +1363,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from GramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareDecimeters(decimal? gramsquaredecimeters)
@@ -1393,7 +1393,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMeters(int? gramsquaremeters)
@@ -1408,7 +1408,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMeters(long? gramsquaremeters)
@@ -1423,7 +1423,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from GramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMeters(decimal? gramsquaremeters)
@@ -1453,7 +1453,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMillimeters(int? gramsquaremillimeters)
@@ -1468,7 +1468,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMillimeters(long? gramsquaremillimeters)
@@ -1483,7 +1483,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from GramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromGramSquareMillimeters(decimal? gramsquaremillimeters)
@@ -1513,7 +1513,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareCentimeters(int? kilogramsquarecentimeters)
@@ -1528,7 +1528,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareCentimeters(long? kilogramsquarecentimeters)
@@ -1543,7 +1543,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilogramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareCentimeters(decimal? kilogramsquarecentimeters)
@@ -1573,7 +1573,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareDecimeters(int? kilogramsquaredecimeters)
@@ -1588,7 +1588,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareDecimeters(long? kilogramsquaredecimeters)
@@ -1603,7 +1603,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilogramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareDecimeters(decimal? kilogramsquaredecimeters)
@@ -1633,7 +1633,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMeters(int? kilogramsquaremeters)
@@ -1648,7 +1648,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMeters(long? kilogramsquaremeters)
@@ -1663,7 +1663,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilogramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMeters(decimal? kilogramsquaremeters)
@@ -1693,7 +1693,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMillimeters(int? kilogramsquaremillimeters)
@@ -1708,7 +1708,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMillimeters(long? kilogramsquaremillimeters)
@@ -1723,7 +1723,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilogramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilogramSquareMillimeters(decimal? kilogramsquaremillimeters)
@@ -1753,7 +1753,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareCentimeters(int? kilotonnesquarecentimeters)
@@ -1768,7 +1768,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareCentimeters(long? kilotonnesquarecentimeters)
@@ -1783,7 +1783,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilotonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareCentimeters(decimal? kilotonnesquarecentimeters)
@@ -1813,7 +1813,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareDecimeters(int? kilotonnesquaredecimeters)
@@ -1828,7 +1828,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareDecimeters(long? kilotonnesquaredecimeters)
@@ -1843,7 +1843,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilotonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareDecimeters(decimal? kilotonnesquaredecimeters)
@@ -1873,7 +1873,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMeters(int? kilotonnesquaremeters)
@@ -1888,7 +1888,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMeters(long? kilotonnesquaremeters)
@@ -1903,7 +1903,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilotonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMeters(decimal? kilotonnesquaremeters)
@@ -1933,7 +1933,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMilimeters(int? kilotonnesquaremilimeters)
@@ -1948,7 +1948,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMilimeters(long? kilotonnesquaremilimeters)
@@ -1963,7 +1963,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from KilotonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromKilotonneSquareMilimeters(decimal? kilotonnesquaremilimeters)
@@ -1993,7 +1993,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareCentimeters(int? megatonnesquarecentimeters)
@@ -2008,7 +2008,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareCentimeters(long? megatonnesquarecentimeters)
@@ -2023,7 +2023,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MegatonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareCentimeters(decimal? megatonnesquarecentimeters)
@@ -2053,7 +2053,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareDecimeters(int? megatonnesquaredecimeters)
@@ -2068,7 +2068,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareDecimeters(long? megatonnesquaredecimeters)
@@ -2083,7 +2083,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MegatonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareDecimeters(decimal? megatonnesquaredecimeters)
@@ -2113,7 +2113,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMeters(int? megatonnesquaremeters)
@@ -2128,7 +2128,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMeters(long? megatonnesquaremeters)
@@ -2143,7 +2143,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MegatonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMeters(decimal? megatonnesquaremeters)
@@ -2173,7 +2173,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMilimeters(int? megatonnesquaremilimeters)
@@ -2188,7 +2188,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMilimeters(long? megatonnesquaremilimeters)
@@ -2203,7 +2203,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MegatonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMegatonneSquareMilimeters(decimal? megatonnesquaremilimeters)
@@ -2233,7 +2233,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareCentimeters(int? milligramsquarecentimeters)
@@ -2248,7 +2248,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareCentimeters(long? milligramsquarecentimeters)
@@ -2263,7 +2263,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MilligramSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareCentimeters(decimal? milligramsquarecentimeters)
@@ -2293,7 +2293,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareDecimeters(int? milligramsquaredecimeters)
@@ -2308,7 +2308,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareDecimeters(long? milligramsquaredecimeters)
@@ -2323,7 +2323,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MilligramSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareDecimeters(decimal? milligramsquaredecimeters)
@@ -2353,7 +2353,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMeters(int? milligramsquaremeters)
@@ -2368,7 +2368,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMeters(long? milligramsquaremeters)
@@ -2383,7 +2383,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MilligramSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMeters(decimal? milligramsquaremeters)
@@ -2413,7 +2413,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMillimeters(int? milligramsquaremillimeters)
@@ -2428,7 +2428,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMillimeters.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMillimeters(long? milligramsquaremillimeters)
@@ -2443,7 +2443,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from MilligramSquareMillimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromMilligramSquareMillimeters(decimal? milligramsquaremillimeters)
@@ -2473,7 +2473,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareFeet.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareFeet(int? poundsquarefeet)
@@ -2488,7 +2488,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareFeet.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareFeet(long? poundsquarefeet)
@@ -2503,7 +2503,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from PoundSquareFeet of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareFeet(decimal? poundsquarefeet)
@@ -2533,7 +2533,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareInches.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareInches(int? poundsquareinches)
@@ -2548,7 +2548,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareInches.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareInches(long? poundsquareinches)
@@ -2563,7 +2563,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from PoundSquareInches of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromPoundSquareInches(decimal? poundsquareinches)
@@ -2593,7 +2593,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareCentimeters(int? tonnesquarecentimeters)
@@ -2608,7 +2608,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareCentimeters(long? tonnesquarecentimeters)
@@ -2623,7 +2623,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from TonneSquareCentimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareCentimeters(decimal? tonnesquarecentimeters)
@@ -2653,7 +2653,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareDecimeters(int? tonnesquaredecimeters)
@@ -2668,7 +2668,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareDecimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareDecimeters(long? tonnesquaredecimeters)
@@ -2683,7 +2683,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from TonneSquareDecimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareDecimeters(decimal? tonnesquaredecimeters)
@@ -2713,7 +2713,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMeters(int? tonnesquaremeters)
@@ -2728,7 +2728,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMeters(long? tonnesquaremeters)
@@ -2743,7 +2743,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from TonneSquareMeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMeters(decimal? tonnesquaremeters)
@@ -2773,7 +2773,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMilimeters(int? tonnesquaremilimeters)
@@ -2788,7 +2788,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMilimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMilimeters(long? tonnesquaremilimeters)
@@ -2803,7 +2803,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from TonneSquareMilimeters of type decimal.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareMilimeters(decimal? tonnesquaremilimeters)

@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly decimal _watts;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Power() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Power;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static PowerUnit BaseUnit
         {
             get { return PowerUnit.Watt; }
@@ -290,7 +290,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>
         public static Power FromBoilerHorsepower(int boilerhorsepower)
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>
         public static Power FromBoilerHorsepower(long boilerhorsepower)
@@ -306,14 +306,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from BoilerHorsepower of type decimal.
         /// </summary>
         public static Power FromBoilerHorsepower(decimal boilerhorsepower)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(boilerhorsepower)*9812.5d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(boilerhorsepower)*9812.5d));
         }
 #endif
 
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
         /// </summary>
         public static Power FromBritishThermalUnitsPerHour(int britishthermalunitsperhour)
@@ -333,7 +333,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
         /// </summary>
         public static Power FromBritishThermalUnitsPerHour(long britishthermalunitsperhour)
@@ -341,14 +341,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour of type decimal.
         /// </summary>
         public static Power FromBritishThermalUnitsPerHour(decimal britishthermalunitsperhour)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(britishthermalunitsperhour)*0.293071d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(britishthermalunitsperhour)*0.293071d));
         }
 #endif
 
@@ -360,7 +360,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(electricalhorsepower*746d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
         public static Power FromElectricalHorsepower(int electricalhorsepower)
@@ -368,7 +368,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(electricalhorsepower*746d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
         public static Power FromElectricalHorsepower(long electricalhorsepower)
@@ -376,14 +376,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(electricalhorsepower*746d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from ElectricalHorsepower of type decimal.
         /// </summary>
         public static Power FromElectricalHorsepower(decimal electricalhorsepower)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(electricalhorsepower)*746d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(electricalhorsepower)*746d));
         }
 #endif
 
@@ -395,7 +395,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
         public static Power FromFemtowatts(int femtowatts)
@@ -403,7 +403,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
         public static Power FromFemtowatts(long femtowatts)
@@ -411,14 +411,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Femtowatts of type decimal.
         /// </summary>
         public static Power FromFemtowatts(decimal femtowatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(femtowatts)) * 1e-15d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(femtowatts)) * 1e-15d));
         }
 #endif
 
@@ -430,7 +430,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
         public static Power FromGigawatts(int gigawatts)
@@ -438,7 +438,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
         public static Power FromGigawatts(long gigawatts)
@@ -446,14 +446,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Gigawatts of type decimal.
         /// </summary>
         public static Power FromGigawatts(decimal gigawatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(gigawatts)) * 1e9d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(gigawatts)) * 1e9d));
         }
 #endif
 
@@ -465,7 +465,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from HydraulicHorsepower.
         /// </summary>
         public static Power FromHydraulicHorsepower(int hydraulichorsepower)
@@ -473,7 +473,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from HydraulicHorsepower.
         /// </summary>
         public static Power FromHydraulicHorsepower(long hydraulichorsepower)
@@ -481,14 +481,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from HydraulicHorsepower of type decimal.
         /// </summary>
         public static Power FromHydraulicHorsepower(decimal hydraulichorsepower)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(hydraulichorsepower)*745.69988145d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(hydraulichorsepower)*745.69988145d));
         }
 #endif
 
@@ -500,7 +500,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
         public static Power FromKilobritishThermalUnitsPerHour(int kilobritishthermalunitsperhour)
@@ -508,7 +508,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
         public static Power FromKilobritishThermalUnitsPerHour(long kilobritishthermalunitsperhour)
@@ -516,14 +516,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour of type decimal.
         /// </summary>
         public static Power FromKilobritishThermalUnitsPerHour(decimal kilobritishthermalunitsperhour)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(kilobritishthermalunitsperhour)*0.293071d) * 1e3d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(kilobritishthermalunitsperhour)*0.293071d) * 1e3d));
         }
 #endif
 
@@ -535,7 +535,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
         public static Power FromKilowatts(int kilowatts)
@@ -543,7 +543,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
         public static Power FromKilowatts(long kilowatts)
@@ -551,14 +551,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Kilowatts of type decimal.
         /// </summary>
         public static Power FromKilowatts(decimal kilowatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(kilowatts)) * 1e3d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(kilowatts)) * 1e3d));
         }
 #endif
 
@@ -570,7 +570,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from MechanicalHorsepower.
         /// </summary>
         public static Power FromMechanicalHorsepower(int mechanicalhorsepower)
@@ -578,7 +578,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from MechanicalHorsepower.
         /// </summary>
         public static Power FromMechanicalHorsepower(long mechanicalhorsepower)
@@ -586,14 +586,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from MechanicalHorsepower of type decimal.
         /// </summary>
         public static Power FromMechanicalHorsepower(decimal mechanicalhorsepower)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(mechanicalhorsepower)*745.69d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(mechanicalhorsepower)*745.69d));
         }
 #endif
 
@@ -605,7 +605,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
         public static Power FromMegawatts(int megawatts)
@@ -613,7 +613,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
         public static Power FromMegawatts(long megawatts)
@@ -621,14 +621,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Megawatts of type decimal.
         /// </summary>
         public static Power FromMegawatts(decimal megawatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(megawatts)) * 1e6d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(megawatts)) * 1e6d));
         }
 #endif
 
@@ -640,7 +640,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from MetricHorsepower.
         /// </summary>
         public static Power FromMetricHorsepower(int metrichorsepower)
@@ -648,7 +648,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from MetricHorsepower.
         /// </summary>
         public static Power FromMetricHorsepower(long metrichorsepower)
@@ -656,14 +656,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from MetricHorsepower of type decimal.
         /// </summary>
         public static Power FromMetricHorsepower(decimal metrichorsepower)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(metrichorsepower)*735.49875d));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(metrichorsepower)*735.49875d));
         }
 #endif
 
@@ -675,7 +675,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Microwatts.
         /// </summary>
         public static Power FromMicrowatts(int microwatts)
@@ -683,7 +683,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Microwatts.
         /// </summary>
         public static Power FromMicrowatts(long microwatts)
@@ -691,14 +691,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Microwatts of type decimal.
         /// </summary>
         public static Power FromMicrowatts(decimal microwatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(microwatts)) * 1e-6d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(microwatts)) * 1e-6d));
         }
 #endif
 
@@ -710,7 +710,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Milliwatts.
         /// </summary>
         public static Power FromMilliwatts(int milliwatts)
@@ -718,7 +718,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Milliwatts.
         /// </summary>
         public static Power FromMilliwatts(long milliwatts)
@@ -726,14 +726,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Milliwatts of type decimal.
         /// </summary>
         public static Power FromMilliwatts(decimal milliwatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(milliwatts)) * 1e-3d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(milliwatts)) * 1e-3d));
         }
 #endif
 
@@ -745,7 +745,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Nanowatts.
         /// </summary>
         public static Power FromNanowatts(int nanowatts)
@@ -753,7 +753,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Nanowatts.
         /// </summary>
         public static Power FromNanowatts(long nanowatts)
@@ -761,14 +761,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Nanowatts of type decimal.
         /// </summary>
         public static Power FromNanowatts(decimal nanowatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(nanowatts)) * 1e-9d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(nanowatts)) * 1e-9d));
         }
 #endif
 
@@ -780,7 +780,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((petawatts) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Petawatts.
         /// </summary>
         public static Power FromPetawatts(int petawatts)
@@ -788,7 +788,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((petawatts) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Petawatts.
         /// </summary>
         public static Power FromPetawatts(long petawatts)
@@ -796,14 +796,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((petawatts) * 1e15d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Petawatts of type decimal.
         /// </summary>
         public static Power FromPetawatts(decimal petawatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(petawatts)) * 1e15d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(petawatts)) * 1e15d));
         }
 #endif
 
@@ -815,7 +815,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Picowatts.
         /// </summary>
         public static Power FromPicowatts(int picowatts)
@@ -823,7 +823,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Picowatts.
         /// </summary>
         public static Power FromPicowatts(long picowatts)
@@ -831,14 +831,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Picowatts of type decimal.
         /// </summary>
         public static Power FromPicowatts(decimal picowatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(picowatts)) * 1e-12d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(picowatts)) * 1e-12d));
         }
 #endif
 
@@ -850,7 +850,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((terawatts) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Terawatts.
         /// </summary>
         public static Power FromTerawatts(int terawatts)
@@ -858,7 +858,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((terawatts) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Terawatts.
         /// </summary>
         public static Power FromTerawatts(long terawatts)
@@ -866,14 +866,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal((terawatts) * 1e12d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Terawatts of type decimal.
         /// </summary>
         public static Power FromTerawatts(decimal terawatts)
         {
-	        return new Power(Convert.ToDecimal((Convert.ToDouble(terawatts)) * 1e12d));
+            return new Power(Convert.ToDecimal((Convert.ToDouble(terawatts)) * 1e12d));
         }
 #endif
 
@@ -885,7 +885,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(watts));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Watts.
         /// </summary>
         public static Power FromWatts(int watts)
@@ -893,7 +893,7 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(watts));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Power from Watts.
         /// </summary>
         public static Power FromWatts(long watts)
@@ -901,14 +901,14 @@ namespace UnitsNet
             return new Power(Convert.ToDecimal(watts));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Power from Watts of type decimal.
         /// </summary>
         public static Power FromWatts(decimal watts)
         {
-	        return new Power(Convert.ToDecimal(Convert.ToDouble(watts)));
+            return new Power(Convert.ToDecimal(Convert.ToDouble(watts)));
         }
 #endif
 
@@ -929,7 +929,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable BoilerHorsepower.
         /// </summary>
         public static Power? FromBoilerHorsepower(int? boilerhorsepower)
@@ -944,7 +944,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable BoilerHorsepower.
         /// </summary>
         public static Power? FromBoilerHorsepower(long? boilerhorsepower)
@@ -959,7 +959,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from BoilerHorsepower of type decimal.
         /// </summary>
         public static Power? FromBoilerHorsepower(decimal? boilerhorsepower)
@@ -989,7 +989,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
         /// </summary>
         public static Power? FromBritishThermalUnitsPerHour(int? britishthermalunitsperhour)
@@ -1004,7 +1004,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
         /// </summary>
         public static Power? FromBritishThermalUnitsPerHour(long? britishthermalunitsperhour)
@@ -1019,7 +1019,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from BritishThermalUnitsPerHour of type decimal.
         /// </summary>
         public static Power? FromBritishThermalUnitsPerHour(decimal? britishthermalunitsperhour)
@@ -1049,7 +1049,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
         public static Power? FromElectricalHorsepower(int? electricalhorsepower)
@@ -1064,7 +1064,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
         public static Power? FromElectricalHorsepower(long? electricalhorsepower)
@@ -1079,7 +1079,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from ElectricalHorsepower of type decimal.
         /// </summary>
         public static Power? FromElectricalHorsepower(decimal? electricalhorsepower)
@@ -1109,7 +1109,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Femtowatts.
         /// </summary>
         public static Power? FromFemtowatts(int? femtowatts)
@@ -1124,7 +1124,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Femtowatts.
         /// </summary>
         public static Power? FromFemtowatts(long? femtowatts)
@@ -1139,7 +1139,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Femtowatts of type decimal.
         /// </summary>
         public static Power? FromFemtowatts(decimal? femtowatts)
@@ -1169,7 +1169,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Gigawatts.
         /// </summary>
         public static Power? FromGigawatts(int? gigawatts)
@@ -1184,7 +1184,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Gigawatts.
         /// </summary>
         public static Power? FromGigawatts(long? gigawatts)
@@ -1199,7 +1199,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Gigawatts of type decimal.
         /// </summary>
         public static Power? FromGigawatts(decimal? gigawatts)
@@ -1229,7 +1229,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable HydraulicHorsepower.
         /// </summary>
         public static Power? FromHydraulicHorsepower(int? hydraulichorsepower)
@@ -1244,7 +1244,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable HydraulicHorsepower.
         /// </summary>
         public static Power? FromHydraulicHorsepower(long? hydraulichorsepower)
@@ -1259,7 +1259,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from HydraulicHorsepower of type decimal.
         /// </summary>
         public static Power? FromHydraulicHorsepower(decimal? hydraulichorsepower)
@@ -1289,7 +1289,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
         /// </summary>
         public static Power? FromKilobritishThermalUnitsPerHour(int? kilobritishthermalunitsperhour)
@@ -1304,7 +1304,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
         /// </summary>
         public static Power? FromKilobritishThermalUnitsPerHour(long? kilobritishthermalunitsperhour)
@@ -1319,7 +1319,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from KilobritishThermalUnitsPerHour of type decimal.
         /// </summary>
         public static Power? FromKilobritishThermalUnitsPerHour(decimal? kilobritishthermalunitsperhour)
@@ -1349,7 +1349,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Kilowatts.
         /// </summary>
         public static Power? FromKilowatts(int? kilowatts)
@@ -1364,7 +1364,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Kilowatts.
         /// </summary>
         public static Power? FromKilowatts(long? kilowatts)
@@ -1379,7 +1379,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Kilowatts of type decimal.
         /// </summary>
         public static Power? FromKilowatts(decimal? kilowatts)
@@ -1409,7 +1409,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable MechanicalHorsepower.
         /// </summary>
         public static Power? FromMechanicalHorsepower(int? mechanicalhorsepower)
@@ -1424,7 +1424,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable MechanicalHorsepower.
         /// </summary>
         public static Power? FromMechanicalHorsepower(long? mechanicalhorsepower)
@@ -1439,7 +1439,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from MechanicalHorsepower of type decimal.
         /// </summary>
         public static Power? FromMechanicalHorsepower(decimal? mechanicalhorsepower)
@@ -1469,7 +1469,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Megawatts.
         /// </summary>
         public static Power? FromMegawatts(int? megawatts)
@@ -1484,7 +1484,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Megawatts.
         /// </summary>
         public static Power? FromMegawatts(long? megawatts)
@@ -1499,7 +1499,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Megawatts of type decimal.
         /// </summary>
         public static Power? FromMegawatts(decimal? megawatts)
@@ -1529,7 +1529,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable MetricHorsepower.
         /// </summary>
         public static Power? FromMetricHorsepower(int? metrichorsepower)
@@ -1544,7 +1544,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable MetricHorsepower.
         /// </summary>
         public static Power? FromMetricHorsepower(long? metrichorsepower)
@@ -1559,7 +1559,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from MetricHorsepower of type decimal.
         /// </summary>
         public static Power? FromMetricHorsepower(decimal? metrichorsepower)
@@ -1589,7 +1589,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Microwatts.
         /// </summary>
         public static Power? FromMicrowatts(int? microwatts)
@@ -1604,7 +1604,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Microwatts.
         /// </summary>
         public static Power? FromMicrowatts(long? microwatts)
@@ -1619,7 +1619,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Microwatts of type decimal.
         /// </summary>
         public static Power? FromMicrowatts(decimal? microwatts)
@@ -1649,7 +1649,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Milliwatts.
         /// </summary>
         public static Power? FromMilliwatts(int? milliwatts)
@@ -1664,7 +1664,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Milliwatts.
         /// </summary>
         public static Power? FromMilliwatts(long? milliwatts)
@@ -1679,7 +1679,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Milliwatts of type decimal.
         /// </summary>
         public static Power? FromMilliwatts(decimal? milliwatts)
@@ -1709,7 +1709,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Nanowatts.
         /// </summary>
         public static Power? FromNanowatts(int? nanowatts)
@@ -1724,7 +1724,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Nanowatts.
         /// </summary>
         public static Power? FromNanowatts(long? nanowatts)
@@ -1739,7 +1739,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Nanowatts of type decimal.
         /// </summary>
         public static Power? FromNanowatts(decimal? nanowatts)
@@ -1769,7 +1769,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Petawatts.
         /// </summary>
         public static Power? FromPetawatts(int? petawatts)
@@ -1784,7 +1784,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Petawatts.
         /// </summary>
         public static Power? FromPetawatts(long? petawatts)
@@ -1799,7 +1799,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Petawatts of type decimal.
         /// </summary>
         public static Power? FromPetawatts(decimal? petawatts)
@@ -1829,7 +1829,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Picowatts.
         /// </summary>
         public static Power? FromPicowatts(int? picowatts)
@@ -1844,7 +1844,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Picowatts.
         /// </summary>
         public static Power? FromPicowatts(long? picowatts)
@@ -1859,7 +1859,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Picowatts of type decimal.
         /// </summary>
         public static Power? FromPicowatts(decimal? picowatts)
@@ -1889,7 +1889,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Terawatts.
         /// </summary>
         public static Power? FromTerawatts(int? terawatts)
@@ -1904,7 +1904,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Terawatts.
         /// </summary>
         public static Power? FromTerawatts(long? terawatts)
@@ -1919,7 +1919,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Terawatts of type decimal.
         /// </summary>
         public static Power? FromTerawatts(decimal? terawatts)
@@ -1949,7 +1949,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Watts.
         /// </summary>
         public static Power? FromWatts(int? watts)
@@ -1964,7 +1964,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from nullable Watts.
         /// </summary>
         public static Power? FromWatts(long? watts)
@@ -1979,7 +1979,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Power from Watts of type decimal.
         /// </summary>
         public static Power? FromWatts(decimal? watts)

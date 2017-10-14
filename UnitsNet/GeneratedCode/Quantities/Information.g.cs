@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly decimal _bits;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Information() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Information;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static InformationUnit BaseUnit
         {
             get { return InformationUnit.Bit; }
@@ -354,7 +354,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bits));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bits.
         /// </summary>
         public static Information FromBits(int bits)
@@ -362,7 +362,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bits));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bits.
         /// </summary>
         public static Information FromBits(long bits)
@@ -370,14 +370,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bits));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bits of type decimal.
         /// </summary>
         public static Information FromBits(decimal bits)
         {
-	        return new Information(Convert.ToDecimal(Convert.ToDouble(bits)));
+            return new Information(Convert.ToDecimal(Convert.ToDouble(bits)));
         }
 #endif
 
@@ -389,7 +389,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bytes*8d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bytes.
         /// </summary>
         public static Information FromBytes(int bytes)
@@ -397,7 +397,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bytes*8d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bytes.
         /// </summary>
         public static Information FromBytes(long bytes)
@@ -405,14 +405,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal(bytes*8d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Bytes of type decimal.
         /// </summary>
         public static Information FromBytes(decimal bytes)
         {
-	        return new Information(Convert.ToDecimal(Convert.ToDouble(bytes)*8d));
+            return new Information(Convert.ToDecimal(Convert.ToDouble(bytes)*8d));
         }
 #endif
 
@@ -424,7 +424,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabits) * 1e18d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabits.
         /// </summary>
         public static Information FromExabits(int exabits)
@@ -432,7 +432,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabits) * 1e18d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabits.
         /// </summary>
         public static Information FromExabits(long exabits)
@@ -440,14 +440,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabits) * 1e18d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabits of type decimal.
         /// </summary>
         public static Information FromExabits(decimal exabits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(exabits)) * 1e18d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(exabits)) * 1e18d));
         }
 #endif
 
@@ -459,7 +459,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
         public static Information FromExabytes(int exabytes)
@@ -467,7 +467,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
         public static Information FromExabytes(long exabytes)
@@ -475,14 +475,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exabytes of type decimal.
         /// </summary>
         public static Information FromExabytes(decimal exabytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(exabytes)*8d) * 1e18d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(exabytes)*8d) * 1e18d));
         }
 #endif
 
@@ -494,7 +494,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibits.
         /// </summary>
         public static Information FromExbibits(int exbibits)
@@ -502,7 +502,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibits.
         /// </summary>
         public static Information FromExbibits(long exbibits)
@@ -510,14 +510,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibits of type decimal.
         /// </summary>
         public static Information FromExbibits(decimal exbibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(exbibits)) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(exbibits)) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -529,7 +529,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibytes.
         /// </summary>
         public static Information FromExbibytes(int exbibytes)
@@ -537,7 +537,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibytes.
         /// </summary>
         public static Information FromExbibytes(long exbibytes)
@@ -545,14 +545,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Exbibytes of type decimal.
         /// </summary>
         public static Information FromExbibytes(decimal exbibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(exbibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(exbibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -564,7 +564,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibits.
         /// </summary>
         public static Information FromGibibits(int gibibits)
@@ -572,7 +572,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibits.
         /// </summary>
         public static Information FromGibibits(long gibibits)
@@ -580,14 +580,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibits of type decimal.
         /// </summary>
         public static Information FromGibibits(decimal gibibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(gibibits)) * (1024d * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(gibibits)) * (1024d * 1024 * 1024)));
         }
 #endif
 
@@ -599,7 +599,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibytes.
         /// </summary>
         public static Information FromGibibytes(int gibibytes)
@@ -607,7 +607,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibytes.
         /// </summary>
         public static Information FromGibibytes(long gibibytes)
@@ -615,14 +615,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gibibytes of type decimal.
         /// </summary>
         public static Information FromGibibytes(decimal gibibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(gibibytes)*8d) * (1024d * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(gibibytes)*8d) * (1024d * 1024 * 1024)));
         }
 #endif
 
@@ -634,7 +634,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabits) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabits.
         /// </summary>
         public static Information FromGigabits(int gigabits)
@@ -642,7 +642,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabits) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabits.
         /// </summary>
         public static Information FromGigabits(long gigabits)
@@ -650,14 +650,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabits) * 1e9d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabits of type decimal.
         /// </summary>
         public static Information FromGigabits(decimal gigabits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(gigabits)) * 1e9d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(gigabits)) * 1e9d));
         }
 #endif
 
@@ -669,7 +669,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabytes.
         /// </summary>
         public static Information FromGigabytes(int gigabytes)
@@ -677,7 +677,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabytes.
         /// </summary>
         public static Information FromGigabytes(long gigabytes)
@@ -685,14 +685,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Gigabytes of type decimal.
         /// </summary>
         public static Information FromGigabytes(decimal gigabytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(gigabytes)*8d) * 1e9d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(gigabytes)*8d) * 1e9d));
         }
 #endif
 
@@ -704,7 +704,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibits) * 1024d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibits.
         /// </summary>
         public static Information FromKibibits(int kibibits)
@@ -712,7 +712,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibits) * 1024d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibits.
         /// </summary>
         public static Information FromKibibits(long kibibits)
@@ -720,14 +720,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibits) * 1024d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibits of type decimal.
         /// </summary>
         public static Information FromKibibits(decimal kibibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(kibibits)) * 1024d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(kibibits)) * 1024d));
         }
 #endif
 
@@ -739,7 +739,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibytes.
         /// </summary>
         public static Information FromKibibytes(int kibibytes)
@@ -747,7 +747,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibytes.
         /// </summary>
         public static Information FromKibibytes(long kibibytes)
@@ -755,14 +755,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kibibytes of type decimal.
         /// </summary>
         public static Information FromKibibytes(decimal kibibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(kibibytes)*8d) * 1024d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(kibibytes)*8d) * 1024d));
         }
 #endif
 
@@ -774,7 +774,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobits) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobits.
         /// </summary>
         public static Information FromKilobits(int kilobits)
@@ -782,7 +782,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobits) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobits.
         /// </summary>
         public static Information FromKilobits(long kilobits)
@@ -790,14 +790,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobits) * 1e3d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobits of type decimal.
         /// </summary>
         public static Information FromKilobits(decimal kilobits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(kilobits)) * 1e3d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(kilobits)) * 1e3d));
         }
 #endif
 
@@ -809,7 +809,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobytes.
         /// </summary>
         public static Information FromKilobytes(int kilobytes)
@@ -817,7 +817,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobytes.
         /// </summary>
         public static Information FromKilobytes(long kilobytes)
@@ -825,14 +825,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Kilobytes of type decimal.
         /// </summary>
         public static Information FromKilobytes(decimal kilobytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(kilobytes)*8d) * 1e3d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(kilobytes)*8d) * 1e3d));
         }
 #endif
 
@@ -844,7 +844,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibits.
         /// </summary>
         public static Information FromMebibits(int mebibits)
@@ -852,7 +852,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibits.
         /// </summary>
         public static Information FromMebibits(long mebibits)
@@ -860,14 +860,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibits of type decimal.
         /// </summary>
         public static Information FromMebibits(decimal mebibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(mebibits)) * (1024d * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(mebibits)) * (1024d * 1024)));
         }
 #endif
 
@@ -879,7 +879,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibytes.
         /// </summary>
         public static Information FromMebibytes(int mebibytes)
@@ -887,7 +887,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibytes.
         /// </summary>
         public static Information FromMebibytes(long mebibytes)
@@ -895,14 +895,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Mebibytes of type decimal.
         /// </summary>
         public static Information FromMebibytes(decimal mebibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(mebibytes)*8d) * (1024d * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(mebibytes)*8d) * (1024d * 1024)));
         }
 #endif
 
@@ -914,7 +914,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabits) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabits.
         /// </summary>
         public static Information FromMegabits(int megabits)
@@ -922,7 +922,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabits) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabits.
         /// </summary>
         public static Information FromMegabits(long megabits)
@@ -930,14 +930,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabits) * 1e6d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabits of type decimal.
         /// </summary>
         public static Information FromMegabits(decimal megabits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(megabits)) * 1e6d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(megabits)) * 1e6d));
         }
 #endif
 
@@ -949,7 +949,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabytes.
         /// </summary>
         public static Information FromMegabytes(int megabytes)
@@ -957,7 +957,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabytes.
         /// </summary>
         public static Information FromMegabytes(long megabytes)
@@ -965,14 +965,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Megabytes of type decimal.
         /// </summary>
         public static Information FromMegabytes(decimal megabytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(megabytes)*8d) * 1e6d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(megabytes)*8d) * 1e6d));
         }
 #endif
 
@@ -984,7 +984,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibits.
         /// </summary>
         public static Information FromPebibits(int pebibits)
@@ -992,7 +992,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibits.
         /// </summary>
         public static Information FromPebibits(long pebibits)
@@ -1000,14 +1000,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibits of type decimal.
         /// </summary>
         public static Information FromPebibits(decimal pebibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(pebibits)) * (1024d * 1024 * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(pebibits)) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -1019,7 +1019,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibytes.
         /// </summary>
         public static Information FromPebibytes(int pebibytes)
@@ -1027,7 +1027,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibytes.
         /// </summary>
         public static Information FromPebibytes(long pebibytes)
@@ -1035,14 +1035,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Pebibytes of type decimal.
         /// </summary>
         public static Information FromPebibytes(decimal pebibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(pebibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(pebibytes)*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -1054,7 +1054,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabits) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabits.
         /// </summary>
         public static Information FromPetabits(int petabits)
@@ -1062,7 +1062,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabits) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabits.
         /// </summary>
         public static Information FromPetabits(long petabits)
@@ -1070,14 +1070,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabits) * 1e15d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabits of type decimal.
         /// </summary>
         public static Information FromPetabits(decimal petabits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(petabits)) * 1e15d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(petabits)) * 1e15d));
         }
 #endif
 
@@ -1089,7 +1089,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabytes.
         /// </summary>
         public static Information FromPetabytes(int petabytes)
@@ -1097,7 +1097,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabytes.
         /// </summary>
         public static Information FromPetabytes(long petabytes)
@@ -1105,14 +1105,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Petabytes of type decimal.
         /// </summary>
         public static Information FromPetabytes(decimal petabytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(petabytes)*8d) * 1e15d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(petabytes)*8d) * 1e15d));
         }
 #endif
 
@@ -1124,7 +1124,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibits.
         /// </summary>
         public static Information FromTebibits(int tebibits)
@@ -1132,7 +1132,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibits.
         /// </summary>
         public static Information FromTebibits(long tebibits)
@@ -1140,14 +1140,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibits of type decimal.
         /// </summary>
         public static Information FromTebibits(decimal tebibits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(tebibits)) * (1024d * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(tebibits)) * (1024d * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -1159,7 +1159,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibytes.
         /// </summary>
         public static Information FromTebibytes(int tebibytes)
@@ -1167,7 +1167,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibytes.
         /// </summary>
         public static Information FromTebibytes(long tebibytes)
@@ -1175,14 +1175,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Tebibytes of type decimal.
         /// </summary>
         public static Information FromTebibytes(decimal tebibytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(tebibytes)*8d) * (1024d * 1024 * 1024 * 1024)));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(tebibytes)*8d) * (1024d * 1024 * 1024 * 1024)));
         }
 #endif
 
@@ -1194,7 +1194,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabits) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabits.
         /// </summary>
         public static Information FromTerabits(int terabits)
@@ -1202,7 +1202,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabits) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabits.
         /// </summary>
         public static Information FromTerabits(long terabits)
@@ -1210,14 +1210,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabits) * 1e12d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabits of type decimal.
         /// </summary>
         public static Information FromTerabits(decimal terabits)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(terabits)) * 1e12d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(terabits)) * 1e12d));
         }
 #endif
 
@@ -1229,7 +1229,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabytes.
         /// </summary>
         public static Information FromTerabytes(int terabytes)
@@ -1237,7 +1237,7 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabytes.
         /// </summary>
         public static Information FromTerabytes(long terabytes)
@@ -1245,14 +1245,14 @@ namespace UnitsNet
             return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Information from Terabytes of type decimal.
         /// </summary>
         public static Information FromTerabytes(decimal terabytes)
         {
-	        return new Information(Convert.ToDecimal((Convert.ToDouble(terabytes)*8d) * 1e12d));
+            return new Information(Convert.ToDecimal((Convert.ToDouble(terabytes)*8d) * 1e12d));
         }
 #endif
 
@@ -1273,7 +1273,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Bits.
         /// </summary>
         public static Information? FromBits(int? bits)
@@ -1288,7 +1288,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Bits.
         /// </summary>
         public static Information? FromBits(long? bits)
@@ -1303,7 +1303,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Bits of type decimal.
         /// </summary>
         public static Information? FromBits(decimal? bits)
@@ -1333,7 +1333,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Bytes.
         /// </summary>
         public static Information? FromBytes(int? bytes)
@@ -1348,7 +1348,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Bytes.
         /// </summary>
         public static Information? FromBytes(long? bytes)
@@ -1363,7 +1363,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Bytes of type decimal.
         /// </summary>
         public static Information? FromBytes(decimal? bytes)
@@ -1393,7 +1393,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exabits.
         /// </summary>
         public static Information? FromExabits(int? exabits)
@@ -1408,7 +1408,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exabits.
         /// </summary>
         public static Information? FromExabits(long? exabits)
@@ -1423,7 +1423,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Exabits of type decimal.
         /// </summary>
         public static Information? FromExabits(decimal? exabits)
@@ -1453,7 +1453,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exabytes.
         /// </summary>
         public static Information? FromExabytes(int? exabytes)
@@ -1468,7 +1468,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exabytes.
         /// </summary>
         public static Information? FromExabytes(long? exabytes)
@@ -1483,7 +1483,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Exabytes of type decimal.
         /// </summary>
         public static Information? FromExabytes(decimal? exabytes)
@@ -1513,7 +1513,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exbibits.
         /// </summary>
         public static Information? FromExbibits(int? exbibits)
@@ -1528,7 +1528,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exbibits.
         /// </summary>
         public static Information? FromExbibits(long? exbibits)
@@ -1543,7 +1543,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Exbibits of type decimal.
         /// </summary>
         public static Information? FromExbibits(decimal? exbibits)
@@ -1573,7 +1573,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exbibytes.
         /// </summary>
         public static Information? FromExbibytes(int? exbibytes)
@@ -1588,7 +1588,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Exbibytes.
         /// </summary>
         public static Information? FromExbibytes(long? exbibytes)
@@ -1603,7 +1603,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Exbibytes of type decimal.
         /// </summary>
         public static Information? FromExbibytes(decimal? exbibytes)
@@ -1633,7 +1633,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gibibits.
         /// </summary>
         public static Information? FromGibibits(int? gibibits)
@@ -1648,7 +1648,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gibibits.
         /// </summary>
         public static Information? FromGibibits(long? gibibits)
@@ -1663,7 +1663,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Gibibits of type decimal.
         /// </summary>
         public static Information? FromGibibits(decimal? gibibits)
@@ -1693,7 +1693,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gibibytes.
         /// </summary>
         public static Information? FromGibibytes(int? gibibytes)
@@ -1708,7 +1708,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gibibytes.
         /// </summary>
         public static Information? FromGibibytes(long? gibibytes)
@@ -1723,7 +1723,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Gibibytes of type decimal.
         /// </summary>
         public static Information? FromGibibytes(decimal? gibibytes)
@@ -1753,7 +1753,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gigabits.
         /// </summary>
         public static Information? FromGigabits(int? gigabits)
@@ -1768,7 +1768,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gigabits.
         /// </summary>
         public static Information? FromGigabits(long? gigabits)
@@ -1783,7 +1783,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Gigabits of type decimal.
         /// </summary>
         public static Information? FromGigabits(decimal? gigabits)
@@ -1813,7 +1813,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gigabytes.
         /// </summary>
         public static Information? FromGigabytes(int? gigabytes)
@@ -1828,7 +1828,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Gigabytes.
         /// </summary>
         public static Information? FromGigabytes(long? gigabytes)
@@ -1843,7 +1843,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Gigabytes of type decimal.
         /// </summary>
         public static Information? FromGigabytes(decimal? gigabytes)
@@ -1873,7 +1873,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kibibits.
         /// </summary>
         public static Information? FromKibibits(int? kibibits)
@@ -1888,7 +1888,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kibibits.
         /// </summary>
         public static Information? FromKibibits(long? kibibits)
@@ -1903,7 +1903,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Kibibits of type decimal.
         /// </summary>
         public static Information? FromKibibits(decimal? kibibits)
@@ -1933,7 +1933,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kibibytes.
         /// </summary>
         public static Information? FromKibibytes(int? kibibytes)
@@ -1948,7 +1948,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kibibytes.
         /// </summary>
         public static Information? FromKibibytes(long? kibibytes)
@@ -1963,7 +1963,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Kibibytes of type decimal.
         /// </summary>
         public static Information? FromKibibytes(decimal? kibibytes)
@@ -1993,7 +1993,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kilobits.
         /// </summary>
         public static Information? FromKilobits(int? kilobits)
@@ -2008,7 +2008,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kilobits.
         /// </summary>
         public static Information? FromKilobits(long? kilobits)
@@ -2023,7 +2023,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Kilobits of type decimal.
         /// </summary>
         public static Information? FromKilobits(decimal? kilobits)
@@ -2053,7 +2053,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kilobytes.
         /// </summary>
         public static Information? FromKilobytes(int? kilobytes)
@@ -2068,7 +2068,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Kilobytes.
         /// </summary>
         public static Information? FromKilobytes(long? kilobytes)
@@ -2083,7 +2083,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Kilobytes of type decimal.
         /// </summary>
         public static Information? FromKilobytes(decimal? kilobytes)
@@ -2113,7 +2113,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Mebibits.
         /// </summary>
         public static Information? FromMebibits(int? mebibits)
@@ -2128,7 +2128,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Mebibits.
         /// </summary>
         public static Information? FromMebibits(long? mebibits)
@@ -2143,7 +2143,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Mebibits of type decimal.
         /// </summary>
         public static Information? FromMebibits(decimal? mebibits)
@@ -2173,7 +2173,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Mebibytes.
         /// </summary>
         public static Information? FromMebibytes(int? mebibytes)
@@ -2188,7 +2188,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Mebibytes.
         /// </summary>
         public static Information? FromMebibytes(long? mebibytes)
@@ -2203,7 +2203,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Mebibytes of type decimal.
         /// </summary>
         public static Information? FromMebibytes(decimal? mebibytes)
@@ -2233,7 +2233,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Megabits.
         /// </summary>
         public static Information? FromMegabits(int? megabits)
@@ -2248,7 +2248,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Megabits.
         /// </summary>
         public static Information? FromMegabits(long? megabits)
@@ -2263,7 +2263,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Megabits of type decimal.
         /// </summary>
         public static Information? FromMegabits(decimal? megabits)
@@ -2293,7 +2293,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Megabytes.
         /// </summary>
         public static Information? FromMegabytes(int? megabytes)
@@ -2308,7 +2308,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Megabytes.
         /// </summary>
         public static Information? FromMegabytes(long? megabytes)
@@ -2323,7 +2323,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Megabytes of type decimal.
         /// </summary>
         public static Information? FromMegabytes(decimal? megabytes)
@@ -2353,7 +2353,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Pebibits.
         /// </summary>
         public static Information? FromPebibits(int? pebibits)
@@ -2368,7 +2368,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Pebibits.
         /// </summary>
         public static Information? FromPebibits(long? pebibits)
@@ -2383,7 +2383,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Pebibits of type decimal.
         /// </summary>
         public static Information? FromPebibits(decimal? pebibits)
@@ -2413,7 +2413,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Pebibytes.
         /// </summary>
         public static Information? FromPebibytes(int? pebibytes)
@@ -2428,7 +2428,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Pebibytes.
         /// </summary>
         public static Information? FromPebibytes(long? pebibytes)
@@ -2443,7 +2443,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Pebibytes of type decimal.
         /// </summary>
         public static Information? FromPebibytes(decimal? pebibytes)
@@ -2473,7 +2473,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Petabits.
         /// </summary>
         public static Information? FromPetabits(int? petabits)
@@ -2488,7 +2488,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Petabits.
         /// </summary>
         public static Information? FromPetabits(long? petabits)
@@ -2503,7 +2503,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Petabits of type decimal.
         /// </summary>
         public static Information? FromPetabits(decimal? petabits)
@@ -2533,7 +2533,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Petabytes.
         /// </summary>
         public static Information? FromPetabytes(int? petabytes)
@@ -2548,7 +2548,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Petabytes.
         /// </summary>
         public static Information? FromPetabytes(long? petabytes)
@@ -2563,7 +2563,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Petabytes of type decimal.
         /// </summary>
         public static Information? FromPetabytes(decimal? petabytes)
@@ -2593,7 +2593,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Tebibits.
         /// </summary>
         public static Information? FromTebibits(int? tebibits)
@@ -2608,7 +2608,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Tebibits.
         /// </summary>
         public static Information? FromTebibits(long? tebibits)
@@ -2623,7 +2623,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Tebibits of type decimal.
         /// </summary>
         public static Information? FromTebibits(decimal? tebibits)
@@ -2653,7 +2653,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Tebibytes.
         /// </summary>
         public static Information? FromTebibytes(int? tebibytes)
@@ -2668,7 +2668,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Tebibytes.
         /// </summary>
         public static Information? FromTebibytes(long? tebibytes)
@@ -2683,7 +2683,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Tebibytes of type decimal.
         /// </summary>
         public static Information? FromTebibytes(decimal? tebibytes)
@@ -2713,7 +2713,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Terabits.
         /// </summary>
         public static Information? FromTerabits(int? terabits)
@@ -2728,7 +2728,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Terabits.
         /// </summary>
         public static Information? FromTerabits(long? terabits)
@@ -2743,7 +2743,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Terabits of type decimal.
         /// </summary>
         public static Information? FromTerabits(decimal? terabits)
@@ -2773,7 +2773,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Terabytes.
         /// </summary>
         public static Information? FromTerabytes(int? terabytes)
@@ -2788,7 +2788,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from nullable Terabytes.
         /// </summary>
         public static Information? FromTerabytes(long? terabytes)
@@ -2803,7 +2803,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Information from Terabytes of type decimal.
         /// </summary>
         public static Information? FromTerabytes(decimal? terabytes)

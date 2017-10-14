@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _squareMeterKelvinsPerKilowatt;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ThermalResistance() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.ThermalResistance;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static ThermalResistanceUnit BaseUnit
         {
             get { return ThermalResistanceUnit.SquareMeterKelvinPerKilowatt; }
@@ -186,7 +186,7 @@ namespace UnitsNet
             return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu*176.1121482159839);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(int hoursquarefeetdegreesfahrenheitperbtu)
@@ -194,7 +194,7 @@ namespace UnitsNet
             return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu*176.1121482159839);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(long hoursquarefeetdegreesfahrenheitperbtu)
@@ -202,14 +202,14 @@ namespace UnitsNet
             return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu*176.1121482159839);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu of type decimal.
         /// </summary>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(decimal hoursquarefeetdegreesfahrenheitperbtu)
         {
-	        return new ThermalResistance(Convert.ToDouble(hoursquarefeetdegreesfahrenheitperbtu)*176.1121482159839);
+            return new ThermalResistance(Convert.ToDouble(hoursquarefeetdegreesfahrenheitperbtu)*176.1121482159839);
         }
 #endif
 
@@ -221,7 +221,7 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie*0.0859779507590433);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(int squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -229,7 +229,7 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie*0.0859779507590433);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(long squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -237,14 +237,14 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie*0.0859779507590433);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie of type decimal.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(decimal squarecentimeterhourdegreescelsiusperkilocalorie)
         {
-	        return new ThermalResistance(Convert.ToDouble(squarecentimeterhourdegreescelsiusperkilocalorie)*0.0859779507590433);
+            return new ThermalResistance(Convert.ToDouble(squarecentimeterhourdegreescelsiusperkilocalorie)*0.0859779507590433);
         }
 #endif
 
@@ -256,7 +256,7 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterkelvinsperwatt*0.0999964777570357);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterKelvinsPerWatt.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(int squarecentimeterkelvinsperwatt)
@@ -264,7 +264,7 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterkelvinsperwatt*0.0999964777570357);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterKelvinsPerWatt.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(long squarecentimeterkelvinsperwatt)
@@ -272,14 +272,14 @@ namespace UnitsNet
             return new ThermalResistance(squarecentimeterkelvinsperwatt*0.0999964777570357);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareCentimeterKelvinsPerWatt of type decimal.
         /// </summary>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(decimal squarecentimeterkelvinsperwatt)
         {
-	        return new ThermalResistance(Convert.ToDouble(squarecentimeterkelvinsperwatt)*0.0999964777570357);
+            return new ThermalResistance(Convert.ToDouble(squarecentimeterkelvinsperwatt)*0.0999964777570357);
         }
 #endif
 
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterdegreescelsiusperwatt*1000.088056074108);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(int squaremeterdegreescelsiusperwatt)
@@ -299,7 +299,7 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterdegreescelsiusperwatt*1000.088056074108);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(long squaremeterdegreescelsiusperwatt)
@@ -307,14 +307,14 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterdegreescelsiusperwatt*1000.088056074108);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterDegreesCelsiusPerWatt of type decimal.
         /// </summary>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(decimal squaremeterdegreescelsiusperwatt)
         {
-	        return new ThermalResistance(Convert.ToDouble(squaremeterdegreescelsiusperwatt)*1000.088056074108);
+            return new ThermalResistance(Convert.ToDouble(squaremeterdegreescelsiusperwatt)*1000.088056074108);
         }
 #endif
 
@@ -326,7 +326,7 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterkelvinsperkilowatt);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterKelvinsPerKilowatt.
         /// </summary>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(int squaremeterkelvinsperkilowatt)
@@ -334,7 +334,7 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterkelvinsperkilowatt);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterKelvinsPerKilowatt.
         /// </summary>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(long squaremeterkelvinsperkilowatt)
@@ -342,14 +342,14 @@ namespace UnitsNet
             return new ThermalResistance(squaremeterkelvinsperkilowatt);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ThermalResistance from SquareMeterKelvinsPerKilowatt of type decimal.
         /// </summary>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(decimal squaremeterkelvinsperkilowatt)
         {
-	        return new ThermalResistance(Convert.ToDouble(squaremeterkelvinsperkilowatt));
+            return new ThermalResistance(Convert.ToDouble(squaremeterkelvinsperkilowatt));
         }
 #endif
 
@@ -370,7 +370,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(int? hoursquarefeetdegreesfahrenheitperbtu)
@@ -385,7 +385,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(long? hoursquarefeetdegreesfahrenheitperbtu)
@@ -400,7 +400,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu of type decimal.
         /// </summary>
         public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(decimal? hoursquarefeetdegreesfahrenheitperbtu)
@@ -430,7 +430,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(int? squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -445,7 +445,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(long? squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -460,7 +460,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie of type decimal.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(decimal? squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -490,7 +490,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterKelvinsPerWatt.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(int? squarecentimeterkelvinsperwatt)
@@ -505,7 +505,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterKelvinsPerWatt.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(long? squarecentimeterkelvinsperwatt)
@@ -520,7 +520,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from SquareCentimeterKelvinsPerWatt of type decimal.
         /// </summary>
         public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(decimal? squarecentimeterkelvinsperwatt)
@@ -550,7 +550,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
         public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(int? squaremeterdegreescelsiusperwatt)
@@ -565,7 +565,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
         public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(long? squaremeterdegreescelsiusperwatt)
@@ -580,7 +580,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from SquareMeterDegreesCelsiusPerWatt of type decimal.
         /// </summary>
         public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(decimal? squaremeterdegreescelsiusperwatt)
@@ -610,7 +610,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterKelvinsPerKilowatt.
         /// </summary>
         public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(int? squaremeterkelvinsperkilowatt)
@@ -625,7 +625,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterKelvinsPerKilowatt.
         /// </summary>
         public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(long? squaremeterkelvinsperkilowatt)
@@ -640,7 +640,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ThermalResistance from SquareMeterKelvinsPerKilowatt of type decimal.
         /// </summary>
         public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(decimal? squaremeterkelvinsperkilowatt)

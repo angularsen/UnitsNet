@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _decibelVolts;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public AmplitudeRatio() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.AmplitudeRatio;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static AmplitudeRatioUnit BaseUnit
         {
             get { return AmplitudeRatioUnit.DecibelVolt; }
@@ -178,7 +178,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmicrovolts - 120);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMicrovolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelMicrovolts(int decibelmicrovolts)
@@ -186,7 +186,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmicrovolts - 120);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMicrovolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelMicrovolts(long decibelmicrovolts)
@@ -194,14 +194,14 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmicrovolts - 120);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMicrovolts of type decimal.
         /// </summary>
         public static AmplitudeRatio FromDecibelMicrovolts(decimal decibelmicrovolts)
         {
-	        return new AmplitudeRatio(Convert.ToDouble(decibelmicrovolts) - 120);
+            return new AmplitudeRatio(Convert.ToDouble(decibelmicrovolts) - 120);
         }
 #endif
 
@@ -213,7 +213,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmillivolts - 60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMillivolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelMillivolts(int decibelmillivolts)
@@ -221,7 +221,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmillivolts - 60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMillivolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelMillivolts(long decibelmillivolts)
@@ -229,14 +229,14 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelmillivolts - 60);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelMillivolts of type decimal.
         /// </summary>
         public static AmplitudeRatio FromDecibelMillivolts(decimal decibelmillivolts)
         {
-	        return new AmplitudeRatio(Convert.ToDouble(decibelmillivolts) - 60);
+            return new AmplitudeRatio(Convert.ToDouble(decibelmillivolts) - 60);
         }
 #endif
 
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelsunloaded - 2.218487499);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelsUnloaded.
         /// </summary>
         public static AmplitudeRatio FromDecibelsUnloaded(int decibelsunloaded)
@@ -256,7 +256,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelsunloaded - 2.218487499);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelsUnloaded.
         /// </summary>
         public static AmplitudeRatio FromDecibelsUnloaded(long decibelsunloaded)
@@ -264,14 +264,14 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelsunloaded - 2.218487499);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelsUnloaded of type decimal.
         /// </summary>
         public static AmplitudeRatio FromDecibelsUnloaded(decimal decibelsunloaded)
         {
-	        return new AmplitudeRatio(Convert.ToDouble(decibelsunloaded) - 2.218487499);
+            return new AmplitudeRatio(Convert.ToDouble(decibelsunloaded) - 2.218487499);
         }
 #endif
 
@@ -283,7 +283,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelvolts);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelVolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelVolts(int decibelvolts)
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelvolts);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelVolts.
         /// </summary>
         public static AmplitudeRatio FromDecibelVolts(long decibelvolts)
@@ -299,14 +299,14 @@ namespace UnitsNet
             return new AmplitudeRatio(decibelvolts);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get AmplitudeRatio from DecibelVolts of type decimal.
         /// </summary>
         public static AmplitudeRatio FromDecibelVolts(decimal decibelvolts)
         {
-	        return new AmplitudeRatio(Convert.ToDouble(decibelvolts));
+            return new AmplitudeRatio(Convert.ToDouble(decibelvolts));
         }
 #endif
 
@@ -327,7 +327,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMicrovolts(int? decibelmicrovolts)
@@ -342,7 +342,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMicrovolts(long? decibelmicrovolts)
@@ -357,7 +357,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from DecibelMicrovolts of type decimal.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMicrovolts(decimal? decibelmicrovolts)
@@ -387,7 +387,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMillivolts(int? decibelmillivolts)
@@ -402,7 +402,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMillivolts(long? decibelmillivolts)
@@ -417,7 +417,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from DecibelMillivolts of type decimal.
         /// </summary>
         public static AmplitudeRatio? FromDecibelMillivolts(decimal? decibelmillivolts)
@@ -447,7 +447,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
         /// </summary>
         public static AmplitudeRatio? FromDecibelsUnloaded(int? decibelsunloaded)
@@ -462,7 +462,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
         /// </summary>
         public static AmplitudeRatio? FromDecibelsUnloaded(long? decibelsunloaded)
@@ -477,7 +477,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from DecibelsUnloaded of type decimal.
         /// </summary>
         public static AmplitudeRatio? FromDecibelsUnloaded(decimal? decibelsunloaded)
@@ -507,7 +507,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelVolts(int? decibelvolts)
@@ -522,7 +522,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
         /// </summary>
         public static AmplitudeRatio? FromDecibelVolts(long? decibelvolts)
@@ -537,7 +537,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable AmplitudeRatio from DecibelVolts of type decimal.
         /// </summary>
         public static AmplitudeRatio? FromDecibelVolts(decimal? decibelvolts)

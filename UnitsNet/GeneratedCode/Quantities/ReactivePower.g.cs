@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _voltamperesReactive;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ReactivePower() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.ReactivePower;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static ReactivePowerUnit BaseUnit
         {
             get { return ReactivePowerUnit.VoltampereReactive; }
@@ -170,7 +170,7 @@ namespace UnitsNet
             return new ReactivePower((kilovoltamperesreactive) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
         /// </summary>
         public static ReactivePower FromKilovoltamperesReactive(int kilovoltamperesreactive)
@@ -178,7 +178,7 @@ namespace UnitsNet
             return new ReactivePower((kilovoltamperesreactive) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
         /// </summary>
         public static ReactivePower FromKilovoltamperesReactive(long kilovoltamperesreactive)
@@ -186,14 +186,14 @@ namespace UnitsNet
             return new ReactivePower((kilovoltamperesreactive) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower FromKilovoltamperesReactive(decimal kilovoltamperesreactive)
         {
-	        return new ReactivePower((Convert.ToDouble(kilovoltamperesreactive)) * 1e3d);
+            return new ReactivePower((Convert.ToDouble(kilovoltamperesreactive)) * 1e3d);
         }
 #endif
 
@@ -205,7 +205,7 @@ namespace UnitsNet
             return new ReactivePower((megavoltamperesreactive) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive.
         /// </summary>
         public static ReactivePower FromMegavoltamperesReactive(int megavoltamperesreactive)
@@ -213,7 +213,7 @@ namespace UnitsNet
             return new ReactivePower((megavoltamperesreactive) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive.
         /// </summary>
         public static ReactivePower FromMegavoltamperesReactive(long megavoltamperesreactive)
@@ -221,14 +221,14 @@ namespace UnitsNet
             return new ReactivePower((megavoltamperesreactive) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower FromMegavoltamperesReactive(decimal megavoltamperesreactive)
         {
-	        return new ReactivePower((Convert.ToDouble(megavoltamperesreactive)) * 1e6d);
+            return new ReactivePower((Convert.ToDouble(megavoltamperesreactive)) * 1e6d);
         }
 #endif
 
@@ -240,7 +240,7 @@ namespace UnitsNet
             return new ReactivePower(voltamperesreactive);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from VoltamperesReactive.
         /// </summary>
         public static ReactivePower FromVoltamperesReactive(int voltamperesreactive)
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new ReactivePower(voltamperesreactive);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from VoltamperesReactive.
         /// </summary>
         public static ReactivePower FromVoltamperesReactive(long voltamperesreactive)
@@ -256,14 +256,14 @@ namespace UnitsNet
             return new ReactivePower(voltamperesreactive);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ReactivePower from VoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower FromVoltamperesReactive(decimal voltamperesreactive)
         {
-	        return new ReactivePower(Convert.ToDouble(voltamperesreactive));
+            return new ReactivePower(Convert.ToDouble(voltamperesreactive));
         }
 #endif
 
@@ -284,7 +284,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable KilovoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromKilovoltamperesReactive(int? kilovoltamperesreactive)
@@ -299,7 +299,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable KilovoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromKilovoltamperesReactive(long? kilovoltamperesreactive)
@@ -314,7 +314,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from KilovoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower? FromKilovoltamperesReactive(decimal? kilovoltamperesreactive)
@@ -344,7 +344,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable MegavoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromMegavoltamperesReactive(int? megavoltamperesreactive)
@@ -359,7 +359,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable MegavoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromMegavoltamperesReactive(long? megavoltamperesreactive)
@@ -374,7 +374,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from MegavoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower? FromMegavoltamperesReactive(decimal? megavoltamperesreactive)
@@ -404,7 +404,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable VoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromVoltamperesReactive(int? voltamperesreactive)
@@ -419,7 +419,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from nullable VoltamperesReactive.
         /// </summary>
         public static ReactivePower? FromVoltamperesReactive(long? voltamperesreactive)
@@ -434,7 +434,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ReactivePower from VoltamperesReactive of type decimal.
         /// </summary>
         public static ReactivePower? FromVoltamperesReactive(decimal? voltamperesreactive)

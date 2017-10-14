@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _squareMeters;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Area() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Area;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static AreaUnit BaseUnit
         {
             get { return AreaUnit.SquareMeter; }
@@ -242,7 +242,7 @@ namespace UnitsNet
             return new Area(acres*4046.85642);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from Acres.
         /// </summary>
         public static Area FromAcres(int acres)
@@ -250,7 +250,7 @@ namespace UnitsNet
             return new Area(acres*4046.85642);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from Acres.
         /// </summary>
         public static Area FromAcres(long acres)
@@ -258,14 +258,14 @@ namespace UnitsNet
             return new Area(acres*4046.85642);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from Acres of type decimal.
         /// </summary>
         public static Area FromAcres(decimal acres)
         {
-	        return new Area(Convert.ToDouble(acres)*4046.85642);
+            return new Area(Convert.ToDouble(acres)*4046.85642);
         }
 #endif
 
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new Area(hectares*1e4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from Hectares.
         /// </summary>
         public static Area FromHectares(int hectares)
@@ -285,7 +285,7 @@ namespace UnitsNet
             return new Area(hectares*1e4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from Hectares.
         /// </summary>
         public static Area FromHectares(long hectares)
@@ -293,14 +293,14 @@ namespace UnitsNet
             return new Area(hectares*1e4);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from Hectares of type decimal.
         /// </summary>
         public static Area FromHectares(decimal hectares)
         {
-	        return new Area(Convert.ToDouble(hectares)*1e4);
+            return new Area(Convert.ToDouble(hectares)*1e4);
         }
 #endif
 
@@ -312,7 +312,7 @@ namespace UnitsNet
             return new Area(squarecentimeters*1e-4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareCentimeters.
         /// </summary>
         public static Area FromSquareCentimeters(int squarecentimeters)
@@ -320,7 +320,7 @@ namespace UnitsNet
             return new Area(squarecentimeters*1e-4);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareCentimeters.
         /// </summary>
         public static Area FromSquareCentimeters(long squarecentimeters)
@@ -328,14 +328,14 @@ namespace UnitsNet
             return new Area(squarecentimeters*1e-4);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareCentimeters of type decimal.
         /// </summary>
         public static Area FromSquareCentimeters(decimal squarecentimeters)
         {
-	        return new Area(Convert.ToDouble(squarecentimeters)*1e-4);
+            return new Area(Convert.ToDouble(squarecentimeters)*1e-4);
         }
 #endif
 
@@ -347,7 +347,7 @@ namespace UnitsNet
             return new Area(squaredecimeters*1e-2);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareDecimeters.
         /// </summary>
         public static Area FromSquareDecimeters(int squaredecimeters)
@@ -355,7 +355,7 @@ namespace UnitsNet
             return new Area(squaredecimeters*1e-2);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareDecimeters.
         /// </summary>
         public static Area FromSquareDecimeters(long squaredecimeters)
@@ -363,14 +363,14 @@ namespace UnitsNet
             return new Area(squaredecimeters*1e-2);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareDecimeters of type decimal.
         /// </summary>
         public static Area FromSquareDecimeters(decimal squaredecimeters)
         {
-	        return new Area(Convert.ToDouble(squaredecimeters)*1e-2);
+            return new Area(Convert.ToDouble(squaredecimeters)*1e-2);
         }
 #endif
 
@@ -382,7 +382,7 @@ namespace UnitsNet
             return new Area(squarefeet*0.092903);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareFeet.
         /// </summary>
         public static Area FromSquareFeet(int squarefeet)
@@ -390,7 +390,7 @@ namespace UnitsNet
             return new Area(squarefeet*0.092903);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareFeet.
         /// </summary>
         public static Area FromSquareFeet(long squarefeet)
@@ -398,14 +398,14 @@ namespace UnitsNet
             return new Area(squarefeet*0.092903);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareFeet of type decimal.
         /// </summary>
         public static Area FromSquareFeet(decimal squarefeet)
         {
-	        return new Area(Convert.ToDouble(squarefeet)*0.092903);
+            return new Area(Convert.ToDouble(squarefeet)*0.092903);
         }
 #endif
 
@@ -417,7 +417,7 @@ namespace UnitsNet
             return new Area(squareinches*0.00064516);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareInches.
         /// </summary>
         public static Area FromSquareInches(int squareinches)
@@ -425,7 +425,7 @@ namespace UnitsNet
             return new Area(squareinches*0.00064516);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareInches.
         /// </summary>
         public static Area FromSquareInches(long squareinches)
@@ -433,14 +433,14 @@ namespace UnitsNet
             return new Area(squareinches*0.00064516);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareInches of type decimal.
         /// </summary>
         public static Area FromSquareInches(decimal squareinches)
         {
-	        return new Area(Convert.ToDouble(squareinches)*0.00064516);
+            return new Area(Convert.ToDouble(squareinches)*0.00064516);
         }
 #endif
 
@@ -452,7 +452,7 @@ namespace UnitsNet
             return new Area(squarekilometers*1e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareKilometers.
         /// </summary>
         public static Area FromSquareKilometers(int squarekilometers)
@@ -460,7 +460,7 @@ namespace UnitsNet
             return new Area(squarekilometers*1e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareKilometers.
         /// </summary>
         public static Area FromSquareKilometers(long squarekilometers)
@@ -468,14 +468,14 @@ namespace UnitsNet
             return new Area(squarekilometers*1e6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareKilometers of type decimal.
         /// </summary>
         public static Area FromSquareKilometers(decimal squarekilometers)
         {
-	        return new Area(Convert.ToDouble(squarekilometers)*1e6);
+            return new Area(Convert.ToDouble(squarekilometers)*1e6);
         }
 #endif
 
@@ -487,7 +487,7 @@ namespace UnitsNet
             return new Area(squaremeters);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMeters.
         /// </summary>
         public static Area FromSquareMeters(int squaremeters)
@@ -495,7 +495,7 @@ namespace UnitsNet
             return new Area(squaremeters);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMeters.
         /// </summary>
         public static Area FromSquareMeters(long squaremeters)
@@ -503,14 +503,14 @@ namespace UnitsNet
             return new Area(squaremeters);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMeters of type decimal.
         /// </summary>
         public static Area FromSquareMeters(decimal squaremeters)
         {
-	        return new Area(Convert.ToDouble(squaremeters));
+            return new Area(Convert.ToDouble(squaremeters));
         }
 #endif
 
@@ -522,7 +522,7 @@ namespace UnitsNet
             return new Area(squaremicrometers*1e-12);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMicrometers.
         /// </summary>
         public static Area FromSquareMicrometers(int squaremicrometers)
@@ -530,7 +530,7 @@ namespace UnitsNet
             return new Area(squaremicrometers*1e-12);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMicrometers.
         /// </summary>
         public static Area FromSquareMicrometers(long squaremicrometers)
@@ -538,14 +538,14 @@ namespace UnitsNet
             return new Area(squaremicrometers*1e-12);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMicrometers of type decimal.
         /// </summary>
         public static Area FromSquareMicrometers(decimal squaremicrometers)
         {
-	        return new Area(Convert.ToDouble(squaremicrometers)*1e-12);
+            return new Area(Convert.ToDouble(squaremicrometers)*1e-12);
         }
 #endif
 
@@ -557,7 +557,7 @@ namespace UnitsNet
             return new Area(squaremiles*2.59e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMiles.
         /// </summary>
         public static Area FromSquareMiles(int squaremiles)
@@ -565,7 +565,7 @@ namespace UnitsNet
             return new Area(squaremiles*2.59e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMiles.
         /// </summary>
         public static Area FromSquareMiles(long squaremiles)
@@ -573,14 +573,14 @@ namespace UnitsNet
             return new Area(squaremiles*2.59e6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMiles of type decimal.
         /// </summary>
         public static Area FromSquareMiles(decimal squaremiles)
         {
-	        return new Area(Convert.ToDouble(squaremiles)*2.59e6);
+            return new Area(Convert.ToDouble(squaremiles)*2.59e6);
         }
 #endif
 
@@ -592,7 +592,7 @@ namespace UnitsNet
             return new Area(squaremillimeters*1e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMillimeters.
         /// </summary>
         public static Area FromSquareMillimeters(int squaremillimeters)
@@ -600,7 +600,7 @@ namespace UnitsNet
             return new Area(squaremillimeters*1e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMillimeters.
         /// </summary>
         public static Area FromSquareMillimeters(long squaremillimeters)
@@ -608,14 +608,14 @@ namespace UnitsNet
             return new Area(squaremillimeters*1e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareMillimeters of type decimal.
         /// </summary>
         public static Area FromSquareMillimeters(decimal squaremillimeters)
         {
-	        return new Area(Convert.ToDouble(squaremillimeters)*1e-6);
+            return new Area(Convert.ToDouble(squaremillimeters)*1e-6);
         }
 #endif
 
@@ -627,7 +627,7 @@ namespace UnitsNet
             return new Area(squareyards*0.836127);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareYards.
         /// </summary>
         public static Area FromSquareYards(int squareyards)
@@ -635,7 +635,7 @@ namespace UnitsNet
             return new Area(squareyards*0.836127);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareYards.
         /// </summary>
         public static Area FromSquareYards(long squareyards)
@@ -643,14 +643,14 @@ namespace UnitsNet
             return new Area(squareyards*0.836127);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Area from SquareYards of type decimal.
         /// </summary>
         public static Area FromSquareYards(decimal squareyards)
         {
-	        return new Area(Convert.ToDouble(squareyards)*0.836127);
+            return new Area(Convert.ToDouble(squareyards)*0.836127);
         }
 #endif
 
@@ -671,7 +671,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable Acres.
         /// </summary>
         public static Area? FromAcres(int? acres)
@@ -686,7 +686,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable Acres.
         /// </summary>
         public static Area? FromAcres(long? acres)
@@ -701,7 +701,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from Acres of type decimal.
         /// </summary>
         public static Area? FromAcres(decimal? acres)
@@ -731,7 +731,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable Hectares.
         /// </summary>
         public static Area? FromHectares(int? hectares)
@@ -746,7 +746,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable Hectares.
         /// </summary>
         public static Area? FromHectares(long? hectares)
@@ -761,7 +761,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from Hectares of type decimal.
         /// </summary>
         public static Area? FromHectares(decimal? hectares)
@@ -791,7 +791,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareCentimeters.
         /// </summary>
         public static Area? FromSquareCentimeters(int? squarecentimeters)
@@ -806,7 +806,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareCentimeters.
         /// </summary>
         public static Area? FromSquareCentimeters(long? squarecentimeters)
@@ -821,7 +821,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareCentimeters of type decimal.
         /// </summary>
         public static Area? FromSquareCentimeters(decimal? squarecentimeters)
@@ -851,7 +851,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareDecimeters.
         /// </summary>
         public static Area? FromSquareDecimeters(int? squaredecimeters)
@@ -866,7 +866,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareDecimeters.
         /// </summary>
         public static Area? FromSquareDecimeters(long? squaredecimeters)
@@ -881,7 +881,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareDecimeters of type decimal.
         /// </summary>
         public static Area? FromSquareDecimeters(decimal? squaredecimeters)
@@ -911,7 +911,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareFeet.
         /// </summary>
         public static Area? FromSquareFeet(int? squarefeet)
@@ -926,7 +926,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareFeet.
         /// </summary>
         public static Area? FromSquareFeet(long? squarefeet)
@@ -941,7 +941,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareFeet of type decimal.
         /// </summary>
         public static Area? FromSquareFeet(decimal? squarefeet)
@@ -971,7 +971,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareInches.
         /// </summary>
         public static Area? FromSquareInches(int? squareinches)
@@ -986,7 +986,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareInches.
         /// </summary>
         public static Area? FromSquareInches(long? squareinches)
@@ -1001,7 +1001,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareInches of type decimal.
         /// </summary>
         public static Area? FromSquareInches(decimal? squareinches)
@@ -1031,7 +1031,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareKilometers.
         /// </summary>
         public static Area? FromSquareKilometers(int? squarekilometers)
@@ -1046,7 +1046,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareKilometers.
         /// </summary>
         public static Area? FromSquareKilometers(long? squarekilometers)
@@ -1061,7 +1061,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareKilometers of type decimal.
         /// </summary>
         public static Area? FromSquareKilometers(decimal? squarekilometers)
@@ -1091,7 +1091,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMeters.
         /// </summary>
         public static Area? FromSquareMeters(int? squaremeters)
@@ -1106,7 +1106,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMeters.
         /// </summary>
         public static Area? FromSquareMeters(long? squaremeters)
@@ -1121,7 +1121,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareMeters of type decimal.
         /// </summary>
         public static Area? FromSquareMeters(decimal? squaremeters)
@@ -1151,7 +1151,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMicrometers.
         /// </summary>
         public static Area? FromSquareMicrometers(int? squaremicrometers)
@@ -1166,7 +1166,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMicrometers.
         /// </summary>
         public static Area? FromSquareMicrometers(long? squaremicrometers)
@@ -1181,7 +1181,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareMicrometers of type decimal.
         /// </summary>
         public static Area? FromSquareMicrometers(decimal? squaremicrometers)
@@ -1211,7 +1211,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMiles.
         /// </summary>
         public static Area? FromSquareMiles(int? squaremiles)
@@ -1226,7 +1226,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMiles.
         /// </summary>
         public static Area? FromSquareMiles(long? squaremiles)
@@ -1241,7 +1241,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareMiles of type decimal.
         /// </summary>
         public static Area? FromSquareMiles(decimal? squaremiles)
@@ -1271,7 +1271,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMillimeters.
         /// </summary>
         public static Area? FromSquareMillimeters(int? squaremillimeters)
@@ -1286,7 +1286,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareMillimeters.
         /// </summary>
         public static Area? FromSquareMillimeters(long? squaremillimeters)
@@ -1301,7 +1301,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareMillimeters of type decimal.
         /// </summary>
         public static Area? FromSquareMillimeters(decimal? squaremillimeters)
@@ -1331,7 +1331,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareYards.
         /// </summary>
         public static Area? FromSquareYards(int? squareyards)
@@ -1346,7 +1346,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from nullable SquareYards.
         /// </summary>
         public static Area? FromSquareYards(long? squareyards)
@@ -1361,7 +1361,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Area from SquareYards of type decimal.
         /// </summary>
         public static Area? FromSquareYards(decimal? squareyards)

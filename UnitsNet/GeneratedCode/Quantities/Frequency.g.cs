@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _hertz;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Frequency() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Frequency;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static FrequencyUnit BaseUnit
         {
             get { return FrequencyUnit.Hertz; }
@@ -210,7 +210,7 @@ namespace UnitsNet
             return new Frequency(cyclesperhour/3600);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>
         public static Frequency FromCyclesPerHour(int cyclesperhour)
@@ -218,7 +218,7 @@ namespace UnitsNet
             return new Frequency(cyclesperhour/3600);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>
         public static Frequency FromCyclesPerHour(long cyclesperhour)
@@ -226,14 +226,14 @@ namespace UnitsNet
             return new Frequency(cyclesperhour/3600);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerHour of type decimal.
         /// </summary>
         public static Frequency FromCyclesPerHour(decimal cyclesperhour)
         {
-	        return new Frequency(Convert.ToDouble(cyclesperhour)/3600);
+            return new Frequency(Convert.ToDouble(cyclesperhour)/3600);
         }
 #endif
 
@@ -245,7 +245,7 @@ namespace UnitsNet
             return new Frequency(cyclesperminute/60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerMinute.
         /// </summary>
         public static Frequency FromCyclesPerMinute(int cyclesperminute)
@@ -253,7 +253,7 @@ namespace UnitsNet
             return new Frequency(cyclesperminute/60);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerMinute.
         /// </summary>
         public static Frequency FromCyclesPerMinute(long cyclesperminute)
@@ -261,14 +261,14 @@ namespace UnitsNet
             return new Frequency(cyclesperminute/60);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from CyclesPerMinute of type decimal.
         /// </summary>
         public static Frequency FromCyclesPerMinute(decimal cyclesperminute)
         {
-	        return new Frequency(Convert.ToDouble(cyclesperminute)/60);
+            return new Frequency(Convert.ToDouble(cyclesperminute)/60);
         }
 #endif
 
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new Frequency((gigahertz) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Gigahertz.
         /// </summary>
         public static Frequency FromGigahertz(int gigahertz)
@@ -288,7 +288,7 @@ namespace UnitsNet
             return new Frequency((gigahertz) * 1e9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Gigahertz.
         /// </summary>
         public static Frequency FromGigahertz(long gigahertz)
@@ -296,14 +296,14 @@ namespace UnitsNet
             return new Frequency((gigahertz) * 1e9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Gigahertz of type decimal.
         /// </summary>
         public static Frequency FromGigahertz(decimal gigahertz)
         {
-	        return new Frequency((Convert.ToDouble(gigahertz)) * 1e9d);
+            return new Frequency((Convert.ToDouble(gigahertz)) * 1e9d);
         }
 #endif
 
@@ -315,7 +315,7 @@ namespace UnitsNet
             return new Frequency(hertz);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Hertz.
         /// </summary>
         public static Frequency FromHertz(int hertz)
@@ -323,7 +323,7 @@ namespace UnitsNet
             return new Frequency(hertz);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Hertz.
         /// </summary>
         public static Frequency FromHertz(long hertz)
@@ -331,14 +331,14 @@ namespace UnitsNet
             return new Frequency(hertz);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Hertz of type decimal.
         /// </summary>
         public static Frequency FromHertz(decimal hertz)
         {
-	        return new Frequency(Convert.ToDouble(hertz));
+            return new Frequency(Convert.ToDouble(hertz));
         }
 #endif
 
@@ -350,7 +350,7 @@ namespace UnitsNet
             return new Frequency((kilohertz) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Kilohertz.
         /// </summary>
         public static Frequency FromKilohertz(int kilohertz)
@@ -358,7 +358,7 @@ namespace UnitsNet
             return new Frequency((kilohertz) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Kilohertz.
         /// </summary>
         public static Frequency FromKilohertz(long kilohertz)
@@ -366,14 +366,14 @@ namespace UnitsNet
             return new Frequency((kilohertz) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Kilohertz of type decimal.
         /// </summary>
         public static Frequency FromKilohertz(decimal kilohertz)
         {
-	        return new Frequency((Convert.ToDouble(kilohertz)) * 1e3d);
+            return new Frequency((Convert.ToDouble(kilohertz)) * 1e3d);
         }
 #endif
 
@@ -385,7 +385,7 @@ namespace UnitsNet
             return new Frequency((megahertz) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Megahertz.
         /// </summary>
         public static Frequency FromMegahertz(int megahertz)
@@ -393,7 +393,7 @@ namespace UnitsNet
             return new Frequency((megahertz) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Megahertz.
         /// </summary>
         public static Frequency FromMegahertz(long megahertz)
@@ -401,14 +401,14 @@ namespace UnitsNet
             return new Frequency((megahertz) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Megahertz of type decimal.
         /// </summary>
         public static Frequency FromMegahertz(decimal megahertz)
         {
-	        return new Frequency((Convert.ToDouble(megahertz)) * 1e6d);
+            return new Frequency((Convert.ToDouble(megahertz)) * 1e6d);
         }
 #endif
 
@@ -420,7 +420,7 @@ namespace UnitsNet
             return new Frequency(radianspersecond/6.2831853072);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from RadiansPerSecond.
         /// </summary>
         public static Frequency FromRadiansPerSecond(int radianspersecond)
@@ -428,7 +428,7 @@ namespace UnitsNet
             return new Frequency(radianspersecond/6.2831853072);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from RadiansPerSecond.
         /// </summary>
         public static Frequency FromRadiansPerSecond(long radianspersecond)
@@ -436,14 +436,14 @@ namespace UnitsNet
             return new Frequency(radianspersecond/6.2831853072);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from RadiansPerSecond of type decimal.
         /// </summary>
         public static Frequency FromRadiansPerSecond(decimal radianspersecond)
         {
-	        return new Frequency(Convert.ToDouble(radianspersecond)/6.2831853072);
+            return new Frequency(Convert.ToDouble(radianspersecond)/6.2831853072);
         }
 #endif
 
@@ -455,7 +455,7 @@ namespace UnitsNet
             return new Frequency((terahertz) * 1e12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Terahertz.
         /// </summary>
         public static Frequency FromTerahertz(int terahertz)
@@ -463,7 +463,7 @@ namespace UnitsNet
             return new Frequency((terahertz) * 1e12d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Terahertz.
         /// </summary>
         public static Frequency FromTerahertz(long terahertz)
@@ -471,14 +471,14 @@ namespace UnitsNet
             return new Frequency((terahertz) * 1e12d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Frequency from Terahertz of type decimal.
         /// </summary>
         public static Frequency FromTerahertz(decimal terahertz)
         {
-	        return new Frequency((Convert.ToDouble(terahertz)) * 1e12d);
+            return new Frequency((Convert.ToDouble(terahertz)) * 1e12d);
         }
 #endif
 
@@ -499,7 +499,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerHour.
         /// </summary>
         public static Frequency? FromCyclesPerHour(int? cyclesperhour)
@@ -514,7 +514,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerHour.
         /// </summary>
         public static Frequency? FromCyclesPerHour(long? cyclesperhour)
@@ -529,7 +529,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from CyclesPerHour of type decimal.
         /// </summary>
         public static Frequency? FromCyclesPerHour(decimal? cyclesperhour)
@@ -559,7 +559,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerMinute.
         /// </summary>
         public static Frequency? FromCyclesPerMinute(int? cyclesperminute)
@@ -574,7 +574,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerMinute.
         /// </summary>
         public static Frequency? FromCyclesPerMinute(long? cyclesperminute)
@@ -589,7 +589,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from CyclesPerMinute of type decimal.
         /// </summary>
         public static Frequency? FromCyclesPerMinute(decimal? cyclesperminute)
@@ -619,7 +619,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Gigahertz.
         /// </summary>
         public static Frequency? FromGigahertz(int? gigahertz)
@@ -634,7 +634,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Gigahertz.
         /// </summary>
         public static Frequency? FromGigahertz(long? gigahertz)
@@ -649,7 +649,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from Gigahertz of type decimal.
         /// </summary>
         public static Frequency? FromGigahertz(decimal? gigahertz)
@@ -679,7 +679,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Hertz.
         /// </summary>
         public static Frequency? FromHertz(int? hertz)
@@ -694,7 +694,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Hertz.
         /// </summary>
         public static Frequency? FromHertz(long? hertz)
@@ -709,7 +709,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from Hertz of type decimal.
         /// </summary>
         public static Frequency? FromHertz(decimal? hertz)
@@ -739,7 +739,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Kilohertz.
         /// </summary>
         public static Frequency? FromKilohertz(int? kilohertz)
@@ -754,7 +754,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Kilohertz.
         /// </summary>
         public static Frequency? FromKilohertz(long? kilohertz)
@@ -769,7 +769,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from Kilohertz of type decimal.
         /// </summary>
         public static Frequency? FromKilohertz(decimal? kilohertz)
@@ -799,7 +799,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Megahertz.
         /// </summary>
         public static Frequency? FromMegahertz(int? megahertz)
@@ -814,7 +814,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Megahertz.
         /// </summary>
         public static Frequency? FromMegahertz(long? megahertz)
@@ -829,7 +829,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from Megahertz of type decimal.
         /// </summary>
         public static Frequency? FromMegahertz(decimal? megahertz)
@@ -859,7 +859,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable RadiansPerSecond.
         /// </summary>
         public static Frequency? FromRadiansPerSecond(int? radianspersecond)
@@ -874,7 +874,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable RadiansPerSecond.
         /// </summary>
         public static Frequency? FromRadiansPerSecond(long? radianspersecond)
@@ -889,7 +889,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from RadiansPerSecond of type decimal.
         /// </summary>
         public static Frequency? FromRadiansPerSecond(decimal? radianspersecond)
@@ -919,7 +919,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Terahertz.
         /// </summary>
         public static Frequency? FromTerahertz(int? terahertz)
@@ -934,7 +934,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from nullable Terahertz.
         /// </summary>
         public static Frequency? FromTerahertz(long? terahertz)
@@ -949,7 +949,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Frequency from Terahertz of type decimal.
         /// </summary>
         public static Frequency? FromTerahertz(decimal? terahertz)

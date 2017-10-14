@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _cubicMetersPerSecond;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Flow() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Flow;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static FlowUnit BaseUnit
         {
             get { return FlowUnit.CubicMeterPerSecond; }
@@ -282,7 +282,7 @@ namespace UnitsNet
             return new Flow((centilitersperminute/60000.00000) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CentilitersPerMinute.
         /// </summary>
         public static Flow FromCentilitersPerMinute(int centilitersperminute)
@@ -290,7 +290,7 @@ namespace UnitsNet
             return new Flow((centilitersperminute/60000.00000) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CentilitersPerMinute.
         /// </summary>
         public static Flow FromCentilitersPerMinute(long centilitersperminute)
@@ -298,14 +298,14 @@ namespace UnitsNet
             return new Flow((centilitersperminute/60000.00000) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CentilitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromCentilitersPerMinute(decimal centilitersperminute)
         {
-	        return new Flow((Convert.ToDouble(centilitersperminute)/60000.00000) * 1e-2d);
+            return new Flow((Convert.ToDouble(centilitersperminute)/60000.00000) * 1e-2d);
         }
 #endif
 
@@ -317,7 +317,7 @@ namespace UnitsNet
             return new Flow(cubicdecimetersperminute/60000.00000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute.
         /// </summary>
         public static Flow FromCubicDecimetersPerMinute(int cubicdecimetersperminute)
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new Flow(cubicdecimetersperminute/60000.00000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute.
         /// </summary>
         public static Flow FromCubicDecimetersPerMinute(long cubicdecimetersperminute)
@@ -333,14 +333,14 @@ namespace UnitsNet
             return new Flow(cubicdecimetersperminute/60000.00000);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute of type decimal.
         /// </summary>
         public static Flow FromCubicDecimetersPerMinute(decimal cubicdecimetersperminute)
         {
-	        return new Flow(Convert.ToDouble(cubicdecimetersperminute)/60000.00000);
+            return new Flow(Convert.ToDouble(cubicdecimetersperminute)/60000.00000);
         }
 #endif
 
@@ -352,7 +352,7 @@ namespace UnitsNet
             return new Flow(cubicfeetperhour*7.8657907199999087346816086183876e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerHour.
         /// </summary>
         public static Flow FromCubicFeetPerHour(int cubicfeetperhour)
@@ -360,7 +360,7 @@ namespace UnitsNet
             return new Flow(cubicfeetperhour*7.8657907199999087346816086183876e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerHour.
         /// </summary>
         public static Flow FromCubicFeetPerHour(long cubicfeetperhour)
@@ -368,14 +368,14 @@ namespace UnitsNet
             return new Flow(cubicfeetperhour*7.8657907199999087346816086183876e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerHour of type decimal.
         /// </summary>
         public static Flow FromCubicFeetPerHour(decimal cubicfeetperhour)
         {
-	        return new Flow(Convert.ToDouble(cubicfeetperhour)*7.8657907199999087346816086183876e-6);
+            return new Flow(Convert.ToDouble(cubicfeetperhour)*7.8657907199999087346816086183876e-6);
         }
 #endif
 
@@ -387,7 +387,7 @@ namespace UnitsNet
             return new Flow(cubicfeetpersecond/35.314666721);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
         public static Flow FromCubicFeetPerSecond(int cubicfeetpersecond)
@@ -395,7 +395,7 @@ namespace UnitsNet
             return new Flow(cubicfeetpersecond/35.314666721);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
         public static Flow FromCubicFeetPerSecond(long cubicfeetpersecond)
@@ -403,14 +403,14 @@ namespace UnitsNet
             return new Flow(cubicfeetpersecond/35.314666721);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicFeetPerSecond of type decimal.
         /// </summary>
         public static Flow FromCubicFeetPerSecond(decimal cubicfeetpersecond)
         {
-	        return new Flow(Convert.ToDouble(cubicfeetpersecond)/35.314666721);
+            return new Flow(Convert.ToDouble(cubicfeetpersecond)/35.314666721);
         }
 #endif
 
@@ -422,7 +422,7 @@ namespace UnitsNet
             return new Flow(cubicmetersperhour/3600);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerHour.
         /// </summary>
         public static Flow FromCubicMetersPerHour(int cubicmetersperhour)
@@ -430,7 +430,7 @@ namespace UnitsNet
             return new Flow(cubicmetersperhour/3600);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerHour.
         /// </summary>
         public static Flow FromCubicMetersPerHour(long cubicmetersperhour)
@@ -438,14 +438,14 @@ namespace UnitsNet
             return new Flow(cubicmetersperhour/3600);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerHour of type decimal.
         /// </summary>
         public static Flow FromCubicMetersPerHour(decimal cubicmetersperhour)
         {
-	        return new Flow(Convert.ToDouble(cubicmetersperhour)/3600);
+            return new Flow(Convert.ToDouble(cubicmetersperhour)/3600);
         }
 #endif
 
@@ -457,7 +457,7 @@ namespace UnitsNet
             return new Flow(cubicmeterspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
         public static Flow FromCubicMetersPerSecond(int cubicmeterspersecond)
@@ -465,7 +465,7 @@ namespace UnitsNet
             return new Flow(cubicmeterspersecond);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
         public static Flow FromCubicMetersPerSecond(long cubicmeterspersecond)
@@ -473,14 +473,14 @@ namespace UnitsNet
             return new Flow(cubicmeterspersecond);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from CubicMetersPerSecond of type decimal.
         /// </summary>
         public static Flow FromCubicMetersPerSecond(decimal cubicmeterspersecond)
         {
-	        return new Flow(Convert.ToDouble(cubicmeterspersecond));
+            return new Flow(Convert.ToDouble(cubicmeterspersecond));
         }
 #endif
 
@@ -492,7 +492,7 @@ namespace UnitsNet
             return new Flow((decilitersperminute/60000.00000) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from DecilitersPerMinute.
         /// </summary>
         public static Flow FromDecilitersPerMinute(int decilitersperminute)
@@ -500,7 +500,7 @@ namespace UnitsNet
             return new Flow((decilitersperminute/60000.00000) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from DecilitersPerMinute.
         /// </summary>
         public static Flow FromDecilitersPerMinute(long decilitersperminute)
@@ -508,14 +508,14 @@ namespace UnitsNet
             return new Flow((decilitersperminute/60000.00000) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from DecilitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromDecilitersPerMinute(decimal decilitersperminute)
         {
-	        return new Flow((Convert.ToDouble(decilitersperminute)/60000.00000) * 1e-1d);
+            return new Flow((Convert.ToDouble(decilitersperminute)/60000.00000) * 1e-1d);
         }
 #endif
 
@@ -527,7 +527,7 @@ namespace UnitsNet
             return new Flow((kilolitersperminute/60000.00000) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from KilolitersPerMinute.
         /// </summary>
         public static Flow FromKilolitersPerMinute(int kilolitersperminute)
@@ -535,7 +535,7 @@ namespace UnitsNet
             return new Flow((kilolitersperminute/60000.00000) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from KilolitersPerMinute.
         /// </summary>
         public static Flow FromKilolitersPerMinute(long kilolitersperminute)
@@ -543,14 +543,14 @@ namespace UnitsNet
             return new Flow((kilolitersperminute/60000.00000) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from KilolitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromKilolitersPerMinute(decimal kilolitersperminute)
         {
-	        return new Flow((Convert.ToDouble(kilolitersperminute)/60000.00000) * 1e3d);
+            return new Flow((Convert.ToDouble(kilolitersperminute)/60000.00000) * 1e3d);
         }
 #endif
 
@@ -562,7 +562,7 @@ namespace UnitsNet
             return new Flow(litersperhour/3600000.000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerHour.
         /// </summary>
         public static Flow FromLitersPerHour(int litersperhour)
@@ -570,7 +570,7 @@ namespace UnitsNet
             return new Flow(litersperhour/3600000.000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerHour.
         /// </summary>
         public static Flow FromLitersPerHour(long litersperhour)
@@ -578,14 +578,14 @@ namespace UnitsNet
             return new Flow(litersperhour/3600000.000);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerHour of type decimal.
         /// </summary>
         public static Flow FromLitersPerHour(decimal litersperhour)
         {
-	        return new Flow(Convert.ToDouble(litersperhour)/3600000.000);
+            return new Flow(Convert.ToDouble(litersperhour)/3600000.000);
         }
 #endif
 
@@ -597,7 +597,7 @@ namespace UnitsNet
             return new Flow(litersperminute/60000.00000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
         public static Flow FromLitersPerMinute(int litersperminute)
@@ -605,7 +605,7 @@ namespace UnitsNet
             return new Flow(litersperminute/60000.00000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
         public static Flow FromLitersPerMinute(long litersperminute)
@@ -613,14 +613,14 @@ namespace UnitsNet
             return new Flow(litersperminute/60000.00000);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromLitersPerMinute(decimal litersperminute)
         {
-	        return new Flow(Convert.ToDouble(litersperminute)/60000.00000);
+            return new Flow(Convert.ToDouble(litersperminute)/60000.00000);
         }
 #endif
 
@@ -632,7 +632,7 @@ namespace UnitsNet
             return new Flow(literspersecond/1000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerSecond.
         /// </summary>
         public static Flow FromLitersPerSecond(int literspersecond)
@@ -640,7 +640,7 @@ namespace UnitsNet
             return new Flow(literspersecond/1000);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerSecond.
         /// </summary>
         public static Flow FromLitersPerSecond(long literspersecond)
@@ -648,14 +648,14 @@ namespace UnitsNet
             return new Flow(literspersecond/1000);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from LitersPerSecond of type decimal.
         /// </summary>
         public static Flow FromLitersPerSecond(decimal literspersecond)
         {
-	        return new Flow(Convert.ToDouble(literspersecond)/1000);
+            return new Flow(Convert.ToDouble(literspersecond)/1000);
         }
 #endif
 
@@ -667,7 +667,7 @@ namespace UnitsNet
             return new Flow((microlitersperminute/60000.00000) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MicrolitersPerMinute.
         /// </summary>
         public static Flow FromMicrolitersPerMinute(int microlitersperminute)
@@ -675,7 +675,7 @@ namespace UnitsNet
             return new Flow((microlitersperminute/60000.00000) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MicrolitersPerMinute.
         /// </summary>
         public static Flow FromMicrolitersPerMinute(long microlitersperminute)
@@ -683,14 +683,14 @@ namespace UnitsNet
             return new Flow((microlitersperminute/60000.00000) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MicrolitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromMicrolitersPerMinute(decimal microlitersperminute)
         {
-	        return new Flow((Convert.ToDouble(microlitersperminute)/60000.00000) * 1e-6d);
+            return new Flow((Convert.ToDouble(microlitersperminute)/60000.00000) * 1e-6d);
         }
 #endif
 
@@ -702,7 +702,7 @@ namespace UnitsNet
             return new Flow((millilitersperminute/60000.00000) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillilitersPerMinute.
         /// </summary>
         public static Flow FromMillilitersPerMinute(int millilitersperminute)
@@ -710,7 +710,7 @@ namespace UnitsNet
             return new Flow((millilitersperminute/60000.00000) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillilitersPerMinute.
         /// </summary>
         public static Flow FromMillilitersPerMinute(long millilitersperminute)
@@ -718,14 +718,14 @@ namespace UnitsNet
             return new Flow((millilitersperminute/60000.00000) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillilitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromMillilitersPerMinute(decimal millilitersperminute)
         {
-	        return new Flow((Convert.ToDouble(millilitersperminute)/60000.00000) * 1e-3d);
+            return new Flow((Convert.ToDouble(millilitersperminute)/60000.00000) * 1e-3d);
         }
 #endif
 
@@ -737,7 +737,7 @@ namespace UnitsNet
             return new Flow(millionusgallonsperday/22.824465227);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
         public static Flow FromMillionUsGallonsPerDay(int millionusgallonsperday)
@@ -745,7 +745,7 @@ namespace UnitsNet
             return new Flow(millionusgallonsperday/22.824465227);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
         public static Flow FromMillionUsGallonsPerDay(long millionusgallonsperday)
@@ -753,14 +753,14 @@ namespace UnitsNet
             return new Flow(millionusgallonsperday/22.824465227);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay of type decimal.
         /// </summary>
         public static Flow FromMillionUsGallonsPerDay(decimal millionusgallonsperday)
         {
-	        return new Flow(Convert.ToDouble(millionusgallonsperday)/22.824465227);
+            return new Flow(Convert.ToDouble(millionusgallonsperday)/22.824465227);
         }
 #endif
 
@@ -772,7 +772,7 @@ namespace UnitsNet
             return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from NanolitersPerMinute.
         /// </summary>
         public static Flow FromNanolitersPerMinute(int nanolitersperminute)
@@ -780,7 +780,7 @@ namespace UnitsNet
             return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from NanolitersPerMinute.
         /// </summary>
         public static Flow FromNanolitersPerMinute(long nanolitersperminute)
@@ -788,14 +788,14 @@ namespace UnitsNet
             return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from NanolitersPerMinute of type decimal.
         /// </summary>
         public static Flow FromNanolitersPerMinute(decimal nanolitersperminute)
         {
-	        return new Flow((Convert.ToDouble(nanolitersperminute)/60000.00000) * 1e-9d);
+            return new Flow((Convert.ToDouble(nanolitersperminute)/60000.00000) * 1e-9d);
         }
 #endif
 
@@ -807,7 +807,7 @@ namespace UnitsNet
             return new Flow(oilbarrelsperday*1.8401307283333333333333333333333e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from OilBarrelsPerDay.
         /// </summary>
         public static Flow FromOilBarrelsPerDay(int oilbarrelsperday)
@@ -815,7 +815,7 @@ namespace UnitsNet
             return new Flow(oilbarrelsperday*1.8401307283333333333333333333333e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from OilBarrelsPerDay.
         /// </summary>
         public static Flow FromOilBarrelsPerDay(long oilbarrelsperday)
@@ -823,14 +823,14 @@ namespace UnitsNet
             return new Flow(oilbarrelsperday*1.8401307283333333333333333333333e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from OilBarrelsPerDay of type decimal.
         /// </summary>
         public static Flow FromOilBarrelsPerDay(decimal oilbarrelsperday)
         {
-	        return new Flow(Convert.ToDouble(oilbarrelsperday)*1.8401307283333333333333333333333e-6);
+            return new Flow(Convert.ToDouble(oilbarrelsperday)*1.8401307283333333333333333333333e-6);
         }
 #endif
 
@@ -842,7 +842,7 @@ namespace UnitsNet
             return new Flow(usgallonsperminute/15850.323141489);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
         public static Flow FromUsGallonsPerMinute(int usgallonsperminute)
@@ -850,7 +850,7 @@ namespace UnitsNet
             return new Flow(usgallonsperminute/15850.323141489);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
         public static Flow FromUsGallonsPerMinute(long usgallonsperminute)
@@ -858,14 +858,14 @@ namespace UnitsNet
             return new Flow(usgallonsperminute/15850.323141489);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Flow from UsGallonsPerMinute of type decimal.
         /// </summary>
         public static Flow FromUsGallonsPerMinute(decimal usgallonsperminute)
         {
-	        return new Flow(Convert.ToDouble(usgallonsperminute)/15850.323141489);
+            return new Flow(Convert.ToDouble(usgallonsperminute)/15850.323141489);
         }
 #endif
 
@@ -886,7 +886,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CentilitersPerMinute.
         /// </summary>
         public static Flow? FromCentilitersPerMinute(int? centilitersperminute)
@@ -901,7 +901,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CentilitersPerMinute.
         /// </summary>
         public static Flow? FromCentilitersPerMinute(long? centilitersperminute)
@@ -916,7 +916,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CentilitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromCentilitersPerMinute(decimal? centilitersperminute)
@@ -946,7 +946,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicDecimetersPerMinute.
         /// </summary>
         public static Flow? FromCubicDecimetersPerMinute(int? cubicdecimetersperminute)
@@ -961,7 +961,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicDecimetersPerMinute.
         /// </summary>
         public static Flow? FromCubicDecimetersPerMinute(long? cubicdecimetersperminute)
@@ -976,7 +976,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CubicDecimetersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromCubicDecimetersPerMinute(decimal? cubicdecimetersperminute)
@@ -1006,7 +1006,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerHour.
         /// </summary>
         public static Flow? FromCubicFeetPerHour(int? cubicfeetperhour)
@@ -1021,7 +1021,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerHour.
         /// </summary>
         public static Flow? FromCubicFeetPerHour(long? cubicfeetperhour)
@@ -1036,7 +1036,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CubicFeetPerHour of type decimal.
         /// </summary>
         public static Flow? FromCubicFeetPerHour(decimal? cubicfeetperhour)
@@ -1066,7 +1066,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerSecond.
         /// </summary>
         public static Flow? FromCubicFeetPerSecond(int? cubicfeetpersecond)
@@ -1081,7 +1081,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerSecond.
         /// </summary>
         public static Flow? FromCubicFeetPerSecond(long? cubicfeetpersecond)
@@ -1096,7 +1096,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CubicFeetPerSecond of type decimal.
         /// </summary>
         public static Flow? FromCubicFeetPerSecond(decimal? cubicfeetpersecond)
@@ -1126,7 +1126,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerHour.
         /// </summary>
         public static Flow? FromCubicMetersPerHour(int? cubicmetersperhour)
@@ -1141,7 +1141,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerHour.
         /// </summary>
         public static Flow? FromCubicMetersPerHour(long? cubicmetersperhour)
@@ -1156,7 +1156,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CubicMetersPerHour of type decimal.
         /// </summary>
         public static Flow? FromCubicMetersPerHour(decimal? cubicmetersperhour)
@@ -1186,7 +1186,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerSecond.
         /// </summary>
         public static Flow? FromCubicMetersPerSecond(int? cubicmeterspersecond)
@@ -1201,7 +1201,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerSecond.
         /// </summary>
         public static Flow? FromCubicMetersPerSecond(long? cubicmeterspersecond)
@@ -1216,7 +1216,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from CubicMetersPerSecond of type decimal.
         /// </summary>
         public static Flow? FromCubicMetersPerSecond(decimal? cubicmeterspersecond)
@@ -1246,7 +1246,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable DecilitersPerMinute.
         /// </summary>
         public static Flow? FromDecilitersPerMinute(int? decilitersperminute)
@@ -1261,7 +1261,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable DecilitersPerMinute.
         /// </summary>
         public static Flow? FromDecilitersPerMinute(long? decilitersperminute)
@@ -1276,7 +1276,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from DecilitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromDecilitersPerMinute(decimal? decilitersperminute)
@@ -1306,7 +1306,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable KilolitersPerMinute.
         /// </summary>
         public static Flow? FromKilolitersPerMinute(int? kilolitersperminute)
@@ -1321,7 +1321,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable KilolitersPerMinute.
         /// </summary>
         public static Flow? FromKilolitersPerMinute(long? kilolitersperminute)
@@ -1336,7 +1336,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from KilolitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromKilolitersPerMinute(decimal? kilolitersperminute)
@@ -1366,7 +1366,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerHour.
         /// </summary>
         public static Flow? FromLitersPerHour(int? litersperhour)
@@ -1381,7 +1381,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerHour.
         /// </summary>
         public static Flow? FromLitersPerHour(long? litersperhour)
@@ -1396,7 +1396,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from LitersPerHour of type decimal.
         /// </summary>
         public static Flow? FromLitersPerHour(decimal? litersperhour)
@@ -1426,7 +1426,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerMinute.
         /// </summary>
         public static Flow? FromLitersPerMinute(int? litersperminute)
@@ -1441,7 +1441,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerMinute.
         /// </summary>
         public static Flow? FromLitersPerMinute(long? litersperminute)
@@ -1456,7 +1456,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from LitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromLitersPerMinute(decimal? litersperminute)
@@ -1486,7 +1486,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerSecond.
         /// </summary>
         public static Flow? FromLitersPerSecond(int? literspersecond)
@@ -1501,7 +1501,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable LitersPerSecond.
         /// </summary>
         public static Flow? FromLitersPerSecond(long? literspersecond)
@@ -1516,7 +1516,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from LitersPerSecond of type decimal.
         /// </summary>
         public static Flow? FromLitersPerSecond(decimal? literspersecond)
@@ -1546,7 +1546,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MicrolitersPerMinute.
         /// </summary>
         public static Flow? FromMicrolitersPerMinute(int? microlitersperminute)
@@ -1561,7 +1561,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MicrolitersPerMinute.
         /// </summary>
         public static Flow? FromMicrolitersPerMinute(long? microlitersperminute)
@@ -1576,7 +1576,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from MicrolitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromMicrolitersPerMinute(decimal? microlitersperminute)
@@ -1606,7 +1606,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MillilitersPerMinute.
         /// </summary>
         public static Flow? FromMillilitersPerMinute(int? millilitersperminute)
@@ -1621,7 +1621,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MillilitersPerMinute.
         /// </summary>
         public static Flow? FromMillilitersPerMinute(long? millilitersperminute)
@@ -1636,7 +1636,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from MillilitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromMillilitersPerMinute(decimal? millilitersperminute)
@@ -1666,7 +1666,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
         /// </summary>
         public static Flow? FromMillionUsGallonsPerDay(int? millionusgallonsperday)
@@ -1681,7 +1681,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
         /// </summary>
         public static Flow? FromMillionUsGallonsPerDay(long? millionusgallonsperday)
@@ -1696,7 +1696,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from MillionUsGallonsPerDay of type decimal.
         /// </summary>
         public static Flow? FromMillionUsGallonsPerDay(decimal? millionusgallonsperday)
@@ -1726,7 +1726,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable NanolitersPerMinute.
         /// </summary>
         public static Flow? FromNanolitersPerMinute(int? nanolitersperminute)
@@ -1741,7 +1741,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable NanolitersPerMinute.
         /// </summary>
         public static Flow? FromNanolitersPerMinute(long? nanolitersperminute)
@@ -1756,7 +1756,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from NanolitersPerMinute of type decimal.
         /// </summary>
         public static Flow? FromNanolitersPerMinute(decimal? nanolitersperminute)
@@ -1786,7 +1786,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable OilBarrelsPerDay.
         /// </summary>
         public static Flow? FromOilBarrelsPerDay(int? oilbarrelsperday)
@@ -1801,7 +1801,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable OilBarrelsPerDay.
         /// </summary>
         public static Flow? FromOilBarrelsPerDay(long? oilbarrelsperday)
@@ -1816,7 +1816,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from OilBarrelsPerDay of type decimal.
         /// </summary>
         public static Flow? FromOilBarrelsPerDay(decimal? oilbarrelsperday)
@@ -1846,7 +1846,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerMinute.
         /// </summary>
         public static Flow? FromUsGallonsPerMinute(int? usgallonsperminute)
@@ -1861,7 +1861,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerMinute.
         /// </summary>
         public static Flow? FromUsGallonsPerMinute(long? usgallonsperminute)
@@ -1876,7 +1876,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Flow from UsGallonsPerMinute of type decimal.
         /// </summary>
         public static Flow? FromUsGallonsPerMinute(decimal? usgallonsperminute)

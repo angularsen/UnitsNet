@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _siemens;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ElectricAdmittance() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.ElectricAdmittance;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static ElectricAdmittanceUnit BaseUnit
         {
             get { return ElectricAdmittanceUnit.Siemens; }
@@ -178,7 +178,7 @@ namespace UnitsNet
             return new ElectricAdmittance((microsiemens) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Microsiemens.
         /// </summary>
         public static ElectricAdmittance FromMicrosiemens(int microsiemens)
@@ -186,7 +186,7 @@ namespace UnitsNet
             return new ElectricAdmittance((microsiemens) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Microsiemens.
         /// </summary>
         public static ElectricAdmittance FromMicrosiemens(long microsiemens)
@@ -194,14 +194,14 @@ namespace UnitsNet
             return new ElectricAdmittance((microsiemens) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Microsiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance FromMicrosiemens(decimal microsiemens)
         {
-	        return new ElectricAdmittance((Convert.ToDouble(microsiemens)) * 1e-6d);
+            return new ElectricAdmittance((Convert.ToDouble(microsiemens)) * 1e-6d);
         }
 #endif
 
@@ -213,7 +213,7 @@ namespace UnitsNet
             return new ElectricAdmittance((millisiemens) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Millisiemens.
         /// </summary>
         public static ElectricAdmittance FromMillisiemens(int millisiemens)
@@ -221,7 +221,7 @@ namespace UnitsNet
             return new ElectricAdmittance((millisiemens) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Millisiemens.
         /// </summary>
         public static ElectricAdmittance FromMillisiemens(long millisiemens)
@@ -229,14 +229,14 @@ namespace UnitsNet
             return new ElectricAdmittance((millisiemens) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Millisiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance FromMillisiemens(decimal millisiemens)
         {
-	        return new ElectricAdmittance((Convert.ToDouble(millisiemens)) * 1e-3d);
+            return new ElectricAdmittance((Convert.ToDouble(millisiemens)) * 1e-3d);
         }
 #endif
 
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new ElectricAdmittance((nanosiemens) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Nanosiemens.
         /// </summary>
         public static ElectricAdmittance FromNanosiemens(int nanosiemens)
@@ -256,7 +256,7 @@ namespace UnitsNet
             return new ElectricAdmittance((nanosiemens) * 1e-9d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Nanosiemens.
         /// </summary>
         public static ElectricAdmittance FromNanosiemens(long nanosiemens)
@@ -264,14 +264,14 @@ namespace UnitsNet
             return new ElectricAdmittance((nanosiemens) * 1e-9d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Nanosiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance FromNanosiemens(decimal nanosiemens)
         {
-	        return new ElectricAdmittance((Convert.ToDouble(nanosiemens)) * 1e-9d);
+            return new ElectricAdmittance((Convert.ToDouble(nanosiemens)) * 1e-9d);
         }
 #endif
 
@@ -283,7 +283,7 @@ namespace UnitsNet
             return new ElectricAdmittance(siemens);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Siemens.
         /// </summary>
         public static ElectricAdmittance FromSiemens(int siemens)
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new ElectricAdmittance(siemens);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Siemens.
         /// </summary>
         public static ElectricAdmittance FromSiemens(long siemens)
@@ -299,14 +299,14 @@ namespace UnitsNet
             return new ElectricAdmittance(siemens);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get ElectricAdmittance from Siemens of type decimal.
         /// </summary>
         public static ElectricAdmittance FromSiemens(decimal siemens)
         {
-	        return new ElectricAdmittance(Convert.ToDouble(siemens));
+            return new ElectricAdmittance(Convert.ToDouble(siemens));
         }
 #endif
 
@@ -327,7 +327,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Microsiemens.
         /// </summary>
         public static ElectricAdmittance? FromMicrosiemens(int? microsiemens)
@@ -342,7 +342,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Microsiemens.
         /// </summary>
         public static ElectricAdmittance? FromMicrosiemens(long? microsiemens)
@@ -357,7 +357,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from Microsiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance? FromMicrosiemens(decimal? microsiemens)
@@ -387,7 +387,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Millisiemens.
         /// </summary>
         public static ElectricAdmittance? FromMillisiemens(int? millisiemens)
@@ -402,7 +402,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Millisiemens.
         /// </summary>
         public static ElectricAdmittance? FromMillisiemens(long? millisiemens)
@@ -417,7 +417,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from Millisiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance? FromMillisiemens(decimal? millisiemens)
@@ -447,7 +447,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
         /// </summary>
         public static ElectricAdmittance? FromNanosiemens(int? nanosiemens)
@@ -462,7 +462,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
         /// </summary>
         public static ElectricAdmittance? FromNanosiemens(long? nanosiemens)
@@ -477,7 +477,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from Nanosiemens of type decimal.
         /// </summary>
         public static ElectricAdmittance? FromNanosiemens(decimal? nanosiemens)
@@ -507,7 +507,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Siemens.
         /// </summary>
         public static ElectricAdmittance? FromSiemens(int? siemens)
@@ -522,7 +522,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Siemens.
         /// </summary>
         public static ElectricAdmittance? FromSiemens(long? siemens)
@@ -537,7 +537,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable ElectricAdmittance from Siemens of type decimal.
         /// </summary>
         public static ElectricAdmittance? FromSiemens(decimal? siemens)

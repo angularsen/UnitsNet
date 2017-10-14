@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _cubicMeters;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Volume() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Volume;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static VolumeUnit BaseUnit
         {
             get { return VolumeUnit.CubicMeter; }
@@ -484,7 +484,7 @@ namespace UnitsNet
             return new Volume(autablespoons*2e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>
         public static Volume FromAuTablespoons(int autablespoons)
@@ -492,7 +492,7 @@ namespace UnitsNet
             return new Volume(autablespoons*2e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>
         public static Volume FromAuTablespoons(long autablespoons)
@@ -500,14 +500,14 @@ namespace UnitsNet
             return new Volume(autablespoons*2e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from AuTablespoons of type decimal.
         /// </summary>
         public static Volume FromAuTablespoons(decimal autablespoons)
         {
-	        return new Volume(Convert.ToDouble(autablespoons)*2e-5);
+            return new Volume(Convert.ToDouble(autablespoons)*2e-5);
         }
 #endif
 
@@ -519,7 +519,7 @@ namespace UnitsNet
             return new Volume((centiliters/1e3) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Centiliters.
         /// </summary>
         public static Volume FromCentiliters(int centiliters)
@@ -527,7 +527,7 @@ namespace UnitsNet
             return new Volume((centiliters/1e3) * 1e-2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Centiliters.
         /// </summary>
         public static Volume FromCentiliters(long centiliters)
@@ -535,14 +535,14 @@ namespace UnitsNet
             return new Volume((centiliters/1e3) * 1e-2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Centiliters of type decimal.
         /// </summary>
         public static Volume FromCentiliters(decimal centiliters)
         {
-	        return new Volume((Convert.ToDouble(centiliters)/1e3) * 1e-2d);
+            return new Volume((Convert.ToDouble(centiliters)/1e3) * 1e-2d);
         }
 #endif
 
@@ -554,7 +554,7 @@ namespace UnitsNet
             return new Volume(cubiccentimeters/1e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicCentimeters.
         /// </summary>
         public static Volume FromCubicCentimeters(int cubiccentimeters)
@@ -562,7 +562,7 @@ namespace UnitsNet
             return new Volume(cubiccentimeters/1e6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicCentimeters.
         /// </summary>
         public static Volume FromCubicCentimeters(long cubiccentimeters)
@@ -570,14 +570,14 @@ namespace UnitsNet
             return new Volume(cubiccentimeters/1e6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicCentimeters of type decimal.
         /// </summary>
         public static Volume FromCubicCentimeters(decimal cubiccentimeters)
         {
-	        return new Volume(Convert.ToDouble(cubiccentimeters)/1e6);
+            return new Volume(Convert.ToDouble(cubiccentimeters)/1e6);
         }
 #endif
 
@@ -589,7 +589,7 @@ namespace UnitsNet
             return new Volume(cubicdecimeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicDecimeters.
         /// </summary>
         public static Volume FromCubicDecimeters(int cubicdecimeters)
@@ -597,7 +597,7 @@ namespace UnitsNet
             return new Volume(cubicdecimeters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicDecimeters.
         /// </summary>
         public static Volume FromCubicDecimeters(long cubicdecimeters)
@@ -605,14 +605,14 @@ namespace UnitsNet
             return new Volume(cubicdecimeters/1e3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicDecimeters of type decimal.
         /// </summary>
         public static Volume FromCubicDecimeters(decimal cubicdecimeters)
         {
-	        return new Volume(Convert.ToDouble(cubicdecimeters)/1e3);
+            return new Volume(Convert.ToDouble(cubicdecimeters)/1e3);
         }
 #endif
 
@@ -624,7 +624,7 @@ namespace UnitsNet
             return new Volume(cubicfeet*0.0283168);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicFeet.
         /// </summary>
         public static Volume FromCubicFeet(int cubicfeet)
@@ -632,7 +632,7 @@ namespace UnitsNet
             return new Volume(cubicfeet*0.0283168);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicFeet.
         /// </summary>
         public static Volume FromCubicFeet(long cubicfeet)
@@ -640,14 +640,14 @@ namespace UnitsNet
             return new Volume(cubicfeet*0.0283168);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicFeet of type decimal.
         /// </summary>
         public static Volume FromCubicFeet(decimal cubicfeet)
         {
-	        return new Volume(Convert.ToDouble(cubicfeet)*0.0283168);
+            return new Volume(Convert.ToDouble(cubicfeet)*0.0283168);
         }
 #endif
 
@@ -659,7 +659,7 @@ namespace UnitsNet
             return new Volume(cubicinches*1.6387*1e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicInches.
         /// </summary>
         public static Volume FromCubicInches(int cubicinches)
@@ -667,7 +667,7 @@ namespace UnitsNet
             return new Volume(cubicinches*1.6387*1e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicInches.
         /// </summary>
         public static Volume FromCubicInches(long cubicinches)
@@ -675,14 +675,14 @@ namespace UnitsNet
             return new Volume(cubicinches*1.6387*1e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicInches of type decimal.
         /// </summary>
         public static Volume FromCubicInches(decimal cubicinches)
         {
-	        return new Volume(Convert.ToDouble(cubicinches)*1.6387*1e-5);
+            return new Volume(Convert.ToDouble(cubicinches)*1.6387*1e-5);
         }
 #endif
 
@@ -694,7 +694,7 @@ namespace UnitsNet
             return new Volume(cubickilometers*1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicKilometers.
         /// </summary>
         public static Volume FromCubicKilometers(int cubickilometers)
@@ -702,7 +702,7 @@ namespace UnitsNet
             return new Volume(cubickilometers*1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicKilometers.
         /// </summary>
         public static Volume FromCubicKilometers(long cubickilometers)
@@ -710,14 +710,14 @@ namespace UnitsNet
             return new Volume(cubickilometers*1e9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicKilometers of type decimal.
         /// </summary>
         public static Volume FromCubicKilometers(decimal cubickilometers)
         {
-	        return new Volume(Convert.ToDouble(cubickilometers)*1e9);
+            return new Volume(Convert.ToDouble(cubickilometers)*1e9);
         }
 #endif
 
@@ -729,7 +729,7 @@ namespace UnitsNet
             return new Volume(cubicmeters);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMeters.
         /// </summary>
         public static Volume FromCubicMeters(int cubicmeters)
@@ -737,7 +737,7 @@ namespace UnitsNet
             return new Volume(cubicmeters);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMeters.
         /// </summary>
         public static Volume FromCubicMeters(long cubicmeters)
@@ -745,14 +745,14 @@ namespace UnitsNet
             return new Volume(cubicmeters);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMeters of type decimal.
         /// </summary>
         public static Volume FromCubicMeters(decimal cubicmeters)
         {
-	        return new Volume(Convert.ToDouble(cubicmeters));
+            return new Volume(Convert.ToDouble(cubicmeters));
         }
 #endif
 
@@ -764,7 +764,7 @@ namespace UnitsNet
             return new Volume(cubicmicrometers/1e18);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMicrometers.
         /// </summary>
         public static Volume FromCubicMicrometers(int cubicmicrometers)
@@ -772,7 +772,7 @@ namespace UnitsNet
             return new Volume(cubicmicrometers/1e18);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMicrometers.
         /// </summary>
         public static Volume FromCubicMicrometers(long cubicmicrometers)
@@ -780,14 +780,14 @@ namespace UnitsNet
             return new Volume(cubicmicrometers/1e18);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMicrometers of type decimal.
         /// </summary>
         public static Volume FromCubicMicrometers(decimal cubicmicrometers)
         {
-	        return new Volume(Convert.ToDouble(cubicmicrometers)/1e18);
+            return new Volume(Convert.ToDouble(cubicmicrometers)/1e18);
         }
 #endif
 
@@ -799,7 +799,7 @@ namespace UnitsNet
             return new Volume(cubicmiles*4.16818183*1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMiles.
         /// </summary>
         public static Volume FromCubicMiles(int cubicmiles)
@@ -807,7 +807,7 @@ namespace UnitsNet
             return new Volume(cubicmiles*4.16818183*1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMiles.
         /// </summary>
         public static Volume FromCubicMiles(long cubicmiles)
@@ -815,14 +815,14 @@ namespace UnitsNet
             return new Volume(cubicmiles*4.16818183*1e9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMiles of type decimal.
         /// </summary>
         public static Volume FromCubicMiles(decimal cubicmiles)
         {
-	        return new Volume(Convert.ToDouble(cubicmiles)*4.16818183*1e9);
+            return new Volume(Convert.ToDouble(cubicmiles)*4.16818183*1e9);
         }
 #endif
 
@@ -834,7 +834,7 @@ namespace UnitsNet
             return new Volume(cubicmillimeters/1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMillimeters.
         /// </summary>
         public static Volume FromCubicMillimeters(int cubicmillimeters)
@@ -842,7 +842,7 @@ namespace UnitsNet
             return new Volume(cubicmillimeters/1e9);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMillimeters.
         /// </summary>
         public static Volume FromCubicMillimeters(long cubicmillimeters)
@@ -850,14 +850,14 @@ namespace UnitsNet
             return new Volume(cubicmillimeters/1e9);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicMillimeters of type decimal.
         /// </summary>
         public static Volume FromCubicMillimeters(decimal cubicmillimeters)
         {
-	        return new Volume(Convert.ToDouble(cubicmillimeters)/1e9);
+            return new Volume(Convert.ToDouble(cubicmillimeters)/1e9);
         }
 #endif
 
@@ -869,7 +869,7 @@ namespace UnitsNet
             return new Volume(cubicyards*0.764554858);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicYards.
         /// </summary>
         public static Volume FromCubicYards(int cubicyards)
@@ -877,7 +877,7 @@ namespace UnitsNet
             return new Volume(cubicyards*0.764554858);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicYards.
         /// </summary>
         public static Volume FromCubicYards(long cubicyards)
@@ -885,14 +885,14 @@ namespace UnitsNet
             return new Volume(cubicyards*0.764554858);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from CubicYards of type decimal.
         /// </summary>
         public static Volume FromCubicYards(decimal cubicyards)
         {
-	        return new Volume(Convert.ToDouble(cubicyards)*0.764554858);
+            return new Volume(Convert.ToDouble(cubicyards)*0.764554858);
         }
 #endif
 
@@ -904,7 +904,7 @@ namespace UnitsNet
             return new Volume((deciliters/1e3) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
         public static Volume FromDeciliters(int deciliters)
@@ -912,7 +912,7 @@ namespace UnitsNet
             return new Volume((deciliters/1e3) * 1e-1d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
         public static Volume FromDeciliters(long deciliters)
@@ -920,14 +920,14 @@ namespace UnitsNet
             return new Volume((deciliters/1e3) * 1e-1d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Deciliters of type decimal.
         /// </summary>
         public static Volume FromDeciliters(decimal deciliters)
         {
-	        return new Volume((Convert.ToDouble(deciliters)/1e3) * 1e-1d);
+            return new Volume((Convert.ToDouble(deciliters)/1e3) * 1e-1d);
         }
 #endif
 
@@ -939,7 +939,7 @@ namespace UnitsNet
             return new Volume((hectocubicfeet*0.0283168) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicFeet.
         /// </summary>
         public static Volume FromHectocubicFeet(int hectocubicfeet)
@@ -947,7 +947,7 @@ namespace UnitsNet
             return new Volume((hectocubicfeet*0.0283168) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicFeet.
         /// </summary>
         public static Volume FromHectocubicFeet(long hectocubicfeet)
@@ -955,14 +955,14 @@ namespace UnitsNet
             return new Volume((hectocubicfeet*0.0283168) * 1e2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicFeet of type decimal.
         /// </summary>
         public static Volume FromHectocubicFeet(decimal hectocubicfeet)
         {
-	        return new Volume((Convert.ToDouble(hectocubicfeet)*0.0283168) * 1e2d);
+            return new Volume((Convert.ToDouble(hectocubicfeet)*0.0283168) * 1e2d);
         }
 #endif
 
@@ -974,7 +974,7 @@ namespace UnitsNet
             return new Volume((hectocubicmeters) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicMeters.
         /// </summary>
         public static Volume FromHectocubicMeters(int hectocubicmeters)
@@ -982,7 +982,7 @@ namespace UnitsNet
             return new Volume((hectocubicmeters) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicMeters.
         /// </summary>
         public static Volume FromHectocubicMeters(long hectocubicmeters)
@@ -990,14 +990,14 @@ namespace UnitsNet
             return new Volume((hectocubicmeters) * 1e2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from HectocubicMeters of type decimal.
         /// </summary>
         public static Volume FromHectocubicMeters(decimal hectocubicmeters)
         {
-	        return new Volume((Convert.ToDouble(hectocubicmeters)) * 1e2d);
+            return new Volume((Convert.ToDouble(hectocubicmeters)) * 1e2d);
         }
 #endif
 
@@ -1009,7 +1009,7 @@ namespace UnitsNet
             return new Volume((hectoliters/1e3) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
         public static Volume FromHectoliters(int hectoliters)
@@ -1017,7 +1017,7 @@ namespace UnitsNet
             return new Volume((hectoliters/1e3) * 1e2d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
         public static Volume FromHectoliters(long hectoliters)
@@ -1025,14 +1025,14 @@ namespace UnitsNet
             return new Volume((hectoliters/1e3) * 1e2d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Hectoliters of type decimal.
         /// </summary>
         public static Volume FromHectoliters(decimal hectoliters)
         {
-	        return new Volume((Convert.ToDouble(hectoliters)/1e3) * 1e2d);
+            return new Volume((Convert.ToDouble(hectoliters)/1e3) * 1e2d);
         }
 #endif
 
@@ -1044,7 +1044,7 @@ namespace UnitsNet
             return new Volume(imperialbeerbarrels*0.16365924);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
         /// </summary>
         public static Volume FromImperialBeerBarrels(int imperialbeerbarrels)
@@ -1052,7 +1052,7 @@ namespace UnitsNet
             return new Volume(imperialbeerbarrels*0.16365924);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
         /// </summary>
         public static Volume FromImperialBeerBarrels(long imperialbeerbarrels)
@@ -1060,14 +1060,14 @@ namespace UnitsNet
             return new Volume(imperialbeerbarrels*0.16365924);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialBeerBarrels of type decimal.
         /// </summary>
         public static Volume FromImperialBeerBarrels(decimal imperialbeerbarrels)
         {
-	        return new Volume(Convert.ToDouble(imperialbeerbarrels)*0.16365924);
+            return new Volume(Convert.ToDouble(imperialbeerbarrels)*0.16365924);
         }
 #endif
 
@@ -1079,7 +1079,7 @@ namespace UnitsNet
             return new Volume(imperialgallons*0.00454609000000181429905810072407);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialGallons.
         /// </summary>
         public static Volume FromImperialGallons(int imperialgallons)
@@ -1087,7 +1087,7 @@ namespace UnitsNet
             return new Volume(imperialgallons*0.00454609000000181429905810072407);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialGallons.
         /// </summary>
         public static Volume FromImperialGallons(long imperialgallons)
@@ -1095,14 +1095,14 @@ namespace UnitsNet
             return new Volume(imperialgallons*0.00454609000000181429905810072407);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialGallons of type decimal.
         /// </summary>
         public static Volume FromImperialGallons(decimal imperialgallons)
         {
-	        return new Volume(Convert.ToDouble(imperialgallons)*0.00454609000000181429905810072407);
+            return new Volume(Convert.ToDouble(imperialgallons)*0.00454609000000181429905810072407);
         }
 #endif
 
@@ -1114,7 +1114,7 @@ namespace UnitsNet
             return new Volume(imperialounces*2.8413062499962901241875439064617e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialOunces.
         /// </summary>
         public static Volume FromImperialOunces(int imperialounces)
@@ -1122,7 +1122,7 @@ namespace UnitsNet
             return new Volume(imperialounces*2.8413062499962901241875439064617e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialOunces.
         /// </summary>
         public static Volume FromImperialOunces(long imperialounces)
@@ -1130,14 +1130,14 @@ namespace UnitsNet
             return new Volume(imperialounces*2.8413062499962901241875439064617e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from ImperialOunces of type decimal.
         /// </summary>
         public static Volume FromImperialOunces(decimal imperialounces)
         {
-	        return new Volume(Convert.ToDouble(imperialounces)*2.8413062499962901241875439064617e-5);
+            return new Volume(Convert.ToDouble(imperialounces)*2.8413062499962901241875439064617e-5);
         }
 #endif
 
@@ -1149,7 +1149,7 @@ namespace UnitsNet
             return new Volume((kilocubicfeet*0.0283168) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicFeet.
         /// </summary>
         public static Volume FromKilocubicFeet(int kilocubicfeet)
@@ -1157,7 +1157,7 @@ namespace UnitsNet
             return new Volume((kilocubicfeet*0.0283168) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicFeet.
         /// </summary>
         public static Volume FromKilocubicFeet(long kilocubicfeet)
@@ -1165,14 +1165,14 @@ namespace UnitsNet
             return new Volume((kilocubicfeet*0.0283168) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicFeet of type decimal.
         /// </summary>
         public static Volume FromKilocubicFeet(decimal kilocubicfeet)
         {
-	        return new Volume((Convert.ToDouble(kilocubicfeet)*0.0283168) * 1e3d);
+            return new Volume((Convert.ToDouble(kilocubicfeet)*0.0283168) * 1e3d);
         }
 #endif
 
@@ -1184,7 +1184,7 @@ namespace UnitsNet
             return new Volume((kilocubicmeters) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicMeters.
         /// </summary>
         public static Volume FromKilocubicMeters(int kilocubicmeters)
@@ -1192,7 +1192,7 @@ namespace UnitsNet
             return new Volume((kilocubicmeters) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicMeters.
         /// </summary>
         public static Volume FromKilocubicMeters(long kilocubicmeters)
@@ -1200,14 +1200,14 @@ namespace UnitsNet
             return new Volume((kilocubicmeters) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilocubicMeters of type decimal.
         /// </summary>
         public static Volume FromKilocubicMeters(decimal kilocubicmeters)
         {
-	        return new Volume((Convert.ToDouble(kilocubicmeters)) * 1e3d);
+            return new Volume((Convert.ToDouble(kilocubicmeters)) * 1e3d);
         }
 #endif
 
@@ -1219,7 +1219,7 @@ namespace UnitsNet
             return new Volume((kiloimperialgallons*0.00454609000000181429905810072407) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KiloimperialGallons.
         /// </summary>
         public static Volume FromKiloimperialGallons(int kiloimperialgallons)
@@ -1227,7 +1227,7 @@ namespace UnitsNet
             return new Volume((kiloimperialgallons*0.00454609000000181429905810072407) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KiloimperialGallons.
         /// </summary>
         public static Volume FromKiloimperialGallons(long kiloimperialgallons)
@@ -1235,14 +1235,14 @@ namespace UnitsNet
             return new Volume((kiloimperialgallons*0.00454609000000181429905810072407) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KiloimperialGallons of type decimal.
         /// </summary>
         public static Volume FromKiloimperialGallons(decimal kiloimperialgallons)
         {
-	        return new Volume((Convert.ToDouble(kiloimperialgallons)*0.00454609000000181429905810072407) * 1e3d);
+            return new Volume((Convert.ToDouble(kiloimperialgallons)*0.00454609000000181429905810072407) * 1e3d);
         }
 #endif
 
@@ -1254,7 +1254,7 @@ namespace UnitsNet
             return new Volume((kilousgallons*0.00378541) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
         public static Volume FromKilousGallons(int kilousgallons)
@@ -1262,7 +1262,7 @@ namespace UnitsNet
             return new Volume((kilousgallons*0.00378541) * 1e3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
         public static Volume FromKilousGallons(long kilousgallons)
@@ -1270,14 +1270,14 @@ namespace UnitsNet
             return new Volume((kilousgallons*0.00378541) * 1e3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from KilousGallons of type decimal.
         /// </summary>
         public static Volume FromKilousGallons(decimal kilousgallons)
         {
-	        return new Volume((Convert.ToDouble(kilousgallons)*0.00378541) * 1e3d);
+            return new Volume((Convert.ToDouble(kilousgallons)*0.00378541) * 1e3d);
         }
 #endif
 
@@ -1289,7 +1289,7 @@ namespace UnitsNet
             return new Volume(liters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Liters.
         /// </summary>
         public static Volume FromLiters(int liters)
@@ -1297,7 +1297,7 @@ namespace UnitsNet
             return new Volume(liters/1e3);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Liters.
         /// </summary>
         public static Volume FromLiters(long liters)
@@ -1305,14 +1305,14 @@ namespace UnitsNet
             return new Volume(liters/1e3);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Liters of type decimal.
         /// </summary>
         public static Volume FromLiters(decimal liters)
         {
-	        return new Volume(Convert.ToDouble(liters)/1e3);
+            return new Volume(Convert.ToDouble(liters)/1e3);
         }
 #endif
 
@@ -1324,7 +1324,7 @@ namespace UnitsNet
             return new Volume((megacubicfeet*0.0283168) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegacubicFeet.
         /// </summary>
         public static Volume FromMegacubicFeet(int megacubicfeet)
@@ -1332,7 +1332,7 @@ namespace UnitsNet
             return new Volume((megacubicfeet*0.0283168) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegacubicFeet.
         /// </summary>
         public static Volume FromMegacubicFeet(long megacubicfeet)
@@ -1340,14 +1340,14 @@ namespace UnitsNet
             return new Volume((megacubicfeet*0.0283168) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegacubicFeet of type decimal.
         /// </summary>
         public static Volume FromMegacubicFeet(decimal megacubicfeet)
         {
-	        return new Volume((Convert.ToDouble(megacubicfeet)*0.0283168) * 1e6d);
+            return new Volume((Convert.ToDouble(megacubicfeet)*0.0283168) * 1e6d);
         }
 #endif
 
@@ -1359,7 +1359,7 @@ namespace UnitsNet
             return new Volume((megaimperialgallons*0.00454609000000181429905810072407) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegaimperialGallons.
         /// </summary>
         public static Volume FromMegaimperialGallons(int megaimperialgallons)
@@ -1367,7 +1367,7 @@ namespace UnitsNet
             return new Volume((megaimperialgallons*0.00454609000000181429905810072407) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegaimperialGallons.
         /// </summary>
         public static Volume FromMegaimperialGallons(long megaimperialgallons)
@@ -1375,14 +1375,14 @@ namespace UnitsNet
             return new Volume((megaimperialgallons*0.00454609000000181429905810072407) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegaimperialGallons of type decimal.
         /// </summary>
         public static Volume FromMegaimperialGallons(decimal megaimperialgallons)
         {
-	        return new Volume((Convert.ToDouble(megaimperialgallons)*0.00454609000000181429905810072407) * 1e6d);
+            return new Volume((Convert.ToDouble(megaimperialgallons)*0.00454609000000181429905810072407) * 1e6d);
         }
 #endif
 
@@ -1394,7 +1394,7 @@ namespace UnitsNet
             return new Volume((megausgallons*0.00378541) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegausGallons.
         /// </summary>
         public static Volume FromMegausGallons(int megausgallons)
@@ -1402,7 +1402,7 @@ namespace UnitsNet
             return new Volume((megausgallons*0.00378541) * 1e6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegausGallons.
         /// </summary>
         public static Volume FromMegausGallons(long megausgallons)
@@ -1410,14 +1410,14 @@ namespace UnitsNet
             return new Volume((megausgallons*0.00378541) * 1e6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MegausGallons of type decimal.
         /// </summary>
         public static Volume FromMegausGallons(decimal megausgallons)
         {
-	        return new Volume((Convert.ToDouble(megausgallons)*0.00378541) * 1e6d);
+            return new Volume((Convert.ToDouble(megausgallons)*0.00378541) * 1e6d);
         }
 #endif
 
@@ -1429,7 +1429,7 @@ namespace UnitsNet
             return new Volume(metriccups*0.00025);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricCups.
         /// </summary>
         public static Volume FromMetricCups(int metriccups)
@@ -1437,7 +1437,7 @@ namespace UnitsNet
             return new Volume(metriccups*0.00025);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricCups.
         /// </summary>
         public static Volume FromMetricCups(long metriccups)
@@ -1445,14 +1445,14 @@ namespace UnitsNet
             return new Volume(metriccups*0.00025);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricCups of type decimal.
         /// </summary>
         public static Volume FromMetricCups(decimal metriccups)
         {
-	        return new Volume(Convert.ToDouble(metriccups)*0.00025);
+            return new Volume(Convert.ToDouble(metriccups)*0.00025);
         }
 #endif
 
@@ -1464,7 +1464,7 @@ namespace UnitsNet
             return new Volume(metricteaspoons*0.5e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricTeaspoons.
         /// </summary>
         public static Volume FromMetricTeaspoons(int metricteaspoons)
@@ -1472,7 +1472,7 @@ namespace UnitsNet
             return new Volume(metricteaspoons*0.5e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricTeaspoons.
         /// </summary>
         public static Volume FromMetricTeaspoons(long metricteaspoons)
@@ -1480,14 +1480,14 @@ namespace UnitsNet
             return new Volume(metricteaspoons*0.5e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from MetricTeaspoons of type decimal.
         /// </summary>
         public static Volume FromMetricTeaspoons(decimal metricteaspoons)
         {
-	        return new Volume(Convert.ToDouble(metricteaspoons)*0.5e-5);
+            return new Volume(Convert.ToDouble(metricteaspoons)*0.5e-5);
         }
 #endif
 
@@ -1499,7 +1499,7 @@ namespace UnitsNet
             return new Volume((microliters/1e3) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Microliters.
         /// </summary>
         public static Volume FromMicroliters(int microliters)
@@ -1507,7 +1507,7 @@ namespace UnitsNet
             return new Volume((microliters/1e3) * 1e-6d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Microliters.
         /// </summary>
         public static Volume FromMicroliters(long microliters)
@@ -1515,14 +1515,14 @@ namespace UnitsNet
             return new Volume((microliters/1e3) * 1e-6d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Microliters of type decimal.
         /// </summary>
         public static Volume FromMicroliters(decimal microliters)
         {
-	        return new Volume((Convert.ToDouble(microliters)/1e3) * 1e-6d);
+            return new Volume((Convert.ToDouble(microliters)/1e3) * 1e-6d);
         }
 #endif
 
@@ -1534,7 +1534,7 @@ namespace UnitsNet
             return new Volume((milliliters/1e3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
         public static Volume FromMilliliters(int milliliters)
@@ -1542,7 +1542,7 @@ namespace UnitsNet
             return new Volume((milliliters/1e3) * 1e-3d);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
         public static Volume FromMilliliters(long milliliters)
@@ -1550,14 +1550,14 @@ namespace UnitsNet
             return new Volume((milliliters/1e3) * 1e-3d);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Milliliters of type decimal.
         /// </summary>
         public static Volume FromMilliliters(decimal milliliters)
         {
-	        return new Volume((Convert.ToDouble(milliliters)/1e3) * 1e-3d);
+            return new Volume((Convert.ToDouble(milliliters)/1e3) * 1e-3d);
         }
 #endif
 
@@ -1569,7 +1569,7 @@ namespace UnitsNet
             return new Volume(oilbarrels*0.158987294928);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from OilBarrels.
         /// </summary>
         public static Volume FromOilBarrels(int oilbarrels)
@@ -1577,7 +1577,7 @@ namespace UnitsNet
             return new Volume(oilbarrels*0.158987294928);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from OilBarrels.
         /// </summary>
         public static Volume FromOilBarrels(long oilbarrels)
@@ -1585,14 +1585,14 @@ namespace UnitsNet
             return new Volume(oilbarrels*0.158987294928);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from OilBarrels of type decimal.
         /// </summary>
         public static Volume FromOilBarrels(decimal oilbarrels)
         {
-	        return new Volume(Convert.ToDouble(oilbarrels)*0.158987294928);
+            return new Volume(Convert.ToDouble(oilbarrels)*0.158987294928);
         }
 #endif
 
@@ -1604,7 +1604,7 @@ namespace UnitsNet
             return new Volume(tablespoons*1.478676478125e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Tablespoons.
         /// </summary>
         public static Volume FromTablespoons(int tablespoons)
@@ -1612,7 +1612,7 @@ namespace UnitsNet
             return new Volume(tablespoons*1.478676478125e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Tablespoons.
         /// </summary>
         public static Volume FromTablespoons(long tablespoons)
@@ -1620,14 +1620,14 @@ namespace UnitsNet
             return new Volume(tablespoons*1.478676478125e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Tablespoons of type decimal.
         /// </summary>
         public static Volume FromTablespoons(decimal tablespoons)
         {
-	        return new Volume(Convert.ToDouble(tablespoons)*1.478676478125e-5);
+            return new Volume(Convert.ToDouble(tablespoons)*1.478676478125e-5);
         }
 #endif
 
@@ -1639,7 +1639,7 @@ namespace UnitsNet
             return new Volume(teaspoons*4.92892159375e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Teaspoons.
         /// </summary>
         public static Volume FromTeaspoons(int teaspoons)
@@ -1647,7 +1647,7 @@ namespace UnitsNet
             return new Volume(teaspoons*4.92892159375e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Teaspoons.
         /// </summary>
         public static Volume FromTeaspoons(long teaspoons)
@@ -1655,14 +1655,14 @@ namespace UnitsNet
             return new Volume(teaspoons*4.92892159375e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from Teaspoons of type decimal.
         /// </summary>
         public static Volume FromTeaspoons(decimal teaspoons)
         {
-	        return new Volume(Convert.ToDouble(teaspoons)*4.92892159375e-6);
+            return new Volume(Convert.ToDouble(teaspoons)*4.92892159375e-6);
         }
 #endif
 
@@ -1674,7 +1674,7 @@ namespace UnitsNet
             return new Volume(uktablespoons*1.5e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
         public static Volume FromUkTablespoons(int uktablespoons)
@@ -1682,7 +1682,7 @@ namespace UnitsNet
             return new Volume(uktablespoons*1.5e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
         public static Volume FromUkTablespoons(long uktablespoons)
@@ -1690,14 +1690,14 @@ namespace UnitsNet
             return new Volume(uktablespoons*1.5e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UkTablespoons of type decimal.
         /// </summary>
         public static Volume FromUkTablespoons(decimal uktablespoons)
         {
-	        return new Volume(Convert.ToDouble(uktablespoons)*1.5e-5);
+            return new Volume(Convert.ToDouble(uktablespoons)*1.5e-5);
         }
 #endif
 
@@ -1709,7 +1709,7 @@ namespace UnitsNet
             return new Volume(usbeerbarrels*0.1173477658);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsBeerBarrels.
         /// </summary>
         public static Volume FromUsBeerBarrels(int usbeerbarrels)
@@ -1717,7 +1717,7 @@ namespace UnitsNet
             return new Volume(usbeerbarrels*0.1173477658);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsBeerBarrels.
         /// </summary>
         public static Volume FromUsBeerBarrels(long usbeerbarrels)
@@ -1725,14 +1725,14 @@ namespace UnitsNet
             return new Volume(usbeerbarrels*0.1173477658);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsBeerBarrels of type decimal.
         /// </summary>
         public static Volume FromUsBeerBarrels(decimal usbeerbarrels)
         {
-	        return new Volume(Convert.ToDouble(usbeerbarrels)*0.1173477658);
+            return new Volume(Convert.ToDouble(usbeerbarrels)*0.1173477658);
         }
 #endif
 
@@ -1744,7 +1744,7 @@ namespace UnitsNet
             return new Volume(uscustomarycups*0.0002365882365);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsCustomaryCups.
         /// </summary>
         public static Volume FromUsCustomaryCups(int uscustomarycups)
@@ -1752,7 +1752,7 @@ namespace UnitsNet
             return new Volume(uscustomarycups*0.0002365882365);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsCustomaryCups.
         /// </summary>
         public static Volume FromUsCustomaryCups(long uscustomarycups)
@@ -1760,14 +1760,14 @@ namespace UnitsNet
             return new Volume(uscustomarycups*0.0002365882365);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsCustomaryCups of type decimal.
         /// </summary>
         public static Volume FromUsCustomaryCups(decimal uscustomarycups)
         {
-	        return new Volume(Convert.ToDouble(uscustomarycups)*0.0002365882365);
+            return new Volume(Convert.ToDouble(uscustomarycups)*0.0002365882365);
         }
 #endif
 
@@ -1779,7 +1779,7 @@ namespace UnitsNet
             return new Volume(usgallons*0.00378541);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsGallons.
         /// </summary>
         public static Volume FromUsGallons(int usgallons)
@@ -1787,7 +1787,7 @@ namespace UnitsNet
             return new Volume(usgallons*0.00378541);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsGallons.
         /// </summary>
         public static Volume FromUsGallons(long usgallons)
@@ -1795,14 +1795,14 @@ namespace UnitsNet
             return new Volume(usgallons*0.00378541);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsGallons of type decimal.
         /// </summary>
         public static Volume FromUsGallons(decimal usgallons)
         {
-	        return new Volume(Convert.ToDouble(usgallons)*0.00378541);
+            return new Volume(Convert.ToDouble(usgallons)*0.00378541);
         }
 #endif
 
@@ -1814,7 +1814,7 @@ namespace UnitsNet
             return new Volume(uslegalcups*0.00024);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsLegalCups.
         /// </summary>
         public static Volume FromUsLegalCups(int uslegalcups)
@@ -1822,7 +1822,7 @@ namespace UnitsNet
             return new Volume(uslegalcups*0.00024);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsLegalCups.
         /// </summary>
         public static Volume FromUsLegalCups(long uslegalcups)
@@ -1830,14 +1830,14 @@ namespace UnitsNet
             return new Volume(uslegalcups*0.00024);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsLegalCups of type decimal.
         /// </summary>
         public static Volume FromUsLegalCups(decimal uslegalcups)
         {
-	        return new Volume(Convert.ToDouble(uslegalcups)*0.00024);
+            return new Volume(Convert.ToDouble(uslegalcups)*0.00024);
         }
 #endif
 
@@ -1849,7 +1849,7 @@ namespace UnitsNet
             return new Volume(usounces*2.957352956253760505068307980135e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsOunces.
         /// </summary>
         public static Volume FromUsOunces(int usounces)
@@ -1857,7 +1857,7 @@ namespace UnitsNet
             return new Volume(usounces*2.957352956253760505068307980135e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsOunces.
         /// </summary>
         public static Volume FromUsOunces(long usounces)
@@ -1865,14 +1865,14 @@ namespace UnitsNet
             return new Volume(usounces*2.957352956253760505068307980135e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsOunces of type decimal.
         /// </summary>
         public static Volume FromUsOunces(decimal usounces)
         {
-	        return new Volume(Convert.ToDouble(usounces)*2.957352956253760505068307980135e-5);
+            return new Volume(Convert.ToDouble(usounces)*2.957352956253760505068307980135e-5);
         }
 #endif
 
@@ -1884,7 +1884,7 @@ namespace UnitsNet
             return new Volume(ustablespoons*1.478676478125e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTablespoons.
         /// </summary>
         public static Volume FromUsTablespoons(int ustablespoons)
@@ -1892,7 +1892,7 @@ namespace UnitsNet
             return new Volume(ustablespoons*1.478676478125e-5);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTablespoons.
         /// </summary>
         public static Volume FromUsTablespoons(long ustablespoons)
@@ -1900,14 +1900,14 @@ namespace UnitsNet
             return new Volume(ustablespoons*1.478676478125e-5);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTablespoons of type decimal.
         /// </summary>
         public static Volume FromUsTablespoons(decimal ustablespoons)
         {
-	        return new Volume(Convert.ToDouble(ustablespoons)*1.478676478125e-5);
+            return new Volume(Convert.ToDouble(ustablespoons)*1.478676478125e-5);
         }
 #endif
 
@@ -1919,7 +1919,7 @@ namespace UnitsNet
             return new Volume(usteaspoons*4.92892159375e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTeaspoons.
         /// </summary>
         public static Volume FromUsTeaspoons(int usteaspoons)
@@ -1927,7 +1927,7 @@ namespace UnitsNet
             return new Volume(usteaspoons*4.92892159375e-6);
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTeaspoons.
         /// </summary>
         public static Volume FromUsTeaspoons(long usteaspoons)
@@ -1935,14 +1935,14 @@ namespace UnitsNet
             return new Volume(usteaspoons*4.92892159375e-6);
         }
 
-		// Windows Runtime Component does not support decimal type
+        // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
-		/// <summary>
+        /// <summary>
         ///     Get Volume from UsTeaspoons of type decimal.
         /// </summary>
         public static Volume FromUsTeaspoons(decimal usteaspoons)
         {
-	        return new Volume(Convert.ToDouble(usteaspoons)*4.92892159375e-6);
+            return new Volume(Convert.ToDouble(usteaspoons)*4.92892159375e-6);
         }
 #endif
 
@@ -1963,7 +1963,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable AuTablespoons.
         /// </summary>
         public static Volume? FromAuTablespoons(int? autablespoons)
@@ -1978,7 +1978,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable AuTablespoons.
         /// </summary>
         public static Volume? FromAuTablespoons(long? autablespoons)
@@ -1993,7 +1993,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from AuTablespoons of type decimal.
         /// </summary>
         public static Volume? FromAuTablespoons(decimal? autablespoons)
@@ -2023,7 +2023,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Centiliters.
         /// </summary>
         public static Volume? FromCentiliters(int? centiliters)
@@ -2038,7 +2038,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Centiliters.
         /// </summary>
         public static Volume? FromCentiliters(long? centiliters)
@@ -2053,7 +2053,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Centiliters of type decimal.
         /// </summary>
         public static Volume? FromCentiliters(decimal? centiliters)
@@ -2083,7 +2083,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicCentimeters.
         /// </summary>
         public static Volume? FromCubicCentimeters(int? cubiccentimeters)
@@ -2098,7 +2098,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicCentimeters.
         /// </summary>
         public static Volume? FromCubicCentimeters(long? cubiccentimeters)
@@ -2113,7 +2113,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicCentimeters of type decimal.
         /// </summary>
         public static Volume? FromCubicCentimeters(decimal? cubiccentimeters)
@@ -2143,7 +2143,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicDecimeters.
         /// </summary>
         public static Volume? FromCubicDecimeters(int? cubicdecimeters)
@@ -2158,7 +2158,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicDecimeters.
         /// </summary>
         public static Volume? FromCubicDecimeters(long? cubicdecimeters)
@@ -2173,7 +2173,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicDecimeters of type decimal.
         /// </summary>
         public static Volume? FromCubicDecimeters(decimal? cubicdecimeters)
@@ -2203,7 +2203,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicFeet.
         /// </summary>
         public static Volume? FromCubicFeet(int? cubicfeet)
@@ -2218,7 +2218,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicFeet.
         /// </summary>
         public static Volume? FromCubicFeet(long? cubicfeet)
@@ -2233,7 +2233,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicFeet of type decimal.
         /// </summary>
         public static Volume? FromCubicFeet(decimal? cubicfeet)
@@ -2263,7 +2263,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicInches.
         /// </summary>
         public static Volume? FromCubicInches(int? cubicinches)
@@ -2278,7 +2278,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicInches.
         /// </summary>
         public static Volume? FromCubicInches(long? cubicinches)
@@ -2293,7 +2293,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicInches of type decimal.
         /// </summary>
         public static Volume? FromCubicInches(decimal? cubicinches)
@@ -2323,7 +2323,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicKilometers.
         /// </summary>
         public static Volume? FromCubicKilometers(int? cubickilometers)
@@ -2338,7 +2338,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicKilometers.
         /// </summary>
         public static Volume? FromCubicKilometers(long? cubickilometers)
@@ -2353,7 +2353,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicKilometers of type decimal.
         /// </summary>
         public static Volume? FromCubicKilometers(decimal? cubickilometers)
@@ -2383,7 +2383,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMeters.
         /// </summary>
         public static Volume? FromCubicMeters(int? cubicmeters)
@@ -2398,7 +2398,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMeters.
         /// </summary>
         public static Volume? FromCubicMeters(long? cubicmeters)
@@ -2413,7 +2413,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicMeters of type decimal.
         /// </summary>
         public static Volume? FromCubicMeters(decimal? cubicmeters)
@@ -2443,7 +2443,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMicrometers.
         /// </summary>
         public static Volume? FromCubicMicrometers(int? cubicmicrometers)
@@ -2458,7 +2458,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMicrometers.
         /// </summary>
         public static Volume? FromCubicMicrometers(long? cubicmicrometers)
@@ -2473,7 +2473,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicMicrometers of type decimal.
         /// </summary>
         public static Volume? FromCubicMicrometers(decimal? cubicmicrometers)
@@ -2503,7 +2503,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMiles.
         /// </summary>
         public static Volume? FromCubicMiles(int? cubicmiles)
@@ -2518,7 +2518,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMiles.
         /// </summary>
         public static Volume? FromCubicMiles(long? cubicmiles)
@@ -2533,7 +2533,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicMiles of type decimal.
         /// </summary>
         public static Volume? FromCubicMiles(decimal? cubicmiles)
@@ -2563,7 +2563,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMillimeters.
         /// </summary>
         public static Volume? FromCubicMillimeters(int? cubicmillimeters)
@@ -2578,7 +2578,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicMillimeters.
         /// </summary>
         public static Volume? FromCubicMillimeters(long? cubicmillimeters)
@@ -2593,7 +2593,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicMillimeters of type decimal.
         /// </summary>
         public static Volume? FromCubicMillimeters(decimal? cubicmillimeters)
@@ -2623,7 +2623,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicYards.
         /// </summary>
         public static Volume? FromCubicYards(int? cubicyards)
@@ -2638,7 +2638,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable CubicYards.
         /// </summary>
         public static Volume? FromCubicYards(long? cubicyards)
@@ -2653,7 +2653,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from CubicYards of type decimal.
         /// </summary>
         public static Volume? FromCubicYards(decimal? cubicyards)
@@ -2683,7 +2683,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Deciliters.
         /// </summary>
         public static Volume? FromDeciliters(int? deciliters)
@@ -2698,7 +2698,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Deciliters.
         /// </summary>
         public static Volume? FromDeciliters(long? deciliters)
@@ -2713,7 +2713,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Deciliters of type decimal.
         /// </summary>
         public static Volume? FromDeciliters(decimal? deciliters)
@@ -2743,7 +2743,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable HectocubicFeet.
         /// </summary>
         public static Volume? FromHectocubicFeet(int? hectocubicfeet)
@@ -2758,7 +2758,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable HectocubicFeet.
         /// </summary>
         public static Volume? FromHectocubicFeet(long? hectocubicfeet)
@@ -2773,7 +2773,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from HectocubicFeet of type decimal.
         /// </summary>
         public static Volume? FromHectocubicFeet(decimal? hectocubicfeet)
@@ -2803,7 +2803,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable HectocubicMeters.
         /// </summary>
         public static Volume? FromHectocubicMeters(int? hectocubicmeters)
@@ -2818,7 +2818,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable HectocubicMeters.
         /// </summary>
         public static Volume? FromHectocubicMeters(long? hectocubicmeters)
@@ -2833,7 +2833,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from HectocubicMeters of type decimal.
         /// </summary>
         public static Volume? FromHectocubicMeters(decimal? hectocubicmeters)
@@ -2863,7 +2863,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Hectoliters.
         /// </summary>
         public static Volume? FromHectoliters(int? hectoliters)
@@ -2878,7 +2878,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Hectoliters.
         /// </summary>
         public static Volume? FromHectoliters(long? hectoliters)
@@ -2893,7 +2893,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Hectoliters of type decimal.
         /// </summary>
         public static Volume? FromHectoliters(decimal? hectoliters)
@@ -2923,7 +2923,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialBeerBarrels.
         /// </summary>
         public static Volume? FromImperialBeerBarrels(int? imperialbeerbarrels)
@@ -2938,7 +2938,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialBeerBarrels.
         /// </summary>
         public static Volume? FromImperialBeerBarrels(long? imperialbeerbarrels)
@@ -2953,7 +2953,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from ImperialBeerBarrels of type decimal.
         /// </summary>
         public static Volume? FromImperialBeerBarrels(decimal? imperialbeerbarrels)
@@ -2983,7 +2983,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialGallons.
         /// </summary>
         public static Volume? FromImperialGallons(int? imperialgallons)
@@ -2998,7 +2998,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialGallons.
         /// </summary>
         public static Volume? FromImperialGallons(long? imperialgallons)
@@ -3013,7 +3013,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from ImperialGallons of type decimal.
         /// </summary>
         public static Volume? FromImperialGallons(decimal? imperialgallons)
@@ -3043,7 +3043,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialOunces.
         /// </summary>
         public static Volume? FromImperialOunces(int? imperialounces)
@@ -3058,7 +3058,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable ImperialOunces.
         /// </summary>
         public static Volume? FromImperialOunces(long? imperialounces)
@@ -3073,7 +3073,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from ImperialOunces of type decimal.
         /// </summary>
         public static Volume? FromImperialOunces(decimal? imperialounces)
@@ -3103,7 +3103,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilocubicFeet.
         /// </summary>
         public static Volume? FromKilocubicFeet(int? kilocubicfeet)
@@ -3118,7 +3118,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilocubicFeet.
         /// </summary>
         public static Volume? FromKilocubicFeet(long? kilocubicfeet)
@@ -3133,7 +3133,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from KilocubicFeet of type decimal.
         /// </summary>
         public static Volume? FromKilocubicFeet(decimal? kilocubicfeet)
@@ -3163,7 +3163,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilocubicMeters.
         /// </summary>
         public static Volume? FromKilocubicMeters(int? kilocubicmeters)
@@ -3178,7 +3178,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilocubicMeters.
         /// </summary>
         public static Volume? FromKilocubicMeters(long? kilocubicmeters)
@@ -3193,7 +3193,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from KilocubicMeters of type decimal.
         /// </summary>
         public static Volume? FromKilocubicMeters(decimal? kilocubicmeters)
@@ -3223,7 +3223,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KiloimperialGallons.
         /// </summary>
         public static Volume? FromKiloimperialGallons(int? kiloimperialgallons)
@@ -3238,7 +3238,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KiloimperialGallons.
         /// </summary>
         public static Volume? FromKiloimperialGallons(long? kiloimperialgallons)
@@ -3253,7 +3253,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from KiloimperialGallons of type decimal.
         /// </summary>
         public static Volume? FromKiloimperialGallons(decimal? kiloimperialgallons)
@@ -3283,7 +3283,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilousGallons.
         /// </summary>
         public static Volume? FromKilousGallons(int? kilousgallons)
@@ -3298,7 +3298,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable KilousGallons.
         /// </summary>
         public static Volume? FromKilousGallons(long? kilousgallons)
@@ -3313,7 +3313,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from KilousGallons of type decimal.
         /// </summary>
         public static Volume? FromKilousGallons(decimal? kilousgallons)
@@ -3343,7 +3343,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Liters.
         /// </summary>
         public static Volume? FromLiters(int? liters)
@@ -3358,7 +3358,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Liters.
         /// </summary>
         public static Volume? FromLiters(long? liters)
@@ -3373,7 +3373,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Liters of type decimal.
         /// </summary>
         public static Volume? FromLiters(decimal? liters)
@@ -3403,7 +3403,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegacubicFeet.
         /// </summary>
         public static Volume? FromMegacubicFeet(int? megacubicfeet)
@@ -3418,7 +3418,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegacubicFeet.
         /// </summary>
         public static Volume? FromMegacubicFeet(long? megacubicfeet)
@@ -3433,7 +3433,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from MegacubicFeet of type decimal.
         /// </summary>
         public static Volume? FromMegacubicFeet(decimal? megacubicfeet)
@@ -3463,7 +3463,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegaimperialGallons.
         /// </summary>
         public static Volume? FromMegaimperialGallons(int? megaimperialgallons)
@@ -3478,7 +3478,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegaimperialGallons.
         /// </summary>
         public static Volume? FromMegaimperialGallons(long? megaimperialgallons)
@@ -3493,7 +3493,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from MegaimperialGallons of type decimal.
         /// </summary>
         public static Volume? FromMegaimperialGallons(decimal? megaimperialgallons)
@@ -3523,7 +3523,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegausGallons.
         /// </summary>
         public static Volume? FromMegausGallons(int? megausgallons)
@@ -3538,7 +3538,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MegausGallons.
         /// </summary>
         public static Volume? FromMegausGallons(long? megausgallons)
@@ -3553,7 +3553,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from MegausGallons of type decimal.
         /// </summary>
         public static Volume? FromMegausGallons(decimal? megausgallons)
@@ -3583,7 +3583,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MetricCups.
         /// </summary>
         public static Volume? FromMetricCups(int? metriccups)
@@ -3598,7 +3598,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MetricCups.
         /// </summary>
         public static Volume? FromMetricCups(long? metriccups)
@@ -3613,7 +3613,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from MetricCups of type decimal.
         /// </summary>
         public static Volume? FromMetricCups(decimal? metriccups)
@@ -3643,7 +3643,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MetricTeaspoons.
         /// </summary>
         public static Volume? FromMetricTeaspoons(int? metricteaspoons)
@@ -3658,7 +3658,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable MetricTeaspoons.
         /// </summary>
         public static Volume? FromMetricTeaspoons(long? metricteaspoons)
@@ -3673,7 +3673,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from MetricTeaspoons of type decimal.
         /// </summary>
         public static Volume? FromMetricTeaspoons(decimal? metricteaspoons)
@@ -3703,7 +3703,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Microliters.
         /// </summary>
         public static Volume? FromMicroliters(int? microliters)
@@ -3718,7 +3718,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Microliters.
         /// </summary>
         public static Volume? FromMicroliters(long? microliters)
@@ -3733,7 +3733,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Microliters of type decimal.
         /// </summary>
         public static Volume? FromMicroliters(decimal? microliters)
@@ -3763,7 +3763,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Milliliters.
         /// </summary>
         public static Volume? FromMilliliters(int? milliliters)
@@ -3778,7 +3778,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Milliliters.
         /// </summary>
         public static Volume? FromMilliliters(long? milliliters)
@@ -3793,7 +3793,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Milliliters of type decimal.
         /// </summary>
         public static Volume? FromMilliliters(decimal? milliliters)
@@ -3823,7 +3823,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable OilBarrels.
         /// </summary>
         public static Volume? FromOilBarrels(int? oilbarrels)
@@ -3838,7 +3838,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable OilBarrels.
         /// </summary>
         public static Volume? FromOilBarrels(long? oilbarrels)
@@ -3853,7 +3853,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from OilBarrels of type decimal.
         /// </summary>
         public static Volume? FromOilBarrels(decimal? oilbarrels)
@@ -3883,7 +3883,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Tablespoons.
         /// </summary>
         public static Volume? FromTablespoons(int? tablespoons)
@@ -3898,7 +3898,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Tablespoons.
         /// </summary>
         public static Volume? FromTablespoons(long? tablespoons)
@@ -3913,7 +3913,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Tablespoons of type decimal.
         /// </summary>
         public static Volume? FromTablespoons(decimal? tablespoons)
@@ -3943,7 +3943,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Teaspoons.
         /// </summary>
         public static Volume? FromTeaspoons(int? teaspoons)
@@ -3958,7 +3958,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable Teaspoons.
         /// </summary>
         public static Volume? FromTeaspoons(long? teaspoons)
@@ -3973,7 +3973,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from Teaspoons of type decimal.
         /// </summary>
         public static Volume? FromTeaspoons(decimal? teaspoons)
@@ -4003,7 +4003,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UkTablespoons.
         /// </summary>
         public static Volume? FromUkTablespoons(int? uktablespoons)
@@ -4018,7 +4018,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UkTablespoons.
         /// </summary>
         public static Volume? FromUkTablespoons(long? uktablespoons)
@@ -4033,7 +4033,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UkTablespoons of type decimal.
         /// </summary>
         public static Volume? FromUkTablespoons(decimal? uktablespoons)
@@ -4063,7 +4063,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsBeerBarrels.
         /// </summary>
         public static Volume? FromUsBeerBarrels(int? usbeerbarrels)
@@ -4078,7 +4078,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsBeerBarrels.
         /// </summary>
         public static Volume? FromUsBeerBarrels(long? usbeerbarrels)
@@ -4093,7 +4093,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsBeerBarrels of type decimal.
         /// </summary>
         public static Volume? FromUsBeerBarrels(decimal? usbeerbarrels)
@@ -4123,7 +4123,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsCustomaryCups.
         /// </summary>
         public static Volume? FromUsCustomaryCups(int? uscustomarycups)
@@ -4138,7 +4138,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsCustomaryCups.
         /// </summary>
         public static Volume? FromUsCustomaryCups(long? uscustomarycups)
@@ -4153,7 +4153,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsCustomaryCups of type decimal.
         /// </summary>
         public static Volume? FromUsCustomaryCups(decimal? uscustomarycups)
@@ -4183,7 +4183,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsGallons.
         /// </summary>
         public static Volume? FromUsGallons(int? usgallons)
@@ -4198,7 +4198,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsGallons.
         /// </summary>
         public static Volume? FromUsGallons(long? usgallons)
@@ -4213,7 +4213,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsGallons of type decimal.
         /// </summary>
         public static Volume? FromUsGallons(decimal? usgallons)
@@ -4243,7 +4243,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsLegalCups.
         /// </summary>
         public static Volume? FromUsLegalCups(int? uslegalcups)
@@ -4258,7 +4258,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsLegalCups.
         /// </summary>
         public static Volume? FromUsLegalCups(long? uslegalcups)
@@ -4273,7 +4273,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsLegalCups of type decimal.
         /// </summary>
         public static Volume? FromUsLegalCups(decimal? uslegalcups)
@@ -4303,7 +4303,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsOunces.
         /// </summary>
         public static Volume? FromUsOunces(int? usounces)
@@ -4318,7 +4318,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsOunces.
         /// </summary>
         public static Volume? FromUsOunces(long? usounces)
@@ -4333,7 +4333,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsOunces of type decimal.
         /// </summary>
         public static Volume? FromUsOunces(decimal? usounces)
@@ -4363,7 +4363,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsTablespoons.
         /// </summary>
         public static Volume? FromUsTablespoons(int? ustablespoons)
@@ -4378,7 +4378,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsTablespoons.
         /// </summary>
         public static Volume? FromUsTablespoons(long? ustablespoons)
@@ -4393,7 +4393,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsTablespoons of type decimal.
         /// </summary>
         public static Volume? FromUsTablespoons(decimal? ustablespoons)
@@ -4423,7 +4423,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsTeaspoons.
         /// </summary>
         public static Volume? FromUsTeaspoons(int? usteaspoons)
@@ -4438,7 +4438,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from nullable UsTeaspoons.
         /// </summary>
         public static Volume? FromUsTeaspoons(long? usteaspoons)
@@ -4453,7 +4453,7 @@ namespace UnitsNet
             }
         }
 
-		/// <summary>
+        /// <summary>
         ///     Get nullable Volume from UsTeaspoons of type decimal.
         /// </summary>
         public static Volume? FromUsTeaspoons(decimal? usteaspoons)
