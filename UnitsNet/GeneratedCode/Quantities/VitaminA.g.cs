@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _internationalUnits;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public VitaminA() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.VitaminA;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static VitaminAUnit BaseUnit
         {
             get { return VitaminAUnit.InternationalUnit; }
@@ -149,10 +149,40 @@ namespace UnitsNet
         /// <summary>
         ///     Get VitaminA from InternationalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static VitaminA FromInternationalUnits(double internationalunits)
         {
             return new VitaminA(internationalunits);
         }
+
+        /// <summary>
+        ///     Get VitaminA from InternationalUnits.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(int internationalunits)
+        {
+            return new VitaminA(internationalunits);
+        }
+
+        /// <summary>
+        ///     Get VitaminA from InternationalUnits.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(long internationalunits)
+        {
+            return new VitaminA(internationalunits);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get VitaminA from InternationalUnits of type decimal.
+        /// </summary>
+        public static VitaminA FromInternationalUnits(decimal internationalunits)
+        {
+            return new VitaminA(Convert.ToDouble(internationalunits));
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -160,6 +190,51 @@ namespace UnitsNet
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
         public static VitaminA? FromInternationalUnits(double? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable VitaminA from nullable InternationalUnits.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(int? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable VitaminA from nullable InternationalUnits.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(long? internationalunits)
+        {
+            if (internationalunits.HasValue)
+            {
+                return FromInternationalUnits(internationalunits.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable VitaminA from InternationalUnits of type decimal.
+        /// </summary>
+        public static VitaminA? FromInternationalUnits(decimal? internationalunits)
         {
             if (internationalunits.HasValue)
             {

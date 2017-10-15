@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _voltsAc;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public ElectricPotentialAc() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.ElectricPotentialAc;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static ElectricPotentialAcUnit BaseUnit
         {
             get { return ElectricPotentialAcUnit.VoltAc; }
@@ -181,42 +181,192 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialAc from KilovoltsAc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialAc FromKilovoltsAc(double kilovoltsac)
         {
             return new ElectricPotentialAc((kilovoltsac) * 1e3d);
         }
 
         /// <summary>
+        ///     Get ElectricPotentialAc from KilovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromKilovoltsAc(int kilovoltsac)
+        {
+            return new ElectricPotentialAc((kilovoltsac) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from KilovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromKilovoltsAc(long kilovoltsac)
+        {
+            return new ElectricPotentialAc((kilovoltsac) * 1e3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get ElectricPotentialAc from KilovoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc FromKilovoltsAc(decimal kilovoltsac)
+        {
+            return new ElectricPotentialAc((Convert.ToDouble(kilovoltsac)) * 1e3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get ElectricPotentialAc from MegavoltsAc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialAc FromMegavoltsAc(double megavoltsac)
         {
             return new ElectricPotentialAc((megavoltsac) * 1e6d);
         }
 
         /// <summary>
+        ///     Get ElectricPotentialAc from MegavoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMegavoltsAc(int megavoltsac)
+        {
+            return new ElectricPotentialAc((megavoltsac) * 1e6d);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from MegavoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMegavoltsAc(long megavoltsac)
+        {
+            return new ElectricPotentialAc((megavoltsac) * 1e6d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get ElectricPotentialAc from MegavoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc FromMegavoltsAc(decimal megavoltsac)
+        {
+            return new ElectricPotentialAc((Convert.ToDouble(megavoltsac)) * 1e6d);
+        }
+#endif
+
+        /// <summary>
         ///     Get ElectricPotentialAc from MicrovoltsAc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialAc FromMicrovoltsAc(double microvoltsac)
         {
             return new ElectricPotentialAc((microvoltsac) * 1e-6d);
         }
 
         /// <summary>
+        ///     Get ElectricPotentialAc from MicrovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMicrovoltsAc(int microvoltsac)
+        {
+            return new ElectricPotentialAc((microvoltsac) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from MicrovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMicrovoltsAc(long microvoltsac)
+        {
+            return new ElectricPotentialAc((microvoltsac) * 1e-6d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get ElectricPotentialAc from MicrovoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc FromMicrovoltsAc(decimal microvoltsac)
+        {
+            return new ElectricPotentialAc((Convert.ToDouble(microvoltsac)) * 1e-6d);
+        }
+#endif
+
+        /// <summary>
         ///     Get ElectricPotentialAc from MillivoltsAc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialAc FromMillivoltsAc(double millivoltsac)
         {
             return new ElectricPotentialAc((millivoltsac) * 1e-3d);
         }
 
         /// <summary>
+        ///     Get ElectricPotentialAc from MillivoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMillivoltsAc(int millivoltsac)
+        {
+            return new ElectricPotentialAc((millivoltsac) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from MillivoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromMillivoltsAc(long millivoltsac)
+        {
+            return new ElectricPotentialAc((millivoltsac) * 1e-3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get ElectricPotentialAc from MillivoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc FromMillivoltsAc(decimal millivoltsac)
+        {
+            return new ElectricPotentialAc((Convert.ToDouble(millivoltsac)) * 1e-3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get ElectricPotentialAc from VoltsAc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialAc FromVoltsAc(double voltsac)
         {
             return new ElectricPotentialAc(voltsac);
         }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromVoltsAc(int voltsac)
+        {
+            return new ElectricPotentialAc(voltsac);
+        }
+
+        /// <summary>
+        ///     Get ElectricPotentialAc from VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc FromVoltsAc(long voltsac)
+        {
+            return new ElectricPotentialAc(voltsac);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get ElectricPotentialAc from VoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc FromVoltsAc(decimal voltsac)
+        {
+            return new ElectricPotentialAc(Convert.ToDouble(voltsac));
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -224,6 +374,51 @@ namespace UnitsNet
         ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
         /// </summary>
         public static ElectricPotentialAc? FromKilovoltsAc(double? kilovoltsac)
+        {
+            if (kilovoltsac.HasValue)
+            {
+                return FromKilovoltsAc(kilovoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromKilovoltsAc(int? kilovoltsac)
+        {
+            if (kilovoltsac.HasValue)
+            {
+                return FromKilovoltsAc(kilovoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromKilovoltsAc(long? kilovoltsac)
+        {
+            if (kilovoltsac.HasValue)
+            {
+                return FromKilovoltsAc(kilovoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from KilovoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc? FromKilovoltsAc(decimal? kilovoltsac)
         {
             if (kilovoltsac.HasValue)
             {
@@ -251,9 +446,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MegavoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMegavoltsAc(int? megavoltsac)
+        {
+            if (megavoltsac.HasValue)
+            {
+                return FromMegavoltsAc(megavoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MegavoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMegavoltsAc(long? megavoltsac)
+        {
+            if (megavoltsac.HasValue)
+            {
+                return FromMegavoltsAc(megavoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from MegavoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc? FromMegavoltsAc(decimal? megavoltsac)
+        {
+            if (megavoltsac.HasValue)
+            {
+                return FromMegavoltsAc(megavoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
         /// </summary>
         public static ElectricPotentialAc? FromMicrovoltsAc(double? microvoltsac)
+        {
+            if (microvoltsac.HasValue)
+            {
+                return FromMicrovoltsAc(microvoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMicrovoltsAc(int? microvoltsac)
+        {
+            if (microvoltsac.HasValue)
+            {
+                return FromMicrovoltsAc(microvoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMicrovoltsAc(long? microvoltsac)
+        {
+            if (microvoltsac.HasValue)
+            {
+                return FromMicrovoltsAc(microvoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from MicrovoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc? FromMicrovoltsAc(decimal? microvoltsac)
         {
             if (microvoltsac.HasValue)
             {
@@ -281,9 +566,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MillivoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMillivoltsAc(int? millivoltsac)
+        {
+            if (millivoltsac.HasValue)
+            {
+                return FromMillivoltsAc(millivoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable MillivoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromMillivoltsAc(long? millivoltsac)
+        {
+            if (millivoltsac.HasValue)
+            {
+                return FromMillivoltsAc(millivoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from MillivoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc? FromMillivoltsAc(decimal? millivoltsac)
+        {
+            if (millivoltsac.HasValue)
+            {
+                return FromMillivoltsAc(millivoltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
         /// </summary>
         public static ElectricPotentialAc? FromVoltsAc(double? voltsac)
+        {
+            if (voltsac.HasValue)
+            {
+                return FromVoltsAc(voltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromVoltsAc(int? voltsac)
+        {
+            if (voltsac.HasValue)
+            {
+                return FromVoltsAc(voltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
+        /// </summary>
+        public static ElectricPotentialAc? FromVoltsAc(long? voltsac)
+        {
+            if (voltsac.HasValue)
+            {
+                return FromVoltsAc(voltsac.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotentialAc from VoltsAc of type decimal.
+        /// </summary>
+        public static ElectricPotentialAc? FromVoltsAc(decimal? voltsac)
         {
             if (voltsac.HasValue)
             {

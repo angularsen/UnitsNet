@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _kilogramsPerJoule;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public BrakeSpecificFuelConsumption() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.BrakeSpecificFuelConsumption;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static BrakeSpecificFuelConsumptionUnit BaseUnit
         {
             get { return BrakeSpecificFuelConsumptionUnit.KilogramPerJoule; }
@@ -165,26 +165,116 @@ namespace UnitsNet
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(double gramsperkilowatthour)
         {
             return new BrakeSpecificFuelConsumption(gramsperkilowatthour/3.6e9);
         }
 
         /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(int gramsperkilowatthour)
+        {
+            return new BrakeSpecificFuelConsumption(gramsperkilowatthour/3.6e9);
+        }
+
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(long gramsperkilowatthour)
+        {
+            return new BrakeSpecificFuelConsumption(gramsperkilowatthour/3.6e9);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(decimal gramsperkilowatthour)
+        {
+            return new BrakeSpecificFuelConsumption(Convert.ToDouble(gramsperkilowatthour)/3.6e9);
+        }
+#endif
+
+        /// <summary>
         ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(double kilogramsperjoule)
         {
             return new BrakeSpecificFuelConsumption(kilogramsperjoule);
         }
 
         /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(int kilogramsperjoule)
+        {
+            return new BrakeSpecificFuelConsumption(kilogramsperjoule);
+        }
+
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(long kilogramsperjoule)
+        {
+            return new BrakeSpecificFuelConsumption(kilogramsperjoule);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(decimal kilogramsperjoule)
+        {
+            return new BrakeSpecificFuelConsumption(Convert.ToDouble(kilogramsperjoule));
+        }
+#endif
+
+        /// <summary>
         ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double poundspermechanicalhorsepowerhour)
         {
             return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour*1.689659410672e-7);
         }
+
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(int poundspermechanicalhorsepowerhour)
+        {
+            return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour*1.689659410672e-7);
+        }
+
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(long poundspermechanicalhorsepowerhour)
+        {
+            return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour*1.689659410672e-7);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(decimal poundspermechanicalhorsepowerhour)
+        {
+            return new BrakeSpecificFuelConsumption(Convert.ToDouble(poundspermechanicalhorsepowerhour)*1.689659410672e-7);
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -192,6 +282,51 @@ namespace UnitsNet
         ///     Get nullable BrakeSpecificFuelConsumption from nullable GramsPerKiloWattHour.
         /// </summary>
         public static BrakeSpecificFuelConsumption? FromGramsPerKiloWattHour(double? gramsperkilowatthour)
+        {
+            if (gramsperkilowatthour.HasValue)
+            {
+                return FromGramsPerKiloWattHour(gramsperkilowatthour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable GramsPerKiloWattHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromGramsPerKiloWattHour(int? gramsperkilowatthour)
+        {
+            if (gramsperkilowatthour.HasValue)
+            {
+                return FromGramsPerKiloWattHour(gramsperkilowatthour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable GramsPerKiloWattHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromGramsPerKiloWattHour(long? gramsperkilowatthour)
+        {
+            if (gramsperkilowatthour.HasValue)
+            {
+                return FromGramsPerKiloWattHour(gramsperkilowatthour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from GramsPerKiloWattHour of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromGramsPerKiloWattHour(decimal? gramsperkilowatthour)
         {
             if (gramsperkilowatthour.HasValue)
             {
@@ -219,9 +354,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable KilogramsPerJoule.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromKilogramsPerJoule(int? kilogramsperjoule)
+        {
+            if (kilogramsperjoule.HasValue)
+            {
+                return FromKilogramsPerJoule(kilogramsperjoule.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable KilogramsPerJoule.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromKilogramsPerJoule(long? kilogramsperjoule)
+        {
+            if (kilogramsperjoule.HasValue)
+            {
+                return FromKilogramsPerJoule(kilogramsperjoule.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from KilogramsPerJoule of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromKilogramsPerJoule(decimal? kilogramsperjoule)
+        {
+            if (kilogramsperjoule.HasValue)
+            {
+                return FromKilogramsPerJoule(kilogramsperjoule.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerMechanicalHorsepowerHour.
         /// </summary>
         public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(double? poundspermechanicalhorsepowerhour)
+        {
+            if (poundspermechanicalhorsepowerhour.HasValue)
+            {
+                return FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerMechanicalHorsepowerHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(int? poundspermechanicalhorsepowerhour)
+        {
+            if (poundspermechanicalhorsepowerhour.HasValue)
+            {
+                return FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerMechanicalHorsepowerHour.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(long? poundspermechanicalhorsepowerhour)
+        {
+            if (poundspermechanicalhorsepowerhour.HasValue)
+            {
+                return FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour of type decimal.
+        /// </summary>
+        public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(decimal? poundspermechanicalhorsepowerhour)
         {
             if (poundspermechanicalhorsepowerhour.HasValue)
             {

@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _meters;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Length() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Length;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static LengthUnit BaseUnit
         {
             get { return LengthUnit.Meter; }
@@ -317,178 +317,838 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromCentimeters(double centimeters)
         {
             return new Length((centimeters) * 1e-2d);
         }
 
         /// <summary>
+        ///     Get Length from Centimeters.
+        /// </summary>
+        public static Length FromCentimeters(int centimeters)
+        {
+            return new Length((centimeters) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Length from Centimeters.
+        /// </summary>
+        public static Length FromCentimeters(long centimeters)
+        {
+            return new Length((centimeters) * 1e-2d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Centimeters of type decimal.
+        /// </summary>
+        public static Length FromCentimeters(decimal centimeters)
+        {
+            return new Length((Convert.ToDouble(centimeters)) * 1e-2d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Decimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDecimeters(double decimeters)
         {
             return new Length((decimeters) * 1e-1d);
         }
 
         /// <summary>
+        ///     Get Length from Decimeters.
+        /// </summary>
+        public static Length FromDecimeters(int decimeters)
+        {
+            return new Length((decimeters) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Length from Decimeters.
+        /// </summary>
+        public static Length FromDecimeters(long decimeters)
+        {
+            return new Length((decimeters) * 1e-1d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Decimeters of type decimal.
+        /// </summary>
+        public static Length FromDecimeters(decimal decimeters)
+        {
+            return new Length((Convert.ToDouble(decimeters)) * 1e-1d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from DtpPicas.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDtpPicas(double dtppicas)
         {
             return new Length(dtppicas/236.220472441);
         }
 
         /// <summary>
+        ///     Get Length from DtpPicas.
+        /// </summary>
+        public static Length FromDtpPicas(int dtppicas)
+        {
+            return new Length(dtppicas/236.220472441);
+        }
+
+        /// <summary>
+        ///     Get Length from DtpPicas.
+        /// </summary>
+        public static Length FromDtpPicas(long dtppicas)
+        {
+            return new Length(dtppicas/236.220472441);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from DtpPicas of type decimal.
+        /// </summary>
+        public static Length FromDtpPicas(decimal dtppicas)
+        {
+            return new Length(Convert.ToDouble(dtppicas)/236.220472441);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from DtpPoints.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDtpPoints(double dtppoints)
         {
             return new Length((dtppoints/72)*2.54e-2);
         }
 
         /// <summary>
+        ///     Get Length from DtpPoints.
+        /// </summary>
+        public static Length FromDtpPoints(int dtppoints)
+        {
+            return new Length((dtppoints/72)*2.54e-2);
+        }
+
+        /// <summary>
+        ///     Get Length from DtpPoints.
+        /// </summary>
+        public static Length FromDtpPoints(long dtppoints)
+        {
+            return new Length((dtppoints/72)*2.54e-2);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from DtpPoints of type decimal.
+        /// </summary>
+        public static Length FromDtpPoints(decimal dtppoints)
+        {
+            return new Length((Convert.ToDouble(dtppoints)/72)*2.54e-2);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Fathoms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromFathoms(double fathoms)
         {
             return new Length(fathoms*1.8288);
         }
 
         /// <summary>
+        ///     Get Length from Fathoms.
+        /// </summary>
+        public static Length FromFathoms(int fathoms)
+        {
+            return new Length(fathoms*1.8288);
+        }
+
+        /// <summary>
+        ///     Get Length from Fathoms.
+        /// </summary>
+        public static Length FromFathoms(long fathoms)
+        {
+            return new Length(fathoms*1.8288);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Fathoms of type decimal.
+        /// </summary>
+        public static Length FromFathoms(decimal fathoms)
+        {
+            return new Length(Convert.ToDouble(fathoms)*1.8288);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Feet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromFeet(double feet)
         {
             return new Length(feet*0.3048);
         }
 
         /// <summary>
+        ///     Get Length from Feet.
+        /// </summary>
+        public static Length FromFeet(int feet)
+        {
+            return new Length(feet*0.3048);
+        }
+
+        /// <summary>
+        ///     Get Length from Feet.
+        /// </summary>
+        public static Length FromFeet(long feet)
+        {
+            return new Length(feet*0.3048);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Feet of type decimal.
+        /// </summary>
+        public static Length FromFeet(decimal feet)
+        {
+            return new Length(Convert.ToDouble(feet)*0.3048);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Inches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromInches(double inches)
         {
             return new Length(inches*2.54e-2);
         }
 
         /// <summary>
+        ///     Get Length from Inches.
+        /// </summary>
+        public static Length FromInches(int inches)
+        {
+            return new Length(inches*2.54e-2);
+        }
+
+        /// <summary>
+        ///     Get Length from Inches.
+        /// </summary>
+        public static Length FromInches(long inches)
+        {
+            return new Length(inches*2.54e-2);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Inches of type decimal.
+        /// </summary>
+        public static Length FromInches(decimal inches)
+        {
+            return new Length(Convert.ToDouble(inches)*2.54e-2);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Kilometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromKilometers(double kilometers)
         {
             return new Length((kilometers) * 1e3d);
         }
 
         /// <summary>
+        ///     Get Length from Kilometers.
+        /// </summary>
+        public static Length FromKilometers(int kilometers)
+        {
+            return new Length((kilometers) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Length from Kilometers.
+        /// </summary>
+        public static Length FromKilometers(long kilometers)
+        {
+            return new Length((kilometers) * 1e3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Kilometers of type decimal.
+        /// </summary>
+        public static Length FromKilometers(decimal kilometers)
+        {
+            return new Length((Convert.ToDouble(kilometers)) * 1e3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Meters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMeters(double meters)
         {
             return new Length(meters);
         }
 
         /// <summary>
+        ///     Get Length from Meters.
+        /// </summary>
+        public static Length FromMeters(int meters)
+        {
+            return new Length(meters);
+        }
+
+        /// <summary>
+        ///     Get Length from Meters.
+        /// </summary>
+        public static Length FromMeters(long meters)
+        {
+            return new Length(meters);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Meters of type decimal.
+        /// </summary>
+        public static Length FromMeters(decimal meters)
+        {
+            return new Length(Convert.ToDouble(meters));
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Microinches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMicroinches(double microinches)
         {
             return new Length(microinches*2.54e-8);
         }
 
         /// <summary>
+        ///     Get Length from Microinches.
+        /// </summary>
+        public static Length FromMicroinches(int microinches)
+        {
+            return new Length(microinches*2.54e-8);
+        }
+
+        /// <summary>
+        ///     Get Length from Microinches.
+        /// </summary>
+        public static Length FromMicroinches(long microinches)
+        {
+            return new Length(microinches*2.54e-8);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Microinches of type decimal.
+        /// </summary>
+        public static Length FromMicroinches(decimal microinches)
+        {
+            return new Length(Convert.ToDouble(microinches)*2.54e-8);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Micrometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMicrometers(double micrometers)
         {
             return new Length((micrometers) * 1e-6d);
         }
 
         /// <summary>
+        ///     Get Length from Micrometers.
+        /// </summary>
+        public static Length FromMicrometers(int micrometers)
+        {
+            return new Length((micrometers) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Length from Micrometers.
+        /// </summary>
+        public static Length FromMicrometers(long micrometers)
+        {
+            return new Length((micrometers) * 1e-6d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Micrometers of type decimal.
+        /// </summary>
+        public static Length FromMicrometers(decimal micrometers)
+        {
+            return new Length((Convert.ToDouble(micrometers)) * 1e-6d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Mils.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMils(double mils)
         {
             return new Length(mils*2.54e-5);
         }
 
         /// <summary>
+        ///     Get Length from Mils.
+        /// </summary>
+        public static Length FromMils(int mils)
+        {
+            return new Length(mils*2.54e-5);
+        }
+
+        /// <summary>
+        ///     Get Length from Mils.
+        /// </summary>
+        public static Length FromMils(long mils)
+        {
+            return new Length(mils*2.54e-5);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Mils of type decimal.
+        /// </summary>
+        public static Length FromMils(decimal mils)
+        {
+            return new Length(Convert.ToDouble(mils)*2.54e-5);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Miles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMiles(double miles)
         {
             return new Length(miles*1609.34);
         }
 
         /// <summary>
+        ///     Get Length from Miles.
+        /// </summary>
+        public static Length FromMiles(int miles)
+        {
+            return new Length(miles*1609.34);
+        }
+
+        /// <summary>
+        ///     Get Length from Miles.
+        /// </summary>
+        public static Length FromMiles(long miles)
+        {
+            return new Length(miles*1609.34);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Miles of type decimal.
+        /// </summary>
+        public static Length FromMiles(decimal miles)
+        {
+            return new Length(Convert.ToDouble(miles)*1609.34);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Millimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMillimeters(double millimeters)
         {
             return new Length((millimeters) * 1e-3d);
         }
 
         /// <summary>
+        ///     Get Length from Millimeters.
+        /// </summary>
+        public static Length FromMillimeters(int millimeters)
+        {
+            return new Length((millimeters) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Length from Millimeters.
+        /// </summary>
+        public static Length FromMillimeters(long millimeters)
+        {
+            return new Length((millimeters) * 1e-3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Millimeters of type decimal.
+        /// </summary>
+        public static Length FromMillimeters(decimal millimeters)
+        {
+            return new Length((Convert.ToDouble(millimeters)) * 1e-3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Nanometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromNanometers(double nanometers)
         {
             return new Length((nanometers) * 1e-9d);
         }
 
         /// <summary>
+        ///     Get Length from Nanometers.
+        /// </summary>
+        public static Length FromNanometers(int nanometers)
+        {
+            return new Length((nanometers) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Length from Nanometers.
+        /// </summary>
+        public static Length FromNanometers(long nanometers)
+        {
+            return new Length((nanometers) * 1e-9d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Nanometers of type decimal.
+        /// </summary>
+        public static Length FromNanometers(decimal nanometers)
+        {
+            return new Length((Convert.ToDouble(nanometers)) * 1e-9d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from NauticalMiles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromNauticalMiles(double nauticalmiles)
         {
             return new Length(nauticalmiles*1852);
         }
 
         /// <summary>
+        ///     Get Length from NauticalMiles.
+        /// </summary>
+        public static Length FromNauticalMiles(int nauticalmiles)
+        {
+            return new Length(nauticalmiles*1852);
+        }
+
+        /// <summary>
+        ///     Get Length from NauticalMiles.
+        /// </summary>
+        public static Length FromNauticalMiles(long nauticalmiles)
+        {
+            return new Length(nauticalmiles*1852);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from NauticalMiles of type decimal.
+        /// </summary>
+        public static Length FromNauticalMiles(decimal nauticalmiles)
+        {
+            return new Length(Convert.ToDouble(nauticalmiles)*1852);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from PrinterPicas.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromPrinterPicas(double printerpicas)
         {
             return new Length(printerpicas/237.106301584);
         }
 
         /// <summary>
+        ///     Get Length from PrinterPicas.
+        /// </summary>
+        public static Length FromPrinterPicas(int printerpicas)
+        {
+            return new Length(printerpicas/237.106301584);
+        }
+
+        /// <summary>
+        ///     Get Length from PrinterPicas.
+        /// </summary>
+        public static Length FromPrinterPicas(long printerpicas)
+        {
+            return new Length(printerpicas/237.106301584);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from PrinterPicas of type decimal.
+        /// </summary>
+        public static Length FromPrinterPicas(decimal printerpicas)
+        {
+            return new Length(Convert.ToDouble(printerpicas)/237.106301584);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from PrinterPoints.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromPrinterPoints(double printerpoints)
         {
             return new Length((printerpoints/72.27)*2.54e-2);
         }
 
         /// <summary>
+        ///     Get Length from PrinterPoints.
+        /// </summary>
+        public static Length FromPrinterPoints(int printerpoints)
+        {
+            return new Length((printerpoints/72.27)*2.54e-2);
+        }
+
+        /// <summary>
+        ///     Get Length from PrinterPoints.
+        /// </summary>
+        public static Length FromPrinterPoints(long printerpoints)
+        {
+            return new Length((printerpoints/72.27)*2.54e-2);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from PrinterPoints of type decimal.
+        /// </summary>
+        public static Length FromPrinterPoints(decimal printerpoints)
+        {
+            return new Length((Convert.ToDouble(printerpoints)/72.27)*2.54e-2);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Shackles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromShackles(double shackles)
         {
             return new Length(shackles*27.432);
         }
 
         /// <summary>
+        ///     Get Length from Shackles.
+        /// </summary>
+        public static Length FromShackles(int shackles)
+        {
+            return new Length(shackles*27.432);
+        }
+
+        /// <summary>
+        ///     Get Length from Shackles.
+        /// </summary>
+        public static Length FromShackles(long shackles)
+        {
+            return new Length(shackles*27.432);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Shackles of type decimal.
+        /// </summary>
+        public static Length FromShackles(decimal shackles)
+        {
+            return new Length(Convert.ToDouble(shackles)*27.432);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Twips.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromTwips(double twips)
         {
             return new Length(twips/56692.913385826);
         }
 
         /// <summary>
+        ///     Get Length from Twips.
+        /// </summary>
+        public static Length FromTwips(int twips)
+        {
+            return new Length(twips/56692.913385826);
+        }
+
+        /// <summary>
+        ///     Get Length from Twips.
+        /// </summary>
+        public static Length FromTwips(long twips)
+        {
+            return new Length(twips/56692.913385826);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Twips of type decimal.
+        /// </summary>
+        public static Length FromTwips(decimal twips)
+        {
+            return new Length(Convert.ToDouble(twips)/56692.913385826);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from UsSurveyFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromUsSurveyFeet(double ussurveyfeet)
         {
             return new Length(ussurveyfeet*1200/3937);
         }
 
         /// <summary>
+        ///     Get Length from UsSurveyFeet.
+        /// </summary>
+        public static Length FromUsSurveyFeet(int ussurveyfeet)
+        {
+            return new Length(ussurveyfeet*1200/3937);
+        }
+
+        /// <summary>
+        ///     Get Length from UsSurveyFeet.
+        /// </summary>
+        public static Length FromUsSurveyFeet(long ussurveyfeet)
+        {
+            return new Length(ussurveyfeet*1200/3937);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from UsSurveyFeet of type decimal.
+        /// </summary>
+        public static Length FromUsSurveyFeet(decimal ussurveyfeet)
+        {
+            return new Length(Convert.ToDouble(ussurveyfeet)*1200/3937);
+        }
+#endif
+
+        /// <summary>
         ///     Get Length from Yards.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromYards(double yards)
         {
             return new Length(yards*0.9144);
         }
+
+        /// <summary>
+        ///     Get Length from Yards.
+        /// </summary>
+        public static Length FromYards(int yards)
+        {
+            return new Length(yards*0.9144);
+        }
+
+        /// <summary>
+        ///     Get Length from Yards.
+        /// </summary>
+        public static Length FromYards(long yards)
+        {
+            return new Length(yards*0.9144);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Length from Yards of type decimal.
+        /// </summary>
+        public static Length FromYards(decimal yards)
+        {
+            return new Length(Convert.ToDouble(yards)*0.9144);
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -496,6 +1156,51 @@ namespace UnitsNet
         ///     Get nullable Length from nullable Centimeters.
         /// </summary>
         public static Length? FromCentimeters(double? centimeters)
+        {
+            if (centimeters.HasValue)
+            {
+                return FromCentimeters(centimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Centimeters.
+        /// </summary>
+        public static Length? FromCentimeters(int? centimeters)
+        {
+            if (centimeters.HasValue)
+            {
+                return FromCentimeters(centimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Centimeters.
+        /// </summary>
+        public static Length? FromCentimeters(long? centimeters)
+        {
+            if (centimeters.HasValue)
+            {
+                return FromCentimeters(centimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Centimeters of type decimal.
+        /// </summary>
+        public static Length? FromCentimeters(decimal? centimeters)
         {
             if (centimeters.HasValue)
             {
@@ -523,9 +1228,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Decimeters.
+        /// </summary>
+        public static Length? FromDecimeters(int? decimeters)
+        {
+            if (decimeters.HasValue)
+            {
+                return FromDecimeters(decimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Decimeters.
+        /// </summary>
+        public static Length? FromDecimeters(long? decimeters)
+        {
+            if (decimeters.HasValue)
+            {
+                return FromDecimeters(decimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Decimeters of type decimal.
+        /// </summary>
+        public static Length? FromDecimeters(decimal? decimeters)
+        {
+            if (decimeters.HasValue)
+            {
+                return FromDecimeters(decimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable DtpPicas.
         /// </summary>
         public static Length? FromDtpPicas(double? dtppicas)
+        {
+            if (dtppicas.HasValue)
+            {
+                return FromDtpPicas(dtppicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPicas.
+        /// </summary>
+        public static Length? FromDtpPicas(int? dtppicas)
+        {
+            if (dtppicas.HasValue)
+            {
+                return FromDtpPicas(dtppicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPicas.
+        /// </summary>
+        public static Length? FromDtpPicas(long? dtppicas)
+        {
+            if (dtppicas.HasValue)
+            {
+                return FromDtpPicas(dtppicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from DtpPicas of type decimal.
+        /// </summary>
+        public static Length? FromDtpPicas(decimal? dtppicas)
         {
             if (dtppicas.HasValue)
             {
@@ -553,9 +1348,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable DtpPoints.
+        /// </summary>
+        public static Length? FromDtpPoints(int? dtppoints)
+        {
+            if (dtppoints.HasValue)
+            {
+                return FromDtpPoints(dtppoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPoints.
+        /// </summary>
+        public static Length? FromDtpPoints(long? dtppoints)
+        {
+            if (dtppoints.HasValue)
+            {
+                return FromDtpPoints(dtppoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from DtpPoints of type decimal.
+        /// </summary>
+        public static Length? FromDtpPoints(decimal? dtppoints)
+        {
+            if (dtppoints.HasValue)
+            {
+                return FromDtpPoints(dtppoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Fathoms.
         /// </summary>
         public static Length? FromFathoms(double? fathoms)
+        {
+            if (fathoms.HasValue)
+            {
+                return FromFathoms(fathoms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Fathoms.
+        /// </summary>
+        public static Length? FromFathoms(int? fathoms)
+        {
+            if (fathoms.HasValue)
+            {
+                return FromFathoms(fathoms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Fathoms.
+        /// </summary>
+        public static Length? FromFathoms(long? fathoms)
+        {
+            if (fathoms.HasValue)
+            {
+                return FromFathoms(fathoms.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Fathoms of type decimal.
+        /// </summary>
+        public static Length? FromFathoms(decimal? fathoms)
         {
             if (fathoms.HasValue)
             {
@@ -583,9 +1468,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Feet.
+        /// </summary>
+        public static Length? FromFeet(int? feet)
+        {
+            if (feet.HasValue)
+            {
+                return FromFeet(feet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Feet.
+        /// </summary>
+        public static Length? FromFeet(long? feet)
+        {
+            if (feet.HasValue)
+            {
+                return FromFeet(feet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Feet of type decimal.
+        /// </summary>
+        public static Length? FromFeet(decimal? feet)
+        {
+            if (feet.HasValue)
+            {
+                return FromFeet(feet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Inches.
         /// </summary>
         public static Length? FromInches(double? inches)
+        {
+            if (inches.HasValue)
+            {
+                return FromInches(inches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Inches.
+        /// </summary>
+        public static Length? FromInches(int? inches)
+        {
+            if (inches.HasValue)
+            {
+                return FromInches(inches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Inches.
+        /// </summary>
+        public static Length? FromInches(long? inches)
+        {
+            if (inches.HasValue)
+            {
+                return FromInches(inches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Inches of type decimal.
+        /// </summary>
+        public static Length? FromInches(decimal? inches)
         {
             if (inches.HasValue)
             {
@@ -613,9 +1588,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Kilometers.
+        /// </summary>
+        public static Length? FromKilometers(int? kilometers)
+        {
+            if (kilometers.HasValue)
+            {
+                return FromKilometers(kilometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Kilometers.
+        /// </summary>
+        public static Length? FromKilometers(long? kilometers)
+        {
+            if (kilometers.HasValue)
+            {
+                return FromKilometers(kilometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Kilometers of type decimal.
+        /// </summary>
+        public static Length? FromKilometers(decimal? kilometers)
+        {
+            if (kilometers.HasValue)
+            {
+                return FromKilometers(kilometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Meters.
         /// </summary>
         public static Length? FromMeters(double? meters)
+        {
+            if (meters.HasValue)
+            {
+                return FromMeters(meters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Meters.
+        /// </summary>
+        public static Length? FromMeters(int? meters)
+        {
+            if (meters.HasValue)
+            {
+                return FromMeters(meters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Meters.
+        /// </summary>
+        public static Length? FromMeters(long? meters)
+        {
+            if (meters.HasValue)
+            {
+                return FromMeters(meters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Meters of type decimal.
+        /// </summary>
+        public static Length? FromMeters(decimal? meters)
         {
             if (meters.HasValue)
             {
@@ -643,9 +1708,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Microinches.
+        /// </summary>
+        public static Length? FromMicroinches(int? microinches)
+        {
+            if (microinches.HasValue)
+            {
+                return FromMicroinches(microinches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Microinches.
+        /// </summary>
+        public static Length? FromMicroinches(long? microinches)
+        {
+            if (microinches.HasValue)
+            {
+                return FromMicroinches(microinches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Microinches of type decimal.
+        /// </summary>
+        public static Length? FromMicroinches(decimal? microinches)
+        {
+            if (microinches.HasValue)
+            {
+                return FromMicroinches(microinches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Micrometers.
         /// </summary>
         public static Length? FromMicrometers(double? micrometers)
+        {
+            if (micrometers.HasValue)
+            {
+                return FromMicrometers(micrometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Micrometers.
+        /// </summary>
+        public static Length? FromMicrometers(int? micrometers)
+        {
+            if (micrometers.HasValue)
+            {
+                return FromMicrometers(micrometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Micrometers.
+        /// </summary>
+        public static Length? FromMicrometers(long? micrometers)
+        {
+            if (micrometers.HasValue)
+            {
+                return FromMicrometers(micrometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Micrometers of type decimal.
+        /// </summary>
+        public static Length? FromMicrometers(decimal? micrometers)
         {
             if (micrometers.HasValue)
             {
@@ -673,9 +1828,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Mils.
+        /// </summary>
+        public static Length? FromMils(int? mils)
+        {
+            if (mils.HasValue)
+            {
+                return FromMils(mils.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Mils.
+        /// </summary>
+        public static Length? FromMils(long? mils)
+        {
+            if (mils.HasValue)
+            {
+                return FromMils(mils.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Mils of type decimal.
+        /// </summary>
+        public static Length? FromMils(decimal? mils)
+        {
+            if (mils.HasValue)
+            {
+                return FromMils(mils.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Miles.
         /// </summary>
         public static Length? FromMiles(double? miles)
+        {
+            if (miles.HasValue)
+            {
+                return FromMiles(miles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Miles.
+        /// </summary>
+        public static Length? FromMiles(int? miles)
+        {
+            if (miles.HasValue)
+            {
+                return FromMiles(miles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Miles.
+        /// </summary>
+        public static Length? FromMiles(long? miles)
+        {
+            if (miles.HasValue)
+            {
+                return FromMiles(miles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Miles of type decimal.
+        /// </summary>
+        public static Length? FromMiles(decimal? miles)
         {
             if (miles.HasValue)
             {
@@ -703,9 +1948,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Millimeters.
+        /// </summary>
+        public static Length? FromMillimeters(int? millimeters)
+        {
+            if (millimeters.HasValue)
+            {
+                return FromMillimeters(millimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Millimeters.
+        /// </summary>
+        public static Length? FromMillimeters(long? millimeters)
+        {
+            if (millimeters.HasValue)
+            {
+                return FromMillimeters(millimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Millimeters of type decimal.
+        /// </summary>
+        public static Length? FromMillimeters(decimal? millimeters)
+        {
+            if (millimeters.HasValue)
+            {
+                return FromMillimeters(millimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Nanometers.
         /// </summary>
         public static Length? FromNanometers(double? nanometers)
+        {
+            if (nanometers.HasValue)
+            {
+                return FromNanometers(nanometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Nanometers.
+        /// </summary>
+        public static Length? FromNanometers(int? nanometers)
+        {
+            if (nanometers.HasValue)
+            {
+                return FromNanometers(nanometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Nanometers.
+        /// </summary>
+        public static Length? FromNanometers(long? nanometers)
+        {
+            if (nanometers.HasValue)
+            {
+                return FromNanometers(nanometers.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Nanometers of type decimal.
+        /// </summary>
+        public static Length? FromNanometers(decimal? nanometers)
         {
             if (nanometers.HasValue)
             {
@@ -733,9 +2068,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable NauticalMiles.
+        /// </summary>
+        public static Length? FromNauticalMiles(int? nauticalmiles)
+        {
+            if (nauticalmiles.HasValue)
+            {
+                return FromNauticalMiles(nauticalmiles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable NauticalMiles.
+        /// </summary>
+        public static Length? FromNauticalMiles(long? nauticalmiles)
+        {
+            if (nauticalmiles.HasValue)
+            {
+                return FromNauticalMiles(nauticalmiles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from NauticalMiles of type decimal.
+        /// </summary>
+        public static Length? FromNauticalMiles(decimal? nauticalmiles)
+        {
+            if (nauticalmiles.HasValue)
+            {
+                return FromNauticalMiles(nauticalmiles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable PrinterPicas.
         /// </summary>
         public static Length? FromPrinterPicas(double? printerpicas)
+        {
+            if (printerpicas.HasValue)
+            {
+                return FromPrinterPicas(printerpicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPicas.
+        /// </summary>
+        public static Length? FromPrinterPicas(int? printerpicas)
+        {
+            if (printerpicas.HasValue)
+            {
+                return FromPrinterPicas(printerpicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPicas.
+        /// </summary>
+        public static Length? FromPrinterPicas(long? printerpicas)
+        {
+            if (printerpicas.HasValue)
+            {
+                return FromPrinterPicas(printerpicas.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from PrinterPicas of type decimal.
+        /// </summary>
+        public static Length? FromPrinterPicas(decimal? printerpicas)
         {
             if (printerpicas.HasValue)
             {
@@ -763,9 +2188,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable PrinterPoints.
+        /// </summary>
+        public static Length? FromPrinterPoints(int? printerpoints)
+        {
+            if (printerpoints.HasValue)
+            {
+                return FromPrinterPoints(printerpoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPoints.
+        /// </summary>
+        public static Length? FromPrinterPoints(long? printerpoints)
+        {
+            if (printerpoints.HasValue)
+            {
+                return FromPrinterPoints(printerpoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from PrinterPoints of type decimal.
+        /// </summary>
+        public static Length? FromPrinterPoints(decimal? printerpoints)
+        {
+            if (printerpoints.HasValue)
+            {
+                return FromPrinterPoints(printerpoints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Shackles.
         /// </summary>
         public static Length? FromShackles(double? shackles)
+        {
+            if (shackles.HasValue)
+            {
+                return FromShackles(shackles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Shackles.
+        /// </summary>
+        public static Length? FromShackles(int? shackles)
+        {
+            if (shackles.HasValue)
+            {
+                return FromShackles(shackles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Shackles.
+        /// </summary>
+        public static Length? FromShackles(long? shackles)
+        {
+            if (shackles.HasValue)
+            {
+                return FromShackles(shackles.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Shackles of type decimal.
+        /// </summary>
+        public static Length? FromShackles(decimal? shackles)
         {
             if (shackles.HasValue)
             {
@@ -793,6 +2308,51 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable Twips.
+        /// </summary>
+        public static Length? FromTwips(int? twips)
+        {
+            if (twips.HasValue)
+            {
+                return FromTwips(twips.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Twips.
+        /// </summary>
+        public static Length? FromTwips(long? twips)
+        {
+            if (twips.HasValue)
+            {
+                return FromTwips(twips.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Twips of type decimal.
+        /// </summary>
+        public static Length? FromTwips(decimal? twips)
+        {
+            if (twips.HasValue)
+            {
+                return FromTwips(twips.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable UsSurveyFeet.
         /// </summary>
         public static Length? FromUsSurveyFeet(double? ussurveyfeet)
@@ -808,9 +2368,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Length from nullable UsSurveyFeet.
+        /// </summary>
+        public static Length? FromUsSurveyFeet(int? ussurveyfeet)
+        {
+            if (ussurveyfeet.HasValue)
+            {
+                return FromUsSurveyFeet(ussurveyfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable UsSurveyFeet.
+        /// </summary>
+        public static Length? FromUsSurveyFeet(long? ussurveyfeet)
+        {
+            if (ussurveyfeet.HasValue)
+            {
+                return FromUsSurveyFeet(ussurveyfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from UsSurveyFeet of type decimal.
+        /// </summary>
+        public static Length? FromUsSurveyFeet(decimal? ussurveyfeet)
+        {
+            if (ussurveyfeet.HasValue)
+            {
+                return FromUsSurveyFeet(ussurveyfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Length from nullable Yards.
         /// </summary>
         public static Length? FromYards(double? yards)
+        {
+            if (yards.HasValue)
+            {
+                return FromYards(yards.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Yards.
+        /// </summary>
+        public static Length? FromYards(int? yards)
+        {
+            if (yards.HasValue)
+            {
+                return FromYards(yards.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Yards.
+        /// </summary>
+        public static Length? FromYards(long? yards)
+        {
+            if (yards.HasValue)
+            {
+                return FromYards(yards.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Length from Yards of type decimal.
+        /// </summary>
+        public static Length? FromYards(decimal? yards)
         {
             if (yards.HasValue)
             {

@@ -104,7 +104,7 @@ namespace UnitsNet
         /// </summary>
         private readonly $baseType $baseUnitFieldName;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public $quantityName() : this(0)
         {
@@ -141,14 +141,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.$quantityName;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static $unitEnumName BaseUnit
         {
             get { return $unitEnumName.$baseUnitSingularName; }
@@ -188,14 +188,45 @@ namespace UnitsNet
 
 "@; foreach ($unit in $units) {
     $valueParamName = $unit.PluralName.ToLowerInvariant();
-        $func = $unit.FromUnitToBaseFunc.Replace("x", $valueParamName);@"
+        $func = $unit.FromUnitToBaseFunc.Replace("x", $valueParamName);
+        $decimalFunc = $unit.FromUnitToBaseFunc.Replace("x","Convert.ToDouble(" + $valueParamName + ")"); @"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static $quantityName From$($unit.PluralName)(double $valueParamName)
         {
             return new $quantityName($func);
         }
+
+        /// <summary>
+        ///     Get $quantityName from $($unit.PluralName).
+        /// </summary>
+        public static $quantityName From$($unit.PluralName)(int $valueParamName)
+        {
+            return new $quantityName($($func));
+        }
+
+        /// <summary>
+        ///     Get $quantityName from $($unit.PluralName).
+        /// </summary>
+        public static $quantityName From$($unit.PluralName)(long $valueParamName)
+        {
+            return new $quantityName($($func));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get $quantityName from $($unit.PluralName) of type decimal.
+        /// </summary>
+        public static $($quantityName) From$($unit.PluralName)(decimal $valueParamName)
+        {
+            return new $quantityName($($decimalFunc));
+        }
+#endif
 
 "@; }@"
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -207,6 +238,51 @@ namespace UnitsNet
         ///     Get nullable $quantityName from nullable $($unit.PluralName).
         /// </summary>
         public static $($quantityName)? From$($unit.PluralName)(double? $valueParamName)
+        {
+            if ($($valueParamName).HasValue)
+            {
+                return From$($unit.PluralName)($($valueParamName).Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable $quantityName from nullable $($unit.PluralName).
+        /// </summary>
+        public static $($quantityName)? From$($unit.PluralName)(int? $valueParamName)
+        {
+            if ($($valueParamName).HasValue)
+            {
+                return From$($unit.PluralName)($($valueParamName).Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable $quantityName from nullable $($unit.PluralName).
+        /// </summary>
+        public static $($quantityName)? From$($unit.PluralName)(long? $valueParamName)
+        {
+            if ($($valueParamName).HasValue)
+            {
+                return From$($unit.PluralName)($($valueParamName).Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable $quantityName from $($unit.PluralName) of type decimal.
+        /// </summary>
+        public static $($quantityName)? From$($unit.PluralName)(decimal? $valueParamName)
         {
             if ($($valueParamName).HasValue)
             {

@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly double _meterPerSecondSquared;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Acceleration() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Acceleration;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static AccelerationUnit BaseUnit
         {
             get { return AccelerationUnit.MeterPerSecondSquared; }
@@ -197,58 +197,268 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from CentimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromCentimeterPerSecondSquared(double centimeterpersecondsquared)
         {
             return new Acceleration((centimeterpersecondsquared) * 1e-2d);
         }
 
         /// <summary>
+        ///     Get Acceleration from CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromCentimeterPerSecondSquared(int centimeterpersecondsquared)
+        {
+            return new Acceleration((centimeterpersecondsquared) * 1e-2d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromCentimeterPerSecondSquared(long centimeterpersecondsquared)
+        {
+            return new Acceleration((centimeterpersecondsquared) * 1e-2d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from CentimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromCentimeterPerSecondSquared(decimal centimeterpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(centimeterpersecondsquared)) * 1e-2d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from DecimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromDecimeterPerSecondSquared(double decimeterpersecondsquared)
         {
             return new Acceleration((decimeterpersecondsquared) * 1e-1d);
         }
 
         /// <summary>
+        ///     Get Acceleration from DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromDecimeterPerSecondSquared(int decimeterpersecondsquared)
+        {
+            return new Acceleration((decimeterpersecondsquared) * 1e-1d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromDecimeterPerSecondSquared(long decimeterpersecondsquared)
+        {
+            return new Acceleration((decimeterpersecondsquared) * 1e-1d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from DecimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromDecimeterPerSecondSquared(decimal decimeterpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(decimeterpersecondsquared)) * 1e-1d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from KilometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromKilometerPerSecondSquared(double kilometerpersecondsquared)
         {
             return new Acceleration((kilometerpersecondsquared) * 1e3d);
         }
 
         /// <summary>
+        ///     Get Acceleration from KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromKilometerPerSecondSquared(int kilometerpersecondsquared)
+        {
+            return new Acceleration((kilometerpersecondsquared) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromKilometerPerSecondSquared(long kilometerpersecondsquared)
+        {
+            return new Acceleration((kilometerpersecondsquared) * 1e3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from KilometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromKilometerPerSecondSquared(decimal kilometerpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(kilometerpersecondsquared)) * 1e3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from MeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMeterPerSecondSquared(double meterpersecondsquared)
         {
             return new Acceleration(meterpersecondsquared);
         }
 
         /// <summary>
+        ///     Get Acceleration from MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMeterPerSecondSquared(int meterpersecondsquared)
+        {
+            return new Acceleration(meterpersecondsquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMeterPerSecondSquared(long meterpersecondsquared)
+        {
+            return new Acceleration(meterpersecondsquared);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from MeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromMeterPerSecondSquared(decimal meterpersecondsquared)
+        {
+            return new Acceleration(Convert.ToDouble(meterpersecondsquared));
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from MicrometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
         {
             return new Acceleration((micrometerpersecondsquared) * 1e-6d);
         }
 
         /// <summary>
+        ///     Get Acceleration from MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMicrometerPerSecondSquared(int micrometerpersecondsquared)
+        {
+            return new Acceleration((micrometerpersecondsquared) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMicrometerPerSecondSquared(long micrometerpersecondsquared)
+        {
+            return new Acceleration((micrometerpersecondsquared) * 1e-6d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from MicrometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromMicrometerPerSecondSquared(decimal micrometerpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(micrometerpersecondsquared)) * 1e-6d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from MillimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMillimeterPerSecondSquared(double millimeterpersecondsquared)
         {
             return new Acceleration((millimeterpersecondsquared) * 1e-3d);
         }
 
         /// <summary>
+        ///     Get Acceleration from MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMillimeterPerSecondSquared(int millimeterpersecondsquared)
+        {
+            return new Acceleration((millimeterpersecondsquared) * 1e-3d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromMillimeterPerSecondSquared(long millimeterpersecondsquared)
+        {
+            return new Acceleration((millimeterpersecondsquared) * 1e-3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from MillimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromMillimeterPerSecondSquared(decimal millimeterpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(millimeterpersecondsquared)) * 1e-3d);
+        }
+#endif
+
+        /// <summary>
         ///     Get Acceleration from NanometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromNanometerPerSecondSquared(double nanometerpersecondsquared)
         {
             return new Acceleration((nanometerpersecondsquared) * 1e-9d);
         }
+
+        /// <summary>
+        ///     Get Acceleration from NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromNanometerPerSecondSquared(int nanometerpersecondsquared)
+        {
+            return new Acceleration((nanometerpersecondsquared) * 1e-9d);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration FromNanometerPerSecondSquared(long nanometerpersecondsquared)
+        {
+            return new Acceleration((nanometerpersecondsquared) * 1e-9d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Acceleration from NanometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration FromNanometerPerSecondSquared(decimal nanometerpersecondsquared)
+        {
+            return new Acceleration((Convert.ToDouble(nanometerpersecondsquared)) * 1e-9d);
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -256,6 +466,51 @@ namespace UnitsNet
         ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
         /// </summary>
         public static Acceleration? FromCentimeterPerSecondSquared(double? centimeterpersecondsquared)
+        {
+            if (centimeterpersecondsquared.HasValue)
+            {
+                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromCentimeterPerSecondSquared(int? centimeterpersecondsquared)
+        {
+            if (centimeterpersecondsquared.HasValue)
+            {
+                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromCentimeterPerSecondSquared(long? centimeterpersecondsquared)
+        {
+            if (centimeterpersecondsquared.HasValue)
+            {
+                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from CentimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromCentimeterPerSecondSquared(decimal? centimeterpersecondsquared)
         {
             if (centimeterpersecondsquared.HasValue)
             {
@@ -283,9 +538,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromDecimeterPerSecondSquared(int? decimeterpersecondsquared)
+        {
+            if (decimeterpersecondsquared.HasValue)
+            {
+                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromDecimeterPerSecondSquared(long? decimeterpersecondsquared)
+        {
+            if (decimeterpersecondsquared.HasValue)
+            {
+                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from DecimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromDecimeterPerSecondSquared(decimal? decimeterpersecondsquared)
+        {
+            if (decimeterpersecondsquared.HasValue)
+            {
+                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
         /// </summary>
         public static Acceleration? FromKilometerPerSecondSquared(double? kilometerpersecondsquared)
+        {
+            if (kilometerpersecondsquared.HasValue)
+            {
+                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromKilometerPerSecondSquared(int? kilometerpersecondsquared)
+        {
+            if (kilometerpersecondsquared.HasValue)
+            {
+                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromKilometerPerSecondSquared(long? kilometerpersecondsquared)
+        {
+            if (kilometerpersecondsquared.HasValue)
+            {
+                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from KilometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromKilometerPerSecondSquared(decimal? kilometerpersecondsquared)
         {
             if (kilometerpersecondsquared.HasValue)
             {
@@ -313,9 +658,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMeterPerSecondSquared(int? meterpersecondsquared)
+        {
+            if (meterpersecondsquared.HasValue)
+            {
+                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMeterPerSecondSquared(long? meterpersecondsquared)
+        {
+            if (meterpersecondsquared.HasValue)
+            {
+                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from MeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromMeterPerSecondSquared(decimal? meterpersecondsquared)
+        {
+            if (meterpersecondsquared.HasValue)
+            {
+                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
         /// </summary>
         public static Acceleration? FromMicrometerPerSecondSquared(double? micrometerpersecondsquared)
+        {
+            if (micrometerpersecondsquared.HasValue)
+            {
+                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometerPerSecondSquared(int? micrometerpersecondsquared)
+        {
+            if (micrometerpersecondsquared.HasValue)
+            {
+                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometerPerSecondSquared(long? micrometerpersecondsquared)
+        {
+            if (micrometerpersecondsquared.HasValue)
+            {
+                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from MicrometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromMicrometerPerSecondSquared(decimal? micrometerpersecondsquared)
         {
             if (micrometerpersecondsquared.HasValue)
             {
@@ -343,9 +778,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimeterPerSecondSquared(int? millimeterpersecondsquared)
+        {
+            if (millimeterpersecondsquared.HasValue)
+            {
+                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimeterPerSecondSquared(long? millimeterpersecondsquared)
+        {
+            if (millimeterpersecondsquared.HasValue)
+            {
+                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from MillimeterPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromMillimeterPerSecondSquared(decimal? millimeterpersecondsquared)
+        {
+            if (millimeterpersecondsquared.HasValue)
+            {
+                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
         /// </summary>
         public static Acceleration? FromNanometerPerSecondSquared(double? nanometerpersecondsquared)
+        {
+            if (nanometerpersecondsquared.HasValue)
+            {
+                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometerPerSecondSquared(int? nanometerpersecondsquared)
+        {
+            if (nanometerpersecondsquared.HasValue)
+            {
+                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometerPerSecondSquared(long? nanometerpersecondsquared)
+        {
+            if (nanometerpersecondsquared.HasValue)
+            {
+                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from NanometerPerSecondSquared of type decimal.
+        /// </summary>
+        public static Acceleration? FromNanometerPerSecondSquared(decimal? nanometerpersecondsquared)
         {
             if (nanometerpersecondsquared.HasValue)
             {

@@ -74,7 +74,7 @@ namespace UnitsNet
         /// </summary>
         private readonly decimal _watts;
 
-		// Windows Runtime Component requires a default constructor
+        // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
         public Power() : this(0)
         {
@@ -111,14 +111,14 @@ namespace UnitsNet
 
         #region Properties
 
-		/// <summary>
-		///     The <see cref="QuantityType" /> of this quantity.
-		/// </summary>
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
         public static QuantityType QuantityType => QuantityType.Power;
 
-		/// <summary>
-		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
-		/// </summary>
+        /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
         public static PowerUnit BaseUnit
         {
             get { return PowerUnit.Watt; }
@@ -285,146 +285,686 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromBoilerHorsepower(double boilerhorsepower)
         {
             return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
         }
 
         /// <summary>
+        ///     Get Power from BoilerHorsepower.
+        /// </summary>
+        public static Power FromBoilerHorsepower(int boilerhorsepower)
+        {
+            return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
+        }
+
+        /// <summary>
+        ///     Get Power from BoilerHorsepower.
+        /// </summary>
+        public static Power FromBoilerHorsepower(long boilerhorsepower)
+        {
+            return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from BoilerHorsepower of type decimal.
+        /// </summary>
+        public static Power FromBoilerHorsepower(decimal boilerhorsepower)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(boilerhorsepower)*9812.5d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
         {
             return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
         }
 
         /// <summary>
+        ///     Get Power from BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromBritishThermalUnitsPerHour(int britishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
+        }
+
+        /// <summary>
+        ///     Get Power from BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromBritishThermalUnitsPerHour(long britishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from BritishThermalUnitsPerHour of type decimal.
+        /// </summary>
+        public static Power FromBritishThermalUnitsPerHour(decimal britishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(britishthermalunitsperhour)*0.293071d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromElectricalHorsepower(double electricalhorsepower)
         {
             return new Power(Convert.ToDecimal(electricalhorsepower*746d));
         }
 
         /// <summary>
+        ///     Get Power from ElectricalHorsepower.
+        /// </summary>
+        public static Power FromElectricalHorsepower(int electricalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(electricalhorsepower*746d));
+        }
+
+        /// <summary>
+        ///     Get Power from ElectricalHorsepower.
+        /// </summary>
+        public static Power FromElectricalHorsepower(long electricalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(electricalhorsepower*746d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from ElectricalHorsepower of type decimal.
+        /// </summary>
+        public static Power FromElectricalHorsepower(decimal electricalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(electricalhorsepower)*746d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromFemtowatts(double femtowatts)
         {
             return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
         }
 
         /// <summary>
+        ///     Get Power from Femtowatts.
+        /// </summary>
+        public static Power FromFemtowatts(int femtowatts)
+        {
+            return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
+        }
+
+        /// <summary>
+        ///     Get Power from Femtowatts.
+        /// </summary>
+        public static Power FromFemtowatts(long femtowatts)
+        {
+            return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Femtowatts of type decimal.
+        /// </summary>
+        public static Power FromFemtowatts(decimal femtowatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(femtowatts)) * 1e-15d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromGigawatts(double gigawatts)
         {
             return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
         }
 
         /// <summary>
+        ///     Get Power from Gigawatts.
+        /// </summary>
+        public static Power FromGigawatts(int gigawatts)
+        {
+            return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
+        }
+
+        /// <summary>
+        ///     Get Power from Gigawatts.
+        /// </summary>
+        public static Power FromGigawatts(long gigawatts)
+        {
+            return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Gigawatts of type decimal.
+        /// </summary>
+        public static Power FromGigawatts(decimal gigawatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(gigawatts)) * 1e9d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from HydraulicHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
         {
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
         }
 
         /// <summary>
+        ///     Get Power from HydraulicHorsepower.
+        /// </summary>
+        public static Power FromHydraulicHorsepower(int hydraulichorsepower)
+        {
+            return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
+        }
+
+        /// <summary>
+        ///     Get Power from HydraulicHorsepower.
+        /// </summary>
+        public static Power FromHydraulicHorsepower(long hydraulichorsepower)
+        {
+            return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from HydraulicHorsepower of type decimal.
+        /// </summary>
+        public static Power FromHydraulicHorsepower(decimal hydraulichorsepower)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(hydraulichorsepower)*745.69988145d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
         {
             return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
         }
 
         /// <summary>
+        ///     Get Power from KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromKilobritishThermalUnitsPerHour(int kilobritishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
+        }
+
+        /// <summary>
+        ///     Get Power from KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power FromKilobritishThermalUnitsPerHour(long kilobritishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from KilobritishThermalUnitsPerHour of type decimal.
+        /// </summary>
+        public static Power FromKilobritishThermalUnitsPerHour(decimal kilobritishthermalunitsperhour)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(kilobritishthermalunitsperhour)*0.293071d) * 1e3d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromKilowatts(double kilowatts)
         {
             return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
         }
 
         /// <summary>
+        ///     Get Power from Kilowatts.
+        /// </summary>
+        public static Power FromKilowatts(int kilowatts)
+        {
+            return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
+        }
+
+        /// <summary>
+        ///     Get Power from Kilowatts.
+        /// </summary>
+        public static Power FromKilowatts(long kilowatts)
+        {
+            return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Kilowatts of type decimal.
+        /// </summary>
+        public static Power FromKilowatts(decimal kilowatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(kilowatts)) * 1e3d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from MechanicalHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
         {
             return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
         }
 
         /// <summary>
+        ///     Get Power from MechanicalHorsepower.
+        /// </summary>
+        public static Power FromMechanicalHorsepower(int mechanicalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
+        }
+
+        /// <summary>
+        ///     Get Power from MechanicalHorsepower.
+        /// </summary>
+        public static Power FromMechanicalHorsepower(long mechanicalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from MechanicalHorsepower of type decimal.
+        /// </summary>
+        public static Power FromMechanicalHorsepower(decimal mechanicalhorsepower)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(mechanicalhorsepower)*745.69d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMegawatts(double megawatts)
         {
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
         }
 
         /// <summary>
+        ///     Get Power from Megawatts.
+        /// </summary>
+        public static Power FromMegawatts(int megawatts)
+        {
+            return new Power(Convert.ToDecimal((megawatts) * 1e6d));
+        }
+
+        /// <summary>
+        ///     Get Power from Megawatts.
+        /// </summary>
+        public static Power FromMegawatts(long megawatts)
+        {
+            return new Power(Convert.ToDecimal((megawatts) * 1e6d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Megawatts of type decimal.
+        /// </summary>
+        public static Power FromMegawatts(decimal megawatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(megawatts)) * 1e6d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from MetricHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMetricHorsepower(double metrichorsepower)
         {
             return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
         }
 
         /// <summary>
+        ///     Get Power from MetricHorsepower.
+        /// </summary>
+        public static Power FromMetricHorsepower(int metrichorsepower)
+        {
+            return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
+        }
+
+        /// <summary>
+        ///     Get Power from MetricHorsepower.
+        /// </summary>
+        public static Power FromMetricHorsepower(long metrichorsepower)
+        {
+            return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from MetricHorsepower of type decimal.
+        /// </summary>
+        public static Power FromMetricHorsepower(decimal metrichorsepower)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(metrichorsepower)*735.49875d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Microwatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMicrowatts(double microwatts)
         {
             return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
         }
 
         /// <summary>
+        ///     Get Power from Microwatts.
+        /// </summary>
+        public static Power FromMicrowatts(int microwatts)
+        {
+            return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
+        }
+
+        /// <summary>
+        ///     Get Power from Microwatts.
+        /// </summary>
+        public static Power FromMicrowatts(long microwatts)
+        {
+            return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Microwatts of type decimal.
+        /// </summary>
+        public static Power FromMicrowatts(decimal microwatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(microwatts)) * 1e-6d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Milliwatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMilliwatts(double milliwatts)
         {
             return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
         }
 
         /// <summary>
+        ///     Get Power from Milliwatts.
+        /// </summary>
+        public static Power FromMilliwatts(int milliwatts)
+        {
+            return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
+        }
+
+        /// <summary>
+        ///     Get Power from Milliwatts.
+        /// </summary>
+        public static Power FromMilliwatts(long milliwatts)
+        {
+            return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Milliwatts of type decimal.
+        /// </summary>
+        public static Power FromMilliwatts(decimal milliwatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(milliwatts)) * 1e-3d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Nanowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromNanowatts(double nanowatts)
         {
             return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
         }
 
         /// <summary>
+        ///     Get Power from Nanowatts.
+        /// </summary>
+        public static Power FromNanowatts(int nanowatts)
+        {
+            return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
+        }
+
+        /// <summary>
+        ///     Get Power from Nanowatts.
+        /// </summary>
+        public static Power FromNanowatts(long nanowatts)
+        {
+            return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Nanowatts of type decimal.
+        /// </summary>
+        public static Power FromNanowatts(decimal nanowatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(nanowatts)) * 1e-9d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Petawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromPetawatts(double petawatts)
         {
             return new Power(Convert.ToDecimal((petawatts) * 1e15d));
         }
 
         /// <summary>
+        ///     Get Power from Petawatts.
+        /// </summary>
+        public static Power FromPetawatts(int petawatts)
+        {
+            return new Power(Convert.ToDecimal((petawatts) * 1e15d));
+        }
+
+        /// <summary>
+        ///     Get Power from Petawatts.
+        /// </summary>
+        public static Power FromPetawatts(long petawatts)
+        {
+            return new Power(Convert.ToDecimal((petawatts) * 1e15d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Petawatts of type decimal.
+        /// </summary>
+        public static Power FromPetawatts(decimal petawatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(petawatts)) * 1e15d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Picowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromPicowatts(double picowatts)
         {
             return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
         }
 
         /// <summary>
+        ///     Get Power from Picowatts.
+        /// </summary>
+        public static Power FromPicowatts(int picowatts)
+        {
+            return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
+        }
+
+        /// <summary>
+        ///     Get Power from Picowatts.
+        /// </summary>
+        public static Power FromPicowatts(long picowatts)
+        {
+            return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Picowatts of type decimal.
+        /// </summary>
+        public static Power FromPicowatts(decimal picowatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(picowatts)) * 1e-12d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Terawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromTerawatts(double terawatts)
         {
             return new Power(Convert.ToDecimal((terawatts) * 1e12d));
         }
 
         /// <summary>
+        ///     Get Power from Terawatts.
+        /// </summary>
+        public static Power FromTerawatts(int terawatts)
+        {
+            return new Power(Convert.ToDecimal((terawatts) * 1e12d));
+        }
+
+        /// <summary>
+        ///     Get Power from Terawatts.
+        /// </summary>
+        public static Power FromTerawatts(long terawatts)
+        {
+            return new Power(Convert.ToDecimal((terawatts) * 1e12d));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Terawatts of type decimal.
+        /// </summary>
+        public static Power FromTerawatts(decimal terawatts)
+        {
+            return new Power(Convert.ToDecimal((Convert.ToDouble(terawatts)) * 1e12d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Power from Watts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromWatts(double watts)
         {
             return new Power(Convert.ToDecimal(watts));
         }
+
+        /// <summary>
+        ///     Get Power from Watts.
+        /// </summary>
+        public static Power FromWatts(int watts)
+        {
+            return new Power(Convert.ToDecimal(watts));
+        }
+
+        /// <summary>
+        ///     Get Power from Watts.
+        /// </summary>
+        public static Power FromWatts(long watts)
+        {
+            return new Power(Convert.ToDecimal(watts));
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Power from Watts of type decimal.
+        /// </summary>
+        public static Power FromWatts(decimal watts)
+        {
+            return new Power(Convert.ToDecimal(Convert.ToDouble(watts)));
+        }
+#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -432,6 +972,51 @@ namespace UnitsNet
         ///     Get nullable Power from nullable BoilerHorsepower.
         /// </summary>
         public static Power? FromBoilerHorsepower(double? boilerhorsepower)
+        {
+            if (boilerhorsepower.HasValue)
+            {
+                return FromBoilerHorsepower(boilerhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable BoilerHorsepower.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(int? boilerhorsepower)
+        {
+            if (boilerhorsepower.HasValue)
+            {
+                return FromBoilerHorsepower(boilerhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable BoilerHorsepower.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(long? boilerhorsepower)
+        {
+            if (boilerhorsepower.HasValue)
+            {
+                return FromBoilerHorsepower(boilerhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from BoilerHorsepower of type decimal.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(decimal? boilerhorsepower)
         {
             if (boilerhorsepower.HasValue)
             {
@@ -459,9 +1044,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromBritishThermalUnitsPerHour(int? britishthermalunitsperhour)
+        {
+            if (britishthermalunitsperhour.HasValue)
+            {
+                return FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromBritishThermalUnitsPerHour(long? britishthermalunitsperhour)
+        {
+            if (britishthermalunitsperhour.HasValue)
+            {
+                return FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from BritishThermalUnitsPerHour of type decimal.
+        /// </summary>
+        public static Power? FromBritishThermalUnitsPerHour(decimal? britishthermalunitsperhour)
+        {
+            if (britishthermalunitsperhour.HasValue)
+            {
+                return FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
         public static Power? FromElectricalHorsepower(double? electricalhorsepower)
+        {
+            if (electricalhorsepower.HasValue)
+            {
+                return FromElectricalHorsepower(electricalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable ElectricalHorsepower.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(int? electricalhorsepower)
+        {
+            if (electricalhorsepower.HasValue)
+            {
+                return FromElectricalHorsepower(electricalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable ElectricalHorsepower.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(long? electricalhorsepower)
+        {
+            if (electricalhorsepower.HasValue)
+            {
+                return FromElectricalHorsepower(electricalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from ElectricalHorsepower of type decimal.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(decimal? electricalhorsepower)
         {
             if (electricalhorsepower.HasValue)
             {
@@ -489,9 +1164,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Femtowatts.
+        /// </summary>
+        public static Power? FromFemtowatts(int? femtowatts)
+        {
+            if (femtowatts.HasValue)
+            {
+                return FromFemtowatts(femtowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Femtowatts.
+        /// </summary>
+        public static Power? FromFemtowatts(long? femtowatts)
+        {
+            if (femtowatts.HasValue)
+            {
+                return FromFemtowatts(femtowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Femtowatts of type decimal.
+        /// </summary>
+        public static Power? FromFemtowatts(decimal? femtowatts)
+        {
+            if (femtowatts.HasValue)
+            {
+                return FromFemtowatts(femtowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable Gigawatts.
         /// </summary>
         public static Power? FromGigawatts(double? gigawatts)
+        {
+            if (gigawatts.HasValue)
+            {
+                return FromGigawatts(gigawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Gigawatts.
+        /// </summary>
+        public static Power? FromGigawatts(int? gigawatts)
+        {
+            if (gigawatts.HasValue)
+            {
+                return FromGigawatts(gigawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Gigawatts.
+        /// </summary>
+        public static Power? FromGigawatts(long? gigawatts)
+        {
+            if (gigawatts.HasValue)
+            {
+                return FromGigawatts(gigawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Gigawatts of type decimal.
+        /// </summary>
+        public static Power? FromGigawatts(decimal? gigawatts)
         {
             if (gigawatts.HasValue)
             {
@@ -519,9 +1284,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable HydraulicHorsepower.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(int? hydraulichorsepower)
+        {
+            if (hydraulichorsepower.HasValue)
+            {
+                return FromHydraulicHorsepower(hydraulichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable HydraulicHorsepower.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(long? hydraulichorsepower)
+        {
+            if (hydraulichorsepower.HasValue)
+            {
+                return FromHydraulicHorsepower(hydraulichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from HydraulicHorsepower of type decimal.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(decimal? hydraulichorsepower)
+        {
+            if (hydraulichorsepower.HasValue)
+            {
+                return FromHydraulicHorsepower(hydraulichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
         /// </summary>
         public static Power? FromKilobritishThermalUnitsPerHour(double? kilobritishthermalunitsperhour)
+        {
+            if (kilobritishthermalunitsperhour.HasValue)
+            {
+                return FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromKilobritishThermalUnitsPerHour(int? kilobritishthermalunitsperhour)
+        {
+            if (kilobritishthermalunitsperhour.HasValue)
+            {
+                return FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromKilobritishThermalUnitsPerHour(long? kilobritishthermalunitsperhour)
+        {
+            if (kilobritishthermalunitsperhour.HasValue)
+            {
+                return FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from KilobritishThermalUnitsPerHour of type decimal.
+        /// </summary>
+        public static Power? FromKilobritishThermalUnitsPerHour(decimal? kilobritishthermalunitsperhour)
         {
             if (kilobritishthermalunitsperhour.HasValue)
             {
@@ -549,9 +1404,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Kilowatts.
+        /// </summary>
+        public static Power? FromKilowatts(int? kilowatts)
+        {
+            if (kilowatts.HasValue)
+            {
+                return FromKilowatts(kilowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Kilowatts.
+        /// </summary>
+        public static Power? FromKilowatts(long? kilowatts)
+        {
+            if (kilowatts.HasValue)
+            {
+                return FromKilowatts(kilowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Kilowatts of type decimal.
+        /// </summary>
+        public static Power? FromKilowatts(decimal? kilowatts)
+        {
+            if (kilowatts.HasValue)
+            {
+                return FromKilowatts(kilowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable MechanicalHorsepower.
         /// </summary>
         public static Power? FromMechanicalHorsepower(double? mechanicalhorsepower)
+        {
+            if (mechanicalhorsepower.HasValue)
+            {
+                return FromMechanicalHorsepower(mechanicalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MechanicalHorsepower.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(int? mechanicalhorsepower)
+        {
+            if (mechanicalhorsepower.HasValue)
+            {
+                return FromMechanicalHorsepower(mechanicalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MechanicalHorsepower.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(long? mechanicalhorsepower)
+        {
+            if (mechanicalhorsepower.HasValue)
+            {
+                return FromMechanicalHorsepower(mechanicalhorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from MechanicalHorsepower of type decimal.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(decimal? mechanicalhorsepower)
         {
             if (mechanicalhorsepower.HasValue)
             {
@@ -579,9 +1524,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Megawatts.
+        /// </summary>
+        public static Power? FromMegawatts(int? megawatts)
+        {
+            if (megawatts.HasValue)
+            {
+                return FromMegawatts(megawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Megawatts.
+        /// </summary>
+        public static Power? FromMegawatts(long? megawatts)
+        {
+            if (megawatts.HasValue)
+            {
+                return FromMegawatts(megawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Megawatts of type decimal.
+        /// </summary>
+        public static Power? FromMegawatts(decimal? megawatts)
+        {
+            if (megawatts.HasValue)
+            {
+                return FromMegawatts(megawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable MetricHorsepower.
         /// </summary>
         public static Power? FromMetricHorsepower(double? metrichorsepower)
+        {
+            if (metrichorsepower.HasValue)
+            {
+                return FromMetricHorsepower(metrichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MetricHorsepower.
+        /// </summary>
+        public static Power? FromMetricHorsepower(int? metrichorsepower)
+        {
+            if (metrichorsepower.HasValue)
+            {
+                return FromMetricHorsepower(metrichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MetricHorsepower.
+        /// </summary>
+        public static Power? FromMetricHorsepower(long? metrichorsepower)
+        {
+            if (metrichorsepower.HasValue)
+            {
+                return FromMetricHorsepower(metrichorsepower.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from MetricHorsepower of type decimal.
+        /// </summary>
+        public static Power? FromMetricHorsepower(decimal? metrichorsepower)
         {
             if (metrichorsepower.HasValue)
             {
@@ -609,9 +1644,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Microwatts.
+        /// </summary>
+        public static Power? FromMicrowatts(int? microwatts)
+        {
+            if (microwatts.HasValue)
+            {
+                return FromMicrowatts(microwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Microwatts.
+        /// </summary>
+        public static Power? FromMicrowatts(long? microwatts)
+        {
+            if (microwatts.HasValue)
+            {
+                return FromMicrowatts(microwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Microwatts of type decimal.
+        /// </summary>
+        public static Power? FromMicrowatts(decimal? microwatts)
+        {
+            if (microwatts.HasValue)
+            {
+                return FromMicrowatts(microwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable Milliwatts.
         /// </summary>
         public static Power? FromMilliwatts(double? milliwatts)
+        {
+            if (milliwatts.HasValue)
+            {
+                return FromMilliwatts(milliwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Milliwatts.
+        /// </summary>
+        public static Power? FromMilliwatts(int? milliwatts)
+        {
+            if (milliwatts.HasValue)
+            {
+                return FromMilliwatts(milliwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Milliwatts.
+        /// </summary>
+        public static Power? FromMilliwatts(long? milliwatts)
+        {
+            if (milliwatts.HasValue)
+            {
+                return FromMilliwatts(milliwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Milliwatts of type decimal.
+        /// </summary>
+        public static Power? FromMilliwatts(decimal? milliwatts)
         {
             if (milliwatts.HasValue)
             {
@@ -639,9 +1764,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Nanowatts.
+        /// </summary>
+        public static Power? FromNanowatts(int? nanowatts)
+        {
+            if (nanowatts.HasValue)
+            {
+                return FromNanowatts(nanowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Nanowatts.
+        /// </summary>
+        public static Power? FromNanowatts(long? nanowatts)
+        {
+            if (nanowatts.HasValue)
+            {
+                return FromNanowatts(nanowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Nanowatts of type decimal.
+        /// </summary>
+        public static Power? FromNanowatts(decimal? nanowatts)
+        {
+            if (nanowatts.HasValue)
+            {
+                return FromNanowatts(nanowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable Petawatts.
         /// </summary>
         public static Power? FromPetawatts(double? petawatts)
+        {
+            if (petawatts.HasValue)
+            {
+                return FromPetawatts(petawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Petawatts.
+        /// </summary>
+        public static Power? FromPetawatts(int? petawatts)
+        {
+            if (petawatts.HasValue)
+            {
+                return FromPetawatts(petawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Petawatts.
+        /// </summary>
+        public static Power? FromPetawatts(long? petawatts)
+        {
+            if (petawatts.HasValue)
+            {
+                return FromPetawatts(petawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Petawatts of type decimal.
+        /// </summary>
+        public static Power? FromPetawatts(decimal? petawatts)
         {
             if (petawatts.HasValue)
             {
@@ -669,6 +1884,51 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Picowatts.
+        /// </summary>
+        public static Power? FromPicowatts(int? picowatts)
+        {
+            if (picowatts.HasValue)
+            {
+                return FromPicowatts(picowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Picowatts.
+        /// </summary>
+        public static Power? FromPicowatts(long? picowatts)
+        {
+            if (picowatts.HasValue)
+            {
+                return FromPicowatts(picowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Picowatts of type decimal.
+        /// </summary>
+        public static Power? FromPicowatts(decimal? picowatts)
+        {
+            if (picowatts.HasValue)
+            {
+                return FromPicowatts(picowatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable Terawatts.
         /// </summary>
         public static Power? FromTerawatts(double? terawatts)
@@ -684,9 +1944,99 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Terawatts.
+        /// </summary>
+        public static Power? FromTerawatts(int? terawatts)
+        {
+            if (terawatts.HasValue)
+            {
+                return FromTerawatts(terawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Terawatts.
+        /// </summary>
+        public static Power? FromTerawatts(long? terawatts)
+        {
+            if (terawatts.HasValue)
+            {
+                return FromTerawatts(terawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Terawatts of type decimal.
+        /// </summary>
+        public static Power? FromTerawatts(decimal? terawatts)
+        {
+            if (terawatts.HasValue)
+            {
+                return FromTerawatts(terawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable Watts.
         /// </summary>
         public static Power? FromWatts(double? watts)
+        {
+            if (watts.HasValue)
+            {
+                return FromWatts(watts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Watts.
+        /// </summary>
+        public static Power? FromWatts(int? watts)
+        {
+            if (watts.HasValue)
+            {
+                return FromWatts(watts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Watts.
+        /// </summary>
+        public static Power? FromWatts(long? watts)
+        {
+            if (watts.HasValue)
+            {
+                return FromWatts(watts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from Watts of type decimal.
+        /// </summary>
+        public static Power? FromWatts(decimal? watts)
         {
             if (watts.HasValue)
             {
