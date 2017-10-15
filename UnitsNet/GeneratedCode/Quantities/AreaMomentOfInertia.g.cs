@@ -189,6 +189,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromCentimetersToTheFourth(double centimeterstothefourth)
         {
             return new AreaMomentOfInertia(centimeterstothefourth/1e8);
@@ -224,6 +227,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromDecimetersToTheFourth(double decimeterstothefourth)
         {
             return new AreaMomentOfInertia(decimeterstothefourth/1e4);
@@ -259,6 +265,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from FeetToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromFeetToTheFourth(double feettothefourth)
         {
             return new AreaMomentOfInertia(feettothefourth*Math.Pow(0.3048, 4));
@@ -294,6 +303,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from InchesToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromInchesToTheFourth(double inchestothefourth)
         {
             return new AreaMomentOfInertia(inchestothefourth*Math.Pow(2.54e-2, 4));
@@ -329,6 +341,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from MetersToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromMetersToTheFourth(double meterstothefourth)
         {
             return new AreaMomentOfInertia(meterstothefourth);
@@ -364,6 +379,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AreaMomentOfInertia FromMillimetersToTheFourth(double millimeterstothefourth)
         {
             return new AreaMomentOfInertia(millimeterstothefourth/1e12);

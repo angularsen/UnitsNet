@@ -237,6 +237,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from Acres.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromAcres(double acres)
         {
             return new Area(acres*4046.85642);
@@ -272,6 +275,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from Hectares.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromHectares(double hectares)
         {
             return new Area(hectares*1e4);
@@ -307,6 +313,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareCentimeters(double squarecentimeters)
         {
             return new Area(squarecentimeters*1e-4);
@@ -342,6 +351,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareDecimeters(double squaredecimeters)
         {
             return new Area(squaredecimeters*1e-2);
@@ -377,6 +389,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareFeet(double squarefeet)
         {
             return new Area(squarefeet*0.092903);
@@ -412,6 +427,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareInches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareInches(double squareinches)
         {
             return new Area(squareinches*0.00064516);
@@ -447,6 +465,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareKilometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareKilometers(double squarekilometers)
         {
             return new Area(squarekilometers*1e6);
@@ -482,6 +503,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareMeters(double squaremeters)
         {
             return new Area(squaremeters);
@@ -517,6 +541,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMicrometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareMicrometers(double squaremicrometers)
         {
             return new Area(squaremicrometers*1e-12);
@@ -552,6 +579,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMiles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareMiles(double squaremiles)
         {
             return new Area(squaremiles*2.59e6);
@@ -587,6 +617,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareMillimeters(double squaremillimeters)
         {
             return new Area(squaremillimeters*1e-6);
@@ -622,6 +655,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareYards.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Area FromSquareYards(double squareyards)
         {
             return new Area(squareyards*0.836127);

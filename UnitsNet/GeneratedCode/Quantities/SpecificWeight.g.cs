@@ -269,6 +269,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double kilogramsforcepercubiccentimeter)
         {
             return new SpecificWeight(kilogramsforcepercubiccentimeter*9806650.19960652);
@@ -304,6 +307,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilogramsForcePerCubicMeter(double kilogramsforcepercubicmeter)
         {
             return new SpecificWeight(kilogramsforcepercubicmeter*9.80665019960652);
@@ -339,6 +345,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double kilogramsforcepercubicmillimeter)
         {
             return new SpecificWeight(kilogramsforcepercubicmillimeter*9806650199.60653);
@@ -374,6 +383,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double kilonewtonspercubiccentimeter)
         {
             return new SpecificWeight((kilonewtonspercubiccentimeter*1000000) * 1e3d);
@@ -409,6 +421,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilonewtonsPerCubicMeter(double kilonewtonspercubicmeter)
         {
             return new SpecificWeight((kilonewtonspercubicmeter) * 1e3d);
@@ -444,6 +459,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double kilonewtonspercubicmillimeter)
         {
             return new SpecificWeight((kilonewtonspercubicmillimeter*1000000000) * 1e3d);
@@ -479,6 +497,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilopoundsForcePerCubicFoot(double kilopoundsforcepercubicfoot)
         {
             return new SpecificWeight((kilopoundsforcepercubicfoot*157.087477433193) * 1e3d);
@@ -514,6 +535,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromKilopoundsForcePerCubicInch(double kilopoundsforcepercubicinch)
         {
             return new SpecificWeight((kilopoundsforcepercubicinch*271447.161004558) * 1e3d);
@@ -549,6 +573,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromNewtonsPerCubicCentimeter(double newtonspercubiccentimeter)
         {
             return new SpecificWeight(newtonspercubiccentimeter*1000000);
@@ -584,6 +611,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromNewtonsPerCubicMeter(double newtonspercubicmeter)
         {
             return new SpecificWeight(newtonspercubicmeter);
@@ -619,6 +649,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromNewtonsPerCubicMillimeter(double newtonspercubicmillimeter)
         {
             return new SpecificWeight(newtonspercubicmillimeter*1000000000);
@@ -654,6 +687,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromPoundsForcePerCubicFoot(double poundsforcepercubicfoot)
         {
             return new SpecificWeight(poundsforcepercubicfoot*157.087477433193);
@@ -689,6 +725,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromPoundsForcePerCubicInch(double poundsforcepercubicinch)
         {
             return new SpecificWeight(poundsforcepercubicinch*271447.161004558);
@@ -724,6 +763,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromTonnesForcePerCubicCentimeter(double tonnesforcepercubiccentimeter)
         {
             return new SpecificWeight(tonnesforcepercubiccentimeter*9806650199.60653);
@@ -759,6 +801,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromTonnesForcePerCubicMeter(double tonnesforcepercubicmeter)
         {
             return new SpecificWeight(tonnesforcepercubicmeter*9806.65019960653);
@@ -794,6 +839,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificWeight FromTonnesForcePerCubicMillimeter(double tonnesforcepercubicmillimeter)
         {
             return new SpecificWeight(tonnesforcepercubicmillimeter*9806650199606.53);

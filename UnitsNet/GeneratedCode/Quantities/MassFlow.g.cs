@@ -253,6 +253,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
         {
             return new MassFlow((centigramspersecond) * 1e-2d);
@@ -288,6 +291,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from DecagramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
         {
             return new MassFlow((decagramspersecond) * 1e1d);
@@ -323,6 +329,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from DecigramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
         {
             return new MassFlow((decigramspersecond) * 1e-1d);
@@ -358,6 +367,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromGramsPerSecond(double gramspersecond)
         {
             return new MassFlow(gramspersecond);
@@ -393,6 +405,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from HectogramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
         {
             return new MassFlow((hectogramspersecond) * 1e2d);
@@ -428,6 +443,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from KilogramsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
         {
             return new MassFlow(kilogramsperhour/3.6);
@@ -463,6 +481,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from KilogramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
         {
             return new MassFlow((kilogramspersecond) * 1e3d);
@@ -498,6 +519,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MegapoundsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromMegapoundsPerHour(double megapoundsperhour)
         {
             return new MassFlow((megapoundsperhour/7.93664) * 1e6d);
@@ -533,6 +557,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
         {
             return new MassFlow((microgramspersecond) * 1e-6d);
@@ -568,6 +595,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MilligramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
         {
             return new MassFlow((milligramspersecond) * 1e-3d);
@@ -603,6 +633,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from NanogramsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
         {
             return new MassFlow((nanogramspersecond) * 1e-9d);
@@ -638,6 +671,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from PoundsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromPoundsPerHour(double poundsperhour)
         {
             return new MassFlow(poundsperhour/7.93664);
@@ -673,6 +709,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from ShortTonsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
         {
             return new MassFlow(shorttonsperhour*251.9957611);
@@ -708,6 +747,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from TonnesPerDay.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassFlow FromTonnesPerDay(double tonnesperday)
         {
             return new MassFlow(tonnesperday/0.0864000);

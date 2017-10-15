@@ -181,6 +181,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double hoursquarefeetdegreesfahrenheitperbtu)
         {
             return new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu*176.1121482159839);
@@ -216,6 +219,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double squarecentimeterhourdegreescelsiusperkilocalorie)
         {
             return new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie*0.0859779507590433);
@@ -251,6 +257,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ThermalResistance from SquareCentimeterKelvinsPerWatt.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double squarecentimeterkelvinsperwatt)
         {
             return new ThermalResistance(squarecentimeterkelvinsperwatt*0.0999964777570357);
@@ -286,6 +295,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ThermalResistance from SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double squaremeterdegreescelsiusperwatt)
         {
             return new ThermalResistance(squaremeterdegreescelsiusperwatt*1000.088056074108);
@@ -321,6 +333,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ThermalResistance from SquareMeterKelvinsPerKilowatt.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(double squaremeterkelvinsperkilowatt)
         {
             return new ThermalResistance(squaremeterkelvinsperkilowatt);

@@ -197,6 +197,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Amperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromAmperes(double amperes)
         {
             return new ElectricCurrent(amperes);
@@ -232,6 +235,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Kiloamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromKiloamperes(double kiloamperes)
         {
             return new ElectricCurrent((kiloamperes) * 1e3d);
@@ -267,6 +273,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Megaamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromMegaamperes(double megaamperes)
         {
             return new ElectricCurrent((megaamperes) * 1e6d);
@@ -302,6 +311,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Microamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromMicroamperes(double microamperes)
         {
             return new ElectricCurrent((microamperes) * 1e-6d);
@@ -337,6 +349,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Milliamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromMilliamperes(double milliamperes)
         {
             return new ElectricCurrent((milliamperes) * 1e-3d);
@@ -372,6 +387,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Nanoamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromNanoamperes(double nanoamperes)
         {
             return new ElectricCurrent((nanoamperes) * 1e-9d);
@@ -407,6 +425,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Picoamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricCurrent FromPicoamperes(double picoamperes)
         {
             return new ElectricCurrent((picoamperes) * 1e-12d);

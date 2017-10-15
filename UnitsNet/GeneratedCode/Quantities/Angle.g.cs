@@ -245,6 +245,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Arcminutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromArcminutes(double arcminutes)
         {
             return new Angle(arcminutes/60);
@@ -280,6 +283,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Arcseconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromArcseconds(double arcseconds)
         {
             return new Angle(arcseconds/3600);
@@ -315,6 +321,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Centiradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromCentiradians(double centiradians)
         {
             return new Angle((centiradians*180/Math.PI) * 1e-2d);
@@ -350,6 +359,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Deciradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromDeciradians(double deciradians)
         {
             return new Angle((deciradians*180/Math.PI) * 1e-1d);
@@ -385,6 +397,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Degrees.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromDegrees(double degrees)
         {
             return new Angle(degrees);
@@ -420,6 +435,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Gradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromGradians(double gradians)
         {
             return new Angle(gradians*0.9);
@@ -455,6 +473,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Microdegrees.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromMicrodegrees(double microdegrees)
         {
             return new Angle((microdegrees) * 1e-6d);
@@ -490,6 +511,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Microradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromMicroradians(double microradians)
         {
             return new Angle((microradians*180/Math.PI) * 1e-6d);
@@ -525,6 +549,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Millidegrees.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromMillidegrees(double millidegrees)
         {
             return new Angle((millidegrees) * 1e-3d);
@@ -560,6 +587,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Milliradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromMilliradians(double milliradians)
         {
             return new Angle((milliradians*180/Math.PI) * 1e-3d);
@@ -595,6 +625,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Nanodegrees.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromNanodegrees(double nanodegrees)
         {
             return new Angle((nanodegrees) * 1e-9d);
@@ -630,6 +663,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Nanoradians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromNanoradians(double nanoradians)
         {
             return new Angle((nanoradians*180/Math.PI) * 1e-9d);
@@ -665,6 +701,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Angle FromRadians(double radians)
         {
             return new Angle(radians*180/Math.PI);

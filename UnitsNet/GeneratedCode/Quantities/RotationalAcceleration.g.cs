@@ -157,6 +157,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalAcceleration from DegreesPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared)
         {
             return new RotationalAcceleration((Math.PI/180)*degreespersecondsquared);
@@ -192,6 +195,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalAcceleration from RadiansPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalAcceleration FromRadiansPerSecondSquared(double radianspersecondsquared)
         {
             return new RotationalAcceleration(radianspersecondsquared);

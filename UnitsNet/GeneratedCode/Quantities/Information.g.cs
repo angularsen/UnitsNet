@@ -349,6 +349,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Bits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromBits(double bits)
         {
             return new Information(Convert.ToDecimal(bits));
@@ -384,6 +387,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Bytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromBytes(double bytes)
         {
             return new Information(Convert.ToDecimal(bytes*8d));
@@ -419,6 +425,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exabits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromExabits(double exabits)
         {
             return new Information(Convert.ToDecimal((exabits) * 1e18d));
@@ -454,6 +463,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromExabytes(double exabytes)
         {
             return new Information(Convert.ToDecimal((exabytes*8d) * 1e18d));
@@ -489,6 +501,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exbibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromExbibits(double exbibits)
         {
             return new Information(Convert.ToDecimal((exbibits) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
@@ -524,6 +539,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exbibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromExbibytes(double exbibytes)
         {
             return new Information(Convert.ToDecimal((exbibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
@@ -559,6 +577,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gibibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromGibibits(double gibibits)
         {
             return new Information(Convert.ToDecimal((gibibits) * (1024d * 1024 * 1024)));
@@ -594,6 +615,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gibibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromGibibytes(double gibibytes)
         {
             return new Information(Convert.ToDecimal((gibibytes*8d) * (1024d * 1024 * 1024)));
@@ -629,6 +653,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gigabits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromGigabits(double gigabits)
         {
             return new Information(Convert.ToDecimal((gigabits) * 1e9d));
@@ -664,6 +691,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gigabytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromGigabytes(double gigabytes)
         {
             return new Information(Convert.ToDecimal((gigabytes*8d) * 1e9d));
@@ -699,6 +729,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kibibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromKibibits(double kibibits)
         {
             return new Information(Convert.ToDecimal((kibibits) * 1024d));
@@ -734,6 +767,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kibibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromKibibytes(double kibibytes)
         {
             return new Information(Convert.ToDecimal((kibibytes*8d) * 1024d));
@@ -769,6 +805,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kilobits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromKilobits(double kilobits)
         {
             return new Information(Convert.ToDecimal((kilobits) * 1e3d));
@@ -804,6 +843,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kilobytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromKilobytes(double kilobytes)
         {
             return new Information(Convert.ToDecimal((kilobytes*8d) * 1e3d));
@@ -839,6 +881,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Mebibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromMebibits(double mebibits)
         {
             return new Information(Convert.ToDecimal((mebibits) * (1024d * 1024)));
@@ -874,6 +919,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Mebibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromMebibytes(double mebibytes)
         {
             return new Information(Convert.ToDecimal((mebibytes*8d) * (1024d * 1024)));
@@ -909,6 +957,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Megabits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromMegabits(double megabits)
         {
             return new Information(Convert.ToDecimal((megabits) * 1e6d));
@@ -944,6 +995,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Megabytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromMegabytes(double megabytes)
         {
             return new Information(Convert.ToDecimal((megabytes*8d) * 1e6d));
@@ -979,6 +1033,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Pebibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromPebibits(double pebibits)
         {
             return new Information(Convert.ToDecimal((pebibits) * (1024d * 1024 * 1024 * 1024 * 1024)));
@@ -1014,6 +1071,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Pebibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromPebibytes(double pebibytes)
         {
             return new Information(Convert.ToDecimal((pebibytes*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
@@ -1049,6 +1109,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Petabits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromPetabits(double petabits)
         {
             return new Information(Convert.ToDecimal((petabits) * 1e15d));
@@ -1084,6 +1147,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Petabytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromPetabytes(double petabytes)
         {
             return new Information(Convert.ToDecimal((petabytes*8d) * 1e15d));
@@ -1119,6 +1185,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Tebibits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromTebibits(double tebibits)
         {
             return new Information(Convert.ToDecimal((tebibits) * (1024d * 1024 * 1024 * 1024)));
@@ -1154,6 +1223,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Tebibytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromTebibytes(double tebibytes)
         {
             return new Information(Convert.ToDecimal((tebibytes*8d) * (1024d * 1024 * 1024 * 1024)));
@@ -1189,6 +1261,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Terabits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromTerabits(double terabits)
         {
             return new Information(Convert.ToDecimal((terabits) * 1e12d));
@@ -1224,6 +1299,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Terabytes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Information FromTerabytes(double terabytes)
         {
             return new Information(Convert.ToDecimal((terabytes*8d) * 1e12d));

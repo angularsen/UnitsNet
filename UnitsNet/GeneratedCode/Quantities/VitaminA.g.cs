@@ -149,6 +149,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get VitaminA from InternationalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static VitaminA FromInternationalUnits(double internationalunits)
         {
             return new VitaminA(internationalunits);

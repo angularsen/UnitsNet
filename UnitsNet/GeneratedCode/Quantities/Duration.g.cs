@@ -221,6 +221,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Days.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromDays(double days)
         {
             return new Duration(days*24*3600);
@@ -256,6 +259,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Hours.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromHours(double hours)
         {
             return new Duration(hours*3600);
@@ -291,6 +297,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Microseconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromMicroseconds(double microseconds)
         {
             return new Duration(microseconds/1e6);
@@ -326,6 +335,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Milliseconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromMilliseconds(double milliseconds)
         {
             return new Duration(milliseconds/1e3);
@@ -361,6 +373,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Minutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromMinutes(double minutes)
         {
             return new Duration(minutes*60);
@@ -396,6 +411,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Months.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromMonths(double months)
         {
             return new Duration(months*30*24*3600);
@@ -431,6 +449,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Nanoseconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromNanoseconds(double nanoseconds)
         {
             return new Duration(nanoseconds/1e9);
@@ -466,6 +487,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Seconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromSeconds(double seconds)
         {
             return new Duration(seconds);
@@ -501,6 +525,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Weeks.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromWeeks(double weeks)
         {
             return new Duration(weeks*7*24*3600);
@@ -536,6 +563,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Years.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Duration FromYears(double years)
         {
             return new Duration(years*365*24*3600);

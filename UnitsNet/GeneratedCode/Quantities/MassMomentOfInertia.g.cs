@@ -349,6 +349,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromGramSquareCentimeters(double gramsquarecentimeters)
         {
             return new MassMomentOfInertia(gramsquarecentimeters/1e7);
@@ -384,6 +387,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromGramSquareDecimeters(double gramsquaredecimeters)
         {
             return new MassMomentOfInertia(gramsquaredecimeters/1e5);
@@ -419,6 +425,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromGramSquareMeters(double gramsquaremeters)
         {
             return new MassMomentOfInertia(gramsquaremeters/1e3);
@@ -454,6 +463,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromGramSquareMillimeters(double gramsquaremillimeters)
         {
             return new MassMomentOfInertia(gramsquaremillimeters/1e9);
@@ -489,6 +501,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilogramSquareCentimeters(double kilogramsquarecentimeters)
         {
             return new MassMomentOfInertia((kilogramsquarecentimeters/1e7) * 1e3d);
@@ -524,6 +539,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilogramSquareDecimeters(double kilogramsquaredecimeters)
         {
             return new MassMomentOfInertia((kilogramsquaredecimeters/1e5) * 1e3d);
@@ -559,6 +577,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilogramSquareMeters(double kilogramsquaremeters)
         {
             return new MassMomentOfInertia((kilogramsquaremeters/1e3) * 1e3d);
@@ -594,6 +615,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilogramSquareMillimeters(double kilogramsquaremillimeters)
         {
             return new MassMomentOfInertia((kilogramsquaremillimeters/1e9) * 1e3d);
@@ -629,6 +653,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(double kilotonnesquarecentimeters)
         {
             return new MassMomentOfInertia((kilotonnesquarecentimeters/1e1) * 1e3d);
@@ -664,6 +691,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(double kilotonnesquaredecimeters)
         {
             return new MassMomentOfInertia((kilotonnesquaredecimeters/1e-1) * 1e3d);
@@ -699,6 +729,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilotonneSquareMeters(double kilotonnesquaremeters)
         {
             return new MassMomentOfInertia((kilotonnesquaremeters/1e-3) * 1e3d);
@@ -734,6 +767,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(double kilotonnesquaremilimeters)
         {
             return new MassMomentOfInertia((kilotonnesquaremilimeters/1e3) * 1e3d);
@@ -769,6 +805,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(double megatonnesquarecentimeters)
         {
             return new MassMomentOfInertia((megatonnesquarecentimeters/1e1) * 1e6d);
@@ -804,6 +843,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(double megatonnesquaredecimeters)
         {
             return new MassMomentOfInertia((megatonnesquaredecimeters/1e-1) * 1e6d);
@@ -839,6 +881,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMegatonneSquareMeters(double megatonnesquaremeters)
         {
             return new MassMomentOfInertia((megatonnesquaremeters/1e-3) * 1e6d);
@@ -874,6 +919,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(double megatonnesquaremilimeters)
         {
             return new MassMomentOfInertia((megatonnesquaremilimeters/1e3) * 1e6d);
@@ -909,6 +957,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMilligramSquareCentimeters(double milligramsquarecentimeters)
         {
             return new MassMomentOfInertia((milligramsquarecentimeters/1e7) * 1e-3d);
@@ -944,6 +995,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMilligramSquareDecimeters(double milligramsquaredecimeters)
         {
             return new MassMomentOfInertia((milligramsquaredecimeters/1e5) * 1e-3d);
@@ -979,6 +1033,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMilligramSquareMeters(double milligramsquaremeters)
         {
             return new MassMomentOfInertia((milligramsquaremeters/1e3) * 1e-3d);
@@ -1014,6 +1071,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromMilligramSquareMillimeters(double milligramsquaremillimeters)
         {
             return new MassMomentOfInertia((milligramsquaremillimeters/1e9) * 1e-3d);
@@ -1049,6 +1109,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromPoundSquareFeet(double poundsquarefeet)
         {
             return new MassMomentOfInertia(poundsquarefeet*4.21401101e-2);
@@ -1084,6 +1147,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareInches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromPoundSquareInches(double poundsquareinches)
         {
             return new MassMomentOfInertia(poundsquareinches*2.9263965e-4);
@@ -1119,6 +1185,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromTonneSquareCentimeters(double tonnesquarecentimeters)
         {
             return new MassMomentOfInertia(tonnesquarecentimeters/1e1);
@@ -1154,6 +1223,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromTonneSquareDecimeters(double tonnesquaredecimeters)
         {
             return new MassMomentOfInertia(tonnesquaredecimeters/1e-1);
@@ -1189,6 +1261,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromTonneSquareMeters(double tonnesquaremeters)
         {
             return new MassMomentOfInertia(tonnesquaremeters/1e-3);
@@ -1224,6 +1299,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMilimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static MassMomentOfInertia FromTonneSquareMilimeters(double tonnesquaremilimeters)
         {
             return new MassMomentOfInertia(tonnesquaremilimeters/1e3);

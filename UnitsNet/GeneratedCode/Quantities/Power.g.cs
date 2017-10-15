@@ -285,6 +285,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromBoilerHorsepower(double boilerhorsepower)
         {
             return new Power(Convert.ToDecimal(boilerhorsepower*9812.5d));
@@ -320,6 +323,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
         {
             return new Power(Convert.ToDecimal(britishthermalunitsperhour*0.293071d));
@@ -355,6 +361,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromElectricalHorsepower(double electricalhorsepower)
         {
             return new Power(Convert.ToDecimal(electricalhorsepower*746d));
@@ -390,6 +399,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromFemtowatts(double femtowatts)
         {
             return new Power(Convert.ToDecimal((femtowatts) * 1e-15d));
@@ -425,6 +437,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromGigawatts(double gigawatts)
         {
             return new Power(Convert.ToDecimal((gigawatts) * 1e9d));
@@ -460,6 +475,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from HydraulicHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
         {
             return new Power(Convert.ToDecimal(hydraulichorsepower*745.69988145d));
@@ -495,6 +513,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
         {
             return new Power(Convert.ToDecimal((kilobritishthermalunitsperhour*0.293071d) * 1e3d));
@@ -530,6 +551,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromKilowatts(double kilowatts)
         {
             return new Power(Convert.ToDecimal((kilowatts) * 1e3d));
@@ -565,6 +589,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from MechanicalHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
         {
             return new Power(Convert.ToDecimal(mechanicalhorsepower*745.69d));
@@ -600,6 +627,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMegawatts(double megawatts)
         {
             return new Power(Convert.ToDecimal((megawatts) * 1e6d));
@@ -635,6 +665,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from MetricHorsepower.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMetricHorsepower(double metrichorsepower)
         {
             return new Power(Convert.ToDecimal(metrichorsepower*735.49875d));
@@ -670,6 +703,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Microwatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMicrowatts(double microwatts)
         {
             return new Power(Convert.ToDecimal((microwatts) * 1e-6d));
@@ -705,6 +741,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Milliwatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromMilliwatts(double milliwatts)
         {
             return new Power(Convert.ToDecimal((milliwatts) * 1e-3d));
@@ -740,6 +779,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Nanowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromNanowatts(double nanowatts)
         {
             return new Power(Convert.ToDecimal((nanowatts) * 1e-9d));
@@ -775,6 +817,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Petawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromPetawatts(double petawatts)
         {
             return new Power(Convert.ToDecimal((petawatts) * 1e15d));
@@ -810,6 +855,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Picowatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromPicowatts(double picowatts)
         {
             return new Power(Convert.ToDecimal((picowatts) * 1e-12d));
@@ -845,6 +893,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Terawatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromTerawatts(double terawatts)
         {
             return new Power(Convert.ToDecimal((terawatts) * 1e12d));
@@ -880,6 +931,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Watts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Power FromWatts(double watts)
         {
             return new Power(Convert.ToDecimal(watts));

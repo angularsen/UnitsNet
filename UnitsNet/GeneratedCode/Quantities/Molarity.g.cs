@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from CentimolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromCentimolesPerLiter(double centimolesperliter)
         {
             return new Molarity((centimolesperliter/1e-3) * 1e-2d);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from DecimolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromDecimolesPerLiter(double decimolesperliter)
         {
             return new Molarity((decimolesperliter/1e-3) * 1e-1d);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromMicromolesPerLiter(double micromolesperliter)
         {
             return new Molarity((micromolesperliter/1e-3) * 1e-6d);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromMillimolesPerLiter(double millimolesperliter)
         {
             return new Molarity((millimolesperliter/1e-3) * 1e-3d);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
         {
             return new Molarity(molespercubicmeter);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from MolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromMolesPerLiter(double molesperliter)
         {
             return new Molarity(molesperliter/1e-3);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
         {
             return new Molarity((nanomolesperliter/1e-3) * 1e-9d);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Molarity FromPicomolesPerLiter(double picomolesperliter)
         {
             return new Molarity((picomolesperliter/1e-3) * 1e-12d);

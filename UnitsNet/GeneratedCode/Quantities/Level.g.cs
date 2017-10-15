@@ -157,6 +157,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Level from Decibels.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Level FromDecibels(double decibels)
         {
             return new Level(decibels);
@@ -192,6 +195,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Level from Nepers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Level FromNepers(double nepers)
         {
             return new Level((1/0.115129254)*nepers);

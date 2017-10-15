@@ -173,6 +173,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricResistance FromKiloohms(double kiloohms)
         {
             return new ElectricResistance((kiloohms) * 1e3d);
@@ -208,6 +211,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistance from Megaohms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricResistance FromMegaohms(double megaohms)
         {
             return new ElectricResistance((megaohms) * 1e6d);
@@ -243,6 +249,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistance from Milliohms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricResistance FromMilliohms(double milliohms)
         {
             return new ElectricResistance((milliohms) * 1e-3d);
@@ -278,6 +287,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistance from Ohms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricResistance FromOhms(double ohms)
         {
             return new ElectricResistance(ohms);

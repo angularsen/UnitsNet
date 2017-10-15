@@ -229,6 +229,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from CentinewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromCentinewtonsPerSecond(double centinewtonspersecond)
         {
             return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
@@ -264,6 +267,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromDecanewtonsPerMinute(double decanewtonsperminute)
         {
             return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
@@ -299,6 +305,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromDecanewtonsPerSecond(double decanewtonspersecond)
         {
             return new ForceChangeRate((decanewtonspersecond) * 1e1d);
@@ -334,6 +343,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecinewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromDecinewtonsPerSecond(double decinewtonspersecond)
         {
             return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
@@ -369,6 +381,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromKilonewtonsPerMinute(double kilonewtonsperminute)
         {
             return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
@@ -404,6 +419,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromKilonewtonsPerSecond(double kilonewtonspersecond)
         {
             return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
@@ -439,6 +457,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from MicronewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromMicronewtonsPerSecond(double micronewtonspersecond)
         {
             return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
@@ -474,6 +495,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from MillinewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromMillinewtonsPerSecond(double millinewtonspersecond)
         {
             return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
@@ -509,6 +533,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NanonewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromNanonewtonsPerSecond(double nanonewtonspersecond)
         {
             return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
@@ -544,6 +571,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromNewtonsPerMinute(double newtonsperminute)
         {
             return new ForceChangeRate(newtonsperminute/60);
@@ -579,6 +609,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForceChangeRate FromNewtonsPerSecond(double newtonspersecond)
         {
             return new ForceChangeRate(newtonspersecond);

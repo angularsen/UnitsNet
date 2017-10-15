@@ -181,6 +181,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from KilovoltsDc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialDc FromKilovoltsDc(double kilovoltsdc)
         {
             return new ElectricPotentialDc((kilovoltsdc) * 1e3d);
@@ -216,6 +219,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from MegavoltsDc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialDc FromMegavoltsDc(double megavoltsdc)
         {
             return new ElectricPotentialDc((megavoltsdc) * 1e6d);
@@ -251,6 +257,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from MicrovoltsDc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialDc FromMicrovoltsDc(double microvoltsdc)
         {
             return new ElectricPotentialDc((microvoltsdc) * 1e-6d);
@@ -286,6 +295,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from MillivoltsDc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialDc FromMillivoltsDc(double millivoltsdc)
         {
             return new ElectricPotentialDc((millivoltsdc) * 1e-3d);
@@ -321,6 +333,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from VoltsDc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricPotentialDc FromVoltsDc(double voltsdc)
         {
             return new ElectricPotentialDc(voltsdc);

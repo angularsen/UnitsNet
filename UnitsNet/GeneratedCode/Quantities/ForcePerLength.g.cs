@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromCentinewtonsPerMeter(double centinewtonspermeter)
         {
             return new ForcePerLength((centinewtonspermeter) * 1e-2d);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from DecinewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromDecinewtonsPerMeter(double decinewtonspermeter)
         {
             return new ForcePerLength((decinewtonspermeter) * 1e-1d);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from KilogramsForcePerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromKilogramsForcePerMeter(double kilogramsforcepermeter)
         {
             return new ForcePerLength(kilogramsforcepermeter*9.80665002864);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from KilonewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromKilonewtonsPerMeter(double kilonewtonspermeter)
         {
             return new ForcePerLength((kilonewtonspermeter) * 1e3d);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from MicronewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromMicronewtonsPerMeter(double micronewtonspermeter)
         {
             return new ForcePerLength((micronewtonspermeter) * 1e-6d);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from MillinewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromMillinewtonsPerMeter(double millinewtonspermeter)
         {
             return new ForcePerLength((millinewtonspermeter) * 1e-3d);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from NanonewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromNanonewtonsPerMeter(double nanonewtonspermeter)
         {
             return new ForcePerLength((nanonewtonspermeter) * 1e-9d);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from NewtonsPerMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ForcePerLength FromNewtonsPerMeter(double newtonspermeter)
         {
             return new ForcePerLength(newtonspermeter);

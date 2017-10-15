@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromCaloriesPerGram(double caloriespergram)
         {
             return new SpecificEnergy(caloriespergram*4.184e3);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from JoulesPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromJoulesPerKilogram(double joulesperkilogram)
         {
             return new SpecificEnergy(joulesperkilogram);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilocaloriesPerGram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromKilocaloriesPerGram(double kilocaloriespergram)
         {
             return new SpecificEnergy((kilocaloriespergram*4.184e3) * 1e3d);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilojoulesPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromKilojoulesPerKilogram(double kilojoulesperkilogram)
         {
             return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilowattHoursPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromKilowattHoursPerKilogram(double kilowatthoursperkilogram)
         {
             return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from MegajoulesPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromMegajoulesPerKilogram(double megajoulesperkilogram)
         {
             return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from MegawattHoursPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromMegawattHoursPerKilogram(double megawatthoursperkilogram)
         {
             return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from WattHoursPerKilogram.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static SpecificEnergy FromWattHoursPerKilogram(double watthoursperkilogram)
         {
             return new SpecificEnergy(watthoursperkilogram*3.6e3);

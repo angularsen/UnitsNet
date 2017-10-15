@@ -309,6 +309,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Centigrams.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromCentigrams(double centigrams)
         {
             return new Mass((centigrams/1e3) * 1e-2d);
@@ -344,6 +347,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Decagrams.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromDecagrams(double decagrams)
         {
             return new Mass((decagrams/1e3) * 1e1d);
@@ -379,6 +385,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Decigrams.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromDecigrams(double decigrams)
         {
             return new Mass((decigrams/1e3) * 1e-1d);
@@ -414,6 +423,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Grams.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromGrams(double grams)
         {
             return new Mass(grams/1e3);
@@ -449,6 +461,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Hectograms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromHectograms(double hectograms)
         {
             return new Mass((hectograms/1e3) * 1e2d);
@@ -484,6 +499,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilograms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromKilograms(double kilograms)
         {
             return new Mass((kilograms/1e3) * 1e3d);
@@ -519,6 +537,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilopounds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromKilopounds(double kilopounds)
         {
             return new Mass((kilopounds*0.45359237) * 1e3d);
@@ -554,6 +575,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilotonnes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromKilotonnes(double kilotonnes)
         {
             return new Mass((kilotonnes*1e3) * 1e3d);
@@ -589,6 +613,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from LongHundredweight.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromLongHundredweight(double longhundredweight)
         {
             return new Mass(longhundredweight/0.01968413055222121);
@@ -624,6 +651,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from LongTons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromLongTons(double longtons)
         {
             return new Mass(longtons*1016.0469088);
@@ -659,6 +689,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Megapounds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromMegapounds(double megapounds)
         {
             return new Mass((megapounds*0.45359237) * 1e6d);
@@ -694,6 +727,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Megatonnes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromMegatonnes(double megatonnes)
         {
             return new Mass((megatonnes*1e3) * 1e6d);
@@ -729,6 +765,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Micrograms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromMicrograms(double micrograms)
         {
             return new Mass((micrograms/1e3) * 1e-6d);
@@ -764,6 +803,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Milligrams.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromMilligrams(double milligrams)
         {
             return new Mass((milligrams/1e3) * 1e-3d);
@@ -799,6 +841,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Nanograms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromNanograms(double nanograms)
         {
             return new Mass((nanograms/1e3) * 1e-9d);
@@ -834,6 +879,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Ounces.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromOunces(double ounces)
         {
             return new Mass(ounces/35.2739619);
@@ -869,6 +917,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Pounds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromPounds(double pounds)
         {
             return new Mass(pounds*0.45359237);
@@ -904,6 +955,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from ShortHundredweight.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromShortHundredweight(double shorthundredweight)
         {
             return new Mass(shorthundredweight/0.022046226218487758);
@@ -939,6 +993,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from ShortTons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromShortTons(double shorttons)
         {
             return new Mass(shorttons*907.18474);
@@ -974,6 +1031,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Stone.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromStone(double stone)
         {
             return new Mass(stone/0.1574731728702698);
@@ -1009,6 +1069,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Tonnes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Mass FromTonnes(double tonnes)
         {
             return new Mass(tonnes*1e3);

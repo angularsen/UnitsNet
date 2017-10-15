@@ -269,6 +269,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilogramForceCentimeters(double kilogramforcecentimeters)
         {
             return new Torque(kilogramforcecentimeters*0.0980665019960652);
@@ -304,6 +307,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilogramForceMeters(double kilogramforcemeters)
         {
             return new Torque(kilogramforcemeters*9.80665019960652);
@@ -339,6 +345,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilogramForceMillimeters(double kilogramforcemillimeters)
         {
             return new Torque(kilogramforcemillimeters*0.00980665019960652);
@@ -374,6 +383,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilonewtonCentimeters(double kilonewtoncentimeters)
         {
             return new Torque((kilonewtoncentimeters*0.01) * 1e3d);
@@ -409,6 +421,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilonewtonMeters(double kilonewtonmeters)
         {
             return new Torque((kilonewtonmeters) * 1e3d);
@@ -444,6 +459,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilonewtonMillimeters(double kilonewtonmillimeters)
         {
             return new Torque((kilonewtonmillimeters*0.001) * 1e3d);
@@ -479,6 +497,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilopoundForceFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilopoundForceFeet(double kilopoundforcefeet)
         {
             return new Torque((kilopoundforcefeet*1.3558180656) * 1e3d);
@@ -514,6 +535,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilopoundForceInches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromKilopoundForceInches(double kilopoundforceinches)
         {
             return new Torque((kilopoundforceinches*0.1129848388) * 1e3d);
@@ -549,6 +573,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromNewtonCentimeters(double newtoncentimeters)
         {
             return new Torque(newtoncentimeters*0.01);
@@ -584,6 +611,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromNewtonMeters(double newtonmeters)
         {
             return new Torque(newtonmeters);
@@ -619,6 +649,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromNewtonMillimeters(double newtonmillimeters)
         {
             return new Torque(newtonmillimeters*0.001);
@@ -654,6 +687,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from PoundForceFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromPoundForceFeet(double poundforcefeet)
         {
             return new Torque(poundforcefeet*1.3558180656);
@@ -689,6 +725,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from PoundForceInches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromPoundForceInches(double poundforceinches)
         {
             return new Torque(poundforceinches*0.1129848388);
@@ -724,6 +763,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromTonneForceCentimeters(double tonneforcecentimeters)
         {
             return new Torque(tonneforcecentimeters*98.0665019960652);
@@ -759,6 +801,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromTonneForceMeters(double tonneforcemeters)
         {
             return new Torque(tonneforcemeters*9806.65019960653);
@@ -794,6 +839,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Torque FromTonneForceMillimeters(double tonneforcemillimeters)
         {
             return new Torque(tonneforcemillimeters*9.80665019960652);

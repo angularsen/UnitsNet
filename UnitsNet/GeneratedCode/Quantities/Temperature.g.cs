@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesCelsius.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesCelsius(double degreescelsius)
         {
             return new Temperature(degreescelsius + 273.15);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesDelisle.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesDelisle(double degreesdelisle)
         {
             return new Temperature(degreesdelisle*-2/3 + 373.15);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesFahrenheit.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
         {
             return new Temperature(degreesfahrenheit*5/9 + 459.67*5/9);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesNewton.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesNewton(double degreesnewton)
         {
             return new Temperature(degreesnewton*100/33 + 273.15);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesRankine.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesRankine(double degreesrankine)
         {
             return new Temperature(degreesrankine*5/9);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesReaumur.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesReaumur(double degreesreaumur)
         {
             return new Temperature(degreesreaumur*5/4 + 273.15);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesRoemer.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromDegreesRoemer(double degreesroemer)
         {
             return new Temperature(degreesroemer*40/21 + 273.15 - 7.5*40d/21);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from Kelvins.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Temperature FromKelvins(double kelvins)
         {
             return new Temperature(kelvins);

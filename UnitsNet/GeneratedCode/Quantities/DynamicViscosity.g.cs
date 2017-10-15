@@ -181,6 +181,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from Centipoise.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static DynamicViscosity FromCentipoise(double centipoise)
         {
             return new DynamicViscosity((centipoise/10) * 1e-2d);
@@ -216,6 +219,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from MillipascalSeconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static DynamicViscosity FromMillipascalSeconds(double millipascalseconds)
         {
             return new DynamicViscosity((millipascalseconds) * 1e-3d);
@@ -251,6 +257,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static DynamicViscosity FromNewtonSecondsPerMeterSquared(double newtonsecondspermetersquared)
         {
             return new DynamicViscosity(newtonsecondspermetersquared);
@@ -286,6 +295,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from PascalSeconds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static DynamicViscosity FromPascalSeconds(double pascalseconds)
         {
             return new DynamicViscosity(pascalseconds);
@@ -321,6 +333,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from Poise.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static DynamicViscosity FromPoise(double poise)
         {
             return new DynamicViscosity(poise/10);

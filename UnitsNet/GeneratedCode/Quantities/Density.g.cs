@@ -421,6 +421,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromCentigramsPerDeciLiter(double centigramsperdeciliter)
         {
             return new Density((centigramsperdeciliter/1e-1) * 1e-2d);
@@ -456,6 +459,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromCentigramsPerLiter(double centigramsperliter)
         {
             return new Density((centigramsperliter/1) * 1e-2d);
@@ -491,6 +497,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromCentigramsPerMilliliter(double centigramspermilliliter)
         {
             return new Density((centigramspermilliliter/1e-3) * 1e-2d);
@@ -526,6 +535,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromDecigramsPerDeciLiter(double decigramsperdeciliter)
         {
             return new Density((decigramsperdeciliter/1e-1) * 1e-1d);
@@ -561,6 +573,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromDecigramsPerLiter(double decigramsperliter)
         {
             return new Density((decigramsperliter/1) * 1e-1d);
@@ -596,6 +611,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromDecigramsPerMilliliter(double decigramspermilliliter)
         {
             return new Density((decigramspermilliliter/1e-3) * 1e-1d);
@@ -631,6 +649,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerCubicCentimeter(double gramspercubiccentimeter)
         {
             return new Density(gramspercubiccentimeter/1e-3);
@@ -666,6 +687,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerCubicMeter(double gramspercubicmeter)
         {
             return new Density(gramspercubicmeter/1e3);
@@ -701,6 +725,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerCubicMillimeter(double gramspercubicmillimeter)
         {
             return new Density(gramspercubicmillimeter/1e-6);
@@ -736,6 +763,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerDeciLiter(double gramsperdeciliter)
         {
             return new Density(gramsperdeciliter/1e-1);
@@ -771,6 +801,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerLiter(double gramsperliter)
         {
             return new Density(gramsperliter/1);
@@ -806,6 +839,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromGramsPerMilliliter(double gramspermilliliter)
         {
             return new Density(gramspermilliliter/1e-3);
@@ -841,6 +877,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter)
         {
             return new Density((kilogramspercubiccentimeter/1e-3) * 1e3d);
@@ -876,6 +915,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromKilogramsPerCubicMeter(double kilogramspercubicmeter)
         {
             return new Density((kilogramspercubicmeter/1e3) * 1e3d);
@@ -911,6 +953,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter)
         {
             return new Density((kilogramspercubicmillimeter/1e-6) * 1e3d);
@@ -946,6 +991,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromKilopoundsPerCubicFoot(double kilopoundspercubicfoot)
         {
             return new Density((kilopoundspercubicfoot/0.062427961) * 1e3d);
@@ -981,6 +1029,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilopoundsPerCubicInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch)
         {
             return new Density((kilopoundspercubicinch/3.6127298147753e-5) * 1e3d);
@@ -1016,6 +1067,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMicrogramsPerDeciLiter(double microgramsperdeciliter)
         {
             return new Density((microgramsperdeciliter/1e-1) * 1e-6d);
@@ -1051,6 +1105,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMicrogramsPerLiter(double microgramsperliter)
         {
             return new Density((microgramsperliter/1) * 1e-6d);
@@ -1086,6 +1143,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMicrogramsPerMilliliter(double microgramspermilliliter)
         {
             return new Density((microgramspermilliliter/1e-3) * 1e-6d);
@@ -1121,6 +1181,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMilligramsPerDeciLiter(double milligramsperdeciliter)
         {
             return new Density((milligramsperdeciliter/1e-1) * 1e-3d);
@@ -1156,6 +1219,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMilligramsPerLiter(double milligramsperliter)
         {
             return new Density((milligramsperliter/1) * 1e-3d);
@@ -1191,6 +1257,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromMilligramsPerMilliliter(double milligramspermilliliter)
         {
             return new Density((milligramspermilliliter/1e-3) * 1e-3d);
@@ -1226,6 +1295,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromNanogramsPerDeciLiter(double nanogramsperdeciliter)
         {
             return new Density((nanogramsperdeciliter/1e-1) * 1e-9d);
@@ -1261,6 +1333,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromNanogramsPerLiter(double nanogramsperliter)
         {
             return new Density((nanogramsperliter/1) * 1e-9d);
@@ -1296,6 +1371,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromNanogramsPerMilliliter(double nanogramspermilliliter)
         {
             return new Density((nanogramspermilliliter/1e-3) * 1e-9d);
@@ -1331,6 +1409,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerDeciLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromPicogramsPerDeciLiter(double picogramsperdeciliter)
         {
             return new Density((picogramsperdeciliter/1e-1) * 1e-12d);
@@ -1366,6 +1447,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerLiter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromPicogramsPerLiter(double picogramsperliter)
         {
             return new Density((picogramsperliter/1) * 1e-12d);
@@ -1401,6 +1485,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerMilliliter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromPicogramsPerMilliliter(double picogramspermilliliter)
         {
             return new Density((picogramspermilliliter/1e-3) * 1e-12d);
@@ -1436,6 +1523,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromPoundsPerCubicFoot(double poundspercubicfoot)
         {
             return new Density(poundspercubicfoot/0.062427961);
@@ -1471,6 +1561,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerCubicInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromPoundsPerCubicInch(double poundspercubicinch)
         {
             return new Density(poundspercubicinch/3.6127298147753e-5);
@@ -1506,6 +1599,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromSlugsPerCubicFoot(double slugspercubicfoot)
         {
             return new Density(slugspercubicfoot*515.378818);
@@ -1541,6 +1637,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromTonnesPerCubicCentimeter(double tonnespercubiccentimeter)
         {
             return new Density(tonnespercubiccentimeter/1e-9);
@@ -1576,6 +1675,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromTonnesPerCubicMeter(double tonnespercubicmeter)
         {
             return new Density(tonnespercubicmeter/0.001);
@@ -1611,6 +1713,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter)
         {
             return new Density(tonnespercubicmillimeter/1e-12);

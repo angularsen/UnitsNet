@@ -438,6 +438,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Atmospheres.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromAtmospheres(double atmospheres)
         {
             return new Pressure(atmospheres*1.01325*1e5);
@@ -473,6 +476,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Bars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromBars(double bars)
         {
             return new Pressure(bars*1e5);
@@ -508,6 +514,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Centibars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromCentibars(double centibars)
         {
             return new Pressure((centibars*1e5) * 1e-2d);
@@ -543,6 +552,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Decapascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromDecapascals(double decapascals)
         {
             return new Pressure((decapascals) * 1e1d);
@@ -578,6 +590,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Decibars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromDecibars(double decibars)
         {
             return new Pressure((decibars*1e5) * 1e-1d);
@@ -613,6 +628,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from FeetOfHead.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromFeetOfHead(double feetofhead)
         {
             return new Pressure(feetofhead*2989.0669);
@@ -648,6 +666,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Gigapascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromGigapascals(double gigapascals)
         {
             return new Pressure((gigapascals) * 1e9d);
@@ -683,6 +704,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Hectopascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromHectopascals(double hectopascals)
         {
             return new Pressure((hectopascals) * 1e2d);
@@ -718,6 +742,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from InchesOfMercury.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromInchesOfMercury(double inchesofmercury)
         {
             return new Pressure(inchesofmercury/2.95299830714159e-4);
@@ -753,6 +780,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Kilobars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilobars(double kilobars)
         {
             return new Pressure((kilobars*1e5) * 1e3d);
@@ -788,6 +818,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilogramsForcePerSquareCentimeter(double kilogramsforcepersquarecentimeter)
         {
             return new Pressure(kilogramsforcepersquarecentimeter*9.80665*1e4);
@@ -823,6 +856,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilogramsForcePerSquareMeter(double kilogramsforcepersquaremeter)
         {
             return new Pressure(kilogramsforcepersquaremeter*9.80665019960652);
@@ -858,6 +894,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilogramsForcePerSquareMillimeter(double kilogramsforcepersquaremillimeter)
         {
             return new Pressure(kilogramsforcepersquaremillimeter*9806650.19960652);
@@ -893,6 +932,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilonewtonsPerSquareCentimeter(double kilonewtonspersquarecentimeter)
         {
             return new Pressure((kilonewtonspersquarecentimeter*1e4) * 1e3d);
@@ -928,6 +970,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilonewtonsPerSquareMeter(double kilonewtonspersquaremeter)
         {
             return new Pressure((kilonewtonspersquaremeter) * 1e3d);
@@ -963,6 +1008,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilonewtonsPerSquareMillimeter(double kilonewtonspersquaremillimeter)
         {
             return new Pressure((kilonewtonspersquaremillimeter*1e6) * 1e3d);
@@ -998,6 +1046,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Kilopascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilopascals(double kilopascals)
         {
             return new Pressure((kilopascals) * 1e3d);
@@ -1033,6 +1084,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilopoundsForcePerSquareFoot(double kilopoundsforcepersquarefoot)
         {
             return new Pressure((kilopoundsforcepersquarefoot*47.8802631216372) * 1e3d);
@@ -1068,6 +1122,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch)
         {
             return new Pressure((kilopoundsforcepersquareinch*6894.75729316836) * 1e3d);
@@ -1103,6 +1160,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Megabars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMegabars(double megabars)
         {
             return new Pressure((megabars*1e5) * 1e6d);
@@ -1138,6 +1198,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Megapascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMegapascals(double megapascals)
         {
             return new Pressure((megapascals) * 1e6d);
@@ -1173,6 +1236,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from MetersOfHead.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMetersOfHead(double metersofhead)
         {
             return new Pressure(metersofhead*9804.139432);
@@ -1208,6 +1274,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Micropascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMicropascals(double micropascals)
         {
             return new Pressure((micropascals) * 1e-6d);
@@ -1243,6 +1312,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Millibars.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMillibars(double millibars)
         {
             return new Pressure((millibars*1e5) * 1e-3d);
@@ -1278,6 +1350,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from MillimetersOfMercury.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromMillimetersOfMercury(double millimetersofmercury)
         {
             return new Pressure(millimetersofmercury/7.50061561302643e-3);
@@ -1313,6 +1388,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromNewtonsPerSquareCentimeter(double newtonspersquarecentimeter)
         {
             return new Pressure(newtonspersquarecentimeter*1e4);
@@ -1348,6 +1426,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromNewtonsPerSquareMeter(double newtonspersquaremeter)
         {
             return new Pressure(newtonspersquaremeter);
@@ -1383,6 +1464,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromNewtonsPerSquareMillimeter(double newtonspersquaremillimeter)
         {
             return new Pressure(newtonspersquaremillimeter*1e6);
@@ -1418,6 +1502,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Pascals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromPascals(double pascals)
         {
             return new Pressure(pascals);
@@ -1453,6 +1540,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareFoot.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromPoundsForcePerSquareFoot(double poundsforcepersquarefoot)
         {
             return new Pressure(poundsforcepersquarefoot*47.8802631216372);
@@ -1488,6 +1578,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareInch.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch)
         {
             return new Pressure(poundsforcepersquareinch*6894.75729316836);
@@ -1523,6 +1616,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Psi.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromPsi(double psi)
         {
             return new Pressure(psi*6.89464975179*1e3);
@@ -1558,6 +1654,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TechnicalAtmospheres.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
         {
             return new Pressure(technicalatmospheres*9.80680592331*1e4);
@@ -1593,6 +1692,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareCentimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromTonnesForcePerSquareCentimeter(double tonnesforcepersquarecentimeter)
         {
             return new Pressure(tonnesforcepersquarecentimeter*98066501.9960652);
@@ -1628,6 +1730,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromTonnesForcePerSquareMeter(double tonnesforcepersquaremeter)
         {
             return new Pressure(tonnesforcepersquaremeter*9806.65019960653);
@@ -1663,6 +1768,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMillimeter.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromTonnesForcePerSquareMillimeter(double tonnesforcepersquaremillimeter)
         {
             return new Pressure(tonnesforcepersquaremillimeter*9806650199.60653);
@@ -1698,6 +1806,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Torrs.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Pressure FromTorrs(double torrs)
         {
             return new Pressure(torrs*1.3332266752*1e2);

@@ -197,6 +197,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from CentimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromCentimeterPerSecondSquared(double centimeterpersecondsquared)
         {
             return new Acceleration((centimeterpersecondsquared) * 1e-2d);
@@ -232,6 +235,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from DecimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromDecimeterPerSecondSquared(double decimeterpersecondsquared)
         {
             return new Acceleration((decimeterpersecondsquared) * 1e-1d);
@@ -267,6 +273,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from KilometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromKilometerPerSecondSquared(double kilometerpersecondsquared)
         {
             return new Acceleration((kilometerpersecondsquared) * 1e3d);
@@ -302,6 +311,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMeterPerSecondSquared(double meterpersecondsquared)
         {
             return new Acceleration(meterpersecondsquared);
@@ -337,6 +349,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MicrometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
         {
             return new Acceleration((micrometerpersecondsquared) * 1e-6d);
@@ -372,6 +387,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MillimeterPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromMillimeterPerSecondSquared(double millimeterpersecondsquared)
         {
             return new Acceleration((millimeterpersecondsquared) * 1e-3d);
@@ -407,6 +425,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from NanometerPerSecondSquared.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Acceleration FromNanometerPerSecondSquared(double nanometerpersecondsquared)
         {
             return new Acceleration((nanometerpersecondsquared) * 1e-9d);

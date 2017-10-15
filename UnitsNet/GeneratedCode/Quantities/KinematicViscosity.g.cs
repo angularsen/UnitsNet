@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromCentistokes(double centistokes)
         {
             return new KinematicViscosity((centistokes/1e4) * 1e-2d);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Decistokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromDecistokes(double decistokes)
         {
             return new KinematicViscosity((decistokes/1e4) * 1e-1d);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Kilostokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromKilostokes(double kilostokes)
         {
             return new KinematicViscosity((kilostokes/1e4) * 1e3d);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Microstokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromMicrostokes(double microstokes)
         {
             return new KinematicViscosity((microstokes/1e4) * 1e-6d);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Millistokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromMillistokes(double millistokes)
         {
             return new KinematicViscosity((millistokes/1e4) * 1e-3d);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Nanostokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromNanostokes(double nanostokes)
         {
             return new KinematicViscosity((nanostokes/1e4) * 1e-9d);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromSquareMetersPerSecond(double squaremeterspersecond)
         {
             return new KinematicViscosity(squaremeterspersecond);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Stokes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static KinematicViscosity FromStokes(double stokes)
         {
             return new KinematicViscosity(stokes/1e4);

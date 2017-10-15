@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesCelsiusDelta(double degreescelsiusdelta)
         {
             return new TemperatureDelta(degreescelsiusdelta);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesDelisleDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesDelisleDelta(double degreesdelisledelta)
         {
             return new TemperatureDelta(degreesdelisledelta*-2/3);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesFahrenheitDelta(double degreesfahrenheitdelta)
         {
             return new TemperatureDelta(degreesfahrenheitdelta*5/9);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesNewtonDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesNewtonDelta(double degreesnewtondelta)
         {
             return new TemperatureDelta(degreesnewtondelta*100/33);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesRankineDelta(double degreesrankinedelta)
         {
             return new TemperatureDelta(degreesrankinedelta*5/9);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesReaumurDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesReaumurDelta(double degreesreaumurdelta)
         {
             return new TemperatureDelta(degreesreaumurdelta*5/4);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromDegreesRoemerDelta(double degreesroemerdelta)
         {
             return new TemperatureDelta(degreesroemerdelta*40/21);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from KelvinsDelta.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureDelta FromKelvinsDelta(double kelvinsdelta)
         {
             return new TemperatureDelta(kelvinsdelta);

@@ -165,6 +165,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ApparentPower from Kilovoltamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ApparentPower FromKilovoltamperes(double kilovoltamperes)
         {
             return new ApparentPower((kilovoltamperes) * 1e3d);
@@ -200,6 +203,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ApparentPower from Megavoltamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ApparentPower FromMegavoltamperes(double megavoltamperes)
         {
             return new ApparentPower((megavoltamperes) * 1e6d);
@@ -235,6 +241,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ApparentPower from Voltamperes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ApparentPower FromVoltamperes(double voltamperes)
         {
             return new ApparentPower(voltamperes);

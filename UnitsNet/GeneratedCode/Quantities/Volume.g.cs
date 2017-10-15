@@ -479,6 +479,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromAuTablespoons(double autablespoons)
         {
             return new Volume(autablespoons*2e-5);
@@ -514,6 +517,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Centiliters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCentiliters(double centiliters)
         {
             return new Volume((centiliters/1e3) * 1e-2d);
@@ -549,6 +555,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicCentimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicCentimeters(double cubiccentimeters)
         {
             return new Volume(cubiccentimeters/1e6);
@@ -584,6 +593,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicDecimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicDecimeters(double cubicdecimeters)
         {
             return new Volume(cubicdecimeters/1e3);
@@ -619,6 +631,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicFeet(double cubicfeet)
         {
             return new Volume(cubicfeet*0.0283168);
@@ -654,6 +669,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicInches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicInches(double cubicinches)
         {
             return new Volume(cubicinches*1.6387*1e-5);
@@ -689,6 +707,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicKilometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicKilometers(double cubickilometers)
         {
             return new Volume(cubickilometers*1e9);
@@ -724,6 +745,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicMeters(double cubicmeters)
         {
             return new Volume(cubicmeters);
@@ -759,6 +783,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMicrometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicMicrometers(double cubicmicrometers)
         {
             return new Volume(cubicmicrometers/1e18);
@@ -794,6 +821,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMiles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicMiles(double cubicmiles)
         {
             return new Volume(cubicmiles*4.16818183*1e9);
@@ -829,6 +859,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMillimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicMillimeters(double cubicmillimeters)
         {
             return new Volume(cubicmillimeters/1e9);
@@ -864,6 +897,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicYards.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromCubicYards(double cubicyards)
         {
             return new Volume(cubicyards*0.764554858);
@@ -899,6 +935,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromDeciliters(double deciliters)
         {
             return new Volume((deciliters/1e3) * 1e-1d);
@@ -934,6 +973,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from HectocubicFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromHectocubicFeet(double hectocubicfeet)
         {
             return new Volume((hectocubicfeet*0.0283168) * 1e2d);
@@ -969,6 +1011,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from HectocubicMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromHectocubicMeters(double hectocubicmeters)
         {
             return new Volume((hectocubicmeters) * 1e2d);
@@ -1004,6 +1049,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromHectoliters(double hectoliters)
         {
             return new Volume((hectoliters/1e3) * 1e2d);
@@ -1039,6 +1087,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromImperialBeerBarrels(double imperialbeerbarrels)
         {
             return new Volume(imperialbeerbarrels*0.16365924);
@@ -1074,6 +1125,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromImperialGallons(double imperialgallons)
         {
             return new Volume(imperialgallons*0.00454609000000181429905810072407);
@@ -1109,6 +1163,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialOunces.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromImperialOunces(double imperialounces)
         {
             return new Volume(imperialounces*2.8413062499962901241875439064617e-5);
@@ -1144,6 +1201,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilocubicFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromKilocubicFeet(double kilocubicfeet)
         {
             return new Volume((kilocubicfeet*0.0283168) * 1e3d);
@@ -1179,6 +1239,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilocubicMeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromKilocubicMeters(double kilocubicmeters)
         {
             return new Volume((kilocubicmeters) * 1e3d);
@@ -1214,6 +1277,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KiloimperialGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromKiloimperialGallons(double kiloimperialgallons)
         {
             return new Volume((kiloimperialgallons*0.00454609000000181429905810072407) * 1e3d);
@@ -1249,6 +1315,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromKilousGallons(double kilousgallons)
         {
             return new Volume((kilousgallons*0.00378541) * 1e3d);
@@ -1284,6 +1353,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Liters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromLiters(double liters)
         {
             return new Volume(liters/1e3);
@@ -1319,6 +1391,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegacubicFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMegacubicFeet(double megacubicfeet)
         {
             return new Volume((megacubicfeet*0.0283168) * 1e6d);
@@ -1354,6 +1429,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegaimperialGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMegaimperialGallons(double megaimperialgallons)
         {
             return new Volume((megaimperialgallons*0.00454609000000181429905810072407) * 1e6d);
@@ -1389,6 +1467,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegausGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMegausGallons(double megausgallons)
         {
             return new Volume((megausgallons*0.00378541) * 1e6d);
@@ -1424,6 +1505,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MetricCups.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMetricCups(double metriccups)
         {
             return new Volume(metriccups*0.00025);
@@ -1459,6 +1543,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MetricTeaspoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMetricTeaspoons(double metricteaspoons)
         {
             return new Volume(metricteaspoons*0.5e-5);
@@ -1494,6 +1581,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Microliters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMicroliters(double microliters)
         {
             return new Volume((microliters/1e3) * 1e-6d);
@@ -1529,6 +1619,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromMilliliters(double milliliters)
         {
             return new Volume((milliliters/1e3) * 1e-3d);
@@ -1564,6 +1657,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from OilBarrels.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromOilBarrels(double oilbarrels)
         {
             return new Volume(oilbarrels*0.158987294928);
@@ -1599,6 +1695,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Tablespoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromTablespoons(double tablespoons)
         {
             return new Volume(tablespoons*1.478676478125e-5);
@@ -1634,6 +1733,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Teaspoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromTeaspoons(double teaspoons)
         {
             return new Volume(teaspoons*4.92892159375e-6);
@@ -1669,6 +1771,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUkTablespoons(double uktablespoons)
         {
             return new Volume(uktablespoons*1.5e-5);
@@ -1704,6 +1809,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsBeerBarrels.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsBeerBarrels(double usbeerbarrels)
         {
             return new Volume(usbeerbarrels*0.1173477658);
@@ -1739,6 +1847,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsCustomaryCups.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsCustomaryCups(double uscustomarycups)
         {
             return new Volume(uscustomarycups*0.0002365882365);
@@ -1774,6 +1885,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsGallons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsGallons(double usgallons)
         {
             return new Volume(usgallons*0.00378541);
@@ -1809,6 +1923,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsLegalCups.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsLegalCups(double uslegalcups)
         {
             return new Volume(uslegalcups*0.00024);
@@ -1844,6 +1961,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsOunces.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsOunces(double usounces)
         {
             return new Volume(usounces*2.957352956253760505068307980135e-5);
@@ -1879,6 +1999,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsTablespoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsTablespoons(double ustablespoons)
         {
             return new Volume(ustablespoons*1.478676478125e-5);
@@ -1914,6 +2037,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsTeaspoons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Volume FromUsTeaspoons(double usteaspoons)
         {
             return new Volume(usteaspoons*4.92892159375e-6);

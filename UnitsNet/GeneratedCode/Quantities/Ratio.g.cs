@@ -189,6 +189,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from DecimalFractions.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromDecimalFractions(double decimalfractions)
         {
             return new Ratio(decimalfractions);
@@ -224,6 +227,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromPartsPerBillion(double partsperbillion)
         {
             return new Ratio(partsperbillion/1e9);
@@ -259,6 +265,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerMillion.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromPartsPerMillion(double partspermillion)
         {
             return new Ratio(partspermillion/1e6);
@@ -294,6 +303,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerThousand.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromPartsPerThousand(double partsperthousand)
         {
             return new Ratio(partsperthousand/1e3);
@@ -329,6 +341,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerTrillion.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromPartsPerTrillion(double partspertrillion)
         {
             return new Ratio(partspertrillion/1e12);
@@ -364,6 +379,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from Percent.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Ratio FromPercent(double percent)
         {
             return new Ratio(percent/1e2);

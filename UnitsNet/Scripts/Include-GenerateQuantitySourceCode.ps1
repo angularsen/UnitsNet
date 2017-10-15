@@ -193,6 +193,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static $quantityName From$($unit.PluralName)(double $valueParamName)
         {
             return new $quantityName($func);

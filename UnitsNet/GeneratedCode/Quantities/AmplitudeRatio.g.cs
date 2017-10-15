@@ -173,6 +173,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmplitudeRatio from DecibelMicrovolts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AmplitudeRatio FromDecibelMicrovolts(double decibelmicrovolts)
         {
             return new AmplitudeRatio(decibelmicrovolts - 120);
@@ -208,6 +211,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmplitudeRatio from DecibelMillivolts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AmplitudeRatio FromDecibelMillivolts(double decibelmillivolts)
         {
             return new AmplitudeRatio(decibelmillivolts - 60);
@@ -243,6 +249,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmplitudeRatio from DecibelsUnloaded.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AmplitudeRatio FromDecibelsUnloaded(double decibelsunloaded)
         {
             return new AmplitudeRatio(decibelsunloaded - 2.218487499);
@@ -278,6 +287,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmplitudeRatio from DecibelVolts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static AmplitudeRatio FromDecibelVolts(double decibelvolts)
         {
             return new AmplitudeRatio(decibelvolts);

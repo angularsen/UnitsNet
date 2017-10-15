@@ -165,6 +165,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive)
         {
             return new ReactivePower((kilovoltamperesreactive) * 1e3d);
@@ -200,6 +203,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive)
         {
             return new ReactivePower((megavoltamperesreactive) * 1e6d);
@@ -235,6 +241,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from VoltamperesReactive.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ReactivePower FromVoltamperesReactive(double voltamperesreactive)
         {
             return new ReactivePower(voltamperesreactive);

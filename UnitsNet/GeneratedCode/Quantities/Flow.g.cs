@@ -277,6 +277,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CentilitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCentilitersPerMinute(double centilitersperminute)
         {
             return new Flow((centilitersperminute/60000.00000) * 1e-2d);
@@ -312,6 +315,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
         {
             return new Flow(cubicdecimetersperminute/60000.00000);
@@ -347,6 +353,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCubicFeetPerHour(double cubicfeetperhour)
         {
             return new Flow(cubicfeetperhour*7.8657907199999087346816086183876e-6);
@@ -382,6 +391,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCubicFeetPerSecond(double cubicfeetpersecond)
         {
             return new Flow(cubicfeetpersecond/35.314666721);
@@ -417,6 +429,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
         {
             return new Flow(cubicmetersperhour/3600);
@@ -452,6 +467,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
         {
             return new Flow(cubicmeterspersecond);
@@ -487,6 +505,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from DecilitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromDecilitersPerMinute(double decilitersperminute)
         {
             return new Flow((decilitersperminute/60000.00000) * 1e-1d);
@@ -522,6 +543,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from KilolitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromKilolitersPerMinute(double kilolitersperminute)
         {
             return new Flow((kilolitersperminute/60000.00000) * 1e3d);
@@ -557,6 +581,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromLitersPerHour(double litersperhour)
         {
             return new Flow(litersperhour/3600000.000);
@@ -592,6 +619,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromLitersPerMinute(double litersperminute)
         {
             return new Flow(litersperminute/60000.00000);
@@ -627,6 +657,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromLitersPerSecond(double literspersecond)
         {
             return new Flow(literspersecond/1000);
@@ -662,6 +695,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from MicrolitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromMicrolitersPerMinute(double microlitersperminute)
         {
             return new Flow((microlitersperminute/60000.00000) * 1e-6d);
@@ -697,6 +733,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from MillilitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromMillilitersPerMinute(double millilitersperminute)
         {
             return new Flow((millilitersperminute/60000.00000) * 1e-3d);
@@ -732,6 +771,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
         {
             return new Flow(millionusgallonsperday/22.824465227);
@@ -767,6 +809,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from NanolitersPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromNanolitersPerMinute(double nanolitersperminute)
         {
             return new Flow((nanolitersperminute/60000.00000) * 1e-9d);
@@ -802,6 +847,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from OilBarrelsPerDay.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromOilBarrelsPerDay(double oilbarrelsperday)
         {
             return new Flow(oilbarrelsperday*1.8401307283333333333333333333333e-6);
@@ -837,6 +885,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Flow FromUsGallonsPerMinute(double usgallonsperminute)
         {
             return new Flow(usgallonsperminute/15850.323141489);

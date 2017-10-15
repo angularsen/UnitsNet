@@ -173,6 +173,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricAdmittance from Microsiemens.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricAdmittance FromMicrosiemens(double microsiemens)
         {
             return new ElectricAdmittance((microsiemens) * 1e-6d);
@@ -208,6 +211,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricAdmittance from Millisiemens.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricAdmittance FromMillisiemens(double millisiemens)
         {
             return new ElectricAdmittance((millisiemens) * 1e-3d);
@@ -243,6 +249,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricAdmittance from Nanosiemens.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricAdmittance FromNanosiemens(double nanosiemens)
         {
             return new ElectricAdmittance((nanosiemens) * 1e-9d);
@@ -278,6 +287,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricAdmittance from Siemens.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static ElectricAdmittance FromSiemens(double siemens)
         {
             return new ElectricAdmittance(siemens);

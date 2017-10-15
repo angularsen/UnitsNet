@@ -317,6 +317,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from BritishThermalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromBritishThermalUnits(double britishthermalunits)
         {
             return new Energy(britishthermalunits*1055.05585262);
@@ -352,6 +355,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromCalories(double calories)
         {
             return new Energy(calories*4.184);
@@ -387,6 +393,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsEc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromDecathermsEc(double decathermsec)
         {
             return new Energy((decathermsec*105505585.262) * 1e1d);
@@ -422,6 +431,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsImperial.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromDecathermsImperial(double decathermsimperial)
         {
             return new Energy((decathermsimperial*1.05505585257348e+14) * 1e1d);
@@ -457,6 +469,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsUs.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromDecathermsUs(double decathermsus)
         {
             return new Energy((decathermsus*1.054804e+8) * 1e1d);
@@ -492,6 +507,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ElectronVolts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromElectronVolts(double electronvolts)
         {
             return new Energy(electronvolts*1.602176565e-19);
@@ -527,6 +545,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Ergs.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromErgs(double ergs)
         {
             return new Energy(ergs*1e-7);
@@ -562,6 +583,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromFootPounds(double footpounds)
         {
             return new Energy(footpounds*1.355817948);
@@ -597,6 +621,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
         {
             return new Energy((gigabritishthermalunits*1055.05585262) * 1e9d);
@@ -632,6 +659,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromGigawattHours(double gigawatthours)
         {
             return new Energy((gigawatthours*3600d) * 1e9d);
@@ -667,6 +697,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Joules.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromJoules(double joules)
         {
             return new Energy(joules);
@@ -702,6 +735,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromKilobritishThermalUnits(double kilobritishthermalunits)
         {
             return new Energy((kilobritishthermalunits*1055.05585262) * 1e3d);
@@ -737,6 +773,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Kilocalories.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromKilocalories(double kilocalories)
         {
             return new Energy((kilocalories*4.184) * 1e3d);
@@ -772,6 +811,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromKilojoules(double kilojoules)
         {
             return new Energy((kilojoules) * 1e3d);
@@ -807,6 +849,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from KilowattHours.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromKilowattHours(double kilowatthours)
         {
             return new Energy((kilowatthours*3600d) * 1e3d);
@@ -842,6 +887,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromMegabritishThermalUnits(double megabritishthermalunits)
         {
             return new Energy((megabritishthermalunits*1055.05585262) * 1e6d);
@@ -877,6 +925,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromMegajoules(double megajoules)
         {
             return new Energy((megajoules) * 1e6d);
@@ -912,6 +963,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from MegawattHours.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromMegawattHours(double megawatthours)
         {
             return new Energy((megawatthours*3600d) * 1e6d);
@@ -947,6 +1001,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsEc.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromThermsEc(double thermsec)
         {
             return new Energy(thermsec*105505585.262);
@@ -982,6 +1039,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsImperial.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromThermsImperial(double thermsimperial)
         {
             return new Energy(thermsimperial*1.05505585257348e+14);
@@ -1017,6 +1077,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsUs.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromThermsUs(double thermsus)
         {
             return new Energy(thermsus*1.054804e+8);
@@ -1052,6 +1115,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from WattHours.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Energy FromWattHours(double watthours)
         {
             return new Energy(watthours*3600d);

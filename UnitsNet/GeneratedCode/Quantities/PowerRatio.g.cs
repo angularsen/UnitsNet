@@ -157,6 +157,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerRatio from DecibelMilliwatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PowerRatio FromDecibelMilliwatts(double decibelmilliwatts)
         {
             return new PowerRatio(decibelmilliwatts - 30);
@@ -192,6 +195,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerRatio from DecibelWatts.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PowerRatio FromDecibelWatts(double decibelwatts)
         {
             return new PowerRatio(decibelwatts);

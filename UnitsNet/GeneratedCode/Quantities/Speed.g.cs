@@ -309,6 +309,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromCentimetersPerHour(double centimetersperhour)
         {
             return new Speed((centimetersperhour/3600) * 1e-2d);
@@ -344,6 +347,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromCentimetersPerMinutes(double centimetersperminutes)
         {
             return new Speed((centimetersperminutes/60) * 1e-2d);
@@ -379,6 +385,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromCentimetersPerSecond(double centimeterspersecond)
         {
             return new Speed((centimeterspersecond) * 1e-2d);
@@ -414,6 +423,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from DecimetersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromDecimetersPerMinutes(double decimetersperminutes)
         {
             return new Speed((decimetersperminutes/60) * 1e-1d);
@@ -449,6 +461,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from DecimetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromDecimetersPerSecond(double decimeterspersecond)
         {
             return new Speed((decimeterspersecond) * 1e-1d);
@@ -484,6 +499,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from FeetPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromFeetPerSecond(double feetpersecond)
         {
             return new Speed(feetpersecond*0.3048);
@@ -519,6 +537,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromKilometersPerHour(double kilometersperhour)
         {
             return new Speed((kilometersperhour/3600) * 1e3d);
@@ -554,6 +575,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromKilometersPerMinutes(double kilometersperminutes)
         {
             return new Speed((kilometersperminutes/60) * 1e3d);
@@ -589,6 +613,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromKilometersPerSecond(double kilometerspersecond)
         {
             return new Speed((kilometerspersecond) * 1e3d);
@@ -624,6 +651,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from Knots.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromKnots(double knots)
         {
             return new Speed(knots*0.514444);
@@ -659,6 +689,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMetersPerHour(double metersperhour)
         {
             return new Speed(metersperhour/3600);
@@ -694,6 +727,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMetersPerMinutes(double metersperminutes)
         {
             return new Speed(metersperminutes/60);
@@ -729,6 +765,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMetersPerSecond(double meterspersecond)
         {
             return new Speed(meterspersecond);
@@ -764,6 +803,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MicrometersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMicrometersPerMinutes(double micrometersperminutes)
         {
             return new Speed((micrometersperminutes/60) * 1e-6d);
@@ -799,6 +841,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MicrometersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMicrometersPerSecond(double micrometerspersecond)
         {
             return new Speed((micrometerspersecond) * 1e-6d);
@@ -834,6 +879,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MilesPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMilesPerHour(double milesperhour)
         {
             return new Speed(milesperhour*0.44704);
@@ -869,6 +917,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMillimetersPerHour(double millimetersperhour)
         {
             return new Speed((millimetersperhour/3600) * 1e-3d);
@@ -904,6 +955,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMillimetersPerMinutes(double millimetersperminutes)
         {
             return new Speed((millimetersperminutes/60) * 1e-3d);
@@ -939,6 +993,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromMillimetersPerSecond(double millimeterspersecond)
         {
             return new Speed((millimeterspersecond) * 1e-3d);
@@ -974,6 +1031,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from NanometersPerMinutes.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromNanometersPerMinutes(double nanometersperminutes)
         {
             return new Speed((nanometersperminutes/60) * 1e-9d);
@@ -1009,6 +1069,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from NanometersPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Speed FromNanometersPerSecond(double nanometerspersecond)
         {
             return new Speed((nanometerspersecond) * 1e-9d);

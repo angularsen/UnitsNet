@@ -245,6 +245,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond)
         {
             return new RotationalSpeed((centiradianspersecond) * 1e-2d);
@@ -280,6 +283,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
         {
             return new RotationalSpeed((deciradianspersecond) * 1e-1d);
@@ -315,6 +321,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromDegreesPerMinute(double degreesperminute)
         {
             return new RotationalSpeed((Math.PI/(180*60))*degreesperminute);
@@ -350,6 +359,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromDegreesPerSecond(double degreespersecond)
         {
             return new RotationalSpeed((Math.PI/180)*degreespersecond);
@@ -385,6 +397,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromMicrodegreesPerSecond(double microdegreespersecond)
         {
             return new RotationalSpeed(((Math.PI/180)*microdegreespersecond) * 1e-6d);
@@ -420,6 +435,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
         {
             return new RotationalSpeed((microradianspersecond) * 1e-6d);
@@ -455,6 +473,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromMillidegreesPerSecond(double millidegreespersecond)
         {
             return new RotationalSpeed(((Math.PI/180)*millidegreespersecond) * 1e-3d);
@@ -490,6 +511,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
         {
             return new RotationalSpeed((milliradianspersecond) * 1e-3d);
@@ -525,6 +549,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromNanodegreesPerSecond(double nanodegreespersecond)
         {
             return new RotationalSpeed(((Math.PI/180)*nanodegreespersecond) * 1e-9d);
@@ -560,6 +587,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond)
         {
             return new RotationalSpeed((nanoradianspersecond) * 1e-9d);
@@ -595,6 +625,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromRadiansPerSecond(double radianspersecond)
         {
             return new RotationalSpeed(radianspersecond);
@@ -630,6 +663,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
         {
             return new RotationalSpeed((revolutionsperminute*6.2831853072)/60);
@@ -665,6 +701,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
         {
             return new RotationalSpeed(revolutionspersecond*6.2831853072);

@@ -205,6 +205,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromCyclesPerHour(double cyclesperhour)
         {
             return new Frequency(cyclesperhour/3600);
@@ -240,6 +243,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from CyclesPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromCyclesPerMinute(double cyclesperminute)
         {
             return new Frequency(cyclesperminute/60);
@@ -275,6 +281,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Gigahertz.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromGigahertz(double gigahertz)
         {
             return new Frequency((gigahertz) * 1e9d);
@@ -310,6 +319,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Hertz.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromHertz(double hertz)
         {
             return new Frequency(hertz);
@@ -345,6 +357,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Kilohertz.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromKilohertz(double kilohertz)
         {
             return new Frequency((kilohertz) * 1e3d);
@@ -380,6 +395,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Megahertz.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromMegahertz(double megahertz)
         {
             return new Frequency((megahertz) * 1e6d);
@@ -415,6 +433,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from RadiansPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromRadiansPerSecond(double radianspersecond)
         {
             return new Frequency(radianspersecond/6.2831853072);
@@ -450,6 +471,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Terahertz.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Frequency FromTerahertz(double terahertz)
         {
             return new Frequency((terahertz) * 1e12d);

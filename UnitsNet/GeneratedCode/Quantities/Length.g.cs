@@ -317,6 +317,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromCentimeters(double centimeters)
         {
             return new Length((centimeters) * 1e-2d);
@@ -352,6 +355,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Decimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDecimeters(double decimeters)
         {
             return new Length((decimeters) * 1e-1d);
@@ -387,6 +393,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from DtpPicas.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDtpPicas(double dtppicas)
         {
             return new Length(dtppicas/236.220472441);
@@ -422,6 +431,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from DtpPoints.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromDtpPoints(double dtppoints)
         {
             return new Length((dtppoints/72)*2.54e-2);
@@ -457,6 +469,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Fathoms.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromFathoms(double fathoms)
         {
             return new Length(fathoms*1.8288);
@@ -492,6 +507,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Feet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromFeet(double feet)
         {
             return new Length(feet*0.3048);
@@ -527,6 +545,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Inches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromInches(double inches)
         {
             return new Length(inches*2.54e-2);
@@ -562,6 +583,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Kilometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromKilometers(double kilometers)
         {
             return new Length((kilometers) * 1e3d);
@@ -597,6 +621,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Meters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMeters(double meters)
         {
             return new Length(meters);
@@ -632,6 +659,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Microinches.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMicroinches(double microinches)
         {
             return new Length(microinches*2.54e-8);
@@ -667,6 +697,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Micrometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMicrometers(double micrometers)
         {
             return new Length((micrometers) * 1e-6d);
@@ -702,6 +735,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Mils.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMils(double mils)
         {
             return new Length(mils*2.54e-5);
@@ -737,6 +773,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Miles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMiles(double miles)
         {
             return new Length(miles*1609.34);
@@ -772,6 +811,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Millimeters.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromMillimeters(double millimeters)
         {
             return new Length((millimeters) * 1e-3d);
@@ -807,6 +849,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Nanometers.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromNanometers(double nanometers)
         {
             return new Length((nanometers) * 1e-9d);
@@ -842,6 +887,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from NauticalMiles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromNauticalMiles(double nauticalmiles)
         {
             return new Length(nauticalmiles*1852);
@@ -877,6 +925,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from PrinterPicas.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromPrinterPicas(double printerpicas)
         {
             return new Length(printerpicas/237.106301584);
@@ -912,6 +963,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from PrinterPoints.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromPrinterPoints(double printerpoints)
         {
             return new Length((printerpoints/72.27)*2.54e-2);
@@ -947,6 +1001,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Shackles.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromShackles(double shackles)
         {
             return new Length(shackles*27.432);
@@ -982,6 +1039,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Twips.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromTwips(double twips)
         {
             return new Length(twips/56692.913385826);
@@ -1017,6 +1077,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from UsSurveyFeet.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromUsSurveyFeet(double ussurveyfeet)
         {
             return new Length(ussurveyfeet*1200/3937);
@@ -1052,6 +1115,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Yards.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Length FromYards(double yards)
         {
             return new Length(yards*0.9144);

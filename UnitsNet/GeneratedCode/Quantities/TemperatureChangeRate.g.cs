@@ -221,6 +221,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double centidegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((centidegreescelsiuspersecond) * 1e-2d);
@@ -256,6 +259,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double decadegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((decadegreescelsiuspersecond) * 1e1d);
@@ -291,6 +297,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
@@ -326,6 +335,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double degreescelsiusperminute)
         {
             return new TemperatureChangeRate(degreescelsiusperminute/60);
@@ -361,6 +373,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double degreescelsiuspersecond)
         {
             return new TemperatureChangeRate(degreescelsiuspersecond);
@@ -396,6 +411,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double hectodegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((hectodegreescelsiuspersecond) * 1e2d);
@@ -431,6 +449,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double kilodegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((kilodegreescelsiuspersecond) * 1e3d);
@@ -466,6 +487,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double microdegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((microdegreescelsiuspersecond) * 1e-6d);
@@ -501,6 +525,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double millidegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((millidegreescelsiuspersecond) * 1e-3d);
@@ -536,6 +563,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double nanodegreescelsiuspersecond)
         {
             return new TemperatureChangeRate((nanodegreescelsiuspersecond) * 1e-9d);

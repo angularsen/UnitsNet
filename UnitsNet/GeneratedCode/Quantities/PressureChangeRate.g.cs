@@ -173,6 +173,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PressureChangeRate FromAtmospheresPerSecond(double atmospherespersecond)
         {
             return new PressureChangeRate(atmospherespersecond * 1.01325*1e5);
@@ -208,6 +211,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PressureChangeRate from KilopascalsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PressureChangeRate FromKilopascalsPerSecond(double kilopascalspersecond)
         {
             return new PressureChangeRate((kilopascalspersecond) * 1e3d);
@@ -243,6 +249,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PressureChangeRate FromMegapascalsPerSecond(double megapascalspersecond)
         {
             return new PressureChangeRate((megapascalspersecond) * 1e6d);
@@ -278,6 +287,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get PressureChangeRate from PascalsPerSecond.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static PressureChangeRate FromPascalsPerSecond(double pascalspersecond)
         {
             return new PressureChangeRate(pascalspersecond);

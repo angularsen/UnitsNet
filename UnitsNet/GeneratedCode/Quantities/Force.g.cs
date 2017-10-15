@@ -213,6 +213,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Decanewtons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromDecanewtons(double decanewtons)
         {
             return new Force((decanewtons) * 1e1d);
@@ -248,6 +251,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Dyne.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromDyne(double dyne)
         {
             return new Force(dyne/1e5);
@@ -283,6 +289,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from KilogramsForce.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromKilogramsForce(double kilogramsforce)
         {
             return new Force(kilogramsforce*9.80665002864);
@@ -318,6 +327,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Kilonewtons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromKilonewtons(double kilonewtons)
         {
             return new Force((kilonewtons) * 1e3d);
@@ -353,6 +365,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from KiloPonds.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromKiloPonds(double kiloponds)
         {
             return new Force(kiloponds*9.80665002864);
@@ -388,6 +403,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Newtons.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromNewtons(double newtons)
         {
             return new Force(newtons);
@@ -423,6 +441,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Poundals.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromPoundals(double poundals)
         {
             return new Force(poundals*0.13825502798973041652092282466083);
@@ -458,6 +479,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from PoundsForce.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromPoundsForce(double poundsforce)
         {
             return new Force(poundsforce*4.4482216152605095551842641431421);
@@ -493,6 +517,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from TonnesForce.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static Force FromTonnesForce(double tonnesforce)
         {
             return new Force(tonnesforce*9.80665002864*1000);

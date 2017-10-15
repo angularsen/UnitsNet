@@ -165,6 +165,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(double gramsperkilowatthour)
         {
             return new BrakeSpecificFuelConsumption(gramsperkilowatthour/3.6e9);
@@ -200,6 +203,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(double kilogramsperjoule)
         {
             return new BrakeSpecificFuelConsumption(kilogramsperjoule);
@@ -235,6 +241,9 @@ namespace UnitsNet
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
         /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double poundspermechanicalhorsepowerhour)
         {
             return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour*1.689659410672e-7);
