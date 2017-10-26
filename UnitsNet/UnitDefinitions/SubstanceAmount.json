@@ -1,0 +1,20 @@
+﻿{
+    "Name": "SubstanceAmount",
+    "BaseUnit": "Mole",
+    "XmlDoc": "", //TODO 
+    "Units": [
+        {
+            "SingularName": "Mole",
+            "PluralName": "Moles",
+            "FromUnitToBaseFunc": "x",
+            "FromBaseToUnitFunc": "x",
+            "Prefixes": ["Nano","Micro","Milli","Centi","Deci","Kilo"],
+            "Localization": [
+                {
+                    "Culture": "en-US",
+                    "Abbreviations": ["Mole"]
+                }
+            ]
+        }        
+    ]
+}
