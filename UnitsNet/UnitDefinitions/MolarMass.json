@@ -30,8 +30,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/mol" ],
-          "AbbreviationsWithPrefixes": [ "KLbs/mol", "MLbs/mol" ]
+          "Abbreviations": [ "lb/mol" ]
         },
         {
           "Culture": "ru-RU",
