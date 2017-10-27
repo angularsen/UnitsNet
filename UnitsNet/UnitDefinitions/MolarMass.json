@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "GramPerMole",
-      "PluralName": "GramsPerMoles",
+      "PluralName": "GramsPerMole",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
@@ -23,7 +23,7 @@
     },
     {
       "SingularName": "PoundPerMole",
-      "PluralName": "PoundsPerMoles",
+      "PluralName": "PoundsPerMole",
       "FromUnitToBaseFunc": "x*0.45359237",
       "FromBaseToUnitFunc": "x/0.45359237",
       "Prefixes": [ "Kilo", "Mega" ],
