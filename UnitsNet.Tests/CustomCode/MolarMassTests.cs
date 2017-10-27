@@ -46,6 +46,18 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarMassTests : MolarMassTestsBase
     {
-        // TODO Override properties in base class here
+        protected override double CentigramsPerMolesInOneKilogramPerMole => 1e5;
+        protected override double DecagramsPerMolesInOneKilogramPerMole => 1e2;
+        protected override double DecigramsPerMolesInOneKilogramPerMole => 1e4;
+        protected override double GramsPerMolesInOneKilogramPerMole => 1e3;
+        protected override double HectogramsPerMolesInOneKilogramPerMole => 10;
+        protected override double KilogramsPerMolesInOneKilogramPerMole => 1;
+        protected override double KilopoundsPerMolesInOneKilogramPerMole => 2.2046226218487757e-3;
+        protected override double MegapoundsPerMolesInOneKilogramPerMole => 2.2046226218487757e-6;
+        protected override double MicrogramsPerMolesInOneKilogramPerMole => 1e9;
+        protected override double MilligramsPerMolesInOneKilogramPerMole => 1e6;
+        protected override double NanogramsPerMolesTolerance => 1E-3;
+        protected override double NanogramsPerMolesInOneKilogramPerMole => 1e12;
+        protected override double PoundsPerMolesInOneKilogramPerMole => 2.2046226218487757;
     }
 }
