@@ -16,8 +16,8 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г" ],
-          "AbbreviationsWithPrefixes": [ "нг", "мкг", "мг", "сг", "дг", "даг", "гг", "кг" ] // TODO Russian abbreviations
+          "Abbreviations": [ "г/моль" ],
+          "AbbreviationsWithPrefixes": [ "нг/моль", "мкг/моль", "мг/моль", "сг/моль", "дг/моль", "даг/моль", "гг/моль", "кг/моль" ]
         }
       ]
     },
@@ -35,7 +35,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фунт" ] // TODO Russian abbreviations
+          "Abbreviations": [ "фунт/моль" ]
         }
       ]
     }
