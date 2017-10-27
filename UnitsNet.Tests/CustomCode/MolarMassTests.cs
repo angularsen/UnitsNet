@@ -56,7 +56,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegapoundsPerMolesInOneKilogramPerMole => 2.2046226218487757e-6;
         protected override double MicrogramsPerMolesInOneKilogramPerMole => 1e9;
         protected override double MilligramsPerMolesInOneKilogramPerMole => 1e6;
-        protected override double NanogramsPerMolesTolerance => 1E-3;
+        protected override double NanogramsPerMolesTolerance => 1e-3;
         protected override double NanogramsPerMolesInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMolesInOneKilogramPerMole => 2.2046226218487757;
     }
