@@ -1923,6 +1923,82 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "pmol/L"),
                             }),
                     }),
+                new UnitLocalization(typeof (MolarMassUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MolarMassUnit.CentigramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "сг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.DecagramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dag/mol"),
+                                new AbbreviationsForCulture("ru-RU", "даг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.DecigramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "дг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.GramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/mol"),
+                                new AbbreviationsForCulture("ru-RU", "г/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.HectogramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "hg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "гг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.KilogramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "кг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.KilopoundPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "KLbs/mol"),
+                                new AbbreviationsForCulture("ru-RU", "kфунт/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.MegapoundPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MLbs/mol"),
+                                new AbbreviationsForCulture("ru-RU", "Mфунт/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.MicrogramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "мкг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.MilligramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg/mol"),
+                                new AbbreviationsForCulture("ru-RU", "мг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.NanogramPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ng/mol"),
+                                new AbbreviationsForCulture("ru-RU", "нг/моль"),
+                            }),
+                        new CulturesForEnumValue((int) MolarMassUnit.PoundPerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb/mol"),
+                                new AbbreviationsForCulture("ru-RU", "фунт/моль"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PowerUnit),
                     new[]
                     {
