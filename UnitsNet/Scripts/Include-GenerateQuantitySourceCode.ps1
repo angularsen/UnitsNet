@@ -83,8 +83,10 @@ using UnitsNet.Units;
 // Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
 using Culture = System.String;
+using FromValue = System.Double;
 #else
 using Culture = System.IFormatProvider;
+using FromValue = UnitsNet.QuantityValue;
 #endif
 
 // ReSharper disable once CheckNamespace
@@ -202,37 +204,10 @@ namespace UnitsNet
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static $quantityName From$($unit.PluralName)(double $valueParamName)
+        public static $quantityName From$($unit.PluralName)(FromValue $valueParamName)
         {
             return new $quantityName($func);
         }
-
-        /// <summary>
-        ///     Get $quantityName from $($unit.PluralName).
-        /// </summary>
-        public static $quantityName From$($unit.PluralName)(int $valueParamName)
-        {
-            return new $quantityName($($func));
-        }
-
-        /// <summary>
-        ///     Get $quantityName from $($unit.PluralName).
-        /// </summary>
-        public static $quantityName From$($unit.PluralName)(long $valueParamName)
-        {
-            return new $quantityName($($func));
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get $quantityName from $($unit.PluralName) of type decimal.
-        /// </summary>
-        public static $($quantityName) From$($unit.PluralName)(decimal $valueParamName)
-        {
-            return new $quantityName($($decimalFunc));
-        }
-#endif
 
 "@; }@"
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -243,52 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable $quantityName from nullable $($unit.PluralName).
         /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)(double? $valueParamName)
-        {
-            if ($($valueParamName).HasValue)
-            {
-                return From$($unit.PluralName)($($valueParamName).Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable $quantityName from nullable $($unit.PluralName).
-        /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)(int? $valueParamName)
-        {
-            if ($($valueParamName).HasValue)
-            {
-                return From$($unit.PluralName)($($valueParamName).Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable $quantityName from nullable $($unit.PluralName).
-        /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)(long? $valueParamName)
-        {
-            if ($($valueParamName).HasValue)
-            {
-                return From$($unit.PluralName)($($valueParamName).Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable $quantityName from $($unit.PluralName) of type decimal.
-        /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)(decimal? $valueParamName)
+        public static $($quantityName)? From$($unit.PluralName)(FromValue? $valueParamName)
         {
             if ($($valueParamName).HasValue)
             {
@@ -306,16 +236,20 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="$unitEnumName" /> to <see cref="$quantityName" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>$quantityName unit value.</returns>
-        public static $quantityName From(double val, $unitEnumName fromUnit)
+#if WINDOWS_UWP
+		// Fix name conflict with parameter "value"
+		[return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+#endif
+        public static $quantityName From(FromValue value, $unitEnumName fromUnit)
         {
             switch (fromUnit)
             {
 "@; foreach ($unit in $units) {@"
                 case $unitEnumName.$($unit.SingularName):
-                    return From$($unit.PluralName)(val);
+                    return From$($unit.PluralName)(value);
 "@; }@"
 
                 default:
@@ -331,7 +265,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>$quantityName unit value.</returns>
-        public static $($quantityName)? From(double? value, $unitEnumName fromUnit)
+        public static $($quantityName)? From(FromValue? value, $unitEnumName fromUnit)
         {
             if (!value.HasValue)
             {
