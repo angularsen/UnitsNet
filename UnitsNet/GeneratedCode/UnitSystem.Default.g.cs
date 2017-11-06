@@ -2659,40 +2659,40 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "nm/s"),
                             }),
                     }),
-                new UnitLocalization(typeof (SubstanceAmountUnit),
+                new UnitLocalization(typeof (AmountOfSubstanceUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Centimole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Centimole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "cMole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Decimole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Decimole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dMole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Kilomole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Kilomole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kMole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Micromole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "µMole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Millimole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Millimole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mMole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Mole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Mole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Mole"),
                             }),
-                        new CulturesForEnumValue((int) SubstanceAmountUnit.Nanomole,
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Nanomole,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nMole"),

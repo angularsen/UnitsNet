@@ -4,22 +4,22 @@
 //     regenerated when it already exists. The purpose of creating this file is to make 
 //     it easier to remember to implement all the unit conversion test cases.
 // 
-//     Whenever a new unit is added to this unit class and \generate-code.bat is run,
+//     Whenever a new unit is added to this quantity and \generate-code.bat is run,
 //     the base test class will get a new abstract property and cause a compile error
 //     in this derived class, reminding the developer to implement the test case
 //     for the new unit.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,12 +39,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
-    public class SubstanceAmountTests : SubstanceAmountTestsBase
+    public class AmountOfSubstanceTests : AmountOfSubstanceTestsBase
     {
         protected override double CentimolesInOneMole => 1e2;
         protected override double DecimolesInOneMole => 1e1;

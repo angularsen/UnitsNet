@@ -114,7 +114,7 @@ namespace UnitsNet
 		/// <summary>
 		///     The <see cref="QuantityType" /> of this quantity.
 		/// </summary>
-        public static QuantityType QuantityType => QuantityType.SubstanceAmount;
+        public static QuantityType QuantityType => QuantityType.AmountOfSubstance;
 
 		/// <summary>
 		///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
