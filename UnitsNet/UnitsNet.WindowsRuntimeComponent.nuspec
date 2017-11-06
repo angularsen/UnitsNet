@@ -6,12 +6,12 @@
     <title>Units.NET - Windows Runtime Component</title>
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
-    <licenseUrl>https://github.com/anjdreas/UnitsNet/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/anjdreas/UnitsNet</projectUrl>
+    <licenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>For C#/VB Universal Windows code (UWP), use UnitsNet instead. This is a Windows Runtime Component with reduced functionality to support all UWP languages, such as JavaScript and C++, and other runtime components.</description>
     <summary>For C#/VB Universal Windows code (UWP), use UnitsNet instead.</summary>
-    <iconUrl>https://raw.githubusercontent.com/anjdreas/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
     <copyright>Copyright © 2015 Andreas Gullberg Larsen</copyright>

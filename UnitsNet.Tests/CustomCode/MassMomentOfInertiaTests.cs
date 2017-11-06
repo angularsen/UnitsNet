@@ -9,7 +9,7 @@
 //     in this derived class, reminding the developer to implement the test case
 //     for the new unit.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
 //     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
@@ -18,8 +18,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -73,5 +73,29 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundSquareFeetInOneKilogramSquareMeter => 1 / 4.21401101e-2;
 
         protected override double PoundSquareInchesInOneKilogramSquareMeter => 1 / 2.9263965e-4;
+
+        protected override double KilotonneSquareCentimetersInOneKilogramSquareMeter => 1e-2;
+
+        protected override double KilotonneSquareDecimetersInOneKilogramSquareMeter => 1e-4;
+
+        protected override double KilotonneSquareMetersInOneKilogramSquareMeter => 1e-6;
+
+        protected override double KilotonneSquareMilimetersInOneKilogramSquareMeter => 1e0;
+
+        protected override double MegatonneSquareCentimetersInOneKilogramSquareMeter => 1e-5;
+
+        protected override double MegatonneSquareDecimetersInOneKilogramSquareMeter => 1e-7;
+
+        protected override double MegatonneSquareMetersInOneKilogramSquareMeter => 1e-9;
+
+        protected override double MegatonneSquareMilimetersInOneKilogramSquareMeter => 1e-3;
+
+        protected override double TonneSquareCentimetersInOneKilogramSquareMeter => 1e1;
+
+        protected override double TonneSquareDecimetersInOneKilogramSquareMeter => 1e-1;
+
+        protected override double TonneSquareMetersInOneKilogramSquareMeter => 1e-3;
+
+        protected override double TonneSquareMilimetersInOneKilogramSquareMeter => 1e3;
     }
 }

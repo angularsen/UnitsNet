@@ -6,17 +6,17 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -486,6 +486,74 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region HectocubicFoot
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)"/>
+        public static Volume HectocubicFeet(this int value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double?)"/>
+        public static Volume? HectocubicFeet(this int? value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)"/>
+        public static Volume HectocubicFeet(this long value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double?)"/>
+        public static Volume? HectocubicFeet(this long? value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)"/>
+        public static Volume HectocubicFeet(this double value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double?)"/>
+        public static Volume? HectocubicFeet(this double? value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)"/>
+        public static Volume HectocubicFeet(this float value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double?)"/>
+        public static Volume? HectocubicFeet(this float? value) => Volume.FromHectocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)"/>
+        public static Volume HectocubicFeet(this decimal value) => Volume.FromHectocubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double?)"/>
+        public static Volume? HectocubicFeet(this decimal? value) => Volume.FromHectocubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region HectocubicMeter
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)"/>
+        public static Volume HectocubicMeters(this int value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double?)"/>
+        public static Volume? HectocubicMeters(this int? value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)"/>
+        public static Volume HectocubicMeters(this long value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double?)"/>
+        public static Volume? HectocubicMeters(this long? value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)"/>
+        public static Volume HectocubicMeters(this double value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double?)"/>
+        public static Volume? HectocubicMeters(this double? value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)"/>
+        public static Volume HectocubicMeters(this float value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double?)"/>
+        public static Volume? HectocubicMeters(this float? value) => Volume.FromHectocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)"/>
+        public static Volume HectocubicMeters(this decimal value) => Volume.FromHectocubicMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double?)"/>
+        public static Volume? HectocubicMeters(this decimal? value) => Volume.FromHectocubicMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Hectoliter
 
         /// <inheritdoc cref="Volume.FromHectoliters(double)"/>
@@ -517,6 +585,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromHectoliters(double?)"/>
         public static Volume? Hectoliters(this decimal? value) => Volume.FromHectoliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region ImperialBeerBarrel
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this int value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this int? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this long value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this long? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this double value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this double? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this float value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this float? value) => Volume.FromImperialBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)"/>
+        public static Volume ImperialBeerBarrels(this decimal value) => Volume.FromImperialBeerBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double?)"/>
+        public static Volume? ImperialBeerBarrels(this decimal? value) => Volume.FromImperialBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -588,6 +690,142 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region KilocubicFoot
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)"/>
+        public static Volume KilocubicFeet(this int value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double?)"/>
+        public static Volume? KilocubicFeet(this int? value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)"/>
+        public static Volume KilocubicFeet(this long value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double?)"/>
+        public static Volume? KilocubicFeet(this long? value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)"/>
+        public static Volume KilocubicFeet(this double value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double?)"/>
+        public static Volume? KilocubicFeet(this double? value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)"/>
+        public static Volume KilocubicFeet(this float value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double?)"/>
+        public static Volume? KilocubicFeet(this float? value) => Volume.FromKilocubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)"/>
+        public static Volume KilocubicFeet(this decimal value) => Volume.FromKilocubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double?)"/>
+        public static Volume? KilocubicFeet(this decimal? value) => Volume.FromKilocubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KilocubicMeter
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)"/>
+        public static Volume KilocubicMeters(this int value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double?)"/>
+        public static Volume? KilocubicMeters(this int? value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)"/>
+        public static Volume KilocubicMeters(this long value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double?)"/>
+        public static Volume? KilocubicMeters(this long? value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)"/>
+        public static Volume KilocubicMeters(this double value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double?)"/>
+        public static Volume? KilocubicMeters(this double? value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)"/>
+        public static Volume KilocubicMeters(this float value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double?)"/>
+        public static Volume? KilocubicMeters(this float? value) => Volume.FromKilocubicMeters(value);
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)"/>
+        public static Volume KilocubicMeters(this decimal value) => Volume.FromKilocubicMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double?)"/>
+        public static Volume? KilocubicMeters(this decimal? value) => Volume.FromKilocubicMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KiloimperialGallon
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)"/>
+        public static Volume KiloimperialGallons(this int value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double?)"/>
+        public static Volume? KiloimperialGallons(this int? value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)"/>
+        public static Volume KiloimperialGallons(this long value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double?)"/>
+        public static Volume? KiloimperialGallons(this long? value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)"/>
+        public static Volume KiloimperialGallons(this double value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double?)"/>
+        public static Volume? KiloimperialGallons(this double? value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)"/>
+        public static Volume KiloimperialGallons(this float value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double?)"/>
+        public static Volume? KiloimperialGallons(this float? value) => Volume.FromKiloimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)"/>
+        public static Volume KiloimperialGallons(this decimal value) => Volume.FromKiloimperialGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double?)"/>
+        public static Volume? KiloimperialGallons(this decimal? value) => Volume.FromKiloimperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KilousGallon
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
+        public static Volume KilousGallons(this int value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double?)"/>
+        public static Volume? KilousGallons(this int? value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
+        public static Volume KilousGallons(this long value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double?)"/>
+        public static Volume? KilousGallons(this long? value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
+        public static Volume KilousGallons(this double value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double?)"/>
+        public static Volume? KilousGallons(this double? value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
+        public static Volume KilousGallons(this float value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double?)"/>
+        public static Volume? KilousGallons(this float? value) => Volume.FromKilousGallons(value);
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
+        public static Volume KilousGallons(this decimal value) => Volume.FromKilousGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKilousGallons(double?)"/>
+        public static Volume? KilousGallons(this decimal? value) => Volume.FromKilousGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Liter
 
         /// <inheritdoc cref="Volume.FromLiters(double)"/>
@@ -619,6 +857,108 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromLiters(double?)"/>
         public static Volume? Liters(this decimal? value) => Volume.FromLiters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MegacubicFoot
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)"/>
+        public static Volume MegacubicFeet(this int value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double?)"/>
+        public static Volume? MegacubicFeet(this int? value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)"/>
+        public static Volume MegacubicFeet(this long value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double?)"/>
+        public static Volume? MegacubicFeet(this long? value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)"/>
+        public static Volume MegacubicFeet(this double value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double?)"/>
+        public static Volume? MegacubicFeet(this double? value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)"/>
+        public static Volume MegacubicFeet(this float value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double?)"/>
+        public static Volume? MegacubicFeet(this float? value) => Volume.FromMegacubicFeet(value);
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)"/>
+        public static Volume MegacubicFeet(this decimal value) => Volume.FromMegacubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double?)"/>
+        public static Volume? MegacubicFeet(this decimal? value) => Volume.FromMegacubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MegaimperialGallon
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)"/>
+        public static Volume MegaimperialGallons(this int value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
+        public static Volume? MegaimperialGallons(this int? value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)"/>
+        public static Volume MegaimperialGallons(this long value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
+        public static Volume? MegaimperialGallons(this long? value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)"/>
+        public static Volume MegaimperialGallons(this double value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
+        public static Volume? MegaimperialGallons(this double? value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)"/>
+        public static Volume MegaimperialGallons(this float value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
+        public static Volume? MegaimperialGallons(this float? value) => Volume.FromMegaimperialGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)"/>
+        public static Volume MegaimperialGallons(this decimal value) => Volume.FromMegaimperialGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
+        public static Volume? MegaimperialGallons(this decimal? value) => Volume.FromMegaimperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MegausGallon
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)"/>
+        public static Volume MegausGallons(this int value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double?)"/>
+        public static Volume? MegausGallons(this int? value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)"/>
+        public static Volume MegausGallons(this long value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double?)"/>
+        public static Volume? MegausGallons(this long? value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)"/>
+        public static Volume MegausGallons(this double value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double?)"/>
+        public static Volume? MegausGallons(this double? value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)"/>
+        public static Volume MegausGallons(this float value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double?)"/>
+        public static Volume? MegausGallons(this float? value) => Volume.FromMegausGallons(value);
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)"/>
+        public static Volume MegausGallons(this decimal value) => Volume.FromMegausGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMegausGallons(double?)"/>
+        public static Volume? MegausGallons(this decimal? value) => Volume.FromMegausGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -891,6 +1231,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(double?)"/>
         public static Volume? UkTablespoons(this decimal? value) => Volume.FromUkTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsBeerBarrel
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this int value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this int? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this long value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this long? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this double value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this double? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this float value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this float? value) => Volume.FromUsBeerBarrels(value);
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)"/>
+        public static Volume UsBeerBarrels(this decimal value) => Volume.FromUsBeerBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double?)"/>
+        public static Volume? UsBeerBarrels(this decimal? value) => Volume.FromUsBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

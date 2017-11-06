@@ -9,30 +9,30 @@ function ToCamelCase($str)
 }
 
 
-function GenerateUnitClass($unitClass, $outDir)
+function GenerateQuantity($quantity, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name).g.cs"
-    GenerateUnitClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    $outFileName = "$outDir/$($quantity.Name).g.cs"
+    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
-    Write-Host -NoNewline "class(OK) "
+    Write-Host -NoNewline "quantity(OK) "
 }
 
-function GenerateUnitTestBaseClass($unitClass, $outDir)
+function GenerateUnitTestBaseClass($quantity, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name)TestsBase.g.cs"
-    GenerateUnitTestBaseClassSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    $outFileName = "$outDir/$($quantity.Name)TestsBase.g.cs"
+    GenerateUnitTestBaseClassSourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
     Write-Host -NoNewline "test base(OK) "
 }
 
-function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
+function GenerateUnitTestClassIfNotExists($quantity, $outDir)
 {
     Write-Host -NoNewline "test stub"
-    $outFileName = "$outDir/$($unitClass.Name)Tests.cs"
+    $outFileName = "$outDir/$($quantity.Name)Tests.cs"
     if (Test-Path $outFileName)
     {
         Write-Host -NoNewline "(skip) "
@@ -40,7 +40,7 @@ function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
     }
     else
     {
-        GenerateUnitTestPlaceholderSourceCode $unitClass | Out-File -Encoding "UTF8" $outFileName | Out-Null
+        GenerateUnitTestPlaceholderSourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
         if (!$?) {
             exit 1
         }
@@ -48,23 +48,23 @@ function GenerateUnitTestClassIfNotExists($unitClass, $outDir)
     }
 }
 
-function GenerateUnitEnum($unitClass, $outDir)
+function GenerateUnitType($quantity, $outDir)
 {
-    $outFileName = "$outDir/$($unitClass.Name)Unit.g.cs"
+    $outFileName = "$outDir/$($quantity.Name)Unit.g.cs"
 
-    GenerateUnitEnumSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+    GenerateUnitTypeSourceCode $quantity | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
-    Write-Host -NoNewline "enum(OK) "
+    Write-Host -NoNewline "unit(OK) "
 }
 
-function GenerateUnitSystemDefault($unitClasses, $outDir)
+function GenerateUnitSystemDefault($quantities, $outDir)
 {
     Write-Host -NoNewline "UnitSystem.Default.g.cs: "
     $outFileName = "$outDir/UnitSystem.Default.g.cs"
 
-    GenerateUnitSystemDefaultSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+    GenerateUnitSystemDefaultSourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         Write-Host "(error) "
         exit 1
@@ -72,12 +72,12 @@ function GenerateUnitSystemDefault($unitClasses, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateQuantityType($unitClasses, $outDir)
+function GenerateQuantityType($quantities, $outDir)
 {
     Write-Host -NoNewline "QuantityType.g.cs: "
     $outFileName = "$outDir/QuantityType.g.cs"
 
-    GenerateQuantityTypeSourceCode $unitClasses | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+    GenerateQuantityTypeSourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
         Write-Host "(error) "
         exit 1
@@ -85,15 +85,15 @@ function GenerateQuantityType($unitClasses, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateNumberExtensions($unitClass, $numberExtensionsDir)
+function GenerateNumberExtensions($quantity, $numberExtensionsDir)
 {
 	$outDir = "$numberExtensionsDir"
-    $fileName = "NumberTo$($unitClass.Name)Extensions.g.cs"
+    $fileName = "NumberTo$($quantity.Name)Extensions.g.cs"
     $outFilePath = "$outDir/$fileName"
 	EnsureDirExists $outDir
     Write-Host -NoNewline "NumberExtensions"
 
-    GenerateNumberExtensionsSourceCode $unitClass | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
+    GenerateNumberExtensionsSourceCode $quantity | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
     if (!$?) {
         Write-Host -NoNewline "(error) "
         exit 1
@@ -109,58 +109,58 @@ function EnsureDirExists([String] $dirPath) {
 }
 
 function Set-DefaultValues {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $unitClass)
+    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $quantity)
     PROCESS {
-        if (!$unitClass.BaseType) {
-            $unitClass | Add-Member BaseType "double"
+        if (!$quantity.BaseType) {
+            $quantity | Add-Member BaseType "double"
         }
-        if ($unitClass.GenerateArithmetic -eq $null) {
-            $unitClass | Add-Member GenerateArithmetic $true
+        if ($quantity.GenerateArithmetic -eq $null) {
+            $quantity | Add-Member GenerateArithmetic $true
         }
         # 'Logarithmic' is optional in the .json file and assumed to be false if not specified
-        if (!$unitClass.Logarithmic) {
-            $unitClass | Add-Member Logarithmic $false
+        if (!$quantity.Logarithmic) {
+            $quantity | Add-Member Logarithmic $false
         }
-        elseif (!$unitClass.LogarithmicScalingFactor) {
-            $unitClass | Add-Member LogarithmicScalingFactor 1
+        elseif (!$quantity.LogarithmicScalingFactor) {
+            $quantity | Add-Member LogarithmicScalingFactor 1
         }
-        return $unitClass
+        return $quantity
     }
 }
 
 function Set-ConversionFunctions
 {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $unitClass)
+    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $quantity)
     PROCESS {
-        foreach ($u in $unitClass.Units) {
+        foreach ($u in $quantity.Units) {
 
             # Use decimal for internal calculations if base type is not double, such as for long or int.
-            if ($unitClass.BaseType -ne "double") {
+            if ($quantity.BaseType -ne "double") {
                 $u.FromUnitToBaseFunc = $u.FromUnitToBaseFunc -replace "m", "d"
                 $u.FromBaseToUnitFunc = $u.FromBaseToUnitFunc -replace "d", "m"
             }
 
             # Convert to/from double for other base types
-            if ($unitClass.BaseType -eq "decimal") {
+            if ($quantity.BaseType -eq "decimal") {
                 $u.FromUnitToBaseFunc = "Convert.ToDecimal($($u.FromUnitToBaseFunc))"
                 $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
             } else {
-                if ($unitClass.BaseType -eq "long") {
+                if ($quantity.BaseType -eq "long") {
                   $u.FromUnitToBaseFunc = "Convert.ToInt64($($u.FromUnitToBaseFunc))"
                   $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
                 }
             }
         }
-        return $unitClass
+        return $quantity
     }
 }
 
 function Add-PrefixUnits {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $unitClass)
+    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $quantity)
     PROCESS {
         $prefixUnits = @()
 
-        foreach ($unit in $unitClass.Units)
+        foreach ($unit in $quantity.Units)
         {
             $prefixIndex = 0
             foreach ($prefix in $unit.Prefixes)
@@ -211,7 +211,7 @@ function Add-PrefixUnits {
                     Localization=$unit.Localization | % {
                         $abbrev = $prefixAbbreviation + $_.Abbreviations[0]
                         if ($_.AbbreviationsWithPrefixes) {
-                            $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex++]
+                            $abbrev = $_.AbbreviationsWithPrefixes[$prefixIndex]
                         }
 
                     New-Object PsObject -Property @{
@@ -222,29 +222,30 @@ function Add-PrefixUnits {
 
                 # Append prefix unit
                 $prefixUnits += $prefixUnit
+				$prefixIndex++;
             } # foreach prefixes
         } # foreach units
 
-    $unitClass.Units += $prefixUnits
-    return $unitClass
+    $quantity.Units += $prefixUnits
+    return $quantity
     }
 }
 
 function Set-UnitsOrderedByName {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $unitClass)
+    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $quantity)
     PROCESS {
-        $unitClass.Units = ($unitClass.Units | sort SingularName)
-        return $unitClass
+        $quantity.Units = ($quantity.Units | sort SingularName)
+        return $quantity
     }
 }
 
-function Add-InheritedUnits($unitClass, $unitClasses) {
+function Add-InheritedUnits($quantity, $quantities) {
 
-    foreach ($inheritFromUnitClassName in $unitClass.InheritUnitsFrom) {
-        $inheritFromUnitClass = $unitClasses | Where { $_.Name -eq $inheritFromUnitClassName } | Select -First 1
-        $unitClass.Units += $inheritFromUnitClass.Units
+    foreach ($inheritFromQuantityName in $quantity.InheritUnitsFrom) {
+        $inheritFromQuantity = $quantities | Where { $_.Name -eq $inheritFromQuantityName } | Select -First 1
+        $quantity.Units += $inheritFromQuantity.Units
 
-        Write-Host -NoNewline "(inherit $inheritFromUnitClassName) "
+        Write-Host -NoNewline "(inherit $inheritFromQuantityName) "
     }
 }
 
@@ -254,13 +255,13 @@ function Add-InheritedUnits($unitClass, $unitClasses) {
 . "$PSScriptRoot/Include-GenerateNumberExtensionsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateUnitClassSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateUnitEnumSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
 
-EnsureDirExists ($unitClassDir = "$PSScriptRoot/../GeneratedCode/UnitClasses")
-EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Enums")
+EnsureDirExists ($quantityDir = "$PSScriptRoot/../GeneratedCode/Quantities")
+EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Units")
 EnsureDirExists ($unitSystemDir = "$PSScriptRoot/../GeneratedCode")
 EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
 EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
@@ -270,7 +271,7 @@ $templatesDir = "$PSScriptRoot/../UnitDefinitions"
 $pad = 25
 
 # Parse unit definitions from .json files and populate properties
-$unitClasses = Get-ChildItem -Path $templatesDir -filter "*.json" `
+$quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
     | %{(Get-Content $_.FullName | Out-String)} `
     | ConvertFrom-Json `
     | Add-PrefixUnits `
@@ -278,27 +279,27 @@ $unitClasses = Get-ChildItem -Path $templatesDir -filter "*.json" `
     | Set-ConversionFunctions `
     | Set-UnitsOrderedByName
 
-foreach ($unitClass in $unitClasses) {
-    Write-Host -NoNewline "$($unitClass.Name):".PadRight($pad)
+foreach ($quantity in $quantities) {
+    Write-Host -NoNewline "$($quantity.Name):".PadRight($pad)
 
-    Add-InheritedUnits $unitClass $unitClasses
+    Add-InheritedUnits $quantity $quantities
 
-    GenerateUnitClass $unitClass $unitClassDir
-    GenerateUnitEnum $unitClass $unitEnumDir
-    GenerateNumberExtensions $unitClass $numberExtensionsDir
-    GenerateUnitTestBaseClass $unitClass $testsDir
-    GenerateUnitTestClassIfNotExists $unitClass $testsCustomCodeDir
+    GenerateQuantity $quantity $quantityDir
+    GenerateUnitType $quantity $unitEnumDir
+    GenerateNumberExtensions $quantity $numberExtensionsDir
+    GenerateUnitTestBaseClass $quantity $testsDir
+    GenerateUnitTestClassIfNotExists $quantity $testsCustomCodeDir
 
     Write-Host ""
 }
 
 Write-Host ""
-GenerateUnitSystemDefault $unitClasses $unitSystemDir
-GenerateQuantityType $unitClasses $unitSystemDir
+GenerateUnitSystemDefault $quantities $unitSystemDir
+GenerateQuantityType $quantities $unitSystemDir
 
-$unitCount = ($unitClasses | %{$_.Units.Count} | Measure -Sum).Sum
+$unitCount = ($quantities | %{$_.Units.Count} | Measure -Sum).Sum
 
 Write-Host "`n`n"
-Write-Host -Foreground Yellow "Summary: $unitCount units in $($unitClasses.Count) classes".PadRight($pad)
+Write-Host -Foreground Yellow "Summary: $unitCount units in $($quantities.Count) quantities".PadRight($pad)
 Write-Host "`n`n"
 exit 0

@@ -38,8 +38,8 @@
     {
       "SingularName": "CubicFootPerSecond",
       "PluralName": "CubicFeetPerSecond",
-      "FromUnitToBaseFunc": "x/35.314666213",
-      "FromBaseToUnitFunc": "x*35.314666213",
+      "FromUnitToBaseFunc": "x/35.314666721",
+      "FromBaseToUnitFunc": "x*35.314666721",
       "Localization": [
         {
           "Culture": "en-US",
@@ -139,6 +139,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "bbl/d", "BOPD" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFootPerHour",
+      "PluralName": "CubicFeetPerHour",
+      "FromUnitToBaseFunc": "x*7.8657907199999087346816086183876e-6",
+      "FromBaseToUnitFunc": "x/7.8657907199999087346816086183876e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cf/hr" ]
         }
       ]
     }

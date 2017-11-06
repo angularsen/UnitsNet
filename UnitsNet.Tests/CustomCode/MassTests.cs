@@ -1,5 +1,5 @@
 ﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,9 +38,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsInOneKilogram => 1;
 
+        protected override double KilopoundsInOneKilogram => 2.2046226218487757e-3;
+
         protected override double KilotonnesInOneKilogram => 1E-6;
 
         protected override double LongTonsInOneKilogram => 0.000984207;
+
+        protected override double MegapoundsInOneKilogram => 2.2046226218487757e-6;
 
         protected override double MegatonnesInOneKilogram => 1E-6;
 
