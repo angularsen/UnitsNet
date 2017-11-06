@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of MolarMass.
         /// </summary>
-        private readonly double _kilogramsPerMoles;
+        private readonly double _kilogramsPerMole;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public MolarMass(double kilogramspermoles)
+        public MolarMass(double kilogramspermole)
         {
-            _kilogramsPerMoles = Convert.ToDouble(kilogramspermoles);
+            _kilogramsPerMole = Convert.ToDouble(kilogramspermole);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        MolarMass(long kilogramspermoles)
+        MolarMass(long kilogramspermole)
         {
-            _kilogramsPerMoles = Convert.ToDouble(kilogramspermoles);
+            _kilogramsPerMole = Convert.ToDouble(kilogramspermole);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        MolarMass(decimal kilogramspermoles)
+        MolarMass(decimal kilogramspermole)
         {
-            _kilogramsPerMoles = Convert.ToDouble(kilogramspermoles);
+            _kilogramsPerMole = Convert.ToDouble(kilogramspermole);
         }
 
         #region Properties
@@ -130,99 +130,99 @@ namespace UnitsNet
         public static MolarMassUnit[] Units { get; } = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().ToArray();
 
         /// <summary>
-        ///     Get MolarMass in CentigramsPerMoles.
+        ///     Get MolarMass in CentigramsPerMole.
         /// </summary>
-        public double CentigramsPerMoles
+        public double CentigramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e-2d; }
+            get { return (_kilogramsPerMole*1e3) / 1e-2d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in DecagramsPerMoles.
+        ///     Get MolarMass in DecagramsPerMole.
         /// </summary>
-        public double DecagramsPerMoles
+        public double DecagramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e1d; }
+            get { return (_kilogramsPerMole*1e3) / 1e1d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in DecigramsPerMoles.
+        ///     Get MolarMass in DecigramsPerMole.
         /// </summary>
-        public double DecigramsPerMoles
+        public double DecigramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e-1d; }
+            get { return (_kilogramsPerMole*1e3) / 1e-1d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in GramsPerMoles.
+        ///     Get MolarMass in GramsPerMole.
         /// </summary>
-        public double GramsPerMoles
+        public double GramsPerMole
         {
-            get { return _kilogramsPerMoles*1e3; }
+            get { return _kilogramsPerMole*1e3; }
         }
 
         /// <summary>
-        ///     Get MolarMass in HectogramsPerMoles.
+        ///     Get MolarMass in HectogramsPerMole.
         /// </summary>
-        public double HectogramsPerMoles
+        public double HectogramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e2d; }
+            get { return (_kilogramsPerMole*1e3) / 1e2d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in KilogramsPerMoles.
+        ///     Get MolarMass in KilogramsPerMole.
         /// </summary>
-        public double KilogramsPerMoles
+        public double KilogramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e3d; }
+            get { return (_kilogramsPerMole*1e3) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in KilopoundsPerMoles.
+        ///     Get MolarMass in KilopoundsPerMole.
         /// </summary>
-        public double KilopoundsPerMoles
+        public double KilopoundsPerMole
         {
-            get { return (_kilogramsPerMoles/0.45359237) / 1e3d; }
+            get { return (_kilogramsPerMole/0.45359237) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in MegapoundsPerMoles.
+        ///     Get MolarMass in MegapoundsPerMole.
         /// </summary>
-        public double MegapoundsPerMoles
+        public double MegapoundsPerMole
         {
-            get { return (_kilogramsPerMoles/0.45359237) / 1e6d; }
+            get { return (_kilogramsPerMole/0.45359237) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in MicrogramsPerMoles.
+        ///     Get MolarMass in MicrogramsPerMole.
         /// </summary>
-        public double MicrogramsPerMoles
+        public double MicrogramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e-6d; }
+            get { return (_kilogramsPerMole*1e3) / 1e-6d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in MilligramsPerMoles.
+        ///     Get MolarMass in MilligramsPerMole.
         /// </summary>
-        public double MilligramsPerMoles
+        public double MilligramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e-3d; }
+            get { return (_kilogramsPerMole*1e3) / 1e-3d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in NanogramsPerMoles.
+        ///     Get MolarMass in NanogramsPerMole.
         /// </summary>
-        public double NanogramsPerMoles
+        public double NanogramsPerMole
         {
-            get { return (_kilogramsPerMoles*1e3) / 1e-9d; }
+            get { return (_kilogramsPerMole*1e3) / 1e-9d; }
         }
 
         /// <summary>
-        ///     Get MolarMass in PoundsPerMoles.
+        ///     Get MolarMass in PoundsPerMole.
         /// </summary>
-        public double PoundsPerMoles
+        public double PoundsPerMole
         {
-            get { return _kilogramsPerMoles/0.45359237; }
+            get { return _kilogramsPerMole/0.45359237; }
         }
 
         #endregion
@@ -235,471 +235,471 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get MolarMass from CentigramsPerMoles.
+        ///     Get MolarMass from CentigramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromCentigramsPerMoles(double centigramspermoles)
+        public static MolarMass FromCentigramsPerMole(double centigramspermole)
         {
-            return new MolarMass((centigramspermoles/1e3) * 1e-2d);
+            return new MolarMass((centigramspermole/1e3) * 1e-2d);
         }
 
         /// <summary>
-        ///     Get MolarMass from CentigramsPerMoles.
+        ///     Get MolarMass from CentigramsPerMole.
         /// </summary>
-        public static MolarMass FromCentigramsPerMoles(int centigramspermoles)
+        public static MolarMass FromCentigramsPerMole(int centigramspermole)
         {
-            return new MolarMass((centigramspermoles/1e3) * 1e-2d);
+            return new MolarMass((centigramspermole/1e3) * 1e-2d);
         }
 
         /// <summary>
-        ///     Get MolarMass from CentigramsPerMoles.
+        ///     Get MolarMass from CentigramsPerMole.
         /// </summary>
-        public static MolarMass FromCentigramsPerMoles(long centigramspermoles)
+        public static MolarMass FromCentigramsPerMole(long centigramspermole)
         {
-            return new MolarMass((centigramspermoles/1e3) * 1e-2d);
+            return new MolarMass((centigramspermole/1e3) * 1e-2d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from CentigramsPerMoles of type decimal.
+        ///     Get MolarMass from CentigramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromCentigramsPerMoles(decimal centigramspermoles)
+        public static MolarMass FromCentigramsPerMole(decimal centigramspermole)
         {
-            return new MolarMass((Convert.ToDouble(centigramspermoles)/1e3) * 1e-2d);
+            return new MolarMass((Convert.ToDouble(centigramspermole)/1e3) * 1e-2d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from DecagramsPerMoles.
+        ///     Get MolarMass from DecagramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromDecagramsPerMoles(double decagramspermoles)
+        public static MolarMass FromDecagramsPerMole(double decagramspermole)
         {
-            return new MolarMass((decagramspermoles/1e3) * 1e1d);
+            return new MolarMass((decagramspermole/1e3) * 1e1d);
         }
 
         /// <summary>
-        ///     Get MolarMass from DecagramsPerMoles.
+        ///     Get MolarMass from DecagramsPerMole.
         /// </summary>
-        public static MolarMass FromDecagramsPerMoles(int decagramspermoles)
+        public static MolarMass FromDecagramsPerMole(int decagramspermole)
         {
-            return new MolarMass((decagramspermoles/1e3) * 1e1d);
+            return new MolarMass((decagramspermole/1e3) * 1e1d);
         }
 
         /// <summary>
-        ///     Get MolarMass from DecagramsPerMoles.
+        ///     Get MolarMass from DecagramsPerMole.
         /// </summary>
-        public static MolarMass FromDecagramsPerMoles(long decagramspermoles)
+        public static MolarMass FromDecagramsPerMole(long decagramspermole)
         {
-            return new MolarMass((decagramspermoles/1e3) * 1e1d);
+            return new MolarMass((decagramspermole/1e3) * 1e1d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from DecagramsPerMoles of type decimal.
+        ///     Get MolarMass from DecagramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromDecagramsPerMoles(decimal decagramspermoles)
+        public static MolarMass FromDecagramsPerMole(decimal decagramspermole)
         {
-            return new MolarMass((Convert.ToDouble(decagramspermoles)/1e3) * 1e1d);
+            return new MolarMass((Convert.ToDouble(decagramspermole)/1e3) * 1e1d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from DecigramsPerMoles.
+        ///     Get MolarMass from DecigramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromDecigramsPerMoles(double decigramspermoles)
+        public static MolarMass FromDecigramsPerMole(double decigramspermole)
         {
-            return new MolarMass((decigramspermoles/1e3) * 1e-1d);
+            return new MolarMass((decigramspermole/1e3) * 1e-1d);
         }
 
         /// <summary>
-        ///     Get MolarMass from DecigramsPerMoles.
+        ///     Get MolarMass from DecigramsPerMole.
         /// </summary>
-        public static MolarMass FromDecigramsPerMoles(int decigramspermoles)
+        public static MolarMass FromDecigramsPerMole(int decigramspermole)
         {
-            return new MolarMass((decigramspermoles/1e3) * 1e-1d);
+            return new MolarMass((decigramspermole/1e3) * 1e-1d);
         }
 
         /// <summary>
-        ///     Get MolarMass from DecigramsPerMoles.
+        ///     Get MolarMass from DecigramsPerMole.
         /// </summary>
-        public static MolarMass FromDecigramsPerMoles(long decigramspermoles)
+        public static MolarMass FromDecigramsPerMole(long decigramspermole)
         {
-            return new MolarMass((decigramspermoles/1e3) * 1e-1d);
+            return new MolarMass((decigramspermole/1e3) * 1e-1d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from DecigramsPerMoles of type decimal.
+        ///     Get MolarMass from DecigramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromDecigramsPerMoles(decimal decigramspermoles)
+        public static MolarMass FromDecigramsPerMole(decimal decigramspermole)
         {
-            return new MolarMass((Convert.ToDouble(decigramspermoles)/1e3) * 1e-1d);
+            return new MolarMass((Convert.ToDouble(decigramspermole)/1e3) * 1e-1d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from GramsPerMoles.
+        ///     Get MolarMass from GramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromGramsPerMoles(double gramspermoles)
+        public static MolarMass FromGramsPerMole(double gramspermole)
         {
-            return new MolarMass(gramspermoles/1e3);
+            return new MolarMass(gramspermole/1e3);
         }
 
         /// <summary>
-        ///     Get MolarMass from GramsPerMoles.
+        ///     Get MolarMass from GramsPerMole.
         /// </summary>
-        public static MolarMass FromGramsPerMoles(int gramspermoles)
+        public static MolarMass FromGramsPerMole(int gramspermole)
         {
-            return new MolarMass(gramspermoles/1e3);
+            return new MolarMass(gramspermole/1e3);
         }
 
         /// <summary>
-        ///     Get MolarMass from GramsPerMoles.
+        ///     Get MolarMass from GramsPerMole.
         /// </summary>
-        public static MolarMass FromGramsPerMoles(long gramspermoles)
+        public static MolarMass FromGramsPerMole(long gramspermole)
         {
-            return new MolarMass(gramspermoles/1e3);
+            return new MolarMass(gramspermole/1e3);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from GramsPerMoles of type decimal.
+        ///     Get MolarMass from GramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromGramsPerMoles(decimal gramspermoles)
+        public static MolarMass FromGramsPerMole(decimal gramspermole)
         {
-            return new MolarMass(Convert.ToDouble(gramspermoles)/1e3);
+            return new MolarMass(Convert.ToDouble(gramspermole)/1e3);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from HectogramsPerMoles.
+        ///     Get MolarMass from HectogramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromHectogramsPerMoles(double hectogramspermoles)
+        public static MolarMass FromHectogramsPerMole(double hectogramspermole)
         {
-            return new MolarMass((hectogramspermoles/1e3) * 1e2d);
+            return new MolarMass((hectogramspermole/1e3) * 1e2d);
         }
 
         /// <summary>
-        ///     Get MolarMass from HectogramsPerMoles.
+        ///     Get MolarMass from HectogramsPerMole.
         /// </summary>
-        public static MolarMass FromHectogramsPerMoles(int hectogramspermoles)
+        public static MolarMass FromHectogramsPerMole(int hectogramspermole)
         {
-            return new MolarMass((hectogramspermoles/1e3) * 1e2d);
+            return new MolarMass((hectogramspermole/1e3) * 1e2d);
         }
 
         /// <summary>
-        ///     Get MolarMass from HectogramsPerMoles.
+        ///     Get MolarMass from HectogramsPerMole.
         /// </summary>
-        public static MolarMass FromHectogramsPerMoles(long hectogramspermoles)
+        public static MolarMass FromHectogramsPerMole(long hectogramspermole)
         {
-            return new MolarMass((hectogramspermoles/1e3) * 1e2d);
+            return new MolarMass((hectogramspermole/1e3) * 1e2d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from HectogramsPerMoles of type decimal.
+        ///     Get MolarMass from HectogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromHectogramsPerMoles(decimal hectogramspermoles)
+        public static MolarMass FromHectogramsPerMole(decimal hectogramspermole)
         {
-            return new MolarMass((Convert.ToDouble(hectogramspermoles)/1e3) * 1e2d);
+            return new MolarMass((Convert.ToDouble(hectogramspermole)/1e3) * 1e2d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from KilogramsPerMoles.
+        ///     Get MolarMass from KilogramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromKilogramsPerMoles(double kilogramspermoles)
+        public static MolarMass FromKilogramsPerMole(double kilogramspermole)
         {
-            return new MolarMass((kilogramspermoles/1e3) * 1e3d);
+            return new MolarMass((kilogramspermole/1e3) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from KilogramsPerMoles.
+        ///     Get MolarMass from KilogramsPerMole.
         /// </summary>
-        public static MolarMass FromKilogramsPerMoles(int kilogramspermoles)
+        public static MolarMass FromKilogramsPerMole(int kilogramspermole)
         {
-            return new MolarMass((kilogramspermoles/1e3) * 1e3d);
+            return new MolarMass((kilogramspermole/1e3) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from KilogramsPerMoles.
+        ///     Get MolarMass from KilogramsPerMole.
         /// </summary>
-        public static MolarMass FromKilogramsPerMoles(long kilogramspermoles)
+        public static MolarMass FromKilogramsPerMole(long kilogramspermole)
         {
-            return new MolarMass((kilogramspermoles/1e3) * 1e3d);
+            return new MolarMass((kilogramspermole/1e3) * 1e3d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from KilogramsPerMoles of type decimal.
+        ///     Get MolarMass from KilogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromKilogramsPerMoles(decimal kilogramspermoles)
+        public static MolarMass FromKilogramsPerMole(decimal kilogramspermole)
         {
-            return new MolarMass((Convert.ToDouble(kilogramspermoles)/1e3) * 1e3d);
+            return new MolarMass((Convert.ToDouble(kilogramspermole)/1e3) * 1e3d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from KilopoundsPerMoles.
+        ///     Get MolarMass from KilopoundsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromKilopoundsPerMoles(double kilopoundspermoles)
+        public static MolarMass FromKilopoundsPerMole(double kilopoundspermole)
         {
-            return new MolarMass((kilopoundspermoles*0.45359237) * 1e3d);
+            return new MolarMass((kilopoundspermole*0.45359237) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from KilopoundsPerMoles.
+        ///     Get MolarMass from KilopoundsPerMole.
         /// </summary>
-        public static MolarMass FromKilopoundsPerMoles(int kilopoundspermoles)
+        public static MolarMass FromKilopoundsPerMole(int kilopoundspermole)
         {
-            return new MolarMass((kilopoundspermoles*0.45359237) * 1e3d);
+            return new MolarMass((kilopoundspermole*0.45359237) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from KilopoundsPerMoles.
+        ///     Get MolarMass from KilopoundsPerMole.
         /// </summary>
-        public static MolarMass FromKilopoundsPerMoles(long kilopoundspermoles)
+        public static MolarMass FromKilopoundsPerMole(long kilopoundspermole)
         {
-            return new MolarMass((kilopoundspermoles*0.45359237) * 1e3d);
+            return new MolarMass((kilopoundspermole*0.45359237) * 1e3d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from KilopoundsPerMoles of type decimal.
+        ///     Get MolarMass from KilopoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromKilopoundsPerMoles(decimal kilopoundspermoles)
+        public static MolarMass FromKilopoundsPerMole(decimal kilopoundspermole)
         {
-            return new MolarMass((Convert.ToDouble(kilopoundspermoles)*0.45359237) * 1e3d);
+            return new MolarMass((Convert.ToDouble(kilopoundspermole)*0.45359237) * 1e3d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from MegapoundsPerMoles.
+        ///     Get MolarMass from MegapoundsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromMegapoundsPerMoles(double megapoundspermoles)
+        public static MolarMass FromMegapoundsPerMole(double megapoundspermole)
         {
-            return new MolarMass((megapoundspermoles*0.45359237) * 1e6d);
+            return new MolarMass((megapoundspermole*0.45359237) * 1e6d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MegapoundsPerMoles.
+        ///     Get MolarMass from MegapoundsPerMole.
         /// </summary>
-        public static MolarMass FromMegapoundsPerMoles(int megapoundspermoles)
+        public static MolarMass FromMegapoundsPerMole(int megapoundspermole)
         {
-            return new MolarMass((megapoundspermoles*0.45359237) * 1e6d);
+            return new MolarMass((megapoundspermole*0.45359237) * 1e6d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MegapoundsPerMoles.
+        ///     Get MolarMass from MegapoundsPerMole.
         /// </summary>
-        public static MolarMass FromMegapoundsPerMoles(long megapoundspermoles)
+        public static MolarMass FromMegapoundsPerMole(long megapoundspermole)
         {
-            return new MolarMass((megapoundspermoles*0.45359237) * 1e6d);
+            return new MolarMass((megapoundspermole*0.45359237) * 1e6d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from MegapoundsPerMoles of type decimal.
+        ///     Get MolarMass from MegapoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromMegapoundsPerMoles(decimal megapoundspermoles)
+        public static MolarMass FromMegapoundsPerMole(decimal megapoundspermole)
         {
-            return new MolarMass((Convert.ToDouble(megapoundspermoles)*0.45359237) * 1e6d);
+            return new MolarMass((Convert.ToDouble(megapoundspermole)*0.45359237) * 1e6d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from MicrogramsPerMoles.
+        ///     Get MolarMass from MicrogramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromMicrogramsPerMoles(double microgramspermoles)
+        public static MolarMass FromMicrogramsPerMole(double microgramspermole)
         {
-            return new MolarMass((microgramspermoles/1e3) * 1e-6d);
+            return new MolarMass((microgramspermole/1e3) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MicrogramsPerMoles.
+        ///     Get MolarMass from MicrogramsPerMole.
         /// </summary>
-        public static MolarMass FromMicrogramsPerMoles(int microgramspermoles)
+        public static MolarMass FromMicrogramsPerMole(int microgramspermole)
         {
-            return new MolarMass((microgramspermoles/1e3) * 1e-6d);
+            return new MolarMass((microgramspermole/1e3) * 1e-6d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MicrogramsPerMoles.
+        ///     Get MolarMass from MicrogramsPerMole.
         /// </summary>
-        public static MolarMass FromMicrogramsPerMoles(long microgramspermoles)
+        public static MolarMass FromMicrogramsPerMole(long microgramspermole)
         {
-            return new MolarMass((microgramspermoles/1e3) * 1e-6d);
+            return new MolarMass((microgramspermole/1e3) * 1e-6d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from MicrogramsPerMoles of type decimal.
+        ///     Get MolarMass from MicrogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromMicrogramsPerMoles(decimal microgramspermoles)
+        public static MolarMass FromMicrogramsPerMole(decimal microgramspermole)
         {
-            return new MolarMass((Convert.ToDouble(microgramspermoles)/1e3) * 1e-6d);
+            return new MolarMass((Convert.ToDouble(microgramspermole)/1e3) * 1e-6d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from MilligramsPerMoles.
+        ///     Get MolarMass from MilligramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromMilligramsPerMoles(double milligramspermoles)
+        public static MolarMass FromMilligramsPerMole(double milligramspermole)
         {
-            return new MolarMass((milligramspermoles/1e3) * 1e-3d);
+            return new MolarMass((milligramspermole/1e3) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MilligramsPerMoles.
+        ///     Get MolarMass from MilligramsPerMole.
         /// </summary>
-        public static MolarMass FromMilligramsPerMoles(int milligramspermoles)
+        public static MolarMass FromMilligramsPerMole(int milligramspermole)
         {
-            return new MolarMass((milligramspermoles/1e3) * 1e-3d);
+            return new MolarMass((milligramspermole/1e3) * 1e-3d);
         }
 
         /// <summary>
-        ///     Get MolarMass from MilligramsPerMoles.
+        ///     Get MolarMass from MilligramsPerMole.
         /// </summary>
-        public static MolarMass FromMilligramsPerMoles(long milligramspermoles)
+        public static MolarMass FromMilligramsPerMole(long milligramspermole)
         {
-            return new MolarMass((milligramspermoles/1e3) * 1e-3d);
+            return new MolarMass((milligramspermole/1e3) * 1e-3d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from MilligramsPerMoles of type decimal.
+        ///     Get MolarMass from MilligramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromMilligramsPerMoles(decimal milligramspermoles)
+        public static MolarMass FromMilligramsPerMole(decimal milligramspermole)
         {
-            return new MolarMass((Convert.ToDouble(milligramspermoles)/1e3) * 1e-3d);
+            return new MolarMass((Convert.ToDouble(milligramspermole)/1e3) * 1e-3d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from NanogramsPerMoles.
+        ///     Get MolarMass from NanogramsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromNanogramsPerMoles(double nanogramspermoles)
+        public static MolarMass FromNanogramsPerMole(double nanogramspermole)
         {
-            return new MolarMass((nanogramspermoles/1e3) * 1e-9d);
+            return new MolarMass((nanogramspermole/1e3) * 1e-9d);
         }
 
         /// <summary>
-        ///     Get MolarMass from NanogramsPerMoles.
+        ///     Get MolarMass from NanogramsPerMole.
         /// </summary>
-        public static MolarMass FromNanogramsPerMoles(int nanogramspermoles)
+        public static MolarMass FromNanogramsPerMole(int nanogramspermole)
         {
-            return new MolarMass((nanogramspermoles/1e3) * 1e-9d);
+            return new MolarMass((nanogramspermole/1e3) * 1e-9d);
         }
 
         /// <summary>
-        ///     Get MolarMass from NanogramsPerMoles.
+        ///     Get MolarMass from NanogramsPerMole.
         /// </summary>
-        public static MolarMass FromNanogramsPerMoles(long nanogramspermoles)
+        public static MolarMass FromNanogramsPerMole(long nanogramspermole)
         {
-            return new MolarMass((nanogramspermoles/1e3) * 1e-9d);
+            return new MolarMass((nanogramspermole/1e3) * 1e-9d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from NanogramsPerMoles of type decimal.
+        ///     Get MolarMass from NanogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromNanogramsPerMoles(decimal nanogramspermoles)
+        public static MolarMass FromNanogramsPerMole(decimal nanogramspermole)
         {
-            return new MolarMass((Convert.ToDouble(nanogramspermoles)/1e3) * 1e-9d);
+            return new MolarMass((Convert.ToDouble(nanogramspermole)/1e3) * 1e-9d);
         }
 #endif
 
         /// <summary>
-        ///     Get MolarMass from PoundsPerMoles.
+        ///     Get MolarMass from PoundsPerMole.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarMass FromPoundsPerMoles(double poundspermoles)
+        public static MolarMass FromPoundsPerMole(double poundspermole)
         {
-            return new MolarMass(poundspermoles*0.45359237);
+            return new MolarMass(poundspermole*0.45359237);
         }
 
         /// <summary>
-        ///     Get MolarMass from PoundsPerMoles.
+        ///     Get MolarMass from PoundsPerMole.
         /// </summary>
-        public static MolarMass FromPoundsPerMoles(int poundspermoles)
+        public static MolarMass FromPoundsPerMole(int poundspermole)
         {
-            return new MolarMass(poundspermoles*0.45359237);
+            return new MolarMass(poundspermole*0.45359237);
         }
 
         /// <summary>
-        ///     Get MolarMass from PoundsPerMoles.
+        ///     Get MolarMass from PoundsPerMole.
         /// </summary>
-        public static MolarMass FromPoundsPerMoles(long poundspermoles)
+        public static MolarMass FromPoundsPerMole(long poundspermole)
         {
-            return new MolarMass(poundspermoles*0.45359237);
+            return new MolarMass(poundspermole*0.45359237);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarMass from PoundsPerMoles of type decimal.
+        ///     Get MolarMass from PoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass FromPoundsPerMoles(decimal poundspermoles)
+        public static MolarMass FromPoundsPerMole(decimal poundspermole)
         {
-            return new MolarMass(Convert.ToDouble(poundspermoles)*0.45359237);
+            return new MolarMass(Convert.ToDouble(poundspermole)*0.45359237);
         }
 #endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable MolarMass from nullable CentigramsPerMoles.
+        ///     Get nullable MolarMass from nullable CentigramsPerMole.
         /// </summary>
-        public static MolarMass? FromCentigramsPerMoles(double? centigramspermoles)
+        public static MolarMass? FromCentigramsPerMole(double? centigramspermole)
         {
-            if (centigramspermoles.HasValue)
+            if (centigramspermole.HasValue)
             {
-                return FromCentigramsPerMoles(centigramspermoles.Value);
+                return FromCentigramsPerMole(centigramspermole.Value);
             }
             else
             {
@@ -708,13 +708,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable CentigramsPerMoles.
+        ///     Get nullable MolarMass from nullable CentigramsPerMole.
         /// </summary>
-        public static MolarMass? FromCentigramsPerMoles(int? centigramspermoles)
+        public static MolarMass? FromCentigramsPerMole(int? centigramspermole)
         {
-            if (centigramspermoles.HasValue)
+            if (centigramspermole.HasValue)
             {
-                return FromCentigramsPerMoles(centigramspermoles.Value);
+                return FromCentigramsPerMole(centigramspermole.Value);
             }
             else
             {
@@ -723,13 +723,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable CentigramsPerMoles.
+        ///     Get nullable MolarMass from nullable CentigramsPerMole.
         /// </summary>
-        public static MolarMass? FromCentigramsPerMoles(long? centigramspermoles)
+        public static MolarMass? FromCentigramsPerMole(long? centigramspermole)
         {
-            if (centigramspermoles.HasValue)
+            if (centigramspermole.HasValue)
             {
-                return FromCentigramsPerMoles(centigramspermoles.Value);
+                return FromCentigramsPerMole(centigramspermole.Value);
             }
             else
             {
@@ -738,13 +738,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from CentigramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from CentigramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromCentigramsPerMoles(decimal? centigramspermoles)
+        public static MolarMass? FromCentigramsPerMole(decimal? centigramspermole)
         {
-            if (centigramspermoles.HasValue)
+            if (centigramspermole.HasValue)
             {
-                return FromCentigramsPerMoles(centigramspermoles.Value);
+                return FromCentigramsPerMole(centigramspermole.Value);
             }
             else
             {
@@ -753,13 +753,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecagramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecagramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecagramsPerMoles(double? decagramspermoles)
+        public static MolarMass? FromDecagramsPerMole(double? decagramspermole)
         {
-            if (decagramspermoles.HasValue)
+            if (decagramspermole.HasValue)
             {
-                return FromDecagramsPerMoles(decagramspermoles.Value);
+                return FromDecagramsPerMole(decagramspermole.Value);
             }
             else
             {
@@ -768,13 +768,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecagramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecagramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecagramsPerMoles(int? decagramspermoles)
+        public static MolarMass? FromDecagramsPerMole(int? decagramspermole)
         {
-            if (decagramspermoles.HasValue)
+            if (decagramspermole.HasValue)
             {
-                return FromDecagramsPerMoles(decagramspermoles.Value);
+                return FromDecagramsPerMole(decagramspermole.Value);
             }
             else
             {
@@ -783,13 +783,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecagramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecagramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecagramsPerMoles(long? decagramspermoles)
+        public static MolarMass? FromDecagramsPerMole(long? decagramspermole)
         {
-            if (decagramspermoles.HasValue)
+            if (decagramspermole.HasValue)
             {
-                return FromDecagramsPerMoles(decagramspermoles.Value);
+                return FromDecagramsPerMole(decagramspermole.Value);
             }
             else
             {
@@ -798,13 +798,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from DecagramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from DecagramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromDecagramsPerMoles(decimal? decagramspermoles)
+        public static MolarMass? FromDecagramsPerMole(decimal? decagramspermole)
         {
-            if (decagramspermoles.HasValue)
+            if (decagramspermole.HasValue)
             {
-                return FromDecagramsPerMoles(decagramspermoles.Value);
+                return FromDecagramsPerMole(decagramspermole.Value);
             }
             else
             {
@@ -813,13 +813,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecigramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecigramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecigramsPerMoles(double? decigramspermoles)
+        public static MolarMass? FromDecigramsPerMole(double? decigramspermole)
         {
-            if (decigramspermoles.HasValue)
+            if (decigramspermole.HasValue)
             {
-                return FromDecigramsPerMoles(decigramspermoles.Value);
+                return FromDecigramsPerMole(decigramspermole.Value);
             }
             else
             {
@@ -828,13 +828,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecigramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecigramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecigramsPerMoles(int? decigramspermoles)
+        public static MolarMass? FromDecigramsPerMole(int? decigramspermole)
         {
-            if (decigramspermoles.HasValue)
+            if (decigramspermole.HasValue)
             {
-                return FromDecigramsPerMoles(decigramspermoles.Value);
+                return FromDecigramsPerMole(decigramspermole.Value);
             }
             else
             {
@@ -843,13 +843,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable DecigramsPerMoles.
+        ///     Get nullable MolarMass from nullable DecigramsPerMole.
         /// </summary>
-        public static MolarMass? FromDecigramsPerMoles(long? decigramspermoles)
+        public static MolarMass? FromDecigramsPerMole(long? decigramspermole)
         {
-            if (decigramspermoles.HasValue)
+            if (decigramspermole.HasValue)
             {
-                return FromDecigramsPerMoles(decigramspermoles.Value);
+                return FromDecigramsPerMole(decigramspermole.Value);
             }
             else
             {
@@ -858,13 +858,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from DecigramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from DecigramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromDecigramsPerMoles(decimal? decigramspermoles)
+        public static MolarMass? FromDecigramsPerMole(decimal? decigramspermole)
         {
-            if (decigramspermoles.HasValue)
+            if (decigramspermole.HasValue)
             {
-                return FromDecigramsPerMoles(decigramspermoles.Value);
+                return FromDecigramsPerMole(decigramspermole.Value);
             }
             else
             {
@@ -873,13 +873,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable GramsPerMoles.
+        ///     Get nullable MolarMass from nullable GramsPerMole.
         /// </summary>
-        public static MolarMass? FromGramsPerMoles(double? gramspermoles)
+        public static MolarMass? FromGramsPerMole(double? gramspermole)
         {
-            if (gramspermoles.HasValue)
+            if (gramspermole.HasValue)
             {
-                return FromGramsPerMoles(gramspermoles.Value);
+                return FromGramsPerMole(gramspermole.Value);
             }
             else
             {
@@ -888,13 +888,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable GramsPerMoles.
+        ///     Get nullable MolarMass from nullable GramsPerMole.
         /// </summary>
-        public static MolarMass? FromGramsPerMoles(int? gramspermoles)
+        public static MolarMass? FromGramsPerMole(int? gramspermole)
         {
-            if (gramspermoles.HasValue)
+            if (gramspermole.HasValue)
             {
-                return FromGramsPerMoles(gramspermoles.Value);
+                return FromGramsPerMole(gramspermole.Value);
             }
             else
             {
@@ -903,13 +903,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable GramsPerMoles.
+        ///     Get nullable MolarMass from nullable GramsPerMole.
         /// </summary>
-        public static MolarMass? FromGramsPerMoles(long? gramspermoles)
+        public static MolarMass? FromGramsPerMole(long? gramspermole)
         {
-            if (gramspermoles.HasValue)
+            if (gramspermole.HasValue)
             {
-                return FromGramsPerMoles(gramspermoles.Value);
+                return FromGramsPerMole(gramspermole.Value);
             }
             else
             {
@@ -918,13 +918,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from GramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from GramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromGramsPerMoles(decimal? gramspermoles)
+        public static MolarMass? FromGramsPerMole(decimal? gramspermole)
         {
-            if (gramspermoles.HasValue)
+            if (gramspermole.HasValue)
             {
-                return FromGramsPerMoles(gramspermoles.Value);
+                return FromGramsPerMole(gramspermole.Value);
             }
             else
             {
@@ -933,13 +933,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable HectogramsPerMoles.
+        ///     Get nullable MolarMass from nullable HectogramsPerMole.
         /// </summary>
-        public static MolarMass? FromHectogramsPerMoles(double? hectogramspermoles)
+        public static MolarMass? FromHectogramsPerMole(double? hectogramspermole)
         {
-            if (hectogramspermoles.HasValue)
+            if (hectogramspermole.HasValue)
             {
-                return FromHectogramsPerMoles(hectogramspermoles.Value);
+                return FromHectogramsPerMole(hectogramspermole.Value);
             }
             else
             {
@@ -948,13 +948,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable HectogramsPerMoles.
+        ///     Get nullable MolarMass from nullable HectogramsPerMole.
         /// </summary>
-        public static MolarMass? FromHectogramsPerMoles(int? hectogramspermoles)
+        public static MolarMass? FromHectogramsPerMole(int? hectogramspermole)
         {
-            if (hectogramspermoles.HasValue)
+            if (hectogramspermole.HasValue)
             {
-                return FromHectogramsPerMoles(hectogramspermoles.Value);
+                return FromHectogramsPerMole(hectogramspermole.Value);
             }
             else
             {
@@ -963,13 +963,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable HectogramsPerMoles.
+        ///     Get nullable MolarMass from nullable HectogramsPerMole.
         /// </summary>
-        public static MolarMass? FromHectogramsPerMoles(long? hectogramspermoles)
+        public static MolarMass? FromHectogramsPerMole(long? hectogramspermole)
         {
-            if (hectogramspermoles.HasValue)
+            if (hectogramspermole.HasValue)
             {
-                return FromHectogramsPerMoles(hectogramspermoles.Value);
+                return FromHectogramsPerMole(hectogramspermole.Value);
             }
             else
             {
@@ -978,13 +978,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from HectogramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from HectogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromHectogramsPerMoles(decimal? hectogramspermoles)
+        public static MolarMass? FromHectogramsPerMole(decimal? hectogramspermole)
         {
-            if (hectogramspermoles.HasValue)
+            if (hectogramspermole.HasValue)
             {
-                return FromHectogramsPerMoles(hectogramspermoles.Value);
+                return FromHectogramsPerMole(hectogramspermole.Value);
             }
             else
             {
@@ -993,13 +993,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilogramsPerMoles.
+        ///     Get nullable MolarMass from nullable KilogramsPerMole.
         /// </summary>
-        public static MolarMass? FromKilogramsPerMoles(double? kilogramspermoles)
+        public static MolarMass? FromKilogramsPerMole(double? kilogramspermole)
         {
-            if (kilogramspermoles.HasValue)
+            if (kilogramspermole.HasValue)
             {
-                return FromKilogramsPerMoles(kilogramspermoles.Value);
+                return FromKilogramsPerMole(kilogramspermole.Value);
             }
             else
             {
@@ -1008,13 +1008,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilogramsPerMoles.
+        ///     Get nullable MolarMass from nullable KilogramsPerMole.
         /// </summary>
-        public static MolarMass? FromKilogramsPerMoles(int? kilogramspermoles)
+        public static MolarMass? FromKilogramsPerMole(int? kilogramspermole)
         {
-            if (kilogramspermoles.HasValue)
+            if (kilogramspermole.HasValue)
             {
-                return FromKilogramsPerMoles(kilogramspermoles.Value);
+                return FromKilogramsPerMole(kilogramspermole.Value);
             }
             else
             {
@@ -1023,13 +1023,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilogramsPerMoles.
+        ///     Get nullable MolarMass from nullable KilogramsPerMole.
         /// </summary>
-        public static MolarMass? FromKilogramsPerMoles(long? kilogramspermoles)
+        public static MolarMass? FromKilogramsPerMole(long? kilogramspermole)
         {
-            if (kilogramspermoles.HasValue)
+            if (kilogramspermole.HasValue)
             {
-                return FromKilogramsPerMoles(kilogramspermoles.Value);
+                return FromKilogramsPerMole(kilogramspermole.Value);
             }
             else
             {
@@ -1038,13 +1038,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from KilogramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from KilogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromKilogramsPerMoles(decimal? kilogramspermoles)
+        public static MolarMass? FromKilogramsPerMole(decimal? kilogramspermole)
         {
-            if (kilogramspermoles.HasValue)
+            if (kilogramspermole.HasValue)
             {
-                return FromKilogramsPerMoles(kilogramspermoles.Value);
+                return FromKilogramsPerMole(kilogramspermole.Value);
             }
             else
             {
@@ -1053,13 +1053,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilopoundsPerMoles.
+        ///     Get nullable MolarMass from nullable KilopoundsPerMole.
         /// </summary>
-        public static MolarMass? FromKilopoundsPerMoles(double? kilopoundspermoles)
+        public static MolarMass? FromKilopoundsPerMole(double? kilopoundspermole)
         {
-            if (kilopoundspermoles.HasValue)
+            if (kilopoundspermole.HasValue)
             {
-                return FromKilopoundsPerMoles(kilopoundspermoles.Value);
+                return FromKilopoundsPerMole(kilopoundspermole.Value);
             }
             else
             {
@@ -1068,13 +1068,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilopoundsPerMoles.
+        ///     Get nullable MolarMass from nullable KilopoundsPerMole.
         /// </summary>
-        public static MolarMass? FromKilopoundsPerMoles(int? kilopoundspermoles)
+        public static MolarMass? FromKilopoundsPerMole(int? kilopoundspermole)
         {
-            if (kilopoundspermoles.HasValue)
+            if (kilopoundspermole.HasValue)
             {
-                return FromKilopoundsPerMoles(kilopoundspermoles.Value);
+                return FromKilopoundsPerMole(kilopoundspermole.Value);
             }
             else
             {
@@ -1083,13 +1083,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable KilopoundsPerMoles.
+        ///     Get nullable MolarMass from nullable KilopoundsPerMole.
         /// </summary>
-        public static MolarMass? FromKilopoundsPerMoles(long? kilopoundspermoles)
+        public static MolarMass? FromKilopoundsPerMole(long? kilopoundspermole)
         {
-            if (kilopoundspermoles.HasValue)
+            if (kilopoundspermole.HasValue)
             {
-                return FromKilopoundsPerMoles(kilopoundspermoles.Value);
+                return FromKilopoundsPerMole(kilopoundspermole.Value);
             }
             else
             {
@@ -1098,13 +1098,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from KilopoundsPerMoles of type decimal.
+        ///     Get nullable MolarMass from KilopoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromKilopoundsPerMoles(decimal? kilopoundspermoles)
+        public static MolarMass? FromKilopoundsPerMole(decimal? kilopoundspermole)
         {
-            if (kilopoundspermoles.HasValue)
+            if (kilopoundspermole.HasValue)
             {
-                return FromKilopoundsPerMoles(kilopoundspermoles.Value);
+                return FromKilopoundsPerMole(kilopoundspermole.Value);
             }
             else
             {
@@ -1113,13 +1113,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MegapoundsPerMoles.
+        ///     Get nullable MolarMass from nullable MegapoundsPerMole.
         /// </summary>
-        public static MolarMass? FromMegapoundsPerMoles(double? megapoundspermoles)
+        public static MolarMass? FromMegapoundsPerMole(double? megapoundspermole)
         {
-            if (megapoundspermoles.HasValue)
+            if (megapoundspermole.HasValue)
             {
-                return FromMegapoundsPerMoles(megapoundspermoles.Value);
+                return FromMegapoundsPerMole(megapoundspermole.Value);
             }
             else
             {
@@ -1128,13 +1128,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MegapoundsPerMoles.
+        ///     Get nullable MolarMass from nullable MegapoundsPerMole.
         /// </summary>
-        public static MolarMass? FromMegapoundsPerMoles(int? megapoundspermoles)
+        public static MolarMass? FromMegapoundsPerMole(int? megapoundspermole)
         {
-            if (megapoundspermoles.HasValue)
+            if (megapoundspermole.HasValue)
             {
-                return FromMegapoundsPerMoles(megapoundspermoles.Value);
+                return FromMegapoundsPerMole(megapoundspermole.Value);
             }
             else
             {
@@ -1143,13 +1143,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MegapoundsPerMoles.
+        ///     Get nullable MolarMass from nullable MegapoundsPerMole.
         /// </summary>
-        public static MolarMass? FromMegapoundsPerMoles(long? megapoundspermoles)
+        public static MolarMass? FromMegapoundsPerMole(long? megapoundspermole)
         {
-            if (megapoundspermoles.HasValue)
+            if (megapoundspermole.HasValue)
             {
-                return FromMegapoundsPerMoles(megapoundspermoles.Value);
+                return FromMegapoundsPerMole(megapoundspermole.Value);
             }
             else
             {
@@ -1158,13 +1158,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from MegapoundsPerMoles of type decimal.
+        ///     Get nullable MolarMass from MegapoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromMegapoundsPerMoles(decimal? megapoundspermoles)
+        public static MolarMass? FromMegapoundsPerMole(decimal? megapoundspermole)
         {
-            if (megapoundspermoles.HasValue)
+            if (megapoundspermole.HasValue)
             {
-                return FromMegapoundsPerMoles(megapoundspermoles.Value);
+                return FromMegapoundsPerMole(megapoundspermole.Value);
             }
             else
             {
@@ -1173,13 +1173,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MicrogramsPerMoles.
+        ///     Get nullable MolarMass from nullable MicrogramsPerMole.
         /// </summary>
-        public static MolarMass? FromMicrogramsPerMoles(double? microgramspermoles)
+        public static MolarMass? FromMicrogramsPerMole(double? microgramspermole)
         {
-            if (microgramspermoles.HasValue)
+            if (microgramspermole.HasValue)
             {
-                return FromMicrogramsPerMoles(microgramspermoles.Value);
+                return FromMicrogramsPerMole(microgramspermole.Value);
             }
             else
             {
@@ -1188,13 +1188,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MicrogramsPerMoles.
+        ///     Get nullable MolarMass from nullable MicrogramsPerMole.
         /// </summary>
-        public static MolarMass? FromMicrogramsPerMoles(int? microgramspermoles)
+        public static MolarMass? FromMicrogramsPerMole(int? microgramspermole)
         {
-            if (microgramspermoles.HasValue)
+            if (microgramspermole.HasValue)
             {
-                return FromMicrogramsPerMoles(microgramspermoles.Value);
+                return FromMicrogramsPerMole(microgramspermole.Value);
             }
             else
             {
@@ -1203,13 +1203,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MicrogramsPerMoles.
+        ///     Get nullable MolarMass from nullable MicrogramsPerMole.
         /// </summary>
-        public static MolarMass? FromMicrogramsPerMoles(long? microgramspermoles)
+        public static MolarMass? FromMicrogramsPerMole(long? microgramspermole)
         {
-            if (microgramspermoles.HasValue)
+            if (microgramspermole.HasValue)
             {
-                return FromMicrogramsPerMoles(microgramspermoles.Value);
+                return FromMicrogramsPerMole(microgramspermole.Value);
             }
             else
             {
@@ -1218,13 +1218,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from MicrogramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from MicrogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromMicrogramsPerMoles(decimal? microgramspermoles)
+        public static MolarMass? FromMicrogramsPerMole(decimal? microgramspermole)
         {
-            if (microgramspermoles.HasValue)
+            if (microgramspermole.HasValue)
             {
-                return FromMicrogramsPerMoles(microgramspermoles.Value);
+                return FromMicrogramsPerMole(microgramspermole.Value);
             }
             else
             {
@@ -1233,13 +1233,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MilligramsPerMoles.
+        ///     Get nullable MolarMass from nullable MilligramsPerMole.
         /// </summary>
-        public static MolarMass? FromMilligramsPerMoles(double? milligramspermoles)
+        public static MolarMass? FromMilligramsPerMole(double? milligramspermole)
         {
-            if (milligramspermoles.HasValue)
+            if (milligramspermole.HasValue)
             {
-                return FromMilligramsPerMoles(milligramspermoles.Value);
+                return FromMilligramsPerMole(milligramspermole.Value);
             }
             else
             {
@@ -1248,13 +1248,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MilligramsPerMoles.
+        ///     Get nullable MolarMass from nullable MilligramsPerMole.
         /// </summary>
-        public static MolarMass? FromMilligramsPerMoles(int? milligramspermoles)
+        public static MolarMass? FromMilligramsPerMole(int? milligramspermole)
         {
-            if (milligramspermoles.HasValue)
+            if (milligramspermole.HasValue)
             {
-                return FromMilligramsPerMoles(milligramspermoles.Value);
+                return FromMilligramsPerMole(milligramspermole.Value);
             }
             else
             {
@@ -1263,13 +1263,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable MilligramsPerMoles.
+        ///     Get nullable MolarMass from nullable MilligramsPerMole.
         /// </summary>
-        public static MolarMass? FromMilligramsPerMoles(long? milligramspermoles)
+        public static MolarMass? FromMilligramsPerMole(long? milligramspermole)
         {
-            if (milligramspermoles.HasValue)
+            if (milligramspermole.HasValue)
             {
-                return FromMilligramsPerMoles(milligramspermoles.Value);
+                return FromMilligramsPerMole(milligramspermole.Value);
             }
             else
             {
@@ -1278,13 +1278,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from MilligramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from MilligramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromMilligramsPerMoles(decimal? milligramspermoles)
+        public static MolarMass? FromMilligramsPerMole(decimal? milligramspermole)
         {
-            if (milligramspermoles.HasValue)
+            if (milligramspermole.HasValue)
             {
-                return FromMilligramsPerMoles(milligramspermoles.Value);
+                return FromMilligramsPerMole(milligramspermole.Value);
             }
             else
             {
@@ -1293,13 +1293,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable NanogramsPerMoles.
+        ///     Get nullable MolarMass from nullable NanogramsPerMole.
         /// </summary>
-        public static MolarMass? FromNanogramsPerMoles(double? nanogramspermoles)
+        public static MolarMass? FromNanogramsPerMole(double? nanogramspermole)
         {
-            if (nanogramspermoles.HasValue)
+            if (nanogramspermole.HasValue)
             {
-                return FromNanogramsPerMoles(nanogramspermoles.Value);
+                return FromNanogramsPerMole(nanogramspermole.Value);
             }
             else
             {
@@ -1308,13 +1308,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable NanogramsPerMoles.
+        ///     Get nullable MolarMass from nullable NanogramsPerMole.
         /// </summary>
-        public static MolarMass? FromNanogramsPerMoles(int? nanogramspermoles)
+        public static MolarMass? FromNanogramsPerMole(int? nanogramspermole)
         {
-            if (nanogramspermoles.HasValue)
+            if (nanogramspermole.HasValue)
             {
-                return FromNanogramsPerMoles(nanogramspermoles.Value);
+                return FromNanogramsPerMole(nanogramspermole.Value);
             }
             else
             {
@@ -1323,13 +1323,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable NanogramsPerMoles.
+        ///     Get nullable MolarMass from nullable NanogramsPerMole.
         /// </summary>
-        public static MolarMass? FromNanogramsPerMoles(long? nanogramspermoles)
+        public static MolarMass? FromNanogramsPerMole(long? nanogramspermole)
         {
-            if (nanogramspermoles.HasValue)
+            if (nanogramspermole.HasValue)
             {
-                return FromNanogramsPerMoles(nanogramspermoles.Value);
+                return FromNanogramsPerMole(nanogramspermole.Value);
             }
             else
             {
@@ -1338,13 +1338,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from NanogramsPerMoles of type decimal.
+        ///     Get nullable MolarMass from NanogramsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromNanogramsPerMoles(decimal? nanogramspermoles)
+        public static MolarMass? FromNanogramsPerMole(decimal? nanogramspermole)
         {
-            if (nanogramspermoles.HasValue)
+            if (nanogramspermole.HasValue)
             {
-                return FromNanogramsPerMoles(nanogramspermoles.Value);
+                return FromNanogramsPerMole(nanogramspermole.Value);
             }
             else
             {
@@ -1353,13 +1353,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable PoundsPerMoles.
+        ///     Get nullable MolarMass from nullable PoundsPerMole.
         /// </summary>
-        public static MolarMass? FromPoundsPerMoles(double? poundspermoles)
+        public static MolarMass? FromPoundsPerMole(double? poundspermole)
         {
-            if (poundspermoles.HasValue)
+            if (poundspermole.HasValue)
             {
-                return FromPoundsPerMoles(poundspermoles.Value);
+                return FromPoundsPerMole(poundspermole.Value);
             }
             else
             {
@@ -1368,13 +1368,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable PoundsPerMoles.
+        ///     Get nullable MolarMass from nullable PoundsPerMole.
         /// </summary>
-        public static MolarMass? FromPoundsPerMoles(int? poundspermoles)
+        public static MolarMass? FromPoundsPerMole(int? poundspermole)
         {
-            if (poundspermoles.HasValue)
+            if (poundspermole.HasValue)
             {
-                return FromPoundsPerMoles(poundspermoles.Value);
+                return FromPoundsPerMole(poundspermole.Value);
             }
             else
             {
@@ -1383,13 +1383,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from nullable PoundsPerMoles.
+        ///     Get nullable MolarMass from nullable PoundsPerMole.
         /// </summary>
-        public static MolarMass? FromPoundsPerMoles(long? poundspermoles)
+        public static MolarMass? FromPoundsPerMole(long? poundspermole)
         {
-            if (poundspermoles.HasValue)
+            if (poundspermole.HasValue)
             {
-                return FromPoundsPerMoles(poundspermoles.Value);
+                return FromPoundsPerMole(poundspermole.Value);
             }
             else
             {
@@ -1398,13 +1398,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarMass from PoundsPerMoles of type decimal.
+        ///     Get nullable MolarMass from PoundsPerMole of type decimal.
         /// </summary>
-        public static MolarMass? FromPoundsPerMoles(decimal? poundspermoles)
+        public static MolarMass? FromPoundsPerMole(decimal? poundspermole)
         {
-            if (poundspermoles.HasValue)
+            if (poundspermole.HasValue)
             {
-                return FromPoundsPerMoles(poundspermoles.Value);
+                return FromPoundsPerMole(poundspermole.Value);
             }
             else
             {
@@ -1425,29 +1425,29 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case MolarMassUnit.CentigramPerMole:
-                    return FromCentigramsPerMoles(val);
+                    return FromCentigramsPerMole(val);
                 case MolarMassUnit.DecagramPerMole:
-                    return FromDecagramsPerMoles(val);
+                    return FromDecagramsPerMole(val);
                 case MolarMassUnit.DecigramPerMole:
-                    return FromDecigramsPerMoles(val);
+                    return FromDecigramsPerMole(val);
                 case MolarMassUnit.GramPerMole:
-                    return FromGramsPerMoles(val);
+                    return FromGramsPerMole(val);
                 case MolarMassUnit.HectogramPerMole:
-                    return FromHectogramsPerMoles(val);
+                    return FromHectogramsPerMole(val);
                 case MolarMassUnit.KilogramPerMole:
-                    return FromKilogramsPerMoles(val);
+                    return FromKilogramsPerMole(val);
                 case MolarMassUnit.KilopoundPerMole:
-                    return FromKilopoundsPerMoles(val);
+                    return FromKilopoundsPerMole(val);
                 case MolarMassUnit.MegapoundPerMole:
-                    return FromMegapoundsPerMoles(val);
+                    return FromMegapoundsPerMole(val);
                 case MolarMassUnit.MicrogramPerMole:
-                    return FromMicrogramsPerMoles(val);
+                    return FromMicrogramsPerMole(val);
                 case MolarMassUnit.MilligramPerMole:
-                    return FromMilligramsPerMoles(val);
+                    return FromMilligramsPerMole(val);
                 case MolarMassUnit.NanogramPerMole:
-                    return FromNanogramsPerMoles(val);
+                    return FromNanogramsPerMole(val);
                 case MolarMassUnit.PoundPerMole:
-                    return FromPoundsPerMoles(val);
+                    return FromPoundsPerMole(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1471,29 +1471,29 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case MolarMassUnit.CentigramPerMole:
-                    return FromCentigramsPerMoles(value.Value);
+                    return FromCentigramsPerMole(value.Value);
                 case MolarMassUnit.DecagramPerMole:
-                    return FromDecagramsPerMoles(value.Value);
+                    return FromDecagramsPerMole(value.Value);
                 case MolarMassUnit.DecigramPerMole:
-                    return FromDecigramsPerMoles(value.Value);
+                    return FromDecigramsPerMole(value.Value);
                 case MolarMassUnit.GramPerMole:
-                    return FromGramsPerMoles(value.Value);
+                    return FromGramsPerMole(value.Value);
                 case MolarMassUnit.HectogramPerMole:
-                    return FromHectogramsPerMoles(value.Value);
+                    return FromHectogramsPerMole(value.Value);
                 case MolarMassUnit.KilogramPerMole:
-                    return FromKilogramsPerMoles(value.Value);
+                    return FromKilogramsPerMole(value.Value);
                 case MolarMassUnit.KilopoundPerMole:
-                    return FromKilopoundsPerMoles(value.Value);
+                    return FromKilopoundsPerMole(value.Value);
                 case MolarMassUnit.MegapoundPerMole:
-                    return FromMegapoundsPerMoles(value.Value);
+                    return FromMegapoundsPerMole(value.Value);
                 case MolarMassUnit.MicrogramPerMole:
-                    return FromMicrogramsPerMoles(value.Value);
+                    return FromMicrogramsPerMole(value.Value);
                 case MolarMassUnit.MilligramPerMole:
-                    return FromMilligramsPerMoles(value.Value);
+                    return FromMilligramsPerMole(value.Value);
                 case MolarMassUnit.NanogramPerMole:
-                    return FromNanogramsPerMoles(value.Value);
+                    return FromNanogramsPerMole(value.Value);
                 case MolarMassUnit.PoundPerMole:
-                    return FromPoundsPerMoles(value.Value);
+                    return FromPoundsPerMole(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1532,37 +1532,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static MolarMass operator -(MolarMass right)
         {
-            return new MolarMass(-right._kilogramsPerMoles);
+            return new MolarMass(-right._kilogramsPerMole);
         }
 
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left._kilogramsPerMoles + right._kilogramsPerMoles);
+            return new MolarMass(left._kilogramsPerMole + right._kilogramsPerMole);
         }
 
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left._kilogramsPerMoles - right._kilogramsPerMoles);
+            return new MolarMass(left._kilogramsPerMole - right._kilogramsPerMole);
         }
 
         public static MolarMass operator *(double left, MolarMass right)
         {
-            return new MolarMass(left*right._kilogramsPerMoles);
+            return new MolarMass(left*right._kilogramsPerMole);
         }
 
         public static MolarMass operator *(MolarMass left, double right)
         {
-            return new MolarMass(left._kilogramsPerMoles*(double)right);
+            return new MolarMass(left._kilogramsPerMole*(double)right);
         }
 
         public static MolarMass operator /(MolarMass left, double right)
         {
-            return new MolarMass(left._kilogramsPerMoles/(double)right);
+            return new MolarMass(left._kilogramsPerMole/(double)right);
         }
 
         public static double operator /(MolarMass left, MolarMass right)
         {
-            return Convert.ToDouble(left._kilogramsPerMoles/right._kilogramsPerMoles);
+            return Convert.ToDouble(left._kilogramsPerMole/right._kilogramsPerMole);
         }
 #endif
 
@@ -1585,41 +1585,41 @@ namespace UnitsNet
 #endif
         int CompareTo(MolarMass other)
         {
-            return _kilogramsPerMoles.CompareTo(other._kilogramsPerMoles);
+            return _kilogramsPerMole.CompareTo(other._kilogramsPerMole);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(MolarMass left, MolarMass right)
         {
-            return left._kilogramsPerMoles <= right._kilogramsPerMoles;
+            return left._kilogramsPerMole <= right._kilogramsPerMole;
         }
 
         public static bool operator >=(MolarMass left, MolarMass right)
         {
-            return left._kilogramsPerMoles >= right._kilogramsPerMoles;
+            return left._kilogramsPerMole >= right._kilogramsPerMole;
         }
 
         public static bool operator <(MolarMass left, MolarMass right)
         {
-            return left._kilogramsPerMoles < right._kilogramsPerMoles;
+            return left._kilogramsPerMole < right._kilogramsPerMole;
         }
 
         public static bool operator >(MolarMass left, MolarMass right)
         {
-            return left._kilogramsPerMoles > right._kilogramsPerMoles;
+            return left._kilogramsPerMole > right._kilogramsPerMole;
         }
 
         public static bool operator ==(MolarMass left, MolarMass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerMoles == right._kilogramsPerMoles;
+            return left._kilogramsPerMole == right._kilogramsPerMole;
         }
 
         public static bool operator !=(MolarMass left, MolarMass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerMoles != right._kilogramsPerMoles;
+            return left._kilogramsPerMole != right._kilogramsPerMole;
         }
 #endif
 
@@ -1630,12 +1630,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramsPerMoles.Equals(((MolarMass) obj)._kilogramsPerMoles);
+            return _kilogramsPerMole.Equals(((MolarMass) obj)._kilogramsPerMole);
         }
 
         public override int GetHashCode()
         {
-            return _kilogramsPerMoles.GetHashCode();
+            return _kilogramsPerMole.GetHashCode();
         }
 
         #endregion
@@ -1652,29 +1652,29 @@ namespace UnitsNet
             switch (unit)
             {
                 case MolarMassUnit.CentigramPerMole:
-                    return CentigramsPerMoles;
+                    return CentigramsPerMole;
                 case MolarMassUnit.DecagramPerMole:
-                    return DecagramsPerMoles;
+                    return DecagramsPerMole;
                 case MolarMassUnit.DecigramPerMole:
-                    return DecigramsPerMoles;
+                    return DecigramsPerMole;
                 case MolarMassUnit.GramPerMole:
-                    return GramsPerMoles;
+                    return GramsPerMole;
                 case MolarMassUnit.HectogramPerMole:
-                    return HectogramsPerMoles;
+                    return HectogramsPerMole;
                 case MolarMassUnit.KilogramPerMole:
-                    return KilogramsPerMoles;
+                    return KilogramsPerMole;
                 case MolarMassUnit.KilopoundPerMole:
-                    return KilopoundsPerMoles;
+                    return KilopoundsPerMole;
                 case MolarMassUnit.MegapoundPerMole:
-                    return MegapoundsPerMoles;
+                    return MegapoundsPerMole;
                 case MolarMassUnit.MicrogramPerMole:
-                    return MicrogramsPerMoles;
+                    return MicrogramsPerMole;
                 case MolarMassUnit.MilligramPerMole:
-                    return MilligramsPerMoles;
+                    return MilligramsPerMole;
                 case MolarMassUnit.NanogramPerMole:
-                    return NanogramsPerMoles;
+                    return NanogramsPerMole;
                 case MolarMassUnit.PoundPerMole:
-                    return PoundsPerMoles;
+                    return PoundsPerMole;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1751,7 +1751,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     MolarMassUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerMoles(x.KilogramsPerMoles + y.KilogramsPerMoles));
+                }, (x, y) => FromKilogramsPerMole(x.KilogramsPerMole + y.KilogramsPerMole));
         }
 
         /// <summary>

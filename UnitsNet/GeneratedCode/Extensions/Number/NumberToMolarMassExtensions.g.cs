@@ -46,409 +46,409 @@ namespace UnitsNet.Extensions.NumberToMolarMass
     {
         #region CentigramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double)"/>
-        public static MolarMass CentigramsPerMoles(this int value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)"/>
+        public static MolarMass CentigramsPerMole(this int value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double?)"/>
-        public static MolarMass? CentigramsPerMoles(this int? value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double?)"/>
+        public static MolarMass? CentigramsPerMole(this int? value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double)"/>
-        public static MolarMass CentigramsPerMoles(this long value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)"/>
+        public static MolarMass CentigramsPerMole(this long value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double?)"/>
-        public static MolarMass? CentigramsPerMoles(this long? value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double?)"/>
+        public static MolarMass? CentigramsPerMole(this long? value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double)"/>
-        public static MolarMass CentigramsPerMoles(this double value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)"/>
+        public static MolarMass CentigramsPerMole(this double value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double?)"/>
-        public static MolarMass? CentigramsPerMoles(this double? value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double?)"/>
+        public static MolarMass? CentigramsPerMole(this double? value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double)"/>
-        public static MolarMass CentigramsPerMoles(this float value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)"/>
+        public static MolarMass CentigramsPerMole(this float value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double?)"/>
-        public static MolarMass? CentigramsPerMoles(this float? value) => MolarMass.FromCentigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double?)"/>
+        public static MolarMass? CentigramsPerMole(this float? value) => MolarMass.FromCentigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double)"/>
-        public static MolarMass CentigramsPerMoles(this decimal value) => MolarMass.FromCentigramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)"/>
+        public static MolarMass CentigramsPerMole(this decimal value) => MolarMass.FromCentigramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMoles(double?)"/>
-        public static MolarMass? CentigramsPerMoles(this decimal? value) => MolarMass.FromCentigramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double?)"/>
+        public static MolarMass? CentigramsPerMole(this decimal? value) => MolarMass.FromCentigramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecagramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double)"/>
-        public static MolarMass DecagramsPerMoles(this int value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)"/>
+        public static MolarMass DecagramsPerMole(this int value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double?)"/>
-        public static MolarMass? DecagramsPerMoles(this int? value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double?)"/>
+        public static MolarMass? DecagramsPerMole(this int? value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double)"/>
-        public static MolarMass DecagramsPerMoles(this long value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)"/>
+        public static MolarMass DecagramsPerMole(this long value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double?)"/>
-        public static MolarMass? DecagramsPerMoles(this long? value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double?)"/>
+        public static MolarMass? DecagramsPerMole(this long? value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double)"/>
-        public static MolarMass DecagramsPerMoles(this double value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)"/>
+        public static MolarMass DecagramsPerMole(this double value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double?)"/>
-        public static MolarMass? DecagramsPerMoles(this double? value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double?)"/>
+        public static MolarMass? DecagramsPerMole(this double? value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double)"/>
-        public static MolarMass DecagramsPerMoles(this float value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)"/>
+        public static MolarMass DecagramsPerMole(this float value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double?)"/>
-        public static MolarMass? DecagramsPerMoles(this float? value) => MolarMass.FromDecagramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double?)"/>
+        public static MolarMass? DecagramsPerMole(this float? value) => MolarMass.FromDecagramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double)"/>
-        public static MolarMass DecagramsPerMoles(this decimal value) => MolarMass.FromDecagramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)"/>
+        public static MolarMass DecagramsPerMole(this decimal value) => MolarMass.FromDecagramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMoles(double?)"/>
-        public static MolarMass? DecagramsPerMoles(this decimal? value) => MolarMass.FromDecagramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double?)"/>
+        public static MolarMass? DecagramsPerMole(this decimal? value) => MolarMass.FromDecagramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecigramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double)"/>
-        public static MolarMass DecigramsPerMoles(this int value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)"/>
+        public static MolarMass DecigramsPerMole(this int value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double?)"/>
-        public static MolarMass? DecigramsPerMoles(this int? value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double?)"/>
+        public static MolarMass? DecigramsPerMole(this int? value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double)"/>
-        public static MolarMass DecigramsPerMoles(this long value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)"/>
+        public static MolarMass DecigramsPerMole(this long value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double?)"/>
-        public static MolarMass? DecigramsPerMoles(this long? value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double?)"/>
+        public static MolarMass? DecigramsPerMole(this long? value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double)"/>
-        public static MolarMass DecigramsPerMoles(this double value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)"/>
+        public static MolarMass DecigramsPerMole(this double value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double?)"/>
-        public static MolarMass? DecigramsPerMoles(this double? value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double?)"/>
+        public static MolarMass? DecigramsPerMole(this double? value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double)"/>
-        public static MolarMass DecigramsPerMoles(this float value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)"/>
+        public static MolarMass DecigramsPerMole(this float value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double?)"/>
-        public static MolarMass? DecigramsPerMoles(this float? value) => MolarMass.FromDecigramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double?)"/>
+        public static MolarMass? DecigramsPerMole(this float? value) => MolarMass.FromDecigramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double)"/>
-        public static MolarMass DecigramsPerMoles(this decimal value) => MolarMass.FromDecigramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)"/>
+        public static MolarMass DecigramsPerMole(this decimal value) => MolarMass.FromDecigramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMoles(double?)"/>
-        public static MolarMass? DecigramsPerMoles(this decimal? value) => MolarMass.FromDecigramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double?)"/>
+        public static MolarMass? DecigramsPerMole(this decimal? value) => MolarMass.FromDecigramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double)"/>
-        public static MolarMass GramsPerMoles(this int value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)"/>
+        public static MolarMass GramsPerMole(this int value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double?)"/>
-        public static MolarMass? GramsPerMoles(this int? value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double?)"/>
+        public static MolarMass? GramsPerMole(this int? value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double)"/>
-        public static MolarMass GramsPerMoles(this long value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)"/>
+        public static MolarMass GramsPerMole(this long value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double?)"/>
-        public static MolarMass? GramsPerMoles(this long? value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double?)"/>
+        public static MolarMass? GramsPerMole(this long? value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double)"/>
-        public static MolarMass GramsPerMoles(this double value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)"/>
+        public static MolarMass GramsPerMole(this double value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double?)"/>
-        public static MolarMass? GramsPerMoles(this double? value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double?)"/>
+        public static MolarMass? GramsPerMole(this double? value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double)"/>
-        public static MolarMass GramsPerMoles(this float value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)"/>
+        public static MolarMass GramsPerMole(this float value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double?)"/>
-        public static MolarMass? GramsPerMoles(this float? value) => MolarMass.FromGramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double?)"/>
+        public static MolarMass? GramsPerMole(this float? value) => MolarMass.FromGramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double)"/>
-        public static MolarMass GramsPerMoles(this decimal value) => MolarMass.FromGramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)"/>
+        public static MolarMass GramsPerMole(this decimal value) => MolarMass.FromGramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMoles(double?)"/>
-        public static MolarMass? GramsPerMoles(this decimal? value) => MolarMass.FromGramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double?)"/>
+        public static MolarMass? GramsPerMole(this decimal? value) => MolarMass.FromGramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region HectogramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double)"/>
-        public static MolarMass HectogramsPerMoles(this int value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)"/>
+        public static MolarMass HectogramsPerMole(this int value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double?)"/>
-        public static MolarMass? HectogramsPerMoles(this int? value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double?)"/>
+        public static MolarMass? HectogramsPerMole(this int? value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double)"/>
-        public static MolarMass HectogramsPerMoles(this long value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)"/>
+        public static MolarMass HectogramsPerMole(this long value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double?)"/>
-        public static MolarMass? HectogramsPerMoles(this long? value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double?)"/>
+        public static MolarMass? HectogramsPerMole(this long? value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double)"/>
-        public static MolarMass HectogramsPerMoles(this double value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)"/>
+        public static MolarMass HectogramsPerMole(this double value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double?)"/>
-        public static MolarMass? HectogramsPerMoles(this double? value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double?)"/>
+        public static MolarMass? HectogramsPerMole(this double? value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double)"/>
-        public static MolarMass HectogramsPerMoles(this float value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)"/>
+        public static MolarMass HectogramsPerMole(this float value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double?)"/>
-        public static MolarMass? HectogramsPerMoles(this float? value) => MolarMass.FromHectogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double?)"/>
+        public static MolarMass? HectogramsPerMole(this float? value) => MolarMass.FromHectogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double)"/>
-        public static MolarMass HectogramsPerMoles(this decimal value) => MolarMass.FromHectogramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)"/>
+        public static MolarMass HectogramsPerMole(this decimal value) => MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMoles(double?)"/>
-        public static MolarMass? HectogramsPerMoles(this decimal? value) => MolarMass.FromHectogramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double?)"/>
+        public static MolarMass? HectogramsPerMole(this decimal? value) => MolarMass.FromHectogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double)"/>
-        public static MolarMass KilogramsPerMoles(this int value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)"/>
+        public static MolarMass KilogramsPerMole(this int value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double?)"/>
-        public static MolarMass? KilogramsPerMoles(this int? value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double?)"/>
+        public static MolarMass? KilogramsPerMole(this int? value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double)"/>
-        public static MolarMass KilogramsPerMoles(this long value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)"/>
+        public static MolarMass KilogramsPerMole(this long value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double?)"/>
-        public static MolarMass? KilogramsPerMoles(this long? value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double?)"/>
+        public static MolarMass? KilogramsPerMole(this long? value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double)"/>
-        public static MolarMass KilogramsPerMoles(this double value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)"/>
+        public static MolarMass KilogramsPerMole(this double value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double?)"/>
-        public static MolarMass? KilogramsPerMoles(this double? value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double?)"/>
+        public static MolarMass? KilogramsPerMole(this double? value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double)"/>
-        public static MolarMass KilogramsPerMoles(this float value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)"/>
+        public static MolarMass KilogramsPerMole(this float value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double?)"/>
-        public static MolarMass? KilogramsPerMoles(this float? value) => MolarMass.FromKilogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double?)"/>
+        public static MolarMass? KilogramsPerMole(this float? value) => MolarMass.FromKilogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double)"/>
-        public static MolarMass KilogramsPerMoles(this decimal value) => MolarMass.FromKilogramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)"/>
+        public static MolarMass KilogramsPerMole(this decimal value) => MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMoles(double?)"/>
-        public static MolarMass? KilogramsPerMoles(this decimal? value) => MolarMass.FromKilogramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double?)"/>
+        public static MolarMass? KilogramsPerMole(this decimal? value) => MolarMass.FromKilogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopoundPerMole
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double)"/>
-        public static MolarMass KilopoundsPerMoles(this int value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)"/>
+        public static MolarMass KilopoundsPerMole(this int value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double?)"/>
-        public static MolarMass? KilopoundsPerMoles(this int? value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double?)"/>
+        public static MolarMass? KilopoundsPerMole(this int? value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double)"/>
-        public static MolarMass KilopoundsPerMoles(this long value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)"/>
+        public static MolarMass KilopoundsPerMole(this long value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double?)"/>
-        public static MolarMass? KilopoundsPerMoles(this long? value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double?)"/>
+        public static MolarMass? KilopoundsPerMole(this long? value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double)"/>
-        public static MolarMass KilopoundsPerMoles(this double value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)"/>
+        public static MolarMass KilopoundsPerMole(this double value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double?)"/>
-        public static MolarMass? KilopoundsPerMoles(this double? value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double?)"/>
+        public static MolarMass? KilopoundsPerMole(this double? value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double)"/>
-        public static MolarMass KilopoundsPerMoles(this float value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)"/>
+        public static MolarMass KilopoundsPerMole(this float value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double?)"/>
-        public static MolarMass? KilopoundsPerMoles(this float? value) => MolarMass.FromKilopoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double?)"/>
+        public static MolarMass? KilopoundsPerMole(this float? value) => MolarMass.FromKilopoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double)"/>
-        public static MolarMass KilopoundsPerMoles(this decimal value) => MolarMass.FromKilopoundsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)"/>
+        public static MolarMass KilopoundsPerMole(this decimal value) => MolarMass.FromKilopoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMoles(double?)"/>
-        public static MolarMass? KilopoundsPerMoles(this decimal? value) => MolarMass.FromKilopoundsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double?)"/>
+        public static MolarMass? KilopoundsPerMole(this decimal? value) => MolarMass.FromKilopoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegapoundPerMole
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double)"/>
-        public static MolarMass MegapoundsPerMoles(this int value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)"/>
+        public static MolarMass MegapoundsPerMole(this int value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double?)"/>
-        public static MolarMass? MegapoundsPerMoles(this int? value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double?)"/>
+        public static MolarMass? MegapoundsPerMole(this int? value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double)"/>
-        public static MolarMass MegapoundsPerMoles(this long value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)"/>
+        public static MolarMass MegapoundsPerMole(this long value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double?)"/>
-        public static MolarMass? MegapoundsPerMoles(this long? value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double?)"/>
+        public static MolarMass? MegapoundsPerMole(this long? value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double)"/>
-        public static MolarMass MegapoundsPerMoles(this double value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)"/>
+        public static MolarMass MegapoundsPerMole(this double value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double?)"/>
-        public static MolarMass? MegapoundsPerMoles(this double? value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double?)"/>
+        public static MolarMass? MegapoundsPerMole(this double? value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double)"/>
-        public static MolarMass MegapoundsPerMoles(this float value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)"/>
+        public static MolarMass MegapoundsPerMole(this float value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double?)"/>
-        public static MolarMass? MegapoundsPerMoles(this float? value) => MolarMass.FromMegapoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double?)"/>
+        public static MolarMass? MegapoundsPerMole(this float? value) => MolarMass.FromMegapoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double)"/>
-        public static MolarMass MegapoundsPerMoles(this decimal value) => MolarMass.FromMegapoundsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)"/>
+        public static MolarMass MegapoundsPerMole(this decimal value) => MolarMass.FromMegapoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMoles(double?)"/>
-        public static MolarMass? MegapoundsPerMoles(this decimal? value) => MolarMass.FromMegapoundsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double?)"/>
+        public static MolarMass? MegapoundsPerMole(this decimal? value) => MolarMass.FromMegapoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrogramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double)"/>
-        public static MolarMass MicrogramsPerMoles(this int value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)"/>
+        public static MolarMass MicrogramsPerMole(this int value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double?)"/>
-        public static MolarMass? MicrogramsPerMoles(this int? value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double?)"/>
+        public static MolarMass? MicrogramsPerMole(this int? value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double)"/>
-        public static MolarMass MicrogramsPerMoles(this long value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)"/>
+        public static MolarMass MicrogramsPerMole(this long value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double?)"/>
-        public static MolarMass? MicrogramsPerMoles(this long? value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double?)"/>
+        public static MolarMass? MicrogramsPerMole(this long? value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double)"/>
-        public static MolarMass MicrogramsPerMoles(this double value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)"/>
+        public static MolarMass MicrogramsPerMole(this double value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double?)"/>
-        public static MolarMass? MicrogramsPerMoles(this double? value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double?)"/>
+        public static MolarMass? MicrogramsPerMole(this double? value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double)"/>
-        public static MolarMass MicrogramsPerMoles(this float value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)"/>
+        public static MolarMass MicrogramsPerMole(this float value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double?)"/>
-        public static MolarMass? MicrogramsPerMoles(this float? value) => MolarMass.FromMicrogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double?)"/>
+        public static MolarMass? MicrogramsPerMole(this float? value) => MolarMass.FromMicrogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double)"/>
-        public static MolarMass MicrogramsPerMoles(this decimal value) => MolarMass.FromMicrogramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)"/>
+        public static MolarMass MicrogramsPerMole(this decimal value) => MolarMass.FromMicrogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMoles(double?)"/>
-        public static MolarMass? MicrogramsPerMoles(this decimal? value) => MolarMass.FromMicrogramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double?)"/>
+        public static MolarMass? MicrogramsPerMole(this decimal? value) => MolarMass.FromMicrogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double)"/>
-        public static MolarMass MilligramsPerMoles(this int value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)"/>
+        public static MolarMass MilligramsPerMole(this int value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double?)"/>
-        public static MolarMass? MilligramsPerMoles(this int? value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double?)"/>
+        public static MolarMass? MilligramsPerMole(this int? value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double)"/>
-        public static MolarMass MilligramsPerMoles(this long value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)"/>
+        public static MolarMass MilligramsPerMole(this long value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double?)"/>
-        public static MolarMass? MilligramsPerMoles(this long? value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double?)"/>
+        public static MolarMass? MilligramsPerMole(this long? value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double)"/>
-        public static MolarMass MilligramsPerMoles(this double value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)"/>
+        public static MolarMass MilligramsPerMole(this double value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double?)"/>
-        public static MolarMass? MilligramsPerMoles(this double? value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double?)"/>
+        public static MolarMass? MilligramsPerMole(this double? value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double)"/>
-        public static MolarMass MilligramsPerMoles(this float value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)"/>
+        public static MolarMass MilligramsPerMole(this float value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double?)"/>
-        public static MolarMass? MilligramsPerMoles(this float? value) => MolarMass.FromMilligramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double?)"/>
+        public static MolarMass? MilligramsPerMole(this float? value) => MolarMass.FromMilligramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double)"/>
-        public static MolarMass MilligramsPerMoles(this decimal value) => MolarMass.FromMilligramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)"/>
+        public static MolarMass MilligramsPerMole(this decimal value) => MolarMass.FromMilligramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMoles(double?)"/>
-        public static MolarMass? MilligramsPerMoles(this decimal? value) => MolarMass.FromMilligramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double?)"/>
+        public static MolarMass? MilligramsPerMole(this decimal? value) => MolarMass.FromMilligramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanogramPerMole
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double)"/>
-        public static MolarMass NanogramsPerMoles(this int value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)"/>
+        public static MolarMass NanogramsPerMole(this int value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double?)"/>
-        public static MolarMass? NanogramsPerMoles(this int? value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double?)"/>
+        public static MolarMass? NanogramsPerMole(this int? value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double)"/>
-        public static MolarMass NanogramsPerMoles(this long value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)"/>
+        public static MolarMass NanogramsPerMole(this long value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double?)"/>
-        public static MolarMass? NanogramsPerMoles(this long? value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double?)"/>
+        public static MolarMass? NanogramsPerMole(this long? value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double)"/>
-        public static MolarMass NanogramsPerMoles(this double value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)"/>
+        public static MolarMass NanogramsPerMole(this double value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double?)"/>
-        public static MolarMass? NanogramsPerMoles(this double? value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double?)"/>
+        public static MolarMass? NanogramsPerMole(this double? value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double)"/>
-        public static MolarMass NanogramsPerMoles(this float value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)"/>
+        public static MolarMass NanogramsPerMole(this float value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double?)"/>
-        public static MolarMass? NanogramsPerMoles(this float? value) => MolarMass.FromNanogramsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double?)"/>
+        public static MolarMass? NanogramsPerMole(this float? value) => MolarMass.FromNanogramsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double)"/>
-        public static MolarMass NanogramsPerMoles(this decimal value) => MolarMass.FromNanogramsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)"/>
+        public static MolarMass NanogramsPerMole(this decimal value) => MolarMass.FromNanogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMoles(double?)"/>
-        public static MolarMass? NanogramsPerMoles(this decimal? value) => MolarMass.FromNanogramsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double?)"/>
+        public static MolarMass? NanogramsPerMole(this decimal? value) => MolarMass.FromNanogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerMole
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double)"/>
-        public static MolarMass PoundsPerMoles(this int value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)"/>
+        public static MolarMass PoundsPerMole(this int value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double?)"/>
-        public static MolarMass? PoundsPerMoles(this int? value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double?)"/>
+        public static MolarMass? PoundsPerMole(this int? value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double)"/>
-        public static MolarMass PoundsPerMoles(this long value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)"/>
+        public static MolarMass PoundsPerMole(this long value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double?)"/>
-        public static MolarMass? PoundsPerMoles(this long? value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double?)"/>
+        public static MolarMass? PoundsPerMole(this long? value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double)"/>
-        public static MolarMass PoundsPerMoles(this double value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)"/>
+        public static MolarMass PoundsPerMole(this double value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double?)"/>
-        public static MolarMass? PoundsPerMoles(this double? value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double?)"/>
+        public static MolarMass? PoundsPerMole(this double? value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double)"/>
-        public static MolarMass PoundsPerMoles(this float value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)"/>
+        public static MolarMass PoundsPerMole(this float value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double?)"/>
-        public static MolarMass? PoundsPerMoles(this float? value) => MolarMass.FromPoundsPerMoles(value);
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double?)"/>
+        public static MolarMass? PoundsPerMole(this float? value) => MolarMass.FromPoundsPerMole(value);
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double)"/>
-        public static MolarMass PoundsPerMoles(this decimal value) => MolarMass.FromPoundsPerMoles(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)"/>
+        public static MolarMass PoundsPerMole(this decimal value) => MolarMass.FromPoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMoles(double?)"/>
-        public static MolarMass? PoundsPerMoles(this decimal? value) => MolarMass.FromPoundsPerMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double?)"/>
+        public static MolarMass? PoundsPerMole(this decimal? value) => MolarMass.FromPoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

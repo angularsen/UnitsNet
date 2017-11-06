@@ -46,18 +46,18 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarMassTests : MolarMassTestsBase
     {
-        protected override double CentigramsPerMolesInOneKilogramPerMole => 1e5;
-        protected override double DecagramsPerMolesInOneKilogramPerMole => 1e2;
-        protected override double DecigramsPerMolesInOneKilogramPerMole => 1e4;
-        protected override double GramsPerMolesInOneKilogramPerMole => 1e3;
-        protected override double HectogramsPerMolesInOneKilogramPerMole => 10;
-        protected override double KilogramsPerMolesInOneKilogramPerMole => 1;
-        protected override double KilopoundsPerMolesInOneKilogramPerMole => 2.2046226218487757e-3;
-        protected override double MegapoundsPerMolesInOneKilogramPerMole => 2.2046226218487757e-6;
-        protected override double MicrogramsPerMolesInOneKilogramPerMole => 1e9;
-        protected override double MilligramsPerMolesInOneKilogramPerMole => 1e6;
-        protected override double NanogramsPerMolesTolerance => 1e-3;
-        protected override double NanogramsPerMolesInOneKilogramPerMole => 1e12;
-        protected override double PoundsPerMolesInOneKilogramPerMole => 2.2046226218487757;
+        protected override double CentigramsPerMoleInOneKilogramPerMole => 1e5;
+        protected override double DecagramsPerMoleInOneKilogramPerMole => 1e2;
+        protected override double DecigramsPerMoleInOneKilogramPerMole => 1e4;
+        protected override double GramsPerMoleInOneKilogramPerMole => 1e3;
+        protected override double HectogramsPerMoleInOneKilogramPerMole => 10;
+        protected override double KilogramsPerMoleInOneKilogramPerMole => 1;
+        protected override double KilopoundsPerMoleInOneKilogramPerMole => 2.2046226218487757e-3;
+        protected override double MegapoundsPerMoleInOneKilogramPerMole => 2.2046226218487757e-6;
+        protected override double MicrogramsPerMoleInOneKilogramPerMole => 1e9;
+        protected override double MilligramsPerMoleInOneKilogramPerMole => 1e6;
+        protected override double NanogramsPerMoleTolerance => 1e-3;
+        protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
+        protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
     }
 }

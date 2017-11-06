@@ -1965,13 +1965,13 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MolarMassUnit.KilopoundPerMole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "KLbs/mol"),
+                                new AbbreviationsForCulture("en-US", "klb/mol"),
                                 new AbbreviationsForCulture("ru-RU", "kфунт/моль"),
                             }),
                         new CulturesForEnumValue((int) MolarMassUnit.MegapoundPerMole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MLbs/mol"),
+                                new AbbreviationsForCulture("en-US", "Mlb/mol"),
                                 new AbbreviationsForCulture("ru-RU", "Mфунт/моль"),
                             }),
                         new CulturesForEnumValue((int) MolarMassUnit.MicrogramPerMole,
