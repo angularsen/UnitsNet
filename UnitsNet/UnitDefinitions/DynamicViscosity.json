@@ -21,7 +21,7 @@
       "PluralName": "PascalSeconds",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli" ],
+      "Prefixes": [ "Milli", "Micro" ],
       "Localization": [
         {
           "Culture": "en-US",

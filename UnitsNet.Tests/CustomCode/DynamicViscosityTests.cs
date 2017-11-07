@@ -28,6 +28,7 @@ namespace UnitsNet.Tests.CustomCode
     public class DynamicViscosityTests : DynamicViscosityTestsBase
     {
         protected override double CentipoiseInOneNewtonSecondPerMeterSquared => 1e3;
+        protected override double MicropascalSecondsInOneNewtonSecondPerMeterSquared => 1e6;
         protected override double MillipascalSecondsInOneNewtonSecondPerMeterSquared => 1e3;
         protected override double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared => 1;
         protected override double PascalSecondsInOneNewtonSecondPerMeterSquared => 1;

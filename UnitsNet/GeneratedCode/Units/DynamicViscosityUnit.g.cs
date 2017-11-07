@@ -43,6 +43,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Centipoise,
+        MicropascalSecond,
         MillipascalSecond,
         NewtonSecondPerMeterSquared,
         PascalSecond,

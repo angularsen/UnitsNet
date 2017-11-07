@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     
+    ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
