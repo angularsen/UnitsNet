@@ -46,9 +46,9 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class EntropyTests : EntropyTestsBase
     {
-        protected override double CaloriesPerKelvinInOneJoulePerKelvin => 1 / 4.184;
+        protected override double CaloriesPerKelvinInOneJoulePerKelvin => 0.239006;
         protected override double JoulesPerKelvinInOneJoulePerKelvin => 1e0;
-        protected override double KilocaloriesPerKelvinInOneJoulePerKelvin => 1/4.184 * 1e-3;
+        protected override double KilocaloriesPerKelvinInOneJoulePerKelvin => 0.000239006;
         protected override double KilojoulesPerKelvinInOneJoulePerKelvin => 1e-3;
         protected override double MegajoulesPerKelvinInOneJoulePerKelvin => 1e-6;
     }
