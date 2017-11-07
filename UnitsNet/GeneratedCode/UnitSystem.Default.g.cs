@@ -1953,6 +1953,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "t·mm²"),
                             }),
                     }),
+                new UnitLocalization(typeof (MolarEnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MolarEnergyUnit.JoulePerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/mol"),
+                            }),
+                        new CulturesForEnumValue((int) MolarEnergyUnit.KilojoulePerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/mol"),
+                            }),
+                        new CulturesForEnumValue((int) MolarEnergyUnit.MegajoulePerMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/mol"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MolarityUnit),
                     new[]
                     {
