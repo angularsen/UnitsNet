@@ -28,6 +28,19 @@
           "Abbreviations": [ "cal/K" ]
         }
       ]
+    },
+    {
+      "SingularName": "JoulePerDegreeCelsius",
+      "PluralName": "JoulesPerDegreeCelsius",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/C" ]
+        }
+      ]
     }
   ]
 }

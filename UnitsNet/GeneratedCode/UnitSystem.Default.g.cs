@@ -925,6 +925,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "cal/K"),
                             }),
+                        new CulturesForEnumValue((int) EntropyUnit.JoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/C"),
+                            }),
                         new CulturesForEnumValue((int) EntropyUnit.JoulePerKelvin,
                             new[]
                             {
@@ -934,6 +939,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kcal/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/C"),
                             }),
                         new CulturesForEnumValue((int) EntropyUnit.KilojoulePerKelvin,
                             new[]

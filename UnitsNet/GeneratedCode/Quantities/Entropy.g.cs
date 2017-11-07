@@ -138,6 +138,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Entropy in JoulesPerDegreeCelsius.
+        /// </summary>
+        public double JoulesPerDegreeCelsius
+        {
+            get { return _joulesPerKelvin; }
+        }
+
+        /// <summary>
         ///     Get Entropy in JoulesPerKelvin.
         /// </summary>
         public double JoulesPerKelvin
@@ -151,6 +159,14 @@ namespace UnitsNet
         public double KilocaloriesPerKelvin
         {
             get { return (_joulesPerKelvin/4.184) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Entropy in KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public double KilojoulesPerDegreeCelsius
+        {
+            get { return (_joulesPerKelvin) / 1e3d; }
         }
 
         /// <summary>
@@ -213,6 +229,44 @@ namespace UnitsNet
         public static Entropy FromCaloriesPerKelvin(decimal caloriesperkelvin)
         {
             return new Entropy(Convert.ToDouble(caloriesperkelvin)*4.184);
+        }
+#endif
+
+        /// <summary>
+        ///     Get Entropy from JoulesPerDegreeCelsius.
+        /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
+        public static Entropy FromJoulesPerDegreeCelsius(double joulesperdegreecelsius)
+        {
+            return new Entropy(joulesperdegreecelsius);
+        }
+
+        /// <summary>
+        ///     Get Entropy from JoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy FromJoulesPerDegreeCelsius(int joulesperdegreecelsius)
+        {
+            return new Entropy(joulesperdegreecelsius);
+        }
+
+        /// <summary>
+        ///     Get Entropy from JoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy FromJoulesPerDegreeCelsius(long joulesperdegreecelsius)
+        {
+            return new Entropy(joulesperdegreecelsius);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Entropy from JoulesPerDegreeCelsius of type decimal.
+        /// </summary>
+        public static Entropy FromJoulesPerDegreeCelsius(decimal joulesperdegreecelsius)
+        {
+            return new Entropy(Convert.ToDouble(joulesperdegreecelsius));
         }
 #endif
 
@@ -289,6 +343,44 @@ namespace UnitsNet
         public static Entropy FromKilocaloriesPerKelvin(decimal kilocaloriesperkelvin)
         {
             return new Entropy((Convert.ToDouble(kilocaloriesperkelvin)*4.184) * 1e3d);
+        }
+#endif
+
+        /// <summary>
+        ///     Get Entropy from KilojoulesPerDegreeCelsius.
+        /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
+        public static Entropy FromKilojoulesPerDegreeCelsius(double kilojoulesperdegreecelsius)
+        {
+            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Entropy from KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy FromKilojoulesPerDegreeCelsius(int kilojoulesperdegreecelsius)
+        {
+            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
+        }
+
+        /// <summary>
+        ///     Get Entropy from KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy FromKilojoulesPerDegreeCelsius(long kilojoulesperdegreecelsius)
+        {
+            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get Entropy from KilojoulesPerDegreeCelsius of type decimal.
+        /// </summary>
+        public static Entropy FromKilojoulesPerDegreeCelsius(decimal kilojoulesperdegreecelsius)
+        {
+            return new Entropy((Convert.ToDouble(kilojoulesperdegreecelsius)) * 1e3d);
         }
 #endif
 
@@ -431,6 +523,66 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromJoulesPerDegreeCelsius(double? joulesperdegreecelsius)
+        {
+            if (joulesperdegreecelsius.HasValue)
+            {
+                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromJoulesPerDegreeCelsius(int? joulesperdegreecelsius)
+        {
+            if (joulesperdegreecelsius.HasValue)
+            {
+                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromJoulesPerDegreeCelsius(long? joulesperdegreecelsius)
+        {
+            if (joulesperdegreecelsius.HasValue)
+            {
+                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from JoulesPerDegreeCelsius of type decimal.
+        /// </summary>
+        public static Entropy? FromJoulesPerDegreeCelsius(decimal? joulesperdegreecelsius)
+        {
+            if (joulesperdegreecelsius.HasValue)
+            {
+                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Entropy from nullable JoulesPerKelvin.
         /// </summary>
         public static Entropy? FromJoulesPerKelvin(double? joulesperkelvin)
@@ -543,6 +695,66 @@ namespace UnitsNet
             if (kilocaloriesperkelvin.HasValue)
             {
                 return FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromKilojoulesPerDegreeCelsius(double? kilojoulesperdegreecelsius)
+        {
+            if (kilojoulesperdegreecelsius.HasValue)
+            {
+                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromKilojoulesPerDegreeCelsius(int? kilojoulesperdegreecelsius)
+        {
+            if (kilojoulesperdegreecelsius.HasValue)
+            {
+                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
+        /// </summary>
+        public static Entropy? FromKilojoulesPerDegreeCelsius(long? kilojoulesperdegreecelsius)
+        {
+            if (kilojoulesperdegreecelsius.HasValue)
+            {
+                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Entropy from KilojoulesPerDegreeCelsius of type decimal.
+        /// </summary>
+        public static Entropy? FromKilojoulesPerDegreeCelsius(decimal? kilojoulesperdegreecelsius)
+        {
+            if (kilojoulesperdegreecelsius.HasValue)
+            {
+                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
             }
             else
             {
@@ -684,10 +896,14 @@ namespace UnitsNet
             {
                 case EntropyUnit.CaloriePerKelvin:
                     return FromCaloriesPerKelvin(val);
+                case EntropyUnit.JoulePerDegreeCelsius:
+                    return FromJoulesPerDegreeCelsius(val);
                 case EntropyUnit.JoulePerKelvin:
                     return FromJoulesPerKelvin(val);
                 case EntropyUnit.KilocaloriePerKelvin:
                     return FromKilocaloriesPerKelvin(val);
+                case EntropyUnit.KilojoulePerDegreeCelsius:
+                    return FromKilojoulesPerDegreeCelsius(val);
                 case EntropyUnit.KilojoulePerKelvin:
                     return FromKilojoulesPerKelvin(val);
                 case EntropyUnit.MegajoulePerKelvin:
@@ -716,10 +932,14 @@ namespace UnitsNet
             {
                 case EntropyUnit.CaloriePerKelvin:
                     return FromCaloriesPerKelvin(value.Value);
+                case EntropyUnit.JoulePerDegreeCelsius:
+                    return FromJoulesPerDegreeCelsius(value.Value);
                 case EntropyUnit.JoulePerKelvin:
                     return FromJoulesPerKelvin(value.Value);
                 case EntropyUnit.KilocaloriePerKelvin:
                     return FromKilocaloriesPerKelvin(value.Value);
+                case EntropyUnit.KilojoulePerDegreeCelsius:
+                    return FromKilojoulesPerDegreeCelsius(value.Value);
                 case EntropyUnit.KilojoulePerKelvin:
                     return FromKilojoulesPerKelvin(value.Value);
                 case EntropyUnit.MegajoulePerKelvin:
@@ -883,10 +1103,14 @@ namespace UnitsNet
             {
                 case EntropyUnit.CaloriePerKelvin:
                     return CaloriesPerKelvin;
+                case EntropyUnit.JoulePerDegreeCelsius:
+                    return JoulesPerDegreeCelsius;
                 case EntropyUnit.JoulePerKelvin:
                     return JoulesPerKelvin;
                 case EntropyUnit.KilocaloriePerKelvin:
                     return KilocaloriesPerKelvin;
+                case EntropyUnit.KilojoulePerDegreeCelsius:
+                    return KilojoulesPerDegreeCelsius;
                 case EntropyUnit.KilojoulePerKelvin:
                     return KilojoulesPerKelvin;
                 case EntropyUnit.MegajoulePerKelvin:

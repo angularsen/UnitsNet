@@ -78,6 +78,40 @@ namespace UnitsNet.Extensions.NumberToEntropy
 
         #endregion
 
+        #region JoulePerDegreeCelsius
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)"/>
+        public static Entropy JoulesPerDegreeCelsius(this int value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? JoulesPerDegreeCelsius(this int? value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)"/>
+        public static Entropy JoulesPerDegreeCelsius(this long value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? JoulesPerDegreeCelsius(this long? value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)"/>
+        public static Entropy JoulesPerDegreeCelsius(this double value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? JoulesPerDegreeCelsius(this double? value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)"/>
+        public static Entropy JoulesPerDegreeCelsius(this float value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? JoulesPerDegreeCelsius(this float? value) => Entropy.FromJoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)"/>
+        public static Entropy JoulesPerDegreeCelsius(this decimal value) => Entropy.FromJoulesPerDegreeCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? JoulesPerDegreeCelsius(this decimal? value) => Entropy.FromJoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region JoulePerKelvin
 
         /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(double)"/>
@@ -143,6 +177,40 @@ namespace UnitsNet.Extensions.NumberToEntropy
 
         /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(double?)"/>
         public static Entropy? KilocaloriesPerKelvin(this decimal? value) => Entropy.FromKilocaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KilojoulePerDegreeCelsius
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)"/>
+        public static Entropy KilojoulesPerDegreeCelsius(this int value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? KilojoulesPerDegreeCelsius(this int? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)"/>
+        public static Entropy KilojoulesPerDegreeCelsius(this long value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? KilojoulesPerDegreeCelsius(this long? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)"/>
+        public static Entropy KilojoulesPerDegreeCelsius(this double value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? KilojoulesPerDegreeCelsius(this double? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)"/>
+        public static Entropy KilojoulesPerDegreeCelsius(this float value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? KilojoulesPerDegreeCelsius(this float? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)"/>
+        public static Entropy KilojoulesPerDegreeCelsius(this decimal value) => Entropy.FromKilojoulesPerDegreeCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double?)"/>
+        public static Entropy? KilojoulesPerDegreeCelsius(this decimal? value) => Entropy.FromKilojoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

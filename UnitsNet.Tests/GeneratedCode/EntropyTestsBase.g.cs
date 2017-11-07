@@ -53,15 +53,19 @@ namespace UnitsNet.Tests
     public abstract partial class EntropyTestsBase
     {
         protected abstract double CaloriesPerKelvinInOneJoulePerKelvin { get; }
+        protected abstract double JoulesPerDegreeCelsiusInOneJoulePerKelvin { get; }
         protected abstract double JoulesPerKelvinInOneJoulePerKelvin { get; }
         protected abstract double KilocaloriesPerKelvinInOneJoulePerKelvin { get; }
+        protected abstract double KilojoulesPerDegreeCelsiusInOneJoulePerKelvin { get; }
         protected abstract double KilojoulesPerKelvinInOneJoulePerKelvin { get; }
         protected abstract double MegajoulesPerKelvinInOneJoulePerKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CaloriesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double JoulesPerKelvinTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double KilojoulesPerKelvinTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -71,8 +75,10 @@ namespace UnitsNet.Tests
         {
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
             AssertEx.EqualTolerance(CaloriesPerKelvinInOneJoulePerKelvin, jouleperkelvin.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(JoulesPerDegreeCelsiusInOneJoulePerKelvin, jouleperkelvin.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(JoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.JoulesPerKelvin, JoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerKelvinInOneJoulePerKelvin, jouleperkelvin.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(KilojoulesPerDegreeCelsiusInOneJoulePerKelvin, jouleperkelvin.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(KilojoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(MegajoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
         }
@@ -81,8 +87,10 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.CaloriePerKelvin).CaloriesPerKelvin, CaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.JoulePerDegreeCelsius).JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.JoulePerKelvin).JoulesPerKelvin, JoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.KilocaloriePerKelvin).KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.KilojoulePerDegreeCelsius).KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.KilojoulePerKelvin).KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.MegajoulePerKelvin).MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
         }
@@ -92,8 +100,10 @@ namespace UnitsNet.Tests
         {
             var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
             AssertEx.EqualTolerance(CaloriesPerKelvinInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.CaloriePerKelvin), CaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(JoulesPerDegreeCelsiusInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.JoulePerDegreeCelsius), JoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(JoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.JoulePerKelvin), JoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerKelvinInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.KilocaloriePerKelvin), KilocaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(KilojoulesPerDegreeCelsiusInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.KilojoulePerDegreeCelsius), KilojoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(KilojoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.KilojoulePerKelvin), KilojoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(MegajoulesPerKelvinInOneJoulePerKelvin, jouleperkelvin.As(EntropyUnit.MegajoulePerKelvin), MegajoulesPerKelvinTolerance);
         }
@@ -103,8 +113,10 @@ namespace UnitsNet.Tests
         {
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
             AssertEx.EqualTolerance(1, Entropy.FromCaloriesPerKelvin(jouleperkelvin.CaloriesPerKelvin).JoulesPerKelvin, CaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(1, Entropy.FromJoulesPerDegreeCelsius(jouleperkelvin.JoulesPerDegreeCelsius).JoulesPerKelvin, JoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, Entropy.FromJoulesPerKelvin(jouleperkelvin.JoulesPerKelvin).JoulesPerKelvin, JoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(1, Entropy.FromKilocaloriesPerKelvin(jouleperkelvin.KilocaloriesPerKelvin).JoulesPerKelvin, KilocaloriesPerKelvinTolerance);
+            AssertEx.EqualTolerance(1, Entropy.FromKilojoulesPerDegreeCelsius(jouleperkelvin.KilojoulesPerDegreeCelsius).JoulesPerKelvin, KilojoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, Entropy.FromKilojoulesPerKelvin(jouleperkelvin.KilojoulesPerKelvin).JoulesPerKelvin, KilojoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(1, Entropy.FromMegajoulesPerKelvin(jouleperkelvin.MegajoulesPerKelvin).JoulesPerKelvin, MegajoulesPerKelvinTolerance);
         }

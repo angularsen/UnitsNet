@@ -43,8 +43,10 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CaloriePerKelvin,
+        JoulePerDegreeCelsius,
         JoulePerKelvin,
         KilocaloriePerKelvin,
+        KilojoulePerDegreeCelsius,
         KilojoulePerKelvin,
         MegajoulePerKelvin,
     }
