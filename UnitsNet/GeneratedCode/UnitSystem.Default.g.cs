@@ -90,6 +90,45 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "nm/s²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AmountOfSubstanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Centimole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cMole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Decimole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dMole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Kilomole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kMole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µMole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Millimole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mMole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Mole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mole"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Nanomole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nMole"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),
                     new[]
                     {
@@ -2657,45 +2696,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nm/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AmountOfSubstanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Centimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cMole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Decimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dMole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Kilomole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kMole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µMole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Millimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mMole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Mole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mole"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Nanomole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nMole"),
                             }),
                     }),
                 new UnitLocalization(typeof (TemperatureUnit),

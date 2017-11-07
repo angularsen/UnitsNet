@@ -50,6 +50,7 @@ namespace UnitsNet
     {
         Undefined = 0,
         Acceleration,
+        AmountOfSubstance,
         AmplitudeRatio,
         Angle,
         ApparentPower,
@@ -90,7 +91,6 @@ namespace UnitsNet
         SpecificEnergy,
         SpecificWeight,
         Speed,
-        AmountOfSubstance,
         Temperature,
         TemperatureChangeRate,
         TemperatureDelta,
