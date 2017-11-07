@@ -46,11 +46,18 @@ namespace UnitsNet.Tests.CustomCode
     public class AmountOfSubstanceTests : AmountOfSubstanceTestsBase
     {
         protected override double CentimolesInOneMole => 1e2;
+        protected override double CentipoundMolesInOneMole => 0.002204622621848776 * 1e2;
         protected override double DecimolesInOneMole => 1e1;
+        protected override double DecipoundMolesInOneMole => 0.002204622621848776 * 1e1;
         protected override double KilomolesInOneMole => 1e-3;
+        protected override double KilopoundMolesInOneMole => 0.002204622621848776 * 1e-3;
         protected override double MicromolesInOneMole => 1e6;
+        protected override double MicropoundMolesInOneMole => 0.002204622621848776 * 1e6;
         protected override double MillimolesInOneMole => 1e3;
+        protected override double MillipoundMolesInOneMole => 0.002204622621848776 * 1e3;
         protected override double MolesInOneMole => 1;
         protected override double NanomolesInOneMole => 1e9;
+        protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
+        protected override double PoundMolesInOneMole => 0.002204622621848776;
     }
 }

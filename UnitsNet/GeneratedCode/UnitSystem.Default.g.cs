@@ -96,37 +96,72 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Centimole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cMole"),
+                                new AbbreviationsForCulture("en-US", "cmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.CentipoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "clbmol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Decimole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "dMole"),
+                                new AbbreviationsForCulture("en-US", "dmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.DecipoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dlbmol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Kilomole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kMole"),
+                                new AbbreviationsForCulture("en-US", "kmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.KilopoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "klbmol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "µMole"),
+                                new AbbreviationsForCulture("en-US", "µmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.MicropoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µlbmol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Millimole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "mMole"),
+                                new AbbreviationsForCulture("en-US", "mmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.MillipoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mlbmol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Mole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "Mole"),
+                                new AbbreviationsForCulture("en-US", "mol"),
                             }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Nanomole,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "nMole"),
+                                new AbbreviationsForCulture("en-US", "nmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.NanopoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nlbmol"),
+                            }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.PoundMole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lbmol"),
                             }),
                     }),
                 new UnitLocalization(typeof (AmplitudeRatioUnit),

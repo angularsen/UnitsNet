@@ -43,11 +43,18 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Centimole,
+        CentipoundMole,
         Decimole,
+        DecipoundMole,
         Kilomole,
+        KilopoundMole,
         Micromole,
+        MicropoundMole,
         Millimole,
+        MillipoundMole,
         Mole,
         Nanomole,
+        NanopoundMole,
+        PoundMole,
     }
 }

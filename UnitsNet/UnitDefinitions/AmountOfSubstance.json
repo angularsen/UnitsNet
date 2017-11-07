@@ -12,7 +12,20 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Mole" ]
+          "Abbreviations": [ "mol" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundMole",
+      "PluralName": "PoundMoles",
+      "FromUnitToBaseFunc": "x*453.59237",
+      "FromBaseToUnitFunc": "x/453.59237",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbmol" ]
         }
       ]
     }
