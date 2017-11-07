@@ -17,17 +17,17 @@
 
 // Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,69 +37,24 @@
 // THE SOFTWARE.
 
 // ReSharper disable once CheckNamespace
-
-namespace UnitsNet
+namespace UnitsNet.Units
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
-    public enum QuantityType
+    public enum AmountOfSubstanceUnit
     {
         Undefined = 0,
-        Acceleration,
-        AmountOfSubstance,
-        AmplitudeRatio,
-        Angle,
-        ApparentPower,
-        Area,
-        AreaMomentOfInertia,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricAdmittance,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricPotentialAc,
-        ElectricPotentialDc,
-        ElectricResistance,
-        Energy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Information,
-        KinematicViscosity,
-        Length,
-        Level,
-        Mass,
-        MassFlow,
-        MassMomentOfInertia,
-        MolarEntropy,
-        MolarEnergy,
-        Molarity,
-        MolarMass,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        ReactivePower,
-        RotationalAcceleration,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        ThermalResistance,
-        Torque,
-        VitaminA,
-        Volume,
+        Centimole,
+        CentipoundMole,
+        Decimole,
+        DecipoundMole,
+        Kilomole,
+        KilopoundMole,
+        Micromole,
+        MicropoundMole,
+        Millimole,
+        MillipoundMole,
+        Mole,
+        Nanomole,
+        NanopoundMole,
+        PoundMole,
     }
 }
