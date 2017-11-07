@@ -138,6 +138,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get DynamicViscosity in MicropascalSeconds.
+        /// </summary>
+        public double MicropascalSeconds
+        {
+            get { return (_newtonSecondsPerMeterSquared) / 1e-6d; }
+        }
+
+        /// <summary>
         ///     Get DynamicViscosity in MillipascalSeconds.
         /// </summary>
         public double MillipascalSeconds
@@ -213,6 +221,44 @@ namespace UnitsNet
         public static DynamicViscosity FromCentipoise(decimal centipoise)
         {
             return new DynamicViscosity((Convert.ToDouble(centipoise)/10) * 1e-2d);
+        }
+#endif
+
+        /// <summary>
+        ///     Get DynamicViscosity from MicropascalSeconds.
+        /// </summary>
+#if NETFX_CORE
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
+        public static DynamicViscosity FromMicropascalSeconds(double micropascalseconds)
+        {
+            return new DynamicViscosity((micropascalseconds) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get DynamicViscosity from MicropascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromMicropascalSeconds(int micropascalseconds)
+        {
+            return new DynamicViscosity((micropascalseconds) * 1e-6d);
+        }
+
+        /// <summary>
+        ///     Get DynamicViscosity from MicropascalSeconds.
+        /// </summary>
+        public static DynamicViscosity FromMicropascalSeconds(long micropascalseconds)
+        {
+            return new DynamicViscosity((micropascalseconds) * 1e-6d);
+        }
+
+        // Windows Runtime Component does not support decimal type
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Get DynamicViscosity from MicropascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity FromMicropascalSeconds(decimal micropascalseconds)
+        {
+            return new DynamicViscosity((Convert.ToDouble(micropascalseconds)) * 1e-6d);
         }
 #endif
 
@@ -423,6 +469,66 @@ namespace UnitsNet
             if (centipoise.HasValue)
             {
                 return FromCentipoise(centipoise.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable DynamicViscosity from nullable MicropascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromMicropascalSeconds(double? micropascalseconds)
+        {
+            if (micropascalseconds.HasValue)
+            {
+                return FromMicropascalSeconds(micropascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable DynamicViscosity from nullable MicropascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromMicropascalSeconds(int? micropascalseconds)
+        {
+            if (micropascalseconds.HasValue)
+            {
+                return FromMicropascalSeconds(micropascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable DynamicViscosity from nullable MicropascalSeconds.
+        /// </summary>
+        public static DynamicViscosity? FromMicropascalSeconds(long? micropascalseconds)
+        {
+            if (micropascalseconds.HasValue)
+            {
+                return FromMicropascalSeconds(micropascalseconds.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable DynamicViscosity from MicropascalSeconds of type decimal.
+        /// </summary>
+        public static DynamicViscosity? FromMicropascalSeconds(decimal? micropascalseconds)
+        {
+            if (micropascalseconds.HasValue)
+            {
+                return FromMicropascalSeconds(micropascalseconds.Value);
             }
             else
             {
@@ -684,6 +790,8 @@ namespace UnitsNet
             {
                 case DynamicViscosityUnit.Centipoise:
                     return FromCentipoise(val);
+                case DynamicViscosityUnit.MicropascalSecond:
+                    return FromMicropascalSeconds(val);
                 case DynamicViscosityUnit.MillipascalSecond:
                     return FromMillipascalSeconds(val);
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared:
@@ -716,6 +824,8 @@ namespace UnitsNet
             {
                 case DynamicViscosityUnit.Centipoise:
                     return FromCentipoise(value.Value);
+                case DynamicViscosityUnit.MicropascalSecond:
+                    return FromMicropascalSeconds(value.Value);
                 case DynamicViscosityUnit.MillipascalSecond:
                     return FromMillipascalSeconds(value.Value);
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared:
@@ -883,6 +993,8 @@ namespace UnitsNet
             {
                 case DynamicViscosityUnit.Centipoise:
                     return Centipoise;
+                case DynamicViscosityUnit.MicropascalSecond:
+                    return MicropascalSeconds;
                 case DynamicViscosityUnit.MillipascalSecond:
                     return MillipascalSeconds;
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared:

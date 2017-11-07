@@ -78,6 +78,40 @@ namespace UnitsNet.Extensions.NumberToDynamicViscosity
 
         #endregion
 
+        #region MicropascalSecond
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)"/>
+        public static DynamicViscosity MicropascalSeconds(this int value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double?)"/>
+        public static DynamicViscosity? MicropascalSeconds(this int? value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)"/>
+        public static DynamicViscosity MicropascalSeconds(this long value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double?)"/>
+        public static DynamicViscosity? MicropascalSeconds(this long? value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)"/>
+        public static DynamicViscosity MicropascalSeconds(this double value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double?)"/>
+        public static DynamicViscosity? MicropascalSeconds(this double? value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)"/>
+        public static DynamicViscosity MicropascalSeconds(this float value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double?)"/>
+        public static DynamicViscosity? MicropascalSeconds(this float? value) => DynamicViscosity.FromMicropascalSeconds(value);
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)"/>
+        public static DynamicViscosity MicropascalSeconds(this decimal value) => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double?)"/>
+        public static DynamicViscosity? MicropascalSeconds(this decimal? value) => DynamicViscosity.FromMicropascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MillipascalSecond
 
         /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(double)"/>

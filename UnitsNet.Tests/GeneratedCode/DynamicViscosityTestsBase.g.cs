@@ -53,6 +53,7 @@ namespace UnitsNet.Tests
     public abstract partial class DynamicViscosityTestsBase
     {
         protected abstract double CentipoiseInOneNewtonSecondPerMeterSquared { get; }
+        protected abstract double MicropascalSecondsInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double MillipascalSecondsInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared { get; }
         protected abstract double PascalSecondsInOneNewtonSecondPerMeterSquared { get; }
@@ -60,6 +61,7 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentipoiseTolerance { get { return 1e-5; } }
+        protected virtual double MicropascalSecondsTolerance { get { return 1e-5; } }
         protected virtual double MillipascalSecondsTolerance { get { return 1e-5; } }
         protected virtual double NewtonSecondsPerMeterSquaredTolerance { get { return 1e-5; } }
         protected virtual double PascalSecondsTolerance { get { return 1e-5; } }
@@ -71,6 +73,7 @@ namespace UnitsNet.Tests
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             AssertEx.EqualTolerance(CentipoiseInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.Centipoise, CentipoiseTolerance);
+            AssertEx.EqualTolerance(MicropascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.MicropascalSeconds, MicropascalSecondsTolerance);
             AssertEx.EqualTolerance(MillipascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.MillipascalSeconds, MillipascalSecondsTolerance);
             AssertEx.EqualTolerance(NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
             AssertEx.EqualTolerance(PascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.PascalSeconds, PascalSecondsTolerance);
@@ -81,6 +84,7 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, DynamicViscosity.From(1, DynamicViscosityUnit.Centipoise).Centipoise, CentipoiseTolerance);
+            AssertEx.EqualTolerance(1, DynamicViscosity.From(1, DynamicViscosityUnit.MicropascalSecond).MicropascalSeconds, MicropascalSecondsTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.From(1, DynamicViscosityUnit.MillipascalSecond).MillipascalSeconds, MillipascalSecondsTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.From(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.From(1, DynamicViscosityUnit.PascalSecond).PascalSeconds, PascalSecondsTolerance);
@@ -92,6 +96,7 @@ namespace UnitsNet.Tests
         {
             var newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             AssertEx.EqualTolerance(CentipoiseInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.Centipoise), CentipoiseTolerance);
+            AssertEx.EqualTolerance(MicropascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.MicropascalSecond), MicropascalSecondsTolerance);
             AssertEx.EqualTolerance(MillipascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.MillipascalSecond), MillipascalSecondsTolerance);
             AssertEx.EqualTolerance(NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.NewtonSecondPerMeterSquared), NewtonSecondsPerMeterSquaredTolerance);
             AssertEx.EqualTolerance(PascalSecondsInOneNewtonSecondPerMeterSquared, newtonsecondpermetersquared.As(DynamicViscosityUnit.PascalSecond), PascalSecondsTolerance);
@@ -103,6 +108,7 @@ namespace UnitsNet.Tests
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromCentipoise(newtonsecondpermetersquared.Centipoise).NewtonSecondsPerMeterSquared, CentipoiseTolerance);
+            AssertEx.EqualTolerance(1, DynamicViscosity.FromMicropascalSeconds(newtonsecondpermetersquared.MicropascalSeconds).NewtonSecondsPerMeterSquared, MicropascalSecondsTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromMillipascalSeconds(newtonsecondpermetersquared.MillipascalSeconds).NewtonSecondsPerMeterSquared, MillipascalSecondsTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromNewtonSecondsPerMeterSquared(newtonsecondpermetersquared.NewtonSecondsPerMeterSquared).NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
             AssertEx.EqualTolerance(1, DynamicViscosity.FromPascalSeconds(newtonsecondpermetersquared.PascalSeconds).NewtonSecondsPerMeterSquared, PascalSecondsTolerance);

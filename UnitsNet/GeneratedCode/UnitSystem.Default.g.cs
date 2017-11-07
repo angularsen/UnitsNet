@@ -667,6 +667,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "cP"),
                             }),
+                        new CulturesForEnumValue((int) DynamicViscosityUnit.MicropascalSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µPaS"),
+                            }),
                         new CulturesForEnumValue((int) DynamicViscosityUnit.MillipascalSecond,
                             new[]
                             {
@@ -1953,23 +1958,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "t·mm²"),
                             }),
                     }),
-                new UnitLocalization(typeof (MolarEntropyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MolarEntropyUnit.JoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/(mol*K)"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEntropyUnit.KilojoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/(mol*K)"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEntropyUnit.MegajoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/(mol*K)"),
                 new UnitLocalization(typeof (MolarEnergyUnit),
                     new[]
                     {
@@ -1987,6 +1975,25 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MJ/mol"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MolarEntropyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MolarEntropyUnit.JoulePerMoleKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/(mol*K)"),
+                            }),
+                        new CulturesForEnumValue((int) MolarEntropyUnit.KilojoulePerMoleKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/(mol*K)"),
+                            }),
+                        new CulturesForEnumValue((int) MolarEntropyUnit.MegajoulePerMoleKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/(mol*K)"),
                             }),
                     }),
                 new UnitLocalization(typeof (MolarityUnit),
