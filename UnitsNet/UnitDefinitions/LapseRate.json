@@ -1,0 +1,20 @@
+﻿{
+  "Name": "LapseRate",
+  "BaseUnit": "DegreeCelsiusPerMeter",
+  "XmlDoc": "Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.",
+  "Units": [
+    {
+      "SingularName": "DegreeCelsiusPerMeter",
+      "PluralName": "DegreesCelciusPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°C/m" ]
+        }
+      ]
+    }
+  ]
+}

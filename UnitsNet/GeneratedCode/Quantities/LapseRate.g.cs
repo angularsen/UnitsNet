@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
+    ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
@@ -64,26 +64,26 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class MolarEntropy
+    public sealed partial class LapseRate
 #else
-    public partial struct MolarEntropy : IComparable, IComparable<MolarEntropy>
+    public partial struct LapseRate : IComparable, IComparable<LapseRate>
 #endif
     {
         /// <summary>
-        ///     Base unit of MolarEntropy.
+        ///     Base unit of LapseRate.
         /// </summary>
-        private readonly double _joulesPerMoleKelvin;
+        private readonly double _degreesCelciusPerMeter;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public MolarEntropy() : this(0)
+        public LapseRate() : this(0)
         {
         }
 #endif
 
-        public MolarEntropy(double joulespermolekelvin)
+        public LapseRate(double degreescelciuspermeter)
         {
-            _joulesPerMoleKelvin = Convert.ToDouble(joulespermolekelvin);
+            _degreesCelciusPerMeter = Convert.ToDouble(degreescelciuspermeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        MolarEntropy(long joulespermolekelvin)
+        LapseRate(long degreescelciuspermeter)
         {
-            _joulesPerMoleKelvin = Convert.ToDouble(joulespermolekelvin);
+            _degreesCelciusPerMeter = Convert.ToDouble(degreescelciuspermeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        MolarEntropy(decimal joulespermolekelvin)
+        LapseRate(decimal degreescelciuspermeter)
         {
-            _joulesPerMoleKelvin = Convert.ToDouble(joulespermolekelvin);
+            _degreesCelciusPerMeter = Convert.ToDouble(degreescelciuspermeter);
         }
 
         #region Properties
@@ -114,178 +114,132 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MolarEntropy;
+        public static QuantityType QuantityType => QuantityType.LapseRate;
 
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static MolarEntropyUnit BaseUnit
+        public static LapseRateUnit BaseUnit
         {
-            get { return MolarEntropyUnit.JoulePerMoleKelvin; }
+            get { return LapseRateUnit.DegreeCelsiusPerMeter; }
         }
 
         /// <summary>
-        ///     All units of measurement for the MolarEntropy quantity.
+        ///     All units of measurement for the LapseRate quantity.
         /// </summary>
-        public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().ToArray();
+        public static LapseRateUnit[] Units { get; } = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().ToArray();
 
         /// <summary>
-        ///     Get MolarEntropy in JoulesPerMoleKelvin.
+        ///     Get LapseRate in DegreesCelciusPerMeter.
         /// </summary>
-        public double JoulesPerMoleKelvin
+        public double DegreesCelciusPerMeter
         {
-            get { return _joulesPerMoleKelvin; }
+            get { return _degreesCelciusPerMeter; }
         }
 
         /// <summary>
-        ///     Get MolarEntropy in KilojoulesPerMoleKelvin.
+        ///     Get LapseRate in KilodegreesCelciusPerMeter.
         /// </summary>
-        public double KilojoulesPerMoleKelvin
+        public double KilodegreesCelciusPerMeter
         {
-            get { return (_joulesPerMoleKelvin) / 1e3d; }
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy in MegajoulesPerMoleKelvin.
-        /// </summary>
-        public double MegajoulesPerMoleKelvin
-        {
-            get { return (_joulesPerMoleKelvin) / 1e6d; }
+            get { return (_degreesCelciusPerMeter) / 1e3d; }
         }
 
         #endregion
 
         #region Static
 
-        public static MolarEntropy Zero
+        public static LapseRate Zero
         {
-            get { return new MolarEntropy(); }
+            get { return new LapseRate(); }
         }
 
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
+        ///     Get LapseRate from DegreesCelciusPerMeter.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarEntropy FromJoulesPerMoleKelvin(double joulespermolekelvin)
+        public static LapseRate FromDegreesCelciusPerMeter(double degreescelciuspermeter)
         {
-            return new MolarEntropy(joulespermolekelvin);
+            return new LapseRate(degreescelciuspermeter);
         }
 
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
+        ///     Get LapseRate from DegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(int joulespermolekelvin)
+        public static LapseRate FromDegreesCelciusPerMeter(int degreescelciuspermeter)
         {
-            return new MolarEntropy(joulespermolekelvin);
+            return new LapseRate(degreescelciuspermeter);
         }
 
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
+        ///     Get LapseRate from DegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(long joulespermolekelvin)
+        public static LapseRate FromDegreesCelciusPerMeter(long degreescelciuspermeter)
         {
-            return new MolarEntropy(joulespermolekelvin);
+            return new LapseRate(degreescelciuspermeter);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin of type decimal.
+        ///     Get LapseRate from DegreesCelciusPerMeter of type decimal.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(decimal joulespermolekelvin)
+        public static LapseRate FromDegreesCelciusPerMeter(decimal degreescelciuspermeter)
         {
-            return new MolarEntropy(Convert.ToDouble(joulespermolekelvin));
+            return new LapseRate(Convert.ToDouble(degreescelciuspermeter));
         }
 #endif
 
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
+        ///     Get LapseRate from KilodegreesCelciusPerMeter.
         /// </summary>
 #if NETFX_CORE
         [Windows.Foundation.Metadata.DefaultOverload]
 #endif
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(double kilojoulespermolekelvin)
+        public static LapseRate FromKilodegreesCelciusPerMeter(double kilodegreescelciuspermeter)
         {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
+            return new LapseRate((kilodegreescelciuspermeter) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
+        ///     Get LapseRate from KilodegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(int kilojoulespermolekelvin)
+        public static LapseRate FromKilodegreesCelciusPerMeter(int kilodegreescelciuspermeter)
         {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
+            return new LapseRate((kilodegreescelciuspermeter) * 1e3d);
         }
 
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
+        ///     Get LapseRate from KilodegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(long kilojoulespermolekelvin)
+        public static LapseRate FromKilodegreesCelciusPerMeter(long kilodegreescelciuspermeter)
         {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
+            return new LapseRate((kilodegreescelciuspermeter) * 1e3d);
         }
 
         // Windows Runtime Component does not support decimal type
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin of type decimal.
+        ///     Get LapseRate from KilodegreesCelciusPerMeter of type decimal.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(decimal kilojoulespermolekelvin)
+        public static LapseRate FromKilodegreesCelciusPerMeter(decimal kilodegreescelciuspermeter)
         {
-            return new MolarEntropy((Convert.ToDouble(kilojoulespermolekelvin)) * 1e3d);
-        }
-#endif
-
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
-        /// </summary>
-#if NETFX_CORE
-        [Windows.Foundation.Metadata.DefaultOverload]
-#endif
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(double megajoulespermolekelvin)
-        {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(int megajoulespermolekelvin)
-        {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(long megajoulespermolekelvin)
-        {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(decimal megajoulespermolekelvin)
-        {
-            return new MolarEntropy((Convert.ToDouble(megajoulespermolekelvin)) * 1e6d);
+            return new LapseRate((Convert.ToDouble(kilodegreescelciuspermeter)) * 1e3d);
         }
 #endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable DegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(double? joulespermolekelvin)
+        public static LapseRate? FromDegreesCelciusPerMeter(double? degreescelciuspermeter)
         {
-            if (joulespermolekelvin.HasValue)
+            if (degreescelciuspermeter.HasValue)
             {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
+                return FromDegreesCelciusPerMeter(degreescelciuspermeter.Value);
             }
             else
             {
@@ -294,13 +248,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable DegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(int? joulespermolekelvin)
+        public static LapseRate? FromDegreesCelciusPerMeter(int? degreescelciuspermeter)
         {
-            if (joulespermolekelvin.HasValue)
+            if (degreescelciuspermeter.HasValue)
             {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
+                return FromDegreesCelciusPerMeter(degreescelciuspermeter.Value);
             }
             else
             {
@@ -309,13 +263,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable DegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(long? joulespermolekelvin)
+        public static LapseRate? FromDegreesCelciusPerMeter(long? degreescelciuspermeter)
         {
-            if (joulespermolekelvin.HasValue)
+            if (degreescelciuspermeter.HasValue)
             {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
+                return FromDegreesCelciusPerMeter(degreescelciuspermeter.Value);
             }
             else
             {
@@ -324,13 +278,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from JoulesPerMoleKelvin of type decimal.
+        ///     Get nullable LapseRate from DegreesCelciusPerMeter of type decimal.
         /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(decimal? joulespermolekelvin)
+        public static LapseRate? FromDegreesCelciusPerMeter(decimal? degreescelciuspermeter)
         {
-            if (joulespermolekelvin.HasValue)
+            if (degreescelciuspermeter.HasValue)
             {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
+                return FromDegreesCelciusPerMeter(degreescelciuspermeter.Value);
             }
             else
             {
@@ -339,13 +293,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable KilodegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(double? kilojoulespermolekelvin)
+        public static LapseRate? FromKilodegreesCelciusPerMeter(double? kilodegreescelciuspermeter)
         {
-            if (kilojoulespermolekelvin.HasValue)
+            if (kilodegreescelciuspermeter.HasValue)
             {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
+                return FromKilodegreesCelciusPerMeter(kilodegreescelciuspermeter.Value);
             }
             else
             {
@@ -354,13 +308,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable KilodegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(int? kilojoulespermolekelvin)
+        public static LapseRate? FromKilodegreesCelciusPerMeter(int? kilodegreescelciuspermeter)
         {
-            if (kilojoulespermolekelvin.HasValue)
+            if (kilodegreescelciuspermeter.HasValue)
             {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
+                return FromKilodegreesCelciusPerMeter(kilodegreescelciuspermeter.Value);
             }
             else
             {
@@ -369,13 +323,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
+        ///     Get nullable LapseRate from nullable KilodegreesCelciusPerMeter.
         /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(long? kilojoulespermolekelvin)
+        public static LapseRate? FromKilodegreesCelciusPerMeter(long? kilodegreescelciuspermeter)
         {
-            if (kilojoulespermolekelvin.HasValue)
+            if (kilodegreescelciuspermeter.HasValue)
             {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
+                return FromKilodegreesCelciusPerMeter(kilodegreescelciuspermeter.Value);
             }
             else
             {
@@ -384,73 +338,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable MolarEntropy from KilojoulesPerMoleKelvin of type decimal.
+        ///     Get nullable LapseRate from KilodegreesCelciusPerMeter of type decimal.
         /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(decimal? kilojoulespermolekelvin)
+        public static LapseRate? FromKilodegreesCelciusPerMeter(decimal? kilodegreescelciuspermeter)
         {
-            if (kilojoulespermolekelvin.HasValue)
+            if (kilodegreescelciuspermeter.HasValue)
             {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(double? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(int? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(long? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from MegajoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(decimal? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
+                return FromKilodegreesCelciusPerMeter(kilodegreescelciuspermeter.Value);
             }
             else
             {
@@ -461,21 +355,19 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
+        ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
         /// </summary>
         /// <param name="val">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(double val, MolarEntropyUnit fromUnit)
+        /// <returns>LapseRate unit value.</returns>
+        public static LapseRate From(double val, LapseRateUnit fromUnit)
         {
             switch (fromUnit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin:
-                    return FromJoulesPerMoleKelvin(val);
-                case MolarEntropyUnit.KilojoulePerMoleKelvin:
-                    return FromKilojoulesPerMoleKelvin(val);
-                case MolarEntropyUnit.MegajoulePerMoleKelvin:
-                    return FromMegajoulesPerMoleKelvin(val);
+                case LapseRateUnit.DegreeCelsiusPerMeter:
+                    return FromDegreesCelciusPerMeter(val);
+                case LapseRateUnit.KilodegreeCelsiusPerMeter:
+                    return FromKilodegreesCelciusPerMeter(val);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -485,12 +377,12 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
+        ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy? From(double? value, MolarEntropyUnit fromUnit)
+        /// <returns>LapseRate unit value.</returns>
+        public static LapseRate? From(double? value, LapseRateUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -498,12 +390,10 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin:
-                    return FromJoulesPerMoleKelvin(value.Value);
-                case MolarEntropyUnit.KilojoulePerMoleKelvin:
-                    return FromKilojoulesPerMoleKelvin(value.Value);
-                case MolarEntropyUnit.MegajoulePerMoleKelvin:
-                    return FromMegajoulesPerMoleKelvin(value.Value);
+                case LapseRateUnit.DegreeCelsiusPerMeter:
+                    return FromDegreesCelciusPerMeter(value.Value);
+                case LapseRateUnit.KilodegreeCelsiusPerMeter:
+                    return FromKilodegreesCelciusPerMeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -517,7 +407,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MolarEntropyUnit unit)
+        public static string GetAbbreviation(LapseRateUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -529,7 +419,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MolarEntropyUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(LapseRateUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -540,39 +430,39 @@ namespace UnitsNet
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static MolarEntropy operator -(MolarEntropy right)
+        public static LapseRate operator -(LapseRate right)
         {
-            return new MolarEntropy(-right._joulesPerMoleKelvin);
+            return new LapseRate(-right._degreesCelciusPerMeter);
         }
 
-        public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
+        public static LapseRate operator +(LapseRate left, LapseRate right)
         {
-            return new MolarEntropy(left._joulesPerMoleKelvin + right._joulesPerMoleKelvin);
+            return new LapseRate(left._degreesCelciusPerMeter + right._degreesCelciusPerMeter);
         }
 
-        public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
+        public static LapseRate operator -(LapseRate left, LapseRate right)
         {
-            return new MolarEntropy(left._joulesPerMoleKelvin - right._joulesPerMoleKelvin);
+            return new LapseRate(left._degreesCelciusPerMeter - right._degreesCelciusPerMeter);
         }
 
-        public static MolarEntropy operator *(double left, MolarEntropy right)
+        public static LapseRate operator *(double left, LapseRate right)
         {
-            return new MolarEntropy(left*right._joulesPerMoleKelvin);
+            return new LapseRate(left*right._degreesCelciusPerMeter);
         }
 
-        public static MolarEntropy operator *(MolarEntropy left, double right)
+        public static LapseRate operator *(LapseRate left, double right)
         {
-            return new MolarEntropy(left._joulesPerMoleKelvin*(double)right);
+            return new LapseRate(left._degreesCelciusPerMeter*(double)right);
         }
 
-        public static MolarEntropy operator /(MolarEntropy left, double right)
+        public static LapseRate operator /(LapseRate left, double right)
         {
-            return new MolarEntropy(left._joulesPerMoleKelvin/(double)right);
+            return new LapseRate(left._degreesCelciusPerMeter/(double)right);
         }
 
-        public static double operator /(MolarEntropy left, MolarEntropy right)
+        public static double operator /(LapseRate left, LapseRate right)
         {
-            return Convert.ToDouble(left._joulesPerMoleKelvin/right._joulesPerMoleKelvin);
+            return Convert.ToDouble(left._degreesCelciusPerMeter/right._degreesCelciusPerMeter);
         }
 #endif
 
@@ -583,8 +473,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is MolarEntropy)) throw new ArgumentException("Expected type MolarEntropy.", "obj");
-            return CompareTo((MolarEntropy) obj);
+            if (!(obj is LapseRate)) throw new ArgumentException("Expected type LapseRate.", "obj");
+            return CompareTo((LapseRate) obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -593,43 +483,43 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(MolarEntropy other)
+        int CompareTo(LapseRate other)
         {
-            return _joulesPerMoleKelvin.CompareTo(other._joulesPerMoleKelvin);
+            return _degreesCelciusPerMeter.CompareTo(other._degreesCelciusPerMeter);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static bool operator <=(MolarEntropy left, MolarEntropy right)
+        public static bool operator <=(LapseRate left, LapseRate right)
         {
-            return left._joulesPerMoleKelvin <= right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter <= right._degreesCelciusPerMeter;
         }
 
-        public static bool operator >=(MolarEntropy left, MolarEntropy right)
+        public static bool operator >=(LapseRate left, LapseRate right)
         {
-            return left._joulesPerMoleKelvin >= right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter >= right._degreesCelciusPerMeter;
         }
 
-        public static bool operator <(MolarEntropy left, MolarEntropy right)
+        public static bool operator <(LapseRate left, LapseRate right)
         {
-            return left._joulesPerMoleKelvin < right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter < right._degreesCelciusPerMeter;
         }
 
-        public static bool operator >(MolarEntropy left, MolarEntropy right)
+        public static bool operator >(LapseRate left, LapseRate right)
         {
-            return left._joulesPerMoleKelvin > right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter > right._degreesCelciusPerMeter;
         }
 
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)
+        public static bool operator ==(LapseRate left, LapseRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerMoleKelvin == right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter == right._degreesCelciusPerMeter;
         }
 
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)
+        public static bool operator !=(LapseRate left, LapseRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerMoleKelvin != right._joulesPerMoleKelvin;
+            return left._degreesCelciusPerMeter != right._degreesCelciusPerMeter;
         }
 #endif
 
@@ -640,12 +530,12 @@ namespace UnitsNet
                 return false;
             }
 
-            return _joulesPerMoleKelvin.Equals(((MolarEntropy) obj)._joulesPerMoleKelvin);
+            return _degreesCelciusPerMeter.Equals(((LapseRate) obj)._degreesCelciusPerMeter);
         }
 
         public override int GetHashCode()
         {
-            return _joulesPerMoleKelvin.GetHashCode();
+            return _degreesCelciusPerMeter.GetHashCode();
         }
 
         #endregion
@@ -657,16 +547,14 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(MolarEntropyUnit unit)
+        public double As(LapseRateUnit unit)
         {
             switch (unit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin:
-                    return JoulesPerMoleKelvin;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin:
-                    return KilojoulesPerMoleKelvin;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin:
-                    return MegajoulesPerMoleKelvin;
+                case LapseRateUnit.DegreeCelsiusPerMeter:
+                    return DegreesCelciusPerMeter;
+                case LapseRateUnit.KilodegreeCelsiusPerMeter:
+                    return KilodegreesCelciusPerMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -699,7 +587,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MolarEntropy Parse(string str)
+        public static LapseRate Parse(string str)
         {
             return Parse(str, null);
         }
@@ -727,7 +615,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MolarEntropy Parse(string str, [CanBeNull] Culture culture)
+        public static LapseRate Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -737,13 +625,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return QuantityParser.Parse<MolarEntropy, MolarEntropyUnit>(str, formatProvider,
+            return QuantityParser.Parse<LapseRate, LapseRateUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    MolarEntropyUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    LapseRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoulesPerMoleKelvin(x.JoulesPerMoleKelvin + y.JoulesPerMoleKelvin));
+                }, (x, y) => FromDegreesCelciusPerMeter(x.DegreesCelciusPerMeter + y.DegreesCelciusPerMeter));
         }
 
         /// <summary>
@@ -754,7 +642,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out MolarEntropy result)
+        public static bool TryParse([CanBeNull] string str, out LapseRate result)
         {
             return TryParse(str, null, out result);
         }
@@ -768,7 +656,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out MolarEntropy result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out LapseRate result)
         {
             try
             {
@@ -777,7 +665,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(MolarEntropy);
+                result = default(LapseRate);
                 return false;
             }
         }
@@ -790,7 +678,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MolarEntropyUnit ParseUnit(string str)
+        public static LapseRateUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -803,7 +691,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MolarEntropyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static LapseRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -823,16 +711,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static MolarEntropyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static LapseRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<MolarEntropyUnit>(str.Trim());
+            var unit = unitSystem.Parse<LapseRateUnit>(str.Trim());
 
-            if (unit == MolarEntropyUnit.Undefined)
+            if (unit == LapseRateUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MolarEntropyUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized LapseRateUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -844,9 +732,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is JoulePerMoleKelvin
+        ///     Set the default unit used by ToString(). Default is DegreeCelsiusPerMeter
         /// </summary>
-        public static MolarEntropyUnit ToStringDefaultUnit { get; set; } = MolarEntropyUnit.JoulePerMoleKelvin;
+        public static LapseRateUnit ToStringDefaultUnit { get; set; } = LapseRateUnit.DegreeCelsiusPerMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -862,7 +750,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(MolarEntropyUnit unit)
+        public string ToString(LapseRateUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -873,7 +761,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(MolarEntropyUnit unit, [CanBeNull] Culture culture)
+        public string ToString(LapseRateUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -886,7 +774,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MolarEntropyUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(LapseRateUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -902,7 +790,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MolarEntropyUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(LapseRateUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -920,24 +808,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of MolarEntropy
+        /// Represents the largest possible value of LapseRate
         /// </summary>
-        public static MolarEntropy MaxValue
+        public static LapseRate MaxValue
         {
             get
             {
-                return new MolarEntropy(double.MaxValue);
+                return new LapseRate(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of MolarEntropy
+        /// Represents the smallest possible value of LapseRate
         /// </summary>
-        public static MolarEntropy MinValue
+        public static LapseRate MinValue
         {
             get
             {
-                return new MolarEntropy(double.MinValue);
+                return new LapseRate(double.MinValue);
             }
         }
     }
