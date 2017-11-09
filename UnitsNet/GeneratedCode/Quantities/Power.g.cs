@@ -2293,6 +2293,19 @@ namespace UnitsNet
             return _watts.Equals(((Power) obj)._watts);
         }
 
+        /// <summary>
+        ///     Compare equality to another Power by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Power other, Power maxError)
+        {
+            return Math.Abs(_watts - other._watts) <= maxError._watts;
+        }
+
         public override int GetHashCode()
         {
             return _watts.GetHashCode();

@@ -1610,12 +1610,14 @@ namespace UnitsNet
             return left._squareMeters > right._squareMeters;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Area left, Area right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._squareMeters == right._squareMeters;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Area left, Area right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1623,6 +1625,7 @@ namespace UnitsNet
         }
 #endif
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -1631,6 +1634,19 @@ namespace UnitsNet
             }
 
             return _squareMeters.Equals(((Area) obj)._squareMeters);
+        }
+
+        /// <summary>
+        ///     Compare equality to another Area by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Area other, Area maxError)
+        {
+            return Math.Abs(_squareMeters - other._squareMeters) <= maxError._squareMeters;
         }
 
         public override int GetHashCode()

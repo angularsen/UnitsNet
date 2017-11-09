@@ -4912,12 +4912,14 @@ namespace UnitsNet
             return left._cubicMeters > right._cubicMeters;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Volume left, Volume right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._cubicMeters == right._cubicMeters;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Volume left, Volume right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -4925,6 +4927,7 @@ namespace UnitsNet
         }
 #endif
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -4933,6 +4936,19 @@ namespace UnitsNet
             }
 
             return _cubicMeters.Equals(((Volume) obj)._cubicMeters);
+        }
+
+        /// <summary>
+        ///     Compare equality to another Volume by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Volume other, Volume maxError)
+        {
+            return Math.Abs(_cubicMeters - other._cubicMeters) <= maxError._cubicMeters;
         }
 
         public override int GetHashCode()

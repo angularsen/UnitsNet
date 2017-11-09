@@ -3173,6 +3173,19 @@ namespace UnitsNet
             return _bits.Equals(((Information) obj)._bits);
         }
 
+        /// <summary>
+        ///     Compare equality to another Information by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Information other, Information maxError)
+        {
+            return Math.Abs(_bits - other._bits) <= maxError._bits;
+        }
+
         public override int GetHashCode()
         {
             return _bits.GetHashCode();

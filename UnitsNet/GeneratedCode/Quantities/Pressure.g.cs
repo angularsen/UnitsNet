@@ -4361,12 +4361,14 @@ namespace UnitsNet
             return left._pascals > right._pascals;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._pascals == right._pascals;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -4374,6 +4376,7 @@ namespace UnitsNet
         }
 #endif
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -4382,6 +4385,19 @@ namespace UnitsNet
             }
 
             return _pascals.Equals(((Pressure) obj)._pascals);
+        }
+
+        /// <summary>
+        ///     Compare equality to another Pressure by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Pressure other, Pressure maxError)
+        {
+            return Math.Abs(_pascals - other._pascals) <= maxError._pascals;
         }
 
         public override int GetHashCode()
