@@ -1481,6 +1481,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "Ст"),
                             }),
                     }),
+                new UnitLocalization(typeof (LapseRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LapseRateUnit.DegreeCelsiusPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°C/m"),
+                            }),
+                        new CulturesForEnumValue((int) LapseRateUnit.KilodegreeCelsiusPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "k°C/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (LengthUnit),
                     new[]
                     {
