@@ -46,7 +46,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LapseRateTests : LapseRateTestsBase
     {
-        // TODO Override properties in base class here
         protected override double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer => 1e0;
     }
 }
