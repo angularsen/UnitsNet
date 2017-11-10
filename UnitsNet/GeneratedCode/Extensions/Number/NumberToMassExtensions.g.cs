@@ -6,17 +6,17 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -248,6 +248,40 @@ namespace UnitsNet.Extensions.NumberToMass
 
         #endregion
 
+        #region Kilopound
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double)"/>
+        public static Mass Kilopounds(this int value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double?)"/>
+        public static Mass? Kilopounds(this int? value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double)"/>
+        public static Mass Kilopounds(this long value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double?)"/>
+        public static Mass? Kilopounds(this long? value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double)"/>
+        public static Mass Kilopounds(this double value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double?)"/>
+        public static Mass? Kilopounds(this double? value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double)"/>
+        public static Mass Kilopounds(this float value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double?)"/>
+        public static Mass? Kilopounds(this float? value) => Mass.FromKilopounds(value);
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double)"/>
+        public static Mass Kilopounds(this decimal value) => Mass.FromKilopounds(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromKilopounds(double?)"/>
+        public static Mass? Kilopounds(this decimal? value) => Mass.FromKilopounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kilotonne
 
         /// <inheritdoc cref="Mass.FromKilotonnes(double)"/>
@@ -347,6 +381,40 @@ namespace UnitsNet.Extensions.NumberToMass
 
         /// <inheritdoc cref="Mass.FromLongTons(double?)"/>
         public static Mass? LongTons(this decimal? value) => Mass.FromLongTons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Megapound
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double)"/>
+        public static Mass Megapounds(this int value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double?)"/>
+        public static Mass? Megapounds(this int? value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double)"/>
+        public static Mass Megapounds(this long value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double?)"/>
+        public static Mass? Megapounds(this long? value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double)"/>
+        public static Mass Megapounds(this double value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double?)"/>
+        public static Mass? Megapounds(this double? value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double)"/>
+        public static Mass Megapounds(this float value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double?)"/>
+        public static Mass? Megapounds(this float? value) => Mass.FromMegapounds(value);
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double)"/>
+        public static Mass Megapounds(this decimal value) => Mass.FromMegapounds(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromMegapounds(double?)"/>
+        public static Mass? Megapounds(this decimal? value) => Mass.FromMegapounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

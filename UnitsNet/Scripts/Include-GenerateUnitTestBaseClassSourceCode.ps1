@@ -1,12 +1,12 @@
-function GenerateUnitTestBaseClassSourceCode($unitClass)
+function GenerateUnitTestBaseClassSourceCode($quantity)
 {
-    $className = $unitClass.Name;
-    $baseType = $unitClass.BaseType;
-    $units = $unitClass.Units;
-    $baseUnit = $units | where { $_.SingularName -eq $unitClass.BaseUnit }
+    $quantityName = $quantity.Name;
+    $baseType = $quantity.BaseType;
+    $units = $quantity.Units;
+    $baseUnit = $units | where { $_.SingularName -eq $quantity.BaseUnit }
     $baseUnitPluralName = $baseUnit.PluralName
     $baseUnitVariableName = $baseUnit.SingularName.ToLowerInvariant();
-    $unitEnumName = "$($className)Unit";
+    $unitEnumName = "$($quantityName)Unit";
 
 @"
 //------------------------------------------------------------------------------
@@ -17,17 +17,17 @@ function GenerateUnitTestBaseClassSourceCode($unitClass)
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,10 +58,10 @@ using Xunit;
 namespace UnitsNet.Tests
 {
     /// <summary>
-    /// Test of $className.
+    /// Test of $quantityName.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class $($className)TestsBase
+    public abstract partial class $($quantityName)TestsBase
     {
 "@;    foreach ($unit in $units) {@"
         protected abstract double $($unit.PluralName)InOne$($baseUnit.SingularName) { get; }
@@ -74,9 +74,9 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void $($baseUnit.SingularName)To$($className)Units()
+        public void $($baseUnit.SingularName)To$($quantityName)Units()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
             AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.$($unit.PluralName), $($unit.PluralName)Tolerance);
 "@; }@"
@@ -86,40 +86,40 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
 "@; foreach ($unit in $units) {@"
-            AssertEx.EqualTolerance(1, $className.From(1, $unitEnumName.$($unit.SingularName)).$($unit.PluralName), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(1, $quantityName.From(1, $unitEnumName.$($unit.SingularName)).$($unit.PluralName), $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
         [Fact]
         public void As()
         {
-            var $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            var $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
-            AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.As($($className)Unit.$($unit.SingularName)), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.As($($quantityName)Unit.$($unit.SingularName)), $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
-            AssertEx.EqualTolerance(1, $className.From$($unit.PluralName)($baseUnitVariableName.$($unit.PluralName)).$baseUnitPluralName, $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(1, $quantityName.From$($unit.PluralName)($baseUnitVariableName.$($unit.PluralName)).$baseUnitPluralName, $($unit.PluralName)Tolerance);
 "@; }@"
         }
 
-"@; if ($unitClass.Logarithmic -eq $true) {@"
+"@; if ($quantity.Logarithmic -eq $true) {@"
         [Fact]
         public void LogarithmicArithmeticOperators()
         {
-            $className v = $className.From$baseUnitPluralName(40);
+            $quantityName v = $quantityName.From$baseUnitPluralName(40);
             AssertEx.EqualTolerance(-40, -v.$baseUnitPluralName, $($unit.PluralName)Tolerance);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
             AssertEx.EqualTolerance(50, (v*10).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             AssertEx.EqualTolerance(50, (10*v).$baseUnitPluralName, $($unit.PluralName)Tolerance);
             AssertEx.EqualTolerance(35, (v/5).$baseUnitPluralName, $($unit.PluralName)Tolerance);
-            AssertEx.EqualTolerance(35, v/$className.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(35, v/$quantityName.From$baseUnitPluralName(5), $($unit.PluralName)Tolerance);
         }
 
         protected abstract void AssertLogarithmicAddition();
@@ -127,26 +127,26 @@ namespace UnitsNet.Tests
         protected abstract void AssertLogarithmicSubtraction();
 
 "@; }
-    elseif ($unitClass.GenerateArithmetic -eq $true) {@"
+    elseif ($quantity.GenerateArithmetic -eq $true) {@"
         [Fact]
         public void ArithmeticOperators()
         {
-            $className v = $className.From$baseUnitPluralName(1);
+            $quantityName v = $quantityName.From$baseUnitPluralName(1);
             AssertEx.EqualTolerance(-1, -v.$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            AssertEx.EqualTolerance(2, ($className.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, ($quantityName.From$baseUnitPluralName(3)-v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
             AssertEx.EqualTolerance(2, (v + v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
             AssertEx.EqualTolerance(10, (v*10).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
             AssertEx.EqualTolerance(10, (10*v).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            AssertEx.EqualTolerance(2, ($className.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
-            AssertEx.EqualTolerance(2, $className.From$baseUnitPluralName(10)/$className.From$baseUnitPluralName(5), $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, ($quantityName.From$baseUnitPluralName(10)/5).$baseUnitPluralName, $($baseUnit.PluralName)Tolerance);
+            AssertEx.EqualTolerance(2, $quantityName.From$baseUnitPluralName(10)/$quantityName.From$baseUnitPluralName(5), $($baseUnit.PluralName)Tolerance);
         }
 "@; }@"
 
         [Fact]
         public void ComparisonOperators()
         {
-            $className one$($baseUnit.SingularName) = $className.From$baseUnitPluralName(1);
-            $className two$baseUnitPluralName = $className.From$baseUnitPluralName(2);
+            $quantityName one$($baseUnit.SingularName) = $quantityName.From$baseUnitPluralName(1);
+            $quantityName two$baseUnitPluralName = $quantityName.From$baseUnitPluralName(2);
 
             Assert.True(one$($baseUnit.SingularName) < two$baseUnitPluralName);
             Assert.True(one$($baseUnit.SingularName) <= two$baseUnitPluralName);
@@ -162,23 +162,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToIsImplemented()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.Equal(0, $baseUnitVariableName.CompareTo($baseUnitVariableName));
-            Assert.True($baseUnitVariableName.CompareTo($className.Zero) > 0);
-            Assert.True($className.Zero.CompareTo($baseUnitVariableName) < 0);
+            Assert.True($baseUnitVariableName.CompareTo($quantityName.Zero) > 0);
+            Assert.True($quantityName.Zero.CompareTo($baseUnitVariableName) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.Throws<ArgumentException>(() => $baseUnitVariableName.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.Throws<ArgumentNullException>(() => $baseUnitVariableName.CompareTo(null));
         }
 
@@ -186,8 +186,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualityOperators()
         {
-            $className a = $className.From$baseUnitPluralName(1);
-            $className b = $className.From$baseUnitPluralName(2);
+            $quantityName a = $quantityName.From$baseUnitPluralName(1);
+            $quantityName b = $quantityName.From$baseUnitPluralName(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -201,22 +201,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            $className v = $className.From$baseUnitPluralName(1);
-            Assert.True(v.Equals($className.From$baseUnitPluralName(1)));
-            Assert.False(v.Equals($className.Zero));
+            $quantityName v = $quantityName.From$baseUnitPluralName(1);
+            Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1)));
+            Assert.False(v.Equals($quantityName.Zero));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.False($baseUnitVariableName.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            $className $baseUnitVariableName = $className.From$baseUnitPluralName(1);
+            $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.False($baseUnitVariableName.Equals(null));
         }
     }

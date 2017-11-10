@@ -1,5 +1,5 @@
 ﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 60000.00000;
 
-        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666213;
+        protected override double CubicFeetPerHourInOneCubicMeterPerSecond => 1.271328001973604e+5;
+
+        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666721489;
 
         protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
 

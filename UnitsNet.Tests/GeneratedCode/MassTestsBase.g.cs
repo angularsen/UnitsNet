@@ -6,17 +6,17 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,9 +58,11 @@ namespace UnitsNet.Tests
         protected abstract double GramsInOneKilogram { get; }
         protected abstract double HectogramsInOneKilogram { get; }
         protected abstract double KilogramsInOneKilogram { get; }
+        protected abstract double KilopoundsInOneKilogram { get; }
         protected abstract double KilotonnesInOneKilogram { get; }
         protected abstract double LongHundredweightInOneKilogram { get; }
         protected abstract double LongTonsInOneKilogram { get; }
+        protected abstract double MegapoundsInOneKilogram { get; }
         protected abstract double MegatonnesInOneKilogram { get; }
         protected abstract double MicrogramsInOneKilogram { get; }
         protected abstract double MilligramsInOneKilogram { get; }
@@ -79,9 +81,11 @@ namespace UnitsNet.Tests
         protected virtual double GramsTolerance { get { return 1e-5; } }
         protected virtual double HectogramsTolerance { get { return 1e-5; } }
         protected virtual double KilogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsTolerance { get { return 1e-5; } }
         protected virtual double KilotonnesTolerance { get { return 1e-5; } }
         protected virtual double LongHundredweightTolerance { get { return 1e-5; } }
         protected virtual double LongTonsTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsTolerance { get { return 1e-5; } }
         protected virtual double MegatonnesTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsTolerance { get { return 1e-5; } }
         protected virtual double MilligramsTolerance { get { return 1e-5; } }
@@ -104,9 +108,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.Grams, GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.Hectograms, HectogramsTolerance);
             AssertEx.EqualTolerance(KilogramsInOneKilogram, kilogram.Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(KilopoundsInOneKilogram, kilogram.Kilopounds, KilopoundsTolerance);
             AssertEx.EqualTolerance(KilotonnesInOneKilogram, kilogram.Kilotonnes, KilotonnesTolerance);
             AssertEx.EqualTolerance(LongHundredweightInOneKilogram, kilogram.LongHundredweight, LongHundredweightTolerance);
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.LongTons, LongTonsTolerance);
+            AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.Megapounds, MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.Megatonnes, MegatonnesTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.Micrograms, MicrogramsTolerance);
             AssertEx.EqualTolerance(MilligramsInOneKilogram, kilogram.Milligrams, MilligramsTolerance);
@@ -128,9 +134,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Gram).Grams, GramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Hectogram).Hectograms, HectogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilogram).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilopound).Kilopounds, KilopoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Kilotonne).Kilotonnes, KilotonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongHundredweight).LongHundredweight, LongHundredweightTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.LongTon).LongTons, LongTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megapound).Megapounds, MegapoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Megatonne).Megatonnes, MegatonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Microgram).Micrograms, MicrogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Milligram).Milligrams, MilligramsTolerance);
@@ -153,9 +161,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.As(MassUnit.Gram), GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), HectogramsTolerance);
             AssertEx.EqualTolerance(KilogramsInOneKilogram, kilogram.As(MassUnit.Kilogram), KilogramsTolerance);
+            AssertEx.EqualTolerance(KilopoundsInOneKilogram, kilogram.As(MassUnit.Kilopound), KilopoundsTolerance);
             AssertEx.EqualTolerance(KilotonnesInOneKilogram, kilogram.As(MassUnit.Kilotonne), KilotonnesTolerance);
             AssertEx.EqualTolerance(LongHundredweightInOneKilogram, kilogram.As(MassUnit.LongHundredweight), LongHundredweightTolerance);
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), LongTonsTolerance);
+            AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.As(MassUnit.Megapound), MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), MegatonnesTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), MicrogramsTolerance);
             AssertEx.EqualTolerance(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), MilligramsTolerance);
@@ -178,9 +188,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
             AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);

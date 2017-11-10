@@ -1,5 +1,5 @@
 ﻿// Copyright © 2007 by Initial Force AS.  All rights reserved.
-// https://github.com/anjdreas/UnitsNet
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,7 @@ namespace UnitsNet.Tests.CustomCode
     public class DynamicViscosityTests : DynamicViscosityTestsBase
     {
         protected override double CentipoiseInOneNewtonSecondPerMeterSquared => 1e3;
+        protected override double MicropascalSecondsInOneNewtonSecondPerMeterSquared => 1e6;
         protected override double MillipascalSecondsInOneNewtonSecondPerMeterSquared => 1e3;
         protected override double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared => 1;
         protected override double PascalSecondsInOneNewtonSecondPerMeterSquared => 1;
