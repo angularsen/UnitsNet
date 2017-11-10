@@ -18,7 +18,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -46,7 +46,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LapseRateTests : LapseRateTestsBase
     {
-        protected override double DegreesCelciusPerMeterInOneDegreeCelsiusPerMeter => 1e0;
-        protected override double KilodegreesCelciusPerMeterInOneDegreeCelsiusPerMeter => 1e-3;
+        // TODO Override properties in base class here
+        protected override double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer => 1e0;
     }
 }

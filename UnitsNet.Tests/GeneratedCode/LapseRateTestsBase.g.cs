@@ -52,104 +52,98 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LapseRateTestsBase
     {
-        protected abstract double DegreesCelciusPerMeterInOneDegreeCelsiusPerMeter { get; }
-        protected abstract double KilodegreesCelciusPerMeterInOneDegreeCelsiusPerMeter { get; }
+        protected abstract double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DegreesCelciusPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilodegreesCelciusPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelciusPerKilometerTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void DegreeCelsiusPerMeterToLapseRateUnits()
+        public void DegreeCelsiusPerKilometerToLapseRateUnits()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneDegreeCelsiusPerMeter, degreecelsiuspermeter.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(KilodegreesCelciusPerMeterInOneDegreeCelsiusPerMeter, degreecelsiuspermeter.KilodegreesCelciusPerMeter, KilodegreesCelciusPerMeterTolerance);
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, degreecelsiusperkilometer.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, LapseRate.From(1, LapseRateUnit.DegreeCelsiusPerMeter).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LapseRate.From(1, LapseRateUnit.KilodegreeCelsiusPerMeter).KilodegreesCelciusPerMeter, KilodegreesCelciusPerMeterTolerance);
+            AssertEx.EqualTolerance(1, LapseRate.From(1, LapseRateUnit.DegreeCelsiusPerKilometer).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneDegreeCelsiusPerMeter, degreecelsiuspermeter.As(LapseRateUnit.DegreeCelsiusPerMeter), DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(KilodegreesCelciusPerMeterInOneDegreeCelsiusPerMeter, degreecelsiuspermeter.As(LapseRateUnit.KilodegreeCelsiusPerMeter), KilodegreesCelciusPerMeterTolerance);
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, degreecelsiusperkilometer.As(LapseRateUnit.DegreeCelsiusPerKilometer), DegreesCelciusPerKilometerTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            AssertEx.EqualTolerance(1, LapseRate.FromDegreesCelciusPerMeter(degreecelsiuspermeter.DegreesCelciusPerMeter).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(1, LapseRate.FromKilodegreesCelciusPerMeter(degreecelsiuspermeter.KilodegreesCelciusPerMeter).DegreesCelciusPerMeter, KilodegreesCelciusPerMeterTolerance);
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            AssertEx.EqualTolerance(1, LapseRate.FromDegreesCelciusPerKilometer(degreecelsiusperkilometer.DegreesCelciusPerKilometer).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            LapseRate v = LapseRate.FromDegreesCelciusPerMeter(1);
-            AssertEx.EqualTolerance(-1, -v.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LapseRate.FromDegreesCelciusPerMeter(3)-v).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (LapseRate.FromDegreesCelciusPerMeter(10)/5).DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
-            AssertEx.EqualTolerance(2, LapseRate.FromDegreesCelciusPerMeter(10)/LapseRate.FromDegreesCelciusPerMeter(5), DegreesCelciusPerMeterTolerance);
+            LapseRate v = LapseRate.FromDegreesCelciusPerKilometer(1);
+            AssertEx.EqualTolerance(-1, -v.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(2, (LapseRate.FromDegreesCelciusPerKilometer(3)-v).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(2, (v + v).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(10, (v*10).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(10, (10*v).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(2, (LapseRate.FromDegreesCelciusPerKilometer(10)/5).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(2, LapseRate.FromDegreesCelciusPerKilometer(10)/LapseRate.FromDegreesCelciusPerKilometer(5), DegreesCelciusPerKilometerTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            LapseRate oneDegreeCelsiusPerMeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            LapseRate twoDegreesCelciusPerMeter = LapseRate.FromDegreesCelciusPerMeter(2);
+            LapseRate oneDegreeCelsiusPerKilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            LapseRate twoDegreesCelciusPerKilometer = LapseRate.FromDegreesCelciusPerKilometer(2);
 
-            Assert.True(oneDegreeCelsiusPerMeter < twoDegreesCelciusPerMeter);
-            Assert.True(oneDegreeCelsiusPerMeter <= twoDegreesCelciusPerMeter);
-            Assert.True(twoDegreesCelciusPerMeter > oneDegreeCelsiusPerMeter);
-            Assert.True(twoDegreesCelciusPerMeter >= oneDegreeCelsiusPerMeter);
+            Assert.True(oneDegreeCelsiusPerKilometer < twoDegreesCelciusPerKilometer);
+            Assert.True(oneDegreeCelsiusPerKilometer <= twoDegreesCelciusPerKilometer);
+            Assert.True(twoDegreesCelciusPerKilometer > oneDegreeCelsiusPerKilometer);
+            Assert.True(twoDegreesCelciusPerKilometer >= oneDegreeCelsiusPerKilometer);
 
-            Assert.False(oneDegreeCelsiusPerMeter > twoDegreesCelciusPerMeter);
-            Assert.False(oneDegreeCelsiusPerMeter >= twoDegreesCelciusPerMeter);
-            Assert.False(twoDegreesCelciusPerMeter < oneDegreeCelsiusPerMeter);
-            Assert.False(twoDegreesCelciusPerMeter <= oneDegreeCelsiusPerMeter);
+            Assert.False(oneDegreeCelsiusPerKilometer > twoDegreesCelciusPerKilometer);
+            Assert.False(oneDegreeCelsiusPerKilometer >= twoDegreesCelciusPerKilometer);
+            Assert.False(twoDegreesCelciusPerKilometer < oneDegreeCelsiusPerKilometer);
+            Assert.False(twoDegreesCelciusPerKilometer <= oneDegreeCelsiusPerKilometer);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.Equal(0, degreecelsiuspermeter.CompareTo(degreecelsiuspermeter));
-            Assert.True(degreecelsiuspermeter.CompareTo(LapseRate.Zero) > 0);
-            Assert.True(LapseRate.Zero.CompareTo(degreecelsiuspermeter) < 0);
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.Equal(0, degreecelsiusperkilometer.CompareTo(degreecelsiusperkilometer));
+            Assert.True(degreecelsiusperkilometer.CompareTo(LapseRate.Zero) > 0);
+            Assert.True(LapseRate.Zero.CompareTo(degreecelsiusperkilometer) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.Throws<ArgumentException>(() => degreecelsiuspermeter.CompareTo(new object()));
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.Throws<ArgumentNullException>(() => degreecelsiuspermeter.CompareTo(null));
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.Throws<ArgumentNullException>(() => degreecelsiusperkilometer.CompareTo(null));
         }
 
 
         [Fact]
         public void EqualityOperators()
         {
-            LapseRate a = LapseRate.FromDegreesCelciusPerMeter(1);
-            LapseRate b = LapseRate.FromDegreesCelciusPerMeter(2);
+            LapseRate a = LapseRate.FromDegreesCelciusPerKilometer(1);
+            LapseRate b = LapseRate.FromDegreesCelciusPerKilometer(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -163,23 +157,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            LapseRate v = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerMeter(1)));
+            LapseRate v = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1)));
             Assert.False(v.Equals(LapseRate.Zero));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.False(degreecelsiuspermeter.Equals(new object()));
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.False(degreecelsiusperkilometer.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            LapseRate degreecelsiuspermeter = LapseRate.FromDegreesCelciusPerMeter(1);
-            Assert.False(degreecelsiuspermeter.Equals(null));
+            LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+            Assert.False(degreecelsiusperkilometer.Equals(null));
         }
     }
 }

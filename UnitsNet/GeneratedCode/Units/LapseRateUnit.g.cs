@@ -42,7 +42,6 @@ namespace UnitsNet.Units
     public enum LapseRateUnit
     {
         Undefined = 0,
-        DegreeCelsiusPerMeter,
-        KilodegreeCelsiusPerMeter,
+        DegreeCelsiusPerKilometer,
     }
 }
