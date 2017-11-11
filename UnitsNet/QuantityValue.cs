@@ -40,7 +40,7 @@ namespace UnitsNet
 
         // Obsolete is used to communicate how they should use this type, instead of making the constructor private and have them figure it out
         [Obsolete("Do not use this constructor. Instead pass any numeric value such as int, long, float, double, decimal, short or byte directly and it will be implicitly casted to double.")]
-        public QuantityValue(double val)
+        private QuantityValue(double val)
         {
             _value = val;
         }
