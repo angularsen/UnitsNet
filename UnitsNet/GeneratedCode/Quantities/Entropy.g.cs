@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (angularsen@gmail.com).
+// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     
+    ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J K−1) in the International System of Units
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
@@ -1060,12 +1060,14 @@ namespace UnitsNet
             return left._joulesPerKelvin > right._joulesPerKelvin;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Entropy left, Entropy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left._joulesPerKelvin == right._joulesPerKelvin;
         }
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Entropy left, Entropy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1073,6 +1075,7 @@ namespace UnitsNet
         }
 #endif
 
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -1081,6 +1084,19 @@ namespace UnitsNet
             }
 
             return _joulesPerKelvin.Equals(((Entropy) obj)._joulesPerKelvin);
+        }
+
+        /// <summary>
+        ///     Compare equality to another Entropy by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        public bool Equals(Entropy other, Entropy maxError)
+        {
+            return Math.Abs(_joulesPerKelvin - other._joulesPerKelvin) <= maxError._joulesPerKelvin;
         }
 
         public override int GetHashCode()
