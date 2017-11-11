@@ -996,6 +996,45 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Вт/ч"),
                             }),
                     }),
+                new UnitLocalization(typeof (EntropyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) EntropyUnit.CaloriePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.JoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/C"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.JoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilocaloriePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/C"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.MegajoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/K"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
