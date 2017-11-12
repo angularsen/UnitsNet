@@ -149,38 +149,18 @@ namespace UnitsNet
         /// <summary>
         ///     Get VitaminA from InternationalUnits.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static VitaminA FromInternationalUnits(double internationalunits)
         {
-            return new VitaminA(internationalunits);
+            double value = (double) internationalunits;
+            return new VitaminA(value);
         }
-
-        /// <summary>
-        ///     Get VitaminA from InternationalUnits.
-        /// </summary>
-        public static VitaminA FromInternationalUnits(int internationalunits)
+#else
+        public static VitaminA FromInternationalUnits(QuantityValue internationalunits)
         {
-            return new VitaminA(internationalunits);
-        }
-
-        /// <summary>
-        ///     Get VitaminA from InternationalUnits.
-        /// </summary>
-        public static VitaminA FromInternationalUnits(long internationalunits)
-        {
-            return new VitaminA(internationalunits);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get VitaminA from InternationalUnits of type decimal.
-        /// </summary>
-        public static VitaminA FromInternationalUnits(decimal internationalunits)
-        {
-            return new VitaminA(Convert.ToDouble(internationalunits));
+            double value = (double) internationalunits;
+            return new VitaminA((value));
         }
 #endif
 
@@ -189,52 +169,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
-        public static VitaminA? FromInternationalUnits(double? internationalunits)
-        {
-            if (internationalunits.HasValue)
-            {
-                return FromInternationalUnits(internationalunits.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable VitaminA from nullable InternationalUnits.
-        /// </summary>
-        public static VitaminA? FromInternationalUnits(int? internationalunits)
-        {
-            if (internationalunits.HasValue)
-            {
-                return FromInternationalUnits(internationalunits.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable VitaminA from nullable InternationalUnits.
-        /// </summary>
-        public static VitaminA? FromInternationalUnits(long? internationalunits)
-        {
-            if (internationalunits.HasValue)
-            {
-                return FromInternationalUnits(internationalunits.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable VitaminA from InternationalUnits of type decimal.
-        /// </summary>
-        public static VitaminA? FromInternationalUnits(decimal? internationalunits)
+        public static VitaminA? FromInternationalUnits(QuantityValue? internationalunits)
         {
             if (internationalunits.HasValue)
             {
@@ -251,15 +186,21 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
-        public static VitaminA From(double val, VitaminAUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static VitaminA From(double value, VitaminAUnit fromUnit)
+#else
+        public static VitaminA From(QuantityValue value, VitaminAUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case VitaminAUnit.InternationalUnit:
-                    return FromInternationalUnits(val);
+                    return FromInternationalUnits(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -274,7 +215,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
-        public static VitaminA? From(double? value, VitaminAUnit fromUnit)
+        public static VitaminA? From(QuantityValue? value, VitaminAUnit fromUnit)
         {
             if (!value.HasValue)
             {

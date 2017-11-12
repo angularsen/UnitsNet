@@ -205,304 +205,144 @@ namespace UnitsNet
         /// <summary>
         ///     Get Temperature from DegreesCelsius.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesCelsius(double degreescelsius)
         {
-            return new Temperature(degreescelsius + 273.15);
+            double value = (double) degreescelsius;
+            return new Temperature(value + 273.15);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesCelsius.
-        /// </summary>
-        public static Temperature FromDegreesCelsius(int degreescelsius)
+#else
+        public static Temperature FromDegreesCelsius(QuantityValue degreescelsius)
         {
-            return new Temperature(degreescelsius + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesCelsius.
-        /// </summary>
-        public static Temperature FromDegreesCelsius(long degreescelsius)
-        {
-            return new Temperature(degreescelsius + 273.15);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesCelsius of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesCelsius(decimal degreescelsius)
-        {
-            return new Temperature(Convert.ToDouble(degreescelsius) + 273.15);
+            double value = (double) degreescelsius;
+            return new Temperature((value + 273.15));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesDelisle.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesDelisle(double degreesdelisle)
         {
-            return new Temperature(degreesdelisle*-2/3 + 373.15);
+            double value = (double) degreesdelisle;
+            return new Temperature(value*-2/3 + 373.15);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesDelisle.
-        /// </summary>
-        public static Temperature FromDegreesDelisle(int degreesdelisle)
+#else
+        public static Temperature FromDegreesDelisle(QuantityValue degreesdelisle)
         {
-            return new Temperature(degreesdelisle*-2/3 + 373.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesDelisle.
-        /// </summary>
-        public static Temperature FromDegreesDelisle(long degreesdelisle)
-        {
-            return new Temperature(degreesdelisle*-2/3 + 373.15);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesDelisle of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesDelisle(decimal degreesdelisle)
-        {
-            return new Temperature(Convert.ToDouble(degreesdelisle)*-2/3 + 373.15);
+            double value = (double) degreesdelisle;
+            return new Temperature((value*-2/3 + 373.15));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesFahrenheit.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
         {
-            return new Temperature(degreesfahrenheit*5/9 + 459.67*5/9);
+            double value = (double) degreesfahrenheit;
+            return new Temperature(value*5/9 + 459.67*5/9);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesFahrenheit.
-        /// </summary>
-        public static Temperature FromDegreesFahrenheit(int degreesfahrenheit)
+#else
+        public static Temperature FromDegreesFahrenheit(QuantityValue degreesfahrenheit)
         {
-            return new Temperature(degreesfahrenheit*5/9 + 459.67*5/9);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesFahrenheit.
-        /// </summary>
-        public static Temperature FromDegreesFahrenheit(long degreesfahrenheit)
-        {
-            return new Temperature(degreesfahrenheit*5/9 + 459.67*5/9);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesFahrenheit of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesFahrenheit(decimal degreesfahrenheit)
-        {
-            return new Temperature(Convert.ToDouble(degreesfahrenheit)*5/9 + 459.67*5/9);
+            double value = (double) degreesfahrenheit;
+            return new Temperature((value*5/9 + 459.67*5/9));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesNewton.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesNewton(double degreesnewton)
         {
-            return new Temperature(degreesnewton*100/33 + 273.15);
+            double value = (double) degreesnewton;
+            return new Temperature(value*100/33 + 273.15);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesNewton.
-        /// </summary>
-        public static Temperature FromDegreesNewton(int degreesnewton)
+#else
+        public static Temperature FromDegreesNewton(QuantityValue degreesnewton)
         {
-            return new Temperature(degreesnewton*100/33 + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesNewton.
-        /// </summary>
-        public static Temperature FromDegreesNewton(long degreesnewton)
-        {
-            return new Temperature(degreesnewton*100/33 + 273.15);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesNewton of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesNewton(decimal degreesnewton)
-        {
-            return new Temperature(Convert.ToDouble(degreesnewton)*100/33 + 273.15);
+            double value = (double) degreesnewton;
+            return new Temperature((value*100/33 + 273.15));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesRankine.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesRankine(double degreesrankine)
         {
-            return new Temperature(degreesrankine*5/9);
+            double value = (double) degreesrankine;
+            return new Temperature(value*5/9);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRankine.
-        /// </summary>
-        public static Temperature FromDegreesRankine(int degreesrankine)
+#else
+        public static Temperature FromDegreesRankine(QuantityValue degreesrankine)
         {
-            return new Temperature(degreesrankine*5/9);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRankine.
-        /// </summary>
-        public static Temperature FromDegreesRankine(long degreesrankine)
-        {
-            return new Temperature(degreesrankine*5/9);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesRankine of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesRankine(decimal degreesrankine)
-        {
-            return new Temperature(Convert.ToDouble(degreesrankine)*5/9);
+            double value = (double) degreesrankine;
+            return new Temperature((value*5/9));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesReaumur.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesReaumur(double degreesreaumur)
         {
-            return new Temperature(degreesreaumur*5/4 + 273.15);
+            double value = (double) degreesreaumur;
+            return new Temperature(value*5/4 + 273.15);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesReaumur.
-        /// </summary>
-        public static Temperature FromDegreesReaumur(int degreesreaumur)
+#else
+        public static Temperature FromDegreesReaumur(QuantityValue degreesreaumur)
         {
-            return new Temperature(degreesreaumur*5/4 + 273.15);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesReaumur.
-        /// </summary>
-        public static Temperature FromDegreesReaumur(long degreesreaumur)
-        {
-            return new Temperature(degreesreaumur*5/4 + 273.15);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesReaumur of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesReaumur(decimal degreesreaumur)
-        {
-            return new Temperature(Convert.ToDouble(degreesreaumur)*5/4 + 273.15);
+            double value = (double) degreesreaumur;
+            return new Temperature((value*5/4 + 273.15));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from DegreesRoemer.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromDegreesRoemer(double degreesroemer)
         {
-            return new Temperature(degreesroemer*40/21 + 273.15 - 7.5*40d/21);
+            double value = (double) degreesroemer;
+            return new Temperature(value*40/21 + 273.15 - 7.5*40d/21);
         }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRoemer.
-        /// </summary>
-        public static Temperature FromDegreesRoemer(int degreesroemer)
+#else
+        public static Temperature FromDegreesRoemer(QuantityValue degreesroemer)
         {
-            return new Temperature(degreesroemer*40/21 + 273.15 - 7.5*40d/21);
-        }
-
-        /// <summary>
-        ///     Get Temperature from DegreesRoemer.
-        /// </summary>
-        public static Temperature FromDegreesRoemer(long degreesroemer)
-        {
-            return new Temperature(degreesroemer*40/21 + 273.15 - 7.5*40d/21);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from DegreesRoemer of type decimal.
-        /// </summary>
-        public static Temperature FromDegreesRoemer(decimal degreesroemer)
-        {
-            return new Temperature(Convert.ToDouble(degreesroemer)*40/21 + 273.15 - 7.5*40d/21);
+            double value = (double) degreesroemer;
+            return new Temperature((value*40/21 + 273.15 - 7.5*40d/21));
         }
 #endif
 
         /// <summary>
         ///     Get Temperature from Kelvins.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Temperature FromKelvins(double kelvins)
         {
-            return new Temperature(kelvins);
+            double value = (double) kelvins;
+            return new Temperature(value);
         }
-
-        /// <summary>
-        ///     Get Temperature from Kelvins.
-        /// </summary>
-        public static Temperature FromKelvins(int kelvins)
+#else
+        public static Temperature FromKelvins(QuantityValue kelvins)
         {
-            return new Temperature(kelvins);
-        }
-
-        /// <summary>
-        ///     Get Temperature from Kelvins.
-        /// </summary>
-        public static Temperature FromKelvins(long kelvins)
-        {
-            return new Temperature(kelvins);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Temperature from Kelvins of type decimal.
-        /// </summary>
-        public static Temperature FromKelvins(decimal kelvins)
-        {
-            return new Temperature(Convert.ToDouble(kelvins));
+            double value = (double) kelvins;
+            return new Temperature((value));
         }
 #endif
 
@@ -511,52 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesCelsius.
         /// </summary>
-        public static Temperature? FromDegreesCelsius(double? degreescelsius)
-        {
-            if (degreescelsius.HasValue)
-            {
-                return FromDegreesCelsius(degreescelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesCelsius.
-        /// </summary>
-        public static Temperature? FromDegreesCelsius(int? degreescelsius)
-        {
-            if (degreescelsius.HasValue)
-            {
-                return FromDegreesCelsius(degreescelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesCelsius.
-        /// </summary>
-        public static Temperature? FromDegreesCelsius(long? degreescelsius)
-        {
-            if (degreescelsius.HasValue)
-            {
-                return FromDegreesCelsius(degreescelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesCelsius of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesCelsius(decimal? degreescelsius)
+        public static Temperature? FromDegreesCelsius(QuantityValue? degreescelsius)
         {
             if (degreescelsius.HasValue)
             {
@@ -571,52 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesDelisle.
         /// </summary>
-        public static Temperature? FromDegreesDelisle(double? degreesdelisle)
-        {
-            if (degreesdelisle.HasValue)
-            {
-                return FromDegreesDelisle(degreesdelisle.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesDelisle.
-        /// </summary>
-        public static Temperature? FromDegreesDelisle(int? degreesdelisle)
-        {
-            if (degreesdelisle.HasValue)
-            {
-                return FromDegreesDelisle(degreesdelisle.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesDelisle.
-        /// </summary>
-        public static Temperature? FromDegreesDelisle(long? degreesdelisle)
-        {
-            if (degreesdelisle.HasValue)
-            {
-                return FromDegreesDelisle(degreesdelisle.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesDelisle of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesDelisle(decimal? degreesdelisle)
+        public static Temperature? FromDegreesDelisle(QuantityValue? degreesdelisle)
         {
             if (degreesdelisle.HasValue)
             {
@@ -631,52 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesFahrenheit.
         /// </summary>
-        public static Temperature? FromDegreesFahrenheit(double? degreesfahrenheit)
-        {
-            if (degreesfahrenheit.HasValue)
-            {
-                return FromDegreesFahrenheit(degreesfahrenheit.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesFahrenheit.
-        /// </summary>
-        public static Temperature? FromDegreesFahrenheit(int? degreesfahrenheit)
-        {
-            if (degreesfahrenheit.HasValue)
-            {
-                return FromDegreesFahrenheit(degreesfahrenheit.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesFahrenheit.
-        /// </summary>
-        public static Temperature? FromDegreesFahrenheit(long? degreesfahrenheit)
-        {
-            if (degreesfahrenheit.HasValue)
-            {
-                return FromDegreesFahrenheit(degreesfahrenheit.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesFahrenheit of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesFahrenheit(decimal? degreesfahrenheit)
+        public static Temperature? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
         {
             if (degreesfahrenheit.HasValue)
             {
@@ -691,52 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesNewton.
         /// </summary>
-        public static Temperature? FromDegreesNewton(double? degreesnewton)
-        {
-            if (degreesnewton.HasValue)
-            {
-                return FromDegreesNewton(degreesnewton.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesNewton.
-        /// </summary>
-        public static Temperature? FromDegreesNewton(int? degreesnewton)
-        {
-            if (degreesnewton.HasValue)
-            {
-                return FromDegreesNewton(degreesnewton.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesNewton.
-        /// </summary>
-        public static Temperature? FromDegreesNewton(long? degreesnewton)
-        {
-            if (degreesnewton.HasValue)
-            {
-                return FromDegreesNewton(degreesnewton.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesNewton of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesNewton(decimal? degreesnewton)
+        public static Temperature? FromDegreesNewton(QuantityValue? degreesnewton)
         {
             if (degreesnewton.HasValue)
             {
@@ -751,52 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRankine.
         /// </summary>
-        public static Temperature? FromDegreesRankine(double? degreesrankine)
-        {
-            if (degreesrankine.HasValue)
-            {
-                return FromDegreesRankine(degreesrankine.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesRankine.
-        /// </summary>
-        public static Temperature? FromDegreesRankine(int? degreesrankine)
-        {
-            if (degreesrankine.HasValue)
-            {
-                return FromDegreesRankine(degreesrankine.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesRankine.
-        /// </summary>
-        public static Temperature? FromDegreesRankine(long? degreesrankine)
-        {
-            if (degreesrankine.HasValue)
-            {
-                return FromDegreesRankine(degreesrankine.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesRankine of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesRankine(decimal? degreesrankine)
+        public static Temperature? FromDegreesRankine(QuantityValue? degreesrankine)
         {
             if (degreesrankine.HasValue)
             {
@@ -811,52 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesReaumur.
         /// </summary>
-        public static Temperature? FromDegreesReaumur(double? degreesreaumur)
-        {
-            if (degreesreaumur.HasValue)
-            {
-                return FromDegreesReaumur(degreesreaumur.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesReaumur.
-        /// </summary>
-        public static Temperature? FromDegreesReaumur(int? degreesreaumur)
-        {
-            if (degreesreaumur.HasValue)
-            {
-                return FromDegreesReaumur(degreesreaumur.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesReaumur.
-        /// </summary>
-        public static Temperature? FromDegreesReaumur(long? degreesreaumur)
-        {
-            if (degreesreaumur.HasValue)
-            {
-                return FromDegreesReaumur(degreesreaumur.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesReaumur of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesReaumur(decimal? degreesreaumur)
+        public static Temperature? FromDegreesReaumur(QuantityValue? degreesreaumur)
         {
             if (degreesreaumur.HasValue)
             {
@@ -871,52 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRoemer.
         /// </summary>
-        public static Temperature? FromDegreesRoemer(double? degreesroemer)
-        {
-            if (degreesroemer.HasValue)
-            {
-                return FromDegreesRoemer(degreesroemer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesRoemer.
-        /// </summary>
-        public static Temperature? FromDegreesRoemer(int? degreesroemer)
-        {
-            if (degreesroemer.HasValue)
-            {
-                return FromDegreesRoemer(degreesroemer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable DegreesRoemer.
-        /// </summary>
-        public static Temperature? FromDegreesRoemer(long? degreesroemer)
-        {
-            if (degreesroemer.HasValue)
-            {
-                return FromDegreesRoemer(degreesroemer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from DegreesRoemer of type decimal.
-        /// </summary>
-        public static Temperature? FromDegreesRoemer(decimal? degreesroemer)
+        public static Temperature? FromDegreesRoemer(QuantityValue? degreesroemer)
         {
             if (degreesroemer.HasValue)
             {
@@ -931,52 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable Kelvins.
         /// </summary>
-        public static Temperature? FromKelvins(double? kelvins)
-        {
-            if (kelvins.HasValue)
-            {
-                return FromKelvins(kelvins.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable Kelvins.
-        /// </summary>
-        public static Temperature? FromKelvins(int? kelvins)
-        {
-            if (kelvins.HasValue)
-            {
-                return FromKelvins(kelvins.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from nullable Kelvins.
-        /// </summary>
-        public static Temperature? FromKelvins(long? kelvins)
-        {
-            if (kelvins.HasValue)
-            {
-                return FromKelvins(kelvins.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Temperature from Kelvins of type decimal.
-        /// </summary>
-        public static Temperature? FromKelvins(decimal? kelvins)
+        public static Temperature? FromKelvins(QuantityValue? kelvins)
         {
             if (kelvins.HasValue)
             {
@@ -993,29 +473,35 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
-        public static Temperature From(double val, TemperatureUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Temperature From(double value, TemperatureUnit fromUnit)
+#else
+        public static Temperature From(QuantityValue value, TemperatureUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case TemperatureUnit.DegreeCelsius:
-                    return FromDegreesCelsius(val);
+                    return FromDegreesCelsius(value);
                 case TemperatureUnit.DegreeDelisle:
-                    return FromDegreesDelisle(val);
+                    return FromDegreesDelisle(value);
                 case TemperatureUnit.DegreeFahrenheit:
-                    return FromDegreesFahrenheit(val);
+                    return FromDegreesFahrenheit(value);
                 case TemperatureUnit.DegreeNewton:
-                    return FromDegreesNewton(val);
+                    return FromDegreesNewton(value);
                 case TemperatureUnit.DegreeRankine:
-                    return FromDegreesRankine(val);
+                    return FromDegreesRankine(value);
                 case TemperatureUnit.DegreeReaumur:
-                    return FromDegreesReaumur(val);
+                    return FromDegreesReaumur(value);
                 case TemperatureUnit.DegreeRoemer:
-                    return FromDegreesRoemer(val);
+                    return FromDegreesRoemer(value);
                 case TemperatureUnit.Kelvin:
-                    return FromKelvins(val);
+                    return FromKelvins(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1030,7 +516,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
-        public static Temperature? From(double? value, TemperatureUnit fromUnit)
+        public static Temperature? From(QuantityValue? value, TemperatureUnit fromUnit)
         {
             if (!value.HasValue)
             {

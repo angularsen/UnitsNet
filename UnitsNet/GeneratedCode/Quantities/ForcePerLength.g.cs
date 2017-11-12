@@ -205,304 +205,144 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromCentinewtonsPerMeter(double centinewtonspermeter)
         {
-            return new ForcePerLength((centinewtonspermeter) * 1e-2d);
+            double value = (double) centinewtonspermeter;
+            return new ForcePerLength((value) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from CentinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromCentinewtonsPerMeter(int centinewtonspermeter)
+#else
+        public static ForcePerLength FromCentinewtonsPerMeter(QuantityValue centinewtonspermeter)
         {
-            return new ForcePerLength((centinewtonspermeter) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from CentinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromCentinewtonsPerMeter(long centinewtonspermeter)
-        {
-            return new ForcePerLength((centinewtonspermeter) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from CentinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromCentinewtonsPerMeter(decimal centinewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(centinewtonspermeter)) * 1e-2d);
+            double value = (double) centinewtonspermeter;
+            return new ForcePerLength(((value) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from DecinewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromDecinewtonsPerMeter(double decinewtonspermeter)
         {
-            return new ForcePerLength((decinewtonspermeter) * 1e-1d);
+            double value = (double) decinewtonspermeter;
+            return new ForcePerLength((value) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from DecinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromDecinewtonsPerMeter(int decinewtonspermeter)
+#else
+        public static ForcePerLength FromDecinewtonsPerMeter(QuantityValue decinewtonspermeter)
         {
-            return new ForcePerLength((decinewtonspermeter) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from DecinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromDecinewtonsPerMeter(long decinewtonspermeter)
-        {
-            return new ForcePerLength((decinewtonspermeter) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from DecinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromDecinewtonsPerMeter(decimal decinewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(decinewtonspermeter)) * 1e-1d);
+            double value = (double) decinewtonspermeter;
+            return new ForcePerLength(((value) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from KilogramsForcePerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromKilogramsForcePerMeter(double kilogramsforcepermeter)
         {
-            return new ForcePerLength(kilogramsforcepermeter*9.80665002864);
+            double value = (double) kilogramsforcepermeter;
+            return new ForcePerLength(value*9.80665002864);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from KilogramsForcePerMeter.
-        /// </summary>
-        public static ForcePerLength FromKilogramsForcePerMeter(int kilogramsforcepermeter)
+#else
+        public static ForcePerLength FromKilogramsForcePerMeter(QuantityValue kilogramsforcepermeter)
         {
-            return new ForcePerLength(kilogramsforcepermeter*9.80665002864);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from KilogramsForcePerMeter.
-        /// </summary>
-        public static ForcePerLength FromKilogramsForcePerMeter(long kilogramsforcepermeter)
-        {
-            return new ForcePerLength(kilogramsforcepermeter*9.80665002864);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from KilogramsForcePerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromKilogramsForcePerMeter(decimal kilogramsforcepermeter)
-        {
-            return new ForcePerLength(Convert.ToDouble(kilogramsforcepermeter)*9.80665002864);
+            double value = (double) kilogramsforcepermeter;
+            return new ForcePerLength((value*9.80665002864));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from KilonewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromKilonewtonsPerMeter(double kilonewtonspermeter)
         {
-            return new ForcePerLength((kilonewtonspermeter) * 1e3d);
+            double value = (double) kilonewtonspermeter;
+            return new ForcePerLength((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from KilonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromKilonewtonsPerMeter(int kilonewtonspermeter)
+#else
+        public static ForcePerLength FromKilonewtonsPerMeter(QuantityValue kilonewtonspermeter)
         {
-            return new ForcePerLength((kilonewtonspermeter) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from KilonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromKilonewtonsPerMeter(long kilonewtonspermeter)
-        {
-            return new ForcePerLength((kilonewtonspermeter) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from KilonewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromKilonewtonsPerMeter(decimal kilonewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(kilonewtonspermeter)) * 1e3d);
+            double value = (double) kilonewtonspermeter;
+            return new ForcePerLength(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from MicronewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromMicronewtonsPerMeter(double micronewtonspermeter)
         {
-            return new ForcePerLength((micronewtonspermeter) * 1e-6d);
+            double value = (double) micronewtonspermeter;
+            return new ForcePerLength((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from MicronewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromMicronewtonsPerMeter(int micronewtonspermeter)
+#else
+        public static ForcePerLength FromMicronewtonsPerMeter(QuantityValue micronewtonspermeter)
         {
-            return new ForcePerLength((micronewtonspermeter) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from MicronewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromMicronewtonsPerMeter(long micronewtonspermeter)
-        {
-            return new ForcePerLength((micronewtonspermeter) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from MicronewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromMicronewtonsPerMeter(decimal micronewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(micronewtonspermeter)) * 1e-6d);
+            double value = (double) micronewtonspermeter;
+            return new ForcePerLength(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from MillinewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromMillinewtonsPerMeter(double millinewtonspermeter)
         {
-            return new ForcePerLength((millinewtonspermeter) * 1e-3d);
+            double value = (double) millinewtonspermeter;
+            return new ForcePerLength((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from MillinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromMillinewtonsPerMeter(int millinewtonspermeter)
+#else
+        public static ForcePerLength FromMillinewtonsPerMeter(QuantityValue millinewtonspermeter)
         {
-            return new ForcePerLength((millinewtonspermeter) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from MillinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromMillinewtonsPerMeter(long millinewtonspermeter)
-        {
-            return new ForcePerLength((millinewtonspermeter) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from MillinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromMillinewtonsPerMeter(decimal millinewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(millinewtonspermeter)) * 1e-3d);
+            double value = (double) millinewtonspermeter;
+            return new ForcePerLength(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from NanonewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromNanonewtonsPerMeter(double nanonewtonspermeter)
         {
-            return new ForcePerLength((nanonewtonspermeter) * 1e-9d);
+            double value = (double) nanonewtonspermeter;
+            return new ForcePerLength((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from NanonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromNanonewtonsPerMeter(int nanonewtonspermeter)
+#else
+        public static ForcePerLength FromNanonewtonsPerMeter(QuantityValue nanonewtonspermeter)
         {
-            return new ForcePerLength((nanonewtonspermeter) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from NanonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromNanonewtonsPerMeter(long nanonewtonspermeter)
-        {
-            return new ForcePerLength((nanonewtonspermeter) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from NanonewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromNanonewtonsPerMeter(decimal nanonewtonspermeter)
-        {
-            return new ForcePerLength((Convert.ToDouble(nanonewtonspermeter)) * 1e-9d);
+            double value = (double) nanonewtonspermeter;
+            return new ForcePerLength(((value) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get ForcePerLength from NewtonsPerMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForcePerLength FromNewtonsPerMeter(double newtonspermeter)
         {
-            return new ForcePerLength(newtonspermeter);
+            double value = (double) newtonspermeter;
+            return new ForcePerLength(value);
         }
-
-        /// <summary>
-        ///     Get ForcePerLength from NewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromNewtonsPerMeter(int newtonspermeter)
+#else
+        public static ForcePerLength FromNewtonsPerMeter(QuantityValue newtonspermeter)
         {
-            return new ForcePerLength(newtonspermeter);
-        }
-
-        /// <summary>
-        ///     Get ForcePerLength from NewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength FromNewtonsPerMeter(long newtonspermeter)
-        {
-            return new ForcePerLength(newtonspermeter);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForcePerLength from NewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength FromNewtonsPerMeter(decimal newtonspermeter)
-        {
-            return new ForcePerLength(Convert.ToDouble(newtonspermeter));
+            double value = (double) newtonspermeter;
+            return new ForcePerLength((value));
         }
 #endif
 
@@ -511,52 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromCentinewtonsPerMeter(double? centinewtonspermeter)
-        {
-            if (centinewtonspermeter.HasValue)
-            {
-                return FromCentinewtonsPerMeter(centinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromCentinewtonsPerMeter(int? centinewtonspermeter)
-        {
-            if (centinewtonspermeter.HasValue)
-            {
-                return FromCentinewtonsPerMeter(centinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromCentinewtonsPerMeter(long? centinewtonspermeter)
-        {
-            if (centinewtonspermeter.HasValue)
-            {
-                return FromCentinewtonsPerMeter(centinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from CentinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromCentinewtonsPerMeter(decimal? centinewtonspermeter)
+        public static ForcePerLength? FromCentinewtonsPerMeter(QuantityValue? centinewtonspermeter)
         {
             if (centinewtonspermeter.HasValue)
             {
@@ -571,52 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromDecinewtonsPerMeter(double? decinewtonspermeter)
-        {
-            if (decinewtonspermeter.HasValue)
-            {
-                return FromDecinewtonsPerMeter(decinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromDecinewtonsPerMeter(int? decinewtonspermeter)
-        {
-            if (decinewtonspermeter.HasValue)
-            {
-                return FromDecinewtonsPerMeter(decinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromDecinewtonsPerMeter(long? decinewtonspermeter)
-        {
-            if (decinewtonspermeter.HasValue)
-            {
-                return FromDecinewtonsPerMeter(decinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from DecinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromDecinewtonsPerMeter(decimal? decinewtonspermeter)
+        public static ForcePerLength? FromDecinewtonsPerMeter(QuantityValue? decinewtonspermeter)
         {
             if (decinewtonspermeter.HasValue)
             {
@@ -631,52 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
         /// </summary>
-        public static ForcePerLength? FromKilogramsForcePerMeter(double? kilogramsforcepermeter)
-        {
-            if (kilogramsforcepermeter.HasValue)
-            {
-                return FromKilogramsForcePerMeter(kilogramsforcepermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilogramsForcePerMeter(int? kilogramsforcepermeter)
-        {
-            if (kilogramsforcepermeter.HasValue)
-            {
-                return FromKilogramsForcePerMeter(kilogramsforcepermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilogramsForcePerMeter(long? kilogramsforcepermeter)
-        {
-            if (kilogramsforcepermeter.HasValue)
-            {
-                return FromKilogramsForcePerMeter(kilogramsforcepermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from KilogramsForcePerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromKilogramsForcePerMeter(decimal? kilogramsforcepermeter)
+        public static ForcePerLength? FromKilogramsForcePerMeter(QuantityValue? kilogramsforcepermeter)
         {
             if (kilogramsforcepermeter.HasValue)
             {
@@ -691,52 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromKilonewtonsPerMeter(double? kilonewtonspermeter)
-        {
-            if (kilonewtonspermeter.HasValue)
-            {
-                return FromKilonewtonsPerMeter(kilonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilonewtonsPerMeter(int? kilonewtonspermeter)
-        {
-            if (kilonewtonspermeter.HasValue)
-            {
-                return FromKilonewtonsPerMeter(kilonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilonewtonsPerMeter(long? kilonewtonspermeter)
-        {
-            if (kilonewtonspermeter.HasValue)
-            {
-                return FromKilonewtonsPerMeter(kilonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from KilonewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromKilonewtonsPerMeter(decimal? kilonewtonspermeter)
+        public static ForcePerLength? FromKilonewtonsPerMeter(QuantityValue? kilonewtonspermeter)
         {
             if (kilonewtonspermeter.HasValue)
             {
@@ -751,52 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromMicronewtonsPerMeter(double? micronewtonspermeter)
-        {
-            if (micronewtonspermeter.HasValue)
-            {
-                return FromMicronewtonsPerMeter(micronewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMicronewtonsPerMeter(int? micronewtonspermeter)
-        {
-            if (micronewtonspermeter.HasValue)
-            {
-                return FromMicronewtonsPerMeter(micronewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMicronewtonsPerMeter(long? micronewtonspermeter)
-        {
-            if (micronewtonspermeter.HasValue)
-            {
-                return FromMicronewtonsPerMeter(micronewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from MicronewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromMicronewtonsPerMeter(decimal? micronewtonspermeter)
+        public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
         {
             if (micronewtonspermeter.HasValue)
             {
@@ -811,52 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromMillinewtonsPerMeter(double? millinewtonspermeter)
-        {
-            if (millinewtonspermeter.HasValue)
-            {
-                return FromMillinewtonsPerMeter(millinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMillinewtonsPerMeter(int? millinewtonspermeter)
-        {
-            if (millinewtonspermeter.HasValue)
-            {
-                return FromMillinewtonsPerMeter(millinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMillinewtonsPerMeter(long? millinewtonspermeter)
-        {
-            if (millinewtonspermeter.HasValue)
-            {
-                return FromMillinewtonsPerMeter(millinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from MillinewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromMillinewtonsPerMeter(decimal? millinewtonspermeter)
+        public static ForcePerLength? FromMillinewtonsPerMeter(QuantityValue? millinewtonspermeter)
         {
             if (millinewtonspermeter.HasValue)
             {
@@ -871,52 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromNanonewtonsPerMeter(double? nanonewtonspermeter)
-        {
-            if (nanonewtonspermeter.HasValue)
-            {
-                return FromNanonewtonsPerMeter(nanonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNanonewtonsPerMeter(int? nanonewtonspermeter)
-        {
-            if (nanonewtonspermeter.HasValue)
-            {
-                return FromNanonewtonsPerMeter(nanonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNanonewtonsPerMeter(long? nanonewtonspermeter)
-        {
-            if (nanonewtonspermeter.HasValue)
-            {
-                return FromNanonewtonsPerMeter(nanonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from NanonewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromNanonewtonsPerMeter(decimal? nanonewtonspermeter)
+        public static ForcePerLength? FromNanonewtonsPerMeter(QuantityValue? nanonewtonspermeter)
         {
             if (nanonewtonspermeter.HasValue)
             {
@@ -931,52 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
         /// </summary>
-        public static ForcePerLength? FromNewtonsPerMeter(double? newtonspermeter)
-        {
-            if (newtonspermeter.HasValue)
-            {
-                return FromNewtonsPerMeter(newtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNewtonsPerMeter(int? newtonspermeter)
-        {
-            if (newtonspermeter.HasValue)
-            {
-                return FromNewtonsPerMeter(newtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNewtonsPerMeter(long? newtonspermeter)
-        {
-            if (newtonspermeter.HasValue)
-            {
-                return FromNewtonsPerMeter(newtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from NewtonsPerMeter of type decimal.
-        /// </summary>
-        public static ForcePerLength? FromNewtonsPerMeter(decimal? newtonspermeter)
+        public static ForcePerLength? FromNewtonsPerMeter(QuantityValue? newtonspermeter)
         {
             if (newtonspermeter.HasValue)
             {
@@ -993,29 +473,35 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForcePerLength unit value.</returns>
-        public static ForcePerLength From(double val, ForcePerLengthUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static ForcePerLength From(double value, ForcePerLengthUnit fromUnit)
+#else
+        public static ForcePerLength From(QuantityValue value, ForcePerLengthUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case ForcePerLengthUnit.CentinewtonPerMeter:
-                    return FromCentinewtonsPerMeter(val);
+                    return FromCentinewtonsPerMeter(value);
                 case ForcePerLengthUnit.DecinewtonPerMeter:
-                    return FromDecinewtonsPerMeter(val);
+                    return FromDecinewtonsPerMeter(value);
                 case ForcePerLengthUnit.KilogramForcePerMeter:
-                    return FromKilogramsForcePerMeter(val);
+                    return FromKilogramsForcePerMeter(value);
                 case ForcePerLengthUnit.KilonewtonPerMeter:
-                    return FromKilonewtonsPerMeter(val);
+                    return FromKilonewtonsPerMeter(value);
                 case ForcePerLengthUnit.MicronewtonPerMeter:
-                    return FromMicronewtonsPerMeter(val);
+                    return FromMicronewtonsPerMeter(value);
                 case ForcePerLengthUnit.MillinewtonPerMeter:
-                    return FromMillinewtonsPerMeter(val);
+                    return FromMillinewtonsPerMeter(value);
                 case ForcePerLengthUnit.NanonewtonPerMeter:
-                    return FromNanonewtonsPerMeter(val);
+                    return FromNanonewtonsPerMeter(value);
                 case ForcePerLengthUnit.NewtonPerMeter:
-                    return FromNewtonsPerMeter(val);
+                    return FromNewtonsPerMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1030,7 +516,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForcePerLength unit value.</returns>
-        public static ForcePerLength? From(double? value, ForcePerLengthUnit fromUnit)
+        public static ForcePerLength? From(QuantityValue? value, ForcePerLengthUnit fromUnit)
         {
             if (!value.HasValue)
             {

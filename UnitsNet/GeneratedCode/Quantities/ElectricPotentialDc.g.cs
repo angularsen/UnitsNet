@@ -181,190 +181,90 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotentialDc from KilovoltsDc.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricPotentialDc FromKilovoltsDc(double kilovoltsdc)
         {
-            return new ElectricPotentialDc((kilovoltsdc) * 1e3d);
+            double value = (double) kilovoltsdc;
+            return new ElectricPotentialDc((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromKilovoltsDc(int kilovoltsdc)
+#else
+        public static ElectricPotentialDc FromKilovoltsDc(QuantityValue kilovoltsdc)
         {
-            return new ElectricPotentialDc((kilovoltsdc) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromKilovoltsDc(long kilovoltsdc)
-        {
-            return new ElectricPotentialDc((kilovoltsdc) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc FromKilovoltsDc(decimal kilovoltsdc)
-        {
-            return new ElectricPotentialDc((Convert.ToDouble(kilovoltsdc)) * 1e3d);
+            double value = (double) kilovoltsdc;
+            return new ElectricPotentialDc(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricPotentialDc from MegavoltsDc.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricPotentialDc FromMegavoltsDc(double megavoltsdc)
         {
-            return new ElectricPotentialDc((megavoltsdc) * 1e6d);
+            double value = (double) megavoltsdc;
+            return new ElectricPotentialDc((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMegavoltsDc(int megavoltsdc)
+#else
+        public static ElectricPotentialDc FromMegavoltsDc(QuantityValue megavoltsdc)
         {
-            return new ElectricPotentialDc((megavoltsdc) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMegavoltsDc(long megavoltsdc)
-        {
-            return new ElectricPotentialDc((megavoltsdc) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc FromMegavoltsDc(decimal megavoltsdc)
-        {
-            return new ElectricPotentialDc((Convert.ToDouble(megavoltsdc)) * 1e6d);
+            double value = (double) megavoltsdc;
+            return new ElectricPotentialDc(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricPotentialDc from MicrovoltsDc.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricPotentialDc FromMicrovoltsDc(double microvoltsdc)
         {
-            return new ElectricPotentialDc((microvoltsdc) * 1e-6d);
+            double value = (double) microvoltsdc;
+            return new ElectricPotentialDc((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMicrovoltsDc(int microvoltsdc)
+#else
+        public static ElectricPotentialDc FromMicrovoltsDc(QuantityValue microvoltsdc)
         {
-            return new ElectricPotentialDc((microvoltsdc) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMicrovoltsDc(long microvoltsdc)
-        {
-            return new ElectricPotentialDc((microvoltsdc) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc FromMicrovoltsDc(decimal microvoltsdc)
-        {
-            return new ElectricPotentialDc((Convert.ToDouble(microvoltsdc)) * 1e-6d);
+            double value = (double) microvoltsdc;
+            return new ElectricPotentialDc(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricPotentialDc from MillivoltsDc.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricPotentialDc FromMillivoltsDc(double millivoltsdc)
         {
-            return new ElectricPotentialDc((millivoltsdc) * 1e-3d);
+            double value = (double) millivoltsdc;
+            return new ElectricPotentialDc((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMillivoltsDc(int millivoltsdc)
+#else
+        public static ElectricPotentialDc FromMillivoltsDc(QuantityValue millivoltsdc)
         {
-            return new ElectricPotentialDc((millivoltsdc) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromMillivoltsDc(long millivoltsdc)
-        {
-            return new ElectricPotentialDc((millivoltsdc) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc FromMillivoltsDc(decimal millivoltsdc)
-        {
-            return new ElectricPotentialDc((Convert.ToDouble(millivoltsdc)) * 1e-3d);
+            double value = (double) millivoltsdc;
+            return new ElectricPotentialDc(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricPotentialDc from VoltsDc.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricPotentialDc FromVoltsDc(double voltsdc)
         {
-            return new ElectricPotentialDc(voltsdc);
+            double value = (double) voltsdc;
+            return new ElectricPotentialDc(value);
         }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromVoltsDc(int voltsdc)
+#else
+        public static ElectricPotentialDc FromVoltsDc(QuantityValue voltsdc)
         {
-            return new ElectricPotentialDc(voltsdc);
-        }
-
-        /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc FromVoltsDc(long voltsdc)
-        {
-            return new ElectricPotentialDc(voltsdc);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc FromVoltsDc(decimal voltsdc)
-        {
-            return new ElectricPotentialDc(Convert.ToDouble(voltsdc));
+            double value = (double) voltsdc;
+            return new ElectricPotentialDc((value));
         }
 #endif
 
@@ -373,52 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotentialDc from nullable KilovoltsDc.
         /// </summary>
-        public static ElectricPotentialDc? FromKilovoltsDc(double? kilovoltsdc)
-        {
-            if (kilovoltsdc.HasValue)
-            {
-                return FromKilovoltsDc(kilovoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable KilovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromKilovoltsDc(int? kilovoltsdc)
-        {
-            if (kilovoltsdc.HasValue)
-            {
-                return FromKilovoltsDc(kilovoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable KilovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromKilovoltsDc(long? kilovoltsdc)
-        {
-            if (kilovoltsdc.HasValue)
-            {
-                return FromKilovoltsDc(kilovoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from KilovoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc? FromKilovoltsDc(decimal? kilovoltsdc)
+        public static ElectricPotentialDc? FromKilovoltsDc(QuantityValue? kilovoltsdc)
         {
             if (kilovoltsdc.HasValue)
             {
@@ -433,52 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotentialDc from nullable MegavoltsDc.
         /// </summary>
-        public static ElectricPotentialDc? FromMegavoltsDc(double? megavoltsdc)
-        {
-            if (megavoltsdc.HasValue)
-            {
-                return FromMegavoltsDc(megavoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MegavoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMegavoltsDc(int? megavoltsdc)
-        {
-            if (megavoltsdc.HasValue)
-            {
-                return FromMegavoltsDc(megavoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MegavoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMegavoltsDc(long? megavoltsdc)
-        {
-            if (megavoltsdc.HasValue)
-            {
-                return FromMegavoltsDc(megavoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from MegavoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc? FromMegavoltsDc(decimal? megavoltsdc)
+        public static ElectricPotentialDc? FromMegavoltsDc(QuantityValue? megavoltsdc)
         {
             if (megavoltsdc.HasValue)
             {
@@ -493,52 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotentialDc from nullable MicrovoltsDc.
         /// </summary>
-        public static ElectricPotentialDc? FromMicrovoltsDc(double? microvoltsdc)
-        {
-            if (microvoltsdc.HasValue)
-            {
-                return FromMicrovoltsDc(microvoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MicrovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMicrovoltsDc(int? microvoltsdc)
-        {
-            if (microvoltsdc.HasValue)
-            {
-                return FromMicrovoltsDc(microvoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MicrovoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMicrovoltsDc(long? microvoltsdc)
-        {
-            if (microvoltsdc.HasValue)
-            {
-                return FromMicrovoltsDc(microvoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from MicrovoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc? FromMicrovoltsDc(decimal? microvoltsdc)
+        public static ElectricPotentialDc? FromMicrovoltsDc(QuantityValue? microvoltsdc)
         {
             if (microvoltsdc.HasValue)
             {
@@ -553,52 +318,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotentialDc from nullable MillivoltsDc.
         /// </summary>
-        public static ElectricPotentialDc? FromMillivoltsDc(double? millivoltsdc)
-        {
-            if (millivoltsdc.HasValue)
-            {
-                return FromMillivoltsDc(millivoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MillivoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMillivoltsDc(int? millivoltsdc)
-        {
-            if (millivoltsdc.HasValue)
-            {
-                return FromMillivoltsDc(millivoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable MillivoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromMillivoltsDc(long? millivoltsdc)
-        {
-            if (millivoltsdc.HasValue)
-            {
-                return FromMillivoltsDc(millivoltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from MillivoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc? FromMillivoltsDc(decimal? millivoltsdc)
+        public static ElectricPotentialDc? FromMillivoltsDc(QuantityValue? millivoltsdc)
         {
             if (millivoltsdc.HasValue)
             {
@@ -613,52 +333,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotentialDc from nullable VoltsDc.
         /// </summary>
-        public static ElectricPotentialDc? FromVoltsDc(double? voltsdc)
-        {
-            if (voltsdc.HasValue)
-            {
-                return FromVoltsDc(voltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable VoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromVoltsDc(int? voltsdc)
-        {
-            if (voltsdc.HasValue)
-            {
-                return FromVoltsDc(voltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from nullable VoltsDc.
-        /// </summary>
-        public static ElectricPotentialDc? FromVoltsDc(long? voltsdc)
-        {
-            if (voltsdc.HasValue)
-            {
-                return FromVoltsDc(voltsdc.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialDc from VoltsDc of type decimal.
-        /// </summary>
-        public static ElectricPotentialDc? FromVoltsDc(decimal? voltsdc)
+        public static ElectricPotentialDc? FromVoltsDc(QuantityValue? voltsdc)
         {
             if (voltsdc.HasValue)
             {
@@ -675,23 +350,29 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialDcUnit" /> to <see cref="ElectricPotentialDc" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotentialDc unit value.</returns>
-        public static ElectricPotentialDc From(double val, ElectricPotentialDcUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static ElectricPotentialDc From(double value, ElectricPotentialDcUnit fromUnit)
+#else
+        public static ElectricPotentialDc From(QuantityValue value, ElectricPotentialDcUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case ElectricPotentialDcUnit.KilovoltDc:
-                    return FromKilovoltsDc(val);
+                    return FromKilovoltsDc(value);
                 case ElectricPotentialDcUnit.MegavoltDc:
-                    return FromMegavoltsDc(val);
+                    return FromMegavoltsDc(value);
                 case ElectricPotentialDcUnit.MicrovoltDc:
-                    return FromMicrovoltsDc(val);
+                    return FromMicrovoltsDc(value);
                 case ElectricPotentialDcUnit.MillivoltDc:
-                    return FromMillivoltsDc(val);
+                    return FromMillivoltsDc(value);
                 case ElectricPotentialDcUnit.VoltDc:
-                    return FromVoltsDc(val);
+                    return FromVoltsDc(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -706,7 +387,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotentialDc unit value.</returns>
-        public static ElectricPotentialDc? From(double? value, ElectricPotentialDcUnit fromUnit)
+        public static ElectricPotentialDc? From(QuantityValue? value, ElectricPotentialDcUnit fromUnit)
         {
             if (!value.HasValue)
             {
