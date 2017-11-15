@@ -157,76 +157,36 @@ namespace UnitsNet
         /// <summary>
         ///     Get Level from Decibels.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Level FromDecibels(double decibels)
         {
-            return new Level(decibels);
+            double value = (double) decibels;
+            return new Level(value);
         }
-
-        /// <summary>
-        ///     Get Level from Decibels.
-        /// </summary>
-        public static Level FromDecibels(int decibels)
+#else
+        public static Level FromDecibels(QuantityValue decibels)
         {
-            return new Level(decibels);
-        }
-
-        /// <summary>
-        ///     Get Level from Decibels.
-        /// </summary>
-        public static Level FromDecibels(long decibels)
-        {
-            return new Level(decibels);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Level from Decibels of type decimal.
-        /// </summary>
-        public static Level FromDecibels(decimal decibels)
-        {
-            return new Level(Convert.ToDouble(decibels));
+            double value = (double) decibels;
+            return new Level((value));
         }
 #endif
 
         /// <summary>
         ///     Get Level from Nepers.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Level FromNepers(double nepers)
         {
-            return new Level((1/0.115129254)*nepers);
+            double value = (double) nepers;
+            return new Level((1/0.115129254)*value);
         }
-
-        /// <summary>
-        ///     Get Level from Nepers.
-        /// </summary>
-        public static Level FromNepers(int nepers)
+#else
+        public static Level FromNepers(QuantityValue nepers)
         {
-            return new Level((1/0.115129254)*nepers);
-        }
-
-        /// <summary>
-        ///     Get Level from Nepers.
-        /// </summary>
-        public static Level FromNepers(long nepers)
-        {
-            return new Level((1/0.115129254)*nepers);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Level from Nepers of type decimal.
-        /// </summary>
-        public static Level FromNepers(decimal nepers)
-        {
-            return new Level((1/0.115129254)*Convert.ToDouble(nepers));
+            double value = (double) nepers;
+            return new Level(((1/0.115129254)*value));
         }
 #endif
 
@@ -235,52 +195,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Level from nullable Decibels.
         /// </summary>
-        public static Level? FromDecibels(double? decibels)
-        {
-            if (decibels.HasValue)
-            {
-                return FromDecibels(decibels.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from nullable Decibels.
-        /// </summary>
-        public static Level? FromDecibels(int? decibels)
-        {
-            if (decibels.HasValue)
-            {
-                return FromDecibels(decibels.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from nullable Decibels.
-        /// </summary>
-        public static Level? FromDecibels(long? decibels)
-        {
-            if (decibels.HasValue)
-            {
-                return FromDecibels(decibels.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from Decibels of type decimal.
-        /// </summary>
-        public static Level? FromDecibels(decimal? decibels)
+        public static Level? FromDecibels(QuantityValue? decibels)
         {
             if (decibels.HasValue)
             {
@@ -295,52 +210,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Level from nullable Nepers.
         /// </summary>
-        public static Level? FromNepers(double? nepers)
-        {
-            if (nepers.HasValue)
-            {
-                return FromNepers(nepers.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from nullable Nepers.
-        /// </summary>
-        public static Level? FromNepers(int? nepers)
-        {
-            if (nepers.HasValue)
-            {
-                return FromNepers(nepers.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from nullable Nepers.
-        /// </summary>
-        public static Level? FromNepers(long? nepers)
-        {
-            if (nepers.HasValue)
-            {
-                return FromNepers(nepers.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from Nepers of type decimal.
-        /// </summary>
-        public static Level? FromNepers(decimal? nepers)
+        public static Level? FromNepers(QuantityValue? nepers)
         {
             if (nepers.HasValue)
             {
@@ -357,17 +227,23 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(double val, LevelUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Level From(double value, LevelUnit fromUnit)
+#else
+        public static Level From(QuantityValue value, LevelUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case LevelUnit.Decibel:
-                    return FromDecibels(val);
+                    return FromDecibels(value);
                 case LevelUnit.Neper:
-                    return FromNepers(val);
+                    return FromNepers(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -382,7 +258,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level? From(double? value, LevelUnit fromUnit)
+        public static Level? From(QuantityValue? value, LevelUnit fromUnit)
         {
             if (!value.HasValue)
             {

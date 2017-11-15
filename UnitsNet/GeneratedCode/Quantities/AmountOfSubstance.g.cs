@@ -253,532 +253,252 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Centimoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromCentimoles(double centimoles)
         {
-            return new AmountOfSubstance((centimoles) * 1e-2d);
+            double value = (double) centimoles;
+            return new AmountOfSubstance((value) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Centimoles.
-        /// </summary>
-        public static AmountOfSubstance FromCentimoles(int centimoles)
+#else
+        public static AmountOfSubstance FromCentimoles(QuantityValue centimoles)
         {
-            return new AmountOfSubstance((centimoles) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Centimoles.
-        /// </summary>
-        public static AmountOfSubstance FromCentimoles(long centimoles)
-        {
-            return new AmountOfSubstance((centimoles) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Centimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromCentimoles(decimal centimoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(centimoles)) * 1e-2d);
+            double value = (double) centimoles;
+            return new AmountOfSubstance(((value) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from CentipoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
         {
-            return new AmountOfSubstance((centipoundmoles*453.59237) * 1e-2d);
+            double value = (double) centipoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromCentipoundMoles(int centipoundmoles)
+#else
+        public static AmountOfSubstance FromCentipoundMoles(QuantityValue centipoundmoles)
         {
-            return new AmountOfSubstance((centipoundmoles*453.59237) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromCentipoundMoles(long centipoundmoles)
-        {
-            return new AmountOfSubstance((centipoundmoles*453.59237) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromCentipoundMoles(decimal centipoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(centipoundmoles)*453.59237) * 1e-2d);
+            double value = (double) centipoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Decimoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromDecimoles(double decimoles)
         {
-            return new AmountOfSubstance((decimoles) * 1e-1d);
+            double value = (double) decimoles;
+            return new AmountOfSubstance((value) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Decimoles.
-        /// </summary>
-        public static AmountOfSubstance FromDecimoles(int decimoles)
+#else
+        public static AmountOfSubstance FromDecimoles(QuantityValue decimoles)
         {
-            return new AmountOfSubstance((decimoles) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Decimoles.
-        /// </summary>
-        public static AmountOfSubstance FromDecimoles(long decimoles)
-        {
-            return new AmountOfSubstance((decimoles) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Decimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromDecimoles(decimal decimoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(decimoles)) * 1e-1d);
+            double value = (double) decimoles;
+            return new AmountOfSubstance(((value) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from DecipoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
         {
-            return new AmountOfSubstance((decipoundmoles*453.59237) * 1e-1d);
+            double value = (double) decipoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromDecipoundMoles(int decipoundmoles)
+#else
+        public static AmountOfSubstance FromDecipoundMoles(QuantityValue decipoundmoles)
         {
-            return new AmountOfSubstance((decipoundmoles*453.59237) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromDecipoundMoles(long decipoundmoles)
-        {
-            return new AmountOfSubstance((decipoundmoles*453.59237) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromDecipoundMoles(decimal decipoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(decipoundmoles)*453.59237) * 1e-1d);
+            double value = (double) decipoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Kilomoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromKilomoles(double kilomoles)
         {
-            return new AmountOfSubstance((kilomoles) * 1e3d);
+            double value = (double) kilomoles;
+            return new AmountOfSubstance((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles.
-        /// </summary>
-        public static AmountOfSubstance FromKilomoles(int kilomoles)
+#else
+        public static AmountOfSubstance FromKilomoles(QuantityValue kilomoles)
         {
-            return new AmountOfSubstance((kilomoles) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles.
-        /// </summary>
-        public static AmountOfSubstance FromKilomoles(long kilomoles)
-        {
-            return new AmountOfSubstance((kilomoles) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromKilomoles(decimal kilomoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(kilomoles)) * 1e3d);
+            double value = (double) kilomoles;
+            return new AmountOfSubstance(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from KilopoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
         {
-            return new AmountOfSubstance((kilopoundmoles*453.59237) * 1e3d);
+            double value = (double) kilopoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromKilopoundMoles(int kilopoundmoles)
+#else
+        public static AmountOfSubstance FromKilopoundMoles(QuantityValue kilopoundmoles)
         {
-            return new AmountOfSubstance((kilopoundmoles*453.59237) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromKilopoundMoles(long kilopoundmoles)
-        {
-            return new AmountOfSubstance((kilopoundmoles*453.59237) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromKilopoundMoles(decimal kilopoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(kilopoundmoles)*453.59237) * 1e3d);
+            double value = (double) kilopoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Micromoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromMicromoles(double micromoles)
         {
-            return new AmountOfSubstance((micromoles) * 1e-6d);
+            double value = (double) micromoles;
+            return new AmountOfSubstance((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Micromoles.
-        /// </summary>
-        public static AmountOfSubstance FromMicromoles(int micromoles)
+#else
+        public static AmountOfSubstance FromMicromoles(QuantityValue micromoles)
         {
-            return new AmountOfSubstance((micromoles) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Micromoles.
-        /// </summary>
-        public static AmountOfSubstance FromMicromoles(long micromoles)
-        {
-            return new AmountOfSubstance((micromoles) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Micromoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromMicromoles(decimal micromoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(micromoles)) * 1e-6d);
+            double value = (double) micromoles;
+            return new AmountOfSubstance(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from MicropoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
         {
-            return new AmountOfSubstance((micropoundmoles*453.59237) * 1e-6d);
+            double value = (double) micropoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromMicropoundMoles(int micropoundmoles)
+#else
+        public static AmountOfSubstance FromMicropoundMoles(QuantityValue micropoundmoles)
         {
-            return new AmountOfSubstance((micropoundmoles*453.59237) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromMicropoundMoles(long micropoundmoles)
-        {
-            return new AmountOfSubstance((micropoundmoles*453.59237) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromMicropoundMoles(decimal micropoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(micropoundmoles)*453.59237) * 1e-6d);
+            double value = (double) micropoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Millimoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromMillimoles(double millimoles)
         {
-            return new AmountOfSubstance((millimoles) * 1e-3d);
+            double value = (double) millimoles;
+            return new AmountOfSubstance((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Millimoles.
-        /// </summary>
-        public static AmountOfSubstance FromMillimoles(int millimoles)
+#else
+        public static AmountOfSubstance FromMillimoles(QuantityValue millimoles)
         {
-            return new AmountOfSubstance((millimoles) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Millimoles.
-        /// </summary>
-        public static AmountOfSubstance FromMillimoles(long millimoles)
-        {
-            return new AmountOfSubstance((millimoles) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Millimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromMillimoles(decimal millimoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(millimoles)) * 1e-3d);
+            double value = (double) millimoles;
+            return new AmountOfSubstance(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from MillipoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
         {
-            return new AmountOfSubstance((millipoundmoles*453.59237) * 1e-3d);
+            double value = (double) millipoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromMillipoundMoles(int millipoundmoles)
+#else
+        public static AmountOfSubstance FromMillipoundMoles(QuantityValue millipoundmoles)
         {
-            return new AmountOfSubstance((millipoundmoles*453.59237) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromMillipoundMoles(long millipoundmoles)
-        {
-            return new AmountOfSubstance((millipoundmoles*453.59237) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromMillipoundMoles(decimal millipoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(millipoundmoles)*453.59237) * 1e-3d);
+            double value = (double) millipoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Moles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromMoles(double moles)
         {
-            return new AmountOfSubstance(moles);
+            double value = (double) moles;
+            return new AmountOfSubstance(value);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Moles.
-        /// </summary>
-        public static AmountOfSubstance FromMoles(int moles)
+#else
+        public static AmountOfSubstance FromMoles(QuantityValue moles)
         {
-            return new AmountOfSubstance(moles);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Moles.
-        /// </summary>
-        public static AmountOfSubstance FromMoles(long moles)
-        {
-            return new AmountOfSubstance(moles);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Moles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromMoles(decimal moles)
-        {
-            return new AmountOfSubstance(Convert.ToDouble(moles));
+            double value = (double) moles;
+            return new AmountOfSubstance((value));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Nanomoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromNanomoles(double nanomoles)
         {
-            return new AmountOfSubstance((nanomoles) * 1e-9d);
+            double value = (double) nanomoles;
+            return new AmountOfSubstance((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles.
-        /// </summary>
-        public static AmountOfSubstance FromNanomoles(int nanomoles)
+#else
+        public static AmountOfSubstance FromNanomoles(QuantityValue nanomoles)
         {
-            return new AmountOfSubstance((nanomoles) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles.
-        /// </summary>
-        public static AmountOfSubstance FromNanomoles(long nanomoles)
-        {
-            return new AmountOfSubstance((nanomoles) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromNanomoles(decimal nanomoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(nanomoles)) * 1e-9d);
+            double value = (double) nanomoles;
+            return new AmountOfSubstance(((value) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from NanopoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
         {
-            return new AmountOfSubstance((nanopoundmoles*453.59237) * 1e-9d);
+            double value = (double) nanopoundmoles;
+            return new AmountOfSubstance((value*453.59237) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromNanopoundMoles(int nanopoundmoles)
+#else
+        public static AmountOfSubstance FromNanopoundMoles(QuantityValue nanopoundmoles)
         {
-            return new AmountOfSubstance((nanopoundmoles*453.59237) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromNanopoundMoles(long nanopoundmoles)
-        {
-            return new AmountOfSubstance((nanopoundmoles*453.59237) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromNanopoundMoles(decimal nanopoundmoles)
-        {
-            return new AmountOfSubstance((Convert.ToDouble(nanopoundmoles)*453.59237) * 1e-9d);
+            double value = (double) nanopoundmoles;
+            return new AmountOfSubstance(((value*453.59237) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get AmountOfSubstance from PoundMoles.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static AmountOfSubstance FromPoundMoles(double poundmoles)
         {
-            return new AmountOfSubstance(poundmoles*453.59237);
+            double value = (double) poundmoles;
+            return new AmountOfSubstance(value*453.59237);
         }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromPoundMoles(int poundmoles)
+#else
+        public static AmountOfSubstance FromPoundMoles(QuantityValue poundmoles)
         {
-            return new AmountOfSubstance(poundmoles*453.59237);
-        }
-
-        /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles.
-        /// </summary>
-        public static AmountOfSubstance FromPoundMoles(long poundmoles)
-        {
-            return new AmountOfSubstance(poundmoles*453.59237);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance FromPoundMoles(decimal poundmoles)
-        {
-            return new AmountOfSubstance(Convert.ToDouble(poundmoles)*453.59237);
+            double value = (double) poundmoles;
+            return new AmountOfSubstance((value*453.59237));
         }
 #endif
 
@@ -787,52 +507,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Centimoles.
         /// </summary>
-        public static AmountOfSubstance? FromCentimoles(double? centimoles)
-        {
-            if (centimoles.HasValue)
-            {
-                return FromCentimoles(centimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Centimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromCentimoles(int? centimoles)
-        {
-            if (centimoles.HasValue)
-            {
-                return FromCentimoles(centimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Centimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromCentimoles(long? centimoles)
-        {
-            if (centimoles.HasValue)
-            {
-                return FromCentimoles(centimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Centimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromCentimoles(decimal? centimoles)
+        public static AmountOfSubstance? FromCentimoles(QuantityValue? centimoles)
         {
             if (centimoles.HasValue)
             {
@@ -847,52 +522,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromCentipoundMoles(double? centipoundmoles)
-        {
-            if (centipoundmoles.HasValue)
-            {
-                return FromCentipoundMoles(centipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromCentipoundMoles(int? centipoundmoles)
-        {
-            if (centipoundmoles.HasValue)
-            {
-                return FromCentipoundMoles(centipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromCentipoundMoles(long? centipoundmoles)
-        {
-            if (centipoundmoles.HasValue)
-            {
-                return FromCentipoundMoles(centipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from CentipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromCentipoundMoles(decimal? centipoundmoles)
+        public static AmountOfSubstance? FromCentipoundMoles(QuantityValue? centipoundmoles)
         {
             if (centipoundmoles.HasValue)
             {
@@ -907,52 +537,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Decimoles.
         /// </summary>
-        public static AmountOfSubstance? FromDecimoles(double? decimoles)
-        {
-            if (decimoles.HasValue)
-            {
-                return FromDecimoles(decimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Decimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromDecimoles(int? decimoles)
-        {
-            if (decimoles.HasValue)
-            {
-                return FromDecimoles(decimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Decimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromDecimoles(long? decimoles)
-        {
-            if (decimoles.HasValue)
-            {
-                return FromDecimoles(decimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Decimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromDecimoles(decimal? decimoles)
+        public static AmountOfSubstance? FromDecimoles(QuantityValue? decimoles)
         {
             if (decimoles.HasValue)
             {
@@ -967,52 +552,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromDecipoundMoles(double? decipoundmoles)
-        {
-            if (decipoundmoles.HasValue)
-            {
-                return FromDecipoundMoles(decipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromDecipoundMoles(int? decipoundmoles)
-        {
-            if (decipoundmoles.HasValue)
-            {
-                return FromDecipoundMoles(decipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromDecipoundMoles(long? decipoundmoles)
-        {
-            if (decipoundmoles.HasValue)
-            {
-                return FromDecipoundMoles(decipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from DecipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromDecipoundMoles(decimal? decipoundmoles)
+        public static AmountOfSubstance? FromDecipoundMoles(QuantityValue? decipoundmoles)
         {
             if (decipoundmoles.HasValue)
             {
@@ -1027,52 +567,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Kilomoles.
         /// </summary>
-        public static AmountOfSubstance? FromKilomoles(double? kilomoles)
-        {
-            if (kilomoles.HasValue)
-            {
-                return FromKilomoles(kilomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Kilomoles.
-        /// </summary>
-        public static AmountOfSubstance? FromKilomoles(int? kilomoles)
-        {
-            if (kilomoles.HasValue)
-            {
-                return FromKilomoles(kilomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Kilomoles.
-        /// </summary>
-        public static AmountOfSubstance? FromKilomoles(long? kilomoles)
-        {
-            if (kilomoles.HasValue)
-            {
-                return FromKilomoles(kilomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Kilomoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromKilomoles(decimal? kilomoles)
+        public static AmountOfSubstance? FromKilomoles(QuantityValue? kilomoles)
         {
             if (kilomoles.HasValue)
             {
@@ -1087,52 +582,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromKilopoundMoles(double? kilopoundmoles)
-        {
-            if (kilopoundmoles.HasValue)
-            {
-                return FromKilopoundMoles(kilopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromKilopoundMoles(int? kilopoundmoles)
-        {
-            if (kilopoundmoles.HasValue)
-            {
-                return FromKilopoundMoles(kilopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromKilopoundMoles(long? kilopoundmoles)
-        {
-            if (kilopoundmoles.HasValue)
-            {
-                return FromKilopoundMoles(kilopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from KilopoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromKilopoundMoles(decimal? kilopoundmoles)
+        public static AmountOfSubstance? FromKilopoundMoles(QuantityValue? kilopoundmoles)
         {
             if (kilopoundmoles.HasValue)
             {
@@ -1147,52 +597,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Micromoles.
         /// </summary>
-        public static AmountOfSubstance? FromMicromoles(double? micromoles)
-        {
-            if (micromoles.HasValue)
-            {
-                return FromMicromoles(micromoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Micromoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMicromoles(int? micromoles)
-        {
-            if (micromoles.HasValue)
-            {
-                return FromMicromoles(micromoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Micromoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMicromoles(long? micromoles)
-        {
-            if (micromoles.HasValue)
-            {
-                return FromMicromoles(micromoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Micromoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromMicromoles(decimal? micromoles)
+        public static AmountOfSubstance? FromMicromoles(QuantityValue? micromoles)
         {
             if (micromoles.HasValue)
             {
@@ -1207,52 +612,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromMicropoundMoles(double? micropoundmoles)
-        {
-            if (micropoundmoles.HasValue)
-            {
-                return FromMicropoundMoles(micropoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMicropoundMoles(int? micropoundmoles)
-        {
-            if (micropoundmoles.HasValue)
-            {
-                return FromMicropoundMoles(micropoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMicropoundMoles(long? micropoundmoles)
-        {
-            if (micropoundmoles.HasValue)
-            {
-                return FromMicropoundMoles(micropoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from MicropoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromMicropoundMoles(decimal? micropoundmoles)
+        public static AmountOfSubstance? FromMicropoundMoles(QuantityValue? micropoundmoles)
         {
             if (micropoundmoles.HasValue)
             {
@@ -1267,52 +627,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Millimoles.
         /// </summary>
-        public static AmountOfSubstance? FromMillimoles(double? millimoles)
-        {
-            if (millimoles.HasValue)
-            {
-                return FromMillimoles(millimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Millimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMillimoles(int? millimoles)
-        {
-            if (millimoles.HasValue)
-            {
-                return FromMillimoles(millimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Millimoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMillimoles(long? millimoles)
-        {
-            if (millimoles.HasValue)
-            {
-                return FromMillimoles(millimoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Millimoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromMillimoles(decimal? millimoles)
+        public static AmountOfSubstance? FromMillimoles(QuantityValue? millimoles)
         {
             if (millimoles.HasValue)
             {
@@ -1327,52 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromMillipoundMoles(double? millipoundmoles)
-        {
-            if (millipoundmoles.HasValue)
-            {
-                return FromMillipoundMoles(millipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMillipoundMoles(int? millipoundmoles)
-        {
-            if (millipoundmoles.HasValue)
-            {
-                return FromMillipoundMoles(millipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromMillipoundMoles(long? millipoundmoles)
-        {
-            if (millipoundmoles.HasValue)
-            {
-                return FromMillipoundMoles(millipoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from MillipoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromMillipoundMoles(decimal? millipoundmoles)
+        public static AmountOfSubstance? FromMillipoundMoles(QuantityValue? millipoundmoles)
         {
             if (millipoundmoles.HasValue)
             {
@@ -1387,52 +657,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Moles.
         /// </summary>
-        public static AmountOfSubstance? FromMoles(double? moles)
-        {
-            if (moles.HasValue)
-            {
-                return FromMoles(moles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Moles.
-        /// </summary>
-        public static AmountOfSubstance? FromMoles(int? moles)
-        {
-            if (moles.HasValue)
-            {
-                return FromMoles(moles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Moles.
-        /// </summary>
-        public static AmountOfSubstance? FromMoles(long? moles)
-        {
-            if (moles.HasValue)
-            {
-                return FromMoles(moles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Moles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromMoles(decimal? moles)
+        public static AmountOfSubstance? FromMoles(QuantityValue? moles)
         {
             if (moles.HasValue)
             {
@@ -1447,52 +672,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Nanomoles.
         /// </summary>
-        public static AmountOfSubstance? FromNanomoles(double? nanomoles)
-        {
-            if (nanomoles.HasValue)
-            {
-                return FromNanomoles(nanomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Nanomoles.
-        /// </summary>
-        public static AmountOfSubstance? FromNanomoles(int? nanomoles)
-        {
-            if (nanomoles.HasValue)
-            {
-                return FromNanomoles(nanomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Nanomoles.
-        /// </summary>
-        public static AmountOfSubstance? FromNanomoles(long? nanomoles)
-        {
-            if (nanomoles.HasValue)
-            {
-                return FromNanomoles(nanomoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from Nanomoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromNanomoles(decimal? nanomoles)
+        public static AmountOfSubstance? FromNanomoles(QuantityValue? nanomoles)
         {
             if (nanomoles.HasValue)
             {
@@ -1507,52 +687,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromNanopoundMoles(double? nanopoundmoles)
-        {
-            if (nanopoundmoles.HasValue)
-            {
-                return FromNanopoundMoles(nanopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromNanopoundMoles(int? nanopoundmoles)
-        {
-            if (nanopoundmoles.HasValue)
-            {
-                return FromNanopoundMoles(nanopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromNanopoundMoles(long? nanopoundmoles)
-        {
-            if (nanopoundmoles.HasValue)
-            {
-                return FromNanopoundMoles(nanopoundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from NanopoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromNanopoundMoles(decimal? nanopoundmoles)
+        public static AmountOfSubstance? FromNanopoundMoles(QuantityValue? nanopoundmoles)
         {
             if (nanopoundmoles.HasValue)
             {
@@ -1567,52 +702,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable PoundMoles.
         /// </summary>
-        public static AmountOfSubstance? FromPoundMoles(double? poundmoles)
-        {
-            if (poundmoles.HasValue)
-            {
-                return FromPoundMoles(poundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable PoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromPoundMoles(int? poundmoles)
-        {
-            if (poundmoles.HasValue)
-            {
-                return FromPoundMoles(poundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable PoundMoles.
-        /// </summary>
-        public static AmountOfSubstance? FromPoundMoles(long? poundmoles)
-        {
-            if (poundmoles.HasValue)
-            {
-                return FromPoundMoles(poundmoles.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from PoundMoles of type decimal.
-        /// </summary>
-        public static AmountOfSubstance? FromPoundMoles(decimal? poundmoles)
+        public static AmountOfSubstance? FromPoundMoles(QuantityValue? poundmoles)
         {
             if (poundmoles.HasValue)
             {
@@ -1629,41 +719,47 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance From(double val, AmountOfSubstanceUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static AmountOfSubstance From(double value, AmountOfSubstanceUnit fromUnit)
+#else
+        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case AmountOfSubstanceUnit.Centimole:
-                    return FromCentimoles(val);
+                    return FromCentimoles(value);
                 case AmountOfSubstanceUnit.CentipoundMole:
-                    return FromCentipoundMoles(val);
+                    return FromCentipoundMoles(value);
                 case AmountOfSubstanceUnit.Decimole:
-                    return FromDecimoles(val);
+                    return FromDecimoles(value);
                 case AmountOfSubstanceUnit.DecipoundMole:
-                    return FromDecipoundMoles(val);
+                    return FromDecipoundMoles(value);
                 case AmountOfSubstanceUnit.Kilomole:
-                    return FromKilomoles(val);
+                    return FromKilomoles(value);
                 case AmountOfSubstanceUnit.KilopoundMole:
-                    return FromKilopoundMoles(val);
+                    return FromKilopoundMoles(value);
                 case AmountOfSubstanceUnit.Micromole:
-                    return FromMicromoles(val);
+                    return FromMicromoles(value);
                 case AmountOfSubstanceUnit.MicropoundMole:
-                    return FromMicropoundMoles(val);
+                    return FromMicropoundMoles(value);
                 case AmountOfSubstanceUnit.Millimole:
-                    return FromMillimoles(val);
+                    return FromMillimoles(value);
                 case AmountOfSubstanceUnit.MillipoundMole:
-                    return FromMillipoundMoles(val);
+                    return FromMillipoundMoles(value);
                 case AmountOfSubstanceUnit.Mole:
-                    return FromMoles(val);
+                    return FromMoles(value);
                 case AmountOfSubstanceUnit.Nanomole:
-                    return FromNanomoles(val);
+                    return FromNanomoles(value);
                 case AmountOfSubstanceUnit.NanopoundMole:
-                    return FromNanopoundMoles(val);
+                    return FromNanopoundMoles(value);
                 case AmountOfSubstanceUnit.PoundMole:
-                    return FromPoundMoles(val);
+                    return FromPoundMoles(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1678,7 +774,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance? From(double? value, AmountOfSubstanceUnit fromUnit)
+        public static AmountOfSubstance? From(QuantityValue? value, AmountOfSubstanceUnit fromUnit)
         {
             if (!value.HasValue)
             {

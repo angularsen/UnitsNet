@@ -149,38 +149,18 @@ namespace UnitsNet
         /// <summary>
         ///     Get LapseRate from DegreesCelciusPerKilometer.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static LapseRate FromDegreesCelciusPerKilometer(double degreescelciusperkilometer)
         {
-            return new LapseRate(degreescelciusperkilometer);
+            double value = (double) degreescelciusperkilometer;
+            return new LapseRate(value);
         }
-
-        /// <summary>
-        ///     Get LapseRate from DegreesCelciusPerKilometer.
-        /// </summary>
-        public static LapseRate FromDegreesCelciusPerKilometer(int degreescelciusperkilometer)
+#else
+        public static LapseRate FromDegreesCelciusPerKilometer(QuantityValue degreescelciusperkilometer)
         {
-            return new LapseRate(degreescelciusperkilometer);
-        }
-
-        /// <summary>
-        ///     Get LapseRate from DegreesCelciusPerKilometer.
-        /// </summary>
-        public static LapseRate FromDegreesCelciusPerKilometer(long degreescelciusperkilometer)
-        {
-            return new LapseRate(degreescelciusperkilometer);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get LapseRate from DegreesCelciusPerKilometer of type decimal.
-        /// </summary>
-        public static LapseRate FromDegreesCelciusPerKilometer(decimal degreescelciusperkilometer)
-        {
-            return new LapseRate(Convert.ToDouble(degreescelciusperkilometer));
+            double value = (double) degreescelciusperkilometer;
+            return new LapseRate((value));
         }
 #endif
 
@@ -189,52 +169,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LapseRate from nullable DegreesCelciusPerKilometer.
         /// </summary>
-        public static LapseRate? FromDegreesCelciusPerKilometer(double? degreescelciusperkilometer)
-        {
-            if (degreescelciusperkilometer.HasValue)
-            {
-                return FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable LapseRate from nullable DegreesCelciusPerKilometer.
-        /// </summary>
-        public static LapseRate? FromDegreesCelciusPerKilometer(int? degreescelciusperkilometer)
-        {
-            if (degreescelciusperkilometer.HasValue)
-            {
-                return FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable LapseRate from nullable DegreesCelciusPerKilometer.
-        /// </summary>
-        public static LapseRate? FromDegreesCelciusPerKilometer(long? degreescelciusperkilometer)
-        {
-            if (degreescelciusperkilometer.HasValue)
-            {
-                return FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable LapseRate from DegreesCelciusPerKilometer of type decimal.
-        /// </summary>
-        public static LapseRate? FromDegreesCelciusPerKilometer(decimal? degreescelciusperkilometer)
+        public static LapseRate? FromDegreesCelciusPerKilometer(QuantityValue? degreescelciusperkilometer)
         {
             if (degreescelciusperkilometer.HasValue)
             {
@@ -251,15 +186,21 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LapseRate unit value.</returns>
-        public static LapseRate From(double val, LapseRateUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static LapseRate From(double value, LapseRateUnit fromUnit)
+#else
+        public static LapseRate From(QuantityValue value, LapseRateUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case LapseRateUnit.DegreeCelsiusPerKilometer:
-                    return FromDegreesCelciusPerKilometer(val);
+                    return FromDegreesCelciusPerKilometer(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -274,7 +215,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LapseRate unit value.</returns>
-        public static LapseRate? From(double? value, LapseRateUnit fromUnit)
+        public static LapseRate? From(QuantityValue? value, LapseRateUnit fromUnit)
         {
             if (!value.HasValue)
             {

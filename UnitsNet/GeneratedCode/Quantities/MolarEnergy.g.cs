@@ -165,114 +165,54 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarEnergy from JoulesPerMole.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEnergy FromJoulesPerMole(double joulespermole)
         {
-            return new MolarEnergy(joulespermole);
+            double value = (double) joulespermole;
+            return new MolarEnergy(value);
         }
-
-        /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromJoulesPerMole(int joulespermole)
+#else
+        public static MolarEnergy FromJoulesPerMole(QuantityValue joulespermole)
         {
-            return new MolarEnergy(joulespermole);
-        }
-
-        /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromJoulesPerMole(long joulespermole)
-        {
-            return new MolarEnergy(joulespermole);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy FromJoulesPerMole(decimal joulespermole)
-        {
-            return new MolarEnergy(Convert.ToDouble(joulespermole));
+            double value = (double) joulespermole;
+            return new MolarEnergy((value));
         }
 #endif
 
         /// <summary>
         ///     Get MolarEnergy from KilojoulesPerMole.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEnergy FromKilojoulesPerMole(double kilojoulespermole)
         {
-            return new MolarEnergy((kilojoulespermole) * 1e3d);
+            double value = (double) kilojoulespermole;
+            return new MolarEnergy((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromKilojoulesPerMole(int kilojoulespermole)
+#else
+        public static MolarEnergy FromKilojoulesPerMole(QuantityValue kilojoulespermole)
         {
-            return new MolarEnergy((kilojoulespermole) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromKilojoulesPerMole(long kilojoulespermole)
-        {
-            return new MolarEnergy((kilojoulespermole) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy FromKilojoulesPerMole(decimal kilojoulespermole)
-        {
-            return new MolarEnergy((Convert.ToDouble(kilojoulespermole)) * 1e3d);
+            double value = (double) kilojoulespermole;
+            return new MolarEnergy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get MolarEnergy from MegajoulesPerMole.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEnergy FromMegajoulesPerMole(double megajoulespermole)
         {
-            return new MolarEnergy((megajoulespermole) * 1e6d);
+            double value = (double) megajoulespermole;
+            return new MolarEnergy((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromMegajoulesPerMole(int megajoulespermole)
+#else
+        public static MolarEnergy FromMegajoulesPerMole(QuantityValue megajoulespermole)
         {
-            return new MolarEnergy((megajoulespermole) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole.
-        /// </summary>
-        public static MolarEnergy FromMegajoulesPerMole(long megajoulespermole)
-        {
-            return new MolarEnergy((megajoulespermole) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy FromMegajoulesPerMole(decimal megajoulespermole)
-        {
-            return new MolarEnergy((Convert.ToDouble(megajoulespermole)) * 1e6d);
+            double value = (double) megajoulespermole;
+            return new MolarEnergy(((value) * 1e6d));
         }
 #endif
 
@@ -281,52 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable JoulesPerMole.
         /// </summary>
-        public static MolarEnergy? FromJoulesPerMole(double? joulespermole)
-        {
-            if (joulespermole.HasValue)
-            {
-                return FromJoulesPerMole(joulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable JoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromJoulesPerMole(int? joulespermole)
-        {
-            if (joulespermole.HasValue)
-            {
-                return FromJoulesPerMole(joulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable JoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromJoulesPerMole(long? joulespermole)
-        {
-            if (joulespermole.HasValue)
-            {
-                return FromJoulesPerMole(joulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from JoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy? FromJoulesPerMole(decimal? joulespermole)
+        public static MolarEnergy? FromJoulesPerMole(QuantityValue? joulespermole)
         {
             if (joulespermole.HasValue)
             {
@@ -341,52 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
         /// </summary>
-        public static MolarEnergy? FromKilojoulesPerMole(double? kilojoulespermole)
-        {
-            if (kilojoulespermole.HasValue)
-            {
-                return FromKilojoulesPerMole(kilojoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromKilojoulesPerMole(int? kilojoulespermole)
-        {
-            if (kilojoulespermole.HasValue)
-            {
-                return FromKilojoulesPerMole(kilojoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromKilojoulesPerMole(long? kilojoulespermole)
-        {
-            if (kilojoulespermole.HasValue)
-            {
-                return FromKilojoulesPerMole(kilojoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from KilojoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy? FromKilojoulesPerMole(decimal? kilojoulespermole)
+        public static MolarEnergy? FromKilojoulesPerMole(QuantityValue? kilojoulespermole)
         {
             if (kilojoulespermole.HasValue)
             {
@@ -401,52 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
         /// </summary>
-        public static MolarEnergy? FromMegajoulesPerMole(double? megajoulespermole)
-        {
-            if (megajoulespermole.HasValue)
-            {
-                return FromMegajoulesPerMole(megajoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromMegajoulesPerMole(int? megajoulespermole)
-        {
-            if (megajoulespermole.HasValue)
-            {
-                return FromMegajoulesPerMole(megajoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromMegajoulesPerMole(long? megajoulespermole)
-        {
-            if (megajoulespermole.HasValue)
-            {
-                return FromMegajoulesPerMole(megajoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from MegajoulesPerMole of type decimal.
-        /// </summary>
-        public static MolarEnergy? FromMegajoulesPerMole(decimal? megajoulespermole)
+        public static MolarEnergy? FromMegajoulesPerMole(QuantityValue? megajoulespermole)
         {
             if (megajoulespermole.HasValue)
             {
@@ -463,19 +268,25 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEnergy unit value.</returns>
-        public static MolarEnergy From(double val, MolarEnergyUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static MolarEnergy From(double value, MolarEnergyUnit fromUnit)
+#else
+        public static MolarEnergy From(QuantityValue value, MolarEnergyUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case MolarEnergyUnit.JoulePerMole:
-                    return FromJoulesPerMole(val);
+                    return FromJoulesPerMole(value);
                 case MolarEnergyUnit.KilojoulePerMole:
-                    return FromKilojoulesPerMole(val);
+                    return FromKilojoulesPerMole(value);
                 case MolarEnergyUnit.MegajoulePerMole:
-                    return FromMegajoulesPerMole(val);
+                    return FromMegajoulesPerMole(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -490,7 +301,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEnergy unit value.</returns>
-        public static MolarEnergy? From(double? value, MolarEnergyUnit fromUnit)
+        public static MolarEnergy? From(QuantityValue? value, MolarEnergyUnit fromUnit)
         {
             if (!value.HasValue)
             {

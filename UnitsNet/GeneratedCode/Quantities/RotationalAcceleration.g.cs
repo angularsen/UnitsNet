@@ -157,76 +157,36 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalAcceleration from DegreesPerSecondSquared.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared)
         {
-            return new RotationalAcceleration((Math.PI/180)*degreespersecondsquared);
+            double value = (double) degreespersecondsquared;
+            return new RotationalAcceleration((Math.PI/180)*value);
         }
-
-        /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(int degreespersecondsquared)
+#else
+        public static RotationalAcceleration FromDegreesPerSecondSquared(QuantityValue degreespersecondsquared)
         {
-            return new RotationalAcceleration((Math.PI/180)*degreespersecondsquared);
-        }
-
-        /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(long degreespersecondsquared)
-        {
-            return new RotationalAcceleration((Math.PI/180)*degreespersecondsquared);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared of type decimal.
-        /// </summary>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(decimal degreespersecondsquared)
-        {
-            return new RotationalAcceleration((Math.PI/180)*Convert.ToDouble(degreespersecondsquared));
+            double value = (double) degreespersecondsquared;
+            return new RotationalAcceleration(((Math.PI/180)*value));
         }
 #endif
 
         /// <summary>
         ///     Get RotationalAcceleration from RadiansPerSecondSquared.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static RotationalAcceleration FromRadiansPerSecondSquared(double radianspersecondsquared)
         {
-            return new RotationalAcceleration(radianspersecondsquared);
+            double value = (double) radianspersecondsquared;
+            return new RotationalAcceleration(value);
         }
-
-        /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(int radianspersecondsquared)
+#else
+        public static RotationalAcceleration FromRadiansPerSecondSquared(QuantityValue radianspersecondsquared)
         {
-            return new RotationalAcceleration(radianspersecondsquared);
-        }
-
-        /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(long radianspersecondsquared)
-        {
-            return new RotationalAcceleration(radianspersecondsquared);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared of type decimal.
-        /// </summary>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(decimal radianspersecondsquared)
-        {
-            return new RotationalAcceleration(Convert.ToDouble(radianspersecondsquared));
+            double value = (double) radianspersecondsquared;
+            return new RotationalAcceleration((value));
         }
 #endif
 
@@ -235,52 +195,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalAcceleration from nullable DegreesPerSecondSquared.
         /// </summary>
-        public static RotationalAcceleration? FromDegreesPerSecondSquared(double? degreespersecondsquared)
-        {
-            if (degreespersecondsquared.HasValue)
-            {
-                return FromDegreesPerSecondSquared(degreespersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable DegreesPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration? FromDegreesPerSecondSquared(int? degreespersecondsquared)
-        {
-            if (degreespersecondsquared.HasValue)
-            {
-                return FromDegreesPerSecondSquared(degreespersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable DegreesPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration? FromDegreesPerSecondSquared(long? degreespersecondsquared)
-        {
-            if (degreespersecondsquared.HasValue)
-            {
-                return FromDegreesPerSecondSquared(degreespersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from DegreesPerSecondSquared of type decimal.
-        /// </summary>
-        public static RotationalAcceleration? FromDegreesPerSecondSquared(decimal? degreespersecondsquared)
+        public static RotationalAcceleration? FromDegreesPerSecondSquared(QuantityValue? degreespersecondsquared)
         {
             if (degreespersecondsquared.HasValue)
             {
@@ -295,52 +210,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalAcceleration from nullable RadiansPerSecondSquared.
         /// </summary>
-        public static RotationalAcceleration? FromRadiansPerSecondSquared(double? radianspersecondsquared)
-        {
-            if (radianspersecondsquared.HasValue)
-            {
-                return FromRadiansPerSecondSquared(radianspersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable RadiansPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration? FromRadiansPerSecondSquared(int? radianspersecondsquared)
-        {
-            if (radianspersecondsquared.HasValue)
-            {
-                return FromRadiansPerSecondSquared(radianspersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable RadiansPerSecondSquared.
-        /// </summary>
-        public static RotationalAcceleration? FromRadiansPerSecondSquared(long? radianspersecondsquared)
-        {
-            if (radianspersecondsquared.HasValue)
-            {
-                return FromRadiansPerSecondSquared(radianspersecondsquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalAcceleration from RadiansPerSecondSquared of type decimal.
-        /// </summary>
-        public static RotationalAcceleration? FromRadiansPerSecondSquared(decimal? radianspersecondsquared)
+        public static RotationalAcceleration? FromRadiansPerSecondSquared(QuantityValue? radianspersecondsquared)
         {
             if (radianspersecondsquared.HasValue)
             {
@@ -357,17 +227,23 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalAccelerationUnit" /> to <see cref="RotationalAcceleration" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalAcceleration unit value.</returns>
-        public static RotationalAcceleration From(double val, RotationalAccelerationUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static RotationalAcceleration From(double value, RotationalAccelerationUnit fromUnit)
+#else
+        public static RotationalAcceleration From(QuantityValue value, RotationalAccelerationUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return FromDegreesPerSecondSquared(val);
+                    return FromDegreesPerSecondSquared(value);
                 case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return FromRadiansPerSecondSquared(val);
+                    return FromRadiansPerSecondSquared(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -382,7 +258,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalAcceleration unit value.</returns>
-        public static RotationalAcceleration? From(double? value, RotationalAccelerationUnit fromUnit)
+        public static RotationalAcceleration? From(QuantityValue? value, RotationalAccelerationUnit fromUnit)
         {
             if (!value.HasValue)
             {

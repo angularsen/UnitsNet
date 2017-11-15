@@ -197,266 +197,126 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromCaloriesPerKelvin(double caloriesperkelvin)
         {
-            return new Entropy(caloriesperkelvin*4.184);
+            double value = (double) caloriesperkelvin;
+            return new Entropy(value*4.184);
         }
-
-        /// <summary>
-        ///     Get Entropy from CaloriesPerKelvin.
-        /// </summary>
-        public static Entropy FromCaloriesPerKelvin(int caloriesperkelvin)
+#else
+        public static Entropy FromCaloriesPerKelvin(QuantityValue caloriesperkelvin)
         {
-            return new Entropy(caloriesperkelvin*4.184);
-        }
-
-        /// <summary>
-        ///     Get Entropy from CaloriesPerKelvin.
-        /// </summary>
-        public static Entropy FromCaloriesPerKelvin(long caloriesperkelvin)
-        {
-            return new Entropy(caloriesperkelvin*4.184);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from CaloriesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy FromCaloriesPerKelvin(decimal caloriesperkelvin)
-        {
-            return new Entropy(Convert.ToDouble(caloriesperkelvin)*4.184);
+            double value = (double) caloriesperkelvin;
+            return new Entropy((value*4.184));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from JoulesPerDegreeCelsius.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromJoulesPerDegreeCelsius(double joulesperdegreecelsius)
         {
-            return new Entropy(joulesperdegreecelsius);
+            double value = (double) joulesperdegreecelsius;
+            return new Entropy(value);
         }
-
-        /// <summary>
-        ///     Get Entropy from JoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy FromJoulesPerDegreeCelsius(int joulesperdegreecelsius)
+#else
+        public static Entropy FromJoulesPerDegreeCelsius(QuantityValue joulesperdegreecelsius)
         {
-            return new Entropy(joulesperdegreecelsius);
-        }
-
-        /// <summary>
-        ///     Get Entropy from JoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy FromJoulesPerDegreeCelsius(long joulesperdegreecelsius)
-        {
-            return new Entropy(joulesperdegreecelsius);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from JoulesPerDegreeCelsius of type decimal.
-        /// </summary>
-        public static Entropy FromJoulesPerDegreeCelsius(decimal joulesperdegreecelsius)
-        {
-            return new Entropy(Convert.ToDouble(joulesperdegreecelsius));
+            double value = (double) joulesperdegreecelsius;
+            return new Entropy((value));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from JoulesPerKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromJoulesPerKelvin(double joulesperkelvin)
         {
-            return new Entropy(joulesperkelvin);
+            double value = (double) joulesperkelvin;
+            return new Entropy(value);
         }
-
-        /// <summary>
-        ///     Get Entropy from JoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromJoulesPerKelvin(int joulesperkelvin)
+#else
+        public static Entropy FromJoulesPerKelvin(QuantityValue joulesperkelvin)
         {
-            return new Entropy(joulesperkelvin);
-        }
-
-        /// <summary>
-        ///     Get Entropy from JoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromJoulesPerKelvin(long joulesperkelvin)
-        {
-            return new Entropy(joulesperkelvin);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from JoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy FromJoulesPerKelvin(decimal joulesperkelvin)
-        {
-            return new Entropy(Convert.ToDouble(joulesperkelvin));
+            double value = (double) joulesperkelvin;
+            return new Entropy((value));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from KilocaloriesPerKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromKilocaloriesPerKelvin(double kilocaloriesperkelvin)
         {
-            return new Entropy((kilocaloriesperkelvin*4.184) * 1e3d);
+            double value = (double) kilocaloriesperkelvin;
+            return new Entropy((value*4.184) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Entropy from KilocaloriesPerKelvin.
-        /// </summary>
-        public static Entropy FromKilocaloriesPerKelvin(int kilocaloriesperkelvin)
+#else
+        public static Entropy FromKilocaloriesPerKelvin(QuantityValue kilocaloriesperkelvin)
         {
-            return new Entropy((kilocaloriesperkelvin*4.184) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Entropy from KilocaloriesPerKelvin.
-        /// </summary>
-        public static Entropy FromKilocaloriesPerKelvin(long kilocaloriesperkelvin)
-        {
-            return new Entropy((kilocaloriesperkelvin*4.184) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from KilocaloriesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy FromKilocaloriesPerKelvin(decimal kilocaloriesperkelvin)
-        {
-            return new Entropy((Convert.ToDouble(kilocaloriesperkelvin)*4.184) * 1e3d);
+            double value = (double) kilocaloriesperkelvin;
+            return new Entropy(((value*4.184) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from KilojoulesPerDegreeCelsius.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromKilojoulesPerDegreeCelsius(double kilojoulesperdegreecelsius)
         {
-            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
+            double value = (double) kilojoulesperdegreecelsius;
+            return new Entropy((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy FromKilojoulesPerDegreeCelsius(int kilojoulesperdegreecelsius)
+#else
+        public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue kilojoulesperdegreecelsius)
         {
-            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy FromKilojoulesPerDegreeCelsius(long kilojoulesperdegreecelsius)
-        {
-            return new Entropy((kilojoulesperdegreecelsius) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerDegreeCelsius of type decimal.
-        /// </summary>
-        public static Entropy FromKilojoulesPerDegreeCelsius(decimal kilojoulesperdegreecelsius)
-        {
-            return new Entropy((Convert.ToDouble(kilojoulesperdegreecelsius)) * 1e3d);
+            double value = (double) kilojoulesperdegreecelsius;
+            return new Entropy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from KilojoulesPerKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromKilojoulesPerKelvin(double kilojoulesperkelvin)
         {
-            return new Entropy((kilojoulesperkelvin) * 1e3d);
+            double value = (double) kilojoulesperkelvin;
+            return new Entropy((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromKilojoulesPerKelvin(int kilojoulesperkelvin)
+#else
+        public static Entropy FromKilojoulesPerKelvin(QuantityValue kilojoulesperkelvin)
         {
-            return new Entropy((kilojoulesperkelvin) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromKilojoulesPerKelvin(long kilojoulesperkelvin)
-        {
-            return new Entropy((kilojoulesperkelvin) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from KilojoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy FromKilojoulesPerKelvin(decimal kilojoulesperkelvin)
-        {
-            return new Entropy((Convert.ToDouble(kilojoulesperkelvin)) * 1e3d);
+            double value = (double) kilojoulesperkelvin;
+            return new Entropy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Entropy from MegajoulesPerKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Entropy FromMegajoulesPerKelvin(double megajoulesperkelvin)
         {
-            return new Entropy((megajoulesperkelvin) * 1e6d);
+            double value = (double) megajoulesperkelvin;
+            return new Entropy((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get Entropy from MegajoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromMegajoulesPerKelvin(int megajoulesperkelvin)
+#else
+        public static Entropy FromMegajoulesPerKelvin(QuantityValue megajoulesperkelvin)
         {
-            return new Entropy((megajoulesperkelvin) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get Entropy from MegajoulesPerKelvin.
-        /// </summary>
-        public static Entropy FromMegajoulesPerKelvin(long megajoulesperkelvin)
-        {
-            return new Entropy((megajoulesperkelvin) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Entropy from MegajoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy FromMegajoulesPerKelvin(decimal megajoulesperkelvin)
-        {
-            return new Entropy((Convert.ToDouble(megajoulesperkelvin)) * 1e6d);
+            double value = (double) megajoulesperkelvin;
+            return new Entropy(((value) * 1e6d));
         }
 #endif
 
@@ -465,52 +325,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable CaloriesPerKelvin.
         /// </summary>
-        public static Entropy? FromCaloriesPerKelvin(double? caloriesperkelvin)
-        {
-            if (caloriesperkelvin.HasValue)
-            {
-                return FromCaloriesPerKelvin(caloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable CaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromCaloriesPerKelvin(int? caloriesperkelvin)
-        {
-            if (caloriesperkelvin.HasValue)
-            {
-                return FromCaloriesPerKelvin(caloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable CaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromCaloriesPerKelvin(long? caloriesperkelvin)
-        {
-            if (caloriesperkelvin.HasValue)
-            {
-                return FromCaloriesPerKelvin(caloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from CaloriesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy? FromCaloriesPerKelvin(decimal? caloriesperkelvin)
+        public static Entropy? FromCaloriesPerKelvin(QuantityValue? caloriesperkelvin)
         {
             if (caloriesperkelvin.HasValue)
             {
@@ -525,52 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
         /// </summary>
-        public static Entropy? FromJoulesPerDegreeCelsius(double? joulesperdegreecelsius)
-        {
-            if (joulesperdegreecelsius.HasValue)
-            {
-                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromJoulesPerDegreeCelsius(int? joulesperdegreecelsius)
-        {
-            if (joulesperdegreecelsius.HasValue)
-            {
-                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromJoulesPerDegreeCelsius(long? joulesperdegreecelsius)
-        {
-            if (joulesperdegreecelsius.HasValue)
-            {
-                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from JoulesPerDegreeCelsius of type decimal.
-        /// </summary>
-        public static Entropy? FromJoulesPerDegreeCelsius(decimal? joulesperdegreecelsius)
+        public static Entropy? FromJoulesPerDegreeCelsius(QuantityValue? joulesperdegreecelsius)
         {
             if (joulesperdegreecelsius.HasValue)
             {
@@ -585,52 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable JoulesPerKelvin.
         /// </summary>
-        public static Entropy? FromJoulesPerKelvin(double? joulesperkelvin)
-        {
-            if (joulesperkelvin.HasValue)
-            {
-                return FromJoulesPerKelvin(joulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromJoulesPerKelvin(int? joulesperkelvin)
-        {
-            if (joulesperkelvin.HasValue)
-            {
-                return FromJoulesPerKelvin(joulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromJoulesPerKelvin(long? joulesperkelvin)
-        {
-            if (joulesperkelvin.HasValue)
-            {
-                return FromJoulesPerKelvin(joulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from JoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy? FromJoulesPerKelvin(decimal? joulesperkelvin)
+        public static Entropy? FromJoulesPerKelvin(QuantityValue? joulesperkelvin)
         {
             if (joulesperkelvin.HasValue)
             {
@@ -645,52 +370,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
         /// </summary>
-        public static Entropy? FromKilocaloriesPerKelvin(double? kilocaloriesperkelvin)
-        {
-            if (kilocaloriesperkelvin.HasValue)
-            {
-                return FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilocaloriesPerKelvin(int? kilocaloriesperkelvin)
-        {
-            if (kilocaloriesperkelvin.HasValue)
-            {
-                return FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilocaloriesPerKelvin(long? kilocaloriesperkelvin)
-        {
-            if (kilocaloriesperkelvin.HasValue)
-            {
-                return FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from KilocaloriesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy? FromKilocaloriesPerKelvin(decimal? kilocaloriesperkelvin)
+        public static Entropy? FromKilocaloriesPerKelvin(QuantityValue? kilocaloriesperkelvin)
         {
             if (kilocaloriesperkelvin.HasValue)
             {
@@ -705,52 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
         /// </summary>
-        public static Entropy? FromKilojoulesPerDegreeCelsius(double? kilojoulesperdegreecelsius)
-        {
-            if (kilojoulesperdegreecelsius.HasValue)
-            {
-                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerDegreeCelsius(int? kilojoulesperdegreecelsius)
-        {
-            if (kilojoulesperdegreecelsius.HasValue)
-            {
-                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerDegreeCelsius(long? kilojoulesperdegreecelsius)
-        {
-            if (kilojoulesperdegreecelsius.HasValue)
-            {
-                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from KilojoulesPerDegreeCelsius of type decimal.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerDegreeCelsius(decimal? kilojoulesperdegreecelsius)
+        public static Entropy? FromKilojoulesPerDegreeCelsius(QuantityValue? kilojoulesperdegreecelsius)
         {
             if (kilojoulesperdegreecelsius.HasValue)
             {
@@ -765,52 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
         /// </summary>
-        public static Entropy? FromKilojoulesPerKelvin(double? kilojoulesperkelvin)
-        {
-            if (kilojoulesperkelvin.HasValue)
-            {
-                return FromKilojoulesPerKelvin(kilojoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerKelvin(int? kilojoulesperkelvin)
-        {
-            if (kilojoulesperkelvin.HasValue)
-            {
-                return FromKilojoulesPerKelvin(kilojoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerKelvin(long? kilojoulesperkelvin)
-        {
-            if (kilojoulesperkelvin.HasValue)
-            {
-                return FromKilojoulesPerKelvin(kilojoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from KilojoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerKelvin(decimal? kilojoulesperkelvin)
+        public static Entropy? FromKilojoulesPerKelvin(QuantityValue? kilojoulesperkelvin)
         {
             if (kilojoulesperkelvin.HasValue)
             {
@@ -825,52 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
         /// </summary>
-        public static Entropy? FromMegajoulesPerKelvin(double? megajoulesperkelvin)
-        {
-            if (megajoulesperkelvin.HasValue)
-            {
-                return FromMegajoulesPerKelvin(megajoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromMegajoulesPerKelvin(int? megajoulesperkelvin)
-        {
-            if (megajoulesperkelvin.HasValue)
-            {
-                return FromMegajoulesPerKelvin(megajoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromMegajoulesPerKelvin(long? megajoulesperkelvin)
-        {
-            if (megajoulesperkelvin.HasValue)
-            {
-                return FromMegajoulesPerKelvin(megajoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from MegajoulesPerKelvin of type decimal.
-        /// </summary>
-        public static Entropy? FromMegajoulesPerKelvin(decimal? megajoulesperkelvin)
+        public static Entropy? FromMegajoulesPerKelvin(QuantityValue? megajoulesperkelvin)
         {
             if (megajoulesperkelvin.HasValue)
             {
@@ -887,27 +432,33 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
-        public static Entropy From(double val, EntropyUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Entropy From(double value, EntropyUnit fromUnit)
+#else
+        public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case EntropyUnit.CaloriePerKelvin:
-                    return FromCaloriesPerKelvin(val);
+                    return FromCaloriesPerKelvin(value);
                 case EntropyUnit.JoulePerDegreeCelsius:
-                    return FromJoulesPerDegreeCelsius(val);
+                    return FromJoulesPerDegreeCelsius(value);
                 case EntropyUnit.JoulePerKelvin:
-                    return FromJoulesPerKelvin(val);
+                    return FromJoulesPerKelvin(value);
                 case EntropyUnit.KilocaloriePerKelvin:
-                    return FromKilocaloriesPerKelvin(val);
+                    return FromKilocaloriesPerKelvin(value);
                 case EntropyUnit.KilojoulePerDegreeCelsius:
-                    return FromKilojoulesPerDegreeCelsius(val);
+                    return FromKilojoulesPerDegreeCelsius(value);
                 case EntropyUnit.KilojoulePerKelvin:
-                    return FromKilojoulesPerKelvin(val);
+                    return FromKilojoulesPerKelvin(value);
                 case EntropyUnit.MegajoulePerKelvin:
-                    return FromMegajoulesPerKelvin(val);
+                    return FromMegajoulesPerKelvin(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -922,7 +473,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
-        public static Entropy? From(double? value, EntropyUnit fromUnit)
+        public static Entropy? From(QuantityValue? value, EntropyUnit fromUnit)
         {
             if (!value.HasValue)
             {
