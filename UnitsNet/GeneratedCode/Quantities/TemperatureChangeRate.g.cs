@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -221,380 +221,180 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double centidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((centidegreescelsiuspersecond) * 1e-2d);
+            double value = (double) centidegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(int centidegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue centidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((centidegreescelsiuspersecond) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(long centidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((centidegreescelsiuspersecond) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(decimal centidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(centidegreescelsiuspersecond)) * 1e-2d);
+            double value = (double) centidegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double decadegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((decadegreescelsiuspersecond) * 1e1d);
+            double value = (double) decadegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e1d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(int decadegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue decadegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((decadegreescelsiuspersecond) * 1e1d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(long decadegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((decadegreescelsiuspersecond) * 1e1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(decimal decadegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(decadegreescelsiuspersecond)) * 1e1d);
+            double value = (double) decadegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e1d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
+            double value = (double) decidegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(int decidegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue decidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(long decidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((decidegreescelsiuspersecond) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(decimal decidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(decidegreescelsiuspersecond)) * 1e-1d);
+            double value = (double) decidegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double degreescelsiusperminute)
         {
-            return new TemperatureChangeRate(degreescelsiusperminute/60);
+            double value = (double) degreescelsiusperminute;
+            return new TemperatureChangeRate(value/60);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(int degreescelsiusperminute)
+#else
+        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue degreescelsiusperminute)
         {
-            return new TemperatureChangeRate(degreescelsiusperminute/60);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(long degreescelsiusperminute)
-        {
-            return new TemperatureChangeRate(degreescelsiusperminute/60);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(decimal degreescelsiusperminute)
-        {
-            return new TemperatureChangeRate(Convert.ToDouble(degreescelsiusperminute)/60);
+            double value = (double) degreescelsiusperminute;
+            return new TemperatureChangeRate((value/60));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double degreescelsiuspersecond)
         {
-            return new TemperatureChangeRate(degreescelsiuspersecond);
+            double value = (double) degreescelsiuspersecond;
+            return new TemperatureChangeRate(value);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(int degreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue degreescelsiuspersecond)
         {
-            return new TemperatureChangeRate(degreescelsiuspersecond);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(long degreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate(degreescelsiuspersecond);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(decimal degreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate(Convert.ToDouble(degreescelsiuspersecond));
+            double value = (double) degreescelsiuspersecond;
+            return new TemperatureChangeRate((value));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double hectodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((hectodegreescelsiuspersecond) * 1e2d);
+            double value = (double) hectodegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e2d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(int hectodegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue hectodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((hectodegreescelsiuspersecond) * 1e2d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(long hectodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((hectodegreescelsiuspersecond) * 1e2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(decimal hectodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(hectodegreescelsiuspersecond)) * 1e2d);
+            double value = (double) hectodegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e2d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double kilodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((kilodegreescelsiuspersecond) * 1e3d);
+            double value = (double) kilodegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(int kilodegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue kilodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((kilodegreescelsiuspersecond) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(long kilodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((kilodegreescelsiuspersecond) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(decimal kilodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(kilodegreescelsiuspersecond)) * 1e3d);
+            double value = (double) kilodegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double microdegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((microdegreescelsiuspersecond) * 1e-6d);
+            double value = (double) microdegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(int microdegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue microdegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((microdegreescelsiuspersecond) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(long microdegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((microdegreescelsiuspersecond) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(decimal microdegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(microdegreescelsiuspersecond)) * 1e-6d);
+            double value = (double) microdegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double millidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((millidegreescelsiuspersecond) * 1e-3d);
+            double value = (double) millidegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(int millidegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue millidegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((millidegreescelsiuspersecond) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(long millidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((millidegreescelsiuspersecond) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(decimal millidegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(millidegreescelsiuspersecond)) * 1e-3d);
+            double value = (double) millidegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double nanodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((nanodegreescelsiuspersecond) * 1e-9d);
+            double value = (double) nanodegreescelsiuspersecond;
+            return new TemperatureChangeRate((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(int nanodegreescelsiuspersecond)
+#else
+        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue nanodegreescelsiuspersecond)
         {
-            return new TemperatureChangeRate((nanodegreescelsiuspersecond) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(long nanodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((nanodegreescelsiuspersecond) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(decimal nanodegreescelsiuspersecond)
-        {
-            return new TemperatureChangeRate((Convert.ToDouble(nanodegreescelsiuspersecond)) * 1e-9d);
+            double value = (double) nanodegreescelsiuspersecond;
+            return new TemperatureChangeRate(((value) * 1e-9d));
         }
 #endif
 
@@ -603,52 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(double? centidegreescelsiuspersecond)
-        {
-            if (centidegreescelsiuspersecond.HasValue)
-            {
-                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(int? centidegreescelsiuspersecond)
-        {
-            if (centidegreescelsiuspersecond.HasValue)
-            {
-                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(long? centidegreescelsiuspersecond)
-        {
-            if (centidegreescelsiuspersecond.HasValue)
-            {
-                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from CentidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(decimal? centidegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(QuantityValue? centidegreescelsiuspersecond)
         {
             if (centidegreescelsiuspersecond.HasValue)
             {
@@ -663,52 +418,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(double? decadegreescelsiuspersecond)
-        {
-            if (decadegreescelsiuspersecond.HasValue)
-            {
-                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(int? decadegreescelsiuspersecond)
-        {
-            if (decadegreescelsiuspersecond.HasValue)
-            {
-                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(long? decadegreescelsiuspersecond)
-        {
-            if (decadegreescelsiuspersecond.HasValue)
-            {
-                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from DecadegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(decimal? decadegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(QuantityValue? decadegreescelsiuspersecond)
         {
             if (decadegreescelsiuspersecond.HasValue)
             {
@@ -723,52 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(double? decidegreescelsiuspersecond)
-        {
-            if (decidegreescelsiuspersecond.HasValue)
-            {
-                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(int? decidegreescelsiuspersecond)
-        {
-            if (decidegreescelsiuspersecond.HasValue)
-            {
-                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(long? decidegreescelsiuspersecond)
-        {
-            if (decidegreescelsiuspersecond.HasValue)
-            {
-                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from DecidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(decimal? decidegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(QuantityValue? decidegreescelsiuspersecond)
         {
             if (decidegreescelsiuspersecond.HasValue)
             {
@@ -783,52 +448,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
         /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(double? degreescelsiusperminute)
-        {
-            if (degreescelsiusperminute.HasValue)
-            {
-                return FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(int? degreescelsiusperminute)
-        {
-            if (degreescelsiusperminute.HasValue)
-            {
-                return FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(long? degreescelsiusperminute)
-        {
-            if (degreescelsiusperminute.HasValue)
-            {
-                return FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from DegreesCelsiusPerMinute of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(decimal? degreescelsiusperminute)
+        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(QuantityValue? degreescelsiusperminute)
         {
             if (degreescelsiusperminute.HasValue)
             {
@@ -843,52 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(double? degreescelsiuspersecond)
-        {
-            if (degreescelsiuspersecond.HasValue)
-            {
-                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(int? degreescelsiuspersecond)
-        {
-            if (degreescelsiuspersecond.HasValue)
-            {
-                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(long? degreescelsiuspersecond)
-        {
-            if (degreescelsiuspersecond.HasValue)
-            {
-                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from DegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(decimal? degreescelsiuspersecond)
+        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(QuantityValue? degreescelsiuspersecond)
         {
             if (degreescelsiuspersecond.HasValue)
             {
@@ -903,52 +478,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(double? hectodegreescelsiuspersecond)
-        {
-            if (hectodegreescelsiuspersecond.HasValue)
-            {
-                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(int? hectodegreescelsiuspersecond)
-        {
-            if (hectodegreescelsiuspersecond.HasValue)
-            {
-                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(long? hectodegreescelsiuspersecond)
-        {
-            if (hectodegreescelsiuspersecond.HasValue)
-            {
-                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from HectodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(decimal? hectodegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(QuantityValue? hectodegreescelsiuspersecond)
         {
             if (hectodegreescelsiuspersecond.HasValue)
             {
@@ -963,52 +493,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(double? kilodegreescelsiuspersecond)
-        {
-            if (kilodegreescelsiuspersecond.HasValue)
-            {
-                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(int? kilodegreescelsiuspersecond)
-        {
-            if (kilodegreescelsiuspersecond.HasValue)
-            {
-                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(long? kilodegreescelsiuspersecond)
-        {
-            if (kilodegreescelsiuspersecond.HasValue)
-            {
-                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from KilodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(decimal? kilodegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(QuantityValue? kilodegreescelsiuspersecond)
         {
             if (kilodegreescelsiuspersecond.HasValue)
             {
@@ -1023,52 +508,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(double? microdegreescelsiuspersecond)
-        {
-            if (microdegreescelsiuspersecond.HasValue)
-            {
-                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(int? microdegreescelsiuspersecond)
-        {
-            if (microdegreescelsiuspersecond.HasValue)
-            {
-                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(long? microdegreescelsiuspersecond)
-        {
-            if (microdegreescelsiuspersecond.HasValue)
-            {
-                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from MicrodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(decimal? microdegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(QuantityValue? microdegreescelsiuspersecond)
         {
             if (microdegreescelsiuspersecond.HasValue)
             {
@@ -1083,52 +523,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(double? millidegreescelsiuspersecond)
-        {
-            if (millidegreescelsiuspersecond.HasValue)
-            {
-                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(int? millidegreescelsiuspersecond)
-        {
-            if (millidegreescelsiuspersecond.HasValue)
-            {
-                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(long? millidegreescelsiuspersecond)
-        {
-            if (millidegreescelsiuspersecond.HasValue)
-            {
-                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from MillidegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(decimal? millidegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(QuantityValue? millidegreescelsiuspersecond)
         {
             if (millidegreescelsiuspersecond.HasValue)
             {
@@ -1143,52 +538,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(double? nanodegreescelsiuspersecond)
-        {
-            if (nanodegreescelsiuspersecond.HasValue)
-            {
-                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(int? nanodegreescelsiuspersecond)
-        {
-            if (nanodegreescelsiuspersecond.HasValue)
-            {
-                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(long? nanodegreescelsiuspersecond)
-        {
-            if (nanodegreescelsiuspersecond.HasValue)
-            {
-                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from NanodegreesCelsiusPerSecond of type decimal.
-        /// </summary>
-        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(decimal? nanodegreescelsiuspersecond)
+        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(QuantityValue? nanodegreescelsiuspersecond)
         {
             if (nanodegreescelsiuspersecond.HasValue)
             {
@@ -1205,33 +555,39 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate From(double val, TemperatureChangeRateUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static TemperatureChangeRate From(double value, TemperatureChangeRateUnit fromUnit)
+#else
+        public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
-                    return FromCentidegreesCelsiusPerSecond(val);
+                    return FromCentidegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
-                    return FromDecadegreesCelsiusPerSecond(val);
+                    return FromDecadegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
-                    return FromDecidegreesCelsiusPerSecond(val);
+                    return FromDecidegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
-                    return FromDegreesCelsiusPerMinute(val);
+                    return FromDegreesCelsiusPerMinute(value);
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
-                    return FromDegreesCelsiusPerSecond(val);
+                    return FromDegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
-                    return FromHectodegreesCelsiusPerSecond(val);
+                    return FromHectodegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
-                    return FromKilodegreesCelsiusPerSecond(val);
+                    return FromKilodegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
-                    return FromMicrodegreesCelsiusPerSecond(val);
+                    return FromMicrodegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
-                    return FromMillidegreesCelsiusPerSecond(val);
+                    return FromMillidegreesCelsiusPerSecond(value);
                 case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
-                    return FromNanodegreesCelsiusPerSecond(val);
+                    return FromNanodegreesCelsiusPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1246,7 +602,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate? From(double? value, TemperatureChangeRateUnit fromUnit)
+        public static TemperatureChangeRate? From(QuantityValue? value, TemperatureChangeRateUnit fromUnit)
         {
             if (!value.HasValue)
             {

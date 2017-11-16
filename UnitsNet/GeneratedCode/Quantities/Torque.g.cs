@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -269,608 +269,288 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilogramForceCentimeters(double kilogramforcecentimeters)
         {
-            return new Torque(kilogramforcecentimeters*0.0980665019960652);
+            double value = (double) kilogramforcecentimeters;
+            return new Torque(value*0.0980665019960652);
         }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceCentimeters.
-        /// </summary>
-        public static Torque FromKilogramForceCentimeters(int kilogramforcecentimeters)
+#else
+        public static Torque FromKilogramForceCentimeters(QuantityValue kilogramforcecentimeters)
         {
-            return new Torque(kilogramforcecentimeters*0.0980665019960652);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceCentimeters.
-        /// </summary>
-        public static Torque FromKilogramForceCentimeters(long kilogramforcecentimeters)
-        {
-            return new Torque(kilogramforcecentimeters*0.0980665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilogramForceCentimeters of type decimal.
-        /// </summary>
-        public static Torque FromKilogramForceCentimeters(decimal kilogramforcecentimeters)
-        {
-            return new Torque(Convert.ToDouble(kilogramforcecentimeters)*0.0980665019960652);
+            double value = (double) kilogramforcecentimeters;
+            return new Torque((value*0.0980665019960652));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilogramForceMeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilogramForceMeters(double kilogramforcemeters)
         {
-            return new Torque(kilogramforcemeters*9.80665019960652);
+            double value = (double) kilogramforcemeters;
+            return new Torque(value*9.80665019960652);
         }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceMeters.
-        /// </summary>
-        public static Torque FromKilogramForceMeters(int kilogramforcemeters)
+#else
+        public static Torque FromKilogramForceMeters(QuantityValue kilogramforcemeters)
         {
-            return new Torque(kilogramforcemeters*9.80665019960652);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceMeters.
-        /// </summary>
-        public static Torque FromKilogramForceMeters(long kilogramforcemeters)
-        {
-            return new Torque(kilogramforcemeters*9.80665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilogramForceMeters of type decimal.
-        /// </summary>
-        public static Torque FromKilogramForceMeters(decimal kilogramforcemeters)
-        {
-            return new Torque(Convert.ToDouble(kilogramforcemeters)*9.80665019960652);
+            double value = (double) kilogramforcemeters;
+            return new Torque((value*9.80665019960652));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilogramForceMillimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilogramForceMillimeters(double kilogramforcemillimeters)
         {
-            return new Torque(kilogramforcemillimeters*0.00980665019960652);
+            double value = (double) kilogramforcemillimeters;
+            return new Torque(value*0.00980665019960652);
         }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceMillimeters.
-        /// </summary>
-        public static Torque FromKilogramForceMillimeters(int kilogramforcemillimeters)
+#else
+        public static Torque FromKilogramForceMillimeters(QuantityValue kilogramforcemillimeters)
         {
-            return new Torque(kilogramforcemillimeters*0.00980665019960652);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilogramForceMillimeters.
-        /// </summary>
-        public static Torque FromKilogramForceMillimeters(long kilogramforcemillimeters)
-        {
-            return new Torque(kilogramforcemillimeters*0.00980665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilogramForceMillimeters of type decimal.
-        /// </summary>
-        public static Torque FromKilogramForceMillimeters(decimal kilogramforcemillimeters)
-        {
-            return new Torque(Convert.ToDouble(kilogramforcemillimeters)*0.00980665019960652);
+            double value = (double) kilogramforcemillimeters;
+            return new Torque((value*0.00980665019960652));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilonewtonCentimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilonewtonCentimeters(double kilonewtoncentimeters)
         {
-            return new Torque((kilonewtoncentimeters*0.01) * 1e3d);
+            double value = (double) kilonewtoncentimeters;
+            return new Torque((value*0.01) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonCentimeters.
-        /// </summary>
-        public static Torque FromKilonewtonCentimeters(int kilonewtoncentimeters)
+#else
+        public static Torque FromKilonewtonCentimeters(QuantityValue kilonewtoncentimeters)
         {
-            return new Torque((kilonewtoncentimeters*0.01) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonCentimeters.
-        /// </summary>
-        public static Torque FromKilonewtonCentimeters(long kilonewtoncentimeters)
-        {
-            return new Torque((kilonewtoncentimeters*0.01) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilonewtonCentimeters of type decimal.
-        /// </summary>
-        public static Torque FromKilonewtonCentimeters(decimal kilonewtoncentimeters)
-        {
-            return new Torque((Convert.ToDouble(kilonewtoncentimeters)*0.01) * 1e3d);
+            double value = (double) kilonewtoncentimeters;
+            return new Torque(((value*0.01) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilonewtonMeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilonewtonMeters(double kilonewtonmeters)
         {
-            return new Torque((kilonewtonmeters) * 1e3d);
+            double value = (double) kilonewtonmeters;
+            return new Torque((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonMeters.
-        /// </summary>
-        public static Torque FromKilonewtonMeters(int kilonewtonmeters)
+#else
+        public static Torque FromKilonewtonMeters(QuantityValue kilonewtonmeters)
         {
-            return new Torque((kilonewtonmeters) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonMeters.
-        /// </summary>
-        public static Torque FromKilonewtonMeters(long kilonewtonmeters)
-        {
-            return new Torque((kilonewtonmeters) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilonewtonMeters of type decimal.
-        /// </summary>
-        public static Torque FromKilonewtonMeters(decimal kilonewtonmeters)
-        {
-            return new Torque((Convert.ToDouble(kilonewtonmeters)) * 1e3d);
+            double value = (double) kilonewtonmeters;
+            return new Torque(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilonewtonMillimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilonewtonMillimeters(double kilonewtonmillimeters)
         {
-            return new Torque((kilonewtonmillimeters*0.001) * 1e3d);
+            double value = (double) kilonewtonmillimeters;
+            return new Torque((value*0.001) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonMillimeters.
-        /// </summary>
-        public static Torque FromKilonewtonMillimeters(int kilonewtonmillimeters)
+#else
+        public static Torque FromKilonewtonMillimeters(QuantityValue kilonewtonmillimeters)
         {
-            return new Torque((kilonewtonmillimeters*0.001) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilonewtonMillimeters.
-        /// </summary>
-        public static Torque FromKilonewtonMillimeters(long kilonewtonmillimeters)
-        {
-            return new Torque((kilonewtonmillimeters*0.001) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilonewtonMillimeters of type decimal.
-        /// </summary>
-        public static Torque FromKilonewtonMillimeters(decimal kilonewtonmillimeters)
-        {
-            return new Torque((Convert.ToDouble(kilonewtonmillimeters)*0.001) * 1e3d);
+            double value = (double) kilonewtonmillimeters;
+            return new Torque(((value*0.001) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilopoundForceFeet.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilopoundForceFeet(double kilopoundforcefeet)
         {
-            return new Torque((kilopoundforcefeet*1.3558180656) * 1e3d);
+            double value = (double) kilopoundforcefeet;
+            return new Torque((value*1.3558180656) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Torque from KilopoundForceFeet.
-        /// </summary>
-        public static Torque FromKilopoundForceFeet(int kilopoundforcefeet)
+#else
+        public static Torque FromKilopoundForceFeet(QuantityValue kilopoundforcefeet)
         {
-            return new Torque((kilopoundforcefeet*1.3558180656) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilopoundForceFeet.
-        /// </summary>
-        public static Torque FromKilopoundForceFeet(long kilopoundforcefeet)
-        {
-            return new Torque((kilopoundforcefeet*1.3558180656) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilopoundForceFeet of type decimal.
-        /// </summary>
-        public static Torque FromKilopoundForceFeet(decimal kilopoundforcefeet)
-        {
-            return new Torque((Convert.ToDouble(kilopoundforcefeet)*1.3558180656) * 1e3d);
+            double value = (double) kilopoundforcefeet;
+            return new Torque(((value*1.3558180656) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from KilopoundForceInches.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromKilopoundForceInches(double kilopoundforceinches)
         {
-            return new Torque((kilopoundforceinches*0.1129848388) * 1e3d);
+            double value = (double) kilopoundforceinches;
+            return new Torque((value*0.1129848388) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Torque from KilopoundForceInches.
-        /// </summary>
-        public static Torque FromKilopoundForceInches(int kilopoundforceinches)
+#else
+        public static Torque FromKilopoundForceInches(QuantityValue kilopoundforceinches)
         {
-            return new Torque((kilopoundforceinches*0.1129848388) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Torque from KilopoundForceInches.
-        /// </summary>
-        public static Torque FromKilopoundForceInches(long kilopoundforceinches)
-        {
-            return new Torque((kilopoundforceinches*0.1129848388) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from KilopoundForceInches of type decimal.
-        /// </summary>
-        public static Torque FromKilopoundForceInches(decimal kilopoundforceinches)
-        {
-            return new Torque((Convert.ToDouble(kilopoundforceinches)*0.1129848388) * 1e3d);
+            double value = (double) kilopoundforceinches;
+            return new Torque(((value*0.1129848388) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from NewtonCentimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromNewtonCentimeters(double newtoncentimeters)
         {
-            return new Torque(newtoncentimeters*0.01);
+            double value = (double) newtoncentimeters;
+            return new Torque(value*0.01);
         }
-
-        /// <summary>
-        ///     Get Torque from NewtonCentimeters.
-        /// </summary>
-        public static Torque FromNewtonCentimeters(int newtoncentimeters)
+#else
+        public static Torque FromNewtonCentimeters(QuantityValue newtoncentimeters)
         {
-            return new Torque(newtoncentimeters*0.01);
-        }
-
-        /// <summary>
-        ///     Get Torque from NewtonCentimeters.
-        /// </summary>
-        public static Torque FromNewtonCentimeters(long newtoncentimeters)
-        {
-            return new Torque(newtoncentimeters*0.01);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from NewtonCentimeters of type decimal.
-        /// </summary>
-        public static Torque FromNewtonCentimeters(decimal newtoncentimeters)
-        {
-            return new Torque(Convert.ToDouble(newtoncentimeters)*0.01);
+            double value = (double) newtoncentimeters;
+            return new Torque((value*0.01));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from NewtonMeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromNewtonMeters(double newtonmeters)
         {
-            return new Torque(newtonmeters);
+            double value = (double) newtonmeters;
+            return new Torque(value);
         }
-
-        /// <summary>
-        ///     Get Torque from NewtonMeters.
-        /// </summary>
-        public static Torque FromNewtonMeters(int newtonmeters)
+#else
+        public static Torque FromNewtonMeters(QuantityValue newtonmeters)
         {
-            return new Torque(newtonmeters);
-        }
-
-        /// <summary>
-        ///     Get Torque from NewtonMeters.
-        /// </summary>
-        public static Torque FromNewtonMeters(long newtonmeters)
-        {
-            return new Torque(newtonmeters);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from NewtonMeters of type decimal.
-        /// </summary>
-        public static Torque FromNewtonMeters(decimal newtonmeters)
-        {
-            return new Torque(Convert.ToDouble(newtonmeters));
+            double value = (double) newtonmeters;
+            return new Torque((value));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from NewtonMillimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromNewtonMillimeters(double newtonmillimeters)
         {
-            return new Torque(newtonmillimeters*0.001);
+            double value = (double) newtonmillimeters;
+            return new Torque(value*0.001);
         }
-
-        /// <summary>
-        ///     Get Torque from NewtonMillimeters.
-        /// </summary>
-        public static Torque FromNewtonMillimeters(int newtonmillimeters)
+#else
+        public static Torque FromNewtonMillimeters(QuantityValue newtonmillimeters)
         {
-            return new Torque(newtonmillimeters*0.001);
-        }
-
-        /// <summary>
-        ///     Get Torque from NewtonMillimeters.
-        /// </summary>
-        public static Torque FromNewtonMillimeters(long newtonmillimeters)
-        {
-            return new Torque(newtonmillimeters*0.001);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from NewtonMillimeters of type decimal.
-        /// </summary>
-        public static Torque FromNewtonMillimeters(decimal newtonmillimeters)
-        {
-            return new Torque(Convert.ToDouble(newtonmillimeters)*0.001);
+            double value = (double) newtonmillimeters;
+            return new Torque((value*0.001));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from PoundForceFeet.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromPoundForceFeet(double poundforcefeet)
         {
-            return new Torque(poundforcefeet*1.3558180656);
+            double value = (double) poundforcefeet;
+            return new Torque(value*1.3558180656);
         }
-
-        /// <summary>
-        ///     Get Torque from PoundForceFeet.
-        /// </summary>
-        public static Torque FromPoundForceFeet(int poundforcefeet)
+#else
+        public static Torque FromPoundForceFeet(QuantityValue poundforcefeet)
         {
-            return new Torque(poundforcefeet*1.3558180656);
-        }
-
-        /// <summary>
-        ///     Get Torque from PoundForceFeet.
-        /// </summary>
-        public static Torque FromPoundForceFeet(long poundforcefeet)
-        {
-            return new Torque(poundforcefeet*1.3558180656);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from PoundForceFeet of type decimal.
-        /// </summary>
-        public static Torque FromPoundForceFeet(decimal poundforcefeet)
-        {
-            return new Torque(Convert.ToDouble(poundforcefeet)*1.3558180656);
+            double value = (double) poundforcefeet;
+            return new Torque((value*1.3558180656));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from PoundForceInches.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromPoundForceInches(double poundforceinches)
         {
-            return new Torque(poundforceinches*0.1129848388);
+            double value = (double) poundforceinches;
+            return new Torque(value*0.1129848388);
         }
-
-        /// <summary>
-        ///     Get Torque from PoundForceInches.
-        /// </summary>
-        public static Torque FromPoundForceInches(int poundforceinches)
+#else
+        public static Torque FromPoundForceInches(QuantityValue poundforceinches)
         {
-            return new Torque(poundforceinches*0.1129848388);
-        }
-
-        /// <summary>
-        ///     Get Torque from PoundForceInches.
-        /// </summary>
-        public static Torque FromPoundForceInches(long poundforceinches)
-        {
-            return new Torque(poundforceinches*0.1129848388);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from PoundForceInches of type decimal.
-        /// </summary>
-        public static Torque FromPoundForceInches(decimal poundforceinches)
-        {
-            return new Torque(Convert.ToDouble(poundforceinches)*0.1129848388);
+            double value = (double) poundforceinches;
+            return new Torque((value*0.1129848388));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from TonneForceCentimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromTonneForceCentimeters(double tonneforcecentimeters)
         {
-            return new Torque(tonneforcecentimeters*98.0665019960652);
+            double value = (double) tonneforcecentimeters;
+            return new Torque(value*98.0665019960652);
         }
-
-        /// <summary>
-        ///     Get Torque from TonneForceCentimeters.
-        /// </summary>
-        public static Torque FromTonneForceCentimeters(int tonneforcecentimeters)
+#else
+        public static Torque FromTonneForceCentimeters(QuantityValue tonneforcecentimeters)
         {
-            return new Torque(tonneforcecentimeters*98.0665019960652);
-        }
-
-        /// <summary>
-        ///     Get Torque from TonneForceCentimeters.
-        /// </summary>
-        public static Torque FromTonneForceCentimeters(long tonneforcecentimeters)
-        {
-            return new Torque(tonneforcecentimeters*98.0665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from TonneForceCentimeters of type decimal.
-        /// </summary>
-        public static Torque FromTonneForceCentimeters(decimal tonneforcecentimeters)
-        {
-            return new Torque(Convert.ToDouble(tonneforcecentimeters)*98.0665019960652);
+            double value = (double) tonneforcecentimeters;
+            return new Torque((value*98.0665019960652));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from TonneForceMeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromTonneForceMeters(double tonneforcemeters)
         {
-            return new Torque(tonneforcemeters*9806.65019960653);
+            double value = (double) tonneforcemeters;
+            return new Torque(value*9806.65019960653);
         }
-
-        /// <summary>
-        ///     Get Torque from TonneForceMeters.
-        /// </summary>
-        public static Torque FromTonneForceMeters(int tonneforcemeters)
+#else
+        public static Torque FromTonneForceMeters(QuantityValue tonneforcemeters)
         {
-            return new Torque(tonneforcemeters*9806.65019960653);
-        }
-
-        /// <summary>
-        ///     Get Torque from TonneForceMeters.
-        /// </summary>
-        public static Torque FromTonneForceMeters(long tonneforcemeters)
-        {
-            return new Torque(tonneforcemeters*9806.65019960653);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from TonneForceMeters of type decimal.
-        /// </summary>
-        public static Torque FromTonneForceMeters(decimal tonneforcemeters)
-        {
-            return new Torque(Convert.ToDouble(tonneforcemeters)*9806.65019960653);
+            double value = (double) tonneforcemeters;
+            return new Torque((value*9806.65019960653));
         }
 #endif
 
         /// <summary>
         ///     Get Torque from TonneForceMillimeters.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Torque FromTonneForceMillimeters(double tonneforcemillimeters)
         {
-            return new Torque(tonneforcemillimeters*9.80665019960652);
+            double value = (double) tonneforcemillimeters;
+            return new Torque(value*9.80665019960652);
         }
-
-        /// <summary>
-        ///     Get Torque from TonneForceMillimeters.
-        /// </summary>
-        public static Torque FromTonneForceMillimeters(int tonneforcemillimeters)
+#else
+        public static Torque FromTonneForceMillimeters(QuantityValue tonneforcemillimeters)
         {
-            return new Torque(tonneforcemillimeters*9.80665019960652);
-        }
-
-        /// <summary>
-        ///     Get Torque from TonneForceMillimeters.
-        /// </summary>
-        public static Torque FromTonneForceMillimeters(long tonneforcemillimeters)
-        {
-            return new Torque(tonneforcemillimeters*9.80665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Torque from TonneForceMillimeters of type decimal.
-        /// </summary>
-        public static Torque FromTonneForceMillimeters(decimal tonneforcemillimeters)
-        {
-            return new Torque(Convert.ToDouble(tonneforcemillimeters)*9.80665019960652);
+            double value = (double) tonneforcemillimeters;
+            return new Torque((value*9.80665019960652));
         }
 #endif
 
@@ -879,52 +559,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceCentimeters.
         /// </summary>
-        public static Torque? FromKilogramForceCentimeters(double? kilogramforcecentimeters)
-        {
-            if (kilogramforcecentimeters.HasValue)
-            {
-                return FromKilogramForceCentimeters(kilogramforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceCentimeters.
-        /// </summary>
-        public static Torque? FromKilogramForceCentimeters(int? kilogramforcecentimeters)
-        {
-            if (kilogramforcecentimeters.HasValue)
-            {
-                return FromKilogramForceCentimeters(kilogramforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceCentimeters.
-        /// </summary>
-        public static Torque? FromKilogramForceCentimeters(long? kilogramforcecentimeters)
-        {
-            if (kilogramforcecentimeters.HasValue)
-            {
-                return FromKilogramForceCentimeters(kilogramforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilogramForceCentimeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilogramForceCentimeters(decimal? kilogramforcecentimeters)
+        public static Torque? FromKilogramForceCentimeters(QuantityValue? kilogramforcecentimeters)
         {
             if (kilogramforcecentimeters.HasValue)
             {
@@ -939,52 +574,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceMeters.
         /// </summary>
-        public static Torque? FromKilogramForceMeters(double? kilogramforcemeters)
-        {
-            if (kilogramforcemeters.HasValue)
-            {
-                return FromKilogramForceMeters(kilogramforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceMeters.
-        /// </summary>
-        public static Torque? FromKilogramForceMeters(int? kilogramforcemeters)
-        {
-            if (kilogramforcemeters.HasValue)
-            {
-                return FromKilogramForceMeters(kilogramforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceMeters.
-        /// </summary>
-        public static Torque? FromKilogramForceMeters(long? kilogramforcemeters)
-        {
-            if (kilogramforcemeters.HasValue)
-            {
-                return FromKilogramForceMeters(kilogramforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilogramForceMeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilogramForceMeters(decimal? kilogramforcemeters)
+        public static Torque? FromKilogramForceMeters(QuantityValue? kilogramforcemeters)
         {
             if (kilogramforcemeters.HasValue)
             {
@@ -999,52 +589,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceMillimeters.
         /// </summary>
-        public static Torque? FromKilogramForceMillimeters(double? kilogramforcemillimeters)
-        {
-            if (kilogramforcemillimeters.HasValue)
-            {
-                return FromKilogramForceMillimeters(kilogramforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceMillimeters.
-        /// </summary>
-        public static Torque? FromKilogramForceMillimeters(int? kilogramforcemillimeters)
-        {
-            if (kilogramforcemillimeters.HasValue)
-            {
-                return FromKilogramForceMillimeters(kilogramforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilogramForceMillimeters.
-        /// </summary>
-        public static Torque? FromKilogramForceMillimeters(long? kilogramforcemillimeters)
-        {
-            if (kilogramforcemillimeters.HasValue)
-            {
-                return FromKilogramForceMillimeters(kilogramforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilogramForceMillimeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilogramForceMillimeters(decimal? kilogramforcemillimeters)
+        public static Torque? FromKilogramForceMillimeters(QuantityValue? kilogramforcemillimeters)
         {
             if (kilogramforcemillimeters.HasValue)
             {
@@ -1059,52 +604,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonCentimeters.
         /// </summary>
-        public static Torque? FromKilonewtonCentimeters(double? kilonewtoncentimeters)
-        {
-            if (kilonewtoncentimeters.HasValue)
-            {
-                return FromKilonewtonCentimeters(kilonewtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonCentimeters.
-        /// </summary>
-        public static Torque? FromKilonewtonCentimeters(int? kilonewtoncentimeters)
-        {
-            if (kilonewtoncentimeters.HasValue)
-            {
-                return FromKilonewtonCentimeters(kilonewtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonCentimeters.
-        /// </summary>
-        public static Torque? FromKilonewtonCentimeters(long? kilonewtoncentimeters)
-        {
-            if (kilonewtoncentimeters.HasValue)
-            {
-                return FromKilonewtonCentimeters(kilonewtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilonewtonCentimeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilonewtonCentimeters(decimal? kilonewtoncentimeters)
+        public static Torque? FromKilonewtonCentimeters(QuantityValue? kilonewtoncentimeters)
         {
             if (kilonewtoncentimeters.HasValue)
             {
@@ -1119,52 +619,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonMeters.
         /// </summary>
-        public static Torque? FromKilonewtonMeters(double? kilonewtonmeters)
-        {
-            if (kilonewtonmeters.HasValue)
-            {
-                return FromKilonewtonMeters(kilonewtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonMeters.
-        /// </summary>
-        public static Torque? FromKilonewtonMeters(int? kilonewtonmeters)
-        {
-            if (kilonewtonmeters.HasValue)
-            {
-                return FromKilonewtonMeters(kilonewtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonMeters.
-        /// </summary>
-        public static Torque? FromKilonewtonMeters(long? kilonewtonmeters)
-        {
-            if (kilonewtonmeters.HasValue)
-            {
-                return FromKilonewtonMeters(kilonewtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilonewtonMeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilonewtonMeters(decimal? kilonewtonmeters)
+        public static Torque? FromKilonewtonMeters(QuantityValue? kilonewtonmeters)
         {
             if (kilonewtonmeters.HasValue)
             {
@@ -1179,52 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonMillimeters.
         /// </summary>
-        public static Torque? FromKilonewtonMillimeters(double? kilonewtonmillimeters)
-        {
-            if (kilonewtonmillimeters.HasValue)
-            {
-                return FromKilonewtonMillimeters(kilonewtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonMillimeters.
-        /// </summary>
-        public static Torque? FromKilonewtonMillimeters(int? kilonewtonmillimeters)
-        {
-            if (kilonewtonmillimeters.HasValue)
-            {
-                return FromKilonewtonMillimeters(kilonewtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilonewtonMillimeters.
-        /// </summary>
-        public static Torque? FromKilonewtonMillimeters(long? kilonewtonmillimeters)
-        {
-            if (kilonewtonmillimeters.HasValue)
-            {
-                return FromKilonewtonMillimeters(kilonewtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilonewtonMillimeters of type decimal.
-        /// </summary>
-        public static Torque? FromKilonewtonMillimeters(decimal? kilonewtonmillimeters)
+        public static Torque? FromKilonewtonMillimeters(QuantityValue? kilonewtonmillimeters)
         {
             if (kilonewtonmillimeters.HasValue)
             {
@@ -1239,52 +649,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilopoundForceFeet.
         /// </summary>
-        public static Torque? FromKilopoundForceFeet(double? kilopoundforcefeet)
-        {
-            if (kilopoundforcefeet.HasValue)
-            {
-                return FromKilopoundForceFeet(kilopoundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilopoundForceFeet.
-        /// </summary>
-        public static Torque? FromKilopoundForceFeet(int? kilopoundforcefeet)
-        {
-            if (kilopoundforcefeet.HasValue)
-            {
-                return FromKilopoundForceFeet(kilopoundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilopoundForceFeet.
-        /// </summary>
-        public static Torque? FromKilopoundForceFeet(long? kilopoundforcefeet)
-        {
-            if (kilopoundforcefeet.HasValue)
-            {
-                return FromKilopoundForceFeet(kilopoundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilopoundForceFeet of type decimal.
-        /// </summary>
-        public static Torque? FromKilopoundForceFeet(decimal? kilopoundforcefeet)
+        public static Torque? FromKilopoundForceFeet(QuantityValue? kilopoundforcefeet)
         {
             if (kilopoundforcefeet.HasValue)
             {
@@ -1299,52 +664,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilopoundForceInches.
         /// </summary>
-        public static Torque? FromKilopoundForceInches(double? kilopoundforceinches)
-        {
-            if (kilopoundforceinches.HasValue)
-            {
-                return FromKilopoundForceInches(kilopoundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilopoundForceInches.
-        /// </summary>
-        public static Torque? FromKilopoundForceInches(int? kilopoundforceinches)
-        {
-            if (kilopoundforceinches.HasValue)
-            {
-                return FromKilopoundForceInches(kilopoundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable KilopoundForceInches.
-        /// </summary>
-        public static Torque? FromKilopoundForceInches(long? kilopoundforceinches)
-        {
-            if (kilopoundforceinches.HasValue)
-            {
-                return FromKilopoundForceInches(kilopoundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from KilopoundForceInches of type decimal.
-        /// </summary>
-        public static Torque? FromKilopoundForceInches(decimal? kilopoundforceinches)
+        public static Torque? FromKilopoundForceInches(QuantityValue? kilopoundforceinches)
         {
             if (kilopoundforceinches.HasValue)
             {
@@ -1359,52 +679,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonCentimeters.
         /// </summary>
-        public static Torque? FromNewtonCentimeters(double? newtoncentimeters)
-        {
-            if (newtoncentimeters.HasValue)
-            {
-                return FromNewtonCentimeters(newtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonCentimeters.
-        /// </summary>
-        public static Torque? FromNewtonCentimeters(int? newtoncentimeters)
-        {
-            if (newtoncentimeters.HasValue)
-            {
-                return FromNewtonCentimeters(newtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonCentimeters.
-        /// </summary>
-        public static Torque? FromNewtonCentimeters(long? newtoncentimeters)
-        {
-            if (newtoncentimeters.HasValue)
-            {
-                return FromNewtonCentimeters(newtoncentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from NewtonCentimeters of type decimal.
-        /// </summary>
-        public static Torque? FromNewtonCentimeters(decimal? newtoncentimeters)
+        public static Torque? FromNewtonCentimeters(QuantityValue? newtoncentimeters)
         {
             if (newtoncentimeters.HasValue)
             {
@@ -1419,52 +694,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonMeters.
         /// </summary>
-        public static Torque? FromNewtonMeters(double? newtonmeters)
-        {
-            if (newtonmeters.HasValue)
-            {
-                return FromNewtonMeters(newtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonMeters.
-        /// </summary>
-        public static Torque? FromNewtonMeters(int? newtonmeters)
-        {
-            if (newtonmeters.HasValue)
-            {
-                return FromNewtonMeters(newtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonMeters.
-        /// </summary>
-        public static Torque? FromNewtonMeters(long? newtonmeters)
-        {
-            if (newtonmeters.HasValue)
-            {
-                return FromNewtonMeters(newtonmeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from NewtonMeters of type decimal.
-        /// </summary>
-        public static Torque? FromNewtonMeters(decimal? newtonmeters)
+        public static Torque? FromNewtonMeters(QuantityValue? newtonmeters)
         {
             if (newtonmeters.HasValue)
             {
@@ -1479,52 +709,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonMillimeters.
         /// </summary>
-        public static Torque? FromNewtonMillimeters(double? newtonmillimeters)
-        {
-            if (newtonmillimeters.HasValue)
-            {
-                return FromNewtonMillimeters(newtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonMillimeters.
-        /// </summary>
-        public static Torque? FromNewtonMillimeters(int? newtonmillimeters)
-        {
-            if (newtonmillimeters.HasValue)
-            {
-                return FromNewtonMillimeters(newtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable NewtonMillimeters.
-        /// </summary>
-        public static Torque? FromNewtonMillimeters(long? newtonmillimeters)
-        {
-            if (newtonmillimeters.HasValue)
-            {
-                return FromNewtonMillimeters(newtonmillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from NewtonMillimeters of type decimal.
-        /// </summary>
-        public static Torque? FromNewtonMillimeters(decimal? newtonmillimeters)
+        public static Torque? FromNewtonMillimeters(QuantityValue? newtonmillimeters)
         {
             if (newtonmillimeters.HasValue)
             {
@@ -1539,52 +724,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable PoundForceFeet.
         /// </summary>
-        public static Torque? FromPoundForceFeet(double? poundforcefeet)
-        {
-            if (poundforcefeet.HasValue)
-            {
-                return FromPoundForceFeet(poundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable PoundForceFeet.
-        /// </summary>
-        public static Torque? FromPoundForceFeet(int? poundforcefeet)
-        {
-            if (poundforcefeet.HasValue)
-            {
-                return FromPoundForceFeet(poundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable PoundForceFeet.
-        /// </summary>
-        public static Torque? FromPoundForceFeet(long? poundforcefeet)
-        {
-            if (poundforcefeet.HasValue)
-            {
-                return FromPoundForceFeet(poundforcefeet.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from PoundForceFeet of type decimal.
-        /// </summary>
-        public static Torque? FromPoundForceFeet(decimal? poundforcefeet)
+        public static Torque? FromPoundForceFeet(QuantityValue? poundforcefeet)
         {
             if (poundforcefeet.HasValue)
             {
@@ -1599,52 +739,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable PoundForceInches.
         /// </summary>
-        public static Torque? FromPoundForceInches(double? poundforceinches)
-        {
-            if (poundforceinches.HasValue)
-            {
-                return FromPoundForceInches(poundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable PoundForceInches.
-        /// </summary>
-        public static Torque? FromPoundForceInches(int? poundforceinches)
-        {
-            if (poundforceinches.HasValue)
-            {
-                return FromPoundForceInches(poundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable PoundForceInches.
-        /// </summary>
-        public static Torque? FromPoundForceInches(long? poundforceinches)
-        {
-            if (poundforceinches.HasValue)
-            {
-                return FromPoundForceInches(poundforceinches.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from PoundForceInches of type decimal.
-        /// </summary>
-        public static Torque? FromPoundForceInches(decimal? poundforceinches)
+        public static Torque? FromPoundForceInches(QuantityValue? poundforceinches)
         {
             if (poundforceinches.HasValue)
             {
@@ -1659,52 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceCentimeters.
         /// </summary>
-        public static Torque? FromTonneForceCentimeters(double? tonneforcecentimeters)
-        {
-            if (tonneforcecentimeters.HasValue)
-            {
-                return FromTonneForceCentimeters(tonneforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceCentimeters.
-        /// </summary>
-        public static Torque? FromTonneForceCentimeters(int? tonneforcecentimeters)
-        {
-            if (tonneforcecentimeters.HasValue)
-            {
-                return FromTonneForceCentimeters(tonneforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceCentimeters.
-        /// </summary>
-        public static Torque? FromTonneForceCentimeters(long? tonneforcecentimeters)
-        {
-            if (tonneforcecentimeters.HasValue)
-            {
-                return FromTonneForceCentimeters(tonneforcecentimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from TonneForceCentimeters of type decimal.
-        /// </summary>
-        public static Torque? FromTonneForceCentimeters(decimal? tonneforcecentimeters)
+        public static Torque? FromTonneForceCentimeters(QuantityValue? tonneforcecentimeters)
         {
             if (tonneforcecentimeters.HasValue)
             {
@@ -1719,52 +769,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceMeters.
         /// </summary>
-        public static Torque? FromTonneForceMeters(double? tonneforcemeters)
-        {
-            if (tonneforcemeters.HasValue)
-            {
-                return FromTonneForceMeters(tonneforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceMeters.
-        /// </summary>
-        public static Torque? FromTonneForceMeters(int? tonneforcemeters)
-        {
-            if (tonneforcemeters.HasValue)
-            {
-                return FromTonneForceMeters(tonneforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceMeters.
-        /// </summary>
-        public static Torque? FromTonneForceMeters(long? tonneforcemeters)
-        {
-            if (tonneforcemeters.HasValue)
-            {
-                return FromTonneForceMeters(tonneforcemeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from TonneForceMeters of type decimal.
-        /// </summary>
-        public static Torque? FromTonneForceMeters(decimal? tonneforcemeters)
+        public static Torque? FromTonneForceMeters(QuantityValue? tonneforcemeters)
         {
             if (tonneforcemeters.HasValue)
             {
@@ -1779,52 +784,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceMillimeters.
         /// </summary>
-        public static Torque? FromTonneForceMillimeters(double? tonneforcemillimeters)
-        {
-            if (tonneforcemillimeters.HasValue)
-            {
-                return FromTonneForceMillimeters(tonneforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceMillimeters.
-        /// </summary>
-        public static Torque? FromTonneForceMillimeters(int? tonneforcemillimeters)
-        {
-            if (tonneforcemillimeters.HasValue)
-            {
-                return FromTonneForceMillimeters(tonneforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from nullable TonneForceMillimeters.
-        /// </summary>
-        public static Torque? FromTonneForceMillimeters(long? tonneforcemillimeters)
-        {
-            if (tonneforcemillimeters.HasValue)
-            {
-                return FromTonneForceMillimeters(tonneforcemillimeters.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Torque from TonneForceMillimeters of type decimal.
-        /// </summary>
-        public static Torque? FromTonneForceMillimeters(decimal? tonneforcemillimeters)
+        public static Torque? FromTonneForceMillimeters(QuantityValue? tonneforcemillimeters)
         {
             if (tonneforcemillimeters.HasValue)
             {
@@ -1841,45 +801,51 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TorqueUnit" /> to <see cref="Torque" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Torque unit value.</returns>
-        public static Torque From(double val, TorqueUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Torque From(double value, TorqueUnit fromUnit)
+#else
+        public static Torque From(QuantityValue value, TorqueUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case TorqueUnit.KilogramForceCentimeter:
-                    return FromKilogramForceCentimeters(val);
+                    return FromKilogramForceCentimeters(value);
                 case TorqueUnit.KilogramForceMeter:
-                    return FromKilogramForceMeters(val);
+                    return FromKilogramForceMeters(value);
                 case TorqueUnit.KilogramForceMillimeter:
-                    return FromKilogramForceMillimeters(val);
+                    return FromKilogramForceMillimeters(value);
                 case TorqueUnit.KilonewtonCentimeter:
-                    return FromKilonewtonCentimeters(val);
+                    return FromKilonewtonCentimeters(value);
                 case TorqueUnit.KilonewtonMeter:
-                    return FromKilonewtonMeters(val);
+                    return FromKilonewtonMeters(value);
                 case TorqueUnit.KilonewtonMillimeter:
-                    return FromKilonewtonMillimeters(val);
+                    return FromKilonewtonMillimeters(value);
                 case TorqueUnit.KilopoundForceFoot:
-                    return FromKilopoundForceFeet(val);
+                    return FromKilopoundForceFeet(value);
                 case TorqueUnit.KilopoundForceInch:
-                    return FromKilopoundForceInches(val);
+                    return FromKilopoundForceInches(value);
                 case TorqueUnit.NewtonCentimeter:
-                    return FromNewtonCentimeters(val);
+                    return FromNewtonCentimeters(value);
                 case TorqueUnit.NewtonMeter:
-                    return FromNewtonMeters(val);
+                    return FromNewtonMeters(value);
                 case TorqueUnit.NewtonMillimeter:
-                    return FromNewtonMillimeters(val);
+                    return FromNewtonMillimeters(value);
                 case TorqueUnit.PoundForceFoot:
-                    return FromPoundForceFeet(val);
+                    return FromPoundForceFeet(value);
                 case TorqueUnit.PoundForceInch:
-                    return FromPoundForceInches(val);
+                    return FromPoundForceInches(value);
                 case TorqueUnit.TonneForceCentimeter:
-                    return FromTonneForceCentimeters(val);
+                    return FromTonneForceCentimeters(value);
                 case TorqueUnit.TonneForceMeter:
-                    return FromTonneForceMeters(val);
+                    return FromTonneForceMeters(value);
                 case TorqueUnit.TonneForceMillimeter:
-                    return FromTonneForceMillimeters(val);
+                    return FromTonneForceMillimeters(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1894,7 +860,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Torque unit value.</returns>
-        public static Torque? From(double? value, TorqueUnit fromUnit)
+        public static Torque? From(QuantityValue? value, TorqueUnit fromUnit)
         {
             if (!value.HasValue)
             {

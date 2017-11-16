@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -205,304 +205,144 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity from CentimolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromCentimolesPerLiter(double centimolesperliter)
         {
-            return new Molarity((centimolesperliter/1e-3) * 1e-2d);
+            double value = (double) centimolesperliter;
+            return new Molarity((value/1e-3) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
-        /// </summary>
-        public static Molarity FromCentimolesPerLiter(int centimolesperliter)
+#else
+        public static Molarity FromCentimolesPerLiter(QuantityValue centimolesperliter)
         {
-            return new Molarity((centimolesperliter/1e-3) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
-        /// </summary>
-        public static Molarity FromCentimolesPerLiter(long centimolesperliter)
-        {
-            return new Molarity((centimolesperliter/1e-3) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from CentimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromCentimolesPerLiter(decimal centimolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(centimolesperliter)/1e-3) * 1e-2d);
+            double value = (double) centimolesperliter;
+            return new Molarity(((value/1e-3) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from DecimolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromDecimolesPerLiter(double decimolesperliter)
         {
-            return new Molarity((decimolesperliter/1e-3) * 1e-1d);
+            double value = (double) decimolesperliter;
+            return new Molarity((value/1e-3) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
-        /// </summary>
-        public static Molarity FromDecimolesPerLiter(int decimolesperliter)
+#else
+        public static Molarity FromDecimolesPerLiter(QuantityValue decimolesperliter)
         {
-            return new Molarity((decimolesperliter/1e-3) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
-        /// </summary>
-        public static Molarity FromDecimolesPerLiter(long decimolesperliter)
-        {
-            return new Molarity((decimolesperliter/1e-3) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from DecimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromDecimolesPerLiter(decimal decimolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(decimolesperliter)/1e-3) * 1e-1d);
+            double value = (double) decimolesperliter;
+            return new Molarity(((value/1e-3) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromMicromolesPerLiter(double micromolesperliter)
         {
-            return new Molarity((micromolesperliter/1e-3) * 1e-6d);
+            double value = (double) micromolesperliter;
+            return new Molarity((value/1e-3) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
-        /// </summary>
-        public static Molarity FromMicromolesPerLiter(int micromolesperliter)
+#else
+        public static Molarity FromMicromolesPerLiter(QuantityValue micromolesperliter)
         {
-            return new Molarity((micromolesperliter/1e-3) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
-        /// </summary>
-        public static Molarity FromMicromolesPerLiter(long micromolesperliter)
-        {
-            return new Molarity((micromolesperliter/1e-3) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from MicromolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromMicromolesPerLiter(decimal micromolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(micromolesperliter)/1e-3) * 1e-6d);
+            double value = (double) micromolesperliter;
+            return new Molarity(((value/1e-3) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromMillimolesPerLiter(double millimolesperliter)
         {
-            return new Molarity((millimolesperliter/1e-3) * 1e-3d);
+            double value = (double) millimolesperliter;
+            return new Molarity((value/1e-3) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
-        /// </summary>
-        public static Molarity FromMillimolesPerLiter(int millimolesperliter)
+#else
+        public static Molarity FromMillimolesPerLiter(QuantityValue millimolesperliter)
         {
-            return new Molarity((millimolesperliter/1e-3) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
-        /// </summary>
-        public static Molarity FromMillimolesPerLiter(long millimolesperliter)
-        {
-            return new Molarity((millimolesperliter/1e-3) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from MillimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromMillimolesPerLiter(decimal millimolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(millimolesperliter)/1e-3) * 1e-3d);
+            double value = (double) millimolesperliter;
+            return new Molarity(((value/1e-3) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
         {
-            return new Molarity(molespercubicmeter);
+            double value = (double) molespercubicmeter;
+            return new Molarity(value);
         }
-
-        /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
-        /// </summary>
-        public static Molarity FromMolesPerCubicMeter(int molespercubicmeter)
+#else
+        public static Molarity FromMolesPerCubicMeter(QuantityValue molespercubicmeter)
         {
-            return new Molarity(molespercubicmeter);
-        }
-
-        /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
-        /// </summary>
-        public static Molarity FromMolesPerCubicMeter(long molespercubicmeter)
-        {
-            return new Molarity(molespercubicmeter);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter of type decimal.
-        /// </summary>
-        public static Molarity FromMolesPerCubicMeter(decimal molespercubicmeter)
-        {
-            return new Molarity(Convert.ToDouble(molespercubicmeter));
+            double value = (double) molespercubicmeter;
+            return new Molarity((value));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from MolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromMolesPerLiter(double molesperliter)
         {
-            return new Molarity(molesperliter/1e-3);
+            double value = (double) molesperliter;
+            return new Molarity(value/1e-3);
         }
-
-        /// <summary>
-        ///     Get Molarity from MolesPerLiter.
-        /// </summary>
-        public static Molarity FromMolesPerLiter(int molesperliter)
+#else
+        public static Molarity FromMolesPerLiter(QuantityValue molesperliter)
         {
-            return new Molarity(molesperliter/1e-3);
-        }
-
-        /// <summary>
-        ///     Get Molarity from MolesPerLiter.
-        /// </summary>
-        public static Molarity FromMolesPerLiter(long molesperliter)
-        {
-            return new Molarity(molesperliter/1e-3);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from MolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromMolesPerLiter(decimal molesperliter)
-        {
-            return new Molarity(Convert.ToDouble(molesperliter)/1e-3);
+            double value = (double) molesperliter;
+            return new Molarity((value/1e-3));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
         {
-            return new Molarity((nanomolesperliter/1e-3) * 1e-9d);
+            double value = (double) nanomolesperliter;
+            return new Molarity((value/1e-3) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
-        /// </summary>
-        public static Molarity FromNanomolesPerLiter(int nanomolesperliter)
+#else
+        public static Molarity FromNanomolesPerLiter(QuantityValue nanomolesperliter)
         {
-            return new Molarity((nanomolesperliter/1e-3) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
-        /// </summary>
-        public static Molarity FromNanomolesPerLiter(long nanomolesperliter)
-        {
-            return new Molarity((nanomolesperliter/1e-3) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from NanomolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromNanomolesPerLiter(decimal nanomolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(nanomolesperliter)/1e-3) * 1e-9d);
+            double value = (double) nanomolesperliter;
+            return new Molarity(((value/1e-3) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Molarity FromPicomolesPerLiter(double picomolesperliter)
         {
-            return new Molarity((picomolesperliter/1e-3) * 1e-12d);
+            double value = (double) picomolesperliter;
+            return new Molarity((value/1e-3) * 1e-12d);
         }
-
-        /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
-        /// </summary>
-        public static Molarity FromPicomolesPerLiter(int picomolesperliter)
+#else
+        public static Molarity FromPicomolesPerLiter(QuantityValue picomolesperliter)
         {
-            return new Molarity((picomolesperliter/1e-3) * 1e-12d);
-        }
-
-        /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
-        /// </summary>
-        public static Molarity FromPicomolesPerLiter(long picomolesperliter)
-        {
-            return new Molarity((picomolesperliter/1e-3) * 1e-12d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Molarity from PicomolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity FromPicomolesPerLiter(decimal picomolesperliter)
-        {
-            return new Molarity((Convert.ToDouble(picomolesperliter)/1e-3) * 1e-12d);
+            double value = (double) picomolesperliter;
+            return new Molarity(((value/1e-3) * 1e-12d));
         }
 #endif
 
@@ -511,52 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable CentimolesPerLiter.
         /// </summary>
-        public static Molarity? FromCentimolesPerLiter(double? centimolesperliter)
-        {
-            if (centimolesperliter.HasValue)
-            {
-                return FromCentimolesPerLiter(centimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable CentimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromCentimolesPerLiter(int? centimolesperliter)
-        {
-            if (centimolesperliter.HasValue)
-            {
-                return FromCentimolesPerLiter(centimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable CentimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromCentimolesPerLiter(long? centimolesperliter)
-        {
-            if (centimolesperliter.HasValue)
-            {
-                return FromCentimolesPerLiter(centimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from CentimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromCentimolesPerLiter(decimal? centimolesperliter)
+        public static Molarity? FromCentimolesPerLiter(QuantityValue? centimolesperliter)
         {
             if (centimolesperliter.HasValue)
             {
@@ -571,52 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable DecimolesPerLiter.
         /// </summary>
-        public static Molarity? FromDecimolesPerLiter(double? decimolesperliter)
-        {
-            if (decimolesperliter.HasValue)
-            {
-                return FromDecimolesPerLiter(decimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable DecimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromDecimolesPerLiter(int? decimolesperliter)
-        {
-            if (decimolesperliter.HasValue)
-            {
-                return FromDecimolesPerLiter(decimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable DecimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromDecimolesPerLiter(long? decimolesperliter)
-        {
-            if (decimolesperliter.HasValue)
-            {
-                return FromDecimolesPerLiter(decimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from DecimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromDecimolesPerLiter(decimal? decimolesperliter)
+        public static Molarity? FromDecimolesPerLiter(QuantityValue? decimolesperliter)
         {
             if (decimolesperliter.HasValue)
             {
@@ -631,52 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MicromolesPerLiter.
         /// </summary>
-        public static Molarity? FromMicromolesPerLiter(double? micromolesperliter)
-        {
-            if (micromolesperliter.HasValue)
-            {
-                return FromMicromolesPerLiter(micromolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MicromolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMicromolesPerLiter(int? micromolesperliter)
-        {
-            if (micromolesperliter.HasValue)
-            {
-                return FromMicromolesPerLiter(micromolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MicromolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMicromolesPerLiter(long? micromolesperliter)
-        {
-            if (micromolesperliter.HasValue)
-            {
-                return FromMicromolesPerLiter(micromolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from MicromolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromMicromolesPerLiter(decimal? micromolesperliter)
+        public static Molarity? FromMicromolesPerLiter(QuantityValue? micromolesperliter)
         {
             if (micromolesperliter.HasValue)
             {
@@ -691,52 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MillimolesPerLiter.
         /// </summary>
-        public static Molarity? FromMillimolesPerLiter(double? millimolesperliter)
-        {
-            if (millimolesperliter.HasValue)
-            {
-                return FromMillimolesPerLiter(millimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MillimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMillimolesPerLiter(int? millimolesperliter)
-        {
-            if (millimolesperliter.HasValue)
-            {
-                return FromMillimolesPerLiter(millimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MillimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMillimolesPerLiter(long? millimolesperliter)
-        {
-            if (millimolesperliter.HasValue)
-            {
-                return FromMillimolesPerLiter(millimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from MillimolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromMillimolesPerLiter(decimal? millimolesperliter)
+        public static Molarity? FromMillimolesPerLiter(QuantityValue? millimolesperliter)
         {
             if (millimolesperliter.HasValue)
             {
@@ -751,52 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MolesPerCubicMeter.
         /// </summary>
-        public static Molarity? FromMolesPerCubicMeter(double? molespercubicmeter)
-        {
-            if (molespercubicmeter.HasValue)
-            {
-                return FromMolesPerCubicMeter(molespercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerCubicMeter.
-        /// </summary>
-        public static Molarity? FromMolesPerCubicMeter(int? molespercubicmeter)
-        {
-            if (molespercubicmeter.HasValue)
-            {
-                return FromMolesPerCubicMeter(molespercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerCubicMeter.
-        /// </summary>
-        public static Molarity? FromMolesPerCubicMeter(long? molespercubicmeter)
-        {
-            if (molespercubicmeter.HasValue)
-            {
-                return FromMolesPerCubicMeter(molespercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from MolesPerCubicMeter of type decimal.
-        /// </summary>
-        public static Molarity? FromMolesPerCubicMeter(decimal? molespercubicmeter)
+        public static Molarity? FromMolesPerCubicMeter(QuantityValue? molespercubicmeter)
         {
             if (molespercubicmeter.HasValue)
             {
@@ -811,52 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MolesPerLiter.
         /// </summary>
-        public static Molarity? FromMolesPerLiter(double? molesperliter)
-        {
-            if (molesperliter.HasValue)
-            {
-                return FromMolesPerLiter(molesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMolesPerLiter(int? molesperliter)
-        {
-            if (molesperliter.HasValue)
-            {
-                return FromMolesPerLiter(molesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMolesPerLiter(long? molesperliter)
-        {
-            if (molesperliter.HasValue)
-            {
-                return FromMolesPerLiter(molesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from MolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromMolesPerLiter(decimal? molesperliter)
+        public static Molarity? FromMolesPerLiter(QuantityValue? molesperliter)
         {
             if (molesperliter.HasValue)
             {
@@ -871,52 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable NanomolesPerLiter.
         /// </summary>
-        public static Molarity? FromNanomolesPerLiter(double? nanomolesperliter)
-        {
-            if (nanomolesperliter.HasValue)
-            {
-                return FromNanomolesPerLiter(nanomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable NanomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromNanomolesPerLiter(int? nanomolesperliter)
-        {
-            if (nanomolesperliter.HasValue)
-            {
-                return FromNanomolesPerLiter(nanomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable NanomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromNanomolesPerLiter(long? nanomolesperliter)
-        {
-            if (nanomolesperliter.HasValue)
-            {
-                return FromNanomolesPerLiter(nanomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from NanomolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromNanomolesPerLiter(decimal? nanomolesperliter)
+        public static Molarity? FromNanomolesPerLiter(QuantityValue? nanomolesperliter)
         {
             if (nanomolesperliter.HasValue)
             {
@@ -931,52 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable PicomolesPerLiter.
         /// </summary>
-        public static Molarity? FromPicomolesPerLiter(double? picomolesperliter)
-        {
-            if (picomolesperliter.HasValue)
-            {
-                return FromPicomolesPerLiter(picomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable PicomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromPicomolesPerLiter(int? picomolesperliter)
-        {
-            if (picomolesperliter.HasValue)
-            {
-                return FromPicomolesPerLiter(picomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable PicomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromPicomolesPerLiter(long? picomolesperliter)
-        {
-            if (picomolesperliter.HasValue)
-            {
-                return FromPicomolesPerLiter(picomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from PicomolesPerLiter of type decimal.
-        /// </summary>
-        public static Molarity? FromPicomolesPerLiter(decimal? picomolesperliter)
+        public static Molarity? FromPicomolesPerLiter(QuantityValue? picomolesperliter)
         {
             if (picomolesperliter.HasValue)
             {
@@ -993,29 +473,35 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molarity unit value.</returns>
-        public static Molarity From(double val, MolarityUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Molarity From(double value, MolarityUnit fromUnit)
+#else
+        public static Molarity From(QuantityValue value, MolarityUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case MolarityUnit.CentimolesPerLiter:
-                    return FromCentimolesPerLiter(val);
+                    return FromCentimolesPerLiter(value);
                 case MolarityUnit.DecimolesPerLiter:
-                    return FromDecimolesPerLiter(val);
+                    return FromDecimolesPerLiter(value);
                 case MolarityUnit.MicromolesPerLiter:
-                    return FromMicromolesPerLiter(val);
+                    return FromMicromolesPerLiter(value);
                 case MolarityUnit.MillimolesPerLiter:
-                    return FromMillimolesPerLiter(val);
+                    return FromMillimolesPerLiter(value);
                 case MolarityUnit.MolesPerCubicMeter:
-                    return FromMolesPerCubicMeter(val);
+                    return FromMolesPerCubicMeter(value);
                 case MolarityUnit.MolesPerLiter:
-                    return FromMolesPerLiter(val);
+                    return FromMolesPerLiter(value);
                 case MolarityUnit.NanomolesPerLiter:
-                    return FromNanomolesPerLiter(val);
+                    return FromNanomolesPerLiter(value);
                 case MolarityUnit.PicomolesPerLiter:
-                    return FromPicomolesPerLiter(val);
+                    return FromPicomolesPerLiter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1030,7 +516,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molarity unit value.</returns>
-        public static Molarity? From(double? value, MolarityUnit fromUnit)
+        public static Molarity? From(QuantityValue? value, MolarityUnit fromUnit)
         {
             if (!value.HasValue)
             {

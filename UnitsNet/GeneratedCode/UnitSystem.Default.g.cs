@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -996,6 +996,45 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Вт/ч"),
                             }),
                     }),
+                new UnitLocalization(typeof (EntropyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) EntropyUnit.CaloriePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.JoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/C"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.JoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilocaloriePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/C"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/K"),
+                            }),
+                        new CulturesForEnumValue((int) EntropyUnit.MegajoulePerKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/K"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (FlowUnit),
                     new[]
                     {
@@ -1484,15 +1523,10 @@ namespace UnitsNet
                 new UnitLocalization(typeof (LapseRateUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) LapseRateUnit.DegreeCelsiusPerMeter,
+                        new CulturesForEnumValue((int) LapseRateUnit.DegreeCelsiusPerKilometer,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "°C/m"),
-                            }),
-                        new CulturesForEnumValue((int) LapseRateUnit.KilodegreeCelsiusPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "k°C/m"),
                             }),
                     }),
                 new UnitLocalization(typeof (LengthUnit),
@@ -2671,6 +2705,50 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Wh/kg"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (SpecificEntropyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.CaloriePerGramKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal/(g*K)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.JoulePerKilogramDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/(kg*C)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.JoulePerKilogramKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/(kg*K)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilocaloriePerGramKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/(g*K)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/(kg*C)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilojoulePerKilogramKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kJ/(kg*K)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/(kg*C)"),
+                            }),
+                        new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MJ/(kg*K)"),
                             }),
                     }),
                 new UnitLocalization(typeof (SpecificWeightUnit),

@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -221,380 +221,180 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Days.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromDays(double days)
         {
-            return new Duration(days*24*3600);
+            double value = (double) days;
+            return new Duration(value*24*3600);
         }
-
-        /// <summary>
-        ///     Get Duration from Days.
-        /// </summary>
-        public static Duration FromDays(int days)
+#else
+        public static Duration FromDays(QuantityValue days)
         {
-            return new Duration(days*24*3600);
-        }
-
-        /// <summary>
-        ///     Get Duration from Days.
-        /// </summary>
-        public static Duration FromDays(long days)
-        {
-            return new Duration(days*24*3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Days of type decimal.
-        /// </summary>
-        public static Duration FromDays(decimal days)
-        {
-            return new Duration(Convert.ToDouble(days)*24*3600);
+            double value = (double) days;
+            return new Duration((value*24*3600));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Hours.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromHours(double hours)
         {
-            return new Duration(hours*3600);
+            double value = (double) hours;
+            return new Duration(value*3600);
         }
-
-        /// <summary>
-        ///     Get Duration from Hours.
-        /// </summary>
-        public static Duration FromHours(int hours)
+#else
+        public static Duration FromHours(QuantityValue hours)
         {
-            return new Duration(hours*3600);
-        }
-
-        /// <summary>
-        ///     Get Duration from Hours.
-        /// </summary>
-        public static Duration FromHours(long hours)
-        {
-            return new Duration(hours*3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Hours of type decimal.
-        /// </summary>
-        public static Duration FromHours(decimal hours)
-        {
-            return new Duration(Convert.ToDouble(hours)*3600);
+            double value = (double) hours;
+            return new Duration((value*3600));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Microseconds.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromMicroseconds(double microseconds)
         {
-            return new Duration(microseconds/1e6);
+            double value = (double) microseconds;
+            return new Duration(value/1e6);
         }
-
-        /// <summary>
-        ///     Get Duration from Microseconds.
-        /// </summary>
-        public static Duration FromMicroseconds(int microseconds)
+#else
+        public static Duration FromMicroseconds(QuantityValue microseconds)
         {
-            return new Duration(microseconds/1e6);
-        }
-
-        /// <summary>
-        ///     Get Duration from Microseconds.
-        /// </summary>
-        public static Duration FromMicroseconds(long microseconds)
-        {
-            return new Duration(microseconds/1e6);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Microseconds of type decimal.
-        /// </summary>
-        public static Duration FromMicroseconds(decimal microseconds)
-        {
-            return new Duration(Convert.ToDouble(microseconds)/1e6);
+            double value = (double) microseconds;
+            return new Duration((value/1e6));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Milliseconds.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromMilliseconds(double milliseconds)
         {
-            return new Duration(milliseconds/1e3);
+            double value = (double) milliseconds;
+            return new Duration(value/1e3);
         }
-
-        /// <summary>
-        ///     Get Duration from Milliseconds.
-        /// </summary>
-        public static Duration FromMilliseconds(int milliseconds)
+#else
+        public static Duration FromMilliseconds(QuantityValue milliseconds)
         {
-            return new Duration(milliseconds/1e3);
-        }
-
-        /// <summary>
-        ///     Get Duration from Milliseconds.
-        /// </summary>
-        public static Duration FromMilliseconds(long milliseconds)
-        {
-            return new Duration(milliseconds/1e3);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Milliseconds of type decimal.
-        /// </summary>
-        public static Duration FromMilliseconds(decimal milliseconds)
-        {
-            return new Duration(Convert.ToDouble(milliseconds)/1e3);
+            double value = (double) milliseconds;
+            return new Duration((value/1e3));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Minutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromMinutes(double minutes)
         {
-            return new Duration(minutes*60);
+            double value = (double) minutes;
+            return new Duration(value*60);
         }
-
-        /// <summary>
-        ///     Get Duration from Minutes.
-        /// </summary>
-        public static Duration FromMinutes(int minutes)
+#else
+        public static Duration FromMinutes(QuantityValue minutes)
         {
-            return new Duration(minutes*60);
-        }
-
-        /// <summary>
-        ///     Get Duration from Minutes.
-        /// </summary>
-        public static Duration FromMinutes(long minutes)
-        {
-            return new Duration(minutes*60);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Minutes of type decimal.
-        /// </summary>
-        public static Duration FromMinutes(decimal minutes)
-        {
-            return new Duration(Convert.ToDouble(minutes)*60);
+            double value = (double) minutes;
+            return new Duration((value*60));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Months.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromMonths(double months)
         {
-            return new Duration(months*30*24*3600);
+            double value = (double) months;
+            return new Duration(value*30*24*3600);
         }
-
-        /// <summary>
-        ///     Get Duration from Months.
-        /// </summary>
-        public static Duration FromMonths(int months)
+#else
+        public static Duration FromMonths(QuantityValue months)
         {
-            return new Duration(months*30*24*3600);
-        }
-
-        /// <summary>
-        ///     Get Duration from Months.
-        /// </summary>
-        public static Duration FromMonths(long months)
-        {
-            return new Duration(months*30*24*3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Months of type decimal.
-        /// </summary>
-        public static Duration FromMonths(decimal months)
-        {
-            return new Duration(Convert.ToDouble(months)*30*24*3600);
+            double value = (double) months;
+            return new Duration((value*30*24*3600));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Nanoseconds.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromNanoseconds(double nanoseconds)
         {
-            return new Duration(nanoseconds/1e9);
+            double value = (double) nanoseconds;
+            return new Duration(value/1e9);
         }
-
-        /// <summary>
-        ///     Get Duration from Nanoseconds.
-        /// </summary>
-        public static Duration FromNanoseconds(int nanoseconds)
+#else
+        public static Duration FromNanoseconds(QuantityValue nanoseconds)
         {
-            return new Duration(nanoseconds/1e9);
-        }
-
-        /// <summary>
-        ///     Get Duration from Nanoseconds.
-        /// </summary>
-        public static Duration FromNanoseconds(long nanoseconds)
-        {
-            return new Duration(nanoseconds/1e9);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Nanoseconds of type decimal.
-        /// </summary>
-        public static Duration FromNanoseconds(decimal nanoseconds)
-        {
-            return new Duration(Convert.ToDouble(nanoseconds)/1e9);
+            double value = (double) nanoseconds;
+            return new Duration((value/1e9));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Seconds.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromSeconds(double seconds)
         {
-            return new Duration(seconds);
+            double value = (double) seconds;
+            return new Duration(value);
         }
-
-        /// <summary>
-        ///     Get Duration from Seconds.
-        /// </summary>
-        public static Duration FromSeconds(int seconds)
+#else
+        public static Duration FromSeconds(QuantityValue seconds)
         {
-            return new Duration(seconds);
-        }
-
-        /// <summary>
-        ///     Get Duration from Seconds.
-        /// </summary>
-        public static Duration FromSeconds(long seconds)
-        {
-            return new Duration(seconds);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Seconds of type decimal.
-        /// </summary>
-        public static Duration FromSeconds(decimal seconds)
-        {
-            return new Duration(Convert.ToDouble(seconds));
+            double value = (double) seconds;
+            return new Duration((value));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Weeks.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromWeeks(double weeks)
         {
-            return new Duration(weeks*7*24*3600);
+            double value = (double) weeks;
+            return new Duration(value*7*24*3600);
         }
-
-        /// <summary>
-        ///     Get Duration from Weeks.
-        /// </summary>
-        public static Duration FromWeeks(int weeks)
+#else
+        public static Duration FromWeeks(QuantityValue weeks)
         {
-            return new Duration(weeks*7*24*3600);
-        }
-
-        /// <summary>
-        ///     Get Duration from Weeks.
-        /// </summary>
-        public static Duration FromWeeks(long weeks)
-        {
-            return new Duration(weeks*7*24*3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Weeks of type decimal.
-        /// </summary>
-        public static Duration FromWeeks(decimal weeks)
-        {
-            return new Duration(Convert.ToDouble(weeks)*7*24*3600);
+            double value = (double) weeks;
+            return new Duration((value*7*24*3600));
         }
 #endif
 
         /// <summary>
         ///     Get Duration from Years.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Duration FromYears(double years)
         {
-            return new Duration(years*365*24*3600);
+            double value = (double) years;
+            return new Duration(value*365*24*3600);
         }
-
-        /// <summary>
-        ///     Get Duration from Years.
-        /// </summary>
-        public static Duration FromYears(int years)
+#else
+        public static Duration FromYears(QuantityValue years)
         {
-            return new Duration(years*365*24*3600);
-        }
-
-        /// <summary>
-        ///     Get Duration from Years.
-        /// </summary>
-        public static Duration FromYears(long years)
-        {
-            return new Duration(years*365*24*3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Duration from Years of type decimal.
-        /// </summary>
-        public static Duration FromYears(decimal years)
-        {
-            return new Duration(Convert.ToDouble(years)*365*24*3600);
+            double value = (double) years;
+            return new Duration((value*365*24*3600));
         }
 #endif
 
@@ -603,52 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Days.
         /// </summary>
-        public static Duration? FromDays(double? days)
-        {
-            if (days.HasValue)
-            {
-                return FromDays(days.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Days.
-        /// </summary>
-        public static Duration? FromDays(int? days)
-        {
-            if (days.HasValue)
-            {
-                return FromDays(days.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Days.
-        /// </summary>
-        public static Duration? FromDays(long? days)
-        {
-            if (days.HasValue)
-            {
-                return FromDays(days.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Days of type decimal.
-        /// </summary>
-        public static Duration? FromDays(decimal? days)
+        public static Duration? FromDays(QuantityValue? days)
         {
             if (days.HasValue)
             {
@@ -663,52 +418,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Hours.
         /// </summary>
-        public static Duration? FromHours(double? hours)
-        {
-            if (hours.HasValue)
-            {
-                return FromHours(hours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Hours.
-        /// </summary>
-        public static Duration? FromHours(int? hours)
-        {
-            if (hours.HasValue)
-            {
-                return FromHours(hours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Hours.
-        /// </summary>
-        public static Duration? FromHours(long? hours)
-        {
-            if (hours.HasValue)
-            {
-                return FromHours(hours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Hours of type decimal.
-        /// </summary>
-        public static Duration? FromHours(decimal? hours)
+        public static Duration? FromHours(QuantityValue? hours)
         {
             if (hours.HasValue)
             {
@@ -723,52 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Microseconds.
         /// </summary>
-        public static Duration? FromMicroseconds(double? microseconds)
-        {
-            if (microseconds.HasValue)
-            {
-                return FromMicroseconds(microseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Microseconds.
-        /// </summary>
-        public static Duration? FromMicroseconds(int? microseconds)
-        {
-            if (microseconds.HasValue)
-            {
-                return FromMicroseconds(microseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Microseconds.
-        /// </summary>
-        public static Duration? FromMicroseconds(long? microseconds)
-        {
-            if (microseconds.HasValue)
-            {
-                return FromMicroseconds(microseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Microseconds of type decimal.
-        /// </summary>
-        public static Duration? FromMicroseconds(decimal? microseconds)
+        public static Duration? FromMicroseconds(QuantityValue? microseconds)
         {
             if (microseconds.HasValue)
             {
@@ -783,52 +448,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Milliseconds.
         /// </summary>
-        public static Duration? FromMilliseconds(double? milliseconds)
-        {
-            if (milliseconds.HasValue)
-            {
-                return FromMilliseconds(milliseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Milliseconds.
-        /// </summary>
-        public static Duration? FromMilliseconds(int? milliseconds)
-        {
-            if (milliseconds.HasValue)
-            {
-                return FromMilliseconds(milliseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Milliseconds.
-        /// </summary>
-        public static Duration? FromMilliseconds(long? milliseconds)
-        {
-            if (milliseconds.HasValue)
-            {
-                return FromMilliseconds(milliseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Milliseconds of type decimal.
-        /// </summary>
-        public static Duration? FromMilliseconds(decimal? milliseconds)
+        public static Duration? FromMilliseconds(QuantityValue? milliseconds)
         {
             if (milliseconds.HasValue)
             {
@@ -843,52 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Minutes.
         /// </summary>
-        public static Duration? FromMinutes(double? minutes)
-        {
-            if (minutes.HasValue)
-            {
-                return FromMinutes(minutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Minutes.
-        /// </summary>
-        public static Duration? FromMinutes(int? minutes)
-        {
-            if (minutes.HasValue)
-            {
-                return FromMinutes(minutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Minutes.
-        /// </summary>
-        public static Duration? FromMinutes(long? minutes)
-        {
-            if (minutes.HasValue)
-            {
-                return FromMinutes(minutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Minutes of type decimal.
-        /// </summary>
-        public static Duration? FromMinutes(decimal? minutes)
+        public static Duration? FromMinutes(QuantityValue? minutes)
         {
             if (minutes.HasValue)
             {
@@ -903,52 +478,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Months.
         /// </summary>
-        public static Duration? FromMonths(double? months)
-        {
-            if (months.HasValue)
-            {
-                return FromMonths(months.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Months.
-        /// </summary>
-        public static Duration? FromMonths(int? months)
-        {
-            if (months.HasValue)
-            {
-                return FromMonths(months.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Months.
-        /// </summary>
-        public static Duration? FromMonths(long? months)
-        {
-            if (months.HasValue)
-            {
-                return FromMonths(months.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Months of type decimal.
-        /// </summary>
-        public static Duration? FromMonths(decimal? months)
+        public static Duration? FromMonths(QuantityValue? months)
         {
             if (months.HasValue)
             {
@@ -963,52 +493,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Nanoseconds.
         /// </summary>
-        public static Duration? FromNanoseconds(double? nanoseconds)
-        {
-            if (nanoseconds.HasValue)
-            {
-                return FromNanoseconds(nanoseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Nanoseconds.
-        /// </summary>
-        public static Duration? FromNanoseconds(int? nanoseconds)
-        {
-            if (nanoseconds.HasValue)
-            {
-                return FromNanoseconds(nanoseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Nanoseconds.
-        /// </summary>
-        public static Duration? FromNanoseconds(long? nanoseconds)
-        {
-            if (nanoseconds.HasValue)
-            {
-                return FromNanoseconds(nanoseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Nanoseconds of type decimal.
-        /// </summary>
-        public static Duration? FromNanoseconds(decimal? nanoseconds)
+        public static Duration? FromNanoseconds(QuantityValue? nanoseconds)
         {
             if (nanoseconds.HasValue)
             {
@@ -1023,52 +508,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Seconds.
         /// </summary>
-        public static Duration? FromSeconds(double? seconds)
-        {
-            if (seconds.HasValue)
-            {
-                return FromSeconds(seconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Seconds.
-        /// </summary>
-        public static Duration? FromSeconds(int? seconds)
-        {
-            if (seconds.HasValue)
-            {
-                return FromSeconds(seconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Seconds.
-        /// </summary>
-        public static Duration? FromSeconds(long? seconds)
-        {
-            if (seconds.HasValue)
-            {
-                return FromSeconds(seconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Seconds of type decimal.
-        /// </summary>
-        public static Duration? FromSeconds(decimal? seconds)
+        public static Duration? FromSeconds(QuantityValue? seconds)
         {
             if (seconds.HasValue)
             {
@@ -1083,52 +523,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Weeks.
         /// </summary>
-        public static Duration? FromWeeks(double? weeks)
-        {
-            if (weeks.HasValue)
-            {
-                return FromWeeks(weeks.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Weeks.
-        /// </summary>
-        public static Duration? FromWeeks(int? weeks)
-        {
-            if (weeks.HasValue)
-            {
-                return FromWeeks(weeks.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Weeks.
-        /// </summary>
-        public static Duration? FromWeeks(long? weeks)
-        {
-            if (weeks.HasValue)
-            {
-                return FromWeeks(weeks.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Weeks of type decimal.
-        /// </summary>
-        public static Duration? FromWeeks(decimal? weeks)
+        public static Duration? FromWeeks(QuantityValue? weeks)
         {
             if (weeks.HasValue)
             {
@@ -1143,52 +538,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Years.
         /// </summary>
-        public static Duration? FromYears(double? years)
-        {
-            if (years.HasValue)
-            {
-                return FromYears(years.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Years.
-        /// </summary>
-        public static Duration? FromYears(int? years)
-        {
-            if (years.HasValue)
-            {
-                return FromYears(years.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Years.
-        /// </summary>
-        public static Duration? FromYears(long? years)
-        {
-            if (years.HasValue)
-            {
-                return FromYears(years.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from Years of type decimal.
-        /// </summary>
-        public static Duration? FromYears(decimal? years)
+        public static Duration? FromYears(QuantityValue? years)
         {
             if (years.HasValue)
             {
@@ -1205,33 +555,39 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration From(double val, DurationUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Duration From(double value, DurationUnit fromUnit)
+#else
+        public static Duration From(QuantityValue value, DurationUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case DurationUnit.Day:
-                    return FromDays(val);
+                    return FromDays(value);
                 case DurationUnit.Hour:
-                    return FromHours(val);
+                    return FromHours(value);
                 case DurationUnit.Microsecond:
-                    return FromMicroseconds(val);
+                    return FromMicroseconds(value);
                 case DurationUnit.Millisecond:
-                    return FromMilliseconds(val);
+                    return FromMilliseconds(value);
                 case DurationUnit.Minute:
-                    return FromMinutes(val);
+                    return FromMinutes(value);
                 case DurationUnit.Month:
-                    return FromMonths(val);
+                    return FromMonths(value);
                 case DurationUnit.Nanosecond:
-                    return FromNanoseconds(val);
+                    return FromNanoseconds(value);
                 case DurationUnit.Second:
-                    return FromSeconds(val);
+                    return FromSeconds(value);
                 case DurationUnit.Week:
-                    return FromWeeks(val);
+                    return FromWeeks(value);
                 case DurationUnit.Year:
-                    return FromYears(val);
+                    return FromYears(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1246,7 +602,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration? From(double? value, DurationUnit fromUnit)
+        public static Duration? From(QuantityValue? value, DurationUnit fromUnit)
         {
             if (!value.HasValue)
             {

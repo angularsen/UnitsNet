@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -309,798 +309,378 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerHour.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromCentimetersPerHour(double centimetersperhour)
         {
-            return new Speed((centimetersperhour/3600) * 1e-2d);
+            double value = (double) centimetersperhour;
+            return new Speed((value/3600) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerHour.
-        /// </summary>
-        public static Speed FromCentimetersPerHour(int centimetersperhour)
+#else
+        public static Speed FromCentimetersPerHour(QuantityValue centimetersperhour)
         {
-            return new Speed((centimetersperhour/3600) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerHour.
-        /// </summary>
-        public static Speed FromCentimetersPerHour(long centimetersperhour)
-        {
-            return new Speed((centimetersperhour/3600) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from CentimetersPerHour of type decimal.
-        /// </summary>
-        public static Speed FromCentimetersPerHour(decimal centimetersperhour)
-        {
-            return new Speed((Convert.ToDouble(centimetersperhour)/3600) * 1e-2d);
+            double value = (double) centimetersperhour;
+            return new Speed(((value/3600) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from CentimetersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromCentimetersPerMinutes(double centimetersperminutes)
         {
-            return new Speed((centimetersperminutes/60) * 1e-2d);
+            double value = (double) centimetersperminutes;
+            return new Speed((value/60) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerMinutes.
-        /// </summary>
-        public static Speed FromCentimetersPerMinutes(int centimetersperminutes)
+#else
+        public static Speed FromCentimetersPerMinutes(QuantityValue centimetersperminutes)
         {
-            return new Speed((centimetersperminutes/60) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerMinutes.
-        /// </summary>
-        public static Speed FromCentimetersPerMinutes(long centimetersperminutes)
-        {
-            return new Speed((centimetersperminutes/60) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from CentimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromCentimetersPerMinutes(decimal centimetersperminutes)
-        {
-            return new Speed((Convert.ToDouble(centimetersperminutes)/60) * 1e-2d);
+            double value = (double) centimetersperminutes;
+            return new Speed(((value/60) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from CentimetersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromCentimetersPerSecond(double centimeterspersecond)
         {
-            return new Speed((centimeterspersecond) * 1e-2d);
+            double value = (double) centimeterspersecond;
+            return new Speed((value) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerSecond.
-        /// </summary>
-        public static Speed FromCentimetersPerSecond(int centimeterspersecond)
+#else
+        public static Speed FromCentimetersPerSecond(QuantityValue centimeterspersecond)
         {
-            return new Speed((centimeterspersecond) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get Speed from CentimetersPerSecond.
-        /// </summary>
-        public static Speed FromCentimetersPerSecond(long centimeterspersecond)
-        {
-            return new Speed((centimeterspersecond) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from CentimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromCentimetersPerSecond(decimal centimeterspersecond)
-        {
-            return new Speed((Convert.ToDouble(centimeterspersecond)) * 1e-2d);
+            double value = (double) centimeterspersecond;
+            return new Speed(((value) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from DecimetersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromDecimetersPerMinutes(double decimetersperminutes)
         {
-            return new Speed((decimetersperminutes/60) * 1e-1d);
+            double value = (double) decimetersperminutes;
+            return new Speed((value/60) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get Speed from DecimetersPerMinutes.
-        /// </summary>
-        public static Speed FromDecimetersPerMinutes(int decimetersperminutes)
+#else
+        public static Speed FromDecimetersPerMinutes(QuantityValue decimetersperminutes)
         {
-            return new Speed((decimetersperminutes/60) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get Speed from DecimetersPerMinutes.
-        /// </summary>
-        public static Speed FromDecimetersPerMinutes(long decimetersperminutes)
-        {
-            return new Speed((decimetersperminutes/60) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from DecimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromDecimetersPerMinutes(decimal decimetersperminutes)
-        {
-            return new Speed((Convert.ToDouble(decimetersperminutes)/60) * 1e-1d);
+            double value = (double) decimetersperminutes;
+            return new Speed(((value/60) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from DecimetersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromDecimetersPerSecond(double decimeterspersecond)
         {
-            return new Speed((decimeterspersecond) * 1e-1d);
+            double value = (double) decimeterspersecond;
+            return new Speed((value) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get Speed from DecimetersPerSecond.
-        /// </summary>
-        public static Speed FromDecimetersPerSecond(int decimeterspersecond)
+#else
+        public static Speed FromDecimetersPerSecond(QuantityValue decimeterspersecond)
         {
-            return new Speed((decimeterspersecond) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get Speed from DecimetersPerSecond.
-        /// </summary>
-        public static Speed FromDecimetersPerSecond(long decimeterspersecond)
-        {
-            return new Speed((decimeterspersecond) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from DecimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromDecimetersPerSecond(decimal decimeterspersecond)
-        {
-            return new Speed((Convert.ToDouble(decimeterspersecond)) * 1e-1d);
+            double value = (double) decimeterspersecond;
+            return new Speed(((value) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from FeetPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromFeetPerSecond(double feetpersecond)
         {
-            return new Speed(feetpersecond*0.3048);
+            double value = (double) feetpersecond;
+            return new Speed(value*0.3048);
         }
-
-        /// <summary>
-        ///     Get Speed from FeetPerSecond.
-        /// </summary>
-        public static Speed FromFeetPerSecond(int feetpersecond)
+#else
+        public static Speed FromFeetPerSecond(QuantityValue feetpersecond)
         {
-            return new Speed(feetpersecond*0.3048);
-        }
-
-        /// <summary>
-        ///     Get Speed from FeetPerSecond.
-        /// </summary>
-        public static Speed FromFeetPerSecond(long feetpersecond)
-        {
-            return new Speed(feetpersecond*0.3048);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from FeetPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromFeetPerSecond(decimal feetpersecond)
-        {
-            return new Speed(Convert.ToDouble(feetpersecond)*0.3048);
+            double value = (double) feetpersecond;
+            return new Speed((value*0.3048));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from KilometersPerHour.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromKilometersPerHour(double kilometersperhour)
         {
-            return new Speed((kilometersperhour/3600) * 1e3d);
+            double value = (double) kilometersperhour;
+            return new Speed((value/3600) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerHour.
-        /// </summary>
-        public static Speed FromKilometersPerHour(int kilometersperhour)
+#else
+        public static Speed FromKilometersPerHour(QuantityValue kilometersperhour)
         {
-            return new Speed((kilometersperhour/3600) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerHour.
-        /// </summary>
-        public static Speed FromKilometersPerHour(long kilometersperhour)
-        {
-            return new Speed((kilometersperhour/3600) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from KilometersPerHour of type decimal.
-        /// </summary>
-        public static Speed FromKilometersPerHour(decimal kilometersperhour)
-        {
-            return new Speed((Convert.ToDouble(kilometersperhour)/3600) * 1e3d);
+            double value = (double) kilometersperhour;
+            return new Speed(((value/3600) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from KilometersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromKilometersPerMinutes(double kilometersperminutes)
         {
-            return new Speed((kilometersperminutes/60) * 1e3d);
+            double value = (double) kilometersperminutes;
+            return new Speed((value/60) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerMinutes.
-        /// </summary>
-        public static Speed FromKilometersPerMinutes(int kilometersperminutes)
+#else
+        public static Speed FromKilometersPerMinutes(QuantityValue kilometersperminutes)
         {
-            return new Speed((kilometersperminutes/60) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerMinutes.
-        /// </summary>
-        public static Speed FromKilometersPerMinutes(long kilometersperminutes)
-        {
-            return new Speed((kilometersperminutes/60) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from KilometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromKilometersPerMinutes(decimal kilometersperminutes)
-        {
-            return new Speed((Convert.ToDouble(kilometersperminutes)/60) * 1e3d);
+            double value = (double) kilometersperminutes;
+            return new Speed(((value/60) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from KilometersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromKilometersPerSecond(double kilometerspersecond)
         {
-            return new Speed((kilometerspersecond) * 1e3d);
+            double value = (double) kilometerspersecond;
+            return new Speed((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerSecond.
-        /// </summary>
-        public static Speed FromKilometersPerSecond(int kilometerspersecond)
+#else
+        public static Speed FromKilometersPerSecond(QuantityValue kilometerspersecond)
         {
-            return new Speed((kilometerspersecond) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from KilometersPerSecond.
-        /// </summary>
-        public static Speed FromKilometersPerSecond(long kilometerspersecond)
-        {
-            return new Speed((kilometerspersecond) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from KilometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromKilometersPerSecond(decimal kilometerspersecond)
-        {
-            return new Speed((Convert.ToDouble(kilometerspersecond)) * 1e3d);
+            double value = (double) kilometerspersecond;
+            return new Speed(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from Knots.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromKnots(double knots)
         {
-            return new Speed(knots*0.514444);
+            double value = (double) knots;
+            return new Speed(value*0.514444);
         }
-
-        /// <summary>
-        ///     Get Speed from Knots.
-        /// </summary>
-        public static Speed FromKnots(int knots)
+#else
+        public static Speed FromKnots(QuantityValue knots)
         {
-            return new Speed(knots*0.514444);
-        }
-
-        /// <summary>
-        ///     Get Speed from Knots.
-        /// </summary>
-        public static Speed FromKnots(long knots)
-        {
-            return new Speed(knots*0.514444);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from Knots of type decimal.
-        /// </summary>
-        public static Speed FromKnots(decimal knots)
-        {
-            return new Speed(Convert.ToDouble(knots)*0.514444);
+            double value = (double) knots;
+            return new Speed((value*0.514444));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MetersPerHour.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMetersPerHour(double metersperhour)
         {
-            return new Speed(metersperhour/3600);
+            double value = (double) metersperhour;
+            return new Speed(value/3600);
         }
-
-        /// <summary>
-        ///     Get Speed from MetersPerHour.
-        /// </summary>
-        public static Speed FromMetersPerHour(int metersperhour)
+#else
+        public static Speed FromMetersPerHour(QuantityValue metersperhour)
         {
-            return new Speed(metersperhour/3600);
-        }
-
-        /// <summary>
-        ///     Get Speed from MetersPerHour.
-        /// </summary>
-        public static Speed FromMetersPerHour(long metersperhour)
-        {
-            return new Speed(metersperhour/3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MetersPerHour of type decimal.
-        /// </summary>
-        public static Speed FromMetersPerHour(decimal metersperhour)
-        {
-            return new Speed(Convert.ToDouble(metersperhour)/3600);
+            double value = (double) metersperhour;
+            return new Speed((value/3600));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MetersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMetersPerMinutes(double metersperminutes)
         {
-            return new Speed(metersperminutes/60);
+            double value = (double) metersperminutes;
+            return new Speed(value/60);
         }
-
-        /// <summary>
-        ///     Get Speed from MetersPerMinutes.
-        /// </summary>
-        public static Speed FromMetersPerMinutes(int metersperminutes)
+#else
+        public static Speed FromMetersPerMinutes(QuantityValue metersperminutes)
         {
-            return new Speed(metersperminutes/60);
-        }
-
-        /// <summary>
-        ///     Get Speed from MetersPerMinutes.
-        /// </summary>
-        public static Speed FromMetersPerMinutes(long metersperminutes)
-        {
-            return new Speed(metersperminutes/60);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromMetersPerMinutes(decimal metersperminutes)
-        {
-            return new Speed(Convert.ToDouble(metersperminutes)/60);
+            double value = (double) metersperminutes;
+            return new Speed((value/60));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MetersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMetersPerSecond(double meterspersecond)
         {
-            return new Speed(meterspersecond);
+            double value = (double) meterspersecond;
+            return new Speed(value);
         }
-
-        /// <summary>
-        ///     Get Speed from MetersPerSecond.
-        /// </summary>
-        public static Speed FromMetersPerSecond(int meterspersecond)
+#else
+        public static Speed FromMetersPerSecond(QuantityValue meterspersecond)
         {
-            return new Speed(meterspersecond);
-        }
-
-        /// <summary>
-        ///     Get Speed from MetersPerSecond.
-        /// </summary>
-        public static Speed FromMetersPerSecond(long meterspersecond)
-        {
-            return new Speed(meterspersecond);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromMetersPerSecond(decimal meterspersecond)
-        {
-            return new Speed(Convert.ToDouble(meterspersecond));
+            double value = (double) meterspersecond;
+            return new Speed((value));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MicrometersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMicrometersPerMinutes(double micrometersperminutes)
         {
-            return new Speed((micrometersperminutes/60) * 1e-6d);
+            double value = (double) micrometersperminutes;
+            return new Speed((value/60) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get Speed from MicrometersPerMinutes.
-        /// </summary>
-        public static Speed FromMicrometersPerMinutes(int micrometersperminutes)
+#else
+        public static Speed FromMicrometersPerMinutes(QuantityValue micrometersperminutes)
         {
-            return new Speed((micrometersperminutes/60) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get Speed from MicrometersPerMinutes.
-        /// </summary>
-        public static Speed FromMicrometersPerMinutes(long micrometersperminutes)
-        {
-            return new Speed((micrometersperminutes/60) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MicrometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromMicrometersPerMinutes(decimal micrometersperminutes)
-        {
-            return new Speed((Convert.ToDouble(micrometersperminutes)/60) * 1e-6d);
+            double value = (double) micrometersperminutes;
+            return new Speed(((value/60) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MicrometersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMicrometersPerSecond(double micrometerspersecond)
         {
-            return new Speed((micrometerspersecond) * 1e-6d);
+            double value = (double) micrometerspersecond;
+            return new Speed((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get Speed from MicrometersPerSecond.
-        /// </summary>
-        public static Speed FromMicrometersPerSecond(int micrometerspersecond)
+#else
+        public static Speed FromMicrometersPerSecond(QuantityValue micrometerspersecond)
         {
-            return new Speed((micrometerspersecond) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get Speed from MicrometersPerSecond.
-        /// </summary>
-        public static Speed FromMicrometersPerSecond(long micrometerspersecond)
-        {
-            return new Speed((micrometerspersecond) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MicrometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromMicrometersPerSecond(decimal micrometerspersecond)
-        {
-            return new Speed((Convert.ToDouble(micrometerspersecond)) * 1e-6d);
+            double value = (double) micrometerspersecond;
+            return new Speed(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MilesPerHour.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMilesPerHour(double milesperhour)
         {
-            return new Speed(milesperhour*0.44704);
+            double value = (double) milesperhour;
+            return new Speed(value*0.44704);
         }
-
-        /// <summary>
-        ///     Get Speed from MilesPerHour.
-        /// </summary>
-        public static Speed FromMilesPerHour(int milesperhour)
+#else
+        public static Speed FromMilesPerHour(QuantityValue milesperhour)
         {
-            return new Speed(milesperhour*0.44704);
-        }
-
-        /// <summary>
-        ///     Get Speed from MilesPerHour.
-        /// </summary>
-        public static Speed FromMilesPerHour(long milesperhour)
-        {
-            return new Speed(milesperhour*0.44704);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MilesPerHour of type decimal.
-        /// </summary>
-        public static Speed FromMilesPerHour(decimal milesperhour)
-        {
-            return new Speed(Convert.ToDouble(milesperhour)*0.44704);
+            double value = (double) milesperhour;
+            return new Speed((value*0.44704));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MillimetersPerHour.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMillimetersPerHour(double millimetersperhour)
         {
-            return new Speed((millimetersperhour/3600) * 1e-3d);
+            double value = (double) millimetersperhour;
+            return new Speed((value/3600) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerHour.
-        /// </summary>
-        public static Speed FromMillimetersPerHour(int millimetersperhour)
+#else
+        public static Speed FromMillimetersPerHour(QuantityValue millimetersperhour)
         {
-            return new Speed((millimetersperhour/3600) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerHour.
-        /// </summary>
-        public static Speed FromMillimetersPerHour(long millimetersperhour)
-        {
-            return new Speed((millimetersperhour/3600) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MillimetersPerHour of type decimal.
-        /// </summary>
-        public static Speed FromMillimetersPerHour(decimal millimetersperhour)
-        {
-            return new Speed((Convert.ToDouble(millimetersperhour)/3600) * 1e-3d);
+            double value = (double) millimetersperhour;
+            return new Speed(((value/3600) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MillimetersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMillimetersPerMinutes(double millimetersperminutes)
         {
-            return new Speed((millimetersperminutes/60) * 1e-3d);
+            double value = (double) millimetersperminutes;
+            return new Speed((value/60) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerMinutes.
-        /// </summary>
-        public static Speed FromMillimetersPerMinutes(int millimetersperminutes)
+#else
+        public static Speed FromMillimetersPerMinutes(QuantityValue millimetersperminutes)
         {
-            return new Speed((millimetersperminutes/60) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerMinutes.
-        /// </summary>
-        public static Speed FromMillimetersPerMinutes(long millimetersperminutes)
-        {
-            return new Speed((millimetersperminutes/60) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MillimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromMillimetersPerMinutes(decimal millimetersperminutes)
-        {
-            return new Speed((Convert.ToDouble(millimetersperminutes)/60) * 1e-3d);
+            double value = (double) millimetersperminutes;
+            return new Speed(((value/60) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from MillimetersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromMillimetersPerSecond(double millimeterspersecond)
         {
-            return new Speed((millimeterspersecond) * 1e-3d);
+            double value = (double) millimeterspersecond;
+            return new Speed((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerSecond.
-        /// </summary>
-        public static Speed FromMillimetersPerSecond(int millimeterspersecond)
+#else
+        public static Speed FromMillimetersPerSecond(QuantityValue millimeterspersecond)
         {
-            return new Speed((millimeterspersecond) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Speed from MillimetersPerSecond.
-        /// </summary>
-        public static Speed FromMillimetersPerSecond(long millimeterspersecond)
-        {
-            return new Speed((millimeterspersecond) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from MillimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromMillimetersPerSecond(decimal millimeterspersecond)
-        {
-            return new Speed((Convert.ToDouble(millimeterspersecond)) * 1e-3d);
+            double value = (double) millimeterspersecond;
+            return new Speed(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from NanometersPerMinutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromNanometersPerMinutes(double nanometersperminutes)
         {
-            return new Speed((nanometersperminutes/60) * 1e-9d);
+            double value = (double) nanometersperminutes;
+            return new Speed((value/60) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get Speed from NanometersPerMinutes.
-        /// </summary>
-        public static Speed FromNanometersPerMinutes(int nanometersperminutes)
+#else
+        public static Speed FromNanometersPerMinutes(QuantityValue nanometersperminutes)
         {
-            return new Speed((nanometersperminutes/60) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get Speed from NanometersPerMinutes.
-        /// </summary>
-        public static Speed FromNanometersPerMinutes(long nanometersperminutes)
-        {
-            return new Speed((nanometersperminutes/60) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from NanometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed FromNanometersPerMinutes(decimal nanometersperminutes)
-        {
-            return new Speed((Convert.ToDouble(nanometersperminutes)/60) * 1e-9d);
+            double value = (double) nanometersperminutes;
+            return new Speed(((value/60) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get Speed from NanometersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Speed FromNanometersPerSecond(double nanometerspersecond)
         {
-            return new Speed((nanometerspersecond) * 1e-9d);
+            double value = (double) nanometerspersecond;
+            return new Speed((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get Speed from NanometersPerSecond.
-        /// </summary>
-        public static Speed FromNanometersPerSecond(int nanometerspersecond)
+#else
+        public static Speed FromNanometersPerSecond(QuantityValue nanometerspersecond)
         {
-            return new Speed((nanometerspersecond) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get Speed from NanometersPerSecond.
-        /// </summary>
-        public static Speed FromNanometersPerSecond(long nanometerspersecond)
-        {
-            return new Speed((nanometerspersecond) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Speed from NanometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed FromNanometersPerSecond(decimal nanometerspersecond)
-        {
-            return new Speed((Convert.ToDouble(nanometerspersecond)) * 1e-9d);
+            double value = (double) nanometerspersecond;
+            return new Speed(((value) * 1e-9d));
         }
 #endif
 
@@ -1109,52 +689,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerHour.
         /// </summary>
-        public static Speed? FromCentimetersPerHour(double? centimetersperhour)
-        {
-            if (centimetersperhour.HasValue)
-            {
-                return FromCentimetersPerHour(centimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerHour.
-        /// </summary>
-        public static Speed? FromCentimetersPerHour(int? centimetersperhour)
-        {
-            if (centimetersperhour.HasValue)
-            {
-                return FromCentimetersPerHour(centimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerHour.
-        /// </summary>
-        public static Speed? FromCentimetersPerHour(long? centimetersperhour)
-        {
-            if (centimetersperhour.HasValue)
-            {
-                return FromCentimetersPerHour(centimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from CentimetersPerHour of type decimal.
-        /// </summary>
-        public static Speed? FromCentimetersPerHour(decimal? centimetersperhour)
+        public static Speed? FromCentimetersPerHour(QuantityValue? centimetersperhour)
         {
             if (centimetersperhour.HasValue)
             {
@@ -1169,52 +704,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerMinutes.
         /// </summary>
-        public static Speed? FromCentimetersPerMinutes(double? centimetersperminutes)
-        {
-            if (centimetersperminutes.HasValue)
-            {
-                return FromCentimetersPerMinutes(centimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromCentimetersPerMinutes(int? centimetersperminutes)
-        {
-            if (centimetersperminutes.HasValue)
-            {
-                return FromCentimetersPerMinutes(centimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromCentimetersPerMinutes(long? centimetersperminutes)
-        {
-            if (centimetersperminutes.HasValue)
-            {
-                return FromCentimetersPerMinutes(centimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from CentimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromCentimetersPerMinutes(decimal? centimetersperminutes)
+        public static Speed? FromCentimetersPerMinutes(QuantityValue? centimetersperminutes)
         {
             if (centimetersperminutes.HasValue)
             {
@@ -1229,52 +719,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerSecond.
         /// </summary>
-        public static Speed? FromCentimetersPerSecond(double? centimeterspersecond)
-        {
-            if (centimeterspersecond.HasValue)
-            {
-                return FromCentimetersPerSecond(centimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerSecond.
-        /// </summary>
-        public static Speed? FromCentimetersPerSecond(int? centimeterspersecond)
-        {
-            if (centimeterspersecond.HasValue)
-            {
-                return FromCentimetersPerSecond(centimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerSecond.
-        /// </summary>
-        public static Speed? FromCentimetersPerSecond(long? centimeterspersecond)
-        {
-            if (centimeterspersecond.HasValue)
-            {
-                return FromCentimetersPerSecond(centimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from CentimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromCentimetersPerSecond(decimal? centimeterspersecond)
+        public static Speed? FromCentimetersPerSecond(QuantityValue? centimeterspersecond)
         {
             if (centimeterspersecond.HasValue)
             {
@@ -1289,52 +734,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable DecimetersPerMinutes.
         /// </summary>
-        public static Speed? FromDecimetersPerMinutes(double? decimetersperminutes)
-        {
-            if (decimetersperminutes.HasValue)
-            {
-                return FromDecimetersPerMinutes(decimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromDecimetersPerMinutes(int? decimetersperminutes)
-        {
-            if (decimetersperminutes.HasValue)
-            {
-                return FromDecimetersPerMinutes(decimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromDecimetersPerMinutes(long? decimetersperminutes)
-        {
-            if (decimetersperminutes.HasValue)
-            {
-                return FromDecimetersPerMinutes(decimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from DecimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromDecimetersPerMinutes(decimal? decimetersperminutes)
+        public static Speed? FromDecimetersPerMinutes(QuantityValue? decimetersperminutes)
         {
             if (decimetersperminutes.HasValue)
             {
@@ -1349,52 +749,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable DecimetersPerSecond.
         /// </summary>
-        public static Speed? FromDecimetersPerSecond(double? decimeterspersecond)
-        {
-            if (decimeterspersecond.HasValue)
-            {
-                return FromDecimetersPerSecond(decimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerSecond.
-        /// </summary>
-        public static Speed? FromDecimetersPerSecond(int? decimeterspersecond)
-        {
-            if (decimeterspersecond.HasValue)
-            {
-                return FromDecimetersPerSecond(decimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerSecond.
-        /// </summary>
-        public static Speed? FromDecimetersPerSecond(long? decimeterspersecond)
-        {
-            if (decimeterspersecond.HasValue)
-            {
-                return FromDecimetersPerSecond(decimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from DecimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromDecimetersPerSecond(decimal? decimeterspersecond)
+        public static Speed? FromDecimetersPerSecond(QuantityValue? decimeterspersecond)
         {
             if (decimeterspersecond.HasValue)
             {
@@ -1409,52 +764,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable FeetPerSecond.
         /// </summary>
-        public static Speed? FromFeetPerSecond(double? feetpersecond)
-        {
-            if (feetpersecond.HasValue)
-            {
-                return FromFeetPerSecond(feetpersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable FeetPerSecond.
-        /// </summary>
-        public static Speed? FromFeetPerSecond(int? feetpersecond)
-        {
-            if (feetpersecond.HasValue)
-            {
-                return FromFeetPerSecond(feetpersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable FeetPerSecond.
-        /// </summary>
-        public static Speed? FromFeetPerSecond(long? feetpersecond)
-        {
-            if (feetpersecond.HasValue)
-            {
-                return FromFeetPerSecond(feetpersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from FeetPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromFeetPerSecond(decimal? feetpersecond)
+        public static Speed? FromFeetPerSecond(QuantityValue? feetpersecond)
         {
             if (feetpersecond.HasValue)
             {
@@ -1469,52 +779,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerHour.
         /// </summary>
-        public static Speed? FromKilometersPerHour(double? kilometersperhour)
-        {
-            if (kilometersperhour.HasValue)
-            {
-                return FromKilometersPerHour(kilometersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerHour.
-        /// </summary>
-        public static Speed? FromKilometersPerHour(int? kilometersperhour)
-        {
-            if (kilometersperhour.HasValue)
-            {
-                return FromKilometersPerHour(kilometersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerHour.
-        /// </summary>
-        public static Speed? FromKilometersPerHour(long? kilometersperhour)
-        {
-            if (kilometersperhour.HasValue)
-            {
-                return FromKilometersPerHour(kilometersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from KilometersPerHour of type decimal.
-        /// </summary>
-        public static Speed? FromKilometersPerHour(decimal? kilometersperhour)
+        public static Speed? FromKilometersPerHour(QuantityValue? kilometersperhour)
         {
             if (kilometersperhour.HasValue)
             {
@@ -1529,52 +794,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerMinutes.
         /// </summary>
-        public static Speed? FromKilometersPerMinutes(double? kilometersperminutes)
-        {
-            if (kilometersperminutes.HasValue)
-            {
-                return FromKilometersPerMinutes(kilometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerMinutes.
-        /// </summary>
-        public static Speed? FromKilometersPerMinutes(int? kilometersperminutes)
-        {
-            if (kilometersperminutes.HasValue)
-            {
-                return FromKilometersPerMinutes(kilometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerMinutes.
-        /// </summary>
-        public static Speed? FromKilometersPerMinutes(long? kilometersperminutes)
-        {
-            if (kilometersperminutes.HasValue)
-            {
-                return FromKilometersPerMinutes(kilometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from KilometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromKilometersPerMinutes(decimal? kilometersperminutes)
+        public static Speed? FromKilometersPerMinutes(QuantityValue? kilometersperminutes)
         {
             if (kilometersperminutes.HasValue)
             {
@@ -1589,52 +809,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerSecond.
         /// </summary>
-        public static Speed? FromKilometersPerSecond(double? kilometerspersecond)
-        {
-            if (kilometerspersecond.HasValue)
-            {
-                return FromKilometersPerSecond(kilometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerSecond.
-        /// </summary>
-        public static Speed? FromKilometersPerSecond(int? kilometerspersecond)
-        {
-            if (kilometerspersecond.HasValue)
-            {
-                return FromKilometersPerSecond(kilometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerSecond.
-        /// </summary>
-        public static Speed? FromKilometersPerSecond(long? kilometerspersecond)
-        {
-            if (kilometerspersecond.HasValue)
-            {
-                return FromKilometersPerSecond(kilometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from KilometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromKilometersPerSecond(decimal? kilometerspersecond)
+        public static Speed? FromKilometersPerSecond(QuantityValue? kilometerspersecond)
         {
             if (kilometerspersecond.HasValue)
             {
@@ -1649,52 +824,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable Knots.
         /// </summary>
-        public static Speed? FromKnots(double? knots)
-        {
-            if (knots.HasValue)
-            {
-                return FromKnots(knots.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable Knots.
-        /// </summary>
-        public static Speed? FromKnots(int? knots)
-        {
-            if (knots.HasValue)
-            {
-                return FromKnots(knots.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable Knots.
-        /// </summary>
-        public static Speed? FromKnots(long? knots)
-        {
-            if (knots.HasValue)
-            {
-                return FromKnots(knots.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from Knots of type decimal.
-        /// </summary>
-        public static Speed? FromKnots(decimal? knots)
+        public static Speed? FromKnots(QuantityValue? knots)
         {
             if (knots.HasValue)
             {
@@ -1709,52 +839,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerHour.
         /// </summary>
-        public static Speed? FromMetersPerHour(double? metersperhour)
-        {
-            if (metersperhour.HasValue)
-            {
-                return FromMetersPerHour(metersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerHour.
-        /// </summary>
-        public static Speed? FromMetersPerHour(int? metersperhour)
-        {
-            if (metersperhour.HasValue)
-            {
-                return FromMetersPerHour(metersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerHour.
-        /// </summary>
-        public static Speed? FromMetersPerHour(long? metersperhour)
-        {
-            if (metersperhour.HasValue)
-            {
-                return FromMetersPerHour(metersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MetersPerHour of type decimal.
-        /// </summary>
-        public static Speed? FromMetersPerHour(decimal? metersperhour)
+        public static Speed? FromMetersPerHour(QuantityValue? metersperhour)
         {
             if (metersperhour.HasValue)
             {
@@ -1769,52 +854,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerMinutes.
         /// </summary>
-        public static Speed? FromMetersPerMinutes(double? metersperminutes)
-        {
-            if (metersperminutes.HasValue)
-            {
-                return FromMetersPerMinutes(metersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerMinutes.
-        /// </summary>
-        public static Speed? FromMetersPerMinutes(int? metersperminutes)
-        {
-            if (metersperminutes.HasValue)
-            {
-                return FromMetersPerMinutes(metersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerMinutes.
-        /// </summary>
-        public static Speed? FromMetersPerMinutes(long? metersperminutes)
-        {
-            if (metersperminutes.HasValue)
-            {
-                return FromMetersPerMinutes(metersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromMetersPerMinutes(decimal? metersperminutes)
+        public static Speed? FromMetersPerMinutes(QuantityValue? metersperminutes)
         {
             if (metersperminutes.HasValue)
             {
@@ -1829,52 +869,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerSecond.
         /// </summary>
-        public static Speed? FromMetersPerSecond(double? meterspersecond)
-        {
-            if (meterspersecond.HasValue)
-            {
-                return FromMetersPerSecond(meterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerSecond.
-        /// </summary>
-        public static Speed? FromMetersPerSecond(int? meterspersecond)
-        {
-            if (meterspersecond.HasValue)
-            {
-                return FromMetersPerSecond(meterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MetersPerSecond.
-        /// </summary>
-        public static Speed? FromMetersPerSecond(long? meterspersecond)
-        {
-            if (meterspersecond.HasValue)
-            {
-                return FromMetersPerSecond(meterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromMetersPerSecond(decimal? meterspersecond)
+        public static Speed? FromMetersPerSecond(QuantityValue? meterspersecond)
         {
             if (meterspersecond.HasValue)
             {
@@ -1889,52 +884,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MicrometersPerMinutes.
         /// </summary>
-        public static Speed? FromMicrometersPerMinutes(double? micrometersperminutes)
-        {
-            if (micrometersperminutes.HasValue)
-            {
-                return FromMicrometersPerMinutes(micrometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerMinutes.
-        /// </summary>
-        public static Speed? FromMicrometersPerMinutes(int? micrometersperminutes)
-        {
-            if (micrometersperminutes.HasValue)
-            {
-                return FromMicrometersPerMinutes(micrometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerMinutes.
-        /// </summary>
-        public static Speed? FromMicrometersPerMinutes(long? micrometersperminutes)
-        {
-            if (micrometersperminutes.HasValue)
-            {
-                return FromMicrometersPerMinutes(micrometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MicrometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromMicrometersPerMinutes(decimal? micrometersperminutes)
+        public static Speed? FromMicrometersPerMinutes(QuantityValue? micrometersperminutes)
         {
             if (micrometersperminutes.HasValue)
             {
@@ -1949,52 +899,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MicrometersPerSecond.
         /// </summary>
-        public static Speed? FromMicrometersPerSecond(double? micrometerspersecond)
-        {
-            if (micrometerspersecond.HasValue)
-            {
-                return FromMicrometersPerSecond(micrometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerSecond.
-        /// </summary>
-        public static Speed? FromMicrometersPerSecond(int? micrometerspersecond)
-        {
-            if (micrometerspersecond.HasValue)
-            {
-                return FromMicrometersPerSecond(micrometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerSecond.
-        /// </summary>
-        public static Speed? FromMicrometersPerSecond(long? micrometerspersecond)
-        {
-            if (micrometerspersecond.HasValue)
-            {
-                return FromMicrometersPerSecond(micrometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MicrometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromMicrometersPerSecond(decimal? micrometerspersecond)
+        public static Speed? FromMicrometersPerSecond(QuantityValue? micrometerspersecond)
         {
             if (micrometerspersecond.HasValue)
             {
@@ -2009,52 +914,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MilesPerHour.
         /// </summary>
-        public static Speed? FromMilesPerHour(double? milesperhour)
-        {
-            if (milesperhour.HasValue)
-            {
-                return FromMilesPerHour(milesperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MilesPerHour.
-        /// </summary>
-        public static Speed? FromMilesPerHour(int? milesperhour)
-        {
-            if (milesperhour.HasValue)
-            {
-                return FromMilesPerHour(milesperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MilesPerHour.
-        /// </summary>
-        public static Speed? FromMilesPerHour(long? milesperhour)
-        {
-            if (milesperhour.HasValue)
-            {
-                return FromMilesPerHour(milesperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MilesPerHour of type decimal.
-        /// </summary>
-        public static Speed? FromMilesPerHour(decimal? milesperhour)
+        public static Speed? FromMilesPerHour(QuantityValue? milesperhour)
         {
             if (milesperhour.HasValue)
             {
@@ -2069,52 +929,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerHour.
         /// </summary>
-        public static Speed? FromMillimetersPerHour(double? millimetersperhour)
-        {
-            if (millimetersperhour.HasValue)
-            {
-                return FromMillimetersPerHour(millimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerHour.
-        /// </summary>
-        public static Speed? FromMillimetersPerHour(int? millimetersperhour)
-        {
-            if (millimetersperhour.HasValue)
-            {
-                return FromMillimetersPerHour(millimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerHour.
-        /// </summary>
-        public static Speed? FromMillimetersPerHour(long? millimetersperhour)
-        {
-            if (millimetersperhour.HasValue)
-            {
-                return FromMillimetersPerHour(millimetersperhour.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MillimetersPerHour of type decimal.
-        /// </summary>
-        public static Speed? FromMillimetersPerHour(decimal? millimetersperhour)
+        public static Speed? FromMillimetersPerHour(QuantityValue? millimetersperhour)
         {
             if (millimetersperhour.HasValue)
             {
@@ -2129,52 +944,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerMinutes.
         /// </summary>
-        public static Speed? FromMillimetersPerMinutes(double? millimetersperminutes)
-        {
-            if (millimetersperminutes.HasValue)
-            {
-                return FromMillimetersPerMinutes(millimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromMillimetersPerMinutes(int? millimetersperminutes)
-        {
-            if (millimetersperminutes.HasValue)
-            {
-                return FromMillimetersPerMinutes(millimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerMinutes.
-        /// </summary>
-        public static Speed? FromMillimetersPerMinutes(long? millimetersperminutes)
-        {
-            if (millimetersperminutes.HasValue)
-            {
-                return FromMillimetersPerMinutes(millimetersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MillimetersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromMillimetersPerMinutes(decimal? millimetersperminutes)
+        public static Speed? FromMillimetersPerMinutes(QuantityValue? millimetersperminutes)
         {
             if (millimetersperminutes.HasValue)
             {
@@ -2189,52 +959,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerSecond.
         /// </summary>
-        public static Speed? FromMillimetersPerSecond(double? millimeterspersecond)
-        {
-            if (millimeterspersecond.HasValue)
-            {
-                return FromMillimetersPerSecond(millimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerSecond.
-        /// </summary>
-        public static Speed? FromMillimetersPerSecond(int? millimeterspersecond)
-        {
-            if (millimeterspersecond.HasValue)
-            {
-                return FromMillimetersPerSecond(millimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerSecond.
-        /// </summary>
-        public static Speed? FromMillimetersPerSecond(long? millimeterspersecond)
-        {
-            if (millimeterspersecond.HasValue)
-            {
-                return FromMillimetersPerSecond(millimeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from MillimetersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromMillimetersPerSecond(decimal? millimeterspersecond)
+        public static Speed? FromMillimetersPerSecond(QuantityValue? millimeterspersecond)
         {
             if (millimeterspersecond.HasValue)
             {
@@ -2249,52 +974,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable NanometersPerMinutes.
         /// </summary>
-        public static Speed? FromNanometersPerMinutes(double? nanometersperminutes)
-        {
-            if (nanometersperminutes.HasValue)
-            {
-                return FromNanometersPerMinutes(nanometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerMinutes.
-        /// </summary>
-        public static Speed? FromNanometersPerMinutes(int? nanometersperminutes)
-        {
-            if (nanometersperminutes.HasValue)
-            {
-                return FromNanometersPerMinutes(nanometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerMinutes.
-        /// </summary>
-        public static Speed? FromNanometersPerMinutes(long? nanometersperminutes)
-        {
-            if (nanometersperminutes.HasValue)
-            {
-                return FromNanometersPerMinutes(nanometersperminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from NanometersPerMinutes of type decimal.
-        /// </summary>
-        public static Speed? FromNanometersPerMinutes(decimal? nanometersperminutes)
+        public static Speed? FromNanometersPerMinutes(QuantityValue? nanometersperminutes)
         {
             if (nanometersperminutes.HasValue)
             {
@@ -2309,52 +989,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable NanometersPerSecond.
         /// </summary>
-        public static Speed? FromNanometersPerSecond(double? nanometerspersecond)
-        {
-            if (nanometerspersecond.HasValue)
-            {
-                return FromNanometersPerSecond(nanometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerSecond.
-        /// </summary>
-        public static Speed? FromNanometersPerSecond(int? nanometerspersecond)
-        {
-            if (nanometerspersecond.HasValue)
-            {
-                return FromNanometersPerSecond(nanometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerSecond.
-        /// </summary>
-        public static Speed? FromNanometersPerSecond(long? nanometerspersecond)
-        {
-            if (nanometerspersecond.HasValue)
-            {
-                return FromNanometersPerSecond(nanometerspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Speed from NanometersPerSecond of type decimal.
-        /// </summary>
-        public static Speed? FromNanometersPerSecond(decimal? nanometerspersecond)
+        public static Speed? FromNanometersPerSecond(QuantityValue? nanometerspersecond)
         {
             if (nanometerspersecond.HasValue)
             {
@@ -2371,55 +1006,61 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
-        public static Speed From(double val, SpeedUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Speed From(double value, SpeedUnit fromUnit)
+#else
+        public static Speed From(QuantityValue value, SpeedUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case SpeedUnit.CentimeterPerHour:
-                    return FromCentimetersPerHour(val);
+                    return FromCentimetersPerHour(value);
                 case SpeedUnit.CentimeterPerMinute:
-                    return FromCentimetersPerMinutes(val);
+                    return FromCentimetersPerMinutes(value);
                 case SpeedUnit.CentimeterPerSecond:
-                    return FromCentimetersPerSecond(val);
+                    return FromCentimetersPerSecond(value);
                 case SpeedUnit.DecimeterPerMinute:
-                    return FromDecimetersPerMinutes(val);
+                    return FromDecimetersPerMinutes(value);
                 case SpeedUnit.DecimeterPerSecond:
-                    return FromDecimetersPerSecond(val);
+                    return FromDecimetersPerSecond(value);
                 case SpeedUnit.FootPerSecond:
-                    return FromFeetPerSecond(val);
+                    return FromFeetPerSecond(value);
                 case SpeedUnit.KilometerPerHour:
-                    return FromKilometersPerHour(val);
+                    return FromKilometersPerHour(value);
                 case SpeedUnit.KilometerPerMinute:
-                    return FromKilometersPerMinutes(val);
+                    return FromKilometersPerMinutes(value);
                 case SpeedUnit.KilometerPerSecond:
-                    return FromKilometersPerSecond(val);
+                    return FromKilometersPerSecond(value);
                 case SpeedUnit.Knot:
-                    return FromKnots(val);
+                    return FromKnots(value);
                 case SpeedUnit.MeterPerHour:
-                    return FromMetersPerHour(val);
+                    return FromMetersPerHour(value);
                 case SpeedUnit.MeterPerMinute:
-                    return FromMetersPerMinutes(val);
+                    return FromMetersPerMinutes(value);
                 case SpeedUnit.MeterPerSecond:
-                    return FromMetersPerSecond(val);
+                    return FromMetersPerSecond(value);
                 case SpeedUnit.MicrometerPerMinute:
-                    return FromMicrometersPerMinutes(val);
+                    return FromMicrometersPerMinutes(value);
                 case SpeedUnit.MicrometerPerSecond:
-                    return FromMicrometersPerSecond(val);
+                    return FromMicrometersPerSecond(value);
                 case SpeedUnit.MilePerHour:
-                    return FromMilesPerHour(val);
+                    return FromMilesPerHour(value);
                 case SpeedUnit.MillimeterPerHour:
-                    return FromMillimetersPerHour(val);
+                    return FromMillimetersPerHour(value);
                 case SpeedUnit.MillimeterPerMinute:
-                    return FromMillimetersPerMinutes(val);
+                    return FromMillimetersPerMinutes(value);
                 case SpeedUnit.MillimeterPerSecond:
-                    return FromMillimetersPerSecond(val);
+                    return FromMillimetersPerSecond(value);
                 case SpeedUnit.NanometerPerMinute:
-                    return FromNanometersPerMinutes(val);
+                    return FromNanometersPerMinutes(value);
                 case SpeedUnit.NanometerPerSecond:
-                    return FromNanometersPerSecond(val);
+                    return FromNanometersPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -2434,7 +1075,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
-        public static Speed? From(double? value, SpeedUnit fromUnit)
+        public static Speed? From(QuantityValue? value, SpeedUnit fromUnit)
         {
             if (!value.HasValue)
             {

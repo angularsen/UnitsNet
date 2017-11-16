@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -205,304 +205,144 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromCentistokes(double centistokes)
         {
-            return new KinematicViscosity((centistokes/1e4) * 1e-2d);
+            double value = (double) centistokes;
+            return new KinematicViscosity((value/1e4) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Centistokes.
-        /// </summary>
-        public static KinematicViscosity FromCentistokes(int centistokes)
+#else
+        public static KinematicViscosity FromCentistokes(QuantityValue centistokes)
         {
-            return new KinematicViscosity((centistokes/1e4) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Centistokes.
-        /// </summary>
-        public static KinematicViscosity FromCentistokes(long centistokes)
-        {
-            return new KinematicViscosity((centistokes/1e4) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Centistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromCentistokes(decimal centistokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(centistokes)/1e4) * 1e-2d);
+            double value = (double) centistokes;
+            return new KinematicViscosity(((value/1e4) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Decistokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromDecistokes(double decistokes)
         {
-            return new KinematicViscosity((decistokes/1e4) * 1e-1d);
+            double value = (double) decistokes;
+            return new KinematicViscosity((value/1e4) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Decistokes.
-        /// </summary>
-        public static KinematicViscosity FromDecistokes(int decistokes)
+#else
+        public static KinematicViscosity FromDecistokes(QuantityValue decistokes)
         {
-            return new KinematicViscosity((decistokes/1e4) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Decistokes.
-        /// </summary>
-        public static KinematicViscosity FromDecistokes(long decistokes)
-        {
-            return new KinematicViscosity((decistokes/1e4) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Decistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromDecistokes(decimal decistokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(decistokes)/1e4) * 1e-1d);
+            double value = (double) decistokes;
+            return new KinematicViscosity(((value/1e4) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Kilostokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromKilostokes(double kilostokes)
         {
-            return new KinematicViscosity((kilostokes/1e4) * 1e3d);
+            double value = (double) kilostokes;
+            return new KinematicViscosity((value/1e4) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Kilostokes.
-        /// </summary>
-        public static KinematicViscosity FromKilostokes(int kilostokes)
+#else
+        public static KinematicViscosity FromKilostokes(QuantityValue kilostokes)
         {
-            return new KinematicViscosity((kilostokes/1e4) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Kilostokes.
-        /// </summary>
-        public static KinematicViscosity FromKilostokes(long kilostokes)
-        {
-            return new KinematicViscosity((kilostokes/1e4) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Kilostokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromKilostokes(decimal kilostokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(kilostokes)/1e4) * 1e3d);
+            double value = (double) kilostokes;
+            return new KinematicViscosity(((value/1e4) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Microstokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromMicrostokes(double microstokes)
         {
-            return new KinematicViscosity((microstokes/1e4) * 1e-6d);
+            double value = (double) microstokes;
+            return new KinematicViscosity((value/1e4) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Microstokes.
-        /// </summary>
-        public static KinematicViscosity FromMicrostokes(int microstokes)
+#else
+        public static KinematicViscosity FromMicrostokes(QuantityValue microstokes)
         {
-            return new KinematicViscosity((microstokes/1e4) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Microstokes.
-        /// </summary>
-        public static KinematicViscosity FromMicrostokes(long microstokes)
-        {
-            return new KinematicViscosity((microstokes/1e4) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Microstokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromMicrostokes(decimal microstokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(microstokes)/1e4) * 1e-6d);
+            double value = (double) microstokes;
+            return new KinematicViscosity(((value/1e4) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Millistokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromMillistokes(double millistokes)
         {
-            return new KinematicViscosity((millistokes/1e4) * 1e-3d);
+            double value = (double) millistokes;
+            return new KinematicViscosity((value/1e4) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Millistokes.
-        /// </summary>
-        public static KinematicViscosity FromMillistokes(int millistokes)
+#else
+        public static KinematicViscosity FromMillistokes(QuantityValue millistokes)
         {
-            return new KinematicViscosity((millistokes/1e4) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Millistokes.
-        /// </summary>
-        public static KinematicViscosity FromMillistokes(long millistokes)
-        {
-            return new KinematicViscosity((millistokes/1e4) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Millistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromMillistokes(decimal millistokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(millistokes)/1e4) * 1e-3d);
+            double value = (double) millistokes;
+            return new KinematicViscosity(((value/1e4) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Nanostokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromNanostokes(double nanostokes)
         {
-            return new KinematicViscosity((nanostokes/1e4) * 1e-9d);
+            double value = (double) nanostokes;
+            return new KinematicViscosity((value/1e4) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Nanostokes.
-        /// </summary>
-        public static KinematicViscosity FromNanostokes(int nanostokes)
+#else
+        public static KinematicViscosity FromNanostokes(QuantityValue nanostokes)
         {
-            return new KinematicViscosity((nanostokes/1e4) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Nanostokes.
-        /// </summary>
-        public static KinematicViscosity FromNanostokes(long nanostokes)
-        {
-            return new KinematicViscosity((nanostokes/1e4) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Nanostokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromNanostokes(decimal nanostokes)
-        {
-            return new KinematicViscosity((Convert.ToDouble(nanostokes)/1e4) * 1e-9d);
+            double value = (double) nanostokes;
+            return new KinematicViscosity(((value/1e4) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromSquareMetersPerSecond(double squaremeterspersecond)
         {
-            return new KinematicViscosity(squaremeterspersecond);
+            double value = (double) squaremeterspersecond;
+            return new KinematicViscosity(value);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from SquareMetersPerSecond.
-        /// </summary>
-        public static KinematicViscosity FromSquareMetersPerSecond(int squaremeterspersecond)
+#else
+        public static KinematicViscosity FromSquareMetersPerSecond(QuantityValue squaremeterspersecond)
         {
-            return new KinematicViscosity(squaremeterspersecond);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from SquareMetersPerSecond.
-        /// </summary>
-        public static KinematicViscosity FromSquareMetersPerSecond(long squaremeterspersecond)
-        {
-            return new KinematicViscosity(squaremeterspersecond);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from SquareMetersPerSecond of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromSquareMetersPerSecond(decimal squaremeterspersecond)
-        {
-            return new KinematicViscosity(Convert.ToDouble(squaremeterspersecond));
+            double value = (double) squaremeterspersecond;
+            return new KinematicViscosity((value));
         }
 #endif
 
         /// <summary>
         ///     Get KinematicViscosity from Stokes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static KinematicViscosity FromStokes(double stokes)
         {
-            return new KinematicViscosity(stokes/1e4);
+            double value = (double) stokes;
+            return new KinematicViscosity(value/1e4);
         }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Stokes.
-        /// </summary>
-        public static KinematicViscosity FromStokes(int stokes)
+#else
+        public static KinematicViscosity FromStokes(QuantityValue stokes)
         {
-            return new KinematicViscosity(stokes/1e4);
-        }
-
-        /// <summary>
-        ///     Get KinematicViscosity from Stokes.
-        /// </summary>
-        public static KinematicViscosity FromStokes(long stokes)
-        {
-            return new KinematicViscosity(stokes/1e4);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get KinematicViscosity from Stokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity FromStokes(decimal stokes)
-        {
-            return new KinematicViscosity(Convert.ToDouble(stokes)/1e4);
+            double value = (double) stokes;
+            return new KinematicViscosity((value/1e4));
         }
 #endif
 
@@ -511,52 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Centistokes.
         /// </summary>
-        public static KinematicViscosity? FromCentistokes(double? centistokes)
-        {
-            if (centistokes.HasValue)
-            {
-                return FromCentistokes(centistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Centistokes.
-        /// </summary>
-        public static KinematicViscosity? FromCentistokes(int? centistokes)
-        {
-            if (centistokes.HasValue)
-            {
-                return FromCentistokes(centistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Centistokes.
-        /// </summary>
-        public static KinematicViscosity? FromCentistokes(long? centistokes)
-        {
-            if (centistokes.HasValue)
-            {
-                return FromCentistokes(centistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Centistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromCentistokes(decimal? centistokes)
+        public static KinematicViscosity? FromCentistokes(QuantityValue? centistokes)
         {
             if (centistokes.HasValue)
             {
@@ -571,52 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Decistokes.
         /// </summary>
-        public static KinematicViscosity? FromDecistokes(double? decistokes)
-        {
-            if (decistokes.HasValue)
-            {
-                return FromDecistokes(decistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Decistokes.
-        /// </summary>
-        public static KinematicViscosity? FromDecistokes(int? decistokes)
-        {
-            if (decistokes.HasValue)
-            {
-                return FromDecistokes(decistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Decistokes.
-        /// </summary>
-        public static KinematicViscosity? FromDecistokes(long? decistokes)
-        {
-            if (decistokes.HasValue)
-            {
-                return FromDecistokes(decistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Decistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromDecistokes(decimal? decistokes)
+        public static KinematicViscosity? FromDecistokes(QuantityValue? decistokes)
         {
             if (decistokes.HasValue)
             {
@@ -631,52 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Kilostokes.
         /// </summary>
-        public static KinematicViscosity? FromKilostokes(double? kilostokes)
-        {
-            if (kilostokes.HasValue)
-            {
-                return FromKilostokes(kilostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Kilostokes.
-        /// </summary>
-        public static KinematicViscosity? FromKilostokes(int? kilostokes)
-        {
-            if (kilostokes.HasValue)
-            {
-                return FromKilostokes(kilostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Kilostokes.
-        /// </summary>
-        public static KinematicViscosity? FromKilostokes(long? kilostokes)
-        {
-            if (kilostokes.HasValue)
-            {
-                return FromKilostokes(kilostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Kilostokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromKilostokes(decimal? kilostokes)
+        public static KinematicViscosity? FromKilostokes(QuantityValue? kilostokes)
         {
             if (kilostokes.HasValue)
             {
@@ -691,52 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Microstokes.
         /// </summary>
-        public static KinematicViscosity? FromMicrostokes(double? microstokes)
-        {
-            if (microstokes.HasValue)
-            {
-                return FromMicrostokes(microstokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Microstokes.
-        /// </summary>
-        public static KinematicViscosity? FromMicrostokes(int? microstokes)
-        {
-            if (microstokes.HasValue)
-            {
-                return FromMicrostokes(microstokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Microstokes.
-        /// </summary>
-        public static KinematicViscosity? FromMicrostokes(long? microstokes)
-        {
-            if (microstokes.HasValue)
-            {
-                return FromMicrostokes(microstokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Microstokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromMicrostokes(decimal? microstokes)
+        public static KinematicViscosity? FromMicrostokes(QuantityValue? microstokes)
         {
             if (microstokes.HasValue)
             {
@@ -751,52 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Millistokes.
         /// </summary>
-        public static KinematicViscosity? FromMillistokes(double? millistokes)
-        {
-            if (millistokes.HasValue)
-            {
-                return FromMillistokes(millistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Millistokes.
-        /// </summary>
-        public static KinematicViscosity? FromMillistokes(int? millistokes)
-        {
-            if (millistokes.HasValue)
-            {
-                return FromMillistokes(millistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Millistokes.
-        /// </summary>
-        public static KinematicViscosity? FromMillistokes(long? millistokes)
-        {
-            if (millistokes.HasValue)
-            {
-                return FromMillistokes(millistokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Millistokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromMillistokes(decimal? millistokes)
+        public static KinematicViscosity? FromMillistokes(QuantityValue? millistokes)
         {
             if (millistokes.HasValue)
             {
@@ -811,52 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Nanostokes.
         /// </summary>
-        public static KinematicViscosity? FromNanostokes(double? nanostokes)
-        {
-            if (nanostokes.HasValue)
-            {
-                return FromNanostokes(nanostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Nanostokes.
-        /// </summary>
-        public static KinematicViscosity? FromNanostokes(int? nanostokes)
-        {
-            if (nanostokes.HasValue)
-            {
-                return FromNanostokes(nanostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Nanostokes.
-        /// </summary>
-        public static KinematicViscosity? FromNanostokes(long? nanostokes)
-        {
-            if (nanostokes.HasValue)
-            {
-                return FromNanostokes(nanostokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Nanostokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromNanostokes(decimal? nanostokes)
+        public static KinematicViscosity? FromNanostokes(QuantityValue? nanostokes)
         {
             if (nanostokes.HasValue)
             {
@@ -871,52 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
         /// </summary>
-        public static KinematicViscosity? FromSquareMetersPerSecond(double? squaremeterspersecond)
-        {
-            if (squaremeterspersecond.HasValue)
-            {
-                return FromSquareMetersPerSecond(squaremeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
-        /// </summary>
-        public static KinematicViscosity? FromSquareMetersPerSecond(int? squaremeterspersecond)
-        {
-            if (squaremeterspersecond.HasValue)
-            {
-                return FromSquareMetersPerSecond(squaremeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
-        /// </summary>
-        public static KinematicViscosity? FromSquareMetersPerSecond(long? squaremeterspersecond)
-        {
-            if (squaremeterspersecond.HasValue)
-            {
-                return FromSquareMetersPerSecond(squaremeterspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from SquareMetersPerSecond of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromSquareMetersPerSecond(decimal? squaremeterspersecond)
+        public static KinematicViscosity? FromSquareMetersPerSecond(QuantityValue? squaremeterspersecond)
         {
             if (squaremeterspersecond.HasValue)
             {
@@ -931,52 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Stokes.
         /// </summary>
-        public static KinematicViscosity? FromStokes(double? stokes)
-        {
-            if (stokes.HasValue)
-            {
-                return FromStokes(stokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Stokes.
-        /// </summary>
-        public static KinematicViscosity? FromStokes(int? stokes)
-        {
-            if (stokes.HasValue)
-            {
-                return FromStokes(stokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Stokes.
-        /// </summary>
-        public static KinematicViscosity? FromStokes(long? stokes)
-        {
-            if (stokes.HasValue)
-            {
-                return FromStokes(stokes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from Stokes of type decimal.
-        /// </summary>
-        public static KinematicViscosity? FromStokes(decimal? stokes)
+        public static KinematicViscosity? FromStokes(QuantityValue? stokes)
         {
             if (stokes.HasValue)
             {
@@ -993,29 +473,35 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>KinematicViscosity unit value.</returns>
-        public static KinematicViscosity From(double val, KinematicViscosityUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static KinematicViscosity From(double value, KinematicViscosityUnit fromUnit)
+#else
+        public static KinematicViscosity From(QuantityValue value, KinematicViscosityUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case KinematicViscosityUnit.Centistokes:
-                    return FromCentistokes(val);
+                    return FromCentistokes(value);
                 case KinematicViscosityUnit.Decistokes:
-                    return FromDecistokes(val);
+                    return FromDecistokes(value);
                 case KinematicViscosityUnit.Kilostokes:
-                    return FromKilostokes(val);
+                    return FromKilostokes(value);
                 case KinematicViscosityUnit.Microstokes:
-                    return FromMicrostokes(val);
+                    return FromMicrostokes(value);
                 case KinematicViscosityUnit.Millistokes:
-                    return FromMillistokes(val);
+                    return FromMillistokes(value);
                 case KinematicViscosityUnit.Nanostokes:
-                    return FromNanostokes(val);
+                    return FromNanostokes(value);
                 case KinematicViscosityUnit.SquareMeterPerSecond:
-                    return FromSquareMetersPerSecond(val);
+                    return FromSquareMetersPerSecond(value);
                 case KinematicViscosityUnit.Stokes:
-                    return FromStokes(val);
+                    return FromStokes(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1030,7 +516,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>KinematicViscosity unit value.</returns>
-        public static KinematicViscosity? From(double? value, KinematicViscosityUnit fromUnit)
+        public static KinematicViscosity? From(QuantityValue? value, KinematicViscosityUnit fromUnit)
         {
             if (!value.HasValue)
             {

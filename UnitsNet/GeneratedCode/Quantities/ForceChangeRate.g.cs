@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -229,418 +229,198 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from CentinewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromCentinewtonsPerSecond(double centinewtonspersecond)
         {
-            return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
+            double value = (double) centinewtonspersecond;
+            return new ForceChangeRate((value) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from CentinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromCentinewtonsPerSecond(int centinewtonspersecond)
+#else
+        public static ForceChangeRate FromCentinewtonsPerSecond(QuantityValue centinewtonspersecond)
         {
-            return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from CentinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromCentinewtonsPerSecond(long centinewtonspersecond)
-        {
-            return new ForceChangeRate((centinewtonspersecond) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from CentinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromCentinewtonsPerSecond(decimal centinewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(centinewtonspersecond)) * 1e-2d);
+            double value = (double) centinewtonspersecond;
+            return new ForceChangeRate(((value) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerMinute.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromDecanewtonsPerMinute(double decanewtonsperminute)
         {
-            return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
+            double value = (double) decanewtonsperminute;
+            return new ForceChangeRate((value/60) * 1e1d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerMinute(int decanewtonsperminute)
+#else
+        public static ForceChangeRate FromDecanewtonsPerMinute(QuantityValue decanewtonsperminute)
         {
-            return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerMinute(long decanewtonsperminute)
-        {
-            return new ForceChangeRate((decanewtonsperminute/60) * 1e1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerMinute(decimal decanewtonsperminute)
-        {
-            return new ForceChangeRate((Convert.ToDouble(decanewtonsperminute)/60) * 1e1d);
+            double value = (double) decanewtonsperminute;
+            return new ForceChangeRate(((value/60) * 1e1d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromDecanewtonsPerSecond(double decanewtonspersecond)
         {
-            return new ForceChangeRate((decanewtonspersecond) * 1e1d);
+            double value = (double) decanewtonspersecond;
+            return new ForceChangeRate((value) * 1e1d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerSecond(int decanewtonspersecond)
+#else
+        public static ForceChangeRate FromDecanewtonsPerSecond(QuantityValue decanewtonspersecond)
         {
-            return new ForceChangeRate((decanewtonspersecond) * 1e1d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerSecond(long decanewtonspersecond)
-        {
-            return new ForceChangeRate((decanewtonspersecond) * 1e1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from DecanewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerSecond(decimal decanewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(decanewtonspersecond)) * 1e1d);
+            double value = (double) decanewtonspersecond;
+            return new ForceChangeRate(((value) * 1e1d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from DecinewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromDecinewtonsPerSecond(double decinewtonspersecond)
         {
-            return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
+            double value = (double) decinewtonspersecond;
+            return new ForceChangeRate((value) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromDecinewtonsPerSecond(int decinewtonspersecond)
+#else
+        public static ForceChangeRate FromDecinewtonsPerSecond(QuantityValue decinewtonspersecond)
         {
-            return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from DecinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromDecinewtonsPerSecond(long decinewtonspersecond)
-        {
-            return new ForceChangeRate((decinewtonspersecond) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from DecinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromDecinewtonsPerSecond(decimal decinewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(decinewtonspersecond)) * 1e-1d);
+            double value = (double) decinewtonspersecond;
+            return new ForceChangeRate(((value) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerMinute.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromKilonewtonsPerMinute(double kilonewtonsperminute)
         {
-            return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
+            double value = (double) kilonewtonsperminute;
+            return new ForceChangeRate((value/60) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerMinute(int kilonewtonsperminute)
+#else
+        public static ForceChangeRate FromKilonewtonsPerMinute(QuantityValue kilonewtonsperminute)
         {
-            return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerMinute(long kilonewtonsperminute)
-        {
-            return new ForceChangeRate((kilonewtonsperminute/60) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerMinute(decimal kilonewtonsperminute)
-        {
-            return new ForceChangeRate((Convert.ToDouble(kilonewtonsperminute)/60) * 1e3d);
+            double value = (double) kilonewtonsperminute;
+            return new ForceChangeRate(((value/60) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromKilonewtonsPerSecond(double kilonewtonspersecond)
         {
-            return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
+            double value = (double) kilonewtonspersecond;
+            return new ForceChangeRate((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerSecond(int kilonewtonspersecond)
+#else
+        public static ForceChangeRate FromKilonewtonsPerSecond(QuantityValue kilonewtonspersecond)
         {
-            return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerSecond(long kilonewtonspersecond)
-        {
-            return new ForceChangeRate((kilonewtonspersecond) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from KilonewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerSecond(decimal kilonewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(kilonewtonspersecond)) * 1e3d);
+            double value = (double) kilonewtonspersecond;
+            return new ForceChangeRate(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from MicronewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromMicronewtonsPerSecond(double micronewtonspersecond)
         {
-            return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
+            double value = (double) micronewtonspersecond;
+            return new ForceChangeRate((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from MicronewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromMicronewtonsPerSecond(int micronewtonspersecond)
+#else
+        public static ForceChangeRate FromMicronewtonsPerSecond(QuantityValue micronewtonspersecond)
         {
-            return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from MicronewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromMicronewtonsPerSecond(long micronewtonspersecond)
-        {
-            return new ForceChangeRate((micronewtonspersecond) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from MicronewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromMicronewtonsPerSecond(decimal micronewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(micronewtonspersecond)) * 1e-6d);
+            double value = (double) micronewtonspersecond;
+            return new ForceChangeRate(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from MillinewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromMillinewtonsPerSecond(double millinewtonspersecond)
         {
-            return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
+            double value = (double) millinewtonspersecond;
+            return new ForceChangeRate((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from MillinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromMillinewtonsPerSecond(int millinewtonspersecond)
+#else
+        public static ForceChangeRate FromMillinewtonsPerSecond(QuantityValue millinewtonspersecond)
         {
-            return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from MillinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromMillinewtonsPerSecond(long millinewtonspersecond)
-        {
-            return new ForceChangeRate((millinewtonspersecond) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from MillinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromMillinewtonsPerSecond(decimal millinewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(millinewtonspersecond)) * 1e-3d);
+            double value = (double) millinewtonspersecond;
+            return new ForceChangeRate(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from NanonewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromNanonewtonsPerSecond(double nanonewtonspersecond)
         {
-            return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
+            double value = (double) nanonewtonspersecond;
+            return new ForceChangeRate((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNanonewtonsPerSecond(int nanonewtonspersecond)
+#else
+        public static ForceChangeRate FromNanonewtonsPerSecond(QuantityValue nanonewtonspersecond)
         {
-            return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNanonewtonsPerSecond(long nanonewtonspersecond)
-        {
-            return new ForceChangeRate((nanonewtonspersecond) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from NanonewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromNanonewtonsPerSecond(decimal nanonewtonspersecond)
-        {
-            return new ForceChangeRate((Convert.ToDouble(nanonewtonspersecond)) * 1e-9d);
+            double value = (double) nanonewtonspersecond;
+            return new ForceChangeRate(((value) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerMinute.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromNewtonsPerMinute(double newtonsperminute)
         {
-            return new ForceChangeRate(newtonsperminute/60);
+            double value = (double) newtonsperminute;
+            return new ForceChangeRate(value/60);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerMinute(int newtonsperminute)
+#else
+        public static ForceChangeRate FromNewtonsPerMinute(QuantityValue newtonsperminute)
         {
-            return new ForceChangeRate(newtonsperminute/60);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerMinute(long newtonsperminute)
-        {
-            return new ForceChangeRate(newtonsperminute/60);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerMinute(decimal newtonsperminute)
-        {
-            return new ForceChangeRate(Convert.ToDouble(newtonsperminute)/60);
+            double value = (double) newtonsperminute;
+            return new ForceChangeRate((value/60));
         }
 #endif
 
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerSecond.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ForceChangeRate FromNewtonsPerSecond(double newtonspersecond)
         {
-            return new ForceChangeRate(newtonspersecond);
+            double value = (double) newtonspersecond;
+            return new ForceChangeRate(value);
         }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerSecond(int newtonspersecond)
+#else
+        public static ForceChangeRate FromNewtonsPerSecond(QuantityValue newtonspersecond)
         {
-            return new ForceChangeRate(newtonspersecond);
-        }
-
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerSecond(long newtonspersecond)
-        {
-            return new ForceChangeRate(newtonspersecond);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ForceChangeRate from NewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate FromNewtonsPerSecond(decimal newtonspersecond)
-        {
-            return new ForceChangeRate(Convert.ToDouble(newtonspersecond));
+            double value = (double) newtonspersecond;
+            return new ForceChangeRate((value));
         }
 #endif
 
@@ -649,52 +429,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromCentinewtonsPerSecond(double? centinewtonspersecond)
-        {
-            if (centinewtonspersecond.HasValue)
-            {
-                return FromCentinewtonsPerSecond(centinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromCentinewtonsPerSecond(int? centinewtonspersecond)
-        {
-            if (centinewtonspersecond.HasValue)
-            {
-                return FromCentinewtonsPerSecond(centinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromCentinewtonsPerSecond(long? centinewtonspersecond)
-        {
-            if (centinewtonspersecond.HasValue)
-            {
-                return FromCentinewtonsPerSecond(centinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from CentinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromCentinewtonsPerSecond(decimal? centinewtonspersecond)
+        public static ForceChangeRate? FromCentinewtonsPerSecond(QuantityValue? centinewtonspersecond)
         {
             if (centinewtonspersecond.HasValue)
             {
@@ -709,52 +444,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecanewtonsPerMinute.
         /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerMinute(double? decanewtonsperminute)
-        {
-            if (decanewtonsperminute.HasValue)
-            {
-                return FromDecanewtonsPerMinute(decanewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerMinute(int? decanewtonsperminute)
-        {
-            if (decanewtonsperminute.HasValue)
-            {
-                return FromDecanewtonsPerMinute(decanewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerMinute(long? decanewtonsperminute)
-        {
-            if (decanewtonsperminute.HasValue)
-            {
-                return FromDecanewtonsPerMinute(decanewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from DecanewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerMinute(decimal? decanewtonsperminute)
+        public static ForceChangeRate? FromDecanewtonsPerMinute(QuantityValue? decanewtonsperminute)
         {
             if (decanewtonsperminute.HasValue)
             {
@@ -769,52 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecanewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerSecond(double? decanewtonspersecond)
-        {
-            if (decanewtonspersecond.HasValue)
-            {
-                return FromDecanewtonsPerSecond(decanewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerSecond(int? decanewtonspersecond)
-        {
-            if (decanewtonspersecond.HasValue)
-            {
-                return FromDecanewtonsPerSecond(decanewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecanewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerSecond(long? decanewtonspersecond)
-        {
-            if (decanewtonspersecond.HasValue)
-            {
-                return FromDecanewtonsPerSecond(decanewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from DecanewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromDecanewtonsPerSecond(decimal? decanewtonspersecond)
+        public static ForceChangeRate? FromDecanewtonsPerSecond(QuantityValue? decanewtonspersecond)
         {
             if (decanewtonspersecond.HasValue)
             {
@@ -829,52 +474,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromDecinewtonsPerSecond(double? decinewtonspersecond)
-        {
-            if (decinewtonspersecond.HasValue)
-            {
-                return FromDecinewtonsPerSecond(decinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromDecinewtonsPerSecond(int? decinewtonspersecond)
-        {
-            if (decinewtonspersecond.HasValue)
-            {
-                return FromDecinewtonsPerSecond(decinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromDecinewtonsPerSecond(long? decinewtonspersecond)
-        {
-            if (decinewtonspersecond.HasValue)
-            {
-                return FromDecinewtonsPerSecond(decinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from DecinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromDecinewtonsPerSecond(decimal? decinewtonspersecond)
+        public static ForceChangeRate? FromDecinewtonsPerSecond(QuantityValue? decinewtonspersecond)
         {
             if (decinewtonspersecond.HasValue)
             {
@@ -889,52 +489,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable KilonewtonsPerMinute.
         /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerMinute(double? kilonewtonsperminute)
-        {
-            if (kilonewtonsperminute.HasValue)
-            {
-                return FromKilonewtonsPerMinute(kilonewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerMinute(int? kilonewtonsperminute)
-        {
-            if (kilonewtonsperminute.HasValue)
-            {
-                return FromKilonewtonsPerMinute(kilonewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerMinute(long? kilonewtonsperminute)
-        {
-            if (kilonewtonsperminute.HasValue)
-            {
-                return FromKilonewtonsPerMinute(kilonewtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from KilonewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerMinute(decimal? kilonewtonsperminute)
+        public static ForceChangeRate? FromKilonewtonsPerMinute(QuantityValue? kilonewtonsperminute)
         {
             if (kilonewtonsperminute.HasValue)
             {
@@ -949,52 +504,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerSecond(double? kilonewtonspersecond)
-        {
-            if (kilonewtonspersecond.HasValue)
-            {
-                return FromKilonewtonsPerSecond(kilonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerSecond(int? kilonewtonspersecond)
-        {
-            if (kilonewtonspersecond.HasValue)
-            {
-                return FromKilonewtonsPerSecond(kilonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerSecond(long? kilonewtonspersecond)
-        {
-            if (kilonewtonspersecond.HasValue)
-            {
-                return FromKilonewtonsPerSecond(kilonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from KilonewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromKilonewtonsPerSecond(decimal? kilonewtonspersecond)
+        public static ForceChangeRate? FromKilonewtonsPerSecond(QuantityValue? kilonewtonspersecond)
         {
             if (kilonewtonspersecond.HasValue)
             {
@@ -1009,52 +519,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromMicronewtonsPerSecond(double? micronewtonspersecond)
-        {
-            if (micronewtonspersecond.HasValue)
-            {
-                return FromMicronewtonsPerSecond(micronewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromMicronewtonsPerSecond(int? micronewtonspersecond)
-        {
-            if (micronewtonspersecond.HasValue)
-            {
-                return FromMicronewtonsPerSecond(micronewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromMicronewtonsPerSecond(long? micronewtonspersecond)
-        {
-            if (micronewtonspersecond.HasValue)
-            {
-                return FromMicronewtonsPerSecond(micronewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from MicronewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromMicronewtonsPerSecond(decimal? micronewtonspersecond)
+        public static ForceChangeRate? FromMicronewtonsPerSecond(QuantityValue? micronewtonspersecond)
         {
             if (micronewtonspersecond.HasValue)
             {
@@ -1069,52 +534,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromMillinewtonsPerSecond(double? millinewtonspersecond)
-        {
-            if (millinewtonspersecond.HasValue)
-            {
-                return FromMillinewtonsPerSecond(millinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromMillinewtonsPerSecond(int? millinewtonspersecond)
-        {
-            if (millinewtonspersecond.HasValue)
-            {
-                return FromMillinewtonsPerSecond(millinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromMillinewtonsPerSecond(long? millinewtonspersecond)
-        {
-            if (millinewtonspersecond.HasValue)
-            {
-                return FromMillinewtonsPerSecond(millinewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from MillinewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromMillinewtonsPerSecond(decimal? millinewtonspersecond)
+        public static ForceChangeRate? FromMillinewtonsPerSecond(QuantityValue? millinewtonspersecond)
         {
             if (millinewtonspersecond.HasValue)
             {
@@ -1129,52 +549,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromNanonewtonsPerSecond(double? nanonewtonspersecond)
-        {
-            if (nanonewtonspersecond.HasValue)
-            {
-                return FromNanonewtonsPerSecond(nanonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNanonewtonsPerSecond(int? nanonewtonspersecond)
-        {
-            if (nanonewtonspersecond.HasValue)
-            {
-                return FromNanonewtonsPerSecond(nanonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNanonewtonsPerSecond(long? nanonewtonspersecond)
-        {
-            if (nanonewtonspersecond.HasValue)
-            {
-                return FromNanonewtonsPerSecond(nanonewtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from NanonewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromNanonewtonsPerSecond(decimal? nanonewtonspersecond)
+        public static ForceChangeRate? FromNanonewtonsPerSecond(QuantityValue? nanonewtonspersecond)
         {
             if (nanonewtonspersecond.HasValue)
             {
@@ -1189,52 +564,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NewtonsPerMinute.
         /// </summary>
-        public static ForceChangeRate? FromNewtonsPerMinute(double? newtonsperminute)
-        {
-            if (newtonsperminute.HasValue)
-            {
-                return FromNewtonsPerMinute(newtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerMinute(int? newtonsperminute)
-        {
-            if (newtonsperminute.HasValue)
-            {
-                return FromNewtonsPerMinute(newtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerMinute.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerMinute(long? newtonsperminute)
-        {
-            if (newtonsperminute.HasValue)
-            {
-                return FromNewtonsPerMinute(newtonsperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from NewtonsPerMinute of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerMinute(decimal? newtonsperminute)
+        public static ForceChangeRate? FromNewtonsPerMinute(QuantityValue? newtonsperminute)
         {
             if (newtonsperminute.HasValue)
             {
@@ -1249,52 +579,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
         /// </summary>
-        public static ForceChangeRate? FromNewtonsPerSecond(double? newtonspersecond)
-        {
-            if (newtonspersecond.HasValue)
-            {
-                return FromNewtonsPerSecond(newtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerSecond(int? newtonspersecond)
-        {
-            if (newtonspersecond.HasValue)
-            {
-                return FromNewtonsPerSecond(newtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerSecond(long? newtonspersecond)
-        {
-            if (newtonspersecond.HasValue)
-            {
-                return FromNewtonsPerSecond(newtonspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForceChangeRate from NewtonsPerSecond of type decimal.
-        /// </summary>
-        public static ForceChangeRate? FromNewtonsPerSecond(decimal? newtonspersecond)
+        public static ForceChangeRate? FromNewtonsPerSecond(QuantityValue? newtonspersecond)
         {
             if (newtonspersecond.HasValue)
             {
@@ -1311,35 +596,41 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceChangeRateUnit" /> to <see cref="ForceChangeRate" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForceChangeRate unit value.</returns>
-        public static ForceChangeRate From(double val, ForceChangeRateUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static ForceChangeRate From(double value, ForceChangeRateUnit fromUnit)
+#else
+        public static ForceChangeRate From(QuantityValue value, ForceChangeRateUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case ForceChangeRateUnit.CentinewtonPerSecond:
-                    return FromCentinewtonsPerSecond(val);
+                    return FromCentinewtonsPerSecond(value);
                 case ForceChangeRateUnit.DecanewtonPerMinute:
-                    return FromDecanewtonsPerMinute(val);
+                    return FromDecanewtonsPerMinute(value);
                 case ForceChangeRateUnit.DecanewtonPerSecond:
-                    return FromDecanewtonsPerSecond(val);
+                    return FromDecanewtonsPerSecond(value);
                 case ForceChangeRateUnit.DecinewtonPerSecond:
-                    return FromDecinewtonsPerSecond(val);
+                    return FromDecinewtonsPerSecond(value);
                 case ForceChangeRateUnit.KilonewtonPerMinute:
-                    return FromKilonewtonsPerMinute(val);
+                    return FromKilonewtonsPerMinute(value);
                 case ForceChangeRateUnit.KilonewtonPerSecond:
-                    return FromKilonewtonsPerSecond(val);
+                    return FromKilonewtonsPerSecond(value);
                 case ForceChangeRateUnit.MicronewtonPerSecond:
-                    return FromMicronewtonsPerSecond(val);
+                    return FromMicronewtonsPerSecond(value);
                 case ForceChangeRateUnit.MillinewtonPerSecond:
-                    return FromMillinewtonsPerSecond(val);
+                    return FromMillinewtonsPerSecond(value);
                 case ForceChangeRateUnit.NanonewtonPerSecond:
-                    return FromNanonewtonsPerSecond(val);
+                    return FromNanonewtonsPerSecond(value);
                 case ForceChangeRateUnit.NewtonPerMinute:
-                    return FromNewtonsPerMinute(val);
+                    return FromNewtonsPerMinute(value);
                 case ForceChangeRateUnit.NewtonPerSecond:
-                    return FromNewtonsPerSecond(val);
+                    return FromNewtonsPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1354,7 +645,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForceChangeRate unit value.</returns>
-        public static ForceChangeRate? From(double? value, ForceChangeRateUnit fromUnit)
+        public static ForceChangeRate? From(QuantityValue? value, ForceChangeRateUnit fromUnit)
         {
             if (!value.HasValue)
             {

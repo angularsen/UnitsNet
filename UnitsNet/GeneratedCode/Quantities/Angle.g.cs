@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -245,494 +245,234 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Arcminutes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromArcminutes(double arcminutes)
         {
-            return new Angle(arcminutes/60);
+            double value = (double) arcminutes;
+            return new Angle(value/60);
         }
-
-        /// <summary>
-        ///     Get Angle from Arcminutes.
-        /// </summary>
-        public static Angle FromArcminutes(int arcminutes)
+#else
+        public static Angle FromArcminutes(QuantityValue arcminutes)
         {
-            return new Angle(arcminutes/60);
-        }
-
-        /// <summary>
-        ///     Get Angle from Arcminutes.
-        /// </summary>
-        public static Angle FromArcminutes(long arcminutes)
-        {
-            return new Angle(arcminutes/60);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Arcminutes of type decimal.
-        /// </summary>
-        public static Angle FromArcminutes(decimal arcminutes)
-        {
-            return new Angle(Convert.ToDouble(arcminutes)/60);
+            double value = (double) arcminutes;
+            return new Angle((value/60));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Arcseconds.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromArcseconds(double arcseconds)
         {
-            return new Angle(arcseconds/3600);
+            double value = (double) arcseconds;
+            return new Angle(value/3600);
         }
-
-        /// <summary>
-        ///     Get Angle from Arcseconds.
-        /// </summary>
-        public static Angle FromArcseconds(int arcseconds)
+#else
+        public static Angle FromArcseconds(QuantityValue arcseconds)
         {
-            return new Angle(arcseconds/3600);
-        }
-
-        /// <summary>
-        ///     Get Angle from Arcseconds.
-        /// </summary>
-        public static Angle FromArcseconds(long arcseconds)
-        {
-            return new Angle(arcseconds/3600);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Arcseconds of type decimal.
-        /// </summary>
-        public static Angle FromArcseconds(decimal arcseconds)
-        {
-            return new Angle(Convert.ToDouble(arcseconds)/3600);
+            double value = (double) arcseconds;
+            return new Angle((value/3600));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Centiradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromCentiradians(double centiradians)
         {
-            return new Angle((centiradians*180/Math.PI) * 1e-2d);
+            double value = (double) centiradians;
+            return new Angle((value*180/Math.PI) * 1e-2d);
         }
-
-        /// <summary>
-        ///     Get Angle from Centiradians.
-        /// </summary>
-        public static Angle FromCentiradians(int centiradians)
+#else
+        public static Angle FromCentiradians(QuantityValue centiradians)
         {
-            return new Angle((centiradians*180/Math.PI) * 1e-2d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Centiradians.
-        /// </summary>
-        public static Angle FromCentiradians(long centiradians)
-        {
-            return new Angle((centiradians*180/Math.PI) * 1e-2d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Centiradians of type decimal.
-        /// </summary>
-        public static Angle FromCentiradians(decimal centiradians)
-        {
-            return new Angle((Convert.ToDouble(centiradians)*180/Math.PI) * 1e-2d);
+            double value = (double) centiradians;
+            return new Angle(((value*180/Math.PI) * 1e-2d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Deciradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromDeciradians(double deciradians)
         {
-            return new Angle((deciradians*180/Math.PI) * 1e-1d);
+            double value = (double) deciradians;
+            return new Angle((value*180/Math.PI) * 1e-1d);
         }
-
-        /// <summary>
-        ///     Get Angle from Deciradians.
-        /// </summary>
-        public static Angle FromDeciradians(int deciradians)
+#else
+        public static Angle FromDeciradians(QuantityValue deciradians)
         {
-            return new Angle((deciradians*180/Math.PI) * 1e-1d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Deciradians.
-        /// </summary>
-        public static Angle FromDeciradians(long deciradians)
-        {
-            return new Angle((deciradians*180/Math.PI) * 1e-1d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Deciradians of type decimal.
-        /// </summary>
-        public static Angle FromDeciradians(decimal deciradians)
-        {
-            return new Angle((Convert.ToDouble(deciradians)*180/Math.PI) * 1e-1d);
+            double value = (double) deciradians;
+            return new Angle(((value*180/Math.PI) * 1e-1d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Degrees.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromDegrees(double degrees)
         {
-            return new Angle(degrees);
+            double value = (double) degrees;
+            return new Angle(value);
         }
-
-        /// <summary>
-        ///     Get Angle from Degrees.
-        /// </summary>
-        public static Angle FromDegrees(int degrees)
+#else
+        public static Angle FromDegrees(QuantityValue degrees)
         {
-            return new Angle(degrees);
-        }
-
-        /// <summary>
-        ///     Get Angle from Degrees.
-        /// </summary>
-        public static Angle FromDegrees(long degrees)
-        {
-            return new Angle(degrees);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Degrees of type decimal.
-        /// </summary>
-        public static Angle FromDegrees(decimal degrees)
-        {
-            return new Angle(Convert.ToDouble(degrees));
+            double value = (double) degrees;
+            return new Angle((value));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Gradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromGradians(double gradians)
         {
-            return new Angle(gradians*0.9);
+            double value = (double) gradians;
+            return new Angle(value*0.9);
         }
-
-        /// <summary>
-        ///     Get Angle from Gradians.
-        /// </summary>
-        public static Angle FromGradians(int gradians)
+#else
+        public static Angle FromGradians(QuantityValue gradians)
         {
-            return new Angle(gradians*0.9);
-        }
-
-        /// <summary>
-        ///     Get Angle from Gradians.
-        /// </summary>
-        public static Angle FromGradians(long gradians)
-        {
-            return new Angle(gradians*0.9);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Gradians of type decimal.
-        /// </summary>
-        public static Angle FromGradians(decimal gradians)
-        {
-            return new Angle(Convert.ToDouble(gradians)*0.9);
+            double value = (double) gradians;
+            return new Angle((value*0.9));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Microdegrees.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromMicrodegrees(double microdegrees)
         {
-            return new Angle((microdegrees) * 1e-6d);
+            double value = (double) microdegrees;
+            return new Angle((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get Angle from Microdegrees.
-        /// </summary>
-        public static Angle FromMicrodegrees(int microdegrees)
+#else
+        public static Angle FromMicrodegrees(QuantityValue microdegrees)
         {
-            return new Angle((microdegrees) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Microdegrees.
-        /// </summary>
-        public static Angle FromMicrodegrees(long microdegrees)
-        {
-            return new Angle((microdegrees) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Microdegrees of type decimal.
-        /// </summary>
-        public static Angle FromMicrodegrees(decimal microdegrees)
-        {
-            return new Angle((Convert.ToDouble(microdegrees)) * 1e-6d);
+            double value = (double) microdegrees;
+            return new Angle(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Microradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromMicroradians(double microradians)
         {
-            return new Angle((microradians*180/Math.PI) * 1e-6d);
+            double value = (double) microradians;
+            return new Angle((value*180/Math.PI) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get Angle from Microradians.
-        /// </summary>
-        public static Angle FromMicroradians(int microradians)
+#else
+        public static Angle FromMicroradians(QuantityValue microradians)
         {
-            return new Angle((microradians*180/Math.PI) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Microradians.
-        /// </summary>
-        public static Angle FromMicroradians(long microradians)
-        {
-            return new Angle((microradians*180/Math.PI) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Microradians of type decimal.
-        /// </summary>
-        public static Angle FromMicroradians(decimal microradians)
-        {
-            return new Angle((Convert.ToDouble(microradians)*180/Math.PI) * 1e-6d);
+            double value = (double) microradians;
+            return new Angle(((value*180/Math.PI) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Millidegrees.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromMillidegrees(double millidegrees)
         {
-            return new Angle((millidegrees) * 1e-3d);
+            double value = (double) millidegrees;
+            return new Angle((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Angle from Millidegrees.
-        /// </summary>
-        public static Angle FromMillidegrees(int millidegrees)
+#else
+        public static Angle FromMillidegrees(QuantityValue millidegrees)
         {
-            return new Angle((millidegrees) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Millidegrees.
-        /// </summary>
-        public static Angle FromMillidegrees(long millidegrees)
-        {
-            return new Angle((millidegrees) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Millidegrees of type decimal.
-        /// </summary>
-        public static Angle FromMillidegrees(decimal millidegrees)
-        {
-            return new Angle((Convert.ToDouble(millidegrees)) * 1e-3d);
+            double value = (double) millidegrees;
+            return new Angle(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Milliradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromMilliradians(double milliradians)
         {
-            return new Angle((milliradians*180/Math.PI) * 1e-3d);
+            double value = (double) milliradians;
+            return new Angle((value*180/Math.PI) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get Angle from Milliradians.
-        /// </summary>
-        public static Angle FromMilliradians(int milliradians)
+#else
+        public static Angle FromMilliradians(QuantityValue milliradians)
         {
-            return new Angle((milliradians*180/Math.PI) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Milliradians.
-        /// </summary>
-        public static Angle FromMilliradians(long milliradians)
-        {
-            return new Angle((milliradians*180/Math.PI) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Milliradians of type decimal.
-        /// </summary>
-        public static Angle FromMilliradians(decimal milliradians)
-        {
-            return new Angle((Convert.ToDouble(milliradians)*180/Math.PI) * 1e-3d);
+            double value = (double) milliradians;
+            return new Angle(((value*180/Math.PI) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Nanodegrees.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromNanodegrees(double nanodegrees)
         {
-            return new Angle((nanodegrees) * 1e-9d);
+            double value = (double) nanodegrees;
+            return new Angle((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get Angle from Nanodegrees.
-        /// </summary>
-        public static Angle FromNanodegrees(int nanodegrees)
+#else
+        public static Angle FromNanodegrees(QuantityValue nanodegrees)
         {
-            return new Angle((nanodegrees) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Nanodegrees.
-        /// </summary>
-        public static Angle FromNanodegrees(long nanodegrees)
-        {
-            return new Angle((nanodegrees) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Nanodegrees of type decimal.
-        /// </summary>
-        public static Angle FromNanodegrees(decimal nanodegrees)
-        {
-            return new Angle((Convert.ToDouble(nanodegrees)) * 1e-9d);
+            double value = (double) nanodegrees;
+            return new Angle(((value) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Nanoradians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromNanoradians(double nanoradians)
         {
-            return new Angle((nanoradians*180/Math.PI) * 1e-9d);
+            double value = (double) nanoradians;
+            return new Angle((value*180/Math.PI) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get Angle from Nanoradians.
-        /// </summary>
-        public static Angle FromNanoradians(int nanoradians)
+#else
+        public static Angle FromNanoradians(QuantityValue nanoradians)
         {
-            return new Angle((nanoradians*180/Math.PI) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get Angle from Nanoradians.
-        /// </summary>
-        public static Angle FromNanoradians(long nanoradians)
-        {
-            return new Angle((nanoradians*180/Math.PI) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Nanoradians of type decimal.
-        /// </summary>
-        public static Angle FromNanoradians(decimal nanoradians)
-        {
-            return new Angle((Convert.ToDouble(nanoradians)*180/Math.PI) * 1e-9d);
+            double value = (double) nanoradians;
+            return new Angle(((value*180/Math.PI) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Angle FromRadians(double radians)
         {
-            return new Angle(radians*180/Math.PI);
+            double value = (double) radians;
+            return new Angle(value*180/Math.PI);
         }
-
-        /// <summary>
-        ///     Get Angle from Radians.
-        /// </summary>
-        public static Angle FromRadians(int radians)
+#else
+        public static Angle FromRadians(QuantityValue radians)
         {
-            return new Angle(radians*180/Math.PI);
-        }
-
-        /// <summary>
-        ///     Get Angle from Radians.
-        /// </summary>
-        public static Angle FromRadians(long radians)
-        {
-            return new Angle(radians*180/Math.PI);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Angle from Radians of type decimal.
-        /// </summary>
-        public static Angle FromRadians(decimal radians)
-        {
-            return new Angle(Convert.ToDouble(radians)*180/Math.PI);
+            double value = (double) radians;
+            return new Angle((value*180/Math.PI));
         }
 #endif
 
@@ -741,52 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Arcminutes.
         /// </summary>
-        public static Angle? FromArcminutes(double? arcminutes)
-        {
-            if (arcminutes.HasValue)
-            {
-                return FromArcminutes(arcminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Arcminutes.
-        /// </summary>
-        public static Angle? FromArcminutes(int? arcminutes)
-        {
-            if (arcminutes.HasValue)
-            {
-                return FromArcminutes(arcminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Arcminutes.
-        /// </summary>
-        public static Angle? FromArcminutes(long? arcminutes)
-        {
-            if (arcminutes.HasValue)
-            {
-                return FromArcminutes(arcminutes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Arcminutes of type decimal.
-        /// </summary>
-        public static Angle? FromArcminutes(decimal? arcminutes)
+        public static Angle? FromArcminutes(QuantityValue? arcminutes)
         {
             if (arcminutes.HasValue)
             {
@@ -801,52 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Arcseconds.
         /// </summary>
-        public static Angle? FromArcseconds(double? arcseconds)
-        {
-            if (arcseconds.HasValue)
-            {
-                return FromArcseconds(arcseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Arcseconds.
-        /// </summary>
-        public static Angle? FromArcseconds(int? arcseconds)
-        {
-            if (arcseconds.HasValue)
-            {
-                return FromArcseconds(arcseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Arcseconds.
-        /// </summary>
-        public static Angle? FromArcseconds(long? arcseconds)
-        {
-            if (arcseconds.HasValue)
-            {
-                return FromArcseconds(arcseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Arcseconds of type decimal.
-        /// </summary>
-        public static Angle? FromArcseconds(decimal? arcseconds)
+        public static Angle? FromArcseconds(QuantityValue? arcseconds)
         {
             if (arcseconds.HasValue)
             {
@@ -861,52 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Centiradians.
         /// </summary>
-        public static Angle? FromCentiradians(double? centiradians)
-        {
-            if (centiradians.HasValue)
-            {
-                return FromCentiradians(centiradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Centiradians.
-        /// </summary>
-        public static Angle? FromCentiradians(int? centiradians)
-        {
-            if (centiradians.HasValue)
-            {
-                return FromCentiradians(centiradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Centiradians.
-        /// </summary>
-        public static Angle? FromCentiradians(long? centiradians)
-        {
-            if (centiradians.HasValue)
-            {
-                return FromCentiradians(centiradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Centiradians of type decimal.
-        /// </summary>
-        public static Angle? FromCentiradians(decimal? centiradians)
+        public static Angle? FromCentiradians(QuantityValue? centiradians)
         {
             if (centiradians.HasValue)
             {
@@ -921,52 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Deciradians.
         /// </summary>
-        public static Angle? FromDeciradians(double? deciradians)
-        {
-            if (deciradians.HasValue)
-            {
-                return FromDeciradians(deciradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Deciradians.
-        /// </summary>
-        public static Angle? FromDeciradians(int? deciradians)
-        {
-            if (deciradians.HasValue)
-            {
-                return FromDeciradians(deciradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Deciradians.
-        /// </summary>
-        public static Angle? FromDeciradians(long? deciradians)
-        {
-            if (deciradians.HasValue)
-            {
-                return FromDeciradians(deciradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Deciradians of type decimal.
-        /// </summary>
-        public static Angle? FromDeciradians(decimal? deciradians)
+        public static Angle? FromDeciradians(QuantityValue? deciradians)
         {
             if (deciradians.HasValue)
             {
@@ -981,52 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Degrees.
         /// </summary>
-        public static Angle? FromDegrees(double? degrees)
-        {
-            if (degrees.HasValue)
-            {
-                return FromDegrees(degrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Degrees.
-        /// </summary>
-        public static Angle? FromDegrees(int? degrees)
-        {
-            if (degrees.HasValue)
-            {
-                return FromDegrees(degrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Degrees.
-        /// </summary>
-        public static Angle? FromDegrees(long? degrees)
-        {
-            if (degrees.HasValue)
-            {
-                return FromDegrees(degrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Degrees of type decimal.
-        /// </summary>
-        public static Angle? FromDegrees(decimal? degrees)
+        public static Angle? FromDegrees(QuantityValue? degrees)
         {
             if (degrees.HasValue)
             {
@@ -1041,52 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Gradians.
         /// </summary>
-        public static Angle? FromGradians(double? gradians)
-        {
-            if (gradians.HasValue)
-            {
-                return FromGradians(gradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Gradians.
-        /// </summary>
-        public static Angle? FromGradians(int? gradians)
-        {
-            if (gradians.HasValue)
-            {
-                return FromGradians(gradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Gradians.
-        /// </summary>
-        public static Angle? FromGradians(long? gradians)
-        {
-            if (gradians.HasValue)
-            {
-                return FromGradians(gradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Gradians of type decimal.
-        /// </summary>
-        public static Angle? FromGradians(decimal? gradians)
+        public static Angle? FromGradians(QuantityValue? gradians)
         {
             if (gradians.HasValue)
             {
@@ -1101,52 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Microdegrees.
         /// </summary>
-        public static Angle? FromMicrodegrees(double? microdegrees)
-        {
-            if (microdegrees.HasValue)
-            {
-                return FromMicrodegrees(microdegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Microdegrees.
-        /// </summary>
-        public static Angle? FromMicrodegrees(int? microdegrees)
-        {
-            if (microdegrees.HasValue)
-            {
-                return FromMicrodegrees(microdegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Microdegrees.
-        /// </summary>
-        public static Angle? FromMicrodegrees(long? microdegrees)
-        {
-            if (microdegrees.HasValue)
-            {
-                return FromMicrodegrees(microdegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Microdegrees of type decimal.
-        /// </summary>
-        public static Angle? FromMicrodegrees(decimal? microdegrees)
+        public static Angle? FromMicrodegrees(QuantityValue? microdegrees)
         {
             if (microdegrees.HasValue)
             {
@@ -1161,52 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Microradians.
         /// </summary>
-        public static Angle? FromMicroradians(double? microradians)
-        {
-            if (microradians.HasValue)
-            {
-                return FromMicroradians(microradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Microradians.
-        /// </summary>
-        public static Angle? FromMicroradians(int? microradians)
-        {
-            if (microradians.HasValue)
-            {
-                return FromMicroradians(microradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Microradians.
-        /// </summary>
-        public static Angle? FromMicroradians(long? microradians)
-        {
-            if (microradians.HasValue)
-            {
-                return FromMicroradians(microradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Microradians of type decimal.
-        /// </summary>
-        public static Angle? FromMicroradians(decimal? microradians)
+        public static Angle? FromMicroradians(QuantityValue? microradians)
         {
             if (microradians.HasValue)
             {
@@ -1221,52 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Millidegrees.
         /// </summary>
-        public static Angle? FromMillidegrees(double? millidegrees)
-        {
-            if (millidegrees.HasValue)
-            {
-                return FromMillidegrees(millidegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Millidegrees.
-        /// </summary>
-        public static Angle? FromMillidegrees(int? millidegrees)
-        {
-            if (millidegrees.HasValue)
-            {
-                return FromMillidegrees(millidegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Millidegrees.
-        /// </summary>
-        public static Angle? FromMillidegrees(long? millidegrees)
-        {
-            if (millidegrees.HasValue)
-            {
-                return FromMillidegrees(millidegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Millidegrees of type decimal.
-        /// </summary>
-        public static Angle? FromMillidegrees(decimal? millidegrees)
+        public static Angle? FromMillidegrees(QuantityValue? millidegrees)
         {
             if (millidegrees.HasValue)
             {
@@ -1281,52 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Milliradians.
         /// </summary>
-        public static Angle? FromMilliradians(double? milliradians)
-        {
-            if (milliradians.HasValue)
-            {
-                return FromMilliradians(milliradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Milliradians.
-        /// </summary>
-        public static Angle? FromMilliradians(int? milliradians)
-        {
-            if (milliradians.HasValue)
-            {
-                return FromMilliradians(milliradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Milliradians.
-        /// </summary>
-        public static Angle? FromMilliradians(long? milliradians)
-        {
-            if (milliradians.HasValue)
-            {
-                return FromMilliradians(milliradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Milliradians of type decimal.
-        /// </summary>
-        public static Angle? FromMilliradians(decimal? milliradians)
+        public static Angle? FromMilliradians(QuantityValue? milliradians)
         {
             if (milliradians.HasValue)
             {
@@ -1341,52 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Nanodegrees.
         /// </summary>
-        public static Angle? FromNanodegrees(double? nanodegrees)
-        {
-            if (nanodegrees.HasValue)
-            {
-                return FromNanodegrees(nanodegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Nanodegrees.
-        /// </summary>
-        public static Angle? FromNanodegrees(int? nanodegrees)
-        {
-            if (nanodegrees.HasValue)
-            {
-                return FromNanodegrees(nanodegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Nanodegrees.
-        /// </summary>
-        public static Angle? FromNanodegrees(long? nanodegrees)
-        {
-            if (nanodegrees.HasValue)
-            {
-                return FromNanodegrees(nanodegrees.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Nanodegrees of type decimal.
-        /// </summary>
-        public static Angle? FromNanodegrees(decimal? nanodegrees)
+        public static Angle? FromNanodegrees(QuantityValue? nanodegrees)
         {
             if (nanodegrees.HasValue)
             {
@@ -1401,52 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Nanoradians.
         /// </summary>
-        public static Angle? FromNanoradians(double? nanoradians)
-        {
-            if (nanoradians.HasValue)
-            {
-                return FromNanoradians(nanoradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Nanoradians.
-        /// </summary>
-        public static Angle? FromNanoradians(int? nanoradians)
-        {
-            if (nanoradians.HasValue)
-            {
-                return FromNanoradians(nanoradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Nanoradians.
-        /// </summary>
-        public static Angle? FromNanoradians(long? nanoradians)
-        {
-            if (nanoradians.HasValue)
-            {
-                return FromNanoradians(nanoradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Nanoradians of type decimal.
-        /// </summary>
-        public static Angle? FromNanoradians(decimal? nanoradians)
+        public static Angle? FromNanoradians(QuantityValue? nanoradians)
         {
             if (nanoradians.HasValue)
             {
@@ -1461,52 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Radians.
         /// </summary>
-        public static Angle? FromRadians(double? radians)
-        {
-            if (radians.HasValue)
-            {
-                return FromRadians(radians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Radians.
-        /// </summary>
-        public static Angle? FromRadians(int? radians)
-        {
-            if (radians.HasValue)
-            {
-                return FromRadians(radians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from nullable Radians.
-        /// </summary>
-        public static Angle? FromRadians(long? radians)
-        {
-            if (radians.HasValue)
-            {
-                return FromRadians(radians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Angle from Radians of type decimal.
-        /// </summary>
-        public static Angle? FromRadians(decimal? radians)
+        public static Angle? FromRadians(QuantityValue? radians)
         {
             if (radians.HasValue)
             {
@@ -1523,39 +678,45 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
-        public static Angle From(double val, AngleUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Angle From(double value, AngleUnit fromUnit)
+#else
+        public static Angle From(QuantityValue value, AngleUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case AngleUnit.Arcminute:
-                    return FromArcminutes(val);
+                    return FromArcminutes(value);
                 case AngleUnit.Arcsecond:
-                    return FromArcseconds(val);
+                    return FromArcseconds(value);
                 case AngleUnit.Centiradian:
-                    return FromCentiradians(val);
+                    return FromCentiradians(value);
                 case AngleUnit.Deciradian:
-                    return FromDeciradians(val);
+                    return FromDeciradians(value);
                 case AngleUnit.Degree:
-                    return FromDegrees(val);
+                    return FromDegrees(value);
                 case AngleUnit.Gradian:
-                    return FromGradians(val);
+                    return FromGradians(value);
                 case AngleUnit.Microdegree:
-                    return FromMicrodegrees(val);
+                    return FromMicrodegrees(value);
                 case AngleUnit.Microradian:
-                    return FromMicroradians(val);
+                    return FromMicroradians(value);
                 case AngleUnit.Millidegree:
-                    return FromMillidegrees(val);
+                    return FromMillidegrees(value);
                 case AngleUnit.Milliradian:
-                    return FromMilliradians(val);
+                    return FromMilliradians(value);
                 case AngleUnit.Nanodegree:
-                    return FromNanodegrees(val);
+                    return FromNanodegrees(value);
                 case AngleUnit.Nanoradian:
-                    return FromNanoradians(val);
+                    return FromNanoradians(value);
                 case AngleUnit.Radian:
-                    return FromRadians(val);
+                    return FromRadians(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1570,7 +731,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
-        public static Angle? From(double? value, AngleUnit fromUnit)
+        public static Angle? From(QuantityValue? value, AngleUnit fromUnit)
         {
             if (!value.HasValue)
             {

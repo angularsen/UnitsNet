@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -189,228 +189,108 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from DecimalFractions.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromDecimalFractions(double decimalfractions)
         {
-            return new Ratio(decimalfractions);
+            double value = (double) decimalfractions;
+            return new Ratio(value);
         }
-
-        /// <summary>
-        ///     Get Ratio from DecimalFractions.
-        /// </summary>
-        public static Ratio FromDecimalFractions(int decimalfractions)
+#else
+        public static Ratio FromDecimalFractions(QuantityValue decimalfractions)
         {
-            return new Ratio(decimalfractions);
-        }
-
-        /// <summary>
-        ///     Get Ratio from DecimalFractions.
-        /// </summary>
-        public static Ratio FromDecimalFractions(long decimalfractions)
-        {
-            return new Ratio(decimalfractions);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from DecimalFractions of type decimal.
-        /// </summary>
-        public static Ratio FromDecimalFractions(decimal decimalfractions)
-        {
-            return new Ratio(Convert.ToDouble(decimalfractions));
+            double value = (double) decimalfractions;
+            return new Ratio((value));
         }
 #endif
 
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromPartsPerBillion(double partsperbillion)
         {
-            return new Ratio(partsperbillion/1e9);
+            double value = (double) partsperbillion;
+            return new Ratio(value/1e9);
         }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerBillion.
-        /// </summary>
-        public static Ratio FromPartsPerBillion(int partsperbillion)
+#else
+        public static Ratio FromPartsPerBillion(QuantityValue partsperbillion)
         {
-            return new Ratio(partsperbillion/1e9);
-        }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerBillion.
-        /// </summary>
-        public static Ratio FromPartsPerBillion(long partsperbillion)
-        {
-            return new Ratio(partsperbillion/1e9);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from PartsPerBillion of type decimal.
-        /// </summary>
-        public static Ratio FromPartsPerBillion(decimal partsperbillion)
-        {
-            return new Ratio(Convert.ToDouble(partsperbillion)/1e9);
+            double value = (double) partsperbillion;
+            return new Ratio((value/1e9));
         }
 #endif
 
         /// <summary>
         ///     Get Ratio from PartsPerMillion.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromPartsPerMillion(double partspermillion)
         {
-            return new Ratio(partspermillion/1e6);
+            double value = (double) partspermillion;
+            return new Ratio(value/1e6);
         }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerMillion.
-        /// </summary>
-        public static Ratio FromPartsPerMillion(int partspermillion)
+#else
+        public static Ratio FromPartsPerMillion(QuantityValue partspermillion)
         {
-            return new Ratio(partspermillion/1e6);
-        }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerMillion.
-        /// </summary>
-        public static Ratio FromPartsPerMillion(long partspermillion)
-        {
-            return new Ratio(partspermillion/1e6);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from PartsPerMillion of type decimal.
-        /// </summary>
-        public static Ratio FromPartsPerMillion(decimal partspermillion)
-        {
-            return new Ratio(Convert.ToDouble(partspermillion)/1e6);
+            double value = (double) partspermillion;
+            return new Ratio((value/1e6));
         }
 #endif
 
         /// <summary>
         ///     Get Ratio from PartsPerThousand.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromPartsPerThousand(double partsperthousand)
         {
-            return new Ratio(partsperthousand/1e3);
+            double value = (double) partsperthousand;
+            return new Ratio(value/1e3);
         }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerThousand.
-        /// </summary>
-        public static Ratio FromPartsPerThousand(int partsperthousand)
+#else
+        public static Ratio FromPartsPerThousand(QuantityValue partsperthousand)
         {
-            return new Ratio(partsperthousand/1e3);
-        }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerThousand.
-        /// </summary>
-        public static Ratio FromPartsPerThousand(long partsperthousand)
-        {
-            return new Ratio(partsperthousand/1e3);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from PartsPerThousand of type decimal.
-        /// </summary>
-        public static Ratio FromPartsPerThousand(decimal partsperthousand)
-        {
-            return new Ratio(Convert.ToDouble(partsperthousand)/1e3);
+            double value = (double) partsperthousand;
+            return new Ratio((value/1e3));
         }
 #endif
 
         /// <summary>
         ///     Get Ratio from PartsPerTrillion.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromPartsPerTrillion(double partspertrillion)
         {
-            return new Ratio(partspertrillion/1e12);
+            double value = (double) partspertrillion;
+            return new Ratio(value/1e12);
         }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerTrillion.
-        /// </summary>
-        public static Ratio FromPartsPerTrillion(int partspertrillion)
+#else
+        public static Ratio FromPartsPerTrillion(QuantityValue partspertrillion)
         {
-            return new Ratio(partspertrillion/1e12);
-        }
-
-        /// <summary>
-        ///     Get Ratio from PartsPerTrillion.
-        /// </summary>
-        public static Ratio FromPartsPerTrillion(long partspertrillion)
-        {
-            return new Ratio(partspertrillion/1e12);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from PartsPerTrillion of type decimal.
-        /// </summary>
-        public static Ratio FromPartsPerTrillion(decimal partspertrillion)
-        {
-            return new Ratio(Convert.ToDouble(partspertrillion)/1e12);
+            double value = (double) partspertrillion;
+            return new Ratio((value/1e12));
         }
 #endif
 
         /// <summary>
         ///     Get Ratio from Percent.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static Ratio FromPercent(double percent)
         {
-            return new Ratio(percent/1e2);
+            double value = (double) percent;
+            return new Ratio(value/1e2);
         }
-
-        /// <summary>
-        ///     Get Ratio from Percent.
-        /// </summary>
-        public static Ratio FromPercent(int percent)
+#else
+        public static Ratio FromPercent(QuantityValue percent)
         {
-            return new Ratio(percent/1e2);
-        }
-
-        /// <summary>
-        ///     Get Ratio from Percent.
-        /// </summary>
-        public static Ratio FromPercent(long percent)
-        {
-            return new Ratio(percent/1e2);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get Ratio from Percent of type decimal.
-        /// </summary>
-        public static Ratio FromPercent(decimal percent)
-        {
-            return new Ratio(Convert.ToDouble(percent)/1e2);
+            double value = (double) percent;
+            return new Ratio((value/1e2));
         }
 #endif
 
@@ -419,52 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable DecimalFractions.
         /// </summary>
-        public static Ratio? FromDecimalFractions(double? decimalfractions)
-        {
-            if (decimalfractions.HasValue)
-            {
-                return FromDecimalFractions(decimalfractions.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable DecimalFractions.
-        /// </summary>
-        public static Ratio? FromDecimalFractions(int? decimalfractions)
-        {
-            if (decimalfractions.HasValue)
-            {
-                return FromDecimalFractions(decimalfractions.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable DecimalFractions.
-        /// </summary>
-        public static Ratio? FromDecimalFractions(long? decimalfractions)
-        {
-            if (decimalfractions.HasValue)
-            {
-                return FromDecimalFractions(decimalfractions.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from DecimalFractions of type decimal.
-        /// </summary>
-        public static Ratio? FromDecimalFractions(decimal? decimalfractions)
+        public static Ratio? FromDecimalFractions(QuantityValue? decimalfractions)
         {
             if (decimalfractions.HasValue)
             {
@@ -479,52 +314,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerBillion.
         /// </summary>
-        public static Ratio? FromPartsPerBillion(double? partsperbillion)
-        {
-            if (partsperbillion.HasValue)
-            {
-                return FromPartsPerBillion(partsperbillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerBillion.
-        /// </summary>
-        public static Ratio? FromPartsPerBillion(int? partsperbillion)
-        {
-            if (partsperbillion.HasValue)
-            {
-                return FromPartsPerBillion(partsperbillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerBillion.
-        /// </summary>
-        public static Ratio? FromPartsPerBillion(long? partsperbillion)
-        {
-            if (partsperbillion.HasValue)
-            {
-                return FromPartsPerBillion(partsperbillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from PartsPerBillion of type decimal.
-        /// </summary>
-        public static Ratio? FromPartsPerBillion(decimal? partsperbillion)
+        public static Ratio? FromPartsPerBillion(QuantityValue? partsperbillion)
         {
             if (partsperbillion.HasValue)
             {
@@ -539,52 +329,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerMillion.
         /// </summary>
-        public static Ratio? FromPartsPerMillion(double? partspermillion)
-        {
-            if (partspermillion.HasValue)
-            {
-                return FromPartsPerMillion(partspermillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerMillion.
-        /// </summary>
-        public static Ratio? FromPartsPerMillion(int? partspermillion)
-        {
-            if (partspermillion.HasValue)
-            {
-                return FromPartsPerMillion(partspermillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerMillion.
-        /// </summary>
-        public static Ratio? FromPartsPerMillion(long? partspermillion)
-        {
-            if (partspermillion.HasValue)
-            {
-                return FromPartsPerMillion(partspermillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from PartsPerMillion of type decimal.
-        /// </summary>
-        public static Ratio? FromPartsPerMillion(decimal? partspermillion)
+        public static Ratio? FromPartsPerMillion(QuantityValue? partspermillion)
         {
             if (partspermillion.HasValue)
             {
@@ -599,52 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerThousand.
         /// </summary>
-        public static Ratio? FromPartsPerThousand(double? partsperthousand)
-        {
-            if (partsperthousand.HasValue)
-            {
-                return FromPartsPerThousand(partsperthousand.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerThousand.
-        /// </summary>
-        public static Ratio? FromPartsPerThousand(int? partsperthousand)
-        {
-            if (partsperthousand.HasValue)
-            {
-                return FromPartsPerThousand(partsperthousand.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerThousand.
-        /// </summary>
-        public static Ratio? FromPartsPerThousand(long? partsperthousand)
-        {
-            if (partsperthousand.HasValue)
-            {
-                return FromPartsPerThousand(partsperthousand.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from PartsPerThousand of type decimal.
-        /// </summary>
-        public static Ratio? FromPartsPerThousand(decimal? partsperthousand)
+        public static Ratio? FromPartsPerThousand(QuantityValue? partsperthousand)
         {
             if (partsperthousand.HasValue)
             {
@@ -659,52 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerTrillion.
         /// </summary>
-        public static Ratio? FromPartsPerTrillion(double? partspertrillion)
-        {
-            if (partspertrillion.HasValue)
-            {
-                return FromPartsPerTrillion(partspertrillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerTrillion.
-        /// </summary>
-        public static Ratio? FromPartsPerTrillion(int? partspertrillion)
-        {
-            if (partspertrillion.HasValue)
-            {
-                return FromPartsPerTrillion(partspertrillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerTrillion.
-        /// </summary>
-        public static Ratio? FromPartsPerTrillion(long? partspertrillion)
-        {
-            if (partspertrillion.HasValue)
-            {
-                return FromPartsPerTrillion(partspertrillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from PartsPerTrillion of type decimal.
-        /// </summary>
-        public static Ratio? FromPartsPerTrillion(decimal? partspertrillion)
+        public static Ratio? FromPartsPerTrillion(QuantityValue? partspertrillion)
         {
             if (partspertrillion.HasValue)
             {
@@ -719,52 +374,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable Percent.
         /// </summary>
-        public static Ratio? FromPercent(double? percent)
-        {
-            if (percent.HasValue)
-            {
-                return FromPercent(percent.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable Percent.
-        /// </summary>
-        public static Ratio? FromPercent(int? percent)
-        {
-            if (percent.HasValue)
-            {
-                return FromPercent(percent.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable Percent.
-        /// </summary>
-        public static Ratio? FromPercent(long? percent)
-        {
-            if (percent.HasValue)
-            {
-                return FromPercent(percent.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from Percent of type decimal.
-        /// </summary>
-        public static Ratio? FromPercent(decimal? percent)
+        public static Ratio? FromPercent(QuantityValue? percent)
         {
             if (percent.HasValue)
             {
@@ -781,25 +391,31 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
-        public static Ratio From(double val, RatioUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static Ratio From(double value, RatioUnit fromUnit)
+#else
+        public static Ratio From(QuantityValue value, RatioUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case RatioUnit.DecimalFraction:
-                    return FromDecimalFractions(val);
+                    return FromDecimalFractions(value);
                 case RatioUnit.PartPerBillion:
-                    return FromPartsPerBillion(val);
+                    return FromPartsPerBillion(value);
                 case RatioUnit.PartPerMillion:
-                    return FromPartsPerMillion(val);
+                    return FromPartsPerMillion(value);
                 case RatioUnit.PartPerThousand:
-                    return FromPartsPerThousand(val);
+                    return FromPartsPerThousand(value);
                 case RatioUnit.PartPerTrillion:
-                    return FromPartsPerTrillion(val);
+                    return FromPartsPerTrillion(value);
                 case RatioUnit.Percent:
-                    return FromPercent(val);
+                    return FromPercent(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -814,7 +430,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
-        public static Ratio? From(double? value, RatioUnit fromUnit)
+        public static Ratio? From(QuantityValue? value, RatioUnit fromUnit)
         {
             if (!value.HasValue)
             {

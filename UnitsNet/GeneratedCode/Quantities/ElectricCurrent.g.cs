@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -197,266 +197,126 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Amperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromAmperes(double amperes)
         {
-            return new ElectricCurrent(amperes);
+            double value = (double) amperes;
+            return new ElectricCurrent(value);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Amperes.
-        /// </summary>
-        public static ElectricCurrent FromAmperes(int amperes)
+#else
+        public static ElectricCurrent FromAmperes(QuantityValue amperes)
         {
-            return new ElectricCurrent(amperes);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Amperes.
-        /// </summary>
-        public static ElectricCurrent FromAmperes(long amperes)
-        {
-            return new ElectricCurrent(amperes);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Amperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromAmperes(decimal amperes)
-        {
-            return new ElectricCurrent(Convert.ToDouble(amperes));
+            double value = (double) amperes;
+            return new ElectricCurrent((value));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Kiloamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromKiloamperes(double kiloamperes)
         {
-            return new ElectricCurrent((kiloamperes) * 1e3d);
+            double value = (double) kiloamperes;
+            return new ElectricCurrent((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Kiloamperes.
-        /// </summary>
-        public static ElectricCurrent FromKiloamperes(int kiloamperes)
+#else
+        public static ElectricCurrent FromKiloamperes(QuantityValue kiloamperes)
         {
-            return new ElectricCurrent((kiloamperes) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Kiloamperes.
-        /// </summary>
-        public static ElectricCurrent FromKiloamperes(long kiloamperes)
-        {
-            return new ElectricCurrent((kiloamperes) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Kiloamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromKiloamperes(decimal kiloamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(kiloamperes)) * 1e3d);
+            double value = (double) kiloamperes;
+            return new ElectricCurrent(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Megaamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromMegaamperes(double megaamperes)
         {
-            return new ElectricCurrent((megaamperes) * 1e6d);
+            double value = (double) megaamperes;
+            return new ElectricCurrent((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Megaamperes.
-        /// </summary>
-        public static ElectricCurrent FromMegaamperes(int megaamperes)
+#else
+        public static ElectricCurrent FromMegaamperes(QuantityValue megaamperes)
         {
-            return new ElectricCurrent((megaamperes) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Megaamperes.
-        /// </summary>
-        public static ElectricCurrent FromMegaamperes(long megaamperes)
-        {
-            return new ElectricCurrent((megaamperes) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Megaamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromMegaamperes(decimal megaamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(megaamperes)) * 1e6d);
+            double value = (double) megaamperes;
+            return new ElectricCurrent(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Microamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromMicroamperes(double microamperes)
         {
-            return new ElectricCurrent((microamperes) * 1e-6d);
+            double value = (double) microamperes;
+            return new ElectricCurrent((value) * 1e-6d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Microamperes.
-        /// </summary>
-        public static ElectricCurrent FromMicroamperes(int microamperes)
+#else
+        public static ElectricCurrent FromMicroamperes(QuantityValue microamperes)
         {
-            return new ElectricCurrent((microamperes) * 1e-6d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Microamperes.
-        /// </summary>
-        public static ElectricCurrent FromMicroamperes(long microamperes)
-        {
-            return new ElectricCurrent((microamperes) * 1e-6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Microamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromMicroamperes(decimal microamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(microamperes)) * 1e-6d);
+            double value = (double) microamperes;
+            return new ElectricCurrent(((value) * 1e-6d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Milliamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromMilliamperes(double milliamperes)
         {
-            return new ElectricCurrent((milliamperes) * 1e-3d);
+            double value = (double) milliamperes;
+            return new ElectricCurrent((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Milliamperes.
-        /// </summary>
-        public static ElectricCurrent FromMilliamperes(int milliamperes)
+#else
+        public static ElectricCurrent FromMilliamperes(QuantityValue milliamperes)
         {
-            return new ElectricCurrent((milliamperes) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Milliamperes.
-        /// </summary>
-        public static ElectricCurrent FromMilliamperes(long milliamperes)
-        {
-            return new ElectricCurrent((milliamperes) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Milliamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromMilliamperes(decimal milliamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(milliamperes)) * 1e-3d);
+            double value = (double) milliamperes;
+            return new ElectricCurrent(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Nanoamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromNanoamperes(double nanoamperes)
         {
-            return new ElectricCurrent((nanoamperes) * 1e-9d);
+            double value = (double) nanoamperes;
+            return new ElectricCurrent((value) * 1e-9d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Nanoamperes.
-        /// </summary>
-        public static ElectricCurrent FromNanoamperes(int nanoamperes)
+#else
+        public static ElectricCurrent FromNanoamperes(QuantityValue nanoamperes)
         {
-            return new ElectricCurrent((nanoamperes) * 1e-9d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Nanoamperes.
-        /// </summary>
-        public static ElectricCurrent FromNanoamperes(long nanoamperes)
-        {
-            return new ElectricCurrent((nanoamperes) * 1e-9d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Nanoamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromNanoamperes(decimal nanoamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(nanoamperes)) * 1e-9d);
+            double value = (double) nanoamperes;
+            return new ElectricCurrent(((value) * 1e-9d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricCurrent from Picoamperes.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricCurrent FromPicoamperes(double picoamperes)
         {
-            return new ElectricCurrent((picoamperes) * 1e-12d);
+            double value = (double) picoamperes;
+            return new ElectricCurrent((value) * 1e-12d);
         }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Picoamperes.
-        /// </summary>
-        public static ElectricCurrent FromPicoamperes(int picoamperes)
+#else
+        public static ElectricCurrent FromPicoamperes(QuantityValue picoamperes)
         {
-            return new ElectricCurrent((picoamperes) * 1e-12d);
-        }
-
-        /// <summary>
-        ///     Get ElectricCurrent from Picoamperes.
-        /// </summary>
-        public static ElectricCurrent FromPicoamperes(long picoamperes)
-        {
-            return new ElectricCurrent((picoamperes) * 1e-12d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricCurrent from Picoamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent FromPicoamperes(decimal picoamperes)
-        {
-            return new ElectricCurrent((Convert.ToDouble(picoamperes)) * 1e-12d);
+            double value = (double) picoamperes;
+            return new ElectricCurrent(((value) * 1e-12d));
         }
 #endif
 
@@ -465,52 +325,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Amperes.
         /// </summary>
-        public static ElectricCurrent? FromAmperes(double? amperes)
-        {
-            if (amperes.HasValue)
-            {
-                return FromAmperes(amperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Amperes.
-        /// </summary>
-        public static ElectricCurrent? FromAmperes(int? amperes)
-        {
-            if (amperes.HasValue)
-            {
-                return FromAmperes(amperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Amperes.
-        /// </summary>
-        public static ElectricCurrent? FromAmperes(long? amperes)
-        {
-            if (amperes.HasValue)
-            {
-                return FromAmperes(amperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Amperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromAmperes(decimal? amperes)
+        public static ElectricCurrent? FromAmperes(QuantityValue? amperes)
         {
             if (amperes.HasValue)
             {
@@ -525,52 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Kiloamperes.
         /// </summary>
-        public static ElectricCurrent? FromKiloamperes(double? kiloamperes)
-        {
-            if (kiloamperes.HasValue)
-            {
-                return FromKiloamperes(kiloamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
-        /// </summary>
-        public static ElectricCurrent? FromKiloamperes(int? kiloamperes)
-        {
-            if (kiloamperes.HasValue)
-            {
-                return FromKiloamperes(kiloamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
-        /// </summary>
-        public static ElectricCurrent? FromKiloamperes(long? kiloamperes)
-        {
-            if (kiloamperes.HasValue)
-            {
-                return FromKiloamperes(kiloamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Kiloamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromKiloamperes(decimal? kiloamperes)
+        public static ElectricCurrent? FromKiloamperes(QuantityValue? kiloamperes)
         {
             if (kiloamperes.HasValue)
             {
@@ -585,52 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Megaamperes.
         /// </summary>
-        public static ElectricCurrent? FromMegaamperes(double? megaamperes)
-        {
-            if (megaamperes.HasValue)
-            {
-                return FromMegaamperes(megaamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Megaamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMegaamperes(int? megaamperes)
-        {
-            if (megaamperes.HasValue)
-            {
-                return FromMegaamperes(megaamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Megaamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMegaamperes(long? megaamperes)
-        {
-            if (megaamperes.HasValue)
-            {
-                return FromMegaamperes(megaamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Megaamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromMegaamperes(decimal? megaamperes)
+        public static ElectricCurrent? FromMegaamperes(QuantityValue? megaamperes)
         {
             if (megaamperes.HasValue)
             {
@@ -645,52 +370,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Microamperes.
         /// </summary>
-        public static ElectricCurrent? FromMicroamperes(double? microamperes)
-        {
-            if (microamperes.HasValue)
-            {
-                return FromMicroamperes(microamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Microamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMicroamperes(int? microamperes)
-        {
-            if (microamperes.HasValue)
-            {
-                return FromMicroamperes(microamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Microamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMicroamperes(long? microamperes)
-        {
-            if (microamperes.HasValue)
-            {
-                return FromMicroamperes(microamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Microamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromMicroamperes(decimal? microamperes)
+        public static ElectricCurrent? FromMicroamperes(QuantityValue? microamperes)
         {
             if (microamperes.HasValue)
             {
@@ -705,52 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Milliamperes.
         /// </summary>
-        public static ElectricCurrent? FromMilliamperes(double? milliamperes)
-        {
-            if (milliamperes.HasValue)
-            {
-                return FromMilliamperes(milliamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Milliamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMilliamperes(int? milliamperes)
-        {
-            if (milliamperes.HasValue)
-            {
-                return FromMilliamperes(milliamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Milliamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMilliamperes(long? milliamperes)
-        {
-            if (milliamperes.HasValue)
-            {
-                return FromMilliamperes(milliamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Milliamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromMilliamperes(decimal? milliamperes)
+        public static ElectricCurrent? FromMilliamperes(QuantityValue? milliamperes)
         {
             if (milliamperes.HasValue)
             {
@@ -765,52 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Nanoamperes.
         /// </summary>
-        public static ElectricCurrent? FromNanoamperes(double? nanoamperes)
-        {
-            if (nanoamperes.HasValue)
-            {
-                return FromNanoamperes(nanoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromNanoamperes(int? nanoamperes)
-        {
-            if (nanoamperes.HasValue)
-            {
-                return FromNanoamperes(nanoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromNanoamperes(long? nanoamperes)
-        {
-            if (nanoamperes.HasValue)
-            {
-                return FromNanoamperes(nanoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Nanoamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromNanoamperes(decimal? nanoamperes)
+        public static ElectricCurrent? FromNanoamperes(QuantityValue? nanoamperes)
         {
             if (nanoamperes.HasValue)
             {
@@ -825,52 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Picoamperes.
         /// </summary>
-        public static ElectricCurrent? FromPicoamperes(double? picoamperes)
-        {
-            if (picoamperes.HasValue)
-            {
-                return FromPicoamperes(picoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Picoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromPicoamperes(int? picoamperes)
-        {
-            if (picoamperes.HasValue)
-            {
-                return FromPicoamperes(picoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Picoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromPicoamperes(long? picoamperes)
-        {
-            if (picoamperes.HasValue)
-            {
-                return FromPicoamperes(picoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from Picoamperes of type decimal.
-        /// </summary>
-        public static ElectricCurrent? FromPicoamperes(decimal? picoamperes)
+        public static ElectricCurrent? FromPicoamperes(QuantityValue? picoamperes)
         {
             if (picoamperes.HasValue)
             {
@@ -887,27 +432,33 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent From(double val, ElectricCurrentUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static ElectricCurrent From(double value, ElectricCurrentUnit fromUnit)
+#else
+        public static ElectricCurrent From(QuantityValue value, ElectricCurrentUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case ElectricCurrentUnit.Ampere:
-                    return FromAmperes(val);
+                    return FromAmperes(value);
                 case ElectricCurrentUnit.Kiloampere:
-                    return FromKiloamperes(val);
+                    return FromKiloamperes(value);
                 case ElectricCurrentUnit.Megaampere:
-                    return FromMegaamperes(val);
+                    return FromMegaamperes(value);
                 case ElectricCurrentUnit.Microampere:
-                    return FromMicroamperes(val);
+                    return FromMicroamperes(value);
                 case ElectricCurrentUnit.Milliampere:
-                    return FromMilliamperes(val);
+                    return FromMilliamperes(value);
                 case ElectricCurrentUnit.Nanoampere:
-                    return FromNanoamperes(val);
+                    return FromNanoamperes(value);
                 case ElectricCurrentUnit.Picoampere:
-                    return FromPicoamperes(val);
+                    return FromPicoamperes(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -922,7 +473,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent? From(double? value, ElectricCurrentUnit fromUnit)
+        public static ElectricCurrent? From(QuantityValue? value, ElectricCurrentUnit fromUnit)
         {
             if (!value.HasValue)
             {

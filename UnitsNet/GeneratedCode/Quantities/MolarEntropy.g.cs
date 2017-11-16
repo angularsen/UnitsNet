@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -165,114 +165,54 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarEntropy from JoulesPerMoleKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEntropy FromJoulesPerMoleKelvin(double joulespermolekelvin)
         {
-            return new MolarEntropy(joulespermolekelvin);
+            double value = (double) joulespermolekelvin;
+            return new MolarEntropy(value);
         }
-
-        /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(int joulespermolekelvin)
+#else
+        public static MolarEntropy FromJoulesPerMoleKelvin(QuantityValue joulespermolekelvin)
         {
-            return new MolarEntropy(joulespermolekelvin);
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(long joulespermolekelvin)
-        {
-            return new MolarEntropy(joulespermolekelvin);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(decimal joulespermolekelvin)
-        {
-            return new MolarEntropy(Convert.ToDouble(joulespermolekelvin));
+            double value = (double) joulespermolekelvin;
+            return new MolarEntropy((value));
         }
 #endif
 
         /// <summary>
         ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEntropy FromKilojoulesPerMoleKelvin(double kilojoulespermolekelvin)
         {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
+            double value = (double) kilojoulespermolekelvin;
+            return new MolarEntropy((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(int kilojoulespermolekelvin)
+#else
+        public static MolarEntropy FromKilojoulesPerMoleKelvin(QuantityValue kilojoulespermolekelvin)
         {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(long kilojoulespermolekelvin)
-        {
-            return new MolarEntropy((kilojoulespermolekelvin) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(decimal kilojoulespermolekelvin)
-        {
-            return new MolarEntropy((Convert.ToDouble(kilojoulespermolekelvin)) * 1e3d);
+            double value = (double) kilojoulespermolekelvin;
+            return new MolarEntropy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static MolarEntropy FromMegajoulesPerMoleKelvin(double megajoulespermolekelvin)
         {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
+            double value = (double) megajoulespermolekelvin;
+            return new MolarEntropy((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(int megajoulespermolekelvin)
+#else
+        public static MolarEntropy FromMegajoulesPerMoleKelvin(QuantityValue megajoulespermolekelvin)
         {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(long megajoulespermolekelvin)
-        {
-            return new MolarEntropy((megajoulespermolekelvin) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(decimal megajoulespermolekelvin)
-        {
-            return new MolarEntropy((Convert.ToDouble(megajoulespermolekelvin)) * 1e6d);
+            double value = (double) megajoulespermolekelvin;
+            return new MolarEntropy(((value) * 1e6d));
         }
 #endif
 
@@ -281,52 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
         /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(double? joulespermolekelvin)
-        {
-            if (joulespermolekelvin.HasValue)
-            {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(int? joulespermolekelvin)
-        {
-            if (joulespermolekelvin.HasValue)
-            {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(long? joulespermolekelvin)
-        {
-            if (joulespermolekelvin.HasValue)
-            {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from JoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(decimal? joulespermolekelvin)
+        public static MolarEntropy? FromJoulesPerMoleKelvin(QuantityValue? joulespermolekelvin)
         {
             if (joulespermolekelvin.HasValue)
             {
@@ -341,52 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
         /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(double? kilojoulespermolekelvin)
-        {
-            if (kilojoulespermolekelvin.HasValue)
-            {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(int? kilojoulespermolekelvin)
-        {
-            if (kilojoulespermolekelvin.HasValue)
-            {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(long? kilojoulespermolekelvin)
-        {
-            if (kilojoulespermolekelvin.HasValue)
-            {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from KilojoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(decimal? kilojoulespermolekelvin)
+        public static MolarEntropy? FromKilojoulesPerMoleKelvin(QuantityValue? kilojoulespermolekelvin)
         {
             if (kilojoulespermolekelvin.HasValue)
             {
@@ -401,52 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
         /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(double? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(int? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(long? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from MegajoulesPerMoleKelvin of type decimal.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(decimal? megajoulespermolekelvin)
+        public static MolarEntropy? FromMegajoulesPerMoleKelvin(QuantityValue? megajoulespermolekelvin)
         {
             if (megajoulespermolekelvin.HasValue)
             {
@@ -463,19 +268,25 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(double val, MolarEntropyUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static MolarEntropy From(double value, MolarEntropyUnit fromUnit)
+#else
+        public static MolarEntropy From(QuantityValue value, MolarEntropyUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case MolarEntropyUnit.JoulePerMoleKelvin:
-                    return FromJoulesPerMoleKelvin(val);
+                    return FromJoulesPerMoleKelvin(value);
                 case MolarEntropyUnit.KilojoulePerMoleKelvin:
-                    return FromKilojoulesPerMoleKelvin(val);
+                    return FromKilojoulesPerMoleKelvin(value);
                 case MolarEntropyUnit.MegajoulePerMoleKelvin:
-                    return FromMegajoulesPerMoleKelvin(val);
+                    return FromMegajoulesPerMoleKelvin(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -490,7 +301,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy? From(double? value, MolarEntropyUnit fromUnit)
+        public static MolarEntropy? From(QuantityValue? value, MolarEntropyUnit fromUnit)
         {
             if (!value.HasValue)
             {

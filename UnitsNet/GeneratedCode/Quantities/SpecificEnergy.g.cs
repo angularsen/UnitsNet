@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -205,304 +205,144 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromCaloriesPerGram(double caloriespergram)
         {
-            return new SpecificEnergy(caloriespergram*4.184e3);
+            double value = (double) caloriespergram;
+            return new SpecificEnergy(value*4.184e3);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy FromCaloriesPerGram(int caloriespergram)
+#else
+        public static SpecificEnergy FromCaloriesPerGram(QuantityValue caloriespergram)
         {
-            return new SpecificEnergy(caloriespergram*4.184e3);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy FromCaloriesPerGram(long caloriespergram)
-        {
-            return new SpecificEnergy(caloriespergram*4.184e3);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromCaloriesPerGram(decimal caloriespergram)
-        {
-            return new SpecificEnergy(Convert.ToDouble(caloriespergram)*4.184e3);
+            double value = (double) caloriespergram;
+            return new SpecificEnergy((value*4.184e3));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from JoulesPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromJoulesPerKilogram(double joulesperkilogram)
         {
-            return new SpecificEnergy(joulesperkilogram);
+            double value = (double) joulesperkilogram;
+            return new SpecificEnergy(value);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromJoulesPerKilogram(int joulesperkilogram)
+#else
+        public static SpecificEnergy FromJoulesPerKilogram(QuantityValue joulesperkilogram)
         {
-            return new SpecificEnergy(joulesperkilogram);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromJoulesPerKilogram(long joulesperkilogram)
-        {
-            return new SpecificEnergy(joulesperkilogram);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromJoulesPerKilogram(decimal joulesperkilogram)
-        {
-            return new SpecificEnergy(Convert.ToDouble(joulesperkilogram));
+            double value = (double) joulesperkilogram;
+            return new SpecificEnergy((value));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from KilocaloriesPerGram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromKilocaloriesPerGram(double kilocaloriespergram)
         {
-            return new SpecificEnergy((kilocaloriespergram*4.184e3) * 1e3d);
+            double value = (double) kilocaloriespergram;
+            return new SpecificEnergy((value*4.184e3) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy FromKilocaloriesPerGram(int kilocaloriespergram)
+#else
+        public static SpecificEnergy FromKilocaloriesPerGram(QuantityValue kilocaloriespergram)
         {
-            return new SpecificEnergy((kilocaloriespergram*4.184e3) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy FromKilocaloriesPerGram(long kilocaloriespergram)
-        {
-            return new SpecificEnergy((kilocaloriespergram*4.184e3) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromKilocaloriesPerGram(decimal kilocaloriespergram)
-        {
-            return new SpecificEnergy((Convert.ToDouble(kilocaloriespergram)*4.184e3) * 1e3d);
+            double value = (double) kilocaloriespergram;
+            return new SpecificEnergy(((value*4.184e3) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from KilojoulesPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromKilojoulesPerKilogram(double kilojoulesperkilogram)
         {
-            return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
+            double value = (double) kilojoulesperkilogram;
+            return new SpecificEnergy((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromKilojoulesPerKilogram(int kilojoulesperkilogram)
+#else
+        public static SpecificEnergy FromKilojoulesPerKilogram(QuantityValue kilojoulesperkilogram)
         {
-            return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromKilojoulesPerKilogram(long kilojoulesperkilogram)
-        {
-            return new SpecificEnergy((kilojoulesperkilogram) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromKilojoulesPerKilogram(decimal kilojoulesperkilogram)
-        {
-            return new SpecificEnergy((Convert.ToDouble(kilojoulesperkilogram)) * 1e3d);
+            double value = (double) kilojoulesperkilogram;
+            return new SpecificEnergy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from KilowattHoursPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromKilowattHoursPerKilogram(double kilowatthoursperkilogram)
         {
-            return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
+            double value = (double) kilowatthoursperkilogram;
+            return new SpecificEnergy((value*3.6e3) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerKilogram(int kilowatthoursperkilogram)
+#else
+        public static SpecificEnergy FromKilowattHoursPerKilogram(QuantityValue kilowatthoursperkilogram)
         {
-            return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerKilogram(long kilowatthoursperkilogram)
-        {
-            return new SpecificEnergy((kilowatthoursperkilogram*3.6e3) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerKilogram(decimal kilowatthoursperkilogram)
-        {
-            return new SpecificEnergy((Convert.ToDouble(kilowatthoursperkilogram)*3.6e3) * 1e3d);
+            double value = (double) kilowatthoursperkilogram;
+            return new SpecificEnergy(((value*3.6e3) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from MegajoulesPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromMegajoulesPerKilogram(double megajoulesperkilogram)
         {
-            return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
+            double value = (double) megajoulesperkilogram;
+            return new SpecificEnergy((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromMegajoulesPerKilogram(int megajoulesperkilogram)
+#else
+        public static SpecificEnergy FromMegajoulesPerKilogram(QuantityValue megajoulesperkilogram)
         {
-            return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromMegajoulesPerKilogram(long megajoulesperkilogram)
-        {
-            return new SpecificEnergy((megajoulesperkilogram) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromMegajoulesPerKilogram(decimal megajoulesperkilogram)
-        {
-            return new SpecificEnergy((Convert.ToDouble(megajoulesperkilogram)) * 1e6d);
+            double value = (double) megajoulesperkilogram;
+            return new SpecificEnergy(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from MegawattHoursPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromMegawattHoursPerKilogram(double megawatthoursperkilogram)
         {
-            return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
+            double value = (double) megawatthoursperkilogram;
+            return new SpecificEnergy((value*3.6e3) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerKilogram(int megawatthoursperkilogram)
+#else
+        public static SpecificEnergy FromMegawattHoursPerKilogram(QuantityValue megawatthoursperkilogram)
         {
-            return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerKilogram(long megawatthoursperkilogram)
-        {
-            return new SpecificEnergy((megawatthoursperkilogram*3.6e3) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerKilogram(decimal megawatthoursperkilogram)
-        {
-            return new SpecificEnergy((Convert.ToDouble(megawatthoursperkilogram)*3.6e3) * 1e6d);
+            double value = (double) megawatthoursperkilogram;
+            return new SpecificEnergy(((value*3.6e3) * 1e6d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificEnergy from WattHoursPerKilogram.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificEnergy FromWattHoursPerKilogram(double watthoursperkilogram)
         {
-            return new SpecificEnergy(watthoursperkilogram*3.6e3);
+            double value = (double) watthoursperkilogram;
+            return new SpecificEnergy(value*3.6e3);
         }
-
-        /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromWattHoursPerKilogram(int watthoursperkilogram)
+#else
+        public static SpecificEnergy FromWattHoursPerKilogram(QuantityValue watthoursperkilogram)
         {
-            return new SpecificEnergy(watthoursperkilogram*3.6e3);
-        }
-
-        /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy FromWattHoursPerKilogram(long watthoursperkilogram)
-        {
-            return new SpecificEnergy(watthoursperkilogram*3.6e3);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy FromWattHoursPerKilogram(decimal watthoursperkilogram)
-        {
-            return new SpecificEnergy(Convert.ToDouble(watthoursperkilogram)*3.6e3);
+            double value = (double) watthoursperkilogram;
+            return new SpecificEnergy((value*3.6e3));
         }
 #endif
 
@@ -511,52 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
         /// </summary>
-        public static SpecificEnergy? FromCaloriesPerGram(double? caloriespergram)
-        {
-            if (caloriespergram.HasValue)
-            {
-                return FromCaloriesPerGram(caloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromCaloriesPerGram(int? caloriespergram)
-        {
-            if (caloriespergram.HasValue)
-            {
-                return FromCaloriesPerGram(caloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromCaloriesPerGram(long? caloriespergram)
-        {
-            if (caloriespergram.HasValue)
-            {
-                return FromCaloriesPerGram(caloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from CaloriesPerGram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromCaloriesPerGram(decimal? caloriespergram)
+        public static SpecificEnergy? FromCaloriesPerGram(QuantityValue? caloriespergram)
         {
             if (caloriespergram.HasValue)
             {
@@ -571,52 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromJoulesPerKilogram(double? joulesperkilogram)
-        {
-            if (joulesperkilogram.HasValue)
-            {
-                return FromJoulesPerKilogram(joulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromJoulesPerKilogram(int? joulesperkilogram)
-        {
-            if (joulesperkilogram.HasValue)
-            {
-                return FromJoulesPerKilogram(joulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromJoulesPerKilogram(long? joulesperkilogram)
-        {
-            if (joulesperkilogram.HasValue)
-            {
-                return FromJoulesPerKilogram(joulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from JoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromJoulesPerKilogram(decimal? joulesperkilogram)
+        public static SpecificEnergy? FromJoulesPerKilogram(QuantityValue? joulesperkilogram)
         {
             if (joulesperkilogram.HasValue)
             {
@@ -631,52 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
         /// </summary>
-        public static SpecificEnergy? FromKilocaloriesPerGram(double? kilocaloriespergram)
-        {
-            if (kilocaloriespergram.HasValue)
-            {
-                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromKilocaloriesPerGram(int? kilocaloriespergram)
-        {
-            if (kilocaloriespergram.HasValue)
-            {
-                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromKilocaloriesPerGram(long? kilocaloriespergram)
-        {
-            if (kilocaloriespergram.HasValue)
-            {
-                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from KilocaloriesPerGram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromKilocaloriesPerGram(decimal? kilocaloriespergram)
+        public static SpecificEnergy? FromKilocaloriesPerGram(QuantityValue? kilocaloriespergram)
         {
             if (kilocaloriespergram.HasValue)
             {
@@ -691,52 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromKilojoulesPerKilogram(double? kilojoulesperkilogram)
-        {
-            if (kilojoulesperkilogram.HasValue)
-            {
-                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilojoulesPerKilogram(int? kilojoulesperkilogram)
-        {
-            if (kilojoulesperkilogram.HasValue)
-            {
-                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilojoulesPerKilogram(long? kilojoulesperkilogram)
-        {
-            if (kilojoulesperkilogram.HasValue)
-            {
-                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from KilojoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromKilojoulesPerKilogram(decimal? kilojoulesperkilogram)
+        public static SpecificEnergy? FromKilojoulesPerKilogram(QuantityValue? kilojoulesperkilogram)
         {
             if (kilojoulesperkilogram.HasValue)
             {
@@ -751,52 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromKilowattHoursPerKilogram(double? kilowatthoursperkilogram)
-        {
-            if (kilowatthoursperkilogram.HasValue)
-            {
-                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilowattHoursPerKilogram(int? kilowatthoursperkilogram)
-        {
-            if (kilowatthoursperkilogram.HasValue)
-            {
-                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilowattHoursPerKilogram(long? kilowatthoursperkilogram)
-        {
-            if (kilowatthoursperkilogram.HasValue)
-            {
-                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from KilowattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromKilowattHoursPerKilogram(decimal? kilowatthoursperkilogram)
+        public static SpecificEnergy? FromKilowattHoursPerKilogram(QuantityValue? kilowatthoursperkilogram)
         {
             if (kilowatthoursperkilogram.HasValue)
             {
@@ -811,52 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromMegajoulesPerKilogram(double? megajoulesperkilogram)
-        {
-            if (megajoulesperkilogram.HasValue)
-            {
-                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegajoulesPerKilogram(int? megajoulesperkilogram)
-        {
-            if (megajoulesperkilogram.HasValue)
-            {
-                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegajoulesPerKilogram(long? megajoulesperkilogram)
-        {
-            if (megajoulesperkilogram.HasValue)
-            {
-                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from MegajoulesPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromMegajoulesPerKilogram(decimal? megajoulesperkilogram)
+        public static SpecificEnergy? FromMegajoulesPerKilogram(QuantityValue? megajoulesperkilogram)
         {
             if (megajoulesperkilogram.HasValue)
             {
@@ -871,52 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromMegawattHoursPerKilogram(double? megawatthoursperkilogram)
-        {
-            if (megawatthoursperkilogram.HasValue)
-            {
-                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegawattHoursPerKilogram(int? megawatthoursperkilogram)
-        {
-            if (megawatthoursperkilogram.HasValue)
-            {
-                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegawattHoursPerKilogram(long? megawatthoursperkilogram)
-        {
-            if (megawatthoursperkilogram.HasValue)
-            {
-                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from MegawattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromMegawattHoursPerKilogram(decimal? megawatthoursperkilogram)
+        public static SpecificEnergy? FromMegawattHoursPerKilogram(QuantityValue? megawatthoursperkilogram)
         {
             if (megawatthoursperkilogram.HasValue)
             {
@@ -931,52 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
         /// </summary>
-        public static SpecificEnergy? FromWattHoursPerKilogram(double? watthoursperkilogram)
-        {
-            if (watthoursperkilogram.HasValue)
-            {
-                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromWattHoursPerKilogram(int? watthoursperkilogram)
-        {
-            if (watthoursperkilogram.HasValue)
-            {
-                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromWattHoursPerKilogram(long? watthoursperkilogram)
-        {
-            if (watthoursperkilogram.HasValue)
-            {
-                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from WattHoursPerKilogram of type decimal.
-        /// </summary>
-        public static SpecificEnergy? FromWattHoursPerKilogram(decimal? watthoursperkilogram)
+        public static SpecificEnergy? FromWattHoursPerKilogram(QuantityValue? watthoursperkilogram)
         {
             if (watthoursperkilogram.HasValue)
             {
@@ -993,29 +473,35 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEnergy unit value.</returns>
-        public static SpecificEnergy From(double val, SpecificEnergyUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static SpecificEnergy From(double value, SpecificEnergyUnit fromUnit)
+#else
+        public static SpecificEnergy From(QuantityValue value, SpecificEnergyUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case SpecificEnergyUnit.CaloriePerGram:
-                    return FromCaloriesPerGram(val);
+                    return FromCaloriesPerGram(value);
                 case SpecificEnergyUnit.JoulePerKilogram:
-                    return FromJoulesPerKilogram(val);
+                    return FromJoulesPerKilogram(value);
                 case SpecificEnergyUnit.KilocaloriePerGram:
-                    return FromKilocaloriesPerGram(val);
+                    return FromKilocaloriesPerGram(value);
                 case SpecificEnergyUnit.KilojoulePerKilogram:
-                    return FromKilojoulesPerKilogram(val);
+                    return FromKilojoulesPerKilogram(value);
                 case SpecificEnergyUnit.KilowattHourPerKilogram:
-                    return FromKilowattHoursPerKilogram(val);
+                    return FromKilowattHoursPerKilogram(value);
                 case SpecificEnergyUnit.MegajoulePerKilogram:
-                    return FromMegajoulesPerKilogram(val);
+                    return FromMegajoulesPerKilogram(value);
                 case SpecificEnergyUnit.MegawattHourPerKilogram:
-                    return FromMegawattHoursPerKilogram(val);
+                    return FromMegawattHoursPerKilogram(value);
                 case SpecificEnergyUnit.WattHourPerKilogram:
-                    return FromWattHoursPerKilogram(val);
+                    return FromWattHoursPerKilogram(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1030,7 +516,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEnergy unit value.</returns>
-        public static SpecificEnergy? From(double? value, SpecificEnergyUnit fromUnit)
+        public static SpecificEnergy? From(QuantityValue? value, SpecificEnergyUnit fromUnit)
         {
             if (!value.HasValue)
             {

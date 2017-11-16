@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -173,152 +173,72 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricResistance FromKiloohms(double kiloohms)
         {
-            return new ElectricResistance((kiloohms) * 1e3d);
+            double value = (double) kiloohms;
+            return new ElectricResistance((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
-        /// </summary>
-        public static ElectricResistance FromKiloohms(int kiloohms)
+#else
+        public static ElectricResistance FromKiloohms(QuantityValue kiloohms)
         {
-            return new ElectricResistance((kiloohms) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
-        /// </summary>
-        public static ElectricResistance FromKiloohms(long kiloohms)
-        {
-            return new ElectricResistance((kiloohms) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricResistance from Kiloohms of type decimal.
-        /// </summary>
-        public static ElectricResistance FromKiloohms(decimal kiloohms)
-        {
-            return new ElectricResistance((Convert.ToDouble(kiloohms)) * 1e3d);
+            double value = (double) kiloohms;
+            return new ElectricResistance(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricResistance from Megaohms.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricResistance FromMegaohms(double megaohms)
         {
-            return new ElectricResistance((megaohms) * 1e6d);
+            double value = (double) megaohms;
+            return new ElectricResistance((value) * 1e6d);
         }
-
-        /// <summary>
-        ///     Get ElectricResistance from Megaohms.
-        /// </summary>
-        public static ElectricResistance FromMegaohms(int megaohms)
+#else
+        public static ElectricResistance FromMegaohms(QuantityValue megaohms)
         {
-            return new ElectricResistance((megaohms) * 1e6d);
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance from Megaohms.
-        /// </summary>
-        public static ElectricResistance FromMegaohms(long megaohms)
-        {
-            return new ElectricResistance((megaohms) * 1e6d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricResistance from Megaohms of type decimal.
-        /// </summary>
-        public static ElectricResistance FromMegaohms(decimal megaohms)
-        {
-            return new ElectricResistance((Convert.ToDouble(megaohms)) * 1e6d);
+            double value = (double) megaohms;
+            return new ElectricResistance(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricResistance from Milliohms.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricResistance FromMilliohms(double milliohms)
         {
-            return new ElectricResistance((milliohms) * 1e-3d);
+            double value = (double) milliohms;
+            return new ElectricResistance((value) * 1e-3d);
         }
-
-        /// <summary>
-        ///     Get ElectricResistance from Milliohms.
-        /// </summary>
-        public static ElectricResistance FromMilliohms(int milliohms)
+#else
+        public static ElectricResistance FromMilliohms(QuantityValue milliohms)
         {
-            return new ElectricResistance((milliohms) * 1e-3d);
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance from Milliohms.
-        /// </summary>
-        public static ElectricResistance FromMilliohms(long milliohms)
-        {
-            return new ElectricResistance((milliohms) * 1e-3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricResistance from Milliohms of type decimal.
-        /// </summary>
-        public static ElectricResistance FromMilliohms(decimal milliohms)
-        {
-            return new ElectricResistance((Convert.ToDouble(milliohms)) * 1e-3d);
+            double value = (double) milliohms;
+            return new ElectricResistance(((value) * 1e-3d));
         }
 #endif
 
         /// <summary>
         ///     Get ElectricResistance from Ohms.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static ElectricResistance FromOhms(double ohms)
         {
-            return new ElectricResistance(ohms);
+            double value = (double) ohms;
+            return new ElectricResistance(value);
         }
-
-        /// <summary>
-        ///     Get ElectricResistance from Ohms.
-        /// </summary>
-        public static ElectricResistance FromOhms(int ohms)
+#else
+        public static ElectricResistance FromOhms(QuantityValue ohms)
         {
-            return new ElectricResistance(ohms);
-        }
-
-        /// <summary>
-        ///     Get ElectricResistance from Ohms.
-        /// </summary>
-        public static ElectricResistance FromOhms(long ohms)
-        {
-            return new ElectricResistance(ohms);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get ElectricResistance from Ohms of type decimal.
-        /// </summary>
-        public static ElectricResistance FromOhms(decimal ohms)
-        {
-            return new ElectricResistance(Convert.ToDouble(ohms));
+            double value = (double) ohms;
+            return new ElectricResistance((value));
         }
 #endif
 
@@ -327,52 +247,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Kiloohms.
         /// </summary>
-        public static ElectricResistance? FromKiloohms(double? kiloohms)
-        {
-            if (kiloohms.HasValue)
-            {
-                return FromKiloohms(kiloohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
-        /// </summary>
-        public static ElectricResistance? FromKiloohms(int? kiloohms)
-        {
-            if (kiloohms.HasValue)
-            {
-                return FromKiloohms(kiloohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
-        /// </summary>
-        public static ElectricResistance? FromKiloohms(long? kiloohms)
-        {
-            if (kiloohms.HasValue)
-            {
-                return FromKiloohms(kiloohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from Kiloohms of type decimal.
-        /// </summary>
-        public static ElectricResistance? FromKiloohms(decimal? kiloohms)
+        public static ElectricResistance? FromKiloohms(QuantityValue? kiloohms)
         {
             if (kiloohms.HasValue)
             {
@@ -387,52 +262,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Megaohms.
         /// </summary>
-        public static ElectricResistance? FromMegaohms(double? megaohms)
-        {
-            if (megaohms.HasValue)
-            {
-                return FromMegaohms(megaohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
-        /// </summary>
-        public static ElectricResistance? FromMegaohms(int? megaohms)
-        {
-            if (megaohms.HasValue)
-            {
-                return FromMegaohms(megaohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
-        /// </summary>
-        public static ElectricResistance? FromMegaohms(long? megaohms)
-        {
-            if (megaohms.HasValue)
-            {
-                return FromMegaohms(megaohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from Megaohms of type decimal.
-        /// </summary>
-        public static ElectricResistance? FromMegaohms(decimal? megaohms)
+        public static ElectricResistance? FromMegaohms(QuantityValue? megaohms)
         {
             if (megaohms.HasValue)
             {
@@ -447,52 +277,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Milliohms.
         /// </summary>
-        public static ElectricResistance? FromMilliohms(double? milliohms)
-        {
-            if (milliohms.HasValue)
-            {
-                return FromMilliohms(milliohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
-        /// </summary>
-        public static ElectricResistance? FromMilliohms(int? milliohms)
-        {
-            if (milliohms.HasValue)
-            {
-                return FromMilliohms(milliohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
-        /// </summary>
-        public static ElectricResistance? FromMilliohms(long? milliohms)
-        {
-            if (milliohms.HasValue)
-            {
-                return FromMilliohms(milliohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from Milliohms of type decimal.
-        /// </summary>
-        public static ElectricResistance? FromMilliohms(decimal? milliohms)
+        public static ElectricResistance? FromMilliohms(QuantityValue? milliohms)
         {
             if (milliohms.HasValue)
             {
@@ -507,52 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Ohms.
         /// </summary>
-        public static ElectricResistance? FromOhms(double? ohms)
-        {
-            if (ohms.HasValue)
-            {
-                return FromOhms(ohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
-        /// </summary>
-        public static ElectricResistance? FromOhms(int? ohms)
-        {
-            if (ohms.HasValue)
-            {
-                return FromOhms(ohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
-        /// </summary>
-        public static ElectricResistance? FromOhms(long? ohms)
-        {
-            if (ohms.HasValue)
-            {
-                return FromOhms(ohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from Ohms of type decimal.
-        /// </summary>
-        public static ElectricResistance? FromOhms(decimal? ohms)
+        public static ElectricResistance? FromOhms(QuantityValue? ohms)
         {
             if (ohms.HasValue)
             {
@@ -569,21 +309,27 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(double val, ElectricResistanceUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static ElectricResistance From(double value, ElectricResistanceUnit fromUnit)
+#else
+        public static ElectricResistance From(QuantityValue value, ElectricResistanceUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(val);
+                    return FromKiloohms(value);
                 case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(val);
+                    return FromMegaohms(value);
                 case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(val);
+                    return FromMilliohms(value);
                 case ElectricResistanceUnit.Ohm:
-                    return FromOhms(val);
+                    return FromOhms(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -598,7 +344,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance? From(double? value, ElectricResistanceUnit fromUnit)
+        public static ElectricResistance? From(QuantityValue? value, ElectricResistanceUnit fromUnit)
         {
             if (!value.HasValue)
             {

@@ -15,7 +15,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -269,608 +269,288 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double kilogramsforcepercubiccentimeter)
         {
-            return new SpecificWeight(kilogramsforcepercubiccentimeter*9806650.19960652);
+            double value = (double) kilogramsforcepercubiccentimeter;
+            return new SpecificWeight(value*9806650.19960652);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(int kilogramsforcepercubiccentimeter)
+#else
+        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(QuantityValue kilogramsforcepercubiccentimeter)
         {
-            return new SpecificWeight(kilogramsforcepercubiccentimeter*9806650.19960652);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(long kilogramsforcepercubiccentimeter)
-        {
-            return new SpecificWeight(kilogramsforcepercubiccentimeter*9806650.19960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(decimal kilogramsforcepercubiccentimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(kilogramsforcepercubiccentimeter)*9806650.19960652);
+            double value = (double) kilogramsforcepercubiccentimeter;
+            return new SpecificWeight((value*9806650.19960652));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilogramsForcePerCubicMeter(double kilogramsforcepercubicmeter)
         {
-            return new SpecificWeight(kilogramsforcepercubicmeter*9.80665019960652);
+            double value = (double) kilogramsforcepercubicmeter;
+            return new SpecificWeight(value*9.80665019960652);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMeter(int kilogramsforcepercubicmeter)
+#else
+        public static SpecificWeight FromKilogramsForcePerCubicMeter(QuantityValue kilogramsforcepercubicmeter)
         {
-            return new SpecificWeight(kilogramsforcepercubicmeter*9.80665019960652);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMeter(long kilogramsforcepercubicmeter)
-        {
-            return new SpecificWeight(kilogramsforcepercubicmeter*9.80665019960652);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMeter(decimal kilogramsforcepercubicmeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(kilogramsforcepercubicmeter)*9.80665019960652);
+            double value = (double) kilogramsforcepercubicmeter;
+            return new SpecificWeight((value*9.80665019960652));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double kilogramsforcepercubicmillimeter)
         {
-            return new SpecificWeight(kilogramsforcepercubicmillimeter*9806650199.60653);
+            double value = (double) kilogramsforcepercubicmillimeter;
+            return new SpecificWeight(value*9806650199.60653);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(int kilogramsforcepercubicmillimeter)
+#else
+        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(QuantityValue kilogramsforcepercubicmillimeter)
         {
-            return new SpecificWeight(kilogramsforcepercubicmillimeter*9806650199.60653);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(long kilogramsforcepercubicmillimeter)
-        {
-            return new SpecificWeight(kilogramsforcepercubicmillimeter*9806650199.60653);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(decimal kilogramsforcepercubicmillimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(kilogramsforcepercubicmillimeter)*9806650199.60653);
+            double value = (double) kilogramsforcepercubicmillimeter;
+            return new SpecificWeight((value*9806650199.60653));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double kilonewtonspercubiccentimeter)
         {
-            return new SpecificWeight((kilonewtonspercubiccentimeter*1000000) * 1e3d);
+            double value = (double) kilonewtonspercubiccentimeter;
+            return new SpecificWeight((value*1000000) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(int kilonewtonspercubiccentimeter)
+#else
+        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(QuantityValue kilonewtonspercubiccentimeter)
         {
-            return new SpecificWeight((kilonewtonspercubiccentimeter*1000000) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(long kilonewtonspercubiccentimeter)
-        {
-            return new SpecificWeight((kilonewtonspercubiccentimeter*1000000) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(decimal kilonewtonspercubiccentimeter)
-        {
-            return new SpecificWeight((Convert.ToDouble(kilonewtonspercubiccentimeter)*1000000) * 1e3d);
+            double value = (double) kilonewtonspercubiccentimeter;
+            return new SpecificWeight(((value*1000000) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilonewtonsPerCubicMeter(double kilonewtonspercubicmeter)
         {
-            return new SpecificWeight((kilonewtonspercubicmeter) * 1e3d);
+            double value = (double) kilonewtonspercubicmeter;
+            return new SpecificWeight((value) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMeter(int kilonewtonspercubicmeter)
+#else
+        public static SpecificWeight FromKilonewtonsPerCubicMeter(QuantityValue kilonewtonspercubicmeter)
         {
-            return new SpecificWeight((kilonewtonspercubicmeter) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMeter(long kilonewtonspercubicmeter)
-        {
-            return new SpecificWeight((kilonewtonspercubicmeter) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMeter(decimal kilonewtonspercubicmeter)
-        {
-            return new SpecificWeight((Convert.ToDouble(kilonewtonspercubicmeter)) * 1e3d);
+            double value = (double) kilonewtonspercubicmeter;
+            return new SpecificWeight(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double kilonewtonspercubicmillimeter)
         {
-            return new SpecificWeight((kilonewtonspercubicmillimeter*1000000000) * 1e3d);
+            double value = (double) kilonewtonspercubicmillimeter;
+            return new SpecificWeight((value*1000000000) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(int kilonewtonspercubicmillimeter)
+#else
+        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(QuantityValue kilonewtonspercubicmillimeter)
         {
-            return new SpecificWeight((kilonewtonspercubicmillimeter*1000000000) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(long kilonewtonspercubicmillimeter)
-        {
-            return new SpecificWeight((kilonewtonspercubicmillimeter*1000000000) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(decimal kilonewtonspercubicmillimeter)
-        {
-            return new SpecificWeight((Convert.ToDouble(kilonewtonspercubicmillimeter)*1000000000) * 1e3d);
+            double value = (double) kilonewtonspercubicmillimeter;
+            return new SpecificWeight(((value*1000000000) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilopoundsForcePerCubicFoot(double kilopoundsforcepercubicfoot)
         {
-            return new SpecificWeight((kilopoundsforcepercubicfoot*157.087477433193) * 1e3d);
+            double value = (double) kilopoundsforcepercubicfoot;
+            return new SpecificWeight((value*157.087477433193) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicFoot(int kilopoundsforcepercubicfoot)
+#else
+        public static SpecificWeight FromKilopoundsForcePerCubicFoot(QuantityValue kilopoundsforcepercubicfoot)
         {
-            return new SpecificWeight((kilopoundsforcepercubicfoot*157.087477433193) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicFoot(long kilopoundsforcepercubicfoot)
-        {
-            return new SpecificWeight((kilopoundsforcepercubicfoot*157.087477433193) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicFoot of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicFoot(decimal kilopoundsforcepercubicfoot)
-        {
-            return new SpecificWeight((Convert.ToDouble(kilopoundsforcepercubicfoot)*157.087477433193) * 1e3d);
+            double value = (double) kilopoundsforcepercubicfoot;
+            return new SpecificWeight(((value*157.087477433193) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromKilopoundsForcePerCubicInch(double kilopoundsforcepercubicinch)
         {
-            return new SpecificWeight((kilopoundsforcepercubicinch*271447.161004558) * 1e3d);
+            double value = (double) kilopoundsforcepercubicinch;
+            return new SpecificWeight((value*271447.161004558) * 1e3d);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicInch(int kilopoundsforcepercubicinch)
+#else
+        public static SpecificWeight FromKilopoundsForcePerCubicInch(QuantityValue kilopoundsforcepercubicinch)
         {
-            return new SpecificWeight((kilopoundsforcepercubicinch*271447.161004558) * 1e3d);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicInch(long kilopoundsforcepercubicinch)
-        {
-            return new SpecificWeight((kilopoundsforcepercubicinch*271447.161004558) * 1e3d);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicInch of type decimal.
-        /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicInch(decimal kilopoundsforcepercubicinch)
-        {
-            return new SpecificWeight((Convert.ToDouble(kilopoundsforcepercubicinch)*271447.161004558) * 1e3d);
+            double value = (double) kilopoundsforcepercubicinch;
+            return new SpecificWeight(((value*271447.161004558) * 1e3d));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromNewtonsPerCubicCentimeter(double newtonspercubiccentimeter)
         {
-            return new SpecificWeight(newtonspercubiccentimeter*1000000);
+            double value = (double) newtonspercubiccentimeter;
+            return new SpecificWeight(value*1000000);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicCentimeter(int newtonspercubiccentimeter)
+#else
+        public static SpecificWeight FromNewtonsPerCubicCentimeter(QuantityValue newtonspercubiccentimeter)
         {
-            return new SpecificWeight(newtonspercubiccentimeter*1000000);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicCentimeter(long newtonspercubiccentimeter)
-        {
-            return new SpecificWeight(newtonspercubiccentimeter*1000000);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicCentimeter(decimal newtonspercubiccentimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(newtonspercubiccentimeter)*1000000);
+            double value = (double) newtonspercubiccentimeter;
+            return new SpecificWeight((value*1000000));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromNewtonsPerCubicMeter(double newtonspercubicmeter)
         {
-            return new SpecificWeight(newtonspercubicmeter);
+            double value = (double) newtonspercubicmeter;
+            return new SpecificWeight(value);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMeter(int newtonspercubicmeter)
+#else
+        public static SpecificWeight FromNewtonsPerCubicMeter(QuantityValue newtonspercubicmeter)
         {
-            return new SpecificWeight(newtonspercubicmeter);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMeter(long newtonspercubicmeter)
-        {
-            return new SpecificWeight(newtonspercubicmeter);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMeter(decimal newtonspercubicmeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(newtonspercubicmeter));
+            double value = (double) newtonspercubicmeter;
+            return new SpecificWeight((value));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromNewtonsPerCubicMillimeter(double newtonspercubicmillimeter)
         {
-            return new SpecificWeight(newtonspercubicmillimeter*1000000000);
+            double value = (double) newtonspercubicmillimeter;
+            return new SpecificWeight(value*1000000000);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMillimeter(int newtonspercubicmillimeter)
+#else
+        public static SpecificWeight FromNewtonsPerCubicMillimeter(QuantityValue newtonspercubicmillimeter)
         {
-            return new SpecificWeight(newtonspercubicmillimeter*1000000000);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMillimeter(long newtonspercubicmillimeter)
-        {
-            return new SpecificWeight(newtonspercubicmillimeter*1000000000);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMillimeter(decimal newtonspercubicmillimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(newtonspercubicmillimeter)*1000000000);
+            double value = (double) newtonspercubicmillimeter;
+            return new SpecificWeight((value*1000000000));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicFoot.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromPoundsForcePerCubicFoot(double poundsforcepercubicfoot)
         {
-            return new SpecificWeight(poundsforcepercubicfoot*157.087477433193);
+            double value = (double) poundsforcepercubicfoot;
+            return new SpecificWeight(value*157.087477433193);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicFoot(int poundsforcepercubicfoot)
+#else
+        public static SpecificWeight FromPoundsForcePerCubicFoot(QuantityValue poundsforcepercubicfoot)
         {
-            return new SpecificWeight(poundsforcepercubicfoot*157.087477433193);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicFoot(long poundsforcepercubicfoot)
-        {
-            return new SpecificWeight(poundsforcepercubicfoot*157.087477433193);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicFoot of type decimal.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicFoot(decimal poundsforcepercubicfoot)
-        {
-            return new SpecificWeight(Convert.ToDouble(poundsforcepercubicfoot)*157.087477433193);
+            double value = (double) poundsforcepercubicfoot;
+            return new SpecificWeight((value*157.087477433193));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicInch.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromPoundsForcePerCubicInch(double poundsforcepercubicinch)
         {
-            return new SpecificWeight(poundsforcepercubicinch*271447.161004558);
+            double value = (double) poundsforcepercubicinch;
+            return new SpecificWeight(value*271447.161004558);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicInch(int poundsforcepercubicinch)
+#else
+        public static SpecificWeight FromPoundsForcePerCubicInch(QuantityValue poundsforcepercubicinch)
         {
-            return new SpecificWeight(poundsforcepercubicinch*271447.161004558);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicInch(long poundsforcepercubicinch)
-        {
-            return new SpecificWeight(poundsforcepercubicinch*271447.161004558);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicInch of type decimal.
-        /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicInch(decimal poundsforcepercubicinch)
-        {
-            return new SpecificWeight(Convert.ToDouble(poundsforcepercubicinch)*271447.161004558);
+            double value = (double) poundsforcepercubicinch;
+            return new SpecificWeight((value*271447.161004558));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromTonnesForcePerCubicCentimeter(double tonnesforcepercubiccentimeter)
         {
-            return new SpecificWeight(tonnesforcepercubiccentimeter*9806650199.60653);
+            double value = (double) tonnesforcepercubiccentimeter;
+            return new SpecificWeight(value*9806650199.60653);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicCentimeter(int tonnesforcepercubiccentimeter)
+#else
+        public static SpecificWeight FromTonnesForcePerCubicCentimeter(QuantityValue tonnesforcepercubiccentimeter)
         {
-            return new SpecificWeight(tonnesforcepercubiccentimeter*9806650199.60653);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicCentimeter(long tonnesforcepercubiccentimeter)
-        {
-            return new SpecificWeight(tonnesforcepercubiccentimeter*9806650199.60653);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicCentimeter(decimal tonnesforcepercubiccentimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(tonnesforcepercubiccentimeter)*9806650199.60653);
+            double value = (double) tonnesforcepercubiccentimeter;
+            return new SpecificWeight((value*9806650199.60653));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromTonnesForcePerCubicMeter(double tonnesforcepercubicmeter)
         {
-            return new SpecificWeight(tonnesforcepercubicmeter*9806.65019960653);
+            double value = (double) tonnesforcepercubicmeter;
+            return new SpecificWeight(value*9806.65019960653);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMeter(int tonnesforcepercubicmeter)
+#else
+        public static SpecificWeight FromTonnesForcePerCubicMeter(QuantityValue tonnesforcepercubicmeter)
         {
-            return new SpecificWeight(tonnesforcepercubicmeter*9806.65019960653);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMeter(long tonnesforcepercubicmeter)
-        {
-            return new SpecificWeight(tonnesforcepercubicmeter*9806.65019960653);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMeter(decimal tonnesforcepercubicmeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(tonnesforcepercubicmeter)*9806.65019960653);
+            double value = (double) tonnesforcepercubicmeter;
+            return new SpecificWeight((value*9806.65019960653));
         }
 #endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
         /// </summary>
-#if NETFX_CORE
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public static SpecificWeight FromTonnesForcePerCubicMillimeter(double tonnesforcepercubicmillimeter)
         {
-            return new SpecificWeight(tonnesforcepercubicmillimeter*9806650199606.53);
+            double value = (double) tonnesforcepercubicmillimeter;
+            return new SpecificWeight(value*9806650199606.53);
         }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMillimeter(int tonnesforcepercubicmillimeter)
+#else
+        public static SpecificWeight FromTonnesForcePerCubicMillimeter(QuantityValue tonnesforcepercubicmillimeter)
         {
-            return new SpecificWeight(tonnesforcepercubicmillimeter*9806650199606.53);
-        }
-
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMillimeter(long tonnesforcepercubicmillimeter)
-        {
-            return new SpecificWeight(tonnesforcepercubicmillimeter*9806650199606.53);
-        }
-
-        // Windows Runtime Component does not support decimal type
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMillimeter(decimal tonnesforcepercubicmillimeter)
-        {
-            return new SpecificWeight(Convert.ToDouble(tonnesforcepercubicmillimeter)*9806650199606.53);
+            double value = (double) tonnesforcepercubicmillimeter;
+            return new SpecificWeight((value*9806650199606.53));
         }
 #endif
 
@@ -879,52 +559,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
         /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(double? kilogramsforcepercubiccentimeter)
-        {
-            if (kilogramsforcepercubiccentimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(int? kilogramsforcepercubiccentimeter)
-        {
-            if (kilogramsforcepercubiccentimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(long? kilogramsforcepercubiccentimeter)
-        {
-            if (kilogramsforcepercubiccentimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilogramsForcePerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(decimal? kilogramsforcepercubiccentimeter)
+        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(QuantityValue? kilogramsforcepercubiccentimeter)
         {
             if (kilogramsforcepercubiccentimeter.HasValue)
             {
@@ -939,52 +574,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
         /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMeter(double? kilogramsforcepercubicmeter)
-        {
-            if (kilogramsforcepercubicmeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMeter(int? kilogramsforcepercubicmeter)
-        {
-            if (kilogramsforcepercubicmeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMeter(long? kilogramsforcepercubicmeter)
-        {
-            if (kilogramsforcepercubicmeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilogramsForcePerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMeter(decimal? kilogramsforcepercubicmeter)
+        public static SpecificWeight? FromKilogramsForcePerCubicMeter(QuantityValue? kilogramsforcepercubicmeter)
         {
             if (kilogramsforcepercubicmeter.HasValue)
             {
@@ -999,52 +589,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
         /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(double? kilogramsforcepercubicmillimeter)
-        {
-            if (kilogramsforcepercubicmillimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(int? kilogramsforcepercubicmillimeter)
-        {
-            if (kilogramsforcepercubicmillimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(long? kilogramsforcepercubicmillimeter)
-        {
-            if (kilogramsforcepercubicmillimeter.HasValue)
-            {
-                return FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilogramsForcePerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(decimal? kilogramsforcepercubicmillimeter)
+        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(QuantityValue? kilogramsforcepercubicmillimeter)
         {
             if (kilogramsforcepercubicmillimeter.HasValue)
             {
@@ -1059,52 +604,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
         /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(double? kilonewtonspercubiccentimeter)
-        {
-            if (kilonewtonspercubiccentimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(int? kilonewtonspercubiccentimeter)
-        {
-            if (kilonewtonspercubiccentimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(long? kilonewtonspercubiccentimeter)
-        {
-            if (kilonewtonspercubiccentimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilonewtonsPerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(decimal? kilonewtonspercubiccentimeter)
+        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(QuantityValue? kilonewtonspercubiccentimeter)
         {
             if (kilonewtonspercubiccentimeter.HasValue)
             {
@@ -1119,52 +619,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
         /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMeter(double? kilonewtonspercubicmeter)
-        {
-            if (kilonewtonspercubicmeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMeter(int? kilonewtonspercubicmeter)
-        {
-            if (kilonewtonspercubicmeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMeter(long? kilonewtonspercubicmeter)
-        {
-            if (kilonewtonspercubicmeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilonewtonsPerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMeter(decimal? kilonewtonspercubicmeter)
+        public static SpecificWeight? FromKilonewtonsPerCubicMeter(QuantityValue? kilonewtonspercubicmeter)
         {
             if (kilonewtonspercubicmeter.HasValue)
             {
@@ -1179,52 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
         /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(double? kilonewtonspercubicmillimeter)
-        {
-            if (kilonewtonspercubicmillimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(int? kilonewtonspercubicmillimeter)
-        {
-            if (kilonewtonspercubicmillimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(long? kilonewtonspercubicmillimeter)
-        {
-            if (kilonewtonspercubicmillimeter.HasValue)
-            {
-                return FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilonewtonsPerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(decimal? kilonewtonspercubicmillimeter)
+        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(QuantityValue? kilonewtonspercubicmillimeter)
         {
             if (kilonewtonspercubicmillimeter.HasValue)
             {
@@ -1239,52 +649,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
         /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(double? kilopoundsforcepercubicfoot)
-        {
-            if (kilopoundsforcepercubicfoot.HasValue)
-            {
-                return FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(int? kilopoundsforcepercubicfoot)
-        {
-            if (kilopoundsforcepercubicfoot.HasValue)
-            {
-                return FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(long? kilopoundsforcepercubicfoot)
-        {
-            if (kilopoundsforcepercubicfoot.HasValue)
-            {
-                return FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilopoundsForcePerCubicFoot of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(decimal? kilopoundsforcepercubicfoot)
+        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(QuantityValue? kilopoundsforcepercubicfoot)
         {
             if (kilopoundsforcepercubicfoot.HasValue)
             {
@@ -1299,52 +664,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
         /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicInch(double? kilopoundsforcepercubicinch)
-        {
-            if (kilopoundsforcepercubicinch.HasValue)
-            {
-                return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicInch(int? kilopoundsforcepercubicinch)
-        {
-            if (kilopoundsforcepercubicinch.HasValue)
-            {
-                return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicInch(long? kilopoundsforcepercubicinch)
-        {
-            if (kilopoundsforcepercubicinch.HasValue)
-            {
-                return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from KilopoundsForcePerCubicInch of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromKilopoundsForcePerCubicInch(decimal? kilopoundsforcepercubicinch)
+        public static SpecificWeight? FromKilopoundsForcePerCubicInch(QuantityValue? kilopoundsforcepercubicinch)
         {
             if (kilopoundsforcepercubicinch.HasValue)
             {
@@ -1359,52 +679,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
         /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicCentimeter(double? newtonspercubiccentimeter)
-        {
-            if (newtonspercubiccentimeter.HasValue)
-            {
-                return FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicCentimeter(int? newtonspercubiccentimeter)
-        {
-            if (newtonspercubiccentimeter.HasValue)
-            {
-                return FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicCentimeter(long? newtonspercubiccentimeter)
-        {
-            if (newtonspercubiccentimeter.HasValue)
-            {
-                return FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from NewtonsPerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicCentimeter(decimal? newtonspercubiccentimeter)
+        public static SpecificWeight? FromNewtonsPerCubicCentimeter(QuantityValue? newtonspercubiccentimeter)
         {
             if (newtonspercubiccentimeter.HasValue)
             {
@@ -1419,52 +694,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
         /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMeter(double? newtonspercubicmeter)
-        {
-            if (newtonspercubicmeter.HasValue)
-            {
-                return FromNewtonsPerCubicMeter(newtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMeter(int? newtonspercubicmeter)
-        {
-            if (newtonspercubicmeter.HasValue)
-            {
-                return FromNewtonsPerCubicMeter(newtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMeter(long? newtonspercubicmeter)
-        {
-            if (newtonspercubicmeter.HasValue)
-            {
-                return FromNewtonsPerCubicMeter(newtonspercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from NewtonsPerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMeter(decimal? newtonspercubicmeter)
+        public static SpecificWeight? FromNewtonsPerCubicMeter(QuantityValue? newtonspercubicmeter)
         {
             if (newtonspercubicmeter.HasValue)
             {
@@ -1479,52 +709,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
         /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMillimeter(double? newtonspercubicmillimeter)
-        {
-            if (newtonspercubicmillimeter.HasValue)
-            {
-                return FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMillimeter(int? newtonspercubicmillimeter)
-        {
-            if (newtonspercubicmillimeter.HasValue)
-            {
-                return FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMillimeter(long? newtonspercubicmillimeter)
-        {
-            if (newtonspercubicmillimeter.HasValue)
-            {
-                return FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from NewtonsPerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromNewtonsPerCubicMillimeter(decimal? newtonspercubicmillimeter)
+        public static SpecificWeight? FromNewtonsPerCubicMillimeter(QuantityValue? newtonspercubicmillimeter)
         {
             if (newtonspercubicmillimeter.HasValue)
             {
@@ -1539,52 +724,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
         /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicFoot(double? poundsforcepercubicfoot)
-        {
-            if (poundsforcepercubicfoot.HasValue)
-            {
-                return FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicFoot(int? poundsforcepercubicfoot)
-        {
-            if (poundsforcepercubicfoot.HasValue)
-            {
-                return FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicFoot(long? poundsforcepercubicfoot)
-        {
-            if (poundsforcepercubicfoot.HasValue)
-            {
-                return FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from PoundsForcePerCubicFoot of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicFoot(decimal? poundsforcepercubicfoot)
+        public static SpecificWeight? FromPoundsForcePerCubicFoot(QuantityValue? poundsforcepercubicfoot)
         {
             if (poundsforcepercubicfoot.HasValue)
             {
@@ -1599,52 +739,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
         /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicInch(double? poundsforcepercubicinch)
-        {
-            if (poundsforcepercubicinch.HasValue)
-            {
-                return FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicInch(int? poundsforcepercubicinch)
-        {
-            if (poundsforcepercubicinch.HasValue)
-            {
-                return FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicInch(long? poundsforcepercubicinch)
-        {
-            if (poundsforcepercubicinch.HasValue)
-            {
-                return FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from PoundsForcePerCubicInch of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromPoundsForcePerCubicInch(decimal? poundsforcepercubicinch)
+        public static SpecificWeight? FromPoundsForcePerCubicInch(QuantityValue? poundsforcepercubicinch)
         {
             if (poundsforcepercubicinch.HasValue)
             {
@@ -1659,52 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
         /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(double? tonnesforcepercubiccentimeter)
-        {
-            if (tonnesforcepercubiccentimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(int? tonnesforcepercubiccentimeter)
-        {
-            if (tonnesforcepercubiccentimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(long? tonnesforcepercubiccentimeter)
-        {
-            if (tonnesforcepercubiccentimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from TonnesForcePerCubicCentimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(decimal? tonnesforcepercubiccentimeter)
+        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(QuantityValue? tonnesforcepercubiccentimeter)
         {
             if (tonnesforcepercubiccentimeter.HasValue)
             {
@@ -1719,52 +769,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
         /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMeter(double? tonnesforcepercubicmeter)
-        {
-            if (tonnesforcepercubicmeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMeter(int? tonnesforcepercubicmeter)
-        {
-            if (tonnesforcepercubicmeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMeter(long? tonnesforcepercubicmeter)
-        {
-            if (tonnesforcepercubicmeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from TonnesForcePerCubicMeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMeter(decimal? tonnesforcepercubicmeter)
+        public static SpecificWeight? FromTonnesForcePerCubicMeter(QuantityValue? tonnesforcepercubicmeter)
         {
             if (tonnesforcepercubicmeter.HasValue)
             {
@@ -1779,52 +784,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
         /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(double? tonnesforcepercubicmillimeter)
-        {
-            if (tonnesforcepercubicmillimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(int? tonnesforcepercubicmillimeter)
-        {
-            if (tonnesforcepercubicmillimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(long? tonnesforcepercubicmillimeter)
-        {
-            if (tonnesforcepercubicmillimeter.HasValue)
-            {
-                return FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificWeight from TonnesForcePerCubicMillimeter of type decimal.
-        /// </summary>
-        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(decimal? tonnesforcepercubicmillimeter)
+        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(QuantityValue? tonnesforcepercubicmillimeter)
         {
             if (tonnesforcepercubicmillimeter.HasValue)
             {
@@ -1841,45 +801,51 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
         /// </summary>
-        /// <param name="val">Value to convert from.</param>
+        /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificWeight unit value.</returns>
-        public static SpecificWeight From(double val, SpecificWeightUnit fromUnit)
+#if WINDOWS_UWP
+        // Fix name conflict with parameter "value"
+        [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
+        public static SpecificWeight From(double value, SpecificWeightUnit fromUnit)
+#else
+        public static SpecificWeight From(QuantityValue value, SpecificWeightUnit fromUnit)
+#endif
         {
             switch (fromUnit)
             {
                 case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
-                    return FromKilogramsForcePerCubicCentimeter(val);
+                    return FromKilogramsForcePerCubicCentimeter(value);
                 case SpecificWeightUnit.KilogramForcePerCubicMeter:
-                    return FromKilogramsForcePerCubicMeter(val);
+                    return FromKilogramsForcePerCubicMeter(value);
                 case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
-                    return FromKilogramsForcePerCubicMillimeter(val);
+                    return FromKilogramsForcePerCubicMillimeter(value);
                 case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
-                    return FromKilonewtonsPerCubicCentimeter(val);
+                    return FromKilonewtonsPerCubicCentimeter(value);
                 case SpecificWeightUnit.KilonewtonPerCubicMeter:
-                    return FromKilonewtonsPerCubicMeter(val);
+                    return FromKilonewtonsPerCubicMeter(value);
                 case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
-                    return FromKilonewtonsPerCubicMillimeter(val);
+                    return FromKilonewtonsPerCubicMillimeter(value);
                 case SpecificWeightUnit.KilopoundForcePerCubicFoot:
-                    return FromKilopoundsForcePerCubicFoot(val);
+                    return FromKilopoundsForcePerCubicFoot(value);
                 case SpecificWeightUnit.KilopoundForcePerCubicInch:
-                    return FromKilopoundsForcePerCubicInch(val);
+                    return FromKilopoundsForcePerCubicInch(value);
                 case SpecificWeightUnit.NewtonPerCubicCentimeter:
-                    return FromNewtonsPerCubicCentimeter(val);
+                    return FromNewtonsPerCubicCentimeter(value);
                 case SpecificWeightUnit.NewtonPerCubicMeter:
-                    return FromNewtonsPerCubicMeter(val);
+                    return FromNewtonsPerCubicMeter(value);
                 case SpecificWeightUnit.NewtonPerCubicMillimeter:
-                    return FromNewtonsPerCubicMillimeter(val);
+                    return FromNewtonsPerCubicMillimeter(value);
                 case SpecificWeightUnit.PoundForcePerCubicFoot:
-                    return FromPoundsForcePerCubicFoot(val);
+                    return FromPoundsForcePerCubicFoot(value);
                 case SpecificWeightUnit.PoundForcePerCubicInch:
-                    return FromPoundsForcePerCubicInch(val);
+                    return FromPoundsForcePerCubicInch(value);
                 case SpecificWeightUnit.TonneForcePerCubicCentimeter:
-                    return FromTonnesForcePerCubicCentimeter(val);
+                    return FromTonnesForcePerCubicCentimeter(value);
                 case SpecificWeightUnit.TonneForcePerCubicMeter:
-                    return FromTonnesForcePerCubicMeter(val);
+                    return FromTonnesForcePerCubicMeter(value);
                 case SpecificWeightUnit.TonneForcePerCubicMillimeter:
-                    return FromTonnesForcePerCubicMillimeter(val);
+                    return FromTonnesForcePerCubicMillimeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1894,7 +860,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificWeight unit value.</returns>
-        public static SpecificWeight? From(double? value, SpecificWeightUnit fromUnit)
+        public static SpecificWeight? From(QuantityValue? value, SpecificWeightUnit fromUnit)
         {
             if (!value.HasValue)
             {
