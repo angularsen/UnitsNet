@@ -27,9 +27,9 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
 
-        protected override double CaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E3;
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 2.410800386e-4;
 
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E6;
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 2.410800386e-7;
 
 
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
@@ -40,7 +40,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778E-10;
 
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 2.77777e-4;
 
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
