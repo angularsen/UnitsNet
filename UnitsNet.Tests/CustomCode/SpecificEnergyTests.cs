@@ -27,10 +27,9 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
 
-        protected override double CaloriesPerGramInOneJoulePerKilogram => 2.410800386e-4;
 
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 2.410800386e-7;
-
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-4;
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-7;
 
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
 
