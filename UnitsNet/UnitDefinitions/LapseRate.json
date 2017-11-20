@@ -11,7 +11,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°C/m" ]
+          "Abbreviations": [ "∆°C/km" ]
         }
       ]
     }

@@ -41,11 +41,40 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class LapseRateTests : LapseRateTestsBase
     {
         protected override double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer => 1e0;
+
+        [Fact]
+        public void TemperatureDeltaDividedByLapseRateEqualsLength()
+        {
+            Length length = TemperatureDelta.FromDegreesCelsiusDelta(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(length, Length.FromKilometers(10));
+        }
+
+        [Fact]
+        public void TemperatureDeltaDividedByLengthEqualsLapseRate()
+        {
+            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsiusDelta(50) / Length.FromKilometers(10);
+            Assert.Equal(lapseRate, LapseRate.FromDegreesCelciusPerKilometer(5));
+        }
+
+        [Fact]
+        public void LengthMultipliedByLapseRateEqualsTemperatureDelta()
+        {
+            TemperatureDelta temperatureDelta = Length.FromKilometers(10) * LapseRate.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+        }
+
+        [Fact]
+        public void LapseRateMultipliedByLengthEqualsTemperatureDelta()
+        {
+            TemperatureDelta temperatureDelta = LapseRate.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+        }
     }
 }
