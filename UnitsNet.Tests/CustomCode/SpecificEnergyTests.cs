@@ -39,7 +39,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-10;
 
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 2.77777e-4;
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-4;
 
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
