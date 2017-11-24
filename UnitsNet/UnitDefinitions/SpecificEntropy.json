@@ -25,7 +25,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/(kg*C)" ]
+          "Abbreviations": [ "J/kg.C" ]
         }
       ]
     },
@@ -38,7 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal/(g*K)" ]
+          "Abbreviations": [ "cal/g.K" ]
         }
       ]
     }

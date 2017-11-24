@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The SpecificEntropy
+    ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
