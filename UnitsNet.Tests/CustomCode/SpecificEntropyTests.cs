@@ -46,10 +46,10 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEntropyTests : SpecificEntropyTestsBase
     {
-        protected override double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.39005e-4;
+        protected override double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-4;
         protected override double JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin => 1e0;
         protected override double JoulesPerKilogramKelvinInOneJoulePerKilogramKelvin => 1e0;
-        protected override double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.39005e-07;
+        protected override double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-07;
         protected override double KilojoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin => 1e-03;
         protected override double KilojoulesPerKilogramKelvinInOneJoulePerKilogramKelvin => 1e-03;
         protected override double MegajoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin => 1e-06;
