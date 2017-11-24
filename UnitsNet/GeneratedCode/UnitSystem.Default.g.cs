@@ -2723,7 +2723,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) SpecificEntropyUnit.JoulePerKilogramKelvin,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "J/(kg*K)"),
+                                new AbbreviationsForCulture("en-US", "J/kg.K"),
                             }),
                         new CulturesForEnumValue((int) SpecificEntropyUnit.KilocaloriePerGramKelvin,
                             new[]
@@ -2738,7 +2738,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) SpecificEntropyUnit.KilojoulePerKilogramKelvin,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kJ/(kg*K)"),
+                                new AbbreviationsForCulture("en-US", "kJ/kg.K"),
                             }),
                         new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius,
                             new[]
@@ -2748,7 +2748,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramKelvin,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MJ/(kg*K)"),
+                                new AbbreviationsForCulture("en-US", "MJ/kg.K"),
                             }),
                     }),
                 new UnitLocalization(typeof (SpecificWeightUnit),
