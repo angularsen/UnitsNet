@@ -272,7 +272,7 @@ $pad = 25
 
 # Parse unit definitions from .json files and populate properties
 $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
-    | %{(Get-Content $_.FullName | Out-String)} `
+    | %{(Get-Content $_.FullName -Encoding "UTF8" | Out-String)} `
     | ConvertFrom-Json `
     | Add-PrefixUnits `
     | Set-DefaultValues `

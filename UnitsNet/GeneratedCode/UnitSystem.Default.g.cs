@@ -2713,82 +2713,82 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kgf/cmÂ³"),
+                                new AbbreviationsForCulture("en-US", "kgf/cm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kgf/mÂ³"),
+                                new AbbreviationsForCulture("en-US", "kgf/m³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicMillimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kgf/mmÂ³"),
+                                new AbbreviationsForCulture("en-US", "kgf/mm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kN/cmÂ³"),
+                                new AbbreviationsForCulture("en-US", "kN/cm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kN/mÂ³"),
+                                new AbbreviationsForCulture("en-US", "kN/m³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicMillimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kN/mmÂ³"),
+                                new AbbreviationsForCulture("en-US", "kN/mm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilopoundForcePerCubicFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kipf/ftÂ³"),
+                                new AbbreviationsForCulture("en-US", "kipf/ft³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.KilopoundForcePerCubicInch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kipf/inÂ³"),
+                                new AbbreviationsForCulture("en-US", "kipf/in³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "N/cmÂ³"),
+                                new AbbreviationsForCulture("en-US", "N/cm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "N/mÂ³"),
+                                new AbbreviationsForCulture("en-US", "N/m³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicMillimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "N/mmÂ³"),
+                                new AbbreviationsForCulture("en-US", "N/mm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.PoundForcePerCubicFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lbf/ftÂ³"),
+                                new AbbreviationsForCulture("en-US", "lbf/ft³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.PoundForcePerCubicInch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lbf/inÂ³"),
+                                new AbbreviationsForCulture("en-US", "lbf/in³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "tf/cmÂ³"),
+                                new AbbreviationsForCulture("en-US", "tf/cm³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "tf/mÂ³"),
+                                new AbbreviationsForCulture("en-US", "tf/m³"),
                             }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicMillimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "tf/mmÂ³"),
+                                new AbbreviationsForCulture("en-US", "tf/mm³"),
                             }),
                     }),
                 new UnitLocalization(typeof (SpeedUnit),
