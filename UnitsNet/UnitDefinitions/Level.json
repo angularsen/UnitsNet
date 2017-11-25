@@ -1,9 +1,9 @@
-{
+﻿{
   "Name": "Level",
   "BaseUnit": "Decibel",
   "Logarithmic": "True",
   "LogarithmicScalingFactor": "1",
-  "XmlDoc": "Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q0, expressed in dimensionless units.",
+  "XmlDoc": "Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.",
   "Units": [
     {
       "SingularName": "Decibel",

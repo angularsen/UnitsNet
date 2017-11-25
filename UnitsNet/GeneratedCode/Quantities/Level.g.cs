@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q0, expressed in dimensionless units.
+    ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
