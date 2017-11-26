@@ -1526,7 +1526,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) LapseRateUnit.DegreeCelsiusPerKilometer,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "°C/m"),
+                                new AbbreviationsForCulture("en-US", "∆°C/km"),
                             }),
                     }),
                 new UnitLocalization(typeof (LengthUnit),
