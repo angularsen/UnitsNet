@@ -44,10 +44,13 @@ namespace UnitsNet.Units
         Undefined = 0,
         CentimeterPerSecondSquared,
         DecimeterPerSecondSquared,
+        FootPerSecondSquared,
+        InchPerSecondSquared,
         KilometerPerSecondSquared,
         MeterPerSecondSquared,
         MicrometerPerSecondSquared,
         MillimeterPerSecondSquared,
         NanometerPerSecondSquared,
+        StandardGravity,
     }
 }
