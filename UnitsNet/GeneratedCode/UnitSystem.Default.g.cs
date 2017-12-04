@@ -64,6 +64,16 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dm/s²"),
                             }),
+                        new CulturesForEnumValue((int) AccelerationUnit.FootPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.InchPerSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in/s²"),
+                            }),
                         new CulturesForEnumValue((int) AccelerationUnit.KilometerPerSecondSquared,
                             new[]
                             {
@@ -88,6 +98,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nm/s²"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.StandardGravity,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g"),
                             }),
                     }),
                 new UnitLocalization(typeof (AmountOfSubstanceUnit),

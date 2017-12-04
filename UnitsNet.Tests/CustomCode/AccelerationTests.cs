@@ -36,5 +36,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrometerPerSecondSquaredInOneMeterPerSecondSquared => 1E6;
 
         protected override double NanometerPerSecondSquaredInOneMeterPerSecondSquared => 1E9;
+
+        protected override double StandardGravityInOneMeterPerSecondSquared => 0.1019727;
+
+        protected override double InchesPerSecondSquaredInOneMeterPerSecondSquared => 39.3700787;
+
+        protected override double FeetPerSecondSquaredInOneMeterPerSecondSquared => 3.28084;
     }
 }
