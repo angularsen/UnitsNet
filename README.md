@@ -85,7 +85,7 @@ using UnitsNet.Extensions.NumberToTimeSpan;
 Speed speed = 30.Kilometers() / 1.Hours(); // 30 km/h (using Duration type)
 Length distance = speed * 2.h(); // 60 km (using TimeSpan type)
 
-Acceleration stdGravity = 9.80665.MeterPerSecondSquared();
+Acceleration stdGravity = 9.80665.MetersPerSecondSquared();
 Force weight = 80.Kilograms() * stdGravity; // 80 kilograms-force or 784.532 newtons
 ```
 
