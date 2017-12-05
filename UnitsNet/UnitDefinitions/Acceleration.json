@@ -1,20 +1,56 @@
 ﻿{
-    "Name": "Acceleration",
-    "BaseUnit": "MeterPerSecondSquared",
-    "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
-    "Units": [
+  "Name": "Acceleration",
+  "BaseUnit": "MeterPerSecondSquared",
+  "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
+  "Units": [
+    {
+      "SingularName": "MeterPerSecondSquared",
+      "PluralName": "MeterPerSecondSquared",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
         {
-            "SingularName": "MeterPerSecondSquared",
-            "PluralName": "MeterPerSecondSquared",
-            "FromUnitToBaseFunc": "x",
-            "FromBaseToUnitFunc": "x",
-            "Prefixes": ["Nano","Micro","Milli","Centi","Deci","Kilo"],
-            "Localization": [
-                {
-                    "Culture": "en-US",
-                    "Abbreviations": ["m/s²"]
-                }
-            ]
-        }        
-    ]
+          "Culture": "en-US",
+          "Abbreviations": [ "m/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerSecondSquared",
+      "PluralName": "InchesPerSecondSquared",
+      "FromUnitToBaseFunc": "x*0.0254",
+      "FromBaseToUnitFunc": "x/0.0254", 
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondSquared",
+      "PluralName": "FeetPerSecondSquared",
+      "FromUnitToBaseFunc": "x*0.304800",
+      "FromBaseToUnitFunc": "x/0.304800",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardGravity",
+      "PluralName": "StandardGravity",
+      "FromUnitToBaseFunc": "x*9.80665",
+      "FromBaseToUnitFunc": "x/9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g" ]
+        }
+      ]
+    }
+  ]
 }

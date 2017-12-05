@@ -146,6 +146,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Acceleration in FeetPerSecondSquared.
+        /// </summary>
+        public double FeetPerSecondSquared
+        {
+            get { return _meterPerSecondSquared*3.28084; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in InchesPerSecondSquared.
+        /// </summary>
+        public double InchesPerSecondSquared
+        {
+            get { return _meterPerSecondSquared*39.3700787; }
+        }
+
+        /// <summary>
         ///     Get Acceleration in KilometerPerSecondSquared.
         /// </summary>
         public double KilometerPerSecondSquared
@@ -183,6 +199,14 @@ namespace UnitsNet
         public double NanometerPerSecondSquared
         {
             get { return (_meterPerSecondSquared) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in StandardGravity.
+        /// </summary>
+        public double StandardGravity
+        {
+            get { return _meterPerSecondSquared*0.1019727; }
         }
 
         #endregion
@@ -227,6 +251,42 @@ namespace UnitsNet
         {
             double value = (double) decimeterpersecondsquared;
             return new Acceleration(((value) * 1e-1d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Acceleration from FeetPerSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerSecondSquared(double feetpersecondsquared)
+        {
+            double value = (double) feetpersecondsquared;
+            return new Acceleration(value*0.304800);
+        }
+#else
+        public static Acceleration FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
+        {
+            double value = (double) feetpersecondsquared;
+            return new Acceleration((value*0.304800));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Acceleration from InchesPerSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared)
+        {
+            double value = (double) inchespersecondsquared;
+            return new Acceleration(value/39.3700787);
+        }
+#else
+        public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
+        {
+            double value = (double) inchespersecondsquared;
+            return new Acceleration((value/39.3700787));
         }
 #endif
 
@@ -320,6 +380,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get Acceleration from StandardGravity.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromStandardGravity(double standardgravity)
+        {
+            double value = (double) standardgravity;
+            return new Acceleration(value*9.80665);
+        }
+#else
+        public static Acceleration FromStandardGravity(QuantityValue standardgravity)
+        {
+            double value = (double) standardgravity;
+            return new Acceleration((value*9.80665));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -345,6 +423,36 @@ namespace UnitsNet
             if (decimeterpersecondsquared.HasValue)
             {
                 return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable FeetPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromFeetPerSecondSquared(QuantityValue? feetpersecondsquared)
+        {
+            if (feetpersecondsquared.HasValue)
+            {
+                return FromFeetPerSecondSquared(feetpersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable InchesPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromInchesPerSecondSquared(QuantityValue? inchespersecondsquared)
+        {
+            if (inchespersecondsquared.HasValue)
+            {
+                return FromInchesPerSecondSquared(inchespersecondsquared.Value);
             }
             else
             {
@@ -427,6 +535,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Acceleration from nullable StandardGravity.
+        /// </summary>
+        public static Acceleration? FromStandardGravity(QuantityValue? standardgravity)
+        {
+            if (standardgravity.HasValue)
+            {
+                return FromStandardGravity(standardgravity.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -449,6 +572,10 @@ namespace UnitsNet
                     return FromCentimeterPerSecondSquared(value);
                 case AccelerationUnit.DecimeterPerSecondSquared:
                     return FromDecimeterPerSecondSquared(value);
+                case AccelerationUnit.FootPerSecondSquared:
+                    return FromFeetPerSecondSquared(value);
+                case AccelerationUnit.InchPerSecondSquared:
+                    return FromInchesPerSecondSquared(value);
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return FromKilometerPerSecondSquared(value);
                 case AccelerationUnit.MeterPerSecondSquared:
@@ -459,6 +586,8 @@ namespace UnitsNet
                     return FromMillimeterPerSecondSquared(value);
                 case AccelerationUnit.NanometerPerSecondSquared:
                     return FromNanometerPerSecondSquared(value);
+                case AccelerationUnit.StandardGravity:
+                    return FromStandardGravity(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -485,6 +614,10 @@ namespace UnitsNet
                     return FromCentimeterPerSecondSquared(value.Value);
                 case AccelerationUnit.DecimeterPerSecondSquared:
                     return FromDecimeterPerSecondSquared(value.Value);
+                case AccelerationUnit.FootPerSecondSquared:
+                    return FromFeetPerSecondSquared(value.Value);
+                case AccelerationUnit.InchPerSecondSquared:
+                    return FromInchesPerSecondSquared(value.Value);
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return FromKilometerPerSecondSquared(value.Value);
                 case AccelerationUnit.MeterPerSecondSquared:
@@ -495,6 +628,8 @@ namespace UnitsNet
                     return FromMillimeterPerSecondSquared(value.Value);
                 case AccelerationUnit.NanometerPerSecondSquared:
                     return FromNanometerPerSecondSquared(value.Value);
+                case AccelerationUnit.StandardGravity:
+                    return FromStandardGravity(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -672,6 +807,10 @@ namespace UnitsNet
                     return CentimeterPerSecondSquared;
                 case AccelerationUnit.DecimeterPerSecondSquared:
                     return DecimeterPerSecondSquared;
+                case AccelerationUnit.FootPerSecondSquared:
+                    return FeetPerSecondSquared;
+                case AccelerationUnit.InchPerSecondSquared:
+                    return InchesPerSecondSquared;
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return KilometerPerSecondSquared;
                 case AccelerationUnit.MeterPerSecondSquared:
@@ -682,6 +821,8 @@ namespace UnitsNet
                     return MillimeterPerSecondSquared;
                 case AccelerationUnit.NanometerPerSecondSquared:
                     return NanometerPerSecondSquared;
+                case AccelerationUnit.StandardGravity:
+                    return StandardGravity;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
