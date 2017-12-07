@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double FeetPerSecondSquared
         {
-            get { return _meterPerSecondSquared*3.28084; }
+            get { return _meterPerSecondSquared/0.304800; }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// </summary>
         public double InchesPerSecondSquared
         {
-            get { return _meterPerSecondSquared*39.3700787; }
+            get { return _meterPerSecondSquared/0.0254; }
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace UnitsNet
         /// </summary>
         public double StandardGravity
         {
-            get { return _meterPerSecondSquared*0.1019727; }
+            get { return _meterPerSecondSquared/9.80665; }
         }
 
         #endregion
@@ -280,13 +280,13 @@ namespace UnitsNet
         public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared)
         {
             double value = (double) inchespersecondsquared;
-            return new Acceleration(value/39.3700787);
+            return new Acceleration(value*0.0254);
         }
 #else
         public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
         {
             double value = (double) inchespersecondsquared;
-            return new Acceleration((value/39.3700787));
+            return new Acceleration((value*0.0254));
         }
 #endif
 
