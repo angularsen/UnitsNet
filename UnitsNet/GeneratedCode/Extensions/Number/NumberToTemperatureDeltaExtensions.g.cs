@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 {
     public static class NumberToTemperatureDeltaExtensions
     {
+        #region DegreeCelsius
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)"/>
+        public static TemperatureDelta DegreesCelsius(this int value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double?)"/>
+        public static TemperatureDelta? DegreesCelsius(this int? value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)"/>
+        public static TemperatureDelta DegreesCelsius(this long value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double?)"/>
+        public static TemperatureDelta? DegreesCelsius(this long? value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)"/>
+        public static TemperatureDelta DegreesCelsius(this double value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double?)"/>
+        public static TemperatureDelta? DegreesCelsius(this double? value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)"/>
+        public static TemperatureDelta DegreesCelsius(this float value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double?)"/>
+        public static TemperatureDelta? DegreesCelsius(this float? value) => TemperatureDelta.FromDegreesCelsius(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)"/>
+        public static TemperatureDelta DegreesCelsius(this decimal value) => TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double?)"/>
+        public static TemperatureDelta? DegreesCelsius(this decimal? value) => TemperatureDelta.FromDegreesCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DegreeCelsiusDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsiusDelta(double)"/>
@@ -75,6 +109,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsiusDelta(double?)"/>
         public static TemperatureDelta? DegreesCelsiusDelta(this decimal? value) => TemperatureDelta.FromDegreesCelsiusDelta(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DegreeDelisle
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)"/>
+        public static TemperatureDelta DegreesDelisle(this int value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double?)"/>
+        public static TemperatureDelta? DegreesDelisle(this int? value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)"/>
+        public static TemperatureDelta DegreesDelisle(this long value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double?)"/>
+        public static TemperatureDelta? DegreesDelisle(this long? value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)"/>
+        public static TemperatureDelta DegreesDelisle(this double value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double?)"/>
+        public static TemperatureDelta? DegreesDelisle(this double? value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)"/>
+        public static TemperatureDelta DegreesDelisle(this float value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double?)"/>
+        public static TemperatureDelta? DegreesDelisle(this float? value) => TemperatureDelta.FromDegreesDelisle(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)"/>
+        public static TemperatureDelta DegreesDelisle(this decimal value) => TemperatureDelta.FromDegreesDelisle(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double?)"/>
+        public static TemperatureDelta? DegreesDelisle(this decimal? value) => TemperatureDelta.FromDegreesDelisle(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -112,6 +180,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         #endregion
 
+        #region DegreeFahrenheit
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)"/>
+        public static TemperatureDelta DegreesFahrenheit(this int value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double?)"/>
+        public static TemperatureDelta? DegreesFahrenheit(this int? value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)"/>
+        public static TemperatureDelta DegreesFahrenheit(this long value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double?)"/>
+        public static TemperatureDelta? DegreesFahrenheit(this long? value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)"/>
+        public static TemperatureDelta DegreesFahrenheit(this double value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double?)"/>
+        public static TemperatureDelta? DegreesFahrenheit(this double? value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)"/>
+        public static TemperatureDelta DegreesFahrenheit(this float value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double?)"/>
+        public static TemperatureDelta? DegreesFahrenheit(this float? value) => TemperatureDelta.FromDegreesFahrenheit(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)"/>
+        public static TemperatureDelta DegreesFahrenheit(this decimal value) => TemperatureDelta.FromDegreesFahrenheit(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double?)"/>
+        public static TemperatureDelta? DegreesFahrenheit(this decimal? value) => TemperatureDelta.FromDegreesFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DegreeFahrenheitDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheitDelta(double)"/>
@@ -143,6 +245,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheitDelta(double?)"/>
         public static TemperatureDelta? DegreesFahrenheitDelta(this decimal? value) => TemperatureDelta.FromDegreesFahrenheitDelta(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DegreeNewton
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)"/>
+        public static TemperatureDelta DegreesNewton(this int value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double?)"/>
+        public static TemperatureDelta? DegreesNewton(this int? value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)"/>
+        public static TemperatureDelta DegreesNewton(this long value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double?)"/>
+        public static TemperatureDelta? DegreesNewton(this long? value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)"/>
+        public static TemperatureDelta DegreesNewton(this double value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double?)"/>
+        public static TemperatureDelta? DegreesNewton(this double? value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)"/>
+        public static TemperatureDelta DegreesNewton(this float value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double?)"/>
+        public static TemperatureDelta? DegreesNewton(this float? value) => TemperatureDelta.FromDegreesNewton(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)"/>
+        public static TemperatureDelta DegreesNewton(this decimal value) => TemperatureDelta.FromDegreesNewton(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double?)"/>
+        public static TemperatureDelta? DegreesNewton(this decimal? value) => TemperatureDelta.FromDegreesNewton(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -180,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         #endregion
 
+        #region DegreeRankine
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)"/>
+        public static TemperatureDelta DegreesRankine(this int value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double?)"/>
+        public static TemperatureDelta? DegreesRankine(this int? value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)"/>
+        public static TemperatureDelta DegreesRankine(this long value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double?)"/>
+        public static TemperatureDelta? DegreesRankine(this long? value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)"/>
+        public static TemperatureDelta DegreesRankine(this double value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double?)"/>
+        public static TemperatureDelta? DegreesRankine(this double? value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)"/>
+        public static TemperatureDelta DegreesRankine(this float value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double?)"/>
+        public static TemperatureDelta? DegreesRankine(this float? value) => TemperatureDelta.FromDegreesRankine(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)"/>
+        public static TemperatureDelta DegreesRankine(this decimal value) => TemperatureDelta.FromDegreesRankine(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double?)"/>
+        public static TemperatureDelta? DegreesRankine(this decimal? value) => TemperatureDelta.FromDegreesRankine(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DegreeRankineDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRankineDelta(double)"/>
@@ -211,6 +381,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRankineDelta(double?)"/>
         public static TemperatureDelta? DegreesRankineDelta(this decimal? value) => TemperatureDelta.FromDegreesRankineDelta(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DegreeReaumur
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)"/>
+        public static TemperatureDelta DegreesReaumur(this int value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double?)"/>
+        public static TemperatureDelta? DegreesReaumur(this int? value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)"/>
+        public static TemperatureDelta DegreesReaumur(this long value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double?)"/>
+        public static TemperatureDelta? DegreesReaumur(this long? value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)"/>
+        public static TemperatureDelta DegreesReaumur(this double value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double?)"/>
+        public static TemperatureDelta? DegreesReaumur(this double? value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)"/>
+        public static TemperatureDelta DegreesReaumur(this float value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double?)"/>
+        public static TemperatureDelta? DegreesReaumur(this float? value) => TemperatureDelta.FromDegreesReaumur(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)"/>
+        public static TemperatureDelta DegreesReaumur(this decimal value) => TemperatureDelta.FromDegreesReaumur(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double?)"/>
+        public static TemperatureDelta? DegreesReaumur(this decimal? value) => TemperatureDelta.FromDegreesReaumur(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -248,6 +452,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         #endregion
 
+        #region DegreeRoemer
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)"/>
+        public static TemperatureDelta DegreesRoemer(this int value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double?)"/>
+        public static TemperatureDelta? DegreesRoemer(this int? value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)"/>
+        public static TemperatureDelta DegreesRoemer(this long value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double?)"/>
+        public static TemperatureDelta? DegreesRoemer(this long? value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)"/>
+        public static TemperatureDelta DegreesRoemer(this double value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double?)"/>
+        public static TemperatureDelta? DegreesRoemer(this double? value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)"/>
+        public static TemperatureDelta DegreesRoemer(this float value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double?)"/>
+        public static TemperatureDelta? DegreesRoemer(this float? value) => TemperatureDelta.FromDegreesRoemer(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)"/>
+        public static TemperatureDelta DegreesRoemer(this decimal value) => TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double?)"/>
+        public static TemperatureDelta? DegreesRoemer(this decimal? value) => TemperatureDelta.FromDegreesRoemer(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DegreeRoemerDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemerDelta(double)"/>
@@ -279,6 +517,40 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemerDelta(double?)"/>
         public static TemperatureDelta? DegreesRoemerDelta(this decimal? value) => TemperatureDelta.FromDegreesRoemerDelta(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Kelvin
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)"/>
+        public static TemperatureDelta Kelvins(this int value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double?)"/>
+        public static TemperatureDelta? Kelvins(this int? value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)"/>
+        public static TemperatureDelta Kelvins(this long value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double?)"/>
+        public static TemperatureDelta? Kelvins(this long? value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)"/>
+        public static TemperatureDelta Kelvins(this double value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double?)"/>
+        public static TemperatureDelta? Kelvins(this double? value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)"/>
+        public static TemperatureDelta Kelvins(this float value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double?)"/>
+        public static TemperatureDelta? Kelvins(this float? value) => TemperatureDelta.FromKelvins(value);
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)"/>
+        public static TemperatureDelta Kelvins(this decimal value) => TemperatureDelta.FromKelvins(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double?)"/>
+        public static TemperatureDelta? Kelvins(this decimal? value) => TemperatureDelta.FromKelvins(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

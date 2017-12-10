@@ -52,5 +52,14 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesReaumurDeltaInOneKelvinDelta => 0.8;
         protected override double DegreesRoemerDeltaInOneKelvinDelta => 21/40d;
         protected override double KelvinsDeltaInOneKelvinDelta => 1;
+
+        protected override double DegreesCelsiusInOneKelvinDelta => 1;
+        protected override double DegreesDelisleInOneKelvinDelta => -1.5d;
+        protected override double DegreesFahrenheitInOneKelvinDelta => 1.8;
+        protected override double DegreesNewtonInOneKelvinDelta => 0.33d;
+        protected override double DegreesRankineInOneKelvinDelta => 1.8;
+        protected override double DegreesReaumurInOneKelvinDelta => 0.8;
+        protected override double DegreesRoemerInOneKelvinDelta => 21 / 40d;
+        protected override double KelvinsInOneKelvinDelta => 1;
     }
 }

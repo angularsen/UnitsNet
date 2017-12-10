@@ -130,64 +130,136 @@ namespace UnitsNet
         public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().ToArray();
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesCelsius.
+        /// </summary>
+        public double DegreesCelsius
+        {
+            get { return _kelvinsDelta; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesCelsiusDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
         public double DegreesCelsiusDelta
         {
             get { return _kelvinsDelta; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesDelisle.
+        /// </summary>
+        public double DegreesDelisle
+        {
+            get { return _kelvinsDelta*-3/2; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesDelisleDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
         public double DegreesDelisleDelta
         {
             get { return _kelvinsDelta*-3/2; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesFahrenheit.
+        /// </summary>
+        public double DegreesFahrenheit
+        {
+            get { return _kelvinsDelta*9/5; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesFahrenheitDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
         public double DegreesFahrenheitDelta
         {
             get { return _kelvinsDelta*9/5; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesNewton.
+        /// </summary>
+        public double DegreesNewton
+        {
+            get { return _kelvinsDelta*33/100; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesNewtonDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
         public double DegreesNewtonDelta
         {
             get { return _kelvinsDelta*33/100; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesRankine.
+        /// </summary>
+        public double DegreesRankine
+        {
+            get { return _kelvinsDelta*9/5; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesRankineDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
         public double DegreesRankineDelta
         {
             get { return _kelvinsDelta*9/5; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesReaumur.
+        /// </summary>
+        public double DegreesReaumur
+        {
+            get { return _kelvinsDelta*4/5; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesReaumurDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
         public double DegreesReaumurDelta
         {
             get { return _kelvinsDelta*4/5; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in DegreesRoemer.
+        /// </summary>
+        public double DegreesRoemer
+        {
+            get { return _kelvinsDelta*21/40; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in DegreesRoemerDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
         public double DegreesRoemerDelta
         {
             get { return _kelvinsDelta*21/40; }
         }
 
         /// <summary>
+        ///     Get TemperatureDelta in Kelvins.
+        /// </summary>
+        public double Kelvins
+        {
+            get { return _kelvinsDelta; }
+        }
+
+        /// <summary>
         ///     Get TemperatureDelta in KelvinsDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
         public double KelvinsDelta
         {
             get { return _kelvinsDelta; }
@@ -201,6 +273,24 @@ namespace UnitsNet
         {
             get { return new TemperatureDelta(); }
         }
+
+        /// <summary>
+        ///     Get TemperatureDelta from DegreesCelsius.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesCelsius(double degreescelsius)
+        {
+            double value = (double) degreescelsius;
+            return new TemperatureDelta(value);
+        }
+#else
+        public static TemperatureDelta FromDegreesCelsius(QuantityValue degreescelsius)
+        {
+            double value = (double) degreescelsius;
+            return new TemperatureDelta((value));
+        }
+#endif
 
         /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta.
@@ -217,6 +307,24 @@ namespace UnitsNet
         {
             double value = (double) degreescelsiusdelta;
             return new TemperatureDelta((value));
+        }
+#endif
+
+        /// <summary>
+        ///     Get TemperatureDelta from DegreesDelisle.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesDelisle(double degreesdelisle)
+        {
+            double value = (double) degreesdelisle;
+            return new TemperatureDelta(value*-2/3);
+        }
+#else
+        public static TemperatureDelta FromDegreesDelisle(QuantityValue degreesdelisle)
+        {
+            double value = (double) degreesdelisle;
+            return new TemperatureDelta((value*-2/3));
         }
 #endif
 
@@ -239,6 +347,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get TemperatureDelta from DegreesFahrenheit.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesFahrenheit(double degreesfahrenheit)
+        {
+            double value = (double) degreesfahrenheit;
+            return new TemperatureDelta(value*5/9);
+        }
+#else
+        public static TemperatureDelta FromDegreesFahrenheit(QuantityValue degreesfahrenheit)
+        {
+            double value = (double) degreesfahrenheit;
+            return new TemperatureDelta((value*5/9));
+        }
+#endif
+
+        /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta.
         /// </summary>
 #if WINDOWS_UWP
@@ -253,6 +379,24 @@ namespace UnitsNet
         {
             double value = (double) degreesfahrenheitdelta;
             return new TemperatureDelta((value*5/9));
+        }
+#endif
+
+        /// <summary>
+        ///     Get TemperatureDelta from DegreesNewton.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesNewton(double degreesnewton)
+        {
+            double value = (double) degreesnewton;
+            return new TemperatureDelta(value*100/33);
+        }
+#else
+        public static TemperatureDelta FromDegreesNewton(QuantityValue degreesnewton)
+        {
+            double value = (double) degreesnewton;
+            return new TemperatureDelta((value*100/33));
         }
 #endif
 
@@ -275,6 +419,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get TemperatureDelta from DegreesRankine.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesRankine(double degreesrankine)
+        {
+            double value = (double) degreesrankine;
+            return new TemperatureDelta(value*5/9);
+        }
+#else
+        public static TemperatureDelta FromDegreesRankine(QuantityValue degreesrankine)
+        {
+            double value = (double) degreesrankine;
+            return new TemperatureDelta((value*5/9));
+        }
+#endif
+
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta.
         /// </summary>
 #if WINDOWS_UWP
@@ -289,6 +451,24 @@ namespace UnitsNet
         {
             double value = (double) degreesrankinedelta;
             return new TemperatureDelta((value*5/9));
+        }
+#endif
+
+        /// <summary>
+        ///     Get TemperatureDelta from DegreesReaumur.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesReaumur(double degreesreaumur)
+        {
+            double value = (double) degreesreaumur;
+            return new TemperatureDelta(value*5/4);
+        }
+#else
+        public static TemperatureDelta FromDegreesReaumur(QuantityValue degreesreaumur)
+        {
+            double value = (double) degreesreaumur;
+            return new TemperatureDelta((value*5/4));
         }
 #endif
 
@@ -311,6 +491,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get TemperatureDelta from DegreesRoemer.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromDegreesRoemer(double degreesroemer)
+        {
+            double value = (double) degreesroemer;
+            return new TemperatureDelta(value*40/21);
+        }
+#else
+        public static TemperatureDelta FromDegreesRoemer(QuantityValue degreesroemer)
+        {
+            double value = (double) degreesroemer;
+            return new TemperatureDelta((value*40/21));
+        }
+#endif
+
+        /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta.
         /// </summary>
 #if WINDOWS_UWP
@@ -325,6 +523,24 @@ namespace UnitsNet
         {
             double value = (double) degreesroemerdelta;
             return new TemperatureDelta((value*40/21));
+        }
+#endif
+
+        /// <summary>
+        ///     Get TemperatureDelta from Kelvins.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureDelta FromKelvins(double kelvins)
+        {
+            double value = (double) kelvins;
+            return new TemperatureDelta(value);
+        }
+#else
+        public static TemperatureDelta FromKelvins(QuantityValue kelvins)
+        {
+            double value = (double) kelvins;
+            return new TemperatureDelta((value));
         }
 #endif
 
@@ -349,6 +565,21 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesCelsius.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesCelsius(QuantityValue? degreescelsius)
+        {
+            if (degreescelsius.HasValue)
+            {
+                return FromDegreesCelsius(degreescelsius.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesCelsiusDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesCelsiusDelta(QuantityValue? degreescelsiusdelta)
@@ -356,6 +587,21 @@ namespace UnitsNet
             if (degreescelsiusdelta.HasValue)
             {
                 return FromDegreesCelsiusDelta(degreescelsiusdelta.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesDelisle.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesDelisle(QuantityValue? degreesdelisle)
+        {
+            if (degreesdelisle.HasValue)
+            {
+                return FromDegreesDelisle(degreesdelisle.Value);
             }
             else
             {
@@ -379,6 +625,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesFahrenheit.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
+        {
+            if (degreesfahrenheit.HasValue)
+            {
+                return FromDegreesFahrenheit(degreesfahrenheit.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesFahrenheitDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesFahrenheitDelta(QuantityValue? degreesfahrenheitdelta)
@@ -386,6 +647,21 @@ namespace UnitsNet
             if (degreesfahrenheitdelta.HasValue)
             {
                 return FromDegreesFahrenheitDelta(degreesfahrenheitdelta.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesNewton.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesNewton(QuantityValue? degreesnewton)
+        {
+            if (degreesnewton.HasValue)
+            {
+                return FromDegreesNewton(degreesnewton.Value);
             }
             else
             {
@@ -409,6 +685,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesRankine.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesRankine(QuantityValue? degreesrankine)
+        {
+            if (degreesrankine.HasValue)
+            {
+                return FromDegreesRankine(degreesrankine.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRankineDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRankineDelta(QuantityValue? degreesrankinedelta)
@@ -416,6 +707,21 @@ namespace UnitsNet
             if (degreesrankinedelta.HasValue)
             {
                 return FromDegreesRankineDelta(degreesrankinedelta.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesReaumur.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesReaumur(QuantityValue? degreesreaumur)
+        {
+            if (degreesreaumur.HasValue)
+            {
+                return FromDegreesReaumur(degreesreaumur.Value);
             }
             else
             {
@@ -439,6 +745,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable TemperatureDelta from nullable DegreesRoemer.
+        /// </summary>
+        public static TemperatureDelta? FromDegreesRoemer(QuantityValue? degreesroemer)
+        {
+            if (degreesroemer.HasValue)
+            {
+                return FromDegreesRoemer(degreesroemer.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRoemerDelta.
         /// </summary>
         public static TemperatureDelta? FromDegreesRoemerDelta(QuantityValue? degreesroemerdelta)
@@ -446,6 +767,21 @@ namespace UnitsNet
             if (degreesroemerdelta.HasValue)
             {
                 return FromDegreesRoemerDelta(degreesroemerdelta.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable TemperatureDelta from nullable Kelvins.
+        /// </summary>
+        public static TemperatureDelta? FromKelvins(QuantityValue? kelvins)
+        {
+            if (kelvins.HasValue)
+            {
+                return FromKelvins(kelvins.Value);
             }
             else
             {
@@ -486,20 +822,36 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case TemperatureDeltaUnit.DegreeCelsius:
+                    return FromDegreesCelsius(value);
                 case TemperatureDeltaUnit.DegreeCelsiusDelta:
                     return FromDegreesCelsiusDelta(value);
+                case TemperatureDeltaUnit.DegreeDelisle:
+                    return FromDegreesDelisle(value);
                 case TemperatureDeltaUnit.DegreeDelisleDelta:
                     return FromDegreesDelisleDelta(value);
+                case TemperatureDeltaUnit.DegreeFahrenheit:
+                    return FromDegreesFahrenheit(value);
                 case TemperatureDeltaUnit.DegreeFahrenheitDelta:
                     return FromDegreesFahrenheitDelta(value);
+                case TemperatureDeltaUnit.DegreeNewton:
+                    return FromDegreesNewton(value);
                 case TemperatureDeltaUnit.DegreeNewtonDelta:
                     return FromDegreesNewtonDelta(value);
+                case TemperatureDeltaUnit.DegreeRankine:
+                    return FromDegreesRankine(value);
                 case TemperatureDeltaUnit.DegreeRankineDelta:
                     return FromDegreesRankineDelta(value);
+                case TemperatureDeltaUnit.DegreeReaumur:
+                    return FromDegreesReaumur(value);
                 case TemperatureDeltaUnit.DegreeReaumurDelta:
                     return FromDegreesReaumurDelta(value);
+                case TemperatureDeltaUnit.DegreeRoemer:
+                    return FromDegreesRoemer(value);
                 case TemperatureDeltaUnit.DegreeRoemerDelta:
                     return FromDegreesRoemerDelta(value);
+                case TemperatureDeltaUnit.Kelvin:
+                    return FromKelvins(value);
                 case TemperatureDeltaUnit.KelvinDelta:
                     return FromKelvinsDelta(value);
 
@@ -524,20 +876,36 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case TemperatureDeltaUnit.DegreeCelsius:
+                    return FromDegreesCelsius(value.Value);
                 case TemperatureDeltaUnit.DegreeCelsiusDelta:
                     return FromDegreesCelsiusDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeDelisle:
+                    return FromDegreesDelisle(value.Value);
                 case TemperatureDeltaUnit.DegreeDelisleDelta:
                     return FromDegreesDelisleDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeFahrenheit:
+                    return FromDegreesFahrenheit(value.Value);
                 case TemperatureDeltaUnit.DegreeFahrenheitDelta:
                     return FromDegreesFahrenheitDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeNewton:
+                    return FromDegreesNewton(value.Value);
                 case TemperatureDeltaUnit.DegreeNewtonDelta:
                     return FromDegreesNewtonDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeRankine:
+                    return FromDegreesRankine(value.Value);
                 case TemperatureDeltaUnit.DegreeRankineDelta:
                     return FromDegreesRankineDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeReaumur:
+                    return FromDegreesReaumur(value.Value);
                 case TemperatureDeltaUnit.DegreeReaumurDelta:
                     return FromDegreesReaumurDelta(value.Value);
+                case TemperatureDeltaUnit.DegreeRoemer:
+                    return FromDegreesRoemer(value.Value);
                 case TemperatureDeltaUnit.DegreeRoemerDelta:
                     return FromDegreesRoemerDelta(value.Value);
+                case TemperatureDeltaUnit.Kelvin:
+                    return FromKelvins(value.Value);
                 case TemperatureDeltaUnit.KelvinDelta:
                     return FromKelvinsDelta(value.Value);
 
@@ -713,20 +1081,36 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case TemperatureDeltaUnit.DegreeCelsius:
+                    return DegreesCelsius;
                 case TemperatureDeltaUnit.DegreeCelsiusDelta:
                     return DegreesCelsiusDelta;
+                case TemperatureDeltaUnit.DegreeDelisle:
+                    return DegreesDelisle;
                 case TemperatureDeltaUnit.DegreeDelisleDelta:
                     return DegreesDelisleDelta;
+                case TemperatureDeltaUnit.DegreeFahrenheit:
+                    return DegreesFahrenheit;
                 case TemperatureDeltaUnit.DegreeFahrenheitDelta:
                     return DegreesFahrenheitDelta;
+                case TemperatureDeltaUnit.DegreeNewton:
+                    return DegreesNewton;
                 case TemperatureDeltaUnit.DegreeNewtonDelta:
                     return DegreesNewtonDelta;
+                case TemperatureDeltaUnit.DegreeRankine:
+                    return DegreesRankine;
                 case TemperatureDeltaUnit.DegreeRankineDelta:
                     return DegreesRankineDelta;
+                case TemperatureDeltaUnit.DegreeReaumur:
+                    return DegreesReaumur;
                 case TemperatureDeltaUnit.DegreeReaumurDelta:
                     return DegreesReaumurDelta;
+                case TemperatureDeltaUnit.DegreeRoemer:
+                    return DegreesRoemer;
                 case TemperatureDeltaUnit.DegreeRoemerDelta:
                     return DegreesRoemerDelta;
+                case TemperatureDeltaUnit.Kelvin:
+                    return Kelvins;
                 case TemperatureDeltaUnit.KelvinDelta:
                     return KelvinsDelta;
 
