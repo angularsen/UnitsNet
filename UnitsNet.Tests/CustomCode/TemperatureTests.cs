@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Xunit;
@@ -94,7 +95,7 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureDeltaPlusTemperatureEqualsTemperature(TemperatureUnit unit, int deltaVal, int temperatureVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = delta + temperature;
@@ -113,7 +114,7 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureMinusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = temperature - delta;
@@ -132,7 +133,7 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperaturePlusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = temperature + delta;
