@@ -52,140 +52,188 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureDeltaTestsBase
     {
-        protected abstract double DegreesCelsiusDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesDelisleDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesFahrenheitDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesNewtonDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesRankineDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesReaumurDeltaInOneKelvinDelta { get; }
-        protected abstract double DegreesRoemerDeltaInOneKelvinDelta { get; }
-        protected abstract double KelvinsDeltaInOneKelvinDelta { get; }
+        protected abstract double DegreesCelsiusInOneKelvin { get; }
+        protected abstract double DegreesCelsiusDeltaInOneKelvin { get; }
+        protected abstract double DegreesDelisleInOneKelvin { get; }
+        protected abstract double DegreesDelisleDeltaInOneKelvin { get; }
+        protected abstract double DegreesFahrenheitInOneKelvin { get; }
+        protected abstract double DegreesFahrenheitDeltaInOneKelvin { get; }
+        protected abstract double DegreesNewtonInOneKelvin { get; }
+        protected abstract double DegreesNewtonDeltaInOneKelvin { get; }
+        protected abstract double DegreesRankineInOneKelvin { get; }
+        protected abstract double DegreesRankineDeltaInOneKelvin { get; }
+        protected abstract double DegreesReaumurInOneKelvin { get; }
+        protected abstract double DegreesReaumurDeltaInOneKelvin { get; }
+        protected abstract double DegreesRoemerInOneKelvin { get; }
+        protected abstract double DegreesRoemerDeltaInOneKelvin { get; }
+        protected abstract double KelvinsInOneKelvin { get; }
+        protected abstract double KelvinsDeltaInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double DegreesCelsiusDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesDelisleTolerance { get { return 1e-5; } }
         protected virtual double DegreesDelisleDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double DegreesFahrenheitDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesNewtonTolerance { get { return 1e-5; } }
         protected virtual double DegreesNewtonDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesRankineTolerance { get { return 1e-5; } }
         protected virtual double DegreesRankineDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesReaumurTolerance { get { return 1e-5; } }
         protected virtual double DegreesReaumurDeltaTolerance { get { return 1e-5; } }
+        protected virtual double DegreesRoemerTolerance { get { return 1e-5; } }
         protected virtual double DegreesRoemerDeltaTolerance { get { return 1e-5; } }
+        protected virtual double KelvinsTolerance { get { return 1e-5; } }
         protected virtual double KelvinsDeltaTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void KelvinDeltaToTemperatureDeltaUnits()
+        public void KelvinToTemperatureDeltaUnits()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            AssertEx.EqualTolerance(DegreesCelsiusDeltaInOneKelvinDelta, kelvindelta.DegreesCelsiusDelta, DegreesCelsiusDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesDelisleDeltaInOneKelvinDelta, kelvindelta.DegreesDelisleDelta, DegreesDelisleDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesFahrenheitDeltaInOneKelvinDelta, kelvindelta.DegreesFahrenheitDelta, DegreesFahrenheitDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesNewtonDeltaInOneKelvinDelta, kelvindelta.DegreesNewtonDelta, DegreesNewtonDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesRankineDeltaInOneKelvinDelta, kelvindelta.DegreesRankineDelta, DegreesRankineDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesReaumurDeltaInOneKelvinDelta, kelvindelta.DegreesReaumurDelta, DegreesReaumurDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesRoemerDeltaInOneKelvinDelta, kelvindelta.DegreesRoemerDelta, DegreesRoemerDeltaTolerance);
-            AssertEx.EqualTolerance(KelvinsDeltaInOneKelvinDelta, kelvindelta.KelvinsDelta, KelvinsDeltaTolerance);
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, kelvin.DegreesCelsius, DegreesCelsiusTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusDeltaInOneKelvin, kelvin.DegreesCelsiusDelta, DegreesCelsiusDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesDelisleInOneKelvin, kelvin.DegreesDelisle, DegreesDelisleTolerance);
+            AssertEx.EqualTolerance(DegreesDelisleDeltaInOneKelvin, kelvin.DegreesDelisleDelta, DegreesDelisleDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.DegreesFahrenheit, DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitDeltaInOneKelvin, kelvin.DegreesFahrenheitDelta, DegreesFahrenheitDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesNewtonInOneKelvin, kelvin.DegreesNewton, DegreesNewtonTolerance);
+            AssertEx.EqualTolerance(DegreesNewtonDeltaInOneKelvin, kelvin.DegreesNewtonDelta, DegreesNewtonDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesRankineInOneKelvin, kelvin.DegreesRankine, DegreesRankineTolerance);
+            AssertEx.EqualTolerance(DegreesRankineDeltaInOneKelvin, kelvin.DegreesRankineDelta, DegreesRankineDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.DegreesReaumur, DegreesReaumurTolerance);
+            AssertEx.EqualTolerance(DegreesReaumurDeltaInOneKelvin, kelvin.DegreesReaumurDelta, DegreesReaumurDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.DegreesRoemer, DegreesRoemerTolerance);
+            AssertEx.EqualTolerance(DegreesRoemerDeltaInOneKelvin, kelvin.DegreesRoemerDelta, DegreesRoemerDeltaTolerance);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(KelvinsDeltaInOneKelvin, kelvin.KelvinsDelta, KelvinsDeltaTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeCelsius).DegreesCelsius, DegreesCelsiusTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeCelsiusDelta).DegreesCelsiusDelta, DegreesCelsiusDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeDelisle).DegreesDelisle, DegreesDelisleTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeDelisleDelta).DegreesDelisleDelta, DegreesDelisleDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeFahrenheit).DegreesFahrenheit, DegreesFahrenheitTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeFahrenheitDelta).DegreesFahrenheitDelta, DegreesFahrenheitDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeNewton).DegreesNewton, DegreesNewtonTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeNewtonDelta).DegreesNewtonDelta, DegreesNewtonDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRankine).DegreesRankine, DegreesRankineTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRankineDelta).DegreesRankineDelta, DegreesRankineDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeReaumur).DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeReaumurDelta).DegreesReaumurDelta, DegreesReaumurDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRoemer).DegreesRoemer, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRoemerDelta).DegreesRoemerDelta, DegreesRoemerDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.Kelvin).Kelvins, KelvinsTolerance);
             AssertEx.EqualTolerance(1, TemperatureDelta.From(1, TemperatureDeltaUnit.KelvinDelta).KelvinsDelta, KelvinsDeltaTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            AssertEx.EqualTolerance(DegreesCelsiusDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeCelsiusDelta), DegreesCelsiusDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesDelisleDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeDelisleDelta), DegreesDelisleDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesFahrenheitDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeFahrenheitDelta), DegreesFahrenheitDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesNewtonDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeNewtonDelta), DegreesNewtonDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesRankineDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeRankineDelta), DegreesRankineDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesReaumurDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeReaumurDelta), DegreesReaumurDeltaTolerance);
-            AssertEx.EqualTolerance(DegreesRoemerDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.DegreeRoemerDelta), DegreesRoemerDeltaTolerance);
-            AssertEx.EqualTolerance(KelvinsDeltaInOneKelvinDelta, kelvindelta.As(TemperatureDeltaUnit.KelvinDelta), KelvinsDeltaTolerance);
+            var kelvin = TemperatureDelta.FromKelvins(1);
+            AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeCelsius), DegreesCelsiusTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeCelsiusDelta), DegreesCelsiusDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesDelisleInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeDelisle), DegreesDelisleTolerance);
+            AssertEx.EqualTolerance(DegreesDelisleDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeDelisleDelta), DegreesDelisleDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeFahrenheit), DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeFahrenheitDelta), DegreesFahrenheitDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesNewtonInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeNewton), DegreesNewtonTolerance);
+            AssertEx.EqualTolerance(DegreesNewtonDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeNewtonDelta), DegreesNewtonDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesRankineInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeRankine), DegreesRankineTolerance);
+            AssertEx.EqualTolerance(DegreesRankineDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeRankineDelta), DegreesRankineDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeReaumur), DegreesReaumurTolerance);
+            AssertEx.EqualTolerance(DegreesReaumurDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeReaumurDelta), DegreesReaumurDeltaTolerance);
+            AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeRoemer), DegreesRoemerTolerance);
+            AssertEx.EqualTolerance(DegreesRoemerDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.DegreeRoemerDelta), DegreesRoemerDeltaTolerance);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(TemperatureDeltaUnit.Kelvin), KelvinsTolerance);
+            AssertEx.EqualTolerance(KelvinsDeltaInOneKelvin, kelvin.As(TemperatureDeltaUnit.KelvinDelta), KelvinsDeltaTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesCelsiusDelta(kelvindelta.DegreesCelsiusDelta).KelvinsDelta, DegreesCelsiusDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesDelisleDelta(kelvindelta.DegreesDelisleDelta).KelvinsDelta, DegreesDelisleDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesFahrenheitDelta(kelvindelta.DegreesFahrenheitDelta).KelvinsDelta, DegreesFahrenheitDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesNewtonDelta(kelvindelta.DegreesNewtonDelta).KelvinsDelta, DegreesNewtonDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRankineDelta(kelvindelta.DegreesRankineDelta).KelvinsDelta, DegreesRankineDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesReaumurDelta(kelvindelta.DegreesReaumurDelta).KelvinsDelta, DegreesReaumurDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRoemerDelta(kelvindelta.DegreesRoemerDelta).KelvinsDelta, DegreesRoemerDeltaTolerance);
-            AssertEx.EqualTolerance(1, TemperatureDelta.FromKelvinsDelta(kelvindelta.KelvinsDelta).KelvinsDelta, KelvinsDeltaTolerance);
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesCelsius(kelvin.DegreesCelsius).Kelvins, DegreesCelsiusTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesCelsiusDelta(kelvin.DegreesCelsiusDelta).Kelvins, DegreesCelsiusDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesDelisle(kelvin.DegreesDelisle).Kelvins, DegreesDelisleTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesDelisleDelta(kelvin.DegreesDelisleDelta).Kelvins, DegreesDelisleDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesFahrenheit(kelvin.DegreesFahrenheit).Kelvins, DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesFahrenheitDelta(kelvin.DegreesFahrenheitDelta).Kelvins, DegreesFahrenheitDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesNewton(kelvin.DegreesNewton).Kelvins, DegreesNewtonTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesNewtonDelta(kelvin.DegreesNewtonDelta).Kelvins, DegreesNewtonDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRankine(kelvin.DegreesRankine).Kelvins, DegreesRankineTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRankineDelta(kelvin.DegreesRankineDelta).Kelvins, DegreesRankineDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins, DegreesReaumurTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesReaumurDelta(kelvin.DegreesReaumurDelta).Kelvins, DegreesReaumurDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins, DegreesRoemerTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromDegreesRoemerDelta(kelvin.DegreesRoemerDelta).Kelvins, DegreesRoemerDeltaTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(1, TemperatureDelta.FromKelvinsDelta(kelvin.KelvinsDelta).Kelvins, KelvinsDeltaTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            TemperatureDelta v = TemperatureDelta.FromKelvinsDelta(1);
-            AssertEx.EqualTolerance(-1, -v.KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(2, (TemperatureDelta.FromKelvinsDelta(3)-v).KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(2, (v + v).KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(10, (v*10).KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(10, (10*v).KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(2, (TemperatureDelta.FromKelvinsDelta(10)/5).KelvinsDelta, KelvinsDeltaTolerance);
-            AssertEx.EqualTolerance(2, TemperatureDelta.FromKelvinsDelta(10)/TemperatureDelta.FromKelvinsDelta(5), KelvinsDeltaTolerance);
+            TemperatureDelta v = TemperatureDelta.FromKelvins(1);
+            AssertEx.EqualTolerance(-1, -v.Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(2, (TemperatureDelta.FromKelvins(3)-v).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(2, (v + v).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(10, (v*10).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(10, (10*v).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(2, (TemperatureDelta.FromKelvins(10)/5).Kelvins, KelvinsTolerance);
+            AssertEx.EqualTolerance(2, TemperatureDelta.FromKelvins(10)/TemperatureDelta.FromKelvins(5), KelvinsTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            TemperatureDelta oneKelvinDelta = TemperatureDelta.FromKelvinsDelta(1);
-            TemperatureDelta twoKelvinsDelta = TemperatureDelta.FromKelvinsDelta(2);
+            TemperatureDelta oneKelvin = TemperatureDelta.FromKelvins(1);
+            TemperatureDelta twoKelvins = TemperatureDelta.FromKelvins(2);
 
-            Assert.True(oneKelvinDelta < twoKelvinsDelta);
-            Assert.True(oneKelvinDelta <= twoKelvinsDelta);
-            Assert.True(twoKelvinsDelta > oneKelvinDelta);
-            Assert.True(twoKelvinsDelta >= oneKelvinDelta);
+            Assert.True(oneKelvin < twoKelvins);
+            Assert.True(oneKelvin <= twoKelvins);
+            Assert.True(twoKelvins > oneKelvin);
+            Assert.True(twoKelvins >= oneKelvin);
 
-            Assert.False(oneKelvinDelta > twoKelvinsDelta);
-            Assert.False(oneKelvinDelta >= twoKelvinsDelta);
-            Assert.False(twoKelvinsDelta < oneKelvinDelta);
-            Assert.False(twoKelvinsDelta <= oneKelvinDelta);
+            Assert.False(oneKelvin > twoKelvins);
+            Assert.False(oneKelvin >= twoKelvins);
+            Assert.False(twoKelvins < oneKelvin);
+            Assert.False(twoKelvins <= oneKelvin);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.Equal(0, kelvindelta.CompareTo(kelvindelta));
-            Assert.True(kelvindelta.CompareTo(TemperatureDelta.Zero) > 0);
-            Assert.True(TemperatureDelta.Zero.CompareTo(kelvindelta) < 0);
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            Assert.Equal(0, kelvin.CompareTo(kelvin));
+            Assert.True(kelvin.CompareTo(TemperatureDelta.Zero) > 0);
+            Assert.True(TemperatureDelta.Zero.CompareTo(kelvin) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.Throws<ArgumentException>(() => kelvindelta.CompareTo(new object()));
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            Assert.Throws<ArgumentException>(() => kelvin.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.Throws<ArgumentNullException>(() => kelvindelta.CompareTo(null));
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            Assert.Throws<ArgumentNullException>(() => kelvin.CompareTo(null));
         }
 
 
         [Fact]
         public void EqualityOperators()
         {
-            TemperatureDelta a = TemperatureDelta.FromKelvinsDelta(1);
-            TemperatureDelta b = TemperatureDelta.FromKelvinsDelta(2);
+            TemperatureDelta a = TemperatureDelta.FromKelvins(1);
+            TemperatureDelta b = TemperatureDelta.FromKelvins(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -199,23 +247,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            TemperatureDelta v = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.True(v.Equals(TemperatureDelta.FromKelvinsDelta(1)));
+            TemperatureDelta v = TemperatureDelta.FromKelvins(1);
+            Assert.True(v.Equals(TemperatureDelta.FromKelvins(1)));
             Assert.False(v.Equals(TemperatureDelta.Zero));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.False(kelvindelta.Equals(new object()));
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            Assert.False(kelvin.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            TemperatureDelta kelvindelta = TemperatureDelta.FromKelvinsDelta(1);
-            Assert.False(kelvindelta.Equals(null));
+            TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
+            Assert.False(kelvin.Equals(null));
         }
     }
 }
