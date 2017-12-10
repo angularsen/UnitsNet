@@ -44,22 +44,22 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
-        protected override double DegreesCelsiusDeltaInOneKelvinDelta => 1;
-        protected override double DegreesDelisleDeltaInOneKelvinDelta => -1.5d;
-        protected override double DegreesFahrenheitDeltaInOneKelvinDelta => 1.8;
-        protected override double DegreesNewtonDeltaInOneKelvinDelta => 0.33d;
-        protected override double DegreesRankineDeltaInOneKelvinDelta => 1.8;
-        protected override double DegreesReaumurDeltaInOneKelvinDelta => 0.8;
-        protected override double DegreesRoemerDeltaInOneKelvinDelta => 21/40d;
-        protected override double KelvinsDeltaInOneKelvinDelta => 1;
+        protected override double DegreesCelsiusDeltaInOneKelvin => 1;
+        protected override double DegreesDelisleDeltaInOneKelvin => -1.5d;
+        protected override double DegreesFahrenheitDeltaInOneKelvin => 1.8;
+        protected override double DegreesNewtonDeltaInOneKelvin => 0.33d;
+        protected override double DegreesRankineDeltaInOneKelvin => 1.8;
+        protected override double DegreesReaumurDeltaInOneKelvin => 0.8;
+        protected override double DegreesRoemerDeltaInOneKelvin => 21/40d;
+        protected override double KelvinsDeltaInOneKelvin => 1;
 
-        protected override double DegreesCelsiusInOneKelvinDelta => 1;
-        protected override double DegreesDelisleInOneKelvinDelta => -1.5d;
-        protected override double DegreesFahrenheitInOneKelvinDelta => 1.8;
-        protected override double DegreesNewtonInOneKelvinDelta => 0.33d;
-        protected override double DegreesRankineInOneKelvinDelta => 1.8;
-        protected override double DegreesReaumurInOneKelvinDelta => 0.8;
-        protected override double DegreesRoemerInOneKelvinDelta => 21 / 40d;
-        protected override double KelvinsInOneKelvinDelta => 1;
+        protected override double DegreesCelsiusInOneKelvin => 1;
+        protected override double DegreesDelisleInOneKelvin => -1.5d;
+        protected override double DegreesFahrenheitInOneKelvin => 1.8;
+        protected override double DegreesNewtonInOneKelvin => 0.33d;
+        protected override double DegreesRankineInOneKelvin => 1.8;
+        protected override double DegreesReaumurInOneKelvin => 0.8;
+        protected override double DegreesRoemerInOneKelvin => 21 / 40d;
+        protected override double KelvinsInOneKelvin => 1;
     }
 }

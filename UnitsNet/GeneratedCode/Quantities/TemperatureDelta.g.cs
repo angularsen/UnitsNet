@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of TemperatureDelta.
         /// </summary>
-        private readonly double _kelvinsDelta;
+        private readonly double _kelvins;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public TemperatureDelta(double kelvinsdelta)
+        public TemperatureDelta(double kelvins)
         {
-            _kelvinsDelta = Convert.ToDouble(kelvinsdelta);
+            _kelvins = Convert.ToDouble(kelvins);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        TemperatureDelta(long kelvinsdelta)
+        TemperatureDelta(long kelvins)
         {
-            _kelvinsDelta = Convert.ToDouble(kelvinsdelta);
+            _kelvins = Convert.ToDouble(kelvins);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        TemperatureDelta(decimal kelvinsdelta)
+        TemperatureDelta(decimal kelvins)
         {
-            _kelvinsDelta = Convert.ToDouble(kelvinsdelta);
+            _kelvins = Convert.ToDouble(kelvins);
         }
 
         #region Properties
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureDeltaUnit BaseUnit
         {
-            get { return TemperatureDeltaUnit.KelvinDelta; }
+            get { return TemperatureDeltaUnit.Kelvin; }
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesCelsius
         {
-            get { return _kelvinsDelta; }
+            get { return _kelvins; }
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
         public double DegreesCelsiusDelta
         {
-            get { return _kelvinsDelta; }
+            get { return _kelvins; }
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesDelisle
         {
-            get { return _kelvinsDelta*-3/2; }
+            get { return _kelvins*-3/2; }
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
         public double DegreesDelisleDelta
         {
-            get { return _kelvinsDelta*-3/2; }
+            get { return _kelvins*-3/2; }
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesFahrenheit
         {
-            get { return _kelvinsDelta*9/5; }
+            get { return _kelvins*9/5; }
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
         public double DegreesFahrenheitDelta
         {
-            get { return _kelvinsDelta*9/5; }
+            get { return _kelvins*9/5; }
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesNewton
         {
-            get { return _kelvinsDelta*33/100; }
+            get { return _kelvins*33/100; }
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
         public double DegreesNewtonDelta
         {
-            get { return _kelvinsDelta*33/100; }
+            get { return _kelvins*33/100; }
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesRankine
         {
-            get { return _kelvinsDelta*9/5; }
+            get { return _kelvins*9/5; }
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
         public double DegreesRankineDelta
         {
-            get { return _kelvinsDelta*9/5; }
+            get { return _kelvins*9/5; }
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesReaumur
         {
-            get { return _kelvinsDelta*4/5; }
+            get { return _kelvins*4/5; }
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
         public double DegreesReaumurDelta
         {
-            get { return _kelvinsDelta*4/5; }
+            get { return _kelvins*4/5; }
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace UnitsNet
         /// </summary>
         public double DegreesRoemer
         {
-            get { return _kelvinsDelta*21/40; }
+            get { return _kelvins*21/40; }
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
         public double DegreesRoemerDelta
         {
-            get { return _kelvinsDelta*21/40; }
+            get { return _kelvins*21/40; }
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace UnitsNet
         /// </summary>
         public double Kelvins
         {
-            get { return _kelvinsDelta; }
+            get { return _kelvins; }
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace UnitsNet
         [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
         public double KelvinsDelta
         {
-            get { return _kelvinsDelta; }
+            get { return _kelvins; }
         }
 
         #endregion
@@ -946,37 +946,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static TemperatureDelta operator -(TemperatureDelta right)
         {
-            return new TemperatureDelta(-right._kelvinsDelta);
+            return new TemperatureDelta(-right._kelvins);
         }
 
         public static TemperatureDelta operator +(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left._kelvinsDelta + right._kelvinsDelta);
+            return new TemperatureDelta(left._kelvins + right._kelvins);
         }
 
         public static TemperatureDelta operator -(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left._kelvinsDelta - right._kelvinsDelta);
+            return new TemperatureDelta(left._kelvins - right._kelvins);
         }
 
         public static TemperatureDelta operator *(double left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left*right._kelvinsDelta);
+            return new TemperatureDelta(left*right._kelvins);
         }
 
         public static TemperatureDelta operator *(TemperatureDelta left, double right)
         {
-            return new TemperatureDelta(left._kelvinsDelta*(double)right);
+            return new TemperatureDelta(left._kelvins*(double)right);
         }
 
         public static TemperatureDelta operator /(TemperatureDelta left, double right)
         {
-            return new TemperatureDelta(left._kelvinsDelta/(double)right);
+            return new TemperatureDelta(left._kelvins/(double)right);
         }
 
         public static double operator /(TemperatureDelta left, TemperatureDelta right)
         {
-            return Convert.ToDouble(left._kelvinsDelta/right._kelvinsDelta);
+            return Convert.ToDouble(left._kelvins/right._kelvins);
         }
 #endif
 
@@ -999,43 +999,43 @@ namespace UnitsNet
 #endif
         int CompareTo(TemperatureDelta other)
         {
-            return _kelvinsDelta.CompareTo(other._kelvinsDelta);
+            return _kelvins.CompareTo(other._kelvins);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left._kelvinsDelta <= right._kelvinsDelta;
+            return left._kelvins <= right._kelvins;
         }
 
         public static bool operator >=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left._kelvinsDelta >= right._kelvinsDelta;
+            return left._kelvins >= right._kelvins;
         }
 
         public static bool operator <(TemperatureDelta left, TemperatureDelta right)
         {
-            return left._kelvinsDelta < right._kelvinsDelta;
+            return left._kelvins < right._kelvins;
         }
 
         public static bool operator >(TemperatureDelta left, TemperatureDelta right)
         {
-            return left._kelvinsDelta > right._kelvinsDelta;
+            return left._kelvins > right._kelvins;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(TemperatureDelta left, TemperatureDelta right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kelvinsDelta == right._kelvinsDelta;
+            return left._kelvins == right._kelvins;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(TemperatureDelta left, TemperatureDelta right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kelvinsDelta != right._kelvinsDelta;
+            return left._kelvins != right._kelvins;
         }
 #endif
 
@@ -1047,7 +1047,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kelvinsDelta.Equals(((TemperatureDelta) obj)._kelvinsDelta);
+            return _kelvins.Equals(((TemperatureDelta) obj)._kelvins);
         }
 
         /// <summary>
@@ -1060,12 +1060,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(TemperatureDelta other, TemperatureDelta maxError)
         {
-            return Math.Abs(_kelvinsDelta - other._kelvinsDelta) <= maxError._kelvinsDelta;
+            return Math.Abs(_kelvins - other._kelvins) <= maxError._kelvins;
         }
 
         public override int GetHashCode()
         {
-            return _kelvinsDelta.GetHashCode();
+            return _kelvins.GetHashCode();
         }
 
         #endregion
@@ -1189,7 +1189,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     TemperatureDeltaUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKelvinsDelta(x.KelvinsDelta + y.KelvinsDelta));
+                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins));
         }
 
         /// <summary>
@@ -1290,9 +1290,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is KelvinDelta
+        ///     Set the default unit used by ToString(). Default is Kelvin
         /// </summary>
-        public static TemperatureDeltaUnit ToStringDefaultUnit { get; set; } = TemperatureDeltaUnit.KelvinDelta;
+        public static TemperatureDeltaUnit ToStringDefaultUnit { get; set; } = TemperatureDeltaUnit.Kelvin;
 
         /// <summary>
         ///     Get default string representation of value and unit.
