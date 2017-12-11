@@ -73,6 +73,11 @@ namespace UnitsNet
         {
             return new TemperatureDelta(left.Kelvins - right.Kelvins);
         }
+
+        public static double operator /(Temperature left, Temperature right)
+        {
+            return left.Kelvins / right.Kelvins;
+        }
 #endif
 
         /// <summary>
