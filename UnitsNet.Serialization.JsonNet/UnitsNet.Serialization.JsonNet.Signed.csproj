@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="UnitsNet.Serialization.JsonNet.Common.props" />
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;net35</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;net35;net40</TargetFrameworks>
     <PackageId>UnitsNet.Serialization.JsonNet.Signed</PackageId>
     <Title>Units.NET Serialization with Json.NET (signed)</Title>
   </PropertyGroup>
