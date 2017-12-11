@@ -284,8 +284,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Energy v = Energy.FromJoules(1);
-            Assert.True(v.Equals(Energy.FromJoules(1)));
-            Assert.False(v.Equals(Energy.Zero));
+            Assert.True(v.Equals(Energy.FromJoules(1), Energy.FromJoules(JoulesTolerance)));
+            Assert.False(v.Equals(Energy.Zero, Energy.FromJoules(JoulesTolerance)));
         }
 
         [Fact]

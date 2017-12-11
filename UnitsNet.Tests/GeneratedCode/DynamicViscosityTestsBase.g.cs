@@ -188,8 +188,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             DynamicViscosity v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1)));
-            Assert.False(v.Equals(DynamicViscosity.Zero));
+            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), DynamicViscosity.FromNewtonSecondsPerMeterSquared(NewtonSecondsPerMeterSquaredTolerance)));
+            Assert.False(v.Equals(DynamicViscosity.Zero, DynamicViscosity.FromNewtonSecondsPerMeterSquared(NewtonSecondsPerMeterSquaredTolerance)));
         }
 
         [Fact]

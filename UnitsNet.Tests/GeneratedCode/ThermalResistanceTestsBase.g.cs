@@ -182,8 +182,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ThermalResistance v = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
-            Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1)));
-            Assert.False(v.Equals(ThermalResistance.Zero));
+            Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), ThermalResistance.FromSquareMeterKelvinsPerKilowatt(SquareMeterKelvinsPerKilowattTolerance)));
+            Assert.False(v.Equals(ThermalResistance.Zero, ThermalResistance.FromSquareMeterKelvinsPerKilowatt(SquareMeterKelvinsPerKilowattTolerance)));
         }
 
         [Fact]

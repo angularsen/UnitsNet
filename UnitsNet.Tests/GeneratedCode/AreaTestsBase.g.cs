@@ -224,8 +224,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Area v = Area.FromSquareMeters(1);
-            Assert.True(v.Equals(Area.FromSquareMeters(1)));
-            Assert.False(v.Equals(Area.Zero));
+            Assert.True(v.Equals(Area.FromSquareMeters(1), Area.FromSquareMeters(SquareMetersTolerance)));
+            Assert.False(v.Equals(Area.Zero, Area.FromSquareMeters(SquareMetersTolerance)));
         }
 
         [Fact]

@@ -278,8 +278,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Mass v = Mass.FromKilograms(1);
-            Assert.True(v.Equals(Mass.FromKilograms(1)));
-            Assert.False(v.Equals(Mass.Zero));
+            Assert.True(v.Equals(Mass.FromKilograms(1), Mass.FromKilograms(KilogramsTolerance)));
+            Assert.False(v.Equals(Mass.Zero, Mass.FromKilograms(KilogramsTolerance)));
         }
 
         [Fact]

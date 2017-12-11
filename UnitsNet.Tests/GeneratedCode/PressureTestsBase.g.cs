@@ -374,8 +374,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Pressure v = Pressure.FromPascals(1);
-            Assert.True(v.Equals(Pressure.FromPascals(1)));
-            Assert.False(v.Equals(Pressure.Zero));
+            Assert.True(v.Equals(Pressure.FromPascals(1), Pressure.FromPascals(PascalsTolerance)));
+            Assert.False(v.Equals(Pressure.Zero, Pressure.FromPascals(PascalsTolerance)));
         }
 
         [Fact]

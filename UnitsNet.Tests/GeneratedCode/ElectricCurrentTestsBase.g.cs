@@ -194,8 +194,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ElectricCurrent v = ElectricCurrent.FromAmperes(1);
-            Assert.True(v.Equals(ElectricCurrent.FromAmperes(1)));
-            Assert.False(v.Equals(ElectricCurrent.Zero));
+            Assert.True(v.Equals(ElectricCurrent.FromAmperes(1), ElectricCurrent.FromAmperes(AmperesTolerance)));
+            Assert.False(v.Equals(ElectricCurrent.Zero, ElectricCurrent.FromAmperes(AmperesTolerance)));
         }
 
         [Fact]

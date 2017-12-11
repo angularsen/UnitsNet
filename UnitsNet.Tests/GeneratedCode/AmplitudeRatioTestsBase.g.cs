@@ -181,8 +181,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1)));
-            Assert.False(v.Equals(AmplitudeRatio.Zero));
+            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1), AmplitudeRatio.FromDecibelVolts(DecibelVoltsTolerance)));
+            Assert.False(v.Equals(AmplitudeRatio.Zero, AmplitudeRatio.FromDecibelVolts(DecibelVoltsTolerance)));
         }
 
         [Fact]

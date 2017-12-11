@@ -188,8 +188,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Ratio v = Ratio.FromDecimalFractions(1);
-            Assert.True(v.Equals(Ratio.FromDecimalFractions(1)));
-            Assert.False(v.Equals(Ratio.Zero));
+            Assert.True(v.Equals(Ratio.FromDecimalFractions(1), Ratio.FromDecimalFractions(DecimalFractionsTolerance)));
+            Assert.False(v.Equals(Ratio.Zero, Ratio.FromDecimalFractions(DecimalFractionsTolerance)));
         }
 
         [Fact]

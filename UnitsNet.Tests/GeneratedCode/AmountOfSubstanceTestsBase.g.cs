@@ -236,8 +236,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             AmountOfSubstance v = AmountOfSubstance.FromMoles(1);
-            Assert.True(v.Equals(AmountOfSubstance.FromMoles(1)));
-            Assert.False(v.Equals(AmountOfSubstance.Zero));
+            Assert.True(v.Equals(AmountOfSubstance.FromMoles(1), AmountOfSubstance.FromMoles(MolesTolerance)));
+            Assert.False(v.Equals(AmountOfSubstance.Zero, AmountOfSubstance.FromMoles(MolesTolerance)));
         }
 
         [Fact]

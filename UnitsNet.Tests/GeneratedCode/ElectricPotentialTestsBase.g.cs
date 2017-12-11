@@ -182,8 +182,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ElectricPotential v = ElectricPotential.FromVolts(1);
-            Assert.True(v.Equals(ElectricPotential.FromVolts(1)));
-            Assert.False(v.Equals(ElectricPotential.Zero));
+            Assert.True(v.Equals(ElectricPotential.FromVolts(1), ElectricPotential.FromVolts(VoltsTolerance)));
+            Assert.False(v.Equals(ElectricPotential.Zero, ElectricPotential.FromVolts(VoltsTolerance)));
         }
 
         [Fact]

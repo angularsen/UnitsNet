@@ -308,8 +308,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             MassMomentOfInertia v = MassMomentOfInertia.FromKilogramSquareMeters(1);
-            Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1)));
-            Assert.False(v.Equals(MassMomentOfInertia.Zero));
+            Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), MassMomentOfInertia.FromKilogramSquareMeters(KilogramSquareMetersTolerance)));
+            Assert.False(v.Equals(MassMomentOfInertia.Zero, MassMomentOfInertia.FromKilogramSquareMeters(KilogramSquareMetersTolerance)));
         }
 
         [Fact]

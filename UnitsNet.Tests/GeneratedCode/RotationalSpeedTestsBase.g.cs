@@ -230,8 +230,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             RotationalSpeed v = RotationalSpeed.FromRadiansPerSecond(1);
-            Assert.True(v.Equals(RotationalSpeed.FromRadiansPerSecond(1)));
-            Assert.False(v.Equals(RotationalSpeed.Zero));
+            Assert.True(v.Equals(RotationalSpeed.FromRadiansPerSecond(1), RotationalSpeed.FromRadiansPerSecond(RadiansPerSecondTolerance)));
+            Assert.False(v.Equals(RotationalSpeed.Zero, RotationalSpeed.FromRadiansPerSecond(RadiansPerSecondTolerance)));
         }
 
         [Fact]

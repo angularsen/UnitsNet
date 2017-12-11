@@ -158,8 +158,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             LapseRate v = LapseRate.FromDegreesCelciusPerKilometer(1);
-            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1)));
-            Assert.False(v.Equals(LapseRate.Zero));
+            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1), LapseRate.FromDegreesCelciusPerKilometer(DegreesCelciusPerKilometerTolerance)));
+            Assert.False(v.Equals(LapseRate.Zero, LapseRate.FromDegreesCelciusPerKilometer(DegreesCelciusPerKilometerTolerance)));
         }
 
         [Fact]

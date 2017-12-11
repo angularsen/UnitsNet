@@ -218,8 +218,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ForceChangeRate v = ForceChangeRate.FromNewtonsPerSecond(1);
-            Assert.True(v.Equals(ForceChangeRate.FromNewtonsPerSecond(1)));
-            Assert.False(v.Equals(ForceChangeRate.Zero));
+            Assert.True(v.Equals(ForceChangeRate.FromNewtonsPerSecond(1), ForceChangeRate.FromNewtonsPerSecond(NewtonsPerSecondTolerance)));
+            Assert.False(v.Equals(ForceChangeRate.Zero, ForceChangeRate.FromNewtonsPerSecond(NewtonsPerSecondTolerance)));
         }
 
         [Fact]

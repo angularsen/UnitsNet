@@ -170,8 +170,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ApparentPower v = ApparentPower.FromVoltamperes(1);
-            Assert.True(v.Equals(ApparentPower.FromVoltamperes(1)));
-            Assert.False(v.Equals(ApparentPower.Zero));
+            Assert.True(v.Equals(ApparentPower.FromVoltamperes(1), ApparentPower.FromVoltamperes(VoltamperesTolerance)));
+            Assert.False(v.Equals(ApparentPower.Zero, ApparentPower.FromVoltamperes(VoltamperesTolerance)));
         }
 
         [Fact]

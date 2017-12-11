@@ -164,8 +164,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             RotationalAcceleration v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            Assert.True(v.Equals(RotationalAcceleration.FromRadiansPerSecondSquared(1)));
-            Assert.False(v.Equals(RotationalAcceleration.Zero));
+            Assert.True(v.Equals(RotationalAcceleration.FromRadiansPerSecondSquared(1), RotationalAcceleration.FromRadiansPerSecondSquared(RadiansPerSecondSquaredTolerance)));
+            Assert.False(v.Equals(RotationalAcceleration.Zero, RotationalAcceleration.FromRadiansPerSecondSquared(RadiansPerSecondSquaredTolerance)));
         }
 
         [Fact]

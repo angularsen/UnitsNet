@@ -170,8 +170,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             BrakeSpecificFuelConsumption v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1)));
-            Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero));
+            Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), BrakeSpecificFuelConsumption.FromKilogramsPerJoule(KilogramsPerJouleTolerance)));
+            Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(KilogramsPerJouleTolerance)));
         }
 
         [Fact]

@@ -212,8 +212,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Duration v = Duration.FromSeconds(1);
-            Assert.True(v.Equals(Duration.FromSeconds(1)));
-            Assert.False(v.Equals(Duration.Zero));
+            Assert.True(v.Equals(Duration.FromSeconds(1), Duration.FromSeconds(SecondsTolerance)));
+            Assert.False(v.Equals(Duration.Zero, Duration.FromSeconds(SecondsTolerance)));
         }
 
         [Fact]

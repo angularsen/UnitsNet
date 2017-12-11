@@ -284,8 +284,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Length v = Length.FromMeters(1);
-            Assert.True(v.Equals(Length.FromMeters(1)));
-            Assert.False(v.Equals(Length.Zero));
+            Assert.True(v.Equals(Length.FromMeters(1), Length.FromMeters(MetersTolerance)));
+            Assert.False(v.Equals(Length.Zero, Length.FromMeters(MetersTolerance)));
         }
 
         [Fact]

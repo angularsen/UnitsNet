@@ -194,8 +194,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Entropy v = Entropy.FromJoulesPerKelvin(1);
-            Assert.True(v.Equals(Entropy.FromJoulesPerKelvin(1)));
-            Assert.False(v.Equals(Entropy.Zero));
+            Assert.True(v.Equals(Entropy.FromJoulesPerKelvin(1), Entropy.FromJoulesPerKelvin(JoulesPerKelvinTolerance)));
+            Assert.False(v.Equals(Entropy.Zero, Entropy.FromJoulesPerKelvin(JoulesPerKelvinTolerance)));
         }
 
         [Fact]

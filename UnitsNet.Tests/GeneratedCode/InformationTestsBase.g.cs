@@ -308,8 +308,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Information v = Information.FromBits(1);
-            Assert.True(v.Equals(Information.FromBits(1)));
-            Assert.False(v.Equals(Information.Zero));
+            Assert.True(v.Equals(Information.FromBits(1), Information.FromBits(BitsTolerance)));
+            Assert.False(v.Equals(Information.Zero, Information.FromBits(BitsTolerance)));
         }
 
         [Fact]

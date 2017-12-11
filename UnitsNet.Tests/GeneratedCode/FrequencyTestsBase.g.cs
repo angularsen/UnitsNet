@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Frequency v = Frequency.FromHertz(1);
-            Assert.True(v.Equals(Frequency.FromHertz(1)));
-            Assert.False(v.Equals(Frequency.Zero));
+            Assert.True(v.Equals(Frequency.FromHertz(1), Frequency.FromHertz(HertzTolerance)));
+            Assert.False(v.Equals(Frequency.Zero, Frequency.FromHertz(HertzTolerance)));
         }
 
         [Fact]

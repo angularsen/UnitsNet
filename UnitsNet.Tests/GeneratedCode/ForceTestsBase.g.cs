@@ -206,8 +206,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Force v = Force.FromNewtons(1);
-            Assert.True(v.Equals(Force.FromNewtons(1)));
-            Assert.False(v.Equals(Force.Zero));
+            Assert.True(v.Equals(Force.FromNewtons(1), Force.FromNewtons(NewtonsTolerance)));
+            Assert.False(v.Equals(Force.Zero, Force.FromNewtons(NewtonsTolerance)));
         }
 
         [Fact]

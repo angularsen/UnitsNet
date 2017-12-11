@@ -230,8 +230,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Angle v = Angle.FromDegrees(1);
-            Assert.True(v.Equals(Angle.FromDegrees(1)));
-            Assert.False(v.Equals(Angle.Zero));
+            Assert.True(v.Equals(Angle.FromDegrees(1), Angle.FromDegrees(DegreesTolerance)));
+            Assert.False(v.Equals(Angle.Zero, Angle.FromDegrees(DegreesTolerance)));
         }
 
         [Fact]

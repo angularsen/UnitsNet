@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ForcePerLength v = ForcePerLength.FromNewtonsPerMeter(1);
-            Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1)));
-            Assert.False(v.Equals(ForcePerLength.Zero));
+            Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), ForcePerLength.FromNewtonsPerMeter(NewtonsPerMeterTolerance)));
+            Assert.False(v.Equals(ForcePerLength.Zero, ForcePerLength.FromNewtonsPerMeter(NewtonsPerMeterTolerance)));
         }
 
         [Fact]

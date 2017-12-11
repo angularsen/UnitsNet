@@ -169,8 +169,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Level v = Level.FromDecibels(1);
-            Assert.True(v.Equals(Level.FromDecibels(1)));
-            Assert.False(v.Equals(Level.Zero));
+            Assert.True(v.Equals(Level.FromDecibels(1), Level.FromDecibels(DecibelsTolerance)));
+            Assert.False(v.Equals(Level.Zero, Level.FromDecibels(DecibelsTolerance)));
         }
 
         [Fact]

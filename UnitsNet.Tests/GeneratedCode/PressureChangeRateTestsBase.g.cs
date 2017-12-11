@@ -176,8 +176,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             PressureChangeRate v = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1)));
-            Assert.False(v.Equals(PressureChangeRate.Zero));
+            Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1), PressureChangeRate.FromPascalsPerSecond(PascalsPerSecondTolerance)));
+            Assert.False(v.Equals(PressureChangeRate.Zero, PressureChangeRate.FromPascalsPerSecond(PascalsPerSecondTolerance)));
         }
 
         [Fact]

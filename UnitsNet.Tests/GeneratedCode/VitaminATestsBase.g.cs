@@ -158,8 +158,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             VitaminA v = VitaminA.FromInternationalUnits(1);
-            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1)));
-            Assert.False(v.Equals(VitaminA.Zero));
+            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1), VitaminA.FromInternationalUnits(InternationalUnitsTolerance)));
+            Assert.False(v.Equals(VitaminA.Zero, VitaminA.FromInternationalUnits(InternationalUnitsTolerance)));
         }
 
         [Fact]

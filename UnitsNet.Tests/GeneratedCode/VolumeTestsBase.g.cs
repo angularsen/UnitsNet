@@ -404,8 +404,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Volume v = Volume.FromCubicMeters(1);
-            Assert.True(v.Equals(Volume.FromCubicMeters(1)));
-            Assert.False(v.Equals(Volume.Zero));
+            Assert.True(v.Equals(Volume.FromCubicMeters(1), Volume.FromCubicMeters(CubicMetersTolerance)));
+            Assert.False(v.Equals(Volume.Zero, Volume.FromCubicMeters(CubicMetersTolerance)));
         }
 
         [Fact]

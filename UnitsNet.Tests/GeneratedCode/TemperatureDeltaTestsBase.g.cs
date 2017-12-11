@@ -248,8 +248,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             TemperatureDelta v = TemperatureDelta.FromKelvins(1);
-            Assert.True(v.Equals(TemperatureDelta.FromKelvins(1)));
-            Assert.False(v.Equals(TemperatureDelta.Zero));
+            Assert.True(v.Equals(TemperatureDelta.FromKelvins(1), TemperatureDelta.FromKelvins(KelvinsTolerance)));
+            Assert.False(v.Equals(TemperatureDelta.Zero, TemperatureDelta.FromKelvins(KelvinsTolerance)));
         }
 
         [Fact]

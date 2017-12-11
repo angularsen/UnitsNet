@@ -202,8 +202,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             $quantityName v = $quantityName.From$baseUnitPluralName(1);
-            Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1)));
-            Assert.False(v.Equals($quantityName.Zero));
+            Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1), $quantityName.From$baseUnitPluralName($($baseUnitPluralName)Tolerance)));
+            Assert.False(v.Equals($quantityName.Zero, $quantityName.From$baseUnitPluralName($($baseUnitPluralName)Tolerance)));
         }
 
         [Fact]
