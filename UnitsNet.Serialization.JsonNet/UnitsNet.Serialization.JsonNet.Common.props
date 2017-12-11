@@ -3,7 +3,7 @@
     <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
