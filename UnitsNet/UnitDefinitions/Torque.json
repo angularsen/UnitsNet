@@ -8,7 +8,7 @@
       "PluralName": "NewtonMillimeters",
       "FromUnitToBaseFunc": "x*0.001",
       "FromBaseToUnitFunc": "x*1000",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -21,7 +21,7 @@
       "PluralName": "NewtonCentimeters",
       "FromUnitToBaseFunc": "x*0.01",
       "FromBaseToUnitFunc": "x*100",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,7 +34,7 @@
       "PluralName": "NewtonMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -52,7 +52,7 @@
       "PluralName": "PoundForceInches",
       "FromUnitToBaseFunc": "x*0.1129848388",
       "FromBaseToUnitFunc": "x*8.85074502580075",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -66,7 +66,7 @@
       "PluralName": "PoundForceFeet",
       "FromUnitToBaseFunc": "x*1.3558180656",
       "FromBaseToUnitFunc": "x*0.737562085483396",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

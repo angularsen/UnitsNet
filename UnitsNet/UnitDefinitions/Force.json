@@ -56,7 +56,7 @@
       "PluralName": "Newtons",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Deca", "Kilo" ],
+      "Prefixes": [ "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
