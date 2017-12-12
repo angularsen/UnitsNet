@@ -170,6 +170,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Force in Meganewtons.
+        /// </summary>
+        public double Meganewtons
+        {
+            get { return (_newtons) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get Force in Newtons.
         /// </summary>
         public double Newtons
@@ -297,6 +305,24 @@ namespace UnitsNet
         {
             double value = (double) kiloponds;
             return new Force((value*9.80665002864));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Force from Meganewtons.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromMeganewtons(double meganewtons)
+        {
+            double value = (double) meganewtons;
+            return new Force((value) * 1e6d);
+        }
+#else
+        public static Force FromMeganewtons(QuantityValue meganewtons)
+        {
+            double value = (double) meganewtons;
+            return new Force(((value) * 1e6d));
         }
 #endif
 
@@ -450,6 +476,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Force from nullable Meganewtons.
+        /// </summary>
+        public static Force? FromMeganewtons(QuantityValue? meganewtons)
+        {
+            if (meganewtons.HasValue)
+            {
+                return FromMeganewtons(meganewtons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Force from nullable Newtons.
         /// </summary>
         public static Force? FromNewtons(QuantityValue? newtons)
@@ -537,6 +578,8 @@ namespace UnitsNet
                     return FromKilonewtons(value);
                 case ForceUnit.KiloPond:
                     return FromKiloPonds(value);
+                case ForceUnit.Meganewton:
+                    return FromMeganewtons(value);
                 case ForceUnit.Newton:
                     return FromNewtons(value);
                 case ForceUnit.Poundal:
@@ -577,6 +620,8 @@ namespace UnitsNet
                     return FromKilonewtons(value.Value);
                 case ForceUnit.KiloPond:
                     return FromKiloPonds(value.Value);
+                case ForceUnit.Meganewton:
+                    return FromMeganewtons(value.Value);
                 case ForceUnit.Newton:
                     return FromNewtons(value.Value);
                 case ForceUnit.Poundal:
@@ -768,6 +813,8 @@ namespace UnitsNet
                     return Kilonewtons;
                 case ForceUnit.KiloPond:
                     return KiloPonds;
+                case ForceUnit.Meganewton:
+                    return Meganewtons;
                 case ForceUnit.Newton:
                     return Newtons;
                 case ForceUnit.Poundal:

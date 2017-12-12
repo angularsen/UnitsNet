@@ -194,6 +194,46 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Torque in MeganewtonCentimeters.
+        /// </summary>
+        public double MeganewtonCentimeters
+        {
+            get { return (_newtonMeters*100) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in MeganewtonMeters.
+        /// </summary>
+        public double MeganewtonMeters
+        {
+            get { return (_newtonMeters) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in MeganewtonMillimeters.
+        /// </summary>
+        public double MeganewtonMillimeters
+        {
+            get { return (_newtonMeters*1000) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in MegapoundForceFeet.
+        /// </summary>
+        public double MegapoundForceFeet
+        {
+            get { return (_newtonMeters*0.737562085483396) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Torque in MegapoundForceInches.
+        /// </summary>
+        public double MegapoundForceInches
+        {
+            get { return (_newtonMeters*8.85074502580075) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get Torque in NewtonCentimeters.
         /// </summary>
         public double NewtonCentimeters
@@ -407,6 +447,96 @@ namespace UnitsNet
         {
             double value = (double) kilopoundforceinches;
             return new Torque(((value*0.1129848388) * 1e3d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Torque from MeganewtonCentimeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromMeganewtonCentimeters(double meganewtoncentimeters)
+        {
+            double value = (double) meganewtoncentimeters;
+            return new Torque((value*0.01) * 1e6d);
+        }
+#else
+        public static Torque FromMeganewtonCentimeters(QuantityValue meganewtoncentimeters)
+        {
+            double value = (double) meganewtoncentimeters;
+            return new Torque(((value*0.01) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Torque from MeganewtonMeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromMeganewtonMeters(double meganewtonmeters)
+        {
+            double value = (double) meganewtonmeters;
+            return new Torque((value) * 1e6d);
+        }
+#else
+        public static Torque FromMeganewtonMeters(QuantityValue meganewtonmeters)
+        {
+            double value = (double) meganewtonmeters;
+            return new Torque(((value) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Torque from MeganewtonMillimeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromMeganewtonMillimeters(double meganewtonmillimeters)
+        {
+            double value = (double) meganewtonmillimeters;
+            return new Torque((value*0.001) * 1e6d);
+        }
+#else
+        public static Torque FromMeganewtonMillimeters(QuantityValue meganewtonmillimeters)
+        {
+            double value = (double) meganewtonmillimeters;
+            return new Torque(((value*0.001) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Torque from MegapoundForceFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromMegapoundForceFeet(double megapoundforcefeet)
+        {
+            double value = (double) megapoundforcefeet;
+            return new Torque((value*1.3558180656) * 1e6d);
+        }
+#else
+        public static Torque FromMegapoundForceFeet(QuantityValue megapoundforcefeet)
+        {
+            double value = (double) megapoundforcefeet;
+            return new Torque(((value*1.3558180656) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Torque from MegapoundForceInches.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromMegapoundForceInches(double megapoundforceinches)
+        {
+            double value = (double) megapoundforceinches;
+            return new Torque((value*0.1129848388) * 1e6d);
+        }
+#else
+        public static Torque FromMegapoundForceInches(QuantityValue megapoundforceinches)
+        {
+            double value = (double) megapoundforceinches;
+            return new Torque(((value*0.1129848388) * 1e6d));
         }
 #endif
 
@@ -677,6 +807,81 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonCentimeters.
+        /// </summary>
+        public static Torque? FromMeganewtonCentimeters(QuantityValue? meganewtoncentimeters)
+        {
+            if (meganewtoncentimeters.HasValue)
+            {
+                return FromMeganewtonCentimeters(meganewtoncentimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonMeters.
+        /// </summary>
+        public static Torque? FromMeganewtonMeters(QuantityValue? meganewtonmeters)
+        {
+            if (meganewtonmeters.HasValue)
+            {
+                return FromMeganewtonMeters(meganewtonmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonMillimeters.
+        /// </summary>
+        public static Torque? FromMeganewtonMillimeters(QuantityValue? meganewtonmillimeters)
+        {
+            if (meganewtonmillimeters.HasValue)
+            {
+                return FromMeganewtonMillimeters(meganewtonmillimeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MegapoundForceFeet.
+        /// </summary>
+        public static Torque? FromMegapoundForceFeet(QuantityValue? megapoundforcefeet)
+        {
+            if (megapoundforcefeet.HasValue)
+            {
+                return FromMegapoundForceFeet(megapoundforcefeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MegapoundForceInches.
+        /// </summary>
+        public static Torque? FromMegapoundForceInches(QuantityValue? megapoundforceinches)
+        {
+            if (megapoundforceinches.HasValue)
+            {
+                return FromMegapoundForceInches(megapoundforceinches.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Torque from nullable NewtonCentimeters.
         /// </summary>
         public static Torque? FromNewtonCentimeters(QuantityValue? newtoncentimeters)
@@ -830,6 +1035,16 @@ namespace UnitsNet
                     return FromKilopoundForceFeet(value);
                 case TorqueUnit.KilopoundForceInch:
                     return FromKilopoundForceInches(value);
+                case TorqueUnit.MeganewtonCentimeter:
+                    return FromMeganewtonCentimeters(value);
+                case TorqueUnit.MeganewtonMeter:
+                    return FromMeganewtonMeters(value);
+                case TorqueUnit.MeganewtonMillimeter:
+                    return FromMeganewtonMillimeters(value);
+                case TorqueUnit.MegapoundForceFoot:
+                    return FromMegapoundForceFeet(value);
+                case TorqueUnit.MegapoundForceInch:
+                    return FromMegapoundForceInches(value);
                 case TorqueUnit.NewtonCentimeter:
                     return FromNewtonCentimeters(value);
                 case TorqueUnit.NewtonMeter:
@@ -884,6 +1099,16 @@ namespace UnitsNet
                     return FromKilopoundForceFeet(value.Value);
                 case TorqueUnit.KilopoundForceInch:
                     return FromKilopoundForceInches(value.Value);
+                case TorqueUnit.MeganewtonCentimeter:
+                    return FromMeganewtonCentimeters(value.Value);
+                case TorqueUnit.MeganewtonMeter:
+                    return FromMeganewtonMeters(value.Value);
+                case TorqueUnit.MeganewtonMillimeter:
+                    return FromMeganewtonMillimeters(value.Value);
+                case TorqueUnit.MegapoundForceFoot:
+                    return FromMegapoundForceFeet(value.Value);
+                case TorqueUnit.MegapoundForceInch:
+                    return FromMegapoundForceInches(value.Value);
                 case TorqueUnit.NewtonCentimeter:
                     return FromNewtonCentimeters(value.Value);
                 case TorqueUnit.NewtonMeter:
@@ -1089,6 +1314,16 @@ namespace UnitsNet
                     return KilopoundForceFeet;
                 case TorqueUnit.KilopoundForceInch:
                     return KilopoundForceInches;
+                case TorqueUnit.MeganewtonCentimeter:
+                    return MeganewtonCentimeters;
+                case TorqueUnit.MeganewtonMeter:
+                    return MeganewtonMeters;
+                case TorqueUnit.MeganewtonMillimeter:
+                    return MeganewtonMillimeters;
+                case TorqueUnit.MegapoundForceFoot:
+                    return MegapoundForceFeet;
+                case TorqueUnit.MegapoundForceInch:
+                    return MegapoundForceInches;
                 case TorqueUnit.NewtonCentimeter:
                     return NewtonCentimeters;
                 case TorqueUnit.NewtonMeter:
