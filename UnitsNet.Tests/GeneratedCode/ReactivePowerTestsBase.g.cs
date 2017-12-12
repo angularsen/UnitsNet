@@ -170,8 +170,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ReactivePower v = ReactivePower.FromVoltamperesReactive(1);
-            Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1)));
-            Assert.False(v.Equals(ReactivePower.Zero));
+            Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1), ReactivePower.FromVoltamperesReactive(VoltamperesReactiveTolerance)));
+            Assert.False(v.Equals(ReactivePower.Zero, ReactivePower.FromVoltamperesReactive(VoltamperesReactiveTolerance)));
         }
 
         [Fact]

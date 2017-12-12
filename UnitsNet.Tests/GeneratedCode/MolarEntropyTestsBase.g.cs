@@ -170,8 +170,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             MolarEntropy v = MolarEntropy.FromJoulesPerMoleKelvin(1);
-            Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1)));
-            Assert.False(v.Equals(MolarEntropy.Zero));
+            Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1), MolarEntropy.FromJoulesPerMoleKelvin(JoulesPerMoleKelvinTolerance)));
+            Assert.False(v.Equals(MolarEntropy.Zero, MolarEntropy.FromJoulesPerMoleKelvin(JoulesPerMoleKelvinTolerance)));
         }
 
         [Fact]

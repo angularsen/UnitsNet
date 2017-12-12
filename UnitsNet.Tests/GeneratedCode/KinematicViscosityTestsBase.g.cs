@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             KinematicViscosity v = KinematicViscosity.FromSquareMetersPerSecond(1);
-            Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1)));
-            Assert.False(v.Equals(KinematicViscosity.Zero));
+            Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), KinematicViscosity.FromSquareMetersPerSecond(SquareMetersPerSecondTolerance)));
+            Assert.False(v.Equals(KinematicViscosity.Zero, KinematicViscosity.FromSquareMetersPerSecond(SquareMetersPerSecondTolerance)));
         }
 
         [Fact]

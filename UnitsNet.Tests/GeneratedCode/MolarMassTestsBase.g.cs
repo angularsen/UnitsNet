@@ -224,8 +224,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             MolarMass v = MolarMass.FromKilogramsPerMole(1);
-            Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1)));
-            Assert.False(v.Equals(MolarMass.Zero));
+            Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1), MolarMass.FromKilogramsPerMole(KilogramsPerMoleTolerance)));
+            Assert.False(v.Equals(MolarMass.Zero, MolarMass.FromKilogramsPerMole(KilogramsPerMoleTolerance)));
         }
 
         [Fact]

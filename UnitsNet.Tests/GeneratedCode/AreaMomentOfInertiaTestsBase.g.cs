@@ -188,8 +188,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             AreaMomentOfInertia v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1)));
-            Assert.False(v.Equals(AreaMomentOfInertia.Zero));
+            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), AreaMomentOfInertia.FromMetersToTheFourth(MetersToTheFourthTolerance)));
+            Assert.False(v.Equals(AreaMomentOfInertia.Zero, AreaMomentOfInertia.FromMetersToTheFourth(MetersToTheFourthTolerance)));
         }
 
         [Fact]

@@ -248,8 +248,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Torque v = Torque.FromNewtonMeters(1);
-            Assert.True(v.Equals(Torque.FromNewtonMeters(1)));
-            Assert.False(v.Equals(Torque.Zero));
+            Assert.True(v.Equals(Torque.FromNewtonMeters(1), Torque.FromNewtonMeters(NewtonMetersTolerance)));
+            Assert.False(v.Equals(Torque.Zero, Torque.FromNewtonMeters(NewtonMetersTolerance)));
         }
 
         [Fact]

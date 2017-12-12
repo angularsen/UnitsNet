@@ -260,8 +260,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Power v = Power.FromWatts(1);
-            Assert.True(v.Equals(Power.FromWatts(1)));
-            Assert.False(v.Equals(Power.Zero));
+            Assert.True(v.Equals(Power.FromWatts(1), Power.FromWatts(WattsTolerance)));
+            Assert.False(v.Equals(Power.Zero, Power.FromWatts(WattsTolerance)));
         }
 
         [Fact]

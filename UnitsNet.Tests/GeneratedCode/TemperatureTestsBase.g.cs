@@ -188,8 +188,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Temperature v = Temperature.FromKelvins(1);
-            Assert.True(v.Equals(Temperature.FromKelvins(1)));
-            Assert.False(v.Equals(Temperature.Zero));
+            Assert.True(v.Equals(Temperature.FromKelvins(1), Temperature.FromKelvins(KelvinsTolerance)));
+            Assert.False(v.Equals(Temperature.Zero, Temperature.FromKelvins(KelvinsTolerance)));
         }
 
         [Fact]

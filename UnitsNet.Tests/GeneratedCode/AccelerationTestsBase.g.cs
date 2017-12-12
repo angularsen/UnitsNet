@@ -212,8 +212,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Acceleration v = Acceleration.FromMeterPerSecondSquared(1);
-            Assert.True(v.Equals(Acceleration.FromMeterPerSecondSquared(1)));
-            Assert.False(v.Equals(Acceleration.Zero));
+            Assert.True(v.Equals(Acceleration.FromMeterPerSecondSquared(1), Acceleration.FromMeterPerSecondSquared(MeterPerSecondSquaredTolerance)));
+            Assert.False(v.Equals(Acceleration.Zero, Acceleration.FromMeterPerSecondSquared(MeterPerSecondSquaredTolerance)));
         }
 
         [Fact]

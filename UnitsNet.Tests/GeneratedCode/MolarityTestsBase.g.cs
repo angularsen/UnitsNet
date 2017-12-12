@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Molarity v = Molarity.FromMolesPerCubicMeter(1);
-            Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1)));
-            Assert.False(v.Equals(Molarity.Zero));
+            Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), Molarity.FromMolesPerCubicMeter(MolesPerCubicMeterTolerance)));
+            Assert.False(v.Equals(Molarity.Zero, Molarity.FromMolesPerCubicMeter(MolesPerCubicMeterTolerance)));
         }
 
         [Fact]

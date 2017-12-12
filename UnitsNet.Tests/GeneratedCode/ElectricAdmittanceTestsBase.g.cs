@@ -176,8 +176,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ElectricAdmittance v = ElectricAdmittance.FromSiemens(1);
-            Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1)));
-            Assert.False(v.Equals(ElectricAdmittance.Zero));
+            Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), ElectricAdmittance.FromSiemens(SiemensTolerance)));
+            Assert.False(v.Equals(ElectricAdmittance.Zero, ElectricAdmittance.FromSiemens(SiemensTolerance)));
         }
 
         [Fact]

@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             SpecificEntropy v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1)));
-            Assert.False(v.Equals(SpecificEntropy.Zero));
+            Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), SpecificEntropy.FromJoulesPerKilogramKelvin(JoulesPerKilogramKelvinTolerance)));
+            Assert.False(v.Equals(SpecificEntropy.Zero, SpecificEntropy.FromJoulesPerKilogramKelvin(JoulesPerKilogramKelvinTolerance)));
         }
 
         [Fact]

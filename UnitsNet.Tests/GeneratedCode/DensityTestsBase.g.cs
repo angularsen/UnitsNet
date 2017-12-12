@@ -362,8 +362,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Density v = Density.FromKilogramsPerCubicMeter(1);
-            Assert.True(v.Equals(Density.FromKilogramsPerCubicMeter(1)));
-            Assert.False(v.Equals(Density.Zero));
+            Assert.True(v.Equals(Density.FromKilogramsPerCubicMeter(1), Density.FromKilogramsPerCubicMeter(KilogramsPerCubicMeterTolerance)));
+            Assert.False(v.Equals(Density.Zero, Density.FromKilogramsPerCubicMeter(KilogramsPerCubicMeterTolerance)));
         }
 
         [Fact]

@@ -170,8 +170,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             MolarEnergy v = MolarEnergy.FromJoulesPerMole(1);
-            Assert.True(v.Equals(MolarEnergy.FromJoulesPerMole(1)));
-            Assert.False(v.Equals(MolarEnergy.Zero));
+            Assert.True(v.Equals(MolarEnergy.FromJoulesPerMole(1), MolarEnergy.FromJoulesPerMole(JoulesPerMoleTolerance)));
+            Assert.False(v.Equals(MolarEnergy.Zero, MolarEnergy.FromJoulesPerMole(JoulesPerMoleTolerance)));
         }
 
         [Fact]

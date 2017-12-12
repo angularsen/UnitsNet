@@ -278,8 +278,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Speed v = Speed.FromMetersPerSecond(1);
-            Assert.True(v.Equals(Speed.FromMetersPerSecond(1)));
-            Assert.False(v.Equals(Speed.Zero));
+            Assert.True(v.Equals(Speed.FromMetersPerSecond(1), Speed.FromMetersPerSecond(MetersPerSecondTolerance)));
+            Assert.False(v.Equals(Speed.Zero, Speed.FromMetersPerSecond(MetersPerSecondTolerance)));
         }
 
         [Fact]

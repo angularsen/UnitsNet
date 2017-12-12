@@ -248,8 +248,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             SpecificWeight v = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1)));
-            Assert.False(v.Equals(SpecificWeight.Zero));
+            Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), SpecificWeight.FromNewtonsPerCubicMeter(NewtonsPerCubicMeterTolerance)));
+            Assert.False(v.Equals(SpecificWeight.Zero, SpecificWeight.FromNewtonsPerCubicMeter(NewtonsPerCubicMeterTolerance)));
         }
 
         [Fact]

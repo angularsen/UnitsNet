@@ -176,8 +176,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             ElectricResistance v = ElectricResistance.FromOhms(1);
-            Assert.True(v.Equals(ElectricResistance.FromOhms(1)));
-            Assert.False(v.Equals(ElectricResistance.Zero));
+            Assert.True(v.Equals(ElectricResistance.FromOhms(1), ElectricResistance.FromOhms(OhmsTolerance)));
+            Assert.False(v.Equals(ElectricResistance.Zero, ElectricResistance.FromOhms(OhmsTolerance)));
         }
 
         [Fact]

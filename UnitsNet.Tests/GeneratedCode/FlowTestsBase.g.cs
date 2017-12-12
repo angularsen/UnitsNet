@@ -254,8 +254,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             Flow v = Flow.FromCubicMetersPerSecond(1);
-            Assert.True(v.Equals(Flow.FromCubicMetersPerSecond(1)));
-            Assert.False(v.Equals(Flow.Zero));
+            Assert.True(v.Equals(Flow.FromCubicMetersPerSecond(1), Flow.FromCubicMetersPerSecond(CubicMetersPerSecondTolerance)));
+            Assert.False(v.Equals(Flow.Zero, Flow.FromCubicMetersPerSecond(CubicMetersPerSecondTolerance)));
         }
 
         [Fact]

@@ -200,8 +200,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             SpecificEnergy v = SpecificEnergy.FromJoulesPerKilogram(1);
-            Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1)));
-            Assert.False(v.Equals(SpecificEnergy.Zero));
+            Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), SpecificEnergy.FromJoulesPerKilogram(JoulesPerKilogramTolerance)));
+            Assert.False(v.Equals(SpecificEnergy.Zero, SpecificEnergy.FromJoulesPerKilogram(JoulesPerKilogramTolerance)));
         }
 
         [Fact]

@@ -236,8 +236,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             MassFlow v = MassFlow.FromGramsPerSecond(1);
-            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1)));
-            Assert.False(v.Equals(MassFlow.Zero));
+            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
+            Assert.False(v.Equals(MassFlow.Zero, MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
         }
 
         [Fact]

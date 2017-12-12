@@ -212,8 +212,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             TemperatureChangeRate v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1)));
-            Assert.False(v.Equals(TemperatureChangeRate.Zero));
+            Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), TemperatureChangeRate.FromDegreesCelsiusPerSecond(DegreesCelsiusPerSecondTolerance)));
+            Assert.False(v.Equals(TemperatureChangeRate.Zero, TemperatureChangeRate.FromDegreesCelsiusPerSecond(DegreesCelsiusPerSecondTolerance)));
         }
 
         [Fact]

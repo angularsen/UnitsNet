@@ -169,8 +169,8 @@ namespace UnitsNet.Tests
         public void EqualsIsImplemented()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(1);
-            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1)));
-            Assert.False(v.Equals(PowerRatio.Zero));
+            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1), PowerRatio.FromDecibelWatts(DecibelWattsTolerance)));
+            Assert.False(v.Equals(PowerRatio.Zero, PowerRatio.FromDecibelWatts(DecibelWattsTolerance)));
         }
 
         [Fact]
