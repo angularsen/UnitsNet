@@ -3239,12 +3239,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) TorqueUnit.MegapoundForceFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("en-US", "Mlbf·ft"),
                             }),
                         new CulturesForEnumValue((int) TorqueUnit.MegapoundForceInch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", ""),
+                                new AbbreviationsForCulture("en-US", "Mlbf·in"),
                             }),
                         new CulturesForEnumValue((int) TorqueUnit.NewtonCentimeter,
                             new[]

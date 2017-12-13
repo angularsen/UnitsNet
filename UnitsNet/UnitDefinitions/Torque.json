@@ -57,7 +57,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf·in" ],
-          "AbbreviationsWithPrefixes": [ "kipf·in" ]
+          "AbbreviationsWithPrefixes": [ "kipf·in", "Mlbf·in"]
         }
       ]
     },
@@ -71,7 +71,7 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf·ft" ],
-          "AbbreviationsWithPrefixes": [ "kipf·ft" ]
+          "AbbreviationsWithPrefixes": [ "kipf·ft", "Mlbf·ft" ]
         }
       ]
     },
