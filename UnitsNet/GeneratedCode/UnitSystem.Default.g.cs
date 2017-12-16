@@ -1176,6 +1176,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kp"),
                                 new AbbreviationsForCulture("ru-RU", "кгс"),
                             }),
+                        new CulturesForEnumValue((int) ForceUnit.Meganewton,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN"),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                            }),
                         new CulturesForEnumValue((int) ForceUnit.Newton,
                             new[]
                             {
@@ -3213,6 +3219,32 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kipf·in"),
+                            }),
+                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN·cm"),
+                            }),
+                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN·m"),
+                                new AbbreviationsForCulture("ru-RU", ""),
+                            }),
+                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonMillimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN·mm"),
+                            }),
+                        new CulturesForEnumValue((int) TorqueUnit.MegapoundForceFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlbf·ft"),
+                            }),
+                        new CulturesForEnumValue((int) TorqueUnit.MegapoundForceInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlbf·in"),
                             }),
                         new CulturesForEnumValue((int) TorqueUnit.NewtonCentimeter,
                             new[]

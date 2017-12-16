@@ -214,6 +214,40 @@ namespace UnitsNet.Extensions.NumberToForce
 
         #endregion
 
+        #region Meganewton
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double)"/>
+        public static Force Meganewtons(this int value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double?)"/>
+        public static Force? Meganewtons(this int? value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double)"/>
+        public static Force Meganewtons(this long value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double?)"/>
+        public static Force? Meganewtons(this long? value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double)"/>
+        public static Force Meganewtons(this double value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double?)"/>
+        public static Force? Meganewtons(this double? value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double)"/>
+        public static Force Meganewtons(this float value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double?)"/>
+        public static Force? Meganewtons(this float? value) => Force.FromMeganewtons(value);
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double)"/>
+        public static Force Meganewtons(this decimal value) => Force.FromMeganewtons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromMeganewtons(double?)"/>
+        public static Force? Meganewtons(this decimal? value) => Force.FromMeganewtons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Newton
 
         /// <inheritdoc cref="Force.FromNewtons(double)"/>
