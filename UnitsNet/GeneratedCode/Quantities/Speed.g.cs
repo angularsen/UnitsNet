@@ -170,11 +170,51 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Speed in FeetPerHour.
+        /// </summary>
+        public double FeetPerHour
+        {
+            get { return _metersPerSecond/0.3048*3600; }
+        }
+
+        /// <summary>
+        ///     Get Speed in FeetPerMinute.
+        /// </summary>
+        public double FeetPerMinute
+        {
+            get { return _metersPerSecond/0.3048*60; }
+        }
+
+        /// <summary>
         ///     Get Speed in FeetPerSecond.
         /// </summary>
         public double FeetPerSecond
         {
             get { return _metersPerSecond/0.3048; }
+        }
+
+        /// <summary>
+        ///     Get Speed in InchesPerHour.
+        /// </summary>
+        public double InchesPerHour
+        {
+            get { return (_metersPerSecond/2.54e-2)*3600; }
+        }
+
+        /// <summary>
+        ///     Get Speed in InchesPerMinute.
+        /// </summary>
+        public double InchesPerMinute
+        {
+            get { return (_metersPerSecond/2.54e-2)*60; }
+        }
+
+        /// <summary>
+        ///     Get Speed in InchesPerSecond.
+        /// </summary>
+        public double InchesPerSecond
+        {
+            get { return _metersPerSecond/2.54e-2; }
         }
 
         /// <summary>
@@ -297,6 +337,54 @@ namespace UnitsNet
             get { return (_metersPerSecond) / 1e-9d; }
         }
 
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerHour.
+        /// </summary>
+        public double UsSurveyFeetPerHour
+        {
+            get { return (_metersPerSecond*3937/1200)*3600; }
+        }
+
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerMinute.
+        /// </summary>
+        public double UsSurveyFeetPerMinute
+        {
+            get { return (_metersPerSecond*3937/1200)*60; }
+        }
+
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerSecond.
+        /// </summary>
+        public double UsSurveyFeetPerSecond
+        {
+            get { return _metersPerSecond*3937/1200; }
+        }
+
+        /// <summary>
+        ///     Get Speed in YardsPerHour.
+        /// </summary>
+        public double YardsPerHour
+        {
+            get { return _metersPerSecond/0.9144*3600; }
+        }
+
+        /// <summary>
+        ///     Get Speed in YardsPerMinute.
+        /// </summary>
+        public double YardsPerMinute
+        {
+            get { return _metersPerSecond/0.9144*60; }
+        }
+
+        /// <summary>
+        ///     Get Speed in YardsPerSecond.
+        /// </summary>
+        public double YardsPerSecond
+        {
+            get { return _metersPerSecond/0.9144; }
+        }
+
         #endregion
 
         #region Static
@@ -397,6 +485,42 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Speed from FeetPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerHour(double feetperhour)
+        {
+            double value = (double) feetperhour;
+            return new Speed(value*0.3048/3600);
+        }
+#else
+        public static Speed FromFeetPerHour(QuantityValue feetperhour)
+        {
+            double value = (double) feetperhour;
+            return new Speed((value*0.3048/3600));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from FeetPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerMinute(double feetperminute)
+        {
+            double value = (double) feetperminute;
+            return new Speed(value*0.3048/60);
+        }
+#else
+        public static Speed FromFeetPerMinute(QuantityValue feetperminute)
+        {
+            double value = (double) feetperminute;
+            return new Speed((value*0.3048/60));
+        }
+#endif
+
+        /// <summary>
         ///     Get Speed from FeetPerSecond.
         /// </summary>
 #if WINDOWS_UWP
@@ -411,6 +535,60 @@ namespace UnitsNet
         {
             double value = (double) feetpersecond;
             return new Speed((value*0.3048));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from InchesPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromInchesPerHour(double inchesperhour)
+        {
+            double value = (double) inchesperhour;
+            return new Speed((value/3600)*2.54e-2);
+        }
+#else
+        public static Speed FromInchesPerHour(QuantityValue inchesperhour)
+        {
+            double value = (double) inchesperhour;
+            return new Speed(((value/3600)*2.54e-2));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from InchesPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromInchesPerMinute(double inchesperminute)
+        {
+            double value = (double) inchesperminute;
+            return new Speed((value/60)*2.54e-2);
+        }
+#else
+        public static Speed FromInchesPerMinute(QuantityValue inchesperminute)
+        {
+            double value = (double) inchesperminute;
+            return new Speed(((value/60)*2.54e-2));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from InchesPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromInchesPerSecond(double inchespersecond)
+        {
+            double value = (double) inchespersecond;
+            return new Speed(value*2.54e-2);
+        }
+#else
+        public static Speed FromInchesPerSecond(QuantityValue inchespersecond)
+        {
+            double value = (double) inchespersecond;
+            return new Speed((value*2.54e-2));
         }
 #endif
 
@@ -684,6 +862,114 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get Speed from UsSurveyFeetPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromUsSurveyFeetPerHour(double ussurveyfeetperhour)
+        {
+            double value = (double) ussurveyfeetperhour;
+            return new Speed((value*1200/3937)/3600);
+        }
+#else
+        public static Speed FromUsSurveyFeetPerHour(QuantityValue ussurveyfeetperhour)
+        {
+            double value = (double) ussurveyfeetperhour;
+            return new Speed(((value*1200/3937)/3600));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from UsSurveyFeetPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromUsSurveyFeetPerMinute(double ussurveyfeetperminute)
+        {
+            double value = (double) ussurveyfeetperminute;
+            return new Speed((value*1200/3937)/60);
+        }
+#else
+        public static Speed FromUsSurveyFeetPerMinute(QuantityValue ussurveyfeetperminute)
+        {
+            double value = (double) ussurveyfeetperminute;
+            return new Speed(((value*1200/3937)/60));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from UsSurveyFeetPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromUsSurveyFeetPerSecond(double ussurveyfeetpersecond)
+        {
+            double value = (double) ussurveyfeetpersecond;
+            return new Speed(value*1200/3937);
+        }
+#else
+        public static Speed FromUsSurveyFeetPerSecond(QuantityValue ussurveyfeetpersecond)
+        {
+            double value = (double) ussurveyfeetpersecond;
+            return new Speed((value*1200/3937));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from YardsPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromYardsPerHour(double yardsperhour)
+        {
+            double value = (double) yardsperhour;
+            return new Speed(value*0.9144/3600);
+        }
+#else
+        public static Speed FromYardsPerHour(QuantityValue yardsperhour)
+        {
+            double value = (double) yardsperhour;
+            return new Speed((value*0.9144/3600));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from YardsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromYardsPerMinute(double yardsperminute)
+        {
+            double value = (double) yardsperminute;
+            return new Speed(value*0.9144/60);
+        }
+#else
+        public static Speed FromYardsPerMinute(QuantityValue yardsperminute)
+        {
+            double value = (double) yardsperminute;
+            return new Speed((value*0.9144/60));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Speed from YardsPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromYardsPerSecond(double yardspersecond)
+        {
+            double value = (double) yardspersecond;
+            return new Speed(value*0.9144);
+        }
+#else
+        public static Speed FromYardsPerSecond(QuantityValue yardspersecond)
+        {
+            double value = (double) yardspersecond;
+            return new Speed((value*0.9144));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -762,6 +1048,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Speed from nullable FeetPerHour.
+        /// </summary>
+        public static Speed? FromFeetPerHour(QuantityValue? feetperhour)
+        {
+            if (feetperhour.HasValue)
+            {
+                return FromFeetPerHour(feetperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerMinute.
+        /// </summary>
+        public static Speed? FromFeetPerMinute(QuantityValue? feetperminute)
+        {
+            if (feetperminute.HasValue)
+            {
+                return FromFeetPerMinute(feetperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Speed from nullable FeetPerSecond.
         /// </summary>
         public static Speed? FromFeetPerSecond(QuantityValue? feetpersecond)
@@ -769,6 +1085,51 @@ namespace UnitsNet
             if (feetpersecond.HasValue)
             {
                 return FromFeetPerSecond(feetpersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerHour.
+        /// </summary>
+        public static Speed? FromInchesPerHour(QuantityValue? inchesperhour)
+        {
+            if (inchesperhour.HasValue)
+            {
+                return FromInchesPerHour(inchesperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerMinute.
+        /// </summary>
+        public static Speed? FromInchesPerMinute(QuantityValue? inchesperminute)
+        {
+            if (inchesperminute.HasValue)
+            {
+                return FromInchesPerMinute(inchesperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerSecond.
+        /// </summary>
+        public static Speed? FromInchesPerSecond(QuantityValue? inchespersecond)
+        {
+            if (inchespersecond.HasValue)
+            {
+                return FromInchesPerSecond(inchespersecond.Value);
             }
             else
             {
@@ -1001,6 +1362,96 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerHour.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerHour(QuantityValue? ussurveyfeetperhour)
+        {
+            if (ussurveyfeetperhour.HasValue)
+            {
+                return FromUsSurveyFeetPerHour(ussurveyfeetperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerMinute.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerMinute(QuantityValue? ussurveyfeetperminute)
+        {
+            if (ussurveyfeetperminute.HasValue)
+            {
+                return FromUsSurveyFeetPerMinute(ussurveyfeetperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerSecond.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerSecond(QuantityValue? ussurveyfeetpersecond)
+        {
+            if (ussurveyfeetpersecond.HasValue)
+            {
+                return FromUsSurveyFeetPerSecond(ussurveyfeetpersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerHour.
+        /// </summary>
+        public static Speed? FromYardsPerHour(QuantityValue? yardsperhour)
+        {
+            if (yardsperhour.HasValue)
+            {
+                return FromYardsPerHour(yardsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerMinute.
+        /// </summary>
+        public static Speed? FromYardsPerMinute(QuantityValue? yardsperminute)
+        {
+            if (yardsperminute.HasValue)
+            {
+                return FromYardsPerMinute(yardsperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerSecond.
+        /// </summary>
+        public static Speed? FromYardsPerSecond(QuantityValue? yardspersecond)
+        {
+            if (yardspersecond.HasValue)
+            {
+                return FromYardsPerSecond(yardspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -1029,8 +1480,18 @@ namespace UnitsNet
                     return FromDecimetersPerMinutes(value);
                 case SpeedUnit.DecimeterPerSecond:
                     return FromDecimetersPerSecond(value);
+                case SpeedUnit.FootPerHour:
+                    return FromFeetPerHour(value);
+                case SpeedUnit.FootPerMinute:
+                    return FromFeetPerMinute(value);
                 case SpeedUnit.FootPerSecond:
                     return FromFeetPerSecond(value);
+                case SpeedUnit.InchPerHour:
+                    return FromInchesPerHour(value);
+                case SpeedUnit.InchPerMinute:
+                    return FromInchesPerMinute(value);
+                case SpeedUnit.InchPerSecond:
+                    return FromInchesPerSecond(value);
                 case SpeedUnit.KilometerPerHour:
                     return FromKilometersPerHour(value);
                 case SpeedUnit.KilometerPerMinute:
@@ -1061,6 +1522,18 @@ namespace UnitsNet
                     return FromNanometersPerMinutes(value);
                 case SpeedUnit.NanometerPerSecond:
                     return FromNanometersPerSecond(value);
+                case SpeedUnit.UsSurveyFootPerHour:
+                    return FromUsSurveyFeetPerHour(value);
+                case SpeedUnit.UsSurveyFootPerMinute:
+                    return FromUsSurveyFeetPerMinute(value);
+                case SpeedUnit.UsSurveyFootPerSecond:
+                    return FromUsSurveyFeetPerSecond(value);
+                case SpeedUnit.YardPerHour:
+                    return FromYardsPerHour(value);
+                case SpeedUnit.YardPerMinute:
+                    return FromYardsPerMinute(value);
+                case SpeedUnit.YardPerSecond:
+                    return FromYardsPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1093,8 +1566,18 @@ namespace UnitsNet
                     return FromDecimetersPerMinutes(value.Value);
                 case SpeedUnit.DecimeterPerSecond:
                     return FromDecimetersPerSecond(value.Value);
+                case SpeedUnit.FootPerHour:
+                    return FromFeetPerHour(value.Value);
+                case SpeedUnit.FootPerMinute:
+                    return FromFeetPerMinute(value.Value);
                 case SpeedUnit.FootPerSecond:
                     return FromFeetPerSecond(value.Value);
+                case SpeedUnit.InchPerHour:
+                    return FromInchesPerHour(value.Value);
+                case SpeedUnit.InchPerMinute:
+                    return FromInchesPerMinute(value.Value);
+                case SpeedUnit.InchPerSecond:
+                    return FromInchesPerSecond(value.Value);
                 case SpeedUnit.KilometerPerHour:
                     return FromKilometersPerHour(value.Value);
                 case SpeedUnit.KilometerPerMinute:
@@ -1125,6 +1608,18 @@ namespace UnitsNet
                     return FromNanometersPerMinutes(value.Value);
                 case SpeedUnit.NanometerPerSecond:
                     return FromNanometersPerSecond(value.Value);
+                case SpeedUnit.UsSurveyFootPerHour:
+                    return FromUsSurveyFeetPerHour(value.Value);
+                case SpeedUnit.UsSurveyFootPerMinute:
+                    return FromUsSurveyFeetPerMinute(value.Value);
+                case SpeedUnit.UsSurveyFootPerSecond:
+                    return FromUsSurveyFeetPerSecond(value.Value);
+                case SpeedUnit.YardPerHour:
+                    return FromYardsPerHour(value.Value);
+                case SpeedUnit.YardPerMinute:
+                    return FromYardsPerMinute(value.Value);
+                case SpeedUnit.YardPerSecond:
+                    return FromYardsPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1308,8 +1803,18 @@ namespace UnitsNet
                     return DecimetersPerMinutes;
                 case SpeedUnit.DecimeterPerSecond:
                     return DecimetersPerSecond;
+                case SpeedUnit.FootPerHour:
+                    return FeetPerHour;
+                case SpeedUnit.FootPerMinute:
+                    return FeetPerMinute;
                 case SpeedUnit.FootPerSecond:
                     return FeetPerSecond;
+                case SpeedUnit.InchPerHour:
+                    return InchesPerHour;
+                case SpeedUnit.InchPerMinute:
+                    return InchesPerMinute;
+                case SpeedUnit.InchPerSecond:
+                    return InchesPerSecond;
                 case SpeedUnit.KilometerPerHour:
                     return KilometersPerHour;
                 case SpeedUnit.KilometerPerMinute:
@@ -1340,6 +1845,18 @@ namespace UnitsNet
                     return NanometersPerMinutes;
                 case SpeedUnit.NanometerPerSecond:
                     return NanometersPerSecond;
+                case SpeedUnit.UsSurveyFootPerHour:
+                    return UsSurveyFeetPerHour;
+                case SpeedUnit.UsSurveyFootPerMinute:
+                    return UsSurveyFeetPerMinute;
+                case SpeedUnit.UsSurveyFootPerSecond:
+                    return UsSurveyFeetPerSecond;
+                case SpeedUnit.YardPerHour:
+                    return YardsPerHour;
+                case SpeedUnit.YardPerMinute:
+                    return YardsPerMinute;
+                case SpeedUnit.YardPerSecond:
+                    return YardsPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
