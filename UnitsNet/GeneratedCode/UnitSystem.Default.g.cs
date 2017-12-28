@@ -2884,10 +2884,35 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dm/s"),
                             }),
+                        new CulturesForEnumValue((int) SpeedUnit.FootPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft/h"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.FootPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft/min"),
+                            }),
                         new CulturesForEnumValue((int) SpeedUnit.FootPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "ft/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.InchPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in/h"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.InchPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in/min"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.InchPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "in/s"),
                             }),
                         new CulturesForEnumValue((int) SpeedUnit.KilometerPerHour,
                             new[]
@@ -2963,6 +2988,36 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nm/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ftUS/h"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ftUS/min"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ftUS/s"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.YardPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd/h"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.YardPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd/min"),
+                            }),
+                        new CulturesForEnumValue((int) SpeedUnit.YardPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (TemperatureUnit),

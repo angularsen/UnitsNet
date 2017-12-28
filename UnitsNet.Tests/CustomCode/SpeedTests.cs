@@ -68,6 +68,28 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersPerHourInOneMeterPerSecond => 3600000;
 
+        protected override double FeetPerHourInOneMeterPerSecond => 11811.023622;
+
+        protected override double FeetPerMinuteInOneMeterPerSecond => 196.850393701;
+
+        protected override double InchesPerHourInOneMeterPerSecond => 141732.283465;
+
+        protected override double InchesPerMinuteInOneMeterPerSecond => 2362.20472441;
+
+        protected override double InchesPerSecondInOneMeterPerSecond => 39.3700787402;
+
+        protected override double YardsPerHourInOneMeterPerSecond => 3937.00787402;
+
+        protected override double YardsPerMinuteInOneMeterPerSecond => 65.6167979003;
+
+        protected override double YardsPerSecondInOneMeterPerSecond => 1.093613298338;
+
+        protected override double UsSurveyFeetPerSecondInOneMeterPerSecond => 3.280833333333;
+
+        protected override double UsSurveyFeetPerMinuteInOneMeterPerSecond => 196.85;
+
+        protected override double UsSurveyFeetPerHourInOneMeterPerSecond => 1.1811E4;
+
         [Fact]
         public void DurationSpeedTimesEqualsLength()
         {
