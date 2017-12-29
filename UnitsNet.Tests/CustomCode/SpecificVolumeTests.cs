@@ -55,7 +55,7 @@ namespace UnitsNet.Tests.CustomCode
         public static void SpecificVolumeTimesMassEqualsVolume()
         {
             Volume volume = SpecificVolume.FromCubicMetersPerKilogram(5) * Mass.FromKilograms(10);
-            Assert.Equal(volume, Volume.FromCubicMeters(0.5));
+            Assert.Equal(volume, Volume.FromCubicMeters(50));
         }
 
         [Fact]
