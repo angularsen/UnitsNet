@@ -1,4 +1,4 @@
-﻿#WPF MVVM Sample
+﻿## WPF MVVM Sample
 This is a simple sample showing how UnitsNet can be used to create a WPF MVVM application. It performs a simple calculation allowing flexibility in the units used for parameters and results. Units for each parameter are specified in the settings drop down.
 
 A key feature enabling this sample is the UnitToStringConverter class
