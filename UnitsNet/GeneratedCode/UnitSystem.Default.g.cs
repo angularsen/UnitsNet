@@ -2772,6 +2772,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "MJ/kg.K"),
                             }),
                     }),
+                new UnitLocalization(typeof (SpecificVolumeUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) SpecificVolumeUnit.CubicMeterPerKilogram,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/kg"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (SpecificWeightUnit),
                     new[]
                     {
