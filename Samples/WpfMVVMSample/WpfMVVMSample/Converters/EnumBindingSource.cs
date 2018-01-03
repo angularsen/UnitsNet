@@ -18,7 +18,7 @@ namespace WpfMVVMSample.Converters
             {
                 if (value != this._enumType)
                 {
-                    if (null != value)
+                    if (value != null)
                     {
                         Type enumType = Nullable.GetUnderlyingType(value) ?? value;
 
@@ -44,15 +44,11 @@ namespace WpfMVVMSample.Converters
                 throw new InvalidOperationException("The EnumType must be specified.");
 
             Type actualEnumType = Nullable.GetUnderlyingType(this._enumType) ?? this._enumType;
-            Array enumValues = Enum.GetValues(actualEnumType);
+            
+            //omits the first enum element, typically "undefined"
+            var enumValues = Enum.GetValues(actualEnumType).Cast<object>().Skip(1);
 
-            //if (actualEnumType == this._enumType)
-            //    return enumValues;
-
-            //ommits the first enum element, typically "undefined"
-            Array tempArray = Array.CreateInstance(actualEnumType, enumValues.Length -1);
-            Array.ConstrainedCopy(enumValues,1,tempArray, 0,enumValues.Length-1);
-            return tempArray;
+            return enumValues;
         }
     }
 }
