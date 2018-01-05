@@ -38,6 +38,16 @@ namespace UnitsNet
         {
             return LapseRate.FromDegreesCelciusPerKilometer(left.DegreesCelsiusDelta / right.Kilometers);
         }
+
+        public static SpecificEnergy operator *(SpecificEntropy specificEntropy, TemperatureDelta temperatureDelta)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(specificEntropy.JoulesPerKilogramKelvin * temperatureDelta.Kelvins);
+        }
+
+        public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
+        {
+            return specificEntropy * temperatureDelta;
+        }
 #endif
     }
 }
