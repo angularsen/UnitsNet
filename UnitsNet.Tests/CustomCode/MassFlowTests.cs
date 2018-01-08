@@ -34,6 +34,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerHourInOneGramPerSecond => 3.6;
 
+        protected override double TonnesPerHourInOneGramPerSecond => 3.6 * 1E-3;
+
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
         protected override double MegapoundsPerHourInOneGramPerSecond => 7.93664e-6;
@@ -50,9 +52,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortTonsPerHourInOneGramPerSecond => 3.96832e-3;
 
-        protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
+        protected override double TonnesPerDayInOneGramPerSecond => 60.0 * 60 * 24 / 1E6;
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;
+
 
         [Fact]
         public void DurationTimesMassFlowEqualsMass()

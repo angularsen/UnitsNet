@@ -66,6 +66,7 @@ namespace UnitsNet.Tests
         protected abstract double PoundsPerHourInOneGramPerSecond { get; }
         protected abstract double ShortTonsPerHourInOneGramPerSecond { get; }
         protected abstract double TonnesPerDayInOneGramPerSecond { get; }
+        protected abstract double TonnesPerHourInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsPerSecondTolerance { get { return 1e-5; } }
@@ -82,6 +83,7 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerHourTolerance { get { return 1e-5; } }
         protected virtual double ShortTonsPerHourTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
+        protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -102,6 +104,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, grampersecond.PoundsPerHour, PoundsPerHourTolerance);
             AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.TonnesPerDay, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.TonnesPerHour, TonnesPerHourTolerance);
         }
 
         [Fact]
@@ -121,6 +124,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.PoundPerHour).PoundsPerHour, PoundsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.ShortTonPerHour).ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerDay).TonnesPerDay, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonPerHour).TonnesPerHour, TonnesPerHourTolerance);
         }
 
         [Fact]
@@ -141,6 +145,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.PoundPerHour), PoundsPerHourTolerance);
             AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.ShortTonPerHour), ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerDay), TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonPerHour), TonnesPerHourTolerance);
         }
 
         [Fact]
@@ -161,6 +166,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.FromPoundsPerHour(grampersecond.PoundsPerHour).GramsPerSecond, PoundsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromShortTonsPerHour(grampersecond.ShortTonsPerHour).GramsPerSecond, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerDay(grampersecond.TonnesPerDay).GramsPerSecond, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerHour(grampersecond.TonnesPerHour).GramsPerSecond, TonnesPerHourTolerance);
         }
 
         [Fact]

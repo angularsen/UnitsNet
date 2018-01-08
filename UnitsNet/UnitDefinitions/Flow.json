@@ -67,7 +67,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPS" ],
+          "Abbreviations": [ "LPS", "l/s" ],
           "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
         }
       ]
@@ -81,7 +81,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ],
+          "Abbreviations": [ "LPM", "l/min" ],
           "AbbreviationsWithPrefixes": [ "nLPM", "µLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
         }
       ]
@@ -94,7 +94,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPH" ]
+          "Abbreviations": [ "LPH", "l/h" ]
         },
         {
           "Culture": "ru-RU",

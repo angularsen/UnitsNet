@@ -112,6 +112,40 @@ namespace UnitsNet.Extensions.NumberToRotationalAcceleration
 
         #endregion
 
+        #region RevolutionPerMinutePerSecond
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond(this int value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this int? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond(this long value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this long? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond(this double value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this double? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond(this float value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this float? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond(this decimal value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this decimal? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif

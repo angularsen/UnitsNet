@@ -1,0 +1,20 @@
+﻿{
+  "Name": "ElectricResistivity",
+  "BaseUnit": "OhmMeter",
+  "XmlDoc": "Electrical resistivity (also known as resistivity, specific electrical resistance, or volume resistivity) is a fundamental property that quantifies how strongly a given material opposes the flow of electric current.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity",
+  "Units": [
+    {
+      "SingularName": "OhmMeter",
+      "PluralName": "OhmsMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ω·m" ]
+        }
+      ]
+    }
+  ]
+}

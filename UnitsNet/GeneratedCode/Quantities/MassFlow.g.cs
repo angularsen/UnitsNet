@@ -241,6 +241,14 @@ namespace UnitsNet
             get { return _gramsPerSecond*0.0864000; }
         }
 
+        /// <summary>
+        ///     Get MassFlow in TonnesPerHour.
+        /// </summary>
+        public double TonnesPerHour
+        {
+            get { return _gramsPerSecond*3.6/1000; }
+        }
+
         #endregion
 
         #region Static
@@ -502,6 +510,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get MassFlow from TonnesPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromTonnesPerHour(double tonnesperhour)
+        {
+            double value = (double) tonnesperhour;
+            return new MassFlow(1000*value/3.6);
+        }
+#else
+        public static MassFlow FromTonnesPerHour(QuantityValue tonnesperhour)
+        {
+            double value = (double) tonnesperhour;
+            return new MassFlow((1000*value/3.6));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -714,6 +740,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerHour.
+        /// </summary>
+        public static MassFlow? FromTonnesPerHour(QuantityValue? tonnesperhour)
+        {
+            if (tonnesperhour.HasValue)
+            {
+                return FromTonnesPerHour(tonnesperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -760,6 +801,8 @@ namespace UnitsNet
                     return FromShortTonsPerHour(value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value);
+                case MassFlowUnit.TonPerHour:
+                    return FromTonnesPerHour(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -810,6 +853,8 @@ namespace UnitsNet
                     return FromShortTonsPerHour(value.Value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value.Value);
+                case MassFlowUnit.TonPerHour:
+                    return FromTonnesPerHour(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1011,6 +1056,8 @@ namespace UnitsNet
                     return ShortTonsPerHour;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
+                case MassFlowUnit.TonPerHour:
+                    return TonnesPerHour;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

@@ -8,7 +8,7 @@
       "PluralName": "VoltamperesReactive",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",

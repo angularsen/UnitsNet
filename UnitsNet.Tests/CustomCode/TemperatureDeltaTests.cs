@@ -38,8 +38,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using Xunit;
+
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -62,12 +61,5 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesReaumurInOneKelvin => 0.8;
         protected override double DegreesRoemerInOneKelvin => 21 / 40d;
         protected override double KelvinsInOneKelvin => 1;
-
-        [Fact]
-        public void TemperatureDeltaTimesSpecificEntropyEqualsSpecificEnergy()
-        {
-            SpecificEnergy specificEnergy =  SpecificEntropy.FromJoulesPerKilogramKelvin(10) * TemperatureDelta.FromKelvins(6);
-            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(60));
-        }
     }
 }

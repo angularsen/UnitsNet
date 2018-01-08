@@ -56,5 +56,6 @@ namespace UnitsNet.Units
         PoundPerHour,
         ShortTonPerHour,
         TonnePerDay,
+        TonPerHour,
     }
 }

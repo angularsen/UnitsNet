@@ -130,6 +130,14 @@ namespace UnitsNet
         public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().ToArray();
 
         /// <summary>
+        ///     Get ApparentPower in Gigavoltamperes.
+        /// </summary>
+        public double Gigavoltamperes
+        {
+            get { return (_voltamperes) / 1e9d; }
+        }
+
+        /// <summary>
         ///     Get ApparentPower in Kilovoltamperes.
         /// </summary>
         public double Kilovoltamperes
@@ -161,6 +169,24 @@ namespace UnitsNet
         {
             get { return new ApparentPower(); }
         }
+
+        /// <summary>
+        ///     Get ApparentPower from Gigavoltamperes.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ApparentPower FromGigavoltamperes(double gigavoltamperes)
+        {
+            double value = (double) gigavoltamperes;
+            return new ApparentPower((value) * 1e9d);
+        }
+#else
+        public static ApparentPower FromGigavoltamperes(QuantityValue gigavoltamperes)
+        {
+            double value = (double) gigavoltamperes;
+            return new ApparentPower(((value) * 1e9d));
+        }
+#endif
 
         /// <summary>
         ///     Get ApparentPower from Kilovoltamperes.
@@ -218,6 +244,21 @@ namespace UnitsNet
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable ApparentPower from nullable Gigavoltamperes.
+        /// </summary>
+        public static ApparentPower? FromGigavoltamperes(QuantityValue? gigavoltamperes)
+        {
+            if (gigavoltamperes.HasValue)
+            {
+                return FromGigavoltamperes(gigavoltamperes.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable ApparentPower from nullable Kilovoltamperes.
         /// </summary>
@@ -281,6 +322,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ApparentPowerUnit.Gigavoltampere:
+                    return FromGigavoltamperes(value);
                 case ApparentPowerUnit.Kilovoltampere:
                     return FromKilovoltamperes(value);
                 case ApparentPowerUnit.Megavoltampere:
@@ -309,6 +352,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case ApparentPowerUnit.Gigavoltampere:
+                    return FromGigavoltamperes(value.Value);
                 case ApparentPowerUnit.Kilovoltampere:
                     return FromKilovoltamperes(value.Value);
                 case ApparentPowerUnit.Megavoltampere:
@@ -488,6 +533,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case ApparentPowerUnit.Gigavoltampere:
+                    return Gigavoltamperes;
                 case ApparentPowerUnit.Kilovoltampere:
                     return Kilovoltamperes;
                 case ApparentPowerUnit.Megavoltampere:

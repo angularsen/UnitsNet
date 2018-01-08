@@ -44,5 +44,6 @@ namespace UnitsNet.Units
         Undefined = 0,
         DegreePerSecondSquared,
         RadianPerSecondSquared,
+        RevolutionPerMinutePerSecond,
     }
 }
