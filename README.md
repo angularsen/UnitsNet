@@ -212,3 +212,11 @@ http://www.pksound.ca/ (everything else)
 
 http://aka.ms/iotdevices (home page including docs)<br>
 http://www.nuget.org/packages/Microsoft.IoT.Devices (NuGet package)
+
+#### Crawlspace
+> Software for creating printable hex maps for use in pen and paper RPGs. Both
+> a user-friendly app and a high-level library for generating labelled hexmaps.
+
+https://github.com/MartinEden/UnitsNet
+
+*- Martin Eden, project maintainer*
