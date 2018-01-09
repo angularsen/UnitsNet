@@ -19,27 +19,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if !WINDOWS_UWP
+using System;
+
+#endif
+
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Area
+    public sealed partial class MassFlux
 #else
-    public partial struct Area
+    public partial struct MassFlux
 #endif
     {
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Length operator /(Area area, Length length)
+        public static Density operator /(MassFlux massFlux, Speed speed)
         {
-            return Length.FromMeters(area.SquareMeters / length.Meters);
+            return Density.FromKilogramsPerCubicMeter(massFlux.KilogramsPerSecondPerSquareMeter / speed.MetersPerSecond);
         }
-
-        public static MassFlow operator *(Area area, MassFlux massFlux)
+        public static Speed operator /(MassFlux massFlux, Density density)
         {
-            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
+            return Speed.FromMetersPerSecond(massFlux.KilogramsPerSecondPerSquareMeter / density.KilogramsPerCubicMeter);
+        }
+        public static MassFlow operator *(MassFlux massFlux, Area area)
+        {
+            return MassFlow.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
         }
 #endif
     }

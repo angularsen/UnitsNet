@@ -1893,6 +1893,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "t/d"),
                             }),
                     }),
+                new UnitLocalization(typeof (MassFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MassFluxUnit.GramPerSecondPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/s-m²"),
+                            }),
+                        new CulturesForEnumValue((int) MassFluxUnit.KilogramPerSecondPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/s-m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MassMomentOfInertiaUnit),
                     new[]
                     {

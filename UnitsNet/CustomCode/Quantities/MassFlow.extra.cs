@@ -70,6 +70,16 @@ namespace UnitsNet
         {
             return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
         }
+
+        public static MassFlux operator /(MassFlow massFlow, Area area)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
+        }
+
+        public static Area operator /(MassFlow massFlow, MassFlux massFlux)
+        {
+            return Area.FromSquareMeters(massFlow.KilogramsPerSecond / massFlux.KilogramsPerSecondPerSquareMeter);
+        }
 #endif
     }
 }
