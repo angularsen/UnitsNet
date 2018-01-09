@@ -2,31 +2,42 @@
     "Name": "RotationalAcceleration",
     "BaseUnit": "RadianPerSecondSquared",
     "XmlDoc": "Angular acceleration is the rate of change of rotational speed.",
-    "Units":
-    [
-      {
-        "SingularName": "RadianPerSecondSquared",
-        "PluralName": "RadiansPerSecondSquared",
-        "FromUnitToBaseFunc": "x",
-        "FromBaseToUnitFunc": "x",
-        "Localization": [
-          {
-            "Culture": "en-US",
-            "Abbreviations": [ "rad/s²" ]
-          }
-        ]
-      },
-      {
-        "SingularName": "DegreePerSecondSquared",
-        "PluralName": "DegreesPerSecondSquared",
-        "FromUnitToBaseFunc": "(Math.PI/180)*x",
-        "FromBaseToUnitFunc": "(180/Math.PI)*x",
-        "Localization": [
-          {
-            "Culture": "en-US",
-            "Abbreviations": [ "°/s²", "deg/s²" ]
-          }
-        ]
-      }
+  "Units": [
+    {
+      "SingularName": "RadianPerSecondSquared",
+      "PluralName": "RadiansPerSecondSquared",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rad/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreePerSecondSquared",
+      "PluralName": "DegreesPerSecondSquared",
+      "FromUnitToBaseFunc": "(Math.PI/180)*x",
+      "FromBaseToUnitFunc": "(180/Math.PI)*x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°/s²", "deg/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RevolutionPerMinutePerSecond",
+      "PluralName": "RevolutionsPerMinutePerSecond",
+      "FromUnitToBaseFunc": "(60/(2*Math.PI))*x",
+      "FromBaseToUnitFunc": "((2*Math.PI)/60)*x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rpm/s" ]
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "Name": "PowerGradient",
+  "BaseUnit": "WattPerSecond",
+  "XmlDoc": "In physics, the power gradient describes how the power changes in time.",
+  "Units": [
+    {
+      "SingularName": "WattPerSecond",
+      "PluralName": "WattsPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/s" ]
+        }
+      ]
+    }
+  ]
+}

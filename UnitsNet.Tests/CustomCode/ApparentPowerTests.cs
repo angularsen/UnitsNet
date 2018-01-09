@@ -46,10 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ApparentPowerTests : ApparentPowerTestsBase
     {
+        protected override double VoltamperesInOneVoltampere => 1;
+
         protected override double KilovoltamperesInOneVoltampere => 1e-3;
 
         protected override double MegavoltamperesInOneVoltampere => 1e-6;
 
-        protected override double VoltamperesInOneVoltampere => 1;
+        protected override double GigavoltamperesInOneVoltampere => 1E-9;
     }
 }

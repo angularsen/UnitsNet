@@ -233,6 +233,14 @@ namespace UnitsNet
             get { return _degrees/180*Math.PI; }
         }
 
+        /// <summary>
+        ///     Get Angle in Revolutions.
+        /// </summary>
+        public double Revolutions
+        {
+            get { return _degrees/360; }
+        }
+
         #endregion
 
         #region Static
@@ -476,6 +484,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get Angle from Revolutions.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Angle FromRevolutions(double revolutions)
+        {
+            double value = (double) revolutions;
+            return new Angle(value*360);
+        }
+#else
+        public static Angle FromRevolutions(QuantityValue revolutions)
+        {
+            double value = (double) revolutions;
+            return new Angle((value*360));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -673,6 +699,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Angle from nullable Revolutions.
+        /// </summary>
+        public static Angle? FromRevolutions(QuantityValue? revolutions)
+        {
+            if (revolutions.HasValue)
+            {
+                return FromRevolutions(revolutions.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -717,6 +758,8 @@ namespace UnitsNet
                     return FromNanoradians(value);
                 case AngleUnit.Radian:
                     return FromRadians(value);
+                case AngleUnit.Revolution:
+                    return FromRevolutions(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -765,6 +808,8 @@ namespace UnitsNet
                     return FromNanoradians(value.Value);
                 case AngleUnit.Radian:
                     return FromRadians(value.Value);
+                case AngleUnit.Revolution:
+                    return FromRevolutions(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -964,6 +1009,8 @@ namespace UnitsNet
                     return Nanoradians;
                 case AngleUnit.Radian:
                     return Radians;
+                case AngleUnit.Revolution:
+                    return Revolutions;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

@@ -486,6 +486,40 @@ namespace UnitsNet.Extensions.NumberToAngle
 
         #endregion
 
+        #region Revolution
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this int value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this int? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this long value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this long? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this double value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this double? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this float value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this float? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this decimal value) => Angle.FromRevolutions(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this decimal? value) => Angle.FromRevolutions(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif

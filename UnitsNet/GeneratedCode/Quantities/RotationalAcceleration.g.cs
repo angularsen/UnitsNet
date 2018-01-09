@@ -145,6 +145,14 @@ namespace UnitsNet
             get { return _radiansPerSecondSquared; }
         }
 
+        /// <summary>
+        ///     Get RotationalAcceleration in RevolutionsPerMinutePerSecond.
+        /// </summary>
+        public double RevolutionsPerMinutePerSecond
+        {
+            get { return ((2*Math.PI)/60)*_radiansPerSecondSquared; }
+        }
+
         #endregion
 
         #region Static
@@ -190,6 +198,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get RotationalAcceleration from RevolutionsPerMinutePerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double revolutionsperminutepersecond)
+        {
+            double value = (double) revolutionsperminutepersecond;
+            return new RotationalAcceleration((60/(2*Math.PI))*value);
+        }
+#else
+        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(QuantityValue revolutionsperminutepersecond)
+        {
+            double value = (double) revolutionsperminutepersecond;
+            return new RotationalAcceleration(((60/(2*Math.PI))*value));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -222,6 +248,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable RotationalAcceleration from nullable RevolutionsPerMinutePerSecond.
+        /// </summary>
+        public static RotationalAcceleration? FromRevolutionsPerMinutePerSecond(QuantityValue? revolutionsperminutepersecond)
+        {
+            if (revolutionsperminutepersecond.HasValue)
+            {
+                return FromRevolutionsPerMinutePerSecond(revolutionsperminutepersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -244,6 +285,8 @@ namespace UnitsNet
                     return FromDegreesPerSecondSquared(value);
                 case RotationalAccelerationUnit.RadianPerSecondSquared:
                     return FromRadiansPerSecondSquared(value);
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
+                    return FromRevolutionsPerMinutePerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -270,6 +313,8 @@ namespace UnitsNet
                     return FromDegreesPerSecondSquared(value.Value);
                 case RotationalAccelerationUnit.RadianPerSecondSquared:
                     return FromRadiansPerSecondSquared(value.Value);
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
+                    return FromRevolutionsPerMinutePerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -447,6 +492,8 @@ namespace UnitsNet
                     return DegreesPerSecondSquared;
                 case RotationalAccelerationUnit.RadianPerSecondSquared:
                     return RadiansPerSecondSquared;
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
+                    return RevolutionsPerMinutePerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

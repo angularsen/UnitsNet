@@ -47,6 +47,9 @@ namespace UnitsNet.Tests.CustomCode
     public class RotationalAccelerationTests : RotationalAccelerationTestsBase
     {
         protected override double DegreesPerSecondSquaredInOneRadianPerSecondSquared => 180 / Math.PI;
+
         protected override double RadiansPerSecondSquaredInOneRadianPerSecondSquared => 1;
+
+        protected override double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared => (2 * Math.PI) / 60;
     }
 }

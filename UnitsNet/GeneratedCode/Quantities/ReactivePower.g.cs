@@ -130,6 +130,14 @@ namespace UnitsNet
         public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().ToArray();
 
         /// <summary>
+        ///     Get ReactivePower in GigavoltamperesReactive.
+        /// </summary>
+        public double GigavoltamperesReactive
+        {
+            get { return (_voltamperesReactive) / 1e9d; }
+        }
+
+        /// <summary>
         ///     Get ReactivePower in KilovoltamperesReactive.
         /// </summary>
         public double KilovoltamperesReactive
@@ -161,6 +169,24 @@ namespace UnitsNet
         {
             get { return new ReactivePower(); }
         }
+
+        /// <summary>
+        ///     Get ReactivePower from GigavoltamperesReactive.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive)
+        {
+            double value = (double) gigavoltamperesreactive;
+            return new ReactivePower((value) * 1e9d);
+        }
+#else
+        public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
+        {
+            double value = (double) gigavoltamperesreactive;
+            return new ReactivePower(((value) * 1e9d));
+        }
+#endif
 
         /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
@@ -218,6 +244,21 @@ namespace UnitsNet
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable ReactivePower from nullable GigavoltamperesReactive.
+        /// </summary>
+        public static ReactivePower? FromGigavoltamperesReactive(QuantityValue? gigavoltamperesreactive)
+        {
+            if (gigavoltamperesreactive.HasValue)
+            {
+                return FromGigavoltamperesReactive(gigavoltamperesreactive.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable ReactivePower from nullable KilovoltamperesReactive.
         /// </summary>
@@ -281,6 +322,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ReactivePowerUnit.GigavoltampereReactive:
+                    return FromGigavoltamperesReactive(value);
                 case ReactivePowerUnit.KilovoltampereReactive:
                     return FromKilovoltamperesReactive(value);
                 case ReactivePowerUnit.MegavoltampereReactive:
@@ -309,6 +352,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case ReactivePowerUnit.GigavoltampereReactive:
+                    return FromGigavoltamperesReactive(value.Value);
                 case ReactivePowerUnit.KilovoltampereReactive:
                     return FromKilovoltamperesReactive(value.Value);
                 case ReactivePowerUnit.MegavoltampereReactive:
@@ -488,6 +533,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case ReactivePowerUnit.GigavoltampereReactive:
+                    return GigavoltamperesReactive;
                 case ReactivePowerUnit.KilovoltampereReactive:
                     return KilovoltamperesReactive;
                 case ReactivePowerUnit.MegavoltampereReactive:

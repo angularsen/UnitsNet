@@ -27,9 +27,14 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
+
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
+
         protected override double GramsPerCubicMeterInOneKilogramPerCubicMeter => 1e3;
+
         protected override double GramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-6;
+
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
 
         protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
@@ -93,6 +98,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
+
 
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
