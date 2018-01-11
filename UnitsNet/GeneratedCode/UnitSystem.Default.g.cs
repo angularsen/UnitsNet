@@ -732,6 +732,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "S"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricConductivityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricConductivityUnit.SiemensPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "S/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),
                     new[]
                     {
@@ -769,6 +778,42 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "pA"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricCurrentDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricCurrentDensityUnit.AmperePerMeterSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A/m²"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricCurrentGradientUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricCurrentGradientUnit.AmperePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A/s"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricFieldUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricFieldUnit.VoltPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "V/m"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricInductanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Henry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "H"),
                             }),
                     }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
