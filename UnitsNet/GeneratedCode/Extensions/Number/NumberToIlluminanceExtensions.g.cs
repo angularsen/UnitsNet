@@ -36,79 +36,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using System;
 
-namespace UnitsNet
+// Windows Runtime Component does not support extension methods and method overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
+namespace UnitsNet.Extensions.NumberToIlluminance
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
-    public enum QuantityType
+    public static class NumberToIlluminanceExtensions
     {
-        Undefined = 0,
-        Acceleration,
-        AmountOfSubstance,
-        AmplitudeRatio,
-        Angle,
-        ApparentPower,
-        Area,
-        AreaMomentOfInertia,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricAdmittance,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricPotentialAc,
-        ElectricPotentialDc,
-        ElectricResistance,
-        ElectricResistivity,
-        Energy,
-        Entropy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Illuminance,
-        Information,
-        KinematicViscosity,
-        LapseRate,
-        Length,
-        Level,
-        LuminousFlux,
-        LuminousIntensity,
-        MagneticField,
-        Mass,
-        MassFlow,
-        MassMomentOfInertia,
-        MolarEnergy,
-        MolarEntropy,
-        Molarity,
-        MolarMass,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        ReactivePower,
-        RotationalAcceleration,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificEntropy,
-        SpecificVolume,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        ThermalResistance,
-        Torque,
-        VitaminA,
-        Volume,
+        #region Lux
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double)"/>
+        public static Illuminance Luxes(this int value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double?)"/>
+        public static Illuminance? Luxes(this int? value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double)"/>
+        public static Illuminance Luxes(this long value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double?)"/>
+        public static Illuminance? Luxes(this long? value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double)"/>
+        public static Illuminance Luxes(this double value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double?)"/>
+        public static Illuminance? Luxes(this double? value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double)"/>
+        public static Illuminance Luxes(this float value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double?)"/>
+        public static Illuminance? Luxes(this float? value) => Illuminance.FromLuxes(value);
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double)"/>
+        public static Illuminance Luxes(this decimal value) => Illuminance.FromLuxes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Illuminance.FromLuxes(double?)"/>
+        public static Illuminance? Luxes(this decimal? value) => Illuminance.FromLuxes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
+#endif
