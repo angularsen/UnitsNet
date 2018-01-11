@@ -1,0 +1,20 @@
+﻿{
+  "Name": "Precipitation",
+  "BaseUnit": "MillimeterPerMinute",
+  "XmlDoc": "In meteorology, precipitation is any product of the condensation of atmospheric water vapor that falls under gravity.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Precipitation",
+  "Units": [
+    {
+      "SingularName": "MillimeterPerMinute",
+      "PluralName": "MillimetersPerMinute",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm/min" ]
+        }
+      ]
+    }
+  ]
+}

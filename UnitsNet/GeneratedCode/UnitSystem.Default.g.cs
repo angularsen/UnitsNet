@@ -1692,6 +1692,24 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Np"),
                             }),
                     }),
+                new UnitLocalization(typeof (MagneticFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagneticFluxUnit.Weber,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Wb"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MagnetizationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagnetizationUnit.AmperePerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MassUnit),
                     new[]
                     {
@@ -2185,6 +2203,24 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "фунт/моль"),
                             }),
                     }),
+                new UnitLocalization(typeof (PermeabilityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PermeabilityUnit.HenryPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "H/m"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PermittivityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PermittivityUnit.FaradPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "F/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PowerUnit),
                     new[]
                     {
@@ -2291,6 +2327,15 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dBW"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PrecipitationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PrecipitationUnit.MillimeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm/min"),
                             }),
                     }),
                 new UnitLocalization(typeof (PressureUnit),
