@@ -105,6 +105,16 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "g"),
                             }),
                     }),
+                new UnitLocalization(typeof (AltitudeUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AltitudeUnit.MeterAboveSeaLevel,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "masl"),
+                                new AbbreviationsForCulture("it-IT", "mslm"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AmountOfSubstanceUnit),
                     new[]
                     {
@@ -376,6 +386,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AreaDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerMeterSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
                     new[]
                     {
@@ -427,6 +446,15 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb/hph"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (CapacitanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) CapacitanceUnit.Farad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "F"),
                             }),
                     }),
                 new UnitLocalization(typeof (DensityUnit),
@@ -730,6 +758,24 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "S"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricChargeUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricChargeUnit.Coulomb,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "C"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ElectricChargeDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricChargeDensityUnit.CoulombPerMeterCube,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "C/m³"),
                             }),
                     }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),

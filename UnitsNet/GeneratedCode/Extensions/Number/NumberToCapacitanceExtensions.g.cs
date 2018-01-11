@@ -36,79 +36,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using System;
 
-namespace UnitsNet
+// Windows Runtime Component does not support extension methods and method overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
+namespace UnitsNet.Extensions.NumberToCapacitance
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
-    public enum QuantityType
+    public static class NumberToCapacitanceExtensions
     {
-        Undefined = 0,
-        Acceleration,
-        Altitude,
-        AmountOfSubstance,
-        AmplitudeRatio,
-        Angle,
-        ApparentPower,
-        Area,
-        AreaDensity,
-        AreaMomentOfInertia,
-        BrakeSpecificFuelConsumption,
-        Capacitance,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricAdmittance,
-        ElectricCharge,
-        ElectricChargeDensity,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricPotentialAc,
-        ElectricPotentialDc,
-        ElectricResistance,
-        Energy,
-        Entropy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Information,
-        KinematicViscosity,
-        LapseRate,
-        Length,
-        Level,
-        Mass,
-        MassFlow,
-        MassMomentOfInertia,
-        MolarEnergy,
-        MolarEntropy,
-        Molarity,
-        MolarMass,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        ReactivePower,
-        RotationalAcceleration,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificEntropy,
-        SpecificVolume,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        ThermalResistance,
-        Torque,
-        VitaminA,
-        Volume,
+        #region Farad
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        public static Capacitance Farads(this int value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        public static Capacitance? Farads(this int? value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        public static Capacitance Farads(this long value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        public static Capacitance? Farads(this long? value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        public static Capacitance Farads(this double value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        public static Capacitance? Farads(this double? value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        public static Capacitance Farads(this float value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        public static Capacitance? Farads(this float? value) => Capacitance.FromFarads(value);
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        public static Capacitance Farads(this decimal value) => Capacitance.FromFarads(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        public static Capacitance? Farads(this decimal? value) => Capacitance.FromFarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
+#endif
