@@ -91,7 +91,6 @@ namespace UnitsNet
         Permittivity,
         Power,
         PowerRatio,
-        Precipitation,
         Pressure,
         PressureChangeRate,
         Ratio,

@@ -2329,15 +2329,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dBW"),
                             }),
                     }),
-                new UnitLocalization(typeof (PrecipitationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PrecipitationUnit.MillimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm/min"),
-                            }),
-                    }),
                 new UnitLocalization(typeof (PressureUnit),
                     new[]
                     {
