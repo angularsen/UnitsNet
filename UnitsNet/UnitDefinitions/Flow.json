@@ -79,7 +79,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cf/hr" ]
+          "Abbreviations": [ "ft³/h", "cf/hr" ]
         }
       ]
     },
@@ -182,7 +182,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "galUS/s" ]
+          "Abbreviations": [ "gal (U.S.)/s" ]
         }
       ]
     },
@@ -194,7 +194,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "GPM" ]
+          "Abbreviations": [ "gal (U.S.)/min", "GPM" ]
         }
       ]
     },
@@ -206,7 +206,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "galUS/h" ]
+          "Abbreviations": [ "gal (U.S.)/h" ]
         }
       ]
     },

@@ -1067,7 +1067,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerHour,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cf/hr"),
+                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerMinute,
                             new[]
@@ -1165,17 +1165,17 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerHour,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "galUS/h"),
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "GPM"),
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "galUS/s"),
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),
