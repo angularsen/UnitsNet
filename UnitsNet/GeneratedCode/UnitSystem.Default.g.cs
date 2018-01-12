@@ -1899,12 +1899,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassFluxUnit.GramPerSecondPerSquareMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "g/s-m²"),
+                                new AbbreviationsForCulture("en-US", "g·s⁻¹·m⁻²"),
                             }),
                         new CulturesForEnumValue((int) MassFluxUnit.KilogramPerSecondPerSquareMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kg/s-m²"),
+                                new AbbreviationsForCulture("en-US", "kg·s⁻¹·m⁻²"),
                             }),
                     }),
                 new UnitLocalization(typeof (MassMomentOfInertiaUnit),
