@@ -44,37 +44,37 @@ namespace UnitsNet.Extensions.NumberToElectricCurrentDensity
 {
     public static class NumberToElectricCurrentDensityExtensions
     {
-        #region AmperePerMeterSecondSquared
+        #region AmperePerSquareMeter
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double)"/>
-        public static ElectricCurrentDensity AmperesPerMeterSecondSquared(this int value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)"/>
+        public static ElectricCurrentDensity AmperesPerSquareMeter(this int value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double?)"/>
-        public static ElectricCurrentDensity? AmperesPerMeterSecondSquared(this int? value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double?)"/>
+        public static ElectricCurrentDensity? AmperesPerSquareMeter(this int? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double)"/>
-        public static ElectricCurrentDensity AmperesPerMeterSecondSquared(this long value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)"/>
+        public static ElectricCurrentDensity AmperesPerSquareMeter(this long value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double?)"/>
-        public static ElectricCurrentDensity? AmperesPerMeterSecondSquared(this long? value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double?)"/>
+        public static ElectricCurrentDensity? AmperesPerSquareMeter(this long? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double)"/>
-        public static ElectricCurrentDensity AmperesPerMeterSecondSquared(this double value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)"/>
+        public static ElectricCurrentDensity AmperesPerSquareMeter(this double value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double?)"/>
-        public static ElectricCurrentDensity? AmperesPerMeterSecondSquared(this double? value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double?)"/>
+        public static ElectricCurrentDensity? AmperesPerSquareMeter(this double? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double)"/>
-        public static ElectricCurrentDensity AmperesPerMeterSecondSquared(this float value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)"/>
+        public static ElectricCurrentDensity AmperesPerSquareMeter(this float value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double?)"/>
-        public static ElectricCurrentDensity? AmperesPerMeterSecondSquared(this float? value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value);
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double?)"/>
+        public static ElectricCurrentDensity? AmperesPerSquareMeter(this float? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double)"/>
-        public static ElectricCurrentDensity AmperesPerMeterSecondSquared(this decimal value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)"/>
+        public static ElectricCurrentDensity AmperesPerSquareMeter(this decimal value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(double?)"/>
-        public static ElectricCurrentDensity? AmperesPerMeterSecondSquared(this decimal? value) => ElectricCurrentDensity.FromAmperesPerMeterSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double?)"/>
+        public static ElectricCurrentDensity? AmperesPerSquareMeter(this decimal? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

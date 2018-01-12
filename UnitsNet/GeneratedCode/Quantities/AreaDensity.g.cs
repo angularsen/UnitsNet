@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of AreaDensity.
         /// </summary>
-        private readonly double _kilogramsPerMeterSquared;
+        private readonly double _kilogramsPerSquareMeter;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public AreaDensity(double kilogramspermetersquared)
+        public AreaDensity(double kilogramspersquaremeter)
         {
-            _kilogramsPerMeterSquared = Convert.ToDouble(kilogramspermetersquared);
+            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        AreaDensity(long kilogramspermetersquared)
+        AreaDensity(long kilogramspersquaremeter)
         {
-            _kilogramsPerMeterSquared = Convert.ToDouble(kilogramspermetersquared);
+            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        AreaDensity(decimal kilogramspermetersquared)
+        AreaDensity(decimal kilogramspersquaremeter)
         {
-            _kilogramsPerMeterSquared = Convert.ToDouble(kilogramspermetersquared);
+            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
         }
 
         #region Properties
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// </summary>
         public static AreaDensityUnit BaseUnit
         {
-            get { return AreaDensityUnit.KilogramPerMeterSquared; }
+            get { return AreaDensityUnit.KilogramPerSquareMeter; }
         }
 
         /// <summary>
@@ -130,11 +130,11 @@ namespace UnitsNet
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().ToArray();
 
         /// <summary>
-        ///     Get AreaDensity in KilogramsPerMeterSquared.
+        ///     Get AreaDensity in KilogramsPerSquareMeter.
         /// </summary>
-        public double KilogramsPerMeterSquared
+        public double KilogramsPerSquareMeter
         {
-            get { return _kilogramsPerMeterSquared; }
+            get { return _kilogramsPerSquareMeter; }
         }
 
         #endregion
@@ -147,19 +147,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get AreaDensity from KilogramsPerMeterSquared.
+        ///     Get AreaDensity from KilogramsPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static AreaDensity FromKilogramsPerMeterSquared(double kilogramspermetersquared)
+        public static AreaDensity FromKilogramsPerSquareMeter(double kilogramspersquaremeter)
         {
-            double value = (double) kilogramspermetersquared;
+            double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value);
         }
 #else
-        public static AreaDensity FromKilogramsPerMeterSquared(QuantityValue kilogramspermetersquared)
+        public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
         {
-            double value = (double) kilogramspermetersquared;
+            double value = (double) kilogramspersquaremeter;
             return new AreaDensity((value));
         }
 #endif
@@ -167,13 +167,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable AreaDensity from nullable KilogramsPerMeterSquared.
+        ///     Get nullable AreaDensity from nullable KilogramsPerSquareMeter.
         /// </summary>
-        public static AreaDensity? FromKilogramsPerMeterSquared(QuantityValue? kilogramspermetersquared)
+        public static AreaDensity? FromKilogramsPerSquareMeter(QuantityValue? kilogramspersquaremeter)
         {
-            if (kilogramspermetersquared.HasValue)
+            if (kilogramspersquaremeter.HasValue)
             {
-                return FromKilogramsPerMeterSquared(kilogramspermetersquared.Value);
+                return FromKilogramsPerSquareMeter(kilogramspersquaremeter.Value);
             }
             else
             {
@@ -199,8 +199,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case AreaDensityUnit.KilogramPerMeterSquared:
-                    return FromKilogramsPerMeterSquared(value);
+                case AreaDensityUnit.KilogramPerSquareMeter:
+                    return FromKilogramsPerSquareMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -223,8 +223,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case AreaDensityUnit.KilogramPerMeterSquared:
-                    return FromKilogramsPerMeterSquared(value.Value);
+                case AreaDensityUnit.KilogramPerSquareMeter:
+                    return FromKilogramsPerSquareMeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -263,37 +263,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static AreaDensity operator -(AreaDensity right)
         {
-            return new AreaDensity(-right._kilogramsPerMeterSquared);
+            return new AreaDensity(-right._kilogramsPerSquareMeter);
         }
 
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left._kilogramsPerMeterSquared + right._kilogramsPerMeterSquared);
+            return new AreaDensity(left._kilogramsPerSquareMeter + right._kilogramsPerSquareMeter);
         }
 
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left._kilogramsPerMeterSquared - right._kilogramsPerMeterSquared);
+            return new AreaDensity(left._kilogramsPerSquareMeter - right._kilogramsPerSquareMeter);
         }
 
         public static AreaDensity operator *(double left, AreaDensity right)
         {
-            return new AreaDensity(left*right._kilogramsPerMeterSquared);
+            return new AreaDensity(left*right._kilogramsPerSquareMeter);
         }
 
         public static AreaDensity operator *(AreaDensity left, double right)
         {
-            return new AreaDensity(left._kilogramsPerMeterSquared*(double)right);
+            return new AreaDensity(left._kilogramsPerSquareMeter*(double)right);
         }
 
         public static AreaDensity operator /(AreaDensity left, double right)
         {
-            return new AreaDensity(left._kilogramsPerMeterSquared/(double)right);
+            return new AreaDensity(left._kilogramsPerSquareMeter/(double)right);
         }
 
         public static double operator /(AreaDensity left, AreaDensity right)
         {
-            return Convert.ToDouble(left._kilogramsPerMeterSquared/right._kilogramsPerMeterSquared);
+            return Convert.ToDouble(left._kilogramsPerSquareMeter/right._kilogramsPerSquareMeter);
         }
 #endif
 
@@ -316,43 +316,43 @@ namespace UnitsNet
 #endif
         int CompareTo(AreaDensity other)
         {
-            return _kilogramsPerMeterSquared.CompareTo(other._kilogramsPerMeterSquared);
+            return _kilogramsPerSquareMeter.CompareTo(other._kilogramsPerSquareMeter);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerMeterSquared <= right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter <= right._kilogramsPerSquareMeter;
         }
 
         public static bool operator >=(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerMeterSquared >= right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter >= right._kilogramsPerSquareMeter;
         }
 
         public static bool operator <(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerMeterSquared < right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter < right._kilogramsPerSquareMeter;
         }
 
         public static bool operator >(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerMeterSquared > right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter > right._kilogramsPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerMeterSquared == right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter == right._kilogramsPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerMeterSquared != right._kilogramsPerMeterSquared;
+            return left._kilogramsPerSquareMeter != right._kilogramsPerSquareMeter;
         }
 #endif
 
@@ -364,7 +364,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramsPerMeterSquared.Equals(((AreaDensity) obj)._kilogramsPerMeterSquared);
+            return _kilogramsPerSquareMeter.Equals(((AreaDensity) obj)._kilogramsPerSquareMeter);
         }
 
         /// <summary>
@@ -377,12 +377,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(AreaDensity other, AreaDensity maxError)
         {
-            return Math.Abs(_kilogramsPerMeterSquared - other._kilogramsPerMeterSquared) <= maxError._kilogramsPerMeterSquared;
+            return Math.Abs(_kilogramsPerSquareMeter - other._kilogramsPerSquareMeter) <= maxError._kilogramsPerSquareMeter;
         }
 
         public override int GetHashCode()
         {
-            return _kilogramsPerMeterSquared.GetHashCode();
+            return _kilogramsPerSquareMeter.GetHashCode();
         }
 
         #endregion
@@ -398,8 +398,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case AreaDensityUnit.KilogramPerMeterSquared:
-                    return KilogramsPerMeterSquared;
+                case AreaDensityUnit.KilogramPerSquareMeter:
+                    return KilogramsPerSquareMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -476,7 +476,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AreaDensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerMeterSquared(x.KilogramsPerMeterSquared + y.KilogramsPerMeterSquared));
+                }, (x, y) => FromKilogramsPerSquareMeter(x.KilogramsPerSquareMeter + y.KilogramsPerSquareMeter));
         }
 
         /// <summary>
@@ -577,9 +577,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is KilogramPerMeterSquared
+        ///     Set the default unit used by ToString(). Default is KilogramPerSquareMeter
         /// </summary>
-        public static AreaDensityUnit ToStringDefaultUnit { get; set; } = AreaDensityUnit.KilogramPerMeterSquared;
+        public static AreaDensityUnit ToStringDefaultUnit { get; set; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

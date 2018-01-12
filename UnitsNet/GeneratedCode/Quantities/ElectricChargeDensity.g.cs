@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ElectricChargeDensity.
         /// </summary>
-        private readonly double _coulombsPerMeterCube;
+        private readonly double _coulombsPerCubicMeter;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ElectricChargeDensity(double coulombspermetercube)
+        public ElectricChargeDensity(double coulombspercubicmeter)
         {
-            _coulombsPerMeterCube = Convert.ToDouble(coulombspermetercube);
+            _coulombsPerCubicMeter = Convert.ToDouble(coulombspercubicmeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricChargeDensity(long coulombspermetercube)
+        ElectricChargeDensity(long coulombspercubicmeter)
         {
-            _coulombsPerMeterCube = Convert.ToDouble(coulombspermetercube);
+            _coulombsPerCubicMeter = Convert.ToDouble(coulombspercubicmeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricChargeDensity(decimal coulombspermetercube)
+        ElectricChargeDensity(decimal coulombspercubicmeter)
         {
-            _coulombsPerMeterCube = Convert.ToDouble(coulombspermetercube);
+            _coulombsPerCubicMeter = Convert.ToDouble(coulombspercubicmeter);
         }
 
         #region Properties
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// </summary>
         public static ElectricChargeDensityUnit BaseUnit
         {
-            get { return ElectricChargeDensityUnit.CoulombPerMeterCube; }
+            get { return ElectricChargeDensityUnit.CoulombPerCubicMeter; }
         }
 
         /// <summary>
@@ -130,11 +130,11 @@ namespace UnitsNet
         public static ElectricChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().ToArray();
 
         /// <summary>
-        ///     Get ElectricChargeDensity in CoulombsPerMeterCube.
+        ///     Get ElectricChargeDensity in CoulombsPerCubicMeter.
         /// </summary>
-        public double CoulombsPerMeterCube
+        public double CoulombsPerCubicMeter
         {
-            get { return _coulombsPerMeterCube; }
+            get { return _coulombsPerCubicMeter; }
         }
 
         #endregion
@@ -147,19 +147,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get ElectricChargeDensity from CoulombsPerMeterCube.
+        ///     Get ElectricChargeDensity from CoulombsPerCubicMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricChargeDensity FromCoulombsPerMeterCube(double coulombspermetercube)
+        public static ElectricChargeDensity FromCoulombsPerCubicMeter(double coulombspercubicmeter)
         {
-            double value = (double) coulombspermetercube;
+            double value = (double) coulombspercubicmeter;
             return new ElectricChargeDensity(value);
         }
 #else
-        public static ElectricChargeDensity FromCoulombsPerMeterCube(QuantityValue coulombspermetercube)
+        public static ElectricChargeDensity FromCoulombsPerCubicMeter(QuantityValue coulombspercubicmeter)
         {
-            double value = (double) coulombspermetercube;
+            double value = (double) coulombspercubicmeter;
             return new ElectricChargeDensity((value));
         }
 #endif
@@ -167,13 +167,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricChargeDensity from nullable CoulombsPerMeterCube.
+        ///     Get nullable ElectricChargeDensity from nullable CoulombsPerCubicMeter.
         /// </summary>
-        public static ElectricChargeDensity? FromCoulombsPerMeterCube(QuantityValue? coulombspermetercube)
+        public static ElectricChargeDensity? FromCoulombsPerCubicMeter(QuantityValue? coulombspercubicmeter)
         {
-            if (coulombspermetercube.HasValue)
+            if (coulombspercubicmeter.HasValue)
             {
-                return FromCoulombsPerMeterCube(coulombspermetercube.Value);
+                return FromCoulombsPerCubicMeter(coulombspercubicmeter.Value);
             }
             else
             {
@@ -199,8 +199,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case ElectricChargeDensityUnit.CoulombPerMeterCube:
-                    return FromCoulombsPerMeterCube(value);
+                case ElectricChargeDensityUnit.CoulombPerCubicMeter:
+                    return FromCoulombsPerCubicMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -223,8 +223,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ElectricChargeDensityUnit.CoulombPerMeterCube:
-                    return FromCoulombsPerMeterCube(value.Value);
+                case ElectricChargeDensityUnit.CoulombPerCubicMeter:
+                    return FromCoulombsPerCubicMeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -263,37 +263,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricChargeDensity operator -(ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(-right._coulombsPerMeterCube);
+            return new ElectricChargeDensity(-right._coulombsPerCubicMeter);
         }
 
         public static ElectricChargeDensity operator +(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(left._coulombsPerMeterCube + right._coulombsPerMeterCube);
+            return new ElectricChargeDensity(left._coulombsPerCubicMeter + right._coulombsPerCubicMeter);
         }
 
         public static ElectricChargeDensity operator -(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(left._coulombsPerMeterCube - right._coulombsPerMeterCube);
+            return new ElectricChargeDensity(left._coulombsPerCubicMeter - right._coulombsPerCubicMeter);
         }
 
         public static ElectricChargeDensity operator *(double left, ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(left*right._coulombsPerMeterCube);
+            return new ElectricChargeDensity(left*right._coulombsPerCubicMeter);
         }
 
         public static ElectricChargeDensity operator *(ElectricChargeDensity left, double right)
         {
-            return new ElectricChargeDensity(left._coulombsPerMeterCube*(double)right);
+            return new ElectricChargeDensity(left._coulombsPerCubicMeter*(double)right);
         }
 
         public static ElectricChargeDensity operator /(ElectricChargeDensity left, double right)
         {
-            return new ElectricChargeDensity(left._coulombsPerMeterCube/(double)right);
+            return new ElectricChargeDensity(left._coulombsPerCubicMeter/(double)right);
         }
 
         public static double operator /(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return Convert.ToDouble(left._coulombsPerMeterCube/right._coulombsPerMeterCube);
+            return Convert.ToDouble(left._coulombsPerCubicMeter/right._coulombsPerCubicMeter);
         }
 #endif
 
@@ -316,43 +316,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricChargeDensity other)
         {
-            return _coulombsPerMeterCube.CompareTo(other._coulombsPerMeterCube);
+            return _coulombsPerCubicMeter.CompareTo(other._coulombsPerCubicMeter);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return left._coulombsPerMeterCube <= right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter <= right._coulombsPerCubicMeter;
         }
 
         public static bool operator >=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return left._coulombsPerMeterCube >= right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter >= right._coulombsPerCubicMeter;
         }
 
         public static bool operator <(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return left._coulombsPerMeterCube < right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter < right._coulombsPerCubicMeter;
         }
 
         public static bool operator >(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return left._coulombsPerMeterCube > right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter > right._coulombsPerCubicMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._coulombsPerMeterCube == right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter == right._coulombsPerCubicMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._coulombsPerMeterCube != right._coulombsPerMeterCube;
+            return left._coulombsPerCubicMeter != right._coulombsPerCubicMeter;
         }
 #endif
 
@@ -364,7 +364,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _coulombsPerMeterCube.Equals(((ElectricChargeDensity) obj)._coulombsPerMeterCube);
+            return _coulombsPerCubicMeter.Equals(((ElectricChargeDensity) obj)._coulombsPerCubicMeter);
         }
 
         /// <summary>
@@ -377,12 +377,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricChargeDensity other, ElectricChargeDensity maxError)
         {
-            return Math.Abs(_coulombsPerMeterCube - other._coulombsPerMeterCube) <= maxError._coulombsPerMeterCube;
+            return Math.Abs(_coulombsPerCubicMeter - other._coulombsPerCubicMeter) <= maxError._coulombsPerCubicMeter;
         }
 
         public override int GetHashCode()
         {
-            return _coulombsPerMeterCube.GetHashCode();
+            return _coulombsPerCubicMeter.GetHashCode();
         }
 
         #endregion
@@ -398,8 +398,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case ElectricChargeDensityUnit.CoulombPerMeterCube:
-                    return CoulombsPerMeterCube;
+                case ElectricChargeDensityUnit.CoulombPerCubicMeter:
+                    return CoulombsPerCubicMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -476,7 +476,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricChargeDensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromCoulombsPerMeterCube(x.CoulombsPerMeterCube + y.CoulombsPerMeterCube));
+                }, (x, y) => FromCoulombsPerCubicMeter(x.CoulombsPerCubicMeter + y.CoulombsPerCubicMeter));
         }
 
         /// <summary>
@@ -577,9 +577,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is CoulombPerMeterCube
+        ///     Set the default unit used by ToString(). Default is CoulombPerCubicMeter
         /// </summary>
-        public static ElectricChargeDensityUnit ToStringDefaultUnit { get; set; } = ElectricChargeDensityUnit.CoulombPerMeterCube;
+        public static ElectricChargeDensityUnit ToStringDefaultUnit { get; set; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

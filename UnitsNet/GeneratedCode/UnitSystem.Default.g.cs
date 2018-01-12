@@ -389,7 +389,7 @@ namespace UnitsNet
                 new UnitLocalization(typeof (AreaDensityUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerMeterSquared,
+                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kg/m²"),
@@ -772,7 +772,7 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricChargeDensityUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) ElectricChargeDensityUnit.CoulombPerMeterCube,
+                        new CulturesForEnumValue((int) ElectricChargeDensityUnit.CoulombPerCubicMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "C/m³"),
@@ -829,7 +829,7 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricCurrentDensityUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) ElectricCurrentDensityUnit.AmperePerMeterSecondSquared,
+                        new CulturesForEnumValue((int) ElectricCurrentDensityUnit.AmperePerSquareMeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "A/m²"),

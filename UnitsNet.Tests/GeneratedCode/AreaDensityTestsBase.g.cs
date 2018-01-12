@@ -52,98 +52,98 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AreaDensityTestsBase
     {
-        protected abstract double KilogramsPerMeterSquaredInOneKilogramPerMeterSquared { get; }
+        protected abstract double KilogramsPerSquareMeterInOneKilogramPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilogramsPerMeterSquaredTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void KilogramPerMeterSquaredToAreaDensityUnits()
+        public void KilogramPerSquareMeterToAreaDensityUnits()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AssertEx.EqualTolerance(KilogramsPerMeterSquaredInOneKilogramPerMeterSquared, kilogrampermetersquared.KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, AreaDensity.From(1, AreaDensityUnit.KilogramPerMeterSquared).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
+            AssertEx.EqualTolerance(1, AreaDensity.From(1, AreaDensityUnit.KilogramPerSquareMeter).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AssertEx.EqualTolerance(KilogramsPerMeterSquaredInOneKilogramPerMeterSquared, kilogrampermetersquared.As(AreaDensityUnit.KilogramPerMeterSquared), KilogramsPerMeterSquaredTolerance);
+            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.As(AreaDensityUnit.KilogramPerSquareMeter), KilogramsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AssertEx.EqualTolerance(1, AreaDensity.FromKilogramsPerMeterSquared(kilogrampermetersquared.KilogramsPerMeterSquared).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(1, AreaDensity.FromKilogramsPerSquareMeter(kilogrampersquaremeter.KilogramsPerSquareMeter).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            AreaDensity v = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AssertEx.EqualTolerance(-1, -v.KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (AreaDensity.FromKilogramsPerMeterSquared(3)-v).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (v + v).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(10, (v*10).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(10, (10*v).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, (AreaDensity.FromKilogramsPerMeterSquared(10)/5).KilogramsPerMeterSquared, KilogramsPerMeterSquaredTolerance);
-            AssertEx.EqualTolerance(2, AreaDensity.FromKilogramsPerMeterSquared(10)/AreaDensity.FromKilogramsPerMeterSquared(5), KilogramsPerMeterSquaredTolerance);
+            AreaDensity v = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(-1, -v.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (AreaDensity.FromKilogramsPerSquareMeter(3)-v).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (AreaDensity.FromKilogramsPerSquareMeter(10)/5).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, AreaDensity.FromKilogramsPerSquareMeter(10)/AreaDensity.FromKilogramsPerSquareMeter(5), KilogramsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            AreaDensity oneKilogramPerMeterSquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AreaDensity twoKilogramsPerMeterSquared = AreaDensity.FromKilogramsPerMeterSquared(2);
+            AreaDensity oneKilogramPerSquareMeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AreaDensity twoKilogramsPerSquareMeter = AreaDensity.FromKilogramsPerSquareMeter(2);
 
-            Assert.True(oneKilogramPerMeterSquared < twoKilogramsPerMeterSquared);
-            Assert.True(oneKilogramPerMeterSquared <= twoKilogramsPerMeterSquared);
-            Assert.True(twoKilogramsPerMeterSquared > oneKilogramPerMeterSquared);
-            Assert.True(twoKilogramsPerMeterSquared >= oneKilogramPerMeterSquared);
+            Assert.True(oneKilogramPerSquareMeter < twoKilogramsPerSquareMeter);
+            Assert.True(oneKilogramPerSquareMeter <= twoKilogramsPerSquareMeter);
+            Assert.True(twoKilogramsPerSquareMeter > oneKilogramPerSquareMeter);
+            Assert.True(twoKilogramsPerSquareMeter >= oneKilogramPerSquareMeter);
 
-            Assert.False(oneKilogramPerMeterSquared > twoKilogramsPerMeterSquared);
-            Assert.False(oneKilogramPerMeterSquared >= twoKilogramsPerMeterSquared);
-            Assert.False(twoKilogramsPerMeterSquared < oneKilogramPerMeterSquared);
-            Assert.False(twoKilogramsPerMeterSquared <= oneKilogramPerMeterSquared);
+            Assert.False(oneKilogramPerSquareMeter > twoKilogramsPerSquareMeter);
+            Assert.False(oneKilogramPerSquareMeter >= twoKilogramsPerSquareMeter);
+            Assert.False(twoKilogramsPerSquareMeter < oneKilogramPerSquareMeter);
+            Assert.False(twoKilogramsPerSquareMeter <= oneKilogramPerSquareMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.Equal(0, kilogrampermetersquared.CompareTo(kilogrampermetersquared));
-            Assert.True(kilogrampermetersquared.CompareTo(AreaDensity.Zero) > 0);
-            Assert.True(AreaDensity.Zero.CompareTo(kilogrampermetersquared) < 0);
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.Equal(0, kilogrampersquaremeter.CompareTo(kilogrampersquaremeter));
+            Assert.True(kilogrampersquaremeter.CompareTo(AreaDensity.Zero) > 0);
+            Assert.True(AreaDensity.Zero.CompareTo(kilogrampersquaremeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.Throws<ArgumentException>(() => kilogrampermetersquared.CompareTo(new object()));
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.Throws<ArgumentNullException>(() => kilogrampermetersquared.CompareTo(null));
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.Throws<ArgumentNullException>(() => kilogrampersquaremeter.CompareTo(null));
         }
 
 
         [Fact]
         public void EqualityOperators()
         {
-            AreaDensity a = AreaDensity.FromKilogramsPerMeterSquared(1);
-            AreaDensity b = AreaDensity.FromKilogramsPerMeterSquared(2);
+            AreaDensity a = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AreaDensity b = AreaDensity.FromKilogramsPerSquareMeter(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -157,23 +157,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            AreaDensity v = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.True(v.Equals(AreaDensity.FromKilogramsPerMeterSquared(1), AreaDensity.FromKilogramsPerMeterSquared(KilogramsPerMeterSquaredTolerance)));
-            Assert.False(v.Equals(AreaDensity.Zero, AreaDensity.FromKilogramsPerMeterSquared(KilogramsPerMeterSquaredTolerance)));
+            AreaDensity v = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.True(v.Equals(AreaDensity.FromKilogramsPerSquareMeter(1), AreaDensity.FromKilogramsPerSquareMeter(KilogramsPerSquareMeterTolerance)));
+            Assert.False(v.Equals(AreaDensity.Zero, AreaDensity.FromKilogramsPerSquareMeter(KilogramsPerSquareMeterTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.False(kilogrampermetersquared.Equals(new object()));
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.False(kilogrampersquaremeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            AreaDensity kilogrampermetersquared = AreaDensity.FromKilogramsPerMeterSquared(1);
-            Assert.False(kilogrampermetersquared.Equals(null));
+            AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            Assert.False(kilogrampersquaremeter.Equals(null));
         }
     }
 }

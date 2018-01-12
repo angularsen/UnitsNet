@@ -46,6 +46,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaDensityTests : AreaDensityTestsBase
     {
-        protected override double KilogramsPerMeterSquaredInOneKilogramPerMeterSquared => 1;
+        protected override double KilogramsPerSquareMeterInOneKilogramPerSquareMeter => 1;
     }
 }

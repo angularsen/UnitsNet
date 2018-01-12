@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ElectricCurrentDensity.
         /// </summary>
-        private readonly double _amperesPerMeterSecondSquared;
+        private readonly double _amperesPerSquareMeter;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ElectricCurrentDensity(double amperespermetersecondsquared)
+        public ElectricCurrentDensity(double amperespersquaremeter)
         {
-            _amperesPerMeterSecondSquared = Convert.ToDouble(amperespermetersecondsquared);
+            _amperesPerSquareMeter = Convert.ToDouble(amperespersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricCurrentDensity(long amperespermetersecondsquared)
+        ElectricCurrentDensity(long amperespersquaremeter)
         {
-            _amperesPerMeterSecondSquared = Convert.ToDouble(amperespermetersecondsquared);
+            _amperesPerSquareMeter = Convert.ToDouble(amperespersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricCurrentDensity(decimal amperespermetersecondsquared)
+        ElectricCurrentDensity(decimal amperespersquaremeter)
         {
-            _amperesPerMeterSecondSquared = Convert.ToDouble(amperespermetersecondsquared);
+            _amperesPerSquareMeter = Convert.ToDouble(amperespersquaremeter);
         }
 
         #region Properties
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCurrentDensityUnit BaseUnit
         {
-            get { return ElectricCurrentDensityUnit.AmperePerMeterSecondSquared; }
+            get { return ElectricCurrentDensityUnit.AmperePerSquareMeter; }
         }
 
         /// <summary>
@@ -130,11 +130,11 @@ namespace UnitsNet
         public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().ToArray();
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerMeterSecondSquared.
+        ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.
         /// </summary>
-        public double AmperesPerMeterSecondSquared
+        public double AmperesPerSquareMeter
         {
-            get { return _amperesPerMeterSecondSquared; }
+            get { return _amperesPerSquareMeter; }
         }
 
         #endregion
@@ -147,19 +147,19 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerMeterSecondSquared.
+        ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricCurrentDensity FromAmperesPerMeterSecondSquared(double amperespermetersecondsquared)
+        public static ElectricCurrentDensity FromAmperesPerSquareMeter(double amperespersquaremeter)
         {
-            double value = (double) amperespermetersecondsquared;
+            double value = (double) amperespersquaremeter;
             return new ElectricCurrentDensity(value);
         }
 #else
-        public static ElectricCurrentDensity FromAmperesPerMeterSecondSquared(QuantityValue amperespermetersecondsquared)
+        public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
         {
-            double value = (double) amperespermetersecondsquared;
+            double value = (double) amperespersquaremeter;
             return new ElectricCurrentDensity((value));
         }
 #endif
@@ -167,13 +167,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricCurrentDensity from nullable AmperesPerMeterSecondSquared.
+        ///     Get nullable ElectricCurrentDensity from nullable AmperesPerSquareMeter.
         /// </summary>
-        public static ElectricCurrentDensity? FromAmperesPerMeterSecondSquared(QuantityValue? amperespermetersecondsquared)
+        public static ElectricCurrentDensity? FromAmperesPerSquareMeter(QuantityValue? amperespersquaremeter)
         {
-            if (amperespermetersecondsquared.HasValue)
+            if (amperespersquaremeter.HasValue)
             {
-                return FromAmperesPerMeterSecondSquared(amperespermetersecondsquared.Value);
+                return FromAmperesPerSquareMeter(amperespersquaremeter.Value);
             }
             else
             {
@@ -199,8 +199,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
-                case ElectricCurrentDensityUnit.AmperePerMeterSecondSquared:
-                    return FromAmperesPerMeterSecondSquared(value);
+                case ElectricCurrentDensityUnit.AmperePerSquareMeter:
+                    return FromAmperesPerSquareMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -223,8 +223,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case ElectricCurrentDensityUnit.AmperePerMeterSecondSquared:
-                    return FromAmperesPerMeterSecondSquared(value.Value);
+                case ElectricCurrentDensityUnit.AmperePerSquareMeter:
+                    return FromAmperesPerSquareMeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -263,37 +263,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricCurrentDensity operator -(ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(-right._amperesPerMeterSecondSquared);
+            return new ElectricCurrentDensity(-right._amperesPerSquareMeter);
         }
 
         public static ElectricCurrentDensity operator +(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left._amperesPerMeterSecondSquared + right._amperesPerMeterSecondSquared);
+            return new ElectricCurrentDensity(left._amperesPerSquareMeter + right._amperesPerSquareMeter);
         }
 
         public static ElectricCurrentDensity operator -(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left._amperesPerMeterSecondSquared - right._amperesPerMeterSecondSquared);
+            return new ElectricCurrentDensity(left._amperesPerSquareMeter - right._amperesPerSquareMeter);
         }
 
         public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left*right._amperesPerMeterSecondSquared);
+            return new ElectricCurrentDensity(left*right._amperesPerSquareMeter);
         }
 
         public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, double right)
         {
-            return new ElectricCurrentDensity(left._amperesPerMeterSecondSquared*(double)right);
+            return new ElectricCurrentDensity(left._amperesPerSquareMeter*(double)right);
         }
 
         public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, double right)
         {
-            return new ElectricCurrentDensity(left._amperesPerMeterSecondSquared/(double)right);
+            return new ElectricCurrentDensity(left._amperesPerSquareMeter/(double)right);
         }
 
         public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return Convert.ToDouble(left._amperesPerMeterSecondSquared/right._amperesPerMeterSecondSquared);
+            return Convert.ToDouble(left._amperesPerSquareMeter/right._amperesPerSquareMeter);
         }
 #endif
 
@@ -316,43 +316,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricCurrentDensity other)
         {
-            return _amperesPerMeterSecondSquared.CompareTo(other._amperesPerMeterSecondSquared);
+            return _amperesPerSquareMeter.CompareTo(other._amperesPerSquareMeter);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left._amperesPerMeterSecondSquared <= right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter <= right._amperesPerSquareMeter;
         }
 
         public static bool operator >=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left._amperesPerMeterSecondSquared >= right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter >= right._amperesPerSquareMeter;
         }
 
         public static bool operator <(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left._amperesPerMeterSecondSquared < right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter < right._amperesPerSquareMeter;
         }
 
         public static bool operator >(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left._amperesPerMeterSecondSquared > right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter > right._amperesPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._amperesPerMeterSecondSquared == right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter == right._amperesPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._amperesPerMeterSecondSquared != right._amperesPerMeterSecondSquared;
+            return left._amperesPerSquareMeter != right._amperesPerSquareMeter;
         }
 #endif
 
@@ -364,7 +364,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _amperesPerMeterSecondSquared.Equals(((ElectricCurrentDensity) obj)._amperesPerMeterSecondSquared);
+            return _amperesPerSquareMeter.Equals(((ElectricCurrentDensity) obj)._amperesPerSquareMeter);
         }
 
         /// <summary>
@@ -377,12 +377,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricCurrentDensity other, ElectricCurrentDensity maxError)
         {
-            return Math.Abs(_amperesPerMeterSecondSquared - other._amperesPerMeterSecondSquared) <= maxError._amperesPerMeterSecondSquared;
+            return Math.Abs(_amperesPerSquareMeter - other._amperesPerSquareMeter) <= maxError._amperesPerSquareMeter;
         }
 
         public override int GetHashCode()
         {
-            return _amperesPerMeterSecondSquared.GetHashCode();
+            return _amperesPerSquareMeter.GetHashCode();
         }
 
         #endregion
@@ -398,8 +398,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
-                case ElectricCurrentDensityUnit.AmperePerMeterSecondSquared:
-                    return AmperesPerMeterSecondSquared;
+                case ElectricCurrentDensityUnit.AmperePerSquareMeter:
+                    return AmperesPerSquareMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -476,7 +476,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricCurrentDensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromAmperesPerMeterSecondSquared(x.AmperesPerMeterSecondSquared + y.AmperesPerMeterSecondSquared));
+                }, (x, y) => FromAmperesPerSquareMeter(x.AmperesPerSquareMeter + y.AmperesPerSquareMeter));
         }
 
         /// <summary>
@@ -577,9 +577,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is AmperePerMeterSecondSquared
+        ///     Set the default unit used by ToString(). Default is AmperePerSquareMeter
         /// </summary>
-        public static ElectricCurrentDensityUnit ToStringDefaultUnit { get; set; } = ElectricCurrentDensityUnit.AmperePerMeterSecondSquared;
+        public static ElectricCurrentDensityUnit ToStringDefaultUnit { get; set; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

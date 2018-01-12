@@ -42,6 +42,6 @@ namespace UnitsNet.Units
     public enum ElectricCurrentDensityUnit
     {
         Undefined = 0,
-        AmperePerMeterSecondSquared,
+        AmperePerSquareMeter,
     }
 }

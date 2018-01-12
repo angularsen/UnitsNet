@@ -52,98 +52,98 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricChargeDensityTestsBase
     {
-        protected abstract double CoulombsPerMeterCubeInOneCoulombPerMeterCube { get; }
+        protected abstract double CoulombsPerCubicMeterInOneCoulombPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CoulombsPerMeterCubeTolerance { get { return 1e-5; } }
+        protected virtual double CoulombsPerCubicMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void CoulombPerMeterCubeToElectricChargeDensityUnits()
+        public void CoulombPerCubicMeterToElectricChargeDensityUnits()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            AssertEx.EqualTolerance(CoulombsPerMeterCubeInOneCoulombPerMeterCube, coulombpermetercube.CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            AssertEx.EqualTolerance(CoulombsPerCubicMeterInOneCoulombPerCubicMeter, coulombpercubicmeter.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricChargeDensity.From(1, ElectricChargeDensityUnit.CoulombPerMeterCube).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
+            AssertEx.EqualTolerance(1, ElectricChargeDensity.From(1, ElectricChargeDensityUnit.CoulombPerCubicMeter).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            AssertEx.EqualTolerance(CoulombsPerMeterCubeInOneCoulombPerMeterCube, coulombpermetercube.As(ElectricChargeDensityUnit.CoulombPerMeterCube), CoulombsPerMeterCubeTolerance);
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            AssertEx.EqualTolerance(CoulombsPerCubicMeterInOneCoulombPerCubicMeter, coulombpercubicmeter.As(ElectricChargeDensityUnit.CoulombPerCubicMeter), CoulombsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            AssertEx.EqualTolerance(1, ElectricChargeDensity.FromCoulombsPerMeterCube(coulombpermetercube.CoulombsPerMeterCube).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            AssertEx.EqualTolerance(1, ElectricChargeDensity.FromCoulombsPerCubicMeter(coulombpercubicmeter.CoulombsPerCubicMeter).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricChargeDensity v = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            AssertEx.EqualTolerance(-1, -v.CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(2, (ElectricChargeDensity.FromCoulombsPerMeterCube(3)-v).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(2, (v + v).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(10, (v*10).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(10, (10*v).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(2, (ElectricChargeDensity.FromCoulombsPerMeterCube(10)/5).CoulombsPerMeterCube, CoulombsPerMeterCubeTolerance);
-            AssertEx.EqualTolerance(2, ElectricChargeDensity.FromCoulombsPerMeterCube(10)/ElectricChargeDensity.FromCoulombsPerMeterCube(5), CoulombsPerMeterCubeTolerance);
+            ElectricChargeDensity v = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            AssertEx.EqualTolerance(-1, -v.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricChargeDensity.FromCoulombsPerCubicMeter(3)-v).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricChargeDensity.FromCoulombsPerCubicMeter(10)/5).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+            AssertEx.EqualTolerance(2, ElectricChargeDensity.FromCoulombsPerCubicMeter(10)/ElectricChargeDensity.FromCoulombsPerCubicMeter(5), CoulombsPerCubicMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricChargeDensity oneCoulombPerMeterCube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            ElectricChargeDensity twoCoulombsPerMeterCube = ElectricChargeDensity.FromCoulombsPerMeterCube(2);
+            ElectricChargeDensity oneCoulombPerCubicMeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            ElectricChargeDensity twoCoulombsPerCubicMeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(2);
 
-            Assert.True(oneCoulombPerMeterCube < twoCoulombsPerMeterCube);
-            Assert.True(oneCoulombPerMeterCube <= twoCoulombsPerMeterCube);
-            Assert.True(twoCoulombsPerMeterCube > oneCoulombPerMeterCube);
-            Assert.True(twoCoulombsPerMeterCube >= oneCoulombPerMeterCube);
+            Assert.True(oneCoulombPerCubicMeter < twoCoulombsPerCubicMeter);
+            Assert.True(oneCoulombPerCubicMeter <= twoCoulombsPerCubicMeter);
+            Assert.True(twoCoulombsPerCubicMeter > oneCoulombPerCubicMeter);
+            Assert.True(twoCoulombsPerCubicMeter >= oneCoulombPerCubicMeter);
 
-            Assert.False(oneCoulombPerMeterCube > twoCoulombsPerMeterCube);
-            Assert.False(oneCoulombPerMeterCube >= twoCoulombsPerMeterCube);
-            Assert.False(twoCoulombsPerMeterCube < oneCoulombPerMeterCube);
-            Assert.False(twoCoulombsPerMeterCube <= oneCoulombPerMeterCube);
+            Assert.False(oneCoulombPerCubicMeter > twoCoulombsPerCubicMeter);
+            Assert.False(oneCoulombPerCubicMeter >= twoCoulombsPerCubicMeter);
+            Assert.False(twoCoulombsPerCubicMeter < oneCoulombPerCubicMeter);
+            Assert.False(twoCoulombsPerCubicMeter <= oneCoulombPerCubicMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.Equal(0, coulombpermetercube.CompareTo(coulombpermetercube));
-            Assert.True(coulombpermetercube.CompareTo(ElectricChargeDensity.Zero) > 0);
-            Assert.True(ElectricChargeDensity.Zero.CompareTo(coulombpermetercube) < 0);
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.Equal(0, coulombpercubicmeter.CompareTo(coulombpercubicmeter));
+            Assert.True(coulombpercubicmeter.CompareTo(ElectricChargeDensity.Zero) > 0);
+            Assert.True(ElectricChargeDensity.Zero.CompareTo(coulombpercubicmeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.Throws<ArgumentException>(() => coulombpermetercube.CompareTo(new object()));
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.Throws<ArgumentNullException>(() => coulombpermetercube.CompareTo(null));
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.Throws<ArgumentNullException>(() => coulombpercubicmeter.CompareTo(null));
         }
 
 
         [Fact]
         public void EqualityOperators()
         {
-            ElectricChargeDensity a = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            ElectricChargeDensity b = ElectricChargeDensity.FromCoulombsPerMeterCube(2);
+            ElectricChargeDensity a = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            ElectricChargeDensity b = ElectricChargeDensity.FromCoulombsPerCubicMeter(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -157,23 +157,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            ElectricChargeDensity v = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerMeterCube(1), ElectricChargeDensity.FromCoulombsPerMeterCube(CoulombsPerMeterCubeTolerance)));
-            Assert.False(v.Equals(ElectricChargeDensity.Zero, ElectricChargeDensity.FromCoulombsPerMeterCube(CoulombsPerMeterCubeTolerance)));
+            ElectricChargeDensity v = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(1), ElectricChargeDensity.FromCoulombsPerCubicMeter(CoulombsPerCubicMeterTolerance)));
+            Assert.False(v.Equals(ElectricChargeDensity.Zero, ElectricChargeDensity.FromCoulombsPerCubicMeter(CoulombsPerCubicMeterTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.False(coulombpermetercube.Equals(new object()));
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.False(coulombpercubicmeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricChargeDensity coulombpermetercube = ElectricChargeDensity.FromCoulombsPerMeterCube(1);
-            Assert.False(coulombpermetercube.Equals(null));
+            ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            Assert.False(coulombpercubicmeter.Equals(null));
         }
     }
 }

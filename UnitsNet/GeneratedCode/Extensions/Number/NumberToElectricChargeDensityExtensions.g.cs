@@ -44,37 +44,37 @@ namespace UnitsNet.Extensions.NumberToElectricChargeDensity
 {
     public static class NumberToElectricChargeDensityExtensions
     {
-        #region CoulombPerMeterCube
+        #region CoulombPerCubicMeter
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double)"/>
-        public static ElectricChargeDensity CoulombsPerMeterCube(this int value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)"/>
+        public static ElectricChargeDensity CoulombsPerCubicMeter(this int value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double?)"/>
-        public static ElectricChargeDensity? CoulombsPerMeterCube(this int? value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double?)"/>
+        public static ElectricChargeDensity? CoulombsPerCubicMeter(this int? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double)"/>
-        public static ElectricChargeDensity CoulombsPerMeterCube(this long value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)"/>
+        public static ElectricChargeDensity CoulombsPerCubicMeter(this long value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double?)"/>
-        public static ElectricChargeDensity? CoulombsPerMeterCube(this long? value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double?)"/>
+        public static ElectricChargeDensity? CoulombsPerCubicMeter(this long? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double)"/>
-        public static ElectricChargeDensity CoulombsPerMeterCube(this double value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)"/>
+        public static ElectricChargeDensity CoulombsPerCubicMeter(this double value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double?)"/>
-        public static ElectricChargeDensity? CoulombsPerMeterCube(this double? value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double?)"/>
+        public static ElectricChargeDensity? CoulombsPerCubicMeter(this double? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double)"/>
-        public static ElectricChargeDensity CoulombsPerMeterCube(this float value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)"/>
+        public static ElectricChargeDensity CoulombsPerCubicMeter(this float value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double?)"/>
-        public static ElectricChargeDensity? CoulombsPerMeterCube(this float? value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value);
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double?)"/>
+        public static ElectricChargeDensity? CoulombsPerCubicMeter(this float? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double)"/>
-        public static ElectricChargeDensity CoulombsPerMeterCube(this decimal value) => ElectricChargeDensity.FromCoulombsPerMeterCube(Convert.ToDouble(value));
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)"/>
+        public static ElectricChargeDensity CoulombsPerCubicMeter(this decimal value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerMeterCube(double?)"/>
-        public static ElectricChargeDensity? CoulombsPerMeterCube(this decimal? value) => ElectricChargeDensity.FromCoulombsPerMeterCube(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double?)"/>
+        public static ElectricChargeDensity? CoulombsPerCubicMeter(this decimal? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -44,37 +44,37 @@ namespace UnitsNet.Extensions.NumberToAreaDensity
 {
     public static class NumberToAreaDensityExtensions
     {
-        #region KilogramPerMeterSquared
+        #region KilogramPerSquareMeter
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double)"/>
-        public static AreaDensity KilogramsPerMeterSquared(this int value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)"/>
+        public static AreaDensity KilogramsPerSquareMeter(this int value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double?)"/>
-        public static AreaDensity? KilogramsPerMeterSquared(this int? value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double?)"/>
+        public static AreaDensity? KilogramsPerSquareMeter(this int? value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double)"/>
-        public static AreaDensity KilogramsPerMeterSquared(this long value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)"/>
+        public static AreaDensity KilogramsPerSquareMeter(this long value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double?)"/>
-        public static AreaDensity? KilogramsPerMeterSquared(this long? value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double?)"/>
+        public static AreaDensity? KilogramsPerSquareMeter(this long? value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double)"/>
-        public static AreaDensity KilogramsPerMeterSquared(this double value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)"/>
+        public static AreaDensity KilogramsPerSquareMeter(this double value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double?)"/>
-        public static AreaDensity? KilogramsPerMeterSquared(this double? value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double?)"/>
+        public static AreaDensity? KilogramsPerSquareMeter(this double? value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double)"/>
-        public static AreaDensity KilogramsPerMeterSquared(this float value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)"/>
+        public static AreaDensity KilogramsPerSquareMeter(this float value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double?)"/>
-        public static AreaDensity? KilogramsPerMeterSquared(this float? value) => AreaDensity.FromKilogramsPerMeterSquared(value);
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double?)"/>
+        public static AreaDensity? KilogramsPerSquareMeter(this float? value) => AreaDensity.FromKilogramsPerSquareMeter(value);
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double)"/>
-        public static AreaDensity KilogramsPerMeterSquared(this decimal value) => AreaDensity.FromKilogramsPerMeterSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)"/>
+        public static AreaDensity KilogramsPerSquareMeter(this decimal value) => AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerMeterSquared(double?)"/>
-        public static AreaDensity? KilogramsPerMeterSquared(this decimal? value) => AreaDensity.FromKilogramsPerMeterSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double?)"/>
+        public static AreaDensity? KilogramsPerSquareMeter(this decimal? value) => AreaDensity.FromKilogramsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

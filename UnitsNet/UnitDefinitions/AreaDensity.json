@@ -1,11 +1,11 @@
 ﻿{
   "Name": "AreaDensity",
-  "BaseUnit": "KilogramPerMeterSquared",
+  "BaseUnit": "KilogramPerSquareMeter",
   "XmlDoc": "The area density of a two-dimensional object is calculated as the mass per unit area.",
   "Units": [
     {
-      "SingularName": "KilogramPerMeterSquared",
-      "PluralName": "KilogramsPerMeterSquared",
+      "SingularName": "KilogramPerSquareMeter",
+      "PluralName": "KilogramsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [

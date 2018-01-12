@@ -42,6 +42,6 @@ namespace UnitsNet.Units
     public enum ElectricChargeDensityUnit
     {
         Undefined = 0,
-        CoulombPerMeterCube,
+        CoulombPerCubicMeter,
     }
 }
