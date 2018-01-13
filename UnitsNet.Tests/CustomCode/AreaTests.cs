@@ -56,5 +56,12 @@ namespace UnitsNet.Tests.CustomCode
             Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
             Assert.Equal(length, Length.FromMeters(10));
         }
+
+        [Fact]
+        public void AreaTimesMassFluxEqualsMassFlow()
+        {
+            MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+        }
     }
 }

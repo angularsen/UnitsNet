@@ -160,5 +160,12 @@ namespace UnitsNet.Tests.CustomCode
             SpecificEnergy length = Speed.FromMetersPerSecond(2) * Speed.FromMetersPerSecond(20);
             Assert.Equal(length, SpecificEnergy.FromJoulesPerKilogram(40));
         }
+
+        [Fact]
+        public void SpeedTimesDensityEqualsMassFlux()
+        {
+            MassFlux massFlux = Speed.FromMetersPerSecond(20) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
+        }
     }
 }
