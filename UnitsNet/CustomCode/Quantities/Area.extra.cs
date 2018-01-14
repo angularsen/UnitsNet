@@ -41,6 +41,16 @@ namespace UnitsNet
         {
             return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
         }
+
+        public static Area FromCircleDiameter(Length diameter)
+        {
+            return System.Math.PI * diameter * diameter / 4;
+        }
+
+        public static Area FromCircleRadius(Length radius)
+        {
+            return System.Math.PI * radius * radius;
+        }
 #endif
     }
 }
