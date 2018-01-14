@@ -113,6 +113,11 @@ namespace UnitsNet
         {
             return timeSpan.TotalSeconds != duration.Seconds;
         }
+
+        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
+        {
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+        }
 #endif
 
         /// <summary>
