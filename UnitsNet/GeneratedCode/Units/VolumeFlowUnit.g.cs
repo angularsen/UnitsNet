@@ -39,50 +39,32 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum FlowUnit
+    public enum VolumeFlowUnit
     {
         Undefined = 0,
         CentilitersPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicDecimeterPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicFootPerHour,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicFootPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicFootPerSecond,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicMeterPerHour,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicMeterPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicMeterPerSecond,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicYardPerHour,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicYardPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         CubicYardPerSecond,
         DecilitersPerMinute,
         KilolitersPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         LitersPerHour,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         LitersPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         LitersPerSecond,
         MicrolitersPerMinute,
         MillilitersPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         MillionUsGallonsPerDay,
         NanolitersPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         OilBarrelsPerDay,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         UsGallonsPerHour,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         UsGallonsPerMinute,
-        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         UsGallonsPerSecond,
     }
 }

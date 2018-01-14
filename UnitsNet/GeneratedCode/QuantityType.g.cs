@@ -106,5 +106,6 @@ namespace UnitsNet
         Torque,
         VitaminA,
         Volume,
+        VolumeFlow,
     }
 }
