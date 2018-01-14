@@ -27,36 +27,21 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Volume
+    public sealed partial class VolumeFlow
 #else
-    public partial struct Volume
+    public partial struct VolumeFlow
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Area operator /(Volume volume, Length length)
+        public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
         {
-            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.Seconds);
         }
 
-        public static Length operator /(Volume volume, Area area)
+        public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
         {
-            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
-        }
-
-        public static VolumeFlow operator /(Volume volume, Duration duration)
-        {
-            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / duration.Seconds);
-        }
-
-        public static VolumeFlow operator /(Volume volume, TimeSpan timeSpan)
-        {
-            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.Seconds);
-        }
-
-        public static TimeSpan operator /(Volume volume, VolumeFlow volumeFlow)
-        {
-            return TimeSpan.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
 #endif
     }

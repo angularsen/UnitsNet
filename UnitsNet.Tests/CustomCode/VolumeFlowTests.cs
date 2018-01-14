@@ -39,6 +39,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using Xunit;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeFlowTests : VolumeFlowTestsBase
@@ -88,5 +91,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double UsGallonsPerHourInOneCubicMeterPerSecond => 9.510193884893328E5;
 
         protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
+
+        [Fact]
+        public void VolumeFlowTimesTimeSpanEqualsVolume()
+        {
+            Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * TimeSpan.FromSeconds(2);
+            Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
+
+        [Fact]
+        public void VolumeFlowTimesDurationEqualsVolume()
+        {
+            Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * Duration.FromSeconds(2);
+            Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
     }
 }
