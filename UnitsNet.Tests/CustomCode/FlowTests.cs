@@ -54,5 +54,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilolitersPerMinuteInOneCubicMeterPerSecond => 60.00000;
 
         protected override double OilBarrelsPerDayInOneCubicMeterPerSecond => 543439.65056533388306722269588172;
+
+        protected override double CubicFeetPerMinuteInOneCubicMeterPerSecond => 2.11888E3;
+
+        protected override double CubicMetersPerMinuteInOneCubicMeterPerSecond => 6.0E1;
+
+        protected override double CubicYardsPerHourInOneCubicMeterPerSecond => 4.708622232E3;
+
+        protected override double CubicYardsPerMinuteInOneCubicMeterPerSecond => 7.84770372E1;
+
+        protected override double CubicYardsPerSecondInOneCubicMeterPerSecond => 1.30795062;
+
+        protected override double UsGallonsPerHourInOneCubicMeterPerSecond => 9.510193884893328E5;
+
+        protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
     }
 }

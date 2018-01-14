@@ -1067,7 +1067,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerHour,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cf/hr"),
+                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/min"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
@@ -1080,11 +1085,31 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/h"),
                                 new AbbreviationsForCulture("ru-RU", "м³/ч"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicMeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/min"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicMeterPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/h"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/min"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/s"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.DecilitersPerMinute,
                             new[]
@@ -1137,10 +1162,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "GPM"),
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),

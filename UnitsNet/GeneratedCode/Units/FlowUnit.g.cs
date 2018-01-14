@@ -45,9 +45,14 @@ namespace UnitsNet.Units
         CentilitersPerMinute,
         CubicDecimeterPerMinute,
         CubicFootPerHour,
+        CubicFootPerMinute,
         CubicFootPerSecond,
         CubicMeterPerHour,
+        CubicMeterPerMinute,
         CubicMeterPerSecond,
+        CubicYardPerHour,
+        CubicYardPerMinute,
+        CubicYardPerSecond,
         DecilitersPerMinute,
         KilolitersPerMinute,
         LitersPerHour,
@@ -58,6 +63,8 @@ namespace UnitsNet.Units
         MillionUsGallonsPerDay,
         NanolitersPerMinute,
         OilBarrelsPerDay,
+        UsGallonsPerHour,
         UsGallonsPerMinute,
+        UsGallonsPerSecond,
     }
 }
