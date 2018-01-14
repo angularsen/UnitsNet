@@ -140,6 +140,16 @@ double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimet
 double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
 
+### Example: WPF app using IValueConverter to parse quantities from input
+
+Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
+
+![image](https://user-images.githubusercontent.com/787816/34913360-b6690a4e-f8fa-11e7-87ce-ad76fbe28557.png)
+
+The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
+
+NOTE: A lot of reflection and complexity was introduced due to not having a base type. See #371 for discussion on adding base types.
+
 ### <a name="precision"></a>Precision and Accuracy
 
 A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units.
