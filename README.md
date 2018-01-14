@@ -144,7 +144,8 @@ double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"
 
 Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
 
-![image](https://user-images.githubusercontent.com/787816/34913360-b6690a4e-f8fa-11e7-87ce-ad76fbe28557.png)
+![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
+
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
 
