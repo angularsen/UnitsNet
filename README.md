@@ -12,13 +12,14 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 ### Build Targets
 
 * .NET Standard 1.0
+* .NET 4.0
 * .NET 3.5 Client
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
 
 
 ### Overview
 
-* [48 quantities with a total of 500+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [50+ quantities with a total of 600+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
 * [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
