@@ -27,6 +27,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Example: Creating a unit converter app](#example-app)
+* [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
