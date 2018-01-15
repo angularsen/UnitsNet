@@ -6,8 +6,7 @@ using System.Reflection;
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     /// <summary>
-    ///     TODO Move me into the UnitsNet library somehow. This will solve a pain point in generically enumerating units for a
-    ///     quantity.
+    ///     TODO Move me into the UnitsNet library. This will solve a pain point in generically enumerating units for a quantity.
     /// </summary>
     public static class UnitHelper
     {
