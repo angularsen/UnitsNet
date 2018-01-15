@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -11,22 +10,20 @@ using UnitsNet.Samples.UnitConverter.Wpf.Properties;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
+    /// <summary>
+    ///     View model for <see cref="MainWindow" />. Provides quantities and units for listboxes and updates the conversion
+    ///     result whenever the input value or any unit selection changes.
+    /// </summary>
     public sealed class MainWindowVm : IMainWindowVm
     {
-        /// <summary>
-        ///     Look up and cache all unit enum types once with reflection, such as LengthUnit and MassUnit.
-        /// </summary>
-        private static readonly Type[] UnitEnumTypes =
-            Assembly.GetAssembly(typeof(Length)).ExportedTypes.Where(t => t.IsEnum && t.Namespace == "UnitsNet.Units").ToArray();
-
-        private readonly ObservableCollection<UnitPresenter> _units;
+        private readonly ObservableCollection<UnitListItem> _units;
         private decimal _fromValue;
 
-        [CanBeNull] private UnitPresenter _selectedFromUnit;
+        [CanBeNull] private UnitListItem _selectedFromUnit;
 
         private QuantityType _selectedQuantity;
 
-        [CanBeNull] private UnitPresenter _selectedToUnit;
+        [CanBeNull] private UnitListItem _selectedToUnit;
 
         private decimal _toValue;
 
@@ -34,8 +31,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             Quantities = ToReadOnly(Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Skip(1));
 
-            _units = new ObservableCollection<UnitPresenter>();
-            Units = new ReadOnlyObservableCollection<UnitPresenter>(_units);
+            _units = new ObservableCollection<UnitListItem>();
+            Units = new ReadOnlyObservableCollection<UnitListItem>(_units);
             BindingOperations.EnableCollectionSynchronization(_units, this); // Cross-thread safety
 
             FromValue = 1;
@@ -47,7 +44,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         public ICommand SwapCommand { get; }
 
         public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
-        public ReadOnlyObservableCollection<UnitPresenter> Units { get; }
+        public ReadOnlyObservableCollection<UnitListItem> Units { get; }
 
         public QuantityType SelectedQuantity
         {
@@ -62,7 +59,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         }
 
         [CanBeNull]
-        public UnitPresenter SelectedFromUnit
+        public UnitListItem SelectedFromUnit
         {
             get => _selectedFromUnit;
             set
@@ -76,7 +73,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         }
 
         [CanBeNull]
-        public UnitPresenter SelectedToUnit
+        public UnitListItem SelectedToUnit
         {
             get => _selectedToUnit;
             set
@@ -120,7 +117,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         private void Swap()
         {
-            UnitPresenter oldToUnit = SelectedToUnit;
+            UnitListItem oldToUnit = SelectedToUnit;
             decimal oldToValue = ToValue;
 
             // Setting these will change ToValue
@@ -143,11 +140,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         private void OnSelectedQuantity(QuantityType quantity)
         {
             _units.Clear();
-
-            // Ex: Find unit enum type UnitsNet.Units.LengthUnit from quantity enum name QuantityType.Length
-            Type unitEnumType = UnitEnumTypes.First(t => t.FullName == $"UnitsNet.Units.{quantity}Unit");
-            IEnumerable<object> unitValues = Enum.GetValues(unitEnumType).Cast<object>().Skip(1);
-            foreach (object unitValue in unitValues) _units.Add(new UnitPresenter(unitValue));
+            IEnumerable<object> unitValues = UnitHelper.GetUnits(quantity);
+            foreach (object unitValue in unitValues) _units.Add(new UnitListItem(unitValue));
 
             SelectedQuantity = quantity;
             SelectedFromUnit = Units.FirstOrDefault();

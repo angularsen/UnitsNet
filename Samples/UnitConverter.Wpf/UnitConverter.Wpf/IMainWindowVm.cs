@@ -5,17 +5,21 @@ using UnitsNet.Samples.UnitConverter.Wpf.Properties;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
+    /// <summary>
+    ///     This interface ensures that the view model and the design-time view model are consistent, since the XAML
+    ///     intellisense only knows about the design-time type.
+    /// </summary>
     public interface IMainWindowVm : INotifyPropertyChanged
     {
         ReadOnlyObservableCollection<QuantityType> Quantities { get; }
-        ReadOnlyObservableCollection<UnitPresenter> Units { get; }
+        ReadOnlyObservableCollection<UnitListItem> Units { get; }
         QuantityType SelectedQuantity { get; set; }
 
         [CanBeNull]
-        UnitPresenter SelectedFromUnit { get; set; }
+        UnitListItem SelectedFromUnit { get; set; }
 
         [CanBeNull]
-        UnitPresenter SelectedToUnit { get; set; }
+        UnitListItem SelectedToUnit { get; set; }
 
         string FromHeader { get; }
         string ToHeader { get; }

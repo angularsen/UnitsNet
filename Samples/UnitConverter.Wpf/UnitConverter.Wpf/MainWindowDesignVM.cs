@@ -7,22 +7,26 @@ using System.Windows.Input;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
+    /// <summary>
+    ///     Design-time view model for <see cref="MainWindow" />.
+    ///     Provides sample data for the view shown in the XAML designer.
+    /// </summary>
     public sealed class MainWindowDesignVm : IMainWindowVm
     {
         public MainWindowDesignVm()
         {
             Quantities = ToReadOnly(Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Skip(1));
-            Units = ToReadOnly(Length.Units.Select(u => new UnitPresenter(u)));
+            Units = ToReadOnly(Length.Units.Select(u => new UnitListItem(u)));
             SelectedQuantity = QuantityType.Length;
             SelectedFromUnit = Units[1];
             SelectedToUnit = Units[2];
         }
 
         public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
-        public ReadOnlyObservableCollection<UnitPresenter> Units { get; }
+        public ReadOnlyObservableCollection<UnitListItem> Units { get; }
         public QuantityType SelectedQuantity { get; set; }
-        public UnitPresenter SelectedFromUnit { get; set; }
-        public UnitPresenter SelectedToUnit { get; set; }
+        public UnitListItem SelectedFromUnit { get; set; }
+        public UnitListItem SelectedToUnit { get; set; }
 
         public string FromHeader { get; } = "Value [cm]";
         public string ToHeader { get; } = "Result [dm]";

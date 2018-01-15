@@ -3,7 +3,11 @@ using System.Windows.Input;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
-    public class DelegateCommand : ICommand
+    /// <summary>
+    ///     Simple <see cref="ICommand" /> implementation, that executes a callback upon executing the command, such as
+    ///     when clicking a button.
+    /// </summary>
+    public sealed class DelegateCommand : ICommand
     {
         private readonly Action _commandDelegate;
 
