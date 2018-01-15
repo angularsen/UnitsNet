@@ -13,6 +13,12 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public sealed class MainWindowVm : IMainWindowVm
     {
+        /// <summary>
+        ///     Look up and cache all unit enum types once with reflection, such as LengthUnit and MassUnit.
+        /// </summary>
+        private static readonly Type[] UnitEnumTypes =
+            Assembly.GetAssembly(typeof(Length)).ExportedTypes.Where(t => t.IsEnum && t.Namespace == "UnitsNet.Units").ToArray();
+
         private readonly ObservableCollection<UnitPresenter> _units;
         private decimal _fromValue;
 
@@ -138,14 +144,14 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             _units.Clear();
 
-            // Ex: Find unit enum type UnitsNet.Units.LengthUnit from quantity enum value QuantityType.Length
-            Type unitEnumType = Assembly.GetAssembly(typeof(Length)).ExportedTypes.First(t => t.FullName == $"UnitsNet.Units.{quantity}Unit");
+            // Ex: Find unit enum type UnitsNet.Units.LengthUnit from quantity enum name QuantityType.Length
+            Type unitEnumType = UnitEnumTypes.First(t => t.FullName == $"UnitsNet.Units.{quantity}Unit");
             IEnumerable<object> unitValues = Enum.GetValues(unitEnumType).Cast<object>().Skip(1);
             foreach (object unitValue in unitValues) _units.Add(new UnitPresenter(unitValue));
 
             SelectedQuantity = quantity;
             SelectedFromUnit = Units.FirstOrDefault();
-            SelectedToUnit = Units.Skip(1).FirstOrDefault() ?? Units.FirstOrDefault();
+            SelectedToUnit = Units.Skip(1).FirstOrDefault() ?? SelectedFromUnit; // Try to pick a different to-unit
         }
 
         private static ReadOnlyObservableCollection<T> ToReadOnly<T>(IEnumerable<T> items)
