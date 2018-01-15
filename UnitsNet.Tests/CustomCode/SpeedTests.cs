@@ -58,9 +58,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CentimetersPerMinutesInOneMeterPerSecond => 6E3;
 
-        protected override double DecimetersPerMinutesInOneMeterPerSecond => 600;
+        protected override double DecimetersPerMinutesInOneMeterPerSecond => 6E2;
 
-        protected override double MetersPerMinutesInOneMeterPerSecond => 60;
+        protected override double MetersPerMinutesInOneMeterPerSecond => 6E1;
 
         protected override double KilometersPerMinutesInOneMeterPerSecond => 6E-2;
 
