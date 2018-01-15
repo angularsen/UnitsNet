@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

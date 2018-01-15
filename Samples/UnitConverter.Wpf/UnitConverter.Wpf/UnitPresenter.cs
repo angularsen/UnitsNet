@@ -1,7 +1,6 @@
 using System;
-using UnitsNet;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public class UnitPresenter
     {

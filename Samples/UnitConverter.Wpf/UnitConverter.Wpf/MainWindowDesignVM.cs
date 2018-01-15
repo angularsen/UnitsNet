@@ -4,9 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using UnitsNet;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public sealed class MainWindowDesignVm : IMainWindowVm
     {

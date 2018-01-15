@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public class DelegateCommand : ICommand
     {

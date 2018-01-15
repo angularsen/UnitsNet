@@ -1,10 +1,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using UnitsNet;
-using Wpf_GenericUnitConverter.Annotations;
+using UnitsNet.Samples.UnitConverter.Wpf.Properties;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public interface IMainWindowVm : INotifyPropertyChanged
     {

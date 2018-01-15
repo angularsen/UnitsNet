@@ -7,10 +7,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Input;
-using UnitsNet;
-using Wpf_GenericUnitConverter.Annotations;
+using UnitsNet.Samples.UnitConverter.Wpf.Properties;
 
-namespace Wpf_GenericUnitConverter
+namespace UnitsNet.Samples.UnitConverter.Wpf
 {
     public sealed class MainWindowVm : IMainWindowVm
     {
@@ -127,7 +126,7 @@ namespace Wpf_GenericUnitConverter
         {
             if (SelectedFromUnit == null || SelectedToUnit == null) return;
 
-            ToValue = Convert.ToDecimal(UnitConverter.ConvertByName(FromValue,
+            ToValue = Convert.ToDecimal(UnitsNet.UnitConverter.ConvertByName(FromValue,
                 SelectedQuantity.ToString(),
                 SelectedFromUnit.UnitEnumValue.ToString(),
                 SelectedToUnit.UnitEnumValue.ToString()));
