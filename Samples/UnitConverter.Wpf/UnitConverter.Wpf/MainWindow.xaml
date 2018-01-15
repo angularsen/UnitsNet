@@ -25,7 +25,8 @@
         <GroupBox Header="Quantity" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.RowSpan="2">
             <ListBox 
                  ItemsSource="{Binding Path=Quantities}" 
-                 SelectedItem="{Binding SelectedQuantity, Mode=TwoWay}" />
+                 SelectedItem="{Binding SelectedQuantity, Mode=TwoWay}"
+                 SelectionChanged="Selector_OnSelectionChanged" />
         </GroupBox>
 
         <GroupBox Header="From" Grid.Row="0" Grid.Column="1">
