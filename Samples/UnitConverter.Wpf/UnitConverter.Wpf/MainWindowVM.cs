@@ -55,6 +55,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             }
         }
 
+        [CanBeNull]
         public UnitPresenter SelectedFromUnit
         {
             get => _selectedFromUnit;
@@ -68,6 +69,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             }
         }
 
+        [CanBeNull]
         public UnitPresenter SelectedToUnit
         {
             get => _selectedToUnit;
@@ -81,14 +83,14 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             }
         }
 
-        public string FromHeader => $"Value [{SelectedFromUnit.Abbreviation}]";
+        public string FromHeader => $"Value [{SelectedFromUnit?.Abbreviation}]";
 
-        public string ToHeader => $"Result [{SelectedToUnit.Abbreviation}]";
+        public string ToHeader => $"Result [{SelectedToUnit?.Abbreviation}]";
 
         public decimal FromValue
         {
             get => _fromValue;
-            set
+            private set
             {
                 if (value == _fromValue) return;
                 _fromValue = value;
