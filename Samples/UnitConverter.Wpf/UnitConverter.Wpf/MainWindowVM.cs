@@ -96,7 +96,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         public decimal FromValue
         {
             get => _fromValue;
-            private set
+            set
             {
                 if (value == _fromValue) return;
                 _fromValue = value;

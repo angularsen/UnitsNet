@@ -19,7 +19,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         string FromHeader { get; }
         string ToHeader { get; }
-        decimal FromValue { get; }
+        decimal FromValue { get; set; }
         decimal ToValue { get; }
         ICommand SwapCommand { get; }
     }
