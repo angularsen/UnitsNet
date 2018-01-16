@@ -410,6 +410,140 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "mm⁴", "mm^4"),
                             }),
                     }),
+                new UnitLocalization(typeof (BitRateUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) BitRateUnit.BitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bit/s", "bps"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.BytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "B/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.ExabitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Ebit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.ExabytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "EB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.ExbibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Eibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.ExbibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "EiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.GibibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Gibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.GibibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.GigabitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Gbit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.GigabytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.KibibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Kibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.KibibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "KiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.KilobitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kbit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.KilobytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.MebibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.MebibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.MegabitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mbit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.MegabytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.PebibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.PebibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.PetabitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Pbit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.PetabytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.TebibitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Tibit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.TebibytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TiB/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.TerabitPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Tbit/s"),
+                            }),
+                        new CulturesForEnumValue((int) BitRateUnit.TerabytePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TB/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
                     new[]
                     {
