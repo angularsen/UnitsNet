@@ -283,6 +283,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "рад"),
                             }),
                     }),
+                new UnitLocalization(typeof (ApparentEnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.KilovoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kVAh"),
+                            }),
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.MegavoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MVAh"),
+                            }),
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.VoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "VAh"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ApparentPowerUnit),
                     new[]
                     {

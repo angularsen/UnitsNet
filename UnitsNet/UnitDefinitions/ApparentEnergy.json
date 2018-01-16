@@ -1,0 +1,20 @@
+{
+  "Name": "ApparentEnergy",
+  "BaseUnit": "VoltampereHour",
+  "XmlDoc": "A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.",
+  "Units": [
+    {
+      "SingularName": "VoltampereHour",
+      "PluralName": "VoltamperesHour",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "VAh" ]
+        }
+      ]
+    }
+  ]
+}
