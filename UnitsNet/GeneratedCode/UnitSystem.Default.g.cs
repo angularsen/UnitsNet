@@ -732,6 +732,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "S"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricConductanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Microsiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Millisiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Siemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "S"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),
                     new[]
                     {
