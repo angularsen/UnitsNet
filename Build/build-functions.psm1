@@ -1,8 +1,13 @@
-$root = "$PSScriptRoot\.."
+﻿$root = "$PSScriptRoot\.."
 $artifactsDir = "$root\Artifacts"
 $nugetOutDir = "$root\Artifacts\NuGet"
 $testReportDir = "$root\Artifacts\Logs"
 $nuget = "$root\Tools\NuGet.exe"
+$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+$msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+if ($msbuild) {
+  $msbuild = join-path $msbuild 'MSBuild\15.0\Bin\MSBuild.exe'
+}
 
 function Start-NugetRestore {
   write-host -foreground blue "Restore nugets...`n"
