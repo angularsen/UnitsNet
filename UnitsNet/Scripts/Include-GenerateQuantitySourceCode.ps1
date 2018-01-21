@@ -1,4 +1,4 @@
-function GenerateQuantitySourceCode($quantity)
+﻿function GenerateQuantitySourceCode($quantity)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
@@ -8,30 +8,25 @@ function GenerateQuantitySourceCode($quantity)
     $baseUnitPluralName = $baseUnit.PluralName
     $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$quantityName" + "Unit"
-    $baseUnitFieldName = "_"+[Char]::ToLowerInvariant($baseUnitPluralName[0]) + $baseUnitPluralName.Substring(1)
 
-    switch ($baseType) {
-        long {
-            $convertToBaseType = "Convert.ToInt64"
-            break
-        }
-        double {
-            $convertToBaseType = "Convert.ToDouble"
-            break
-        }
-        decimal {
-            $convertToBaseType = "Convert.ToDecimal"
-            break
-        }
-        default {
-            throw "Base type not supported: $baseType"
-        }
+    $convertToBaseType = switch ($baseType) {
+      "long" { "Convert.ToInt64"; break }
+      "double" { "Convert.ToDouble"; break }
+      "decimal" {  "Convert.ToDecimal"; break }
+      default { throw "Base type not supported: $baseType" }
     }
 
-	$obsoleteEqualityIfDouble = ''
-	if ($quantity.BaseType -eq "double") {
-		$obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]' + "`n        "
-	}
+    $quantityValueType = switch ($baseType) {
+      "long" { "QuantityValue"; break }
+      "double" { "QuantityValue"; break }
+      "decimal" {  "QuantityValue"; break }
+      default { throw "Base type not supported: $baseType" }
+    }
+
+    $obsoleteEqualityIfDouble = ''
+    if ($quantity.BaseType -eq "double") {
+      $obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]' + "`n        "
+    }
 
 @"
 //------------------------------------------------------------------------------
@@ -106,44 +101,59 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of $quantityName.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly $baseType $baseUnitFieldName;
+        public $baseType Value { get; }
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        public $unitEnumName Unit { get; }
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public $quantityName() : this(0)
+        public $quantityName() : this(0, BaseUnit)
         {
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public $quantityName(double $baseUnitPluralNameLower)
         {
-            $baseUnitFieldName = $convertToBaseType($baseUnitPluralNameLower);
+            Value = $convertToBaseType($baseUnitPluralNameLower);
+            Unit = BaseUnit;
         }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        public $quantityName($baseType numericValue, $unitEnumName unit)
+        {
+            Value = numericValue;
+            Unit = unit;
+         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        $quantityName(long $baseUnitPluralNameLower)
-        {
-            $baseUnitFieldName = $convertToBaseType($baseUnitPluralNameLower);
-        }
+        $quantityName(long $baseUnitPluralNameLower) : this($convertToBaseType($baseUnitPluralNameLower), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        $quantityName(decimal $baseUnitPluralNameLower)
-        {
-            $baseUnitFieldName = $convertToBaseType($baseUnitPluralNameLower);
-        }
+        $quantityName(decimal $baseUnitPluralNameLower) : this($convertToBaseType($baseUnitPluralNameLower), BaseUnit) { }
 
         #region Properties
 
@@ -155,75 +165,58 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static $unitEnumName BaseUnit
-        {
-            get { return $unitEnumName.$baseUnitSingularName; }
-        }
+        public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>
         public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().ToArray();
-"@; foreach ($unit in $units) {
+"@; 
+	foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
         if ($obsoleteAttribute)
         {
             $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
         }
-
-        $fromBaseToUnitFunc = $unit.FromBaseToUnitFunc.Replace("x", $baseUnitFieldName);@"
-
+@"
         /// <summary>
         ///     Get $quantityName in $propertyName.
         /// </summary>$($obsoleteAttribute)
-        public double $propertyName
-        {
-            get { return $fromBaseToUnitFunc; }
-        }
+        public double $propertyName => As($unitEnumName.$($unit.SingularName));
 "@; }@"
 
         #endregion
 
         #region Static
 
-        public static $quantityName Zero
-        {
-            get { return new $quantityName(); }
-        }
+        public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
 "@; foreach ($unit in $units) {
-        $valueParamName = $unit.PluralName.ToLowerInvariant();
-        $func = $unit.FromUnitToBaseFunc.Replace("x", "value");
-        $decimalFunc = $unit.FromUnitToBaseFunc.Replace("x","Convert.ToDouble(" + $valueParamName + ")"); @"
+        $valueParamName = $unit.PluralName.ToLowerInvariant();@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static $quantityName From$($unit.PluralName)(double $valueParamName)
-        {
-            double value = (double) $valueParamName;
-            return new $quantityName($func);
-        }
 #else
-        public static $quantityName From$($unit.PluralName)(QuantityValue $valueParamName)
-        {
-            double value = (double) $valueParamName;
-            return new $quantityName(($func));
-        }
+        public static $quantityName From$($unit.PluralName)($quantityValueType $valueParamName)
 #endif
+        {
+            $baseType value = ($baseType) $valueParamName;
+            return new $quantityName(value, $unitEnumName.$($unit.SingularName));
+        }
 
 "@; }@"
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
 "@; foreach ($unit in $units) {
-    $valueParamName = $unit.PluralName.ToLowerInvariant();
-        $func = $unit.FromUnitToBaseFunc.Replace("x", "$($valueParamName).Value");@"
+    $valueParamName = $unit.PluralName.ToLowerInvariant();@"
         /// <summary>
         ///     Get nullable $quantityName from nullable $($unit.PluralName).
         /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)(QuantityValue? $valueParamName)
+        public static $($quantityName)? From$($unit.PluralName)($($quantityValueType)? $valueParamName)
         {
             if ($($valueParamName).HasValue)
             {
@@ -249,19 +242,10 @@ namespace UnitsNet
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
         public static $quantityName From(double value, $unitEnumName fromUnit)
 #else
-        public static $quantityName From(QuantityValue value, $unitEnumName fromUnit)
+        public static $quantityName From($quantityValueType value, $unitEnumName fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-"@; foreach ($unit in $units) {@"
-                case $unitEnumName.$($unit.SingularName):
-                    return From$($unit.PluralName)(value);
-"@; }@"
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new $quantityName(($baseType)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -272,22 +256,14 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>$quantityName unit value.</returns>
-        public static $($quantityName)? From(QuantityValue? value, $unitEnumName fromUnit)
+        public static $($quantityName)? From($($quantityValueType)? value, $unitEnumName fromUnit)
         {
             if (!value.HasValue)
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-"@; foreach ($unit in $units) {@"
-                case $unitEnumName.$($unit.SingularName):
-                    return From$($unit.PluralName)(value.Value);
-"@; }@"
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new $quantityName(($baseType)value.Value, fromUnit);
         }
 #endif
 
@@ -327,37 +303,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static $quantityName operator -($quantityName right)
         {
-            return new $quantityName(-right.$baseUnitFieldName);
+            return new $quantityName(-right.Value, right.Unit);
         }
 
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.$baseUnitFieldName + right.$baseUnitFieldName);
+            return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.$baseUnitFieldName - right.$baseUnitFieldName);
+            return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static $quantityName operator *($baseType left, $quantityName right)
         {
-            return new $quantityName(left*right.$baseUnitFieldName);
+            return new $quantityName(left * right.Value, right.Unit);
         }
 
-        public static $quantityName operator *($quantityName left, double right)
+        public static $quantityName operator *($quantityName left, $baseType right)
         {
-            return new $quantityName(left.$baseUnitFieldName*($baseType)right);
+            return new $quantityName(left.Value * right, left.Unit);
         }
 
-        public static $quantityName operator /($quantityName left, double right)
+        public static $quantityName operator /($quantityName left, $baseType right)
         {
-            return new $quantityName(left.$baseUnitFieldName/($baseType)right);
+            return new $quantityName(left.Value / right, left.Unit);
         }
 
         public static double operator /($quantityName left, $quantityName right)
         {
-            return Convert.ToDouble(left.$baseUnitFieldName/right.$baseUnitFieldName);
+            return left.$baseUnitPluralName / right.$baseUnitPluralName;
         }
 #endif
 
@@ -381,41 +357,41 @@ namespace UnitsNet
 #endif
         int CompareTo($quantityName other)
         {
-            return $baseUnitFieldName.CompareTo(other.$baseUnitFieldName);
+            return Value.CompareTo(other.AsBaseNumericType(Unit));
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=($quantityName left, $quantityName right)
         {
-            return left.$baseUnitFieldName <= right.$baseUnitFieldName;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=($quantityName left, $quantityName right)
         {
-            return left.$baseUnitFieldName >= right.$baseUnitFieldName;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <($quantityName left, $quantityName right)
         {
-            return left.$baseUnitFieldName < right.$baseUnitFieldName;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >($quantityName left, $quantityName right)
         {
-            return left.$baseUnitFieldName > right.$baseUnitFieldName;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         $($obsoleteEqualityIfDouble)public static bool operator ==($quantityName left, $quantityName right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.$baseUnitFieldName == right.$baseUnitFieldName;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         $($obsoleteEqualityIfDouble)public static bool operator !=($quantityName left, $quantityName right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.$baseUnitFieldName != right.$baseUnitFieldName;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -426,7 +402,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return $baseUnitFieldName.Equals((($quantityName) obj).$baseUnitFieldName);
+            return Value.Equals((($quantityName) obj).AsBaseNumericType(Unit));
         }
 
         /// <summary>
@@ -439,12 +415,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals($quantityName other, $quantityName maxError)
         {
-            return Math.Abs($baseUnitFieldName - other.$baseUnitFieldName) <= maxError.$baseUnitFieldName;
+            return Math.Abs(Value - other.AsBaseNumericType(Unit)) <= maxError.AsBaseNumericType(Unit);
         }
 
         public override int GetHashCode()
         {
-            return $baseUnitFieldName.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -454,15 +430,21 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As($unitEnumName unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            $baseType baseUnitValue = AsBaseUnit$($baseUnitPluralName)();
+
             switch (unit)
             {
-"@; foreach ($unit in $units) {@"
-                case $unitEnumName.$($unit.SingularName):
-                    return $($unit.PluralName);
+"@; foreach ($unit in $units) {
+		$func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
+                case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
 
                 default:
@@ -719,25 +701,36 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of $quantityName
         /// </summary>
-        public static $quantityName MaxValue
-        {
-            get
-            {
-                return new $quantityName($baseType.MaxValue);
-            }
-        }
+        public static $quantityName MaxValue => new $quantityName($baseType.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of $quantityName
         /// </summary>
-        public static $quantityName MinValue
+        public static $quantityName MinValue => new $quantityName($baseType.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private $baseType AsBaseUnit$baseUnitPluralName()
         {
-            get
+			if (Unit == $unitEnumName.$baseUnitSingularName) { return Value; }
+
+            switch (Unit)
             {
-                return new $quantityName($baseType.MinValue);
-            }
-        }
-    }
+"@; foreach ($unit in $units) {
+		$func = $unit.FromUnitToBaseFunc.Replace("x", "Value");@"
+                case $unitEnumName.$($unit.SingularName): return $func;
+"@; }@"
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
+	}
 }
 "@;
 }

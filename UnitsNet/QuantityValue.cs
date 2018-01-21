@@ -60,7 +60,7 @@ namespace UnitsNet
 
         #region To double
 
-        public static explicit operator double(QuantityValue number) => number._value;
+        public static explicit operator double(QuantityValue number) => Convert.ToDouble(number._value);
 
         #endregion
     }
