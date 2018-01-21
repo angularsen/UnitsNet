@@ -7,11 +7,24 @@ root = true
 # Don't use tabs for indentation.
 [*]
 indent_style = space
+trim_trailing_whitespace = true
+trim_trailing_white_space_on_save = true
 # (Please don't specify an indent_size here; that has too many unintended consequences.)
 
 # Code files
 [*.{cs,csx,vb,vbx}]
 indent_size = 4
+insert_final_newline = true
+charset = utf-8-bom
+
+[*.{cmd,bat}]
+indent_size = 2
+end_of_line = crlf
+insert_final_newline = false
+
+[*.{ps1,psm1}]
+indent_size = 2
+end_of_line = crlf
 insert_final_newline = true
 charset = utf-8-bom
 
