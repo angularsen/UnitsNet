@@ -1562,6 +1562,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "TB"),
                             }),
                     }),
+                new UnitLocalization(typeof (IrradianceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) IrradianceUnit.KilowattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradianceUnit.WattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (KinematicViscosityUnit),
                     new[]
                     {
