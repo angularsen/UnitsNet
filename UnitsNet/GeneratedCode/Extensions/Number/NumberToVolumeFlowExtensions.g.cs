@@ -44,6 +44,176 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 {
     public static class NumberToVolumeFlowExtensions
     {
+        #region AcreFootPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)"/>
+        public static VolumeFlow AcreFeetPerDay(this int value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double?)"/>
+        public static VolumeFlow? AcreFeetPerDay(this int? value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)"/>
+        public static VolumeFlow AcreFeetPerDay(this long value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double?)"/>
+        public static VolumeFlow? AcreFeetPerDay(this long? value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)"/>
+        public static VolumeFlow AcreFeetPerDay(this double value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double?)"/>
+        public static VolumeFlow? AcreFeetPerDay(this double? value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)"/>
+        public static VolumeFlow AcreFeetPerDay(this float value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double?)"/>
+        public static VolumeFlow? AcreFeetPerDay(this float? value) => VolumeFlow.FromAcreFeetPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)"/>
+        public static VolumeFlow AcreFeetPerDay(this decimal value) => VolumeFlow.FromAcreFeetPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double?)"/>
+        public static VolumeFlow? AcreFeetPerDay(this decimal? value) => VolumeFlow.FromAcreFeetPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region AcreFootPerHour
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)"/>
+        public static VolumeFlow AcreFeetPerHour(this int value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double?)"/>
+        public static VolumeFlow? AcreFeetPerHour(this int? value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)"/>
+        public static VolumeFlow AcreFeetPerHour(this long value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double?)"/>
+        public static VolumeFlow? AcreFeetPerHour(this long? value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)"/>
+        public static VolumeFlow AcreFeetPerHour(this double value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double?)"/>
+        public static VolumeFlow? AcreFeetPerHour(this double? value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)"/>
+        public static VolumeFlow AcreFeetPerHour(this float value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double?)"/>
+        public static VolumeFlow? AcreFeetPerHour(this float? value) => VolumeFlow.FromAcreFeetPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)"/>
+        public static VolumeFlow AcreFeetPerHour(this decimal value) => VolumeFlow.FromAcreFeetPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double?)"/>
+        public static VolumeFlow? AcreFeetPerHour(this decimal? value) => VolumeFlow.FromAcreFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region AcreFootPerMinute
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)"/>
+        public static VolumeFlow AcreFeetPerMinute(this int value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double?)"/>
+        public static VolumeFlow? AcreFeetPerMinute(this int? value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)"/>
+        public static VolumeFlow AcreFeetPerMinute(this long value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double?)"/>
+        public static VolumeFlow? AcreFeetPerMinute(this long? value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)"/>
+        public static VolumeFlow AcreFeetPerMinute(this double value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double?)"/>
+        public static VolumeFlow? AcreFeetPerMinute(this double? value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)"/>
+        public static VolumeFlow AcreFeetPerMinute(this float value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double?)"/>
+        public static VolumeFlow? AcreFeetPerMinute(this float? value) => VolumeFlow.FromAcreFeetPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)"/>
+        public static VolumeFlow AcreFeetPerMinute(this decimal value) => VolumeFlow.FromAcreFeetPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double?)"/>
+        public static VolumeFlow? AcreFeetPerMinute(this decimal? value) => VolumeFlow.FromAcreFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region AcreFootPerSecond
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)"/>
+        public static VolumeFlow AcreFeetPerSecond(this int value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double?)"/>
+        public static VolumeFlow? AcreFeetPerSecond(this int? value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)"/>
+        public static VolumeFlow AcreFeetPerSecond(this long value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double?)"/>
+        public static VolumeFlow? AcreFeetPerSecond(this long? value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)"/>
+        public static VolumeFlow AcreFeetPerSecond(this double value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double?)"/>
+        public static VolumeFlow? AcreFeetPerSecond(this double? value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)"/>
+        public static VolumeFlow AcreFeetPerSecond(this float value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double?)"/>
+        public static VolumeFlow? AcreFeetPerSecond(this float? value) => VolumeFlow.FromAcreFeetPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)"/>
+        public static VolumeFlow AcreFeetPerSecond(this decimal value) => VolumeFlow.FromAcreFeetPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double?)"/>
+        public static VolumeFlow? AcreFeetPerSecond(this decimal? value) => VolumeFlow.FromAcreFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region CentilitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)"/>
+        public static VolumeFlow CentilitersPerDay(this int value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double?)"/>
+        public static VolumeFlow? CentilitersPerDay(this int? value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)"/>
+        public static VolumeFlow CentilitersPerDay(this long value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double?)"/>
+        public static VolumeFlow? CentilitersPerDay(this long? value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)"/>
+        public static VolumeFlow CentilitersPerDay(this double value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double?)"/>
+        public static VolumeFlow? CentilitersPerDay(this double? value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)"/>
+        public static VolumeFlow CentilitersPerDay(this float value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double?)"/>
+        public static VolumeFlow? CentilitersPerDay(this float? value) => VolumeFlow.FromCentilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)"/>
+        public static VolumeFlow CentilitersPerDay(this decimal value) => VolumeFlow.FromCentilitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double?)"/>
+        public static VolumeFlow? CentilitersPerDay(this decimal? value) => VolumeFlow.FromCentilitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region CentilitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(double)"/>
@@ -211,6 +381,40 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(double?)"/>
         public static VolumeFlow? CubicFeetPerSecond(this decimal? value) => VolumeFlow.FromCubicFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region CubicMeterPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)"/>
+        public static VolumeFlow CubicMetersPerDay(this int value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double?)"/>
+        public static VolumeFlow? CubicMetersPerDay(this int? value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)"/>
+        public static VolumeFlow CubicMetersPerDay(this long value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double?)"/>
+        public static VolumeFlow? CubicMetersPerDay(this long? value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)"/>
+        public static VolumeFlow CubicMetersPerDay(this double value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double?)"/>
+        public static VolumeFlow? CubicMetersPerDay(this double? value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)"/>
+        public static VolumeFlow CubicMetersPerDay(this float value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double?)"/>
+        public static VolumeFlow? CubicMetersPerDay(this float? value) => VolumeFlow.FromCubicMetersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)"/>
+        public static VolumeFlow CubicMetersPerDay(this decimal value) => VolumeFlow.FromCubicMetersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double?)"/>
+        public static VolumeFlow? CubicMetersPerDay(this decimal? value) => VolumeFlow.FromCubicMetersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -418,6 +622,74 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region CubicYardsPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)"/>
+        public static VolumeFlow CubicYardsPerDay(this int value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double?)"/>
+        public static VolumeFlow? CubicYardsPerDay(this int? value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)"/>
+        public static VolumeFlow CubicYardsPerDay(this long value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double?)"/>
+        public static VolumeFlow? CubicYardsPerDay(this long? value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)"/>
+        public static VolumeFlow CubicYardsPerDay(this double value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double?)"/>
+        public static VolumeFlow? CubicYardsPerDay(this double? value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)"/>
+        public static VolumeFlow CubicYardsPerDay(this float value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double?)"/>
+        public static VolumeFlow? CubicYardsPerDay(this float? value) => VolumeFlow.FromCubicYardsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)"/>
+        public static VolumeFlow CubicYardsPerDay(this decimal value) => VolumeFlow.FromCubicYardsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double?)"/>
+        public static VolumeFlow? CubicYardsPerDay(this decimal? value) => VolumeFlow.FromCubicYardsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecilitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)"/>
+        public static VolumeFlow DecilitersPerDay(this int value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double?)"/>
+        public static VolumeFlow? DecilitersPerDay(this int? value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)"/>
+        public static VolumeFlow DecilitersPerDay(this long value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double?)"/>
+        public static VolumeFlow? DecilitersPerDay(this long? value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)"/>
+        public static VolumeFlow DecilitersPerDay(this double value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double?)"/>
+        public static VolumeFlow? DecilitersPerDay(this double? value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)"/>
+        public static VolumeFlow DecilitersPerDay(this float value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double?)"/>
+        public static VolumeFlow? DecilitersPerDay(this float? value) => VolumeFlow.FromDecilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)"/>
+        public static VolumeFlow DecilitersPerDay(this decimal value) => VolumeFlow.FromDecilitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double?)"/>
+        public static VolumeFlow? DecilitersPerDay(this decimal? value) => VolumeFlow.FromDecilitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DecilitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(double)"/>
@@ -452,6 +724,40 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region KilolitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)"/>
+        public static VolumeFlow KilolitersPerDay(this int value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double?)"/>
+        public static VolumeFlow? KilolitersPerDay(this int? value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)"/>
+        public static VolumeFlow KilolitersPerDay(this long value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double?)"/>
+        public static VolumeFlow? KilolitersPerDay(this long? value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)"/>
+        public static VolumeFlow KilolitersPerDay(this double value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double?)"/>
+        public static VolumeFlow? KilolitersPerDay(this double? value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)"/>
+        public static VolumeFlow KilolitersPerDay(this float value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double?)"/>
+        public static VolumeFlow? KilolitersPerDay(this float? value) => VolumeFlow.FromKilolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)"/>
+        public static VolumeFlow KilolitersPerDay(this decimal value) => VolumeFlow.FromKilolitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double?)"/>
+        public static VolumeFlow? KilolitersPerDay(this decimal? value) => VolumeFlow.FromKilolitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(double)"/>
@@ -483,6 +789,40 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(double?)"/>
         public static VolumeFlow? KilolitersPerMinute(this decimal? value) => VolumeFlow.FromKilolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region LitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)"/>
+        public static VolumeFlow LitersPerDay(this int value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double?)"/>
+        public static VolumeFlow? LitersPerDay(this int? value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)"/>
+        public static VolumeFlow LitersPerDay(this long value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double?)"/>
+        public static VolumeFlow? LitersPerDay(this long? value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)"/>
+        public static VolumeFlow LitersPerDay(this double value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double?)"/>
+        public static VolumeFlow? LitersPerDay(this double? value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)"/>
+        public static VolumeFlow LitersPerDay(this float value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double?)"/>
+        public static VolumeFlow? LitersPerDay(this float? value) => VolumeFlow.FromLitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)"/>
+        public static VolumeFlow LitersPerDay(this decimal value) => VolumeFlow.FromLitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double?)"/>
+        public static VolumeFlow? LitersPerDay(this decimal? value) => VolumeFlow.FromLitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -588,6 +928,108 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region MegalitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)"/>
+        public static VolumeFlow MegalitersPerDay(this int value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double?)"/>
+        public static VolumeFlow? MegalitersPerDay(this int? value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)"/>
+        public static VolumeFlow MegalitersPerDay(this long value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double?)"/>
+        public static VolumeFlow? MegalitersPerDay(this long? value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)"/>
+        public static VolumeFlow MegalitersPerDay(this double value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double?)"/>
+        public static VolumeFlow? MegalitersPerDay(this double? value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)"/>
+        public static VolumeFlow MegalitersPerDay(this float value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double?)"/>
+        public static VolumeFlow? MegalitersPerDay(this float? value) => VolumeFlow.FromMegalitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)"/>
+        public static VolumeFlow MegalitersPerDay(this decimal value) => VolumeFlow.FromMegalitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double?)"/>
+        public static VolumeFlow? MegalitersPerDay(this decimal? value) => VolumeFlow.FromMegalitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MegaukGallonsPerSecond
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)"/>
+        public static VolumeFlow MegaukGallonsPerSecond(this int value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double?)"/>
+        public static VolumeFlow? MegaukGallonsPerSecond(this int? value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)"/>
+        public static VolumeFlow MegaukGallonsPerSecond(this long value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double?)"/>
+        public static VolumeFlow? MegaukGallonsPerSecond(this long? value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)"/>
+        public static VolumeFlow MegaukGallonsPerSecond(this double value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double?)"/>
+        public static VolumeFlow? MegaukGallonsPerSecond(this double? value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)"/>
+        public static VolumeFlow MegaukGallonsPerSecond(this float value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double?)"/>
+        public static VolumeFlow? MegaukGallonsPerSecond(this float? value) => VolumeFlow.FromMegaukGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)"/>
+        public static VolumeFlow MegaukGallonsPerSecond(this decimal value) => VolumeFlow.FromMegaukGallonsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double?)"/>
+        public static VolumeFlow? MegaukGallonsPerSecond(this decimal? value) => VolumeFlow.FromMegaukGallonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MicrolitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)"/>
+        public static VolumeFlow MicrolitersPerDay(this int value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double?)"/>
+        public static VolumeFlow? MicrolitersPerDay(this int? value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)"/>
+        public static VolumeFlow MicrolitersPerDay(this long value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double?)"/>
+        public static VolumeFlow? MicrolitersPerDay(this long? value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)"/>
+        public static VolumeFlow MicrolitersPerDay(this double value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double?)"/>
+        public static VolumeFlow? MicrolitersPerDay(this double? value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)"/>
+        public static VolumeFlow MicrolitersPerDay(this float value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double?)"/>
+        public static VolumeFlow? MicrolitersPerDay(this float? value) => VolumeFlow.FromMicrolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)"/>
+        public static VolumeFlow MicrolitersPerDay(this decimal value) => VolumeFlow.FromMicrolitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double?)"/>
+        public static VolumeFlow? MicrolitersPerDay(this decimal? value) => VolumeFlow.FromMicrolitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicrolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(double)"/>
@@ -619,6 +1061,40 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(double?)"/>
         public static VolumeFlow? MicrolitersPerMinute(this decimal? value) => VolumeFlow.FromMicrolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MillilitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)"/>
+        public static VolumeFlow MillilitersPerDay(this int value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double?)"/>
+        public static VolumeFlow? MillilitersPerDay(this int? value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)"/>
+        public static VolumeFlow MillilitersPerDay(this long value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double?)"/>
+        public static VolumeFlow? MillilitersPerDay(this long? value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)"/>
+        public static VolumeFlow MillilitersPerDay(this double value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double?)"/>
+        public static VolumeFlow? MillilitersPerDay(this double? value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)"/>
+        public static VolumeFlow MillilitersPerDay(this float value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double?)"/>
+        public static VolumeFlow? MillilitersPerDay(this float? value) => VolumeFlow.FromMillilitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)"/>
+        public static VolumeFlow MillilitersPerDay(this decimal value) => VolumeFlow.FromMillilitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double?)"/>
+        public static VolumeFlow? MillilitersPerDay(this decimal? value) => VolumeFlow.FromMillilitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -690,6 +1166,40 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region NanolitersPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)"/>
+        public static VolumeFlow NanolitersPerDay(this int value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double?)"/>
+        public static VolumeFlow? NanolitersPerDay(this int? value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)"/>
+        public static VolumeFlow NanolitersPerDay(this long value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double?)"/>
+        public static VolumeFlow? NanolitersPerDay(this long? value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)"/>
+        public static VolumeFlow NanolitersPerDay(this double value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double?)"/>
+        public static VolumeFlow? NanolitersPerDay(this double? value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)"/>
+        public static VolumeFlow NanolitersPerDay(this float value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double?)"/>
+        public static VolumeFlow? NanolitersPerDay(this float? value) => VolumeFlow.FromNanolitersPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)"/>
+        public static VolumeFlow NanolitersPerDay(this decimal value) => VolumeFlow.FromNanolitersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double?)"/>
+        public static VolumeFlow? NanolitersPerDay(this decimal? value) => VolumeFlow.FromNanolitersPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region NanolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(double)"/>
@@ -755,6 +1265,176 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(double?)"/>
         public static VolumeFlow? OilBarrelsPerDay(this decimal? value) => VolumeFlow.FromOilBarrelsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region OilBarrelsPerSecond
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)"/>
+        public static VolumeFlow OilBarrelsPerSecond(this int value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double?)"/>
+        public static VolumeFlow? OilBarrelsPerSecond(this int? value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)"/>
+        public static VolumeFlow OilBarrelsPerSecond(this long value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double?)"/>
+        public static VolumeFlow? OilBarrelsPerSecond(this long? value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)"/>
+        public static VolumeFlow OilBarrelsPerSecond(this double value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double?)"/>
+        public static VolumeFlow? OilBarrelsPerSecond(this double? value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)"/>
+        public static VolumeFlow OilBarrelsPerSecond(this float value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double?)"/>
+        public static VolumeFlow? OilBarrelsPerSecond(this float? value) => VolumeFlow.FromOilBarrelsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)"/>
+        public static VolumeFlow OilBarrelsPerSecond(this decimal value) => VolumeFlow.FromOilBarrelsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double?)"/>
+        public static VolumeFlow? OilBarrelsPerSecond(this decimal? value) => VolumeFlow.FromOilBarrelsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UkGallonsPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)"/>
+        public static VolumeFlow UkGallonsPerDay(this int value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double?)"/>
+        public static VolumeFlow? UkGallonsPerDay(this int? value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)"/>
+        public static VolumeFlow UkGallonsPerDay(this long value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double?)"/>
+        public static VolumeFlow? UkGallonsPerDay(this long? value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)"/>
+        public static VolumeFlow UkGallonsPerDay(this double value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double?)"/>
+        public static VolumeFlow? UkGallonsPerDay(this double? value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)"/>
+        public static VolumeFlow UkGallonsPerDay(this float value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double?)"/>
+        public static VolumeFlow? UkGallonsPerDay(this float? value) => VolumeFlow.FromUkGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)"/>
+        public static VolumeFlow UkGallonsPerDay(this decimal value) => VolumeFlow.FromUkGallonsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double?)"/>
+        public static VolumeFlow? UkGallonsPerDay(this decimal? value) => VolumeFlow.FromUkGallonsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UkGallonsPerMinute
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)"/>
+        public static VolumeFlow UkGallonsPerMinute(this int value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double?)"/>
+        public static VolumeFlow? UkGallonsPerMinute(this int? value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)"/>
+        public static VolumeFlow UkGallonsPerMinute(this long value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double?)"/>
+        public static VolumeFlow? UkGallonsPerMinute(this long? value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)"/>
+        public static VolumeFlow UkGallonsPerMinute(this double value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double?)"/>
+        public static VolumeFlow? UkGallonsPerMinute(this double? value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)"/>
+        public static VolumeFlow UkGallonsPerMinute(this float value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double?)"/>
+        public static VolumeFlow? UkGallonsPerMinute(this float? value) => VolumeFlow.FromUkGallonsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)"/>
+        public static VolumeFlow UkGallonsPerMinute(this decimal value) => VolumeFlow.FromUkGallonsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double?)"/>
+        public static VolumeFlow? UkGallonsPerMinute(this decimal? value) => VolumeFlow.FromUkGallonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UkGallonsPerSecond
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)"/>
+        public static VolumeFlow UkGallonsPerSecond(this int value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double?)"/>
+        public static VolumeFlow? UkGallonsPerSecond(this int? value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)"/>
+        public static VolumeFlow UkGallonsPerSecond(this long value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double?)"/>
+        public static VolumeFlow? UkGallonsPerSecond(this long? value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)"/>
+        public static VolumeFlow UkGallonsPerSecond(this double value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double?)"/>
+        public static VolumeFlow? UkGallonsPerSecond(this double? value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)"/>
+        public static VolumeFlow UkGallonsPerSecond(this float value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double?)"/>
+        public static VolumeFlow? UkGallonsPerSecond(this float? value) => VolumeFlow.FromUkGallonsPerSecond(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)"/>
+        public static VolumeFlow UkGallonsPerSecond(this decimal value) => VolumeFlow.FromUkGallonsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double?)"/>
+        public static VolumeFlow? UkGallonsPerSecond(this decimal? value) => VolumeFlow.FromUkGallonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsGallonsPerDay
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)"/>
+        public static VolumeFlow UsGallonsPerDay(this int value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double?)"/>
+        public static VolumeFlow? UsGallonsPerDay(this int? value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)"/>
+        public static VolumeFlow UsGallonsPerDay(this long value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double?)"/>
+        public static VolumeFlow? UsGallonsPerDay(this long? value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)"/>
+        public static VolumeFlow UsGallonsPerDay(this double value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double?)"/>
+        public static VolumeFlow? UsGallonsPerDay(this double? value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)"/>
+        public static VolumeFlow UsGallonsPerDay(this float value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double?)"/>
+        public static VolumeFlow? UsGallonsPerDay(this float? value) => VolumeFlow.FromUsGallonsPerDay(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)"/>
+        public static VolumeFlow UsGallonsPerDay(this decimal value) => VolumeFlow.FromUsGallonsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double?)"/>
+        public static VolumeFlow? UsGallonsPerDay(this decimal? value) => VolumeFlow.FromUsGallonsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

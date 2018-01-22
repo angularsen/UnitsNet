@@ -92,6 +92,46 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
 
+        protected override double AcreFeetPerDayInOneCubicMeterPerSecond => 70.0457;
+
+        protected override double AcreFeetPerHourInOneCubicMeterPerSecond => 2.91857;
+
+        protected override double AcreFeetPerMinuteInOneCubicMeterPerSecond => 0.0486429;
+
+        protected override double AcreFeetPerSecondInOneCubicMeterPerSecond => 0.000810714;
+
+        protected override double CentilitersPerDayInOneCubicMeterPerSecond => 8.64e9;
+
+        protected override double CubicMetersPerDayInOneCubicMeterPerSecond => 86400;
+
+        protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 113007;
+
+        protected override double DecilitersPerDayInOneCubicMeterPerSecond => 8.64e8;
+
+        protected override double KilolitersPerDayInOneCubicMeterPerSecond => 8.64e4;
+
+        protected override double LitersPerDayInOneCubicMeterPerSecond => 8.64e7;
+
+        protected override double MegalitersPerDayInOneCubicMeterPerSecond => 86.4;
+
+        protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
+
+        protected override double MillilitersPerDayInOneCubicMeterPerSecond => 8.64e+10;
+
+        protected override double NanolitersPerDayInOneCubicMeterPerSecond => 8.64e+16;
+
+        protected override double OilBarrelsPerSecondInOneCubicMeterPerSecond => 6.28981;
+
+        protected override double UkGallonsPerDayInOneCubicMeterPerSecond => 19005304;
+
+        protected override double UkGallonsPerMinuteInOneCubicMeterPerSecond => 13198.2;
+
+        protected override double UkGallonsPerSecondInOneCubicMeterPerSecond => 219.969;
+
+        protected override double UsGallonsPerDayInOneCubicMeterPerSecond => 22824465.227;
+
+        protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 219.969 * 1e-6;
+
         [Fact]
         public void VolumeFlowTimesTimeSpanEqualsVolume()
         {

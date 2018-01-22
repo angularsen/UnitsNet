@@ -42,6 +42,7 @@ namespace UnitsNet.Units
     public enum VolumeUnit
     {
         Undefined = 0,
+        AcreFoot,
         AuTablespoon,
         Centiliter,
         CubicCentimeter,
@@ -64,10 +65,12 @@ namespace UnitsNet.Units
         KilocubicFoot,
         KilocubicMeter,
         KiloimperialGallon,
+        Kiloliter,
         KilousGallon,
         Liter,
         MegacubicFoot,
         MegaimperialGallon,
+        Megaliter,
         MegausGallon,
         MetricCup,
         MetricTeaspoon,

@@ -8,7 +8,7 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto" ],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -188,7 +188,7 @@
       "PluralName": "ImperialGallons",
       "FromUnitToBaseFunc": "x*0.00454609000000181429905810072407",
       "FromBaseToUnitFunc": "x/0.00454609000000181429905810072407",
-      "Prefixes": [ "Kilo", "Mega" ], 
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -460,6 +460,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "bl (imp.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AcreFoot",
+      "PluralName": "AcreFeet",
+      "FromUnitToBaseFunc": "x/0.0008107",
+      "FromBaseToUnitFunc": "x*0.0008107",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ac" ]
         }
       ]
     }

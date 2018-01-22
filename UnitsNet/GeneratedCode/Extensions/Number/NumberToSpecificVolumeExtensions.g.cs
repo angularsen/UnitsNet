@@ -78,6 +78,40 @@ namespace UnitsNet.Extensions.NumberToSpecificVolume
 
         #endregion
 
+        #region MillicubicMeterPerKilogram
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)"/>
+        public static SpecificVolume MillicubicMetersPerKilogram(this int value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double?)"/>
+        public static SpecificVolume? MillicubicMetersPerKilogram(this int? value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)"/>
+        public static SpecificVolume MillicubicMetersPerKilogram(this long value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double?)"/>
+        public static SpecificVolume? MillicubicMetersPerKilogram(this long? value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)"/>
+        public static SpecificVolume MillicubicMetersPerKilogram(this double value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double?)"/>
+        public static SpecificVolume? MillicubicMetersPerKilogram(this double? value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)"/>
+        public static SpecificVolume MillicubicMetersPerKilogram(this float value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double?)"/>
+        public static SpecificVolume? MillicubicMetersPerKilogram(this float? value) => SpecificVolume.FromMillicubicMetersPerKilogram(value);
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)"/>
+        public static SpecificVolume MillicubicMetersPerKilogram(this decimal value) => SpecificVolume.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double?)"/>
+        public static SpecificVolume? MillicubicMetersPerKilogram(this decimal? value) => SpecificVolume.FromMillicubicMetersPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif

@@ -54,6 +54,30 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;
 
+        protected override double CentigramsPerDayInOneGramPerSecond => 8.64e+6;
+
+        protected override double DecagramsPerDayInOneGramPerSecond => 8.64e3;
+
+        protected override double DecigramsPerDayInOneGramPerSecond => 8.640e5;
+
+        protected override double GramsPerDayInOneGramPerSecond => 8.64e4;
+
+        protected override double HectogramsPerDayInOneGramPerSecond => 8.64e2;
+
+        protected override double KilogramsPerDayInOneGramPerSecond => 8.64e1;
+
+        protected override double MegagramsPerDayInOneGramPerSecond => 8.64e-2;
+
+        protected override double MegapoundsPerDayInOneGramPerSecond => 190.479395 * 1e-6;
+
+        protected override double MicrogramsPerDayInOneGramPerSecond => 8.64e+10;
+
+        protected override double MilligramsPerDayInOneGramPerSecond => 8.64e+7;
+
+        protected override double NanogramsPerDayInOneGramPerSecond => 8.64e+13;
+
+        protected override double PoundsPerDayInOneGramPerSecond => 190.47936;
+
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
         {

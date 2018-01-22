@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 {
     public static class NumberToMassFlowExtensions
     {
+        #region CentigramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)"/>
+        public static MassFlow CentigramsPerDay(this int value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double?)"/>
+        public static MassFlow? CentigramsPerDay(this int? value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)"/>
+        public static MassFlow CentigramsPerDay(this long value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double?)"/>
+        public static MassFlow? CentigramsPerDay(this long? value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)"/>
+        public static MassFlow CentigramsPerDay(this double value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double?)"/>
+        public static MassFlow? CentigramsPerDay(this double? value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)"/>
+        public static MassFlow CentigramsPerDay(this float value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double?)"/>
+        public static MassFlow? CentigramsPerDay(this float? value) => MassFlow.FromCentigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)"/>
+        public static MassFlow CentigramsPerDay(this decimal value) => MassFlow.FromCentigramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double?)"/>
+        public static MassFlow? CentigramsPerDay(this decimal? value) => MassFlow.FromCentigramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region CentigramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(double)"/>
@@ -75,6 +109,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(double?)"/>
         public static MassFlow? CentigramsPerSecond(this decimal? value) => MassFlow.FromCentigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region DecagramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)"/>
+        public static MassFlow DecagramsPerDay(this int value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double?)"/>
+        public static MassFlow? DecagramsPerDay(this int? value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)"/>
+        public static MassFlow DecagramsPerDay(this long value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double?)"/>
+        public static MassFlow? DecagramsPerDay(this long? value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)"/>
+        public static MassFlow DecagramsPerDay(this double value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double?)"/>
+        public static MassFlow? DecagramsPerDay(this double? value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)"/>
+        public static MassFlow DecagramsPerDay(this float value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double?)"/>
+        public static MassFlow? DecagramsPerDay(this float? value) => MassFlow.FromDecagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)"/>
+        public static MassFlow DecagramsPerDay(this decimal value) => MassFlow.FromDecagramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double?)"/>
+        public static MassFlow? DecagramsPerDay(this decimal? value) => MassFlow.FromDecagramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -112,6 +180,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region DecigramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)"/>
+        public static MassFlow DecigramsPerDay(this int value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double?)"/>
+        public static MassFlow? DecigramsPerDay(this int? value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)"/>
+        public static MassFlow DecigramsPerDay(this long value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double?)"/>
+        public static MassFlow? DecigramsPerDay(this long? value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)"/>
+        public static MassFlow DecigramsPerDay(this double value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double?)"/>
+        public static MassFlow? DecigramsPerDay(this double? value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)"/>
+        public static MassFlow DecigramsPerDay(this float value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double?)"/>
+        public static MassFlow? DecigramsPerDay(this float? value) => MassFlow.FromDecigramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)"/>
+        public static MassFlow DecigramsPerDay(this decimal value) => MassFlow.FromDecigramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double?)"/>
+        public static MassFlow? DecigramsPerDay(this decimal? value) => MassFlow.FromDecigramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region DecigramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(double)"/>
@@ -143,6 +245,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(double?)"/>
         public static MassFlow? DecigramsPerSecond(this decimal? value) => MassFlow.FromDecigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region GramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)"/>
+        public static MassFlow GramsPerDay(this int value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double?)"/>
+        public static MassFlow? GramsPerDay(this int? value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)"/>
+        public static MassFlow GramsPerDay(this long value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double?)"/>
+        public static MassFlow? GramsPerDay(this long? value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)"/>
+        public static MassFlow GramsPerDay(this double value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double?)"/>
+        public static MassFlow? GramsPerDay(this double? value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)"/>
+        public static MassFlow GramsPerDay(this float value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double?)"/>
+        public static MassFlow? GramsPerDay(this float? value) => MassFlow.FromGramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)"/>
+        public static MassFlow GramsPerDay(this decimal value) => MassFlow.FromGramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double?)"/>
+        public static MassFlow? GramsPerDay(this decimal? value) => MassFlow.FromGramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -180,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region HectogramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)"/>
+        public static MassFlow HectogramsPerDay(this int value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double?)"/>
+        public static MassFlow? HectogramsPerDay(this int? value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)"/>
+        public static MassFlow HectogramsPerDay(this long value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double?)"/>
+        public static MassFlow? HectogramsPerDay(this long? value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)"/>
+        public static MassFlow HectogramsPerDay(this double value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double?)"/>
+        public static MassFlow? HectogramsPerDay(this double? value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)"/>
+        public static MassFlow HectogramsPerDay(this float value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double?)"/>
+        public static MassFlow? HectogramsPerDay(this float? value) => MassFlow.FromHectogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)"/>
+        public static MassFlow HectogramsPerDay(this decimal value) => MassFlow.FromHectogramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double?)"/>
+        public static MassFlow? HectogramsPerDay(this decimal? value) => MassFlow.FromHectogramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region HectogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(double)"/>
@@ -211,6 +381,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(double?)"/>
         public static MassFlow? HectogramsPerSecond(this decimal? value) => MassFlow.FromHectogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KilogramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)"/>
+        public static MassFlow KilogramsPerDay(this int value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double?)"/>
+        public static MassFlow? KilogramsPerDay(this int? value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)"/>
+        public static MassFlow KilogramsPerDay(this long value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double?)"/>
+        public static MassFlow? KilogramsPerDay(this long? value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)"/>
+        public static MassFlow KilogramsPerDay(this double value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double?)"/>
+        public static MassFlow? KilogramsPerDay(this double? value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)"/>
+        public static MassFlow KilogramsPerDay(this float value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double?)"/>
+        public static MassFlow? KilogramsPerDay(this float? value) => MassFlow.FromKilogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)"/>
+        public static MassFlow KilogramsPerDay(this decimal value) => MassFlow.FromKilogramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double?)"/>
+        public static MassFlow? KilogramsPerDay(this decimal? value) => MassFlow.FromKilogramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -282,6 +486,74 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region MegagramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)"/>
+        public static MassFlow MegagramsPerDay(this int value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double?)"/>
+        public static MassFlow? MegagramsPerDay(this int? value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)"/>
+        public static MassFlow MegagramsPerDay(this long value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double?)"/>
+        public static MassFlow? MegagramsPerDay(this long? value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)"/>
+        public static MassFlow MegagramsPerDay(this double value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double?)"/>
+        public static MassFlow? MegagramsPerDay(this double? value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)"/>
+        public static MassFlow MegagramsPerDay(this float value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double?)"/>
+        public static MassFlow? MegagramsPerDay(this float? value) => MassFlow.FromMegagramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)"/>
+        public static MassFlow MegagramsPerDay(this decimal value) => MassFlow.FromMegagramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double?)"/>
+        public static MassFlow? MegagramsPerDay(this decimal? value) => MassFlow.FromMegagramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MegapoundPerDay
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)"/>
+        public static MassFlow MegapoundsPerDay(this int value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double?)"/>
+        public static MassFlow? MegapoundsPerDay(this int? value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)"/>
+        public static MassFlow MegapoundsPerDay(this long value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double?)"/>
+        public static MassFlow? MegapoundsPerDay(this long? value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)"/>
+        public static MassFlow MegapoundsPerDay(this double value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double?)"/>
+        public static MassFlow? MegapoundsPerDay(this double? value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)"/>
+        public static MassFlow MegapoundsPerDay(this float value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double?)"/>
+        public static MassFlow? MegapoundsPerDay(this float? value) => MassFlow.FromMegapoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)"/>
+        public static MassFlow MegapoundsPerDay(this decimal value) => MassFlow.FromMegapoundsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double?)"/>
+        public static MassFlow? MegapoundsPerDay(this decimal? value) => MassFlow.FromMegapoundsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MegapoundPerHour
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)"/>
@@ -313,6 +585,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double?)"/>
         public static MassFlow? MegapoundsPerHour(this decimal? value) => MassFlow.FromMegapoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MicrogramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)"/>
+        public static MassFlow MicrogramsPerDay(this int value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double?)"/>
+        public static MassFlow? MicrogramsPerDay(this int? value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)"/>
+        public static MassFlow MicrogramsPerDay(this long value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double?)"/>
+        public static MassFlow? MicrogramsPerDay(this long? value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)"/>
+        public static MassFlow MicrogramsPerDay(this double value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double?)"/>
+        public static MassFlow? MicrogramsPerDay(this double? value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)"/>
+        public static MassFlow MicrogramsPerDay(this float value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double?)"/>
+        public static MassFlow? MicrogramsPerDay(this float? value) => MassFlow.FromMicrogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)"/>
+        public static MassFlow MicrogramsPerDay(this decimal value) => MassFlow.FromMicrogramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double?)"/>
+        public static MassFlow? MicrogramsPerDay(this decimal? value) => MassFlow.FromMicrogramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -350,6 +656,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region MilligramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)"/>
+        public static MassFlow MilligramsPerDay(this int value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double?)"/>
+        public static MassFlow? MilligramsPerDay(this int? value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)"/>
+        public static MassFlow MilligramsPerDay(this long value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double?)"/>
+        public static MassFlow? MilligramsPerDay(this long? value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)"/>
+        public static MassFlow MilligramsPerDay(this double value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double?)"/>
+        public static MassFlow? MilligramsPerDay(this double? value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)"/>
+        public static MassFlow MilligramsPerDay(this float value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double?)"/>
+        public static MassFlow? MilligramsPerDay(this float? value) => MassFlow.FromMilligramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)"/>
+        public static MassFlow MilligramsPerDay(this decimal value) => MassFlow.FromMilligramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double?)"/>
+        public static MassFlow? MilligramsPerDay(this decimal? value) => MassFlow.FromMilligramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MilligramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(double)"/>
@@ -384,6 +724,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region NanogramPerDay
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)"/>
+        public static MassFlow NanogramsPerDay(this int value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double?)"/>
+        public static MassFlow? NanogramsPerDay(this int? value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)"/>
+        public static MassFlow NanogramsPerDay(this long value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double?)"/>
+        public static MassFlow? NanogramsPerDay(this long? value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)"/>
+        public static MassFlow NanogramsPerDay(this double value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double?)"/>
+        public static MassFlow? NanogramsPerDay(this double? value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)"/>
+        public static MassFlow NanogramsPerDay(this float value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double?)"/>
+        public static MassFlow? NanogramsPerDay(this float? value) => MassFlow.FromNanogramsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)"/>
+        public static MassFlow NanogramsPerDay(this decimal value) => MassFlow.FromNanogramsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double?)"/>
+        public static MassFlow? NanogramsPerDay(this decimal? value) => MassFlow.FromNanogramsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region NanogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(double)"/>
@@ -415,6 +789,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(double?)"/>
         public static MassFlow? NanogramsPerSecond(this decimal? value) => MassFlow.FromNanogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerDay
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)"/>
+        public static MassFlow PoundsPerDay(this int value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double?)"/>
+        public static MassFlow? PoundsPerDay(this int? value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)"/>
+        public static MassFlow PoundsPerDay(this long value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double?)"/>
+        public static MassFlow? PoundsPerDay(this long? value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)"/>
+        public static MassFlow PoundsPerDay(this double value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double?)"/>
+        public static MassFlow? PoundsPerDay(this double? value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)"/>
+        public static MassFlow PoundsPerDay(this float value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double?)"/>
+        public static MassFlow? PoundsPerDay(this float? value) => MassFlow.FromPoundsPerDay(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)"/>
+        public static MassFlow PoundsPerDay(this decimal value) => MassFlow.FromPoundsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double?)"/>
+        public static MassFlow? PoundsPerDay(this decimal? value) => MassFlow.FromPoundsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

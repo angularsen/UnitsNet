@@ -622,6 +622,40 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         #endregion
 
+        #region MicrogramPerCubicMeter
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)"/>
+        public static Density MicrogramsPerCubicMeter(this int value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double?)"/>
+        public static Density? MicrogramsPerCubicMeter(this int? value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)"/>
+        public static Density MicrogramsPerCubicMeter(this long value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double?)"/>
+        public static Density? MicrogramsPerCubicMeter(this long? value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)"/>
+        public static Density MicrogramsPerCubicMeter(this double value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double?)"/>
+        public static Density? MicrogramsPerCubicMeter(this double? value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)"/>
+        public static Density MicrogramsPerCubicMeter(this float value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double?)"/>
+        public static Density? MicrogramsPerCubicMeter(this float? value) => Density.FromMicrogramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)"/>
+        public static Density MicrogramsPerCubicMeter(this decimal value) => Density.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double?)"/>
+        public static Density? MicrogramsPerCubicMeter(this decimal? value) => Density.FromMicrogramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicrogramPerDeciliter
 
         /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(double)"/>
@@ -721,6 +755,40 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double?)"/>
         public static Density? MicrogramsPerMilliliter(this decimal? value) => Density.FromMicrogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MilligramPerCubicMeter
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)"/>
+        public static Density MilligramsPerCubicMeter(this int value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double?)"/>
+        public static Density? MilligramsPerCubicMeter(this int? value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)"/>
+        public static Density MilligramsPerCubicMeter(this long value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double?)"/>
+        public static Density? MilligramsPerCubicMeter(this long? value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)"/>
+        public static Density MilligramsPerCubicMeter(this double value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double?)"/>
+        public static Density? MilligramsPerCubicMeter(this double? value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)"/>
+        public static Density MilligramsPerCubicMeter(this float value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double?)"/>
+        public static Density? MilligramsPerCubicMeter(this float? value) => Density.FromMilligramsPerCubicMeter(value);
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)"/>
+        public static Density MilligramsPerCubicMeter(this decimal value) => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double?)"/>
+        public static Density? MilligramsPerCubicMeter(this decimal? value) => Density.FromMilligramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

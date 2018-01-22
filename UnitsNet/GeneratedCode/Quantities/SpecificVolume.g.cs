@@ -137,6 +137,14 @@ namespace UnitsNet
             get { return _cubicMetersPerKilogram; }
         }
 
+        /// <summary>
+        ///     Get SpecificVolume in MillicubicMetersPerKilogram.
+        /// </summary>
+        public double MillicubicMetersPerKilogram
+        {
+            get { return (_cubicMetersPerKilogram) / 1e-3d; }
+        }
+
         #endregion
 
         #region Static
@@ -164,6 +172,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get SpecificVolume from MillicubicMetersPerKilogram.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromMillicubicMetersPerKilogram(double millicubicmetersperkilogram)
+        {
+            double value = (double) millicubicmetersperkilogram;
+            return new SpecificVolume((value) * 1e-3d);
+        }
+#else
+        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue millicubicmetersperkilogram)
+        {
+            double value = (double) millicubicmetersperkilogram;
+            return new SpecificVolume(((value) * 1e-3d));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -174,6 +200,21 @@ namespace UnitsNet
             if (cubicmetersperkilogram.HasValue)
             {
                 return FromCubicMetersPerKilogram(cubicmetersperkilogram.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificVolume from nullable MillicubicMetersPerKilogram.
+        /// </summary>
+        public static SpecificVolume? FromMillicubicMetersPerKilogram(QuantityValue? millicubicmetersperkilogram)
+        {
+            if (millicubicmetersperkilogram.HasValue)
+            {
+                return FromMillicubicMetersPerKilogram(millicubicmetersperkilogram.Value);
             }
             else
             {
@@ -201,6 +242,8 @@ namespace UnitsNet
             {
                 case SpecificVolumeUnit.CubicMeterPerKilogram:
                     return FromCubicMetersPerKilogram(value);
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram:
+                    return FromMillicubicMetersPerKilogram(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -225,6 +268,8 @@ namespace UnitsNet
             {
                 case SpecificVolumeUnit.CubicMeterPerKilogram:
                     return FromCubicMetersPerKilogram(value.Value);
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram:
+                    return FromMillicubicMetersPerKilogram(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -400,6 +445,8 @@ namespace UnitsNet
             {
                 case SpecificVolumeUnit.CubicMeterPerKilogram:
                     return CubicMetersPerKilogram;
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram:
+                    return MillicubicMetersPerKilogram;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

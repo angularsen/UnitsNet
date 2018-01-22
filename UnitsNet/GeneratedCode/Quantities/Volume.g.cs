@@ -130,6 +130,14 @@ namespace UnitsNet
         public static VolumeUnit[] Units { get; } = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().ToArray();
 
         /// <summary>
+        ///     Get Volume in AcreFeet.
+        /// </summary>
+        public double AcreFeet
+        {
+            get { return _cubicMeters*0.0008107; }
+        }
+
+        /// <summary>
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons
@@ -306,6 +314,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume in Kiloliters.
+        /// </summary>
+        public double Kiloliters
+        {
+            get { return (_cubicMeters*1e3) / 1e3d; }
+        }
+
+        /// <summary>
         ///     Get Volume in KilousGallons.
         /// </summary>
         public double KilousGallons
@@ -335,6 +351,14 @@ namespace UnitsNet
         public double MegaimperialGallons
         {
             get { return (_cubicMeters/0.00454609000000181429905810072407) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Volume in Megaliters.
+        /// </summary>
+        public double Megaliters
+        {
+            get { return (_cubicMeters*1e3) / 1e6d; }
         }
 
         /// <summary>
@@ -475,6 +499,24 @@ namespace UnitsNet
         {
             get { return new Volume(); }
         }
+
+        /// <summary>
+        ///     Get Volume from AcreFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromAcreFeet(double acrefeet)
+        {
+            double value = (double) acrefeet;
+            return new Volume(value/0.0008107);
+        }
+#else
+        public static Volume FromAcreFeet(QuantityValue acrefeet)
+        {
+            double value = (double) acrefeet;
+            return new Volume((value/0.0008107));
+        }
+#endif
 
         /// <summary>
         ///     Get Volume from AuTablespoons.
@@ -873,6 +915,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Volume from Kiloliters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromKiloliters(double kiloliters)
+        {
+            double value = (double) kiloliters;
+            return new Volume((value/1e3) * 1e3d);
+        }
+#else
+        public static Volume FromKiloliters(QuantityValue kiloliters)
+        {
+            double value = (double) kiloliters;
+            return new Volume(((value/1e3) * 1e3d));
+        }
+#endif
+
+        /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
 #if WINDOWS_UWP
@@ -941,6 +1001,24 @@ namespace UnitsNet
         {
             double value = (double) megaimperialgallons;
             return new Volume(((value*0.00454609000000181429905810072407) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Volume from Megaliters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromMegaliters(double megaliters)
+        {
+            double value = (double) megaliters;
+            return new Volume((value/1e3) * 1e6d);
+        }
+#else
+        public static Volume FromMegaliters(QuantityValue megaliters)
+        {
+            double value = (double) megaliters;
+            return new Volume(((value/1e3) * 1e6d));
         }
 #endif
 
@@ -1234,6 +1312,21 @@ namespace UnitsNet
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable Volume from nullable AcreFeet.
+        /// </summary>
+        public static Volume? FromAcreFeet(QuantityValue? acrefeet)
+        {
+            if (acrefeet.HasValue)
+            {
+                return FromAcreFeet(acrefeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable Volume from nullable AuTablespoons.
         /// </summary>
@@ -1565,6 +1658,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable Kiloliters.
+        /// </summary>
+        public static Volume? FromKiloliters(QuantityValue? kiloliters)
+        {
+            if (kiloliters.HasValue)
+            {
+                return FromKiloliters(kiloliters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable KilousGallons.
         /// </summary>
         public static Volume? FromKilousGallons(QuantityValue? kilousgallons)
@@ -1617,6 +1725,21 @@ namespace UnitsNet
             if (megaimperialgallons.HasValue)
             {
                 return FromMegaimperialGallons(megaimperialgallons.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable Megaliters.
+        /// </summary>
+        public static Volume? FromMegaliters(QuantityValue? megaliters)
+        {
+            if (megaliters.HasValue)
+            {
+                return FromMegaliters(megaliters.Value);
             }
             else
             {
@@ -1882,6 +2005,8 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case VolumeUnit.AcreFoot:
+                    return FromAcreFeet(value);
                 case VolumeUnit.AuTablespoon:
                     return FromAuTablespoons(value);
                 case VolumeUnit.Centiliter:
@@ -1926,6 +2051,8 @@ namespace UnitsNet
                     return FromKilocubicMeters(value);
                 case VolumeUnit.KiloimperialGallon:
                     return FromKiloimperialGallons(value);
+                case VolumeUnit.Kiloliter:
+                    return FromKiloliters(value);
                 case VolumeUnit.KilousGallon:
                     return FromKilousGallons(value);
                 case VolumeUnit.Liter:
@@ -1934,6 +2061,8 @@ namespace UnitsNet
                     return FromMegacubicFeet(value);
                 case VolumeUnit.MegaimperialGallon:
                     return FromMegaimperialGallons(value);
+                case VolumeUnit.Megaliter:
+                    return FromMegaliters(value);
                 case VolumeUnit.MegausGallon:
                     return FromMegausGallons(value);
                 case VolumeUnit.MetricCup:
@@ -1988,6 +2117,8 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case VolumeUnit.AcreFoot:
+                    return FromAcreFeet(value.Value);
                 case VolumeUnit.AuTablespoon:
                     return FromAuTablespoons(value.Value);
                 case VolumeUnit.Centiliter:
@@ -2032,6 +2163,8 @@ namespace UnitsNet
                     return FromKilocubicMeters(value.Value);
                 case VolumeUnit.KiloimperialGallon:
                     return FromKiloimperialGallons(value.Value);
+                case VolumeUnit.Kiloliter:
+                    return FromKiloliters(value.Value);
                 case VolumeUnit.KilousGallon:
                     return FromKilousGallons(value.Value);
                 case VolumeUnit.Liter:
@@ -2040,6 +2173,8 @@ namespace UnitsNet
                     return FromMegacubicFeet(value.Value);
                 case VolumeUnit.MegaimperialGallon:
                     return FromMegaimperialGallons(value.Value);
+                case VolumeUnit.Megaliter:
+                    return FromMegaliters(value.Value);
                 case VolumeUnit.MegausGallon:
                     return FromMegausGallons(value.Value);
                 case VolumeUnit.MetricCup:
@@ -2245,6 +2380,8 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case VolumeUnit.AcreFoot:
+                    return AcreFeet;
                 case VolumeUnit.AuTablespoon:
                     return AuTablespoons;
                 case VolumeUnit.Centiliter:
@@ -2289,6 +2426,8 @@ namespace UnitsNet
                     return KilocubicMeters;
                 case VolumeUnit.KiloimperialGallon:
                     return KiloimperialGallons;
+                case VolumeUnit.Kiloliter:
+                    return Kiloliters;
                 case VolumeUnit.KilousGallon:
                     return KilousGallons;
                 case VolumeUnit.Liter:
@@ -2297,6 +2436,8 @@ namespace UnitsNet
                     return MegacubicFeet;
                 case VolumeUnit.MegaimperialGallon:
                     return MegaimperialGallons;
+                case VolumeUnit.Megaliter:
+                    return Megaliters;
                 case VolumeUnit.MegausGallon:
                     return MegausGallons;
                 case VolumeUnit.MetricCup:

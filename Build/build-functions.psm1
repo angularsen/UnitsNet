@@ -36,9 +36,9 @@ function Start-Build {
   if ($lastexitcode -ne 0) { exit 1 }
 
   # dontnet CLI does not support WindowsRuntimeComponent project type yet
-  write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
-  & msbuild "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release
-  if ($lastexitcode -ne 0) { exit 1 }
+  #write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
+  #& msbuild "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release
+  #if ($lastexitcode -ne 0) { exit 1 }
 
   write-host -foreground blue "Start-Build...END`n"
 }

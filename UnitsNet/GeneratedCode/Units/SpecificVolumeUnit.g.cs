@@ -43,5 +43,6 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CubicMeterPerKilogram,
+        MillicubicMeterPerKilogram,
     }
 }

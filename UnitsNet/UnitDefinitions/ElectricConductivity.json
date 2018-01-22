@@ -1,0 +1,33 @@
+﻿{
+  "Name": "ElectricConductivity",
+  "BaseUnit": "OhmPerMeter",
+  "XmlDoc": "Electrical conductivity is the measure of a material's ability to allow the transport of an electric charge.",
+  "Units": [
+    {
+      "SingularName": "OhmPerMeter",
+      "PluralName": "OhmsPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ω/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OhmPerCentimeter",
+      "PluralName": "OhmsPerCentimeter",
+      "FromUnitToBaseFunc": "x*100",
+      "FromBaseToUnitFunc": "x/100",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ω/cm" ]
+        }
+      ]
+    }
+  ]
+}

@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 {
     public static class NumberToVolumeExtensions
     {
+        #region AcreFoot
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)"/>
+        public static Volume AcreFeet(this int value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double?)"/>
+        public static Volume? AcreFeet(this int? value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)"/>
+        public static Volume AcreFeet(this long value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double?)"/>
+        public static Volume? AcreFeet(this long? value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)"/>
+        public static Volume AcreFeet(this double value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double?)"/>
+        public static Volume? AcreFeet(this double? value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)"/>
+        public static Volume AcreFeet(this float value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double?)"/>
+        public static Volume? AcreFeet(this float? value) => Volume.FromAcreFeet(value);
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)"/>
+        public static Volume AcreFeet(this decimal value) => Volume.FromAcreFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromAcreFeet(double?)"/>
+        public static Volume? AcreFeet(this decimal? value) => Volume.FromAcreFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region AuTablespoon
 
         /// <inheritdoc cref="Volume.FromAuTablespoons(double)"/>
@@ -792,6 +826,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region Kiloliter
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double)"/>
+        public static Volume Kiloliters(this int value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double?)"/>
+        public static Volume? Kiloliters(this int? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double)"/>
+        public static Volume Kiloliters(this long value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double?)"/>
+        public static Volume? Kiloliters(this long? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double)"/>
+        public static Volume Kiloliters(this double value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double?)"/>
+        public static Volume? Kiloliters(this double? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double)"/>
+        public static Volume Kiloliters(this float value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double?)"/>
+        public static Volume? Kiloliters(this float? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double)"/>
+        public static Volume Kiloliters(this decimal value) => Volume.FromKiloliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKiloliters(double?)"/>
+        public static Volume? Kiloliters(this decimal? value) => Volume.FromKiloliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilousGallon
 
         /// <inheritdoc cref="Volume.FromKilousGallons(double)"/>
@@ -925,6 +993,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         /// <inheritdoc cref="Volume.FromMegaimperialGallons(double?)"/>
         public static Volume? MegaimperialGallons(this decimal? value) => Volume.FromMegaimperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Megaliter
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double)"/>
+        public static Volume Megaliters(this int value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double?)"/>
+        public static Volume? Megaliters(this int? value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double)"/>
+        public static Volume Megaliters(this long value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double?)"/>
+        public static Volume? Megaliters(this long? value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double)"/>
+        public static Volume Megaliters(this double value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double?)"/>
+        public static Volume? Megaliters(this double? value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double)"/>
+        public static Volume Megaliters(this float value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double?)"/>
+        public static Volume? Megaliters(this float? value) => Volume.FromMegaliters(value);
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double)"/>
+        public static Volume Megaliters(this decimal value) => Volume.FromMegaliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMegaliters(double?)"/>
+        public static Volume? Megaliters(this decimal? value) => Volume.FromMegaliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
