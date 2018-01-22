@@ -46,10 +46,10 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ApparentEnergyTests : ApparentEnergyTestsBase
     {
-        protected override double VoltamperesHourInOneVoltampereHour => 1;
+        protected override double VoltampereHoursInOneVoltampereHour => 1;
 
-        protected override double KilovoltamperesHourInOneVoltampereHour => 1E-3;
+        protected override double KilovoltampereHoursInOneVoltampereHour => 1E-3;
 
-        protected override double MegavoltamperesHourInOneVoltampereHour => 1E-6;
+        protected override double MegavoltampereHoursInOneVoltampereHour => 1E-6;
     }
 }

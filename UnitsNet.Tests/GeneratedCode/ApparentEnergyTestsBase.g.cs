@@ -52,85 +52,85 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ApparentEnergyTestsBase
     {
-        protected abstract double KilovoltamperesHourInOneVoltampereHour { get; }
-        protected abstract double MegavoltamperesHourInOneVoltampereHour { get; }
-        protected abstract double VoltamperesHourInOneVoltampereHour { get; }
+        protected abstract double KilovoltampereHoursInOneVoltampereHour { get; }
+        protected abstract double MegavoltampereHoursInOneVoltampereHour { get; }
+        protected abstract double VoltampereHoursInOneVoltampereHour { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilovoltamperesHourTolerance { get { return 1e-5; } }
-        protected virtual double MegavoltamperesHourTolerance { get { return 1e-5; } }
-        protected virtual double VoltamperesHourTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double VoltampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
         public void VoltampereHourToApparentEnergyUnits()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
-            AssertEx.EqualTolerance(KilovoltamperesHourInOneVoltampereHour, voltamperehour.KilovoltamperesHour, KilovoltamperesHourTolerance);
-            AssertEx.EqualTolerance(MegavoltamperesHourInOneVoltampereHour, voltamperehour.MegavoltamperesHour, MegavoltamperesHourTolerance);
-            AssertEx.EqualTolerance(VoltamperesHourInOneVoltampereHour, voltamperehour.VoltamperesHour, VoltamperesHourTolerance);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+            AssertEx.EqualTolerance(KilovoltampereHoursInOneVoltampereHour, voltamperehour.KilovoltampereHours, KilovoltampereHoursTolerance);
+            AssertEx.EqualTolerance(MegavoltampereHoursInOneVoltampereHour, voltamperehour.MegavoltampereHours, MegavoltampereHoursTolerance);
+            AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, voltamperehour.VoltampereHours, VoltampereHoursTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.KilovoltampereHour).KilovoltamperesHour, KilovoltamperesHourTolerance);
-            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.MegavoltampereHour).MegavoltamperesHour, MegavoltamperesHourTolerance);
-            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.VoltampereHour).VoltamperesHour, VoltamperesHourTolerance);
+            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.KilovoltampereHour).KilovoltampereHours, KilovoltampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.MegavoltampereHour).MegavoltampereHours, MegavoltampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.VoltampereHour).VoltampereHours, VoltampereHoursTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
-            AssertEx.EqualTolerance(KilovoltamperesHourInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.KilovoltampereHour), KilovoltamperesHourTolerance);
-            AssertEx.EqualTolerance(MegavoltamperesHourInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.MegavoltampereHour), MegavoltamperesHourTolerance);
-            AssertEx.EqualTolerance(VoltamperesHourInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.VoltampereHour), VoltamperesHourTolerance);
+            var voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+            AssertEx.EqualTolerance(KilovoltampereHoursInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.KilovoltampereHour), KilovoltampereHoursTolerance);
+            AssertEx.EqualTolerance(MegavoltampereHoursInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.MegavoltampereHour), MegavoltampereHoursTolerance);
+            AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, voltamperehour.As(ApparentEnergyUnit.VoltampereHour), VoltampereHoursTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
-            AssertEx.EqualTolerance(1, ApparentEnergy.FromKilovoltamperesHour(voltamperehour.KilovoltamperesHour).VoltamperesHour, KilovoltamperesHourTolerance);
-            AssertEx.EqualTolerance(1, ApparentEnergy.FromMegavoltamperesHour(voltamperehour.MegavoltamperesHour).VoltamperesHour, MegavoltamperesHourTolerance);
-            AssertEx.EqualTolerance(1, ApparentEnergy.FromVoltamperesHour(voltamperehour.VoltamperesHour).VoltamperesHour, VoltamperesHourTolerance);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+            AssertEx.EqualTolerance(1, ApparentEnergy.FromKilovoltampereHours(voltamperehour.KilovoltampereHours).VoltampereHours, KilovoltampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ApparentEnergy.FromMegavoltampereHours(voltamperehour.MegavoltampereHours).VoltampereHours, MegavoltampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ApparentEnergy.FromVoltampereHours(voltamperehour.VoltampereHours).VoltampereHours, VoltampereHoursTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ApparentEnergy v = ApparentEnergy.FromVoltamperesHour(1);
-            AssertEx.EqualTolerance(-1, -v.VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(2, (ApparentEnergy.FromVoltamperesHour(3)-v).VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(2, (v + v).VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(10, (v*10).VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(10, (10*v).VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(2, (ApparentEnergy.FromVoltamperesHour(10)/5).VoltamperesHour, VoltamperesHourTolerance);
-            AssertEx.EqualTolerance(2, ApparentEnergy.FromVoltamperesHour(10)/ApparentEnergy.FromVoltamperesHour(5), VoltamperesHourTolerance);
+            ApparentEnergy v = ApparentEnergy.FromVoltampereHours(1);
+            AssertEx.EqualTolerance(-1, -v.VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(2, (ApparentEnergy.FromVoltampereHours(3)-v).VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(2, (v + v).VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(10, (v*10).VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(10, (10*v).VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(2, (ApparentEnergy.FromVoltampereHours(10)/5).VoltampereHours, VoltampereHoursTolerance);
+            AssertEx.EqualTolerance(2, ApparentEnergy.FromVoltampereHours(10)/ApparentEnergy.FromVoltampereHours(5), VoltampereHoursTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ApparentEnergy oneVoltampereHour = ApparentEnergy.FromVoltamperesHour(1);
-            ApparentEnergy twoVoltamperesHour = ApparentEnergy.FromVoltamperesHour(2);
+            ApparentEnergy oneVoltampereHour = ApparentEnergy.FromVoltampereHours(1);
+            ApparentEnergy twoVoltampereHours = ApparentEnergy.FromVoltampereHours(2);
 
-            Assert.True(oneVoltampereHour < twoVoltamperesHour);
-            Assert.True(oneVoltampereHour <= twoVoltamperesHour);
-            Assert.True(twoVoltamperesHour > oneVoltampereHour);
-            Assert.True(twoVoltamperesHour >= oneVoltampereHour);
+            Assert.True(oneVoltampereHour < twoVoltampereHours);
+            Assert.True(oneVoltampereHour <= twoVoltampereHours);
+            Assert.True(twoVoltampereHours > oneVoltampereHour);
+            Assert.True(twoVoltampereHours >= oneVoltampereHour);
 
-            Assert.False(oneVoltampereHour > twoVoltamperesHour);
-            Assert.False(oneVoltampereHour >= twoVoltamperesHour);
-            Assert.False(twoVoltamperesHour < oneVoltampereHour);
-            Assert.False(twoVoltamperesHour <= oneVoltampereHour);
+            Assert.False(oneVoltampereHour > twoVoltampereHours);
+            Assert.False(oneVoltampereHour >= twoVoltampereHours);
+            Assert.False(twoVoltampereHours < oneVoltampereHour);
+            Assert.False(twoVoltampereHours <= oneVoltampereHour);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
             Assert.Equal(0, voltamperehour.CompareTo(voltamperehour));
             Assert.True(voltamperehour.CompareTo(ApparentEnergy.Zero) > 0);
             Assert.True(ApparentEnergy.Zero.CompareTo(voltamperehour) < 0);
@@ -139,14 +139,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
             Assert.Throws<ArgumentException>(() => voltamperehour.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
             Assert.Throws<ArgumentNullException>(() => voltamperehour.CompareTo(null));
         }
 
@@ -154,8 +154,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualityOperators()
         {
-            ApparentEnergy a = ApparentEnergy.FromVoltamperesHour(1);
-            ApparentEnergy b = ApparentEnergy.FromVoltamperesHour(2);
+            ApparentEnergy a = ApparentEnergy.FromVoltampereHours(1);
+            ApparentEnergy b = ApparentEnergy.FromVoltampereHours(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -169,22 +169,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            ApparentEnergy v = ApparentEnergy.FromVoltamperesHour(1);
-            Assert.True(v.Equals(ApparentEnergy.FromVoltamperesHour(1), ApparentEnergy.FromVoltamperesHour(VoltamperesHourTolerance)));
-            Assert.False(v.Equals(ApparentEnergy.Zero, ApparentEnergy.FromVoltamperesHour(VoltamperesHourTolerance)));
+            ApparentEnergy v = ApparentEnergy.FromVoltampereHours(1);
+            Assert.True(v.Equals(ApparentEnergy.FromVoltampereHours(1), ApparentEnergy.FromVoltampereHours(VoltampereHoursTolerance)));
+            Assert.False(v.Equals(ApparentEnergy.Zero, ApparentEnergy.FromVoltampereHours(VoltampereHoursTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
             Assert.False(voltamperehour.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltamperesHour(1);
+            ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
             Assert.False(voltamperehour.Equals(null));
         }
     }

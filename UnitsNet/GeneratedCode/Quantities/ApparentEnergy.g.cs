@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ApparentEnergy.
         /// </summary>
-        private readonly double _voltamperesHour;
+        private readonly double _voltampereHours;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ApparentEnergy(double voltampereshour)
+        public ApparentEnergy(double voltamperehours)
         {
-            _voltamperesHour = Convert.ToDouble(voltampereshour);
+            _voltampereHours = Convert.ToDouble(voltamperehours);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ApparentEnergy(long voltampereshour)
+        ApparentEnergy(long voltamperehours)
         {
-            _voltamperesHour = Convert.ToDouble(voltampereshour);
+            _voltampereHours = Convert.ToDouble(voltamperehours);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ApparentEnergy(decimal voltampereshour)
+        ApparentEnergy(decimal voltamperehours)
         {
-            _voltamperesHour = Convert.ToDouble(voltampereshour);
+            _voltampereHours = Convert.ToDouble(voltamperehours);
         }
 
         #region Properties
@@ -130,27 +130,27 @@ namespace UnitsNet
         public static ApparentEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().ToArray();
 
         /// <summary>
-        ///     Get ApparentEnergy in KilovoltamperesHour.
+        ///     Get ApparentEnergy in KilovoltampereHours.
         /// </summary>
-        public double KilovoltamperesHour
+        public double KilovoltampereHours
         {
-            get { return (_voltamperesHour) / 1e3d; }
+            get { return (_voltampereHours) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get ApparentEnergy in MegavoltamperesHour.
+        ///     Get ApparentEnergy in MegavoltampereHours.
         /// </summary>
-        public double MegavoltamperesHour
+        public double MegavoltampereHours
         {
-            get { return (_voltamperesHour) / 1e6d; }
+            get { return (_voltampereHours) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get ApparentEnergy in VoltamperesHour.
+        ///     Get ApparentEnergy in VoltampereHours.
         /// </summary>
-        public double VoltamperesHour
+        public double VoltampereHours
         {
-            get { return _voltamperesHour; }
+            get { return _voltampereHours; }
         }
 
         #endregion
@@ -163,55 +163,55 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get ApparentEnergy from KilovoltamperesHour.
+        ///     Get ApparentEnergy from KilovoltampereHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ApparentEnergy FromKilovoltamperesHour(double kilovoltampereshour)
+        public static ApparentEnergy FromKilovoltampereHours(double kilovoltamperehours)
         {
-            double value = (double) kilovoltampereshour;
+            double value = (double) kilovoltamperehours;
             return new ApparentEnergy((value) * 1e3d);
         }
 #else
-        public static ApparentEnergy FromKilovoltamperesHour(QuantityValue kilovoltampereshour)
+        public static ApparentEnergy FromKilovoltampereHours(QuantityValue kilovoltamperehours)
         {
-            double value = (double) kilovoltampereshour;
+            double value = (double) kilovoltamperehours;
             return new ApparentEnergy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
-        ///     Get ApparentEnergy from MegavoltamperesHour.
+        ///     Get ApparentEnergy from MegavoltampereHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ApparentEnergy FromMegavoltamperesHour(double megavoltampereshour)
+        public static ApparentEnergy FromMegavoltampereHours(double megavoltamperehours)
         {
-            double value = (double) megavoltampereshour;
+            double value = (double) megavoltamperehours;
             return new ApparentEnergy((value) * 1e6d);
         }
 #else
-        public static ApparentEnergy FromMegavoltamperesHour(QuantityValue megavoltampereshour)
+        public static ApparentEnergy FromMegavoltampereHours(QuantityValue megavoltamperehours)
         {
-            double value = (double) megavoltampereshour;
+            double value = (double) megavoltamperehours;
             return new ApparentEnergy(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
-        ///     Get ApparentEnergy from VoltamperesHour.
+        ///     Get ApparentEnergy from VoltampereHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ApparentEnergy FromVoltamperesHour(double voltampereshour)
+        public static ApparentEnergy FromVoltampereHours(double voltamperehours)
         {
-            double value = (double) voltampereshour;
+            double value = (double) voltamperehours;
             return new ApparentEnergy(value);
         }
 #else
-        public static ApparentEnergy FromVoltamperesHour(QuantityValue voltampereshour)
+        public static ApparentEnergy FromVoltampereHours(QuantityValue voltamperehours)
         {
-            double value = (double) voltampereshour;
+            double value = (double) voltamperehours;
             return new ApparentEnergy((value));
         }
 #endif
@@ -219,13 +219,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ApparentEnergy from nullable KilovoltamperesHour.
+        ///     Get nullable ApparentEnergy from nullable KilovoltampereHours.
         /// </summary>
-        public static ApparentEnergy? FromKilovoltamperesHour(QuantityValue? kilovoltampereshour)
+        public static ApparentEnergy? FromKilovoltampereHours(QuantityValue? kilovoltamperehours)
         {
-            if (kilovoltampereshour.HasValue)
+            if (kilovoltamperehours.HasValue)
             {
-                return FromKilovoltamperesHour(kilovoltampereshour.Value);
+                return FromKilovoltampereHours(kilovoltamperehours.Value);
             }
             else
             {
@@ -234,13 +234,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ApparentEnergy from nullable MegavoltamperesHour.
+        ///     Get nullable ApparentEnergy from nullable MegavoltampereHours.
         /// </summary>
-        public static ApparentEnergy? FromMegavoltamperesHour(QuantityValue? megavoltampereshour)
+        public static ApparentEnergy? FromMegavoltampereHours(QuantityValue? megavoltamperehours)
         {
-            if (megavoltampereshour.HasValue)
+            if (megavoltamperehours.HasValue)
             {
-                return FromMegavoltamperesHour(megavoltampereshour.Value);
+                return FromMegavoltampereHours(megavoltamperehours.Value);
             }
             else
             {
@@ -249,13 +249,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ApparentEnergy from nullable VoltamperesHour.
+        ///     Get nullable ApparentEnergy from nullable VoltampereHours.
         /// </summary>
-        public static ApparentEnergy? FromVoltamperesHour(QuantityValue? voltampereshour)
+        public static ApparentEnergy? FromVoltampereHours(QuantityValue? voltamperehours)
         {
-            if (voltampereshour.HasValue)
+            if (voltamperehours.HasValue)
             {
-                return FromVoltamperesHour(voltampereshour.Value);
+                return FromVoltampereHours(voltamperehours.Value);
             }
             else
             {
@@ -282,11 +282,11 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case ApparentEnergyUnit.KilovoltampereHour:
-                    return FromKilovoltamperesHour(value);
+                    return FromKilovoltampereHours(value);
                 case ApparentEnergyUnit.MegavoltampereHour:
-                    return FromMegavoltamperesHour(value);
+                    return FromMegavoltampereHours(value);
                 case ApparentEnergyUnit.VoltampereHour:
-                    return FromVoltamperesHour(value);
+                    return FromVoltampereHours(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -310,11 +310,11 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case ApparentEnergyUnit.KilovoltampereHour:
-                    return FromKilovoltamperesHour(value.Value);
+                    return FromKilovoltampereHours(value.Value);
                 case ApparentEnergyUnit.MegavoltampereHour:
-                    return FromMegavoltamperesHour(value.Value);
+                    return FromMegavoltampereHours(value.Value);
                 case ApparentEnergyUnit.VoltampereHour:
-                    return FromVoltamperesHour(value.Value);
+                    return FromVoltampereHours(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -353,37 +353,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ApparentEnergy operator -(ApparentEnergy right)
         {
-            return new ApparentEnergy(-right._voltamperesHour);
+            return new ApparentEnergy(-right._voltampereHours);
         }
 
         public static ApparentEnergy operator +(ApparentEnergy left, ApparentEnergy right)
         {
-            return new ApparentEnergy(left._voltamperesHour + right._voltamperesHour);
+            return new ApparentEnergy(left._voltampereHours + right._voltampereHours);
         }
 
         public static ApparentEnergy operator -(ApparentEnergy left, ApparentEnergy right)
         {
-            return new ApparentEnergy(left._voltamperesHour - right._voltamperesHour);
+            return new ApparentEnergy(left._voltampereHours - right._voltampereHours);
         }
 
         public static ApparentEnergy operator *(double left, ApparentEnergy right)
         {
-            return new ApparentEnergy(left*right._voltamperesHour);
+            return new ApparentEnergy(left*right._voltampereHours);
         }
 
         public static ApparentEnergy operator *(ApparentEnergy left, double right)
         {
-            return new ApparentEnergy(left._voltamperesHour*(double)right);
+            return new ApparentEnergy(left._voltampereHours*(double)right);
         }
 
         public static ApparentEnergy operator /(ApparentEnergy left, double right)
         {
-            return new ApparentEnergy(left._voltamperesHour/(double)right);
+            return new ApparentEnergy(left._voltampereHours/(double)right);
         }
 
         public static double operator /(ApparentEnergy left, ApparentEnergy right)
         {
-            return Convert.ToDouble(left._voltamperesHour/right._voltamperesHour);
+            return Convert.ToDouble(left._voltampereHours/right._voltampereHours);
         }
 #endif
 
@@ -406,43 +406,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ApparentEnergy other)
         {
-            return _voltamperesHour.CompareTo(other._voltamperesHour);
+            return _voltampereHours.CompareTo(other._voltampereHours);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ApparentEnergy left, ApparentEnergy right)
         {
-            return left._voltamperesHour <= right._voltamperesHour;
+            return left._voltampereHours <= right._voltampereHours;
         }
 
         public static bool operator >=(ApparentEnergy left, ApparentEnergy right)
         {
-            return left._voltamperesHour >= right._voltamperesHour;
+            return left._voltampereHours >= right._voltampereHours;
         }
 
         public static bool operator <(ApparentEnergy left, ApparentEnergy right)
         {
-            return left._voltamperesHour < right._voltamperesHour;
+            return left._voltampereHours < right._voltampereHours;
         }
 
         public static bool operator >(ApparentEnergy left, ApparentEnergy right)
         {
-            return left._voltamperesHour > right._voltamperesHour;
+            return left._voltampereHours > right._voltampereHours;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ApparentEnergy left, ApparentEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltamperesHour == right._voltamperesHour;
+            return left._voltampereHours == right._voltampereHours;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ApparentEnergy left, ApparentEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltamperesHour != right._voltamperesHour;
+            return left._voltampereHours != right._voltampereHours;
         }
 #endif
 
@@ -454,7 +454,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _voltamperesHour.Equals(((ApparentEnergy) obj)._voltamperesHour);
+            return _voltampereHours.Equals(((ApparentEnergy) obj)._voltampereHours);
         }
 
         /// <summary>
@@ -467,12 +467,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ApparentEnergy other, ApparentEnergy maxError)
         {
-            return Math.Abs(_voltamperesHour - other._voltamperesHour) <= maxError._voltamperesHour;
+            return Math.Abs(_voltampereHours - other._voltampereHours) <= maxError._voltampereHours;
         }
 
         public override int GetHashCode()
         {
-            return _voltamperesHour.GetHashCode();
+            return _voltampereHours.GetHashCode();
         }
 
         #endregion
@@ -489,11 +489,11 @@ namespace UnitsNet
             switch (unit)
             {
                 case ApparentEnergyUnit.KilovoltampereHour:
-                    return KilovoltamperesHour;
+                    return KilovoltampereHours;
                 case ApparentEnergyUnit.MegavoltampereHour:
-                    return MegavoltamperesHour;
+                    return MegavoltampereHours;
                 case ApparentEnergyUnit.VoltampereHour:
-                    return VoltamperesHour;
+                    return VoltampereHours;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -570,7 +570,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ApparentEnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromVoltamperesHour(x.VoltamperesHour + y.VoltamperesHour));
+                }, (x, y) => FromVoltampereHours(x.VoltampereHours + y.VoltampereHours));
         }
 
         /// <summary>

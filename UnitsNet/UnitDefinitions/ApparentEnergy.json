@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "VoltampereHour",
-      "PluralName": "VoltamperesHour",
+      "PluralName": "VoltampereHours",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Kilo", "Mega" ],

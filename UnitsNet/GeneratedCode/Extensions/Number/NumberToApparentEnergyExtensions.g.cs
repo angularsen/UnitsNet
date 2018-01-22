@@ -46,103 +46,103 @@ namespace UnitsNet.Extensions.NumberToApparentEnergy
     {
         #region KilovoltampereHour
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double)"/>
-        public static ApparentEnergy KilovoltamperesHour(this int value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)"/>
+        public static ApparentEnergy KilovoltampereHours(this int value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double?)"/>
-        public static ApparentEnergy? KilovoltamperesHour(this int? value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double?)"/>
+        public static ApparentEnergy? KilovoltampereHours(this int? value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double)"/>
-        public static ApparentEnergy KilovoltamperesHour(this long value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)"/>
+        public static ApparentEnergy KilovoltampereHours(this long value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double?)"/>
-        public static ApparentEnergy? KilovoltamperesHour(this long? value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double?)"/>
+        public static ApparentEnergy? KilovoltampereHours(this long? value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double)"/>
-        public static ApparentEnergy KilovoltamperesHour(this double value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)"/>
+        public static ApparentEnergy KilovoltampereHours(this double value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double?)"/>
-        public static ApparentEnergy? KilovoltamperesHour(this double? value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double?)"/>
+        public static ApparentEnergy? KilovoltampereHours(this double? value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double)"/>
-        public static ApparentEnergy KilovoltamperesHour(this float value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)"/>
+        public static ApparentEnergy KilovoltampereHours(this float value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double?)"/>
-        public static ApparentEnergy? KilovoltamperesHour(this float? value) => ApparentEnergy.FromKilovoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double?)"/>
+        public static ApparentEnergy? KilovoltampereHours(this float? value) => ApparentEnergy.FromKilovoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double)"/>
-        public static ApparentEnergy KilovoltamperesHour(this decimal value) => ApparentEnergy.FromKilovoltamperesHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double)"/>
+        public static ApparentEnergy KilovoltampereHours(this decimal value) => ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltamperesHour(double?)"/>
-        public static ApparentEnergy? KilovoltamperesHour(this decimal? value) => ApparentEnergy.FromKilovoltamperesHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(double?)"/>
+        public static ApparentEnergy? KilovoltampereHours(this decimal? value) => ApparentEnergy.FromKilovoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegavoltampereHour
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double)"/>
-        public static ApparentEnergy MegavoltamperesHour(this int value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)"/>
+        public static ApparentEnergy MegavoltampereHours(this int value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double?)"/>
-        public static ApparentEnergy? MegavoltamperesHour(this int? value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double?)"/>
+        public static ApparentEnergy? MegavoltampereHours(this int? value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double)"/>
-        public static ApparentEnergy MegavoltamperesHour(this long value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)"/>
+        public static ApparentEnergy MegavoltampereHours(this long value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double?)"/>
-        public static ApparentEnergy? MegavoltamperesHour(this long? value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double?)"/>
+        public static ApparentEnergy? MegavoltampereHours(this long? value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double)"/>
-        public static ApparentEnergy MegavoltamperesHour(this double value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)"/>
+        public static ApparentEnergy MegavoltampereHours(this double value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double?)"/>
-        public static ApparentEnergy? MegavoltamperesHour(this double? value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double?)"/>
+        public static ApparentEnergy? MegavoltampereHours(this double? value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double)"/>
-        public static ApparentEnergy MegavoltamperesHour(this float value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)"/>
+        public static ApparentEnergy MegavoltampereHours(this float value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double?)"/>
-        public static ApparentEnergy? MegavoltamperesHour(this float? value) => ApparentEnergy.FromMegavoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double?)"/>
+        public static ApparentEnergy? MegavoltampereHours(this float? value) => ApparentEnergy.FromMegavoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double)"/>
-        public static ApparentEnergy MegavoltamperesHour(this decimal value) => ApparentEnergy.FromMegavoltamperesHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double)"/>
+        public static ApparentEnergy MegavoltampereHours(this decimal value) => ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltamperesHour(double?)"/>
-        public static ApparentEnergy? MegavoltamperesHour(this decimal? value) => ApparentEnergy.FromMegavoltamperesHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(double?)"/>
+        public static ApparentEnergy? MegavoltampereHours(this decimal? value) => ApparentEnergy.FromMegavoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region VoltampereHour
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double)"/>
-        public static ApparentEnergy VoltamperesHour(this int value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)"/>
+        public static ApparentEnergy VoltampereHours(this int value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double?)"/>
-        public static ApparentEnergy? VoltamperesHour(this int? value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double?)"/>
+        public static ApparentEnergy? VoltampereHours(this int? value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double)"/>
-        public static ApparentEnergy VoltamperesHour(this long value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)"/>
+        public static ApparentEnergy VoltampereHours(this long value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double?)"/>
-        public static ApparentEnergy? VoltamperesHour(this long? value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double?)"/>
+        public static ApparentEnergy? VoltampereHours(this long? value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double)"/>
-        public static ApparentEnergy VoltamperesHour(this double value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)"/>
+        public static ApparentEnergy VoltampereHours(this double value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double?)"/>
-        public static ApparentEnergy? VoltamperesHour(this double? value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double?)"/>
+        public static ApparentEnergy? VoltampereHours(this double? value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double)"/>
-        public static ApparentEnergy VoltamperesHour(this float value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)"/>
+        public static ApparentEnergy VoltampereHours(this float value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double?)"/>
-        public static ApparentEnergy? VoltamperesHour(this float? value) => ApparentEnergy.FromVoltamperesHour(value);
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double?)"/>
+        public static ApparentEnergy? VoltampereHours(this float? value) => ApparentEnergy.FromVoltampereHours(value);
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double)"/>
-        public static ApparentEnergy VoltamperesHour(this decimal value) => ApparentEnergy.FromVoltamperesHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double)"/>
+        public static ApparentEnergy VoltampereHours(this decimal value) => ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltamperesHour(double?)"/>
-        public static ApparentEnergy? VoltamperesHour(this decimal? value) => ApparentEnergy.FromVoltamperesHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(double?)"/>
+        public static ApparentEnergy? VoltampereHours(this decimal? value) => ApparentEnergy.FromVoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
