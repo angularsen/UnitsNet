@@ -50,52 +50,52 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BytesPerSecondInOneBitPerSecond => 0.125d;
 
-        protected override double ExabitsPerSecondInOneBitPerSecond => 1e-18d;
+        protected override double ExabitsPerSecondInOneBitPerSecond => 1E-18d;
 
-        protected override double ExabytesPerSecondInOneBitPerSecond => 0.125d * 1e-18d;
+        protected override double ExabytesPerSecondInOneBitPerSecond => 1.25E-19d;
 
-        protected override double ExbibitsPerSecondInOneBitPerSecond => 1d / Math.Pow(1024, 6);
+        protected override double ExbibitsPerSecondInOneBitPerSecond => 8.67361738E-19d;
 
-        protected override double ExbibytesPerSecondInOneBitPerSecond => 8d / Math.Pow(1024, 6);
+        protected override double ExbibytesPerSecondInOneBitPerSecond => 1.0842021724855E-19d;
 
-        protected override double GibibitsPerSecondInOneBitPerSecond => 1d / Math.Pow(1024, 3);
+        protected override double GibibitsPerSecondInOneBitPerSecond => 9.31322574615479E-10d;
 
-        protected override double GibibytesPerSecondInOneBitPerSecond => 1d / 8 / Math.Pow(1024, 3);
+        protected override double GibibytesPerSecondInOneBitPerSecond => 1.16415321826935E-10d;
 
-        protected override double GigabitsPerSecondInOneBitPerSecond => 1e-9d;
+        protected override double GigabitsPerSecondInOneBitPerSecond => 1E-9d;
 
-        protected override double GigabytesPerSecondInOneBitPerSecond => 0.125d * 1e-9d;
+        protected override double GigabytesPerSecondInOneBitPerSecond => 1.25E-10d;
 
-        protected override double KibibitsPerSecondInOneBitPerSecond => 1d / 1024d;
+        protected override double KibibitsPerSecondInOneBitPerSecond => 0.0009765625d;
 
-        protected override double KibibytesPerSecondInOneBitPerSecond => 1d / 8 / 1024d;
+        protected override double KibibytesPerSecondInOneBitPerSecond => 0.0001220703125d;
 
         protected override double KilobitsPerSecondInOneBitPerSecond => 0.001d;
 
         protected override double KilobytesPerSecondInOneBitPerSecond => 0.000125d;
 
-        protected override double MebibitsPerSecondInOneBitPerSecond => 1d / Math.Pow(1024, 2);
+        protected override double MebibitsPerSecondInOneBitPerSecond => 9.5367431640625E-07d;
 
-        protected override double MebibytesPerSecondInOneBitPerSecond => 1d / 8 / Math.Pow(1024, 2);
+        protected override double MebibytesPerSecondInOneBitPerSecond => 1.19209289550781E-07d;
 
-        protected override double MegabitsPerSecondInOneBitPerSecond => 1e-6d;
+        protected override double MegabitsPerSecondInOneBitPerSecond => 1E-6d;
 
-        protected override double MegabytesPerSecondInOneBitPerSecond => 0.125d * 1e-6d;
+        protected override double MegabytesPerSecondInOneBitPerSecond => 1.25E-07d;
 
-        protected override double PebibitsPerSecondInOneBitPerSecond => 1d / Math.Pow(1024, 5);
+        protected override double PebibitsPerSecondInOneBitPerSecond => 8.88178419700125E-16d;
 
-        protected override double PebibytesPerSecondInOneBitPerSecond => 1d / 8 / Math.Pow(1024, 5);
+        protected override double PebibytesPerSecondInOneBitPerSecond => 1.11022302462516E-16d;
 
-        protected override double PetabitsPerSecondInOneBitPerSecond => 1e-15d;
+        protected override double PetabitsPerSecondInOneBitPerSecond => 1E-15d;
 
-        protected override double PetabytesPerSecondInOneBitPerSecond => 0.125d * 1e-15d;
+        protected override double PetabytesPerSecondInOneBitPerSecond => 1.25E-16d;
 
-        protected override double TebibitsPerSecondInOneBitPerSecond => 1d / Math.Pow(1024, 4);
+        protected override double TebibitsPerSecondInOneBitPerSecond => 9.09494701772928E-13d;
 
-        protected override double TebibytesPerSecondInOneBitPerSecond => 1d / 8 / Math.Pow(1024, 4);
+        protected override double TebibytesPerSecondInOneBitPerSecond => 1.13686837721616E-13d;
 
-        protected override double TerabitsPerSecondInOneBitPerSecond => 1e-12d;
+        protected override double TerabitsPerSecondInOneBitPerSecond => 1E-12d;
 
-        protected override double TerabytesPerSecondInOneBitPerSecond => 0.125d * 1e-12d;
+        protected override double TerabytesPerSecondInOneBitPerSecond => 1.25E-13d;
     }
 }
