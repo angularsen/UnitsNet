@@ -49,11 +49,11 @@ namespace UnitsNet.Tests.CustomCode
         /// <summary>
         /// Gets the kilowatt per square meter in one watt per square meter.
         /// </summary>
-        protected override double KilowattPerSquareMeterInOneWattPerSquareMeter => 1E-3;
+        protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1E-3;
 
         /// <summary>
         /// Gets the watt per square meter in one watt per square meter.
         /// </summary>
-        protected override double WattPerSquareMeterInOneWattPerSquareMeter => 1;
+        protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
     }
 }

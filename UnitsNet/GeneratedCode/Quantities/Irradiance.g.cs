@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Irradiance.
         /// </summary>
-        private readonly double _wattPerSquareMeter;
+        private readonly double _wattsPerSquareMeter;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public Irradiance(double wattpersquaremeter)
+        public Irradiance(double wattspersquaremeter)
         {
-            _wattPerSquareMeter = Convert.ToDouble(wattpersquaremeter);
+            _wattsPerSquareMeter = Convert.ToDouble(wattspersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        Irradiance(long wattpersquaremeter)
+        Irradiance(long wattspersquaremeter)
         {
-            _wattPerSquareMeter = Convert.ToDouble(wattpersquaremeter);
+            _wattsPerSquareMeter = Convert.ToDouble(wattspersquaremeter);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        Irradiance(decimal wattpersquaremeter)
+        Irradiance(decimal wattspersquaremeter)
         {
-            _wattPerSquareMeter = Convert.ToDouble(wattpersquaremeter);
+            _wattsPerSquareMeter = Convert.ToDouble(wattspersquaremeter);
         }
 
         #region Properties
@@ -130,19 +130,19 @@ namespace UnitsNet
         public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().ToArray();
 
         /// <summary>
-        ///     Get Irradiance in KilowattPerSquareMeter.
+        ///     Get Irradiance in KilowattsPerSquareMeter.
         /// </summary>
-        public double KilowattPerSquareMeter
+        public double KilowattsPerSquareMeter
         {
-            get { return (_wattPerSquareMeter) / 1e3d; }
+            get { return (_wattsPerSquareMeter) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get Irradiance in WattPerSquareMeter.
+        ///     Get Irradiance in WattsPerSquareMeter.
         /// </summary>
-        public double WattPerSquareMeter
+        public double WattsPerSquareMeter
         {
-            get { return _wattPerSquareMeter; }
+            get { return _wattsPerSquareMeter; }
         }
 
         #endregion
@@ -155,37 +155,37 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Irradiance from KilowattPerSquareMeter.
+        ///     Get Irradiance from KilowattsPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Irradiance FromKilowattPerSquareMeter(double kilowattpersquaremeter)
+        public static Irradiance FromKilowattsPerSquareMeter(double kilowattspersquaremeter)
         {
-            double value = (double) kilowattpersquaremeter;
+            double value = (double) kilowattspersquaremeter;
             return new Irradiance((value) * 1e3d);
         }
 #else
-        public static Irradiance FromKilowattPerSquareMeter(QuantityValue kilowattpersquaremeter)
+        public static Irradiance FromKilowattsPerSquareMeter(QuantityValue kilowattspersquaremeter)
         {
-            double value = (double) kilowattpersquaremeter;
+            double value = (double) kilowattspersquaremeter;
             return new Irradiance(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
-        ///     Get Irradiance from WattPerSquareMeter.
+        ///     Get Irradiance from WattsPerSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Irradiance FromWattPerSquareMeter(double wattpersquaremeter)
+        public static Irradiance FromWattsPerSquareMeter(double wattspersquaremeter)
         {
-            double value = (double) wattpersquaremeter;
+            double value = (double) wattspersquaremeter;
             return new Irradiance(value);
         }
 #else
-        public static Irradiance FromWattPerSquareMeter(QuantityValue wattpersquaremeter)
+        public static Irradiance FromWattsPerSquareMeter(QuantityValue wattspersquaremeter)
         {
-            double value = (double) wattpersquaremeter;
+            double value = (double) wattspersquaremeter;
             return new Irradiance((value));
         }
 #endif
@@ -193,13 +193,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable Irradiance from nullable KilowattPerSquareMeter.
+        ///     Get nullable Irradiance from nullable KilowattsPerSquareMeter.
         /// </summary>
-        public static Irradiance? FromKilowattPerSquareMeter(QuantityValue? kilowattpersquaremeter)
+        public static Irradiance? FromKilowattsPerSquareMeter(QuantityValue? kilowattspersquaremeter)
         {
-            if (kilowattpersquaremeter.HasValue)
+            if (kilowattspersquaremeter.HasValue)
             {
-                return FromKilowattPerSquareMeter(kilowattpersquaremeter.Value);
+                return FromKilowattsPerSquareMeter(kilowattspersquaremeter.Value);
             }
             else
             {
@@ -208,13 +208,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Irradiance from nullable WattPerSquareMeter.
+        ///     Get nullable Irradiance from nullable WattsPerSquareMeter.
         /// </summary>
-        public static Irradiance? FromWattPerSquareMeter(QuantityValue? wattpersquaremeter)
+        public static Irradiance? FromWattsPerSquareMeter(QuantityValue? wattspersquaremeter)
         {
-            if (wattpersquaremeter.HasValue)
+            if (wattspersquaremeter.HasValue)
             {
-                return FromWattPerSquareMeter(wattpersquaremeter.Value);
+                return FromWattsPerSquareMeter(wattspersquaremeter.Value);
             }
             else
             {
@@ -241,9 +241,9 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case IrradianceUnit.KilowattPerSquareMeter:
-                    return FromKilowattPerSquareMeter(value);
+                    return FromKilowattsPerSquareMeter(value);
                 case IrradianceUnit.WattPerSquareMeter:
-                    return FromWattPerSquareMeter(value);
+                    return FromWattsPerSquareMeter(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -267,9 +267,9 @@ namespace UnitsNet
             switch (fromUnit)
             {
                 case IrradianceUnit.KilowattPerSquareMeter:
-                    return FromKilowattPerSquareMeter(value.Value);
+                    return FromKilowattsPerSquareMeter(value.Value);
                 case IrradianceUnit.WattPerSquareMeter:
-                    return FromWattPerSquareMeter(value.Value);
+                    return FromWattsPerSquareMeter(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -308,37 +308,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Irradiance operator -(Irradiance right)
         {
-            return new Irradiance(-right._wattPerSquareMeter);
+            return new Irradiance(-right._wattsPerSquareMeter);
         }
 
         public static Irradiance operator +(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left._wattPerSquareMeter + right._wattPerSquareMeter);
+            return new Irradiance(left._wattsPerSquareMeter + right._wattsPerSquareMeter);
         }
 
         public static Irradiance operator -(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left._wattPerSquareMeter - right._wattPerSquareMeter);
+            return new Irradiance(left._wattsPerSquareMeter - right._wattsPerSquareMeter);
         }
 
         public static Irradiance operator *(double left, Irradiance right)
         {
-            return new Irradiance(left*right._wattPerSquareMeter);
+            return new Irradiance(left*right._wattsPerSquareMeter);
         }
 
         public static Irradiance operator *(Irradiance left, double right)
         {
-            return new Irradiance(left._wattPerSquareMeter*(double)right);
+            return new Irradiance(left._wattsPerSquareMeter*(double)right);
         }
 
         public static Irradiance operator /(Irradiance left, double right)
         {
-            return new Irradiance(left._wattPerSquareMeter/(double)right);
+            return new Irradiance(left._wattsPerSquareMeter/(double)right);
         }
 
         public static double operator /(Irradiance left, Irradiance right)
         {
-            return Convert.ToDouble(left._wattPerSquareMeter/right._wattPerSquareMeter);
+            return Convert.ToDouble(left._wattsPerSquareMeter/right._wattsPerSquareMeter);
         }
 #endif
 
@@ -361,43 +361,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Irradiance other)
         {
-            return _wattPerSquareMeter.CompareTo(other._wattPerSquareMeter);
+            return _wattsPerSquareMeter.CompareTo(other._wattsPerSquareMeter);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Irradiance left, Irradiance right)
         {
-            return left._wattPerSquareMeter <= right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter <= right._wattsPerSquareMeter;
         }
 
         public static bool operator >=(Irradiance left, Irradiance right)
         {
-            return left._wattPerSquareMeter >= right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter >= right._wattsPerSquareMeter;
         }
 
         public static bool operator <(Irradiance left, Irradiance right)
         {
-            return left._wattPerSquareMeter < right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter < right._wattsPerSquareMeter;
         }
 
         public static bool operator >(Irradiance left, Irradiance right)
         {
-            return left._wattPerSquareMeter > right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter > right._wattsPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Irradiance left, Irradiance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._wattPerSquareMeter == right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter == right._wattsPerSquareMeter;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Irradiance left, Irradiance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._wattPerSquareMeter != right._wattPerSquareMeter;
+            return left._wattsPerSquareMeter != right._wattsPerSquareMeter;
         }
 #endif
 
@@ -409,7 +409,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _wattPerSquareMeter.Equals(((Irradiance) obj)._wattPerSquareMeter);
+            return _wattsPerSquareMeter.Equals(((Irradiance) obj)._wattsPerSquareMeter);
         }
 
         /// <summary>
@@ -422,12 +422,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Irradiance other, Irradiance maxError)
         {
-            return Math.Abs(_wattPerSquareMeter - other._wattPerSquareMeter) <= maxError._wattPerSquareMeter;
+            return Math.Abs(_wattsPerSquareMeter - other._wattsPerSquareMeter) <= maxError._wattsPerSquareMeter;
         }
 
         public override int GetHashCode()
         {
-            return _wattPerSquareMeter.GetHashCode();
+            return _wattsPerSquareMeter.GetHashCode();
         }
 
         #endregion
@@ -444,9 +444,9 @@ namespace UnitsNet
             switch (unit)
             {
                 case IrradianceUnit.KilowattPerSquareMeter:
-                    return KilowattPerSquareMeter;
+                    return KilowattsPerSquareMeter;
                 case IrradianceUnit.WattPerSquareMeter:
-                    return WattPerSquareMeter;
+                    return WattsPerSquareMeter;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -523,7 +523,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     IrradianceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromWattPerSquareMeter(x.WattPerSquareMeter + y.WattPerSquareMeter));
+                }, (x, y) => FromWattsPerSquareMeter(x.WattsPerSquareMeter + y.WattsPerSquareMeter));
         }
 
         /// <summary>

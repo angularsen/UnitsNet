@@ -46,69 +46,69 @@ namespace UnitsNet.Extensions.NumberToIrradiance
     {
         #region KilowattPerSquareMeter
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double)"/>
-        public static Irradiance KilowattPerSquareMeter(this int value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)"/>
+        public static Irradiance KilowattsPerSquareMeter(this int value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double?)"/>
-        public static Irradiance? KilowattPerSquareMeter(this int? value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double?)"/>
+        public static Irradiance? KilowattsPerSquareMeter(this int? value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double)"/>
-        public static Irradiance KilowattPerSquareMeter(this long value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)"/>
+        public static Irradiance KilowattsPerSquareMeter(this long value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double?)"/>
-        public static Irradiance? KilowattPerSquareMeter(this long? value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double?)"/>
+        public static Irradiance? KilowattsPerSquareMeter(this long? value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double)"/>
-        public static Irradiance KilowattPerSquareMeter(this double value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)"/>
+        public static Irradiance KilowattsPerSquareMeter(this double value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double?)"/>
-        public static Irradiance? KilowattPerSquareMeter(this double? value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double?)"/>
+        public static Irradiance? KilowattsPerSquareMeter(this double? value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double)"/>
-        public static Irradiance KilowattPerSquareMeter(this float value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)"/>
+        public static Irradiance KilowattsPerSquareMeter(this float value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double?)"/>
-        public static Irradiance? KilowattPerSquareMeter(this float? value) => Irradiance.FromKilowattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double?)"/>
+        public static Irradiance? KilowattsPerSquareMeter(this float? value) => Irradiance.FromKilowattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double)"/>
-        public static Irradiance KilowattPerSquareMeter(this decimal value) => Irradiance.FromKilowattPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)"/>
+        public static Irradiance KilowattsPerSquareMeter(this decimal value) => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromKilowattPerSquareMeter(double?)"/>
-        public static Irradiance? KilowattPerSquareMeter(this decimal? value) => Irradiance.FromKilowattPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double?)"/>
+        public static Irradiance? KilowattsPerSquareMeter(this decimal? value) => Irradiance.FromKilowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattPerSquareMeter
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double)"/>
-        public static Irradiance WattPerSquareMeter(this int value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)"/>
+        public static Irradiance WattsPerSquareMeter(this int value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double?)"/>
-        public static Irradiance? WattPerSquareMeter(this int? value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double?)"/>
+        public static Irradiance? WattsPerSquareMeter(this int? value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double)"/>
-        public static Irradiance WattPerSquareMeter(this long value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)"/>
+        public static Irradiance WattsPerSquareMeter(this long value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double?)"/>
-        public static Irradiance? WattPerSquareMeter(this long? value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double?)"/>
+        public static Irradiance? WattsPerSquareMeter(this long? value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double)"/>
-        public static Irradiance WattPerSquareMeter(this double value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)"/>
+        public static Irradiance WattsPerSquareMeter(this double value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double?)"/>
-        public static Irradiance? WattPerSquareMeter(this double? value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double?)"/>
+        public static Irradiance? WattsPerSquareMeter(this double? value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double)"/>
-        public static Irradiance WattPerSquareMeter(this float value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)"/>
+        public static Irradiance WattsPerSquareMeter(this float value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double?)"/>
-        public static Irradiance? WattPerSquareMeter(this float? value) => Irradiance.FromWattPerSquareMeter(value);
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double?)"/>
+        public static Irradiance? WattsPerSquareMeter(this float? value) => Irradiance.FromWattsPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double)"/>
-        public static Irradiance WattPerSquareMeter(this decimal value) => Irradiance.FromWattPerSquareMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)"/>
+        public static Irradiance WattsPerSquareMeter(this decimal value) => Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattPerSquareMeter(double?)"/>
-        public static Irradiance? WattPerSquareMeter(this decimal? value) => Irradiance.FromWattPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double?)"/>
+        public static Irradiance? WattsPerSquareMeter(this decimal? value) => Irradiance.FromWattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

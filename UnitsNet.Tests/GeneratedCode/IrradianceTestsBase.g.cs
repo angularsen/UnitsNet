@@ -52,79 +52,79 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class IrradianceTestsBase
     {
-        protected abstract double KilowattPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double WattPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilowattPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double WattPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
         public void WattPerSquareMeterToIrradianceUnits()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
-            AssertEx.EqualTolerance(KilowattPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilowattPerSquareMeter, KilowattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(WattPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.WattPerSquareMeter, WattPerSquareMeterTolerance);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.KilowattPerSquareMeter).KilowattPerSquareMeter, KilowattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.WattPerSquareMeter).WattPerSquareMeter, WattPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.KilowattPerSquareMeter).KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.WattPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
-            AssertEx.EqualTolerance(KilowattPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(IrradianceUnit.KilowattPerSquareMeter), KilowattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(WattPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(IrradianceUnit.WattPerSquareMeter), WattPerSquareMeterTolerance);
+            var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(IrradianceUnit.KilowattPerSquareMeter), KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(IrradianceUnit.WattPerSquareMeter), WattsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
-            AssertEx.EqualTolerance(1, Irradiance.FromKilowattPerSquareMeter(wattpersquaremeter.KilowattPerSquareMeter).WattPerSquareMeter, KilowattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Irradiance.FromWattPerSquareMeter(wattpersquaremeter.WattPerSquareMeter).WattPerSquareMeter, WattPerSquareMeterTolerance);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+            AssertEx.EqualTolerance(1, Irradiance.FromKilowattsPerSquareMeter(wattpersquaremeter.KilowattsPerSquareMeter).WattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, Irradiance.FromWattsPerSquareMeter(wattpersquaremeter.WattsPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            Irradiance v = Irradiance.FromWattPerSquareMeter(1);
-            AssertEx.EqualTolerance(-1, -v.WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Irradiance.FromWattPerSquareMeter(3)-v).WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Irradiance.FromWattPerSquareMeter(10)/5).WattPerSquareMeter, WattPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, Irradiance.FromWattPerSquareMeter(10)/Irradiance.FromWattPerSquareMeter(5), WattPerSquareMeterTolerance);
+            Irradiance v = Irradiance.FromWattsPerSquareMeter(1);
+            AssertEx.EqualTolerance(-1, -v.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (Irradiance.FromWattsPerSquareMeter(3)-v).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, (Irradiance.FromWattsPerSquareMeter(10)/5).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(2, Irradiance.FromWattsPerSquareMeter(10)/Irradiance.FromWattsPerSquareMeter(5), WattsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            Irradiance oneWattPerSquareMeter = Irradiance.FromWattPerSquareMeter(1);
-            Irradiance twoWattPerSquareMeter = Irradiance.FromWattPerSquareMeter(2);
+            Irradiance oneWattPerSquareMeter = Irradiance.FromWattsPerSquareMeter(1);
+            Irradiance twoWattsPerSquareMeter = Irradiance.FromWattsPerSquareMeter(2);
 
-            Assert.True(oneWattPerSquareMeter < twoWattPerSquareMeter);
-            Assert.True(oneWattPerSquareMeter <= twoWattPerSquareMeter);
-            Assert.True(twoWattPerSquareMeter > oneWattPerSquareMeter);
-            Assert.True(twoWattPerSquareMeter >= oneWattPerSquareMeter);
+            Assert.True(oneWattPerSquareMeter < twoWattsPerSquareMeter);
+            Assert.True(oneWattPerSquareMeter <= twoWattsPerSquareMeter);
+            Assert.True(twoWattsPerSquareMeter > oneWattPerSquareMeter);
+            Assert.True(twoWattsPerSquareMeter >= oneWattPerSquareMeter);
 
-            Assert.False(oneWattPerSquareMeter > twoWattPerSquareMeter);
-            Assert.False(oneWattPerSquareMeter >= twoWattPerSquareMeter);
-            Assert.False(twoWattPerSquareMeter < oneWattPerSquareMeter);
-            Assert.False(twoWattPerSquareMeter <= oneWattPerSquareMeter);
+            Assert.False(oneWattPerSquareMeter > twoWattsPerSquareMeter);
+            Assert.False(oneWattPerSquareMeter >= twoWattsPerSquareMeter);
+            Assert.False(twoWattsPerSquareMeter < oneWattPerSquareMeter);
+            Assert.False(twoWattsPerSquareMeter <= oneWattPerSquareMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.Equal(0, wattpersquaremeter.CompareTo(wattpersquaremeter));
             Assert.True(wattpersquaremeter.CompareTo(Irradiance.Zero) > 0);
             Assert.True(Irradiance.Zero.CompareTo(wattpersquaremeter) < 0);
@@ -133,14 +133,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.Throws<ArgumentException>(() => wattpersquaremeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.Throws<ArgumentNullException>(() => wattpersquaremeter.CompareTo(null));
         }
 
@@ -148,8 +148,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualityOperators()
         {
-            Irradiance a = Irradiance.FromWattPerSquareMeter(1);
-            Irradiance b = Irradiance.FromWattPerSquareMeter(2);
+            Irradiance a = Irradiance.FromWattsPerSquareMeter(1);
+            Irradiance b = Irradiance.FromWattsPerSquareMeter(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -163,22 +163,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            Irradiance v = Irradiance.FromWattPerSquareMeter(1);
-            Assert.True(v.Equals(Irradiance.FromWattPerSquareMeter(1), Irradiance.FromWattPerSquareMeter(WattPerSquareMeterTolerance)));
-            Assert.False(v.Equals(Irradiance.Zero, Irradiance.FromWattPerSquareMeter(WattPerSquareMeterTolerance)));
+            Irradiance v = Irradiance.FromWattsPerSquareMeter(1);
+            Assert.True(v.Equals(Irradiance.FromWattsPerSquareMeter(1), Irradiance.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
+            Assert.False(v.Equals(Irradiance.Zero, Irradiance.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.False(wattpersquaremeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            Irradiance wattpersquaremeter = Irradiance.FromWattPerSquareMeter(1);
+            Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.False(wattpersquaremeter.Equals(null));
         }
     }

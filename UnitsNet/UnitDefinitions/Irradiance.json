@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "WattPerSquareMeter",
-      "PluralName": "WattPerSquareMeter",
+      "PluralName": "WattsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Kilo" ],
