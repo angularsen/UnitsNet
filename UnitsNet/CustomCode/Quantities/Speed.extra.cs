@@ -76,6 +76,11 @@ namespace UnitsNet
         {
             return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
         }
+
+        public static MassFlux operator *(Speed speed, Density density)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
+        }
 #endif
     }
 }

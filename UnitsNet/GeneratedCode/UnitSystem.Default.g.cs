@@ -283,6 +283,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "рад"),
                             }),
                     }),
+                new UnitLocalization(typeof (ApparentEnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.KilovoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kVAh"),
+                            }),
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.MegavoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MVAh"),
+                            }),
+                        new CulturesForEnumValue((int) ApparentEnergyUnit.VoltampereHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "VAh"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ApparentPowerUnit),
                     new[]
                     {
@@ -732,6 +751,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "S"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricConductanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Microsiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Millisiemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mS"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricConductanceUnit.Siemens,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "S"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ElectricCurrentUnit),
                     new[]
                     {
@@ -1067,7 +1105,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerHour,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cf/hr"),
+                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/min"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
                             new[]
@@ -1080,11 +1123,31 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/h"),
                                 new AbbreviationsForCulture("ru-RU", "м³/ч"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicMeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/min"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.CubicMeterPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/h"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/min"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/s"),
                             }),
                         new CulturesForEnumValue((int) FlowUnit.DecilitersPerMinute,
                             new[]
@@ -1137,10 +1200,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
                             }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
+                            }),
                         new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "GPM"),
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
+                            }),
+                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),
@@ -1487,6 +1560,20 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "TB"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (IrradianceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) IrradianceUnit.KilowattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradianceUnit.WattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m²"),
                             }),
                     }),
                 new UnitLocalization(typeof (IrradiationUnit),
@@ -1910,6 +1997,20 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "t/d"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MassFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MassFluxUnit.GramPerSecondPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g·s⁻¹·m⁻²"),
+                            }),
+                        new CulturesForEnumValue((int) MassFluxUnit.KilogramPerSecondPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg·s⁻¹·m⁻²"),
                             }),
                     }),
                 new UnitLocalization(typeof (MassMomentOfInertiaUnit),
@@ -3635,6 +3736,134 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", ""),
                                 new AbbreviationsForCulture("ru-RU", ""),
                                 new AbbreviationsForCulture("nb-NO", ""),
+                            }),
+                    }),
+                new UnitLocalization(typeof (VolumeFlowUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CentilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicDecimeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dm³/min"),
+                                new AbbreviationsForCulture("ru-RU", "дм³/мин"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/min"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/s"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/h"),
+                                new AbbreviationsForCulture("ru-RU", "м³/ч"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/min"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "m³/s"),
+                                new AbbreviationsForCulture("ru-RU", "м³/с"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/h"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/min"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yd³/s"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.DecilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.KilolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPH"),
+                                new AbbreviationsForCulture("ru-RU", "л/ч"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "LPS"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MicrolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MillilitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonsPerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MGD"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.NanolitersPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerDay,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
                             }),
                     }),
              });

@@ -12,13 +12,14 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 ### Build Targets
 
 * .NET Standard 1.0
+* .NET 4.0
 * .NET 3.5 Client
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
 
 
 ### Overview
 
-* [48 quantities with a total of 500+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [50+ quantities with a total of 600+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
 * [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
@@ -26,6 +27,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 * [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Example: Creating a unit converter app](#example-app)
+* [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
 * [Serializable with JSON.NET](#serialization)
 * Extensible with [custom units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units)
@@ -139,6 +141,17 @@ double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimet
 double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
 
+### Example: WPF app using IValueConverter to parse quantities from input
+
+Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
+
+![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
+
+
+The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
+
+NOTE: A lot of reflection and complexity was introduced due to not having a base type. See #371 for discussion on adding base types.
+
 ### <a name="precision"></a>Precision and Accuracy
 
 A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units.
@@ -217,6 +230,6 @@ http://www.nuget.org/packages/Microsoft.IoT.Devices (NuGet package)
 > Software for creating printable hex maps for use in pen and paper RPGs. Both
 > a user-friendly app and a high-level library for generating labelled hexmaps.
 
-https://github.com/MartinEden/UnitsNet
+https://bitbucket.org/MartinEden/Crawlspace
 
 *- Martin Eden, project maintainer*

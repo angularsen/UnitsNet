@@ -102,5 +102,19 @@ namespace UnitsNet.Tests.CustomCode
             Power power = MassFlow.FromKilogramsPerSecond(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
             Assert.Equal(200, power.Watts);
         }
+
+        [Fact]
+        public void MassFlowDividedByAreaEqualsMassFlux()
+        {
+            MassFlux massFlux = MassFlow.FromKilogramsPerSecond(20) / Area.FromSquareMeters(2);
+            Assert.Equal(10, massFlux.KilogramsPerSecondPerSquareMeter);
+        }
+
+        [Fact]
+        public void MassFlowDividedByMassFluxEqualsArea()
+        {
+            Area area = MassFlow.FromKilogramsPerSecond(20) / MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(10, area.SquareMeters);
+        }
     }
 }

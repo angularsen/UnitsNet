@@ -132,5 +132,12 @@ namespace UnitsNet.Tests.CustomCode
             var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
             AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
         }
+
+        [Fact]
+        public void DensityTimesSpeedEqualsMassFlux()
+        {
+            MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
+            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
+        }
     }
 }

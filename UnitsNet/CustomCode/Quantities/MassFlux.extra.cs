@@ -19,52 +19,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if !WINDOWS_UWP
+using System;
+
+#endif
+
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Density
+    public sealed partial class MassFlux
 #else
-    public partial struct Density
+    public partial struct MassFlux
 #endif
     {
-        /// <summary>
-        ///     Get <see cref="Density" /> from <see cref="Molarity" />.
-        /// </summary>
-        /// <param name="molarity"></param>
-        /// <param name="molecularWeight"></param>
-        public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
-        {
-            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
-        }
-
-        public static Molarity ToMolarity(Density density, Mass molecularWeight)
-        {
-            return Molarity.FromMolesPerCubicMeter(density.KilogramsPerCubicMeter / molecularWeight.Kilograms);
-        }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Mass operator *(Density density, Volume volume)
+        public static Density operator /(MassFlux massFlux, Speed speed)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+            return Density.FromKilogramsPerCubicMeter(massFlux.KilogramsPerSecondPerSquareMeter / speed.MetersPerSecond);
         }
-
-        public static Mass operator *(Volume volume, Density density)
+        public static Speed operator /(MassFlux massFlux, Density density)
         {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+            return Speed.FromMetersPerSecond(massFlux.KilogramsPerSecondPerSquareMeter / density.KilogramsPerCubicMeter);
         }
-
-        public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
+        public static MassFlow operator *(MassFlux massFlux, Area area)
         {
-            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
-        }
-
-        public static MassFlux operator *(Density density, Speed speed)
-        {
-            return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
+            return MassFlow.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
         }
 #endif
     }
