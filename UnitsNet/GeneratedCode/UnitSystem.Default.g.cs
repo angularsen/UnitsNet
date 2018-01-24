@@ -2860,6 +2860,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "об/с"),
                             }),
                     }),
+                new UnitLocalization(typeof (SolidAngleUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) SolidAngleUnit.Steradian,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "sr"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (SpecificEnergyUnit),
                     new[]
                     {
@@ -3385,6 +3394,15 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "∆K"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (ThermalConductivityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ThermalConductivityUnit.WattPerMeterKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m·K"),
                             }),
                     }),
                 new UnitLocalization(typeof (ThermalResistanceUnit),
