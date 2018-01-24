@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -124,6 +125,27 @@ namespace UnitsNet.Tests.CustomCode
         {
             Mass mass = Volume.FromCubicMeters(2)*Density.FromKilogramsPerCubicMeter(3);
             Assert.Equal(mass, Mass.FromKilograms(6));
+        }
+
+        [Fact]
+        public void VolumeDividedByTimeSpanEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(20) / TimeSpan.FromSeconds(2);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
+        }
+
+        [Fact]
+        public void VolumeDividedByDurationEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(20) / Duration.FromSeconds(2);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
+        }
+
+        [Fact]
+        public void VolumeDividedByVolumeFlowEqualsTimeSpan()
+        {
+            TimeSpan timeSpan = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
+            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
         }
     }
 }

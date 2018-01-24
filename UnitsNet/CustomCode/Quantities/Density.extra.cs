@@ -61,6 +61,11 @@ namespace UnitsNet
         {
             return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
         }
+
+        public static MassFlux operator *(Density density, Speed speed)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
+        }
 #endif
     }
 }

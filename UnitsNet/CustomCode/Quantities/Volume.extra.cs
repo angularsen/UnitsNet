@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -40,6 +42,21 @@ namespace UnitsNet
         public static Length operator /(Volume volume, Area area)
         {
             return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+        }
+
+        public static VolumeFlow operator /(Volume volume, Duration duration)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / duration.Seconds);
+        }
+
+        public static VolumeFlow operator /(Volume volume, TimeSpan timeSpan)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.Seconds);
+        }
+
+        public static TimeSpan operator /(Volume volume, VolumeFlow volumeFlow)
+        {
+            return TimeSpan.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
         }
 #endif
     }
