@@ -633,6 +633,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This should no longer be used. ToString() uses the unit this quantity value was constructed with as default. Pass argument BaseUnit to preserve old behavior.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is $baseUnitSingularName
         /// </summary>
@@ -644,7 +645,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
