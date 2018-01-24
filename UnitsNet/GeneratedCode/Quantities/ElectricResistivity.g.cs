@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of ElectricResistivity.
         /// </summary>
-        private readonly double _ohmsMeter;
+        private readonly double _ohmMeters;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public ElectricResistivity(double ohmsmeter)
+        public ElectricResistivity(double ohmmeters)
         {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
+            _ohmMeters = Convert.ToDouble(ohmmeters);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistivity(long ohmsmeter)
+        ElectricResistivity(long ohmmeters)
         {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
+            _ohmMeters = Convert.ToDouble(ohmmeters);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        ElectricResistivity(decimal ohmsmeter)
+        ElectricResistivity(decimal ohmmeters)
         {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
+            _ohmMeters = Convert.ToDouble(ohmmeters);
         }
 
         #region Properties
@@ -130,11 +130,35 @@ namespace UnitsNet
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().ToArray();
 
         /// <summary>
-        ///     Get ElectricResistivity in OhmsMeter.
+        ///     Get ElectricResistivity in MicroohmMeters.
         /// </summary>
-        public double OhmsMeter
+        public double MicroohmMeters
         {
-            get { return _ohmsMeter; }
+            get { return (_ohmMeters) / 1e-6d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricResistivity in MilliohmMeters.
+        /// </summary>
+        public double MilliohmMeters
+        {
+            get { return (_ohmMeters) / 1e-3d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricResistivity in NanoohmMeters.
+        /// </summary>
+        public double NanoohmMeters
+        {
+            get { return (_ohmMeters) / 1e-9d; }
+        }
+
+        /// <summary>
+        ///     Get ElectricResistivity in OhmMeters.
+        /// </summary>
+        public double OhmMeters
+        {
+            get { return _ohmMeters; }
         }
 
         #endregion
@@ -147,19 +171,73 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get ElectricResistivity from OhmsMeter.
+        ///     Get ElectricResistivity from MicroohmMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromOhmsMeter(double ohmsmeter)
+        public static ElectricResistivity FromMicroohmMeters(double microohmmeters)
         {
-            double value = (double) ohmsmeter;
+            double value = (double) microohmmeters;
+            return new ElectricResistivity((value) * 1e-6d);
+        }
+#else
+        public static ElectricResistivity FromMicroohmMeters(QuantityValue microohmmeters)
+        {
+            double value = (double) microohmmeters;
+            return new ElectricResistivity(((value) * 1e-6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get ElectricResistivity from MilliohmMeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricResistivity FromMilliohmMeters(double milliohmmeters)
+        {
+            double value = (double) milliohmmeters;
+            return new ElectricResistivity((value) * 1e-3d);
+        }
+#else
+        public static ElectricResistivity FromMilliohmMeters(QuantityValue milliohmmeters)
+        {
+            double value = (double) milliohmmeters;
+            return new ElectricResistivity(((value) * 1e-3d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get ElectricResistivity from NanoohmMeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricResistivity FromNanoohmMeters(double nanoohmmeters)
+        {
+            double value = (double) nanoohmmeters;
+            return new ElectricResistivity((value) * 1e-9d);
+        }
+#else
+        public static ElectricResistivity FromNanoohmMeters(QuantityValue nanoohmmeters)
+        {
+            double value = (double) nanoohmmeters;
+            return new ElectricResistivity(((value) * 1e-9d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get ElectricResistivity from OhmMeters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricResistivity FromOhmMeters(double ohmmeters)
+        {
+            double value = (double) ohmmeters;
             return new ElectricResistivity(value);
         }
 #else
-        public static ElectricResistivity FromOhmsMeter(QuantityValue ohmsmeter)
+        public static ElectricResistivity FromOhmMeters(QuantityValue ohmmeters)
         {
-            double value = (double) ohmsmeter;
+            double value = (double) ohmmeters;
             return new ElectricResistivity((value));
         }
 #endif
@@ -167,13 +245,58 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable OhmsMeter.
+        ///     Get nullable ElectricResistivity from nullable MicroohmMeters.
         /// </summary>
-        public static ElectricResistivity? FromOhmsMeter(QuantityValue? ohmsmeter)
+        public static ElectricResistivity? FromMicroohmMeters(QuantityValue? microohmmeters)
         {
-            if (ohmsmeter.HasValue)
+            if (microohmmeters.HasValue)
             {
-                return FromOhmsMeter(ohmsmeter.Value);
+                return FromMicroohmMeters(microohmmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable MilliohmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromMilliohmMeters(QuantityValue? milliohmmeters)
+        {
+            if (milliohmmeters.HasValue)
+            {
+                return FromMilliohmMeters(milliohmmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable NanoohmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromNanoohmMeters(QuantityValue? nanoohmmeters)
+        {
+            if (nanoohmmeters.HasValue)
+            {
+                return FromNanoohmMeters(nanoohmmeters.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable OhmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromOhmMeters(QuantityValue? ohmmeters)
+        {
+            if (ohmmeters.HasValue)
+            {
+                return FromOhmMeters(ohmmeters.Value);
             }
             else
             {
@@ -199,8 +322,14 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case ElectricResistivityUnit.MicroohmMeter:
+                    return FromMicroohmMeters(value);
+                case ElectricResistivityUnit.MilliohmMeter:
+                    return FromMilliohmMeters(value);
+                case ElectricResistivityUnit.NanoohmMeter:
+                    return FromNanoohmMeters(value);
                 case ElectricResistivityUnit.OhmMeter:
-                    return FromOhmsMeter(value);
+                    return FromOhmMeters(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -223,8 +352,14 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case ElectricResistivityUnit.MicroohmMeter:
+                    return FromMicroohmMeters(value.Value);
+                case ElectricResistivityUnit.MilliohmMeter:
+                    return FromMilliohmMeters(value.Value);
+                case ElectricResistivityUnit.NanoohmMeter:
+                    return FromNanoohmMeters(value.Value);
                 case ElectricResistivityUnit.OhmMeter:
-                    return FromOhmsMeter(value.Value);
+                    return FromOhmMeters(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -263,37 +398,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricResistivity operator -(ElectricResistivity right)
         {
-            return new ElectricResistivity(-right._ohmsMeter);
+            return new ElectricResistivity(-right._ohmMeters);
         }
 
         public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left._ohmsMeter + right._ohmsMeter);
+            return new ElectricResistivity(left._ohmMeters + right._ohmMeters);
         }
 
         public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left._ohmsMeter - right._ohmsMeter);
+            return new ElectricResistivity(left._ohmMeters - right._ohmMeters);
         }
 
         public static ElectricResistivity operator *(double left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left*right._ohmsMeter);
+            return new ElectricResistivity(left*right._ohmMeters);
         }
 
         public static ElectricResistivity operator *(ElectricResistivity left, double right)
         {
-            return new ElectricResistivity(left._ohmsMeter*(double)right);
+            return new ElectricResistivity(left._ohmMeters*(double)right);
         }
 
         public static ElectricResistivity operator /(ElectricResistivity left, double right)
         {
-            return new ElectricResistivity(left._ohmsMeter/(double)right);
+            return new ElectricResistivity(left._ohmMeters/(double)right);
         }
 
         public static double operator /(ElectricResistivity left, ElectricResistivity right)
         {
-            return Convert.ToDouble(left._ohmsMeter/right._ohmsMeter);
+            return Convert.ToDouble(left._ohmMeters/right._ohmMeters);
         }
 #endif
 
@@ -316,43 +451,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricResistivity other)
         {
-            return _ohmsMeter.CompareTo(other._ohmsMeter);
+            return _ohmMeters.CompareTo(other._ohmMeters);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter <= right._ohmsMeter;
+            return left._ohmMeters <= right._ohmMeters;
         }
 
         public static bool operator >=(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter >= right._ohmsMeter;
+            return left._ohmMeters >= right._ohmMeters;
         }
 
         public static bool operator <(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter < right._ohmsMeter;
+            return left._ohmMeters < right._ohmMeters;
         }
 
         public static bool operator >(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter > right._ohmsMeter;
+            return left._ohmMeters > right._ohmMeters;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsMeter == right._ohmsMeter;
+            return left._ohmMeters == right._ohmMeters;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsMeter != right._ohmsMeter;
+            return left._ohmMeters != right._ohmMeters;
         }
 #endif
 
@@ -364,7 +499,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohmsMeter.Equals(((ElectricResistivity) obj)._ohmsMeter);
+            return _ohmMeters.Equals(((ElectricResistivity) obj)._ohmMeters);
         }
 
         /// <summary>
@@ -377,12 +512,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricResistivity other, ElectricResistivity maxError)
         {
-            return Math.Abs(_ohmsMeter - other._ohmsMeter) <= maxError._ohmsMeter;
+            return Math.Abs(_ohmMeters - other._ohmMeters) <= maxError._ohmMeters;
         }
 
         public override int GetHashCode()
         {
-            return _ohmsMeter.GetHashCode();
+            return _ohmMeters.GetHashCode();
         }
 
         #endregion
@@ -398,8 +533,14 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case ElectricResistivityUnit.MicroohmMeter:
+                    return MicroohmMeters;
+                case ElectricResistivityUnit.MilliohmMeter:
+                    return MilliohmMeters;
+                case ElectricResistivityUnit.NanoohmMeter:
+                    return NanoohmMeters;
                 case ElectricResistivityUnit.OhmMeter:
-                    return OhmsMeter;
+                    return OhmMeters;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -476,7 +617,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricResistivityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhmsMeter(x.OhmsMeter + y.OhmsMeter));
+                }, (x, y) => FromOhmMeters(x.OhmMeters + y.OhmMeters));
         }
 
         /// <summary>

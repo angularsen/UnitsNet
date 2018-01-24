@@ -6,9 +6,10 @@
   "Units": [
     {
       "SingularName": "OhmMeter",
-      "PluralName": "OhmsMeter",
+      "PluralName": "OhmMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

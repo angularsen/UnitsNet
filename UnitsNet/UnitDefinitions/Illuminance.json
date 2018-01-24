@@ -6,9 +6,10 @@
   "Units": [
     {
       "SingularName": "Lux",
-      "PluralName": "Luxes",
+      "PluralName": "Lux",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

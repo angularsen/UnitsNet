@@ -890,6 +890,21 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricResistivityUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.MicroohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µΩ·m"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.MilliohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mΩ·m"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.NanoohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nΩ·m"),
+                            }),
                         new CulturesForEnumValue((int) ElectricResistivityUnit.OhmMeter,
                             new[]
                             {
@@ -1367,10 +1382,25 @@ namespace UnitsNet
                 new UnitLocalization(typeof (IlluminanceUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) IlluminanceUnit.Kilolux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "klx"),
+                            }),
                         new CulturesForEnumValue((int) IlluminanceUnit.Lux,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lx"),
+                            }),
+                        new CulturesForEnumValue((int) IlluminanceUnit.Megalux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlx"),
+                            }),
+                        new CulturesForEnumValue((int) IlluminanceUnit.Millilux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mlx"),
                             }),
                     }),
                 new UnitLocalization(typeof (InformationUnit),

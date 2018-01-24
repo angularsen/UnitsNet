@@ -42,6 +42,9 @@ namespace UnitsNet.Units
     public enum ElectricResistivityUnit
     {
         Undefined = 0,
+        MicroohmMeter,
+        MilliohmMeter,
+        NanoohmMeter,
         OhmMeter,
     }
 }

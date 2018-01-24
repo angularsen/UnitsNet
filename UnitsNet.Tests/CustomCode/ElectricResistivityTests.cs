@@ -46,6 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistivityTests : ElectricResistivityTestsBase
     {
-        protected override double OhmsMeterInOneOhmMeter => 1;
+        protected override double NanoohmMetersInOneOhmMeter => 1E9;
+
+        protected override double MicroohmMetersInOneOhmMeter => 1E6;
+
+        protected override double MilliohmMetersInOneOhmMeter => 1E3;
+
+        protected override double OhmMetersInOneOhmMeter => 1;
     }
 }

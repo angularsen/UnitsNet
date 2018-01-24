@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     Base unit of Illuminance.
         /// </summary>
-        private readonly double _luxes;
+        private readonly double _lux;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
@@ -81,9 +81,9 @@ namespace UnitsNet
         }
 #endif
 
-        public Illuminance(double luxes)
+        public Illuminance(double lux)
         {
-            _luxes = Convert.ToDouble(luxes);
+            _lux = Convert.ToDouble(lux);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        Illuminance(long luxes)
+        Illuminance(long lux)
         {
-            _luxes = Convert.ToDouble(luxes);
+            _lux = Convert.ToDouble(lux);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        Illuminance(decimal luxes)
+        Illuminance(decimal lux)
         {
-            _luxes = Convert.ToDouble(luxes);
+            _lux = Convert.ToDouble(lux);
         }
 
         #region Properties
@@ -130,11 +130,35 @@ namespace UnitsNet
         public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().ToArray();
 
         /// <summary>
-        ///     Get Illuminance in Luxes.
+        ///     Get Illuminance in Kilolux.
         /// </summary>
-        public double Luxes
+        public double Kilolux
         {
-            get { return _luxes; }
+            get { return (_lux) / 1e3d; }
+        }
+
+        /// <summary>
+        ///     Get Illuminance in Lux.
+        /// </summary>
+        public double Lux
+        {
+            get { return _lux; }
+        }
+
+        /// <summary>
+        ///     Get Illuminance in Megalux.
+        /// </summary>
+        public double Megalux
+        {
+            get { return (_lux) / 1e6d; }
+        }
+
+        /// <summary>
+        ///     Get Illuminance in Millilux.
+        /// </summary>
+        public double Millilux
+        {
+            get { return (_lux) / 1e-3d; }
         }
 
         #endregion
@@ -147,33 +171,132 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Illuminance from Luxes.
+        ///     Get Illuminance from Kilolux.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Illuminance FromLuxes(double luxes)
+        public static Illuminance FromKilolux(double kilolux)
         {
-            double value = (double) luxes;
+            double value = (double) kilolux;
+            return new Illuminance((value) * 1e3d);
+        }
+#else
+        public static Illuminance FromKilolux(QuantityValue kilolux)
+        {
+            double value = (double) kilolux;
+            return new Illuminance(((value) * 1e3d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Illuminance from Lux.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Illuminance FromLux(double lux)
+        {
+            double value = (double) lux;
             return new Illuminance(value);
         }
 #else
-        public static Illuminance FromLuxes(QuantityValue luxes)
+        public static Illuminance FromLux(QuantityValue lux)
         {
-            double value = (double) luxes;
+            double value = (double) lux;
             return new Illuminance((value));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Illuminance from Megalux.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Illuminance FromMegalux(double megalux)
+        {
+            double value = (double) megalux;
+            return new Illuminance((value) * 1e6d);
+        }
+#else
+        public static Illuminance FromMegalux(QuantityValue megalux)
+        {
+            double value = (double) megalux;
+            return new Illuminance(((value) * 1e6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Illuminance from Millilux.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Illuminance FromMillilux(double millilux)
+        {
+            double value = (double) millilux;
+            return new Illuminance((value) * 1e-3d);
+        }
+#else
+        public static Illuminance FromMillilux(QuantityValue millilux)
+        {
+            double value = (double) millilux;
+            return new Illuminance(((value) * 1e-3d));
         }
 #endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable Illuminance from nullable Luxes.
+        ///     Get nullable Illuminance from nullable Kilolux.
         /// </summary>
-        public static Illuminance? FromLuxes(QuantityValue? luxes)
+        public static Illuminance? FromKilolux(QuantityValue? kilolux)
         {
-            if (luxes.HasValue)
+            if (kilolux.HasValue)
             {
-                return FromLuxes(luxes.Value);
+                return FromKilolux(kilolux.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Illuminance from nullable Lux.
+        /// </summary>
+        public static Illuminance? FromLux(QuantityValue? lux)
+        {
+            if (lux.HasValue)
+            {
+                return FromLux(lux.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Illuminance from nullable Megalux.
+        /// </summary>
+        public static Illuminance? FromMegalux(QuantityValue? megalux)
+        {
+            if (megalux.HasValue)
+            {
+                return FromMegalux(megalux.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Illuminance from nullable Millilux.
+        /// </summary>
+        public static Illuminance? FromMillilux(QuantityValue? millilux)
+        {
+            if (millilux.HasValue)
+            {
+                return FromMillilux(millilux.Value);
             }
             else
             {
@@ -199,8 +322,14 @@ namespace UnitsNet
         {
             switch (fromUnit)
             {
+                case IlluminanceUnit.Kilolux:
+                    return FromKilolux(value);
                 case IlluminanceUnit.Lux:
-                    return FromLuxes(value);
+                    return FromLux(value);
+                case IlluminanceUnit.Megalux:
+                    return FromMegalux(value);
+                case IlluminanceUnit.Millilux:
+                    return FromMillilux(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -223,8 +352,14 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
+                case IlluminanceUnit.Kilolux:
+                    return FromKilolux(value.Value);
                 case IlluminanceUnit.Lux:
-                    return FromLuxes(value.Value);
+                    return FromLux(value.Value);
+                case IlluminanceUnit.Megalux:
+                    return FromMegalux(value.Value);
+                case IlluminanceUnit.Millilux:
+                    return FromMillilux(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -263,37 +398,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Illuminance operator -(Illuminance right)
         {
-            return new Illuminance(-right._luxes);
+            return new Illuminance(-right._lux);
         }
 
         public static Illuminance operator +(Illuminance left, Illuminance right)
         {
-            return new Illuminance(left._luxes + right._luxes);
+            return new Illuminance(left._lux + right._lux);
         }
 
         public static Illuminance operator -(Illuminance left, Illuminance right)
         {
-            return new Illuminance(left._luxes - right._luxes);
+            return new Illuminance(left._lux - right._lux);
         }
 
         public static Illuminance operator *(double left, Illuminance right)
         {
-            return new Illuminance(left*right._luxes);
+            return new Illuminance(left*right._lux);
         }
 
         public static Illuminance operator *(Illuminance left, double right)
         {
-            return new Illuminance(left._luxes*(double)right);
+            return new Illuminance(left._lux*(double)right);
         }
 
         public static Illuminance operator /(Illuminance left, double right)
         {
-            return new Illuminance(left._luxes/(double)right);
+            return new Illuminance(left._lux/(double)right);
         }
 
         public static double operator /(Illuminance left, Illuminance right)
         {
-            return Convert.ToDouble(left._luxes/right._luxes);
+            return Convert.ToDouble(left._lux/right._lux);
         }
 #endif
 
@@ -316,43 +451,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Illuminance other)
         {
-            return _luxes.CompareTo(other._luxes);
+            return _lux.CompareTo(other._lux);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Illuminance left, Illuminance right)
         {
-            return left._luxes <= right._luxes;
+            return left._lux <= right._lux;
         }
 
         public static bool operator >=(Illuminance left, Illuminance right)
         {
-            return left._luxes >= right._luxes;
+            return left._lux >= right._lux;
         }
 
         public static bool operator <(Illuminance left, Illuminance right)
         {
-            return left._luxes < right._luxes;
+            return left._lux < right._lux;
         }
 
         public static bool operator >(Illuminance left, Illuminance right)
         {
-            return left._luxes > right._luxes;
+            return left._lux > right._lux;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Illuminance left, Illuminance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._luxes == right._luxes;
+            return left._lux == right._lux;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Illuminance left, Illuminance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._luxes != right._luxes;
+            return left._lux != right._lux;
         }
 #endif
 
@@ -364,7 +499,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _luxes.Equals(((Illuminance) obj)._luxes);
+            return _lux.Equals(((Illuminance) obj)._lux);
         }
 
         /// <summary>
@@ -377,12 +512,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Illuminance other, Illuminance maxError)
         {
-            return Math.Abs(_luxes - other._luxes) <= maxError._luxes;
+            return Math.Abs(_lux - other._lux) <= maxError._lux;
         }
 
         public override int GetHashCode()
         {
-            return _luxes.GetHashCode();
+            return _lux.GetHashCode();
         }
 
         #endregion
@@ -398,8 +533,14 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case IlluminanceUnit.Kilolux:
+                    return Kilolux;
                 case IlluminanceUnit.Lux:
-                    return Luxes;
+                    return Lux;
+                case IlluminanceUnit.Megalux:
+                    return Megalux;
+                case IlluminanceUnit.Millilux:
+                    return Millilux;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -476,7 +617,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     IlluminanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromLuxes(x.Luxes + y.Luxes));
+                }, (x, y) => FromLux(x.Lux + y.Lux));
         }
 
         /// <summary>

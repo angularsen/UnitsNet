@@ -46,6 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IlluminanceTests : IlluminanceTestsBase
     {
-        protected override double LuxesInOneLux => 1;
+        protected override double MilliluxInOneLux => 1E3;
+
+        protected override double LuxInOneLux => 1;
+
+        protected override double KiloluxInOneLux => 1E-3;
+
+        protected override double MegaluxInOneLux => 1E-6;
     }
 }
