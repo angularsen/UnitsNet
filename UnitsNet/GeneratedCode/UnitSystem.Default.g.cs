@@ -925,6 +925,30 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Ω"),
                             }),
                     }),
+                new UnitLocalization(typeof (ElectricResistivityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.MicroohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µΩ·m"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.MilliohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mΩ·m"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.NanoohmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nΩ·m"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricResistivityUnit.OhmMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Ω·m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (EnergyUnit),
                     new[]
                     {
@@ -1428,6 +1452,30 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "THz"),
                             }),
                     }),
+                new UnitLocalization(typeof (IlluminanceUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) IlluminanceUnit.Kilolux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "klx"),
+                            }),
+                        new CulturesForEnumValue((int) IlluminanceUnit.Lux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lx"),
+                            }),
+                        new CulturesForEnumValue((int) IlluminanceUnit.Megalux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlx"),
+                            }),
+                        new CulturesForEnumValue((int) IlluminanceUnit.Millilux,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mlx"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (InformationUnit),
                     new[]
                     {
@@ -1777,6 +1825,33 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Np"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (LuminousFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LuminousFluxUnit.Lumen,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lm"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (LuminousIntensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LuminousIntensityUnit.Candela,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cd"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MagneticFieldUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "T"),
                             }),
                     }),
                 new UnitLocalization(typeof (MassUnit),

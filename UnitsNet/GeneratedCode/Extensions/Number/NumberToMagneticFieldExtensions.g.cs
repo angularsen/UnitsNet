@@ -36,84 +36,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using System;
 
-namespace UnitsNet
+// Windows Runtime Component does not support extension methods and method overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
+namespace UnitsNet.Extensions.NumberToMagneticField
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
-    public enum QuantityType
+    public static class NumberToMagneticFieldExtensions
     {
-        Undefined = 0,
-        Acceleration,
-        AmountOfSubstance,
-        AmplitudeRatio,
-        Angle,
-        ApparentEnergy,
-        ApparentPower,
-        Area,
-        AreaMomentOfInertia,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricAdmittance,
-        ElectricConductance,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricPotentialAc,
-        ElectricPotentialDc,
-        ElectricResistance,
-        ElectricResistivity,
-        Energy,
-        Entropy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Illuminance,
-        Information,
-        Irradiance,
-        KinematicViscosity,
-        LapseRate,
-        Length,
-        Level,
-        LuminousFlux,
-        LuminousIntensity,
-        MagneticField,
-        Mass,
-        MassFlow,
-        MassFlux,
-        MassMomentOfInertia,
-        MolarEnergy,
-        MolarEntropy,
-        Molarity,
-        MolarMass,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        ReactivePower,
-        RotationalAcceleration,
-        RotationalSpeed,
-        SpecificEnergy,
-        SpecificEntropy,
-        SpecificVolume,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        ThermalResistance,
-        Torque,
-        VitaminA,
-        Volume,
-        VolumeFlow,
+        #region Tesla
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)"/>
+        public static MagneticField Teslas(this int value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double?)"/>
+        public static MagneticField? Teslas(this int? value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)"/>
+        public static MagneticField Teslas(this long value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double?)"/>
+        public static MagneticField? Teslas(this long? value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)"/>
+        public static MagneticField Teslas(this double value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double?)"/>
+        public static MagneticField? Teslas(this double? value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)"/>
+        public static MagneticField Teslas(this float value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double?)"/>
+        public static MagneticField? Teslas(this float? value) => MagneticField.FromTeslas(value);
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double)"/>
+        public static MagneticField Teslas(this decimal value) => MagneticField.FromTeslas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MagneticField.FromTeslas(double?)"/>
+        public static MagneticField? Teslas(this decimal? value) => MagneticField.FromTeslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
+#endif
