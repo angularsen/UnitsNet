@@ -36,90 +36,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
+using System;
 
-namespace UnitsNet
+// Windows Runtime Component does not support extension methods and method overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
+#if !WINDOWS_UWP
+namespace UnitsNet.Extensions.NumberToMagneticFlux
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
-    public enum QuantityType
+    public static class NumberToMagneticFluxExtensions
     {
-        Undefined = 0,
-        Acceleration,
-        AmountOfSubstance,
-        AmplitudeRatio,
-        Angle,
-        ApparentEnergy,
-        ApparentPower,
-        Area,
-        AreaMomentOfInertia,
-        BrakeSpecificFuelConsumption,
-        Density,
-        Duration,
-        DynamicViscosity,
-        ElectricAdmittance,
-        ElectricConductance,
-        ElectricCurrent,
-        ElectricPotential,
-        ElectricPotentialAc,
-        ElectricPotentialDc,
-        ElectricResistance,
-        ElectricResistivity,
-        Energy,
-        Entropy,
-        Flow,
-        Force,
-        ForceChangeRate,
-        ForcePerLength,
-        Frequency,
-        Illuminance,
-        Information,
-        Irradiance,
-        KinematicViscosity,
-        LapseRate,
-        Length,
-        Level,
-        LuminousFlux,
-        LuminousIntensity,
-        MagneticFlux,
-        Magnetization,
-        MagneticField,
-        Mass,
-        MassFlow,
-        MassFlux,
-        MassMomentOfInertia,
-        MolarEnergy,
-        MolarEntropy,
-        Molarity,
-        MolarMass,
-        Permeability,
-        Permittivity,
-        Power,
-        PowerRatio,
-        Pressure,
-        PressureChangeRate,
-        Ratio,
-        ReactivePower,
-        RotationalAcceleration,
-        RotationalSpeed,
-        SolidAngle,
-        SpecificEnergy,
-        SpecificEntropy,
-        SpecificVolume,
-        SpecificWeight,
-        Speed,
-        Temperature,
-        TemperatureChangeRate,
-        TemperatureDelta,
-        ThermalConductivity,
-        ThermalResistance,
-        Torque,
-        VitaminA,
-        Volume,
-        VolumeFlow,
+        #region Weber
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double)"/>
+        public static MagneticFlux Webers(this int value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double?)"/>
+        public static MagneticFlux? Webers(this int? value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double)"/>
+        public static MagneticFlux Webers(this long value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double?)"/>
+        public static MagneticFlux? Webers(this long? value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double)"/>
+        public static MagneticFlux Webers(this double value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double?)"/>
+        public static MagneticFlux? Webers(this double? value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double)"/>
+        public static MagneticFlux Webers(this float value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double?)"/>
+        public static MagneticFlux? Webers(this float? value) => MagneticFlux.FromWebers(value);
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double)"/>
+        public static MagneticFlux Webers(this decimal value) => MagneticFlux.FromWebers(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MagneticFlux.FromWebers(double?)"/>
+        public static MagneticFlux? Webers(this decimal? value) => MagneticFlux.FromWebers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
+#endif

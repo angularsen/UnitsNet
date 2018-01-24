@@ -1845,6 +1845,22 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "cd"),
                             }),
                     }),
+                new UnitLocalization(typeof (MagneticFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagneticFluxUnit.Weber,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Wb"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (MagnetizationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagnetizationUnit.AmperePerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "A/m"),
                 new UnitLocalization(typeof (MagneticFieldUnit),
                     new[]
                     {
@@ -2359,6 +2375,24 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lb/mol"),
                                 new AbbreviationsForCulture("ru-RU", "фунт/моль"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PermeabilityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PermeabilityUnit.HenryPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "H/m"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (PermittivityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PermittivityUnit.FaradPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "F/m"),
                             }),
                     }),
                 new UnitLocalization(typeof (PowerUnit),
