@@ -1624,6 +1624,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W/m²"),
                             }),
                     }),
+                new UnitLocalization(typeof (IrradiationUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) IrradiationUnit.JoulePerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "J/m²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradiationUnit.KilowattHourPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kWh/m²"),
+                            }),
+                        new CulturesForEnumValue((int) IrradiationUnit.WattHourPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Wh/m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (KinematicViscosityUnit),
                     new[]
                     {
