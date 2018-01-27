@@ -1998,6 +1998,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "cd"),
                             }),
                     }),
+                new UnitLocalization(typeof (MagneticFieldUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "T"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (MagneticFluxUnit),
                     new[]
                     {
@@ -2014,13 +2023,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "A/m"),
-                new UnitLocalization(typeof (MagneticFieldUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "T"),
                             }),
                     }),
                 new UnitLocalization(typeof (MassUnit),
