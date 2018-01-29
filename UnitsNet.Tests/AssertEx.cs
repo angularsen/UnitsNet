@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -9,7 +9,7 @@ namespace UnitsNet.Tests
     {
         public static void EqualTolerance(double expected, double actual, double tolerance)
         {
-            Assert.True(actual >= expected - tolerance && actual <= expected + tolerance, "Within tolerance: " + tolerance);
+            Assert.True(actual >= expected - tolerance && actual <= expected + tolerance, $"Values are not equal within tolerance: {tolerance}\nExpected: {expected}\nActual: {actual}\nDiff: {actual - expected:e}");
         }
     }
 }

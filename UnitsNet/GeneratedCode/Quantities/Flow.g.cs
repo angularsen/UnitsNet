@@ -140,6 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in CubicDecimetersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicDecimetersPerMinute
         {
             get { return _cubicMetersPerSecond*60000.00000; }
@@ -148,14 +149,25 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in CubicFeetPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicFeetPerHour
         {
             get { return _cubicMetersPerSecond/7.8657907199999087346816086183876e-6; }
         }
 
         /// <summary>
+        ///     Get Flow in CubicFeetPerMinute.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double CubicFeetPerMinute
+        {
+            get { return _cubicMetersPerSecond*2118.88000326; }
+        }
+
+        /// <summary>
         ///     Get Flow in CubicFeetPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicFeetPerSecond
         {
             get { return _cubicMetersPerSecond*35.314666721; }
@@ -164,17 +176,55 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in CubicMetersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicMetersPerHour
         {
             get { return _cubicMetersPerSecond*3600; }
         }
 
         /// <summary>
+        ///     Get Flow in CubicMetersPerMinute.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double CubicMetersPerMinute
+        {
+            get { return _cubicMetersPerSecond*60; }
+        }
+
+        /// <summary>
         ///     Get Flow in CubicMetersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicMetersPerSecond
         {
             get { return _cubicMetersPerSecond; }
+        }
+
+        /// <summary>
+        ///     Get Flow in CubicYardsPerHour.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double CubicYardsPerHour
+        {
+            get { return _cubicMetersPerSecond/2.1237634944E-4; }
+        }
+
+        /// <summary>
+        ///     Get Flow in CubicYardsPerMinute.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double CubicYardsPerMinute
+        {
+            get { return _cubicMetersPerSecond/0.0127425809664; }
+        }
+
+        /// <summary>
+        ///     Get Flow in CubicYardsPerSecond.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double CubicYardsPerSecond
+        {
+            get { return _cubicMetersPerSecond/0.764554857984; }
         }
 
         /// <summary>
@@ -196,6 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in LitersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerHour
         {
             get { return _cubicMetersPerSecond*3600000.000; }
@@ -204,6 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in LitersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerMinute
         {
             get { return _cubicMetersPerSecond*60000.00000; }
@@ -212,6 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in LitersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerSecond
         {
             get { return _cubicMetersPerSecond*1000; }
@@ -236,6 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in MillionUsGallonsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double MillionUsGallonsPerDay
         {
             get { return _cubicMetersPerSecond*22.824465227; }
@@ -252,17 +306,37 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow in OilBarrelsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double OilBarrelsPerDay
         {
             get { return _cubicMetersPerSecond/1.8401307283333333333333333333333e-6; }
         }
 
         /// <summary>
+        ///     Get Flow in UsGallonsPerHour.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double UsGallonsPerHour
+        {
+            get { return _cubicMetersPerSecond*951019.38848933424; }
+        }
+
+        /// <summary>
         ///     Get Flow in UsGallonsPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double UsGallonsPerMinute
         {
             get { return _cubicMetersPerSecond*15850.323141489; }
+        }
+
+        /// <summary>
+        ///     Get Flow in UsGallonsPerSecond.
+        /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
+        public double UsGallonsPerSecond
+        {
+            get { return _cubicMetersPerSecond*264.1720523581484; }
         }
 
         #endregion
@@ -329,6 +403,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Flow from CubicFeetPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromCubicFeetPerMinute(double cubicfeetperminute)
+        {
+            double value = (double) cubicfeetperminute;
+            return new Flow(value/2118.88000326);
+        }
+#else
+        public static Flow FromCubicFeetPerMinute(QuantityValue cubicfeetperminute)
+        {
+            double value = (double) cubicfeetperminute;
+            return new Flow((value/2118.88000326));
+        }
+#endif
+
+        /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
 #if WINDOWS_UWP
@@ -365,6 +457,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Flow from CubicMetersPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromCubicMetersPerMinute(double cubicmetersperminute)
+        {
+            double value = (double) cubicmetersperminute;
+            return new Flow(value/60);
+        }
+#else
+        public static Flow FromCubicMetersPerMinute(QuantityValue cubicmetersperminute)
+        {
+            double value = (double) cubicmetersperminute;
+            return new Flow((value/60));
+        }
+#endif
+
+        /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
 #if WINDOWS_UWP
@@ -379,6 +489,60 @@ namespace UnitsNet
         {
             double value = (double) cubicmeterspersecond;
             return new Flow((value));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Flow from CubicYardsPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromCubicYardsPerHour(double cubicyardsperhour)
+        {
+            double value = (double) cubicyardsperhour;
+            return new Flow(value*2.1237634944E-4);
+        }
+#else
+        public static Flow FromCubicYardsPerHour(QuantityValue cubicyardsperhour)
+        {
+            double value = (double) cubicyardsperhour;
+            return new Flow((value*2.1237634944E-4));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Flow from CubicYardsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromCubicYardsPerMinute(double cubicyardsperminute)
+        {
+            double value = (double) cubicyardsperminute;
+            return new Flow(value*0.0127425809664);
+        }
+#else
+        public static Flow FromCubicYardsPerMinute(QuantityValue cubicyardsperminute)
+        {
+            double value = (double) cubicyardsperminute;
+            return new Flow((value*0.0127425809664));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Flow from CubicYardsPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromCubicYardsPerSecond(double cubicyardspersecond)
+        {
+            double value = (double) cubicyardspersecond;
+            return new Flow(value*0.764554857984);
+        }
+#else
+        public static Flow FromCubicYardsPerSecond(QuantityValue cubicyardspersecond)
+        {
+            double value = (double) cubicyardspersecond;
+            return new Flow((value*0.764554857984));
         }
 #endif
 
@@ -563,6 +727,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Flow from UsGallonsPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromUsGallonsPerHour(double usgallonsperhour)
+        {
+            double value = (double) usgallonsperhour;
+            return new Flow(value/951019.38848933424);
+        }
+#else
+        public static Flow FromUsGallonsPerHour(QuantityValue usgallonsperhour)
+        {
+            double value = (double) usgallonsperhour;
+            return new Flow((value/951019.38848933424));
+        }
+#endif
+
+        /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
 #if WINDOWS_UWP
@@ -577,6 +759,24 @@ namespace UnitsNet
         {
             double value = (double) usgallonsperminute;
             return new Flow((value/15850.323141489));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Flow from UsGallonsPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Flow FromUsGallonsPerSecond(double usgallonspersecond)
+        {
+            double value = (double) usgallonspersecond;
+            return new Flow(value/264.1720523581484);
+        }
+#else
+        public static Flow FromUsGallonsPerSecond(QuantityValue usgallonspersecond)
+        {
+            double value = (double) usgallonspersecond;
+            return new Flow((value/264.1720523581484));
         }
 #endif
 
@@ -628,6 +828,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerMinute.
+        /// </summary>
+        public static Flow? FromCubicFeetPerMinute(QuantityValue? cubicfeetperminute)
+        {
+            if (cubicfeetperminute.HasValue)
+            {
+                return FromCubicFeetPerMinute(cubicfeetperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerSecond.
         /// </summary>
         public static Flow? FromCubicFeetPerSecond(QuantityValue? cubicfeetpersecond)
@@ -658,6 +873,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerMinute.
+        /// </summary>
+        public static Flow? FromCubicMetersPerMinute(QuantityValue? cubicmetersperminute)
+        {
+            if (cubicmetersperminute.HasValue)
+            {
+                return FromCubicMetersPerMinute(cubicmetersperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerSecond.
         /// </summary>
         public static Flow? FromCubicMetersPerSecond(QuantityValue? cubicmeterspersecond)
@@ -665,6 +895,51 @@ namespace UnitsNet
             if (cubicmeterspersecond.HasValue)
             {
                 return FromCubicMetersPerSecond(cubicmeterspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerHour.
+        /// </summary>
+        public static Flow? FromCubicYardsPerHour(QuantityValue? cubicyardsperhour)
+        {
+            if (cubicyardsperhour.HasValue)
+            {
+                return FromCubicYardsPerHour(cubicyardsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerMinute.
+        /// </summary>
+        public static Flow? FromCubicYardsPerMinute(QuantityValue? cubicyardsperminute)
+        {
+            if (cubicyardsperminute.HasValue)
+            {
+                return FromCubicYardsPerMinute(cubicyardsperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerSecond.
+        /// </summary>
+        public static Flow? FromCubicYardsPerSecond(QuantityValue? cubicyardspersecond)
+        {
+            if (cubicyardspersecond.HasValue)
+            {
+                return FromCubicYardsPerSecond(cubicyardspersecond.Value);
             }
             else
             {
@@ -823,6 +1098,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerHour.
+        /// </summary>
+        public static Flow? FromUsGallonsPerHour(QuantityValue? usgallonsperhour)
+        {
+            if (usgallonsperhour.HasValue)
+            {
+                return FromUsGallonsPerHour(usgallonsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerMinute.
         /// </summary>
         public static Flow? FromUsGallonsPerMinute(QuantityValue? usgallonsperminute)
@@ -830,6 +1120,21 @@ namespace UnitsNet
             if (usgallonsperminute.HasValue)
             {
                 return FromUsGallonsPerMinute(usgallonsperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerSecond.
+        /// </summary>
+        public static Flow? FromUsGallonsPerSecond(QuantityValue? usgallonspersecond)
+        {
+            if (usgallonspersecond.HasValue)
+            {
+                return FromUsGallonsPerSecond(usgallonspersecond.Value);
             }
             else
             {
@@ -861,12 +1166,22 @@ namespace UnitsNet
                     return FromCubicDecimetersPerMinute(value);
                 case FlowUnit.CubicFootPerHour:
                     return FromCubicFeetPerHour(value);
+                case FlowUnit.CubicFootPerMinute:
+                    return FromCubicFeetPerMinute(value);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(value);
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value);
+                case FlowUnit.CubicMeterPerMinute:
+                    return FromCubicMetersPerMinute(value);
                 case FlowUnit.CubicMeterPerSecond:
                     return FromCubicMetersPerSecond(value);
+                case FlowUnit.CubicYardPerHour:
+                    return FromCubicYardsPerHour(value);
+                case FlowUnit.CubicYardPerMinute:
+                    return FromCubicYardsPerMinute(value);
+                case FlowUnit.CubicYardPerSecond:
+                    return FromCubicYardsPerSecond(value);
                 case FlowUnit.DecilitersPerMinute:
                     return FromDecilitersPerMinute(value);
                 case FlowUnit.KilolitersPerMinute:
@@ -887,8 +1202,12 @@ namespace UnitsNet
                     return FromNanolitersPerMinute(value);
                 case FlowUnit.OilBarrelsPerDay:
                     return FromOilBarrelsPerDay(value);
+                case FlowUnit.UsGallonsPerHour:
+                    return FromUsGallonsPerHour(value);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(value);
+                case FlowUnit.UsGallonsPerSecond:
+                    return FromUsGallonsPerSecond(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -917,12 +1236,22 @@ namespace UnitsNet
                     return FromCubicDecimetersPerMinute(value.Value);
                 case FlowUnit.CubicFootPerHour:
                     return FromCubicFeetPerHour(value.Value);
+                case FlowUnit.CubicFootPerMinute:
+                    return FromCubicFeetPerMinute(value.Value);
                 case FlowUnit.CubicFootPerSecond:
                     return FromCubicFeetPerSecond(value.Value);
                 case FlowUnit.CubicMeterPerHour:
                     return FromCubicMetersPerHour(value.Value);
+                case FlowUnit.CubicMeterPerMinute:
+                    return FromCubicMetersPerMinute(value.Value);
                 case FlowUnit.CubicMeterPerSecond:
                     return FromCubicMetersPerSecond(value.Value);
+                case FlowUnit.CubicYardPerHour:
+                    return FromCubicYardsPerHour(value.Value);
+                case FlowUnit.CubicYardPerMinute:
+                    return FromCubicYardsPerMinute(value.Value);
+                case FlowUnit.CubicYardPerSecond:
+                    return FromCubicYardsPerSecond(value.Value);
                 case FlowUnit.DecilitersPerMinute:
                     return FromDecilitersPerMinute(value.Value);
                 case FlowUnit.KilolitersPerMinute:
@@ -943,8 +1272,12 @@ namespace UnitsNet
                     return FromNanolitersPerMinute(value.Value);
                 case FlowUnit.OilBarrelsPerDay:
                     return FromOilBarrelsPerDay(value.Value);
+                case FlowUnit.UsGallonsPerHour:
+                    return FromUsGallonsPerHour(value.Value);
                 case FlowUnit.UsGallonsPerMinute:
                     return FromUsGallonsPerMinute(value.Value);
+                case FlowUnit.UsGallonsPerSecond:
+                    return FromUsGallonsPerSecond(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -1124,12 +1457,22 @@ namespace UnitsNet
                     return CubicDecimetersPerMinute;
                 case FlowUnit.CubicFootPerHour:
                     return CubicFeetPerHour;
+                case FlowUnit.CubicFootPerMinute:
+                    return CubicFeetPerMinute;
                 case FlowUnit.CubicFootPerSecond:
                     return CubicFeetPerSecond;
                 case FlowUnit.CubicMeterPerHour:
                     return CubicMetersPerHour;
+                case FlowUnit.CubicMeterPerMinute:
+                    return CubicMetersPerMinute;
                 case FlowUnit.CubicMeterPerSecond:
                     return CubicMetersPerSecond;
+                case FlowUnit.CubicYardPerHour:
+                    return CubicYardsPerHour;
+                case FlowUnit.CubicYardPerMinute:
+                    return CubicYardsPerMinute;
+                case FlowUnit.CubicYardPerSecond:
+                    return CubicYardsPerSecond;
                 case FlowUnit.DecilitersPerMinute:
                     return DecilitersPerMinute;
                 case FlowUnit.KilolitersPerMinute:
@@ -1150,8 +1493,12 @@ namespace UnitsNet
                     return NanolitersPerMinute;
                 case FlowUnit.OilBarrelsPerDay:
                     return OilBarrelsPerDay;
+                case FlowUnit.UsGallonsPerHour:
+                    return UsGallonsPerHour;
                 case FlowUnit.UsGallonsPerMinute:
                     return UsGallonsPerMinute;
+                case FlowUnit.UsGallonsPerSecond:
+                    return UsGallonsPerSecond;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

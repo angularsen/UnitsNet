@@ -207,5 +207,12 @@ namespace UnitsNet.Tests.CustomCode
             Duration duration = Duration.FromHours(11);
             Assert.True(timeSpan != duration, "timeSpan should not be equal to duration");
         }
+
+        [Fact]
+        public void DurationTimesVolumeFlowEqualsVolume()
+        {
+            Volume volume = Duration.FromSeconds(20) * VolumeFlow.FromCubicMetersPerSecond(2);
+            Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
     }
 }

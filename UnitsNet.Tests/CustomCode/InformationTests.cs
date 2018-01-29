@@ -36,7 +36,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ExbibitsInOneBit => 1d/Math.Pow(1024, 6);
 
-        protected override double ExbibytesInOneBit => 8d/Math.Pow(1024, 6);
+        protected override double ExbibytesInOneBit => 1/8d/Math.Pow(1024, 6);
 
         protected override double GibibitsInOneBit => 1d/Math.Pow(1024, 3);
 
