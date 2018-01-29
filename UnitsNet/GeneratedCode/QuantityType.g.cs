@@ -50,7 +50,6 @@ namespace UnitsNet
     {
         Undefined = 0,
         Acceleration,
-        Altitude,
         AmountOfSubstance,
         AmplitudeRatio,
         Angle,

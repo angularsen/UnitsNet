@@ -105,16 +105,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "g"),
                             }),
                     }),
-                new UnitLocalization(typeof (AltitudeUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AltitudeUnit.MeterAboveSeaLevel,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "masl"),
-                                new AbbreviationsForCulture("it-IT", "mslm"),
-                            }),
-                    }),
                 new UnitLocalization(typeof (AmountOfSubstanceUnit),
                     new[]
                     {
