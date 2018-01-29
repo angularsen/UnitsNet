@@ -3048,6 +3048,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "rad/s²"),
                             }),
+                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RevolutionPerMinutePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rpm/s"),
+                            }),
                     }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
                     new[]
