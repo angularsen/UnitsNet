@@ -8,6 +8,9 @@
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
     <Copyright>Copyright (c) 2015 Andreas Gullberg Larsen</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
