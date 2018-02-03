@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp1.1;net462</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
