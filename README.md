@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 [![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/angularsen/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
 
 
