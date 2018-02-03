@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
-            UnitSystem usUnits = UnitSystem.GetCached(AmericanCultureName);
+            UnitSystem usUnits = new UnitSystem(AmericanCultureName);
             string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
             Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
         }
