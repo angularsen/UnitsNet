@@ -31,9 +31,8 @@ function Set-ProjectVersionAndCommit(
     Write-Host "New tag: $newSemVer"
   }
   catch {
-    $ex = $Error[0]
-    $err = Resolve-Error
-    Write-Error "ERROR: Failed to update build parameters from .csproj file: `n---`n$err"
+    $err = $PSItem.Exception
+    Write-Error "ERROR: Failed to update build parameters from .csproj file: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
     exit 1
   }
 }
@@ -44,7 +43,7 @@ function Set-ProjectVersion([string] $projectPath, [string] $setVersion) {
   Write-Host "$projectPath -> $setVersion"
 
   # Update <Version> property
-  $projectXml.Project.PropertyGroup.Version = $setVersion
+  $projectXml.Project.PropertyGroup.Version[0] = $setVersion
   $projectXml.Save($projectPath)
 }
 
@@ -112,7 +111,8 @@ function Get-ProjectVersionAndSuffix([xml] $projectXml) {
 
   # Split "1.2.3-alpha" into ["1.2.3", "alpha"]
   # Split "1.2.3" into ["1.2.3"]
-  $oldSemVer = $projectXml.Project.PropertyGroup.Version
+  $oldSemVer = $($projectXml.Project.PropertyGroup.Version)[0]
+
   $oldSemVerParts = $oldSemVer.Split('-')
   $oldVersion = $null
   if (-not [Version]::TryParse($oldSemVerParts[0], [ref] $oldVersion)) { throw "Unable to parse old version." }
