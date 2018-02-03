@@ -1,15 +1,25 @@
 version: '{build}'
 image: Visual Studio 2017
+only_commits:
+  files:
+    - appveyor.yml
+    - '**/*.sln'
+    - '**/*.csproj'
+    - '**/*.cs'
+    - '**/*.json'
+    - '**/*.ps1'
+    - '**/*.psm1'
+    - '**/*.bat'
 build_script:
 - ps: |
-    ##################################### 
+    #####################################
     # Build, test, pack and push nugets
     #####################################
 
     .\\build.bat
     $BuildExitCode = $LASTEXITCODE
 
-    ##################################### 
+    #####################################
     # Upload test results to AppVeyor
     #####################################
 
@@ -21,7 +31,7 @@ build_script:
         }
     }
 
-    if ($BuildExitCode -ne 0) { 
+    if ($BuildExitCode -ne 0) {
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
