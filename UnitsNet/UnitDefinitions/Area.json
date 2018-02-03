@@ -147,6 +147,19 @@
         }
       ]
     },
+	{
+      "SingularName": "SquareUsSurveyFoot",
+      "PluralName": "SquareUsSurveyFeet",
+      "FromUnitToBaseFunc": "x*0.09290341161",
+      "FromBaseToUnitFunc": "x/0.09290341161",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ftUS²" ]
+        }
+      ]
+    },
+	
     {
       "SingularName": "SquareInch",
       "PluralName": "SquareInches",

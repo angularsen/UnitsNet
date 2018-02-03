@@ -418,6 +418,40 @@ namespace UnitsNet.Extensions.NumberToArea
 
         #endregion
 
+        #region SquareUsSurveyFoot
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
+        public static Area SquareUsSurveyFeet(this int value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
+        public static Area? SquareUsSurveyFeet(this int? value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
+        public static Area SquareUsSurveyFeet(this long value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
+        public static Area? SquareUsSurveyFeet(this long? value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
+        public static Area SquareUsSurveyFeet(this double value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
+        public static Area? SquareUsSurveyFeet(this double? value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
+        public static Area SquareUsSurveyFeet(this float value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
+        public static Area? SquareUsSurveyFeet(this float? value) => Area.FromSquareUsSurveyFeet(value);
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
+        public static Area SquareUsSurveyFeet(this decimal value) => Area.FromSquareUsSurveyFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
+        public static Area? SquareUsSurveyFeet(this decimal? value) => Area.FromSquareUsSurveyFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region SquareYard
 
         /// <inheritdoc cref="Area.FromSquareYards(double)"/>

@@ -218,6 +218,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Area in SquareUsSurveyFeet.
+        /// </summary>
+        public double SquareUsSurveyFeet
+        {
+            get { return _squareMeters/0.09290341161; }
+        }
+
+        /// <summary>
         ///     Get Area in SquareYards.
         /// </summary>
         public double SquareYards
@@ -433,6 +441,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Area from SquareUsSurveyFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromSquareUsSurveyFeet(double squareussurveyfeet)
+        {
+            double value = (double) squareussurveyfeet;
+            return new Area(value*0.09290341161);
+        }
+#else
+        public static Area FromSquareUsSurveyFeet(QuantityValue squareussurveyfeet)
+        {
+            double value = (double) squareussurveyfeet;
+            return new Area((value*0.09290341161));
+        }
+#endif
+
+        /// <summary>
         ///     Get Area from SquareYards.
         /// </summary>
 #if WINDOWS_UWP
@@ -618,6 +644,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Area from nullable SquareUsSurveyFeet.
+        /// </summary>
+        public static Area? FromSquareUsSurveyFeet(QuantityValue? squareussurveyfeet)
+        {
+            if (squareussurveyfeet.HasValue)
+            {
+                return FromSquareUsSurveyFeet(squareussurveyfeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Area from nullable SquareYards.
         /// </summary>
         public static Area? FromSquareYards(QuantityValue? squareyards)
@@ -672,6 +713,8 @@ namespace UnitsNet
                     return FromSquareMiles(value);
                 case AreaUnit.SquareMillimeter:
                     return FromSquareMillimeters(value);
+                case AreaUnit.SquareUsSurveyFoot:
+                    return FromSquareUsSurveyFeet(value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value);
 
@@ -718,6 +761,8 @@ namespace UnitsNet
                     return FromSquareMiles(value.Value);
                 case AreaUnit.SquareMillimeter:
                     return FromSquareMillimeters(value.Value);
+                case AreaUnit.SquareUsSurveyFoot:
+                    return FromSquareUsSurveyFeet(value.Value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value.Value);
 
@@ -915,6 +960,8 @@ namespace UnitsNet
                     return SquareMiles;
                 case AreaUnit.SquareMillimeter:
                     return SquareMillimeters;
+                case AreaUnit.SquareUsSurveyFoot:
+                    return SquareUsSurveyFeet;
                 case AreaUnit.SquareYard:
                     return SquareYards;
 

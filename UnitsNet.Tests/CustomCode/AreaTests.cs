@@ -50,6 +50,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareYardsInOneSquareMeter => 1.19599;
 
+        protected override double SquareUsSurveyFeetInOneSquareMeter => 10.76386736111121;
+
         [Fact]
         public void AreaDividedByLengthEqualsLength()
         {
