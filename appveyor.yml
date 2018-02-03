@@ -2,13 +2,13 @@ version: '{build}'
 image: Visual Studio 2017
 only_commits:
   files:
-    - **/*.sln
-    - **/*.csproj
-    - **/*.cs
-    - **/*.json
-    - **/*.ps1
-    - **/*.psm1
-    - **/*.bat
+    - '**/*.sln'
+    - '**/*.csproj'
+    - '**/*.cs'
+    - '**/*.json'
+    - '**/*.ps1'
+    - '**/*.psm1'
+    - '**/*.bat'
 build_script:
 - ps: |
     #####################################
