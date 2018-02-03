@@ -112,11 +112,14 @@ namespace UnitsNet.Serialization.JsonNet
                     !m.ReturnType.IsGenericType);
 #endif
 
+            // Implicit cast: we use this type to avoid explosion of method overloads to handle multiple number types
+            QuantityValue quantityValue = vu.Value;
+
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
             // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
             // will likely return a very different result. Not sure how we can handle this?
-            return fromMethod.Invoke(null, new[] {vu.Value, unit});
+            return fromMethod.Invoke(null, new[] {quantityValue, unit});
         }
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
