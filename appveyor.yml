@@ -5,6 +5,7 @@ only_commits:
     - appveyor.yml
     - '**/*.sln'
     - '**/*.csproj'
+    - '**/*.props'
     - '**/*.cs'
     - '**/*.json'
     - '**/*.ps1'
