@@ -43,7 +43,7 @@ function Set-ProjectVersion([string] $projectPath, [string] $setVersion) {
   Write-Host "$projectPath -> $setVersion"
 
   # Update <Version> property
-  $projectXml.Project.PropertyGroup.Version[0] = $setVersion
+  $projectXml | Select-Xml -XPath "//Version" | foreach {$_.node.InnerXML = $setVersion}
   $projectXml.Save($projectPath)
 }
 
