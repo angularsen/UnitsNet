@@ -148,14 +148,14 @@
       ]
     },
 	{
-      "SingularName": "SquareUsSurveyFoot",
-      "PluralName": "SquareUsSurveyFeet",
+      "SingularName": "UsSurveySquareFoot",
+      "PluralName": "UsSurveySquareFeet",
       "FromUnitToBaseFunc": "x*0.09290341161",
       "FromBaseToUnitFunc": "x/0.09290341161",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ftUS²" ]
+          "Abbreviations": [ "ft² (US)" ]
         }
       ]
     },

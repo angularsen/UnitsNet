@@ -418,40 +418,6 @@ namespace UnitsNet.Extensions.NumberToArea
 
         #endregion
 
-        #region SquareUsSurveyFoot
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
-        public static Area SquareUsSurveyFeet(this int value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
-        public static Area? SquareUsSurveyFeet(this int? value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
-        public static Area SquareUsSurveyFeet(this long value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
-        public static Area? SquareUsSurveyFeet(this long? value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
-        public static Area SquareUsSurveyFeet(this double value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
-        public static Area? SquareUsSurveyFeet(this double? value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
-        public static Area SquareUsSurveyFeet(this float value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
-        public static Area? SquareUsSurveyFeet(this float? value) => Area.FromSquareUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double)"/>
-        public static Area SquareUsSurveyFeet(this decimal value) => Area.FromSquareUsSurveyFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareUsSurveyFeet(double?)"/>
-        public static Area? SquareUsSurveyFeet(this decimal? value) => Area.FromSquareUsSurveyFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
         #region SquareYard
 
         /// <inheritdoc cref="Area.FromSquareYards(double)"/>
@@ -483,6 +449,40 @@ namespace UnitsNet.Extensions.NumberToArea
 
         /// <inheritdoc cref="Area.FromSquareYards(double?)"/>
         public static Area? SquareYards(this decimal? value) => Area.FromSquareYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsSurveySquareFoot
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this int value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this int? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this long value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this long? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this double value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this double? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this float value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this float? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this decimal value) => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this decimal? value) => Area.FromUsSurveySquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

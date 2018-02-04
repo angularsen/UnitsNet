@@ -63,8 +63,8 @@ namespace UnitsNet.Tests
         protected abstract double SquareMicrometersInOneSquareMeter { get; }
         protected abstract double SquareMilesInOneSquareMeter { get; }
         protected abstract double SquareMillimetersInOneSquareMeter { get; }
-        protected abstract double SquareUsSurveyFeetInOneSquareMeter { get; }
         protected abstract double SquareYardsInOneSquareMeter { get; }
+        protected abstract double UsSurveySquareFeetInOneSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AcresTolerance { get { return 1e-5; } }
@@ -78,8 +78,8 @@ namespace UnitsNet.Tests
         protected virtual double SquareMicrometersTolerance { get { return 1e-5; } }
         protected virtual double SquareMilesTolerance { get { return 1e-5; } }
         protected virtual double SquareMillimetersTolerance { get { return 1e-5; } }
-        protected virtual double SquareUsSurveyFeetTolerance { get { return 1e-5; } }
         protected virtual double SquareYardsTolerance { get { return 1e-5; } }
+        protected virtual double UsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -97,8 +97,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SquareMicrometersInOneSquareMeter, squaremeter.SquareMicrometers, SquareMicrometersTolerance);
             AssertEx.EqualTolerance(SquareMilesInOneSquareMeter, squaremeter.SquareMiles, SquareMilesTolerance);
             AssertEx.EqualTolerance(SquareMillimetersInOneSquareMeter, squaremeter.SquareMillimeters, SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(SquareUsSurveyFeetInOneSquareMeter, squaremeter.SquareUsSurveyFeet, SquareUsSurveyFeetTolerance);
             AssertEx.EqualTolerance(SquareYardsInOneSquareMeter, squaremeter.SquareYards, SquareYardsTolerance);
+            AssertEx.EqualTolerance(UsSurveySquareFeetInOneSquareMeter, squaremeter.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
         }
 
         [Fact]
@@ -115,8 +115,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMicrometer).SquareMicrometers, SquareMicrometersTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMile).SquareMiles, SquareMilesTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareMillimeter).SquareMillimeters, SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareUsSurveyFoot).SquareUsSurveyFeet, SquareUsSurveyFeetTolerance);
             AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.SquareYard).SquareYards, SquareYardsTolerance);
+            AssertEx.EqualTolerance(1, Area.From(1, AreaUnit.UsSurveySquareFoot).UsSurveySquareFeet, UsSurveySquareFeetTolerance);
         }
 
         [Fact]
@@ -134,8 +134,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SquareMicrometersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMicrometer), SquareMicrometersTolerance);
             AssertEx.EqualTolerance(SquareMilesInOneSquareMeter, squaremeter.As(AreaUnit.SquareMile), SquareMilesTolerance);
             AssertEx.EqualTolerance(SquareMillimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareMillimeter), SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(SquareUsSurveyFeetInOneSquareMeter, squaremeter.As(AreaUnit.SquareUsSurveyFoot), SquareUsSurveyFeetTolerance);
             AssertEx.EqualTolerance(SquareYardsInOneSquareMeter, squaremeter.As(AreaUnit.SquareYard), SquareYardsTolerance);
+            AssertEx.EqualTolerance(UsSurveySquareFeetInOneSquareMeter, squaremeter.As(AreaUnit.UsSurveySquareFoot), UsSurveySquareFeetTolerance);
         }
 
         [Fact]
@@ -153,8 +153,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Area.FromSquareMicrometers(squaremeter.SquareMicrometers).SquareMeters, SquareMicrometersTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareMiles(squaremeter.SquareMiles).SquareMeters, SquareMilesTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareMillimeters(squaremeter.SquareMillimeters).SquareMeters, SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareUsSurveyFeet(squaremeter.SquareUsSurveyFeet).SquareMeters, SquareUsSurveyFeetTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareYards(squaremeter.SquareYards).SquareMeters, SquareYardsTolerance);
+            AssertEx.EqualTolerance(1, Area.FromUsSurveySquareFeet(squaremeter.UsSurveySquareFeet).SquareMeters, UsSurveySquareFeetTolerance);
         }
 
         [Fact]
