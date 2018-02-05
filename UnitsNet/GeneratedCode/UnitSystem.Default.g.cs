@@ -394,6 +394,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "yd²"),
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
                             }),
+                        new CulturesForEnumValue((int) AreaUnit.UsSurveySquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft² (US)"),
+                            }),
                     }),
                 new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
                     new[]
