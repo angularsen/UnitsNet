@@ -127,11 +127,13 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
-        [Fact]
-        public void VolumeDividedByTimeSpanEqualsVolumeFlow()
+        [Theory]
+        [InlineData(20, 2, 10)]
+        [InlineData(20, 80, 0.25)]
+        public void VolumeDividedByTimeSpanEqualsVolumeFlow(double cubicMeters, double seconds, double expectedCubicMetersPerSecond)
         {
-            VolumeFlow volumeFlow = Volume.FromCubicMeters(20) / TimeSpan.FromSeconds(2);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(cubicMeters) / TimeSpan.FromSeconds(seconds);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(expectedCubicMetersPerSecond), volumeFlow);
         }
 
         [Fact]
