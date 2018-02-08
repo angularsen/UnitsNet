@@ -57,7 +57,7 @@ namespace UnitsNet.Tests
         protected abstract double FeetPerSecondSquaredInOneMeterPerSecondSquared { get; }
         protected abstract double InchesPerSecondSquaredInOneMeterPerSecondSquared { get; }
         protected abstract double KilometerPerSecondSquaredInOneMeterPerSecondSquared { get; }
-        protected abstract double KnotsPerHourtInOneMeterPerSecondSquared { get; }
+        protected abstract double KnotsPerHourInOneMeterPerSecondSquared { get; }
         protected abstract double KnotsPerMinuteInOneMeterPerSecondSquared { get; }
         protected abstract double KnotsPerSecondInOneMeterPerSecondSquared { get; }
         protected abstract double MeterPerSecondSquaredInOneMeterPerSecondSquared { get; }
@@ -72,7 +72,7 @@ namespace UnitsNet.Tests
         protected virtual double FeetPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double InchesPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double KilometerPerSecondSquaredTolerance { get { return 1e-5; } }
-        protected virtual double KnotsPerHourtTolerance { get { return 1e-5; } }
+        protected virtual double KnotsPerHourTolerance { get { return 1e-5; } }
         protected virtual double KnotsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double KnotsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MeterPerSecondSquaredTolerance { get { return 1e-5; } }
@@ -91,7 +91,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(InchesPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(KilometerPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.KilometerPerSecondSquared, KilometerPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(KnotsPerHourtInOneMeterPerSecondSquared, meterpersecondsquared.KnotsPerHourt, KnotsPerHourtTolerance);
+            AssertEx.EqualTolerance(KnotsPerHourInOneMeterPerSecondSquared, meterpersecondsquared.KnotsPerHour, KnotsPerHourTolerance);
             AssertEx.EqualTolerance(KnotsPerMinuteInOneMeterPerSecondSquared, meterpersecondsquared.KnotsPerMinute, KnotsPerMinuteTolerance);
             AssertEx.EqualTolerance(KnotsPerSecondInOneMeterPerSecondSquared, meterpersecondsquared.KnotsPerSecond, KnotsPerSecondTolerance);
             AssertEx.EqualTolerance(MeterPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.FootPerSecondSquared).FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.InchPerSecondSquared).InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.KilometerPerSecondSquared).KilometerPerSecondSquared, KilometerPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.KnotPerHour).KnotsPerHourt, KnotsPerHourtTolerance);
+            AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.KnotPerHour).KnotsPerHour, KnotsPerHourTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.KnotPerMinute).KnotsPerMinute, KnotsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.KnotPerSecond).KnotsPerSecond, KnotsPerSecondTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.FootPerSecondSquared), FeetPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(InchesPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.InchPerSecondSquared), InchesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(KilometerPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.KilometerPerSecondSquared), KilometerPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(KnotsPerHourtInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.KnotPerHour), KnotsPerHourtTolerance);
+            AssertEx.EqualTolerance(KnotsPerHourInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.KnotPerHour), KnotsPerHourTolerance);
             AssertEx.EqualTolerance(KnotsPerMinuteInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.KnotPerMinute), KnotsPerMinuteTolerance);
             AssertEx.EqualTolerance(KnotsPerSecondInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.KnotPerSecond), KnotsPerSecondTolerance);
             AssertEx.EqualTolerance(MeterPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(AccelerationUnit.MeterPerSecondSquared), MeterPerSecondSquaredTolerance);
@@ -147,7 +147,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Acceleration.FromFeetPerSecondSquared(meterpersecondsquared.FeetPerSecondSquared).MeterPerSecondSquared, FeetPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.FromInchesPerSecondSquared(meterpersecondsquared.InchesPerSecondSquared).MeterPerSecondSquared, InchesPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.FromKilometerPerSecondSquared(meterpersecondsquared.KilometerPerSecondSquared).MeterPerSecondSquared, KilometerPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerHourt(meterpersecondsquared.KnotsPerHourt).MeterPerSecondSquared, KnotsPerHourtTolerance);
+            AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerHour(meterpersecondsquared.KnotsPerHour).MeterPerSecondSquared, KnotsPerHourTolerance);
             AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerMinute(meterpersecondsquared.KnotsPerMinute).MeterPerSecondSquared, KnotsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerSecond(meterpersecondsquared.KnotsPerSecond).MeterPerSecondSquared, KnotsPerSecondTolerance);
             AssertEx.EqualTolerance(1, Acceleration.FromMeterPerSecondSquared(meterpersecondsquared.MeterPerSecondSquared).MeterPerSecondSquared, MeterPerSecondSquaredTolerance);

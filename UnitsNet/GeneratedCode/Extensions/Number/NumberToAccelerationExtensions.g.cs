@@ -216,35 +216,35 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #region KnotPerHour
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double)"/>
-        public static Acceleration KnotsPerHourt(this int value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this int value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double?)"/>
-        public static Acceleration? KnotsPerHourt(this int? value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this int? value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double)"/>
-        public static Acceleration KnotsPerHourt(this long value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this long value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double?)"/>
-        public static Acceleration? KnotsPerHourt(this long? value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this long? value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double)"/>
-        public static Acceleration KnotsPerHourt(this double value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this double value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double?)"/>
-        public static Acceleration? KnotsPerHourt(this double? value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this double? value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double)"/>
-        public static Acceleration KnotsPerHourt(this float value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this float value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double?)"/>
-        public static Acceleration? KnotsPerHourt(this float? value) => Acceleration.FromKnotsPerHourt(value);
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this float? value) => Acceleration.FromKnotsPerHour(value);
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double)"/>
-        public static Acceleration KnotsPerHourt(this decimal value) => Acceleration.FromKnotsPerHourt(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this decimal value) => Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHourt(double?)"/>
-        public static Acceleration? KnotsPerHourt(this decimal? value) => Acceleration.FromKnotsPerHourt(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this decimal? value) => Acceleration.FromKnotsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

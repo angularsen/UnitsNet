@@ -66,7 +66,7 @@
     },
 	{
       "SingularName": "KnotPerHour",
-      "PluralName": "KnotsPerHourt",
+      "PluralName": "KnotsPerHour",
       "FromUnitToBaseFunc": "x*0.5144444444444/3600",
       "FromBaseToUnitFunc": "x/0.5144444444444*3600",
       "Localization": [

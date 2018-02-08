@@ -43,7 +43,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double FeetPerSecondSquaredInOneMeterPerSecondSquared => 3.28084;
 
-        protected override double KnotsPerHourtInOneMeterPerSecondSquared => 6.99784017278618E3;
+        protected override double KnotsPerHourInOneMeterPerSecondSquared => 6.99784017278618E3;
 
         protected override double KnotsPerMinuteInOneMeterPerSecondSquared => 1.16630669546436E2;
 
