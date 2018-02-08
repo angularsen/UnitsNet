@@ -93,5 +93,12 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void AreaTimesSpeedEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
+        }
     }
 }
