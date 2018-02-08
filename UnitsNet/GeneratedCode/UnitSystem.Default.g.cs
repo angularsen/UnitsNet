@@ -79,6 +79,21 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "km/s²"),
                             }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/h"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/min"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/s"),
+                            }),
                         new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
                             new[]
                             {
