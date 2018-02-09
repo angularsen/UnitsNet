@@ -840,6 +840,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "mo", "month", "months"),
                                 new AbbreviationsForCulture("ru-RU", "месяц"),
                             }),
+                        new CulturesForEnumValue((int) DurationUnit.Month30,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mo", "month", "months"),
+                                new AbbreviationsForCulture("ru-RU", "месяц"),
+                            }),
                         new CulturesForEnumValue((int) DurationUnit.Nanosecond,
                             new[]
                             {
@@ -859,6 +865,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "мин"),
                             }),
                         new CulturesForEnumValue((int) DurationUnit.Year,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yr", "year", "years"),
+                                new AbbreviationsForCulture("ru-RU", "год"),
+                            }),
+                        new CulturesForEnumValue((int) DurationUnit.Year365,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "yr", "year", "years"),
