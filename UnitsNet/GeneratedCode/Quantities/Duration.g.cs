@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double Microseconds
         {
-            get { return _seconds*1e6; }
+            get { return (_seconds) / 1e-6d; }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// </summary>
         public double Milliseconds
         {
-            get { return _seconds*1e3; }
+            get { return (_seconds) / 1e-3d; }
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace UnitsNet
         /// </summary>
         public double Nanoseconds
         {
-            get { return _seconds*1e9; }
+            get { return (_seconds) / 1e-9d; }
         }
 
         /// <summary>
@@ -280,13 +280,13 @@ namespace UnitsNet
         public static Duration FromMicroseconds(double microseconds)
         {
             double value = (double) microseconds;
-            return new Duration(value/1e6);
+            return new Duration((value) * 1e-6d);
         }
 #else
         public static Duration FromMicroseconds(QuantityValue microseconds)
         {
             double value = (double) microseconds;
-            return new Duration((value/1e6));
+            return new Duration(((value) * 1e-6d));
         }
 #endif
 
@@ -298,13 +298,13 @@ namespace UnitsNet
         public static Duration FromMilliseconds(double milliseconds)
         {
             double value = (double) milliseconds;
-            return new Duration(value/1e3);
+            return new Duration((value) * 1e-3d);
         }
 #else
         public static Duration FromMilliseconds(QuantityValue milliseconds)
         {
             double value = (double) milliseconds;
-            return new Duration((value/1e3));
+            return new Duration(((value) * 1e-3d));
         }
 #endif
 
@@ -370,13 +370,13 @@ namespace UnitsNet
         public static Duration FromNanoseconds(double nanoseconds)
         {
             double value = (double) nanoseconds;
-            return new Duration(value/1e9);
+            return new Duration((value) * 1e-9d);
         }
 #else
         public static Duration FromNanoseconds(QuantityValue nanoseconds)
         {
             double value = (double) nanoseconds;
-            return new Duration((value/1e9));
+            return new Duration(((value) * 1e-9d));
         }
 #endif
 
