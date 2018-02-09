@@ -92,11 +92,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
 
-        [Fact]
-        public void VolumeFlowTimesTimeSpanEqualsVolume()
+        [Theory]
+        [InlineData(20, 2, 40)]
+        [InlineData(20, 62, 1240)]
+        public void VolumeFlowTimesTimeSpanEqualsVolume(double cubicMetersPerSecond, double seconds, double expectedCubicMeters)
         {
-            Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * TimeSpan.FromSeconds(2);
-            Assert.Equal(Volume.FromCubicMeters(40), volume);
+            Volume volume = VolumeFlow.FromCubicMetersPerSecond(cubicMetersPerSecond) * TimeSpan.FromSeconds(seconds);
+            Assert.Equal(Volume.FromCubicMeters(expectedCubicMeters), volume);
         }
 
         [Fact]

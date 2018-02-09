@@ -36,7 +36,7 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
         {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.Seconds);
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
         }
 
         public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
