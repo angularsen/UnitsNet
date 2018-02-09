@@ -170,6 +170,30 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Acceleration in KnotsPerHour.
+        /// </summary>
+        public double KnotsPerHour
+        {
+            get { return _meterPerSecondSquared/0.5144444444444*3600; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in KnotsPerMinute.
+        /// </summary>
+        public double KnotsPerMinute
+        {
+            get { return _meterPerSecondSquared/0.5144444444444*60; }
+        }
+
+        /// <summary>
+        ///     Get Acceleration in KnotsPerSecond.
+        /// </summary>
+        public double KnotsPerSecond
+        {
+            get { return _meterPerSecondSquared/0.5144444444444; }
+        }
+
+        /// <summary>
         ///     Get Acceleration in MeterPerSecondSquared.
         /// </summary>
         public double MeterPerSecondSquared
@@ -305,6 +329,60 @@ namespace UnitsNet
         {
             double value = (double) kilometerpersecondsquared;
             return new Acceleration(((value) * 1e3d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Acceleration from KnotsPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromKnotsPerHour(double knotsperhour)
+        {
+            double value = (double) knotsperhour;
+            return new Acceleration(value*0.5144444444444/3600);
+        }
+#else
+        public static Acceleration FromKnotsPerHour(QuantityValue knotsperhour)
+        {
+            double value = (double) knotsperhour;
+            return new Acceleration((value*0.5144444444444/3600));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Acceleration from KnotsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromKnotsPerMinute(double knotsperminute)
+        {
+            double value = (double) knotsperminute;
+            return new Acceleration(value*0.5144444444444/60);
+        }
+#else
+        public static Acceleration FromKnotsPerMinute(QuantityValue knotsperminute)
+        {
+            double value = (double) knotsperminute;
+            return new Acceleration((value*0.5144444444444/60));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Acceleration from KnotsPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromKnotsPerSecond(double knotspersecond)
+        {
+            double value = (double) knotspersecond;
+            return new Acceleration(value*0.5144444444444);
+        }
+#else
+        public static Acceleration FromKnotsPerSecond(QuantityValue knotspersecond)
+        {
+            double value = (double) knotspersecond;
+            return new Acceleration((value*0.5144444444444));
         }
 #endif
 
@@ -476,6 +554,51 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerHour.
+        /// </summary>
+        public static Acceleration? FromKnotsPerHour(QuantityValue? knotsperhour)
+        {
+            if (knotsperhour.HasValue)
+            {
+                return FromKnotsPerHour(knotsperhour.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerMinute.
+        /// </summary>
+        public static Acceleration? FromKnotsPerMinute(QuantityValue? knotsperminute)
+        {
+            if (knotsperminute.HasValue)
+            {
+                return FromKnotsPerMinute(knotsperminute.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerSecond.
+        /// </summary>
+        public static Acceleration? FromKnotsPerSecond(QuantityValue? knotspersecond)
+        {
+            if (knotspersecond.HasValue)
+            {
+                return FromKnotsPerSecond(knotspersecond.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
         /// </summary>
         public static Acceleration? FromMeterPerSecondSquared(QuantityValue? meterpersecondsquared)
@@ -578,6 +701,12 @@ namespace UnitsNet
                     return FromInchesPerSecondSquared(value);
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return FromKilometerPerSecondSquared(value);
+                case AccelerationUnit.KnotPerHour:
+                    return FromKnotsPerHour(value);
+                case AccelerationUnit.KnotPerMinute:
+                    return FromKnotsPerMinute(value);
+                case AccelerationUnit.KnotPerSecond:
+                    return FromKnotsPerSecond(value);
                 case AccelerationUnit.MeterPerSecondSquared:
                     return FromMeterPerSecondSquared(value);
                 case AccelerationUnit.MicrometerPerSecondSquared:
@@ -620,6 +749,12 @@ namespace UnitsNet
                     return FromInchesPerSecondSquared(value.Value);
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return FromKilometerPerSecondSquared(value.Value);
+                case AccelerationUnit.KnotPerHour:
+                    return FromKnotsPerHour(value.Value);
+                case AccelerationUnit.KnotPerMinute:
+                    return FromKnotsPerMinute(value.Value);
+                case AccelerationUnit.KnotPerSecond:
+                    return FromKnotsPerSecond(value.Value);
                 case AccelerationUnit.MeterPerSecondSquared:
                     return FromMeterPerSecondSquared(value.Value);
                 case AccelerationUnit.MicrometerPerSecondSquared:
@@ -813,6 +948,12 @@ namespace UnitsNet
                     return InchesPerSecondSquared;
                 case AccelerationUnit.KilometerPerSecondSquared:
                     return KilometerPerSecondSquared;
+                case AccelerationUnit.KnotPerHour:
+                    return KnotsPerHour;
+                case AccelerationUnit.KnotPerMinute:
+                    return KnotsPerMinute;
+                case AccelerationUnit.KnotPerSecond:
+                    return KnotsPerSecond;
                 case AccelerationUnit.MeterPerSecondSquared:
                     return MeterPerSecondSquared;
                 case AccelerationUnit.MicrometerPerSecondSquared:

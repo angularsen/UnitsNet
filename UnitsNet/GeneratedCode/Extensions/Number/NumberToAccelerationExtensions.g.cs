@@ -214,6 +214,108 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
+        #region KnotPerHour
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this int value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this int? value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this long value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this long? value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this double value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this double? value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this float value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this float? value) => Acceleration.FromKnotsPerHour(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)"/>
+        public static Acceleration KnotsPerHour(this decimal value) => Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double?)"/>
+        public static Acceleration? KnotsPerHour(this decimal? value) => Acceleration.FromKnotsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KnotPerMinute
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)"/>
+        public static Acceleration KnotsPerMinute(this int value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double?)"/>
+        public static Acceleration? KnotsPerMinute(this int? value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)"/>
+        public static Acceleration KnotsPerMinute(this long value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double?)"/>
+        public static Acceleration? KnotsPerMinute(this long? value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)"/>
+        public static Acceleration KnotsPerMinute(this double value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double?)"/>
+        public static Acceleration? KnotsPerMinute(this double? value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)"/>
+        public static Acceleration KnotsPerMinute(this float value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double?)"/>
+        public static Acceleration? KnotsPerMinute(this float? value) => Acceleration.FromKnotsPerMinute(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)"/>
+        public static Acceleration KnotsPerMinute(this decimal value) => Acceleration.FromKnotsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double?)"/>
+        public static Acceleration? KnotsPerMinute(this decimal? value) => Acceleration.FromKnotsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region KnotPerSecond
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)"/>
+        public static Acceleration KnotsPerSecond(this int value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double?)"/>
+        public static Acceleration? KnotsPerSecond(this int? value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)"/>
+        public static Acceleration KnotsPerSecond(this long value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double?)"/>
+        public static Acceleration? KnotsPerSecond(this long? value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)"/>
+        public static Acceleration KnotsPerSecond(this double value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double?)"/>
+        public static Acceleration? KnotsPerSecond(this double? value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)"/>
+        public static Acceleration KnotsPerSecond(this float value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double?)"/>
+        public static Acceleration? KnotsPerSecond(this float? value) => Acceleration.FromKnotsPerSecond(value);
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)"/>
+        public static Acceleration KnotsPerSecond(this decimal value) => Acceleration.FromKnotsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double?)"/>
+        public static Acceleration? KnotsPerSecond(this decimal? value) => Acceleration.FromKnotsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MeterPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
