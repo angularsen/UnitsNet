@@ -43,6 +43,16 @@ namespace UnitsNet
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
+
+        public static Speed operator /(VolumeFlow volumeFlow, Area area)
+        {
+            return Speed.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
+        }
+
+        public static Area operator /(VolumeFlow volumeFlow, Speed speed)
+        {
+            return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
+        }
 #endif
     }
 }
