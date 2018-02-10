@@ -46,7 +46,7 @@
 # Import functions: Get-NewProjectVersion, Set-ProjectVersion, Invoke-CommitAndTagVersion
 Import-Module "$PSScriptRoot\set-version.psm1"
 
-$root = "$PSScriptRoot\.."
+$root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $commonPropsFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Common.props"
 $versionFiles = @($commonPropsFile)
