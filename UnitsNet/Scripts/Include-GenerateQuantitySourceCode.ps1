@@ -100,10 +100,16 @@ namespace UnitsNet
     public partial struct $quantityName : IComparable, IComparable<$quantityName>
 #endif
     {
+        private readonly $baseType _value;
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public $baseType Value { get; }
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public $baseType Value => _value;
+#endif
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -120,7 +126,7 @@ namespace UnitsNet
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public $quantityName(double $baseUnitPluralNameLower)
         {
-            Value = $convertToBaseType($baseUnitPluralNameLower);
+            _value = $convertToBaseType($baseUnitPluralNameLower);
             Unit = BaseUnit;
         }
 
@@ -130,9 +136,14 @@ namespace UnitsNet
         /// <param name="numericValue">Numeric value.</param>
         /// <param name="unit">Unit representation.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        public $quantityName($baseType numericValue, $unitEnumName unit)
+#if WINDOWS_UWP
+        private
+#else
+        public 
+#endif
+          $quantityName($baseType numericValue, $unitEnumName unit)
         {
-            Value = numericValue;
+            _value = numericValue;
             Unit = unit;
          }
 
@@ -357,7 +368,7 @@ namespace UnitsNet
 #endif
         int CompareTo($quantityName other)
         {
-            return Value.CompareTo(other.AsBaseNumericType(Unit));
+            return AsBaseUnit$baseUnitPluralName().CompareTo(other.AsBaseUnit$baseUnitPluralName());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -402,7 +413,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return Value.Equals((($quantityName) obj).AsBaseNumericType(Unit));
+            return AsBaseUnit$baseUnitPluralName().Equals((($quantityName) obj).AsBaseUnit$baseUnitPluralName());
         }
 
         /// <summary>
@@ -415,7 +426,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals($quantityName other, $quantityName maxError)
         {
-            return Math.Abs(Value - other.AsBaseNumericType(Unit)) <= maxError.AsBaseNumericType(Unit);
+            return Math.Abs(AsBaseUnit$baseUnitPluralName() - other.AsBaseUnit$baseUnitPluralName()) <= maxError.AsBaseUnit$baseUnitPluralName();
         }
 
         public override int GetHashCode()
@@ -715,12 +726,12 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private $baseType AsBaseUnit$baseUnitPluralName()
         {
-			if (Unit == $unitEnumName.$baseUnitSingularName) { return Value; }
+			if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
 
             switch (Unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromUnitToBaseFunc.Replace("x", "Value");@"
+		$func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
                 default:
