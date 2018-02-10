@@ -52,6 +52,11 @@ function Set-AssemblyInfoVersion([string] $file, [string] $version) {
   (Get-Content $file) -replace 'Assembly(File)?Version\(".*?"\)', "Assembly`$1Version(`"$version`")" | Set-Content $file
 }
 
+function Set-NuspecVersion([string] $file, [string] $version) {
+  Write-Host "$file -> $version"
+  (Get-Content $file) -replace '<version>.*?</version>', "<version>$version</version>" | Set-Content $file
+}
+
 function Get-BumpedProjectVersion([string] $projectPath, [string] $bumpVersion) {
   [xml]$projectXml = Get-Content -Path $projectPath
 
@@ -145,4 +150,4 @@ function Resolve-Error ($ErrorRecord=$Error[0])
   }
 }
 
-export-modulemember -function Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion
+export-modulemember -function Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion, Set-NuspecVersion

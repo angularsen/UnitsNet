@@ -52,7 +52,8 @@ $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $commonPropsFile = "$root\UnitsNet\UnitsNet.Common.props"
 $winrtAssemblyInfoFile = "$root\UnitsNet\Properties\AssemblyInfo.WindowsRuntimeComponent.cs"
-$versionFiles = @($commonPropsFile, $winrtAssemblyInfoFile)
+$winrtNuspecFile = "$root\UnitsNet\UnitsNet.WindowsRuntimeComponent.nuspec"
+$versionFiles = @($commonPropsFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
 $projectName = "UnitsNet"
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
@@ -60,4 +61,5 @@ $newVersion = Get-NewProjectVersion $commonPropsFile $paramSet $setVersion $bump
 
 Set-ProjectVersion $commonPropsFile $newVersion
 Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
+Set-NuspecVersion $winrtNuspecFile $newVersion
 Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion
