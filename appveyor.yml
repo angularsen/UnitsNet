@@ -6,6 +6,7 @@ only_commits:
     - '**/*.sln'
     - '**/*.csproj'
     - '**/*.props'
+    - '**/*.nuspec'
     - '**/*.cs'
     - '**/*.json'
     - '**/*.ps1'
