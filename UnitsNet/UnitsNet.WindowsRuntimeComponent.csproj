@@ -112,7 +112,7 @@
       <Version>6.0.6</Version>
     </PackageReference>
     <PackageReference Include="JetBrains.Annotations">
-      <Version>10.4.0</Version>
+      <Version>11.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
