@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of RotationalSpeed.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _radiansPerSecond;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly RotationalSpeedUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public RotationalSpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public RotationalSpeed() : this(0)
+        public RotationalSpeed()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public RotationalSpeed(double radianspersecond)
         {
-            _radiansPerSecond = Convert.ToDouble(radianspersecond);
+            _value = Convert.ToDouble(radianspersecond);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          RotationalSpeed(double numericValue, RotationalSpeedUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit RadianPerSecond.
+        /// </summary>
+        /// <param name="radianspersecond">Value assuming base unit RadianPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        RotationalSpeed(long radianspersecond)
-        {
-            _radiansPerSecond = Convert.ToDouble(radianspersecond);
-        }
+        RotationalSpeed(long radianspersecond) : this(Convert.ToDouble(radianspersecond), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit RadianPerSecond.
+        /// </summary>
+        /// <param name="radianspersecond">Value assuming base unit RadianPerSecond.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        RotationalSpeed(decimal radianspersecond)
-        {
-            _radiansPerSecond = Convert.ToDouble(radianspersecond);
-        }
+        RotationalSpeed(decimal radianspersecond) : this(Convert.ToDouble(radianspersecond), BaseUnit) { }
 
         #region Properties
 
@@ -119,128 +156,70 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static RotationalSpeedUnit BaseUnit
-        {
-            get { return RotationalSpeedUnit.RadianPerSecond; }
-        }
+        public static RotationalSpeedUnit BaseUnit => RotationalSpeedUnit.RadianPerSecond;
 
         /// <summary>
         ///     All units of measurement for the RotationalSpeed quantity.
         /// </summary>
         public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().ToArray();
-
         /// <summary>
         ///     Get RotationalSpeed in CentiradiansPerSecond.
         /// </summary>
-        public double CentiradiansPerSecond
-        {
-            get { return (_radiansPerSecond) / 1e-2d; }
-        }
-
+        public double CentiradiansPerSecond => As(RotationalSpeedUnit.CentiradianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in DeciradiansPerSecond.
         /// </summary>
-        public double DeciradiansPerSecond
-        {
-            get { return (_radiansPerSecond) / 1e-1d; }
-        }
-
+        public double DeciradiansPerSecond => As(RotationalSpeedUnit.DeciradianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in DegreesPerMinute.
         /// </summary>
-        public double DegreesPerMinute
-        {
-            get { return (180*60/Math.PI)*_radiansPerSecond; }
-        }
-
+        public double DegreesPerMinute => As(RotationalSpeedUnit.DegreePerMinute);
         /// <summary>
         ///     Get RotationalSpeed in DegreesPerSecond.
         /// </summary>
-        public double DegreesPerSecond
-        {
-            get { return (180/Math.PI)*_radiansPerSecond; }
-        }
-
+        public double DegreesPerSecond => As(RotationalSpeedUnit.DegreePerSecond);
         /// <summary>
         ///     Get RotationalSpeed in MicrodegreesPerSecond.
         /// </summary>
-        public double MicrodegreesPerSecond
-        {
-            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-6d; }
-        }
-
+        public double MicrodegreesPerSecond => As(RotationalSpeedUnit.MicrodegreePerSecond);
         /// <summary>
         ///     Get RotationalSpeed in MicroradiansPerSecond.
         /// </summary>
-        public double MicroradiansPerSecond
-        {
-            get { return (_radiansPerSecond) / 1e-6d; }
-        }
-
+        public double MicroradiansPerSecond => As(RotationalSpeedUnit.MicroradianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in MillidegreesPerSecond.
         /// </summary>
-        public double MillidegreesPerSecond
-        {
-            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-3d; }
-        }
-
+        public double MillidegreesPerSecond => As(RotationalSpeedUnit.MillidegreePerSecond);
         /// <summary>
         ///     Get RotationalSpeed in MilliradiansPerSecond.
         /// </summary>
-        public double MilliradiansPerSecond
-        {
-            get { return (_radiansPerSecond) / 1e-3d; }
-        }
-
+        public double MilliradiansPerSecond => As(RotationalSpeedUnit.MilliradianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in NanodegreesPerSecond.
         /// </summary>
-        public double NanodegreesPerSecond
-        {
-            get { return ((180/Math.PI)*_radiansPerSecond) / 1e-9d; }
-        }
-
+        public double NanodegreesPerSecond => As(RotationalSpeedUnit.NanodegreePerSecond);
         /// <summary>
         ///     Get RotationalSpeed in NanoradiansPerSecond.
         /// </summary>
-        public double NanoradiansPerSecond
-        {
-            get { return (_radiansPerSecond) / 1e-9d; }
-        }
-
+        public double NanoradiansPerSecond => As(RotationalSpeedUnit.NanoradianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in RadiansPerSecond.
         /// </summary>
-        public double RadiansPerSecond
-        {
-            get { return _radiansPerSecond; }
-        }
-
+        public double RadiansPerSecond => As(RotationalSpeedUnit.RadianPerSecond);
         /// <summary>
         ///     Get RotationalSpeed in RevolutionsPerMinute.
         /// </summary>
-        public double RevolutionsPerMinute
-        {
-            get { return (_radiansPerSecond/6.2831853072)*60; }
-        }
-
+        public double RevolutionsPerMinute => As(RotationalSpeedUnit.RevolutionPerMinute);
         /// <summary>
         ///     Get RotationalSpeed in RevolutionsPerSecond.
         /// </summary>
-        public double RevolutionsPerSecond
-        {
-            get { return _radiansPerSecond/6.2831853072; }
-        }
+        public double RevolutionsPerSecond => As(RotationalSpeedUnit.RevolutionPerSecond);
 
         #endregion
 
         #region Static
 
-        public static RotationalSpeed Zero
-        {
-            get { return new RotationalSpeed(); }
-        }
+        public static RotationalSpeed Zero => new RotationalSpeed(0, BaseUnit);
 
         /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
@@ -248,17 +227,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond)
-        {
-            double value = (double) centiradianspersecond;
-            return new RotationalSpeed((value) * 1e-2d);
-        }
 #else
         public static RotationalSpeed FromCentiradiansPerSecond(QuantityValue centiradianspersecond)
+#endif
         {
             double value = (double) centiradianspersecond;
-            return new RotationalSpeed(((value) * 1e-2d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.CentiradianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond.
@@ -266,17 +241,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
-        {
-            double value = (double) deciradianspersecond;
-            return new RotationalSpeed((value) * 1e-1d);
-        }
 #else
         public static RotationalSpeed FromDeciradiansPerSecond(QuantityValue deciradianspersecond)
+#endif
         {
             double value = (double) deciradianspersecond;
-            return new RotationalSpeed(((value) * 1e-1d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.DeciradianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute.
@@ -284,17 +255,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDegreesPerMinute(double degreesperminute)
-        {
-            double value = (double) degreesperminute;
-            return new RotationalSpeed((Math.PI/(180*60))*value);
-        }
 #else
         public static RotationalSpeed FromDegreesPerMinute(QuantityValue degreesperminute)
+#endif
         {
             double value = (double) degreesperminute;
-            return new RotationalSpeed(((Math.PI/(180*60))*value));
+            return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerMinute);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond.
@@ -302,17 +269,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDegreesPerSecond(double degreespersecond)
-        {
-            double value = (double) degreespersecond;
-            return new RotationalSpeed((Math.PI/180)*value);
-        }
 #else
         public static RotationalSpeed FromDegreesPerSecond(QuantityValue degreespersecond)
+#endif
         {
             double value = (double) degreespersecond;
-            return new RotationalSpeed(((Math.PI/180)*value));
+            return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond.
@@ -320,17 +283,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMicrodegreesPerSecond(double microdegreespersecond)
-        {
-            double value = (double) microdegreespersecond;
-            return new RotationalSpeed(((Math.PI/180)*value) * 1e-6d);
-        }
 #else
         public static RotationalSpeed FromMicrodegreesPerSecond(QuantityValue microdegreespersecond)
+#endif
         {
             double value = (double) microdegreespersecond;
-            return new RotationalSpeed((((Math.PI/180)*value) * 1e-6d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.MicrodegreePerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
@@ -338,17 +297,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
-        {
-            double value = (double) microradianspersecond;
-            return new RotationalSpeed((value) * 1e-6d);
-        }
 #else
         public static RotationalSpeed FromMicroradiansPerSecond(QuantityValue microradianspersecond)
+#endif
         {
             double value = (double) microradianspersecond;
-            return new RotationalSpeed(((value) * 1e-6d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.MicroradianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond.
@@ -356,17 +311,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMillidegreesPerSecond(double millidegreespersecond)
-        {
-            double value = (double) millidegreespersecond;
-            return new RotationalSpeed(((Math.PI/180)*value) * 1e-3d);
-        }
 #else
         public static RotationalSpeed FromMillidegreesPerSecond(QuantityValue millidegreespersecond)
+#endif
         {
             double value = (double) millidegreespersecond;
-            return new RotationalSpeed((((Math.PI/180)*value) * 1e-3d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.MillidegreePerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
@@ -374,17 +325,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
-        {
-            double value = (double) milliradianspersecond;
-            return new RotationalSpeed((value) * 1e-3d);
-        }
 #else
         public static RotationalSpeed FromMilliradiansPerSecond(QuantityValue milliradianspersecond)
+#endif
         {
             double value = (double) milliradianspersecond;
-            return new RotationalSpeed(((value) * 1e-3d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.MilliradianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond.
@@ -392,17 +339,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromNanodegreesPerSecond(double nanodegreespersecond)
-        {
-            double value = (double) nanodegreespersecond;
-            return new RotationalSpeed(((Math.PI/180)*value) * 1e-9d);
-        }
 #else
         public static RotationalSpeed FromNanodegreesPerSecond(QuantityValue nanodegreespersecond)
+#endif
         {
             double value = (double) nanodegreespersecond;
-            return new RotationalSpeed((((Math.PI/180)*value) * 1e-9d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.NanodegreePerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond.
@@ -410,17 +353,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond)
-        {
-            double value = (double) nanoradianspersecond;
-            return new RotationalSpeed((value) * 1e-9d);
-        }
 #else
         public static RotationalSpeed FromNanoradiansPerSecond(QuantityValue nanoradianspersecond)
+#endif
         {
             double value = (double) nanoradianspersecond;
-            return new RotationalSpeed(((value) * 1e-9d));
+            return new RotationalSpeed(value, RotationalSpeedUnit.NanoradianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond.
@@ -428,17 +367,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRadiansPerSecond(double radianspersecond)
-        {
-            double value = (double) radianspersecond;
-            return new RotationalSpeed(value);
-        }
 #else
         public static RotationalSpeed FromRadiansPerSecond(QuantityValue radianspersecond)
+#endif
         {
             double value = (double) radianspersecond;
-            return new RotationalSpeed((value));
+            return new RotationalSpeed(value, RotationalSpeedUnit.RadianPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute.
@@ -446,17 +381,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
-        {
-            double value = (double) revolutionsperminute;
-            return new RotationalSpeed((value*6.2831853072)/60);
-        }
 #else
         public static RotationalSpeed FromRevolutionsPerMinute(QuantityValue revolutionsperminute)
+#endif
         {
             double value = (double) revolutionsperminute;
-            return new RotationalSpeed(((value*6.2831853072)/60));
+            return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerMinute);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond.
@@ -464,17 +395,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)
-        {
-            double value = (double) revolutionspersecond;
-            return new RotationalSpeed(value*6.2831853072);
-        }
 #else
         public static RotationalSpeed FromRevolutionsPerSecond(QuantityValue revolutionspersecond)
+#endif
         {
             double value = (double) revolutionspersecond;
-            return new RotationalSpeed((value*6.2831853072));
+            return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerSecond);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -689,38 +616,7 @@ namespace UnitsNet
         public static RotationalSpeed From(QuantityValue value, RotationalSpeedUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case RotationalSpeedUnit.CentiradianPerSecond:
-                    return FromCentiradiansPerSecond(value);
-                case RotationalSpeedUnit.DeciradianPerSecond:
-                    return FromDeciradiansPerSecond(value);
-                case RotationalSpeedUnit.DegreePerMinute:
-                    return FromDegreesPerMinute(value);
-                case RotationalSpeedUnit.DegreePerSecond:
-                    return FromDegreesPerSecond(value);
-                case RotationalSpeedUnit.MicrodegreePerSecond:
-                    return FromMicrodegreesPerSecond(value);
-                case RotationalSpeedUnit.MicroradianPerSecond:
-                    return FromMicroradiansPerSecond(value);
-                case RotationalSpeedUnit.MillidegreePerSecond:
-                    return FromMillidegreesPerSecond(value);
-                case RotationalSpeedUnit.MilliradianPerSecond:
-                    return FromMilliradiansPerSecond(value);
-                case RotationalSpeedUnit.NanodegreePerSecond:
-                    return FromNanodegreesPerSecond(value);
-                case RotationalSpeedUnit.NanoradianPerSecond:
-                    return FromNanoradiansPerSecond(value);
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return FromRadiansPerSecond(value);
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return FromRevolutionsPerMinute(value);
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return FromRevolutionsPerSecond(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new RotationalSpeed((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -737,38 +633,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case RotationalSpeedUnit.CentiradianPerSecond:
-                    return FromCentiradiansPerSecond(value.Value);
-                case RotationalSpeedUnit.DeciradianPerSecond:
-                    return FromDeciradiansPerSecond(value.Value);
-                case RotationalSpeedUnit.DegreePerMinute:
-                    return FromDegreesPerMinute(value.Value);
-                case RotationalSpeedUnit.DegreePerSecond:
-                    return FromDegreesPerSecond(value.Value);
-                case RotationalSpeedUnit.MicrodegreePerSecond:
-                    return FromMicrodegreesPerSecond(value.Value);
-                case RotationalSpeedUnit.MicroradianPerSecond:
-                    return FromMicroradiansPerSecond(value.Value);
-                case RotationalSpeedUnit.MillidegreePerSecond:
-                    return FromMillidegreesPerSecond(value.Value);
-                case RotationalSpeedUnit.MilliradianPerSecond:
-                    return FromMilliradiansPerSecond(value.Value);
-                case RotationalSpeedUnit.NanodegreePerSecond:
-                    return FromNanodegreesPerSecond(value.Value);
-                case RotationalSpeedUnit.NanoradianPerSecond:
-                    return FromNanoradiansPerSecond(value.Value);
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return FromRadiansPerSecond(value.Value);
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return FromRevolutionsPerMinute(value.Value);
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return FromRevolutionsPerSecond(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new RotationalSpeed((double)value.Value, fromUnit);
         }
 #endif
 
@@ -787,12 +653,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RotationalSpeedUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          RotationalSpeedUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -803,37 +686,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static RotationalSpeed operator -(RotationalSpeed right)
         {
-            return new RotationalSpeed(-right._radiansPerSecond);
+            return new RotationalSpeed(-right.Value, right.Unit);
         }
 
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left._radiansPerSecond + right._radiansPerSecond);
+            return new RotationalSpeed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left._radiansPerSecond - right._radiansPerSecond);
+            return new RotationalSpeed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left*right._radiansPerSecond);
+            return new RotationalSpeed(left * right.Value, right.Unit);
         }
 
         public static RotationalSpeed operator *(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left._radiansPerSecond*(double)right);
+            return new RotationalSpeed(left.Value * right, left.Unit);
         }
 
         public static RotationalSpeed operator /(RotationalSpeed left, double right)
         {
-            return new RotationalSpeed(left._radiansPerSecond/(double)right);
+            return new RotationalSpeed(left.Value / right, left.Unit);
         }
 
         public static double operator /(RotationalSpeed left, RotationalSpeed right)
         {
-            return Convert.ToDouble(left._radiansPerSecond/right._radiansPerSecond);
+            return left.RadiansPerSecond / right.RadiansPerSecond;
         }
 #endif
 
@@ -856,43 +739,43 @@ namespace UnitsNet
 #endif
         int CompareTo(RotationalSpeed other)
         {
-            return _radiansPerSecond.CompareTo(other._radiansPerSecond);
+            return AsBaseUnitRadiansPerSecond().CompareTo(other.AsBaseUnitRadiansPerSecond());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._radiansPerSecond <= right._radiansPerSecond;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._radiansPerSecond >= right._radiansPerSecond;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._radiansPerSecond < right._radiansPerSecond;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(RotationalSpeed left, RotationalSpeed right)
         {
-            return left._radiansPerSecond > right._radiansPerSecond;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._radiansPerSecond == right._radiansPerSecond;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._radiansPerSecond != right._radiansPerSecond;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -904,7 +787,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _radiansPerSecond.Equals(((RotationalSpeed) obj)._radiansPerSecond);
+            return AsBaseUnitRadiansPerSecond().Equals(((RotationalSpeed) obj).AsBaseUnitRadiansPerSecond());
         }
 
         /// <summary>
@@ -917,12 +800,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(RotationalSpeed other, RotationalSpeed maxError)
         {
-            return Math.Abs(_radiansPerSecond - other._radiansPerSecond) <= maxError._radiansPerSecond;
+            return Math.Abs(AsBaseUnitRadiansPerSecond() - other.AsBaseUnitRadiansPerSecond()) <= maxError.AsBaseUnitRadiansPerSecond();
         }
 
         public override int GetHashCode()
         {
-            return _radiansPerSecond.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -932,38 +815,31 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(RotationalSpeedUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitRadiansPerSecond();
+
             switch (unit)
             {
-                case RotationalSpeedUnit.CentiradianPerSecond:
-                    return CentiradiansPerSecond;
-                case RotationalSpeedUnit.DeciradianPerSecond:
-                    return DeciradiansPerSecond;
-                case RotationalSpeedUnit.DegreePerMinute:
-                    return DegreesPerMinute;
-                case RotationalSpeedUnit.DegreePerSecond:
-                    return DegreesPerSecond;
-                case RotationalSpeedUnit.MicrodegreePerSecond:
-                    return MicrodegreesPerSecond;
-                case RotationalSpeedUnit.MicroradianPerSecond:
-                    return MicroradiansPerSecond;
-                case RotationalSpeedUnit.MillidegreePerSecond:
-                    return MillidegreesPerSecond;
-                case RotationalSpeedUnit.MilliradianPerSecond:
-                    return MilliradiansPerSecond;
-                case RotationalSpeedUnit.NanodegreePerSecond:
-                    return NanodegreesPerSecond;
-                case RotationalSpeedUnit.NanoradianPerSecond:
-                    return NanoradiansPerSecond;
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return RadiansPerSecond;
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return RevolutionsPerMinute;
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return RevolutionsPerSecond;
+                case RotationalSpeedUnit.CentiradianPerSecond: return (baseUnitValue) / 1e-2d;
+                case RotationalSpeedUnit.DeciradianPerSecond: return (baseUnitValue) / 1e-1d;
+                case RotationalSpeedUnit.DegreePerMinute: return (180*60/Math.PI)*baseUnitValue;
+                case RotationalSpeedUnit.DegreePerSecond: return (180/Math.PI)*baseUnitValue;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-6d;
+                case RotationalSpeedUnit.MicroradianPerSecond: return (baseUnitValue) / 1e-6d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-3d;
+                case RotationalSpeedUnit.MilliradianPerSecond: return (baseUnitValue) / 1e-3d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-9d;
+                case RotationalSpeedUnit.NanoradianPerSecond: return (baseUnitValue) / 1e-9d;
+                case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue/6.2831853072)*60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue/6.2831853072;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1005,7 +881,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1024,17 +904,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RotationalSpeed Parse(string str, [CanBeNull] Culture culture)
+        public static RotationalSpeed Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<RotationalSpeed, RotationalSpeedUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<RotationalSpeed, RotationalSpeedUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1060,16 +947,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out RotationalSpeed result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out RotationalSpeed result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1082,6 +994,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1095,11 +1008,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static RotationalSpeedUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1108,6 +1024,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1120,18 +1038,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static RotationalSpeedUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static RotationalSpeedUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<RotationalSpeedUnit>(str.Trim());
 
             if (unit == RotationalSpeedUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalSpeedUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1140,6 +1058,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is RadianPerSecond
         /// </summary>
@@ -1151,7 +1070,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1168,74 +1087,141 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(RotationalSpeedUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          RotationalSpeedUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalSpeedUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            RotationalSpeedUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalSpeedUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            RotationalSpeedUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of RotationalSpeed
         /// </summary>
-        public static RotationalSpeed MaxValue
-        {
-            get
-            {
-                return new RotationalSpeed(double.MaxValue);
-            }
-        }
+        public static RotationalSpeed MaxValue => new RotationalSpeed(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalSpeed
         /// </summary>
-        public static RotationalSpeed MinValue
+        public static RotationalSpeed MinValue => new RotationalSpeed(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitRadiansPerSecond()
         {
-            get
+			if (Unit == RotationalSpeedUnit.RadianPerSecond) { return _value; }
+
+            switch (Unit)
             {
-                return new RotationalSpeed(double.MinValue);
-            }
-        }
-    }
+                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
+                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
+                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
+                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
+                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
+                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
+                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
+                case RotationalSpeedUnit.RadianPerSecond: return _value;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(RotationalSpeedUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

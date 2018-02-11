@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricConductance.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _siemens;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricConductanceUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricConductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricConductance() : this(0)
+        public ElectricConductance()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricConductance(double siemens)
         {
-            _siemens = Convert.ToDouble(siemens);
+            _value = Convert.ToDouble(siemens);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricConductance(double numericValue, ElectricConductanceUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Siemens.
+        /// </summary>
+        /// <param name="siemens">Value assuming base unit Siemens.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricConductance(long siemens)
-        {
-            _siemens = Convert.ToDouble(siemens);
-        }
+        ElectricConductance(long siemens) : this(Convert.ToDouble(siemens), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Siemens.
+        /// </summary>
+        /// <param name="siemens">Value assuming base unit Siemens.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricConductance(decimal siemens)
-        {
-            _siemens = Convert.ToDouble(siemens);
-        }
+        ElectricConductance(decimal siemens) : this(Convert.ToDouble(siemens), BaseUnit) { }
 
         #region Properties
 
@@ -119,48 +156,30 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricConductanceUnit BaseUnit
-        {
-            get { return ElectricConductanceUnit.Siemens; }
-        }
+        public static ElectricConductanceUnit BaseUnit => ElectricConductanceUnit.Siemens;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
         /// </summary>
         public static ElectricConductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().ToArray();
-
         /// <summary>
         ///     Get ElectricConductance in Microsiemens.
         /// </summary>
-        public double Microsiemens
-        {
-            get { return (_siemens) / 1e-6d; }
-        }
-
+        public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
         /// <summary>
         ///     Get ElectricConductance in Millisiemens.
         /// </summary>
-        public double Millisiemens
-        {
-            get { return (_siemens) / 1e-3d; }
-        }
-
+        public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
         /// <summary>
         ///     Get ElectricConductance in Siemens.
         /// </summary>
-        public double Siemens
-        {
-            get { return _siemens; }
-        }
+        public double Siemens => As(ElectricConductanceUnit.Siemens);
 
         #endregion
 
         #region Static
 
-        public static ElectricConductance Zero
-        {
-            get { return new ElectricConductance(); }
-        }
+        public static ElectricConductance Zero => new ElectricConductance(0, BaseUnit);
 
         /// <summary>
         ///     Get ElectricConductance from Microsiemens.
@@ -168,17 +187,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricConductance FromMicrosiemens(double microsiemens)
-        {
-            double value = (double) microsiemens;
-            return new ElectricConductance((value) * 1e-6d);
-        }
 #else
         public static ElectricConductance FromMicrosiemens(QuantityValue microsiemens)
+#endif
         {
             double value = (double) microsiemens;
-            return new ElectricConductance(((value) * 1e-6d));
+            return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricConductance from Millisiemens.
@@ -186,17 +201,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricConductance FromMillisiemens(double millisiemens)
-        {
-            double value = (double) millisiemens;
-            return new ElectricConductance((value) * 1e-3d);
-        }
 #else
         public static ElectricConductance FromMillisiemens(QuantityValue millisiemens)
+#endif
         {
             double value = (double) millisiemens;
-            return new ElectricConductance(((value) * 1e-3d));
+            return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricConductance from Siemens.
@@ -204,17 +215,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricConductance FromSiemens(double siemens)
-        {
-            double value = (double) siemens;
-            return new ElectricConductance(value);
-        }
 #else
         public static ElectricConductance FromSiemens(QuantityValue siemens)
+#endif
         {
             double value = (double) siemens;
-            return new ElectricConductance((value));
+            return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -279,18 +286,7 @@ namespace UnitsNet
         public static ElectricConductance From(QuantityValue value, ElectricConductanceUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricConductanceUnit.Microsiemens:
-                    return FromMicrosiemens(value);
-                case ElectricConductanceUnit.Millisiemens:
-                    return FromMillisiemens(value);
-                case ElectricConductanceUnit.Siemens:
-                    return FromSiemens(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricConductance((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -307,18 +303,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricConductanceUnit.Microsiemens:
-                    return FromMicrosiemens(value.Value);
-                case ElectricConductanceUnit.Millisiemens:
-                    return FromMillisiemens(value.Value);
-                case ElectricConductanceUnit.Siemens:
-                    return FromSiemens(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricConductance((double)value.Value, fromUnit);
         }
 #endif
 
@@ -337,12 +323,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricConductanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricConductanceUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -353,37 +356,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricConductance operator -(ElectricConductance right)
         {
-            return new ElectricConductance(-right._siemens);
+            return new ElectricConductance(-right.Value, right.Unit);
         }
 
         public static ElectricConductance operator +(ElectricConductance left, ElectricConductance right)
         {
-            return new ElectricConductance(left._siemens + right._siemens);
+            return new ElectricConductance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricConductance operator -(ElectricConductance left, ElectricConductance right)
         {
-            return new ElectricConductance(left._siemens - right._siemens);
+            return new ElectricConductance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricConductance operator *(double left, ElectricConductance right)
         {
-            return new ElectricConductance(left*right._siemens);
+            return new ElectricConductance(left * right.Value, right.Unit);
         }
 
         public static ElectricConductance operator *(ElectricConductance left, double right)
         {
-            return new ElectricConductance(left._siemens*(double)right);
+            return new ElectricConductance(left.Value * right, left.Unit);
         }
 
         public static ElectricConductance operator /(ElectricConductance left, double right)
         {
-            return new ElectricConductance(left._siemens/(double)right);
+            return new ElectricConductance(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricConductance left, ElectricConductance right)
         {
-            return Convert.ToDouble(left._siemens/right._siemens);
+            return left.Siemens / right.Siemens;
         }
 #endif
 
@@ -406,43 +409,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricConductance other)
         {
-            return _siemens.CompareTo(other._siemens);
+            return AsBaseUnitSiemens().CompareTo(other.AsBaseUnitSiemens());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricConductance left, ElectricConductance right)
         {
-            return left._siemens <= right._siemens;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricConductance left, ElectricConductance right)
         {
-            return left._siemens >= right._siemens;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricConductance left, ElectricConductance right)
         {
-            return left._siemens < right._siemens;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricConductance left, ElectricConductance right)
         {
-            return left._siemens > right._siemens;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricConductance left, ElectricConductance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._siemens == right._siemens;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricConductance left, ElectricConductance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._siemens != right._siemens;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -454,7 +457,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _siemens.Equals(((ElectricConductance) obj)._siemens);
+            return AsBaseUnitSiemens().Equals(((ElectricConductance) obj).AsBaseUnitSiemens());
         }
 
         /// <summary>
@@ -467,12 +470,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricConductance other, ElectricConductance maxError)
         {
-            return Math.Abs(_siemens - other._siemens) <= maxError._siemens;
+            return Math.Abs(AsBaseUnitSiemens() - other.AsBaseUnitSiemens()) <= maxError.AsBaseUnitSiemens();
         }
 
         public override int GetHashCode()
         {
-            return _siemens.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -482,18 +485,21 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricConductanceUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitSiemens();
+
             switch (unit)
             {
-                case ElectricConductanceUnit.Microsiemens:
-                    return Microsiemens;
-                case ElectricConductanceUnit.Millisiemens:
-                    return Millisiemens;
-                case ElectricConductanceUnit.Siemens:
-                    return Siemens;
+                case ElectricConductanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
+                case ElectricConductanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
+                case ElectricConductanceUnit.Siemens: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -535,7 +541,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -554,17 +564,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricConductance Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricConductance Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricConductance, ElectricConductanceUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricConductance, ElectricConductanceUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -590,16 +607,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricConductance result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricConductance result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -612,6 +654,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -625,11 +668,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricConductanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -638,6 +684,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -650,18 +698,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricConductanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricConductanceUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricConductanceUnit>(str.Trim());
 
             if (unit == ElectricConductanceUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricConductanceUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -670,6 +718,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Siemens
         /// </summary>
@@ -681,7 +730,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -698,74 +747,131 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricConductanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricConductanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricConductanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricConductanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricConductanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricConductanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MaxValue
-        {
-            get
-            {
-                return new ElectricConductance(double.MaxValue);
-            }
-        }
+        public static ElectricConductance MaxValue => new ElectricConductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MinValue
+        public static ElectricConductance MinValue => new ElectricConductance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitSiemens()
         {
-            get
+			if (Unit == ElectricConductanceUnit.Siemens) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricConductance(double.MinValue);
-            }
-        }
-    }
+                case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
+                case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
+                case ElectricConductanceUnit.Siemens: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricConductanceUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

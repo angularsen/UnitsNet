@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Force.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _newtons;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ForceUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Force() : this(0)
+        public Force()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Force(double newtons)
         {
-            _newtons = Convert.ToDouble(newtons);
+            _value = Convert.ToDouble(newtons);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Force(double numericValue, ForceUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Newton.
+        /// </summary>
+        /// <param name="newtons">Value assuming base unit Newton.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Force(long newtons)
-        {
-            _newtons = Convert.ToDouble(newtons);
-        }
+        Force(long newtons) : this(Convert.ToDouble(newtons), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Newton.
+        /// </summary>
+        /// <param name="newtons">Value assuming base unit Newton.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Force(decimal newtons)
-        {
-            _newtons = Convert.ToDouble(newtons);
-        }
+        Force(decimal newtons) : this(Convert.ToDouble(newtons), BaseUnit) { }
 
         #region Properties
 
@@ -119,104 +156,58 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit
-        {
-            get { return ForceUnit.Newton; }
-        }
+        public static ForceUnit BaseUnit => ForceUnit.Newton;
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
         public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
-
         /// <summary>
         ///     Get Force in Decanewtons.
         /// </summary>
-        public double Decanewtons
-        {
-            get { return (_newtons) / 1e1d; }
-        }
-
+        public double Decanewtons => As(ForceUnit.Decanewton);
         /// <summary>
         ///     Get Force in Dyne.
         /// </summary>
-        public double Dyne
-        {
-            get { return _newtons*1e5; }
-        }
-
+        public double Dyne => As(ForceUnit.Dyn);
         /// <summary>
         ///     Get Force in KilogramsForce.
         /// </summary>
-        public double KilogramsForce
-        {
-            get { return _newtons/9.80665002864; }
-        }
-
+        public double KilogramsForce => As(ForceUnit.KilogramForce);
         /// <summary>
         ///     Get Force in Kilonewtons.
         /// </summary>
-        public double Kilonewtons
-        {
-            get { return (_newtons) / 1e3d; }
-        }
-
+        public double Kilonewtons => As(ForceUnit.Kilonewton);
         /// <summary>
         ///     Get Force in KiloPonds.
         /// </summary>
-        public double KiloPonds
-        {
-            get { return _newtons/9.80665002864; }
-        }
-
+        public double KiloPonds => As(ForceUnit.KiloPond);
         /// <summary>
         ///     Get Force in Meganewtons.
         /// </summary>
-        public double Meganewtons
-        {
-            get { return (_newtons) / 1e6d; }
-        }
-
+        public double Meganewtons => As(ForceUnit.Meganewton);
         /// <summary>
         ///     Get Force in Newtons.
         /// </summary>
-        public double Newtons
-        {
-            get { return _newtons; }
-        }
-
+        public double Newtons => As(ForceUnit.Newton);
         /// <summary>
         ///     Get Force in Poundals.
         /// </summary>
-        public double Poundals
-        {
-            get { return _newtons/0.13825502798973041652092282466083; }
-        }
-
+        public double Poundals => As(ForceUnit.Poundal);
         /// <summary>
         ///     Get Force in PoundsForce.
         /// </summary>
-        public double PoundsForce
-        {
-            get { return _newtons/4.4482216152605095551842641431421; }
-        }
-
+        public double PoundsForce => As(ForceUnit.PoundForce);
         /// <summary>
         ///     Get Force in TonnesForce.
         /// </summary>
-        public double TonnesForce
-        {
-            get { return _newtons/9.80665002864/1000; }
-        }
+        public double TonnesForce => As(ForceUnit.TonneForce);
 
         #endregion
 
         #region Static
 
-        public static Force Zero
-        {
-            get { return new Force(); }
-        }
+        public static Force Zero => new Force(0, BaseUnit);
 
         /// <summary>
         ///     Get Force from Decanewtons.
@@ -224,17 +215,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromDecanewtons(double decanewtons)
-        {
-            double value = (double) decanewtons;
-            return new Force((value) * 1e1d);
-        }
 #else
         public static Force FromDecanewtons(QuantityValue decanewtons)
+#endif
         {
             double value = (double) decanewtons;
-            return new Force(((value) * 1e1d));
+            return new Force(value, ForceUnit.Decanewton);
         }
-#endif
 
         /// <summary>
         ///     Get Force from Dyne.
@@ -242,17 +229,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromDyne(double dyne)
-        {
-            double value = (double) dyne;
-            return new Force(value/1e5);
-        }
 #else
         public static Force FromDyne(QuantityValue dyne)
+#endif
         {
             double value = (double) dyne;
-            return new Force((value/1e5));
+            return new Force(value, ForceUnit.Dyn);
         }
-#endif
 
         /// <summary>
         ///     Get Force from KilogramsForce.
@@ -260,17 +243,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKilogramsForce(double kilogramsforce)
-        {
-            double value = (double) kilogramsforce;
-            return new Force(value*9.80665002864);
-        }
 #else
         public static Force FromKilogramsForce(QuantityValue kilogramsforce)
+#endif
         {
             double value = (double) kilogramsforce;
-            return new Force((value*9.80665002864));
+            return new Force(value, ForceUnit.KilogramForce);
         }
-#endif
 
         /// <summary>
         ///     Get Force from Kilonewtons.
@@ -278,17 +257,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKilonewtons(double kilonewtons)
-        {
-            double value = (double) kilonewtons;
-            return new Force((value) * 1e3d);
-        }
 #else
         public static Force FromKilonewtons(QuantityValue kilonewtons)
+#endif
         {
             double value = (double) kilonewtons;
-            return new Force(((value) * 1e3d));
+            return new Force(value, ForceUnit.Kilonewton);
         }
-#endif
 
         /// <summary>
         ///     Get Force from KiloPonds.
@@ -296,17 +271,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKiloPonds(double kiloponds)
-        {
-            double value = (double) kiloponds;
-            return new Force(value*9.80665002864);
-        }
 #else
         public static Force FromKiloPonds(QuantityValue kiloponds)
+#endif
         {
             double value = (double) kiloponds;
-            return new Force((value*9.80665002864));
+            return new Force(value, ForceUnit.KiloPond);
         }
-#endif
 
         /// <summary>
         ///     Get Force from Meganewtons.
@@ -314,17 +285,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromMeganewtons(double meganewtons)
-        {
-            double value = (double) meganewtons;
-            return new Force((value) * 1e6d);
-        }
 #else
         public static Force FromMeganewtons(QuantityValue meganewtons)
+#endif
         {
             double value = (double) meganewtons;
-            return new Force(((value) * 1e6d));
+            return new Force(value, ForceUnit.Meganewton);
         }
-#endif
 
         /// <summary>
         ///     Get Force from Newtons.
@@ -332,17 +299,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromNewtons(double newtons)
-        {
-            double value = (double) newtons;
-            return new Force(value);
-        }
 #else
         public static Force FromNewtons(QuantityValue newtons)
+#endif
         {
             double value = (double) newtons;
-            return new Force((value));
+            return new Force(value, ForceUnit.Newton);
         }
-#endif
 
         /// <summary>
         ///     Get Force from Poundals.
@@ -350,17 +313,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromPoundals(double poundals)
-        {
-            double value = (double) poundals;
-            return new Force(value*0.13825502798973041652092282466083);
-        }
 #else
         public static Force FromPoundals(QuantityValue poundals)
+#endif
         {
             double value = (double) poundals;
-            return new Force((value*0.13825502798973041652092282466083));
+            return new Force(value, ForceUnit.Poundal);
         }
-#endif
 
         /// <summary>
         ///     Get Force from PoundsForce.
@@ -368,17 +327,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromPoundsForce(double poundsforce)
-        {
-            double value = (double) poundsforce;
-            return new Force(value*4.4482216152605095551842641431421);
-        }
 #else
         public static Force FromPoundsForce(QuantityValue poundsforce)
+#endif
         {
             double value = (double) poundsforce;
-            return new Force((value*4.4482216152605095551842641431421));
+            return new Force(value, ForceUnit.PoundForce);
         }
-#endif
 
         /// <summary>
         ///     Get Force from TonnesForce.
@@ -386,17 +341,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromTonnesForce(double tonnesforce)
-        {
-            double value = (double) tonnesforce;
-            return new Force(value*9.80665002864*1000);
-        }
 #else
         public static Force FromTonnesForce(QuantityValue tonnesforce)
+#endif
         {
             double value = (double) tonnesforce;
-            return new Force((value*9.80665002864*1000));
+            return new Force(value, ForceUnit.TonneForce);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -566,32 +517,7 @@ namespace UnitsNet
         public static Force From(QuantityValue value, ForceUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ForceUnit.Decanewton:
-                    return FromDecanewtons(value);
-                case ForceUnit.Dyn:
-                    return FromDyne(value);
-                case ForceUnit.KilogramForce:
-                    return FromKilogramsForce(value);
-                case ForceUnit.Kilonewton:
-                    return FromKilonewtons(value);
-                case ForceUnit.KiloPond:
-                    return FromKiloPonds(value);
-                case ForceUnit.Meganewton:
-                    return FromMeganewtons(value);
-                case ForceUnit.Newton:
-                    return FromNewtons(value);
-                case ForceUnit.Poundal:
-                    return FromPoundals(value);
-                case ForceUnit.PoundForce:
-                    return FromPoundsForce(value);
-                case ForceUnit.TonneForce:
-                    return FromTonnesForce(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Force((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -608,32 +534,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ForceUnit.Decanewton:
-                    return FromDecanewtons(value.Value);
-                case ForceUnit.Dyn:
-                    return FromDyne(value.Value);
-                case ForceUnit.KilogramForce:
-                    return FromKilogramsForce(value.Value);
-                case ForceUnit.Kilonewton:
-                    return FromKilonewtons(value.Value);
-                case ForceUnit.KiloPond:
-                    return FromKiloPonds(value.Value);
-                case ForceUnit.Meganewton:
-                    return FromMeganewtons(value.Value);
-                case ForceUnit.Newton:
-                    return FromNewtons(value.Value);
-                case ForceUnit.Poundal:
-                    return FromPoundals(value.Value);
-                case ForceUnit.PoundForce:
-                    return FromPoundsForce(value.Value);
-                case ForceUnit.TonneForce:
-                    return FromTonnesForce(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Force((double)value.Value, fromUnit);
         }
 #endif
 
@@ -652,12 +554,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ForceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ForceUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -668,37 +587,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Force operator -(Force right)
         {
-            return new Force(-right._newtons);
+            return new Force(-right.Value, right.Unit);
         }
 
         public static Force operator +(Force left, Force right)
         {
-            return new Force(left._newtons + right._newtons);
+            return new Force(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Force operator -(Force left, Force right)
         {
-            return new Force(left._newtons - right._newtons);
+            return new Force(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Force operator *(double left, Force right)
         {
-            return new Force(left*right._newtons);
+            return new Force(left * right.Value, right.Unit);
         }
 
         public static Force operator *(Force left, double right)
         {
-            return new Force(left._newtons*(double)right);
+            return new Force(left.Value * right, left.Unit);
         }
 
         public static Force operator /(Force left, double right)
         {
-            return new Force(left._newtons/(double)right);
+            return new Force(left.Value / right, left.Unit);
         }
 
         public static double operator /(Force left, Force right)
         {
-            return Convert.ToDouble(left._newtons/right._newtons);
+            return left.Newtons / right.Newtons;
         }
 #endif
 
@@ -721,43 +640,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Force other)
         {
-            return _newtons.CompareTo(other._newtons);
+            return AsBaseUnitNewtons().CompareTo(other.AsBaseUnitNewtons());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Force left, Force right)
         {
-            return left._newtons <= right._newtons;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Force left, Force right)
         {
-            return left._newtons >= right._newtons;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Force left, Force right)
         {
-            return left._newtons < right._newtons;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Force left, Force right)
         {
-            return left._newtons > right._newtons;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtons == right._newtons;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtons != right._newtons;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -769,7 +688,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtons.Equals(((Force) obj)._newtons);
+            return AsBaseUnitNewtons().Equals(((Force) obj).AsBaseUnitNewtons());
         }
 
         /// <summary>
@@ -782,12 +701,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Force other, Force maxError)
         {
-            return Math.Abs(_newtons - other._newtons) <= maxError._newtons;
+            return Math.Abs(AsBaseUnitNewtons() - other.AsBaseUnitNewtons()) <= maxError.AsBaseUnitNewtons();
         }
 
         public override int GetHashCode()
         {
-            return _newtons.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -797,32 +716,28 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ForceUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitNewtons();
+
             switch (unit)
             {
-                case ForceUnit.Decanewton:
-                    return Decanewtons;
-                case ForceUnit.Dyn:
-                    return Dyne;
-                case ForceUnit.KilogramForce:
-                    return KilogramsForce;
-                case ForceUnit.Kilonewton:
-                    return Kilonewtons;
-                case ForceUnit.KiloPond:
-                    return KiloPonds;
-                case ForceUnit.Meganewton:
-                    return Meganewtons;
-                case ForceUnit.Newton:
-                    return Newtons;
-                case ForceUnit.Poundal:
-                    return Poundals;
-                case ForceUnit.PoundForce:
-                    return PoundsForce;
-                case ForceUnit.TonneForce:
-                    return TonnesForce;
+                case ForceUnit.Decanewton: return (baseUnitValue) / 1e1d;
+                case ForceUnit.Dyn: return baseUnitValue*1e5;
+                case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
+                case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
+                case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
+                case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
+                case ForceUnit.Newton: return baseUnitValue;
+                case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
+                case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
+                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864/1000;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -864,7 +779,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -883,17 +802,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Force Parse(string str, [CanBeNull] Culture culture)
+        public static Force Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Force, ForceUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Force, ForceUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -919,16 +845,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Force result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Force result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -941,6 +892,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -954,11 +906,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ForceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -967,6 +922,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -979,18 +936,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ForceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ForceUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ForceUnit>(str.Trim());
 
             if (unit == ForceUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ForceUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -999,6 +956,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Newton
         /// </summary>
@@ -1010,7 +968,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1027,74 +985,138 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ForceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ForceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ForceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ForceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
-        public static Force MaxValue
-        {
-            get
-            {
-                return new Force(double.MaxValue);
-            }
-        }
+        public static Force MaxValue => new Force(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>
-        public static Force MinValue
+        public static Force MinValue => new Force(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitNewtons()
         {
-            get
+			if (Unit == ForceUnit.Newton) { return _value; }
+
+            switch (Unit)
             {
-                return new Force(double.MinValue);
-            }
-        }
-    }
+                case ForceUnit.Decanewton: return (_value) * 1e1d;
+                case ForceUnit.Dyn: return _value/1e5;
+                case ForceUnit.KilogramForce: return _value*9.80665002864;
+                case ForceUnit.Kilonewton: return (_value) * 1e3d;
+                case ForceUnit.KiloPond: return _value*9.80665002864;
+                case ForceUnit.Meganewton: return (_value) * 1e6d;
+                case ForceUnit.Newton: return _value;
+                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
+                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
+                case ForceUnit.TonneForce: return _value*9.80665002864*1000;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ForceUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

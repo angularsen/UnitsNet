@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricResistance.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _ohms;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricResistanceUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricResistance() : this(0)
+        public ElectricResistance()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricResistance(double ohms)
         {
-            _ohms = Convert.ToDouble(ohms);
+            _value = Convert.ToDouble(ohms);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricResistance(double numericValue, ElectricResistanceUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Ohm.
+        /// </summary>
+        /// <param name="ohms">Value assuming base unit Ohm.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricResistance(long ohms)
-        {
-            _ohms = Convert.ToDouble(ohms);
-        }
+        ElectricResistance(long ohms) : this(Convert.ToDouble(ohms), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Ohm.
+        /// </summary>
+        /// <param name="ohms">Value assuming base unit Ohm.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricResistance(decimal ohms)
-        {
-            _ohms = Convert.ToDouble(ohms);
-        }
+        ElectricResistance(decimal ohms) : this(Convert.ToDouble(ohms), BaseUnit) { }
 
         #region Properties
 
@@ -119,56 +156,34 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit
-        {
-            get { return ElectricResistanceUnit.Ohm; }
-        }
+        public static ElectricResistanceUnit BaseUnit => ElectricResistanceUnit.Ohm;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
         /// </summary>
         public static ElectricResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().ToArray();
-
         /// <summary>
         ///     Get ElectricResistance in Kiloohms.
         /// </summary>
-        public double Kiloohms
-        {
-            get { return (_ohms) / 1e3d; }
-        }
-
+        public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
         /// <summary>
         ///     Get ElectricResistance in Megaohms.
         /// </summary>
-        public double Megaohms
-        {
-            get { return (_ohms) / 1e6d; }
-        }
-
+        public double Megaohms => As(ElectricResistanceUnit.Megaohm);
         /// <summary>
         ///     Get ElectricResistance in Milliohms.
         /// </summary>
-        public double Milliohms
-        {
-            get { return (_ohms) / 1e-3d; }
-        }
-
+        public double Milliohms => As(ElectricResistanceUnit.Milliohm);
         /// <summary>
         ///     Get ElectricResistance in Ohms.
         /// </summary>
-        public double Ohms
-        {
-            get { return _ohms; }
-        }
+        public double Ohms => As(ElectricResistanceUnit.Ohm);
 
         #endregion
 
         #region Static
 
-        public static ElectricResistance Zero
-        {
-            get { return new ElectricResistance(); }
-        }
+        public static ElectricResistance Zero => new ElectricResistance(0, BaseUnit);
 
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
@@ -176,17 +191,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistance FromKiloohms(double kiloohms)
-        {
-            double value = (double) kiloohms;
-            return new ElectricResistance((value) * 1e3d);
-        }
 #else
         public static ElectricResistance FromKiloohms(QuantityValue kiloohms)
+#endif
         {
             double value = (double) kiloohms;
-            return new ElectricResistance(((value) * 1e3d));
+            return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricResistance from Megaohms.
@@ -194,17 +205,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistance FromMegaohms(double megaohms)
-        {
-            double value = (double) megaohms;
-            return new ElectricResistance((value) * 1e6d);
-        }
 #else
         public static ElectricResistance FromMegaohms(QuantityValue megaohms)
+#endif
         {
             double value = (double) megaohms;
-            return new ElectricResistance(((value) * 1e6d));
+            return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricResistance from Milliohms.
@@ -212,17 +219,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistance FromMilliohms(double milliohms)
-        {
-            double value = (double) milliohms;
-            return new ElectricResistance((value) * 1e-3d);
-        }
 #else
         public static ElectricResistance FromMilliohms(QuantityValue milliohms)
+#endif
         {
             double value = (double) milliohms;
-            return new ElectricResistance(((value) * 1e-3d));
+            return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricResistance from Ohms.
@@ -230,17 +233,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistance FromOhms(double ohms)
-        {
-            double value = (double) ohms;
-            return new ElectricResistance(value);
-        }
 #else
         public static ElectricResistance FromOhms(QuantityValue ohms)
+#endif
         {
             double value = (double) ohms;
-            return new ElectricResistance((value));
+            return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -320,20 +319,7 @@ namespace UnitsNet
         public static ElectricResistance From(QuantityValue value, ElectricResistanceUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(value);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(value);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(value);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricResistance((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -350,20 +336,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricResistanceUnit.Kiloohm:
-                    return FromKiloohms(value.Value);
-                case ElectricResistanceUnit.Megaohm:
-                    return FromMegaohms(value.Value);
-                case ElectricResistanceUnit.Milliohm:
-                    return FromMilliohms(value.Value);
-                case ElectricResistanceUnit.Ohm:
-                    return FromOhms(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricResistance((double)value.Value, fromUnit);
         }
 #endif
 
@@ -382,12 +356,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricResistanceUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -398,37 +389,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricResistance operator -(ElectricResistance right)
         {
-            return new ElectricResistance(-right._ohms);
+            return new ElectricResistance(-right.Value, right.Unit);
         }
 
         public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left._ohms + right._ohms);
+            return new ElectricResistance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left._ohms - right._ohms);
+            return new ElectricResistance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricResistance operator *(double left, ElectricResistance right)
         {
-            return new ElectricResistance(left*right._ohms);
+            return new ElectricResistance(left * right.Value, right.Unit);
         }
 
         public static ElectricResistance operator *(ElectricResistance left, double right)
         {
-            return new ElectricResistance(left._ohms*(double)right);
+            return new ElectricResistance(left.Value * right, left.Unit);
         }
 
         public static ElectricResistance operator /(ElectricResistance left, double right)
         {
-            return new ElectricResistance(left._ohms/(double)right);
+            return new ElectricResistance(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricResistance left, ElectricResistance right)
         {
-            return Convert.ToDouble(left._ohms/right._ohms);
+            return left.Ohms / right.Ohms;
         }
 #endif
 
@@ -451,43 +442,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricResistance other)
         {
-            return _ohms.CompareTo(other._ohms);
+            return AsBaseUnitOhms().CompareTo(other.AsBaseUnitOhms());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricResistance left, ElectricResistance right)
         {
-            return left._ohms <= right._ohms;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricResistance left, ElectricResistance right)
         {
-            return left._ohms >= right._ohms;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricResistance left, ElectricResistance right)
         {
-            return left._ohms < right._ohms;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricResistance left, ElectricResistance right)
         {
-            return left._ohms > right._ohms;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricResistance left, ElectricResistance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms == right._ohms;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricResistance left, ElectricResistance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohms != right._ohms;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -499,7 +490,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohms.Equals(((ElectricResistance) obj)._ohms);
+            return AsBaseUnitOhms().Equals(((ElectricResistance) obj).AsBaseUnitOhms());
         }
 
         /// <summary>
@@ -512,12 +503,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricResistance other, ElectricResistance maxError)
         {
-            return Math.Abs(_ohms - other._ohms) <= maxError._ohms;
+            return Math.Abs(AsBaseUnitOhms() - other.AsBaseUnitOhms()) <= maxError.AsBaseUnitOhms();
         }
 
         public override int GetHashCode()
         {
-            return _ohms.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -527,20 +518,22 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricResistanceUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitOhms();
+
             switch (unit)
             {
-                case ElectricResistanceUnit.Kiloohm:
-                    return Kiloohms;
-                case ElectricResistanceUnit.Megaohm:
-                    return Megaohms;
-                case ElectricResistanceUnit.Milliohm:
-                    return Milliohms;
-                case ElectricResistanceUnit.Ohm:
-                    return Ohms;
+                case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
+                case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
+                case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
+                case ElectricResistanceUnit.Ohm: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -582,7 +575,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -601,17 +598,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistance Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricResistance Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricResistance, ElectricResistanceUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricResistance, ElectricResistanceUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -637,16 +641,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricResistance result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricResistance result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -659,6 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -672,11 +702,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricResistanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -685,6 +718,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -697,18 +732,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricResistanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricResistanceUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricResistanceUnit>(str.Trim());
 
             if (unit == ElectricResistanceUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricResistanceUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -717,6 +752,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Ohm
         /// </summary>
@@ -728,7 +764,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -745,74 +781,132 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricResistanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricResistanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricResistanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MaxValue
-        {
-            get
-            {
-                return new ElectricResistance(double.MaxValue);
-            }
-        }
+        public static ElectricResistance MaxValue => new ElectricResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MinValue
+        public static ElectricResistance MinValue => new ElectricResistance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitOhms()
         {
-            get
+			if (Unit == ElectricResistanceUnit.Ohm) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricResistance(double.MinValue);
-            }
-        }
-    }
+                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
+                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
+                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
+                case ElectricResistanceUnit.Ohm: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricResistanceUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

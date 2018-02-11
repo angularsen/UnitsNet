@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ReactivePower.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _voltamperesReactive;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ReactivePowerUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ReactivePower() : this(0)
+        public ReactivePower()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ReactivePower(double voltamperesreactive)
         {
-            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
+            _value = Convert.ToDouble(voltamperesreactive);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ReactivePower(double numericValue, ReactivePowerUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit VoltampereReactive.
+        /// </summary>
+        /// <param name="voltamperesreactive">Value assuming base unit VoltampereReactive.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ReactivePower(long voltamperesreactive)
-        {
-            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
-        }
+        ReactivePower(long voltamperesreactive) : this(Convert.ToDouble(voltamperesreactive), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit VoltampereReactive.
+        /// </summary>
+        /// <param name="voltamperesreactive">Value assuming base unit VoltampereReactive.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ReactivePower(decimal voltamperesreactive)
-        {
-            _voltamperesReactive = Convert.ToDouble(voltamperesreactive);
-        }
+        ReactivePower(decimal voltamperesreactive) : this(Convert.ToDouble(voltamperesreactive), BaseUnit) { }
 
         #region Properties
 
@@ -119,56 +156,34 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ReactivePowerUnit BaseUnit
-        {
-            get { return ReactivePowerUnit.VoltampereReactive; }
-        }
+        public static ReactivePowerUnit BaseUnit => ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
         ///     All units of measurement for the ReactivePower quantity.
         /// </summary>
         public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().ToArray();
-
         /// <summary>
         ///     Get ReactivePower in GigavoltamperesReactive.
         /// </summary>
-        public double GigavoltamperesReactive
-        {
-            get { return (_voltamperesReactive) / 1e9d; }
-        }
-
+        public double GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
         /// <summary>
         ///     Get ReactivePower in KilovoltamperesReactive.
         /// </summary>
-        public double KilovoltamperesReactive
-        {
-            get { return (_voltamperesReactive) / 1e3d; }
-        }
-
+        public double KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
         /// <summary>
         ///     Get ReactivePower in MegavoltamperesReactive.
         /// </summary>
-        public double MegavoltamperesReactive
-        {
-            get { return (_voltamperesReactive) / 1e6d; }
-        }
-
+        public double MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
         /// <summary>
         ///     Get ReactivePower in VoltamperesReactive.
         /// </summary>
-        public double VoltamperesReactive
-        {
-            get { return _voltamperesReactive; }
-        }
+        public double VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
 
         #endregion
 
         #region Static
 
-        public static ReactivePower Zero
-        {
-            get { return new ReactivePower(); }
-        }
+        public static ReactivePower Zero => new ReactivePower(0, BaseUnit);
 
         /// <summary>
         ///     Get ReactivePower from GigavoltamperesReactive.
@@ -176,17 +191,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive)
-        {
-            double value = (double) gigavoltamperesreactive;
-            return new ReactivePower((value) * 1e9d);
-        }
 #else
         public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
+#endif
         {
             double value = (double) gigavoltamperesreactive;
-            return new ReactivePower(((value) * 1e9d));
+            return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
-#endif
 
         /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
@@ -194,17 +205,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive)
-        {
-            double value = (double) kilovoltamperesreactive;
-            return new ReactivePower((value) * 1e3d);
-        }
 #else
         public static ReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
+#endif
         {
             double value = (double) kilovoltamperesreactive;
-            return new ReactivePower(((value) * 1e3d));
+            return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
-#endif
 
         /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive.
@@ -212,17 +219,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive)
-        {
-            double value = (double) megavoltamperesreactive;
-            return new ReactivePower((value) * 1e6d);
-        }
 #else
         public static ReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
+#endif
         {
             double value = (double) megavoltamperesreactive;
-            return new ReactivePower(((value) * 1e6d));
+            return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
-#endif
 
         /// <summary>
         ///     Get ReactivePower from VoltamperesReactive.
@@ -230,17 +233,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromVoltamperesReactive(double voltamperesreactive)
-        {
-            double value = (double) voltamperesreactive;
-            return new ReactivePower(value);
-        }
 #else
         public static ReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)
+#endif
         {
             double value = (double) voltamperesreactive;
-            return new ReactivePower((value));
+            return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -320,20 +319,7 @@ namespace UnitsNet
         public static ReactivePower From(QuantityValue value, ReactivePowerUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive:
-                    return FromGigavoltamperesReactive(value);
-                case ReactivePowerUnit.KilovoltampereReactive:
-                    return FromKilovoltamperesReactive(value);
-                case ReactivePowerUnit.MegavoltampereReactive:
-                    return FromMegavoltamperesReactive(value);
-                case ReactivePowerUnit.VoltampereReactive:
-                    return FromVoltamperesReactive(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ReactivePower((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -350,20 +336,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive:
-                    return FromGigavoltamperesReactive(value.Value);
-                case ReactivePowerUnit.KilovoltampereReactive:
-                    return FromKilovoltamperesReactive(value.Value);
-                case ReactivePowerUnit.MegavoltampereReactive:
-                    return FromMegavoltamperesReactive(value.Value);
-                case ReactivePowerUnit.VoltampereReactive:
-                    return FromVoltamperesReactive(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ReactivePower((double)value.Value, fromUnit);
         }
 #endif
 
@@ -382,12 +356,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ReactivePowerUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ReactivePowerUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -398,37 +389,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ReactivePower operator -(ReactivePower right)
         {
-            return new ReactivePower(-right._voltamperesReactive);
+            return new ReactivePower(-right.Value, right.Unit);
         }
 
         public static ReactivePower operator +(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left._voltamperesReactive + right._voltamperesReactive);
+            return new ReactivePower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ReactivePower operator -(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left._voltamperesReactive - right._voltamperesReactive);
+            return new ReactivePower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ReactivePower operator *(double left, ReactivePower right)
         {
-            return new ReactivePower(left*right._voltamperesReactive);
+            return new ReactivePower(left * right.Value, right.Unit);
         }
 
         public static ReactivePower operator *(ReactivePower left, double right)
         {
-            return new ReactivePower(left._voltamperesReactive*(double)right);
+            return new ReactivePower(left.Value * right, left.Unit);
         }
 
         public static ReactivePower operator /(ReactivePower left, double right)
         {
-            return new ReactivePower(left._voltamperesReactive/(double)right);
+            return new ReactivePower(left.Value / right, left.Unit);
         }
 
         public static double operator /(ReactivePower left, ReactivePower right)
         {
-            return Convert.ToDouble(left._voltamperesReactive/right._voltamperesReactive);
+            return left.VoltamperesReactive / right.VoltamperesReactive;
         }
 #endif
 
@@ -451,43 +442,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ReactivePower other)
         {
-            return _voltamperesReactive.CompareTo(other._voltamperesReactive);
+            return AsBaseUnitVoltamperesReactive().CompareTo(other.AsBaseUnitVoltamperesReactive());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ReactivePower left, ReactivePower right)
         {
-            return left._voltamperesReactive <= right._voltamperesReactive;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ReactivePower left, ReactivePower right)
         {
-            return left._voltamperesReactive >= right._voltamperesReactive;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ReactivePower left, ReactivePower right)
         {
-            return left._voltamperesReactive < right._voltamperesReactive;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ReactivePower left, ReactivePower right)
         {
-            return left._voltamperesReactive > right._voltamperesReactive;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ReactivePower left, ReactivePower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltamperesReactive == right._voltamperesReactive;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ReactivePower left, ReactivePower right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._voltamperesReactive != right._voltamperesReactive;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -499,7 +490,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _voltamperesReactive.Equals(((ReactivePower) obj)._voltamperesReactive);
+            return AsBaseUnitVoltamperesReactive().Equals(((ReactivePower) obj).AsBaseUnitVoltamperesReactive());
         }
 
         /// <summary>
@@ -512,12 +503,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ReactivePower other, ReactivePower maxError)
         {
-            return Math.Abs(_voltamperesReactive - other._voltamperesReactive) <= maxError._voltamperesReactive;
+            return Math.Abs(AsBaseUnitVoltamperesReactive() - other.AsBaseUnitVoltamperesReactive()) <= maxError.AsBaseUnitVoltamperesReactive();
         }
 
         public override int GetHashCode()
         {
-            return _voltamperesReactive.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -527,20 +518,22 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ReactivePowerUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitVoltamperesReactive();
+
             switch (unit)
             {
-                case ReactivePowerUnit.GigavoltampereReactive:
-                    return GigavoltamperesReactive;
-                case ReactivePowerUnit.KilovoltampereReactive:
-                    return KilovoltamperesReactive;
-                case ReactivePowerUnit.MegavoltampereReactive:
-                    return MegavoltamperesReactive;
-                case ReactivePowerUnit.VoltampereReactive:
-                    return VoltamperesReactive;
+                case ReactivePowerUnit.GigavoltampereReactive: return (baseUnitValue) / 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (baseUnitValue) / 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (baseUnitValue) / 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -582,7 +575,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -601,17 +598,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ReactivePower Parse(string str, [CanBeNull] Culture culture)
+        public static ReactivePower Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ReactivePower, ReactivePowerUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ReactivePower, ReactivePowerUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -637,16 +641,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ReactivePower result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ReactivePower result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -659,6 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -672,11 +702,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ReactivePowerUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -685,6 +718,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -697,18 +732,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ReactivePowerUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ReactivePowerUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ReactivePowerUnit>(str.Trim());
 
             if (unit == ReactivePowerUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ReactivePowerUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -717,6 +752,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is VoltampereReactive
         /// </summary>
@@ -728,7 +764,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -745,74 +781,132 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ReactivePowerUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ReactivePowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ReactivePowerUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ReactivePowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ReactivePowerUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ReactivePowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ReactivePower
         /// </summary>
-        public static ReactivePower MaxValue
-        {
-            get
-            {
-                return new ReactivePower(double.MaxValue);
-            }
-        }
+        public static ReactivePower MaxValue => new ReactivePower(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ReactivePower
         /// </summary>
-        public static ReactivePower MinValue
+        public static ReactivePower MinValue => new ReactivePower(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitVoltamperesReactive()
         {
-            get
+			if (Unit == ReactivePowerUnit.VoltampereReactive) { return _value; }
+
+            switch (Unit)
             {
-                return new ReactivePower(double.MinValue);
-            }
-        }
-    }
+                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ReactivePowerUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

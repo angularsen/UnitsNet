@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of TemperatureChangeRate.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _degreesCelsiusPerSecond;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly TemperatureChangeRateUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public TemperatureChangeRate() : this(0)
+        public TemperatureChangeRate()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public TemperatureChangeRate(double degreescelsiuspersecond)
         {
-            _degreesCelsiusPerSecond = Convert.ToDouble(degreescelsiuspersecond);
+            _value = Convert.ToDouble(degreescelsiuspersecond);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          TemperatureChangeRate(double numericValue, TemperatureChangeRateUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit DegreeCelsiusPerSecond.
+        /// </summary>
+        /// <param name="degreescelsiuspersecond">Value assuming base unit DegreeCelsiusPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        TemperatureChangeRate(long degreescelsiuspersecond)
-        {
-            _degreesCelsiusPerSecond = Convert.ToDouble(degreescelsiuspersecond);
-        }
+        TemperatureChangeRate(long degreescelsiuspersecond) : this(Convert.ToDouble(degreescelsiuspersecond), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit DegreeCelsiusPerSecond.
+        /// </summary>
+        /// <param name="degreescelsiuspersecond">Value assuming base unit DegreeCelsiusPerSecond.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        TemperatureChangeRate(decimal degreescelsiuspersecond)
-        {
-            _degreesCelsiusPerSecond = Convert.ToDouble(degreescelsiuspersecond);
-        }
+        TemperatureChangeRate(decimal degreescelsiuspersecond) : this(Convert.ToDouble(degreescelsiuspersecond), BaseUnit) { }
 
         #region Properties
 
@@ -119,104 +156,58 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit
-        {
-            get { return TemperatureChangeRateUnit.DegreeCelsiusPerSecond; }
-        }
+        public static TemperatureChangeRateUnit BaseUnit => TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
         /// </summary>
         public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().ToArray();
-
         /// <summary>
         ///     Get TemperatureChangeRate in CentidegreesCelsiusPerSecond.
         /// </summary>
-        public double CentidegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e-2d; }
-        }
-
+        public double CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in DecadegreesCelsiusPerSecond.
         /// </summary>
-        public double DecadegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e1d; }
-        }
-
+        public double DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in DecidegreesCelsiusPerSecond.
         /// </summary>
-        public double DecidegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e-1d; }
-        }
-
+        public double DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in DegreesCelsiusPerMinute.
         /// </summary>
-        public double DegreesCelsiusPerMinute
-        {
-            get { return _degreesCelsiusPerSecond*60; }
-        }
-
+        public double DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         /// <summary>
         ///     Get TemperatureChangeRate in DegreesCelsiusPerSecond.
         /// </summary>
-        public double DegreesCelsiusPerSecond
-        {
-            get { return _degreesCelsiusPerSecond; }
-        }
-
+        public double DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in HectodegreesCelsiusPerSecond.
         /// </summary>
-        public double HectodegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e2d; }
-        }
-
+        public double HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in KilodegreesCelsiusPerSecond.
         /// </summary>
-        public double KilodegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e3d; }
-        }
-
+        public double KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in MicrodegreesCelsiusPerSecond.
         /// </summary>
-        public double MicrodegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e-6d; }
-        }
-
+        public double MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in MillidegreesCelsiusPerSecond.
         /// </summary>
-        public double MillidegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e-3d; }
-        }
-
+        public double MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         /// <summary>
         ///     Get TemperatureChangeRate in NanodegreesCelsiusPerSecond.
         /// </summary>
-        public double NanodegreesCelsiusPerSecond
-        {
-            get { return (_degreesCelsiusPerSecond) / 1e-9d; }
-        }
+        public double NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 
         #endregion
 
         #region Static
 
-        public static TemperatureChangeRate Zero
-        {
-            get { return new TemperatureChangeRate(); }
-        }
+        public static TemperatureChangeRate Zero => new TemperatureChangeRate(0, BaseUnit);
 
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
@@ -224,17 +215,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double centidegreescelsiuspersecond)
-        {
-            double value = (double) centidegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e-2d);
-        }
 #else
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue centidegreescelsiuspersecond)
+#endif
         {
             double value = (double) centidegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e-2d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
@@ -242,17 +229,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double decadegreescelsiuspersecond)
-        {
-            double value = (double) decadegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e1d);
-        }
 #else
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue decadegreescelsiuspersecond)
+#endif
         {
             double value = (double) decadegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e1d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
@@ -260,17 +243,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
-        {
-            double value = (double) decidegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e-1d);
-        }
 #else
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue decidegreescelsiuspersecond)
+#endif
         {
             double value = (double) decidegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e-1d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
@@ -278,17 +257,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double degreescelsiusperminute)
-        {
-            double value = (double) degreescelsiusperminute;
-            return new TemperatureChangeRate(value/60);
-        }
 #else
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue degreescelsiusperminute)
+#endif
         {
             double value = (double) degreescelsiusperminute;
-            return new TemperatureChangeRate((value/60));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
@@ -296,17 +271,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double degreescelsiuspersecond)
-        {
-            double value = (double) degreescelsiuspersecond;
-            return new TemperatureChangeRate(value);
-        }
 #else
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue degreescelsiuspersecond)
+#endif
         {
             double value = (double) degreescelsiuspersecond;
-            return new TemperatureChangeRate((value));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
@@ -314,17 +285,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double hectodegreescelsiuspersecond)
-        {
-            double value = (double) hectodegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e2d);
-        }
 #else
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue hectodegreescelsiuspersecond)
+#endif
         {
             double value = (double) hectodegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e2d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
@@ -332,17 +299,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double kilodegreescelsiuspersecond)
-        {
-            double value = (double) kilodegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e3d);
-        }
 #else
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue kilodegreescelsiuspersecond)
+#endif
         {
             double value = (double) kilodegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e3d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
@@ -350,17 +313,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double microdegreescelsiuspersecond)
-        {
-            double value = (double) microdegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e-6d);
-        }
 #else
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue microdegreescelsiuspersecond)
+#endif
         {
             double value = (double) microdegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e-6d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
@@ -368,17 +327,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double millidegreescelsiuspersecond)
-        {
-            double value = (double) millidegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e-3d);
-        }
 #else
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue millidegreescelsiuspersecond)
+#endif
         {
             double value = (double) millidegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e-3d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
@@ -386,17 +341,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double nanodegreescelsiuspersecond)
-        {
-            double value = (double) nanodegreescelsiuspersecond;
-            return new TemperatureChangeRate((value) * 1e-9d);
-        }
 #else
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue nanodegreescelsiuspersecond)
+#endif
         {
             double value = (double) nanodegreescelsiuspersecond;
-            return new TemperatureChangeRate(((value) * 1e-9d));
+            return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -566,32 +517,7 @@ namespace UnitsNet
         public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
-                    return FromCentidegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
-                    return FromDecadegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
-                    return FromDecidegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
-                    return FromDegreesCelsiusPerMinute(value);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
-                    return FromDegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
-                    return FromHectodegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
-                    return FromKilodegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
-                    return FromMicrodegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
-                    return FromMillidegreesCelsiusPerSecond(value);
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
-                    return FromNanodegreesCelsiusPerSecond(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new TemperatureChangeRate((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -608,32 +534,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
-                    return FromCentidegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
-                    return FromDecadegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
-                    return FromDecidegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
-                    return FromDegreesCelsiusPerMinute(value.Value);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
-                    return FromDegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
-                    return FromHectodegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
-                    return FromKilodegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
-                    return FromMicrodegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
-                    return FromMillidegreesCelsiusPerSecond(value.Value);
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
-                    return FromNanodegreesCelsiusPerSecond(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new TemperatureChangeRate((double)value.Value, fromUnit);
         }
 #endif
 
@@ -652,12 +554,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(TemperatureChangeRateUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          TemperatureChangeRateUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -668,37 +587,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static TemperatureChangeRate operator -(TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(-right._degreesCelsiusPerSecond);
+            return new TemperatureChangeRate(-right.Value, right.Unit);
         }
 
         public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(left._degreesCelsiusPerSecond + right._degreesCelsiusPerSecond);
+            return new TemperatureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(left._degreesCelsiusPerSecond - right._degreesCelsiusPerSecond);
+            return new TemperatureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(left*right._degreesCelsiusPerSecond);
+            return new TemperatureChangeRate(left * right.Value, right.Unit);
         }
 
         public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
         {
-            return new TemperatureChangeRate(left._degreesCelsiusPerSecond*(double)right);
+            return new TemperatureChangeRate(left.Value * right, left.Unit);
         }
 
         public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
         {
-            return new TemperatureChangeRate(left._degreesCelsiusPerSecond/(double)right);
+            return new TemperatureChangeRate(left.Value / right, left.Unit);
         }
 
         public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return Convert.ToDouble(left._degreesCelsiusPerSecond/right._degreesCelsiusPerSecond);
+            return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
         }
 #endif
 
@@ -721,43 +640,43 @@ namespace UnitsNet
 #endif
         int CompareTo(TemperatureChangeRate other)
         {
-            return _degreesCelsiusPerSecond.CompareTo(other._degreesCelsiusPerSecond);
+            return AsBaseUnitDegreesCelsiusPerSecond().CompareTo(other.AsBaseUnitDegreesCelsiusPerSecond());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._degreesCelsiusPerSecond <= right._degreesCelsiusPerSecond;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._degreesCelsiusPerSecond >= right._degreesCelsiusPerSecond;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._degreesCelsiusPerSecond < right._degreesCelsiusPerSecond;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return left._degreesCelsiusPerSecond > right._degreesCelsiusPerSecond;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._degreesCelsiusPerSecond == right._degreesCelsiusPerSecond;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._degreesCelsiusPerSecond != right._degreesCelsiusPerSecond;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -769,7 +688,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _degreesCelsiusPerSecond.Equals(((TemperatureChangeRate) obj)._degreesCelsiusPerSecond);
+            return AsBaseUnitDegreesCelsiusPerSecond().Equals(((TemperatureChangeRate) obj).AsBaseUnitDegreesCelsiusPerSecond());
         }
 
         /// <summary>
@@ -782,12 +701,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(TemperatureChangeRate other, TemperatureChangeRate maxError)
         {
-            return Math.Abs(_degreesCelsiusPerSecond - other._degreesCelsiusPerSecond) <= maxError._degreesCelsiusPerSecond;
+            return Math.Abs(AsBaseUnitDegreesCelsiusPerSecond() - other.AsBaseUnitDegreesCelsiusPerSecond()) <= maxError.AsBaseUnitDegreesCelsiusPerSecond();
         }
 
         public override int GetHashCode()
         {
-            return _degreesCelsiusPerSecond.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -797,32 +716,28 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(TemperatureChangeRateUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitDegreesCelsiusPerSecond();
+
             switch (unit)
             {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
-                    return CentidegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
-                    return DecadegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
-                    return DecidegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
-                    return DegreesCelsiusPerMinute;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
-                    return DegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
-                    return HectodegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
-                    return KilodegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
-                    return MicrodegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
-                    return MillidegreesCelsiusPerSecond;
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
-                    return NanodegreesCelsiusPerSecond;
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (baseUnitValue) / 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return baseUnitValue*60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return baseUnitValue;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (baseUnitValue) / 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (baseUnitValue) / 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (baseUnitValue) / 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (baseUnitValue) / 1e-9d;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -864,7 +779,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -883,17 +802,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static TemperatureChangeRate Parse(string str, [CanBeNull] Culture culture)
+        public static TemperatureChangeRate Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -919,16 +845,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out TemperatureChangeRate result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out TemperatureChangeRate result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -941,6 +892,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -954,11 +906,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static TemperatureChangeRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -967,6 +922,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -979,18 +936,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static TemperatureChangeRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static TemperatureChangeRateUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<TemperatureChangeRateUnit>(str.Trim());
 
             if (unit == TemperatureChangeRateUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized TemperatureChangeRateUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -999,6 +956,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is DegreeCelsiusPerSecond
         /// </summary>
@@ -1010,7 +968,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1027,74 +985,138 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(TemperatureChangeRateUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          TemperatureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(TemperatureChangeRateUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            TemperatureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(TemperatureChangeRateUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            TemperatureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of TemperatureChangeRate
         /// </summary>
-        public static TemperatureChangeRate MaxValue
-        {
-            get
-            {
-                return new TemperatureChangeRate(double.MaxValue);
-            }
-        }
+        public static TemperatureChangeRate MaxValue => new TemperatureChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureChangeRate
         /// </summary>
-        public static TemperatureChangeRate MinValue
+        public static TemperatureChangeRate MinValue => new TemperatureChangeRate(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitDegreesCelsiusPerSecond()
         {
-            get
+			if (Unit == TemperatureChangeRateUnit.DegreeCelsiusPerSecond) { return _value; }
+
+            switch (Unit)
             {
-                return new TemperatureChangeRate(double.MinValue);
-            }
-        }
-    }
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (_value) * 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (_value) * 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (_value) * 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value/60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return _value;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (_value) * 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (_value) * 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (_value) * 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (_value) * 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (_value) * 1e-9d;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(TemperatureChangeRateUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

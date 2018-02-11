@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of AmountOfSubstance.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _moles;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AmountOfSubstanceUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public AmountOfSubstance() : this(0)
+        public AmountOfSubstance()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AmountOfSubstance(double moles)
         {
-            _moles = Convert.ToDouble(moles);
+            _value = Convert.ToDouble(moles);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Mole.
+        /// </summary>
+        /// <param name="moles">Value assuming base unit Mole.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AmountOfSubstance(long moles)
-        {
-            _moles = Convert.ToDouble(moles);
-        }
+        AmountOfSubstance(long moles) : this(Convert.ToDouble(moles), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Mole.
+        /// </summary>
+        /// <param name="moles">Value assuming base unit Mole.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AmountOfSubstance(decimal moles)
-        {
-            _moles = Convert.ToDouble(moles);
-        }
+        AmountOfSubstance(decimal moles) : this(Convert.ToDouble(moles), BaseUnit) { }
 
         #region Properties
 
@@ -119,136 +156,74 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit
-        {
-            get { return AmountOfSubstanceUnit.Mole; }
-        }
+        public static AmountOfSubstanceUnit BaseUnit => AmountOfSubstanceUnit.Mole;
 
         /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
         /// </summary>
         public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().ToArray();
-
         /// <summary>
         ///     Get AmountOfSubstance in Centimoles.
         /// </summary>
-        public double Centimoles
-        {
-            get { return (_moles) / 1e-2d; }
-        }
-
+        public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
         /// <summary>
         ///     Get AmountOfSubstance in CentipoundMoles.
         /// </summary>
-        public double CentipoundMoles
-        {
-            get { return (_moles/453.59237) / 1e-2d; }
-        }
-
+        public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in Decimoles.
         /// </summary>
-        public double Decimoles
-        {
-            get { return (_moles) / 1e-1d; }
-        }
-
+        public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
         /// <summary>
         ///     Get AmountOfSubstance in DecipoundMoles.
         /// </summary>
-        public double DecipoundMoles
-        {
-            get { return (_moles/453.59237) / 1e-1d; }
-        }
-
+        public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in Kilomoles.
         /// </summary>
-        public double Kilomoles
-        {
-            get { return (_moles) / 1e3d; }
-        }
-
+        public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
         /// <summary>
         ///     Get AmountOfSubstance in KilopoundMoles.
         /// </summary>
-        public double KilopoundMoles
-        {
-            get { return (_moles/453.59237) / 1e3d; }
-        }
-
+        public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in Micromoles.
         /// </summary>
-        public double Micromoles
-        {
-            get { return (_moles) / 1e-6d; }
-        }
-
+        public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
         /// <summary>
         ///     Get AmountOfSubstance in MicropoundMoles.
         /// </summary>
-        public double MicropoundMoles
-        {
-            get { return (_moles/453.59237) / 1e-6d; }
-        }
-
+        public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in Millimoles.
         /// </summary>
-        public double Millimoles
-        {
-            get { return (_moles) / 1e-3d; }
-        }
-
+        public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
         /// <summary>
         ///     Get AmountOfSubstance in MillipoundMoles.
         /// </summary>
-        public double MillipoundMoles
-        {
-            get { return (_moles/453.59237) / 1e-3d; }
-        }
-
+        public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in Moles.
         /// </summary>
-        public double Moles
-        {
-            get { return _moles; }
-        }
-
+        public double Moles => As(AmountOfSubstanceUnit.Mole);
         /// <summary>
         ///     Get AmountOfSubstance in Nanomoles.
         /// </summary>
-        public double Nanomoles
-        {
-            get { return (_moles) / 1e-9d; }
-        }
-
+        public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
         /// <summary>
         ///     Get AmountOfSubstance in NanopoundMoles.
         /// </summary>
-        public double NanopoundMoles
-        {
-            get { return (_moles/453.59237) / 1e-9d; }
-        }
-
+        public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
         /// <summary>
         ///     Get AmountOfSubstance in PoundMoles.
         /// </summary>
-        public double PoundMoles
-        {
-            get { return _moles/453.59237; }
-        }
+        public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
 
         #endregion
 
         #region Static
 
-        public static AmountOfSubstance Zero
-        {
-            get { return new AmountOfSubstance(); }
-        }
+        public static AmountOfSubstance Zero => new AmountOfSubstance(0, BaseUnit);
 
         /// <summary>
         ///     Get AmountOfSubstance from Centimoles.
@@ -256,17 +231,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromCentimoles(double centimoles)
-        {
-            double value = (double) centimoles;
-            return new AmountOfSubstance((value) * 1e-2d);
-        }
 #else
         public static AmountOfSubstance FromCentimoles(QuantityValue centimoles)
+#endif
         {
             double value = (double) centimoles;
-            return new AmountOfSubstance(((value) * 1e-2d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from CentipoundMoles.
@@ -274,17 +245,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
-        {
-            double value = (double) centipoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e-2d);
-        }
 #else
         public static AmountOfSubstance FromCentipoundMoles(QuantityValue centipoundmoles)
+#endif
         {
             double value = (double) centipoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e-2d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Decimoles.
@@ -292,17 +259,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromDecimoles(double decimoles)
-        {
-            double value = (double) decimoles;
-            return new AmountOfSubstance((value) * 1e-1d);
-        }
 #else
         public static AmountOfSubstance FromDecimoles(QuantityValue decimoles)
+#endif
         {
             double value = (double) decimoles;
-            return new AmountOfSubstance(((value) * 1e-1d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from DecipoundMoles.
@@ -310,17 +273,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
-        {
-            double value = (double) decipoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e-1d);
-        }
 #else
         public static AmountOfSubstance FromDecipoundMoles(QuantityValue decipoundmoles)
+#endif
         {
             double value = (double) decipoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e-1d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Kilomoles.
@@ -328,17 +287,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromKilomoles(double kilomoles)
-        {
-            double value = (double) kilomoles;
-            return new AmountOfSubstance((value) * 1e3d);
-        }
 #else
         public static AmountOfSubstance FromKilomoles(QuantityValue kilomoles)
+#endif
         {
             double value = (double) kilomoles;
-            return new AmountOfSubstance(((value) * 1e3d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from KilopoundMoles.
@@ -346,17 +301,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
-        {
-            double value = (double) kilopoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e3d);
-        }
 #else
         public static AmountOfSubstance FromKilopoundMoles(QuantityValue kilopoundmoles)
+#endif
         {
             double value = (double) kilopoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e3d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Micromoles.
@@ -364,17 +315,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMicromoles(double micromoles)
-        {
-            double value = (double) micromoles;
-            return new AmountOfSubstance((value) * 1e-6d);
-        }
 #else
         public static AmountOfSubstance FromMicromoles(QuantityValue micromoles)
+#endif
         {
             double value = (double) micromoles;
-            return new AmountOfSubstance(((value) * 1e-6d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from MicropoundMoles.
@@ -382,17 +329,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
-        {
-            double value = (double) micropoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e-6d);
-        }
 #else
         public static AmountOfSubstance FromMicropoundMoles(QuantityValue micropoundmoles)
+#endif
         {
             double value = (double) micropoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e-6d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Millimoles.
@@ -400,17 +343,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMillimoles(double millimoles)
-        {
-            double value = (double) millimoles;
-            return new AmountOfSubstance((value) * 1e-3d);
-        }
 #else
         public static AmountOfSubstance FromMillimoles(QuantityValue millimoles)
+#endif
         {
             double value = (double) millimoles;
-            return new AmountOfSubstance(((value) * 1e-3d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from MillipoundMoles.
@@ -418,17 +357,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
-        {
-            double value = (double) millipoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e-3d);
-        }
 #else
         public static AmountOfSubstance FromMillipoundMoles(QuantityValue millipoundmoles)
+#endif
         {
             double value = (double) millipoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e-3d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Moles.
@@ -436,17 +371,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMoles(double moles)
-        {
-            double value = (double) moles;
-            return new AmountOfSubstance(value);
-        }
 #else
         public static AmountOfSubstance FromMoles(QuantityValue moles)
+#endif
         {
             double value = (double) moles;
-            return new AmountOfSubstance((value));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from Nanomoles.
@@ -454,17 +385,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromNanomoles(double nanomoles)
-        {
-            double value = (double) nanomoles;
-            return new AmountOfSubstance((value) * 1e-9d);
-        }
 #else
         public static AmountOfSubstance FromNanomoles(QuantityValue nanomoles)
+#endif
         {
             double value = (double) nanomoles;
-            return new AmountOfSubstance(((value) * 1e-9d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from NanopoundMoles.
@@ -472,17 +399,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
-        {
-            double value = (double) nanopoundmoles;
-            return new AmountOfSubstance((value*453.59237) * 1e-9d);
-        }
 #else
         public static AmountOfSubstance FromNanopoundMoles(QuantityValue nanopoundmoles)
+#endif
         {
             double value = (double) nanopoundmoles;
-            return new AmountOfSubstance(((value*453.59237) * 1e-9d));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
-#endif
 
         /// <summary>
         ///     Get AmountOfSubstance from PoundMoles.
@@ -490,17 +413,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromPoundMoles(double poundmoles)
-        {
-            double value = (double) poundmoles;
-            return new AmountOfSubstance(value*453.59237);
-        }
 #else
         public static AmountOfSubstance FromPoundMoles(QuantityValue poundmoles)
+#endif
         {
             double value = (double) poundmoles;
-            return new AmountOfSubstance((value*453.59237));
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -730,40 +649,7 @@ namespace UnitsNet
         public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case AmountOfSubstanceUnit.Centimole:
-                    return FromCentimoles(value);
-                case AmountOfSubstanceUnit.CentipoundMole:
-                    return FromCentipoundMoles(value);
-                case AmountOfSubstanceUnit.Decimole:
-                    return FromDecimoles(value);
-                case AmountOfSubstanceUnit.DecipoundMole:
-                    return FromDecipoundMoles(value);
-                case AmountOfSubstanceUnit.Kilomole:
-                    return FromKilomoles(value);
-                case AmountOfSubstanceUnit.KilopoundMole:
-                    return FromKilopoundMoles(value);
-                case AmountOfSubstanceUnit.Micromole:
-                    return FromMicromoles(value);
-                case AmountOfSubstanceUnit.MicropoundMole:
-                    return FromMicropoundMoles(value);
-                case AmountOfSubstanceUnit.Millimole:
-                    return FromMillimoles(value);
-                case AmountOfSubstanceUnit.MillipoundMole:
-                    return FromMillipoundMoles(value);
-                case AmountOfSubstanceUnit.Mole:
-                    return FromMoles(value);
-                case AmountOfSubstanceUnit.Nanomole:
-                    return FromNanomoles(value);
-                case AmountOfSubstanceUnit.NanopoundMole:
-                    return FromNanopoundMoles(value);
-                case AmountOfSubstanceUnit.PoundMole:
-                    return FromPoundMoles(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AmountOfSubstance((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -780,40 +666,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case AmountOfSubstanceUnit.Centimole:
-                    return FromCentimoles(value.Value);
-                case AmountOfSubstanceUnit.CentipoundMole:
-                    return FromCentipoundMoles(value.Value);
-                case AmountOfSubstanceUnit.Decimole:
-                    return FromDecimoles(value.Value);
-                case AmountOfSubstanceUnit.DecipoundMole:
-                    return FromDecipoundMoles(value.Value);
-                case AmountOfSubstanceUnit.Kilomole:
-                    return FromKilomoles(value.Value);
-                case AmountOfSubstanceUnit.KilopoundMole:
-                    return FromKilopoundMoles(value.Value);
-                case AmountOfSubstanceUnit.Micromole:
-                    return FromMicromoles(value.Value);
-                case AmountOfSubstanceUnit.MicropoundMole:
-                    return FromMicropoundMoles(value.Value);
-                case AmountOfSubstanceUnit.Millimole:
-                    return FromMillimoles(value.Value);
-                case AmountOfSubstanceUnit.MillipoundMole:
-                    return FromMillipoundMoles(value.Value);
-                case AmountOfSubstanceUnit.Mole:
-                    return FromMoles(value.Value);
-                case AmountOfSubstanceUnit.Nanomole:
-                    return FromNanomoles(value.Value);
-                case AmountOfSubstanceUnit.NanopoundMole:
-                    return FromNanopoundMoles(value.Value);
-                case AmountOfSubstanceUnit.PoundMole:
-                    return FromPoundMoles(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AmountOfSubstance((double)value.Value, fromUnit);
         }
 #endif
 
@@ -832,12 +686,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AmountOfSubstanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          AmountOfSubstanceUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -848,37 +719,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static AmountOfSubstance operator -(AmountOfSubstance right)
         {
-            return new AmountOfSubstance(-right._moles);
+            return new AmountOfSubstance(-right.Value, right.Unit);
         }
 
         public static AmountOfSubstance operator +(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left._moles + right._moles);
+            return new AmountOfSubstance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AmountOfSubstance operator -(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left._moles - right._moles);
+            return new AmountOfSubstance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AmountOfSubstance operator *(double left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left*right._moles);
+            return new AmountOfSubstance(left * right.Value, right.Unit);
         }
 
         public static AmountOfSubstance operator *(AmountOfSubstance left, double right)
         {
-            return new AmountOfSubstance(left._moles*(double)right);
+            return new AmountOfSubstance(left.Value * right, left.Unit);
         }
 
         public static AmountOfSubstance operator /(AmountOfSubstance left, double right)
         {
-            return new AmountOfSubstance(left._moles/(double)right);
+            return new AmountOfSubstance(left.Value / right, left.Unit);
         }
 
         public static double operator /(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return Convert.ToDouble(left._moles/right._moles);
+            return left.Moles / right.Moles;
         }
 #endif
 
@@ -901,43 +772,43 @@ namespace UnitsNet
 #endif
         int CompareTo(AmountOfSubstance other)
         {
-            return _moles.CompareTo(other._moles);
+            return AsBaseUnitMoles().CompareTo(other.AsBaseUnitMoles());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left._moles <= right._moles;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left._moles >= right._moles;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left._moles < right._moles;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left._moles > right._moles;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._moles == right._moles;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._moles != right._moles;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -949,7 +820,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _moles.Equals(((AmountOfSubstance) obj)._moles);
+            return AsBaseUnitMoles().Equals(((AmountOfSubstance) obj).AsBaseUnitMoles());
         }
 
         /// <summary>
@@ -962,12 +833,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(AmountOfSubstance other, AmountOfSubstance maxError)
         {
-            return Math.Abs(_moles - other._moles) <= maxError._moles;
+            return Math.Abs(AsBaseUnitMoles() - other.AsBaseUnitMoles()) <= maxError.AsBaseUnitMoles();
         }
 
         public override int GetHashCode()
         {
-            return _moles.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -977,40 +848,32 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(AmountOfSubstanceUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitMoles();
+
             switch (unit)
             {
-                case AmountOfSubstanceUnit.Centimole:
-                    return Centimoles;
-                case AmountOfSubstanceUnit.CentipoundMole:
-                    return CentipoundMoles;
-                case AmountOfSubstanceUnit.Decimole:
-                    return Decimoles;
-                case AmountOfSubstanceUnit.DecipoundMole:
-                    return DecipoundMoles;
-                case AmountOfSubstanceUnit.Kilomole:
-                    return Kilomoles;
-                case AmountOfSubstanceUnit.KilopoundMole:
-                    return KilopoundMoles;
-                case AmountOfSubstanceUnit.Micromole:
-                    return Micromoles;
-                case AmountOfSubstanceUnit.MicropoundMole:
-                    return MicropoundMoles;
-                case AmountOfSubstanceUnit.Millimole:
-                    return Millimoles;
-                case AmountOfSubstanceUnit.MillipoundMole:
-                    return MillipoundMoles;
-                case AmountOfSubstanceUnit.Mole:
-                    return Moles;
-                case AmountOfSubstanceUnit.Nanomole:
-                    return Nanomoles;
-                case AmountOfSubstanceUnit.NanopoundMole:
-                    return NanopoundMoles;
-                case AmountOfSubstanceUnit.PoundMole:
-                    return PoundMoles;
+                case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
+                case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
+                case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
+                case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
+                case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
+                case AmountOfSubstanceUnit.Mole: return baseUnitValue;
+                case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
+                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1052,7 +915,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1071,17 +938,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AmountOfSubstance Parse(string str, [CanBeNull] Culture culture)
+        public static AmountOfSubstance Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1107,16 +981,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out AmountOfSubstance result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out AmountOfSubstance result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1129,6 +1028,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1142,11 +1042,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static AmountOfSubstanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1155,6 +1058,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1167,18 +1072,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static AmountOfSubstanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static AmountOfSubstanceUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<AmountOfSubstanceUnit>(str.Trim());
 
             if (unit == AmountOfSubstanceUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AmountOfSubstanceUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1187,6 +1092,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Mole
         /// </summary>
@@ -1198,7 +1104,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1215,74 +1121,142 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          AmountOfSubstanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            AmountOfSubstanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            AmountOfSubstanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of AmountOfSubstance
         /// </summary>
-        public static AmountOfSubstance MaxValue
-        {
-            get
-            {
-                return new AmountOfSubstance(double.MaxValue);
-            }
-        }
+        public static AmountOfSubstance MaxValue => new AmountOfSubstance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
-        public static AmountOfSubstance MinValue
+        public static AmountOfSubstance MinValue => new AmountOfSubstance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitMoles()
         {
-            get
+			if (Unit == AmountOfSubstanceUnit.Mole) { return _value; }
+
+            switch (Unit)
             {
-                return new AmountOfSubstance(double.MinValue);
-            }
-        }
-    }
+                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
+                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
+                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
+                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
+                case AmountOfSubstanceUnit.Mole: return _value;
+                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
+                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(AmountOfSubstanceUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

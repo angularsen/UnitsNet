@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of MagneticFlux.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _webers;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly MagneticFluxUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public MagneticFlux() : this(0)
+        public MagneticFlux()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public MagneticFlux(double webers)
         {
-            _webers = Convert.ToDouble(webers);
+            _value = Convert.ToDouble(webers);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          MagneticFlux(double numericValue, MagneticFluxUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Weber.
+        /// </summary>
+        /// <param name="webers">Value assuming base unit Weber.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        MagneticFlux(long webers)
-        {
-            _webers = Convert.ToDouble(webers);
-        }
+        MagneticFlux(long webers) : this(Convert.ToDouble(webers), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Weber.
+        /// </summary>
+        /// <param name="webers">Value assuming base unit Weber.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        MagneticFlux(decimal webers)
-        {
-            _webers = Convert.ToDouble(webers);
-        }
+        MagneticFlux(decimal webers) : this(Convert.ToDouble(webers), BaseUnit) { }
 
         #region Properties
 
@@ -119,32 +156,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit BaseUnit
-        {
-            get { return MagneticFluxUnit.Weber; }
-        }
+        public static MagneticFluxUnit BaseUnit => MagneticFluxUnit.Weber;
 
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
         public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().ToArray();
-
         /// <summary>
         ///     Get MagneticFlux in Webers.
         /// </summary>
-        public double Webers
-        {
-            get { return _webers; }
-        }
+        public double Webers => As(MagneticFluxUnit.Weber);
 
         #endregion
 
         #region Static
 
-        public static MagneticFlux Zero
-        {
-            get { return new MagneticFlux(); }
-        }
+        public static MagneticFlux Zero => new MagneticFlux(0, BaseUnit);
 
         /// <summary>
         ///     Get MagneticFlux from Webers.
@@ -152,17 +179,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MagneticFlux FromWebers(double webers)
-        {
-            double value = (double) webers;
-            return new MagneticFlux(value);
-        }
 #else
         public static MagneticFlux FromWebers(QuantityValue webers)
+#endif
         {
             double value = (double) webers;
-            return new MagneticFlux((value));
+            return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -197,14 +220,7 @@ namespace UnitsNet
         public static MagneticFlux From(QuantityValue value, MagneticFluxUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case MagneticFluxUnit.Weber:
-                    return FromWebers(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new MagneticFlux((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -221,14 +237,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case MagneticFluxUnit.Weber:
-                    return FromWebers(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new MagneticFlux((double)value.Value, fromUnit);
         }
 #endif
 
@@ -247,12 +257,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MagneticFluxUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          MagneticFluxUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -263,37 +290,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static MagneticFlux operator -(MagneticFlux right)
         {
-            return new MagneticFlux(-right._webers);
+            return new MagneticFlux(-right.Value, right.Unit);
         }
 
         public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left._webers + right._webers);
+            return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left._webers - right._webers);
+            return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static MagneticFlux operator *(double left, MagneticFlux right)
         {
-            return new MagneticFlux(left*right._webers);
+            return new MagneticFlux(left * right.Value, right.Unit);
         }
 
         public static MagneticFlux operator *(MagneticFlux left, double right)
         {
-            return new MagneticFlux(left._webers*(double)right);
+            return new MagneticFlux(left.Value * right, left.Unit);
         }
 
         public static MagneticFlux operator /(MagneticFlux left, double right)
         {
-            return new MagneticFlux(left._webers/(double)right);
+            return new MagneticFlux(left.Value / right, left.Unit);
         }
 
         public static double operator /(MagneticFlux left, MagneticFlux right)
         {
-            return Convert.ToDouble(left._webers/right._webers);
+            return left.Webers / right.Webers;
         }
 #endif
 
@@ -316,43 +343,43 @@ namespace UnitsNet
 #endif
         int CompareTo(MagneticFlux other)
         {
-            return _webers.CompareTo(other._webers);
+            return AsBaseUnitWebers().CompareTo(other.AsBaseUnitWebers());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(MagneticFlux left, MagneticFlux right)
         {
-            return left._webers <= right._webers;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(MagneticFlux left, MagneticFlux right)
         {
-            return left._webers >= right._webers;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(MagneticFlux left, MagneticFlux right)
         {
-            return left._webers < right._webers;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(MagneticFlux left, MagneticFlux right)
         {
-            return left._webers > right._webers;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(MagneticFlux left, MagneticFlux right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._webers == right._webers;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(MagneticFlux left, MagneticFlux right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._webers != right._webers;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -364,7 +391,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _webers.Equals(((MagneticFlux) obj)._webers);
+            return AsBaseUnitWebers().Equals(((MagneticFlux) obj).AsBaseUnitWebers());
         }
 
         /// <summary>
@@ -377,12 +404,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(MagneticFlux other, MagneticFlux maxError)
         {
-            return Math.Abs(_webers - other._webers) <= maxError._webers;
+            return Math.Abs(AsBaseUnitWebers() - other.AsBaseUnitWebers()) <= maxError.AsBaseUnitWebers();
         }
 
         public override int GetHashCode()
         {
-            return _webers.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -392,14 +419,19 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(MagneticFluxUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitWebers();
+
             switch (unit)
             {
-                case MagneticFluxUnit.Weber:
-                    return Webers;
+                case MagneticFluxUnit.Weber: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -441,7 +473,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -460,17 +496,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MagneticFlux Parse(string str, [CanBeNull] Culture culture)
+        public static MagneticFlux Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<MagneticFlux, MagneticFluxUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<MagneticFlux, MagneticFluxUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -496,16 +539,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out MagneticFlux result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out MagneticFlux result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -518,6 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -531,11 +600,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static MagneticFluxUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -544,6 +616,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -556,18 +630,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static MagneticFluxUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static MagneticFluxUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<MagneticFluxUnit>(str.Trim());
 
             if (unit == MagneticFluxUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MagneticFluxUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -576,6 +650,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Weber
         /// </summary>
@@ -587,7 +662,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -604,74 +679,129 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(MagneticFluxUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          MagneticFluxUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MagneticFluxUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            MagneticFluxUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MagneticFluxUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            MagneticFluxUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of MagneticFlux
         /// </summary>
-        public static MagneticFlux MaxValue
-        {
-            get
-            {
-                return new MagneticFlux(double.MaxValue);
-            }
-        }
+        public static MagneticFlux MaxValue => new MagneticFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MagneticFlux
         /// </summary>
-        public static MagneticFlux MinValue
+        public static MagneticFlux MinValue => new MagneticFlux(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitWebers()
         {
-            get
+			if (Unit == MagneticFluxUnit.Weber) { return _value; }
+
+            switch (Unit)
             {
-                return new MagneticFlux(double.MinValue);
-            }
-        }
-    }
+                case MagneticFluxUnit.Weber: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(MagneticFluxUnit unit) => Convert.ToDouble(As(unit));
+	}
 }
