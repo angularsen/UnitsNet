@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -51,7 +52,8 @@ namespace UnitsNet
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _decibelWatts = 10 * Math.Log10(power.Watts / 1);
+            _value = 10 * Math.Log10(power.Watts / 1);
+            _unit = PowerRatioUnit.DecibelWatt;
         }
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace UnitsNet
         public static Power ToPower(PowerRatio powerRatio)
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Math.Pow(10, powerRatio._decibelWatts / 10));
+            return Power.FromWatts(Math.Pow(10, powerRatio.DecibelWatts / 10));
         }
 
         /// <summary>
