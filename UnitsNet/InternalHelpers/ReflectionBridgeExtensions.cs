@@ -19,10 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Reflection;
+
+#if SIGNED
+[assembly: InternalsVisibleTo("UnitsNet.Serialization.JsonNet, PublicKey=002400000480000094000000060200000024000052534131000400000100010089abdcb0025f7d1c4c766686dd852b978ca5bb9fd80bba9d3539e8399b01170ae0ea10c0c3baa301b1d13090d5aff770532de00c88b67c4b24669fde7f9d87218f1c6c073a09016cbb2f87119b94227c2301f4e2a096043e30f7c47c872bbd8e0b80d924952e6b36990f13f847e83e9efb107ec2121fe39d7edaaa4e235af8c4")]
+#else
+[assembly: InternalsVisibleTo("UnitsNet.Serialization.JsonNet")]
+#endif
 
 // Based on
 // https://github.com/StefH/ReflectionBridge/blob/c1e34e57fe3fc93507e83d5cebc1677396645397/ReflectionBridge/src/ReflectionBridge/Extensions/ReflectionBridgeExtensions.cs
@@ -205,8 +211,18 @@ namespace UnitsNet.InternalHelpers
 //#endif
 //        }
 
+        internal static PropertyInfo GetPropety(this Type type, string name)
+        {
+#if (NET40 || NET35 || NET20 || SILVERLIGHT)
+            return type.GetProperty(name);
+
+#else
+            return type.GetTypeInfo().GetDeclaredProperty(name);
+#endif
+        }
+
 #if !(NET40 || NET35 || NET20 || SILVERLIGHT)
-        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
+        // Ambiguous method conflict with GetMethods() name when targeting WindowsRuntimeComponent, so use GetDeclaredMethods() instead
         internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;
@@ -245,7 +261,7 @@ namespace UnitsNet.InternalHelpers
 //            return type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).Cast<Attribute>().ToArray();
 //        }
 #else
-        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
+// Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
         internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;
