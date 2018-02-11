@@ -93,7 +93,15 @@ namespace UnitsNet
     public partial struct $quantityName : IComparable, IComparable<$quantityName>
 #endif
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
         private readonly $baseType _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly $($unitEnumName)? _unit;
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -105,14 +113,16 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     The unit this quantity was constructed with.
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public $unitEnumName Unit { get; }
+        public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public $quantityName() : this(0, BaseUnit)
+        public $quantityName()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
@@ -120,7 +130,7 @@ namespace UnitsNet
         public $quantityName(double $baseUnitPluralNameLower)
         {
             _value = $convertToBaseType($baseUnitPluralNameLower);
-            Unit = BaseUnit;
+            _unit = BaseUnit;
         }
 
         /// <summary>
@@ -137,10 +147,14 @@ namespace UnitsNet
           $quantityName($baseType numericValue, $unitEnumName unit)
         {
             _value = numericValue;
-            Unit = unit;
+            _unit = unit;
          }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit $baseUnitSingularName.
+        /// </summary>
+        /// <param name="$baseUnitPluralNameLower">Value assuming base unit $baseUnitSingularName.</param>
 #if WINDOWS_UWP
         private
 #else
@@ -151,6 +165,10 @@ namespace UnitsNet
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit $baseUnitSingularName.
+        /// </summary>
+        /// <param name="$baseUnitPluralNameLower">Value assuming base unit $baseUnitSingularName.</param>
 #if WINDOWS_UWP
         private
 #else
