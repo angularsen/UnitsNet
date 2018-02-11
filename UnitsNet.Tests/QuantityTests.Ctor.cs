@@ -43,6 +43,24 @@ namespace UnitsNet.Tests
                 Assert.Equal(LevelUnit.Decibel, new Level().Unit);
             }
 
+            /// <summary>
+            ///     This test is a bit misplaced, but was added because when working on #389 unit+value there were two
+            ///     ways to implement this; either assume BaseUnit of unit is not specified or throw if quantity did not have unit explicitly set.
+            ///     Struct types do not allow custom default ctor implementations, so that exception would then be thrown when trying to convert.
+            /// </summary>
+            [Fact]
+            public void DefaultCtorOfRepresentativeTypes_DoesNotThrowWhenConvertingToOtherUnits()
+            {
+                // double types
+                Assert.Equal(0, new Mass().Hectograms);
+
+                // decimal types
+                Assert.Equal(0, new Information().Kibibits);
+
+                // logarithmic types
+                Assert.Equal(0, new Level().Nepers);
+            }
+
             [Fact]
             public void CtorWithOnlyValueOfRepresentativeTypes_SetsValueToGivenValueAndUnitToBaseUnit()
             {

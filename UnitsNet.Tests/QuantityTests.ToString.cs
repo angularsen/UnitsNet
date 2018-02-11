@@ -30,6 +30,55 @@ namespace UnitsNet.Tests
         public class ToString
         {
             [Fact]
+            public void CreatedByDefaultCtor_ReturnsValueInBaseUnit()
+            {
+                // double types
+                Assert.Equal("0 kg", new Mass().ToString());
+
+                // decimal types
+                Assert.Equal("0 b", new Information().ToString());
+
+                // logarithmic types
+                Assert.Equal("0 dB", new Level().ToString());
+            }
+
+            [Fact]
+            public void CreatedByCtorWithValue_ReturnsValueInBaseUnit()
+            {
+#pragma warning disable 618
+                // double types
+                Assert.Equal("5 kg", new Mass(5L).ToString());
+                Assert.Equal("5 kg", new Mass(5d).ToString());
+                Assert.Equal("5 kg", new Mass(5m).ToString());
+
+                // decimal types
+                Assert.Equal("5 b", new Information(5L).ToString());
+                Assert.Equal("5 b", new Information(5d).ToString());
+                Assert.Equal("5 b", new Information(5m).ToString());
+
+                // logarithmic types
+                Assert.Equal("5 dB", new Level(5L).ToString());
+                Assert.Equal("5 dB", new Level(5d).ToString());
+                Assert.Equal("5 dB", new Level(5m).ToString());
+#pragma warning restore 618
+            }
+
+            [Fact]
+            public void CreatedByCtorWithValueAndUnit_ReturnsValueAndUnit()
+            {
+#pragma warning disable 618
+                // double types
+                Assert.Equal("50 hg", new Mass(5).ToString(MassUnit.Hectogram));
+
+                // decimal types
+                Assert.Equal("1 B", new Information(8).ToString(InformationUnit.Byte));
+
+                // logarithmic types
+                Assert.Equal("0.58 Np", new Level(5).ToString(LevelUnit.Neper));
+#pragma warning restore 618
+            }
+
+            [Fact]
             public void ReturnsTheOriginalValueAndUnit()
             {
                 var oldCulture = UnitSystem.DefaultCulture;
