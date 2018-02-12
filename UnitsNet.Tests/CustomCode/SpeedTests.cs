@@ -167,5 +167,12 @@ namespace UnitsNet.Tests.CustomCode
             MassFlux massFlux = Speed.FromMetersPerSecond(20) * Density.FromKilogramsPerCubicMeter(2);
             Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
         }
+
+        [Fact]
+        public void SpeedTimesAreaEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Speed.FromMetersPerSecond(2) * Area.FromSquareMeters(20);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
+        }
     }
 }

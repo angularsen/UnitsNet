@@ -4,6 +4,7 @@
   "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
   "Units": [
     {
+      "ObsoleteText": "Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.",
       "SingularName": "Year",
       "PluralName": "Years",
       "FromUnitToBaseFunc": "x*365*24*3600",
@@ -20,8 +21,41 @@
       ]
     },
     {
+      "SingularName": "Year365",
+      "PluralName": "Years365",
+      "FromUnitToBaseFunc": "x*365*24*3600",
+      "FromBaseToUnitFunc": "x/(365*24*3600)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yr", "year", "years" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "год" ]
+        }
+      ]
+    },
+    {
+      "ObsoleteText": "Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.",
       "SingularName": "Month",
       "PluralName": "Months",
+      "FromUnitToBaseFunc": "x*30*24*3600",
+      "FromBaseToUnitFunc": "x/(30*24*3600)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mo", "month", "months" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "месяц" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Month30",
+      "PluralName": "Months30",
       "FromUnitToBaseFunc": "x*30*24*3600",
       "FromBaseToUnitFunc": "x/(30*24*3600)",
       "Localization": [
@@ -104,6 +138,7 @@
       "PluralName": "Seconds",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -111,55 +146,8 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "Millisecond",
-      "PluralName": "Milliseconds",
-      "FromUnitToBaseFunc": "x/1e3",
-      "FromBaseToUnitFunc": "x*1e3",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "ms" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "мс" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "Microsecond",
-      "PluralName": "Microseconds",
-      "FromUnitToBaseFunc": "x/1e6",
-      "FromBaseToUnitFunc": "x*1e6",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "µs" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "мкс" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "Nanosecond",
-      "PluralName": "Nanoseconds",
-      "FromUnitToBaseFunc": "x/1e9",
-      "FromBaseToUnitFunc": "x*1e9",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "ns" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "нс" ]
+          "Abbreviations": [ "с" ],
+          "AbbreviationsWithPrefixes": [ "нс", "мкс", "мс" ]
         }
       ]
     }

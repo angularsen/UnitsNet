@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double Microseconds
         {
-            get { return _seconds*1e6; }
+            get { return (_seconds) / 1e-6d; }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// </summary>
         public double Milliseconds
         {
-            get { return _seconds*1e3; }
+            get { return (_seconds) / 1e-3d; }
         }
 
         /// <summary>
@@ -172,7 +172,16 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration in Months.
         /// </summary>
+        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
         public double Months
+        {
+            get { return _seconds/(30*24*3600); }
+        }
+
+        /// <summary>
+        ///     Get Duration in Months30.
+        /// </summary>
+        public double Months30
         {
             get { return _seconds/(30*24*3600); }
         }
@@ -182,7 +191,7 @@ namespace UnitsNet
         /// </summary>
         public double Nanoseconds
         {
-            get { return _seconds*1e9; }
+            get { return (_seconds) / 1e-9d; }
         }
 
         /// <summary>
@@ -204,7 +213,16 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration in Years.
         /// </summary>
+        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
         public double Years
+        {
+            get { return _seconds/(365*24*3600); }
+        }
+
+        /// <summary>
+        ///     Get Duration in Years365.
+        /// </summary>
+        public double Years365
         {
             get { return _seconds/(365*24*3600); }
         }
@@ -262,13 +280,13 @@ namespace UnitsNet
         public static Duration FromMicroseconds(double microseconds)
         {
             double value = (double) microseconds;
-            return new Duration(value/1e6);
+            return new Duration((value) * 1e-6d);
         }
 #else
         public static Duration FromMicroseconds(QuantityValue microseconds)
         {
             double value = (double) microseconds;
-            return new Duration((value/1e6));
+            return new Duration(((value) * 1e-6d));
         }
 #endif
 
@@ -280,13 +298,13 @@ namespace UnitsNet
         public static Duration FromMilliseconds(double milliseconds)
         {
             double value = (double) milliseconds;
-            return new Duration(value/1e3);
+            return new Duration((value) * 1e-3d);
         }
 #else
         public static Duration FromMilliseconds(QuantityValue milliseconds)
         {
             double value = (double) milliseconds;
-            return new Duration((value/1e3));
+            return new Duration(((value) * 1e-3d));
         }
 #endif
 
@@ -327,6 +345,24 @@ namespace UnitsNet
 #endif
 
         /// <summary>
+        ///     Get Duration from Months30.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Duration FromMonths30(double months30)
+        {
+            double value = (double) months30;
+            return new Duration(value*30*24*3600);
+        }
+#else
+        public static Duration FromMonths30(QuantityValue months30)
+        {
+            double value = (double) months30;
+            return new Duration((value*30*24*3600));
+        }
+#endif
+
+        /// <summary>
         ///     Get Duration from Nanoseconds.
         /// </summary>
 #if WINDOWS_UWP
@@ -334,13 +370,13 @@ namespace UnitsNet
         public static Duration FromNanoseconds(double nanoseconds)
         {
             double value = (double) nanoseconds;
-            return new Duration(value/1e9);
+            return new Duration((value) * 1e-9d);
         }
 #else
         public static Duration FromNanoseconds(QuantityValue nanoseconds)
         {
             double value = (double) nanoseconds;
-            return new Duration((value/1e9));
+            return new Duration(((value) * 1e-9d));
         }
 #endif
 
@@ -394,6 +430,24 @@ namespace UnitsNet
         public static Duration FromYears(QuantityValue years)
         {
             double value = (double) years;
+            return new Duration((value*365*24*3600));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Duration from Years365.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Duration FromYears365(double years365)
+        {
+            double value = (double) years365;
+            return new Duration(value*365*24*3600);
+        }
+#else
+        public static Duration FromYears365(QuantityValue years365)
+        {
+            double value = (double) years365;
             return new Duration((value*365*24*3600));
         }
 #endif
@@ -491,6 +545,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Duration from nullable Months30.
+        /// </summary>
+        public static Duration? FromMonths30(QuantityValue? months30)
+        {
+            if (months30.HasValue)
+            {
+                return FromMonths30(months30.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Duration from nullable Nanoseconds.
         /// </summary>
         public static Duration? FromNanoseconds(QuantityValue? nanoseconds)
@@ -550,6 +619,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Duration from nullable Years365.
+        /// </summary>
+        public static Duration? FromYears365(QuantityValue? years365)
+        {
+            if (years365.HasValue)
+            {
+                return FromYears365(years365.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -580,6 +664,8 @@ namespace UnitsNet
                     return FromMinutes(value);
                 case DurationUnit.Month:
                     return FromMonths(value);
+                case DurationUnit.Month30:
+                    return FromMonths30(value);
                 case DurationUnit.Nanosecond:
                     return FromNanoseconds(value);
                 case DurationUnit.Second:
@@ -588,6 +674,8 @@ namespace UnitsNet
                     return FromWeeks(value);
                 case DurationUnit.Year:
                     return FromYears(value);
+                case DurationUnit.Year365:
+                    return FromYears365(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -622,6 +710,8 @@ namespace UnitsNet
                     return FromMinutes(value.Value);
                 case DurationUnit.Month:
                     return FromMonths(value.Value);
+                case DurationUnit.Month30:
+                    return FromMonths30(value.Value);
                 case DurationUnit.Nanosecond:
                     return FromNanoseconds(value.Value);
                 case DurationUnit.Second:
@@ -630,6 +720,8 @@ namespace UnitsNet
                     return FromWeeks(value.Value);
                 case DurationUnit.Year:
                     return FromYears(value.Value);
+                case DurationUnit.Year365:
+                    return FromYears365(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -815,6 +907,8 @@ namespace UnitsNet
                     return Minutes;
                 case DurationUnit.Month:
                     return Months;
+                case DurationUnit.Month30:
+                    return Months30;
                 case DurationUnit.Nanosecond:
                     return Nanoseconds;
                 case DurationUnit.Second:
@@ -823,6 +917,8 @@ namespace UnitsNet
                     return Weeks;
                 case DurationUnit.Year:
                     return Years;
+                case DurationUnit.Year365:
+                    return Years365;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

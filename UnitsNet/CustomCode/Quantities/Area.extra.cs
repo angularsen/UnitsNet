@@ -42,6 +42,11 @@ namespace UnitsNet
             return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
         }
 
+        public static VolumeFlow operator *(Area area, Speed speed)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
+        }
+
         public static Area FromCircleDiameter(Length diameter)
         {
             return System.Math.PI * diameter * diameter / 4;

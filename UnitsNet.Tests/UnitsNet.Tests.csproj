@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp1.1;net462</TargetFrameworks>
-    <RootNamespace>UnitsNet.Serialization.JsonNet.Tests</RootNamespace>
+    <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
+    <RootNamespace>UnitsNet.Tests</RootNamespace>
     <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
+    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj" />
   </ItemGroup>
 
 </Project>

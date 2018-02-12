@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !WINDOWS_UWP
 using System;
 using Xunit;
 using UnitsNet.Extensions.NumberToTimeSpan;
@@ -63,4 +62,3 @@ namespace UnitsNet.Tests.Extensions.NumberToTimeSpan
         }
     }
 }
-#endif

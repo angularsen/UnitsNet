@@ -1,19 +1,40 @@
 <Project>
+  <!-- NuGet properties -->
   <PropertyGroup>
-    <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
-    <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
-    <Version>1.2.1</Version>
+    <Version>1.2.2</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
     <Copyright>Copyright (c) 2015 Andreas Gullberg Larsen</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/angularsen/UnitsNet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
+  </PropertyGroup>
+  <!-- Assembly and msbuild properties -->
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net35;net40</TargetFrameworks>
+    <AssemblyName>UnitsNet.Serialization.JsonNet</AssemblyName>
+    <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
+    <!-- Workaround for building with dotnet CLI and targeting .NET 3.5: https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352 -->
+    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
     <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
+  <!-- NuGet references that work for both signed and unsigned -->
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="10.4.0" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+  <!-- Exclude certain files from default inclusion pattern -->
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
 </Project>

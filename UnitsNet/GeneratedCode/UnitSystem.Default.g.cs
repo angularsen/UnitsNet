@@ -79,6 +79,21 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "km/s²"),
                             }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/h"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/min"),
+                            }),
+                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kn/s"),
+                            }),
                         new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
                             new[]
                             {
@@ -393,6 +408,20 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "yd²"),
                                 new AbbreviationsForCulture("ru-RU", "ярд²"),
+                            }),
+                        new CulturesForEnumValue((int) AreaUnit.UsSurveySquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft² (US)"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (AreaDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m²"),
                             }),
                     }),
                 new UnitLocalization(typeof (AreaDensityUnit),
@@ -820,6 +849,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "mo", "month", "months"),
                                 new AbbreviationsForCulture("ru-RU", "месяц"),
                             }),
+                        new CulturesForEnumValue((int) DurationUnit.Month30,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mo", "month", "months"),
+                                new AbbreviationsForCulture("ru-RU", "месяц"),
+                            }),
                         new CulturesForEnumValue((int) DurationUnit.Nanosecond,
                             new[]
                             {
@@ -839,6 +874,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("ru-RU", "мин"),
                             }),
                         new CulturesForEnumValue((int) DurationUnit.Year,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "yr", "year", "years"),
+                                new AbbreviationsForCulture("ru-RU", "год"),
+                            }),
+                        new CulturesForEnumValue((int) DurationUnit.Year365,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "yr", "year", "years"),
