@@ -424,6 +424,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kg/m²"),
                             }),
                     }),
+                new UnitLocalization(typeof (AreaDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
                     new[]
                     {
@@ -3079,6 +3088,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "rad/s²"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RevolutionPerMinutePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rpm/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
