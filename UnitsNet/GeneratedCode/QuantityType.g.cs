@@ -115,6 +115,7 @@ namespace UnitsNet
         PressureChangeRate,
         Ratio,
         ReactivePower,
+        ReactivePowerGradient,
         RotationalAcceleration,
         RotationalSpeed,
         SolidAngle,
