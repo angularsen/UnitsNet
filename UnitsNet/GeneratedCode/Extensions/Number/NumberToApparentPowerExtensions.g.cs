@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToApparentPower
 {
     public static class NumberToApparentPowerExtensions
     {
+        #region Gigavoltampere
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)"/>
+        public static ApparentPower Gigavoltamperes(this int value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double?)"/>
+        public static ApparentPower? Gigavoltamperes(this int? value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)"/>
+        public static ApparentPower Gigavoltamperes(this long value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double?)"/>
+        public static ApparentPower? Gigavoltamperes(this long? value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)"/>
+        public static ApparentPower Gigavoltamperes(this double value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double?)"/>
+        public static ApparentPower? Gigavoltamperes(this double? value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)"/>
+        public static ApparentPower Gigavoltamperes(this float value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double?)"/>
+        public static ApparentPower? Gigavoltamperes(this float? value) => ApparentPower.FromGigavoltamperes(value);
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)"/>
+        public static ApparentPower Gigavoltamperes(this decimal value) => ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double?)"/>
+        public static ApparentPower? Gigavoltamperes(this decimal? value) => ApparentPower.FromGigavoltamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kilovoltampere
 
         /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(double)"/>

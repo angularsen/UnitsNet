@@ -54,6 +54,8 @@ namespace UnitsNet.Tests
     {
         protected abstract double BoilerHorsepowerInOneWatt { get; }
         protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double DecawattsInOneWatt { get; }
+        protected abstract double DeciwattsInOneWatt { get; }
         protected abstract double ElectricalHorsepowerInOneWatt { get; }
         protected abstract double FemtowattsInOneWatt { get; }
         protected abstract double GigawattsInOneWatt { get; }
@@ -74,6 +76,8 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BoilerHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double BritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double DecawattsTolerance { get { return 1e-5; } }
+        protected virtual double DeciwattsTolerance { get { return 1e-5; } }
         protected virtual double ElectricalHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double FemtowattsTolerance { get { return 1e-5; } }
         protected virtual double GigawattsTolerance { get { return 1e-5; } }
@@ -98,6 +102,8 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.BoilerHorsepower, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(DecawattsInOneWatt, watt.Decawatts, DecawattsTolerance);
+            AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
@@ -121,6 +127,8 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.BoilerHorsepower).BoilerHorsepower, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.BritishThermalUnitPerHour).BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Decawatt).Decawatts, DecawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Deciwatt).Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.ElectricalHorsepower).ElectricalHorsepower, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Femtowatt).Femtowatts, FemtowattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Gigawatt).Gigawatts, GigawattsTolerance);
@@ -145,6 +153,8 @@ namespace UnitsNet.Tests
             var watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.As(PowerUnit.BoilerHorsepower), BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.BritishThermalUnitPerHour), BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(DecawattsInOneWatt, watt.As(PowerUnit.Decawatt), DecawattsTolerance);
+            AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.As(PowerUnit.Deciwatt), DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
@@ -169,6 +179,8 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromBritishThermalUnitsPerHour(watt.BritishThermalUnitsPerHour).Watts, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromDecawatts(watt.Decawatts).Watts, DecawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromDeciwatts(watt.Deciwatts).Watts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);

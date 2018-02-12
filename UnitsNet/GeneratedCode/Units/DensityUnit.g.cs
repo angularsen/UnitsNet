@@ -62,6 +62,7 @@ namespace UnitsNet.Units
         MicrogramPerDeciliter,
         MicrogramPerLiter,
         MicrogramPerMilliliter,
+        MilligramPerCubicMeter,
         MilligramPerDeciliter,
         MilligramPerLiter,
         MilligramPerMilliliter,

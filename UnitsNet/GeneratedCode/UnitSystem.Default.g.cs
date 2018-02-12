@@ -320,6 +320,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ApparentPowerUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ApparentPowerUnit.Gigavoltampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GVA"),
+                            }),
                         new CulturesForEnumValue((int) ApparentPowerUnit.Kilovoltampere,
                             new[]
                             {
@@ -413,15 +418,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "ft² (US)"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AreaDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m²"),
                             }),
                     }),
                 new UnitLocalization(typeof (AreaDensityUnit),
@@ -733,6 +729,12 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "µg/ml"),
+                            }),
+                        new CulturesForEnumValue((int) DensityUnit.MilligramPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mg/m³"),
+                                new AbbreviationsForCulture("ru-RU", "mг/м³"),
                             }),
                         new CulturesForEnumValue((int) DensityUnit.MilligramPerDeciliter,
                             new[]
@@ -2685,6 +2687,16 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "Btu/hr"),
                             }),
+                        new CulturesForEnumValue((int) PowerUnit.Decawatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW"),
+                            }),
+                        new CulturesForEnumValue((int) PowerUnit.Deciwatt,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW"),
+                            }),
                         new CulturesForEnumValue((int) PowerUnit.ElectricalHorsepower,
                             new[]
                             {
@@ -3060,6 +3072,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ReactivePowerUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ReactivePowerUnit.GigavoltampereReactive,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Gvar"),
+                            }),
                         new CulturesForEnumValue((int) ReactivePowerUnit.KilovoltampereReactive,
                             new[]
                             {

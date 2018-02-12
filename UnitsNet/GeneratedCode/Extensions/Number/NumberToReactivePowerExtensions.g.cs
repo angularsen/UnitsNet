@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToReactivePower
 {
     public static class NumberToReactivePowerExtensions
     {
+        #region GigavoltampereReactive
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this int value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this int? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this long value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this long? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this double value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this double? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this float value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this float? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this decimal value) => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this decimal? value) => ReactivePower.FromGigavoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilovoltampereReactive
 
         /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>

@@ -72,6 +72,7 @@ namespace UnitsNet.Tests
         protected abstract double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MicrogramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MicrogramsPerMilliliterInOneKilogramPerCubicMeter { get; }
+        protected abstract double MilligramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerMilliliterInOneKilogramPerCubicMeter { get; }
@@ -109,6 +110,7 @@ namespace UnitsNet.Tests
         protected virtual double MicrogramsPerDeciLiterTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerMilliliterTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerDeciLiterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerMilliliterTolerance { get { return 1e-5; } }
@@ -150,6 +152,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
+            AssertEx.EqualTolerance(MilligramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(MilligramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerLiter, MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
@@ -190,6 +193,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MicrogramPerDeciliter).MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MicrogramPerLiter).MicrogramsPerLiter, MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MicrogramPerMilliliter).MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
+            AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MilligramPerCubicMeter).MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MilligramPerDeciliter).MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MilligramPerLiter).MilligramsPerLiter, MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.MilligramPerMilliliter).MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
@@ -231,6 +235,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerDeciliter), MicrogramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerLiter), MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerMilliliter), MicrogramsPerMilliliterTolerance);
+            AssertEx.EqualTolerance(MilligramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerCubicMeter), MilligramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(MilligramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerDeciliter), MilligramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerLiter), MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerMilliliter), MilligramsPerMilliliterTolerance);
@@ -272,6 +277,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerDeciLiter(kilogrampercubicmeter.MicrogramsPerDeciLiter).KilogramsPerCubicMeter, MicrogramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerLiter(kilogrampercubicmeter.MicrogramsPerLiter).KilogramsPerCubicMeter, MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerMilliliter(kilogrampercubicmeter.MicrogramsPerMilliliter).KilogramsPerCubicMeter, MicrogramsPerMilliliterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromMilligramsPerCubicMeter(kilogrampercubicmeter.MilligramsPerCubicMeter).KilogramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerDeciLiter(kilogrampercubicmeter.MilligramsPerDeciLiter).KilogramsPerCubicMeter, MilligramsPerDeciLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerLiter(kilogrampercubicmeter.MilligramsPerLiter).KilogramsPerCubicMeter, MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerMilliliter(kilogrampercubicmeter.MilligramsPerMilliliter).KilogramsPerCubicMeter, MilligramsPerMilliliterTolerance);

@@ -27,9 +27,14 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
+
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
+
         protected override double GramsPerCubicMeterInOneKilogramPerCubicMeter => 1e3;
+
         protected override double GramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-6;
+
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
 
         protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
@@ -70,9 +75,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GramsPerMilliliterInOneKilogramPerCubicMeter => 1e-3;
 
-        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5; 
+        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5;
 
-        protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6; 
+        protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double MicrogramsPerMilliliterInOneKilogramPerCubicMeter => 1e3;
 
@@ -93,6 +98,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
+
 
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
@@ -131,13 +137,6 @@ namespace UnitsNet.Tests.CustomCode
             var mw = Mass.FromGrams(58.443);
             var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
             AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Fact]
-        public void DensityTimesSpeedEqualsMassFlux()
-        {
-            MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
-            Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
         }
     }
 }

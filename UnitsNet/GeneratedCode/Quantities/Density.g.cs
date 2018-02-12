@@ -290,6 +290,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Density in MilligramsPerCubicMeter.
+        /// </summary>
+        public double MilligramsPerCubicMeter
+        {
+            get { return (_kilogramsPerCubicMeter*1e3) / 1e-3d; }
+        }
+
+        /// <summary>
         ///     Get Density in MilligramsPerDeciLiter.
         /// </summary>
         public double MilligramsPerDeciLiter
@@ -775,6 +783,24 @@ namespace UnitsNet
         {
             double value = (double) microgramspermilliliter;
             return new Density(((value/1e-3) * 1e-6d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Density from MilligramsPerCubicMeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Density FromMilligramsPerCubicMeter(double milligramspercubicmeter)
+        {
+            double value = (double) milligramspercubicmeter;
+            return new Density((value/1e3) * 1e-3d);
+        }
+#else
+        public static Density FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
+        {
+            double value = (double) milligramspercubicmeter;
+            return new Density(((value/1e3) * 1e-3d));
         }
 #endif
 
@@ -1351,6 +1377,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromMilligramsPerCubicMeter(QuantityValue? milligramspercubicmeter)
+        {
+            if (milligramspercubicmeter.HasValue)
+            {
+                return FromMilligramsPerCubicMeter(milligramspercubicmeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Density from nullable MilligramsPerDeciLiter.
         /// </summary>
         public static Density? FromMilligramsPerDeciLiter(QuantityValue? milligramsperdeciliter)
@@ -1633,6 +1674,8 @@ namespace UnitsNet
                     return FromMicrogramsPerLiter(value);
                 case DensityUnit.MicrogramPerMilliliter:
                     return FromMicrogramsPerMilliliter(value);
+                case DensityUnit.MilligramPerCubicMeter:
+                    return FromMilligramsPerCubicMeter(value);
                 case DensityUnit.MilligramPerDeciliter:
                     return FromMilligramsPerDeciLiter(value);
                 case DensityUnit.MilligramPerLiter:
@@ -1725,6 +1768,8 @@ namespace UnitsNet
                     return FromMicrogramsPerLiter(value.Value);
                 case DensityUnit.MicrogramPerMilliliter:
                     return FromMicrogramsPerMilliliter(value.Value);
+                case DensityUnit.MilligramPerCubicMeter:
+                    return FromMilligramsPerCubicMeter(value.Value);
                 case DensityUnit.MilligramPerDeciliter:
                     return FromMilligramsPerDeciLiter(value.Value);
                 case DensityUnit.MilligramPerLiter:
@@ -1968,6 +2013,8 @@ namespace UnitsNet
                     return MicrogramsPerLiter;
                 case DensityUnit.MicrogramPerMilliliter:
                     return MicrogramsPerMilliliter;
+                case DensityUnit.MilligramPerCubicMeter:
+                    return MilligramsPerCubicMeter;
                 case DensityUnit.MilligramPerDeciliter:
                     return MilligramsPerDeciLiter;
                 case DensityUnit.MilligramPerLiter:
