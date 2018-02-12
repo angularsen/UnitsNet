@@ -424,15 +424,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kg/m²"),
                             }),
                     }),
-                new UnitLocalization(typeof (AreaDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m²"),
-                            }),
-                    }),
                 new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
                     new[]
                     {
@@ -2346,6 +2337,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "t/d"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.TonPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t/h"),
                             }),
                     }),
                 new UnitLocalization(typeof (MassFluxUnit),
