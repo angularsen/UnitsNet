@@ -81,6 +81,11 @@ namespace UnitsNet
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
         }
+
+        public static VolumeFlow operator *(Speed speed, Area area)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
+        }
 #endif
     }
 }

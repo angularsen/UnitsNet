@@ -225,6 +225,14 @@ namespace UnitsNet
             get { return _squareMeters/0.836127; }
         }
 
+        /// <summary>
+        ///     Get Area in UsSurveySquareFeet.
+        /// </summary>
+        public double UsSurveySquareFeet
+        {
+            get { return _squareMeters/0.09290341161; }
+        }
+
         #endregion
 
         #region Static
@@ -450,6 +458,24 @@ namespace UnitsNet
         }
 #endif
 
+        /// <summary>
+        ///     Get Area from UsSurveySquareFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromUsSurveySquareFeet(double ussurveysquarefeet)
+        {
+            double value = (double) ussurveysquarefeet;
+            return new Area(value*0.09290341161);
+        }
+#else
+        public static Area FromUsSurveySquareFeet(QuantityValue ussurveysquarefeet)
+        {
+            double value = (double) ussurveysquarefeet;
+            return new Area((value*0.09290341161));
+        }
+#endif
+
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
@@ -632,6 +658,21 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        ///     Get nullable Area from nullable UsSurveySquareFeet.
+        /// </summary>
+        public static Area? FromUsSurveySquareFeet(QuantityValue? ussurveysquarefeet)
+        {
+            if (ussurveysquarefeet.HasValue)
+            {
+                return FromUsSurveySquareFeet(ussurveysquarefeet.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 #endif
 
         /// <summary>
@@ -674,6 +715,8 @@ namespace UnitsNet
                     return FromSquareMillimeters(value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value);
+                case AreaUnit.UsSurveySquareFoot:
+                    return FromUsSurveySquareFeet(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -720,6 +763,8 @@ namespace UnitsNet
                     return FromSquareMillimeters(value.Value);
                 case AreaUnit.SquareYard:
                     return FromSquareYards(value.Value);
+                case AreaUnit.UsSurveySquareFoot:
+                    return FromUsSurveySquareFeet(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -917,6 +962,8 @@ namespace UnitsNet
                     return SquareMillimeters;
                 case AreaUnit.SquareYard:
                     return SquareYards;
+                case AreaUnit.UsSurveySquareFoot:
+                    return UsSurveySquareFeet;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);

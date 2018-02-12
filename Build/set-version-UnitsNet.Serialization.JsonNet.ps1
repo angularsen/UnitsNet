@@ -43,13 +43,17 @@
     "                       If not provided, a version number will be generated.`n"
   }
 
-  # Import functions: Set-ProjectVersion, Bump-ProjectVersion
-  import-module "$PSScriptRoot\set-version.psm1"
+# Import functions: Get-NewProjectVersion, Set-ProjectVersion, Invoke-CommitAndTagVersion
+Import-Module "$PSScriptRoot\set-version.psm1"
 
+$root = Resolve-Path "$PSScriptRoot\.."
+$paramSet = $PsCmdlet.ParameterSetName
+$commonPropsFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Common.props"
+$versionFiles = @($commonPropsFile)
+$projectName = "JsonNet"
 
-  $root = "$PSScriptRoot\.."
-  $paramSet = $PsCmdlet.ParameterSetName
-  $projectPaths = @("$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Common.props")
-  $projectName = "JsonNet"
+# Use UnitsNet.Common.props version as base if bumping major/minor/patch
+$newVersion = Get-NewProjectVersion $commonPropsFile $paramSet $setVersion $bumpVersion
 
-  Set-ProjectVersionAndCommit $projectName $projectPaths $paramSet $setVersion $bumpVersion
+Set-ProjectVersion $commonPropsFile $newVersion
+Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion

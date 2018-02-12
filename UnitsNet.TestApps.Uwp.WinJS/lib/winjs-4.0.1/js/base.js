@@ -14478,7 +14478,7 @@ define('WinJS/Application',[
         // has an exception occur that is not handled (via an error handler passed to then() or a call to done()).
         //
         // To see the original exception stack, look at data.stack.
-        // For more information on debugging and exception handling go to http://go.microsoft.com/fwlink/p/?LinkId=253583.
+        // For more information on debugging and exception handling go to https://go.microsoft.com/fwlink/p/?LinkId=253583.
 
         debugger; // jshint ignore:line
         if (_Global.MSApp) {

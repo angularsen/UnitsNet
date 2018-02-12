@@ -54,5 +54,6 @@ namespace UnitsNet.Units
         SquareMile,
         SquareMillimeter,
         SquareYard,
+        UsSurveySquareFoot,
     }
 }
