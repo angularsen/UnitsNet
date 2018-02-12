@@ -55,5 +55,6 @@ namespace UnitsNet.Units
         Nanodegree,
         Nanoradian,
         Radian,
+        Revolution,
     }
 }

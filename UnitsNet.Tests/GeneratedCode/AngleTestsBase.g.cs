@@ -65,6 +65,7 @@ namespace UnitsNet.Tests
         protected abstract double NanodegreesInOneDegree { get; }
         protected abstract double NanoradiansInOneDegree { get; }
         protected abstract double RadiansInOneDegree { get; }
+        protected abstract double RevolutionsInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double ArcminutesTolerance { get { return 1e-5; } }
@@ -80,6 +81,7 @@ namespace UnitsNet.Tests
         protected virtual double NanodegreesTolerance { get { return 1e-5; } }
         protected virtual double NanoradiansTolerance { get { return 1e-5; } }
         protected virtual double RadiansTolerance { get { return 1e-5; } }
+        protected virtual double RevolutionsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -99,6 +101,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanodegreesInOneDegree, degree.Nanodegrees, NanodegreesTolerance);
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.Nanoradians, NanoradiansTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.Radians, RadiansTolerance);
+            AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.Revolutions, RevolutionsTolerance);
         }
 
         [Fact]
@@ -117,6 +120,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Nanodegree).Nanodegrees, NanodegreesTolerance);
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Nanoradian).Nanoradians, NanoradiansTolerance);
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Radian).Radians, RadiansTolerance);
+            AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Revolution).Revolutions, RevolutionsTolerance);
         }
 
         [Fact]
@@ -136,6 +140,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanodegreesInOneDegree, degree.As(AngleUnit.Nanodegree), NanodegreesTolerance);
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.As(AngleUnit.Nanoradian), NanoradiansTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.As(AngleUnit.Radian), RadiansTolerance);
+            AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.As(AngleUnit.Revolution), RevolutionsTolerance);
         }
 
         [Fact]
@@ -155,6 +160,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Angle.FromNanodegrees(degree.Nanodegrees).Degrees, NanodegreesTolerance);
             AssertEx.EqualTolerance(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
             AssertEx.EqualTolerance(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
+            AssertEx.EqualTolerance(1, Angle.FromRevolutions(degree.Revolutions).Degrees, RevolutionsTolerance);
         }
 
         [Fact]
