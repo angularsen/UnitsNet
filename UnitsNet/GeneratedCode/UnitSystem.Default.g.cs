@@ -297,6 +297,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "rad"),
                                 new AbbreviationsForCulture("ru-RU", "рад"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Revolution,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "r"),
+                                new AbbreviationsForCulture("ru-RU", "r"),
+                            }),
                     }),
                 new UnitLocalization(typeof (ApparentEnergyUnit),
                     new[]
@@ -413,15 +419,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "ft² (US)"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AreaDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m²"),
                             }),
                     }),
                 new UnitLocalization(typeof (AreaDensityUnit),
