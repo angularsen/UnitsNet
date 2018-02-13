@@ -34,6 +34,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerHourInOneGramPerSecond => 3.6;
 
+        protected override double TonnesPerHourInOneGramPerSecond => 3.6E-3;
+
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
         protected override double MegapoundsPerHourInOneGramPerSecond => 7.93664e-6;

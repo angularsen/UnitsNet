@@ -2355,6 +2355,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t/d"),
                             }),
+                        new CulturesForEnumValue((int) MassFlowUnit.TonnePerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "t/h"),
+                            }),
                     }),
                 new UnitLocalization(typeof (MassFluxUnit),
                     new[]
