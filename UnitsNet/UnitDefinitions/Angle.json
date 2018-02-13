@@ -76,6 +76,22 @@
           "Abbreviations": [ "g" ]
         }
       ]
+    },
+    {
+      "SingularName": "Revolution",
+      "PluralName": "Revolutions",
+      "FromUnitToBaseFunc": "x*360",
+      "FromBaseToUnitFunc": "x/360",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "r" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "r" ]
+        }
+      ]
     }
   ]
 }

@@ -39,11 +39,11 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
-    public enum RotationalAccelerationUnit
+    public enum ReactiveEnergyUnit
     {
         Undefined = 0,
-        DegreePerSecondSquared,
-        RadianPerSecondSquared,
-        RevolutionPerMinutePerSecond,
+        KilovoltampereReactiveHour,
+        MegavoltampereReactiveHour,
+        VoltampereReactiveHour,
     }
 }
