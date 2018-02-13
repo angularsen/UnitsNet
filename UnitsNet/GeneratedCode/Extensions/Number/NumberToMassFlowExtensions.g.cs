@@ -520,7 +520,7 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
-        #region TonPerHour
+        #region TonnePerHour
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
         public static MassFlow TonnesPerHour(this int value) => MassFlow.FromTonnesPerHour(value);

@@ -33,7 +33,7 @@
       ]
     },
     {
-      "SingularName": "TonPerHour",
+      "SingularName": "TonnePerHour",
       "PluralName": "TonnesPerHour",
       "FromUnitToBaseFunc": "1000*x/3.6",
       "FromBaseToUnitFunc": "x*3.6/1000",

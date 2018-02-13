@@ -801,7 +801,7 @@ namespace UnitsNet
                     return FromShortTonsPerHour(value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value);
-                case MassFlowUnit.TonPerHour:
+                case MassFlowUnit.TonnePerHour:
                     return FromTonnesPerHour(value);
 
                 default:
@@ -853,7 +853,7 @@ namespace UnitsNet
                     return FromShortTonsPerHour(value.Value);
                 case MassFlowUnit.TonnePerDay:
                     return FromTonnesPerDay(value.Value);
-                case MassFlowUnit.TonPerHour:
+                case MassFlowUnit.TonnePerHour:
                     return FromTonnesPerHour(value.Value);
 
                 default:
@@ -1056,7 +1056,7 @@ namespace UnitsNet
                     return ShortTonsPerHour;
                 case MassFlowUnit.TonnePerDay:
                     return TonnesPerDay;
-                case MassFlowUnit.TonPerHour:
+                case MassFlowUnit.TonnePerHour:
                     return TonnesPerHour;
 
                 default:

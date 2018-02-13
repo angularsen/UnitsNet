@@ -2338,7 +2338,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "t/d"),
                             }),
-                        new CulturesForEnumValue((int) MassFlowUnit.TonPerHour,
+                        new CulturesForEnumValue((int) MassFlowUnit.TonnePerHour,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "t/h"),
