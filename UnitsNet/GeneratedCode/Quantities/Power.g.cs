@@ -146,6 +146,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Power in Decawatts.
+        /// </summary>
+        public double Decawatts
+        {
+            get { return Convert.ToDouble((_watts) / 1e1m); }
+        }
+
+        /// <summary>
+        ///     Get Power in Deciwatts.
+        /// </summary>
+        public double Deciwatts
+        {
+            get { return Convert.ToDouble((_watts) / 1e-1m); }
+        }
+
+        /// <summary>
         ///     Get Power in ElectricalHorsepower.
         /// </summary>
         public double ElectricalHorsepower
@@ -315,6 +331,42 @@ namespace UnitsNet
         {
             double value = (double) britishthermalunitsperhour;
             return new Power((Convert.ToDecimal(value*0.293071d)));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Power from Decawatts.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromDecawatts(double decawatts)
+        {
+            double value = (double) decawatts;
+            return new Power(Convert.ToDecimal((value) * 1e1d));
+        }
+#else
+        public static Power FromDecawatts(QuantityValue decawatts)
+        {
+            double value = (double) decawatts;
+            return new Power((Convert.ToDecimal((value) * 1e1d)));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Power from Deciwatts.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromDeciwatts(double deciwatts)
+        {
+            double value = (double) deciwatts;
+            return new Power(Convert.ToDecimal((value) * 1e-1d));
+        }
+#else
+        public static Power FromDeciwatts(QuantityValue deciwatts)
+        {
+            double value = (double) deciwatts;
+            return new Power((Convert.ToDecimal((value) * 1e-1d)));
         }
 #endif
 
@@ -639,6 +691,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Power from nullable Decawatts.
+        /// </summary>
+        public static Power? FromDecawatts(QuantityValue? decawatts)
+        {
+            if (decawatts.HasValue)
+            {
+                return FromDecawatts(decawatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Deciwatts.
+        /// </summary>
+        public static Power? FromDeciwatts(QuantityValue? deciwatts)
+        {
+            if (deciwatts.HasValue)
+            {
+                return FromDeciwatts(deciwatts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
         public static Power? FromElectricalHorsepower(QuantityValue? electricalhorsepower)
@@ -900,6 +982,10 @@ namespace UnitsNet
                     return FromBoilerHorsepower(value);
                 case PowerUnit.BritishThermalUnitPerHour:
                     return FromBritishThermalUnitsPerHour(value);
+                case PowerUnit.Decawatt:
+                    return FromDecawatts(value);
+                case PowerUnit.Deciwatt:
+                    return FromDeciwatts(value);
                 case PowerUnit.ElectricalHorsepower:
                     return FromElectricalHorsepower(value);
                 case PowerUnit.Femtowatt:
@@ -958,6 +1044,10 @@ namespace UnitsNet
                     return FromBoilerHorsepower(value.Value);
                 case PowerUnit.BritishThermalUnitPerHour:
                     return FromBritishThermalUnitsPerHour(value.Value);
+                case PowerUnit.Decawatt:
+                    return FromDecawatts(value.Value);
+                case PowerUnit.Deciwatt:
+                    return FromDeciwatts(value.Value);
                 case PowerUnit.ElectricalHorsepower:
                     return FromElectricalHorsepower(value.Value);
                 case PowerUnit.Femtowatt:
@@ -1164,6 +1254,10 @@ namespace UnitsNet
                     return BoilerHorsepower;
                 case PowerUnit.BritishThermalUnitPerHour:
                     return BritishThermalUnitsPerHour;
+                case PowerUnit.Decawatt:
+                    return Decawatts;
+                case PowerUnit.Deciwatt:
+                    return Deciwatts;
                 case PowerUnit.ElectricalHorsepower:
                     return ElectricalHorsepower;
                 case PowerUnit.Femtowatt:

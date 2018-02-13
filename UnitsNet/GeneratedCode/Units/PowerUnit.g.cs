@@ -44,6 +44,8 @@ namespace UnitsNet.Units
         Undefined = 0,
         BoilerHorsepower,
         BritishThermalUnitPerHour,
+        Decawatt,
+        Deciwatt,
         ElectricalHorsepower,
         Femtowatt,
         Gigawatt,

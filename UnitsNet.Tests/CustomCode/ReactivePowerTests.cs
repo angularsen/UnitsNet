@@ -46,10 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ReactivePowerTests : ReactivePowerTestsBase
     {
-        protected override double KilovoltamperesReactiveInOneVoltampereReactive => 1e-3;
-
-        protected override double MegavoltamperesReactiveInOneVoltampereReactive => 1e-6;
-
         protected override double VoltamperesReactiveInOneVoltampereReactive => 1;
+
+        protected override double KilovoltamperesReactiveInOneVoltampereReactive => 1E-3;
+
+        protected override double MegavoltamperesReactiveInOneVoltampereReactive => 1E-6;
+
+        protected override double GigavoltamperesReactiveInOneVoltampereReactive => 1E-9;
     }
 }

@@ -112,6 +112,74 @@ namespace UnitsNet.Extensions.NumberToPower
 
         #endregion
 
+        #region Decawatt
+
+        /// <inheritdoc cref="Power.FromDecawatts(double)"/>
+        public static Power Decawatts(this int value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double?)"/>
+        public static Power? Decawatts(this int? value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double)"/>
+        public static Power Decawatts(this long value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double?)"/>
+        public static Power? Decawatts(this long? value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double)"/>
+        public static Power Decawatts(this double value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double?)"/>
+        public static Power? Decawatts(this double? value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double)"/>
+        public static Power Decawatts(this float value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double?)"/>
+        public static Power? Decawatts(this float? value) => Power.FromDecawatts(value);
+
+        /// <inheritdoc cref="Power.FromDecawatts(double)"/>
+        public static Power Decawatts(this decimal value) => Power.FromDecawatts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Power.FromDecawatts(double?)"/>
+        public static Power? Decawatts(this decimal? value) => Power.FromDecawatts(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Deciwatt
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double)"/>
+        public static Power Deciwatts(this int value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double?)"/>
+        public static Power? Deciwatts(this int? value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double)"/>
+        public static Power Deciwatts(this long value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double?)"/>
+        public static Power? Deciwatts(this long? value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double)"/>
+        public static Power Deciwatts(this double value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double?)"/>
+        public static Power? Deciwatts(this double? value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double)"/>
+        public static Power Deciwatts(this float value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double?)"/>
+        public static Power? Deciwatts(this float? value) => Power.FromDeciwatts(value);
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double)"/>
+        public static Power Deciwatts(this decimal value) => Power.FromDeciwatts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Power.FromDeciwatts(double?)"/>
+        public static Power? Deciwatts(this decimal? value) => Power.FromDeciwatts(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region ElectricalHorsepower
 
         /// <inheritdoc cref="Power.FromElectricalHorsepower(double)"/>
