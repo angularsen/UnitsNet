@@ -56,7 +56,7 @@ using Culture = System.IFormatProvider;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Angular acceleration is the rate of change of rotational speed.
+    ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
@@ -64,26 +64,26 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class RotationalAcceleration
+    public sealed partial class ReactiveEnergy
 #else
-    public partial struct RotationalAcceleration : IComparable, IComparable<RotationalAcceleration>
+    public partial struct ReactiveEnergy : IComparable, IComparable<ReactiveEnergy>
 #endif
     {
         /// <summary>
-        ///     Base unit of RotationalAcceleration.
+        ///     Base unit of ReactiveEnergy.
         /// </summary>
-        private readonly double _radiansPerSecondSquared;
+        private readonly double _voltampereReactiveHours;
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public RotationalAcceleration() : this(0)
+        public ReactiveEnergy() : this(0)
         {
         }
 #endif
 
-        public RotationalAcceleration(double radianspersecondsquared)
+        public ReactiveEnergy(double voltamperereactivehours)
         {
-            _radiansPerSecondSquared = Convert.ToDouble(radianspersecondsquared);
+            _voltampereReactiveHours = Convert.ToDouble(voltamperereactivehours);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -92,9 +92,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        RotationalAcceleration(long radianspersecondsquared)
+        ReactiveEnergy(long voltamperereactivehours)
         {
-            _radiansPerSecondSquared = Convert.ToDouble(radianspersecondsquared);
+            _voltampereReactiveHours = Convert.ToDouble(voltamperereactivehours);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -104,9 +104,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        RotationalAcceleration(decimal radianspersecondsquared)
+        ReactiveEnergy(decimal voltamperereactivehours)
         {
-            _radiansPerSecondSquared = Convert.ToDouble(radianspersecondsquared);
+            _voltampereReactiveHours = Convert.ToDouble(voltamperereactivehours);
         }
 
         #region Properties
@@ -114,118 +114,118 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalAcceleration;
+        public static QuantityType QuantityType => QuantityType.ReactiveEnergy;
 
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static RotationalAccelerationUnit BaseUnit
+        public static ReactiveEnergyUnit BaseUnit
         {
-            get { return RotationalAccelerationUnit.RadianPerSecondSquared; }
+            get { return ReactiveEnergyUnit.VoltampereReactiveHour; }
         }
 
         /// <summary>
-        ///     All units of measurement for the RotationalAcceleration quantity.
+        ///     All units of measurement for the ReactiveEnergy quantity.
         /// </summary>
-        public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().ToArray();
+        public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().ToArray();
 
         /// <summary>
-        ///     Get RotationalAcceleration in DegreesPerSecondSquared.
+        ///     Get ReactiveEnergy in KilovoltampereReactiveHours.
         /// </summary>
-        public double DegreesPerSecondSquared
+        public double KilovoltampereReactiveHours
         {
-            get { return (180/Math.PI)*_radiansPerSecondSquared; }
+            get { return (_voltampereReactiveHours) / 1e3d; }
         }
 
         /// <summary>
-        ///     Get RotationalAcceleration in RadiansPerSecondSquared.
+        ///     Get ReactiveEnergy in MegavoltampereReactiveHours.
         /// </summary>
-        public double RadiansPerSecondSquared
+        public double MegavoltampereReactiveHours
         {
-            get { return _radiansPerSecondSquared; }
+            get { return (_voltampereReactiveHours) / 1e6d; }
         }
 
         /// <summary>
-        ///     Get RotationalAcceleration in RevolutionsPerMinutePerSecond.
+        ///     Get ReactiveEnergy in VoltampereReactiveHours.
         /// </summary>
-        public double RevolutionsPerMinutePerSecond
+        public double VoltampereReactiveHours
         {
-            get { return (60/(2*Math.PI))*_radiansPerSecondSquared; }
+            get { return _voltampereReactiveHours; }
         }
 
         #endregion
 
         #region Static
 
-        public static RotationalAcceleration Zero
+        public static ReactiveEnergy Zero
         {
-            get { return new RotationalAcceleration(); }
+            get { return new ReactiveEnergy(); }
         }
 
         /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared.
+        ///     Get ReactiveEnergy from KilovoltampereReactiveHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared)
+        public static ReactiveEnergy FromKilovoltampereReactiveHours(double kilovoltamperereactivehours)
         {
-            double value = (double) degreespersecondsquared;
-            return new RotationalAcceleration((Math.PI/180)*value);
+            double value = (double) kilovoltamperereactivehours;
+            return new ReactiveEnergy((value) * 1e3d);
         }
 #else
-        public static RotationalAcceleration FromDegreesPerSecondSquared(QuantityValue degreespersecondsquared)
+        public static ReactiveEnergy FromKilovoltampereReactiveHours(QuantityValue kilovoltamperereactivehours)
         {
-            double value = (double) degreespersecondsquared;
-            return new RotationalAcceleration(((Math.PI/180)*value));
+            double value = (double) kilovoltamperereactivehours;
+            return new ReactiveEnergy(((value) * 1e3d));
         }
 #endif
 
         /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared.
+        ///     Get ReactiveEnergy from MegavoltampereReactiveHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RotationalAcceleration FromRadiansPerSecondSquared(double radianspersecondsquared)
+        public static ReactiveEnergy FromMegavoltampereReactiveHours(double megavoltamperereactivehours)
         {
-            double value = (double) radianspersecondsquared;
-            return new RotationalAcceleration(value);
+            double value = (double) megavoltamperereactivehours;
+            return new ReactiveEnergy((value) * 1e6d);
         }
 #else
-        public static RotationalAcceleration FromRadiansPerSecondSquared(QuantityValue radianspersecondsquared)
+        public static ReactiveEnergy FromMegavoltampereReactiveHours(QuantityValue megavoltamperereactivehours)
         {
-            double value = (double) radianspersecondsquared;
-            return new RotationalAcceleration((value));
+            double value = (double) megavoltamperereactivehours;
+            return new ReactiveEnergy(((value) * 1e6d));
         }
 #endif
 
         /// <summary>
-        ///     Get RotationalAcceleration from RevolutionsPerMinutePerSecond.
+        ///     Get ReactiveEnergy from VoltampereReactiveHours.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double revolutionsperminutepersecond)
+        public static ReactiveEnergy FromVoltampereReactiveHours(double voltamperereactivehours)
         {
-            double value = (double) revolutionsperminutepersecond;
-            return new RotationalAcceleration(((2*Math.PI)/60)*value);
+            double value = (double) voltamperereactivehours;
+            return new ReactiveEnergy(value);
         }
 #else
-        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(QuantityValue revolutionsperminutepersecond)
+        public static ReactiveEnergy FromVoltampereReactiveHours(QuantityValue voltamperereactivehours)
         {
-            double value = (double) revolutionsperminutepersecond;
-            return new RotationalAcceleration((((2*Math.PI)/60)*value));
+            double value = (double) voltamperereactivehours;
+            return new ReactiveEnergy((value));
         }
 #endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable DegreesPerSecondSquared.
+        ///     Get nullable ReactiveEnergy from nullable KilovoltampereReactiveHours.
         /// </summary>
-        public static RotationalAcceleration? FromDegreesPerSecondSquared(QuantityValue? degreespersecondsquared)
+        public static ReactiveEnergy? FromKilovoltampereReactiveHours(QuantityValue? kilovoltamperereactivehours)
         {
-            if (degreespersecondsquared.HasValue)
+            if (kilovoltamperereactivehours.HasValue)
             {
-                return FromDegreesPerSecondSquared(degreespersecondsquared.Value);
+                return FromKilovoltampereReactiveHours(kilovoltamperereactivehours.Value);
             }
             else
             {
@@ -234,13 +234,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable RadiansPerSecondSquared.
+        ///     Get nullable ReactiveEnergy from nullable MegavoltampereReactiveHours.
         /// </summary>
-        public static RotationalAcceleration? FromRadiansPerSecondSquared(QuantityValue? radianspersecondsquared)
+        public static ReactiveEnergy? FromMegavoltampereReactiveHours(QuantityValue? megavoltamperereactivehours)
         {
-            if (radianspersecondsquared.HasValue)
+            if (megavoltamperereactivehours.HasValue)
             {
-                return FromRadiansPerSecondSquared(radianspersecondsquared.Value);
+                return FromMegavoltampereReactiveHours(megavoltamperereactivehours.Value);
             }
             else
             {
@@ -249,13 +249,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable RotationalAcceleration from nullable RevolutionsPerMinutePerSecond.
+        ///     Get nullable ReactiveEnergy from nullable VoltampereReactiveHours.
         /// </summary>
-        public static RotationalAcceleration? FromRevolutionsPerMinutePerSecond(QuantityValue? revolutionsperminutepersecond)
+        public static ReactiveEnergy? FromVoltampereReactiveHours(QuantityValue? voltamperereactivehours)
         {
-            if (revolutionsperminutepersecond.HasValue)
+            if (voltamperereactivehours.HasValue)
             {
-                return FromRevolutionsPerMinutePerSecond(revolutionsperminutepersecond.Value);
+                return FromVoltampereReactiveHours(voltamperereactivehours.Value);
             }
             else
             {
@@ -266,27 +266,27 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RotationalAccelerationUnit" /> to <see cref="RotationalAcceleration" />.
+        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RotationalAcceleration unit value.</returns>
+        /// <returns>ReactiveEnergy unit value.</returns>
 #if WINDOWS_UWP
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static RotationalAcceleration From(double value, RotationalAccelerationUnit fromUnit)
+        public static ReactiveEnergy From(double value, ReactiveEnergyUnit fromUnit)
 #else
-        public static RotationalAcceleration From(QuantityValue value, RotationalAccelerationUnit fromUnit)
+        public static ReactiveEnergy From(QuantityValue value, ReactiveEnergyUnit fromUnit)
 #endif
         {
             switch (fromUnit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return FromDegreesPerSecondSquared(value);
-                case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return FromRadiansPerSecondSquared(value);
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
-                    return FromRevolutionsPerMinutePerSecond(value);
+                case ReactiveEnergyUnit.KilovoltampereReactiveHour:
+                    return FromKilovoltampereReactiveHours(value);
+                case ReactiveEnergyUnit.MegavoltampereReactiveHour:
+                    return FromMegavoltampereReactiveHours(value);
+                case ReactiveEnergyUnit.VoltampereReactiveHour:
+                    return FromVoltampereReactiveHours(value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -296,12 +296,12 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RotationalAccelerationUnit" /> to <see cref="RotationalAcceleration" />.
+        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RotationalAcceleration unit value.</returns>
-        public static RotationalAcceleration? From(QuantityValue? value, RotationalAccelerationUnit fromUnit)
+        /// <returns>ReactiveEnergy unit value.</returns>
+        public static ReactiveEnergy? From(QuantityValue? value, ReactiveEnergyUnit fromUnit)
         {
             if (!value.HasValue)
             {
@@ -309,12 +309,12 @@ namespace UnitsNet
             }
             switch (fromUnit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return FromDegreesPerSecondSquared(value.Value);
-                case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return FromRadiansPerSecondSquared(value.Value);
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
-                    return FromRevolutionsPerMinutePerSecond(value.Value);
+                case ReactiveEnergyUnit.KilovoltampereReactiveHour:
+                    return FromKilovoltampereReactiveHours(value.Value);
+                case ReactiveEnergyUnit.MegavoltampereReactiveHour:
+                    return FromMegavoltampereReactiveHours(value.Value);
+                case ReactiveEnergyUnit.VoltampereReactiveHour:
+                    return FromVoltampereReactiveHours(value.Value);
 
                 default:
                     throw new NotImplementedException("fromUnit: " + fromUnit);
@@ -328,7 +328,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RotationalAccelerationUnit unit)
+        public static string GetAbbreviation(ReactiveEnergyUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -340,7 +340,7 @@ namespace UnitsNet
         /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RotationalAccelerationUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(ReactiveEnergyUnit unit, [CanBeNull] Culture culture)
         {
             return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
         }
@@ -351,39 +351,39 @@ namespace UnitsNet
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static RotationalAcceleration operator -(RotationalAcceleration right)
+        public static ReactiveEnergy operator -(ReactiveEnergy right)
         {
-            return new RotationalAcceleration(-right._radiansPerSecondSquared);
+            return new ReactiveEnergy(-right._voltampereReactiveHours);
         }
 
-        public static RotationalAcceleration operator +(RotationalAcceleration left, RotationalAcceleration right)
+        public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new RotationalAcceleration(left._radiansPerSecondSquared + right._radiansPerSecondSquared);
+            return new ReactiveEnergy(left._voltampereReactiveHours + right._voltampereReactiveHours);
         }
 
-        public static RotationalAcceleration operator -(RotationalAcceleration left, RotationalAcceleration right)
+        public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new RotationalAcceleration(left._radiansPerSecondSquared - right._radiansPerSecondSquared);
+            return new ReactiveEnergy(left._voltampereReactiveHours - right._voltampereReactiveHours);
         }
 
-        public static RotationalAcceleration operator *(double left, RotationalAcceleration right)
+        public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
         {
-            return new RotationalAcceleration(left*right._radiansPerSecondSquared);
+            return new ReactiveEnergy(left*right._voltampereReactiveHours);
         }
 
-        public static RotationalAcceleration operator *(RotationalAcceleration left, double right)
+        public static ReactiveEnergy operator *(ReactiveEnergy left, double right)
         {
-            return new RotationalAcceleration(left._radiansPerSecondSquared*(double)right);
+            return new ReactiveEnergy(left._voltampereReactiveHours*(double)right);
         }
 
-        public static RotationalAcceleration operator /(RotationalAcceleration left, double right)
+        public static ReactiveEnergy operator /(ReactiveEnergy left, double right)
         {
-            return new RotationalAcceleration(left._radiansPerSecondSquared/(double)right);
+            return new ReactiveEnergy(left._voltampereReactiveHours/(double)right);
         }
 
-        public static double operator /(RotationalAcceleration left, RotationalAcceleration right)
+        public static double operator /(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return Convert.ToDouble(left._radiansPerSecondSquared/right._radiansPerSecondSquared);
+            return Convert.ToDouble(left._voltampereReactiveHours/right._voltampereReactiveHours);
         }
 #endif
 
@@ -394,8 +394,8 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is RotationalAcceleration)) throw new ArgumentException("Expected type RotationalAcceleration.", "obj");
-            return CompareTo((RotationalAcceleration) obj);
+            if (!(obj is ReactiveEnergy)) throw new ArgumentException("Expected type ReactiveEnergy.", "obj");
+            return CompareTo((ReactiveEnergy) obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -404,45 +404,45 @@ namespace UnitsNet
 #else
         public
 #endif
-        int CompareTo(RotationalAcceleration other)
+        int CompareTo(ReactiveEnergy other)
         {
-            return _radiansPerSecondSquared.CompareTo(other._radiansPerSecondSquared);
+            return _voltampereReactiveHours.CompareTo(other._voltampereReactiveHours);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static bool operator <=(RotationalAcceleration left, RotationalAcceleration right)
+        public static bool operator <=(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left._radiansPerSecondSquared <= right._radiansPerSecondSquared;
+            return left._voltampereReactiveHours <= right._voltampereReactiveHours;
         }
 
-        public static bool operator >=(RotationalAcceleration left, RotationalAcceleration right)
+        public static bool operator >=(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left._radiansPerSecondSquared >= right._radiansPerSecondSquared;
+            return left._voltampereReactiveHours >= right._voltampereReactiveHours;
         }
 
-        public static bool operator <(RotationalAcceleration left, RotationalAcceleration right)
+        public static bool operator <(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left._radiansPerSecondSquared < right._radiansPerSecondSquared;
+            return left._voltampereReactiveHours < right._voltampereReactiveHours;
         }
 
-        public static bool operator >(RotationalAcceleration left, RotationalAcceleration right)
+        public static bool operator >(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left._radiansPerSecondSquared > right._radiansPerSecondSquared;
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(RotationalAcceleration left, RotationalAcceleration right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._radiansPerSecondSquared == right._radiansPerSecondSquared;
+            return left._voltampereReactiveHours > right._voltampereReactiveHours;
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(RotationalAcceleration left, RotationalAcceleration right)
+        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._radiansPerSecondSquared != right._radiansPerSecondSquared;
+            return left._voltampereReactiveHours == right._voltampereReactiveHours;
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left._voltampereReactiveHours != right._voltampereReactiveHours;
         }
 #endif
 
@@ -454,25 +454,25 @@ namespace UnitsNet
                 return false;
             }
 
-            return _radiansPerSecondSquared.Equals(((RotationalAcceleration) obj)._radiansPerSecondSquared);
+            return _voltampereReactiveHours.Equals(((ReactiveEnergy) obj)._voltampereReactiveHours);
         }
 
         /// <summary>
-        ///     Compare equality to another RotationalAcceleration by specifying a max allowed difference.
+        ///     Compare equality to another ReactiveEnergy by specifying a max allowed difference.
         ///     Note that it is advised against specifying zero difference, due to the nature
         ///     of floating point operations and using System.Double internally.
         /// </summary>
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        public bool Equals(RotationalAcceleration other, RotationalAcceleration maxError)
+        public bool Equals(ReactiveEnergy other, ReactiveEnergy maxError)
         {
-            return Math.Abs(_radiansPerSecondSquared - other._radiansPerSecondSquared) <= maxError._radiansPerSecondSquared;
+            return Math.Abs(_voltampereReactiveHours - other._voltampereReactiveHours) <= maxError._voltampereReactiveHours;
         }
 
         public override int GetHashCode()
         {
-            return _radiansPerSecondSquared.GetHashCode();
+            return _voltampereReactiveHours.GetHashCode();
         }
 
         #endregion
@@ -484,16 +484,16 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value in new unit if successful, exception otherwise.</returns>
         /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
-        public double As(RotationalAccelerationUnit unit)
+        public double As(ReactiveEnergyUnit unit)
         {
             switch (unit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return DegreesPerSecondSquared;
-                case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return RadiansPerSecondSquared;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
-                    return RevolutionsPerMinutePerSecond;
+                case ReactiveEnergyUnit.KilovoltampereReactiveHour:
+                    return KilovoltampereReactiveHours;
+                case ReactiveEnergyUnit.MegavoltampereReactiveHour:
+                    return MegavoltampereReactiveHours;
+                case ReactiveEnergyUnit.VoltampereReactiveHour:
+                    return VoltampereReactiveHours;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -526,7 +526,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RotationalAcceleration Parse(string str)
+        public static ReactiveEnergy Parse(string str)
         {
             return Parse(str, null);
         }
@@ -554,7 +554,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RotationalAcceleration Parse(string str, [CanBeNull] Culture culture)
+        public static ReactiveEnergy Parse(string str, [CanBeNull] Culture culture)
         {
             if (str == null) throw new ArgumentNullException("str");
 
@@ -564,13 +564,13 @@ namespace UnitsNet
 #else
             IFormatProvider formatProvider = culture;
 #endif
-            return QuantityParser.Parse<RotationalAcceleration, RotationalAccelerationUnit>(str, formatProvider,
+            return QuantityParser.Parse<ReactiveEnergy, ReactiveEnergyUnit>(str, formatProvider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
-                    RotationalAccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    ReactiveEnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromRadiansPerSecondSquared(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared));
+                }, (x, y) => FromVoltampereReactiveHours(x.VoltampereReactiveHours + y.VoltampereReactiveHours));
         }
 
         /// <summary>
@@ -581,7 +581,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out RotationalAcceleration result)
+        public static bool TryParse([CanBeNull] string str, out ReactiveEnergy result)
         {
             return TryParse(str, null, out result);
         }
@@ -595,7 +595,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out RotationalAcceleration result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ReactiveEnergy result)
         {
             try
             {
@@ -604,7 +604,7 @@ namespace UnitsNet
             }
             catch
             {
-                result = default(RotationalAcceleration);
+                result = default(ReactiveEnergy);
                 return false;
             }
         }
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static RotationalAccelerationUnit ParseUnit(string str)
+        public static ReactiveEnergyUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
         }
@@ -630,7 +630,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static RotationalAccelerationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static ReactiveEnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
@@ -650,16 +650,16 @@ namespace UnitsNet
 #else
         public
 #endif
-        static RotationalAccelerationUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ReactiveEnergyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
             var unitSystem = UnitSystem.GetCached(formatProvider);
-            var unit = unitSystem.Parse<RotationalAccelerationUnit>(str.Trim());
+            var unit = unitSystem.Parse<ReactiveEnergyUnit>(str.Trim());
 
-            if (unit == RotationalAccelerationUnit.Undefined)
+            if (unit == ReactiveEnergyUnit.Undefined)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalAccelerationUnit.");
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ReactiveEnergyUnit.");
                 newEx.Data["input"] = str;
                 newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
                 throw newEx;
@@ -671,9 +671,9 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is RadianPerSecondSquared
+        ///     Set the default unit used by ToString(). Default is VoltampereReactiveHour
         /// </summary>
-        public static RotationalAccelerationUnit ToStringDefaultUnit { get; set; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+        public static ReactiveEnergyUnit ToStringDefaultUnit { get; set; } = ReactiveEnergyUnit.VoltampereReactiveHour;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -689,7 +689,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        public string ToString(RotationalAccelerationUnit unit)
+        public string ToString(ReactiveEnergyUnit unit)
         {
             return ToString(unit, null, 2);
         }
@@ -700,7 +700,7 @@ namespace UnitsNet
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="culture">Culture to use for localization and number formatting.</param>
         /// <returns>String representation.</returns>
-        public string ToString(RotationalAccelerationUnit unit, [CanBeNull] Culture culture)
+        public string ToString(ReactiveEnergyUnit unit, [CanBeNull] Culture culture)
         {
             return ToString(unit, culture, 2);
         }
@@ -713,7 +713,7 @@ namespace UnitsNet
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalAccelerationUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(ReactiveEnergyUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -729,7 +729,7 @@ namespace UnitsNet
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalAccelerationUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(ReactiveEnergyUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -747,24 +747,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Represents the largest possible value of RotationalAcceleration
+        /// Represents the largest possible value of ReactiveEnergy
         /// </summary>
-        public static RotationalAcceleration MaxValue
+        public static ReactiveEnergy MaxValue
         {
             get
             {
-                return new RotationalAcceleration(double.MaxValue);
+                return new ReactiveEnergy(double.MaxValue);
             }
         }
 
         /// <summary>
-        /// Represents the smallest possible value of RotationalAcceleration
+        /// Represents the smallest possible value of ReactiveEnergy
         /// </summary>
-        public static RotationalAcceleration MinValue
+        public static ReactiveEnergy MinValue
         {
             get
             {
-                return new RotationalAcceleration(double.MinValue);
+                return new ReactiveEnergy(double.MinValue);
             }
         }
     }

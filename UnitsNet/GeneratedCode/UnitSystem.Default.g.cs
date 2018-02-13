@@ -297,6 +297,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "rad"),
                                 new AbbreviationsForCulture("ru-RU", "рад"),
                             }),
+                        new CulturesForEnumValue((int) AngleUnit.Revolution,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "r"),
+                                new AbbreviationsForCulture("ru-RU", "r"),
+                            }),
                     }),
                 new UnitLocalization(typeof (ApparentEnergyUnit),
                     new[]
@@ -3069,6 +3075,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "%"),
                             }),
                     }),
+                new UnitLocalization(typeof (ReactiveEnergyUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ReactiveEnergyUnit.KilovoltampereReactiveHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kvarh"),
+                            }),
+                        new CulturesForEnumValue((int) ReactiveEnergyUnit.MegavoltampereReactiveHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mvarh"),
+                            }),
+                        new CulturesForEnumValue((int) ReactiveEnergyUnit.VoltampereReactiveHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "varh"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (ReactivePowerUnit),
                     new[]
                     {
@@ -3105,6 +3130,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "rad/s²"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RevolutionPerMinutePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "rpm/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (RotationalSpeedUnit),
