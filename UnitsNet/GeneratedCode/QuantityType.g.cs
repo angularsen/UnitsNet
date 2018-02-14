@@ -116,6 +116,7 @@ namespace UnitsNet
         Ratio,
         ReactiveEnergy,
         ReactivePower,
+        ReactivePowerGradient,
         RotationalAcceleration,
         RotationalSpeed,
         SolidAngle,

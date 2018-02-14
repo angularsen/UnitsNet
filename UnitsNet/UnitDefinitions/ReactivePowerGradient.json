@@ -1,0 +1,20 @@
+{
+  "Name": "ReactivePowerGradient",
+  "BaseUnit": "VoltamperePerSecond",
+  "XmlDoc": "In physics, the reactive power gradient describes how the reactive power changes in time.",
+  "Units": [
+    {
+      "SingularName": "VoltamperePerSecond",
+      "PluralName": "VoltamperesPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "var/s" ]
+        }
+      ]
+    }
+  ]
+}

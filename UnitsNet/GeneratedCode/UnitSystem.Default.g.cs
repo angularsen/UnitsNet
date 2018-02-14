@@ -3123,6 +3123,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "var"),
                             }),
                     }),
+                new UnitLocalization(typeof (ReactivePowerGradientUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) ReactivePowerGradientUnit.KilovoltamperePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kvar/s"),
+                            }),
+                        new CulturesForEnumValue((int) ReactivePowerGradientUnit.VoltamperePerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "var/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (RotationalAccelerationUnit),
                     new[]
                     {
