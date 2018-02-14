@@ -2789,6 +2789,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W"),
                             }),
                     }),
+                new UnitLocalization(typeof (PowerGradientUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerGradientUnit.KilowattPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/s"),
+                            }),
+                        new CulturesForEnumValue((int) PowerGradientUnit.WattPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/s"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PowerRatioUnit),
                     new[]
                     {
