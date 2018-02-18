@@ -68,13 +68,13 @@ namespace UnitsNet.Tests
             {
 #pragma warning disable 618
                 // double types
-                Assert.Equal("50 hg", new Mass(5, MassUnit.Hectogram).ToString());
+                Assert.Equal("5 hg", new Mass(5, MassUnit.Hectogram).ToString());
 
                 // decimal types
-                Assert.Equal("1 B", new Information(8, InformationUnit.Byte).ToString());
+                Assert.Equal("8 B", new Information(8, InformationUnit.Byte).ToString());
 
                 // logarithmic types
-                Assert.Equal("0.58 Np", new Level(5, LevelUnit.Neper).ToString());
+                Assert.Equal("5 Np", new Level(5, LevelUnit.Neper).ToString());
 #pragma warning restore 618
             }
 
