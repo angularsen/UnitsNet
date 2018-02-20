@@ -206,7 +206,6 @@ namespace UnitsNet.Serialization.JsonNet
 
             serializer.Serialize(writer, new ValueUnit
             {
-                // This might throw OverflowException for very large values?
                 // TODO Should we serialize long, decimal and long differently?
                 Value = Convert.ToDouble(quantityValue),
                 Unit = quantityUnitName
