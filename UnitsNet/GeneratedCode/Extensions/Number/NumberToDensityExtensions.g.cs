@@ -1132,37 +1132,71 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         #endregion
 
-        #region PoundPerGallon
+        #region PoundPerImperialGallon
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
-        public static Density PoundsPerGallon(this int value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this int value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
-        public static Density? PoundsPerGallon(this int? value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this int? value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
-        public static Density PoundsPerGallon(this long value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this long value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
-        public static Density? PoundsPerGallon(this long? value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this long? value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
-        public static Density PoundsPerGallon(this double value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this double value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
-        public static Density? PoundsPerGallon(this double? value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this double? value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
-        public static Density PoundsPerGallon(this float value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this float value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
-        public static Density? PoundsPerGallon(this float? value) => Density.FromPoundsPerGallon(value);
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this float? value) => Density.FromPoundsPerImperialGallon(value);
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
-        public static Density PoundsPerGallon(this decimal value) => Density.FromPoundsPerGallon(Convert.ToDouble(value));
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this decimal value) => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
-        public static Density? PoundsPerGallon(this decimal? value) => Density.FromPoundsPerGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this decimal? value) => Density.FromPoundsPerImperialGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerUSGallon
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this int value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this int? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this long value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this long? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this double value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this double? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this float value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this float? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this decimal value) => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this decimal? value) => Density.FromPoundsPerUSGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

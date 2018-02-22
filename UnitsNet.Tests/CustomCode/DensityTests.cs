@@ -49,7 +49,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
 
-        protected override double PoundsPerGallonInOneKilogramPerCubicMeter => 8.3454045e-3;
+        protected override double PoundsPerUSGallonInOneKilogramPerCubicMeter => 8.3454045e-3;
+        protected override double PoundsPerImperialGallonInOneKilogramPerCubicMeter => 1.002241e-2;
 
         protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-9;
 

@@ -386,9 +386,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Density in PoundsPerGallon.
+        ///     Get Density in PoundsPerImperialGallon.
         /// </summary>
-        public double PoundsPerGallon
+        public double PoundsPerImperialGallon
+        {
+            get { return _kilogramsPerCubicMeter/9.9776398e1; }
+        }
+
+        /// <summary>
+        ///     Get Density in PoundsPerUSGallon.
+        /// </summary>
+        public double PoundsPerUSGallon
         {
             get { return _kilogramsPerCubicMeter/1.19826427e2; }
         }
@@ -1011,19 +1019,37 @@ namespace UnitsNet
 #endif
 
         /// <summary>
-        ///     Get Density from PoundsPerGallon.
+        ///     Get Density from PoundsPerImperialGallon.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Density FromPoundsPerGallon(double poundspergallon)
+        public static Density FromPoundsPerImperialGallon(double poundsperimperialgallon)
         {
-            double value = (double) poundspergallon;
+            double value = (double) poundsperimperialgallon;
+            return new Density(value*9.9776398e1);
+        }
+#else
+        public static Density FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
+        {
+            double value = (double) poundsperimperialgallon;
+            return new Density((value*9.9776398e1));
+        }
+#endif
+
+        /// <summary>
+        ///     Get Density from PoundsPerUSGallon.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Density FromPoundsPerUSGallon(double poundsperusgallon)
+        {
+            double value = (double) poundsperusgallon;
             return new Density(value*1.19826427e2);
         }
 #else
-        public static Density FromPoundsPerGallon(QuantityValue poundspergallon)
+        public static Density FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
         {
-            double value = (double) poundspergallon;
+            double value = (double) poundsperusgallon;
             return new Density((value*1.19826427e2));
         }
 #endif
@@ -1583,13 +1609,28 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Density from nullable PoundsPerGallon.
+        ///     Get nullable Density from nullable PoundsPerImperialGallon.
         /// </summary>
-        public static Density? FromPoundsPerGallon(QuantityValue? poundspergallon)
+        public static Density? FromPoundsPerImperialGallon(QuantityValue? poundsperimperialgallon)
         {
-            if (poundspergallon.HasValue)
+            if (poundsperimperialgallon.HasValue)
             {
-                return FromPoundsPerGallon(poundspergallon.Value);
+                return FromPoundsPerImperialGallon(poundsperimperialgallon.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerUSGallon.
+        /// </summary>
+        public static Density? FromPoundsPerUSGallon(QuantityValue? poundsperusgallon)
+        {
+            if (poundsperusgallon.HasValue)
+            {
+                return FromPoundsPerUSGallon(poundsperusgallon.Value);
             }
             else
             {
@@ -1739,8 +1780,10 @@ namespace UnitsNet
                     return FromPoundsPerCubicFoot(value);
                 case DensityUnit.PoundPerCubicInch:
                     return FromPoundsPerCubicInch(value);
-                case DensityUnit.PoundPerGallon:
-                    return FromPoundsPerGallon(value);
+                case DensityUnit.PoundPerImperialGallon:
+                    return FromPoundsPerImperialGallon(value);
+                case DensityUnit.PoundPerUSGallon:
+                    return FromPoundsPerUSGallon(value);
                 case DensityUnit.SlugPerCubicFoot:
                     return FromSlugsPerCubicFoot(value);
                 case DensityUnit.TonnePerCubicCentimeter:
@@ -1835,8 +1878,10 @@ namespace UnitsNet
                     return FromPoundsPerCubicFoot(value.Value);
                 case DensityUnit.PoundPerCubicInch:
                     return FromPoundsPerCubicInch(value.Value);
-                case DensityUnit.PoundPerGallon:
-                    return FromPoundsPerGallon(value.Value);
+                case DensityUnit.PoundPerImperialGallon:
+                    return FromPoundsPerImperialGallon(value.Value);
+                case DensityUnit.PoundPerUSGallon:
+                    return FromPoundsPerUSGallon(value.Value);
                 case DensityUnit.SlugPerCubicFoot:
                     return FromSlugsPerCubicFoot(value.Value);
                 case DensityUnit.TonnePerCubicCentimeter:
@@ -2082,8 +2127,10 @@ namespace UnitsNet
                     return PoundsPerCubicFoot;
                 case DensityUnit.PoundPerCubicInch:
                     return PoundsPerCubicInch;
-                case DensityUnit.PoundPerGallon:
-                    return PoundsPerGallon;
+                case DensityUnit.PoundPerImperialGallon:
+                    return PoundsPerImperialGallon;
+                case DensityUnit.PoundPerUSGallon:
+                    return PoundsPerUSGallon;
                 case DensityUnit.SlugPerCubicFoot:
                     return SlugsPerCubicFoot;
                 case DensityUnit.TonnePerCubicCentimeter:
