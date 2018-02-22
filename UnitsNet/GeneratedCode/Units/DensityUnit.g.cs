@@ -74,6 +74,7 @@ namespace UnitsNet.Units
         PicogramPerMilliliter,
         PoundPerCubicFoot,
         PoundPerCubicInch,
+        PoundPerGallon,
         SlugPerCubicFoot,
         TonnePerCubicCentimeter,
         TonnePerCubicMeter,
