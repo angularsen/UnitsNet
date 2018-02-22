@@ -7,8 +7,8 @@
     {
       "SingularName": "GramPerMeter",
       "PluralName": "GramsPerMeter",
-      "FromUnitToBaseFunc": "x/1e3",
-      "FromBaseToUnitFunc": "x*1e3",
+      "FromUnitToBaseFunc": "x*1e-3",
+      "FromBaseToUnitFunc": "x/1e-3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -20,8 +20,8 @@
     {
       "SingularName": "PoundPerFoot",
       "PluralName": "PoundsPerFoot",
-      "FromUnitToBaseFunc": "x/6.71968975e-1",
-      "FromBaseToUnitFunc": "x*6.71968975e-1",
+      "FromUnitToBaseFunc": "x*1.48816394",
+      "FromBaseToUnitFunc": "x/1.48816394",
       "Localization": [
         {
           "Culture": "en-US",

@@ -390,7 +390,7 @@ namespace UnitsNet
         /// </summary>
         public double PoundsPerGallon
         {
-            get { return _kilogramsPerCubicMeter*8.3454045e-3; }
+            get { return _kilogramsPerCubicMeter/1.19826427e2; }
         }
 
         /// <summary>
@@ -1018,13 +1018,13 @@ namespace UnitsNet
         public static Density FromPoundsPerGallon(double poundspergallon)
         {
             double value = (double) poundspergallon;
-            return new Density(value/8.3454045e-3);
+            return new Density(value*1.19826427e2);
         }
 #else
         public static Density FromPoundsPerGallon(QuantityValue poundspergallon)
         {
             double value = (double) poundspergallon;
-            return new Density((value/8.3454045e-3));
+            return new Density((value*1.19826427e2));
         }
 #endif
 

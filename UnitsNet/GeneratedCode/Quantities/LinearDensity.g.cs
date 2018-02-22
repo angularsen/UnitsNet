@@ -134,7 +134,7 @@ namespace UnitsNet
         /// </summary>
         public double GramsPerMeter
         {
-            get { return _kilogramsPerMeter*1e3; }
+            get { return _kilogramsPerMeter/1e-3; }
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         public double KilogramsPerMeter
         {
-            get { return (_kilogramsPerMeter*1e3) / 1e3d; }
+            get { return (_kilogramsPerMeter/1e-3) / 1e3d; }
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// </summary>
         public double PoundsPerFoot
         {
-            get { return _kilogramsPerMeter*6.71968975e-1; }
+            get { return _kilogramsPerMeter/1.48816394; }
         }
 
         #endregion
@@ -170,13 +170,13 @@ namespace UnitsNet
         public static LinearDensity FromGramsPerMeter(double gramspermeter)
         {
             double value = (double) gramspermeter;
-            return new LinearDensity(value/1e3);
+            return new LinearDensity(value*1e-3);
         }
 #else
         public static LinearDensity FromGramsPerMeter(QuantityValue gramspermeter)
         {
             double value = (double) gramspermeter;
-            return new LinearDensity((value/1e3));
+            return new LinearDensity((value*1e-3));
         }
 #endif
 
@@ -188,13 +188,13 @@ namespace UnitsNet
         public static LinearDensity FromKilogramsPerMeter(double kilogramspermeter)
         {
             double value = (double) kilogramspermeter;
-            return new LinearDensity((value/1e3) * 1e3d);
+            return new LinearDensity((value*1e-3) * 1e3d);
         }
 #else
         public static LinearDensity FromKilogramsPerMeter(QuantityValue kilogramspermeter)
         {
             double value = (double) kilogramspermeter;
-            return new LinearDensity(((value/1e3) * 1e3d));
+            return new LinearDensity(((value*1e-3) * 1e3d));
         }
 #endif
 
@@ -206,13 +206,13 @@ namespace UnitsNet
         public static LinearDensity FromPoundsPerFoot(double poundsperfoot)
         {
             double value = (double) poundsperfoot;
-            return new LinearDensity(value/6.71968975e-1);
+            return new LinearDensity(value*1.48816394);
         }
 #else
         public static LinearDensity FromPoundsPerFoot(QuantityValue poundsperfoot)
         {
             double value = (double) poundsperfoot;
-            return new LinearDensity((value/6.71968975e-1));
+            return new LinearDensity((value*1.48816394));
         }
 #endif
 
