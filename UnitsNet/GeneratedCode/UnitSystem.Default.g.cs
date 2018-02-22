@@ -2110,6 +2110,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Np"),
                             }),
                     }),
+                new UnitLocalization(typeof (LinearDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LinearDensityUnit.GramPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/m"),
+                            }),
+                        new CulturesForEnumValue((int) LinearDensityUnit.KilogramPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m"),
+                            }),
+                        new CulturesForEnumValue((int) LinearDensityUnit.PoundPerFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb/ft"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (LuminousFluxUnit),
                     new[]
                     {
