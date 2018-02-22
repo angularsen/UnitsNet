@@ -1132,6 +1132,40 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         #endregion
 
+        #region PoundPerGallon
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
+        public static Density PoundsPerGallon(this int value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
+        public static Density? PoundsPerGallon(this int? value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
+        public static Density PoundsPerGallon(this long value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
+        public static Density? PoundsPerGallon(this long? value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
+        public static Density PoundsPerGallon(this double value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
+        public static Density? PoundsPerGallon(this double? value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
+        public static Density PoundsPerGallon(this float value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
+        public static Density? PoundsPerGallon(this float? value) => Density.FromPoundsPerGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double)"/>
+        public static Density PoundsPerGallon(this decimal value) => Density.FromPoundsPerGallon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerGallon(double?)"/>
+        public static Density? PoundsPerGallon(this decimal? value) => Density.FromPoundsPerGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region SlugPerCubicFoot
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)"/>

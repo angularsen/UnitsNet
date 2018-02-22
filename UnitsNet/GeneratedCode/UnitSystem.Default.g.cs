@@ -797,6 +797,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lb/in³"),
                             }),
+                        new CulturesForEnumValue((int) DensityUnit.PoundPerGallon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ppg"),
+                            }),
                         new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
                             new[]
                             {

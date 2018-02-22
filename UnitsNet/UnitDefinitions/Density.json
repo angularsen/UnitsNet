@@ -161,6 +161,18 @@
           "Abbreviations": [ "g/ml" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundPerGallon",
+      "PluralName": "PoundsPerGallon",
+      "FromUnitToBaseFunc": "x/8.3454045e-3",
+      "FromBaseToUnitFunc": "x*8.3454045e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg" ]
+        }
+      ]
     }
   ]
 }
