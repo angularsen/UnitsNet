@@ -170,7 +170,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg" ]
+          "Abbreviations": [ "ppg (U.S.)" ]
         }
       ]
     },
@@ -182,7 +182,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg" ]
+          "Abbreviations": [ "ppg (imp.)" ]
         }
       ]
     }

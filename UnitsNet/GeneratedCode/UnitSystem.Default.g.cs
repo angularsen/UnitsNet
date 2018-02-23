@@ -800,12 +800,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) DensityUnit.PoundPerImperialGallon,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ppg"),
+                                new AbbreviationsForCulture("en-US", "ppg (imp.)"),
                             }),
                         new CulturesForEnumValue((int) DensityUnit.PoundPerUSGallon,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "ppg"),
+                                new AbbreviationsForCulture("en-US", "ppg (U.S.)"),
                             }),
                         new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
                             new[]
