@@ -94,6 +94,7 @@ namespace UnitsNet
         LapseRate,
         Length,
         Level,
+        LinearDensity,
         LuminousFlux,
         LuminousIntensity,
         MagneticField,

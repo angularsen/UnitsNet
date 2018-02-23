@@ -84,6 +84,8 @@ namespace UnitsNet.Tests
         protected abstract double PicogramsPerMilliliterInOneKilogramPerCubicMeter { get; }
         protected abstract double PoundsPerCubicFootInOneKilogramPerCubicMeter { get; }
         protected abstract double PoundsPerCubicInchInOneKilogramPerCubicMeter { get; }
+        protected abstract double PoundsPerImperialGallonInOneKilogramPerCubicMeter { get; }
+        protected abstract double PoundsPerUSGallonInOneKilogramPerCubicMeter { get; }
         protected abstract double SlugsPerCubicFootInOneKilogramPerCubicMeter { get; }
         protected abstract double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
         protected abstract double TonnesPerCubicMeterInOneKilogramPerCubicMeter { get; }
@@ -122,6 +124,8 @@ namespace UnitsNet.Tests
         protected virtual double PicogramsPerMilliliterTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerCubicInchTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerImperialGallonTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerUSGallonTolerance { get { return 1e-5; } }
         protected virtual double SlugsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerCubicCentimeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerCubicMeterTolerance { get { return 1e-5; } }
@@ -164,6 +168,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PicogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(PoundsPerImperialGallonInOneKilogramPerCubicMeter, kilogrampercubicmeter.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
+            AssertEx.EqualTolerance(PoundsPerUSGallonInOneKilogramPerCubicMeter, kilogrampercubicmeter.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
             AssertEx.EqualTolerance(SlugsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
             AssertEx.EqualTolerance(TonnesPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(TonnesPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
@@ -205,6 +211,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.PicogramPerMilliliter).PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.PoundPerCubicFoot).PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.PoundPerCubicInch).PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.PoundPerImperialGallon).PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
+            AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.PoundPerUSGallon).PoundsPerUSGallon, PoundsPerUSGallonTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.SlugPerCubicFoot).SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.TonnePerCubicCentimeter).TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.TonnePerCubicMeter).TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
@@ -247,6 +255,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PicogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PicogramPerMilliliter), PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PoundPerCubicFoot), PoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PoundPerCubicInch), PoundsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(PoundsPerImperialGallonInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PoundPerImperialGallon), PoundsPerImperialGallonTolerance);
+            AssertEx.EqualTolerance(PoundsPerUSGallonInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PoundPerUSGallon), PoundsPerUSGallonTolerance);
             AssertEx.EqualTolerance(SlugsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.SlugPerCubicFoot), SlugsPerCubicFootTolerance);
             AssertEx.EqualTolerance(TonnesPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.TonnePerCubicCentimeter), TonnesPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(TonnesPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.TonnePerCubicMeter), TonnesPerCubicMeterTolerance);
@@ -289,6 +299,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.FromPicogramsPerMilliliter(kilogrampercubicmeter.PicogramsPerMilliliter).KilogramsPerCubicMeter, PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromPoundsPerCubicFoot(kilogrampercubicmeter.PoundsPerCubicFoot).KilogramsPerCubicMeter, PoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, Density.FromPoundsPerCubicInch(kilogrampercubicmeter.PoundsPerCubicInch).KilogramsPerCubicMeter, PoundsPerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, Density.FromPoundsPerImperialGallon(kilogrampercubicmeter.PoundsPerImperialGallon).KilogramsPerCubicMeter, PoundsPerImperialGallonTolerance);
+            AssertEx.EqualTolerance(1, Density.FromPoundsPerUSGallon(kilogrampercubicmeter.PoundsPerUSGallon).KilogramsPerCubicMeter, PoundsPerUSGallonTolerance);
             AssertEx.EqualTolerance(1, Density.FromSlugsPerCubicFoot(kilogrampercubicmeter.SlugsPerCubicFoot).KilogramsPerCubicMeter, SlugsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, Density.FromTonnesPerCubicCentimeter(kilogrampercubicmeter.TonnesPerCubicCentimeter).KilogramsPerCubicMeter, TonnesPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, Density.FromTonnesPerCubicMeter(kilogrampercubicmeter.TonnesPerCubicMeter).KilogramsPerCubicMeter, TonnesPerCubicMeterTolerance);

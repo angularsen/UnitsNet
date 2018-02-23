@@ -797,6 +797,16 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "lb/in³"),
                             }),
+                        new CulturesForEnumValue((int) DensityUnit.PoundPerImperialGallon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ppg (imp.)"),
+                            }),
+                        new CulturesForEnumValue((int) DensityUnit.PoundPerUSGallon,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ppg (U.S.)"),
+                            }),
                         new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
                             new[]
                             {
@@ -2108,6 +2118,25 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "Np"),
+                            }),
+                    }),
+                new UnitLocalization(typeof (LinearDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) LinearDensityUnit.GramPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "g/m"),
+                            }),
+                        new CulturesForEnumValue((int) LinearDensityUnit.KilogramPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/m"),
+                            }),
+                        new CulturesForEnumValue((int) LinearDensityUnit.PoundPerFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb/ft"),
                             }),
                     }),
                 new UnitLocalization(typeof (LuminousFluxUnit),
